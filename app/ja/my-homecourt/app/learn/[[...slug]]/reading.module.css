@@ -34,3 +34,18 @@
 .count{font-size:14px!important;color:#666;margin-bottom:16px!important}
 .empty{padding:20px;border:1px dashed #bbb;background:#fafafa}
 @media(max-width:700px){.search>div{grid-template-columns:1fr}.search input,.search select,.search button{width:100%}}
+
+.positioning{margin:28px 0;padding:22px;border:1px solid #d3d6d4;background:#f7f8f6}
+.positioning span{display:block;font-size:11px;font-weight:900;letter-spacing:.12em;color:#666}
+.positioning strong{display:block;margin:8px 0;font-size:22px;line-height:1.5}
+.positioning p{margin:0;color:#59646a}
+.method{padding:24px;border:1px solid #d3d6d4;background:#fff}
+.method h2{margin-top:6px}
+.methodGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#d3d6d4;border:1px solid #d3d6d4}
+.methodGrid>div{min-height:150px;padding:18px;background:#f8f8f6}
+.methodGrid span{display:block;font-size:11px;font-weight:900;letter-spacing:.12em;color:#777}
+.methodGrid strong{display:block;margin:24px 0 8px;font-size:18px}
+.methodGrid p{margin:0!important;font-size:14px!important;line-height:1.7!important;color:#59646a}
+.exercise{border-left:5px solid #171717}
+@media(max-width:700px){.methodGrid{grid-template-columns:1fr 1fr}.methodGrid>div{min-height:130px}}
+@media(max-width:430px){.methodGrid{grid-template-columns:1fr}.methodGrid>div{min-height:0}}
