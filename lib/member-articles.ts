@@ -8,6 +8,8 @@ export type MemberArticle = {
   sections: { title: string; paragraphs: string[] }[];
   action: string;
   questions: string[];
+  category?: string;
+  tags?: string[];
 };
 
 // Original RBA practice guides, not reports of observed clinics or guest lectures.
