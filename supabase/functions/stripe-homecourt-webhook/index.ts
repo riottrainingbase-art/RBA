@@ -44,29 +44,28 @@ async function resolveByEmail(supabase:any, session:any) {
   if(error) throw error;
   return data ? String(data) : null;
 }
-async function setWebhookState(supabase:any,event:any,status:string,errorMessage?:string) {
-  await supabase.from("stripe_webhook_events").update({
+async function setWebhookState(supabase:any,event:any,token:string,status:string,errorMessage?:string) {
+  const {error}=await supabase.from("stripe_webhook_events").update({
     processing_status:status,
     error_message:errorMessage||null,
-    processed_at: status==="received" ? null : new Date().toISOString(),
-  }).eq("stripe_event_id",event.id);
+    processed_at:["processed","ignored"].includes(status)?new Date().toISOString():null,
+  }).eq("stripe_event_id",event.id).eq("processing_token",token);
+  if(error) throw error;
 }
-async function beginWebhook(supabase:any,event:any) {
-  const {data}=await supabase.from("stripe_webhook_events").select("processing_status").eq("stripe_event_id",event.id).maybeSingle();
-  if(data?.processing_status==="processed" || data?.processing_status==="ignored") return false;
-  if(!data) {
-    const {error}=await supabase.from("stripe_webhook_events").insert({
-      stripe_event_id:event.id,event_type:event.type,object_id:event.data.object?.id||null,
-      livemode:event.livemode,processing_status:"received",
-    });
-    if(error && error.code!=="23505") throw error;
-  } else await setWebhookState(supabase,event,"received");
-  return true;
-}
-async function logAction(supabase:any, action_type:string, stripe_object_id:string|null, user_id:string|null, order_id:string|null, detail:any={}) {
-  await supabase.from("payment_reconciliation_actions").insert({
-    action_type,stripe_object_id,user_id,order_id,detail
+async function beginWebhook(supabase:any,event:any,payloadSha256:string) {
+  const token=crypto.randomUUID();
+  const {data,error}=await supabase.rpc("claim_stripe_webhook_event",{
+    p_event_id:event.id,p_event_type:event.type,p_object_id:event.data.object?.id||null,
+    p_livemode:!!event.livemode,p_payload_sha256:payloadSha256,p_token:token,
   });
+  if(error) throw error;
+  return data?token:null;
+}
+async function logAction(supabase:any,action_type:string,stripe_object_id:string|null,user_id:string|null,order_id:string|null,detail:any={},dedupeKey?:string) {
+  const {error}=await supabase.from("payment_reconciliation_actions").upsert({
+    action_type,stripe_object_id,user_id,order_id,detail,dedupe_key:dedupeKey||null
+  },{onConflict:"dedupe_key",ignoreDuplicates:true});
+  if(error) throw error;
 }
 async function storeUnmatched(supabase:any,event:any,session:any,reason:string) {
   const metadata=session.metadata||{};
@@ -85,7 +84,7 @@ async function storeUnmatched(supabase:any,event:any,session:any,reason:string) 
     payment_status:session.payment_status||null,
     reason,status:"unresolved",
   },{onConflict:"checkout_session_id"});
-  await logAction(supabase,"payment_unmatched",session.id,null,null,{reason,event:metadata.event||null,program:metadata.program||null});
+  await logAction(supabase,"payment_unmatched",session.id,null,null,{reason,event:metadata.event||null,program:metadata.program||null},`${event.id}:payment_unmatched`);
 }
 async function resolveCommerceContext(supabase:any,session:any,subjectId:string|null,payerId:string|null) {
   const paymentLinkId=sid(session.payment_link);
@@ -238,16 +237,18 @@ async function processCheckout(supabase:any,event:any,session:any) {
     const noteBody=commerce.offer?.title
       ? `${commerce.offer.title} のお支払いが完了しました。`
       : "RBAのお支払いが完了しました。";
-    await supabase.from("platform_notifications").insert({
+    const {error:paymentNoticeError}=await supabase.from("platform_notifications").upsert({
       user_id:payerId,notification_type:"payment_confirmed",title:noteTitle,body:noteBody,
-      action_url:"/ja/my-homecourt"
-    });
+      action_url:"/ja/my-homecourt",dedupe_key:`${session.id}:payment_confirmed:${payerId}`
+    },{onConflict:"dedupe_key",ignoreDuplicates:true});
+    if(paymentNoticeError) throw paymentNoticeError;
     if(subjectId!==payerId){
-      await supabase.from("platform_notifications").insert({
+      const {error:participantNoticeError}=await supabase.from("platform_notifications").upsert({
         user_id:subjectId,notification_type:"participation_confirmed",title:"参加が確定しました",
         body:commerce.offer?.title ? `${commerce.offer.title} の参加が確定しました。` : "RBAプログラムの参加が確定しました。",
-        action_url:"/ja/my-homecourt"
-      });
+        action_url:"/ja/my-homecourt",dedupe_key:`${session.id}:participation_confirmed:${subjectId}`
+      },{onConflict:"dedupe_key",ignoreDuplicates:true});
+      if(participantNoticeError) throw participantNoticeError;
     }
   }
 
@@ -255,9 +256,9 @@ async function processCheckout(supabase:any,event:any,session:any) {
     subject_user_id:subjectId,
     event:eventKey||null,program:program||null,plan:metadata.plan||null,
     offer_slug:commerce.offer?.slug||null,paid:isPaid
-  });
+  },`${event.id}:payment_matched`);
 }
-async function processSubscription(supabase:any,s:any) {
+async function processSubscription(supabase:any,event:any,s:any) {
   const isHomecourt=s.metadata?.program==="rba_homecourt" || (s.items?.data||[]).some((i:any)=>i.price?.id===HOMECOURT_PRICE_ID);
   if(!isHomecourt) return false;
   const {data,error}=await supabase.from("subscriptions").update({
@@ -268,7 +269,7 @@ async function processSubscription(supabase:any,s:any) {
   if(error) throw error;
   if(data?.user_id) await logAction(supabase,"subscription_updated",s.id,data.user_id,null,{
     status:s.status,cancel_at_period_end:!!s.cancel_at_period_end
-  });
+  },`${event.id}:subscription_updated`);
   return true;
 }
 async function processInvoice(supabase:any,invoice:any,paid:boolean) {
@@ -310,15 +311,12 @@ Deno.serve(async (request:Request)=>{
     return new Response("Invalid signature",{status:400});
   }
 
-  if(event.type.startsWith("checkout.session.")) {
-    const source = event.data.object?.metadata?.source || "";
-    if(source.startsWith("rba_platform")) {
-      return Response.json({received:true,handled:false,delegated:"rba_platform_v4"});
-    }
-  }
-
+  const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(body));
+  const payloadSha256=Array.from(new Uint8Array(digest)).map(byte=>byte.toString(16).padStart(2,"0")).join("");
+  let claimToken:string|null=null;
   try {
-    if(!(await beginWebhook(supabase,event))) return Response.json({received:true,duplicate:true});
+    claimToken=await beginWebhook(supabase,event,payloadSha256);
+    if(!claimToken) return Response.json({received:true,duplicate:true});
     let handled=false;
 
     if(["checkout.session.completed","checkout.session.async_payment_succeeded"].includes(event.type)) {
@@ -330,11 +328,11 @@ Deno.serve(async (request:Request)=>{
       if(payerId) {
         await supabase.from("platform_orders").update({status:"failed",updated_at:new Date().toISOString()})
           .eq("provider_checkout_id",session.id).eq("user_id",payerId);
-        await logAction(supabase,"payment_failed",session.id,payerId,null,{subject_user_id:subjectId});
+        await logAction(supabase,"payment_failed",session.id,payerId,null,{subject_user_id:subjectId},`${event.id}:payment_failed`);
       } else await storeUnmatched(supabase,event,session,"async_payment_failed_unresolved");
       handled=true;
     } else if(event.type.startsWith("customer.subscription.")) {
-      handled=await processSubscription(supabase,event.data.object);
+      handled=await processSubscription(supabase,event,event.data.object);
     } else if(event.type==="invoice.paid") {
       handled=await processInvoice(supabase,event.data.object,true);
     } else if(event.type==="invoice.payment_failed") {
@@ -343,11 +341,11 @@ Deno.serve(async (request:Request)=>{
       handled=await processRefund(supabase,event.data.object);
     }
 
-    await setWebhookState(supabase,event,handled?"processed":"ignored");
+    await setWebhookState(supabase,event,claimToken,handled?"processed":"ignored");
     return Response.json({received:true,handled});
   } catch(error) {
     const message=error instanceof Error?error.message.slice(0,500):"unknown";
-    await setWebhookState(supabase,event,"failed",message);
+    if(claimToken) await setWebhookState(supabase,event,claimToken,"failed",message);
     return new Response("Webhook processing failed",{status:500});
   }
 });

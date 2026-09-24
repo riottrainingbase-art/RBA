@@ -41,6 +41,18 @@ Commerce: 別決済システムなし、未確認routeは問い合わせへ。
 DB: control-plane view修正に加えprofiles/guardian_links再帰解消。
 SEO: canonical/hreflang/sitemap、login/payment-complete noindexの既存候補変更を維持。
 
+
+## 2026-09-24 追加監査
+
+- 既存gatewayの決済に付く `rba_platform` イベントを稼働Webhookが未処理のまま返していた問題を修正。実在しない委譲処理を削除し、通常の注文・台帳・参加・通知処理へ接続した。
+- Stripeイベントに10分leaseの原子的claimを追加。同一イベントの並行処理を拒否し、失敗イベントだけ再試行可能。処理tokenを持つ実行だけが完了・失敗を記録する。
+- 決済通知と照合actionにdedupe keyを追加。再試行で同じ通知が重複しない。DB transaction試験で並行claim拒否、失敗再試行、通知・action重複排除を確認し、試験データはrollback済み。
+- `stripe-homecourt-webhook` version 11を稼働環境へ反映。署名検証を処理前に維持し、JWT検証なしはStripe webhook受信用の既存設定を維持。
+- PARENTの実プロフィールがないため、既存coach/player IDをtransaction内だけparent/childとして構成。親は本人と確認済みの子どもの計2件だけ閲覧し、guardian linkは自分の1件だけ閲覧できることを確認。全変更rollback済み。
+- Supabase advisorのRLS auth.uid再評価4件と未index FK2件を修正。残るsecurity警告はservice-only 3表のpolicyなし（RLSにより公開roleは全拒否）、意図したjoin_team RPC、パスワード漏洩保護無効。
+- MY HOME COURTの英語・繁体字・韓国語から無料/有料会員を前面に出す表現を除去し、日本語と同じDISCOVER / CONNECT / CHALLENGEの体験設計に統一。
+- 全体metadataへmanifestを追加し、install iconをmanifestに追加。
+
 ## 新規ページ
 
 - `app/camp/page.tsx`
