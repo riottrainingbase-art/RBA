@@ -60,3 +60,32 @@
  .registration-flow li>div{min-width:0}
  .registration-flow li p,.registration-note{font-size:15px;line-height:1.85;letter-spacing:.02em}
 }
+
+/* Mobile-first Home Court: a later desktop grid must not compress Japanese copy. */
+.my-homecourt-hero{grid-template-columns:minmax(0,1fr);gap:32px;min-height:0}
+.my-homecourt-hero-copy{min-width:0;width:100%;align-items:flex-start}
+.my-homecourt-hero-copy>*{max-width:100%;min-width:0}
+.my-homecourt-hero .my-homecourt-hero-copy h1{width:100%;font-size:clamp(32px,4.5vw,64px);line-height:1.45;letter-spacing:0;font-weight:800;text-align:left;word-break:normal;overflow-wrap:anywhere}
+.my-homecourt-hero-copy>.section-index{line-height:1.8;letter-spacing:.08em}
+.my-homecourt-hero-copy>p:not(.section-index){line-height:1.9;letter-spacing:.02em;text-align:left}
+.my-homecourt-hero-actions{width:100%;align-items:stretch}
+.my-homecourt-hero-mark{min-height:0;align-self:stretch;padding:24px;gap:24px}
+.my-homecourt-hero-mark strong{line-height:1.05;letter-spacing:-.02em}
+@media(min-width:1000px){
+ .my-homecourt-hero{grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:48px}
+ .my-homecourt-hero-mark{min-height:330px}
+}
+@media(max-width:760px){
+ .my-homecourt-hero.section-pad{padding:32px 20px 40px}
+ .my-homecourt-hero .back-link{margin-bottom:24px}
+ .my-homecourt-hero .my-homecourt-hero-copy h1{font-size:34px;line-height:1.5;margin:16px 0 20px}
+ .my-homecourt-hero-copy>p:not(.section-index){font-size:16px}
+ .my-homecourt-hero-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-top:24px}
+ .my-homecourt-hero-actions>a{width:100%;min-height:52px;justify-content:center;white-space:normal;line-height:1.6}
+ .my-homecourt-hero-mark{display:none}
+ .my-homecourt-role-grid,.membership-path-grid,.my-homecourt-tool-grid,.member-route-actions{grid-template-columns:minmax(0,1fr)}
+ .my-homecourt-role-grid>a{min-height:0;padding:24px}
+ .my-homecourt-role-grid strong{margin:24px 0 12px;line-height:1.5}
+ .my-homecourt-role p,.membership-path-grid p,.my-homecourt-tools p{line-height:1.85}
+ .my-homecourt-role h2,.my-homecourt-tools h2,.membership-path-grid h2,.member-route-actions h2{font-size:28px;line-height:1.5;letter-spacing:0}
+}
