@@ -1,10 +1,16 @@
 # MY HOME COURT article publishing
 
-## First collection
-Six original Japanese practical guides: two each for players, parents and coaches. Not transcripts, medical guidance or claimed clinic observations. No guest quotes, private participant data, images or third-party course material.
+## Current collection
+The library now contains 38 original Japanese practical guides: 2 for players, 34 for parents and 2 for coaches. Parent content is intentionally separated into dedicated catalogue files so the parent library can grow without editing player/coach content. Not transcripts, medical guidance or claimed clinic observations. No guest quotes, private participant data, images or third-party course material.
 
 ## Add an article
-Edit `lib/member-articles.ts`, adding a unique slug, role, title, summary, sections, one practical action and reflection questions. The server-rendered list, role groups and same-role related links use this single catalogue. Do not import this server-only module into client components. The catalogue is in the repository; GitHub repository access must be restricted if the source text is intended to remain private.
+- Player/coach: edit `lib/member-articles.ts`.
+- Parent: add to `lib/member-parent-articles.ts` or the next numbered parent catalogue file and include that catalogue in the server route.
+- Every article needs a unique slug, role, title, summary, at least 3 sections, one practical action and at least 3 reflection questions.
+- Parent articles should include a category and useful search tags. Reuse existing category names when possible instead of creating near-duplicates.
+- The server-rendered list, role groups, parent search/category filters and same-role related links are generated from the combined catalogue.
+- Keep catalogue modules server-side; do not import member article bodies into client components.
+- The catalogue is in the repository; repository access must be restricted if source text is intended to remain private.
 
 ## Review and release
 1. Check topic duplication and Japanese wording; keep paragraphs short.
@@ -20,4 +26,4 @@ The new Japanese route is `/ja/my-homecourt/app/learn` and `/ja/my-homecourt/app
 Checkout completion can create a subscription without current_period_end before the subscription webhook synchronises it. Real subscriber access and live RLS remain deployment checks; mocked tests do not prove production webhook delivery. Articles must not be announced as accessible to paying members until a real current subscription can open a body.
 
 ## Continuing publication
-Suggested next sequence (not scheduled): off-ball observation; asking a coach a useful question; comparing a child's progress without ranking; preparing for a first away clinic; reviewing a small-sided game; recording coaching changes over a month. Publish when reviewed, not to meet an arbitrary volume target. No automatic customer messages or scheduled publishing is enabled by this change.
+Parent topics are organized around recurring needs such as 出場・役割, 移籍・環境, 指導者との対話, 安全・安心, 親子コミュニケーション, 遠征・費用, チーム選び, 練習・休養 and 進路・選択. Add new articles when a recurring question deserves a reusable answer. Prefer one clear problem per article, concrete examples, a practical next action and questions that preserve the player's agency. Publish when reviewed, not to meet an arbitrary volume target. No automatic customer messages or scheduled publishing is enabled by this change.
