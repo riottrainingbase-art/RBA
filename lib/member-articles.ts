@@ -38,4 +38,16 @@ export const memberArticles: MemberArticle[] = [
     "title": "講習の学びを、次の一回の練習に変える",
     "summary": "メモを増やすだけで終わらせず、自分の現場で試す問いを残す。"
   }
+  ,{
+    "slug": "sports-club-structural-problems",
+    "role": "parent",
+    "title": "「スポ少だから仕方ない」で終わらせない。育成年代スポーツの構造的な問題",
+    "summary": "指導者個人の問題だけでなく、権限集中、保護者負担、勝利至上主義、出場機会、安全、移籍、ガバナンスまで全体像を整理する。",
+    "category": "安全・安心",
+    "tags": [
+      "スポ少",
+      "ガバナンス",
+      "保護者"
+    ]
+  }
 ];
