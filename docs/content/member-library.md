@@ -1,7 +1,7 @@
 # MY HOME COURT article publishing
 
 ## Current collection
-76 original Japanese practical guides: 39 for players, 35 for parents and 2 for coaches. Parent material is organized around recurring needs rather than a chronological feed. Not transcripts, medical guidance or claimed clinic observations. No guest quotes, private participant data, images or third-party course material.
+77 original Japanese practical guides: 39 for players, 36 for parents and 2 for coaches. Parent material is organized around recurring needs rather than a chronological feed. Not transcripts, medical guidance or claimed clinic observations. No guest quotes, private participant data, images or third-party course material.
 
 ## Add an article
 Edit `lib/member-articles.ts` for public-safe slug, role, title, summary and—when useful for parent discovery—category/tags only. Store sections, practical action and reflection questions in `public.member_article_bodies` using the authorised database editor. Insert drafts with `published=false`, review, then set `published=true` and `published_at`. Never commit article bodies to Git. Parent search and category filters read only public-safe catalogue metadata. Do not import this server-only module into client components. The repository is public. Initial introductory drafts appeared in earlier branch history; do not claim those paragraphs are exclusive. New parent article bodies are stored only in the database.
