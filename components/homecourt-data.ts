@@ -27,6 +27,6 @@ export const homecourtRoles: Record<HomecourtRole, {
     label: "コーチ・指導者の方へ",
     shortLabel: "COACH",
     description: "指導者講習、RBAプログラムの開催、地域連携について確認できるページです。",
-    items: ["指導者向け講習・育成記事", "クリニック開催の相談", "HOME COURT PARTNERの案内"],
+    items: ["指導者向け講習・育成記事", "クリニック開催の相談", "開催・連携パートナーの案内"],
   },
 };
