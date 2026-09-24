@@ -1,8 +1,8 @@
 import { DocumentLanguage } from "./document-language";
 import { ui } from "./ui-copy";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Bell, House, MessageCircle } from "lucide-react";
-import { getLatestPublicUpdate } from "@/lib/public-content";
+import { ArrowRight, ArrowUpRight, House, MessageCircle } from "lucide-react";
+import { PublicUpdateBanner } from "./public-update-banner";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
@@ -26,9 +26,8 @@ export function localePath(locale:Locale, page?:LanguagePage){
 }
 
 
-export async function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
+export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
   const c=labels[locale];
-  const latest=await getLatestPublicUpdate(locale);
   const fullNav=[
     [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
     [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
@@ -74,7 +73,7 @@ export async function SiteFrame({ children, locale="en", languagePage }: { child
         <div className="language-links" role="group" aria-label="Language / 言語 / 語言 / 언어">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div>
       </div>
     </header>
-    {latest?<a className="site-update-strip" href={latest.href}><Bell size={15}/><span>{({en:"NEW",ja:"更新","zh-tw":"最新",ko:"NEW"})[locale]} / {latest.kind.toUpperCase()}</span><strong>{latest.title}</strong><span className="site-update-cta">{({en:"Read",ja:"読む","zh-tw":"閱讀",ko:"읽기"})[locale]} <ArrowRight size={14}/></span></a>:null}
+    <PublicUpdateBanner locale={locale}/>
     <main id="main-content">{children}</main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
