@@ -27,7 +27,7 @@ export function LocalizedPayments({locale}:{locale:Locale}){
     ko:{title:"참가 신청 및 결제 안내",intro:"각 프로그램의 신청서를 이용해 주세요. 현재 결제 방법은 RBA가 개별 안내하고 있습니다. 신청하신 분은 프로그램과 플랜을 적어 문의해 주세요.",pay:"결제 방법 문의"},
   } as const;
   const c=onlineCheckoutReady?copy[locale]:{...copy[locale],...paused[locale]};
-  const homecourtCheckout=`/api/commerce/checkout/homecourt-monthly?locale=${locale}`;
+  const homecourtCheckout=locale==="ja"?"/ja/my-homecourt/subscribe":`/api/commerce/checkout/homecourt-monthly?locale=${locale}`;
   return <SiteFrame locale={locale} languagePage="payments">
     <section className="inner-hero section-pad"><a className="back-link" href={localePath(locale,"schedule")}>← RBA</a><p className="section-index"><CreditCard size={15}/> {c.kicker}</p><h1>{c.title}</h1><p>{c.intro}</p></section>
     <section className="payment-notice section-pad"><div><ShieldCheck size={38}/><h2>{c.notice}</h2></div><ul>{c.points.map(x=><li key={x}><CheckCircle2 size={18}/>{x}</li>)}</ul><p>{c.complete}</p></section>
