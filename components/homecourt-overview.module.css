@@ -32,3 +32,11 @@
 .parentWorld>strong{font-size:20px}
 .parentWorld>span{color:#c7ced2;line-height:1.7}
 @media(max-width:680px){.worldSection{margin:0 16px 22px}.worldIntro,.worldGrid>section,.parentWorld{padding:22px 18px}.worldPassport{padding:20px 18px}.worldGrid{grid-template-columns:1fr}.worldGrid>section+section{border-left:0}.languageGrid{grid-template-columns:1fr 1fr}.parentWorld{grid-template-columns:1fr}.parentWorld>p{grid-row:auto}.worldLinks{display:grid}.worldLinks a{text-align:center}}
+
+.worldPath{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px}
+.worldPath article{display:grid;gap:5px;padding:16px;background:#111;color:#fff;border:1px solid #111}
+.worldPath article small{color:#c6d05a;font-weight:900;letter-spacing:.12em}
+.worldPath article>b{font-size:11px;letter-spacing:.12em}
+.worldPath article>strong{font-size:18px}
+.worldPath article>span{color:#c7ced2;font-size:13px;line-height:1.6}
+@media(max-width:680px){.worldPath{grid-template-columns:1fr}.worldPath article{padding:14px}}
