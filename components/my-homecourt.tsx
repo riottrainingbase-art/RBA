@@ -64,6 +64,36 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
       </div>
       <p className="homecourt-plan-note">無料版の機能を意図的に弱くすることはしません。必要な情報へのアクセスは開いたままにし、有料では「継続的な学びと実践」の深さをつくります。</p>
     </section>:null}
+    {!role&&ja?<section className="homecourt-editorial-difference section-pad">
+      <div className="homecourt-editorial-head">
+        <p className="section-index">NOTE / MY HOME COURT</p>
+        <h2>noteは「考える」。<br/>HOME COURTは「使う」。</h2>
+        <p>同じテーマを扱っても、役割は分けます。noteでは育成について広く問題提起し、考えるきっかけをつくる。MY HOME COURTでは、その考えを家庭や現場で実際に使える形まで落とし込みます。</p>
+      </div>
+      <div className="homecourt-editorial-grid">
+        <article>
+          <span>OPEN / NOTE</span>
+          <h3>WHY</h3>
+          <strong>なぜ、この問題を考えるのか。</strong>
+          <p>育成論、現場への問題提起、社会に開いた論考。立場を越えて考えるきっかけを届けます。</p>
+          <ul><li>問題提起</li><li>育成思想</li><li>現場への問い</li><li>広く共有する論考</li></ul>
+        </article>
+        <article className="homecourt-editorial-premium">
+          <span>MEMBER / MY HOME COURT</span>
+          <h3>HOW</h3>
+          <strong>では、自分の家庭ではどうするか。</strong>
+          <p>状況を整理し、子どもと話し、必要なら指導者へ確認し、次の選択まで進めるための実践ガイドです。</p>
+          <ul><li>事実を整理する</li><li>子どもへの質問</li><li>確認すべきポイント</li><li>次に取る行動</li></ul>
+        </article>
+      </div>
+      <div className="homecourt-use-loop">
+        <div><span>01</span><strong>READ</strong><p>テーマを理解する。</p></div>
+        <div><span>02</span><strong>SORT</strong><p>自分の状況を事実で整理する。</p></div>
+        <div><span>03</span><strong>TALK</strong><p>子ども・家族・必要な相手と話す。</p></div>
+        <div><span>04</span><strong>ACT</strong><p>今できる一つを選んで動く。</p></div>
+      </div>
+      <p className="homecourt-editorial-note">限定情報を売る場所ではなく、育成年代の家庭が判断しやすくなるための継続的な道具として育てていきます。</p>
+    </section>:null}
     {!role?<section className="membership-path section-pad"><p className="section-index">DISCOVER / CONNECT / CHALLENGE</p><div className="membership-path-grid"><article><span>01 / DISCOVER</span><Sparkles/><h2>{c.free}</h2><p>{c.freeBody}</p><a href={registrationUrl}>{c.register}<ArrowRight size={16}/></a></article><article><span>02 / CONNECT</span><MessageCircle/><h2>{c.community}</h2><p>{c.communityBody}</p><a href={localePath(locale,"community")}>{c.community}<ArrowRight size={16}/></a></article><article><span>03 / CHALLENGE</span><CreditCard/><h2>{c.paid}</h2><p>{c.paidBody}</p><a href={ja?localePath(locale,"schedule"):registrationUrl}>{locale==="ja"?"次の活動を探す":locale==="zh-tw"?"登入後加入":locale==="ko"?"로그인 후 가입":"Sign in to join"}<ArrowRight size={16}/></a></article></div></section>:null}
     <section className="my-homecourt-role section-pad"><p className="section-index">PLAYER / PARENT / COACH</p><h2 className="member-section-title">{c.choose}</h2><div className="my-homecourt-role-grid">{Object.entries(homecourtRoles).map(([key,data])=><a key={key} className={role===key?"is-current":undefined} href={`${prefix}/my-homecourt/${key}`}><span>{data.shortLabel}</span><strong>{ja?data.label:data.shortLabel}</strong><p>{ja?data.description:"Open your RBA guide, community and next actions."}</p><ArrowRight size={20}/></a>)}</div></section>
     {selected?<section className="member-route-actions section-pad"><div><p className="section-index">{ja?"次に進む":"YOUR NEXT ACTION"}</p><h2>{ja?`${selected.label}向けのご案内`:`${selected.shortLabel} ROUTE`}</h2><p>{ja?"参加する。学ぶ。仲間とつながる。今必要な入口から始められます。":"Find programmes, community and the next action for your role."}</p></div><div className="member-route-action-grid"><a href={registrationUrl}><Sparkles/><strong>{c.register}</strong><span>{ja?"活動・記録・学びを一つにつなぐ":"Connect activities, records and learning"}</span><ArrowRight/></a><a href={roleCommunity} target="_blank" rel="noreferrer"><Users/><strong>{c.community}</strong><span>{ja?(role==="coaches"?"指導者向けオープンコミュニティ":"選手・保護者向けオープンコミュニティ"):"Join the relevant open community"}</span><ArrowUpRight/></a><a href={localePath(locale,"opportunities")}><CalendarDays/><strong>{ja?"現在募集中の活動":"Current programmes"}</strong><span>{ja?"日程・対象・募集状況を比較":"Compare dates, eligibility and availability"}</span><ArrowRight/></a>{role==="coaches"?<><a href={localePath(locale,"d-hub")}><BookOpen/><strong>D-HUB</strong><span>{ja?"継続して学べる指導者向けプログラム":"Ongoing coach development"}</span><ArrowRight/></a><a href={localePath(locale,"events/torsten-loibl-online-clinic")}><Users/><strong>TORSTEN LOIBL</strong><span>{ja?"世界の育成現場に学ぶ指導者講習":"International coach clinic"}</span><ArrowRight/></a></>:null}</div></section>:null}
