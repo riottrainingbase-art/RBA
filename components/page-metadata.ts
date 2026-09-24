@@ -4,7 +4,7 @@ const titles:Record<string,Record<Locale,string>>={
  players:{en:"For players",ja:"選手の方へ","zh-tw":"球員專區",ko:"선수 안내"},
  families:{en:"For families",ja:"保護者の方へ","zh-tw":"家長專區",ko:"보호자 안내"},
  coaches:{en:"For coaches",ja:"コーチ・指導者の方へ","zh-tw":"教練專區",ko:"코치·지도자 안내"},
- "home-court":{en:"RBA HOMECOURT membership",ja:"RBA HOMECOURT｜会員案内","zh-tw":"RBA HOMECOURT會員",ko:"RBA HOMECOURT 회원"},
+ "home-court":{en:"MY HOME COURT",ja:"MY HOME COURT｜利用案内","zh-tw":"MY HOME COURT","ko":"MY HOME COURT"},
  "my-homecourt":{en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"},
  community:{en:"RBA community",ja:"RBAコミュニティ","zh-tw":"RBA社群",ko:"RBA 커뮤니티"},
  impact:{en:"RBA IMPACT",ja:"RBA IMPACT｜成果と再投資方針","zh-tw":"RBA IMPACT",ko:"RBA IMPACT"},
