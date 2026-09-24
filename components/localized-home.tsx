@@ -5,6 +5,7 @@ import { LanguagePage, Locale, SiteFrame, localePath } from "@/components/site-f
 import { GrowthSections } from "@/components/growth-sections";
 import { PaidProgrammes } from "@/components/paid-programmes";
 import { GlobalMedia } from "@/components/global-media";
+import { CoachEducationLoop } from "./coach-education-loop";
 import { AudienceJourneys } from "@/components/audience-journeys";
 import { torstenRegistrationUrl } from "@/components/programme-data";
 import { PlatformQuickFinder } from "@/components/platform-quick-finder";
@@ -78,6 +79,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
     {locale==="ja"&&torstenFeature}
     <PaidProgrammes locale={locale}/>
     {locale!=="ja"&&torstenFeature}
+    <CoachEducationLoop locale={locale}/>
 
     <section className="locale-routes section-pad"><div className="section-head"><div><p className="section-index">{c.routesLabel}</p><h2>{c.routesTitle}</h2></div><p>{c.routesCopy}</p></div><div className="locale-route-grid">{c.routes.map(([tag,title,page])=><a href={localePath(locale,page as LanguagePage)} key={tag}><span>{tag}</span><h3>{title}</h3><ArrowUpRight size={22}/></a>)}</div></section>
 
