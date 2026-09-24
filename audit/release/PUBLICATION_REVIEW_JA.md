@@ -49,6 +49,7 @@ SEO: canonical/hreflang/sitemap、login/payment-complete noindexの既存候補�
 - 決済通知と照合actionにdedupe keyを追加。再試行で同じ通知が重複しない。DB transaction試験で並行claim拒否、失敗再試行、通知・action重複排除を確認し、試験データはrollback済み。
 - `stripe-homecourt-webhook` version 11を稼働環境へ反映。署名検証を処理前に維持し、JWT検証なしはStripe webhook受信用の既存設定を維持。
 - PARENTの実プロフィールがないため、既存coach/player IDをtransaction内だけparent/childとして構成。親は本人と確認済みの子どもの計2件だけ閲覧し、guardian linkは自分の1件だけ閲覧できることを確認。全変更rollback済み。
+- capacity確保関数の旧列名 `participations.user_id` を現行の `player_user_id` へ修正。席確保、同一利用者の再試行、満員時waitlist、capacity未設定時fail closedをtransaction/rollbackで確認。
 - Supabase advisorのRLS auth.uid再評価4件と未index FK2件を修正。残るsecurity警告はservice-only 3表のpolicyなし（RLSにより公開roleは全拒否）、意図したjoin_team RPC、パスワード漏洩保護無効。
 - MY HOME COURTの英語・繁体字・韓国語から無料/有料会員を前面に出す表現を除去し、日本語と同じDISCOVER / CONNECT / CHALLENGEの体験設計に統一。
 - 全体metadataへmanifestを追加し、install iconをmanifestに追加。
