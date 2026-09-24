@@ -1,38 +1,45 @@
-# V6 公開差分・残作業
+# V6 公開前監査（2026-09-24）
 
-状態: 公開前。SMTP設定はユーザーの希望により後で実施。本番への昇格は行っていない。
-
+状態: Preview。メール設定・実メール試験はユーザー指示により保留。main merge・Production昇格なし。
 本番baseline: `638015f07d23d260f1004416e641740e5f42a29a`
-Preview監査済みコミット: `fd8a48fe7a7748a3af9a398271e7ecd2d4eddd4c`
-Preview deployment: `dpl_4U8g3dKzvWP6qrGhzZVdnHUVwDpA`
-Rollback deployment: `dpl_FHWvoShxQHDzcxJgR14WbtNaRefJ`
+直近READY Preview: `dpl_28MbhfTgpRSwJcM6BtMVvcSvo31i`（コミット `52475cc0a7dfe20eea493ff7e708a8081e7a8af7`）
+Rollback: `dpl_FHWvoShxQHDzcxJgR14WbtNaRefJ`
+この報告を含む後続コミットは、会員初期設定とコピーの追加修正。後続Previewの確認が必要。
 
-## この追加監査で修正した問題
+## 修正と検証
 
-決済ルートで `constructor`、`__proto__` 等が通常のオブジェクト継承プロパティに一致する問題を修正。商品一覧自身の登録キーに限定する。25ケースのテストで、未知の商品は404・登録済み19商品は既存の宛先に303となることを確認。外部決済リクエストは送信していない。TypeScriptと変更ファイルlintも通過。
+- profiles/guardian_linksのRLS相互参照で発生した42P17再帰エラーを修正。migrationを本番DBへ適用済み。既存private.is_global_adminを再利用し、公開権限を広げていない。
+- 認証IDを持たないauthenticated接続はprofiles/guardian_links/team_memberships/subscriptionsの閲覧0件。既存player/coachのSQLロール試験では自身のプロフィール1件のみ。すべてrollbackし、個人データを変更していない。
+- 会員フォームでawait後にReact currentTargetが無効になる問題を修正。データ取得失敗を初期設定画面と誤認しないよう再試行画面を追加。
+- 初期設定の重複roleを更新しないようignoreDuplicatesを指定。役割保存後にプロフィール完了を記録。既存承認状態を保持し、0行更新・通信失敗を画面に表示。6ケースの非通信テストと重複roleの実DB rollback試験通過。
+- legacy決済の11件は既存gatewayの確認済みofferに対応。未対応8件は問い合わせへ。gateway拒否時のStripe直リンクfallbackはない。23ケース通過（実決済なし）。未知キー・継承プロパティは404。
+- 実稼働の3 Edge Functionsを回収し保存。Webhook・gateway・payment-ops自体の本番再デプロイはしていない。
+- 日本語問い合わせ文を改善。会員ステータスの無料/有料表記を4言語でRBA ID/RBA HOMECOURTに統一。
+- ローカルproduction build成功、typecheck成功。アプリlint成功（回収したDeno Edge Functionsは対象外）。
+- 公開161ルートHTTP200、抽出185内部リンクの対象範囲に404なし、HTML内の直接Stripeリンクなし。詳細はhttp-local.json。APIと会員アプリはローカル環境変数がないため別枠。
+- 会員導線12表示ケース・96ローカライズリンク通過。サーバーレンダー試験であり、実ログインではない。
+- Previewブラウザで日本語D-HUB→問い合わせ遷移と決済ページ表示を確認。D-HUBにRBA独自プログラム・FIBA/WABC非公認を明記。
+- Vercel直近1時間のruntime error照会は0件。全ユーザー操作のエラーゼロを保証するものではない。
+- Preview全161件のAPI取得はDeployment ProtectionのSSO転送等で大半が判定不能。アプリの404/500と混同しない。全件Preview合格とは扱わない。
 
-この修正はローカル変更であり、上記Previewにはまだ含まれない。Preview再反映・再検証が必要。
+## 公開ゲート・未解決
 
-## API・認証・決済・DB・SEOの変更
+- 実アカウントによるPLAYER/PARENT/COACH操作とデータ分離。現在parentプロフィールがないため親子実フロー未検証。
+- スマホ実機での表示・フォーム・メニュー操作。デスクトップ確認は代替にならない。
+- Stripe test-modeで支払い→Webhook→会員反映・同時再送のE2E。既存Webhookには同時重複到着時の通知重複リスクが残るため要対処。
+- capacity未設定イベントは既存gatewayで拒否。開催状況・8 legacy routeの正規対応を運営が確定するまで直接決済しない。
+- safeguarding責任者、governance documents、organization standards承認。推測して設定しない。
+- leaked password protection無効。運用方針と有効化確認が必要。
+- メール関連は保留: SMTP、RBA送信元・テンプレート、実受信→callback→会員画面、送信上限、未使用メールリソース整理。
+- 全公開ゲート通過後にPR→main merge→Production build→本番4言語/会員/決済/SEO再監査。現在PR・公開後監査は未実施。
 
-- API: 既存決済リンクへの内部リダイレクトを追加。公開HTMLへの直接Stripeリンク埋込みを除去。
-- 認証: 既存Supabaseを維持。callbackの遷移先検証、ローカライズされたログイン、登録導線と日本語表現を改善。実メール認証の成功は未確認。
-- 決済: 既存の19 legacy決済リンクを維持。第二の決済システムは作成していない。
-- DB: management control-plane viewのsecurity_invoker設定と権限を修正したmigrationを追加。
-- SEO: canonical/hreflang、sitemap、ログインと決済完了のnoindexを改善。
+## 変更分類
 
-## 公開までの必須確認・未解決事項
-
-- SMTP保存・RBAメールテンプレート適用・新規登録と既存会員の実メール受信→callback→会員画面到達。
-- PLAYER/PARENT/COACHの実アカウントによるデータ分離と権限確認。
-- スマホでの主要導線・フォーム・ナビの操作検証。デスクトップのルート監査をスマホ監査の代わりにしない。
-- Stripe webhookと二重処理防止のE2E確認。
-- Legacy payment linksのイベント開催状況・capacity管理を確認。内部リダイレクトは在庫検証機能を追加するものではない。未確定のcapacityを推測しない。
-- safeguarding primary officer、governance documents、organization standardsの承認。
-- leaked password protection設定の扱い。
-- Resendプランの送信上限とSupabaseメールrate limitの公開規模に対する適合性。
-- 未使用のVercel Marketplace Resendリソースと広い権限のキーの整理。
-- Preview再検証後PR→main merge→Production build→公開後監査。PR番号・Production commit/deploymentは未確定。
+API: 決済内部routeを既存gatewayへ集約。
+Auth: 既存Supabase session維持。初期設定の保存順序とエラー表示を修正。メールは未実施。
+Commerce: 別決済システムなし、未確認routeは問い合わせへ。
+DB: control-plane view修正に加えprofiles/guardian_links再帰解消。
+SEO: canonical/hreflang/sitemap、login/payment-complete noindexの既存候補変更を維持。
 
 ## 新規ページ
 
