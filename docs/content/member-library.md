@@ -1,10 +1,10 @@
 # MY HOME COURT article publishing
 
-## First collection
-Six original Japanese practical guides: two each for players, parents and coaches. Not transcripts, medical guidance or claimed clinic observations. No guest quotes, private participant data, images or third-party course material.
+## Current collection
+38 original Japanese practical guides: 2 for players, 34 for parents and 2 for coaches. Parent material is organized around recurring needs rather than a chronological feed. Not transcripts, medical guidance or claimed clinic observations. No guest quotes, private participant data, images or third-party course material.
 
 ## Add an article
-Edit `lib/member-articles.ts` for public-safe slug, role, title and summary only. Store sections, practical action and reflection questions in public.member_article_bodies using the authorised database editor. Insert drafts with published=false, review, then set published=true and published_at. Never commit the body to Git. The server-rendered list, role groups and same-role related links use this single catalogue. Do not import this server-only module into client components. The repository is public. Initial introductory drafts appeared in branch history; do not claim those paragraphs are exclusive. The added practical supplements are stored only in the database.
+Edit `lib/member-articles.ts` for public-safe slug, role, title, summary and—when useful for parent discovery—category/tags only. Store sections, practical action and reflection questions in `public.member_article_bodies` using the authorised database editor. Insert drafts with `published=false`, review, then set `published=true` and `published_at`. Never commit article bodies to Git. Parent search and category filters read only public-safe catalogue metadata. Do not import this server-only module into client components. The repository is public. Initial introductory drafts appeared in earlier branch history; do not claim those paragraphs are exclusive. New parent article bodies are stored only in the database.
 
 ## Review and release
 1. Check topic duplication and Japanese wording; keep paragraphs short.
@@ -20,7 +20,7 @@ The new Japanese route is `/ja/my-homecourt/app/learn` and `/ja/my-homecourt/app
 Checkout completion can create a subscription without current_period_end before the subscription webhook synchronises it. Real subscriber access and live RLS remain deployment checks; mocked tests do not prove production webhook delivery. Articles must not be announced as accessible to paying members until a real current subscription can open a body.
 
 ## Continuing publication
-Suggested next sequence (not scheduled): off-ball observation; asking a coach a useful question; comparing a child's progress without ranking; preparing for a first away clinic; reviewing a small-sided game; recording coaching changes over a month. Publish when reviewed, not to meet an arbitrary volume target. No automatic customer messages or scheduled publishing is enabled by this change.
+Parent categories currently include 親子コミュニケーション, 進路・選択, 出場・役割, 移籍・環境, 指導者との対話, 安全・安心, 遠征・費用, チーム選び and 練習・休養. Reuse existing category names before inventing a near-duplicate. Prefer one clear problem per article, concrete examples, one practical next action and reflection questions that preserve the player's agency. Publish when reviewed, not to meet an arbitrary volume target. No automatic customer messages or scheduled publishing is enabled by this change.
 
 ## Storage verification (2026-09-24)
 Supabase migration member_article_bodies_private_storage applied. Real database RLS checks passed for denied anonymous read, denied member writes, unsubscribed read denial, current subscription access to six rows and expired access denial. Fixtures and temporary publication changes were rolled back. No billing provider calls or real subscription changes persisted. At verification there were no homecourt_monthly subscription records, so a real purchaser end-to-end test remains outstanding. Existing security advisor warnings concern join_team_with_code and password protection, not the new article table.
