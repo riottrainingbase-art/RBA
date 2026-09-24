@@ -50,7 +50,7 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
             <li><Check size={17}/>振り返りの問いで、自分の変化を言葉にする</li>
             <li><Check size={17}/>継続して増える学びをHOMECOURTに蓄積する</li>
           </ul>
-          <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURTを始める<ArrowRight size={16}/></a>
+          <a className="button button-member" href="/ja/my-homecourt/subscribe">HOMECOURTを始める<ArrowRight size={16}/></a>
         </article>
       </div>
       <div className="homecourt-value-line">
