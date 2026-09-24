@@ -440,8 +440,8 @@ export const memberArticles: MemberArticle[] = [
       "ベンチ",
       "声かけ"
     ]
-  }
-  ,{
+  },
+  {
     "slug": "sports-club-structural-problems",
     "role": "parent",
     "title": "「スポ少だから仕方ない」で終わらせない。育成年代スポーツの構造的な問題",
@@ -451,6 +451,450 @@ export const memberArticles: MemberArticle[] = [
       "スポ少",
       "ガバナンス",
       "保護者"
+    ]
+  },
+  {
+    "slug": "scan-before-receive",
+    "role": "player",
+    "title": "ボールを受ける前に、一度見る",
+    "summary": "受けてから考えるのではなく、受ける前に選択肢を準備する。",
+    "category": "判断・認知",
+    "tags": [
+      "スキャン",
+      "認知",
+      "パス"
+    ]
+  },
+  {
+    "slug": "drive-read-defender",
+    "role": "player",
+    "title": "ドライブは速さより、守る相手を読む",
+    "summary": "抜くことだけを目的にせず、守備の反応から次を選ぶ。",
+    "category": "1on1",
+    "tags": [
+      "ドライブ",
+      "1on1",
+      "判断"
+    ]
+  },
+  {
+    "slug": "shoot-ready-before-catch",
+    "role": "player",
+    "title": "シュートはキャッチする前から始まっている",
+    "summary": "ボールを受けた瞬間に打てる準備を、足と視線から整える。",
+    "category": "シュート",
+    "tags": [
+      "シュート",
+      "キャッチ",
+      "準備"
+    ]
+  },
+  {
+    "slug": "missed-shot-next-play",
+    "role": "player",
+    "title": "シュートを外した次の1秒を変える",
+    "summary": "外れた結果ではなく、次の守備やリバウンドへの反応を習慣にする。",
+    "category": "試合・メンタル",
+    "tags": [
+      "ミス",
+      "切り替え",
+      "シュート"
+    ]
+  },
+  {
+    "slug": "pass-to-advantage",
+    "role": "player",
+    "title": "パスは『空いている人』ではなく『次が有利になる場所』へ",
+    "summary": "味方の位置だけでなく、次のプレーが続くパスを考える。",
+    "category": "判断・認知",
+    "tags": [
+      "パス",
+      "判断",
+      "スペーシング"
+    ]
+  },
+  {
+    "slug": "offball-create-space",
+    "role": "player",
+    "title": "ボールを持っていない時に、スペースをつくる",
+    "summary": "近づくだけでなく、味方が使える場所を広げる動きを覚える。",
+    "category": "オフボール",
+    "tags": [
+      "オフボール",
+      "スペーシング",
+      "カット"
+    ]
+  },
+  {
+    "slug": "cut-with-purpose",
+    "role": "player",
+    "title": "カットは『動くため』ではなく、守備を動かすために",
+    "summary": "走る場所とタイミングに目的を持たせる。",
+    "category": "オフボール",
+    "tags": [
+      "カット",
+      "オフボール",
+      "タイミング"
+    ]
+  },
+  {
+    "slug": "closeout-defense",
+    "role": "player",
+    "title": "クローズアウトは、止めるより選択肢を減らす",
+    "summary": "シュートとドライブの両方を完璧に守ろうとせず、優先順位を持つ。",
+    "category": "ディフェンス",
+    "tags": [
+      "クローズアウト",
+      "守備",
+      "1on1"
+    ]
+  },
+  {
+    "slug": "help-defense-then-recover",
+    "role": "player",
+    "title": "ヘルプディフェンスの後、元の相手へ戻るまで",
+    "summary": "助けるだけで終わらず、次のパスまで予測して守る。",
+    "category": "ディフェンス",
+    "tags": [
+      "ヘルプ",
+      "ローテーション",
+      "守備"
+    ]
+  },
+  {
+    "slug": "rebound-first-contact",
+    "role": "player",
+    "title": "リバウンドはジャンプ力より、先に相手へ触れる",
+    "summary": "ボールを見るだけでなく、相手との位置を先に取る。",
+    "category": "ディフェンス",
+    "tags": [
+      "リバウンド",
+      "ボックスアウト",
+      "守備"
+    ]
+  },
+  {
+    "slug": "turnover-reset",
+    "role": "player",
+    "title": "ターンオーバーの後に、すぐ守備へ戻る",
+    "summary": "ミスの反省をその場で始めず、次の1プレーを守る。",
+    "category": "試合・メンタル",
+    "tags": [
+      "ターンオーバー",
+      "切り替え",
+      "メンタル"
+    ]
+  },
+  {
+    "slug": "pressure-free-throw",
+    "role": "player",
+    "title": "緊張するフリースローで、同じ準備に戻る",
+    "summary": "結果を考えすぎず、自分で決めたルーティンへ意識を戻す。",
+    "category": "試合・メンタル",
+    "tags": [
+      "フリースロー",
+      "緊張",
+      "ルーティン"
+    ]
+  },
+  {
+    "slug": "bench-stay-ready",
+    "role": "player",
+    "title": "ベンチにいる時間も、次の出場準備に変える",
+    "summary": "出番を待つだけでなく、試合の流れと自分の役割を観察する。",
+    "category": "試合・メンタル",
+    "tags": [
+      "ベンチ",
+      "出場",
+      "準備"
+    ]
+  },
+  {
+    "slug": "ask-coach-one-question",
+    "role": "player",
+    "title": "コーチに聞くなら、質問を一つにする",
+    "summary": "『どうすれば上手くなれますか』を、次に試せる質問へ変える。",
+    "category": "チーム・コミュニケーション",
+    "tags": [
+      "質問",
+      "コーチ",
+      "成長"
+    ]
+  },
+  {
+    "slug": "communicate-on-court",
+    "role": "player",
+    "title": "声を出すなら、味方が使える情報を伝える",
+    "summary": "大声の量ではなく、プレーを助ける短い情報を増やす。",
+    "category": "チーム・コミュニケーション",
+    "tags": [
+      "声",
+      "コミュニケーション",
+      "チーム"
+    ]
+  },
+  {
+    "slug": "practice-one-focus",
+    "role": "player",
+    "title": "練習前に『今日一つ』を決める",
+    "summary": "全部を上手くしようとせず、その日の観察ポイントを一つ持つ。",
+    "category": "練習・振り返り",
+    "tags": [
+      "練習",
+      "目標",
+      "振り返り"
+    ]
+  },
+  {
+    "slug": "film-three-columns",
+    "role": "player",
+    "title": "試合動画を『事実・判断・次』の3列で見る",
+    "summary": "自分を責める反省ではなく、次の練習に使える振り返りへ変える。",
+    "category": "練習・振り返り",
+    "tags": [
+      "動画",
+      "分析",
+      "振り返り"
+    ]
+  },
+  {
+    "slug": "small-sided-read",
+    "role": "player",
+    "title": "3x3や少人数ゲームで、読むものを一つ決める",
+    "summary": "自由にプレーする中でも、観察する相手やスペースを決める。",
+    "category": "判断・認知",
+    "tags": [
+      "3x3",
+      "少人数",
+      "判断"
+    ]
+  },
+  {
+    "slug": "change-pace-not-only-speed",
+    "role": "player",
+    "title": "速さだけで抜かず、スピードを変える",
+    "summary": "同じ速さで走り続けず、遅い→速いの変化で守備をずらす。",
+    "category": "1on1",
+    "tags": [
+      "チェンジオブペース",
+      "ドライブ",
+      "1on1"
+    ]
+  },
+  {
+    "slug": "finish-through-contact",
+    "role": "player",
+    "title": "ゴール下は、接触を避けるだけでなくバランスを保つ",
+    "summary": "相手がいる前提で、最後の一歩と身体の向きを整える。",
+    "category": "1on1",
+    "tags": [
+      "フィニッシュ",
+      "接触",
+      "レイアップ"
+    ]
+  },
+  {
+    "slug": "shot-selection",
+    "role": "player",
+    "title": "良いシュートを、自分で選べるようにする",
+    "summary": "入るかどうかだけでなく、時間・距離・守備・チーム状況を見る。",
+    "category": "シュート",
+    "tags": [
+      "ショットセレクション",
+      "判断",
+      "シュート"
+    ]
+  },
+  {
+    "slug": "shooting-slump",
+    "role": "player",
+    "title": "シュートが入らない時、全部を変えない",
+    "summary": "一時的な不調でフォーム全体を作り直さず、確認項目を小さくする。",
+    "category": "シュート",
+    "tags": [
+      "スランプ",
+      "シュート",
+      "フォーム"
+    ]
+  },
+  {
+    "slug": "warmup-purpose",
+    "role": "player",
+    "title": "ウォームアップを『汗をかく時間』だけにしない",
+    "summary": "身体と判断を試合速度へ近づける準備にする。",
+    "category": "身体・コンディショニング",
+    "tags": [
+      "ウォームアップ",
+      "試合準備",
+      "身体"
+    ]
+  },
+  {
+    "slug": "recovery-day",
+    "role": "player",
+    "title": "休む日を、成長が止まる日だと思わない",
+    "summary": "練習しない時間も、次の練習の質を作る一部として考える。",
+    "category": "身体・コンディショニング",
+    "tags": [
+      "休養",
+      "回復",
+      "コンディショニング"
+    ]
+  },
+  {
+    "slug": "sleep-before-game",
+    "role": "player",
+    "title": "試合前日は、特別なことより普段の睡眠へ",
+    "summary": "直前に練習を増やすより、いつものリズムを守る。",
+    "category": "身体・コンディショニング",
+    "tags": [
+      "睡眠",
+      "試合前",
+      "回復"
+    ]
+  },
+  {
+    "slug": "eat-drink-around-practice",
+    "role": "player",
+    "title": "練習前後の食事と水分を、毎回の準備にする",
+    "summary": "特別な補助食品より、普段の食事・水分・タイミングを整える。",
+    "category": "身体・コンディショニング",
+    "tags": [
+      "食事",
+      "水分",
+      "練習"
+    ]
+  },
+  {
+    "slug": "defend-without-reaching",
+    "role": "player",
+    "title": "手を出す前に、足で相手の進路へ入る",
+    "summary": "スティールだけを狙わず、相手の行きたい場所を狭くする。",
+    "category": "ディフェンス",
+    "tags": [
+      "1on1守備",
+      "フットワーク",
+      "スティール"
+    ]
+  },
+  {
+    "slug": "transition-run-lanes",
+    "role": "player",
+    "title": "速攻は、ボールより先にスペースへ走る",
+    "summary": "全員がボールへ集まらず、幅と深さを使って攻める。",
+    "category": "オフボール",
+    "tags": [
+      "速攻",
+      "トランジション",
+      "スペーシング"
+    ]
+  },
+  {
+    "slug": "screen-use-read",
+    "role": "player",
+    "title": "スクリーンは、使う前に守備の位置を見る",
+    "summary": "形通りに回るだけでなく、守り方に応じて進路を変える。",
+    "category": "判断・認知",
+    "tags": [
+      "スクリーン",
+      "ピック",
+      "判断"
+    ]
+  },
+  {
+    "slug": "play-after-pass",
+    "role": "player",
+    "title": "パスを出した後の3秒をプレーする",
+    "summary": "ボールを手放した瞬間に休まず、次のスペースへ関わる。",
+    "category": "オフボール",
+    "tags": [
+      "パス後",
+      "カット",
+      "スペーシング"
+    ]
+  },
+  {
+    "slug": "handle-pressure-trap",
+    "role": "player",
+    "title": "ダブルチームされた時、ドリブルを増やしすぎない",
+    "summary": "囲まれる前に出口を見つけ、味方とスペースを使う。",
+    "category": "判断・認知",
+    "tags": [
+      "ダブルチーム",
+      "プレッシャー",
+      "パス"
+    ]
+  },
+  {
+    "slug": "end-game-awareness",
+    "role": "player",
+    "title": "残り時間と得点差を、プレーの情報にする",
+    "summary": "普段と同じ技術でも、終盤は時間とスコアで選択を変える。",
+    "category": "試合・メンタル",
+    "tags": [
+      "終盤",
+      "時計",
+      "得点差"
+    ]
+  },
+  {
+    "slug": "role-on-new-team",
+    "role": "player",
+    "title": "新しいチームで、最初から自分の役割を決めすぎない",
+    "summary": "以前の評価やポジションを持ち込まず、まず環境を観察する。",
+    "category": "チーム・コミュニケーション",
+    "tags": [
+      "移籍",
+      "新チーム",
+      "役割"
+    ]
+  },
+  {
+    "slug": "confidence-from-evidence",
+    "role": "player",
+    "title": "自信は『自分はできる』と言い聞かせるだけで作らない",
+    "summary": "できた経験と準備の証拠を集めて、自分の言葉にする。",
+    "category": "試合・メンタル",
+    "tags": [
+      "自信",
+      "準備",
+      "メンタル"
+    ]
+  },
+  {
+    "slug": "goal-setting-process",
+    "role": "player",
+    "title": "目標は結果だけでなく、毎週できる行動にする",
+    "summary": "大会結果や得点目標を、日々の練習で確認できる行動へ落とす。",
+    "category": "練習・振り返り",
+    "tags": [
+      "目標",
+      "計画",
+      "成長"
+    ]
+  },
+  {
+    "slug": "practice-after-bad-game",
+    "role": "player",
+    "title": "悪い試合の翌日に、練習を増やしすぎない",
+    "summary": "悔しさで量を増やす前に、原因と回復を整理する。",
+    "category": "練習・振り返り",
+    "tags": [
+      "負け",
+      "自主練",
+      "回復"
+    ]
+  },
+  {
+    "slug": "learn-from-better-player",
+    "role": "player",
+    "title": "上手い選手を見る時、真似するポイントを一つにする",
+    "summary": "『すごい』で終わらず、準備・視線・タイミングを観察する。",
+    "category": "練習・振り返り",
+    "tags": [
+      "観察",
+      "映像",
+      "学習"
     ]
   }
 ];
