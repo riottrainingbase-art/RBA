@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DefinitiveStaticPage } from "@/components/definitive-static-page";
+import { OpportunityExplorer } from "@/components/opportunity-explorer";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
@@ -18,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <DefinitiveStaticPage page="opportunities" locale="zh-tw" />;
+  return <OpportunityExplorer locale="zh-tw" />;
 }

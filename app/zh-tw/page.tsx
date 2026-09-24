@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DefinitiveStaticPage } from "@/components/definitive-static-page";
+import { LocalizedHome } from "@/components/localized-home";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
@@ -18,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <DefinitiveStaticPage page="index" locale="zh-tw" />;
+  return <LocalizedHome locale="zh-tw" />;
 }

@@ -25,6 +25,9 @@ export type Programme = {
   payment: Text4;
   applicationUrl: string;
   detailPath?: "events/torsten-loibl-online-clinic";
+  region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
+  category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
+  ageGroups: readonly ("U8" | "U10" | "U12" | "U15" | "COACH")[];
 };
 
 
@@ -44,6 +47,7 @@ export const programmes: readonly Programme[] = [
     audience:["U12 players", "U12選手（男女）", "U12球員", "U12 선수"],
     payment:["Payment guidance follows the form.", "フォーム送信後の案内に従ってお支払いください", "提交表單後依通知付款", "폼 제출 후 안내에 따라 결제"],
     applicationUrl: "https://forms.gle/wzc4X7pZrDRqi5Qp6",
+    region:"okinawa", category:"PLAY", ageGroups:["U12"],
   },
   {
     id: "kawasaki",
@@ -57,6 +61,7 @@ export const programmes: readonly Programme[] = [
     audience:["U12 / U15 players", "U12・U15選手", "U12・U15球員", "U12·U15 선수"],
     payment:["Payment guidance follows the form.", "フォーム送信後の案内に従ってお支払いください", "提交表單後依通知付款", "폼 제출 후 안내에 따라 결제"],
     applicationUrl: "https://forms.gle/dpdzwWsgHyZDuNaW9",
+    region:"kanto", category:"TRAIN", ageGroups:["U12","U15"],
   },
   {
     id: "saga-fukuoka",
@@ -70,6 +75,7 @@ export const programmes: readonly Programme[] = [
     audience:["U8 / U10 / U12 / U15 players", "U8・U10・U12・U15選手", "U8・U10・U12・U15球員", "U8·U10·U12·U15 선수"],
     payment:["Payment is required after submitting the form.", "フォーム送信後、参加費のお支払いが完了すると申込が確定します", "提交表單後完成付款才確認報名", "폼 제출 후 결제 완료 시 신청 확정"],
     applicationUrl: "https://forms.gle/NJ4widb21vR1Eanj6",
+    region:"kyushu", category:"TRAIN", ageGroups:["U8","U10","U12","U15"],
   },
   {
     id: "yamagata",
@@ -83,6 +89,7 @@ export const programmes: readonly Programme[] = [
     audience:["U10 / U12 / U15 players", "U10・U12・U15選手", "U10・U12・U15球員", "U10·U12·U15 선수"],
     payment:["Payment guidance follows the form.", "フォーム送信後の案内に従ってお支払いください", "提交表單後依通知付款", "폼 제출 후 안내에 따라 결제"],
     applicationUrl: "https://forms.gle/JKdTjasPxXtnLZ487",
+    region:"tohoku", category:"TRAIN", ageGroups:["U10","U12","U15"],
   },
   {
     id: "shizugawa",
@@ -96,6 +103,7 @@ export const programmes: readonly Programme[] = [
     audience:["Grades 3–9", "小学3年〜中学3年", "小學3年級至國中3年級", "초등 3학년~중학 3학년"],
     payment:["RBA sends payment instructions after review.", "内容を確認した後、RBAからお支払い方法を個別にご案内します", "確認內容後由RBA另行通知付款方式", "내용 확인 후 RBA가 결제 방법 안내"],
     applicationUrl: "https://form.jotform.com/262498430063054",
+    region:"tohoku", category:"TRAVEL", ageGroups:["U10","U12","U15"],
   },
   {
     id: "kobe",
@@ -109,6 +117,7 @@ export const programmes: readonly Programme[] = [
     audience:["Grades 5–9", "小学5年〜中学3年", "小學5年級至國中3年級", "초등 5학년~중학 3학년"],
     payment:["Select a plan, submit and complete the corresponding payment.", "プランを選んでフォームを送信し、選択したプランのお支払いを完了してください", "選擇方案並提交後完成對應付款", "플랜 선택·제출 후 해당 결제 완료"],
     applicationUrl: "https://form.jotform.com/262591727805061",
+    region:"kansai", category:"TRAVEL", ageGroups:["U12","U15"],
   },
   {
     id: "torsten",
@@ -123,6 +132,7 @@ export const programmes: readonly Programme[] = [
     payment:["Submit the form, then pay from the confirmation screen.", "フォーム送信後、確認画面の決済リンクからお支払いください", "提交表單後從確認畫面付款", "폼 제출 후 확인 화면의 결제 링크로 결제"],
     applicationUrl: "https://forms.gle/fy4etmavBtw1s7FQ8",
     detailPath: "events/torsten-loibl-online-clinic",
+    region:"online", category:"COACH", ageGroups:["COACH"],
   },
 ] as const;
 

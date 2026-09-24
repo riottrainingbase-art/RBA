@@ -5,7 +5,7 @@ import { ArrowRight, ArrowUpRight, House, MessageCircle } from "lucide-react";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer";
+export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer";
 
 
 const labels = {
@@ -46,7 +46,14 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["ORGANIZER",localePath(locale,"organizer")],
     ...(locale==="en"?[["Journal","/journal"]] as const:[]),
   ] as const;
-  const nav=[...fullNav.slice(0,3),[c.schedule,localePath(locale,"schedule")] as const,["RBA UNITED",localePath(locale,"united")] as const,["RBA CONNECT",localePath(locale,"connect")] as const];
+  const nav=[
+    [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
+    ["MY HOME COURT",localePath(locale,"my-homecourt")] as const,
+    [({en:"Coaches",ja:"指導者", "zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
+    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
+    [({en:"Organisers",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최・협력"})[locale],localePath(locale,"organizer")] as const,
+    [c.about,localePath(locale,"about")] as const,
+  ];
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const memberHref=`${locale==="en"?"":`/${locale}`}/my-homecourt/login`;
   return <div className="site-shell"><DocumentLanguage language={locale==="zh-tw"?"zh-Hant-TW":locale}/>
@@ -54,6 +61,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <header className="site-header">
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{fullNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={memberHref}>MY HOME COURT / RBA ID</a><a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
       <div className="header-actions">
         <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"SIGN IN",ja:"会員ログイン","zh-tw":"會員登入",ko:"회원 로그인"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>

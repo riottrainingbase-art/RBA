@@ -23,7 +23,6 @@ const activityLabels:Record<ActivityType,Text4>={clinic:["Clinic","クリニッ�
 const status:Record<MapPoint['status'],Text4>={activity:["Activity record","活動実績","活動紀錄","활동 이력"],planned:["Planned programme","開催予定","活動規劃","개최 예정"],partner:["Partner","連携先","合作夥伴","협력 파트너"],discussion:["In discussion","協議中","協議中","협의 중"]};
 const offsets:Record<string,[number,number]>={akita:[-4,-1],yuzawa:[4,1],sendai:[-5,2],shizugawa:[5,-2],saitama:[-6,-2],kazo:[1,-5],harayama:[6,1],kozaki:[6,-4],kawasaki:[-4,5],takahama:[-6,-3],toyota:[4,-5],ise:[6,3],saga:[-4,-4],okawa:[5,3],okinawa:[7,-7],tomigusuku:[-7,-1],itoman:[7,3],nanjo:[-5,8],ishigaki:[-5,1],"yamagata-planned":[5,-4],"tatsuno-planned":[-5,4],taiwan:[-3,4],korea:[3,-3]};
 const upcoming:Record<string,{text:Text4;href:string}>={
- ishigaki:{text:["20–22 Sep · YAIMA CUP Project","9月20〜22日 · YAIMA CUP参加プロジェクト","9月20日至22日 · YAIMA CUP參賽計畫","9월 20~22일 · YAIMA CUP 참가 프로젝트"],href:programmeById.yaima.applicationUrl},
  kawasaki:{text:["27 Sep · RBA Kawasaki Clinic","9月27日 · RBA川崎クリニック","9月27日 · RBA川崎訓練營","9월 27일 · RBA 가와사키 클리닉"],href:programmeById.kawasaki.applicationUrl},
  saga:{text:["4–5 Oct · Saga × Fukuoka 2Days Camp","10月4〜5日 · 佐賀 × 福岡 2Days Camp","10月4日至5日 · 佐賀 × 福岡兩日營","10월 4~5일 · 사가 × 후쿠오카 2Days Camp"],href:programmeById["saga-fukuoka"].applicationUrl},
  okawa:{text:["4–5 Oct · Saga × Fukuoka 2Days Camp","10月4〜5日 · 佐賀 × 福岡 2Days Camp","10月4日至5日 · 佐賀 × 福岡兩日營","10월 4~5일 · 사가 × 후쿠오카 2Days Camp"],href:programmeById["saga-fukuoka"].applicationUrl},
