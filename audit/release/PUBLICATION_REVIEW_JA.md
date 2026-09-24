@@ -2,9 +2,9 @@
 
 状態: Preview。メール設定・実メール試験はユーザー指示により保留。main merge・Production昇格なし。
 本番baseline: `638015f07d23d260f1004416e641740e5f42a29a`
-直近READY Preview: `dpl_28MbhfTgpRSwJcM6BtMVvcSvo31i`（コミット `52475cc0a7dfe20eea493ff7e708a8081e7a8af7`）
+直近READY Preview: `dpl_61ZpuduraCjw6W1DiNu9j1ZMx7mP`（コミット `e46d1f3c929449c6c946b9778bb7270adac69410`）
 Rollback: `dpl_FHWvoShxQHDzcxJgR14WbtNaRefJ`
-この報告を含む後続コミットは、会員初期設定とコピーの追加修正。後続Previewの確認が必要。
+最新候補はVercelでREADY。Productionはbaseline deploymentのまま変更していない。
 
 ## 修正と検証
 
@@ -26,7 +26,7 @@ Rollback: `dpl_FHWvoShxQHDzcxJgR14WbtNaRefJ`
 
 - 実アカウントによるPLAYER/PARENT/COACH操作とデータ分離。現在parentプロフィールがないため親子実フロー未検証。
 - スマホ実機での表示・フォーム・メニュー操作。デスクトップ確認は代替にならない。
-- Stripe test-modeで支払い→Webhook→会員反映・同時再送のE2E。既存Webhookには同時重複到着時の通知重複リスクが残るため要対処。
+- Stripe test-modeで支払い→Webhook→会員反映の署名付きE2E。並行claim・失敗再試行・通知重複排除はDB transactionで確認済みだが、接続中Stripeはlive accountのみのため実課金試験は行わない。
 - capacity未設定イベントは既存gatewayで拒否。開催状況・8 legacy routeの正規対応を運営が確定するまで直接決済しない。
 - safeguarding責任者、governance documents、organization standards承認。推測して設定しない。
 - leaked password protection無効。運用方針と有効化確認が必要。
@@ -138,3 +138,15 @@ SEO: canonical/hreflang/sitemap、login/payment-complete noindexの既存候補�
 ## 削除ページ
 
 なし
+
+
+## 2026-09-24 Preview・本番健全性再監査
+
+- 最新Preview `dpl_61ZpuduraCjw6W1DiNu9j1ZMx7mP` はREADY。対象commitは `e46d1f3c929449c6c946b9778bb7270adac69410`。
+- Vercel保護を正規の一時共有URLで通したread-onlyブラウザ監査で、`/`、`/ja`、`/zh-tw`、`/ko`、`/ja/my-homecourt`、`/ja/my-homecourt/login`、`/ja/my-homecourt/app`、`/ja/payments`、`/ja/schedule`、`/ja/contact`、`/ja/policies`、`/robots.txt`、`/sitemap.xml`、manifestの全14対象が表示成功。フォーム送信・メール送信・登録・決済は行っていない。
+- 未認証の `/ja/my-homecourt/app` はlocalized loginへ転送。generic `/login` は404で、会員導線から使用していない。
+- 監査アクセス後の最新Preview runtime logは200が32件、307が2件、runtime errorは0件。
+- Productionは `dpl_FHWvoShxQHDzcxJgR14WbtNaRefJ` のまま。naked/www、4言語、JA login、JA payments、robots、sitemapのread-only健全性監査で可視404/500なし。現在のProductionを変更していない。
+- Supabase最新advisorではRLS initplanとmissing FK indexの警告は解消済み。service-only 3表のpolicyなしはRLSによる公開role全拒否、join_team RPCは認証済み会員の意図した導線。leaked password protectionは未解決。
+- `stripe_webhook_events` は0件。署名付き実Webhookはまだ到着していないため、live chargeを使った確認は実施しない。
+- モバイル実機監査は未完了。追加ブラウザセッションがDeployment Protectionで遮断されたため、推測で合格扱いにしない。
