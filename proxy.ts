@@ -10,7 +10,7 @@ export async function proxy(request:NextRequest){
     url.port="";
     return NextResponse.redirect(url,308);
   }
-  const isMemberApp=/^\\/(?:(?:ja|ko|zh-tw)\\/)?my-homecourt\\/app(?:\\/|$)/.test(request.nextUrl.pathname);
+  const isMemberApp=/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/|$)/.test(request.nextUrl.pathname);
   return isMemberApp?updateSession(request):NextResponse.next();
 }
 export const config={matcher:["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"]};
