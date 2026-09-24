@@ -34,4 +34,14 @@ This release publishes the V6 public website. It does not declare membership ema
 5. Set `RBA_AUTH_EMAIL_READY=true` and rebuild production only after these checks succeed.
 
 Rollback target before this release: dpl_FHWvoShxQHDzcxJgR14WbtNaRefJ.
-Production ID and post-deploy checks will be recorded after publication.
+## Production publication confirmed
+
+- PR #6 merged into main: 8fe36b6c31f9f4512a5ff6c825eb1733404105b5.
+- Deployment dpl_Bzt2zdpvKV6njSHentcifPtbkbKE: READY, production, aliasError null.
+- Official aliases: riotbasketballacademy.com and www.riotbasketballacademy.com.
+- On 2026-09-24 UTC, 22 production HTTP checks returned 200: home, contact, login, payment and schedule in all four locales, plus robots.txt and sitemap.xml. Connector fetch failures were retried sequentially; all checks ultimately succeeded.
+- All four contact pages contain the enabled official Jotform. All four login pages render the unavailable state without an email input.
+- Live browser confirmed the Japanese V6 homepage at the official domain; screenshot captured.
+- Vercel runtime error query for the preceding hour returned no errors.
+- Membership SMTP delivery and signed payment E2E remain incomplete as stated above. Public website publication does not remove these blockers.
+
