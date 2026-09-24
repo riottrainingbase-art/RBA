@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./platform-v9.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://riotbasketballacademy.com"),
@@ -17,8 +18,9 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title: "Riot Basketball Academy Japan", description: "Built in the gym. Connected across Asia.", images: ["/rba-court-hero.png"] },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/rba-logo-original.jpg",
+    shortcut: "/rba-logo-original.jpg",
+    apple: "/rba-logo-original.jpg",
   },
 };
 
