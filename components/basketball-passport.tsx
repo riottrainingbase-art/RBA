@@ -85,7 +85,7 @@ export function BasketballPassport({userId}:{userId:string}){
  const editButtons=(kind:Kind,entry:Entry)=><div className={styles.actions}><button type="button" onClick={()=>open(kind,entry)}>編集</button><button type="button" onClick={()=>setRemoving({kind,id:entry.id})}>削除</button></div>;
  const recommend=new URLSearchParams();if(person?.age_group&&["U8","U10","U12","U15","COACH"].includes(person.age_group))recommend.set("age",person.age_group);if(person?.age_group==="COACH")recommend.set("kind","COACH");
  return <section className={styles.passport} aria-labelledby="passport-title">
-  <header className={styles.hero}><p>GLOBAL BASKETBALL PASSPORT</p><h2 id="passport-title">自分の歩みを、<br/>世界につながる記録へ。</h2><p>地域の練習も、全国のクリニックも、海外交流も、オンラインで得た学びも。どこで何を学び、次に何を試すのかを、自分の成長の記録として残します。</p></header>
+  <header className={styles.hero}><p>GLOBAL BASKETBALL PASSPORT</p><h2 id="passport-title">あの日の経験と、<br/>これからの自分。</h2><p>参加した経験、今の課題、次の目標。写真や動画も一緒に残せます。</p></header>
   {message&&<p className={styles.message} role={failed?"alert":"status"}>{message}</p>}
   {loading?<p role="status">記録を読み込んでいます…</p>:failed?<button onClick={()=>void load(personId)}>再読み込み</button>:<>
    <div className={styles.toolbar}>{people.length>0&&<label>記録する人<select value={personId} disabled={busy||!!form||mediaLocked} onChange={e=>{setLimit(10);setRemoving(null);void load(e.target.value);}}>{people.map(p=><option key={p.id} value={p.id}>{p.name}{p.relationship==="child"?"（子ども）":"（自分）"}</option>)}</select></label>}<button disabled={busy||!!form||mediaLocked} onClick={()=>open("person")}>{people.length?"＋ 記録する人を追加":"自分・子どもの記録を始める"}</button>{person&&<button disabled={!!form||mediaLocked} onClick={()=>open("person",person)}>プロフィールを編集</button>}</div>

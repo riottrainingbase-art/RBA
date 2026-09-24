@@ -3,7 +3,7 @@ import { checkoutOffers } from "./checkout-options";
 export function memberAuthDestination(value: string | null): string {
  const fallback="/ja/my-homecourt/app";
  if(!value)return fallback;
- if(/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/(?:calendar|team|notifications|my|admin))?$/.test(value))return value;
+ if(/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/(?:calendar|team|notifications|my|admin|start))?$/.test(value))return value;
  const match=value.match(/^\/api\/commerce\/checkout\/([a-z0-9-]+)(?:\?locale=(en|ja|ko|zh-tw))?$/);
  return match&&Object.hasOwn(checkoutOffers,match[1])?value:fallback;
 }
