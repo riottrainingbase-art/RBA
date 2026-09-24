@@ -896,5 +896,13 @@ export const memberArticles: MemberArticle[] = [
       "映像",
       "学習"
     ]
+  },
+  {
+    "slug": "double-team-development-question",
+    "role": "parent",
+    "title": "点差が開いても、最後までダブルチーム。それは何を育てているのか。",
+    "summary": "目の前の点差ではなく、1on1・ヘルプ・ローテーションという将来につながる守備経験から試合を見る。",
+    "category": "指導者との対話",
+    "tags": ["ダブルチーム","マンツーマン","育成","守備","練習試合"]
   }
 ];
