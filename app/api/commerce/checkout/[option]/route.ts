@@ -31,10 +31,12 @@ export async function GET(request: Request, context: { params: Promise<{ option:
     }
     const destination = new URL(data.checkout_url);
     if (destination.protocol !== "https:" || !["book.stripe.com", "buy.stripe.com", "checkout.stripe.com"].includes(destination.hostname) || destination.username || destination.password) {
+      if(option==="homecourt-monthly"&&locale==="ja") return redirect(request, "/ja/my-homecourt/subscribe?status=checkout_unavailable");
       return redirect(request, paymentEnquiryUrl(option,locale));
     }
     return redirect(request, destination.href);
   } catch {
+    if(option==="homecourt-monthly"&&locale==="ja") return redirect(request, "/ja/my-homecourt/subscribe?status=checkout_unavailable");
     return redirect(request, paymentEnquiryUrl(option,locale));
   }
 }
