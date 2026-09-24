@@ -1,0 +1,1 @@
+import type {Metadata} from "next";import {PublicJournalHub} from "@/components/public-journal";export const metadata:Metadata={title:"RBA JOURNAL | 青少年籃球培育與國際交流",description:"以繁體中文分享RBA的培育理念、家長指南、教練教育與日本亞洲交流。",alternates:{canonical:"/zh-tw/journal"}};export default function Page(){return <PublicJournalHub locale="zh-tw"/>}

@@ -1,11 +1,12 @@
 import { DocumentLanguage } from "./document-language";
 import { ui } from "./ui-copy";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, House, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bell, House, MessageCircle } from "lucide-react";
+import { getLatestPublicUpdate } from "@/lib/public-content";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform";
+export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal";
 
 
 const labels = {
@@ -25,8 +26,9 @@ export function localePath(locale:Locale, page?:LanguagePage){
 }
 
 
-export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
+export async function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
   const c=labels[locale];
+  const latest=await getLatestPublicUpdate(locale);
   const fullNav=[
     [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
     [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
@@ -45,7 +47,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["RBA UNITED",localePath(locale,"united")],
     ["RBA CONNECT",localePath(locale,"connect")],
     ["ORGANIZER",localePath(locale,"organizer")],
-    ...(locale==="en"?[["Journal","/journal"]] as const:[]),
+    [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
   ] as const;
   const nav=[
     [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
@@ -53,6 +55,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Platform",ja:"育成プラットフォーム","zh-tw":"培育平台",ko:"육성 플랫폼"})[locale],localePath(locale,"platform")] as const,
     [({en:"Coaches",ja:"指導者", "zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
+    [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
     [({en:"Organisers",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최・협력"})[locale],localePath(locale,"organizer")] as const,
     [c.about,localePath(locale,"about")] as const,
   ];
@@ -71,6 +74,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
         <div className="language-links" role="group" aria-label="Language / 言語 / 語言 / 언어">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div>
       </div>
     </header>
+    {latest?<a className="site-update-strip" href={latest.href}><Bell size={15}/><span>{({en:"NEW",ja:"更新","zh-tw":"最新",ko:"NEW"})[locale]} / {latest.kind.toUpperCase()}</span><strong>{latest.title}</strong><span className="site-update-cta">{({en:"Read",ja:"読む","zh-tw":"閱讀",ko:"읽기"})[locale]} <ArrowRight size={14}/></span></a>:null}
     <main id="main-content">{children}</main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>

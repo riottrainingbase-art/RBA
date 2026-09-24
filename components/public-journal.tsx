@@ -1,0 +1,61 @@
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
+import { notFound } from "next/navigation";
+import { getPublicJournalPost, getPublicJournalPosts } from "@/lib/public-content";
+import { Locale, localePath, SiteFrame } from "@/components/site-frame";
+
+const copy={
+  en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
+  ja:{kicker:"RBA JOURNAL",title:"育成を、もっと広く。",lead:"選手・保護者・指導者・海外の仲間へ。RBAの育成設計、現場の学び、国際交流を公開していきます。",latest:"最新記事",all:"記事一覧",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"日本とアジアの次の交流を、一緒につくる。",exchangeBody:"海外アカデミー、チーム、指導者の皆さまへ。来日プログラム、合同クリニック、指導者講習、育成年代の交流についてRBAへご相談ください。",ask:"WhatsAppでRBAに相談",read:"記事を読む",back:"JOURNALへ戻る"},
+  "zh-tw":{kicker:"RBA JOURNAL",title:"讓培育連結更廣的世界。",lead:"分享球員、家長、教練與亞洲夥伴都能使用的培育觀點、現場筆記與國際交流。",latest:"最新文章",all:"所有文章",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"一起建立日本與亞洲的下一次交流。",exchangeBody:"歡迎學院、球隊與教練洽詢日本交流、聯合訓練營、教練教育與青少年合作。",ask:"WhatsApp聯絡RBA",read:"閱讀文章",back:"返回JOURNAL"},
+  ko:{kicker:"RBA JOURNAL",title:"육성을 더 넓은 세계로.",lead:"선수, 보호자, 코치와 아시아 파트너를 위한 육성 관점, 현장 기록, 국제 교류를 공유합니다.",latest:"최신 글",all:"전체 글",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"일본과 아시아의 다음 교류를 함께 만듭니다.",exchangeBody:"아카데미, 팀, 코치는 일본 교류, 공동 클리닉, 코치 교육과 유소년 교류를 RBA에 문의할 수 있습니다.",ask:"WhatsApp으로 RBA 문의",read:"글 읽기",back:"JOURNAL로 돌아가기"}
+} as const;
+
+const categoryLabels={
+  en:{development:"Development",families:"Families",coaching:"Coaching",international:"International",programme:"Programmes"},
+  ja:{development:"育成",families:"保護者",coaching:"指導者",international:"海外交流",programme:"プログラム"},
+  "zh-tw":{development:"培育",families:"家長",coaching:"教練",international:"國際交流",programme:"活動"},
+  ko:{development:"육성",families:"보호자",coaching:"코칭",international:"국제 교류",programme:"프로그램"}
+} as const;
+
+export async function PublicJournalHub({locale}:{locale:Locale}){
+  const c=copy[locale], posts=await getPublicJournalPosts(locale);
+  const featured=posts[0], rest=posts.slice(1);
+  const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(({en:"Hello RBA, we are interested in a Japan–Asia basketball exchange.",ja:"RBAの海外交流について相談したいです。","zh-tw":"您好RBA，我們想詢問日本與亞洲的籃球交流。",ko:"RBA의 일본-아시아 농구 교류에 대해 문의하고 싶습니다."})[locale])}`;
+  return <SiteFrame locale={locale} languagePage="journal">
+    <div className="journal-hub journal-cms">
+      <section className="journal-cms-hero section-pad">
+        <p className="section-index">{c.kicker}</p>
+        <h1>{c.title}</h1>
+        <p>{c.lead}</p>
+        <div className="journal-cms-languages"><span>EN</span><span>日本語</span><span>繁中</span><span>한국어</span></div>
+      </section>
+      {featured?<section className="journal-feature section-pad">
+        <div><p className="section-index">{c.latest} / {categoryLabels[locale][featured.category as keyof typeof categoryLabels.en]||featured.category}</p><h2>{featured.title}</h2><p>{featured.standfirst}</p><Link className="button button-dark" href={journalHref(locale,featured.slug)}>{c.read}<ArrowRight size={17}/></Link></div>
+        <aside><span>{featured.reading}</span><strong>{featured.audience.toUpperCase()}</strong><small>{featured.published_at?new Date(featured.published_at).toLocaleDateString(locale):""}</small></aside>
+      </section>:null}
+      <section className="journal-cms-index section-pad"><div className="section-head"><div><p className="section-index">{c.all}</p><h2>{posts.length} STORIES</h2></div></div>
+        <div className="journal-cms-grid">{rest.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+2).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
+        </Link>)}</div>
+      </section>
+      <section className="journal-exchange-cta section-pad">
+        <div><p className="section-index inverse">{c.exchange}</p><h2>{c.exchangeTitle}</h2><p>{c.exchangeBody}</p></div>
+        <div><a className="button button-light" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17}/>{c.ask}</a><a className="button button-dark" href={localePath(locale,"international")}>International <ArrowUpRight size={16}/></a></div>
+      </section>
+    </div>
+  </SiteFrame>;
+}
+
+export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:string}){
+  const c=copy[locale], post=await getPublicJournalPost(locale,slug);
+  if(!post)notFound();
+  return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article">
+    <header className="article-hero section-pad"><Link href={journalRoot(locale)} className="back-link">← {c.back}</Link><p className="section-index">{c.kicker} / {categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h1>{post.title}</h1><div><p>{post.standfirst}</p><span>{post.reading} · RBA</span></div></header>
+    <div className="article-body section-pad"><aside><p>{post.aside_title||c.kicker}</p><span>{post.aside_text||post.standfirst}</span></aside><div>{post.sections.map((section,index)=><section key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.heading}</h2>{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets?.length?<ul>{section.bullets.map(b=><li key={b}>{b}</li>)}</ul>:null}</section>)}</div></div>
+    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p><div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link><Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link></div></footer>
+  </article></SiteFrame>;
+}
+
+export const journalRoot=(locale:Locale)=>locale==="en"?"/journal":`/${locale}/journal`;
+export const journalHref=(locale:Locale,slug:string)=>`${journalRoot(locale)}/${slug}`;
