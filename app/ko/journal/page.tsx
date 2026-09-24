@@ -1,1 +1,2 @@
+export const dynamic = "force-dynamic";
 import type {Metadata} from "next";import {PublicJournalHub} from "@/components/public-journal";export const metadata:Metadata={title:"RBA JOURNAL | 유소년 농구 육성과 국제 교류",description:"RBA의 육성 철학, 보호자 가이드, 코치 교육과 일본-아시아 교류를 한국어로 공유합니다.",alternates:{canonical:"/ko/journal"}};export default function Page(){return <PublicJournalHub locale="ko"/>}

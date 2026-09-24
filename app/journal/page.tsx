@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type {Metadata} from "next";
 import {PublicJournalHub} from "@/components/public-journal";
 export const metadata:Metadata={
