@@ -2,10 +2,22 @@ import {ArrowRight,BookOpen,CalendarDays,CreditCard,Globe2,GraduationCap,HeartHa
 import {Locale,localePath,SiteFrame} from "./site-frame";
 
 const copy={
- ja:{kicker:"RBA DEVELOPMENT PLATFORM",title:"育成を、点ではなく一つの流れに。",lead:"RBAは、選手・保護者・指導者・チーム・主催者・海外アカデミーを、記録・学び・機会・安全・決済でつなぐ育成プラットフォームです。",body:"クリニックに参加して終わりではなく、現在地を知り、次の目標を決め、必要な機会を見つけ、経験を記録し、また次へ進む。その循環を一つのIDでつなぎます。",modules:"PLATFORM CORE",modulesTitle:"一つのRBA IDから、育成のすべてへ。",roles:"FOR EVERY ROLE",rolesTitle:"立場が違っても、同じ育成基盤を使う。",trust:"TRUST LAYER",trustTitle:"規模より先に、信頼を設計する。",cta:"MY HOME COURTを始める",find:"育成機会を探す"},
+ ja:{kicker:"RBA DEVELOPMENT PLATFORM",title:"育成を、単発で終わらせない。",lead:"RBAは、選手・保護者・指導者・チーム・主催者・海外アカデミーを、育成記録・学び・機会・安全管理・決済でつなぐ育成プラットフォームです。",body:"クリニックに参加して終わりではなく、現在地を知り、次の目標を決め、必要な機会を見つけ、経験を記録し、また次へ進む。その循環を一つのIDでつなぎます。",modules:"PLATFORM CORE",modulesTitle:"一つのRBA IDから、育成に必要な機能へ。",roles:"FOR EVERY ROLE",rolesTitle:"立場が違っても、同じ育成基盤でつながる。",trust:"TRUST LAYER",trustTitle:"規模より先に、信頼を設計する。",cta:"MY HOME COURTを始める",find:"育成機会を探す"},
  en:{kicker:"RBA DEVELOPMENT PLATFORM",title:"Turn development into one connected journey.",lead:"RBA connects players, families, coaches, teams, organisers and international academies through identity, learning, opportunity, safety and commerce.",body:"A clinic should not be the end. Understand where you are, choose the next target, find the right experience, record what happened and keep moving. One RBA ID connects that loop.",modules:"PLATFORM CORE",modulesTitle:"One RBA ID. One development system.",roles:"FOR EVERY ROLE",rolesTitle:"Different roles, one development infrastructure.",trust:"TRUST LAYER",trustTitle:"Design trust before scale.",cta:"Start MY HOME COURT",find:"Find opportunities"},
  "zh-tw":{kicker:"RBA DEVELOPMENT PLATFORM",title:"讓培育不再是單點，而是一條完整路徑。",lead:"RBA以身份、學習、機會、安全與付款，連結球員、家長、教練、球隊、主辦方與海外學院。",body:"參加訓練營不是終點。了解現在的位置、決定下一個目標、找到合適機會、留下經驗，再走向下一步。RBA ID把這個循環連起來。",modules:"PLATFORM CORE",modulesTitle:"從一個RBA ID連結整個培育系統。",roles:"FOR EVERY ROLE",rolesTitle:"不同角色，共用同一套培育基礎。",trust:"TRUST LAYER",trustTitle:"在規模之前先建立信任。",cta:"開始MY HOME COURT",find:"尋找培育機會"},
  ko:{kicker:"RBA DEVELOPMENT PLATFORM",title:"육성을 점이 아닌 하나의 여정으로.",lead:"RBA는 선수, 보호자, 코치, 팀, 주최자와 해외 아카데미를 ID, 학습, 기회, 안전, 결제로 연결합니다.",body:"클리닉 참가가 끝이 아닙니다. 현재를 알고, 다음 목표를 정하고, 필요한 기회를 찾고, 경험을 기록해 다시 다음으로 갑니다. 하나의 RBA ID가 이 흐름을 연결합니다.",modules:"PLATFORM CORE",modulesTitle:"하나의 RBA ID에서 모든 육성으로.",roles:"FOR EVERY ROLE",rolesTitle:"역할은 달라도 같은 육성 기반을 사용합니다.",trust:"TRUST LAYER",trustTitle:"규모보다 먼저 신뢰를 설계합니다.",cta:"MY HOME COURT 시작",find:"육성 기회 찾기"}
+} as const;
+
+const jaModuleDescriptions={
+ "RBA ID":"本人確認と役割の基盤",
+ "MY HOME COURT":"参加・振り返り・目標の記録",
+ "OPPORTUNITIES":"育成機会の検索・申込",
+ "TEAM HOME":"チーム運営と日々の連絡",
+ "COACH EDUCATION":"指導者の継続学習",
+ "GLOBAL NETWORK":"国内外の交流・連携",
+ "COMMERCE":"申込・決済・契約管理",
+ "SAFEGUARDING":"安全管理と同意",
+ "IMPACT":"活動実績と再投資"
 } as const;
 
 const modules=[
@@ -30,12 +42,12 @@ const roleCopy={
 export function PlatformOperatingSystem({locale}:{locale:Locale}){
  const c=copy[locale];
  const trust=locale==="ja"?[
-  ["CHILD SAFETY","未成年者と成人の無制限DMを前提にしない。"],
+  ["CHILD SAFETY","未成年者と成人が無制限に直接やり取りする設計にはしません。"],
   ["CONSENT","写真・動画、保護者同意、連絡設定を分けて管理。"],
   ["VERIFICATION","自己申告とRBA確認済み記録を区別。"],
   ["TRANSPARENCY","未確定の機会を、確定済みとして掲載しない。"],
   ["DATA MINIMIZATION","育成に不要な個人情報を集めすぎない。"],
-  ["CHOICE","メール・有料契約・海外機会は本人・家庭が選ぶ。"]
+  ["CHOICE","メール配信、メンバーシップ、海外・国際交流への参加は、本人や家庭が選べます。"]
  ]:[
   ["CHILD SAFETY","No unrestricted adult-to-minor messaging by default."],
   ["CONSENT","Separate media, guardian and communication consent."],
@@ -44,7 +56,7 @@ export function PlatformOperatingSystem({locale}:{locale:Locale}){
   ["DATA MINIMIZATION","Collect only what development actually needs."],
   ["CHOICE","Email, paid plans and international paths remain optional."]
  ];
- return <SiteFrame locale={locale} languagePage={"platform" as never}><div className="platform-os">
+ return <SiteFrame locale={locale} languagePage="platform"><div className="platform-os">
   <section className="platform-os-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index inverse">{c.kicker}</p><h1>{c.title}</h1><p>{c.lead}</p><p>{c.body}</p><div><a className="button button-light" href={localePath(locale,"my-homecourt")}>{c.cta}<ArrowRight/></a><a className="text-link light-link" href={localePath(locale,"opportunities")}>{c.find}<ArrowRight/></a></div></section>
   <section className="platform-os-core section-pad"><p className="section-index">{c.modules}</p><h2>{c.modulesTitle}</h2><div className="platform-core-grid">{modules.map(([name,Icon,desc,[path]])=><a key={name} href={localePath(locale,path as never)}><Icon/><span>{name}</span><strong>{desc}</strong><ArrowRight/></a>)}</div></section>
   <section className="platform-os-roles section-pad"><p className="section-index inverse">{c.roles}</p><h2>{c.rolesTitle}</h2><div>{roleCopy[locale].map(([role,desc])=><article key={role}><strong>{role}</strong><span>{desc}</span></article>)}</div></section>
