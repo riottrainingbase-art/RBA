@@ -19,6 +19,51 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl}><Sparkles size={17}/>{c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div></div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
     {!role?<section className="homecourt-product-preview section-pad"><div className="section-head"><div><p className="section-index">YOUR BASKETBALL PASSPORT</p><h2>{ja?"あの日の経験から、次の自分へ。":"One home for your basketball journey."}</h2></div><p>{ja?"過去に参加したクリニックやキャンプも、自分で記録できます。保護者の方は、お子さまごとに記録を分けて管理できます。":"RBA ID connects discovery, applications, participation and reflection."}</p></div><div className="homecourt-preview-grid"><article><CalendarDays/><span>01</span><h3>{ja?"過去の参加":"Applications"}</h3><p>{ja?"参加日・会場・学びを記録。日付が曖昧なら月単位でも。":"See programmes and next actions."}</p></article><article><History/><span>02</span><h3>{ja?"写真・動画で成長を振り返る":"History"}</h3><p>{ja?"前の自分と見比べて、できたことを見つける。気づきを次の練習へ。":"Keep your participation journey."}</p></article><article><BookOpen/><span>03</span><h3>{ja?"これからの目標":"Learning"}</h3><p>{ja?"今週やること、3か月後の目標、その先の目標まで残せます。":"Open role-based learning."}</p></article><article><Compass/><span>04</span><h3>{ja?"次のおすすめ":"Next"}</h3><p>{ja?"年代・地域・目的に合う機会へ。":"Find what fits you next."}</p></article></div><div className="homecourt-private-note"><LockKeyhole size={24}/><div><strong>{ja?"写真・動画と成長記録は非公開です。":"Your records stay private."}</strong><p>{ja?"本人・保護者を中心とした権限で管理し、他の会員や公開プロフィールには表示しません。":"Photos, film and development records are available only to authorised account holders."}</p></div></div></section>:null}
+    {!role&&ja?<section className="homecourt-plan-separation section-pad">
+      <div className="homecourt-plan-intro">
+        <p className="section-index">FREE / HOMECOURT</p>
+        <h2>無料は「知る」。HOMECOURTは「続ける」。</h2>
+        <p>無料のRBA IDは、育成の選択肢を広げるための入口です。月額3,300円のHOMECOURTは、記事を増やしただけの上位版ではありません。学び、試し、振り返り、次の課題を決めるところまでを日常につなぐための成長環境です。</p>
+      </div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card homecourt-plan-free">
+          <div className="homecourt-plan-card-head"><span>FREE / RBA ID</span><strong>¥0</strong><small>まずはここから</small></div>
+          <h3>知る・探す・つながる</h3>
+          <p>「知らなかったから選べなかった」を減らすための入口です。</p>
+          <ul>
+            <li><Check size={17}/>全国のクリニック・キャンプを探す</li>
+            <li><Check size={17}/>年代・地域・目的から次の活動を探す</li>
+            <li><Check size={17}/>参加履歴や自分の歩みを整理する</li>
+            <li><Check size={17}/>PLAYER / PARENT / COACHの入口を使う</li>
+            <li><Check size={17}/>RBAからの新しい機会を受け取る</li>
+          </ul>
+          <a className="button button-light" href={registrationUrl}>無料でRBA IDをつくる<ArrowRight size={16}/></a>
+        </article>
+        <article className="homecourt-plan-card homecourt-plan-paid">
+          <div className="homecourt-plan-card-head"><span>HOMECOURT / MONTHLY</span><strong>¥3,300</strong><small>月額・税込</small></div>
+          <h3>学ぶ・試す・振り返る・続ける</h3>
+          <p>情報を集めるだけでなく、「次に何を変えるか」まで持ち帰るためのメンバーシップです。</p>
+          <ul>
+            <li><Check size={17}/>会員限定の学びのライブラリを読む</li>
+            <li><Check size={17}/>PLAYER / PARENT / COACH別の実践ガイド</li>
+            <li><Check size={17}/>学びを次の練習・試合・会話へ落とし込む</li>
+            <li><Check size={17}/>振り返りの問いで、自分の変化を言葉にする</li>
+            <li><Check size={17}/>継続して増える学びをHOMECOURTに蓄積する</li>
+          </ul>
+          <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURTを始める<ArrowRight size={16}/></a>
+        </article>
+      </div>
+      <div className="homecourt-value-line">
+        <span>FREE</span><strong>情報と機会への入口</strong><ArrowRight size={18}/><span>HOMECOURT</span><strong>成長を続けるための環境</strong>
+      </div>
+      <div className="homecourt-growth-loop">
+        <div><span>01</span><strong>LEARN</strong><p>今の自分に必要なテーマを学ぶ。</p></div>
+        <div><span>02</span><strong>TRY</strong><p>次の練習や試合で一つ試す。</p></div>
+        <div><span>03</span><strong>REFLECT</strong><p>できた・できなかっただけで終わらせず振り返る。</p></div>
+        <div><span>04</span><strong>NEXT</strong><p>次に変えることを一つ決める。</p></div>
+      </div>
+      <p className="homecourt-plan-note">無料版の機能を意図的に弱くすることはしません。必要な情報へのアクセスは開いたままにし、有料では「継続的な学びと実践」の深さをつくります。</p>
+    </section>:null}
     {!role?<section className="membership-path section-pad"><p className="section-index">DISCOVER / CONNECT / CHALLENGE</p><div className="membership-path-grid"><article><span>01 / DISCOVER</span><Sparkles/><h2>{c.free}</h2><p>{c.freeBody}</p><a href={registrationUrl}>{c.register}<ArrowRight size={16}/></a></article><article><span>02 / CONNECT</span><MessageCircle/><h2>{c.community}</h2><p>{c.communityBody}</p><a href={localePath(locale,"community")}>{c.community}<ArrowRight size={16}/></a></article><article><span>03 / CHALLENGE</span><CreditCard/><h2>{c.paid}</h2><p>{c.paidBody}</p><a href={ja?localePath(locale,"schedule"):registrationUrl}>{locale==="ja"?"次の活動を探す":locale==="zh-tw"?"登入後加入":locale==="ko"?"로그인 후 가입":"Sign in to join"}<ArrowRight size={16}/></a></article></div></section>:null}
     <section className="my-homecourt-role section-pad"><p className="section-index">PLAYER / PARENT / COACH</p><h2 className="member-section-title">{c.choose}</h2><div className="my-homecourt-role-grid">{Object.entries(homecourtRoles).map(([key,data])=><a key={key} className={role===key?"is-current":undefined} href={`${prefix}/my-homecourt/${key}`}><span>{data.shortLabel}</span><strong>{ja?data.label:data.shortLabel}</strong><p>{ja?data.description:"Open your RBA guide, community and next actions."}</p><ArrowRight size={20}/></a>)}</div></section>
     {selected?<section className="member-route-actions section-pad"><div><p className="section-index">{ja?"次に進む":"YOUR NEXT ACTION"}</p><h2>{ja?`${selected.label}向けのご案内`:`${selected.shortLabel} ROUTE`}</h2><p>{ja?"参加する。学ぶ。仲間とつながる。今必要な入口から始められます。":"Find programmes, community and the next action for your role."}</p></div><div className="member-route-action-grid"><a href={registrationUrl}><Sparkles/><strong>{c.register}</strong><span>{ja?"活動・記録・学びを一つにつなぐ":"Connect activities, records and learning"}</span><ArrowRight/></a><a href={roleCommunity} target="_blank" rel="noreferrer"><Users/><strong>{c.community}</strong><span>{ja?(role==="coaches"?"指導者向けオープンコミュニティ":"選手・保護者向けオープンコミュニティ"):"Join the relevant open community"}</span><ArrowUpRight/></a><a href={localePath(locale,"opportunities")}><CalendarDays/><strong>{ja?"現在募集中の活動":"Current programmes"}</strong><span>{ja?"日程・対象・募集状況を比較":"Compare dates, eligibility and availability"}</span><ArrowRight/></a>{role==="coaches"?<><a href={localePath(locale,"d-hub")}><BookOpen/><strong>D-HUB</strong><span>{ja?"継続して学べる指導者向けプログラム":"Ongoing coach development"}</span><ArrowRight/></a><a href={localePath(locale,"events/torsten-loibl-online-clinic")}><Users/><strong>TORSTEN LOIBL</strong><span>{ja?"世界の育成現場に学ぶ指導者講習":"International coach clinic"}</span><ArrowRight/></a></>:null}</div></section>:null}
