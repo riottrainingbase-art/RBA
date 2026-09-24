@@ -1,0 +1,94 @@
+"use client";
+
+import {FormEvent,useEffect,useMemo,useState} from "react";
+import {CheckCircle2,Globe2,LoaderCircle,ShieldCheck} from "lucide-react";
+import {createClient} from "@/lib/supabase/client";
+import type {Locale} from "./site-frame";
+import styles from "./global-development-profile.module.css";
+
+type Props={userId:string;locale:Locale};
+type Profile={
+ primary_position:string|null;
+ development_stage:string|null;
+ long_term_goal:string|null;
+ current_focus:string|null;
+ preferred_regions:string[];
+ preferred_countries:string[];
+ preferred_languages:string[];
+ opportunity_types:string[];
+ travel_scope:string;
+ international_interest:boolean;
+ next_12_month_goal:string|null;
+ profile_completion:number;
+};
+
+const empty:Profile={
+ primary_position:null,development_stage:"learning",long_term_goal:null,current_focus:null,
+ preferred_regions:[],preferred_countries:[],preferred_languages:[],opportunity_types:[],
+ travel_scope:"local",international_interest:false,next_12_month_goal:null,profile_completion:0
+};
+
+const copy={
+ ja:{eyebrow:"GLOBAL DEVELOPMENT PROFILE",title:"世界を意識する前に、自分を知る。",lead:"興味のある地域や活動、今取り組んでいることを残すと、MY HOME COURTが次の機会を見つけやすくなります。海外に行くことや選抜を保証するものではありません。",completion:"PROFILE",position:"主に取り組むポジション",stage:"今の育成ステージ",focus:"今、伸ばしたいこと",long:"長期的に目指したい姿",year:"この12か月で挑戦したいこと",scope:"活動範囲の希望",countries:"興味のある国・地域",languages:"触れてみたい言語",types:"興味のある機会",international:"海外・国際交流の情報も見たい",save:"プロフィールを保存",saved:"保存しました",privacy:"この情報はMY HOME COURTの提案精度を上げるための非公開プロフィールです。公開プロフィールにはなりません。",stages:{foundation:"基礎をつくる",learning:"学びを広げる",developing:"実戦で伸ばす",advanced:"高い強度へ挑戦",performance:"競技パフォーマンスを高める"},scopes:{local:"地域中心",national:"全国まで",asia:"アジアまで",global:"世界まで"},opps:{clinic:"クリニック",camp:"キャンプ",game:"ゲーム・大会",exchange:"国際交流",online:"オンライン学習",coach:"指導者講習"}},
+ en:{eyebrow:"GLOBAL DEVELOPMENT PROFILE",title:"Know yourself before chasing the world.",lead:"Save what you are working on and the places or experiences you want to explore. MY HOME COURT uses this to make the next step more relevant. It does not guarantee selection or travel.",completion:"PROFILE",position:"Primary position",stage:"Development stage",focus:"Current focus",long:"Long-term direction",year:"Challenge for the next 12 months",scope:"Preferred scope",countries:"Countries / regions of interest",languages:"Languages to explore",types:"Opportunities of interest",international:"Show international opportunities too",save:"Save profile",saved:"Saved",privacy:"This is a private preference profile used to improve MY HOME COURT recommendations. It is not a public player profile.",stages:{foundation:"Foundation",learning:"Learning",developing:"Developing",advanced:"Advanced",performance:"Performance"},scopes:{local:"Local",national:"National",asia:"Asia",global:"Global"},opps:{clinic:"Clinic",camp:"Camp",game:"Games / tournaments",exchange:"International exchange",online:"Online learning",coach:"Coach education"}},
+ "zh-tw":{eyebrow:"GLOBAL DEVELOPMENT PROFILE",title:"在看世界之前，先了解自己。",lead:"記錄目前想提升的內容與感興趣的地區或活動，MY HOME COURT會更容易推薦下一步。這不代表保證入選或海外參加。",completion:"PROFILE",position:"主要位置",stage:"目前培育階段",focus:"目前想提升的內容",long:"長期想成為的樣子",year:"未來12個月想挑戰的事",scope:"希望活動範圍",countries:"感興趣的國家・地區",languages:"想接觸的語言",types:"感興趣的機會",international:"也想看到海外・國際交流資訊",save:"儲存資料",saved:"已儲存",privacy:"此資料僅用於提升MY HOME COURT推薦，不會作為公開球員資料。",stages:{foundation:"建立基礎",learning:"擴大學習",developing:"實戰成長",advanced:"挑戰更高強度",performance:"提升競技表現"},scopes:{local:"地區",national:"日本全國",asia:"亞洲",global:"全球"},opps:{clinic:"訓練營",camp:"培育營",game:"比賽・賽事",exchange:"國際交流",online:"線上學習",coach:"教練講習"}},
+ ko:{eyebrow:"GLOBAL DEVELOPMENT PROFILE",title:"세계를 보기 전에, 먼저 나를 압니다.",lead:"지금 키우고 싶은 것과 관심 지역·활동을 남기면 MY HOME COURT가 더 알맞은 다음 기회를 보여줄 수 있습니다. 선발이나 해외 참가를 보장하지 않습니다.",completion:"PROFILE",position:"주 포지션",stage:"현재 육성 단계",focus:"지금 키우고 싶은 것",long:"장기적으로 원하는 모습",year:"앞으로 12개월의 도전",scope:"희망 활동 범위",countries:"관심 국가・지역",languages:"접해 보고 싶은 언어",types:"관심 기회",international:"해외・국제 교류 정보도 보기",save:"프로필 저장",saved:"저장했습니다",privacy:"이 정보는 MY HOME COURT 추천을 위한 비공개 정보이며 공개 선수 프로필이 아닙니다.",stages:{foundation:"기초 만들기",learning:"배움 넓히기",developing:"실전에서 성장",advanced:"높은 강도 도전",performance:"경기력 향상"},scopes:{local:"지역 중심",national:"전국",asia:"아시아",global:"세계"},opps:{clinic:"클리닉",camp:"캠프",game:"경기・대회",exchange:"국제 교류",online:"온라인 학습",coach:"코치 교육"}}
+} as const;
+
+const languages=["English","日本語","繁體中文","한국어","Español","Deutsch"];
+const opportunityKeys=["clinic","camp","game","exchange","online"] as const;
+function split(value:string){return [...new Set(value.split(",").map(x=>x.trim()).filter(Boolean))].slice(0,12)}
+function completion(p:Profile){
+ const parts=[p.primary_position,p.development_stage,p.current_focus,p.long_term_goal,p.next_12_month_goal,p.preferred_countries.length,p.preferred_languages.length,p.opportunity_types.length];
+ return Math.round(parts.filter(Boolean).length/parts.length*100);
+}
+
+export function GlobalDevelopmentProfile({userId,locale}:Props){
+ const c=copy[locale]; const db=useMemo(()=>createClient(),[]);
+ const [profile,setProfile]=useState<Profile>(empty),[loading,setLoading]=useState(true),[busy,setBusy]=useState(false),[message,setMessage]=useState("");
+ useEffect(()=>{const timer=window.setTimeout(async()=>{
+   const {data}=await db.from("player_development_profiles").select("primary_position,development_stage,long_term_goal,current_focus,preferred_regions,preferred_countries,preferred_languages,opportunity_types,travel_scope,international_interest,next_12_month_goal,profile_completion").eq("user_id",userId).maybeSingle();
+   if(data)setProfile({...empty,...data} as Profile);setLoading(false);
+ },0);return()=>window.clearTimeout(timer)},[db,userId]);
+ async function save(e:FormEvent<HTMLFormElement>){
+   e.preventDefault();setBusy(true);setMessage("");
+   const form=new FormData(e.currentTarget);
+   const next:Profile={
+    ...profile,
+    primary_position:String(form.get("position")||"").trim()||null,
+    development_stage:String(form.get("stage")||"learning"),
+    current_focus:String(form.get("focus")||"").trim()||null,
+    long_term_goal:String(form.get("long")||"").trim()||null,
+    next_12_month_goal:String(form.get("year")||"").trim()||null,
+    travel_scope:String(form.get("scope")||"local"),
+    preferred_countries:split(String(form.get("countries")||"")),
+    preferred_languages:languages.filter(x=>form.getAll("languages").includes(x)),
+    opportunity_types:opportunityKeys.filter(x=>form.getAll("types").includes(x)),
+    preferred_regions:profile.preferred_regions||[],
+    international_interest:form.get("international")==="on",
+    profile_completion:0
+   };
+   next.profile_completion=completion(next);
+   const {error}=await db.from("player_development_profiles").upsert({user_id:userId,...next,public_visibility:"private",updated_at:new Date().toISOString()},{onConflict:"user_id"});
+   if(error)setMessage(locale==="ja"?"保存できませんでした。もう一度お試しください。":"Could not save. Please try again.");else{setProfile(next);setMessage(c.saved);}
+   setBusy(false);
+ }
+ if(loading)return <section className={styles.shell}><LoaderCircle className={styles.spin}/></section>;
+ return <section className={styles.shell} aria-labelledby="global-profile-title">
+   <header><div><p>{c.eyebrow}</p><h3 id="global-profile-title">{c.title}</h3><span>{c.lead}</span></div><div className={styles.score}><small>{c.completion}</small><strong>{profile.profile_completion}%</strong><i><b style={{width:`${profile.profile_completion}%`}}/></i></div></header>
+   <form onSubmit={save}>
+    <label>{c.position}<input name="position" defaultValue={profile.primary_position||""} maxLength={60} placeholder="PG / SG / Wing / Big"/></label>
+    <label>{c.stage}<select name="stage" defaultValue={profile.development_stage||"learning"}>{Object.entries(c.stages).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label>
+    <label className={styles.wide}>{c.focus}<textarea name="focus" defaultValue={profile.current_focus||""} maxLength={500}/></label>
+    <label className={styles.wide}>{c.long}<textarea name="long" defaultValue={profile.long_term_goal||""} maxLength={500}/></label>
+    <label className={styles.wide}>{c.year}<textarea name="year" defaultValue={profile.next_12_month_goal||""} maxLength={500}/></label>
+    <label>{c.scope}<select name="scope" defaultValue={profile.travel_scope||"local"}>{Object.entries(c.scopes).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label>
+    <label>{c.countries}<input name="countries" defaultValue={(profile.preferred_countries||[]).join(", ")} placeholder={locale==="ja"?"例：台湾, 韓国, ドイツ":"Taiwan, Korea, Germany"}/></label>
+    <fieldset className={styles.wide}><legend>{c.languages}</legend><div className={styles.checks}>{languages.map(x=><label key={x}><input type="checkbox" name="languages" value={x} defaultChecked={profile.preferred_languages.includes(x)}/><span>{x}</span></label>)}</div></fieldset>
+    <fieldset className={styles.wide}><legend>{c.types}</legend><div className={styles.checks}>{opportunityKeys.map(x=><label key={x}><input type="checkbox" name="types" value={x} defaultChecked={profile.opportunity_types.includes(x)}/><span>{c.opps[x]}</span></label>)}</div></fieldset>
+    <label className={styles.toggle}><input type="checkbox" name="international" defaultChecked={profile.international_interest}/><Globe2/><span>{c.international}</span></label>
+    <div className={styles.footer}><p><ShieldCheck/>{c.privacy}</p><button disabled={busy}>{busy?<LoaderCircle className={styles.spin}/>:<CheckCircle2/>}{c.save}</button></div>
+    {message?<p className={styles.message} role="status">{message}</p>:null}
+   </form>
+ </section>;
+}
