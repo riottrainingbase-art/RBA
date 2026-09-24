@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { memberArticles } from "@/lib/member-articles";
 import { parentArticles } from "@/lib/member-parent-articles";
+import { parentArticles2 } from "@/lib/member-parent-articles-2";
 import { canReadMemberArticles } from "@/lib/member-article-access";
 import styles from "./reading.module.css";
 
@@ -15,10 +16,15 @@ export const metadata: Metadata = {
 };
 const root = "/ja/my-homecourt/app/learn";
 const labels = { player: "選手", parent: "保護者", coach: "指導者" };
-const allArticles = [...memberArticles, ...parentArticles];
+const allArticles = [...memberArticles, ...parentArticles, ...parentArticles2];
+const parentCategories = Array.from(new Set(allArticles.filter(item=>item.role==="parent"&&item.category).map(item=>item.category!)));
 
-export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
+export default async function Page({ params, searchParams }: { params: Promise<{ slug?: string[] }>; searchParams: Promise<{ q?: string; category?: string }> }) {
   const { slug } = await params;
+  const query = await searchParams;
+  const q = (query.q || "").trim().toLowerCase();
+  const category = (query.category || "").trim();
+  const parentVisible = allArticles.filter(item=>item.role==="parent").filter(item=>!category||item.category===category).filter(item=>!q||[item.title,item.summary,item.category||"",...(item.tags||[])].join(" ").toLowerCase().includes(q));
   const article = slug?.length === 1 ? allArticles.find(item => item.slug === slug[0]) : undefined;
   if (slug?.length && !article) notFound();
   const db = await createClient();
@@ -46,7 +52,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
         <section><h2>続けて読む</h2>{allArticles.filter(item=>item.role===article.role&&item.slug!==article.slug).map(item=><Link prefetch={false} className={styles.related} href={`${root}/${item.slug}`} key={item.slug}>{item.title} →</Link>)}{article.role==="coach"?<div className={styles.links}><Link prefetch={false} href="/ja/d-hub">D-HUBを見る</Link><Link prefetch={false} href="/ja/events/torsten-loibl-online-clinic">Torsten Online Clinicを見る</Link></div>:<Link prefetch={false} className={styles.related} href="/ja/opportunities">次の活動を探す →</Link>}</section>
       </article> : null : <>
         <nav className={styles.filters} aria-label="対象から探す">{Object.entries(labels).map(([role,label])=><Link prefetch={false} href={`#${role}`} key={role}>{label}向け</Link>)}</nav>
-        {Object.entries(labels).map(([role,label])=><section className={styles.group} id={role} key={role}><h2>{label}のための読み物</h2><div className={styles.grid}>{allArticles.filter(item=>item.role===role).map(item=><article className={styles.card} key={item.slug}><p className={styles.eyebrow}>{label} / 実践ガイド</p><h3><Link prefetch={false} href={`${root}/${item.slug}`}>{item.title}</Link></h3><p>{item.summary}</p><Link prefetch={false} className={styles.read} href={`${root}/${item.slug}`}>{allowed?"記事を読む":"記事の概要を見る"} →</Link></article>)}</div></section>)}
+        {Object.entries(labels).map(([role,label])=><section className={styles.group} id={role} key={role}><h2>{label}のための読み物</h2>{role==="parent"?<><form className={styles.search} method="get" action={root}><label htmlFor="parent-q">悩み・キーワードから探す</label><div><input id="parent-q" name="q" defaultValue={query.q||""} placeholder="例：出場、移籍、遠征、指導者" /><select name="category" defaultValue={category}><option value="">すべてのカテゴリ</option>{parentCategories.map(item=><option value={item} key={item}>{item}</option>)}</select><button type="submit">探す</button></div>{q||category?<Link prefetch={false} href={`${root}#parent`}>絞り込みを解除</Link>:null}</form><p className={styles.count}>{parentVisible.length}件の保護者向けガイド</p></>:null}<div className={styles.grid}>{(role==="parent"?parentVisible:allArticles.filter(item=>item.role===role)).map(item=><article className={styles.card} key={item.slug}><p className={styles.eyebrow}>{label}{item.category?` / ${item.category}`:""} / 実践ガイド</p><h3><Link prefetch={false} href={`${root}/${item.slug}`}>{item.title}</Link></h3><p>{item.summary}</p><Link prefetch={false} className={styles.read} href={`${root}/${item.slug}`}>{allowed?"記事を読む":"記事の概要を見る"} →</Link></article>)}</div>{role==="parent"&&!parentVisible.length?<p className={styles.empty}>該当する記事が見つかりません。別のキーワードまたはカテゴリでお試しください。</p>:null}</section>)}
       </>}
     </div>
   </main>;
