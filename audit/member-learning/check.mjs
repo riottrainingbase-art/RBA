@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import ts from 'typescript';
 import vm from 'node:vm';
+import { z } from 'zod';
 import * as jsx from 'react/jsx-runtime';
 import {renderToStaticMarkup} from 'react-dom/server';
 function load(path, imports={}) {
@@ -18,25 +19,30 @@ for(const [patch,expected] of [[{},true],[{status:'trialing'},true],[{cancel_at_
 assert.equal(canReadMemberArticles([],now),false);
 assert.equal(new Set(articles.memberArticles.map(a=>a.slug)).size,6);
 for(const role of ['player','parent','coach'])assert.equal(articles.memberArticles.filter(a=>a.role===role).length,2);
-let records=[],dbError=null,user={id:'test-user'};
+let records=[],dbError=null,user={id:'test-user'},bodyError=null;
+const secret='TEST_ONLY_PRIVATE_BODY';
+const testBody={sections:[{title:'Test section',paragraphs:[secret]}],action:'Test action',questions:['Test question']};
+const bodyQuery={select:()=>bodyQuery,eq:()=>bodyQuery,maybeSingle:async()=>({data:testBody,error:bodyError})};
 const query={select:()=>query,eq:(key,value)=>{if(key==='user_id')assert.equal(value,'test-user');return query;},then:resolve=>resolve({data:records,error:dbError})};
 const Page=load('app/ja/my-homecourt/app/learn/[[...slug]]/page.tsx',{
- '@/lib/supabase/server':{createClient:async()=>({auth:{getUser:async()=>({data:{user}})},from:table=>{assert.equal(table,'subscriptions');return query;}})},
+ '@/lib/supabase/server':{createClient:async()=>({auth:{getUser:async()=>({data:{user}})},from:table=>{if(table==='member_article_bodies')return bodyQuery;assert.equal(table,'subscriptions');return query;}})},
  '@/lib/member-articles':articles,
+ 'zod':{z},
  '@/lib/member-article-access':{canReadMemberArticles},
  './reading.module.css':{default:{}},
  'next/link':{default:({prefetch,...props})=>jsx.jsx('a',props)},
  'next/navigation':{redirect:url=>{throw Error('REDIRECT:'+url)},notFound:()=>{throw Error('NOT_FOUND')}}
 }).default;
 const slug=articles.memberArticles[0].slug;
-const secret=articles.memberArticles[0].sections[0].paragraphs[0];
+
 async function render(slugValue=[slug]){return renderToStaticMarkup(await Page({params:Promise.resolve({slug:slugValue})}));}
 assert.ok(!(await render()).includes(secret));
 records=[active];assert.ok((await render()).includes(secret));
+bodyError={message:'offline'};assert.ok(!(await render()).includes(secret));bodyError=null;
 records=[{...active,status:'canceled'}];assert.ok(!(await render()).includes(secret));
 records=[{...active,current_period_end:null}];let pending=await render();assert.ok(pending.includes('追加のお支払いはせず'));assert.ok(!pending.includes(secret));assert.ok(!pending.includes('href="/ja/payments"'));
 records=[active];dbError={message:'offline'};let failed=await render();assert.ok(failed.includes('確認できませんでした'));assert.ok(!failed.includes(secret));
 dbError=null;assert.ok(!(await render([])).includes(secret));
 await assert.rejects(()=>render(['unknown']),/NOT_FOUND/);
 user=null;await assert.rejects(()=>render(),/REDIRECT:.*next=/);
-console.log('PASS: 11 subscription cases, 6 article records, 8 server-render/access cases. No network or payment writes.');
+console.log('PASS: 11 subscription cases, 6 article records, 9 server-render/access cases. No network or payment writes.');
