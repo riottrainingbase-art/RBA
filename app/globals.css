@@ -1386,3 +1386,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .platform-hero h1,.impact-hero h1 { font-size:46px; }
   .dhub-hero h1 { font-size:92px; }
 }
+
+/* MY HOME COURT private-record assurance */
+.homecourt-private-note { display:flex; align-items:flex-start; gap:16px; margin-top:18px; padding:18px 20px; border:1px solid #aeb2b1; background:#fff; }
+.homecourt-private-note>svg { flex:none; color:#2d7d55; }
+.homecourt-private-note strong { display:block; font-size:15px; }
+.homecourt-private-note p { margin:4px 0 0; color:#59646a; font-size:14px; line-height:1.7; }
+@media(max-width:560px){.homecourt-private-note{padding:16px;gap:12px}}
