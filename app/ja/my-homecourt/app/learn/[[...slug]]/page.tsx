@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { memberArticles } from "@/lib/member-articles";
+import { parentArticles } from "@/lib/member-parent-articles";
 import { canReadMemberArticles } from "@/lib/member-article-access";
 import styles from "./reading.module.css";
 
@@ -14,10 +15,11 @@ export const metadata: Metadata = {
 };
 const root = "/ja/my-homecourt/app/learn";
 const labels = { player: "選手", parent: "保護者", coach: "指導者" };
+const allArticles = [...memberArticles, ...parentArticles];
 
 export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
   const { slug } = await params;
-  const article = slug?.length === 1 ? memberArticles.find(item => item.slug === slug[0]) : undefined;
+  const article = slug?.length === 1 ? allArticles.find(item => item.slug === slug[0]) : undefined;
   if (slug?.length && !article) notFound();
   const db = await createClient();
   const { data: { user } } = await db.auth.getUser();
@@ -41,10 +43,10 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
         <nav className={styles.toc} aria-label="目次"><strong>この記事で考えること</strong>{article.sections.map((section,index)=><Link prefetch={false} href={`#section-${index}`} key={section.title}>{section.title}</Link>)}</nav>
         {article.sections.map((section,index)=><section id={`section-${index}`} key={section.title}><h2>{section.title}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</section>)}
         <section className={styles.exercise}><h2>次に試すこと</h2><p>{article.action}</p><h3>振り返りの問い</h3><ul>{article.questions.map(question=><li key={question}>{question}</li>)}</ul><p>気づいたことは、手元のノートやMY HOME COURTの参加記録に残してみましょう。</p><Link prefetch={false} href="/ja/my-homecourt/app">HOME COURTへ戻る</Link></section>
-        <section><h2>続けて読む</h2>{memberArticles.filter(item=>item.role===article.role&&item.slug!==article.slug).map(item=><Link prefetch={false} className={styles.related} href={`${root}/${item.slug}`} key={item.slug}>{item.title} →</Link>)}{article.role==="coach"?<div className={styles.links}><Link prefetch={false} href="/ja/d-hub">D-HUBを見る</Link><Link prefetch={false} href="/ja/events/torsten-loibl-online-clinic">Torsten Online Clinicを見る</Link></div>:<Link prefetch={false} className={styles.related} href="/ja/opportunities">次の活動を探す →</Link>}</section>
+        <section><h2>続けて読む</h2>{allArticles.filter(item=>item.role===article.role&&item.slug!==article.slug).map(item=><Link prefetch={false} className={styles.related} href={`${root}/${item.slug}`} key={item.slug}>{item.title} →</Link>)}{article.role==="coach"?<div className={styles.links}><Link prefetch={false} href="/ja/d-hub">D-HUBを見る</Link><Link prefetch={false} href="/ja/events/torsten-loibl-online-clinic">Torsten Online Clinicを見る</Link></div>:<Link prefetch={false} className={styles.related} href="/ja/opportunities">次の活動を探す →</Link>}</section>
       </article> : null : <>
         <nav className={styles.filters} aria-label="対象から探す">{Object.entries(labels).map(([role,label])=><Link prefetch={false} href={`#${role}`} key={role}>{label}向け</Link>)}</nav>
-        {Object.entries(labels).map(([role,label])=><section className={styles.group} id={role} key={role}><h2>{label}のための読み物</h2><div className={styles.grid}>{memberArticles.filter(item=>item.role===role).map(item=><article className={styles.card} key={item.slug}><p className={styles.eyebrow}>{label} / 実践ガイド</p><h3><Link prefetch={false} href={`${root}/${item.slug}`}>{item.title}</Link></h3><p>{item.summary}</p><Link prefetch={false} className={styles.read} href={`${root}/${item.slug}`}>{allowed?"記事を読む":"記事の概要を見る"} →</Link></article>)}</div></section>)}
+        {Object.entries(labels).map(([role,label])=><section className={styles.group} id={role} key={role}><h2>{label}のための読み物</h2><div className={styles.grid}>{allArticles.filter(item=>item.role===role).map(item=><article className={styles.card} key={item.slug}><p className={styles.eyebrow}>{label} / 実践ガイド</p><h3><Link prefetch={false} href={`${root}/${item.slug}`}>{item.title}</Link></h3><p>{item.summary}</p><Link prefetch={false} className={styles.read} href={`${root}/${item.slug}`}>{allowed?"記事を読む":"記事の概要を見る"} →</Link></article>)}</div></section>)}
       </>}
     </div>
   </main>;
