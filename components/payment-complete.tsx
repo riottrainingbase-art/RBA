@@ -10,4 +10,9 @@ const copy={
 } as const;
 
 
-export function PaymentComplete({locale}:{locale:Locale}){const c=copy[locale];return <SiteFrame locale={locale} languagePage="payment-complete"><section className="payment-complete section-pad"><CheckCircle2 size={64}/><p className="section-index">{c.k}</p><h1>{c.t}</h1><p>{c.b}</p><div><Mail size={22}/><strong>{c.a}</strong><span>{c.d}</span></div><a className="button button-orange" href={localePath(locale,"schedule")}>{c.back}<ArrowRight size={17}/></a></section></SiteFrame>}
+export function PaymentComplete({locale,paymentType}:{locale:Locale;paymentType?:string}){const c=copy[locale];const membership=paymentType==="rba_homecourt";const membershipCopy={
+ en:{b:"Stripe will send a receipt to the email address used for payment. Your MY HOME COURT membership status is then matched to your RBA ID.",d:"Use the same email address as your RBA ID when possible. If you used a different address, contact RBA so the payment can be matched.",back:"Open MY HOME COURT"},
+ ja:{b:"決済時に入力したメールアドレスへ、Stripeから支払い完了メールが届きます。決済情報の照合後、MY HOME COURTのメンバーシップ利用状況に反映されます。",d:"できるだけRBA IDと同じメールアドレスをご利用ください。異なるメールアドレスで決済した場合は、照合のためRBAへご連絡ください。",back:"MY HOME COURTを開く"},
+ "zh-tw":{b:"Stripe會將付款完成郵件寄到付款時使用的電子郵件。核對付款資料後，會反映至MY HOME COURT的會員狀態。",d:"請盡量使用與RBA ID相同的電子郵件。若使用不同地址付款，請聯絡RBA協助核對。",back:"開啟MY HOME COURT"},
+ ko:{b:"결제 시 입력한 이메일로 Stripe 결제 완료 메일이 발송됩니다. 결제 정보 확인 후 MY HOME COURT 멤버십 이용 상태에 반영됩니다.",d:"가능하면 RBA ID와 같은 이메일 주소를 사용해 주세요. 다른 주소로 결제했다면 확인을 위해 RBA에 문의해 주세요.",back:"MY HOME COURT 열기"}
+}[locale];const body=membership?membershipCopy.b:c.b;const detail=membership?membershipCopy.d:c.d;const back=membership?membershipCopy.back:c.back;return <SiteFrame locale={locale} languagePage="payment-complete"><section className="payment-complete section-pad"><CheckCircle2 size={64}/><p className="section-index">{c.k}</p><h1>{c.t}</h1><p>{body}</p><div><Mail size={22}/><strong>{c.a}</strong><span>{detail}</span></div><a className="button button-orange" href={membership?localePath(locale,"my-homecourt"):localePath(locale,"schedule")}>{back}<ArrowRight size={17}/></a></section></SiteFrame>}
