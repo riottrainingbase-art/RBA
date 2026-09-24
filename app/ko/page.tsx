@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { LocalizedHome } from "@/components/localized-home";
+export const metadata:Metadata={title:"RBA JAPAN｜유소년 농구 육성",description:"Riot Basketball Academy는 일본과 아시아를 연결하며 현대 농구의 기본기, 과학적 체력 훈련, 코치 교육과 국제 교류를 제공합니다.",openGraph:{title:"RBA JAPAN｜유소년 농구 육성",description:"Riot Basketball Academy는 일본과 아시아를 연결하며 현대 농구의 기본기, 과학적 체력 훈련, 코치 교육과 국제 교류를 제공합니다.",url:"/ko",locale:"ko_KR",images:["/rba-court-hero.png"]},twitter:{card:"summary_large_image",title:"RBA JAPAN｜유소년 농구 육성",description:"Riot Basketball Academy는 일본과 아시아를 연결하며 현대 농구의 기본기, 과학적 체력 훈련, 코치 교육과 국제 교류를 제공합니다.",images:["/rba-court-hero.png"]},alternates:{canonical:"/ko",languages:{en:"/",ja:"/ja","zh-Hant-TW":"/zh-tw",ko:"/ko","x-default":"/"}}};
+export default function KoreanPage(){return <LocalizedHome locale="ko"/>}

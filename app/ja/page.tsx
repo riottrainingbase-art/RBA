@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { LocalizedHome } from "@/components/localized-home";
+export const metadata:Metadata={title:"RBA JAPAN｜育成年代バスケットボール",description:"Riot Basketball Academyは、日本各地とアジアをつなぎ、選手育成、S&C、指導者の学び、国際交流に取り組んでいます。",openGraph:{title:"RBA JAPAN｜育成年代バスケットボール",description:"Riot Basketball Academyは、日本各地とアジアをつなぎ、選手育成、S&C、指導者の学び、国際交流に取り組んでいます。",url:"/ja",locale:"ja_JP",images:["/rba-court-hero.png"]},twitter:{card:"summary_large_image",title:"RBA JAPAN｜育成年代バスケットボール",description:"Riot Basketball Academyは、日本各地とアジアをつなぎ、選手育成、S&C、指導者の学び、国際交流に取り組んでいます。",images:["/rba-court-hero.png"]},alternates:{canonical:"/ja",languages:{en:"/",ja:"/ja","zh-Hant-TW":"/zh-tw",ko:"/ko","x-default":"/"}}};
+export default function JapanesePage(){return <LocalizedHome locale="ja"/>}

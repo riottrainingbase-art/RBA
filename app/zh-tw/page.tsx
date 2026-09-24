@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { LocalizedHome } from "@/components/localized-home";
+export const metadata:Metadata={title:"RBA JAPAN｜青少年籃球培育",description:"Riot Basketball Academy從日本連結亞洲，提供現代籃球基本功、科學化體能訓練、教練培訓與國際交流。",openGraph:{title:"RBA JAPAN｜青少年籃球培育",description:"Riot Basketball Academy從日本連結亞洲，提供現代籃球基本功、科學化體能訓練、教練培訓與國際交流。",url:"/zh-tw",locale:"zh_TW",images:["/rba-court-hero.png"]},twitter:{card:"summary_large_image",title:"RBA JAPAN｜青少年籃球培育",description:"Riot Basketball Academy從日本連結亞洲，提供現代籃球基本功、科學化體能訓練、教練培訓與國際交流。",images:["/rba-court-hero.png"]},alternates:{canonical:"/zh-tw",languages:{en:"/",ja:"/ja","zh-Hant-TW":"/zh-tw",ko:"/ko","x-default":"/"}}};
+export default function TraditionalChinesePage(){return <LocalizedHome locale="zh-tw"/>}

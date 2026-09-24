@@ -1,0 +1,1 @@
+import {pageMetadata} from "@/components/page-metadata";import {LocalizedPolicies} from "@/components/localized-policies";export const metadata=pageMetadata("en","policies");export default function Page(){return <LocalizedPolicies locale="en"/>}
