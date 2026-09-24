@@ -5,7 +5,7 @@ import { ArrowRight, ArrowUpRight, House, MessageCircle } from "lucide-react";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer";
+export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform";
 
 
 const labels = {
@@ -31,6 +31,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
     [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
     [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
+    ["RBA PLATFORM",localePath(locale,"platform")],
     ["RBA HOMECOURT",localePath(locale,"home-court")],
     [c.about,localePath(locale,"about")],
     [c.approach,localePath(locale,"approach")],
@@ -49,6 +50,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   const nav=[
     [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
     ["MY HOME COURT",localePath(locale,"my-homecourt")] as const,
+    [({en:"Platform",ja:"育成プラットフォーム","zh-tw":"培育平台",ko:"육성 플랫폼"})[locale],localePath(locale,"platform")] as const,
     [({en:"Coaches",ja:"指導者", "zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
     [({en:"Organisers",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최・협력"})[locale],localePath(locale,"organizer")] as const,
