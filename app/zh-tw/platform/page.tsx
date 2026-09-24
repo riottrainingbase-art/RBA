@@ -3,7 +3,7 @@ import { DefinitiveStaticPage } from "@/components/definitive-static-page";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: "RBA PLATFORM VISION | Riot Basketball Academy",
+  title: { absolute: "RBA PLATFORM VISION | Riot Basketball Academy" },
   description: "RBA 所追求的 Youth Basketball Development Platform 架構：RBA Owned、Regional Host、Marketplace、Japan × Asia。",
   alternates: { canonical: "https://riotbasketballacademy.com/zh-tw/platform", languages: { "en": "https://riotbasketballacademy.com/platform", "ja": "https://riotbasketballacademy.com/ja/platform", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/platform", "ko": "https://riotbasketballacademy.com/ko/platform", "x-default": "https://riotbasketballacademy.com/platform" } },
   openGraph: {

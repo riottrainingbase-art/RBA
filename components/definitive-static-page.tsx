@@ -25,6 +25,8 @@ export function DefinitiveStaticPage({ page, locale }: Props) {
   const html = sanitizeFragment(extractBody(fs.readFileSync(file, "utf8")));
   return (
     <>
+      {/* Static V6 pages share the recovered platform stylesheet verbatim. */}
+      {/* eslint-disable-next-line @next/next/no-css-tags */}
       <link rel="stylesheet" href="/rba-definitive/assets/platform.css" />
       <div dangerouslySetInnerHTML={{ __html: html }} />
       <Script src="/rba-definitive/assets/site.js" strategy="afterInteractive" />

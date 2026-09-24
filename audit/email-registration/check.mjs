@@ -4,10 +4,10 @@ import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url), ts=require('typescript');
 function compile(path,dependencies={}){
- const module={exports:{}};
+ const cjsModule={exports:{}};
  const js=ts.transpileModule(fs.readFileSync(path,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,target:ts.ScriptTarget.ES2022}}).outputText;
- vm.runInNewContext(js,{module,exports:module.exports,URL,console:{warn:()=>{}},location:{origin:'https://preview.example.test'},require:id=>id in dependencies?dependencies[id]:require(id)});
- return module.exports;
+ vm.runInNewContext(js,{module:cjsModule,exports:cjsModule.exports,URL,console:{warn:()=>{}},location:{origin:'https://preview.example.test'},require:id=>id in dependencies?dependencies[id]:require(id)});
+ return cjsModule.exports;
 }
 const {memberAuthDestination}=compile('lib/member-auth-redirect.ts');
 let count=0;

@@ -8,11 +8,11 @@ const React=require('react');
 const {renderToStaticMarkup}=require('react-dom/server');
 const source=fs.readFileSync('components/member-journey.tsx','utf8');
 const compiled=ts.transpileModule(source,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
-const module={exports:{}};
-vm.runInNewContext(compiled,{module,exports:module.exports,require:id=>id.endsWith('.css')?{default:new Proxy({},{get:(_,key)=>String(key)})}:require(id)});
+const cjsModule={exports:{}};
+vm.runInNewContext(compiled,{module:cjsModule,exports:cjsModule.exports,require:id=>id.endsWith('.css')?{default:new Proxy({},{get:(_,key)=>String(key)})}:require(id)});
 let links=0;
 for(const locale of ['en','ja','zh-tw','ko'])for(const initialAudience of ['player','parent','coach']){
-  const html=renderToStaticMarkup(React.createElement(module.exports.MemberJourney,{locale,initialAudience}));
+  const html=renderToStaticMarkup(React.createElement(cjsModule.exports.MemberJourney,{locale,initialAudience}));
   assert.equal((html.match(/aria-pressed="true"/g)||[]).length,1);
   assert.equal((html.match(/<textarea/g)||[]).length,3);
   assert(!/buy\.stripe|checkout\.stripe|service_role/.test(html));
