@@ -3,6 +3,8 @@ import { headers } from "next/headers";
 import "./globals.css";
 import "./platform-v9.css";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://riotbasketballacademy.com"),
   manifest: "/rba-definitive/manifest.json",
