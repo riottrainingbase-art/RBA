@@ -89,3 +89,10 @@
  .my-homecourt-role p,.membership-path-grid p,.my-homecourt-tools p{line-height:1.85}
  .my-homecourt-role h2,.my-homecourt-tools h2,.membership-path-grid h2,.member-route-actions h2{font-size:28px;line-height:1.5;letter-spacing:0}
 }
+
+/* HOME COURT Save: same control language as opportunity CTAs */
+.opportunity-card-actions .opportunity-save{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 16px;border:1px solid #15191b;border-radius:0;background:#fff;color:#15191b;font:inherit;font-size:13px;font-weight:900;cursor:pointer}
+.opportunity-card-actions .opportunity-save[aria-pressed="true"]{background:#eef0ed}
+.opportunity-card-actions .opportunity-save:disabled{cursor:wait;opacity:.55}
+.opportunity-card-actions .opportunity-save:focus-visible{outline:3px solid #9aa51f;outline-offset:2px}
+@media(max-width:560px){.opportunity-card-actions{display:grid;grid-template-columns:1fr}.opportunity-card-actions a,.opportunity-card-actions .opportunity-save{width:100%}}
