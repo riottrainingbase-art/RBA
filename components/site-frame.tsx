@@ -32,7 +32,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
     [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
     ["RBA PLATFORM",localePath(locale,"platform")],
-    ["RBA HOMECOURT",localePath(locale,"home-court")],
+    ["MY HOME COURT",localePath(locale,"home-court")],
     [c.about,localePath(locale,"about")],
     [c.approach,localePath(locale,"approach")],
     [c.schedule,localePath(locale,"schedule")],
