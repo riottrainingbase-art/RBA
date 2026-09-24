@@ -1,0 +1,19 @@
+{
+  "name": "Riot Basketball Academy",
+  "short_name": "RBA",
+  "description": "Youth Basketball Development Platform connecting players, teams, organizers, regions and Asia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060606",
+  "theme_color": "#060606",
+  "id": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

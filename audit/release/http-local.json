@@ -1,0 +1,1133 @@
+{
+  "date": "2026-09-24T04:43:14.173Z",
+  "scope": "Local production build public pages and links. API and authenticated app excluded: missing local Supabase runtime environment; checked separately on Preview.",
+  "routes": 161,
+  "links": 179,
+  "failures": [],
+  "broken": [],
+  "results": [
+    {
+      "path": "/about",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/camp",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/authentics",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/asia",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/approach",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/clinic-request",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/d-hub",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/faq",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/community",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/connect",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/field-notes",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/events/torsten-loibl-online-clinic",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/about",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/camp",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/international",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/impact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/approach",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/asia",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/home-court",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/contact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/d-hub",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/community",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/connect",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/clinic-request",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/events/torsten-loibl-online-clinic",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/impact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/international",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/faq",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/home-court",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/network",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/opportunities",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/organizer",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/platform",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/payment-complete",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": true
+    },
+    {
+      "path": "/ja/partners",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/payments",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/policies",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/regional-host",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/sponsor",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/verified",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/team",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/social",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/schedule",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/united",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/about",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/building-a-real-asia-basketball-relationship",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/plan-a-japan-basketball-exchange",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/what-rba-coordinates-in-japan",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/kobe-development-camp-2026",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/approach",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/camp",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/community",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/asia",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/d-hub",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/connect",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/contact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/clinic-request",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/faq",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/international",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/impact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/home-court",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/my-homecourt",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/events/torsten-loibl-online-clinic",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/my-homecourt/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/network",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/opportunities",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/organizer",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/partners",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/payment-complete",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": true
+    },
+    {
+      "path": "/ko/my-homecourt/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/my-homecourt/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/payments",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/platform",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/policies",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/regional-host",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/sponsor",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/social",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/team",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/schedule",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/verified",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/united",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/links",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/my-homecourt",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/network",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/my-homecourt/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/my-homecourt/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/my-homecourt/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/platform",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/organizer",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/payment-complete",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": true
+    },
+    {
+      "path": "/opportunities",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/partners",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/policies",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/payments",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "directStripe": false
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "directStripe": false
+    },
+    {
+      "path": "/regional-host",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/radio",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/schedule",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/sponsors",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/social",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/sponsor",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/verified",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/about",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/team",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/work-with-rba",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/approach",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/united",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/asia",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/camp",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/d-hub",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/community",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/connect",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/contact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/clinic-request",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/events/torsten-loibl-online-clinic",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/international",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/faq",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/impact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/home-court",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/my-homecourt",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/my-homecourt/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/my-homecourt/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/platform",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/organizer",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/opportunities",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/payment-complete",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": true
+    },
+    {
+      "path": "/zh-tw/partners",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/network",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/my-homecourt/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/payments",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/regional-host",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/sponsor",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/policies",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/social",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/team",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/schedule",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/united",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/verified",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    }
+  ]
+}

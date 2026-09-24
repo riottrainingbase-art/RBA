@@ -1,4 +1,3 @@
-export const HOMECOURT_PAYMENT_URL = "https://buy.stripe.com/aFacN77ef8vy8aN3W77EQ0a";
 export const HOMECOURT_PRICE_JPY = 3300;
 export const homecourtFreeRegistrationUrl = (locale:"en"|"ja"|"zh-tw"|"ko") => `${locale==="en"?"":`/${locale}`}/my-homecourt/login`;
 export const PARENT_COMMUNITY_URL = "https://tinyurl.com/2nhmh545";

@@ -14,6 +14,7 @@ export type ProgrammeId =
 export type Programme = {
   id: ProgrammeId;
   startDate: string;
+  registrationClosed?: boolean;
   date: Text4;
   datePrimary: Text4;
   dateSecondary: Text4;
@@ -33,6 +34,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "yaima",
     startDate: "2026-09-20",
+    registrationClosed: true,
     date: ["20–22 SEP 2026", "2026.09.20–22", "2026.09.20–22", "2026.09.20–22"],
     datePrimary: ["20–22", "20〜22日", "20至22日", "20~22일"],
     dateSecondary: ["SEP 2026", "2026年9月", "2026年9月", "2026년 9월"],

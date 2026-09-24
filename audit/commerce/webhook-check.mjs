@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import ts from 'typescript';
+const source=fs.readFileSync('supabase/functions/stripe-homecourt-webhook/index.ts','utf8');
+const compiled=ts.transpileModule(source,{reportDiagnostics:true,compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}});
+const errors=(compiled.diagnostics||[]).filter(d=>d.category===ts.DiagnosticCategory.Error);
+assert.deepEqual(errors,[],errors.map(x=>x.messageText));
+assert(!source.includes('delegated:"rba_platform_v4"'),'platform checkout events must not be dropped');
+assert(source.includes('constructEventAsync(body,signature'));
+assert(source.indexOf('constructEventAsync(body,signature')<source.indexOf('beginWebhook(supabase,event,payloadSha256)'));
+assert(source.includes('claim_stripe_webhook_event'));
+assert(source.includes('.eq("processing_token",token)'));
+assert(source.includes('ignoreDuplicates:true'));
+assert(source.includes('checkout.session.async_payment_succeeded'));
+assert(source.includes('payloadSha256'));
+console.log('PASS: webhook syntax, signature ordering, atomic claim, ownership, idempotent notifications, async payment handling, and platform event handling. No event sent.');

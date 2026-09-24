@@ -1,4 +1,22 @@
 import type { Metadata } from "next";
-import { LocalizedHome } from "@/components/localized-home";
-export const metadata:Metadata={title:"RBA JAPAN｜育成年代バスケットボール",description:"Riot Basketball Academyは、日本各地とアジアをつなぎ、選手育成、S&C、指導者の学び、国際交流に取り組んでいます。",openGraph:{title:"RBA JAPAN｜育成年代バスケットボール",description:"Riot Basketball Academyは、日本各地とアジアをつなぎ、選手育成、S&C、指導者の学び、国際交流に取り組んでいます。",url:"/ja",locale:"ja_JP",images:["/rba-court-hero.png"]},twitter:{card:"summary_large_image",title:"RBA JAPAN｜育成年代バスケットボール",description:"Riot Basketball Academyは、日本各地とアジアをつなぎ、選手育成、S&C、指導者の学び、国際交流に取り組んでいます。",images:["/rba-court-hero.png"]},alternates:{canonical:"/ja",languages:{en:"/",ja:"/ja","zh-Hant-TW":"/zh-tw",ko:"/ko","x-default":"/"}}};
-export default function JapanesePage(){return <LocalizedHome locale="ja"/>}
+import { DefinitiveStaticPage } from "@/components/definitive-static-page";
+
+export const metadata: Metadata = {
+  manifest: "/rba-definitive/manifest.json",
+  title: { absolute: "Riot Basketball Academy | Youth Basketball Development Platform" },
+  description: "Riot Basketball Academyは、選手・保護者・コーチ・チーム・地域・海外をつなぎ、育成機会、安全、成長記録、国際交流を一つの環境に統合するYouth Basketball Development Platformです。",
+  alternates: { canonical: "https://riotbasketballacademy.com/ja/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
+  openGraph: {
+    title: "Riot Basketball Academy | Youth Basketball Development Platform",
+    description: "Riot Basketball Academyは、選手・保護者・コーチ・チーム・地域・海外をつなぎ、育成機会、安全、成長記録、国際交流を一つの環境に統合するYouth Basketball Development Platformです。",
+    url: "https://riotbasketballacademy.com/ja/",
+    siteName: "Riot Basketball Academy",
+    type: "website",
+    images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
+  },
+  twitter: { card: "summary_large_image", title: "Riot Basketball Academy | Youth Basketball Development Platform", description: "Riot Basketball Academyは、選手・保護者・コーチ・チーム・地域・海外をつなぎ、育成機会、安全、成長記録、国際交流を一つの環境に統合するYouth Basketball Development Platformです。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
+};
+
+export default function Page() {
+  return <DefinitiveStaticPage page="index" locale="ja" />;
+}

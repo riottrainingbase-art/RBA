@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {spawn} from 'node:child_process';
+const server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','-H','127.0.0.1','-p','3110'],{stdio:['ignore','pipe','pipe']});
+try {
+await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Server startup timeout')),15000);server.stdout.on('data',d=>{if(d.toString().includes('Ready')){clearTimeout(timer);resolve()}});server.on('exit',code=>reject(Error(`server exited ${code}`)));});
+const routes=Object.keys(JSON.parse(fs.readFileSync('.next/prerender-manifest.json')).routes).filter(x=>!x.startsWith('/_'));const results=[];const links=new Set();
+for(let i=0;i<routes.length;i+=8)await Promise.all(routes.slice(i,i+8).map(async path=>{let r=await fetch('http://127.0.0.1:3110'+path);let html=await r.text();for(const m of html.matchAll(/href="(\/[^"#?]*)/g))if(!m[1].startsWith('/_next/'))links.add(m[1]);results.push({path,status:r.status,directStripe:/href="https:\/\/(buy|checkout|book)\.stripe\.com/.test(html),...(r.headers.get('content-type')?.includes('text/html')?{canonical:!!html.match(/rel="canonical"/),noindex:/name="robots" content="[^"]*noindex/.test(html)}:{})});}));
+const broken=[];for(const path of links){if(routes.includes(path)||path.startsWith('/api/')||path.includes('/my-homecourt/app'))continue;const r=await fetch('http://127.0.0.1:3110'+path,{redirect:'manual'});if(r.status>=400)broken.push({path,status:r.status});}
+const out={date:new Date().toISOString(),scope:'Local production build public pages and links. API and authenticated app excluded: missing local Supabase runtime environment; checked separately on Preview.',routes:results.length,links:links.size,failures:results.filter(x=>x.status!==200||x.directStripe),broken,results};fs.writeFileSync('audit/release/http-local.json',JSON.stringify(out,null,2));console.log(JSON.stringify({...out,results:undefined},null,2));if(out.failures.length||broken.length)process.exitCode=1;
+} finally {server.kill();}

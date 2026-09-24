@@ -1,0 +1,6 @@
+
+/workspace/scratch/6c2a535a961e/v6-integration/components/definitive-static-page.tsx
+  28:7  warning  Do not include stylesheets manually. See: https://nextjs.org/docs/messages/no-css-tags  @next/next/no-css-tags
+
+✖ 1 problem (0 errors, 1 warning)
+

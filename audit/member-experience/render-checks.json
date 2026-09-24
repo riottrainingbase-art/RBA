@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "renderedCases": 12,
+  "existingLocalizedLinks": 96,
+  "memberEntries": 4,
+  "scope": "Server-rendered component and local route existence only; not browser interaction, authentication, database authorization or deployment verification."
+}

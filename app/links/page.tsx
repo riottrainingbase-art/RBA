@@ -15,7 +15,7 @@ const groups=[
   {label:"JOIN",items:[
     ["Clinic Calendar","Dates and official application routes","/schedule"],
     ["Clinic advance announcements","Official LINE","https://lin.ee/5l1YG8N"],
-    ["MY HOME COURT","Free member gateway · PLAYER / PARENT / COACH","/my-homecourt"],
+    ["MY HOME COURT","RBA ID gateway · PLAYER / PARENT / COACH","/my-homecourt"],
     ["D-HUB","Separate selection & performance pathway","/d-hub"],
   ]},
   {label:"LEARN & DISCUSS",items:[
