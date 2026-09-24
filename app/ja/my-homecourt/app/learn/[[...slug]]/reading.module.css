@@ -22,3 +22,13 @@
 .exercise{padding:24px;background:#f4f4f4}.exercise ul{padding-left:1.4em}.exercise li{margin:14px 0;font-size:16px}
 .links{display:flex;flex-wrap:wrap;gap:20px}.shell a:focus-visible{outline:3px solid #111;outline-offset:4px}
 @media(max-width:600px){.body{padding:28px 20px 90px}.grid{grid-template-columns:1fr}.card,.notice,.toc,.exercise{padding:20px}.article{margin-top:28px}.article section{margin:34px 0}.header{padding:12px 20px}.shell h1{font-size:28px}}
+
+.search{margin:20px 0 10px;padding:18px;border:1px solid #ddd;background:#fafafa}
+.search label{display:block;font-size:14px;font-weight:700;margin-bottom:10px}
+.search>div{display:grid;grid-template-columns:minmax(0,2fr) minmax(180px,1fr) auto;gap:10px}
+.search input,.search select,.search button{min-height:46px;border:1px solid #aaa;background:#fff;color:#171717;font:inherit;padding:9px 12px}
+.search button{font-weight:700;cursor:pointer;background:#171717;color:#fff;border-color:#171717}
+.search>a{display:inline-block;margin-top:10px;font-size:14px;font-weight:700}
+.count{font-size:14px!important;color:#666;margin-bottom:16px!important}
+.empty{padding:20px;border:1px dashed #bbb;background:#fafafa}
+@media(max-width:700px){.search>div{grid-template-columns:1fr}.search input,.search select,.search button{width:100%}}
