@@ -8,7 +8,7 @@ const titles:Record<string,Record<Locale,string>>={
  "my-homecourt":{en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"},
  community:{en:"RBA community",ja:"RBAコミュニティ","zh-tw":"RBA社群",ko:"RBA 커뮤니티"},
  impact:{en:"RBA IMPACT",ja:"RBA IMPACT｜成果と再投資方針","zh-tw":"RBA IMPACT",ko:"RBA IMPACT"},
- "d-hub":{en:"D-HUB｜Selection and high performance",ja:"D-HUB｜選抜・強化","zh-tw":"D-HUB｜選拔・強化",ko:"D-HUB｜선발·강화"},
+ "d-hub":{en:"D-HUB｜Coach development",ja:"D-HUB｜指導者育成","zh-tw":"D-HUB｜教練培育",ko:"D-HUB｜코치 교육"},
  united:{en:"RBA UNITED",ja:"RBA UNITED｜個人参加型チーム","zh-tw":"RBA UNITED",ko:"RBA UNITED"},
  connect:{en:"RBA CONNECT",ja:"RBA CONNECT｜国内・国際ネットワーク","zh-tw":"RBA CONNECT",ko:"RBA CONNECT"},
  organizer:{en:"ORGANIZER HOME",ja:"大会・イベント主催者の方へ","zh-tw":"主辦單位專區",ko:"대회·이벤트 주최자 안내"},

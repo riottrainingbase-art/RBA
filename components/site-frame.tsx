@@ -40,7 +40,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [c.asia,localePath(locale,"asia")],
     [c.partners,localePath(locale,"partners")],
     ["RBA IMPACT",localePath(locale,"impact")],
-    [({en:"D-HUB / SELECTED",ja:"D-HUB／選抜・強化","zh-tw":"D-HUB／選拔・強化",ko:"D-HUB／선발・강화"})[locale],localePath(locale,"d-hub")],
+    [({en:"D-HUB / COACH DEVELOPMENT",ja:"D-HUB／指導者育成","zh-tw":"D-HUB／教練培育",ko:"D-HUB／코치 교육"})[locale],localePath(locale,"d-hub")],
     ["RBA UNITED",localePath(locale,"united")],
     ["RBA CONNECT",localePath(locale,"connect")],
     ["ORGANIZER",localePath(locale,"organizer")],
