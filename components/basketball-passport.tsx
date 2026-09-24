@@ -39,7 +39,7 @@ export function BasketballPassport({userId}:{userId:string}){
    if(p.error)throw p.error;
    const members=(p.data||[]) as Person[];const id=members.some(x=>x.id===preferred)?preferred!:members[0]?.id||"";
    setPeople(members);setPersonId(id);
-   if(!id){setHistory([]);setCheckins([]);setGoals([]);setOfficial([]);return;}
+   if(!id){setHistory([]);setCheckins([]);setGoals([]);setOfficial([]);return true;}
    const [h,c,g,o]=await Promise.all([
     db.from(tables.history).select("*",{count:"exact"}).eq("user_id",userId).eq("person_id",id).order("occurred_on",{ascending:false}).order("created_at",{ascending:false}).limit(1000),
     db.from(tables.checkin).select("*",{count:"exact"}).eq("user_id",userId).eq("person_id",id).order("checked_on",{ascending:false}).order("created_at",{ascending:false}).limit(1000),
@@ -48,13 +48,13 @@ export function BasketballPassport({userId}:{userId:string}){
    ]);
    if(h.error||c.error||g.error||o.error)throw new Error("load");
    setHistory(h.data||[]);setCheckins(c.data||[]);setGoals(g.data||[]);setOfficial((o.data||[]) as unknown as Official[]);
-   setTruncated([h,c,g].some(x=>(x.count||0)>1000));
-  }catch{setFailed(true);setMessage("記録を読み込めませんでした。再読み込みしてください。保存済みの記録は削除されていません。");}
+   setTruncated([h,c,g].some(x=>(x.count||0)>1000));return true;
+  }catch{setFailed(true);setMessage("記録を読み込めませんでした。再読み込みしてください。保存済みの記録は削除されていません。");return false;}
   finally{setLoading(false);}
  },[db,userId]);
  useEffect(()=>{const timer=setTimeout(()=>void load(),0);return()=>clearTimeout(timer);},[load]);
  useEffect(()=>{if(form){formRef.current?.scrollIntoView({behavior:"smooth",block:"start"});formRef.current?.querySelector<HTMLInputElement>("input,select,textarea")?.focus({preventScroll:true});}},[form]);
- function open(kind:Kind,entry?:Entry|Person){setForm({kind,entry});setMessage("");setRemoving(null);}
+ function open(kind:Kind,entry?:Entry|Person){if(form&&!window.confirm("入力中の内容を保存せず、別の記録を開きますか？"))return;setForm({kind,entry});setMessage("");setRemoving(null);}
  async function save(e:FormEvent<HTMLFormElement>){
   e.preventDefault();if(!form||busy)return;
   const el=e.currentTarget;if(!el.checkValidity())return;
@@ -67,13 +67,13 @@ export function BasketballPassport({userId}:{userId:string}){
   try{
    const result=form.entry?await db.from(tables[form.kind]).update(payload).eq("user_id",userId).eq("id",form.entry.id).select("id").single():await db.from(tables[form.kind]).insert(payload).select("id").single();
    if(result.error){setMessage(result.error.code==="23505"?"同じ記録が登録されています。自分の記録は1人までです。既存の記録をご確認ください。":"保存できませんでした。入力内容を残しています。通信状態と日付を確認し、もう一度お試しください。");return;}
-   const selected=form.kind==="person"?result.data.id:personId;setForm(null);await load(selected);setMessage("アカウントに保存しました。");
+   const selected=form.kind==="person"?result.data.id:personId;setForm(null);if(await load(selected))setMessage("アカウントに保存しました。");
   }catch{setMessage("通信できませんでした。入力内容を残しています。もう一度お試しください。");}
   finally{setBusy(false);}
  }
  async function remove(){
   if(!removing||busy)return;setBusy(true);
-  try{const {data,error}=await db.from(tables[removing.kind]).delete().eq("user_id",userId).eq("id",removing.id).select("id").single();if(error||!data)throw new Error("delete");setRemoving(null);await load(personId);setMessage("記録を削除しました。");}catch{setMessage("削除できませんでした。もう一度お試しください。");}finally{setBusy(false);}
+  try{const {data,error}=await db.from(tables[removing.kind]).delete().eq("user_id",userId).eq("id",removing.id).select("id").single();if(error||!data)throw new Error("delete");setRemoving(null);if(await load(personId))setMessage("記録を削除しました。");}catch{setMessage("削除できませんでした。もう一度お試しください。");}finally{setBusy(false);}
  }
  function exportRecords(){
   const blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),person,self_reported_history:history,checkins,goals,rba_attended:official},null,2)],{type:"application/json;charset=utf-8"});
