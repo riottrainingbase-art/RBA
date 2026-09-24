@@ -1,3 +1,5 @@
+import { memberAuthDestination } from "@/lib/member-auth-redirect";
+import { paymentEnquiryUrl } from "@/lib/payment-enquiry";
 import { ArrowLeft, Mail } from "lucide-react";
 import { MemberLogin } from "./member-login";
 import type { Locale } from "./site-frame";
@@ -11,14 +13,17 @@ const copy = {
 
 // Enable only after the SMTP sender, delivery and callback have been verified.
 // This gate does not change Supabase authentication or existing member sessions.
-export function MemberLoginEntry({ locale, authError }: {
+export function MemberLoginEntry({ locale, authError, next }: {
   locale: Locale;
+  next?: string;
   authError?: boolean | "browser" | "expired";
 }) {
   if (process.env.RBA_AUTH_EMAIL_READY === "true") {
-    return <MemberLogin locale={locale} authError={authError} />;
+    return <MemberLogin locale={locale} authError={authError} next={next} />;
   }
   const c = copy[locale];
+  const destination=memberAuthDestination(next||null);
+  const paymentOption=destination.startsWith("/api/commerce/checkout/")?destination.split("/").pop()?.split("?")[0]:null;
   const prefix = locale === "en" ? "" : `/${locale}`;
   return <main className="member-login-shell">
     <a className="member-login-back" href={`${prefix}/my-homecourt`}><ArrowLeft size={17} />{c.back}</a>
@@ -27,7 +32,7 @@ export function MemberLoginEntry({ locale, authError }: {
       <div className="member-login-sent" role="status">
         <Mail aria-hidden="true" /><h2>{c.status}</h2><p>{c.message}</p>
         <p><a className="button button-dark" href={`${prefix}/schedule`}>{c.schedule}</a></p>
-        <p><a className="button button-outline" href={`${prefix}/contact`}>{c.contact}</a></p>
+        <p><a className="button button-outline" href={paymentOption?paymentEnquiryUrl(paymentOption,locale):`${prefix}/contact`}>{c.contact}</a></p>
       </div>
     </section>
   </main>;

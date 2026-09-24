@@ -7,6 +7,6 @@ export async function MemberAppPage({locale,section}:{locale:Locale;section?:str
   const supabase=await createClient();
   const {data:{user}}=await supabase.auth.getUser();
   const prefix=locale==="en"?"":`/${locale}`;
-  if(!user) redirect(`${prefix}/my-homecourt/login`);
+  if(!user) redirect(`${prefix}/my-homecourt/login?next=${encodeURIComponent(`${prefix}/my-homecourt/app${section&&section!=="home"?`/${section}`:""}`)}`);
   return <MemberApp locale={locale} section={section||"home"} userId={user.id} email={user.email||""}/>;
 }

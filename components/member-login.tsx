@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent, useRef, useState } from "react";
 import { ArrowLeft, CheckCircle2, LoaderCircle, LockKeyhole, Mail, ShieldCheck } from "lucide-react";
+import { memberAuthDestination } from "@/lib/member-auth-redirect";
 import { createClient } from "@/lib/supabase/client";
 import type { Locale } from "./site-frame";
 
@@ -27,7 +28,7 @@ const authRecovery={
   ko:{browser:"로그인을 시작한 브라우저를 확인하지 못했습니다. 여기서 새 링크를 요청하고 같은 브라우저에서 여세요.",expired:"링크가 만료되었거나 이미 사용되었습니다. 새 링크를 한 번 요청하고 가장 최근 메일을 여세요."},
 } as const;
 
-export function MemberLogin({locale,authError=false}:{locale:Locale;authError?:boolean|"browser"|"expired"}){
+export function MemberLogin({locale,authError=false,next}:{locale:Locale;authError?:boolean|"browser"|"expired";next?:string}){
   const c=words[locale]; const [email,setEmail]=useState(""); const [role,setRole]=useState("player"); const [terms,setTerms]=useState(false); const [busy,setBusy]=useState(false); const [sent,setSent]=useState(false); const [error,setError]=useState("");
   const submitting=useRef(false);
   const prefix=locale==="en"?"":`/${locale}`;
@@ -37,7 +38,7 @@ export function MemberLogin({locale,authError=false}:{locale:Locale;authError?:b
     submitting.current=true;setBusy(true);setError("");
     try {
       const supabase=createClient();
-      const callback=`${location.origin}/auth/callback?next=${encodeURIComponent(`${prefix}/my-homecourt/app`)}`;
+      const callback=`${location.origin}/auth/callback?next=${encodeURIComponent(memberAuthDestination(next||`${prefix}/my-homecourt/app`))}`;
       const {error:sendError}=await supabase.auth.signInWithOtp({email:email.trim(),options:{emailRedirectTo:callback,shouldCreateUser:true,data:{role,preferred_language:locale}}});
       if(sendError){setError(sendError.status===429?feedback[locale].rate:c.error);return;}
       setSent(true);
