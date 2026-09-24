@@ -1,0 +1,8 @@
+import fs from 'node:fs';import ts from 'typescript';import vm from 'node:vm';import assert from 'node:assert/strict';
+function load(p){const module={exports:{}};vm.runInNewContext(ts.transpileModule(fs.readFileSync(p,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,{module,exports:module.exports});return module.exports;}
+const {filterDevelopmentOpportunities:filter}=load('lib/discovery-filter.ts');
+const f={age:'',region:'',category:'',from:'',to:'',onlineOnly:false};
+const events=[{id:'past',startDate:'2026-09-23',region:'kanto',category:'TRAIN',ageGroups:['U12']},{id:'closed',startDate:'2026-09-30',registrationClosed:true,region:'kanto',category:'TRAIN',ageGroups:['U12']},{id:'coach',startDate:'2026-11-25',region:'online',category:'COACH',ageGroups:['COACH']},{id:'today',startDate:'2026-09-24',region:'kanto',category:'TRAIN',ageGroups:['U12']},{id:'camp',startDate:'2026-10-04',region:'kyushu',category:'TRAIN',ageGroups:['U12','U15']}];
+const ids=patch=>Array.from(filter(events,{...f,...patch},'2026-09-24'),x=>x.id);
+assert.deepEqual(ids({}),['today','camp','coach']);assert.deepEqual(ids({age:'U15'}),['camp']);assert.deepEqual(ids({category:'COACH'}),['coach']);assert.deepEqual(ids({onlineOnly:true}),['coach']);assert.deepEqual(ids({region:'kanto'}),['today']);assert.deepEqual(ids({from:'2026-10-04',to:'2026-10-04'}),['camp']);assert.deepEqual(ids({from:'2026-11-01',to:'2026-10-01'}),[]);assert.deepEqual(ids({onlineOnly:true,age:'U12'}),[]);assert.deepEqual(ids({age:'U18'}),[]);assert.equal(events[0].id,'past');
+console.log('Discovery: 10 date, closed-event, audience, category, region, combined-filter and immutability checks passed.');

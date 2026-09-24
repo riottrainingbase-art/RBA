@@ -1,0 +1,1 @@
+import type {Metadata} from "next";import {PublicJournalHub} from "@/components/public-journal";export const metadata:Metadata={title:"RBA JOURNAL | 育成・保護者・指導者・海外交流",description:"RBAの育成設計、保護者向けガイド、指導者教育、海外交流を日本語で発信します。",alternates:{canonical:"/ja/journal"}};export default function Page(){return <PublicJournalHub locale="ja"/>}
