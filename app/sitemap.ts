@@ -10,8 +10,8 @@ export default function sitemap():MetadataRoute.Sitemap{
   const localized=locales.flatMap(locale=>core.map(path=>locale+path));
   return [...localized,...legacy,...journal].map(path=>({
     url:base+(path||"/"),
-    lastModified:new Date("2026-09-20T00:00:00Z"),
-    changeFrequency:path.includes("schedule")||path.includes("torsten")?"weekly":"monthly",
-    priority:path===""?1:path.includes("torsten")?0.95:path.includes("schedule")||path.includes("asia")?0.9:0.8,
+    lastModified:new Date("2026-09-24T00:00:00Z"),
+    changeFrequency:path.includes("schedule")||path.includes("opportunities")||path.includes("torsten")?"weekly":"monthly",
+    priority:path===""?1:path.includes("my-homecourt")||path.includes("torsten")?0.95:path.includes("schedule")||path.includes("opportunities")||path.includes("asia")?0.9:0.8,
   }));
 }
