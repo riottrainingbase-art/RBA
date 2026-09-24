@@ -6,7 +6,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "試合に出られない時、保護者が最初に整理したいこと",
     summary: "出場時間だけで結論を急がず、本人の経験と環境を分けて確認する。",
-    category: "出場・役割",\n    tags: ["出場時間","役割","試合"],\n    sections: [
+    category: "出場・役割",
+    tags: ["出場時間","役割","試合"],
+    sections: [
       {
         title: "まず、本人がどう受け止めているかを聞く",
         paragraphs: [
@@ -37,7 +39,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "移籍を考え始めた時、感情だけで決めないために",
     summary: "今の問題、新しい環境への期待、本人の意思を一度分けて整理する。",
-    category: "移籍・環境",\n    tags: ["移籍","退部","環境選び"],\n    sections: [
+    category: "移籍・環境",
+    tags: ["移籍","退部","環境選び"],
+    sections: [
       {
         title: "『離れたい理由』と『行きたい理由』を分ける",
         paragraphs: [
@@ -68,7 +72,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "指導者に相談する前に、何を伝えるか整理する",
     summary: "評価のぶつけ合いではなく、子どもの状況を確認する対話にする。",
-    category: "指導者との対話",\n    tags: ["面談","相談","指導者"],\n    sections: [
+    category: "指導者との対話",
+    tags: ["面談","相談","指導者"],
+    sections: [
       {
         title: "まず、相談の目的を一つに絞る",
         paragraphs: [
@@ -99,7 +105,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "暴言や威圧的な指導が気になった時に、整理したいこと",
     summary: "競技上の厳しさと、安心して参加できる環境の問題を混同しない。",
-    category: "安全・安心",\n    tags: ["暴言","威圧","安全"],\n    sections: [
+    category: "安全・安心",
+    tags: ["暴言","威圧","安全"],
+    sections: [
       {
         title: "『厳しい指導』という言葉だけで片づけない",
         paragraphs: [
@@ -130,7 +138,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "他の子と比べたくなった時に、見直したい視点",
     summary: "順位ではなく、その子自身の変化と挑戦を追う。",
-    category: "親子コミュニケーション",\n    tags: ["比較","成長","声かけ"],\n    sections: [
+    category: "親子コミュニケーション",
+    tags: ["比較","成長","声かけ"],
+    sections: [
       {
         title: "比較は簡単でも、成長の理由までは分からない",
         paragraphs: [
@@ -161,7 +171,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "試合中、保護者席から指示を出したくなった時に",
     summary: "応援とコーチングを分け、選手が自分で判断する余白を守る。",
-    category: "親子コミュニケーション",\n    tags: ["応援","試合","声かけ"],\n    sections: [
+    category: "親子コミュニケーション",
+    tags: ["応援","試合","声かけ"],
+    sections: [
       {
         title: "見えているからこそ、言いたくなる",
         paragraphs: [
@@ -192,7 +204,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "遠征に帯同したのに出場機会が少なかった時",
     summary: "費用と時間を含め、遠征の目的と本人が得た経験を具体的に確認する。",
-    category: "遠征・費用",\n    tags: ["遠征","出場機会","費用"],\n    sections: [
+    category: "遠征・費用",
+    tags: ["遠征","出場機会","費用"],
+    sections: [
       {
         title: "『遠征だから仕方ない』で終わらせない",
         paragraphs: [
@@ -223,7 +237,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "クラブやスクールを選ぶ時、勝敗以外に見たいこと",
     summary: "理念より実際の練習と関わり方を見て、本人に合う環境を選ぶ。",
-    category: "チーム選び",\n    tags: ["クラブ","スクール","体験"],\n    sections: [
+    category: "チーム選び",
+    tags: ["クラブ","スクール","体験"],
+    sections: [
       {
         title: "『強い』と『育つ』は同じ意味ではない",
         paragraphs: [
@@ -254,7 +270,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "練習量が多いと感じた時、回数だけで判断しないために",
     summary: "時間だけでなく、強度、休養、学校生活、本人の状態を合わせて見る。",
-    category: "練習・休養",\n    tags: ["練習量","休養","疲労"],\n    sections: [
+    category: "練習・休養",
+    tags: ["練習量","休養","疲労"],
+    sections: [
       {
         title: "『何時間』だけでは分からない",
         paragraphs: [
@@ -285,7 +303,9 @@ export const parentArticles: MemberArticle[] = [
     role: "parent",
     title: "『もう辞めたい』と言われた時、すぐ結論を出さない",
     summary: "競技そのものを辞めたいのか、今の環境から離れたいのかを分けて聞く。",
-    category: "移籍・環境",\n    tags: ["辞めたい","退部","継続"],\n    sections: [
+    category: "移籍・環境",
+    tags: ["辞めたい","退部","継続"],
+    sections: [
       {
         title: "最初に説得しない",
         paragraphs: [
