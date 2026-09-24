@@ -40,3 +40,4 @@
 .worldPath article>strong{font-size:18px}
 .worldPath article>span{color:#c7ced2;font-size:13px;line-height:1.6}
 @media(max-width:680px){.worldPath{grid-template-columns:1fr}.worldPath article{padding:14px}}
+.dismiss{grid-column:1/-1!important;min-height:38px!important;background:transparent!important;color:#687178!important;border-color:#c9cdca!important;font-size:12px!important;font-weight:700!important}
