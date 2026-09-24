@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import nodePath from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
@@ -6,7 +7,7 @@ const require=createRequire(import.meta.url), ts=require('typescript');
 function compile(path,dependencies={}){
  const cjsModule={exports:{}};
  const js=ts.transpileModule(fs.readFileSync(path,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,target:ts.ScriptTarget.ES2022}}).outputText;
- vm.runInNewContext(js,{module:cjsModule,exports:cjsModule.exports,URL,console:{warn:()=>{}},location:{origin:'https://preview.example.test'},require:id=>id in dependencies?dependencies[id]:require(id)});
+ vm.runInNewContext(js,{module:cjsModule,exports:cjsModule.exports,URL,console:{warn:()=>{}},location:{origin:'https://preview.example.test'},require:id=>id in dependencies?dependencies[id]:id.startsWith('@/')?compile(id.slice(2)+'.ts',dependencies):id.startsWith('.')?compile(nodePath.join(nodePath.dirname(path),id)+'.ts',dependencies):require(id)});
  return cjsModule.exports;
 }
 const {memberAuthDestination}=compile('lib/member-auth-redirect.ts');
@@ -15,19 +16,29 @@ for(const prefix of ['','/ja','/ko','/zh-tw'])for(const section of ['','/calenda
  const path=`${prefix}/my-homecourt/app${section}`;assert.equal(memberAuthDestination(path),path);count++;
 }
 for(const value of [null,'','//evil.test','/\\evil.test','https://evil.test','/%2f%2fevil.test','/ja/my-homecourt/app/../../outside','/ja/my-homecourt/app?next=https://evil.test','/ja/my-homecourt/app#token','/ja/my-homecourt/app/unknown']){assert.equal(memberAuthDestination(value),'/ja/my-homecourt/app');count++;}
+for(const locale of ['ja','en','ko','zh-tw']){const path=`/api/commerce/checkout/torsten-live?locale=${locale}`;assert.equal(memberAuthDestination(path),path);count++;}
+for(const path of ['/api/commerce/checkout/constructor','/api/commerce/checkout/unknown','/api/commerce/checkout/torsten-live?locale=ja&next=https://evil.test','/api/commerce/checkout/torsten-live?locale=//evil.test']){assert.equal(memberAuthDestination(path),'/ja/my-homecourt/app');count++;}
 let exchangeCalls=0;
 for(const mode of ['success','error','throw']){
  const {GET}=compile('app/auth/callback/route.ts',{'@/lib/member-auth-redirect':{memberAuthDestination},'next/server':{NextResponse:{redirect:url=>({location:url.toString()})}},'@/lib/supabase/server':{createClient:async()=>({auth:{exchangeCodeForSession:async()=>{exchangeCalls++;if(mode==='throw')throw Error('network');return {error:mode==='error'?{}:null};}}})}});
  const good=await GET(new Request('https://preview.example.test/auth/callback?code=TEST&next=%2Fko%2Fmy-homecourt%2Fapp'));
- assert.equal(good.location,`https://preview.example.test/ko/my-homecourt/${mode==='success'?'app':'login?error=auth'}`);count++;
+ assert.equal(good.location,`https://preview.example.test/ko/my-homecourt/${mode==='success'?'app':'login?error=auth&next=%2Fko%2Fmy-homecourt%2Fapp'}`);count++;
  const absent=await GET(new Request('https://preview.example.test/auth/callback?next=%2Fzh-tw%2Fmy-homecourt%2Fapp'));
- assert.equal(absent.location,'https://preview.example.test/zh-tw/my-homecourt/login?error=auth');count++;
+ assert.equal(absent.location,'https://preview.example.test/zh-tw/my-homecourt/login?error=auth&next=%2Fzh-tw%2Fmy-homecourt%2Fapp');count++;
 }
 assert.equal(exchangeCalls,3);
 for(const code of ['pkce_code_verifier_not_found','bad_code_verifier','otp_expired','flow_state_expired','flow_state_not_found']){
  const {GET}=compile('app/auth/callback/route.ts',{'@/lib/member-auth-redirect':{memberAuthDestination},'next/server':{NextResponse:{redirect:url=>({location:url.toString()})}},'@/lib/supabase/server':{createClient:async()=>({auth:{exchangeCodeForSession:async()=>({error:{code}})}})}});
  const result=await GET(new Request('https://preview.example.test/auth/callback?code=TEST&next=%2Fja%2Fmy-homecourt%2Fapp'));
  assert.equal(new URL(result.location).searchParams.get('error'),['pkce_code_verifier_not_found','bad_code_verifier'].includes(code)?'browser':'expired');count++;
+}
+for(const locale of ['ja','en','ko','zh-tw'])for(const failure of [false,true]){
+ const {GET}=compile('app/auth/callback/route.ts',{'@/lib/member-auth-redirect':{memberAuthDestination},'next/server':{NextResponse:{redirect:url=>({location:url.toString()})}},'@/lib/supabase/server':{createClient:async()=>({auth:{exchangeCodeForSession:async()=>({error:failure?{}:null})}})}});
+ const next=`/api/commerce/checkout/torsten-live?locale=${locale}`;
+ const result=await GET(new Request(`https://preview.example.test/auth/callback?code=TEST&next=${encodeURIComponent(next)}`));
+ const url=new URL(result.location);
+ if(failure){assert.equal(url.pathname,`${locale==='en'?'':'/'+locale}/my-homecourt/login`);assert.equal(url.searchParams.get('next'),next);}else assert.equal(url.pathname+url.search,next);
+ count++;
 }
 function find(node,type){if(!node||typeof node!=='object')return null;if(node.type===type)return node;const children=node.props?.children;for(const child of Array.isArray(children)?children:[children]){const result=find(child,type);if(result)return result;}return null;}
 for(const scenario of ['success','returned-error','rate-limit','thrown-error','no-consent','invalid-form','double-submit']){

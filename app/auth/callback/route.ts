@@ -8,7 +8,8 @@ export async function GET(request:Request){
   const code=url.searchParams.get("code");
   const requestedNext=url.searchParams.get("next")||"/ja/my-homecourt/app";
   const next=memberAuthDestination(requestedNext);
-  const locale=next.startsWith("/zh-tw/")?"/zh-tw":next.startsWith("/ko/")?"/ko":next.startsWith("/ja/")?"/ja":"";
+  const checkoutLocale=next.startsWith("/api/commerce/checkout/")?new URL(next,url.origin).searchParams.get("locale")||"ja":null;
+  const locale=checkoutLocale?(checkoutLocale==="en"?"":`/${checkoutLocale}`):next.startsWith("/zh-tw/")?"/zh-tw":next.startsWith("/ko/")?"/ko":next.startsWith("/ja/")?"/ja":"";
   const diagnostic=(reason:string)=>console.warn("rba_auth_callback_failed",{reason,locale:locale||"en"});
   let reason="auth";
   if(url.searchParams.get("error_code")==="otp_expired")reason="expired";
@@ -24,5 +25,5 @@ export async function GET(request:Request){
     }
   }
   diagnostic(reason);
-  return NextResponse.redirect(new URL(`${locale}/my-homecourt/login?error=${reason}`,url.origin));
+  return NextResponse.redirect(new URL(`${locale}/my-homecourt/login?error=${reason}&next=${encodeURIComponent(next)}`,url.origin));
 }
