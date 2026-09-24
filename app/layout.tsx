@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 import "./platform-v9.css";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://riotbasketballacademy.com"),
@@ -27,7 +24,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
