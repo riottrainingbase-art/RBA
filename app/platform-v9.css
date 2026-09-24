@@ -38,3 +38,25 @@
 @media(max-width:560px){
  .site-header{padding:8px 12px}.brand-logo{width:36px}.mobile-site-menu>div{top:68px}.hero-copy{padding:50px 18px 34px}.hero-copy h1{font-size:clamp(40px,12vw,54px);line-height:1.04}.hero-lede{font-size:16px}.platform-quick-finder{grid-template-columns:1fr;margin-top:24px}.platform-quick-finder>strong,.platform-quick-finder button{grid-column:1}.platform-quick-finder label{padding:8px 12px}.platform-quick-finder button{min-height:52px}.hero-clinic-alert{margin-top:20px}.hero-actions{width:100%}.hero-actions .button,.hero-actions .text-link{width:100%;min-height:50px}.hero-proof{margin-top:34px}.hero-proof div{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}.section-pad{padding:62px 18px}.opportunity-hero,.international-hero{min-height:520px}.opportunity-hero h1,.international-hero h1{font-size:clamp(40px,12vw,56px);line-height:1.05;word-break:keep-all}.opportunity-filter-head{grid-template-columns:auto 1fr}.opportunity-filter-head>strong{grid-column:1/-1}.opportunity-filters{grid-template-columns:1fr}.opportunity-card-grid article{min-height:0;padding:24px 18px}.opportunity-card-grid h2{margin:28px 0 20px}.opportunity-card-grid dl>div{grid-template-columns:1fr;gap:4px}.opportunity-card-actions{display:grid;grid-template-columns:1fr}.opportunity-card-actions a{width:100%}.opportunity-member-bridge>div:last-child,.international-hero>div,.international-contact>div:last-child{align-items:stretch;flex-direction:column}.opportunity-member-bridge .button,.opportunity-member-bridge .text-link,.international-hero .button,.international-hero .text-link,.international-contact .button{width:100%}.homecourt-preview-grid{grid-template-columns:1fr}.homecourt-preview-grid article{min-height:210px}.international-network-grid,.international-programmes>div{grid-template-columns:1fr}.international-network-grid article,.international-programmes article{min-height:240px}.international-process{gap:35px}.site-footer{padding:48px 18px 110px}.footer-brand{display:grid;grid-template-columns:auto 1fr}.footer-brand p{font-size:13px;line-height:1.7;word-break:keep-all}.member-dock,.whatsapp-dock{bottom:10px}.member-dock{left:10px}.whatsapp-dock{right:10px}
 }
+
+/* Role cards share a class with clinic cards: keep their content in reading order. */
+.audience-section .audience-grid>article{display:flex;flex-direction:column;min-width:0;gap:0}
+.audience-section .audience-grid>article>*{min-width:0;max-width:100%}
+.audience-section .audience-grid h3{line-height:1.45;letter-spacing:0}
+.audience-section .audience-grid article>p,.audience-section .audience-grid li{line-height:1.85;letter-spacing:.02em;word-break:normal;overflow-wrap:anywhere}
+.audience-section .audience-links{width:100%;margin-top:auto}
+.audience-section .audience-links a{min-height:48px;line-height:1.65;letter-spacing:0;border-top:0;gap:12px}
+.audience-section .audience-links svg{flex-shrink:0}
+@media(max-width:760px){
+ .audience-section .audience-grid{grid-template-columns:minmax(0,1fr);margin-top:28px}
+ .audience-section .audience-grid>article{padding:24px 20px;min-height:0}
+ .audience-section .audience-grid h3{font-size:26px;margin:22px 0 14px;line-height:1.5}
+ .audience-section .audience-grid article>p,.audience-section .audience-grid li{font-size:15px;line-height:1.9}
+ .audience-section .audience-grid ul{width:100%;margin:20px 0 24px}
+ .audience-section .audience-grid li{padding:14px 0}
+ .audience-section .audience-links a{font-size:14px;padding:16px 0}
+ .audience-section .audience-icon{display:flex;align-items:center;gap:12px;line-height:1.6}
+ .registration-flow{grid-template-columns:minmax(0,1fr);gap:28px}
+ .registration-flow li>div{min-width:0}
+ .registration-flow li p,.registration-note{font-size:15px;line-height:1.85;letter-spacing:.02em}
+}
