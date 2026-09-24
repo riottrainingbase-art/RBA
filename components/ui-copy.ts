@@ -1,0 +1,27 @@
+import type { Locale } from "./site-frame";
+const words = {
+ continue:["Continue","詳しく見る","繼續瀏覽","다음 페이지"],
+ channels:["Direct contact","連絡先","聯絡方式","연락처"],
+ email:["Email","メール","電子郵件","이메일"],
+ request:["Clinic / estimate","開催依頼・見積もり","邀約／估價","개최 문의 / 견적"],
+ city:["Sendai, Japan","日本・仙台","日本・仙台","일본・센다이"],
+ representative:["Representative: Masato Nishio","代表：西尾優人","代表：西尾優人","대표: Masato Nishio"],
+ nav:["Main menu","メインメニュー","主選單","주 메뉴"],
+ home:["RBA home","RBAトップ","RBA首頁","RBA 홈"],
+ players:["Young players","これまでに指導した子どもたち","青少年球員","유소년 선수"],
+ venues:["Activity locations in Japan","国内で活動してきた地域","日本全國活動地區","일본 전역 활동 지역"],
+ nextField:["Next field","次に広げる地域","下一個活動地區","다음 활동 지역"],
+ access:["Japan access desk","日本・アジア交流窓口","日本交流窗口","일본 교류 창구"],
+ offer:["Live / 30-day on-demand","ライブ参加／録画30日間","直播／30天隨選觀看","라이브 / 30일 다시보기"],
+ start:["Start here","目的から選ぶ","從這裡開始","여기에서 시작"],
+ family:["Players and families","選手・保護者","球員與家庭","선수와 가족"],
+ coaches:["Coaches and learners","指導者・学びたい方","教練與學習者","지도자와 학습자"],
+ clinic:["Online coach clinic · Vol.2","オンライン指導者講習・第2回","線上教練講座・第2回","온라인 코치 클리닉・제2회"],
+ time:["20:00–21:30 Japan time","20:00〜21:30（日本時間）","20:00–21:30（日本時間）","20:00–21:30（일본 시간）"],
+ interpretation:["English + Japanese consecutive interpretation","英語＋日本語逐次通訳","英語授課＋日語逐步口譯","영어 진행 + 일본어 순차 통역"],
+ headCoach:["Levanga Hokkaido · Head coach","レバンガ北海道・ヘッドコーチ","Levanga北海道・總教練","레반가 홋카이도・감독"],
+ experience:["Youth national teams and the professional game","育成年代代表からプロの現場まで","從青年代表隊到職業球場","유소년 대표팀부터 프로 현장까지"],
+ theme:["Developing and using shooters in modern basketball","現代バスケットボールにおけるシューターの育成と活用","現代籃球中的射手培養與運用","현대 농구에서 슈터 육성과 활용"],
+ external:["Application form: Japanese / English","申込フォーム：日本語・英語","報名表：日語／英語","신청서: 일본어 / 영어"],
+} as const;
+export function ui(locale:Locale,key:keyof typeof words){return words[key][({en:0,ja:1,"zh-tw":2,ko:3})[locale]];}

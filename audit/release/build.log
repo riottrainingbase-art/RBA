@@ -1,0 +1,197 @@
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 21ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.3s
+  Running TypeScript ...
+  Finished TypeScript in 7.2s ...
+  Collecting page data using 8 workers ...
+  Generating static pages using 8 workers (0/170) ...
+  Generating static pages using 8 workers (42/170) 
+  Generating static pages using 8 workers (84/170) 
+  Generating static pages using 8 workers (127/170) 
+✓ Generating static pages using 8 workers (170/170) in 1068ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /approach
+├ ○ /asia
+├ ƒ /auth/callback
+├ ○ /authentics
+├ ○ /camp
+├ ○ /clinic-request
+├ ○ /coaches
+├ ○ /community
+├ ○ /connect
+├ ○ /contact
+├ ○ /d-hub
+├ ○ /events/torsten-loibl-online-clinic
+├ ○ /families
+├ ○ /faq
+├ ƒ /feed.xml
+├ ○ /field-notes
+├ ○ /home-court
+├ ○ /impact
+├ ○ /international
+├ ○ /ja
+├ ○ /ja/about
+├ ○ /ja/approach
+├ ○ /ja/asia
+├ ○ /ja/camp
+├ ○ /ja/clinic-request
+├ ○ /ja/coaches
+├ ○ /ja/community
+├ ○ /ja/connect
+├ ○ /ja/contact
+├ ○ /ja/d-hub
+├ ○ /ja/events/torsten-loibl-online-clinic
+├ ○ /ja/families
+├ ○ /ja/faq
+├ ○ /ja/home-court
+├ ○ /ja/impact
+├ ○ /ja/international
+├ ○ /ja/my-homecourt
+├ ƒ /ja/my-homecourt/app/[[...section]]
+├ ○ /ja/my-homecourt/coaches
+├ ○ /ja/my-homecourt/families
+├ ƒ /ja/my-homecourt/login
+├ ○ /ja/my-homecourt/players
+├ ○ /ja/network
+├ ○ /ja/opportunities
+├ ○ /ja/organizer
+├ ○ /ja/partners
+├ ○ /ja/payment-complete
+├ ○ /ja/payments
+├ ○ /ja/platform
+├ ○ /ja/players
+├ ○ /ja/policies
+├ ○ /ja/regional-host
+├ ○ /ja/schedule
+├ ○ /ja/social
+├ ○ /ja/sponsor
+├ ○ /ja/team
+├ ○ /ja/united
+├ ○ /ja/verified
+├ ○ /journal
+├ ○ /journal/building-a-real-asia-basketball-relationship
+├ ○ /journal/kobe-development-camp-2026
+├ ○ /journal/plan-a-japan-basketball-exchange
+├ ○ /journal/what-rba-coordinates-in-japan
+├ ○ /ko
+├ ○ /ko/about
+├ ○ /ko/approach
+├ ○ /ko/asia
+├ ○ /ko/camp
+├ ○ /ko/clinic-request
+├ ○ /ko/coaches
+├ ○ /ko/community
+├ ○ /ko/connect
+├ ○ /ko/contact
+├ ○ /ko/d-hub
+├ ○ /ko/events/torsten-loibl-online-clinic
+├ ○ /ko/families
+├ ○ /ko/faq
+├ ○ /ko/home-court
+├ ○ /ko/impact
+├ ○ /ko/international
+├ ○ /ko/my-homecourt
+├ ƒ /ko/my-homecourt/app/[[...section]]
+├ ○ /ko/my-homecourt/coaches
+├ ○ /ko/my-homecourt/families
+├ ƒ /ko/my-homecourt/login
+├ ○ /ko/my-homecourt/players
+├ ○ /ko/network
+├ ○ /ko/opportunities
+├ ○ /ko/organizer
+├ ○ /ko/partners
+├ ○ /ko/payment-complete
+├ ○ /ko/payments
+├ ○ /ko/platform
+├ ○ /ko/players
+├ ○ /ko/policies
+├ ○ /ko/regional-host
+├ ○ /ko/schedule
+├ ○ /ko/social
+├ ○ /ko/sponsor
+├ ○ /ko/team
+├ ○ /ko/united
+├ ○ /ko/verified
+├ ○ /links
+├ ○ /my-homecourt
+├ ƒ /my-homecourt/app/[[...section]]
+├ ○ /my-homecourt/coaches
+├ ○ /my-homecourt/families
+├ ƒ /my-homecourt/login
+├ ○ /my-homecourt/players
+├ ○ /network
+├ ○ /opportunities
+├ ○ /organizer
+├ ○ /partners
+├ ○ /payment-complete
+├ ○ /payments
+├ ○ /platform
+├ ○ /players
+├ ○ /policies
+├ ○ /radio
+├ ○ /regional-host
+├ ○ /robots.txt
+├ ○ /schedule
+├ ○ /sitemap.xml
+├ ○ /social
+├ ƒ /social-feed
+├ ○ /sponsor
+├ ○ /sponsors
+├ ○ /team
+├ ○ /united
+├ ○ /verified
+├ ○ /work-with-rba
+├ ○ /zh-tw
+├ ○ /zh-tw/about
+├ ○ /zh-tw/approach
+├ ○ /zh-tw/asia
+├ ○ /zh-tw/camp
+├ ○ /zh-tw/clinic-request
+├ ○ /zh-tw/coaches
+├ ○ /zh-tw/community
+├ ○ /zh-tw/connect
+├ ○ /zh-tw/contact
+├ ○ /zh-tw/d-hub
+├ ○ /zh-tw/events/torsten-loibl-online-clinic
+├ ○ /zh-tw/families
+├ ○ /zh-tw/faq
+├ ○ /zh-tw/home-court
+├ ○ /zh-tw/impact
+├ ○ /zh-tw/international
+├ ○ /zh-tw/my-homecourt
+├ ƒ /zh-tw/my-homecourt/app/[[...section]]
+├ ○ /zh-tw/my-homecourt/coaches
+├ ○ /zh-tw/my-homecourt/families
+├ ƒ /zh-tw/my-homecourt/login
+├ ○ /zh-tw/my-homecourt/players
+├ ○ /zh-tw/network
+├ ○ /zh-tw/opportunities
+├ ○ /zh-tw/organizer
+├ ○ /zh-tw/partners
+├ ○ /zh-tw/payment-complete
+├ ○ /zh-tw/payments
+├ ○ /zh-tw/platform
+├ ○ /zh-tw/players
+├ ○ /zh-tw/policies
+├ ○ /zh-tw/regional-host
+├ ○ /zh-tw/schedule
+├ ○ /zh-tw/social
+├ ○ /zh-tw/sponsor
+├ ○ /zh-tw/team
+├ ○ /zh-tw/united
+└ ○ /zh-tw/verified
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

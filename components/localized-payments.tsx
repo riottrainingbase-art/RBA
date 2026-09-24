@@ -1,0 +1,28 @@
+import { ArrowRight, ArrowUpRight, CheckCircle2, CreditCard, FileText, ShieldCheck } from "lucide-react";
+import { eventPayments, formatJPY } from "./payment-data";
+import { Locale, localePath, SiteFrame } from "./site-frame";
+import { programmeById } from "./programme-data";
+import { homecourtFreeRegistrationUrl, HOMECOURT_PRICE_JPY } from "./homecourt-data";
+
+
+const copy = {
+  en:{kicker:"OFFICIAL REGISTRATION & PAYMENT",title:"Apply first. Pay securely.",intro:"Use the application form and Stripe payment page for the same programme and plan. Enter the same email address on both.",apply:"1. Application form",pay:"2. Secure payment",openForm:"Open application form",openPay:"Open Stripe payment",pending:"Fee and payment instructions are not yet published. Submit the form first; RBA will confirm the amount before requesting payment.",notice:"Before paying",points:["Submit one application per participant.","Check the programme, plan and amount shown by Stripe before paying.","A place is confirmed after payment or a written confirmation from RBA.","The cancellation terms in the application form or event notice take priority."],complete:"After payment, keep the Stripe receipt sent to your email address."},
+  ja:{kicker:"公式申込・決済",title:"お申し込み後、そのまま安全にお支払いへ。",intro:"参加する企画とプランをご確認のうえ、対応する申込フォームとStripe決済ページをご利用ください。申込時と決済時には、同じメールアドレスを入力してください。",apply:"1. 参加申込",pay:"2. Stripe決済",openForm:"申込フォームを開く",openPay:"Stripe決済ページを開く",pending:"参加費と決済方法は、まだ公開されていません。まず申込フォームを送信し、RBAから参加費の案内が届いてからお支払いください。",notice:"決済前に必ずご確認ください",points:["参加者1名につき、申込フォームを1件送信してください。","Stripe画面に表示される企画名、プラン、金額を確認してから決済してください。","決済完了、またはRBAからの受付完了の案内をもって参加枠が確定します。","キャンセル条件は、各申込フォームまたはイベント案内に記載された内容をご確認ください。"],complete:"決済後にStripeから届く支払い完了メールは、イベント当日まで保管してください。"},
+  "zh-tw":{kicker:"官方報名與付款",title:"先報名，再安全付款。",intro:"請使用同一活動、同一方案的報名表與Stripe付款頁，兩處填寫相同電子郵件。",apply:"1. 提交報名",pay:"2. Stripe付款",openForm:"開啟報名表",openPay:"開啟Stripe付款頁",pending:"費用與付款方式尚未公開。請先提交表單，收到RBA確認金額後再付款。",notice:"付款前請確認",points:["每位參加者提交一份表單。","付款前確認Stripe顯示的活動、方案與金額。","付款完成或收到RBA書面確認後，名額才算確定。","取消規定以各報名表或活動通知為準。"],complete:"請保留Stripe寄出的付款收據電子郵件。"},
+  ko:{kicker:"공식 신청·결제",title:"먼저 신청하고 안전하게 결제하세요.",intro:"동일한 프로그램과 플랜의 신청서 및 Stripe 결제 페이지를 사용하고 같은 이메일 주소를 입력해 주세요.",apply:"1. 참가 신청",pay:"2. Stripe 결제",openForm:"신청서 열기",openPay:"Stripe 결제 페이지 열기",pending:"참가비와 결제 방법이 아직 공개되지 않았습니다. 신청서를 먼저 제출하고 RBA가 금액을 확인한 뒤 결제해 주세요.",notice:"결제 전 확인",points:["참가자 1명당 신청서 1건을 제출해 주세요.","Stripe 화면의 프로그램명, 플랜, 금액을 확인한 뒤 결제해 주세요.","결제 완료 또는 RBA의 서면 확인 후 참가가 확정됩니다.","취소 규정은 각 신청서 또는 행사 안내를 우선합니다."],complete:"결제 후 Stripe 영수증 이메일을 보관해 주세요."},
+} as const;
+
+
+const ids=["yaima","kawasaki","saga-fukuoka","yamagata","shizugawa","kobe","torsten"] as const;
+
+
+export function LocalizedPayments({locale}:{locale:Locale}){
+  const c=copy[locale];
+  return <SiteFrame locale={locale} languagePage="payments">
+    <section className="inner-hero section-pad"><a className="back-link" href={localePath(locale,"schedule")}>← RBA</a><p className="section-index"><CreditCard size={15}/> {c.kicker}</p><h1>{c.title}</h1><p>{c.intro}</p></section>
+    <section className="payment-notice section-pad"><div><ShieldCheck size={38}/><h2>{c.notice}</h2></div><ul>{c.points.map(x=><li key={x}><CheckCircle2 size={18}/>{x}</li>)}</ul><p>{c.complete}</p></section>
+    <section className="homecourt-payment section-pad"><div><p className="section-index">FREE MEMBER → RBA HOMECOURT</p><h2>{locale==="ja"?"まずは無料から。必要になったら有料へ。":"Start free. Upgrade only when it fits."}</h2><p>{locale==="ja"?"無料会員になると、活動情報やコミュニティ、立場に合ったコンテンツを利用できます。継続的なサポートや会員特典が必要な方だけ、RBA HOMECOURTをご利用ください。":"Free members can access role-based information and community routes. RBA HOMECOURT is optional."}</p><a className="button button-member" href={homecourtFreeRegistrationUrl(locale)}>{locale==="ja"?"無料会員登録":"Join free"}<ArrowRight size={16}/></a></div><div><span>{locale==="ja"?"RBA HOMECOURT 月額":"RBA HOMECOURT monthly"}</span><strong>{formatJPY(HOMECOURT_PRICE_JPY)}</strong><small>{locale==="ja"?"無料登録だけでは料金は発生しません。ログイン後、決済前にStripe画面のプラン名と金額をご確認ください。":"Free registration creates no charge. Sign in, then confirm the plan and amount on Stripe before payment."}</small><a className="button button-orange" href={homecourtFreeRegistrationUrl(locale)}><CreditCard size={17}/>{locale==="ja"?"ログインして加入":locale==="zh-tw"?"登入後加入":locale==="ko"?"로그인 후 가입":"Sign in to join"}<ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"home-court")}>{locale==="ja"?"無料・有料会員を比較":"Compare membership"}<ArrowRight size={16}/></a></div></section>
+    <section className="payment-event-list section-pad">{ids.map(id=>{const p=programmeById[id];const options=eventPayments[id];return <article id={id} key={id}><div className="payment-event-head"><div><time>{p.date[locale==="en"?0:locale==="ja"?1:locale==="zh-tw"?2:3]}</time><h2>{p.title[locale==="en"?0:locale==="ja"?1:locale==="zh-tw"?2:3]}</h2><p>{p.place[locale==="en"?0:locale==="ja"?1:locale==="zh-tw"?2:3]}</p></div><a className="button button-dark" href={p.applicationUrl} target="_blank" rel="noreferrer"><FileText size={17}/>{c.openForm}<ArrowUpRight size={16}/></a></div><div className="payment-options"><p className="section-index">{c.pay}</p>{options.length?options.map(option=><a href={option.url} target="_blank" rel="noreferrer" key={option.url}><span>{option.label}</span><strong>{formatJPY(option.amount)}<ArrowUpRight size={17}/></strong></a>):<p className="payment-pending">{c.pending}</p>}</div></article>})}</section>
+    <section className="next-page section-pad"><p>{c.apply} → {c.pay}</p><a href={localePath(locale,"policies")}>{locale==="ja"?"参加規約・キャンセル方針を確認":"Terms and cancellation policy"}<ArrowRight size={24}/></a></section>
+  </SiteFrame>;
+}

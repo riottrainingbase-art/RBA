@@ -1,0 +1,32 @@
+{
+  "confirmation": {
+    "subject_template": "{{ if eq .Data.preferred_language \"ja\" }}[RBA] ようこそ、My Home Courtへ{{ else if eq .Data.preferred_language \"zh-tw\" }}[RBA] 請確認您的電子郵件地址{{ else if eq .Data.preferred_language \"ko\" }}[RBA] 이메일 주소를 확인해 주세요{{ else }}[RBA] Confirm your email address{{ end }}",
+    "subject_fallback": "[RBA / My Home Court] ようこそ、My Home Courtへ / Confirm your email address",
+    "status": "prepared_not_applied"
+  },
+  "magic_link": {
+    "subject_template": "{{ if eq .Data.preferred_language \"ja\" }}[RBA] My Home Courtへのログイン{{ else if eq .Data.preferred_language \"zh-tw\" }}[RBA] 登入My Home Court{{ else if eq .Data.preferred_language \"ko\" }}[RBA] My Home Court 로그인{{ else }}[RBA] Sign in to My Home Court{{ end }}",
+    "subject_fallback": "[RBA / My Home Court] My Home Courtへのログイン / Sign in to My Home Court",
+    "status": "prepared_not_applied"
+  },
+  "invite": {
+    "subject_template": "{{ if eq .Data.preferred_language \"ja\" }}[RBA] My Home Courtへのご招待{{ else if eq .Data.preferred_language \"zh-tw\" }}[RBA] 邀請您加入My Home Court{{ else if eq .Data.preferred_language \"ko\" }}[RBA] My Home Court 초대{{ else }}[RBA] Your invitation to My Home Court{{ end }}",
+    "subject_fallback": "[RBA / My Home Court] My Home Courtへのご招待 / Your invitation to My Home Court",
+    "status": "prepared_not_applied"
+  },
+  "email_change": {
+    "subject_template": "{{ if eq .Data.preferred_language \"ja\" }}[RBA] メールアドレス変更の確認{{ else if eq .Data.preferred_language \"zh-tw\" }}[RBA] 確認電子郵件變更{{ else if eq .Data.preferred_language \"ko\" }}[RBA] 이메일 변경 확인{{ else }}[RBA] Confirm an email address change{{ end }}",
+    "subject_fallback": "[RBA / My Home Court] メールアドレス変更の確認 / Confirm an email address change",
+    "status": "prepared_not_applied"
+  },
+  "recovery": {
+    "subject_template": "{{ if eq .Data.preferred_language \"ja\" }}[RBA] パスワード再設定のご案内{{ else if eq .Data.preferred_language \"zh-tw\" }}[RBA] 重設RBA ID密碼{{ else if eq .Data.preferred_language \"ko\" }}[RBA] RBA ID 비밀번호 재설정{{ else }}[RBA] Reset your RBA ID password{{ end }}",
+    "subject_fallback": "[RBA / My Home Court] パスワード再設定のご案内 / Reset your RBA ID password",
+    "status": "prepared_not_applied"
+  },
+  "reauthentication": {
+    "subject_template": "{{ if eq .Data.preferred_language \"ja\" }}[RBA] RBA IDの本人確認コード{{ else if eq .Data.preferred_language \"zh-tw\" }}[RBA] RBA ID驗證碼{{ else if eq .Data.preferred_language \"ko\" }}[RBA] RBA ID 인증 코드{{ else }}[RBA] Your RBA ID verification code{{ end }}",
+    "subject_fallback": "[RBA / My Home Court] RBA IDの本人確認コード / Your RBA ID verification code",
+    "status": "prepared_not_applied"
+  }
+}

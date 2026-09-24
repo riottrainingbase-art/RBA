@@ -1,0 +1,4 @@
+{
+  "passed": 52,
+  "scope": "Unit checks with simulated Supabase responses: destination allowlist, callback success/error/network failure, login send success/error/rate limit/network exception, consent/validity guards and synchronous duplicate prevention. No real email was sent; inbox, SMTP and browser E2E unverified."
+}

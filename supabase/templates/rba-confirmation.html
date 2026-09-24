@@ -1,0 +1,33 @@
+{{ if eq .Data.preferred_language "ja" }}<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RBA | ようこそ、My Home Courtへ</title></head>
+<body style="margin:0;background:#f2f2f2;color:#171717;font-family:Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;line-height:1.8">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border:1px solid #ddd">
+<tr><td style="padding:24px;background:#171717;color:#fff"><strong style="font-size:24px">RBA</strong><br>My Home Court</td></tr>
+<tr><td style="padding:28px 24px"><h1 style="font-size:24px;line-height:1.5;margin:0 0 20px">ようこそ、My Home Courtへ</h1><p>RBA IDへのご登録ありがとうございます。次に参加したいクリニックや、新しい学びとの出会いを、ここから。下のボタンでメールアドレスを確認して、My Home Courtを始めましょう。</p><p style="margin:28px 0"><a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#171717;color:#ffffff;padding:16px 24px;text-decoration:none;border-radius:4px">メールアドレスを確認</a></p><p>ログインを始めたブラウザーで開いてください。何度も送信した場合は、最後に届いたメールを使用してください。</p><p style="font-size:14px;color:#555">心当たりがない場合は、リンクを開かずにこのメールを破棄してください。ログインリンクや確認コードを他の人に教えないでください。</p></td></tr>
+<tr><td style="border-top:1px solid #ddd;padding:20px 24px;font-size:13px;color:#555">Riot Basketball Academy / My Home Court<br><a style="color:#333" href="https://riotbasketballacademy.com/ja/contact">お問い合わせ</a> · <a style="color:#333" href="https://riotbasketballacademy.com/ja">RBA公式サイト</a></td></tr>
+</table></td></tr></table></body></html>{{ else if eq .Data.preferred_language "zh-tw" }}<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RBA | 請確認您的電子郵件地址</title></head>
+<body style="margin:0;background:#f2f2f2;color:#171717;font-family:Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;line-height:1.8">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border:1px solid #ddd">
+<tr><td style="padding:24px;background:#171717;color:#fff"><strong style="font-size:24px">RBA</strong><br>My Home Court</td></tr>
+<tr><td style="padding:28px 24px"><h1 style="font-size:24px;line-height:1.5;margin:0 0 20px">請確認您的電子郵件地址</h1><p>我們已收到您的RBA ID註冊申請。請使用下方按鈕確認電子郵件地址。</p><p style="margin:28px 0"><a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#171717;color:#ffffff;padding:16px 24px;text-decoration:none;border-radius:4px">確認電子郵件</a></p><p>請用開始登入時的同一個瀏覽器開啟連結。若申請過多次，請使用最新收到的郵件。</p><p style="font-size:14px;color:#555">若您未提出此要求，請勿開啟連結，直接刪除此郵件。請勿與他人分享登入連結或驗證碼。</p></td></tr>
+<tr><td style="border-top:1px solid #ddd;padding:20px 24px;font-size:13px;color:#555">Riot Basketball Academy / My Home Court<br><a style="color:#333" href="https://riotbasketballacademy.com/zh-tw/contact">聯絡RBA</a> · <a style="color:#333" href="https://riotbasketballacademy.com/zh-tw">RBA官方網站</a></td></tr>
+</table></td></tr></table></body></html>{{ else if eq .Data.preferred_language "ko" }}<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RBA | 이메일 주소를 확인해 주세요</title></head>
+<body style="margin:0;background:#f2f2f2;color:#171717;font-family:Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;line-height:1.8">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border:1px solid #ddd">
+<tr><td style="padding:24px;background:#171717;color:#fff"><strong style="font-size:24px">RBA</strong><br>My Home Court</td></tr>
+<tr><td style="padding:28px 24px"><h1 style="font-size:24px;line-height:1.5;margin:0 0 20px">이메일 주소를 확인해 주세요</h1><p>RBA ID 등록 요청을 받았습니다. 아래 버튼으로 이메일 주소를 확인해 주세요.</p><p style="margin:28px 0"><a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#171717;color:#ffffff;padding:16px 24px;text-decoration:none;border-radius:4px">이메일 확인</a></p><p>로그인을 시작한 브라우저에서 링크를 여세요. 여러 번 요청했다면 가장 최근에 받은 메일을 사용하세요.</p><p style="font-size:14px;color:#555">요청한 적이 없다면 링크를 열지 말고 메일을 삭제하세요. 로그인 링크나 인증 코드를 다른 사람에게 알려주지 마세요.</p></td></tr>
+<tr><td style="border-top:1px solid #ddd;padding:20px 24px;font-size:13px;color:#555">Riot Basketball Academy / My Home Court<br><a style="color:#333" href="https://riotbasketballacademy.com/ko/contact">RBA 문의</a> · <a style="color:#333" href="https://riotbasketballacademy.com/ko">RBA 공식 사이트</a></td></tr>
+</table></td></tr></table></body></html>{{ else }}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RBA | Confirm your email address</title></head>
+<body style="margin:0;background:#f2f2f2;color:#171717;font-family:Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;line-height:1.8">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border:1px solid #ddd">
+<tr><td style="padding:24px;background:#171717;color:#fff"><strong style="font-size:24px">RBA</strong><br>My Home Court</td></tr>
+<tr><td style="padding:28px 24px"><h1 style="font-size:24px;line-height:1.5;margin:0 0 20px">Confirm your email address</h1><p>We received your RBA ID registration request. Confirm your email address using the button below.</p><p style="margin:28px 0"><a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#171717;color:#ffffff;padding:16px 24px;text-decoration:none;border-radius:4px">Confirm email address</a></p><p>Open the link in the browser where you started signing in. If you requested more than one email, use the latest.</p><p style="font-size:14px;color:#555">If you did not request this, do not open the link. Discard this email. Never share sign-in links or verification codes.</p></td></tr>
+<tr><td style="border-top:1px solid #ddd;padding:20px 24px;font-size:13px;color:#555">Riot Basketball Academy / My Home Court<br><a style="color:#333" href="https://riotbasketballacademy.com/contact">Contact RBA</a> · <a style="color:#333" href="https://riotbasketballacademy.com">RBA website</a></td></tr>
+</table></td></tr></table></body></html>{{ end }}
