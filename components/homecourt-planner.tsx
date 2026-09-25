@@ -9,7 +9,8 @@ type TeamEventInput={id:string;team_id:string;event_type:string;title:string;sta
 type ScheduleItem={id:string;title:string;item_type:string;starts_at:string;ends_at:string|null;venue:string|null;link_url:string|null;link_label:string|null;countdown_enabled:boolean};
 type Wellness={id:string;checkin_on:string;energy:number;fatigue:number;soreness:number;sleep_hours:number|null;pain_level:number;body_note:string|null;notes:string|null};
 type CarePlan={id:string;title:string;care_type:string;scheduled_at:string;ends_at:string|null;location:string|null;provider:string|null;link_url:string|null;status:string;wellness_checkin_id:string|null};
-type PrepTask={id:string;schedule_item_id:string|null;team_event_id:string|null;title:string;category:string;due_at:string|null;completed_at:string|null};
+type PrepTask={id:string;schedule_item_id:string|null;team_event_id:string|null;public_event_id?:string|null;title:string;category:string;due_at:string|null;completed_at:string|null;template_key?:string|null;auto_generated?:boolean};
+type RbaParticipation={id:string;attendance_status:string;events:{id:string;title:string;event_type:string;starts_at:string|null;ends_at:string|null;venue:string|null;registration_url:string|null;status:string}|null};
 
 const copy={
   ja:{
@@ -21,7 +22,7 @@ const copy={
     private:"体調記録とケア予定は本人の非公開データです。チームには自動共有しません。ここでの入力は診断や治療判断の代わりではありません。",
     painCaution:"強い痛み、急な悪化、しびれ、外傷などがある場合は、予定調整だけで済ませず医療機関や有資格者へ相談してください。",
     noUpcoming:"今後の登録予定はありません。",saved:"保存しました。",error:"保存できませんでした。もう一度お試しください。",complete:"完了にする",done:"完了",open:"開く",
-    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",prep:"EVENT PREP",prepTitle:"大会・イベントまでにやること",prepLead:"次の試合・大会・遠征に向けた準備を、予定と同じ場所で管理します。",target:"対象予定",task:"やること",due:"期限",taskSave:"準備を追加",taskEmpty:"準備項目はまだありません。",trend:"7 DAYS / CONDITION",trendTitle:"7日間のコンディション記録",trendLead:"数値の上下を自分で振り返るための記録です。医療判断や診断には使用しません。",avgEnergy:"平均エネルギー",avgFatigue:"平均疲労",avgPain:"平均痛み",calendarAdd:"カレンダーに追加",taskDone:"完了"
+    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",sourceRba:"RBA",prep:"EVENT PREP",prepTitle:"大会・イベントまでにやること",prepLead:"次の試合・大会・遠征に向けた準備を、予定と同じ場所で管理します。",target:"対象予定",task:"やること",due:"期限",taskSave:"準備を追加",taskEmpty:"準備項目はまだありません。",trend:"7 DAYS / CONDITION",trendTitle:"7日間のコンディション記録",trendLead:"数値の上下を自分で振り返るための記録です。医療判断や診断には使用しません。",avgEnergy:"平均エネルギー",avgFatigue:"平均疲労",avgPain:"平均痛み",calendarAdd:"カレンダーに追加",taskDone:"完了",autoPlan:"大会準備を自動作成",autoPlanLead:"大会日から逆算して、今から必要な準備だけを自動で作ります。重複は作りません。",autoPlanButton:"準備テンプレートを作成",autoPlanDone:"大会準備を作成しました。",autoTag:"AUTO"
   },
   en:{
     title:"MY SCHEDULE",lead:"Keep practices, games, tournaments, events and care on one timeline, with countdowns to what comes next.",
@@ -32,7 +33,7 @@ const copy={
     private:"Condition logs and care plans are private to your account and are not automatically shared with your team. They are not a diagnosis or treatment decision.",
     painCaution:"For severe pain, sudden worsening, numbness or acute injury, seek appropriate medical or qualified professional care rather than relying on scheduling alone.",
     noUpcoming:"No upcoming items yet.",saved:"Saved.",error:"Could not save. Please try again.",complete:"Mark complete",done:"Completed",open:"Open",
-    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",prep:"EVENT PREP",prepTitle:"Prepare for your next event",prepLead:"Keep the small tasks for games, tournaments and travel next to the event itself.",target:"Target event",task:"Task",due:"Due",taskSave:"Add preparation",taskEmpty:"No preparation tasks yet.",trend:"7 DAYS / CONDITION",trendTitle:"Your 7-day condition log",trendLead:"Use the trend to reflect on your own pattern. It is not a diagnosis or medical assessment.",avgEnergy:"Avg energy",avgFatigue:"Avg fatigue",avgPain:"Avg pain",calendarAdd:"Add to calendar",taskDone:"Done"
+    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",sourceRba:"RBA",prep:"EVENT PREP",prepTitle:"Prepare for your next event",prepLead:"Keep the small tasks for games, tournaments and travel next to the event itself.",target:"Target event",task:"Task",due:"Due",taskSave:"Add preparation",taskEmpty:"No preparation tasks yet.",trend:"7 DAYS / CONDITION",trendTitle:"Your 7-day condition log",trendLead:"Use the trend to reflect on your own pattern. It is not a diagnosis or medical assessment.",avgEnergy:"Avg energy",avgFatigue:"Avg fatigue",avgPain:"Avg pain",calendarAdd:"Add to calendar",taskDone:"Done",autoPlan:"Build event prep automatically",autoPlanLead:"Work backward from the event and create only the preparation steps that are still useful. Duplicates are skipped.",autoPlanButton:"Create prep template",autoPlanDone:"Event preparation created.",autoTag:"AUTO"
   },
   "zh-tw":{
     title:"MY SCHEDULE",lead:"把訓練、比賽、大會、活動與照護放在同一條時間軸，並查看倒數。",
@@ -43,7 +44,7 @@ const copy={
     private:"身體狀況與照護予定只屬於本人，不會自動分享給球隊。此功能不能取代診斷或治療判斷。",
     painCaution:"若有強烈疼痛、突然惡化、麻木或急性外傷，請尋求醫療或合資格專業人員協助。",
     noUpcoming:"目前沒有未來行程。",saved:"已儲存。",error:"無法儲存，請再試一次。",complete:"標記完成",done:"已完成",open:"開啟",
-    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",prep:"EVENT PREP",prepTitle:"為下一個活動做好準備",prepLead:"把比賽、大會、遠征前需要做的事和行程放在一起管理。",target:"目標行程",task:"待辦",due:"期限",taskSave:"新增準備",taskEmpty:"目前沒有準備事項。",trend:"7 DAYS / CONDITION",trendTitle:"7天身體狀況紀錄",trendLead:"用來回顧自己的變化，不作為診斷或醫療判斷。",avgEnergy:"平均精神",avgFatigue:"平均疲勞",avgPain:"平均疼痛",calendarAdd:"加入日曆",taskDone:"完成"
+    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",sourceRba:"RBA",prep:"EVENT PREP",prepTitle:"為下一個活動做好準備",prepLead:"把比賽、大會、遠征前需要做的事和行程放在一起管理。",target:"目標行程",task:"待辦",due:"期限",taskSave:"新增準備",taskEmpty:"目前沒有準備事項。",trend:"7 DAYS / CONDITION",trendTitle:"7天身體狀況紀錄",trendLead:"用來回顧自己的變化，不作為診斷或醫療判斷。",avgEnergy:"平均精神",avgFatigue:"平均疲勞",avgPain:"平均疼痛",calendarAdd:"加入日曆",taskDone:"完成",autoPlan:"自動建立活動準備",autoPlanLead:"從活動日期倒推，只建立現在仍有用的準備項目，並避免重複。",autoPlanButton:"建立準備模板",autoPlanDone:"已建立活動準備。",autoTag:"AUTO"
   },
   ko:{
     title:"MY SCHEDULE",lead:"훈련, 경기, 대회, 행사와 케어를 하나의 타임라인에서 보고 다음 일정까지 카운트다운합니다.",
@@ -54,7 +55,7 @@ const copy={
     private:"컨디션 기록과 케어 일정은 본인 비공개 데이터이며 팀에 자동 공유되지 않습니다. 진단이나 치료 판단을 대신하지 않습니다.",
     painCaution:"심한 통증, 갑작스러운 악화, 저림 또는 급성 외상이 있으면 일정 조정만으로 끝내지 말고 의료기관이나 자격 있는 전문가에게 상담하세요.",
     noUpcoming:"예정된 일정이 없습니다.",saved:"저장했습니다.",error:"저장하지 못했습니다. 다시 시도하세요.",complete:"완료로 표시",done:"완료",open:"열기",
-    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",prep:"EVENT PREP",prepTitle:"다음 대회·이벤트 준비",prepLead:"경기, 대회, 원정 전에 해야 할 일을 일정과 함께 관리합니다.",target:"대상 일정",task:"할 일",due:"기한",taskSave:"준비 추가",taskEmpty:"아직 준비 항목이 없습니다.",trend:"7 DAYS / CONDITION",trendTitle:"7일 컨디션 기록",trendLead:"자신의 변화 흐름을 돌아보기 위한 기록이며 진단이나 의료 판단이 아닙니다.",avgEnergy:"평균 에너지",avgFatigue:"평균 피로",avgPain:"평균 통증",calendarAdd:"캘린더에 추가",taskDone:"완료"
+    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",sourceRba:"RBA",prep:"EVENT PREP",prepTitle:"다음 대회·이벤트 준비",prepLead:"경기, 대회, 원정 전에 해야 할 일을 일정과 함께 관리합니다.",target:"대상 일정",task:"할 일",due:"기한",taskSave:"준비 추가",taskEmpty:"아직 준비 항목이 없습니다.",trend:"7 DAYS / CONDITION",trendTitle:"7일 컨디션 기록",trendLead:"자신의 변화 흐름을 돌아보기 위한 기록이며 진단이나 의료 판단이 아닙니다.",avgEnergy:"평균 에너지",avgFatigue:"평균 피로",avgPain:"평균 통증",calendarAdd:"캘린더에 추가",taskDone:"완료",autoPlan:"대회 준비 자동 생성",autoPlanLead:"이벤트 날짜에서 역산해 지금 필요한 준비만 만들고 중복은 건너뜁니다.",autoPlanButton:"준비 템플릿 만들기",autoPlanDone:"이벤트 준비를 만들었습니다.",autoTag:"AUTO"
   }
 } as const;
 
@@ -70,6 +71,49 @@ function zonedInputToIso(value:string,timeZone:string){
   }
   return new Date(utc).toISOString();
 }
+function prepTemplateRows(locale:Locale,eventAt:string){
+  const event=new Date(eventAt);
+  const now=Date.now();
+  const localized={
+    ja:[
+      ["now","prepare","この大会で取り組むことを1つ決める",0],
+      ["d7","travel","会場・集合・移動時間を確認する",-7],
+      ["d3","recovery","練習量と回復の時間を確認する",-3],
+      ["d1","equipment","持ち物・ユニフォーム・飲料を準備する",-1],
+      ["d0","prepare","到着時間とウォームアップ開始を確認する",-0.0833],
+      ["d1plus","study","試合を振り返り、次に取り組むことを1つ残す",1]
+    ],
+    en:[
+      ["now","prepare","Choose one purpose for this event",0],
+      ["d7","travel","Confirm venue, meeting point and travel time",-7],
+      ["d3","recovery","Check training load and make space for recovery",-3],
+      ["d1","equipment","Prepare uniform, equipment and hydration",-1],
+      ["d0","prepare","Confirm arrival and warm-up start time",-0.0833],
+      ["d1plus","study","Reflect and write one next action",1]
+    ],
+    "zh-tw":[
+      ["now","prepare","決定這次活動的一個目標",0],
+      ["d7","travel","確認會場、集合與移動時間",-7],
+      ["d3","recovery","確認訓練量並保留恢復時間",-3],
+      ["d1","equipment","準備球衣、裝備與飲水",-1],
+      ["d0","prepare","確認抵達與熱身開始時間",-0.0833],
+      ["d1plus","study","活動後回顧並留下下一個行動",1]
+    ],
+    ko:[
+      ["now","prepare","이번 대회에서 집중할 한 가지 정하기",0],
+      ["d7","travel","장소·집합·이동 시간 확인",-7],
+      ["d3","recovery","훈련량과 회복 시간 확인",-3],
+      ["d1","equipment","유니폼·장비·수분 준비",-1],
+      ["d0","prepare","도착 및 워밍업 시작 시간 확인",-0.0833],
+      ["d1plus","study","경기 후 돌아보고 다음 행동 하나 남기기",1]
+    ]
+  } as const;
+  return localized[locale].map(([key,category,title,offset])=>{
+    const due=key==="now"?new Date(Math.max(now+5*60000,Math.min(event.getTime()-3600000,now+3600000))):new Date(event.getTime()+Number(offset)*86400000);
+    return {template_key:key,category,title,due_at:due.toISOString()};
+  }).filter(row=>new Date(row.due_at).getTime()>now-12*3600000);
+}
+
 function countdown(target:string,now:number,locale:Locale){
   const diff=new Date(target).getTime()-now;
   if(diff<=0)return locale==="ja"?"開始済み":locale==="ko"?"시작됨":locale==="zh-tw"?"已開始":"Started";
@@ -88,33 +132,37 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
   const [wellnessHistory,setWellnessHistory]=useState<Wellness[]>([]);
   const [care,setCare]=useState<CarePlan[]>([]);
   const [tasks,setTasks]=useState<PrepTask[]>([]);
+  const [rbaEvents,setRbaEvents]=useState<RbaParticipation[]>([]);
   const [busy,setBusy]=useState(false),[message,setMessage]=useState("");
   const [now,setNow]=useState(()=>Date.now());
 
   const load=useCallback(async()=>{
     const from=new Date(Date.now()-86400000).toISOString();
-    const [scheduleQ,wellnessQ,careQ,tasksQ]=await Promise.all([
+    const [scheduleQ,wellnessQ,careQ,tasksQ,rbaQ]=await Promise.all([
       supabase.from("homecourt_schedule_items").select("id,title,item_type,starts_at,ends_at,venue,link_url,link_label,countdown_enabled").eq("user_id",userId).gte("starts_at",from).order("starts_at").limit(40),
       supabase.from("homecourt_wellness_checkins").select("id,checkin_on,energy,fatigue,soreness,sleep_hours,pain_level,body_note,notes").eq("user_id",userId).order("checkin_on",{ascending:false}).limit(7),
       supabase.from("homecourt_care_plans").select("id,title,care_type,scheduled_at,ends_at,location,provider,link_url,status,wellness_checkin_id").eq("user_id",userId).gte("scheduled_at",from).order("scheduled_at").limit(20),
-      supabase.from("homecourt_schedule_tasks").select("id,schedule_item_id,team_event_id,title,category,due_at,completed_at").eq("user_id",userId).order("due_at",{ascending:true}).limit(60)
+      supabase.from("homecourt_schedule_tasks").select("id,schedule_item_id,team_event_id,public_event_id,title,category,due_at,completed_at,template_key,auto_generated").eq("user_id",userId).order("due_at",{ascending:true}).limit(60),
+      supabase.from("participations").select("id,attendance_status,events(id,title,event_type,starts_at,ends_at,venue,registration_url,status)").in("attendance_status",["registered","confirmed","attended"]).limit(30)
     ]);
-    if(scheduleQ.error||wellnessQ.error||careQ.error||tasksQ.error){setMessage(c.error);return;}
+    if(scheduleQ.error||wellnessQ.error||careQ.error||tasksQ.error||rbaQ.error){setMessage(c.error);return;}
     setSchedule((scheduleQ.data||[]) as ScheduleItem[]);
     const history=(wellnessQ.data||[]) as Wellness[];
     setWellnessHistory(history); setWellness(history[0]||null);
     setCare((careQ.data||[]) as CarePlan[]);
     setTasks((tasksQ.data||[]) as PrepTask[]);
+    setRbaEvents((rbaQ.data||[]) as unknown as RbaParticipation[]);
   },[c.error,supabase,userId]);
 
   useEffect(()=>{void load();const tick=window.setInterval(()=>setNow(Date.now()),60000);return()=>window.clearInterval(tick);},[load]);
 
   const upcoming=useMemo(()=>{
-    const team=teamEvents.filter(x=>new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`team-${x.id}`,title:x.title,at:x.starts_at,type:x.event_type,venue:x.venue,source:c.sourceTeam,link:null as string|null,teamEventId:x.id,scheduleItemId:null as string|null}));
-    const personal=schedule.filter(x=>x.countdown_enabled&&new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`my-${x.id}`,title:x.title,at:x.starts_at,type:x.item_type,venue:x.venue,source:c.sourcePersonal,link:x.link_url,teamEventId:null as string|null,scheduleItemId:x.id}));
-    const plans=care.filter(x=>x.status==="planned"&&new Date(x.scheduled_at).getTime()>now-3600000).map(x=>({id:`care-${x.id}`,title:x.title,at:x.scheduled_at,type:x.care_type,venue:x.location,source:c.sourceCare,link:x.link_url,teamEventId:null as string|null,scheduleItemId:null as string|null}));
-    return [...team,...personal,...plans].sort((a,b)=>new Date(a.at).getTime()-new Date(b.at).getTime()).slice(0,6);
-  },[teamEvents,schedule,care,now,c.sourceTeam,c.sourcePersonal,c.sourceCare]);
+    const team=teamEvents.filter(x=>new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`team-${x.id}`,title:x.title,at:x.starts_at,type:x.event_type,venue:x.venue,source:c.sourceTeam,link:null as string|null,teamEventId:x.id,scheduleItemId:null as string|null,publicEventId:null as string|null}));
+    const personal=schedule.filter(x=>x.countdown_enabled&&new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`my-${x.id}`,title:x.title,at:x.starts_at,type:x.item_type,venue:x.venue,source:c.sourcePersonal,link:x.link_url,teamEventId:null as string|null,scheduleItemId:x.id,publicEventId:null as string|null}));
+    const plans=care.filter(x=>x.status==="planned"&&new Date(x.scheduled_at).getTime()>now-3600000).map(x=>({id:`care-${x.id}`,title:x.title,at:x.scheduled_at,type:x.care_type,venue:x.location,source:c.sourceCare,link:x.link_url,teamEventId:null as string|null,scheduleItemId:null as string|null,publicEventId:null as string|null}));
+    const registered=rbaEvents.filter(x=>x.events?.starts_at&&new Date(x.events.starts_at).getTime()>now-3600000).map(x=>({id:`rba-${x.id}`,title:x.events!.title,at:x.events!.starts_at!,type:x.events!.event_type,venue:x.events!.venue,source:c.sourceRba,link:x.events!.registration_url,teamEventId:null as string|null,scheduleItemId:null as string|null,publicEventId:x.events!.id}));
+    return [...team,...personal,...registered,...plans].sort((a,b)=>new Date(a.at).getTime()-new Date(b.at).getTime()).slice(0,8);
+  },[teamEvents,schedule,rbaEvents,care,now,c.sourceTeam,c.sourcePersonal,c.sourceRba,c.sourceCare]);
 
   async function addSchedule(e:FormEvent<HTMLFormElement>){
     e.preventDefault();setBusy(true);setMessage("");const form=e.currentTarget;const fd=new FormData(form);
@@ -179,6 +227,31 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
     if(error){setMessage(c.error);setBusy(false);return;}setBusy(false);await load();
   }
 
+  async function generateAutoPlan(targetValue:string){
+    const target=prepTargets.find(item=>(item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`)===targetValue);
+    if(!target)return;
+    setBusy(true);setMessage("");
+    const rows=prepTemplateRows(locale,target.at).map(row=>({
+      user_id:userId,title:row.title,category:row.category,due_at:row.due_at,template_key:row.template_key,auto_generated:true,
+      schedule_item_id:target.scheduleItemId,team_event_id:target.teamEventId,public_event_id:target.publicEventId
+    }));
+    if(rows.length){
+      let existingQuery=supabase.from("homecourt_schedule_tasks").select("template_key").eq("user_id",userId).in("template_key",rows.map(r=>r.template_key));
+      if(target.teamEventId)existingQuery=existingQuery.eq("team_event_id",target.teamEventId);
+      else if(target.publicEventId)existingQuery=existingQuery.eq("public_event_id",target.publicEventId);
+      else existingQuery=existingQuery.eq("schedule_item_id",target.scheduleItemId!);
+      const existing=await existingQuery;
+      if(existing.error){setMessage(c.error);setBusy(false);return;}
+      const keys=new Set((existing.data||[]).map(x=>x.template_key));
+      const fresh=rows.filter(row=>!keys.has(row.template_key));
+      if(fresh.length){
+        const {error}=await supabase.from("homecourt_schedule_tasks").insert(fresh);
+        if(error){setMessage(c.error);setBusy(false);return;}
+      }
+    }
+    setMessage(c.autoPlanDone);setBusy(false);await load();
+  }
+
   function downloadIcs(title:string,at:string,venue:string|null){
     const start=new Date(at);const end=new Date(start.getTime()+90*60000);
     const fmt=(d:Date)=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z$/,"Z");
@@ -189,7 +262,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
 
   const trend=wellnessHistory.slice().reverse();
   const avg=(key:"energy"|"fatigue"|"pain_level")=>wellnessHistory.length?(wellnessHistory.reduce((sum,row)=>sum+Number(row[key]||0),0)/wellnessHistory.length).toFixed(1):"—";
-  const prepTargets=upcoming.filter(item=>item.teamEventId||item.scheduleItemId);
+  const prepTargets=upcoming.filter(item=>item.teamEventId||item.scheduleItemId||item.publicEventId);
   const painHigh=(wellness?.pain_level||0)>=7;
   return <section className={`homecourt-planner ${mode==="summary"?"homecourt-planner-summary":""}`}>
     <div className="homecourt-planner-head">
@@ -247,10 +320,15 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
 
       <section className="homecourt-prep-section">
         <div className="homecourt-care-heading"><div><p className="section-index">{c.prep}</p><h3>{c.prepTitle}</h3><p>{c.prepLead}</p></div><ListChecks/></div>
+        {prepTargets.length?<div className="homecourt-auto-plan">
+          <div><span>AUTO / D-PLAN</span><strong>{c.autoPlan}</strong><p>{c.autoPlanLead}</p></div>
+          <select id="homecourt-auto-target" defaultValue={prepTargets[0]?.teamEventId?`team:${prepTargets[0].teamEventId}`:`my:${prepTargets[0]?.scheduleItemId}`}>{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select>
+          <button type="button" disabled={busy} onClick={()=>{const el=document.getElementById("homecourt-auto-target") as HTMLSelectElement|null;if(el)void generateAutoPlan(el.value);}}>{busy?<LoaderCircle className="spin"/>:<TimerReset/>}{c.autoPlanButton}</button>
+        </div>:null}
         <div className="homecourt-prep-layout">
-          <div className="homecourt-prep-list">{tasks.length?tasks.map(task=><button type="button" key={task.id} className={task.completed_at?"is-done":undefined} onClick={()=>toggleTask(task)} disabled={busy}><CheckCircle2/><span>{task.category.toUpperCase()}</span><strong>{task.title}</strong><small>{task.due_at?new Date(task.due_at).toLocaleString(locale,{timeZone,month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"—"}</small></button>):<div className="homecourt-planner-empty"><ListChecks/><p>{c.taskEmpty}</p></div>}</div>
+          <div className="homecourt-prep-list">{tasks.length?tasks.map(task=><button type="button" key={task.id} className={task.completed_at?"is-done":undefined} onClick={()=>toggleTask(task)} disabled={busy}><CheckCircle2/><span>{task.auto_generated?`${c.autoTag} / `:""}{task.category.toUpperCase()}</span><strong>{task.title}</strong><small>{task.due_at?new Date(task.due_at).toLocaleString(locale,{timeZone,month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"—"}</small></button>):<div className="homecourt-planner-empty"><ListChecks/><p>{c.taskEmpty}</p></div>}</div>
           {prepTargets.length?<form onSubmit={addTask} className="homecourt-planner-form homecourt-prep-form">
-            <label>{c.target}<select name="target">{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select></label>
+            <label>{c.target}<select name="target">{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select></label>
             <label>{c.task}<input name="title" required maxLength={180}/></label>
             <label>{c.type}<select name="category"><option value="prepare">PREPARE</option><option value="equipment">EQUIPMENT</option><option value="travel">TRAVEL</option><option value="recovery">RECOVERY</option><option value="study">STUDY</option><option value="other">OTHER</option></select></label>
             <label>{c.due}<input name="due_at" type="datetime-local"/></label>
