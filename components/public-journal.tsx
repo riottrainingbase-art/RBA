@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPublicJournalPost, getPublicJournalPosts } from "@/lib/public-content";
 import { Locale, localePath, SiteFrame } from "@/components/site-frame";
@@ -210,16 +210,16 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       <section className="journal-cms-hero section-pad">
         <Link href={journalRoot(locale)} className="back-link">← RBA JOURNAL</Link>
         <p className="section-index">RBA JOURNAL / COACH</p>
-        <h1>{locale==="ja"?"指導を、経験則だけにしない。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
-        <p>{locale==="ja"?"研究・FIBA/WABC・現場経験を分けて読み、練習設計へ落とし、観察し、次の修正までつなぐ指導者用JOURNALです。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
+        <h1>{locale==="ja"?"経験だけに頼らず、指導を更新する。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
+        <p>{locale==="ja"?"研究やFIBA/WABCの資料、現場での経験を分けて整理し、練習設計・観察・振り返りまでつなげる指導者向けJOURNALです。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
       </section>
       <section className="homecourt-product-preview section-pad">
-        <div className="section-head"><div><p className="section-index">COACHING LOOP</p><h2>READ → PLAN → COACH → REVIEW</h2></div><p>{locale==="ja"?"読むことを目的にせず、次の練習が変わるところまで。":"Turn reading into the next practice."}</p></div>
+        <div className="section-head"><div><p className="section-index">COACHING LOOP</p><h2>READ → PLAN → COACH → REVIEW</h2></div><p>{locale==="ja"?"読むだけで終わらせず、次の練習で試せるところまで。":"Turn reading into the next practice."}</p></div>
         <div className="homecourt-preview-grid">
           <article><BookOpen/><span>01 / READ</span><h3>{locale==="ja"?"根拠を確認する":"Read the evidence"}</h3><p>{locale==="ja"?"EVIDENCE・LIMITATIONS・SOURCESまで確認する。":"Check evidence, limitations and original sources."}</p></article>
-          <article><FileText/><span>02 / PLAN</span><h3>{locale==="ja"?"練習へ落とす":"Plan"}</h3><p>{locale==="ja"?"COACH APPLICATIONから目的・制約・観察項目を決める。":"Turn the idea into purpose, constraints and observations."}</p></article>
-          <article><Users/><span>03 / COACH</span><h3>{locale==="ja"?"選手を観察する":"Coach"}</h3><p>{locale==="ja"?"メニューではなく、選手の認知・判断・行動を見る。":"Observe player perception, decisions and actions."}</p></article>
-          <article><History/><span>04 / REVIEW</span><h3>{locale==="ja"?"次を修正する":"Review"}</h3><p>{locale==="ja"?"何が起きたかを残し、次回の設計を一つ変える。":"Record what happened and refine the next session."}</p></article>
+          <article><FileText/><span>02 / PLAN</span><h3>{locale==="ja"?"練習に落とし込む":"Plan"}</h3><p>{locale==="ja"?"COACH APPLICATIONから目的・制約・観察項目を決める。":"Turn the idea into purpose, constraints and observations."}</p></article>
+          <article><Users/><span>03 / COACH</span><h3>{locale==="ja"?"選手を観察する":"Coach"}</h3><p>{locale==="ja"?"メニューの消化ではなく、選手が何を見て、どう判断し、どう行動したかを観察する。":"Observe player perception, decisions and actions."}</p></article>
+          <article><HistoryIcon/><span>04 / REVIEW</span><h3>{locale==="ja"?"次を修正する":"Review"}</h3><p>{locale==="ja"?"何が起きたかを振り返り、次回の練習設計を一つ改善する。":"Record what happened and refine the next session."}</p></article>
         </div>
       </section>
       <section className="journal-cms-index section-pad">
