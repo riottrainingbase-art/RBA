@@ -87,6 +87,16 @@ export function GlobalDevelopmentProfile({userId,locale}:Props){
        <div><span>{({ja:"興味のある国・地域",en:"Countries / regions of interest","zh-tw":"感興趣的國家・地區",ko:"관심 국가·지역"})[locale]}</span><p>{profile.preferred_countries.length?profile.preferred_countries.join(" · "):({ja:"まだ設定していません",en:"Not set yet","zh-tw":"尚未設定",ko:"아직 설정하지 않음"})[locale]}</p></div>
        <div><span>{({ja:"興味のある機会",en:"Opportunity interests","zh-tw":"感興趣的機會",ko:"관심 기회"})[locale]}</span><p>{profile.opportunity_types.length?profile.opportunity_types.map(key=>(c.opps as Record<string,string>)[key]||key).join(" · "):({ja:"まだ設定していません",en:"Not set yet","zh-tw":"尚未設定",ko:"아직 설정하지 않음"})[locale]}</p></div>
      </div>
+     <div className={styles.nextRoute}>
+       <span>NEXT ROUTE</span>
+       <strong>{profile.travel_scope==="local"?({ja:"まずは地域の中で、良い学びを増やす。",en:"Build stronger learning close to home.","zh-tw":"先在地區內增加更好的學習。",ko:"먼저 지역 안에서 좋은 배움을 늘립니다."})[locale]:profile.travel_scope==="national"?({ja:"日本全国から、育成と挑戦を選ぶ。",en:"Choose development and challenge opportunities across Japan.","zh-tw":"從日本全國選擇培育與挑戰機會。",ko:"일본 전국에서 성장과 도전 기회를 선택합니다."})[locale]:profile.travel_scope==="asia"?({ja:"日本とアジアを行き来する視野を持つ。",en:"Build a development view across Japan and Asia.","zh-tw":"建立往返日本與亞洲的培育視野。",ko:"일본과 아시아를 오가는 성장 시야를 만듭니다."})[locale]:({ja:"世界を日常の比較対象にする。",en:"Make the world part of your everyday development reference.","zh-tw":"讓世界成為日常培育的比較基準。",ko:"세계를 일상적인 성장의 비교 기준으로 둡니다."})[locale]}</strong>
+       <div>
+         {profile.travel_scope==="local"?<a href={locale==="en"?"/opportunities":`/${locale}/opportunities`}>{({ja:"地域の育成機会を見る",en:"Explore local opportunities","zh-tw":"查看地區培育機會",ko:"지역 성장 기회 보기"})[locale]}</a>:null}
+         {profile.travel_scope==="national"?<><a href={locale==="en"?"/camp":`/${locale}/camp`}>Development Camp</a><a href={locale==="en"?"/united":`/${locale}/united`}>RBA UNITED</a></>:null}
+         {profile.travel_scope==="asia"?<><a href={locale==="en"?"/international":`/${locale}/international`}>{({ja:"アジア交流を見る",en:"Explore Asia exchange","zh-tw":"查看亞洲交流",ko:"아시아 교류 보기"})[locale]}</a><a href={locale==="en"?"/asia":`/${locale}/asia`}>Japan × Asia</a></>:null}
+         {profile.travel_scope==="global"?<><a href={locale==="en"?"/international":`/${locale}/international`}>{({ja:"世界の育成機会を見る",en:"Explore global opportunities","zh-tw":"查看全球培育機會",ko:"세계 성장 기회 보기"})[locale]}</a><a href={locale==="en"?"/journal":`/${locale}/journal`}>{({ja:"世界の育成記事を読む",en:"Read global development stories","zh-tw":"閱讀全球培育文章",ko:"세계 육성 기사 읽기"})[locale]}</a></>:null}
+       </div>
+     </div>
      <p className={styles.horizonNote}>{({ja:"海外志向の強さを競うための機能ではありません。今の自分に必要な範囲を、自分で選ぶためのプロフィールです。",en:"This is not a score for how international you are. It helps you choose the right scope for your development now.","zh-tw":"這不是比較誰更國際化的分數，而是幫助你選擇目前適合自己的成長範圍。",ko:"국제적 성향을 경쟁하는 점수가 아닙니다. 지금 자신에게 필요한 성장 범위를 스스로 선택하기 위한 프로필입니다."})[locale]}</p>
    </div>
    <form onSubmit={save}>
