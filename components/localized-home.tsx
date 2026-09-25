@@ -23,15 +23,15 @@ const copy={
     contactLabel:"START WITH THE REAL QUESTION",contactTitle:["What does your environment","need next?"],contactCopy:"Clinics, camps, coach learning, Japan–Asia exchange, S&C dialogue and aligned partnerships.",contact:"Contact RBA",whatsapp:"Talk on WhatsApp"
   },
   ja:{
-    title:["次の育成機会を、","ひとつの場所に。"],lede:"全国のクリニック、キャンプ、大会、指導者の学び、国内外の交流を、探して、比べて、そのまま申し込めます。",
+    title:["子どもの未来から、","育成を考える。"],lede:"勝つことを否定しない。けれど、12歳の勝利だけをゴールにしない。RBAは、選手・保護者・指導者が所属や地域を越えて学び、比べ、次の育成機会を選べるプラットフォームです。",
     primary:"募集中の活動を見る",secondary:"RBAを地域に呼ぶ",proof:[["3,000+","2025年半ば以降の延べ参加者"],["25","確認済みの国内活動地域"],["4言語","日本語・英語・繁体字中国語・韓国語"]],image:"次のコートが、ここから見つかる。",
     clinicLabel:"全国の指導者へ · 2026年11月25日",clinicTitle:"世界の育成現場に学ぶ、日本語通訳付きオンライン講習。",clinicCopy:"レバンガ北海道ヘッドコーチ、トーステン・ロイブル氏による90分のオンライン講習です。シューターの育成方法、練習の組み立て方、試合で質の高いシュートチャンスをつくる考え方を、日本語の逐次通訳付きで学びます。",clinicDetail:"講習内容と講師実績を見る",clinicApply:"11月25日の講習に申し込む",clinicHero:"11月25日｜トーステン・ロイブル オンライン講習",clinicAchievements:[["B.LEAGUE","レバンガ北海道 ヘッドコーチ"],["日本代表","U16・U18・U19日本代表を指導"],["3x3日本代表","ナショナルチームを指導"],["世界一","2019年女子U23ワールドカップ優勝時のディレクターコーチ"]],
-    routesLabel:"目的から選ぶ",routesTitle:"参加する。学ぶ。RBAを呼ぶ。つながる。",routesCopy:"今の目的に合うページから、必要な情報や手続きへ進めます。",routes:[["選手・保護者","クリニック、キャンプ、育成企画を探す","opportunities"],["指導者","トーステン氏のオンライン講習で学ぶ","events/torsten-loibl-online-clinic"],["主催者・団体","地域やクラブでRBAを開催する","clinic-request"],["海外アカデミー","日本との責任ある交流をつくる","asia"]],
-    position:"私たちの考え方",positionTitle:["育成は、選抜だけではない。","早く勝つことだけでもない。"],positionCopy:"子どもたちの成長には、状況を見て、自分で選び、実行し、振り返ることのできる環境が必要です。RBAはゲームを中心に、年代に合った学びを組み立てます。S&Cでは、負荷・回復・睡眠・栄養・長期的な健康を踏まえて身体づくりを考えます。",readApproach:"育成方針を読む",
-    workLabel:"RBAがつなぐ領域",workTitle:"4つの専門領域を、一つの育成環境へ。",work:[["01","選手育成","状況を見る力、判断する力、タイミング、スペーシング、基礎技術、仲間とプレーする力。"],["02","S&C","身体づくり、負荷管理、回復、長期的な健康。"],["03","指導者の学び","問い、観察、練習設計、国内外の指導者から学ぶ機会。"],["04","アジア交流","観光ではなく、共通の育成課題を持つ選手・指導者・アカデミー同士の交流。"]],
+    routesLabel:"育成を、行動に変える",routesTitle:"参加する。学ぶ。選ぶ。つながる。",routesCopy:"理念だけで終わらせず、選手・保護者・指導者それぞれが次の行動に進める入口を用意しています。",routes:[["選手・保護者","クリニック、キャンプ、育成企画を探す","opportunities"],["指導者","トーステン氏のオンライン講習で学ぶ","events/torsten-loibl-online-clinic"],["主催者・団体","地域やクラブでRBAを開催する","clinic-request"],["海外アカデミー","日本との責任ある交流をつくる","asia"]],
+    position:"私たちの考え方",positionTitle:["勝つことと、","育てることは同じではない。"],positionCopy:"私たちが問い直したいのは、勝利そのものではありません。U12で何を優先し、その経験が15歳、18歳になったときの判断、自立、プレーの幅につながるのか。子どもが見て、選び、実行し、振り返れる環境を、ゲーム理解とS&Cの両面からつくります。",readApproach:"RBAの育成方針を読む",
+    workLabel:"RBAが実装すること",workTitle:"発信だけで終わらせず、育成環境そのものをつくる。",work:[["01","選手が判断する","状況を見る、選ぶ、実行する、振り返る。コーチの答えではなく、自分の判断を育てます。"],["02","身体を守りながら伸ばす","S&C、負荷管理、回復、睡眠、栄養まで含め、長く競技を続ける土台をつくります。"],["03","指導者が学び続ける","観察、問い、練習設計、国内外の知見をつなぎ、指導を更新できる場をつくります。"],["04","所属の外にも機会をつくる","地域や所属だけで選択肢が決まらないよう、全国・アジアの学びと挑戦につなげます。"]],
     asiaLabel:ui("ja","access"),asiaTitle:["日本のバスケットボールへ、","最初の一歩を。"],asiaCopy:"アジアのアカデミー、チーム、指導者、ご家族に向けた相談窓口です。団体名、対象年代、希望時期、交流の目的をお知らせください。実現できる形と次の一歩を、RBAが一緒に整理します。",asiaCta:"海外連携を相談する",
-    recordLabel:"活動実績",recordTitle:"それぞれの地域に合った育成を。",recordCopy:"仙台、川崎、神戸、佐賀、沖縄など、さまざまな地域や環境で活動してきました。決まった内容をそのまま当てはめるのではなく、現場の声を聞き、地域が抱える育成課題に合わせてプログラムを組み立てます。",about:"RBAについて",
-    contactLabel:"まず、いまの課題を聞かせてください",contactTitle:["次に必要なことを、","一緒に考える。"],contactCopy:"クリニック、キャンプ、指導者講習、海外交流、S&C、協賛・連携について、内容が固まっていない段階からご相談いただけます。",contact:"RBAに相談する",whatsapp:"WhatsAppで相談"
+    recordLabel:"活動実績",recordTitle:"特定の地域やクラブだけで終わらない。",recordCopy:"仙台、川崎、神戸、佐賀、沖縄など、さまざまな地域で活動してきました。地域の文化を否定するのではなく、現場の声を聞きながら、子どもの長期的な成長という共通基準でプログラムを組み立てます。",about:"RBAについて",
+    contactLabel:"育成の違和感を、そのままにしない",contactTitle:["いまの環境から、","次の一歩をつくる。"],contactCopy:"選手の成長、チーム環境、指導者の学び、クリニック、キャンプ、海外交流、S&Cまで。まだ答えが出ていない段階から一緒に整理できます。",contact:"RBAに相談する",whatsapp:"WhatsAppで相談"
   },
   "zh-tw":{
     title:["扎根球場，","連結亞洲。"],lede:"RBA是以日本仙台為基地的青少年籃球培育機構。我們整合現代球員發展、科學化體能訓練、教練學習與有明確目的的國際交流。",
@@ -59,7 +59,7 @@ const copy={
 
 const homecourtCopy={
   en:{label:"RBA HOMECOURT / FREE MEMBER ACCESS",title:"Start free from MY HOME COURT.",body:"Choose PLAYER, PARENT or COACH. Access programmes, communities and role-based content, then upgrade only when paid membership fits.",open:"Open MY HOME COURT",about:"Free & paid membership",roles:["PLAYER","PARENT","COACH"]},
-  ja:{label:"RBA / MY HOME COURT",title:"バスケのある毎日を、もっと広く。",body:"次に参加したいクリニック。練習で試したいアイデア。地域を越えて出会う仲間。選手・保護者・指導者、それぞれの挑戦がここから広がります。",open:"会員ページを開く",about:"MY HOME COURTについて",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
+  ja:{label:"RBA / MY HOME COURT",title:"所属の外にも、自分の育成環境を持つ。",body:"MY HOME COURTは、選手・保護者・指導者が、所属チームだけに情報や成長機会を依存しないための場所です。次の活動、学び、記録、世界との接点を一つにつなぎます。",open:"MY HOME COURTを開く",about:"MY HOME COURTについて",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
   "zh-tw":{label:"RBA HOMECOURT / 會員專區",title:"會員請從MY HOME COURT開始。",body:"活動日程、報名、付款、規則與角色專屬內容，集中在同一個清楚入口。",open:"開啟會員專區",about:"了解RBA HOMECOURT",roles:["球員","家長","教練"]},
   ko:{label:"RBA HOMECOURT / 회원 페이지",title:"회원은 MY HOME COURT에서 시작하세요.",body:"일정, 신청, 결제, 규정과 역할별 콘텐츠를 하나의 명확한 입구에 모았습니다.",open:"회원 페이지 열기",about:"RBA HOMECOURT 안내",roles:["선수","보호자","코치"]},
 } as const;
