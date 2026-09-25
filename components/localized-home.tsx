@@ -59,7 +59,7 @@ const copy={
 
 const homecourtCopy={
   en:{label:"RBA HOMECOURT / FREE MEMBER ACCESS",title:"Start free from MY HOME COURT.",body:"Choose PLAYER, PARENT or COACH. Access programmes, communities and role-based content, then upgrade only when paid membership fits.",open:"Open MY HOME COURT",about:"Free & paid membership",roles:["PLAYER","PARENT","COACH"]},
-  ja:{label:"RBA / MY HOME COURT",title:"所属の外にも、自分の育成環境を持つ。",body:"MY HOME COURTは、選手・保護者・指導者が、所属チームだけに情報や成長機会を依存しないための場所です。次の活動、学び、記録、世界との接点を一つにつなぎます。",open:"MY HOME COURTを開く",about:"MY HOME COURTについて",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
+  ja:{label:"RBA / MY HOME COURT",title:"バスケの成長を、所属チームだけに任せない。",body:"MY HOME COURTは、選手・保護者・指導者が、次の活動・育成記事・参加履歴・振り返り・全国と世界の機会を一つにつなぐ自分専用の育成ホームです。まずは無料のRBA IDから。もっと継続して学びたい方は月額HOMECOURTへ進めます。",open:"MY HOME COURTを今すぐ見る",about:"無料版と月額HOMECOURTの違い",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
   "zh-tw":{label:"RBA HOMECOURT / 會員專區",title:"會員請從MY HOME COURT開始。",body:"活動日程、報名、付款、規則與角色專屬內容，集中在同一個清楚入口。",open:"開啟會員專區",about:"了解RBA HOMECOURT",roles:["球員","家長","教練"]},
   ko:{label:"RBA HOMECOURT / 회원 페이지",title:"회원은 MY HOME COURT에서 시작하세요.",body:"일정, 신청, 결제, 규정과 역할별 콘텐츠를 하나의 명확한 입구에 모았습니다.",open:"회원 페이지 열기",about:"RBA HOMECOURT 안내",roles:["선수","보호자","코치"]},
 } as const;
