@@ -201,5 +201,45 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   </article></SiteFrame>;
 }
 
+export async function PublicCoachJournalHub({locale}:{locale:Locale}){
+  const posts=await getPublicJournalPosts(locale,60);
+  const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching");
+  const prefix=locale==="en"?"":`/${locale}`;
+  return <SiteFrame locale={locale} languagePage="journal">
+    <div className="journal-hub journal-cms">
+      <section className="journal-cms-hero section-pad">
+        <Link href={journalRoot(locale)} className="back-link">← RBA JOURNAL</Link>
+        <p className="section-index">RBA JOURNAL / COACH</p>
+        <h1>{locale==="ja"?"指導を、経験則だけにしない。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
+        <p>{locale==="ja"?"研究・FIBA/WABC・現場経験を分けて読み、練習設計へ落とし、観察し、次の修正までつなぐ指導者用JOURNALです。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
+      </section>
+      <section className="homecourt-product-preview section-pad">
+        <div className="section-head"><div><p className="section-index">COACHING LOOP</p><h2>READ → PLAN → COACH → REVIEW</h2></div><p>{locale==="ja"?"読むことを目的にせず、次の練習が変わるところまで。":"Turn reading into the next practice."}</p></div>
+        <div className="homecourt-preview-grid">
+          <article><BookOpen/><span>01 / READ</span><h3>{locale==="ja"?"根拠を確認する":"Read the evidence"}</h3><p>{locale==="ja"?"EVIDENCE・LIMITATIONS・SOURCESまで確認する。":"Check evidence, limitations and original sources."}</p></article>
+          <article><FileText/><span>02 / PLAN</span><h3>{locale==="ja"?"練習へ落とす":"Plan"}</h3><p>{locale==="ja"?"COACH APPLICATIONから目的・制約・観察項目を決める。":"Turn the idea into purpose, constraints and observations."}</p></article>
+          <article><Users/><span>03 / COACH</span><h3>{locale==="ja"?"選手を観察する":"Coach"}</h3><p>{locale==="ja"?"メニューではなく、選手の認知・判断・行動を見る。":"Observe player perception, decisions and actions."}</p></article>
+          <article><History/><span>04 / REVIEW</span><h3>{locale==="ja"?"次を修正する":"Review"}</h3><p>{locale==="ja"?"何が起きたかを残し、次回の設計を一つ変える。":"Record what happened and refine the next session."}</p></article>
+        </div>
+      </section>
+      <section className="journal-cms-index section-pad">
+        <div className="section-head"><div><p className="section-index">COACH ARTICLES</p><h2>{locale==="ja"?`${coachPosts.length}本の指導者向け記事。`:`${coachPosts.length} COACH ARTICLES`}</h2></div><p>{locale==="ja"?"根拠レベルと実践ツールを確認して、必要なテーマから選べます。":"Choose by coaching problem and evidence level."}</p></div>
+        <div className="journal-cms-grid">{coachPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span>
+          <p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
+          {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
+          <h3>{post.title}</h3>
+          <p>{post.standfirst}</p>
+          <strong>{post.coach_application?.length?(locale==="ja"?"実践ツール付き":"Includes coach tool"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
+        </Link>)}</div>
+      </section>
+      <section className="journal-exchange-cta section-pad">
+        <div><p className="section-index inverse">CONTINUE LEARNING</p><h2>{locale==="ja"?"記事から、継続的な指導者教育へ。":"Continue beyond the article."}</h2><p>{locale==="ja"?"D-HUB、Torsten Loibl Online Clinic、MY HOME COURTをつなぎ、毎週の指導を更新します。":"Connect Journal, D-HUB and coach education."}</p></div>
+        <div><Link className="button button-light" href={`${prefix}/d-hub`}>D-HUB <ArrowRight size={16}/></Link><Link className="button button-dark" href={`${prefix}/my-homecourt/coaches`}>COACH HOME <ArrowRight size={16}/></Link></div>
+      </section>
+    </div>
+  </SiteFrame>;
+}
+
 export const journalRoot=(locale:Locale)=>locale==="en"?"/journal":`/${locale}/journal`;
 export const journalHref=(locale:Locale,slug:string)=>`${journalRoot(locale)}/${slug}`;
