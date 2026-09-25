@@ -273,6 +273,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
       <div><p className="section-index">SCHEDULE / COUNTDOWN / CARE</p><h2>{c.title}</h2><p>{c.lead}</p></div>
       <CalendarDays/>
     </div>
+    {mode==="summary"?<section className="homecourt-today-center"><div><span>TODAY / MY COURT</span><h3>{locale==="ja"?"今日、やることだけ。":"TODAY"}</h3></div><div className="homecourt-today-grid"><article className={openTaskCount===0?"is-done":undefined}><ListChecks/><span>PREP</span><strong>{openTaskCount===0?(locale==="ja"?"未完了なし":"CLEAR"):`${openTaskCount}`}</strong></article><article><CalendarDays/><span>NEXT</span><strong>{prepTargets[0]?.title||c.noUpcoming}</strong></article></div><a href={(locale==="en"?"":`/${locale}`)+"/my-homecourt/app/calendar"}>{locale==="ja"?"予定と準備を開く":"OPEN"}<ChevronRight/></a></section>:null}
     <div className="homecourt-countdowns">
       {upcoming.length?upcoming.slice(0,mode==="summary"?3:6).map(item=><article key={item.id}>
         <span>{item.source} / {item.type.toUpperCase()}</span>
