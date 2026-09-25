@@ -1499,3 +1499,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
 .journal-cms-article .article-hero .back-link{color:#171a1d}
 @media(max-width:900px){.journal-feature,.journal-exchange-cta{grid-template-columns:1fr}.journal-cms-grid{grid-template-columns:1fr 1fr}.journal-feature aside{min-height:140px}}
 @media(max-width:620px){.journal-cms-grid{grid-template-columns:1fr}.journal-cms-grid>a{min-height:0}.journal-cms-hero{min-height:440px}.journal-cms-hero h1{font-size:clamp(48px,15vw,72px)}}
+
+.member-first3{margin:18px 18px 0;padding:22px;background:#111;color:#fff;border:1px solid #111}
+.member-first3-head{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+.member-first3-head span{font-size:10px;font-weight:900;letter-spacing:.14em;color:#c6d05a}
+.member-first3-head h2{margin:7px 0 8px;font-size:clamp(26px,4vw,40px);line-height:1.05;letter-spacing:-.04em}
+.member-first3-head p{margin:0;max-width:760px;color:#c7ced2;line-height:1.7}
+.member-first3-head>strong{min-width:76px;padding:12px;background:#c6d05a;color:#111;text-align:center;font-size:28px}
+.member-first3-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px}
+.member-first3-grid>a{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;min-height:190px;padding:18px;background:#1b1f21;border:1px solid #394044;color:#fff}
+.member-first3-grid>a>svg:first-child{color:#9ca5aa}
+.member-first3-grid>a>span{font-size:10px;font-weight:900;letter-spacing:.12em;color:#c6d05a}
+.member-first3-grid>a>strong{grid-column:1/-1;font-size:19px}
+.member-first3-grid>a>p{grid-column:1/-1;margin:0;color:#bdc5c9;line-height:1.6}
+.member-first3-grid>a>svg:last-child{position:absolute;right:14px;bottom:14px}
+.member-first3-grid>a.is-done{background:#c6d05a;color:#111;border-color:#c6d05a}
+.member-first3-grid>a.is-done>p,.member-first3-grid>a.is-done>span,.member-first3-grid>a.is-done>svg:first-child{color:#111}
+@media(max-width:680px){.member-first3{margin:12px 12px 0;padding:18px}.member-first3-head{grid-template-columns:1fr}.member-first3-head>strong{width:max-content}.member-first3-grid{grid-template-columns:1fr}.member-first3-grid>a{min-height:150px}}
