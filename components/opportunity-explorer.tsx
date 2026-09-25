@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, ArrowUpRight, CalendarDays, CircleDollarSign, MapPin, Search, SlidersHorizontal, Users } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bookmark, CalendarDays, CircleDollarSign, MapPin, Search, SlidersHorizontal, Users } from "lucide-react";
 import { programmes } from "./programme-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { tr } from "./network-data";
+import { createClient } from "@/lib/supabase/client";
 
 type Region="all"|"tohoku"|"kanto"|"kansai"|"kyushu"|"okinawa"|"online";
 type Age="all"|"U8"|"U10"|"U12"|"U15"|"COACH";
@@ -22,6 +23,10 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
   const [region,setRegion]=useState<Region>("all");
   const [age,setAge]=useState<Age>("all");
   const [kind,setKind]=useState<Kind>("all");
+  const db=useMemo(()=>createClient(),[]);
+  const [userId,setUserId]=useState<string|null>(null);
+  const [saved,setSaved]=useState<string[]>([]);
+  const [saving,setSaving]=useState("");
   useEffect(()=>{
     const timer=window.setTimeout(()=>{
       const q=new URLSearchParams(location.search);
@@ -29,15 +34,38 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
       if(r&&["tohoku","kanto","kansai","kyushu","okinawa","online"].includes(r))setRegion(r);
       if(a&&["U8","U10","U12","U15","COACH"].includes(a))setAge(a);
       if(k&&["TRAIN","PLAY","TRAVEL","COACH"].includes(k))setKind(k);
+      void db.auth.getUser().then(async({data})=>{
+        const id=data.user?.id||null;setUserId(id);
+        if(!id)return;
+        const result=await db.from("homecourt_saves").select("item_key").eq("user_id",id).eq("item_type","opportunity");
+        if(!result.error)setSaved((result.data||[]).map(item=>item.item_key));
+        void db.from("analytics_events").insert({user_id:id,event_name:"opportunity_view",item_type:"opportunity_list",item_key:"opportunities",locale});
+      });
     },0);
     return ()=>window.clearTimeout(timer);
-  },[]);
+  },[db,locale]);
   const visible=useMemo(()=>programmes.filter(p=>!p.registrationClosed&&(region==="all"||p.region===region)&&(age==="all"||p.ageGroups.some(group=>group===age))&&(kind==="all"||p.category===kind)),[region,age,kind]);
   const update=(next:{region?:Region;age?:Age;kind?:Kind})=>{
     const r=next.region??region,a=next.age??age,k=next.kind??kind;
     const q=new URLSearchParams(); if(r!=="all")q.set("region",r);if(a!=="all")q.set("age",a);if(k!=="all")q.set("kind",k);
     history.replaceState(null,"",`${location.pathname}${q.size?`?${q}`:""}`);
+    if(userId)void db.from("analytics_events").insert({user_id:userId,event_name:"filter_apply",item_type:"opportunity",item_key:[r,a,k].join(":"),locale});
   };
+  async function toggleSave(p:(typeof programmes)[number]){
+    if(!userId){location.href=`${locale==="en"?"":`/${locale}`}/my-homecourt/login?next=${encodeURIComponent(`${locale==="en"?"":`/${locale}`}/opportunities`)}`;return;}
+    setSaving(p.id);
+    const exists=saved.includes(p.id);
+    if(exists){
+      await db.from("homecourt_saves").delete().eq("user_id",userId).eq("item_type","opportunity").eq("item_key",p.id);
+      setSaved(current=>current.filter(id=>id!==p.id));
+    }else{
+      const result=await db.from("homecourt_saves").insert({user_id:userId,item_type:"opportunity",item_key:p.id,title:tr(p.title,locale),href:p.detailPath?localePath(locale,p.detailPath):p.applicationUrl,metadata:{category:p.category,region:p.region,start_date:p.startDate}});
+      if(!result.error)setSaved(current=>[...current,p.id]);
+    }
+    void db.from("analytics_events").insert({user_id:userId,event_name:exists?"opportunity_unsave":"opportunity_save",item_type:"opportunity",item_key:p.id,locale});
+    setSaving("");
+  }
+
   return <SiteFrame locale={locale} languagePage="opportunities"><div className="opportunity-page">
     <section className="opportunity-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index inverse"><Search size={15}/> RBA OPPORTUNITIES</p><h1>{c.title}</h1><p>{c.lead}</p></section>
     <section className="opportunity-controls section-pad" aria-label={c.filter}><div className="opportunity-filter-head"><SlidersHorizontal/><div><p className="section-index">FILTER</p><h2>{c.filter}</h2></div><strong>{visible.length}{c.results}</strong></div><div className="opportunity-filters">
@@ -45,7 +73,7 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
       <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U15","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
       <label>{c.kind}<select value={kind} onChange={e=>{const v=e.target.value as Kind;setKind(v);update({kind:v})}}><option value="all">{c.all}</option>{["TRAIN","PLAY","TRAVEL","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
     </div></section>
-    <section className="opportunity-results section-pad" aria-live="polite">{visible.length?<div className="opportunity-card-grid">{visible.map(p=>{const detail=p.detailPath?localePath(locale,p.detailPath):null;return <article key={p.id}><div className="opportunity-card-top"><span>{p.category}</span><strong>{c.open}</strong></div><h2>{tr(p.title,locale)}</h2><dl><div><dt><CalendarDays/>{c.date}</dt><dd>{tr(p.date,locale)}</dd></div><div><dt><MapPin/>{c.place}</dt><dd>{tr(p.place,locale)}</dd></div><div><dt><Users/>{c.target}</dt><dd>{tr(p.audience,locale)}</dd></div><div><dt><CircleDollarSign/>{c.fee}</dt><dd>{tr(p.price,locale)}</dd></div></dl><div className="opportunity-card-actions">{detail?<a href={detail}>{c.detail}<ArrowRight/></a>:null}<a href={p.applicationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight/></a></div></article>})}</div>:<div className="opportunity-empty"><Search/><p>{c.empty}</p></div>}</section>
+    <section className="opportunity-results section-pad" aria-live="polite">{visible.length?<div className="opportunity-card-grid">{visible.map(p=>{const detail=p.detailPath?localePath(locale,p.detailPath):null;return <article key={p.id}><div className="opportunity-card-top"><span>{p.category}</span><strong>{c.open}</strong></div><h2>{tr(p.title,locale)}</h2><dl><div><dt><CalendarDays/>{c.date}</dt><dd>{tr(p.date,locale)}</dd></div><div><dt><MapPin/>{c.place}</dt><dd>{tr(p.place,locale)}</dd></div><div><dt><Users/>{c.target}</dt><dd>{tr(p.audience,locale)}</dd></div><div><dt><CircleDollarSign/>{c.fee}</dt><dd>{tr(p.price,locale)}</dd></div></dl><div className="opportunity-card-actions"><button className="opportunity-save" type="button" aria-pressed={saved.includes(p.id)} disabled={saving===p.id} onClick={()=>void toggleSave(p)}><Bookmark fill={saved.includes(p.id)?"currentColor":"none"}/>{saved.includes(p.id)?({ja:"保存済み",en:"Saved","zh-tw":"已收藏",ko:"저장됨"})[locale]:({ja:"Save",en:"Save","zh-tw":"收藏",ko:"저장"})[locale]}</button>{detail?<a href={detail}>{c.detail}<ArrowRight/></a>:null}<a href={p.applicationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight/></a></div></article>})}</div>:<div className="opportunity-empty"><Search/><p>{c.empty}</p></div>}</section>
     <section className="opportunity-member-bridge section-pad"><div><p className="section-index inverse">RBA ID / MY HOME COURT</p><h2>{c.join}</h2><p>{c.joinBody}</p></div><div><a className="button button-light" href={localePath(locale,"my-homecourt")}>MY HOME COURT<ArrowRight/></a><a className="text-link light-link" href={localePath(locale,"payments")}>{c.payment}<ArrowRight/></a></div></section>
   </div></SiteFrame>;
 }
