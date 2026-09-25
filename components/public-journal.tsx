@@ -67,6 +67,19 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
         </div>
       </section>
+
+      {locale==="ja"?<section className="journal-clinic-bridge section-pad">
+        <div className="journal-clinic-copy">
+          <p className="section-index inverse">NEXT LIVE LEARNING / 11.25</p>
+          <h2>シュートフォームだけ教えて、<br/>シューターは育つのか。</h2>
+          <p>11月25日、トーステン・ロイブル氏と90分。技術だけでなく、スペーシング、判断、アドバンテージ、オフボールまで含めて「試合で質の高いシュートを生み出す育成」を学びます。</p>
+          <div className="journal-clinic-facts"><span>ZOOM</span><span>日本語逐次通訳</span><span>LIVE ¥3,300</span><span>30日視聴 ¥4,400</span></div>
+        </div>
+        <div className="journal-clinic-actions">
+          <strong>2026.11.25<br/><em>20:00–21:30</em></strong>
+          <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">講習内容を見る <ArrowRight size={17}/></Link>
+        </div>
+      </section>:null}
       {featured?<section className="journal-feature section-pad">
         <div><p className="section-index">{c.latest} / {categoryLabels[locale][featured.category as keyof typeof categoryLabels.en]||featured.category}</p><h2>{featured.title}</h2><p>{featured.standfirst}</p><Link className="button button-dark" href={journalHref(locale,featured.slug)}>{c.read}<ArrowRight size={17}/></Link></div>
         <aside><span>{featured.reading}</span><strong>{featured.audience.toUpperCase()}</strong><small>{featured.published_at?new Date(featured.published_at).toLocaleDateString(locale):""}</small></aside>
@@ -132,6 +145,20 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article">
     <header className="article-hero section-pad"><Link href={journalRoot(locale)} className="back-link">← {c.back}</Link><p className="section-index">{c.kicker} / {categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h1>{post.title}</h1><div><p>{post.standfirst}</p><span>{post.reading} · RBA</span></div></header>
     <div className="article-body section-pad"><aside><p>{post.aside_title||c.kicker}</p><span>{post.aside_text||post.standfirst}</span></aside><div>{post.sections.map((section,index)=><section key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.heading}</h2>{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets?.length?<ul>{section.bullets.map(b=><li key={b}>{b}</li>)}</ul>:null}</section>)}</div></div>
+
+    {locale==="ja"?<section className="article-learning-bridge section-pad">
+      <div>
+        <p className="section-index inverse">ARTICLE → LIVE LEARNING</p>
+        <h2>読むだけで終わらせず、<br/>次の練習へ。</h2>
+        <p>11月25日のTorsten Loibl Online Clinicでは、「現代バスケットボールにおけるシューターの育成と活用」をテーマに、技術・練習設計・ゲーム戦略を90分でつなぎます。</p>
+      </div>
+      <div className="article-learning-panel">
+        <span>11.25 / 20:00 JST / ZOOM</span>
+        <strong>LIVE ¥3,300</strong>
+        <small>日本語逐次通訳付き</small>
+        <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">オンライン講習を見る <ArrowRight size={17}/></Link>
+      </div>
+    </section>:null}
     {related.length?<section className="journal-cms-index section-pad">
       <div className="section-head"><div><p className="section-index">{locale==="ja"?"関連記事":"RELATED"}</p><h2>{locale==="ja"?"次に読むなら、この3本。":"Keep reading"}</h2></div><p>{locale==="ja"?"現在公開されている記事だけを表示しています。":"Published articles only."}</p></div>
       <div className="journal-cms-grid">{related.map((item,index)=><Link href={journalHref(locale,item.slug)} key={item.slug}>
