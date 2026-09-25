@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Check, Compass, CreditCard, FileText, HeartHandshake, History, House, LifeBuoy, LockKeyhole, MessageCircle, Sparkles, Users } from "lucide-react";
 import { COACH_COMMUNITY_URL, HomecourtRole, PARENT_COMMUNITY_URL, homecourtRoles } from "./homecourt-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
+import { programmes } from "./programme-data";
 
 const copy={
   en:{title:"Your next court starts here.",lead:"From everyday practice to courts you have not seen yet. Find clinics, learning, community and exchange built for players, parents and coaches.",free:"Discover what comes next",freeBody:"Find clinics, development ideas and opportunities that fit where you are now.",paid:"Expand your court",paidBody:"Meet new teammates, visit new places and experience different ways to play and learn.",community:"Community",communityBody:"Useful conversations for families and coaches, connected to real programmes—not an endless social feed.",impact:"RBA IMPACT",impactBody:"See how programme income and partner support are reinvested into access, education and safer development environments.",choose:"Choose your route",tools:"Member essentials",register:"Start with RBA ID",upgrade:"Explore MY HOME COURT",impactCta:"See impact & reinvestment"},
@@ -17,6 +18,8 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
     ? (locale==="en"?"/my-homecourt/login":`/${locale}/my-homecourt/login`)
     : "https://lin.ee/5l1YG8N";
   const ja=locale==="ja";
+  const today=new Date().toISOString().slice(0,10);
+  const nextProgrammes=programmes.filter(p=>!p.registrationClosed&&p.startDate>=today).slice(0,3);
   const selected=role?homecourtRoles[role]:null;
   const roleCommunity=role==="coaches"?COACH_COMMUNITY_URL:PARENT_COMMUNITY_URL;
   return <SiteFrame locale={locale} languagePage="my-homecourt">
@@ -136,6 +139,16 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
         <div><span>04</span><strong>ACT</strong><p>今できる一つを選んで動く。</p></div>
       </div>
       <p className="homecourt-editorial-note">限定情報を売る場所ではなく、育成年代の家庭が判断しやすくなるための継続的な道具として育てていきます。</p>
+    </section>:null}
+    {!role&&ja?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">THIS WEEK / HOME COURT</p><h2>毎週、ここに戻る理由を。</h2></div><p>情報を増やすのではなく、今週やることを一つ決めるための入口です。</p></div>
+      <div className="homecourt-preview-grid">
+        <article><BookOpen/><span>READ</span><h3>今週、一つ読む</h3><p>育成・保護者・指導者・海外交流から、自分に必要なテーマを選ぶ。</p><a className="text-link" href="/ja/journal">RBA JOURNALへ <ArrowRight size={16}/></a></article>
+        <article><Compass/><span>FIND</span><h3>次の機会を一つ見る</h3><p>参加するかどうかは後でいい。まず、自分の地域の外にも選択肢があることを知る。</p><a className="text-link" href="/ja/opportunities">育成機会を探す <ArrowRight size={16}/></a></article>
+        <article><History/><span>REFLECT</span><h3>今週の経験を一つ残す</h3><p>できたこと、迷ったこと、次に試したいこと。成長を結果だけで終わらせない。</p><a className="text-link" href="/ja/my-homecourt/participants">参加・成長記録へ <ArrowRight size={16}/></a></article>
+        <article><Users/><span>CONNECT</span><h3>所属の外と一つつながる</h3><p>選手・保護者・指導者、それぞれの立場から、新しい考え方や人に触れる。</p><a className="text-link" href="/ja/community">RBAコミュニティへ <ArrowRight size={16}/></a></article>
+      </div>
+      {nextProgrammes.length?<div className="homecourt-private-note"><CalendarDays size={24}/><div><strong>次に参加できるRBA</strong><p>{nextProgrammes.map(p=>`${p.date[1]}｜${p.title[1]}｜${p.place[1]}`).join("　／　")}</p></div></div>:null}
     </section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">START FROM YOUR QUESTION</p><h2>いまの悩みから、入口を選ぶ。</h2></div><p>「何を見ればいいか分からない」で止まらないように、目的から次のページへ進めます。</p></div>
