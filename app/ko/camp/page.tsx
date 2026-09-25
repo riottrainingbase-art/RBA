@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DefinitiveStaticPage } from "@/components/definitive-static-page";
+import { DevelopmentCampPage } from "@/components/development-camp-page";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
@@ -18,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <DefinitiveStaticPage page="camp" locale="ko" />;
+  return <DevelopmentCampPage locale="ko" />;
 }
