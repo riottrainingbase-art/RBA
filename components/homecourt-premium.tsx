@@ -68,6 +68,7 @@ export function HomecourtPremium({locale,active,role,region,historyCount,savedCo
     <div className="section-head"><div><p className="section-index">{c.tools}</p><h2>{c.toolsTitle}</h2></div></div>
     <div className="homecourt-preview-grid">
       {features.map(([Icon,title,body],index)=><article key={title}><Icon/><span>{String(index+1).padStart(2,"0")} / PLUS</span><h3>{title}</h3><p>{body}</p></article>)}
+      <article><Target/><span>07 / PLUS</span><h3>DEVELOPMENT REPORT</h3><p>{locale==="ja"?"週ごとのテーマ、月ごとの振り返り、参加履歴を1枚にまとめ、印刷・PDF保存できます。":"Combine weekly, monthly and participation records in one printable report."}</p><a className="text-link" href={`${prefix}/my-homecourt/app/report`}>{locale==="ja"?"レポートを開く":"Open report"}<ArrowRight size={16}/></a></article>
     </div>
   </section>;
 }
