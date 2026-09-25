@@ -1,17 +1,42 @@
 import type { MetadataRoute } from "next";
+import { getPublicJournalPosts, type ContentLocale } from "@/lib/public-content";
 
 const base="https://riotbasketballacademy.com";
 const locales=["","/ja","/zh-tw","/ko"] as const;
-const core=["","/players","/families","/coaches","/home-court","/my-homecourt","/my-homecourt/players","/my-homecourt/families","/my-homecourt/coaches","/community","/impact","/d-hub","/united","/connect","/organizer","/about","/approach","/schedule","/payments","/clinic-request","/events/torsten-loibl-online-clinic","/asia","/partners","/contact","/social","/policies","/camp","/faq","/international","/network","/opportunities","/platform","/regional-host","/sponsor","/team","/verified"] as const;
+const core=["","/players","/families","/coaches","/home-court","/my-homecourt","/my-homecourt/players","/my-homecourt/families","/my-homecourt/coaches","/community","/impact","/d-hub","/united","/connect","/organizer","/about","/approach","/schedule","/payments","/clinic-request","/events/torsten-loibl-online-clinic","/asia","/partners","/contact","/social","/policies","/camp","/faq","/international","/network","/opportunities","/platform","/regional-host","/sponsor","/team","/verified","/journal"] as const;
 const legacy=["/authentics","/field-notes","/work-with-rba","/radio","/links","/sponsors"] as const;
-const journal=["/journal","/journal/kobe-development-camp-2026","/journal/building-a-real-asia-basketball-relationship","/journal/plan-a-japan-basketball-exchange","/journal/what-rba-coordinates-in-japan"] as const;
+const localeMap:{prefix:string;locale:ContentLocale}[]=[
+  {prefix:"",locale:"en"},
+  {prefix:"/ja",locale:"ja"},
+  {prefix:"/zh-tw",locale:"zh-tw"},
+  {prefix:"/ko",locale:"ko"},
+];
 
-export default function sitemap():MetadataRoute.Sitemap{
+export default async function sitemap():Promise<MetadataRoute.Sitemap>{
   const localized=locales.flatMap(locale=>core.map(path=>locale+path));
-  return [...localized,...legacy,...journal].map(path=>({
-    url:base+(path||"/"),
-    lastModified:new Date("2026-09-24T00:00:00Z"),
-    changeFrequency:path.includes("schedule")||path.includes("opportunities")||path.includes("torsten")?"weekly":"monthly",
-    priority:path===""?1:path.includes("my-homecourt")||path.includes("torsten")?0.95:path.includes("schedule")||path.includes("opportunities")||path.includes("asia")?0.9:0.8,
+  const journalPosts=(await Promise.all(localeMap.map(async item=>{
+    try{
+      const posts=await getPublicJournalPosts(item.locale,100);
+      return posts.map(post=>({
+        path:`${item.prefix}/journal/${post.slug}`,
+        publishedAt:post.published_at,
+      }));
+    }catch{
+      return [];
+    }
+  }))).flat();
+
+  const entries=[
+    ...localized.map(path=>({path,publishedAt:null as string|null})),
+    ...legacy.map(path=>({path,publishedAt:null as string|null})),
+    ...journalPosts,
+  ];
+
+  const seen=new Set<string>();
+  return entries.filter(entry=>{if(seen.has(entry.path))return false;seen.add(entry.path);return true;}).map(entry=>({
+    url:base+(entry.path||"/"),
+    lastModified:entry.publishedAt?new Date(entry.publishedAt):new Date("2026-09-25T00:00:00Z"),
+    changeFrequency:entry.path.includes("/journal/")||entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("torsten")?"weekly":"monthly",
+    priority:entry.path===""?1:entry.path.includes("my-homecourt")||entry.path.includes("torsten")?0.95:entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("journal")||entry.path.includes("asia")?0.9:0.8,
   }));
 }
