@@ -59,7 +59,7 @@ const copy={
 
 const homecourtCopy={
   en:{label:"RBA HOMECOURT / FREE MEMBER ACCESS",title:"Start free from MY HOME COURT.",body:"Choose PLAYER, PARENT or COACH. Access programmes, communities and role-based content, then upgrade only when paid membership fits.",open:"Open MY HOME COURT",about:"Free & paid membership",roles:["PLAYER","PARENT","COACH"]},
-  ja:{label:"RBA / MY HOME COURT",title:"バスケの成長を、所属チームだけに任せない。",body:"MY HOME COURTは、選手・保護者・指導者が、次の活動・育成記事・参加履歴・振り返り・全国と世界の機会を一つにつなぐ自分専用の育成ホームです。まずは無料のRBA IDから。もっと継続して学びたい方は月額HOMECOURTへ進めます。",open:"MY HOME COURTを今すぐ見る",about:"無料版と月額HOMECOURTの違い",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
+  ja:{label:"RBA / MY HOME COURT",title:"もう一つ、自分の育成環境を持つ。",body:"チームに所属していても、地域の外を見ていい。違う指導者から学んでいい。過去の経験を残し、次の挑戦を自分で選んでいい。MY HOME COURTは、活動・育成記事・Basketball Passport・全国と世界の機会を一つにつなぐ、自分専用の育成ホームです。RBA IDは無料。継続的に学び、試し、振り返りたい方は月額3,300円のHOMECOURTへ。",open:"無料でRBA IDをつくる",about:"月額3,300円でできること",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
   "zh-tw":{label:"RBA HOMECOURT / 會員專區",title:"會員請從MY HOME COURT開始。",body:"活動日程、報名、付款、規則與角色專屬內容，集中在同一個清楚入口。",open:"開啟會員專區",about:"了解RBA HOMECOURT",roles:["球員","家長","教練"]},
   ko:{label:"RBA HOMECOURT / 회원 페이지",title:"회원은 MY HOME COURT에서 시작하세요.",body:"일정, 신청, 결제, 규정과 역할별 콘텐츠를 하나의 명확한 입구에 모았습니다.",open:"회원 페이지 열기",about:"RBA HOMECOURT 안내",roles:["선수","보호자","코치"]},
 } as const;
@@ -75,7 +75,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     <PaidProgrammes locale={locale}/>
 
-    <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
+    <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={locale==="ja"?"/ja/my-homecourt/login":localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
 
     {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>RBAのクリニック、キャンプ、交流は「所属を変えるため」だけの場所ではありません。各プログラムの参加条件を満たしていれば、普段とは違う指導者、仲間、地域、考え方に触れ、自分のバスケットボールを広げる機会として参加できます。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
     <AudienceJourneys locale={locale}/>
