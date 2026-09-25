@@ -58,6 +58,12 @@ export function PlatformOperatingSystem({locale}:{locale:Locale}){
  ];
  return <SiteFrame locale={locale} languagePage="platform"><div className="platform-os">
   <section className="platform-os-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index inverse">{c.kicker}</p><h1>{c.title}</h1><p>{c.lead}</p><p>{c.body}</p><div><a className="button button-light" href={localePath(locale,"my-homecourt")}>{c.cta}<ArrowRight/></a><a className="text-link light-link" href={localePath(locale,"opportunities")}>{c.find}<ArrowRight/></a></div></section>
+  {locale==="ja"?<section className="platform-os-trust section-pad"><p className="section-index">NOT ANOTHER SOCIAL NETWORK</p><h2>SNSの代わりではなく、SNSの先にある。</h2><div>
+    <article><BookOpen/><strong>SNS</strong><p>知る、見る、共有する。新しい情報と出会う入口。</p></article>
+    <article><IdCard/><strong>RBA ID</strong><p>選手・保護者・指導者それぞれの立場と利用履歴をつなぐ共通ID。</p></article>
+    <article><CalendarDays/><strong>MY HOME COURT</strong><p>参加履歴、Save、Passport、学び、予定、次の機会が残る自分専用のホーム。</p></article>
+    <article><ArrowRight/><strong>NEXT ACTION</strong><p>投稿への反応で終わらず、実際の参加・学習・振り返りへ進む。</p></article>
+  </div></section>:null}
   <section className="platform-os-core section-pad"><p className="section-index">{c.modules}</p><h2>{c.modulesTitle}</h2><div className="platform-core-grid">{modules.map(([name,Icon,desc,[path]])=><a key={name} href={localePath(locale,path as never)}><Icon/><span>{name}</span><strong>{desc}</strong><ArrowRight/></a>)}</div></section>
   <section className="platform-os-roles section-pad"><p className="section-index inverse">{c.roles}</p><h2>{c.rolesTitle}</h2><div>{roleCopy[locale].map(([role,desc])=><article key={role}><strong>{role}</strong><span>{desc}</span></article>)}</div></section>
   <section className="platform-os-trust section-pad"><p className="section-index">{c.trust}</p><h2>{c.trustTitle}</h2><div>{trust.map(([name,body])=><article key={name}><ShieldCheck/><strong>{name}</strong><p>{body}</p></article>)}</div></section>
