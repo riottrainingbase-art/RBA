@@ -23,6 +23,23 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
   return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale} languagePage="events/torsten-loibl-online-clinic">
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"Event",name:c.title.join(" "),description:c.intro,startDate:"2026-11-25T20:00:00+09:00",endDate:"2026-11-25T21:30:00+09:00",eventAttendanceMode:"https://schema.org/OnlineEventAttendanceMode",eventStatus:"https://schema.org/EventScheduled",location:{"@type":"VirtualLocation",url:torstenRegistrationUrl},organizer:{"@type":"SportsOrganization",name:"Riot Basketball Academy",url:"https://riotbasketballacademy.com"},performer:{"@type":"Person",name:"Torsten Loibl"},offers:[{"@type":"Offer",name:"Live",price:"3300",priceCurrency:"JPY",url:torstenRegistrationUrl,availability:"https://schema.org/InStock"},{"@type":"Offer",name:"30-day on-demand",price:"4400",priceCurrency:"JPY",url:torstenRegistrationUrl,availability:"https://schema.org/InStock"}]})}}/>
     <section className="inner-hero torsten-page-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{ui(locale,"clinic")}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p><div className="torsten-hero-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href="#audience">{c.audienceLabel}<ArrowDown size={16}/></a></div></section>
+
+    {locale==="ja"?<section className="torsten-conversion section-pad">
+      <div className="torsten-conversion-head">
+        <p className="section-index">WHY THIS CLINIC</p>
+        <h2>シュート練習を増やす前に、<br/>「良いシュートが生まれる条件」を学ぶ。</h2>
+        <p>フォームだけ、反復だけ、セットプレーだけでは、試合で再現できるシューターは育ちません。技術・判断・スペーシング・アドバンテージを一つの育成として捉え直します。</p>
+      </div>
+      <div className="torsten-problem-grid">
+        <article><span>COACH</span><h3>練習では入る。<br/>試合では打てない。</h3><p>シュート技術を、ゲームの判断と練習設計につなげたい指導者へ。</p></article>
+        <article><span>PLAYER / PARENT</span><h3>何を練習すれば、<br/>試合につながるのか。</h3><p>「本数」だけではない成長の見方を、選手・保護者にも分かる形で整理します。</p></article>
+        <article><span>90 MINUTES</span><h3>技術 → 練習 → 試合を、<br/>一本につなぐ。</h3><p>その場で聞いて終わりではなく、翌日の練習に持ち帰れる考え方を扱います。</p></article>
+      </div>
+      <div className="torsten-conversion-cta">
+        <div><strong>11.25 WED / 20:00–21:30</strong><span>Zoom・日本語逐次通訳付き</span></div>
+        <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">ライブ参加 ¥3,300で申し込む<ArrowUpRight size={17}/></a>
+      </div>
+    </section>:null}
     <section className="event-audiences section-pad" id="audience"><div className="section-head"><div><p className="section-index">{c.audienceLabel}</p><h2>{c.audienceTitle}</h2></div><p>{c.audienceNote}</p></div><div className="audience-grid">{c.audiences.map(([label,body],index)=><article key={label}>{index===0?<GraduationCap size={32}/>:<Users size={32}/>}<span>0{index+1}</span><h3>{label}</h3><p>{body}</p><a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a></article>)}</div></section>
     <section className="torsten-credentials section-pad"><div><p className="section-index inverse">{c.careerLabel}</p><h2>{c.careerTitle}</h2></div><div>{c.career.map(([label,detail])=><article key={label}><span>{label}</span><strong>{detail}</strong></article>)}</div></section>
     <section className="event-record section-pad"><aside><p className="section-index">LIVE / ZOOM</p><strong>{({en:"25 NOV 2026",ja:"2026年11月25日","zh-tw":"2026年11月25日",ko:"2026년 11월 25일"})[locale]}</strong><span>{ui(locale,"time")}<br/>{ui(locale,"interpretation")}</span></aside><div><p className="eyebrow">{ui(locale,"theme")}</p><h2>{c.shift[0]}<br/>{c.shift[1]}</h2><p>{c.body}</p><p>{c.price}</p><p>{ui(locale,"external")}</p><div className="closing-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href={announcementUrl} target="_blank" rel="noreferrer">{c.article}<BookOpen size={17}/></a></div></div></section>
@@ -32,6 +49,11 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
     <section className="event-member-bridge section-pad"><div className="event-member-number" aria-hidden="true"><span>RBA</span><strong>NEXT</strong><small>OPPORTUNITY</small></div><div><p className="section-index">{c.memberLabel}</p><h2>{c.memberTitle}</h2><p>{c.memberBody}</p><div className="event-member-roles">{c.memberRoles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><p className="event-member-note">{c.memberNote}</p><div className="closing-actions"><a className="button button-member" href={memberRegistrationUrl}><Sparkles size={17}/>{c.memberJoin}<ArrowRight size={17}/></a><a className="button button-dark" href={localePath(locale,"my-homecourt")}><House size={17}/>{c.memberOpen}<ArrowRight size={17}/></a></div></div></section>
     <CoachEducationLoop locale={locale}/>
     <section className="event-final section-pad"><p className="eyebrow">TORSTEN LOIBL ONLINE CLINIC VOL.2</p><h2>{c.finalTitle}</h2><p>{c.finalBody}</p><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a></section>
+
+    {locale==="ja"?<div className="torsten-mobile-sticky" role="region" aria-label="オンライン講習申込">
+      <div><strong>11/25 20:00</strong><span>Torsten Online Clinic</span></div>
+      <a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">申込 ¥3,300 <ArrowUpRight size={15}/></a>
+    </div>:null}
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale,"schedule")}>{c.back}<ArrowRight size={24}/></a></section>
   </SiteFrame></div>;
 }
