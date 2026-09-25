@@ -169,7 +169,21 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   const related=allPosts
     .filter(candidate=>candidate.slug!==slug && (candidate.category===post.category || candidate.audience===post.audience))
     .slice(0,3);
-  return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article">
+  const articleUrl="https://riotbasketballacademy.com"+journalHref(locale,slug);
+  const articleLd={
+    "@context":"https://schema.org",
+    "@type":"Article",
+    headline:post.title,
+    description:post.standfirst,
+    inLanguage:locale==="zh-tw"?"zh-Hant-TW":locale,
+    datePublished:post.published_at||undefined,
+    dateModified:post.reviewed_at||post.updated_at||post.published_at||undefined,
+    mainEntityOfPage:articleUrl,
+    author:{"@type":"Organization",name:"Riot Basketball Academy",url:"https://riotbasketballacademy.com"},
+    publisher:{"@type":"Organization",name:"Riot Basketball Academy",url:"https://riotbasketballacademy.com"},
+    citation:(post.source_references||[]).map(ref=>ref.url)
+  };
+  return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(articleLd)}}/>
     <header className="article-hero section-pad"><Link href={journalRoot(locale)} className="back-link">← {c.back}</Link><p className="section-index">{c.kicker} / {categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h1>{post.title}</h1><div><p>{post.standfirst}</p><span>{post.reading} · RBA</span></div></header>
     {post.evidence_summary||post.rba_interpretation||post.limitations?<section className="journal-evidence section-pad">
       <div className="journal-evidence-head"><p className="section-index">EVIDENCE CHECK</p><h2>{locale==="ja"?"根拠と、RBAの解釈を分けて読む。":locale==="zh-tw"?"把證據與RBA的解讀分開閱讀。":locale==="ko"?"근거와 RBA의 해석을 구분해서 읽습니다.":"Separate evidence from RBA interpretation."}</h2>{post.evidence_level?<span>{post.evidence_level}</span>:null}{post.reviewed_at?<small>{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Last reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</small>:null}</div>
