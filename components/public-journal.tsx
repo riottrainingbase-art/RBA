@@ -136,6 +136,24 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
         <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
       </section>:null}
+      {[
+        {id:"coach-game",label:"GAME COACHING",slugs:["winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
+        {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
+        {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["who-is-playing","shouting-is-not-coaching"]},
+        {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]}
+      ].map(group=>{
+        const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;
+        if(!grouped.length)return null;
+        return <section className="journal-cms-index section-pad" id={group.id} key={group.id}>
+          <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{locale==="ja"?group.label:"COACH JOURNAL"}</h2></div><p>{grouped.length} ARTICLES</p></div>
+          <div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+            <span>{String(index+1).padStart(2,"0")}</span>
+            {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
+            <h3>{post.title}</h3><p>{post.standfirst}</p>
+            <strong>{post.coach_application?.length?(locale==="ja"?"COACH APPLICATION付き":"Includes coach application"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
+          </Link>)}</div>
+        </section>
+      })}
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">{c.exchange}</p><h2>{c.exchangeTitle}</h2><p>{c.exchangeBody}</p></div>
         <div><a className="button button-light" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17}/>{c.ask}</a><a className="button button-dark" href={localePath(locale,"international")}>International <ArrowUpRight size={16}/></a></div>
@@ -203,7 +221,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
 
 export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const posts=await getPublicJournalPosts(locale,60);
-  const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching");
+  const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching"||post.coach_application?.length);
   const prefix=locale==="en"?"":`/${locale}`;
   return <SiteFrame locale={locale} languagePage="journal">
     <div className="journal-hub journal-cms">
@@ -220,6 +238,15 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
           <article><FileText/><span>02 / PLAN</span><h3>{locale==="ja"?"練習に落とし込む":"Plan"}</h3><p>{locale==="ja"?"COACH APPLICATIONから目的・制約・観察項目を決める。":"Turn the idea into purpose, constraints and observations."}</p></article>
           <article><Users/><span>03 / COACH</span><h3>{locale==="ja"?"選手を観察する":"Coach"}</h3><p>{locale==="ja"?"メニューの消化ではなく、選手が何を見て、どう判断し、どう行動したかを観察する。":"Observe player perception, decisions and actions."}</p></article>
           <article><HistoryIcon/><span>04 / REVIEW</span><h3>{locale==="ja"?"次を修正する":"Review"}</h3><p>{locale==="ja"?"何が起きたかを振り返り、次回の練習設計を一つ改善する。":"Record what happened and refine the next session."}</p></article>
+        </div>
+      </section>
+      <section className="homecourt-role-section section-pad">
+        <div className="section-head"><div><p className="section-index">COACHING THEMES</p><h2>{locale==="ja"?"課題から、読む。":"Browse by coaching problem."}</h2></div><p>{locale==="ja"?"練習メニューではなく、現場で起きている問題から必要な記事へ進めます。":"Start from the problem you are trying to solve."}</p></div>
+        <div className="homecourt-role-grid">
+          <article><span>GAME COACHING</span><h3>{locale==="ja"?"試合で何を学ばせるか":"Game coaching"}</h3><p>{locale==="ja"?"勝利と育成、出場機会、大差時の判断、B戦の設計。":"Winning, playing time, blowouts and game experience."}</p><a href="#coach-game">{locale==="ja"?"試合運営の記事を見る":"View game coaching"} <ArrowRight size={15}/></a></article>
+          <article><span>PRACTICE DESIGN</span><h3>{locale==="ja"?"練習をどう設計するか":"Practice design"}</h3><p>{locale==="ja"?"3x3、少人数ゲーム、スクリーン、マンツーマン。制約と判断をどう作るか。":"Small-sided games, screens, man-to-man and constraints."}</p><a href="#coach-practice">{locale==="ja"?"練習設計の記事を見る":"View practice design"} <ArrowRight size={15}/></a></article>
+          <article><span>PLAYER DEVELOPMENT</span><h3>{locale==="ja"?"選手とどう関わるか":"Player development"}</h3><p>{locale==="ja"?"ベンチ指示、声かけ、失敗、競争。選手自身が考える環境をつくる。":"Feedback, autonomy, mistakes and player ownership."}</p><a href="#coach-player">{locale==="ja"?"選手との関わりを見る":"View player development"} <ArrowRight size={15}/></a></article>
+          <article><span>S&C / SAFETY</span><h3>{locale==="ja"?"身体と安全をどう守るか":"S&C and safety"}</h3><p>{locale==="ja"?"女子選手の身体づくり、ACL予防、コンディショニングの目的。":"Physical preparation, ACL prevention and conditioning."}</p><a href="#coach-physical">{locale==="ja"?"S&Cの記事を見る":"View S&C"} <ArrowRight size={15}/></a></article>
         </div>
       </section>
       <section className="journal-cms-index section-pad">
