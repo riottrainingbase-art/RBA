@@ -322,7 +322,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
         <div className="homecourt-care-heading"><div><p className="section-index">{c.prep}</p><h3>{c.prepTitle}</h3><p>{c.prepLead}</p></div><ListChecks/></div>
         {prepTargets.length?<div className="homecourt-auto-plan">
           <div><span>AUTO / D-PLAN</span><strong>{c.autoPlan}</strong><p>{c.autoPlanLead}</p></div>
-          <select id="homecourt-auto-target" defaultValue={prepTargets[0]?.teamEventId?`team:${prepTargets[0].teamEventId}`:`my:${prepTargets[0]?.scheduleItemId}`}>{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select>
+          <select id="homecourt-auto-target" defaultValue={prepTargets[0]?.teamEventId?`team:${prepTargets[0].teamEventId}`:prepTargets[0]?.publicEventId?`rba:${prepTargets[0].publicEventId}`:`my:${prepTargets[0]?.scheduleItemId}`}>{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select>
           <button type="button" disabled={busy} onClick={()=>{const el=document.getElementById("homecourt-auto-target") as HTMLSelectElement|null;if(el)void generateAutoPlan(el.value);}}>{busy?<LoaderCircle className="spin"/>:<TimerReset/>}{c.autoPlanButton}</button>
         </div>:null}
         <div className="homecourt-prep-layout">
