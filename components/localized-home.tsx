@@ -96,6 +96,19 @@ export function LocalizedHome({locale}:{locale:Locale}){
     <GlobalMedia locale={locale}/>
     <NetworkMaps locale={locale}/>
     <GrowthSections locale={locale}/>
+    {locale==="ja"?<section className="homecourt-product-preview section-pad">
+      <div className="section-head">
+        <div><p className="section-index">WORK WITH RBA</p><h2>RBAと一緒に、実際の育成機会をつくる。</h2></div>
+        <p>情報を売って終わるのではなく、クリニック、キャンプ、地域開催、海外交流、企業連携など、実際に人が動く活動を一緒につくります。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article><span>01</span><h3>地域で開催する</h3><p>チームや地域にRBAを呼び、年代と育成課題に合わせたプログラムを実施します。</p><a className="text-link" href="/ja/clinic-request">開催相談へ<ArrowRight size={16}/></a></article>
+        <article><span>02</span><h3>継続拠点をつくる</h3><p>地域の指導者、会場、チームと連携し、一度きりではない活動の形をつくります。</p><a className="text-link" href="/ja/regional-host">REGIONAL HOSTを見る<ArrowRight size={16}/></a></article>
+        <article><span>03</span><h3>海外とつなぐ</h3><p>交流試合、キャンプ、指導者交流などを、目的と年代に合わせて組み立てます。</p><a className="text-link" href="/ja/international">海外連携を見る<ArrowRight size={16}/></a></article>
+        <article><span>04</span><h3>企業として支える</h3><p>協賛を地域開催、参加機会、安全な活動環境、国内外の交流へ具体的につなげます。</p><a className="text-link" href="/ja/partners">協賛・連携を見る<ArrowRight size={16}/></a></article>
+      </div>
+      <div className="homecourt-launch-actions"><a className="button button-dark" href="/ja/work-with-rba">RBAとの活動のつくり方を見る<ArrowRight size={17}/></a></div>
+    </section>:null}
     <section className="closing-cta section-pad"><p className="eyebrow">{c.contactLabel}</p><h2>{c.contactTitle[0]}<br/>{c.contactTitle[1]}</h2><p>{c.contactCopy}</p><div className="closing-actions"><a className="button button-orange" href={localePath(locale,"contact")}>{c.contact}<ArrowRight size={17}/></a><a className="button button-dark" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17}/>{c.whatsapp}</a></div></section>
   </SiteFrame></div>;
 }
