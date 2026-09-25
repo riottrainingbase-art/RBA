@@ -3,6 +3,7 @@ import styles from "./japan-team-map.module.css";
 
 type Locale="en"|"ja"|"zh-tw"|"ko";
 type TeamPoint={id:string;name:string;region:string|null;country?:string|null};
+type HistoryPoint={id:string;title:string;venue:string|null;occurred_on?:string|null};
 
 const coords:Record<string,[number,number]>={
 "北海道":[79,12],"青森県":[73,22],"岩手県":[77,28],"宮城県":[76,34],"秋田県":[69,28],"山形県":[70,35],"福島県":[73,41],
@@ -22,11 +23,17 @@ const copy={
  ko:{title:"내 팀은 여기. 다음 기회는 일본 전국과 세계로.",lead:"팀 등록 시 입력한 지역을 기준으로 일본 지도에 소속팀을 개략적으로 표시합니다.",unknown:"지역 미설정",local:"MY TEAM",japan:"JAPAN",world:"WORLD"}
 } as const;
 
-export function JapanTeamMap({locale,teams}:{locale:Locale;teams:TeamPoint[]}){
+const prefectures=Object.keys(coords);
+function prefectureFromVenue(venue:string|null){
+ if(!venue)return null;
+ return prefectures.find(pref=>venue.includes(pref))||null;
+}
+export function JapanTeamMap({locale,teams,history=[]}:{locale:Locale;teams:TeamPoint[];history?:HistoryPoint[]}){
  const c=copy[locale];
  const japanTeams=teams.filter(t=>!t.country||t.country==="JP"||t.country==="Japan");
  const plotted=japanTeams.map(t=>({team:t,point:t.region?coords[normalize(t.region)]:undefined})).filter(x=>x.point) as {team:TeamPoint;point:[number,number]}[];
  const unknown=japanTeams.filter(t=>!t.region||!coords[normalize(t.region)]);
+ const experiences=history.map(item=>({item,prefecture:prefectureFromVenue(item.venue)})).filter(x=>x.prefecture) as {item:HistoryPoint;prefecture:string}[];
  return <section className={styles.wrap}>
    <div className={styles.head}><div><span>MY HOME COURT / MAP</span><h2>{c.title}</h2></div><p>{c.lead}</p></div>
    <div className={styles.grid}>
@@ -38,13 +45,16 @@ export function JapanTeamMap({locale,teams}:{locale:Locale;teams:TeamPoint[]}){
          <path d="M39 65c4 2 6 5 5 8-2 3-6 4-10 3-4-1-7-3-8-6 2-3 8-6 13-5Z" className={styles.land}/>
          <path d="M21 66c4 2 6 5 5 9-2 5-6 10-10 13-4-1-7-4-7-8 1-6 6-12 12-14Z" className={styles.land}/>
          <path d="M8 91c2 0 4 2 4 4s-2 4-4 4-4-2-4-4 2-4 4-4Z" className={styles.land}/>
+         {experiences.map(({item,prefecture})=>{const point=coords[prefecture];return <g key={"history-"+item.id} transform={"translate("+point[0]+" "+point[1]+")"}><circle r="4.3" className={styles.experienceRing}/><circle r="1.1" className={styles.experiencePin}/><title>{item.title} · {prefecture}</title></g>})}
          {plotted.map(({team,point})=><g key={team.id} transform={"translate("+point[0]+" "+point[1]+")"}><circle r="3.1" className={styles.ring}/><circle r="1.35" className={styles.pin}/><title>{team.name} · {team.region}</title></g>)}
        </svg>
-       <p className={styles.note}>※ {locale==="ja"?"都道府県ベースの概略位置です。住所や現在地は公開しません。":locale==="zh-tw"?"以都道府縣為單位的概略位置，不公開地址或即時位置。":locale==="ko"?"도도부현 기준 개략 위치이며 주소나 현재 위치는 공개하지 않습니다.":"Schematic prefecture-level location. Exact addresses and live location are not shown."}</p>
+       <div className={styles.legend}><span><i className={styles.legendTeam}/>MY TEAM</span><span><i className={styles.legendExperience}/>EXPERIENCE</span></div>
+       <p className={styles.note}>※ {locale==="ja"?"都道府県ベースの概略位置です。住所や現在地は公開しません。経験地は履歴の会場名に都道府県が明記されている場合だけ表示します。":locale==="zh-tw"?"以都道府縣為單位的概略位置，不公開地址或即時位置。只有活動紀錄中明確寫有都道府縣時才顯示經驗地。":locale==="ko"?"도도부현 기준 개략 위치이며 주소나 현재 위치는 공개하지 않습니다. 경험지는 기록의 장소명에 도도부현이 명확히 있는 경우에만 표시합니다.":"Schematic prefecture-level location. Exact addresses and live location are not shown. Experience markers appear only when the prefecture is explicitly present in the saved venue."}</p>
      </div>
      <div className={styles.list}>
        {plotted.map(({team})=><article key={team.id}><span>{team.region}</span><strong>{team.name}</strong></article>)}
        {unknown.map(team=><article key={team.id}><span>{c.unknown}</span><strong>{team.name}</strong></article>)}
+       {experiences.slice(0,5).map(({item,prefecture})=><article key={"list-"+item.id}><span>EXPERIENCE · {prefecture}</span><strong>{item.title}</strong></article>)}
        {!teams.length?<article><span>{c.unknown}</span><strong>{locale==="ja"?"TEAM HOMEから所属チームを登録してください。":locale==="zh-tw"?"請從 TEAM HOME 登錄所屬球隊。":locale==="ko"?"TEAM HOME에서 소속팀을 등록하세요.":"Add your team from TEAM HOME."}</strong></article>:null}
      </div>
    </div>
