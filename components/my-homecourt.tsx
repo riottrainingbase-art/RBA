@@ -112,7 +112,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
   const c=copy[locale];
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const registrationUrl=authReady
-    ? (locale==="en"?"/my-homecourt/login":`/${locale}/my-homecourt/login`)
+    ? (locale==="en"?"/my-homecourt/login":`/${locale}/my-homecourt/login${locale==="ja"?"?source=my-homecourt":""}`)
     : "https://lin.ee/5l1YG8N";
   const ja=locale==="ja";
   const today=new Date().toISOString().slice(0,10);
