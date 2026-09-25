@@ -103,7 +103,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <div className="section-head"><div><p className="section-index">悩みから探す</p><h2>いま抱えている悩みから探す。</h2></div><p>専門用語やテーマ名が分からなくても大丈夫です。保護者・指導者それぞれの悩みから記事を探せます。</p></div>
         <div className="homecourt-role-grid">
           <article><span>PARENTS</span><h3>保護者の方</h3><p>チーム選び、出場時間、試合後の声かけ、役割固定など。</p>{familyPaths.map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
-          <article><span>COACHES</span><h3>指導者の方</h3><p>勝利と育成、ベンチワーク、プレス、判断を育てる練習設計など。</p>{coachPaths.map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
+          <article><span>COACHES</span><h3>指導者の方</h3><p>勝利と育成、ベンチワーク、プレス、判断を育てる練習設計など。</p><Link href="/ja/journal/coaches"><strong>指導者専用JOURNALへ</strong> <ArrowRight size={15}/></Link>{coachPaths.slice(0,5).map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
           <article><span>PLAYERS / ALL</span><h3>選手・すべての方</h3><p>試合、練習、クリニック、海外交流を「次の成長」につなげる記事です。</p><Link href="#category-development">育成の記事を見る <ArrowRight size={15}/></Link><Link href="#category-international">海外交流の記事を見る <ArrowRight size={15}/></Link><Link href="/ja/opportunities">参加できる活動を探す <ArrowRight size={15}/></Link></article>
         </div>
       </section>:null}
