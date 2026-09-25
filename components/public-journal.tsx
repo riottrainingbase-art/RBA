@@ -34,15 +34,24 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
   const startHereSlugs=["winning-vs-developing","development-environment","parents-support-not-coach","who-is-playing"];
   const startHere=startHereSlugs.map(findPost).filter(Boolean) as typeof posts;
   const familyPaths=[
-    {label:"チーム選び・環境に迷っている",slug:"development-environment"},
-    {label:"試合後、子どもにどう声をかけるか",slug:"parents-support-not-coach"},
+    {label:"チーム選びで迷っている",slug:"how-to-choose-youth-team"},
+    {label:"今のチームから移るべきか悩んでいる",slug:"when-to-change-teams"},
+    {label:"強豪チームへ行けば伸びるのか知りたい",slug:"strong-school-myth"},
     {label:"出場時間が少ない・機会が偏っている",slug:"playing-time-is-experience"},
-    {label:"小学生の役割を早く固定していいのか",slug:"protect-the-unfinished"}
+    {label:"練習量が多すぎないか心配",slug:"too-much-practice"},
+    {label:"試合後の声かけを見直したい",slug:"parents-support-not-coach"},
+    {label:"応援席からどこまで声をかけるべきか",slug:"parents-sideline-instructions"},
+    {label:"小学生の役割を早く固定していいのか",slug:"dont-fix-positions-too-early"}
   ];
   const coachPaths=[
     {label:"勝利と育成をどう両立するか",slug:"winning-vs-developing"},
+    {label:"マンツーマンを育成の土台にしたい",slug:"why-man-to-man-first"},
+    {label:"U12でスクリーンをどう扱うか考えたい",slug:"screens-before-reading"},
     {label:"ベンチから指示しすぎていないか",slug:"who-is-playing"},
     {label:"大差の試合をどう育成に変えるか",slug:"press-in-blowouts"},
+    {label:"B戦を育成機会として設計したい",slug:"value-of-b-games"},
+    {label:"罰走とコンディショニングを分けたい",slug:"punishment-running-is-not-conditioning"},
+    {label:"怒鳴る指導を見直したい",slug:"shouting-is-not-coaching"},
     {label:"判断を増やす練習をつくりたい",slug:"small-sided-games"}
   ];
   return <SiteFrame locale={locale} languagePage="journal">
