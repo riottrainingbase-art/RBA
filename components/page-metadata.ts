@@ -65,3 +65,36 @@ export function pageMetadata(locale:Locale,page:LanguagePage):Metadata {
     : ({en:`${title}: programmes, information and enquiries at Riot Basketball Academy.`,ja:`Riot Basketball Academyの${title}に関する情報をご案内します。`,"zh-tw":`${title}。Riot Basketball Academy活動資訊與洽詢。`,ko:`${title}. Riot Basketball Academy의 프로그램 안내와 문의.`})[locale]);
  return {title,description,twitter:{card:"summary_large_image",title,description,images:["/rba-court-hero.png"]},alternates:{canonical:localePath(locale,page),languages:{en:localePath("en",page),ja:localePath("ja",page),"zh-Hant-TW":localePath("zh-tw",page),ko:localePath("ko",page),"x-default":localePath("en",page)}},openGraph:{title,description,images:["/rba-court-hero.png"],url:localePath(locale,page),siteName:"Riot Basketball Academy",locale:{en:"en_US",ja:"ja_JP","zh-tw":"zh_TW",ko:"ko_KR"}[locale],type:"website"}};
 }
+
+
+export function homecourtRoleMetadata(locale:Locale,role:"players"|"families"|"coaches"):Metadata {
+ const prefix=locale==="en"?"":`/${locale}`;
+ const path=`${prefix}/my-homecourt/${role}`;
+ const data={
+  players:{
+   en:{title:"MY HOME COURT for Players",description:"A personal basketball home for players: see your team location, keep experiences, discover Development Camps and RBA UNITED, and expand from Japan to Asia and the world."},
+   ja:{title:"選手のMY HOME COURT｜現在地から世界へ",description:"所属チーム、経験した地域、次に行ける育成機会、Development Camp、RBA UNITED、海外交流を一つにつなぐ選手向けMY HOME COURT。"},
+   "zh-tw":{title:"球員 MY HOME COURT｜從現在的位置走向世界",description:"把所屬球隊、參與經驗、下一個培育機會、Development Camp、RBA UNITED與國際交流連在一起。"},
+   ko:{title:"선수 MY HOME COURT｜현재 위치에서 세계로",description:"소속팀, 경험 지역, 다음 성장 기회, Development Camp, RBA UNITED와 국제 교류를 하나로 연결하는 선수용 MY HOME COURT."}
+  },
+  families:{
+   en:{title:"MY HOME COURT for Families",description:"A clearer development home for families: team environment, participation history, development articles, next opportunities and global pathways in one place."},
+   ja:{title:"保護者のMY HOME COURT｜育成の判断材料を一つに",description:"チーム環境、参加履歴、育成記事、次の活動、日本全国・海外の選択肢を一つにつなぐ保護者向けMY HOME COURT。"},
+   "zh-tw":{title:"家長 MY HOME COURT｜把培育判斷集中在一處",description:"整合球隊環境、參與紀錄、培育文章、下一個活動與日本及海外的選擇。"},
+   ko:{title:"보호자 MY HOME COURT｜성장 판단 자료를 한곳에",description:"팀 환경, 참가 이력, 성장 콘텐츠, 다음 활동과 일본·해외 선택지를 하나로 연결합니다."}
+  },
+  coaches:{
+   en:{title:"MY HOME COURT for Coaches",description:"A coach development home connecting D-HUB, practice design, coach learning, team operations and international development perspectives."},
+   ja:{title:"指導者のMY HOME COURT｜学びと現場をつなぐ",description:"D-HUB、練習設計、指導者講習、TEAM HOME、育成記事、海外の育成視点を一つにつなぐ指導者向けMY HOME COURT。"},
+   "zh-tw":{title:"教練 MY HOME COURT｜連結學習與現場",description:"整合D-HUB、訓練設計、教練學習、TEAM HOME、培育文章與國際培育視角。"},
+   ko:{title:"코치 MY HOME COURT｜배움과 현장을 연결",description:"D-HUB, 훈련 설계, 코치 교육, TEAM HOME, 성장 콘텐츠와 국제 육성 관점을 하나로 연결합니다."}
+  }
+ }[role][locale];
+ return {
+  title:data.title,
+  description:data.description,
+  alternates:{canonical:path,languages:{en:`/my-homecourt/${role}`,ja:`/ja/my-homecourt/${role}`,"zh-Hant-TW":`/zh-tw/my-homecourt/${role}`,ko:`/ko/my-homecourt/${role}`,"x-default":`/my-homecourt/${role}`}},
+  openGraph:{title:data.title,description:data.description,url:path,siteName:"Riot Basketball Academy",type:"website",images:["/rba-court-hero.png"]},
+  twitter:{card:"summary_large_image",title:data.title,description:data.description,images:["/rba-court-hero.png"]}
+ };
+}
