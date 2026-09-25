@@ -76,6 +76,36 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
     </section>:null}
     {!role&&ja?<section className="homecourt-editorial-difference section-pad">
       <div className="homecourt-editorial-head">
+        <p className="section-index">SOCIAL / MY HOME COURT</p>
+        <h2>SNSは「流れる」。<br/>MY HOME COURTは「残る」。</h2>
+        <p>InstagramやThreads、Xは、RBAを知る・新しい考えに触れる・活動を見つけるための入口です。MY HOME COURTは、その先で自分の経験を残し、次に何をするかを決める場所です。</p>
+      </div>
+      <div className="homecourt-editorial-grid">
+        <article>
+          <span>OPEN / SOCIAL</span>
+          <h3>DISCOVER</h3>
+          <strong>知る・見る・出会う。</strong>
+          <p>投稿はタイムラインに流れていきます。新しい情報や考え方に触れ、RBAや育成機会を知るための場所です。</p>
+          <ul><li>新着情報</li><li>育成についての発信</li><li>クリニック告知</li><li>世界・現場との接点</li></ul>
+        </article>
+        <article className="homecourt-editorial-premium">
+          <span>PERSONAL / MY HOME COURT</span>
+          <h3>OWN</h3>
+          <strong>自分のバスケットボールを持つ。</strong>
+          <p>参加履歴、Passport、Save、学び、目標、次の機会を、自分のRBA IDに残していきます。タイムラインではなく、自分専用の育成ホームです。</p>
+          <ul><li>経験が蓄積される</li><li>あとで戻れる</li><li>自分向けに整理される</li><li>次の行動につながる</li></ul>
+        </article>
+      </div>
+      <div className="homecourt-use-loop">
+        <div><span>01</span><strong>SEE</strong><p>SNSで知る。</p></div>
+        <div><span>02</span><strong>SAVE</strong><p>HOME COURTに残す。</p></div>
+        <div><span>03</span><strong>DO</strong><p>実際に参加・実践する。</p></div>
+        <div><span>04</span><strong>BUILD</strong><p>経験を次へつなぐ。</p></div>
+      </div>
+      <p className="homecourt-editorial-note">フォロワー数や投稿の反応を競う場所ではありません。MY HOME COURTの中心は、自分の経験・学び・次の選択です。</p>
+    </section>:null}
+    {!role&&ja?<section className="homecourt-editorial-difference section-pad">
+      <div className="homecourt-editorial-head">
         <p className="section-index">NOTE / MY HOME COURT</p>
         <h2>noteは「考える」。<br/>HOME COURTは「使う」。</h2>
         <p>同じテーマを扱っても、役割は分けます。noteでは育成について広く問題提起し、考えるきっかけをつくる。MY HOME COURTでは、その考えを家庭や現場で実際に使える形まで落とし込みます。</p>
