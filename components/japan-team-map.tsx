@@ -46,6 +46,11 @@ export function JapanTeamMap({locale,teams,history=[]}:{locale:Locale;teams:Team
    .filter(x=>x.prefecture) as {programme:(typeof programmes)[number];prefecture:string}[];
  return <section className={styles.wrap}>
    <div className={styles.head}><div><span>MY HOME COURT / MAP</span><h2>{c.title}</h2></div><p>{c.lead}</p></div>
+   <div className={styles.stats}>
+     <div><span>MY TEAM</span><strong>{plotted.length}</strong><small>{locale==="ja"?"所属チーム":locale==="zh-tw"?"所屬球隊":locale==="ko"?"소속팀":"home teams"}</small></div>
+     <div><span>EXPERIENCE</span><strong>{new Set(experiences.map(x=>x.prefecture)).size}</strong><small>{locale==="ja"?"経験した都道府県":locale==="zh-tw"?"有經驗的都道府縣":locale==="ko"?"경험한 도도부현":"prefectures visited"}</small></div>
+     <div><span>NEXT</span><strong>{new Set(next.map(x=>x.prefecture)).size}</strong><small>{locale==="ja"?"次に行ける地域":locale==="zh-tw"?"下一個可前往地區":locale==="ko"?"다음에 갈 수 있는 지역":"next regions"}</small></div>
+   </div>
    <div className={styles.grid}>
      <div className={styles.mapCard}>
        <div className={styles.mapLabels}><span>{c.local}</span><span>{c.japan}</span><span>{c.world}</span></div>
