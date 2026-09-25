@@ -9,7 +9,7 @@ type TeamEventInput={id:string;team_id:string;event_type:string;title:string;sta
 type ScheduleItem={id:string;title:string;item_type:string;starts_at:string;ends_at:string|null;venue:string|null;link_url:string|null;link_label:string|null;countdown_enabled:boolean};
 type Wellness={id:string;checkin_on:string;energy:number;fatigue:number;soreness:number;sleep_hours:number|null;pain_level:number;body_note:string|null;notes:string|null};
 type CarePlan={id:string;title:string;care_type:string;scheduled_at:string;ends_at:string|null;location:string|null;provider:string|null;link_url:string|null;status:string;wellness_checkin_id:string|null};
-type PrepTask={id:string;schedule_item_id:string|null;team_event_id:string|null;title:string;category:string;due_at:string|null;completed_at:string|null;template_key?:string|null;auto_generated?:boolean};
+type PrepTask={id:string;schedule_item_id:string|null;team_event_id:string|null;public_event_id?:string|null;title:string;category:string;due_at:string|null;completed_at:string|null;template_key?:string|null;auto_generated?:boolean};
 type RbaParticipation={id:string;attendance_status:string;events:{id:string;title:string;event_type:string;starts_at:string|null;ends_at:string|null;venue:string|null;registration_url:string|null;status:string}|null};
 
 const copy={
@@ -109,7 +109,7 @@ function prepTemplateRows(locale:Locale,eventAt:string){
     ]
   } as const;
   return localized[locale].map(([key,category,title,offset])=>{
-    const due=key==="now"?new Date(Math.min(event.getTime()-3600000,now+3600000)):new Date(event.getTime()+Number(offset)*86400000);
+    const due=key==="now"?new Date(Math.max(now+5*60000,Math.min(event.getTime()-3600000,now+3600000))):new Date(event.getTime()+Number(offset)*86400000);
     return {template_key:key,category,title,due_at:due.toISOString()};
   }).filter(row=>new Date(row.due_at).getTime()>now-12*3600000);
 }
@@ -142,7 +142,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
       supabase.from("homecourt_schedule_items").select("id,title,item_type,starts_at,ends_at,venue,link_url,link_label,countdown_enabled").eq("user_id",userId).gte("starts_at",from).order("starts_at").limit(40),
       supabase.from("homecourt_wellness_checkins").select("id,checkin_on,energy,fatigue,soreness,sleep_hours,pain_level,body_note,notes").eq("user_id",userId).order("checkin_on",{ascending:false}).limit(7),
       supabase.from("homecourt_care_plans").select("id,title,care_type,scheduled_at,ends_at,location,provider,link_url,status,wellness_checkin_id").eq("user_id",userId).gte("scheduled_at",from).order("scheduled_at").limit(20),
-      supabase.from("homecourt_schedule_tasks").select("id,schedule_item_id,team_event_id,title,category,due_at,completed_at,template_key,auto_generated").eq("user_id",userId).order("due_at",{ascending:true}).limit(60),
+      supabase.from("homecourt_schedule_tasks").select("id,schedule_item_id,team_event_id,public_event_id,title,category,due_at,completed_at,template_key,auto_generated").eq("user_id",userId).order("due_at",{ascending:true}).limit(60),
       supabase.from("participations").select("id,attendance_status,events(id,title,event_type,starts_at,ends_at,venue,registration_url,status)").in("attendance_status",["registered","confirmed","attended"]).limit(30)
     ]);
     if(scheduleQ.error||wellnessQ.error||careQ.error||tasksQ.error||rbaQ.error){setMessage(c.error);return;}
@@ -157,10 +157,10 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
   useEffect(()=>{void load();const tick=window.setInterval(()=>setNow(Date.now()),60000);return()=>window.clearInterval(tick);},[load]);
 
   const upcoming=useMemo(()=>{
-    const team=teamEvents.filter(x=>new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`team-${x.id}`,title:x.title,at:x.starts_at,type:x.event_type,venue:x.venue,source:c.sourceTeam,link:null as string|null,teamEventId:x.id,scheduleItemId:null as string|null}));
-    const personal=schedule.filter(x=>x.countdown_enabled&&new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`my-${x.id}`,title:x.title,at:x.starts_at,type:x.item_type,venue:x.venue,source:c.sourcePersonal,link:x.link_url,teamEventId:null as string|null,scheduleItemId:x.id}));
-    const plans=care.filter(x=>x.status==="planned"&&new Date(x.scheduled_at).getTime()>now-3600000).map(x=>({id:`care-${x.id}`,title:x.title,at:x.scheduled_at,type:x.care_type,venue:x.location,source:c.sourceCare,link:x.link_url,teamEventId:null as string|null,scheduleItemId:null as string|null}));
-    const registered=rbaEvents.filter(x=>x.events?.starts_at&&new Date(x.events.starts_at).getTime()>now-3600000).map(x=>({id:`rba-${x.id}`,title:x.events!.title,at:x.events!.starts_at!,type:x.events!.event_type,venue:x.events!.venue,source:c.sourceRba,link:x.events!.registration_url,teamEventId:null as string|null,scheduleItemId:null as string|null}));
+    const team=teamEvents.filter(x=>new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`team-${x.id}`,title:x.title,at:x.starts_at,type:x.event_type,venue:x.venue,source:c.sourceTeam,link:null as string|null,teamEventId:x.id,scheduleItemId:null as string|null,publicEventId:null as string|null}));
+    const personal=schedule.filter(x=>x.countdown_enabled&&new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`my-${x.id}`,title:x.title,at:x.starts_at,type:x.item_type,venue:x.venue,source:c.sourcePersonal,link:x.link_url,teamEventId:null as string|null,scheduleItemId:x.id,publicEventId:null as string|null}));
+    const plans=care.filter(x=>x.status==="planned"&&new Date(x.scheduled_at).getTime()>now-3600000).map(x=>({id:`care-${x.id}`,title:x.title,at:x.scheduled_at,type:x.care_type,venue:x.location,source:c.sourceCare,link:x.link_url,teamEventId:null as string|null,scheduleItemId:null as string|null,publicEventId:null as string|null}));
+    const registered=rbaEvents.filter(x=>x.events?.starts_at&&new Date(x.events.starts_at).getTime()>now-3600000).map(x=>({id:`rba-${x.id}`,title:x.events!.title,at:x.events!.starts_at!,type:x.events!.event_type,venue:x.events!.venue,source:c.sourceRba,link:x.events!.registration_url,teamEventId:null as string|null,scheduleItemId:null as string|null,publicEventId:x.events!.id}));
     return [...team,...personal,...registered,...plans].sort((a,b)=>new Date(a.at).getTime()-new Date(b.at).getTime()).slice(0,8);
   },[teamEvents,schedule,rbaEvents,care,now,c.sourceTeam,c.sourcePersonal,c.sourceRba,c.sourceCare]);
 
@@ -228,16 +228,26 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
   }
 
   async function generateAutoPlan(targetValue:string){
-    const target=prepTargets.find(item=>(item.teamEventId?`team:${item.teamEventId}`:`my:${item.scheduleItemId}`)===targetValue);
+    const target=prepTargets.find(item=>(item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`)===targetValue);
     if(!target)return;
     setBusy(true);setMessage("");
     const rows=prepTemplateRows(locale,target.at).map(row=>({
       user_id:userId,title:row.title,category:row.category,due_at:row.due_at,template_key:row.template_key,auto_generated:true,
-      schedule_item_id:target.scheduleItemId,team_event_id:target.teamEventId
+      schedule_item_id:target.scheduleItemId,team_event_id:target.teamEventId,public_event_id:target.publicEventId
     }));
     if(rows.length){
-      const {error}=await supabase.from("homecourt_schedule_tasks").upsert(rows,{onConflict:target.teamEventId?"user_id,team_event_id,template_key":"user_id,schedule_item_id,template_key",ignoreDuplicates:true});
-      if(error){setMessage(c.error);setBusy(false);return;}
+      let existingQuery=supabase.from("homecourt_schedule_tasks").select("template_key").eq("user_id",userId).in("template_key",rows.map(r=>r.template_key));
+      if(target.teamEventId)existingQuery=existingQuery.eq("team_event_id",target.teamEventId);
+      else if(target.publicEventId)existingQuery=existingQuery.eq("public_event_id",target.publicEventId);
+      else existingQuery=existingQuery.eq("schedule_item_id",target.scheduleItemId!);
+      const existing=await existingQuery;
+      if(existing.error){setMessage(c.error);setBusy(false);return;}
+      const keys=new Set((existing.data||[]).map(x=>x.template_key));
+      const fresh=rows.filter(row=>!keys.has(row.template_key));
+      if(fresh.length){
+        const {error}=await supabase.from("homecourt_schedule_tasks").insert(fresh);
+        if(error){setMessage(c.error);setBusy(false);return;}
+      }
     }
     setMessage(c.autoPlanDone);setBusy(false);await load();
   }
@@ -252,7 +262,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
 
   const trend=wellnessHistory.slice().reverse();
   const avg=(key:"energy"|"fatigue"|"pain_level")=>wellnessHistory.length?(wellnessHistory.reduce((sum,row)=>sum+Number(row[key]||0),0)/wellnessHistory.length).toFixed(1):"—";
-  const prepTargets=upcoming.filter(item=>item.teamEventId||item.scheduleItemId);
+  const prepTargets=upcoming.filter(item=>item.teamEventId||item.scheduleItemId||item.publicEventId);
   const painHigh=(wellness?.pain_level||0)>=7;
   return <section className={`homecourt-planner ${mode==="summary"?"homecourt-planner-summary":""}`}>
     <div className="homecourt-planner-head">
@@ -312,13 +322,13 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
         <div className="homecourt-care-heading"><div><p className="section-index">{c.prep}</p><h3>{c.prepTitle}</h3><p>{c.prepLead}</p></div><ListChecks/></div>
         {prepTargets.length?<div className="homecourt-auto-plan">
           <div><span>AUTO / D-PLAN</span><strong>{c.autoPlan}</strong><p>{c.autoPlanLead}</p></div>
-          <select id="homecourt-auto-target" defaultValue={prepTargets[0]?.teamEventId?`team:${prepTargets[0].teamEventId}`:`my:${prepTargets[0]?.scheduleItemId}`}>{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select>
+          <select id="homecourt-auto-target" defaultValue={prepTargets[0]?.teamEventId?`team:${prepTargets[0].teamEventId}`:`my:${prepTargets[0]?.scheduleItemId}`}>{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select>
           <button type="button" disabled={busy} onClick={()=>{const el=document.getElementById("homecourt-auto-target") as HTMLSelectElement|null;if(el)void generateAutoPlan(el.value);}}>{busy?<LoaderCircle className="spin"/>:<TimerReset/>}{c.autoPlanButton}</button>
         </div>:null}
         <div className="homecourt-prep-layout">
           <div className="homecourt-prep-list">{tasks.length?tasks.map(task=><button type="button" key={task.id} className={task.completed_at?"is-done":undefined} onClick={()=>toggleTask(task)} disabled={busy}><CheckCircle2/><span>{task.auto_generated?`${c.autoTag} / `:""}{task.category.toUpperCase()}</span><strong>{task.title}</strong><small>{task.due_at?new Date(task.due_at).toLocaleString(locale,{timeZone,month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"—"}</small></button>):<div className="homecourt-planner-empty"><ListChecks/><p>{c.taskEmpty}</p></div>}</div>
           {prepTargets.length?<form onSubmit={addTask} className="homecourt-planner-form homecourt-prep-form">
-            <label>{c.target}<select name="target">{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select></label>
+            <label>{c.target}<select name="target">{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select></label>
             <label>{c.task}<input name="title" required maxLength={180}/></label>
             <label>{c.type}<select name="category"><option value="prepare">PREPARE</option><option value="equipment">EQUIPMENT</option><option value="travel">TRAVEL</option><option value="recovery">RECOVERY</option><option value="study">STUDY</option><option value="other">OTHER</option></select></label>
             <label>{c.due}<input name="due_at" type="datetime-local"/></label>
