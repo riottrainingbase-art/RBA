@@ -17,7 +17,7 @@ const common={
 const pages:Record<AudienceKind,{
  kicker:Text4; title:Text4; lead:Text4; statement:Text4;
  sections:{icon:"calendar"|"shield"|"learn"|"home"|"map"|"pay";title:Text4;body:Text4;items:Text4[]}[];
-  actions:{label:Text4;href:"schedule"|"contact"|"policies"|"home-court"|"players"|"families"|"coaches"|"events/torsten-loibl-online-clinic"|"clinic-request"|"my-homecourt/login";external?:string}[];
+  actions:{label:Text4;href:"schedule"|"contact"|"policies"|"home-court"|"players"|"families"|"coaches"|"events/torsten-loibl-online-clinic"|"clinic-request"|"my-homecourt/login"|"d-hub";external?:string}[];
  homeCourt?:"member"|"partner";
 }>={
  players:{
@@ -54,7 +54,7 @@ const pages:Record<AudienceKind,{
    {icon:"calendar",title:["HOST","RBAを呼ぶ","邀請","초청"],body:["Request an RBA clinic, camp, S&C session or coach dialogue for your team or region.","チームや地域で、RBAのクリニック、キャンプ、S&C、指導者向け講習を開催できます。","為球隊或地區邀請RBA活動。","팀과 지역에 RBA 프로그램을 초청할 수 있습니다."],items:[["Share player ages, group size and development goal","対象年代・人数・育成課題を共有","提供年齡、人數與目標","대상·인원·육성 과제 공유"],["Receive a proposed format and estimate","実施内容と見積もりを確認","確認方案與報價","운영안과 견적 확인"],["Confirm venue, staffing and terms","会場・運営体制・条件を確定","確認場地、團隊與條件","장소·운영·조건 확정"]]},
    {icon:"home",title:["PARTNER","地域のパートナーになる","成為地區夥伴","지역 파트너"],body:["HOME COURT PARTNER is the consultation route for coaches and organisations who want to create another reliable court for local children with RBA standards and support.","HOME COURT PARTNERは、地域の子どもたちに「もうひとつのホームコート」をつくりたい指導者・団体のための連携相談窓口です。RBAの育成基準と運営サポートを、地域の実情に合わせて取り入れます。","與RBA共同為地區孩子建立另一個主場。","RBA와 함께 지역 아이들을 위한 또 하나의 홈 코트를 만듭니다."],items:[["Local sessions under shared standards","共通の育成基準に基づく地域セッション","共同標準的地區SESSION","공통 기준의 지역 SESSION"],["Pathway to national clinics and camps","全国のクリニック・キャンプにつながる機会","連結全國活動","전국 프로그램 연계"],["Clear roles, safeguarding and operation","役割・安全管理・運営方法を事前に明確化","明確角色、安全與營運","역할·안전·운영 명확화"]]},
   ],
-  actions:[{label:["Torsten clinic","トーステン講習を見る","Torsten講座","Torsten 강의"] as Text4,href:"events/torsten-loibl-online-clinic"},{label:["Request a clinic","クリニック開催を相談","洽詢舉辦活動","클리닉 개최 문의"] as Text4,href:"clinic-request"},{label:common.home,href:"home-court"},{label:common.contact,href:"contact"}],homeCourt:"partner"
+  actions:[{label:["Coach HOME","指導者向けHOMEを開く","教練HOME","코치 HOME"] as Text4,href:"my-homecourt/login"},{label:["D-HUB","D-HUBで継続して学ぶ","D-HUB","D-HUB"] as Text4,href:"d-hub"},{label:["Torsten clinic","トーステン講習を見る","Torsten講座","Torsten 강의"] as Text4,href:"events/torsten-loibl-online-clinic"},{label:["Request a clinic","クリニック開催を相談","洽詢舉辦活動","클리닉 개최 문의"] as Text4,href:"clinic-request"},{label:common.contact,href:"contact"}],homeCourt:"partner"
  },
  "home-court":{
   kicker:["MY HOME COURT","MY HOME COURT","MY HOME COURT","MY HOME COURT"],
