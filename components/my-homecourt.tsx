@@ -325,6 +325,16 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       </div>
       <p className="homecourt-editorial-note">限定情報を売る場所ではなく、育成年代の家庭が判断しやすくなるための継続的な道具として育てていきます。</p>
     </section>:null}
+    {ja&&role==="coaches"?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">COACH JOURNAL / PRACTICE LAB</p><h2>読む。設計する。現場で試す。振り返る。</h2></div><p>指導者向けJOURNALは、考え方だけで終わらせません。根拠を確認し、練習に落とし込み、観察して次の修正までつなげます。</p></div>
+      <div className="homecourt-preview-grid">
+        <article><BookOpen/><span>01 / READ</span><h3>根拠と考え方を読む</h3><p>EVIDENCE、RBA INTERPRETATION、LIMITATIONS、SOURCESを分けて確認する。</p><a className="text-link" href="/ja/journal#category-coaching">指導者向け記事へ <ArrowRight size={16}/></a></article>
+        <article><FileText/><span>02 / PLAN</span><h3>COACH APPLICATIONを使う</h3><p>SETUP、CONSTRAINTS、OBSERVE、REVIEW QUESTIONSから次の練習を設計する。</p><a className="text-link" href={recommendedJournal[0]?("/ja/journal/"+recommendedJournal[0].slug):"/ja/journal"}>実践記事を開く <ArrowRight size={16}/></a></article>
+        <article><Users/><span>03 / COACH</span><h3>現場では選手を見る</h3><p>メニューを消化するのではなく、誰が何を見て、どんな判断をしたかを観察する。</p><a className="text-link" href="/ja/d-hub">D-HUBで学ぶ <ArrowRight size={16}/></a></article>
+        <article><History/><span>04 / REVIEW</span><h3>次の修正を一つ決める</h3><p>練習後に「何が起きたか」「次に何を変えるか」を短く残し、次回の設計へ戻す。</p><a className="text-link" href={roleCommunity} target="_blank" rel="noreferrer">指導者コミュニティへ <ArrowUpRight size={16}/></a></article>
+      </div>
+      <div className="homecourt-private-note"><Check size={24}/><div><strong>練習メニュー集ではなく、指導判断を更新する場所。</strong><p>同じドリルでも、目的・制約・観察項目が変われば学習は変わります。JOURNALとD-HUBを、毎週の練習設計へ接続します。</p></div></div>
+    </section>:null}
     {ja&&recommendedJournal.length?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">{role?"FOR YOU / JOURNAL":"RECOMMENDED / JOURNAL"}</p><h2>{role==="families"?"保護者の方に、今読んでほしい3本。":role==="coaches"?"指導者の方に、今読んでほしい3本。":role==="players"?"選手の成長につながる3本。":"今週、まずこの3本。"}</h2></div><p>JOURNALで読んで終わりではなく、気づきを次の練習・会話・活動へつなげます。</p></div>
       <div className="homecourt-preview-grid">{recommendedJournal.map((post,index)=><article key={post.slug}><BookOpen/><span>{String(index+1).padStart(2,"0")}</span><h3>{post.title}</h3><p>{post.standfirst}</p><a className="text-link" href={`/ja/journal/${post.slug}`}>この記事を読む <ArrowRight size={16}/></a></article>)}</div>
