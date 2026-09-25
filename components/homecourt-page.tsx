@@ -13,6 +13,8 @@ const copy = {
 
 export function HomecourtPage({locale}:{locale:Locale}) {
   const c=copy[locale];
+  const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
+  const registrationUrl=authReady?homecourtFreeRegistrationUrl(locale):"https://lin.ee/5l1YG8N";
   const prefix=locale==="en"?"":`/${locale}`;
   const roleLabels=locale==="ja"?homecourtRoles:{
     players:{...homecourtRoles.players,label:locale==="en"?"For players":locale==="zh-tw"?"給球員":"선수"},
@@ -24,7 +26,7 @@ export function HomecourtPage({locale}:{locale:Locale}) {
       <a className="back-link" href={localePath(locale)}>← RBA</a>
       <p className="section-index inverse">RBA / MY HOME COURT</p>
       <h1>{c.title}</h1><p>{c.lead}</p>
-      <div className="homecourt-launch-actions"><a className="button button-member" href={homecourtFreeRegistrationUrl(locale)}><Sparkles size={18}/>{c.free}<ArrowRight size={17}/></a><a className="button button-light" href={`${prefix}/my-homecourt`}><House size={18}/>{c.start}<ArrowRight size={17}/></a></div>
+      <div className="homecourt-launch-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={18}/>{locale==="ja"&&!authReady?"登録再開のお知らせを受け取る":c.free}<ArrowRight size={17}/></a><a className="button button-light" href={`${prefix}/my-homecourt`}><House size={18}/>{c.start}<ArrowRight size={17}/></a></div>{locale==="ja"&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開のお知らせは公式LINEでご案内します。</p>:null}
       {locale!=="ja"?<div className="homecourt-price"><span>{c.price}</span><strong>¥{HOMECOURT_PRICE_JPY.toLocaleString("ja-JP")}</strong><small>{c.note}</small></div>:null}
     </section>
     <section className="homecourt-role-section section-pad"><div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{c.included}</h2></div><p>{c.includedBody}</p></div><div className="homecourt-role-grid">{Object.entries(roleLabels).map(([role,data])=><article key={role}><span>{data.shortLabel}</span><Users size={28}/><h3>{data.label}</h3>{locale==="ja"?<p>{data.description}</p>:null}<ul>{data.items.map(item=><li key={item}><Check size={15}/>{item}</li>)}</ul><a href={`${prefix}/my-homecourt/${role}`}>{data.label}<ArrowRight size={16}/></a></article>)}</div></section>
