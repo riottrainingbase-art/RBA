@@ -42,6 +42,16 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       </div>
     </section>:null}
     {!role?<section className="homecourt-product-preview section-pad"><div className="section-head"><div><p className="section-index">YOUR BASKETBALL PASSPORT</p><h2>{ja?"あの日の経験から、次の自分へ。":"One home for your basketball journey."}</h2></div><p>{ja?"過去に参加したクリニックやキャンプも、自分で記録できます。保護者の方は、お子さまごとに記録を分けて管理できます。":"RBA ID connects discovery, applications, participation and reflection."}</p></div><div className="homecourt-preview-grid"><article><CalendarDays/><span>01</span><h3>{ja?"過去の参加":"Applications"}</h3><p>{ja?"参加日・会場・学びを記録。日付が曖昧なら月単位でも。":"See programmes and next actions."}</p></article><article><History/><span>02</span><h3>{ja?"写真・動画で成長を振り返る":"History"}</h3><p>{ja?"前の自分と見比べて、できたことを見つける。気づきを次の練習へ。":"Keep your participation journey."}</p></article><article><BookOpen/><span>03</span><h3>{ja?"これからの目標":"Learning"}</h3><p>{ja?"今週やること、3か月後の目標、その先の目標まで残せます。":"Open role-based learning."}</p></article><article><Compass/><span>04</span><h3>{ja?"次のおすすめ":"Next"}</h3><p>{ja?"年代・地域・目的に合う機会へ。":"Find what fits you next."}</p></article></div><div className="homecourt-private-note"><LockKeyhole size={24}/><div><strong>{ja?"写真・動画と成長記録は非公開です。":"Your records stay private."}</strong><p>{ja?"本人・保護者を中心とした権限で管理し、他の会員や公開プロフィールには表示しません。":"Photos, film and development records are available only to authorised account holders."}</p></div></div></section>:null}
+    {!role&&ja?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">WHY MY HOME COURT</p><h2>「もっと早く知りたかった」を減らす。</h2></div><p>所属チームだけでは届かない情報、学び、活動、世界との接点を、自分の育成環境として持てるようにします。</p></div>
+      <div className="homecourt-preview-grid">
+        <article><Compass/><span>01</span><h3>選択肢が増える</h3><p>地域や所属だけで次の機会を決めず、全国のクリニック・キャンプ・海外交流まで見られます。</p><a className="text-link" href="/ja/opportunities">今参加できる活動を見る <ArrowRight size={16}/></a></article>
+        <article><BookOpen/><span>02</span><h3>判断材料が増える</h3><p>出場時間、移籍、練習量、指導、身体づくり。JOURNALで育成を考える材料を持てます。</p><a className="text-link" href="/ja/journal">育成記事を読む <ArrowRight size={16}/></a></article>
+        <article><History/><span>03</span><h3>経験が残る</h3><p>クリニックや試合を一日で終わらせず、参加履歴・気づき・次に試すことを自分の記録に残せます。</p><a className="text-link" href="/ja/my-homecourt/participants">成長記録を始める <ArrowRight size={16}/></a></article>
+        <article><Sparkles/><span>04</span><h3>次の一歩が決まる</h3><p>読む、参加する、振り返る、次を選ぶ。バラバラだった育成情報を一つの流れにします。</p><a className="text-link" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"無料でRBA IDを始める":"登録再開通知を受け取る"} <ArrowRight size={16}/></a></article>
+      </div>
+      <div className="homecourt-private-note"><HeartHandshake size={24}/><div><strong>チームを辞めるための場所ではありません。</strong><p>今いる環境を大切にしながら、所属の外にも学びと選択肢を持つための育成プラットフォームです。</p></div></div>
+    </section>:null}
     {!role&&ja?<section className="homecourt-plan-separation section-pad">
       <div className="homecourt-plan-intro">
         <p className="section-index">FREE / HOMECOURT</p>
