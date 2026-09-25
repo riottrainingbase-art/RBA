@@ -2013,3 +2013,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
 .journal-source-list p{margin:8px 0 0;color:#59646a;line-height:1.6}
 .journal-source-list a:hover{background:#eef0ed}
 @media(max-width:760px){.journal-evidence-head{grid-template-columns:1fr}.journal-evidence-head>span,.journal-evidence-head>small,.journal-evidence-head h2,.journal-evidence-head .section-index{grid-column:1;grid-row:auto}.journal-evidence-grid{grid-template-columns:1fr}.journal-evidence-grid article{min-height:0}.journal-source-list>a{grid-template-columns:36px 1fr}.journal-source-list>a>svg{display:none}}
+
+.journal-coach-application{background:#101214;color:#fff}
+.journal-coach-application .section-head>p{color:#bdc6ca}
+.journal-coach-tool-grid{display:grid;gap:14px}
+.journal-coach-tool-grid>article{padding:24px;border:1px solid #343b3f;background:#171b1e}
+.journal-coach-tool-head{padding-bottom:18px;border-bottom:1px solid #343b3f}
+.journal-coach-tool-head>span{font-size:10px;font-weight:900;letter-spacing:.14em;color:var(--signal)}
+.journal-coach-tool-head h3{margin:9px 0 8px;font-size:clamp(28px,4vw,42px);line-height:1}
+.journal-coach-tool-head p{margin:0;color:#c4ccd0;line-height:1.7}
+.journal-coach-tool-grid>article>div:not(.journal-coach-tool-head){display:grid;grid-template-columns:170px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid #2c3236}
+.journal-coach-tool-grid>article>div:last-child{border-bottom:0}
+.journal-coach-tool-grid strong{font-size:10px;letter-spacing:.14em;color:#aeb7bc}
+.journal-coach-tool-grid ul{margin:0;padding-left:18px;display:grid;gap:7px;color:#fff}
+.journal-coach-next{margin-top:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;background:var(--signal);color:#111}
+.journal-coach-next svg{flex:none}
+.journal-coach-next strong{font-size:13px;letter-spacing:.08em}
+.journal-coach-next p{margin:5px 0 0;line-height:1.6}
+@media(max-width:700px){.journal-coach-tool-grid>article>div:not(.journal-coach-tool-head){grid-template-columns:1fr;gap:8px}}
