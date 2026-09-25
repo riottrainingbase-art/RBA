@@ -28,7 +28,7 @@ const authRecovery={
   ko:{browser:"로그인을 시작한 브라우저를 확인하지 못했습니다. 여기서 새 링크를 요청하고 같은 브라우저에서 여세요.",expired:"링크가 만료되었거나 이미 사용되었습니다. 새 링크를 한 번 요청하고 가장 최근 메일을 여세요."},
 } as const;
 
-export function MemberLogin({locale,authError=false,next}:{locale:Locale;authError?:boolean|"browser"|"expired";next?:string}){
+export function MemberLogin({locale,authError=false,next,source}:{locale:Locale;authError?:boolean|"browser"|"expired";next?:string;source?:string}){
   const c=words[locale]; const [email,setEmail]=useState(""); const [role,setRole]=useState("player"); const [terms,setTerms]=useState(false); const [busy,setBusy]=useState(false); const [sent,setSent]=useState(false); const [error,setError]=useState("");
   const submitting=useRef(false);
   const prefix=locale==="en"?"":`/${locale}`;
@@ -42,7 +42,7 @@ export function MemberLogin({locale,authError=false,next}:{locale:Locale;authErr
       const supabase=createEmailLinkClient();
       const destination=memberAuthDestination(next||`${prefix}/my-homecourt/app`);
       const redirectTo=`${location.origin}/auth/finish?next=${encodeURIComponent(destination)}`;
-      const {error:sendError}=await supabase.auth.signInWithOtp({email:email.trim(),options:{emailRedirectTo:redirectTo,shouldCreateUser:true,data:{role,preferred_language:locale}}});
+      const {error:sendError}=await supabase.auth.signInWithOtp({email:email.trim(),options:{emailRedirectTo:redirectTo,shouldCreateUser:true,data:{role,preferred_language:locale,signup_source:(source||"direct").slice(0,80)}}});
       if(sendError){setError(sendError.status===429?feedback[locale].rate:c.error);return;}
       setSent(true);
     }catch{setError(c.error);}
