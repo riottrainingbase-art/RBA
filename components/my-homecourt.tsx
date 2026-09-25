@@ -7,7 +7,7 @@ import { HomecourtConversionSection } from "./homecourt-conversion-section";
 
 const copy={
   en:{title:"Your next court starts here.",lead:"From everyday practice to courts you have not seen yet. Find clinics, learning, community and exchange built for players, parents and coaches.",free:"Discover what comes next",freeBody:"Find clinics, development ideas and opportunities that fit where you are now.",paid:"Expand your court",paidBody:"Meet new teammates, visit new places and experience different ways to play and learn.",community:"Community",communityBody:"Useful conversations for families and coaches, connected to real programmes—not an endless social feed.",impact:"RBA IMPACT",impactBody:"See how programme income and partner support are reinvested into access, education and safer development environments.",choose:"Choose your route",tools:"Member essentials",register:"Start with RBA ID",upgrade:"Explore MY HOME COURT",impactCta:"See impact & reinvestment"},
-  ja:{title:"これまでの参加を、これからの成長へ。",lead:"RBAのクリニックやキャンプで得た経験を、その日だけで終わらせない。参加履歴、振り返り、写真・動画、目標、次の活動をひとつにつなぐ、自分だけのホームコートです。",free:"次の活動を見つける",freeBody:"年代・地域・目的に合う、現在募集中の活動を探せます。",paid:"経験を次の成長につなぐ",paidBody:"参加履歴や振り返りを残し、今の自分に合う学びや次の挑戦へ進めます。",community:"仲間と学ぶ",communityBody:"保護者と指導者が、現場での気づきや育成に関する問いを共有できます。",impact:"RBA IMPACT",impactBody:"参加費、会費、協賛金を、参加機会・指導者教育・安全な育成環境へどのように還元しているかをお伝えします。",choose:"立場に合う入口を選ぶ",tools:"よく使うメニュー",register:"MY HOME COURTを開く",upgrade:"MY HOME COURTについて",impactCta:"活動実績と再投資方針を見る"},
+  ja:{title:"これまでの参加を、これからの成長へ。",lead:"RBAのクリニックやキャンプで得た経験を、その日だけで終わらせない。参加履歴、振り返り、写真・動画、目標、次の活動を一つにつなぎ、自分の成長を振り返れる場所です。",free:"次の活動を見つける",freeBody:"年代・地域・目的に合う、現在募集中の活動を探せます。",paid:"経験を次の成長につなぐ",paidBody:"参加履歴や振り返りを残し、今の自分に合う学びや次の挑戦へ進めます。",community:"仲間と学ぶ",communityBody:"保護者と指導者が、現場での気づきや育成に関する問いを共有できます。",impact:"RBA IMPACT",impactBody:"参加費、会費、協賛金を、参加機会・指導者教育・安全な育成環境へどのように還元しているかをお伝えします。",choose:"立場に合う入口を選ぶ",tools:"よく使うメニュー",register:"MY HOME COURTを開く",upgrade:"MY HOME COURTについて",impactCta:"活動実績と再投資方針を見る"},
   "zh-tw":{title:"下一座球場，從這裡開始。",lead:"從平常的練習走向還沒見過的球場。球員、家長與教練都能找到適合自己的活動、學習與交流機會。",free:"發現下一個目標",freeBody:"探索適合現在自己的訓練營、培育內容與新機會。",paid:"拓展你的球場",paidBody:"認識新的夥伴、前往不同城市，接觸新的打法與學習方式。",community:"社群",communityBody:"以實際活動與培育問題為中心，連結家長與教練。",impact:"RBA IMPACT",impactBody:"公開活動收入與合作支持如何再投入參與機會、教育與安全環境。",choose:"選擇入口",tools:"會員選單",register:"使用RBA ID開始",upgrade:"了解MY HOME COURT",impactCta:"查看成果與再投資"},
   ko:{title:"다음 코트는 여기서 시작됩니다.",lead:"평소의 훈련에서 아직 만나지 못한 코트까지. 선수, 보호자와 코치가 자신에게 맞는 활동, 배움과 교류를 찾을 수 있습니다.",free:"다음 목표 발견하기",freeBody:"현재의 나에게 맞는 클리닉, 성장 콘텐츠와 새로운 기회를 찾아보세요.",paid:"코트를 넓히기",paidBody:"새로운 동료를 만나고 다른 도시와 플레이 스타일을 경험해 보세요.",community:"커뮤니티",communityBody:"실제 프로그램과 성장 과제를 중심으로 가족과 코치를 연결합니다.",impact:"RBA IMPACT",impactBody:"프로그램 수입과 파트너 지원이 참가 기회, 교육과 안전한 환경에 어떻게 재투자되는지 공개합니다.",choose:"역할 선택",tools:"회원 메뉴",register:"RBA ID로 시작",upgrade:"MY HOME COURT 알아보기",impactCta:"성과와 재투자 보기"},
 } as const;
@@ -37,21 +37,21 @@ const clarityCopy={
     ]
   },
   ja:{
-    kicker:"まずここから",title:"30秒で分かる、MY HOME COURT。",
-    lead:"次の活動を探す。育成を学ぶ。経験を残す。次に何をするか決める。その全部を一つにつなぐ、自分の育成ホームです。",
+    kicker:"まずここから",title:"MY HOME COURTでできること。",
+    lead:"次の活動を探す、育成について学ぶ、経験を記録する、次に取り組むことを決める。バラバラになりがちな情報と経験を、一つにつなげられます。",
     cards:[
-      ["探す","次の機会を見つける","今の所属だけに限らず、全国のクリニック・キャンプ・海外交流まで。"],
-      ["学ぶ","育成を理解する","選手・保護者・指導者それぞれに必要な記事と実践ガイド。"],
-      ["残す","経験を積み上げる","参加履歴、振り返り、次に試すことを自分の記録として残す。"],
-      ["動く","学びを行動に変える","読むだけで終わらず、練習・活動参加・次の挑戦へ進む。"]
+      ["探す","次の機会を見つける","今の所属や地域だけに限らず、全国のクリニック・キャンプ・海外交流まで探せます。"],
+      ["学ぶ","育成について理解を深める","選手・保護者・指導者それぞれに役立つ記事や実践のヒントを読めます。"],
+      ["残す","経験を記録する","参加履歴や振り返り、次に試したいことを自分の記録として残せます。"],
+      ["動く","学びを次の行動につなげる","読んで終わらせず、次の練習や活動、挑戦につなげます。"]
     ],
-    freeTitle:"まず無料のRBA IDから",freeBody:"活動を探す、公開JOURNALを読む、自分に合う入口を見つける。まずは無料で始められます。",
-    paidTitle:"月額3,300円で、自分の育成環境を一つ増やす",paidBody:"一回のクリニックで終わらせず、学ぶ→試す→振り返る→次を決めるまでを継続。今のチームを続けながら、所属の外にも学びと挑戦の選択肢を持てます。",
-    paidCta:"HOMECOURTを始める",freeCta:"無料から始める",
+    freeTitle:"まずはRBA IDから",freeBody:"活動を探す、JOURNALを読む、自分に合う入口を見つける。RBA IDから始められます。",
+    paidTitle:"学びと振り返りを、日常の習慣にする",paidBody:"一度のクリニックで終わらせず、学ぶ・試す・振り返る・次を決めるところまで続けられます。今のチームに所属したまま、外の学びや挑戦も選択肢にできます。",
+    paidCta:"HOMECOURTを始める",freeCta:"RBA IDから始める",
     whoTitle:"あなたに合う入口を選ぶ。",who:[
-      ["PLAYER / 選手","今のチームを続けながら、もっと多くの機会や所属の外の世界も見たい。"],
-      ["PARENT / 保護者","チームだけに判断を委ねず、子どもの環境や次の選択について判断材料を増やしたい。"],
-      ["COACH / 指導者","経験則だけに頼らず、毎週の指導と練習設計をアップデートし続けたい。"]
+      ["PLAYER / 選手","今のチームに所属したまま、もっと多くの機会や外のバスケットボールにも触れたい。"],
+      ["PARENT / 保護者","子どもの育成環境や次の選択について、チーム以外からも判断材料を得たい。"],
+      ["COACH / 指導者","経験だけに頼らず、毎週の指導や練習設計を学び続けたい。"]
     ],
     faqTitle:"登録前によくある質問",faq:[
       ["今のチームを辞める必要はありますか？","ありません。今いる環境を大切にしながら、所属の外にも学びと機会を持つための場所です。"],
@@ -142,21 +142,21 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
     </section>:null}
     {!role&&ja?<section className="section-pad"><a className="button button-light" href="/ja/my-homecourt/participants">クリニックに参加した方へ：記録を始める<ArrowRight size={16}/></a></section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
-      <div className="section-head"><div><p className="section-index">START IN 60 SECONDS</p><h2>登録したら、まず3つ。</h2></div><p>長いプロフィール入力は後回し。最初に「見る・保存する・残す」を体験できる導線を用意します。</p></div>
+      <div className="section-head"><div><p className="section-index">START IN 60 SECONDS</p><h2>登録後は、まずこの3つから。</h2></div><p>最初から細かく設定する必要はありません。まずは「見る・保存する・記録する」の3つから始められます。</p></div>
       <div className="homecourt-preview-grid">
         <article><Compass/><span>01</span><h3>次の活動を見る</h3><p>年代・地域・目的から、今参加できる機会を探す。</p><a className="text-link" href="/ja/opportunities">活動を探す <ArrowRight size={16}/></a></article>
-        <article><BookOpen/><span>02</span><h3>自分向けに読む</h3><p>PLAYER／PARENT／COACHから、今必要な育成情報へ。</p><a className="text-link" href="/ja/journal">JOURNALを見る <ArrowRight size={16}/></a></article>
-        <article><History/><span>03</span><h3>経験を残す</h3><p>過去のRBA参加も、Basketball Passportの最初の1件に。</p><a className="text-link" href="/ja/my-homecourt/participants">参加記録を始める <ArrowRight size={16}/></a></article>
-        <article><Sparkles/><span>FREE</span><h3>RBA IDから始める</h3><p>探す、保存する、次につなげる。まずは無料でHOME COURTをつくる。</p><a className="text-link" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"無料で始める":"登録再開通知を受け取る"} <ArrowRight size={16}/></a></article>
+        <article><BookOpen/><span>02</span><h3>自分に合う記事を読む</h3><p>PLAYER／PARENT／COACHそれぞれの立場から、今必要な育成情報を探せます。</p><a className="text-link" href="/ja/journal">JOURNALを見る <ArrowRight size={16}/></a></article>
+        <article><History/><span>03</span><h3>経験を記録する</h3><p>過去に参加したRBAのクリニックやキャンプも、Basketball Passportに記録できます。</p><a className="text-link" href="/ja/my-homecourt/participants">参加記録を始める <ArrowRight size={16}/></a></article>
+        <article><Sparkles/><span>FREE</span><h3>RBA IDから始める</h3><p>活動を探す、保存する、経験を記録する。RBA IDを入口にMY HOME COURTを使えます。</p><a className="text-link" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"無料で始める":"登録再開通知を受け取る"} <ArrowRight size={16}/></a></article>
       </div>
     </section>:null}
     {!role?<section className="homecourt-product-preview section-pad"><div className="section-head"><div><p className="section-index">YOUR BASKETBALL PASSPORT</p><h2>{ja?"あの日の経験から、次の自分へ。":"One home for your basketball journey."}</h2></div><p>{ja?"過去に参加したクリニックやキャンプも、自分で記録できます。保護者の方は、お子さまごとに記録を分けて管理できます。":"RBA ID connects discovery, applications, participation and reflection."}</p></div><div className="homecourt-preview-grid"><article><CalendarDays/><span>01</span><h3>{ja?"過去の参加":"Applications"}</h3><p>{ja?"参加日・会場・学びを記録。日付が曖昧なら月単位でも。":"See programmes and next actions."}</p></article><article><History/><span>02</span><h3>{ja?"写真・動画で成長を振り返る":"History"}</h3><p>{ja?"前の自分と見比べて、できたことを見つける。気づきを次の練習へ。":"Keep your participation journey."}</p></article><article><BookOpen/><span>03</span><h3>{ja?"これからの目標":"Learning"}</h3><p>{ja?"今週やること、3か月後の目標、その先の目標まで残せます。":"Open role-based learning."}</p></article><article><Compass/><span>04</span><h3>{ja?"次のおすすめ":"Next"}</h3><p>{ja?"年代・地域・目的に合う機会へ。":"Find what fits you next."}</p></article></div><div className="homecourt-private-note"><LockKeyhole size={24}/><div><strong>{ja?"写真・動画と成長記録は非公開です。":"Your records stay private."}</strong><p>{ja?"本人・保護者を中心とした権限で管理し、他の会員や公開プロフィールには表示しません。":"Photos, film and development records are available only to authorised account holders."}</p></div></div></section>:null}
     {!role?<section className="homecourt-plan-separation section-pad">
-      <div className="homecourt-plan-intro"><p className="section-index">WORLD CONNECTION STATUS</p><h2>{({ja:"世界とのつながりは、確認状況まで見えるようにする。",en:"Global connections should show their real status.","zh-tw":"與世界的連結，也要清楚顯示確認狀態。",ko:"세계와의 연결은 확인 상태까지 보여줍니다."})[locale]}</h2><p>{({ja:"海外の名前が並んでいるだけでは、本当に参加できるのか分かりません。MY HOME COURTでは、確定・協議中・構想を分けて扱います。",en:"A country name alone does not mean an opportunity is available. MY HOME COURT separates confirmed, discussion-stage and future concepts.","zh-tw":"只有國家名稱，無法知道是否真的能參加。MY HOME COURT會區分已確認、協議中與未來構想。",ko:"국가 이름만으로는 실제 참가 가능 여부를 알 수 없습니다. MY HOME COURT는 확정·협의 중·미래 구상을 구분합니다."})[locale]}</p></div>
+      <div className="homecourt-plan-intro"><p className="section-index">WORLD CONNECTION STATUS</p><h2>{({ja:"海外とのつながりも、現在の状況を分かりやすく。",en:"Global connections should show their real status.","zh-tw":"與世界的連結，也要清楚顯示確認狀態。",ko:"세계와의 연결은 확인 상태까지 보여줍니다."})[locale]}</h2><p>{({ja:"国や地域の名前が載っているだけでは、実際に参加できるのか判断できません。MY HOME COURTでは、参加条件まで確認できたもの、協議中のもの、今後の構想を分けて表示します。",en:"A country name alone does not mean an opportunity is available. MY HOME COURT separates confirmed, discussion-stage and future concepts.","zh-tw":"只有國家名稱，無法知道是否真的能參加。MY HOME COURT會區分已確認、協議中與未來構想。",ko:"국가 이름만으로는 실제 참가 가능 여부를 알 수 없습니다. MY HOME COURT는 확정·협의 중·미래 구상을 구분합니다."})[locale]}</p></div>
       <div className="homecourt-plan-grid">
         <article className="homecourt-plan-card"><span>CONFIRMED</span><h3>{({ja:"参加条件まで確認済み",en:"Verified and available","zh-tw":"已確認參加條件",ko:"참가 조건 확인 완료"})[locale]}</h3><p>{({ja:"日程・対象・費用・募集状況など、参加判断に必要な情報を確認できている状態。",en:"Dates, eligibility, cost and availability are verified enough to support a real decision.","zh-tw":"日期、對象、費用與招募狀態等已確認，可作為實際判斷依據。",ko:"일정·대상·비용·모집 상태 등 참가 판단에 필요한 정보가 확인된 상태입니다."})[locale]}</p></article>
         <article className="homecourt-plan-card"><span>DISCUSSION</span><h3>{({ja:"連携を協議中",en:"Relationship in discussion","zh-tw":"合作協議中",ko:"협력 논의 중"})[locale]}</h3><p>{({ja:"相手先とのやり取りはあるが、参加可能とはまだ言えない状態。募集企画とは分けて表示します。",en:"There is an active relationship or discussion, but no participant availability is implied.","zh-tw":"已有交流或協議，但不代表目前可以參加，會與正式募集分開顯示。",ko:"관계나 논의는 진행 중이지만 참가 가능을 의미하지 않으며 모집 프로그램과 분리해 표시합니다."})[locale]}</p></article>
-        <article className="homecourt-plan-card"><span>FUTURE</span><h3>{({ja:"今後つくりたい接点",en:"Future direction","zh-tw":"未來想建立的連結",ko:"앞으로 만들 연결"})[locale]}</h3><p>{({ja:"まだ具体的な募集や連携がない構想段階。夢と現在地を混同しません。",en:"A future idea with no verified programme or partnership yet. Vision is kept separate from current reality.","zh-tw":"尚無正式募集或合作的構想階段，不把願景與現況混在一起。",ko:"아직 구체적인 모집이나 협력이 없는 구상 단계이며 비전과 현재 상황을 구분합니다."})[locale]}</p></article>
+        <article className="homecourt-plan-card"><span>FUTURE</span><h3>{({ja:"今後検討している連携",en:"Future direction","zh-tw":"未來想建立的連結",ko:"앞으로 만들 연결"})[locale]}</h3><p>{({ja:"まだ具体的な募集や連携が確定していない段階です。現在参加できる企画とは分けて表示します。",en:"A future idea with no verified programme or partnership yet. Vision is kept separate from current reality.","zh-tw":"尚無正式募集或合作的構想階段，不把願景與現況混在一起。",ko:"아직 구체적인 모집이나 협력이 없는 구상 단계이며 비전과 현재 상황을 구분합니다."})[locale]}</p></article>
       </div>
     </section>:null}
 
@@ -166,16 +166,16 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <article><House/><span>LOCAL</span><h3>{({ja:"自分の所属・地域",en:"Your home team and region","zh-tw":"自己的球隊與地區",ko:"내 소속팀과 지역"})[locale]}</h3><p>{({ja:"まず、自分が今いる場所を知る。所属チームの地域はログイン後の日本地図に表示できます。",en:"Know where you are now. Your registered team region can appear on your private Japan map after login.","zh-tw":"先知道自己現在的位置。登入後可在私人日本地圖上顯示所屬球隊地區。",ko:"먼저 지금 있는 곳을 확인합니다. 로그인 후 소속팀 지역을 개인 일본 지도에 표시할 수 있습니다."})[locale]}</p></article>
         <article><Compass/><span>JAPAN</span><h3>{({ja:"日本全国の育成機会",en:"Opportunities across Japan","zh-tw":"日本全國的培育機會",ko:"일본 전국의 성장 기회"})[locale]}</h3><p>{({ja:"Development Camp、クリニック、RBA UNITEDなど、目的の違う機会を全国から探せます。",en:"Find Development Camps, clinics and RBA UNITED opportunities across Japan by purpose.","zh-tw":"依目的尋找日本各地的 Development Camp、訓練營與 RBA UNITED。",ko:"Development Camp, 클리닉, RBA UNITED 등 목적에 맞는 기회를 일본 전국에서 찾습니다."})[locale]}</p><a className="text-link" href={localePath(locale,"opportunities")}>{({ja:"日本の機会を探す",en:"Explore Japan","zh-tw":"探索日本機會",ko:"일본 기회 찾기"})[locale]} <ArrowRight size={16}/></a></article>
         <article><Users/><span>ASIA</span><h3>{({ja:"アジアとつながる",en:"Connect across Asia","zh-tw":"連結亞洲",ko:"아시아와 연결"})[locale]}</h3><p>{({ja:"日本だけを基準にせず、台湾・韓国・東南アジアなど異なる育成文化と出会う。",en:"Meet different development cultures across Taiwan, Korea and Southeast Asia.","zh-tw":"接觸台灣、韓國與東南亞等不同的培育文化。",ko:"대만·한국·동남아 등 다양한 성장 문화를 만납니다."})[locale]}</p><a className="text-link" href={localePath(locale,"international")}>{({ja:"海外交流を見る",en:"Explore international exchange","zh-tw":"查看國際交流",ko:"국제 교류 보기"})[locale]} <ArrowRight size={16}/></a></article>
-        <article><Sparkles/><span>WORLD</span><h3>{({ja:"世界を「特別」にしない",en:"Make the world feel reachable","zh-tw":"讓世界不再遙遠",ko:"세계를 특별한 곳으로만 두지 않기"})[locale]}</h3><p>{({ja:"海外を一度きりの遠征にせず、日常的に比較し、学び、選択肢を持てる環境へ。",en:"Do not make international experience a one-off trip. Compare, learn and keep global options in everyday development.","zh-tw":"不把海外經驗變成一次性遠征，而是讓比較、學習與全球選擇成為日常。",ko:"해외 경험을 일회성 원정으로 끝내지 않고 일상 속 비교·학습·선택으로 이어갑니다."})[locale]}</p></article>
+        <article><Sparkles/><span>WORLD</span><h3>{({ja:"世界を日常の選択肢に",en:"Make the world feel reachable","zh-tw":"讓世界不再遙遠",ko:"세계를 특별한 곳으로만 두지 않기"})[locale]}</h3><p>{({ja:"海外を一度きりの遠征で終わらせず、普段から異なる育成環境を知り、学び、選択肢を持てる状態を目指します。",en:"Do not make international experience a one-off trip. Compare, learn and keep global options in everyday development.","zh-tw":"不把海外經驗變成一次性遠征，而是讓比較、學習與全球選擇成為日常。",ko:"해외 경험을 일회성 원정으로 끝내지 않고 일상 속 비교·학습·선택으로 이어갑니다."})[locale]}</p></article>
       </div>
     </section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
-      <div className="section-head"><div><p className="section-index">WHY MY HOME COURT</p><h2>「もっと早く知りたかった」を減らす。</h2></div><p>所属チームだけでは届かない情報、学び、活動、世界との接点を、自分の育成環境として持てるようにします。</p></div>
+      <div className="section-head"><div><p className="section-index">WHY MY HOME COURT</p><h2>知らなかったことで、選択肢を失わないために。</h2></div><p>所属チームだけでは得にくい情報や学び、活動、海外との接点も、自分で確認できるようにします。</p></div>
       <div className="homecourt-preview-grid">
         <article><Compass/><span>01</span><h3>選択肢が増える</h3><p>地域や所属だけで次の機会を決めず、全国のクリニック・キャンプ・海外交流まで見られます。</p><a className="text-link" href="/ja/opportunities">今参加できる活動を見る <ArrowRight size={16}/></a></article>
-        <article><BookOpen/><span>02</span><h3>判断材料が増える</h3><p>出場時間、移籍、練習量、指導、身体づくり。JOURNALで育成を考える材料を持てます。</p><a className="text-link" href="/ja/journal">育成記事を読む <ArrowRight size={16}/></a></article>
+        <article><BookOpen/><span>02</span><h3>考える材料が増える</h3><p>出場時間、移籍、練習量、指導、身体づくりなど、JOURNALから育成を考える材料を得られます。</p><a className="text-link" href="/ja/journal">育成記事を読む <ArrowRight size={16}/></a></article>
         <article><History/><span>03</span><h3>経験が残る</h3><p>クリニックや試合を一日で終わらせず、参加履歴・気づき・次に試すことを自分の記録に残せます。</p><a className="text-link" href="/ja/my-homecourt/participants">成長記録を始める <ArrowRight size={16}/></a></article>
-        <article><Sparkles/><span>04</span><h3>次の一歩が決まる</h3><p>読む、参加する、振り返る、次を選ぶ。バラバラだった育成情報を一つの流れにします。</p><a className="text-link" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"無料でRBA IDを始める":"登録再開通知を受け取る"} <ArrowRight size={16}/></a></article>
+        <article><Sparkles/><span>04</span><h3>次にやることが見える</h3><p>読む、参加する、振り返る、次を選ぶ。バラバラだった情報や経験を一つの流れにつなげます。</p><a className="text-link" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"無料でRBA IDを始める":"登録再開通知を受け取る"} <ArrowRight size={16}/></a></article>
       </div>
       <div className="homecourt-private-note"><HeartHandshake size={24}/><div><strong>チームを辞めるための場所ではありません。</strong><p>今いる環境を大切にしながら、所属の外にも学びと選択肢を持つための育成プラットフォームです。</p></div></div>
     </section>:null}
@@ -183,8 +183,8 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
     {!role&&ja?<section className="homecourt-plan-separation section-pad">
       <div className="homecourt-plan-intro">
         <p className="section-index">FREE / HOMECOURT</p>
-        <h2>無料は「知る」。HOMECOURTは「続ける」。</h2>
-        <p>無料のRBA IDは、育成の選択肢を広げるための入口です。月額3,300円のHOMECOURTは、記事を増やしただけの上位版ではありません。学び、試し、振り返り、次の課題を決めるところまでを日常につなぐための成長環境です。</p>
+        <h2>まず知る。そこから、学びを続ける。</h2>
+        <p>RBA IDは、育成の選択肢を広げるための入口です。HOMECOURTでは、学んだことを試し、振り返り、次の課題を決めるところまでを日常につなげていきます。</p>
       </div>
       <div className="homecourt-plan-grid">
         <article className="homecourt-plan-card homecourt-plan-free">
