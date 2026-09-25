@@ -80,10 +80,9 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
   }
   useEffect(()=>{void load();},[userId,safeRole,week]);
 
-  async function save(e:FormEvent<HTMLFormElement>,complete=false){
-    e.preventDefault();
+  async function persist(form:HTMLFormElement,complete=false){
     setBusy(true);setMessage("");
-    const f=new FormData(e.currentTarget);
+    const f=new FormData(form);
     const payload={
       user_id:userId,week_start:week,role:safeRole,
       theme:String(f.get("theme")||"").trim(),
@@ -100,6 +99,15 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
     setEntry(result.data as Weekly);setMessage(c.saved);setBusy(false);await load();
   }
 
+  async function submit(e:FormEvent<HTMLFormElement>){
+    e.preventDefault();
+    await persist(e.currentTarget,false);
+  }
+
+  async function completeWeek(form:HTMLFormElement){
+    await persist(form,true);
+  }
+
   async function reopen(){
     if(!entry)return;
     setBusy(true);
@@ -112,7 +120,7 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
 
   return <section className="member-section">
     <div className="member-section-head"><div><p>{c.eyebrow}</p><h2>{c.title}</h2><p>{c.lead}</p></div><Target/></div>
-    <form className="member-inline-form" onSubmit={e=>void save(e,false)}>
+    <form className="member-inline-form" onSubmit={e=>void submit(e)}>
       <label>{rc.theme}<textarea name="theme" rows={2} maxLength={500} defaultValue={entry?.theme||""} placeholder={rc.prompt} required/></label>
       <label>{rc.action}<textarea name="action" rows={3} maxLength={1200} defaultValue={entry?.action||""} required/></label>
       <label>{rc.evidence}<textarea name="evidence" rows={2} maxLength={1200} defaultValue={entry?.evidence||""}/></label>
@@ -120,7 +128,7 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
       <label>{c.next}<textarea name="next_action" rows={2} maxLength={1200} defaultValue={entry?.next_action||""}/></label>
       <div className="member-attendance">
         <button disabled={busy||entry?.status==="completed"} type="submit">{busy?<LoaderCircle className="spin"/>:<Sparkles/>}{c.save}</button>
-        <button disabled={busy||!entry?.theme||entry?.status==="completed"} type="button" onClick={e=>{const form=(e.currentTarget.closest("form") as HTMLFormElement);void save({preventDefault:()=>{},currentTarget:form} as unknown as FormEvent<HTMLFormElement>,true)}}><CheckCircle2/>{c.complete}</button>
+        <button disabled={busy||!entry?.theme||entry?.status==="completed"} type="button" onClick={e=>{const form=e.currentTarget.closest("form");if(form)void completeWeek(form)}}><CheckCircle2/>{c.complete}</button>
         {entry?.status==="completed"?<button disabled={busy} type="button" onClick={()=>void reopen()}><RotateCcw/>{c.reopen}</button>:null}
       </div>
     </form>
