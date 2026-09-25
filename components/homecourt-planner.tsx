@@ -263,12 +263,14 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
   const trend=wellnessHistory.slice().reverse();
   const avg=(key:"energy"|"fatigue"|"pain_level")=>wellnessHistory.length?(wellnessHistory.reduce((sum,row)=>sum+Number(row[key]||0),0)/wellnessHistory.length).toFixed(1):"—";
   const prepTargets=upcoming.filter(item=>item.teamEventId||item.scheduleItemId||item.publicEventId);
+  const openTaskCount=tasks.filter(task=>!task.completed_at).length;
   const painHigh=(wellness?.pain_level||0)>=7;
   return <section className={`homecourt-planner ${mode==="summary"?"homecourt-planner-summary":""}`}>
     <div className="homecourt-planner-head">
       <div><p className="section-index">SCHEDULE / COUNTDOWN / CARE</p><h2>{c.title}</h2><p>{c.lead}</p></div>
       <CalendarDays/>
     </div>
+    {mode==="summary"?<section className="homecourt-today-center"><div><span>TODAY / MY COURT</span><h3>{locale==="ja"?"今日、やることだけ。":"TODAY"}</h3></div><div className="homecourt-today-grid"><article className={openTaskCount===0?"is-done":undefined}><ListChecks/><span>PREP</span><strong>{openTaskCount===0?(locale==="ja"?"未完了なし":"CLEAR"):`${openTaskCount}`}</strong></article><article><CalendarDays/><span>NEXT</span><strong>{prepTargets[0]?.title||c.noUpcoming}</strong></article></div><a href={(locale==="en"?"":`/${locale}`)+"/my-homecourt/app/calendar"}>{locale==="ja"?"予定と準備を開く":"OPEN"}<ChevronRight/></a></section>:null}
     <div className="homecourt-countdowns">
       {upcoming.length?upcoming.slice(0,mode==="summary"?3:6).map(item=><article key={item.id}>
         <span>{item.source} / {item.type.toUpperCase()}</span>
@@ -322,7 +324,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
         <div className="homecourt-care-heading"><div><p className="section-index">{c.prep}</p><h3>{c.prepTitle}</h3><p>{c.prepLead}</p></div><ListChecks/></div>
         {prepTargets.length?<div className="homecourt-auto-plan">
           <div><span>AUTO / D-PLAN</span><strong>{c.autoPlan}</strong><p>{c.autoPlanLead}</p></div>
-          <select id="homecourt-auto-target" defaultValue={prepTargets[0]?.teamEventId?`team:${prepTargets[0].teamEventId}`:`my:${prepTargets[0]?.scheduleItemId}`}>{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select>
+          <select id="homecourt-auto-target" defaultValue={prepTargets[0]?.teamEventId?`team:${prepTargets[0].teamEventId}`:prepTargets[0]?.publicEventId?`rba:${prepTargets[0].publicEventId}`:`my:${prepTargets[0]?.scheduleItemId}`}>{prepTargets.map(item=><option key={item.id} value={item.teamEventId?`team:${item.teamEventId}`:item.publicEventId?`rba:${item.publicEventId}`:`my:${item.scheduleItemId}`}>{item.title}</option>)}</select>
           <button type="button" disabled={busy} onClick={()=>{const el=document.getElementById("homecourt-auto-target") as HTMLSelectElement|null;if(el)void generateAutoPlan(el.value);}}>{busy?<LoaderCircle className="spin"/>:<TimerReset/>}{c.autoPlanButton}</button>
         </div>:null}
         <div className="homecourt-prep-layout">
