@@ -162,6 +162,17 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       </div>
     </section>:null}
     <div className="article-body section-pad"><aside><p>{post.aside_title||c.kicker}</p><span>{post.aside_text||post.standfirst}</span></aside><div>{post.sections.map((section,index)=><section key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.heading}</h2>{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets?.length?<ul>{section.bullets.map(b=><li key={b}>{b}</li>)}</ul>:null}</section>)}</div></div>
+    {post.coach_application?.length?<section className="journal-coach-application section-pad">
+      <div className="section-head"><div><p className="section-index">COACH APPLICATION</p><h2>{locale==="ja"?"明日の練習で、どう使うか。":locale==="zh-tw"?"明天的訓練，如何使用。":locale==="ko"?"내일 훈련에서 어떻게 적용할까.":"How to use this in your next practice."}</h2></div><p>{locale==="ja"?"記事の内容を、現場で試せる形まで落とし込みます。":locale==="zh-tw"?"把文章內容轉成可在場上實踐的形式。":locale==="ko"?"기사 내용을 현장에서 실행 가능한 형태로 바꿉니다.":"Turn the article into a practical coaching task."}</p></div>
+      <div className="journal-coach-tool-grid">{post.coach_application.map((tool,index)=><article key={tool.title}>
+        <div className="journal-coach-tool-head"><span>{String(index+1).padStart(2,"0")} / COACH TOOL</span><h3>{tool.title}</h3><p>{tool.purpose}</p></div>
+        {tool.setup?.length?<div><strong>SETUP</strong><ul>{tool.setup.map(item=><li key={item}>{item}</li>)}</ul></div>:null}
+        {tool.constraints?.length?<div><strong>CONSTRAINTS</strong><ul>{tool.constraints.map(item=><li key={item}>{item}</li>)}</ul></div>:null}
+        {tool.observations?.length?<div><strong>OBSERVE</strong><ul>{tool.observations.map(item=><li key={item}>{item}</li>)}</ul></div>:null}
+        {tool.review_questions?.length?<div><strong>REVIEW QUESTIONS</strong><ul>{tool.review_questions.map(item=><li key={item}>{item}</li>)}</ul></div>:null}
+      </article>)}</div>
+      <div className="journal-coach-next"><BookOpen/><div><strong>{locale==="ja"?"READ → PLAN → COACH → REVIEW":locale==="zh-tw"?"READ → PLAN → COACH → REVIEW":locale==="ko"?"READ → PLAN → COACH → REVIEW":"READ → PLAN → COACH → REVIEW"}</strong><p>{locale==="ja"?"読むだけで終わらせず、練習設計に入れ、観察し、次の修正まで残す。":locale==="zh-tw"?"不只閱讀，而是放進訓練、觀察，再留下下一個修正。":locale==="ko"?"읽고 끝내지 않고 훈련에 넣고 관찰하고 다음 수정까지 남깁니다.":"Read it, plan it, coach it, observe it, then refine it."}</p></div></div>
+    </section>:null}
     {post.source_references?.length?<section className="journal-sources section-pad">
       <div className="section-head"><div><p className="section-index">SOURCES / FURTHER READING</p><h2>{locale==="ja"?"参考資料・一次情報":locale==="zh-tw"?"參考資料・原始來源":locale==="ko"?"참고 자료·1차 출처":"References and primary sources"}</h2></div><p>{locale==="ja"?"外部資料は、主張の根拠を確認できるよう原典へリンクしています。":locale==="zh-tw"?"外部資料直接連結原始來源，方便確認論據。":locale==="ko"?"외부 자료는 근거를 확인할 수 있도록 원문에 연결합니다.":"External references link to the original source where possible."}</p></div>
       <div className="journal-source-list">{post.source_references.map((ref,index)=><a key={ref.url+index} href={ref.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,"0")}</span><div><strong>{ref.title}</strong><small>{ref.source}{ref.year?" · "+ref.year:""}</small>{ref.note?<p>{ref.note}</p>:null}</div><ArrowUpRight size={17}/></a>)}</div>
