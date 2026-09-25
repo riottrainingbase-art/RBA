@@ -97,6 +97,46 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       </div>
       <p className="homecourt-plan-note">無料版の機能を意図的に弱くすることはしません。必要な情報へのアクセスは開いたままにし、有料では「継続的な学びと実践」の深さをつくります。</p>
     </section>:null}
+    {!role&&ja?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">WHO IS THIS FOR?</p><h2>こんな人に、MY HOME COURTは向いています。</h2></div><p>「情報が欲しい人」ではなく、育成の選択肢と行動を増やしたい人のための場所です。</p></div>
+      <div className="homecourt-preview-grid">
+        <article><Users/><span>PARENT</span><h3>今の環境が本当に合っているか考えたい</h3><p>チーム選び、出場時間、練習量、移籍、保護者の関わり方まで、判断材料を持ちたいご家庭へ。</p><a className="text-link" href="/ja/my-homecourt/families">保護者向けを見る <ArrowRight size={16}/></a></article>
+        <article><Sparkles/><span>PLAYER</span><h3>もっと外の世界を見てみたい</h3><p>今のチームを大切にしながら、全国のクリニックやキャンプ、海外交流にも挑戦したい選手へ。</p><a className="text-link" href="/ja/my-homecourt/players">選手向けを見る <ArrowRight size={16}/></a></article>
+        <article><BookOpen/><span>COACH</span><h3>毎週の指導を更新したい</h3><p>戦術だけでなく、判断、練習設計、S&C、育成年代の考え方まで継続して学びたい指導者へ。</p><a className="text-link" href="/ja/my-homecourt/coaches">指導者向けを見る <ArrowRight size={16}/></a></article>
+        <article><Compass/><span>PAST PARTICIPANT</span><h3>RBA参加を一度きりで終わらせたくない</h3><p>過去のクリニックやキャンプで得た経験を残し、次の挑戦につなげたい方へ。</p><a className="text-link" href="/ja/my-homecourt/participants">参加記録を始める <ArrowRight size={16}/></a></article>
+      </div>
+    </section>:null}
+
+    {!role&&ja?<section className="homecourt-plan-separation section-pad">
+      <div className="homecourt-plan-intro">
+        <p className="section-index">BEFORE YOU JOIN</p>
+        <h2>よくある迷いに、先に答えます。</h2>
+        <p>「自分に必要か分からない」を残さないために、登録前によくある疑問を整理します。</p>
+      </div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card">
+          <h3>今のチームを辞める必要はありますか？</h3>
+          <p>ありません。MY HOME COURTは移籍を促す場所ではなく、今いる環境を大切にしながら、所属の外にも学びと機会を持つための場所です。</p>
+        </article>
+        <article className="homecourt-plan-card">
+          <h3>無料だけでも使えますか？</h3>
+          <p>使えます。活動を探す、JOURNALを読む、RBAの新しい機会を知るところから始められます。継続的な実践ガイドや振り返りを使いたい方は月額HOMECOURTへ進めます。</p>
+        </article>
+        <article className="homecourt-plan-card">
+          <h3>月額3,300円で何が変わりますか？</h3>
+          <p>情報が増えるだけではありません。学ぶ→試す→振り返る→次を決める、という成長のサイクルを日常に持ち込めるようにします。</p>
+        </article>
+        <article className="homecourt-plan-card">
+          <h3>RBAのクリニックに参加したことがなくても大丈夫ですか？</h3>
+          <p>大丈夫です。初めての方も、過去参加者も、選手・保護者・指導者それぞれの入口から使えます。</p>
+        </article>
+      </div>
+      <div className="homecourt-launch-actions">
+        <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">月額HOMECOURTを始める<ArrowRight size={17}/></a>
+        <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"まず無料でRBA IDを始める":"無料登録の再開通知を受け取る"}<ArrowRight size={17}/></a>
+      </div>
+    </section>:null}
+
     {!role&&ja?<section className="homecourt-editorial-difference section-pad">
       <div className="homecourt-editorial-head">
         <p className="section-index">SOCIAL / MY HOME COURT</p>
