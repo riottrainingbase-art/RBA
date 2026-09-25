@@ -82,12 +82,12 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       </section>:null}
       {featured?<section className="journal-feature section-pad">
         <div><p className="section-index">{c.latest} / {categoryLabels[locale][featured.category as keyof typeof categoryLabels.en]||featured.category}</p><h2>{featured.title}</h2><p>{featured.standfirst}</p><Link className="button button-dark" href={journalHref(locale,featured.slug)}>{c.read}<ArrowRight size={17}/></Link></div>
-        <aside><span>{featured.reading}</span><strong>{featured.audience.toUpperCase()}</strong><small>{featured.published_at?new Date(featured.published_at).toLocaleDateString(locale):""}</small></aside>
+        <aside><span>{featured.reading}</span><strong>{featured.audience.toUpperCase()}</strong>{featured.evidence_level?<em className="journal-evidence-chip">{featured.evidence_level}</em>:null}<small>{featured.published_at?new Date(featured.published_at).toLocaleDateString(locale):""}</small></aside>
       </section>:null}
       {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
         <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>まず、この4本から。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
         <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p><h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
         </Link>)}</div>
       </section>:null}
       {locale==="ja"?<section className="homecourt-role-section section-pad">
@@ -114,7 +114,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         return <section className="journal-cms-index section-pad" id={`category-${category}`} key={category}>
           <div className="section-head"><div><p className="section-index">{categoryLabels[locale][category]}</p><h2>{locale==="ja"?categoryDescriptions.ja[category]:categoryLabels[locale][category]}</h2></div><p>{grouped.length} STORIES</p></div>
           <div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-            <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
+            <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
           </Link>)}</div>
         </section>
       })}
@@ -144,7 +144,19 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
     .slice(0,3);
   return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article">
     <header className="article-hero section-pad"><Link href={journalRoot(locale)} className="back-link">← {c.back}</Link><p className="section-index">{c.kicker} / {categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h1>{post.title}</h1><div><p>{post.standfirst}</p><span>{post.reading} · RBA</span></div></header>
+    {post.evidence_summary||post.rba_interpretation||post.limitations?<section className="journal-evidence section-pad">
+      <div className="journal-evidence-head"><p className="section-index">EVIDENCE CHECK</p><h2>{locale==="ja"?"根拠と、RBAの解釈を分けて読む。":locale==="zh-tw"?"把證據與RBA的解讀分開閱讀。":locale==="ko"?"근거와 RBA의 해석을 구분해서 읽습니다.":"Separate evidence from RBA interpretation."}</h2>{post.evidence_level?<span>{post.evidence_level}</span>:null}{post.reviewed_at?<small>{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Last reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</small>:null}</div>
+      <div className="journal-evidence-grid">
+        {post.evidence_summary?<article><span>EVIDENCE</span><h3>{locale==="ja"?"研究・ガイドラインから言えること":locale==="zh-tw"?"研究與指南支持的內容":locale==="ko"?"연구·가이드라인이 지지하는 내용":"What the evidence supports"}</h3><p>{post.evidence_summary}</p></article>:null}
+        {post.rba_interpretation?<article><span>RBA INTERPRETATION</span><h3>{locale==="ja"?"RBAが現場でどう解釈するか":locale==="zh-tw"?"RBA如何在現場解讀":locale==="ko"?"RBA가 현장에서 어떻게 해석하는가":"How RBA applies it"}</h3><p>{post.rba_interpretation}</p></article>:null}
+        {post.limitations?<article><span>LIMITATIONS</span><h3>{locale==="ja"?"ここは断定しない":locale==="zh-tw"?"不應斷言的部分":locale==="ko"?"단정하지 않는 부분":"What this does not prove"}</h3><p>{post.limitations}</p></article>:null}
+      </div>
+    </section>:null}
     <div className="article-body section-pad"><aside><p>{post.aside_title||c.kicker}</p><span>{post.aside_text||post.standfirst}</span></aside><div>{post.sections.map((section,index)=><section key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.heading}</h2>{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets?.length?<ul>{section.bullets.map(b=><li key={b}>{b}</li>)}</ul>:null}</section>)}</div></div>
+    {post.source_references?.length?<section className="journal-sources section-pad">
+      <div className="section-head"><div><p className="section-index">SOURCES / FURTHER READING</p><h2>{locale==="ja"?"参考資料・一次情報":locale==="zh-tw"?"參考資料・原始來源":locale==="ko"?"참고 자료·1차 출처":"References and primary sources"}</h2></div><p>{locale==="ja"?"外部資料は、主張の根拠を確認できるよう原典へリンクしています。":locale==="zh-tw"?"外部資料直接連結原始來源，方便確認論據。":locale==="ko"?"외부 자료는 근거를 확인할 수 있도록 원문에 연결합니다.":"External references link to the original source where possible."}</p></div>
+      <div className="journal-source-list">{post.source_references.map((ref,index)=><a key={ref.url+index} href={ref.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,"0")}</span><div><strong>{ref.title}</strong><small>{ref.source}{ref.year?" · "+ref.year:""}</small>{ref.note?<p>{ref.note}</p>:null}</div><ArrowUpRight size={17}/></a>)}</div>
+    </section>:null}
 
     {locale==="ja"?<section className="article-learning-bridge section-pad">
       <div>
