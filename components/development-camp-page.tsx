@@ -23,14 +23,14 @@ const copy={
     ]
   },
   ja:{
-    tag:"DEVELOPMENT CAMP",title:"練習する。試す。振り返る。持ち帰る。",
-    lead:"RBA Development Campは、技術・判断・身体づくり・ゲーム・振り返りをつなぐ「育成の場」です。大会に出るための期間限定チームではありません。",
-    purpose:"DEVELOPMENT FIRST",purposeTitle:"選抜ではなく、成長のためのキャンプ。",
-    purposeBody:"新しい仲間や環境の中で、学び、反復し、試し、振り返る。そこで見つけた課題を、普段の練習や所属チームへ持ち帰ることを目的にしています。",
-    steps:[["01","TRAIN / 学ぶ","技術、認知・判断、身体の使い方をテーマを持って練習します。"],["02","PLAY / 試す","小人数ゲームや実戦に近い状況で、学んだことを実際に試します。"],["03","REFLECT / 振り返る","できた・できなかっただけでなく、何を見て、どう判断したかを整理します。"],["04","RETURN / 持ち帰る","次の練習で続けることを一つ決め、普段の環境へ戻ります。"]],
+    tag:"DEVELOPMENT CAMP",title:"学ぶ。試す。振り返る。日常へ持ち帰る。",
+    lead:"RBA Development Campは、技術・判断・身体づくり・ゲーム・振り返りを一つにつなげる育成プログラムです。大会出場を目的に編成する期間限定チームではありません。",
+    purpose:"DEVELOPMENT FIRST",purposeTitle:"選抜のためではなく、成長のためのキャンプ。",
+    purposeBody:"新しい仲間や環境の中で学び、繰り返し試し、振り返る。その中で見つけた課題を、普段の練習や所属チームでの活動に持ち帰ることを目的にしています。",
+    steps:[["01","TRAIN / 学ぶ","技術、認知・判断、身体の使い方について、目的を持って練習します。"],["02","PLAY / 試す","小人数ゲームや実戦に近い状況で、学んだことを実際に試します。"],["03","REFLECT / 振り返る","できた・できなかっただけでなく、何を見て、どう判断したかを整理します。"],["04","RETURN / 持ち帰る","次の練習で続けることを一つ決め、普段の環境へ戻ります。"]],
     differenceTitle:"Development CampとRBA UNITEDは、役割が違います。",
-    campLabel:"DEVELOPMENT CAMP",campBody:"育成が中心。練習・ゲーム・身体づくり・振り返りを通して、選手自身の成長課題を深めます。",
-    unitedLabel:"RBA UNITED",unitedBody:"挑戦が中心。個人で集まった選手が、大会・遠征・国際交流など特定の目的のために期間限定チームを組みます。",
+    campLabel:"DEVELOPMENT CAMP",campBody:"育成が中心です。練習・ゲーム・身体づくり・振り返りを通して、自分の課題を見つけ、次の成長につなげます。",
+    unitedLabel:"RBA UNITED",unitedBody:"大会・遠征・国際交流などへの挑戦が中心です。個人で参加する選手が、企画ごとに期間限定のチームを組みます。",
     openTitle:"現在募集中のDevelopment Camp",openBody:"公式データで募集を確認できるキャンプだけを表示しています。",
     noOpen:"現在、募集を確認できるDevelopment Campはありません。",
     apply:"公式申込へ",all:"すべての育成機会を見る",home:"MY HOME COURT",
@@ -88,6 +88,6 @@ export function DevelopmentCampPage({locale}:{locale:Locale}){
     <section className="homecourt-plan-separation section-pad"><div className="homecourt-plan-intro"><p className="section-index">CAMP / UNITED</p><h2>{c.differenceTitle}</h2></div><div className="homecourt-plan-grid"><article className="homecourt-plan-card"><span>DEVELOPMENT</span><h3>{c.campLabel}</h3><p>{c.campBody}</p><a className="button button-light" href={localePath(locale,"camp")}>{c.campLabel}<ArrowRight/></a></article><article className="homecourt-plan-card"><span>CHALLENGE</span><h3>{c.unitedLabel}</h3><p>{c.unitedBody}</p><a className="button button-dark" href={localePath(locale,"united")}>{c.unitedLabel}<ArrowRight/></a></article></div></section>
     <section className="homecourt-product-preview section-pad" id="open-camps"><div className="section-head"><div><p className="section-index">OPEN NOW / VERIFIED</p><h2>{c.openTitle}</h2></div><p>{c.openBody}</p></div>{open.length?<div className="homecourt-preview-grid">{open.map(p=><article key={p.id}><CalendarDays/><span>{p.category}</span><h3>{tr(p.title,locale)}</h3><p>{tr(p.date,locale)} · {tr(p.place,locale)}</p><p>{tr(p.audience,locale)}</p><p>{tr(p.price,locale)}</p><a className="button button-dark" href={p.applicationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowRight/></a></article>)}</div>:<div className="homecourt-private-note"><CalendarDays/><div><strong>{c.noOpen}</strong></div></div>}<div className="homecourt-launch-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.all}<ArrowRight/></a><a className="button button-dark" href={localePath(locale,"my-homecourt")}>{c.home}<ArrowRight/></a></div></section>
     <section className="homecourt-plan-separation section-pad"><div className="homecourt-plan-intro"><p className="section-index">FAQ</p><h2>{c.faqTitle}</h2></div><div className="homecourt-plan-grid">{c.faq.map(([q,a])=><article className="homecourt-plan-card" key={q}><Check/><h3>{q}</h3><p>{a}</p></article>)}</div></section>
-    <section className="network-release section-pad"><ShieldCheck/><div><p className="section-index">AFTER CAMP</p><h2>{locale==="ja"?"参加して終わりにしない。":locale==="zh-tw"?"不讓參加在活動結束時停止。":locale==="ko"?"참가로 끝내지 않습니다.":"Do not let the camp end at checkout."}</h2><p>{locale==="ja"?"参加履歴、振り返り、次に試すことをMY HOME COURTに残し、普段の練習へつなげます。":locale==="zh-tw"?"把參加紀錄、反思與下一步留在 MY HOME COURT，再帶回日常訓練。":locale==="ko"?"참가 이력, 회고와 다음 과제를 MY HOME COURT에 남겨 일상 훈련으로 연결합니다.":"Keep participation, reflection and the next action in MY HOME COURT and bring it back to everyday practice."}</p></div><a className="button button-member" href={localePath(locale,"my-homecourt")}>{c.home}<ArrowRight/></a></section>
+    <section className="network-release section-pad"><ShieldCheck/><div><p className="section-index">AFTER CAMP</p><h2>{locale==="ja"?"参加して終わりにしない。":locale==="zh-tw"?"不讓參加在活動結束時停止。":locale==="ko"?"참가로 끝내지 않습니다.":"Do not let the camp end at checkout."}</h2><p>{locale==="ja"?"参加履歴や振り返り、次に試したいことをMY HOME COURTに残し、普段の練習につなげます。":locale==="zh-tw"?"把參加紀錄、反思與下一步留在 MY HOME COURT，再帶回日常訓練。":locale==="ko"?"참가 이력, 회고와 다음 과제를 MY HOME COURT에 남겨 일상 훈련으로 연결합니다.":"Keep participation, reflection and the next action in MY HOME COURT and bring it back to everyday practice."}</p></div><a className="button button-member" href={localePath(locale,"my-homecourt")}>{c.home}<ArrowRight/></a></section>
   </SiteFrame>;
 }
