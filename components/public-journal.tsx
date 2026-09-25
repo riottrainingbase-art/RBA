@@ -22,6 +22,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const featured=posts[0], rest=posts.slice(1);
+  const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching");
   const categoryOrder=["development","families","coaching","international","programme"] as const;
   const categoryDescriptions={
     ja:{development:"選手の成長、試合、練習、出場機会、U12・U15の育成を考える記事",families:"チーム選び、練習量、試合後の関わり方など保護者向けの記事",coaching:"練習設計、判断、ゲーム理解、コーチングを深める指導者向けの記事",international:"日本と世界の育成環境、海外交流、遠征から学ぶ記事",programme:"RBAのクリニック、キャンプ、学びを次の行動につなげる記事"},
