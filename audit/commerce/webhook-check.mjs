@@ -13,4 +13,6 @@ assert(source.includes('.eq("processing_token",token)'));
 assert(source.includes('ignoreDuplicates:true'));
 assert(source.includes('checkout.session.async_payment_succeeded'));
 assert(source.includes('payloadSha256'));
-console.log('PASS: webhook syntax, signature ordering, atomic claim, ownership, idempotent notifications, async payment handling, and platform event handling. No event sent.');
+assert(source.includes('subscription_owner_not_ready'));
+assert(source.includes('invoice_subscription_owner_not_ready'));
+console.log('PASS: webhook syntax, signature ordering, atomic claim, ownership retry, idempotent notifications, async payment handling, and platform event handling. No event sent.');

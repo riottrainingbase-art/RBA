@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- checkout anchors intentionally avoid prefetching the server redirect endpoint. */
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -238,6 +239,12 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const posts=await getPublicJournalPosts(locale,60);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching"||post.coach_application?.length);
   const prefix=locale==="en"?"":`/${locale}`;
+  const coachGroups=[
+    {id:"coach-game",label:"GAME COACHING",slugs:["winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
+    {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
+    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["who-is-playing","shouting-is-not-coaching"]},
+    {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]},
+  ];
   return <SiteFrame locale={locale} languagePage="journal">
     <div className="journal-hub journal-cms">
       <section className="journal-cms-hero section-pad">
@@ -264,17 +271,12 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
           <article><span>S&C / SAFETY</span><h3>{locale==="ja"?"身体と安全をどう守るか":"S&C and safety"}</h3><p>{locale==="ja"?"女子選手の身体づくり、ACL予防、コンディショニングの目的。":"Physical preparation, ACL prevention and conditioning."}</p><a href="#coach-physical">{locale==="ja"?"S&Cの記事を見る":"View S&C"} <ArrowRight size={15}/></a></article>
         </div>
       </section>
-      <section className="journal-cms-index section-pad">
-        <div className="section-head"><div><p className="section-index">COACH ARTICLES</p><h2>{locale==="ja"?`${coachPosts.length}本の指導者向け記事。`:`${coachPosts.length} COACH ARTICLES`}</h2></div><p>{locale==="ja"?"根拠レベルと実践ツールを確認して、必要なテーマから選べます。":"Choose by coaching problem and evidence level."}</p></div>
-        <div className="journal-cms-grid">{coachPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-          <span>{String(index+1).padStart(2,"0")}</span>
-          <p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
-          {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
-          <h3>{post.title}</h3>
-          <p>{post.standfirst}</p>
-          <strong>{post.coach_application?.length?(locale==="ja"?"実践ツール付き":"Includes coach tool"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
-        </Link>)}</div>
-      </section>
+      {coachGroups.map(group=>{const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;return <section className="journal-cms-index section-pad" id={group.id} key={group.id}>
+        <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{group.label}</h2></div><p>{grouped.length} ARTICLES</p></div>
+        {grouped.length?<div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{post.coach_application?.length?(locale==="ja"?"実践ツール付き":"Includes coach tool"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
+        </Link>)}</div>:<p>{locale==="ja"?"このテーマの記事を準備しています。":"Articles for this theme are being prepared."}</p>}
+      </section>})}
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">CONTINUE LEARNING</p><h2>{locale==="ja"?"記事から、継続的な指導者教育へ。":"Continue beyond the article."}</h2><p>{locale==="ja"?"D-HUB、Torsten Loibl Online Clinic、MY HOME COURTをつなぎ、毎週の指導を更新します。":"Connect Journal, D-HUB and coach education."}</p></div>
         <div><Link className="button button-light" href={`${prefix}/d-hub`}>D-HUB <ArrowRight size={16}/></Link><Link className="button button-dark" href={`${prefix}/my-homecourt/coaches`}>COACH HOME <ArrowRight size={16}/></Link></div>

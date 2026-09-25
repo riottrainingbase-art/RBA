@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- checkout is a server redirect endpoint and must never be prefetched. */
 import { ArrowRight, Check, House, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { homecourtFreeRegistrationUrl, HOMECOURT_PRICE_JPY, homecourtRoles } from "./homecourt-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";

@@ -6,6 +6,7 @@ import { programmes } from "./programme-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { tr } from "./network-data";
 import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 type Region="all"|"tohoku"|"kanto"|"kansai"|"kyushu"|"okinawa"|"online";
 type Age="all"|"U8"|"U10"|"U12"|"U15"|"COACH";
@@ -27,6 +28,7 @@ const pathwayLabel=(locale:Locale,pathway?:string)=>({
 
 export function OpportunityExplorer({locale}:{locale:Locale}){
   const c=copy[locale];
+  const router=useRouter();
   const [region,setRegion]=useState<Region>("all");
   const [age,setAge]=useState<Age>("all");
   const [kind,setKind]=useState<Kind>("all");
@@ -59,7 +61,7 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
     if(userId)void db.from("analytics_events").insert({user_id:userId,event_name:"filter_apply",item_type:"opportunity",item_key:[r,a,k].join(":"),locale});
   };
   async function toggleSave(p:(typeof programmes)[number]){
-    if(!userId){location.href=`${locale==="en"?"":`/${locale}`}/my-homecourt/login?next=${encodeURIComponent(`${locale==="en"?"":`/${locale}`}/opportunities`)}`;return;}
+    if(!userId){router.push(`${locale==="en"?"":`/${locale}`}/my-homecourt/login?next=${encodeURIComponent(`${locale==="en"?"":`/${locale}`}/opportunities`)}`);return;}
     setSaving(p.id);
     const exists=saved.includes(p.id);
     if(exists){

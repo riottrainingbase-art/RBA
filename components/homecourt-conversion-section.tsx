@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- checkout is a server redirect endpoint and must never be prefetched. */
 import { ArrowRight, BookOpen, Compass, CreditCard, History, Sparkles } from "lucide-react";
 
 export function HomecourtConversionSection(){

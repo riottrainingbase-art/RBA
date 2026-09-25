@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- checkout anchors intentionally avoid prefetching the server redirect endpoint. */
 import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Check, Compass, CreditCard, FileText, HeartHandshake, History, House, LifeBuoy, LockKeyhole, MessageCircle, Sparkles, Users } from "lucide-react";
 import { COACH_COMMUNITY_URL, HomecourtRole, PARENT_COMMUNITY_URL, homecourtRoles } from "./homecourt-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";

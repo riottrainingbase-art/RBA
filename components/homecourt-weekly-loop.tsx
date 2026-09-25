@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { CheckCircle2, ChevronRight, LoaderCircle, RotateCcw, Sparkles, Target } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import type { Locale } from "./site-frame";
@@ -68,7 +68,7 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
 
-  async function load(){
+  const load=useCallback(async()=>{
     setLoading(true);
     const [currentQ,recentQ]=await Promise.all([
       db.from("homecourt_weekly_actions").select("*").eq("user_id",userId).eq("week_start",week).eq("role",safeRole).maybeSingle(),
@@ -77,8 +77,8 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
     setEntry((currentQ.data as Weekly|null)||null);
     setRecent((recentQ.data||[]) as Weekly[]);
     setLoading(false);
-  }
-  useEffect(()=>{void load();},[userId,safeRole,week]);
+  },[db,safeRole,userId,week]);
+  useEffect(()=>{const initial=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(initial);},[load]);
 
   async function persist(form:HTMLFormElement,complete=false){
     setBusy(true);setMessage("");

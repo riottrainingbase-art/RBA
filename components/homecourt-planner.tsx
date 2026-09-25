@@ -154,7 +154,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
     setRbaEvents((rbaQ.data||[]) as unknown as RbaParticipation[]);
   },[c.error,supabase,userId]);
 
-  useEffect(()=>{void load();const tick=window.setInterval(()=>setNow(Date.now()),60000);return()=>window.clearInterval(tick);},[load]);
+  useEffect(()=>{const initial=window.setTimeout(()=>void load(),0);const tick=window.setInterval(()=>setNow(Date.now()),60000);return()=>{window.clearTimeout(initial);window.clearInterval(tick);};},[load]);
 
   const upcoming=useMemo(()=>{
     const team=teamEvents.filter(x=>new Date(x.starts_at).getTime()>now-3600000).map(x=>({id:`team-${x.id}`,title:x.title,at:x.starts_at,type:x.event_type,venue:x.venue,source:c.sourceTeam,link:null as string|null,teamEventId:x.id,scheduleItemId:null as string|null,publicEventId:null as string|null}));

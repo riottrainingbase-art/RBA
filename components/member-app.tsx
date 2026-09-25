@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-html-link-for-pages -- app and checkout anchors intentionally avoid prefetching authenticated mutations. */
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { Bell, BookOpen, CalendarDays, CheckCircle2, ChevronRight, ClipboardList, CreditCard, House, LoaderCircle, LogOut, Menu, Plus, Search, ShieldCheck, Sparkles, StickyNote, UserRound, Users } from "lucide-react";
 import { useRouter } from "next/navigation";

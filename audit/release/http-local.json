@@ -1,13 +1,13 @@
 {
-  "date": "2026-09-24T05:10:54.906Z",
+  "date": "2026-09-25T17:18:32.877Z",
   "scope": "Local production build public pages and links. API and authenticated app excluded: missing local Supabase runtime environment; checked separately on Preview.",
-  "routes": 161,
-  "links": 179,
+  "routes": 176,
+  "links": 241,
   "failures": [],
   "broken": [],
   "results": [
     {
-      "path": "/camp",
+      "path": "/auth/finish",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -42,7 +42,7 @@
       "noindex": false
     },
     {
-      "path": "/coaches",
+      "path": "/camp",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -63,13 +63,6 @@
       "noindex": false
     },
     {
-      "path": "/d-hub",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
       "path": "/contact",
       "status": 200,
       "directStripe": false,
@@ -77,7 +70,7 @@
       "noindex": false
     },
     {
-      "path": "/faq",
+      "path": "/d-hub",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -91,13 +84,6 @@
       "noindex": false
     },
     {
-      "path": "/families",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
       "path": "/connect",
       "status": 200,
       "directStripe": false,
@@ -105,7 +91,21 @@
       "noindex": false
     },
     {
-      "path": "/field-notes",
+      "path": "/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/faq",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/coaches",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -126,7 +126,7 @@
       "noindex": false
     },
     {
-      "path": "/international",
+      "path": "/field-notes",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -140,6 +140,13 @@
       "noindex": false
     },
     {
+      "path": "/ja/after-application",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
       "path": "/ja/approach",
       "status": 200,
       "directStripe": false,
@@ -147,7 +154,14 @@
       "noindex": false
     },
     {
-      "path": "/ja/asia",
+      "path": "/international",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/home-court",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -161,14 +175,28 @@
       "noindex": false
     },
     {
-      "path": "/ja/camp",
+      "path": "/ja/connect",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/home-court",
+      "path": "/ja/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/community",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/asia",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -189,28 +217,7 @@
       "noindex": false
     },
     {
-      "path": "/ja/community",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/coaches",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/connect",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/families",
+      "path": "/ja/camp",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -224,14 +231,7 @@
       "noindex": false
     },
     {
-      "path": "/ja/events/torsten-loibl-online-clinic",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/international",
+      "path": "/ja/faq",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -245,14 +245,14 @@
       "noindex": false
     },
     {
-      "path": "/ja/faq",
+      "path": "/ja/international",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/ja/my-homecourt/coaches",
+      "path": "/ja/families",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -266,42 +266,21 @@
       "noindex": false
     },
     {
-      "path": "/ja/my-homecourt",
+      "path": "/ja/journal/coaches",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/ja/my-homecourt/players",
+      "path": "/ja/events/torsten-loibl-online-clinic",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/ja/my-homecourt/families",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/organizer",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/opportunities",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/platform",
+      "path": "/ja/journal",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -315,11 +294,67 @@
       "noindex": false
     },
     {
-      "path": "/ja/payment-complete",
+      "path": "/ja/organizer",
       "status": 200,
       "directStripe": false,
       "canonical": true,
-      "noindex": true
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt/participants",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/opportunities",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/my-homecourt",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/regional-host",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/policies",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
     },
     {
       "path": "/ja/partners",
@@ -336,28 +371,28 @@
       "noindex": false
     },
     {
+      "path": "/ja/social",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/platform",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ja/schedule",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
       "path": "/ja/payments",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/policies",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/regional-host",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ja/sponsor",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -378,7 +413,7 @@
       "noindex": false
     },
     {
-      "path": "/ja/social",
+      "path": "/ja/sponsor",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -392,14 +427,7 @@
       "noindex": false
     },
     {
-      "path": "/ja/schedule",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ko/about",
+      "path": "/ja/work-with-rba",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -413,6 +441,41 @@
       "noindex": false
     },
     {
+      "path": "/journal/building-a-real-asia-basketball-relationship",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/clinic-to-next-practice",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/international-exchange-widen-choices",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/playing-time-and-development",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/coaches-dont-give-every-answer",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
       "path": "/journal/plan-a-japan-basketball-exchange",
       "status": 200,
       "directStripe": false,
@@ -420,14 +483,14 @@
       "noindex": false
     },
     {
-      "path": "/ko/approach",
+      "path": "/journal/parents-role-in-development",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/journal/building-a-real-asia-basketball-relationship",
+      "path": "/journal/coaches",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -441,7 +504,56 @@
       "noindex": false
     },
     {
+      "path": "/journal/see-decide-connect-adapt",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/about",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/what-families-should-look-for",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
       "path": "/journal/what-rba-coordinates-in-japan",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/journal/why-small-sided-games-matter",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/approach",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/asia",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/camp",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -456,20 +568,6 @@
     },
     {
       "path": "/ko/d-hub",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ko/camp",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ko/asia",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -511,7 +609,14 @@
       "noindex": false
     },
     {
-      "path": "/ko/international",
+      "path": "/ko/events/torsten-loibl-online-clinic",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/families",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -532,14 +637,28 @@
       "noindex": false
     },
     {
-      "path": "/ko/families",
+      "path": "/ko/home-court",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/ko/home-court",
+      "path": "/ko/international",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/journal",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/journal/coaches",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -560,21 +679,7 @@
       "noindex": false
     },
     {
-      "path": "/ko/events/torsten-loibl-online-clinic",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
       "path": "/ko/network",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ko/opportunities",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -588,21 +693,7 @@
       "noindex": false
     },
     {
-      "path": "/ko/partners",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ko/payment-complete",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": true
-    },
-    {
-      "path": "/ko/my-homecourt/players",
+      "path": "/ko/opportunities",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -616,6 +707,27 @@
       "noindex": false
     },
     {
+      "path": "/ko/platform",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/partners",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/my-homecourt/players",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
       "path": "/ko/payments",
       "status": 200,
       "directStripe": false,
@@ -623,14 +735,14 @@
       "noindex": false
     },
     {
-      "path": "/ko/policies",
+      "path": "/ko/regional-host",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/ko/platform",
+      "path": "/ko/social",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -644,7 +756,14 @@
       "noindex": false
     },
     {
-      "path": "/ko/regional-host",
+      "path": "/ko/policies",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/ko/schedule",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -665,14 +784,7 @@
       "noindex": false
     },
     {
-      "path": "/ko/schedule",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/ko/social",
+      "path": "/ko/united",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -686,14 +798,7 @@
       "noindex": false
     },
     {
-      "path": "/my-homecourt/coaches",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/my-homecourt",
+      "path": "/network",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -707,21 +812,14 @@
       "noindex": false
     },
     {
-      "path": "/ko/united",
+      "path": "/opportunities",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/network",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/my-homecourt/families",
+      "path": "/my-homecourt/coaches",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -735,6 +833,20 @@
       "noindex": false
     },
     {
+      "path": "/my-homecourt/families",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/my-homecourt",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
       "path": "/organizer",
       "status": 200,
       "directStripe": false,
@@ -742,14 +854,21 @@
       "noindex": false
     },
     {
-      "path": "/payment-complete",
+      "path": "/policies",
       "status": 200,
       "directStripe": false,
       "canonical": true,
-      "noindex": true
+      "noindex": false
     },
     {
-      "path": "/opportunities",
+      "path": "/regional-host",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/radio",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -771,13 +890,6 @@
     },
     {
       "path": "/players",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/policies",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -808,14 +920,14 @@
       "noindex": false
     },
     {
-      "path": "/social",
+      "path": "/team",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/regional-host",
+      "path": "/social",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -829,42 +941,7 @@
       "noindex": false
     },
     {
-      "path": "/radio",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
       "path": "/sponsors",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/verified",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/team",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/zh-tw/about",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/work-with-rba",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -878,7 +955,14 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/approach",
+      "path": "/verified",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/about",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -892,7 +976,14 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw",
+      "path": "/zh-tw/approach",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/work-with-rba",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -906,7 +997,14 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/d-hub",
+      "path": "/zh-tw/clinic-request",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -914,6 +1012,20 @@
     },
     {
       "path": "/zh-tw/contact",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/d-hub",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/faq",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -934,7 +1046,7 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/connect",
+      "path": "/zh-tw/families",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -948,28 +1060,7 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/clinic-request",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/zh-tw/faq",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/zh-tw/international",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/zh-tw/families",
+      "path": "/zh-tw/connect",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -990,6 +1081,27 @@
       "noindex": false
     },
     {
+      "path": "/zh-tw/international",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/journal/coaches",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/journal",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
       "path": "/zh-tw/my-homecourt/coaches",
       "status": 200,
       "directStripe": false,
@@ -997,14 +1109,14 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/my-homecourt",
+      "path": "/zh-tw/my-homecourt/families",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/zh-tw/my-homecourt/families",
+      "path": "/zh-tw/my-homecourt",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -1039,21 +1151,14 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/my-homecourt/players",
+      "path": "/zh-tw/platform",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/zh-tw/payment-complete",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": true
-    },
-    {
-      "path": "/zh-tw/platform",
+      "path": "/zh-tw/my-homecourt/players",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -1067,7 +1172,7 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/regional-host",
+      "path": "/zh-tw/players",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -1075,6 +1180,13 @@
     },
     {
       "path": "/zh-tw/policies",
+      "status": 200,
+      "directStripe": false,
+      "canonical": true,
+      "noindex": false
+    },
+    {
+      "path": "/zh-tw/regional-host",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -1095,14 +1207,14 @@
       "noindex": false
     },
     {
-      "path": "/zh-tw/social",
+      "path": "/zh-tw/verified",
       "status": 200,
       "directStripe": false,
       "canonical": true,
       "noindex": false
     },
     {
-      "path": "/zh-tw/players",
+      "path": "/zh-tw/social",
       "status": 200,
       "directStripe": false,
       "canonical": true,
@@ -1117,13 +1229,6 @@
     },
     {
       "path": "/zh-tw/united",
-      "status": 200,
-      "directStripe": false,
-      "canonical": true,
-      "noindex": false
-    },
-    {
-      "path": "/zh-tw/verified",
       "status": 200,
       "directStripe": false,
       "canonical": true,

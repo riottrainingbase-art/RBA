@@ -267,6 +267,10 @@ async function processSubscription(supabase:any,event:any,s:any) {
     updated_at:new Date().toISOString(),
   }).eq("provider_subscription_id",s.id).select("user_id").maybeSingle();
   if(error) throw error;
+  // Stripe can deliver subscription.created before checkout.session.completed.
+  // Failing here asks Stripe to retry after checkout has created the owned row,
+  // instead of permanently recording a successful no-op.
+  if(!data?.user_id) throw new Error("subscription_owner_not_ready");
   if(data?.user_id) await logAction(supabase,"subscription_updated",s.id,data.user_id,null,{
     status:s.status,cancel_at_period_end:!!s.cancel_at_period_end
   },`${event.id}:subscription_updated`);
@@ -275,6 +279,10 @@ async function processSubscription(supabase:any,event:any,s:any) {
 async function processInvoice(supabase:any,invoice:any,paid:boolean) {
   const subscriptionId=sid(invoice.subscription) || sid(invoice.parent?.subscription_details?.subscription);
   if(!subscriptionId) return false;
+  const {data:owned,error:ownedError}=await supabase.from("subscriptions")
+    .select("user_id").eq("provider_subscription_id",subscriptionId).maybeSingle();
+  if(ownedError) throw ownedError;
+  if(!owned?.user_id) throw new Error("invoice_subscription_owner_not_ready");
   const {error}=await supabase.rpc("set_homecourt_invoice_state",{
     p_subscription_id:subscriptionId,p_paid:paid,p_invoice_id:invoice.id
   });

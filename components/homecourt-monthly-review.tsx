@@ -29,11 +29,11 @@ const copy={
     saved:"今月のレビューを保存しました。",
     error:"保存できませんでした。もう一度お試しください。",
     loading:"今月のレビューを読み込んでいます…",
-    private:"このレビューは非公開です。他の会員には表示されません。",
+    private:"このレビューは非公開です。他の会員には表示されません。",period:"確認する月",history:"過去のレビュー",
   },
-  en:{eyebrow:"MONTHLY DEVELOPMENT REVIEW",title:"Review one month. Decide the next.",intro:"Record what you tried, what changed and what you will continue next.",focus:"This month's focus",wins:"What improved",challenge:"What still feels difficult",next:"One thing to continue next month",note:"Notes",save:"Save monthly review",saved:"Monthly review saved.",error:"Could not save. Please try again.",loading:"Loading monthly review…",private:"This review is private."},
-  "zh-tw":{eyebrow:"MONTHLY DEVELOPMENT REVIEW",title:"回顧一個月，決定下一個月。",intro:"記錄嘗試過什麼、改變了什麼，以及下一步要繼續什麼。",focus:"本月主題",wins:"做到或改變的事",challenge:"仍然困難的事",next:"下月繼續的一件事",note:"自由備註",save:"儲存本月回顧",saved:"已儲存本月回顧。",error:"無法儲存，請再試一次。",loading:"讀取本月回顧…",private:"此回顧為非公開資料。"},
-  ko:{eyebrow:"MONTHLY DEVELOPMENT REVIEW",title:"한 달을 돌아보고 다음 한 달을 정합니다.",intro:"무엇을 시도했고 무엇이 달라졌는지, 다음에 무엇을 이어갈지 기록합니다.",focus:"이번 달 주제",wins:"달라진 점",challenge:"아직 어려운 점",next:"다음 달에 이어갈 한 가지",note:"자유 메모",save:"이번 달 리뷰 저장",saved:"이번 달 리뷰를 저장했습니다.",error:"저장하지 못했습니다. 다시 시도하세요.",loading:"이번 달 리뷰 불러오는 중…",private:"이 리뷰는 비공개입니다."}
+  en:{eyebrow:"MONTHLY DEVELOPMENT REVIEW",title:"Review one month. Decide the next.",intro:"Record what you tried, what changed and what you will continue next.",focus:"This month's focus",wins:"What improved",challenge:"What still feels difficult",next:"One thing to continue next month",note:"Notes",save:"Save monthly review",saved:"Monthly review saved.",error:"Could not save. Please try again.",loading:"Loading monthly review…",private:"This review is private.",period:"Review month",history:"Past reviews"},
+  "zh-tw":{eyebrow:"MONTHLY DEVELOPMENT REVIEW",title:"回顧一個月，決定下一個月。",intro:"記錄嘗試過什麼、改變了什麼，以及下一步要繼續什麼。",focus:"本月主題",wins:"做到或改變的事",challenge:"仍然困難的事",next:"下月繼續的一件事",note:"自由備註",save:"儲存本月回顧",saved:"已儲存本月回顧。",error:"無法儲存，請再試一次。",loading:"讀取本月回顧…",private:"此回顧為非公開資料。",period:"回顧月份",history:"過往回顧"},
+  ko:{eyebrow:"MONTHLY DEVELOPMENT REVIEW",title:"한 달을 돌아보고 다음 한 달을 정합니다.",intro:"무엇을 시도했고 무엇이 달라졌는지, 다음에 무엇을 이어갈지 기록합니다.",focus:"이번 달 주제",wins:"달라진 점",challenge:"아직 어려운 점",next:"다음 달에 이어갈 한 가지",note:"자유 메모",save:"이번 달 리뷰 저장",saved:"이번 달 리뷰를 저장했습니다.",error:"저장하지 못했습니다. 다시 시도하세요.",loading:"이번 달 리뷰 불러오는 중…",private:"이 리뷰는 비공개입니다.",period:"리뷰 월",history:"지난 리뷰"}
 } as const;
 
 function monthKey(){
@@ -46,18 +46,23 @@ function monthKey(){
 export function HomecourtMonthlyReview({userId,locale,role}:{userId:string;locale:Locale;role:string}){
   const c=copy[locale];
   const db=useMemo(()=>createClient(),[]);
-  const period=monthKey();
+  const [period,setPeriod]=useState(monthKey);
   const safeRole=role==="coach"?"coach":role==="parent"?"parent":"player";
   const [review,setReview]=useState<Review|null>(null);
+  const [history,setHistory]=useState<Review[]>([]);
   const [loading,setLoading]=useState(true);
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
 
   useEffect(()=>{
     let alive=true;
-    void db.from("homecourt_monthly_reviews").select("id,period_month,role,focus,wins,challenge,next_action,note").eq("user_id",userId).eq("period_month",period).eq("role",safeRole).maybeSingle().then(({data})=>{
+    void Promise.all([
+      db.from("homecourt_monthly_reviews").select("id,period_month,role,focus,wins,challenge,next_action,note").eq("user_id",userId).eq("period_month",period).eq("role",safeRole).maybeSingle(),
+      db.from("homecourt_monthly_reviews").select("id,period_month,role,focus,wins,challenge,next_action,note").eq("user_id",userId).eq("role",safeRole).order("period_month",{ascending:false}).limit(24),
+    ]).then(([current,recent])=>{
       if(!alive)return;
-      setReview((data as Review|null)||null);
+      setReview((current.data as Review|null)||null);
+      setHistory((recent.data||[]) as Review[]);
       setLoading(false);
     });
     return()=>{alive=false};
@@ -80,14 +85,16 @@ export function HomecourtMonthlyReview({userId,locale,role}:{userId:string;local
     };
     const result=await db.from("homecourt_monthly_reviews").upsert(payload,{onConflict:"user_id,period_month,role"}).select("id,period_month,role,focus,wins,challenge,next_action,note").single();
     if(result.error){setMessage(c.error);setBusy(false);return;}
-    setReview(result.data as Review);setMessage(c.saved);setBusy(false);
+    const saved=result.data as Review;
+    setReview(saved);setHistory(current=>[saved,...current.filter(item=>item.id!==saved.id)].sort((a,b)=>b.period_month.localeCompare(a.period_month)));setMessage(c.saved);setBusy(false);
   }
 
   if(loading)return <section className="member-next-step"><div><LoaderCircle className="spin"/><span>{c.eyebrow}</span><strong>{c.loading}</strong></div></section>;
 
   return <section className="member-section">
     <div className="member-section-head"><div><p>{c.eyebrow}</p><h2>{c.title}</h2><p>{c.intro}</p></div><History/></div>
-    <form className="member-inline-form" onSubmit={save}>
+    <div className="member-summary"><article><span>{c.period}</span><input aria-label={c.period} type="month" value={period.slice(0,7)} max={monthKey().slice(0,7)} onChange={event=>{setLoading(true);setMessage("");setPeriod(`${event.target.value}-01`)}}/></article><article><span>{c.history}</span><strong>{history.length}</strong><p>{history.slice(0,4).map(item=><button key={item.id} type="button" onClick={()=>{setLoading(true);setMessage("");setPeriod(item.period_month)}}>{item.period_month.slice(0,7)}</button>)}</p></article></div>
+    <form key={review?.id||period} className="member-inline-form" onSubmit={save}>
       <label><Target/>{c.focus}<textarea name="focus" rows={2} maxLength={1000} defaultValue={review?.focus||""}/></label>
       <label><CheckCircle2/>{c.wins}<textarea name="wins" rows={3} maxLength={2000} defaultValue={review?.wins||""}/></label>
       <label><Sparkles/>{c.challenge}<textarea name="challenge" rows={3} maxLength={2000} defaultValue={review?.challenge||""}/></label>

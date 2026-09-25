@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, CalendarDays, Check, Compass, History, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, Check, Compass, ShieldCheck } from "lucide-react";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { programmes } from "./programme-data";
 import { tr } from "./network-data";

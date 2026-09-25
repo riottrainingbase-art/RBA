@@ -8,18 +8,6 @@ const copy={
  ko:{kicker:"RBA DEVELOPMENT PLATFORM",title:"육성을 점이 아닌 하나의 여정으로.",lead:"RBA는 선수, 보호자, 코치, 팀, 주최자와 해외 아카데미를 ID, 학습, 기회, 안전, 결제로 연결합니다.",body:"클리닉 참가가 끝이 아닙니다. 현재를 알고, 다음 목표를 정하고, 필요한 기회를 찾고, 경험을 기록해 다시 다음으로 갑니다. 하나의 RBA ID가 이 흐름을 연결합니다.",modules:"PLATFORM CORE",modulesTitle:"하나의 RBA ID에서 모든 육성으로.",roles:"FOR EVERY ROLE",rolesTitle:"역할은 달라도 같은 육성 기반을 사용합니다.",trust:"TRUST LAYER",trustTitle:"규모보다 먼저 신뢰를 설계합니다.",cta:"MY HOME COURT 시작",find:"육성 기회 찾기"}
 } as const;
 
-const jaModuleDescriptions={
- "RBA ID":"本人確認と役割の基盤",
- "MY HOME COURT":"参加・振り返り・目標の記録",
- "OPPORTUNITIES":"育成機会の検索・申込",
- "TEAM HOME":"チーム運営と日々の連絡",
- "COACH EDUCATION":"指導者の継続学習",
- "GLOBAL NETWORK":"国内外の交流・連携",
- "COMMERCE":"申込・決済・契約管理",
- "SAFEGUARDING":"安全管理と同意",
- "IMPACT":"活動実績と再投資"
-} as const;
-
 const modules=[
  ["RBA ID",IdCard,"Identity",["my-homecourt"]],
  ["MY HOME COURT",BookOpen,"Development record",["my-homecourt"]],

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- locale-aware internal links are rendered as plain anchors intentionally. */
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, CreditCard, GraduationCap, HeartHandshake, House, MapPin, ShieldCheck } from "lucide-react";
 import { Locale, SiteFrame, localePath } from "./site-frame";
 
