@@ -33,7 +33,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
     [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
     ["RBA PLATFORM",localePath(locale,"platform")],
-    ["MY HOME COURT",localePath(locale,"home-court")],
+    [({en:"About MY HOME COURT",ja:"MY HOME COURTとは","zh-tw":"MY HOME COURT介紹",ko:"MY HOME COURT 안내"})[locale],localePath(locale,"home-court")],
     [c.about,localePath(locale,"about")],
     [c.approach,localePath(locale,"approach")],
     [c.schedule,localePath(locale,"schedule")],
@@ -50,7 +50,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   ] as const;
   const nav=[
     [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
-    ["MY HOME COURT",localePath(locale,"my-homecourt")] as const,
+    [({en:"MY HOME COURT",ja:"MY HOME COURTを使う","zh-tw":"使用MY HOME COURT",ko:"MY HOME COURT 이용"})[locale],localePath(locale,"my-homecourt")] as const,
     [({en:"Platform",ja:"育成プラットフォーム","zh-tw":"培育平台",ko:"육성 플랫폼"})[locale],localePath(locale,"platform")] as const,
     [({en:"Coaches",ja:"指導者", "zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
