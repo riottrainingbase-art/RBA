@@ -341,7 +341,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
     {ja&&role==="coaches"?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">COACH JOURNAL / PRACTICE LAB</p><h2>読む。設計する。現場で試す。振り返る。</h2></div><p>指導者向けJOURNALは、考え方だけで終わらせません。根拠を確認し、練習に落とし込み、観察して次の修正までつなげます。</p></div>
       <div className="homecourt-preview-grid">
-        <article><BookOpen/><span>01 / READ</span><h3>根拠と考え方を読む</h3><p>EVIDENCE、RBA INTERPRETATION、LIMITATIONS、SOURCESを分けて確認する。</p><a className="text-link" href="/ja/journal#category-coaching">指導者向け記事へ <ArrowRight size={16}/></a></article>
+        <article><BookOpen/><span>01 / READ</span><h3>根拠と考え方を読む</h3><p>EVIDENCE、RBA INTERPRETATION、LIMITATIONS、SOURCESを分けて確認する。</p><a className="text-link" href="/ja/journal/coaches">指導者専用JOURNALへ <ArrowRight size={16}/></a></article>
         <article><FileText/><span>02 / PLAN</span><h3>COACH APPLICATIONを使う</h3><p>SETUP、CONSTRAINTS、OBSERVE、REVIEW QUESTIONSから次の練習を設計する。</p><a className="text-link" href={recommendedJournal[0]?("/ja/journal/"+recommendedJournal[0].slug):"/ja/journal"}>実践記事を開く <ArrowRight size={16}/></a></article>
         <article><Users/><span>03 / COACH</span><h3>現場では選手を見る</h3><p>メニューを消化するのではなく、誰が何を見て、どんな判断をしたかを観察する。</p><a className="text-link" href="/ja/d-hub">D-HUBで学ぶ <ArrowRight size={16}/></a></article>
         <article><History/><span>04 / REVIEW</span><h3>次の修正を一つ決める</h3><p>練習後に「何が起きたか」「次に何を変えるか」を短く残し、次回の設計へ戻す。</p><a className="text-link" href={roleCommunity} target="_blank" rel="noreferrer">指導者コミュニティへ <ArrowUpRight size={16}/></a></article>
