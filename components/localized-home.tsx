@@ -24,13 +24,13 @@ const copy={
   },
   ja:{
     title:["子どもの未来から、","育成を考える。"],lede:"所属チームや地域だけで、子どもの選択肢を決めなくていい。RBAは、今いる環境を大切にしながら、全国・アジアの学びや挑戦へつながれる育成プラットフォームです。",
-    primary:"募集中の活動を見る",secondary:"RBAを地域に呼ぶ",proof:[["3,000+","2025年半ば以降の延べ参加者"],["25","確認済みの国内活動地域"],["4言語","日本語・英語・繁体字中国語・韓国語"]],image:"次のコートが、ここから見つかる。",
+    primary:"募集中の活動を見る",secondary:"RBAを地域に呼ぶ",proof:[["3,000+","2025年半ば以降の延べ参加者"],["25","国内25地域で活動"],["4言語","日本語・英語・繁体字中国語・韓国語"]],image:"次のコートが、ここから見つかる。",
     clinicLabel:"全国の指導者へ · 2026年11月25日",clinicTitle:"世界の育成現場に学ぶ、日本語通訳付きオンライン講習。",clinicCopy:"レバンガ北海道ヘッドコーチ、トーステン・ロイブル氏による90分のオンライン講習です。シューターの育成方法、練習の組み立て方、試合で質の高いシュートチャンスをつくる考え方を、日本語の逐次通訳付きで学びます。",clinicDetail:"講習内容と講師実績を見る",clinicApply:"11月25日の講習に申し込む",clinicHero:"11月25日｜トーステン・ロイブル オンライン講習",clinicAchievements:[["B.LEAGUE","レバンガ北海道 ヘッドコーチ"],["日本代表","U16・U18・U19日本代表を指導"],["3x3日本代表","ナショナルチームを指導"],["世界一","2019年女子U23ワールドカップ優勝時のディレクターコーチ"]],
-    routesLabel:"育成を、行動に変える",routesTitle:"参加する。育つ。挑戦する。つながる。",routesCopy:"Development CampとRBA UNITEDを混同せず、目的に合う入口から次へ進めます。",routes:[["選手・保護者","クリニックや現在募集中の育成機会を探す","opportunities"],["DEVELOPMENT CAMP","練習・ゲーム・振り返りを通して育成を深める","camp"],["RBA UNITED","大会・遠征・国際交流へ期間限定チームで挑戦する","united"],["指導者","トーステン氏のオンライン講習で学ぶ","events/torsten-loibl-online-clinic"],["主催者・団体","地域やクラブでRBAを開催する","clinic-request"],["海外アカデミー","日本との責任ある交流をつくる","asia"]],
+    routesLabel:"育成を、行動に変える",routesTitle:"参加する。育つ。挑戦する。つながる。",routesCopy:"目的に合わせて、Development CampとRBA UNITEDを使い分けながら、次の一歩を選べます。",routes:[["選手・保護者","クリニックや現在募集中の育成機会を探す","opportunities"],["DEVELOPMENT CAMP","練習・ゲーム・振り返りを通して育成を深める","camp"],["RBA UNITED","大会・遠征・国際交流へ期間限定チームで挑戦する","united"],["指導者","トーステン氏のオンライン講習で学ぶ","events/torsten-loibl-online-clinic"],["主催者・団体","地域やクラブでRBAを開催する","clinic-request"],["海外アカデミー","日本との責任ある交流をつくる","asia"]],
     position:"私たちの考え方",positionTitle:["勝つことと、","育てることは同じではない。"],positionCopy:"私たちが問い直したいのは、勝利そのものではありません。U12で何を優先し、その経験が15歳、18歳になったときの判断、自立、プレーの幅につながるのか。子どもが見て、選び、実行し、振り返れる環境を、ゲーム理解とS&Cの両面からつくります。",readApproach:"RBAの育成方針を読む",
-    workLabel:"RBAが実装すること",workTitle:"発信だけで終わらせず、育成環境そのものをつくる。",work:[["01","選手が判断する","状況を見る、選ぶ、実行する、振り返る。コーチの答えではなく、自分の判断を育てます。"],["02","身体を守りながら伸ばす","S&C、負荷管理、回復、睡眠、栄養まで含め、長く競技を続ける土台をつくります。"],["03","指導者が学び続ける","観察、問い、練習設計、国内外の知見をつなぎ、指導を更新できる場をつくります。"],["04","所属の外にも機会をつくる","地域や所属だけで選択肢が決まらないよう、全国・アジアの学びと挑戦につなげます。"]],
+    workLabel:"RBAが取り組むこと",workTitle:"発信だけで終わらせず、育成環境そのものをつくる。",work:[["01","選手が判断する","状況を見る、選ぶ、実行する、振り返る。コーチの答えではなく、自分の判断を育てます。"],["02","身体を守りながら伸ばす","S&C、負荷管理、回復、睡眠、栄養まで含め、長く競技を続ける土台をつくります。"],["03","指導者が学び続ける","観察、問い、練習設計、国内外の知見をつなぎ、指導を更新できる場をつくります。"],["04","所属の外にも機会をつくる","地域や所属だけで選択肢が決まらないよう、全国・アジアの学びと挑戦につなげます。"]],
     asiaLabel:ui("ja","access"),asiaTitle:["日本のバスケットボールへ、","最初の一歩を。"],asiaCopy:"アジアのアカデミー、チーム、指導者、ご家族に向けた相談窓口です。団体名、対象年代、希望時期、交流の目的をお知らせください。実現できる形と次の一歩を、RBAが一緒に整理します。",asiaCta:"海外連携を相談する",
-    recordLabel:"活動実績",recordTitle:"特定の地域やクラブだけで終わらない。",recordCopy:"仙台、川崎、神戸、佐賀、沖縄など、さまざまな地域で活動してきました。地域の文化を否定するのではなく、現場の声を聞きながら、子どもの長期的な成長という共通基準でプログラムを組み立てます。",about:"RBAについて",
+    recordLabel:"活動実績",recordTitle:"地域ごとの違いを大切に、全国へ。",recordCopy:"仙台、川崎、神戸、佐賀、沖縄など、さまざまな地域で活動してきました。それぞれの地域やチームの背景を尊重し、現場の声を聞きながら、子どもの長期的な成長を軸にプログラムを組み立てています。",about:"RBAについて",
     contactLabel:"育成の違和感を、そのままにしない",contactTitle:["いまの環境から、","次の一歩をつくる。"],contactCopy:"選手の成長、チーム環境、指導者の学び、クリニック、キャンプ、海外交流、S&Cまで。まだ答えが出ていない段階から一緒に整理できます。",contact:"RBAに相談する",whatsapp:"WhatsAppで相談"
   },
   "zh-tw":{
@@ -59,7 +59,7 @@ const copy={
 
 const homecourtCopy={
   en:{label:"RBA HOMECOURT / FREE MEMBER ACCESS",title:"Start free from MY HOME COURT.",body:"Choose PLAYER, PARENT or COACH. Access programmes, communities and role-based content, then upgrade only when paid membership fits.",open:"Open MY HOME COURT",about:"Free & paid membership",roles:["PLAYER","PARENT","COACH"]},
-  ja:{label:"RBA / MY HOME COURT",title:"もう一つ、自分の育成環境を持つ。",body:"チームに所属していても、地域の外を見ていい。違う指導者から学んでいい。過去の経験を残し、次の挑戦を自分で選んでいい。MY HOME COURTは、活動・育成記事・Basketball Passport・全国と世界の機会を一つにつなぐ、自分専用の育成ホームです。RBA IDは無料。継続的に学び、試し、振り返りたい方は月額3,300円のHOMECOURTへ。",open:"無料でRBA IDをつくる",about:"月額3,300円でできること",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
+  ja:{label:"RBA / MY HOME COURT",title:"もう一つ、自分の育成環境を持つ。",body:"チームに所属していても、地域の外に目を向けていい。違う指導者から学んでもいい。これまでの経験を残し、次の挑戦を自分で選べる。MY HOME COURTは、活動情報・育成記事・Basketball Passport・全国や海外の機会を一つにつなぐ、自分の成長を支える場所です。RBA IDは無料で利用できます。継続して学び、試し、振り返りたい方には月額3,300円のHOMECOURTも用意しています。",open:"無料でRBA IDをつくる",about:"月額3,300円でできること",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
   "zh-tw":{label:"RBA HOMECOURT / 會員專區",title:"會員請從MY HOME COURT開始。",body:"活動日程、報名、付款、規則與角色專屬內容，集中在同一個清楚入口。",open:"開啟會員專區",about:"了解RBA HOMECOURT",roles:["球員","家長","教練"]},
   ko:{label:"RBA HOMECOURT / 회원 페이지",title:"회원은 MY HOME COURT에서 시작하세요.",body:"일정, 신청, 결제, 규정과 역할별 콘텐츠를 하나의 명확한 입구에 모았습니다.",open:"회원 페이지 열기",about:"RBA HOMECOURT 안내",roles:["선수","보호자","코치"]},
 } as const;
@@ -91,7 +91,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     <section className="asia-desk-home section-pad"><div><p className="section-index inverse">{c.asiaLabel}</p><h2>{c.asiaTitle[0]}<br/>{c.asiaTitle[1]}</h2></div><div><p>{c.asiaCopy}</p><div className="desk-languages"><span>ENGLISH</span><span>日本語</span><span>繁體中文</span><span>한국어</span></div><a className="button button-light" href={localePath(locale,"asia")}>{c.asiaCta}<ArrowRight size={17}/></a></div></section>
 
-    <section className="field-footprint section-pad"><div><p className="section-index inverse">{c.recordLabel}</p><h2>{c.recordTitle}</h2><p>{c.recordCopy}</p><a className="text-link light-link" href={localePath(locale,"about")}>{c.about}<ArrowRight size={16}/></a></div><div className="footprint-numbers"><div><strong>{locale==="ja"?"3,000+":"3,000+"}</strong><span>{ui(locale,"players")}</span></div><div><strong>25</strong><span>{({en:"ACTIVITY LOCATIONS",ja:"確認済みの国内活動地域","zh-tw":"日本全國活動地區",ko:"일본 전역 활동 지역"})[locale]}</span></div><div><strong>JP × ASIA</strong><span>{ui(locale,"nextField")}</span></div></div></section>
+    <section className="field-footprint section-pad"><div><p className="section-index inverse">{c.recordLabel}</p><h2>{c.recordTitle}</h2><p>{c.recordCopy}</p><a className="text-link light-link" href={localePath(locale,"about")}>{c.about}<ArrowRight size={16}/></a></div><div className="footprint-numbers"><div><strong>{locale==="ja"?"3,000+":"3,000+"}</strong><span>{ui(locale,"players")}</span></div><div><strong>25</strong><span>{({en:"ACTIVITY LOCATIONS",ja:"国内25地域で活動","zh-tw":"日本全國活動地區",ko:"일본 전역 활동 지역"})[locale]}</span></div><div><strong>JP × ASIA</strong><span>{ui(locale,"nextField")}</span></div></div></section>
 
     <GlobalMedia locale={locale}/>
     <NetworkMaps locale={locale}/>
