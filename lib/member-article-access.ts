@@ -1,10 +1,9 @@
-import type { HomecourtSubscription } from "./homecourt-billing";
+import { hasCurrentHomecourtSubscription, type HomecourtSubscription } from "./homecourt-billing";
 
-// Article access fails closed when paid-through information is absent or stale.
+/**
+ * Member article access follows the same active HOMECOURT entitlement used by
+ * the member app so a paid member never sees contradictory access states.
+ */
 export function canReadMemberArticles(subscriptions: HomecourtSubscription[], now = Date.now()) {
-  return subscriptions.some(item => item.plan_key === "homecourt_monthly"
-    && ["active", "trialing"].includes(item.status)
-    && item.current_period_end !== null
-    && Number.isFinite(Date.parse(item.current_period_end))
-    && Date.parse(item.current_period_end) > now);
+  return hasCurrentHomecourtSubscription(subscriptions, now);
 }
