@@ -2,6 +2,7 @@ import { ui } from "./ui-copy";
 import { ContactForm, contactFormUrl } from "./contact-form";
 import { ArrowRight, ArrowUpRight, Mail, MessageCircle } from "lucide-react";
 import { Locale, LanguagePage, SiteFrame, localePath } from "@/components/site-frame";
+import { SponsorPartnerPage } from "./sponsor-partner-page";
 
 type Kind="about"|"approach"|"asia"|"partners"|"contact";
 type PageCopy={kicker:string;title:string[];intro:string;section:string;sectionTitle:string;sectionCopy:string;cards:readonly (readonly [string,string,string])[];closing:string;closingCopy:string;primary:string;secondary:string};
@@ -45,12 +46,13 @@ export function LocalizedCorePage({locale,kind}:{locale:Locale;kind:Kind}){
   const whatsapp="https://wa.me/818032483703?text="+encodeURIComponent(message);
   const primaryHref=kind==="about"?localePath(locale,"approach"):kind==="approach"?localePath(locale,"clinic-request"):kind==="partners"?localePath(locale,"contact"):kind==="contact"?contactFormUrl:whatsapp;
   const secondaryHref=kind==="about"?localePath(locale,"contact"):kind==="approach"?localePath(locale,"schedule"):kind==="partners"?localePath(locale,"about"):kind==="contact"?whatsapp:"mailto:riot.training.base@gmail.com";
-  return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale} languagePage={languagePage[kind]}>
+  return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale} languagePage={languagePage[kind]}>{kind==="partners"?<SponsorPartnerPage locale={locale}/>:<>
     <section className="inner-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{c.kicker}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p></section>
     <section className="access-promise section-pad"><p className="section-index">{c.section}</p><div><h2>{c.sectionTitle}</h2><p>{c.sectionCopy}</p></div></section>
     <section className="access-grid section-pad">{c.cards.map(([n,t,b])=><article key={n}><span>{n} / {t}</span><p>{b}</p></article>)}</section>
     {kind==="contact"&&<ContactForm locale={locale}/>}
     {kind==="contact"&&<section className="partner-call section-pad"><div><p className="section-index inverse">{ui(locale,"channels")}</p><h2>RBA / SENDAI</h2><p>{c.closingCopy}</p></div><div className="partner-contact-grid"><a href="mailto:riot.training.base@gmail.com"><Mail size={24}/><span>{ui(locale,"email")}</span><strong>riot.training.base@gmail.com</strong></a><a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={24}/><span>WHATSAPP</span><strong>+81 80 3248 3703</strong></a><a href={localePath(locale,"clinic-request")}><ArrowUpRight size={24}/><span>{ui(locale,"request")}</span><strong>{c.cards[0][1]}</strong></a></div></section>}
     <section className="closing-cta section-pad"><p className="eyebrow">{c.kicker}</p><h2>{c.closing}</h2><p>{c.closingCopy}</p><div className="closing-actions"><a className="button button-orange" href={primaryHref} target={primaryHref.startsWith("http")?"_blank":undefined} rel={primaryHref.startsWith("http")?"noreferrer":undefined}>{kind==="contact"?({en:"Open enquiry form",ja:"お問い合わせフォーム", "zh-tw":"開啟查詢表單",ko:"문의 양식 열기"}[locale]):c.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={secondaryHref} target={secondaryHref.startsWith("http")?"_blank":undefined} rel={secondaryHref.startsWith("http")?"noreferrer":undefined}>{c.secondary}<ArrowUpRight size={17}/></a></div></section>
+    </>}
   </SiteFrame></div>;
 }
