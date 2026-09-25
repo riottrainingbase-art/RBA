@@ -60,7 +60,12 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <p className="section-index">{c.kicker}</p>
         <h1>{c.title}</h1>
         <p>{c.lead}</p>
-        <div className="journal-cms-languages"><span>EN</span><span>日本語</span><span>繁中</span><span>한국어</span></div>
+        <div className="journal-cms-languages">
+          <Link href="/journal" aria-current={locale==="en"?"page":undefined}>EN</Link>
+          <Link href="/ja/journal" aria-current={locale==="ja"?"page":undefined}>日本語</Link>
+          <Link href="/zh-tw/journal" aria-current={locale==="zh-tw"?"page":undefined}>繁中</Link>
+          <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
+        </div>
       </section>
       {featured?<section className="journal-feature section-pad">
         <div><p className="section-index">{c.latest} / {categoryLabels[locale][featured.category as keyof typeof categoryLabels.en]||featured.category}</p><h2>{featured.title}</h2><p>{featured.standfirst}</p><Link className="button button-dark" href={journalHref(locale,featured.slug)}>{c.read}<ArrowRight size={17}/></Link></div>
