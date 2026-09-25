@@ -213,21 +213,22 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
           <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"無料でRBA IDをつくる":"LINEで登録再開通知を受け取る"}<ArrowRight size={16}/></a>
         </article>
         <article className="homecourt-plan-card homecourt-plan-paid">
-          <div className="homecourt-plan-card-head"><span>HOMECOURT / MONTHLY</span><strong>¥3,300</strong><small>月額・税込</small></div>
-          <h3>学ぶ・試す・振り返る・続ける</h3>
-          <p>情報を集めるだけでなく、「次に何を変えるか」まで持ち帰るためのメンバーシップです。</p>
+          <div className="homecourt-plan-card-head"><span>HOMECOURT PLUS / MONTHLY</span><strong>¥3,300</strong><small>月額・税込</small></div>
+          <h3>記録を、次の行動に変える</h3>
+          <p>情報を増やすためではなく、これまでの記録や予定を使って「今週何をやるか」「次に何を変えるか」まで決めるためのメンバーシップです。</p>
           <ul>
-            <li><Check size={17}/>会員限定の学びのライブラリを読む</li>
-            <li><Check size={17}/>PLAYER / PARENT / COACH別の実践ガイド</li>
-            <li><Check size={17}/>学びを次の練習・試合・会話へ落とし込む</li>
-            <li><Check size={17}/>振り返りの問いで、自分の変化を言葉にする</li>
-            <li><Check size={17}/>継続して増える学びをHOMECOURTに蓄積する</li>
+            <li><Check size={17}/>WEEKLY DEVELOPMENT｜今週のテーマ・実践・振り返り</li>
+            <li><Check size={17}/>SMART PREP｜大会・遠征から逆算する準備管理</li>
+            <li><Check size={17}/>CONDITION TREND｜疲労・痛み・睡眠など7日間の推移</li>
+            <li><Check size={17}/>MEMBER LEARNING｜会員限定の学習ライブラリ</li>
+            <li><Check size={17}/>DEVELOPMENT HORIZON｜地域〜世界までの機会整理</li>
+            <li><Check size={17}/>MONTHLY REVIEW｜参加・保存・学び・目標を月単位で振り返る</li>
           </ul>
-          <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURTを始める<ArrowRight size={16}/></a>
+          <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={16}/></a>
         </article>
       </div>
       <div className="homecourt-value-line">
-        <span>FREE</span><strong>情報と機会への入口</strong><ArrowRight size={18}/><span>HOMECOURT</span><strong>成長を続けるための環境</strong>
+        <span>RBA ID</span><strong>知る・探す・記録する</strong><ArrowRight size={18}/><span>HOMECOURT PLUS</span><strong>整理する・実践する・振り返る</strong>
       </div>
       <div className="homecourt-growth-loop">
         <div><span>01</span><strong>LEARN</strong><p>今の自分に必要なテーマを学ぶ。</p></div>
@@ -235,7 +236,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <div><span>03</span><strong>REFLECT</strong><p>できた・できなかっただけで終わらせず振り返る。</p></div>
         <div><span>04</span><strong>NEXT</strong><p>次に変えることを一つ決める。</p></div>
       </div>
-      <p className="homecourt-plan-note">無料版の機能を意図的に弱くすることはしません。必要な情報へのアクセスは開いたままにし、有料では「継続的な学びと実践」の深さをつくります。</p>
+      <p className="homecourt-plan-note">無料版の機能を意図的に弱くすることはしません。活動を探す、公開情報を読む、経験を記録する機能はRBA IDで使えます。有料版では、その記録を材料に「次の行動を決める」ための高度な機能を追加します。</p>
     </section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">WHO IS THIS FOR?</p><h2>こんな人に、MY HOME COURTは向いています。</h2></div><p>「情報が欲しい人」ではなく、育成の選択肢と行動を増やしたい人のための場所です。</p></div>
