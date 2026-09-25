@@ -20,6 +20,7 @@ const categoryLabels={
 
 export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale);
+  const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const featured=posts[0], rest=posts.slice(1);
   const categoryOrder=["development","families","coaching","international","programme"] as const;
   const categoryDescriptions={
@@ -68,7 +69,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに戻って来られる場所です。</p><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
           <article><span>COACH</span><h3>指導者</h3><p>D-HUB、Torsten、練習設計。毎週の指導をアップデートする学びをまとめます。</p><Link href="/ja/my-homecourt/coaches">指導者向けHOME <ArrowRight size={16}/></Link></article>
         </div>
-        <div className="homecourt-launch-actions"><Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link><Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
+        <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
       </section>:null}
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">{c.exchange}</p><h2>{c.exchangeTitle}</h2><p>{c.exchangeBody}</p></div>
