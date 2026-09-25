@@ -27,7 +27,7 @@ export default function Page(){
       <h1>申込で終わらせない。<br/>今回の挑戦を、次の成長へ。</h1>
       <p>RBAのクリニック・キャンプ・講習へお申し込みいただいた方へ。申込時に使ったメールアドレスでRBA IDを作成すると、今回の参加予定、過去の経験、保存した活動、学びをMY HOME COURTにまとめていけます。</p>
       <div className="closing-actions">
-        <a className="button button-member" href="/ja/my-homecourt/login?next=%2Fja%2Fmy-homecourt%2Fapp"><House size={17}/>RBA IDを無料でつくる<ArrowRight size={17}/></a>
+        <a className="button button-member" href="/ja/my-homecourt/login?source=after-application&next=%2Fja%2Fmy-homecourt%2Fapp"><House size={17}/>RBA IDを無料でつくる<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/opportunities"><Search size={17}/>次の育成機会を見る<ArrowRight size={17}/></a>
       </div>
     </section>
@@ -35,7 +35,7 @@ export default function Page(){
     <section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">3 STEPS</p><h2>参加前から、成長は始められます。</h2></div><p>全部入力する必要はありません。まずはRBA IDをつくり、今回の参加を自分の育成履歴につなげるところから始めてください。</p></div>
       <div className="homecourt-preview-grid">
-        <article><House/><span>01</span><h3>RBA IDをつくる</h3><p>申込時と同じメールアドレスを使うと、今後の照合や参加履歴の整理がスムーズです。</p><a className="text-link" href="/ja/my-homecourt/login?next=%2Fja%2Fmy-homecourt%2Fapp">無料で作成する <ArrowRight size={16}/></a></article>
+        <article><House/><span>01</span><h3>RBA IDをつくる</h3><p>申込時と同じメールアドレスを使うと、今後の照合や参加履歴の整理がスムーズです。</p><a className="text-link" href="/ja/my-homecourt/login?source=after-application&next=%2Fja%2Fmy-homecourt%2Fapp">無料で作成する <ArrowRight size={16}/></a></article>
         <article><History/><span>02</span><h3>過去の経験を一つ残す</h3><p>以前参加したRBAクリニックでも、最近のバスケ経験でも構いません。Basketball Passportの最初の1件にします。</p><a className="text-link" href="/ja/my-homecourt/participants">参加記録の使い方を見る <ArrowRight size={16}/></a></article>
         <article><Search/><span>03</span><h3>次の挑戦を一つ見る</h3><p>今いるチームを続けながら、地域や所属の外にもどんな機会があるかを見ておく。</p><a className="text-link" href="/ja/opportunities">活動を探す <ArrowRight size={16}/></a></article>
         <article><ShieldCheck/><span>SAFE</span><h3>記録は自分のために</h3><p>参加履歴や成長記録は、本人・保護者など権限を持つアカウントを中心に扱います。</p><a className="text-link" href="/ja/policies">安全方針を確認 <ArrowRight size={16}/></a></article>
