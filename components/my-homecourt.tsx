@@ -3,6 +3,7 @@ import { COACH_COMMUNITY_URL, HomecourtRole, PARENT_COMMUNITY_URL, homecourtRole
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { programmes } from "./programme-data";
 import { getPublicJournalPosts } from "@/lib/public-content";
+import { HomecourtConversionSection } from "./homecourt-conversion-section";
 
 const copy={
   en:{title:"Your next court starts here.",lead:"From everyday practice to courts you have not seen yet. Find clinics, learning, community and exchange built for players, parents and coaches.",free:"Discover what comes next",freeBody:"Find clinics, development ideas and opportunities that fit where you are now.",paid:"Expand your court",paidBody:"Meet new teammates, visit new places and experience different ways to play and learn.",community:"Community",communityBody:"Useful conversations for families and coaches, connected to real programmes—not an endless social feed.",impact:"RBA IMPACT",impactBody:"See how programme income and partner support are reinvested into access, education and safer development environments.",choose:"Choose your route",tools:"Member essentials",register:"Start with RBA ID",upgrade:"Explore MY HOME COURT",impactCta:"See impact & reinvestment"},
@@ -169,6 +170,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       </div>
       <div className="homecourt-private-note"><HeartHandshake size={24}/><div><strong>チームを辞めるための場所ではありません。</strong><p>今いる環境を大切にしながら、所属の外にも学びと選択肢を持つための育成プラットフォームです。</p></div></div>
     </section>:null}
+    {!role&&ja?<HomecourtConversionSection/>:null}
     {!role&&ja?<section className="homecourt-plan-separation section-pad">
       <div className="homecourt-plan-intro">
         <p className="section-index">FREE / HOMECOURT</p>
