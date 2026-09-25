@@ -263,6 +263,10 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
   const trend=wellnessHistory.slice().reverse();
   const avg=(key:"energy"|"fatigue"|"pain_level")=>wellnessHistory.length?(wellnessHistory.reduce((sum,row)=>sum+Number(row[key]||0),0)/wellnessHistory.length).toFixed(1):"—";
   const prepTargets=upcoming.filter(item=>item.teamEventId||item.scheduleItemId||item.publicEventId);
+  const todayKey=new Intl.DateTimeFormat("en-CA",{timeZone,year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date(now));
+  const wellnessDoneToday=wellness?.checkin_on===todayKey;
+  const openTaskCount=tasks.filter(task=>!task.completed_at).length;
+  const nextCare=care.find(item=>item.status==="planned"&&new Date(item.scheduled_at).getTime()>now-3600000)||null;
   const painHigh=(wellness?.pain_level||0)>=7;
   return <section className={`homecourt-planner ${mode==="summary"?"homecourt-planner-summary":""}`}>
     <div className="homecourt-planner-head">
