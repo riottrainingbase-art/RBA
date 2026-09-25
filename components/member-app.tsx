@@ -112,7 +112,7 @@ export function MemberApp({locale,section,userId,email}:{locale:Locale;section:s
       supabase.from("subscriptions").select("id,status,plan_key,current_period_end,cancel_at_period_end").eq("user_id",userId).order("updated_at",{ascending:false}),
       supabase.from("homecourt_history").select("id,title,venue,occurred_on",{count:"exact"}).eq("user_id",userId).order("occurred_on",{ascending:false}).limit(20),
       supabase.from("homecourt_saves").select("id",{count:"exact",head:true}).eq("user_id",userId),
-      supabase.from("analytics_events").select("id",{count:"exact",head:true}).eq("user_id",userId).eq("event_name","opportunity_view"),
+      supabase.from("analytics_events").select("id",{count:"exact",head:true}).eq("user_id",userId).eq("event_name","view"),
       supabase.from("platform_notifications").select("id,notification_type,title,body,action_url,read_at,created_at").eq("user_id",userId).is("read_at",null).order("created_at",{ascending:false}).limit(30),
     ]);
     if([profileQ,rolesQ,membershipQ,notesQ,ordersQ,subscriptionsQ,historyQ,savesQ,platformNotificationsQ].some(result=>result.error)){setLoadFailed(true);setMessage(copy[locale].error);setLoading(false);return;}
