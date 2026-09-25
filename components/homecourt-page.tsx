@@ -30,6 +30,41 @@ export function HomecourtPage({locale}:{locale:Locale}) {
       {locale!=="ja"?<div className="homecourt-price"><span>{c.price}</span><strong>¥{HOMECOURT_PRICE_JPY.toLocaleString("ja-JP")}</strong><small>{c.note}</small></div>:null}
     </section>
     <section className="homecourt-role-section section-pad"><div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{c.included}</h2></div><p>{c.includedBody}</p></div><div className="homecourt-role-grid">{Object.entries(roleLabels).map(([role,data])=><article key={role}><span>{data.shortLabel}</span><Users size={28}/><h3>{data.label}</h3>{locale==="ja"?<p>{data.description}</p>:null}<ul>{data.items.map(item=><li key={item}><Check size={15}/>{item}</li>)}</ul><a href={`${prefix}/my-homecourt/${role}`}>{data.label}<ArrowRight size={16}/></a></article>)}</div></section>
+    {locale==="ja"?<section className="homecourt-plan-separation section-pad">
+      <div className="homecourt-plan-intro">
+        <p className="section-index">RBA ID / HOMECOURT</p>
+        <h2>無料版と有料版は、役割をはっきり分けています。</h2>
+        <p>無料のRBA IDは「知る・探す・記録する」ための入口。有料HOMECOURTは「学ぶ・試す・振り返る・次を決める」を日常で続けるための育成ツールです。</p>
+      </div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card homecourt-plan-free">
+          <div className="homecourt-plan-card-head"><span>RBA ID</span><strong>¥0</strong><small>無料</small></div>
+          <h3>知る・探す・記録する</h3>
+          <ul>
+            <li><Check size={17}/>募集中のクリニック・キャンプを探す</li>
+            <li><Check size={17}/>JOURNALの公開記事を読む</li>
+            <li><Check size={17}/>Basketball Passportに参加経験を残す</li>
+            <li><Check size={17}/>気になる活動を保存する</li>
+            <li><Check size={17}/>PLAYER / PARENT / COACHの入口を使う</li>
+          </ul>
+          <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>RBA IDをつくる<ArrowRight size={16}/></a>
+        </article>
+        <article className="homecourt-plan-card homecourt-plan-paid">
+          <div className="homecourt-plan-card-head"><span>HOMECOURT PLUS</span><strong>¥3,300</strong><small>月額・税込</small></div>
+          <h3>記録を、次の行動に変える</h3>
+          <ul>
+            <li><Check size={17}/>今週の育成テーマと実践サイクル</li>
+            <li><Check size={17}/>大会・遠征から逆算するSMART PREP</li>
+            <li><Check size={17}/>体調・疲労・痛み・睡眠の7日間トレンド</li>
+            <li><Check size={17}/>会員限定の学習ライブラリ</li>
+            <li><Check size={17}/>地域〜世界までのDEVELOPMENT HORIZON</li>
+            <li><Check size={17}/>参加・保存・学びをまとめるMONTHLY REVIEW</li>
+          </ul>
+          <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={16}/></a>
+        </article>
+      </div>
+      <div className="homecourt-private-note"><ShieldCheck size={24}/><div><strong>無料版を不便にするための有料化ではありません。</strong><p>活動を探す、公開情報を読む、経験を残す機能はRBA IDで使えます。有料版は、継続的に育成を整理・実践したい方のための上位機能です。</p></div></div>
+    </section>:null}
     <section className="homecourt-start section-pad"><div><p className="section-index inverse">START</p><h2>{c.steps}</h2></div><ol>{c.stepItems.map(([no,title,body])=><li key={no}><span>{no}</span><div><strong>{title}</strong><p>{body}</p></div></li>)}</ol></section>
     <section className="homecourt-start section-pad"><div><p className="section-index inverse">SHARE</p><h2>{locale==="ja"?"仲間にも、もうひとつのホームコートを。":"Share another home court."}</h2></div><ol><li><span>01</span><div><strong>{locale==="ja"?"指導者に共有":"Share with a coach"}</strong><p>{locale==="ja"?"全国の育成機会や学びを探せる入口として、そのままURLを共有できます。":"Share the public MY HOME COURT page."}</p><a className="text-link" href={`mailto:?subject=${encodeURIComponent("MY HOME COURT｜Riot Basketball Academy")}&body=${encodeURIComponent("全国のクリニック・学び・育成機会を探せるRBAのMY HOME COURTです。登録は無料です。\n\nhttps://riotbasketballacademy.com/ja/my-homecourt")}`}>{locale==="ja"?"友人にMY HOME COURTを共有":"Share MY HOME COURT"}<ArrowRight size={16}/></a></div></li><li><span>02</span><div><strong>{locale==="ja"?"チームに縛られず使える":"Use it alongside your team"}</strong><p>{locale==="ja"?"所属チームを変えずに、外の学び・全国の機会・自分の成長記録へつながれます。":"Use it without leaving your current team."}</p></div></li><li><span>03</span><div><strong>{locale==="ja"?"一度の参加を、次の成長へ":"Turn one event into the next step"}</strong><p>{locale==="ja"?"クリニック参加、Passport、Save、次の育成機会までRBA IDでつなぎます。":"Connect events, Passport, saves and the next opportunity."}</p></div></li></ol></section>
     <section className="homecourt-safety section-pad"><ShieldCheck size={38}/><div><h2>{c.safe}</h2><p>{c.safeBody}</p><a className="text-link" href={localePath(locale,"policies")}>{locale==="ja"?"参加規約・安全方針を確認":"Read policies"}<ArrowRight size={16}/></a></div></section>
