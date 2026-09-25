@@ -17,7 +17,7 @@ const common={
 const pages:Record<AudienceKind,{
  kicker:Text4; title:Text4; lead:Text4; statement:Text4;
  sections:{icon:"calendar"|"shield"|"learn"|"home"|"map"|"pay";title:Text4;body:Text4;items:Text4[]}[];
-  actions:{label:Text4;href:"schedule"|"contact"|"policies"|"home-court"|"players"|"families"|"coaches"|"events/torsten-loibl-online-clinic"|"clinic-request"|"my-homecourt/login"|"d-hub";external?:string}[];
+  actions:{label:Text4;href:"schedule"|"contact"|"policies"|"home-court"|"players"|"families"|"coaches"|"events/torsten-loibl-online-clinic"|"clinic-request"|"my-homecourt/login"|"d-hub"|"united";external?:string}[];
  homeCourt?:"member"|"partner";
 }>={
  players:{
@@ -30,7 +30,7 @@ const pages:Record<AudienceKind,{
    {icon:"learn",title:["Regular development","継続して学ぶ","持續培育","지속적인 성장"],body:["The Sendai U12 school runs Saturdays, 16:30–18:00, at the former Sanezawa Elementary School for Grades 4–6.","仙台U12スクールは、旧実沢小学校で毎週土曜16:30〜18:00に開催しています。対象は小学4〜6年生、月額6,600円です。","仙台U12課程每週六16:30–18:00於舊實澤小學舉行，對象為小學4–6年級。","센다이 U12 스쿨은 옛 사네자와 초등학교에서 매주 토요일 16:30~18:00 진행됩니다."],items:[["Perception and decision-making","状況を見る力・判断する力・ゲームを理解する力","認知與判斷","인지·판단"],["Coordination and physical literacy","コーディネーションと身体づくり","協調與身體素養","코디네이션과 신체 발달"],["Learning connected to the game","試合につながる学び","與比賽連結的學習","경기로 이어지는 배움"]]},
    {icon:"home",title:["Another home court","もうひとつのホームコート","另一個主場","또 하나의 홈 코트"],body:["RBA HOMECOURT is the monthly membership for players and families who want a continuing connection to RBA beyond one event.","MY HOME COURTは、一度きりの参加で終わらず、RBAの活動や次の学びにつなげるための場所です。","RBA HOMECOURT讓球員與家庭持續參與RBA。","RBA HOMECOURT는 선수와 가족이 RBA와 지속적으로 연결되는 오픈형 멤버십입니다."],items:[["Regional HOMECOURT SESSION","地域のHOMECOURT SESSION","地區SESSION","지역 SESSION"],["Clinics, camps and new member content","クリニック・キャンプと会員向けコンテンツ","活動與會員內容","클리닉·캠프와 회원 콘텐츠"],["A clear next step from MY HOME COURT","MY HOME COURTから次の活動へ","從MY HOME COURT前往下一活動","MY HOME COURT에서 다음 활동으로"]]},
   ],
-  actions:[{label:common.schedule,href:"schedule"},{label:common.home,href:"home-court"},{label:common.contact,href:"contact"}],homeCourt:"member"
+  actions:[{label:common.schedule,href:"schedule"},{label:["RBA UNITED","RBA UNITEDを見る","查看 RBA UNITED","RBA UNITED 보기"] as Text4,href:"united"},{label:common.home,href:"home-court"},{label:common.contact,href:"contact"}],homeCourt:"member"
  },
  families:{
   kicker:["FOR FAMILIES","保護者の方へ","給家長","보호자를 위해"],
