@@ -11,6 +11,101 @@ const copy={
   ko:{title:"다음 코트는 여기서 시작됩니다.",lead:"평소의 훈련에서 아직 만나지 못한 코트까지. 선수, 보호자와 코치가 자신에게 맞는 활동, 배움과 교류를 찾을 수 있습니다.",free:"다음 목표 발견하기",freeBody:"현재의 나에게 맞는 클리닉, 성장 콘텐츠와 새로운 기회를 찾아보세요.",paid:"코트를 넓히기",paidBody:"새로운 동료를 만나고 다른 도시와 플레이 스타일을 경험해 보세요.",community:"커뮤니티",communityBody:"실제 프로그램과 성장 과제를 중심으로 가족과 코치를 연결합니다.",impact:"RBA IMPACT",impactBody:"프로그램 수입과 파트너 지원이 참가 기회, 교육과 안전한 환경에 어떻게 재투자되는지 공개합니다.",choose:"역할 선택",tools:"회원 메뉴",register:"RBA ID로 시작",upgrade:"MY HOME COURT 알아보기",impactCta:"성과와 재투자 보기"},
 } as const;
 
+const clarityCopy={
+  en:{
+    kicker:"START HERE",title:"Know what MY HOME COURT does in 30 seconds.",
+    lead:"One place to discover opportunities, learn, keep your basketball journey, and decide what to do next.",
+    cards:[
+      ["DISCOVER","Find your next opportunity","Clinics, camps and international experiences beyond your current team."],
+      ["LEARN","Understand development better","Practical articles for players, families and coaches."],
+      ["KEEP","Keep your journey","Save participation history, reflections and the next thing to work on."],
+      ["MOVE","Turn learning into action","Go from reading to practice, programmes and the next challenge."]
+    ],
+    freeTitle:"Start free with RBA ID",freeBody:"Discover programmes, read open Journal articles and find the route that fits you.",
+    paidTitle:"Continue with HOMECOURT",paidBody:"JPY 3,300/month. Learn, try, reflect and decide the next step as an ongoing growth cycle.",
+    paidCta:"Start HOMECOURT",freeCta:"Start free",
+    whoTitle:"Choose the route that fits you.",who:[
+      ["PLAYER","I want more opportunities and a wider basketball world."],
+      ["PARENT","I want better information for decisions about my child."],
+      ["COACH","I want to keep improving my coaching every week."]
+    ],
+    faqTitle:"Before you join",faq:[
+      ["Do I need to leave my current team?","No. MY HOME COURT is designed to add learning and opportunities outside your team, not replace it."],
+      ["Can I use it for free?","Yes. Start with RBA ID. The monthly plan is optional."],
+      ["Do I need previous RBA experience?","No. New users and past participants can both start here."]
+    ]
+  },
+  ja:{
+    kicker:"まずここから",title:"30秒で分かる、MY HOME COURT。",
+    lead:"次の活動を探す。育成を学ぶ。経験を残す。次に何をするか決める。その全部を一つにつなぐ、自分の育成ホームです。",
+    cards:[
+      ["探す","次の機会を見つける","今の所属だけに限らず、全国のクリニック・キャンプ・海外交流まで。"],
+      ["学ぶ","育成を理解する","選手・保護者・指導者それぞれに必要な記事と実践ガイド。"],
+      ["残す","経験を積み上げる","参加履歴、振り返り、次に試すことを自分の記録として残す。"],
+      ["動く","学びを行動に変える","読むだけで終わらず、練習・活動参加・次の挑戦へ進む。"]
+    ],
+    freeTitle:"まず無料のRBA IDから",freeBody:"活動を探す、公開JOURNALを読む、自分に合う入口を見つける。まずは無料で始められます。",
+    paidTitle:"もっと続けるならHOMECOURT",paidBody:"月額3,300円。学ぶ→試す→振り返る→次を決める、を日常の成長サイクルにします。",
+    paidCta:"HOMECOURTを始める",freeCta:"無料から始める",
+    whoTitle:"あなたに合う入口を選ぶ。",who:[
+      ["PLAYER / 選手","もっと多くの機会や、所属の外の世界を見たい。"],
+      ["PARENT / 保護者","子どもの環境や選択について、判断材料を増やしたい。"],
+      ["COACH / 指導者","毎週の指導をアップデートし続けたい。"]
+    ],
+    faqTitle:"登録前によくある質問",faq:[
+      ["今のチームを辞める必要はありますか？","ありません。今いる環境を大切にしながら、所属の外にも学びと機会を持つための場所です。"],
+      ["無料でも使えますか？","はい。RBA IDから無料で始められます。月額HOMECOURTは必要な方だけが選べます。"],
+      ["RBAに参加したことがなくても使えますか？","使えます。初めての方も、過去参加者も同じ入口から始められます。"]
+    ]
+  },
+  "zh-tw":{
+    kicker:"從這裡開始",title:"30秒了解 MY HOME COURT。",
+    lead:"找活動、學習培育、留下經驗、決定下一步。把這些全部連成一個屬於自己的籃球成長空間。",
+    cards:[
+      ["探索","找到下一個機會","不只侷限於目前球隊，也能看見日本各地訓練營、營隊與國際交流。"],
+      ["學習","更理解球員培育","為球員、家長與教練整理可實際運用的文章與指南。"],
+      ["紀錄","累積自己的經驗","保留參與紀錄、反思與下一個想嘗試的課題。"],
+      ["行動","把學習變成下一步","不只閱讀，而是連到訓練、活動參與與下一個挑戰。"]
+    ],
+    freeTitle:"先從免費 RBA ID 開始",freeBody:"搜尋活動、閱讀公開 JOURNAL、找到適合自己的入口，免費即可開始。",
+    paidTitle:"想持續成長，可加入 HOMECOURT",paidBody:"每月3,300日圓。把學習→實踐→反思→下一步，變成持續的成長循環。",
+    paidCta:"開始 HOMECOURT",freeCta:"免費開始",
+    whoTitle:"選擇最適合你的入口。",who:[
+      ["PLAYER / 球員","想看見更多機會與球隊之外的籃球世界。"],
+      ["PARENT / 家長","想增加判斷孩子環境與下一步的資訊。"],
+      ["COACH / 教練","想持續更新每週的教學與訓練設計。"]
+    ],
+    faqTitle:"加入前常見問題",faq:[
+      ["需要離開現在的球隊嗎？","不需要。MY HOME COURT 是在現有環境之外增加學習與機會，不是取代球隊。"],
+      ["可以免費使用嗎？","可以。先從免費 RBA ID 開始；月費 HOMECOURT 是選擇性的。"],
+      ["沒有參加過 RBA 也可以嗎？","可以。第一次接觸 RBA 的人與過去參加者都能使用。"]
+    ]
+  },
+  ko:{
+    kicker:"여기서 시작",title:"30초 만에 이해하는 MY HOME COURT.",
+    lead:"다음 활동을 찾고, 육성을 배우고, 경험을 남기고, 다음 행동을 정하는 과정을 하나의 성장 공간으로 연결합니다.",
+    cards:[
+      ["찾기","다음 기회를 찾기","현재 팀에만 한정하지 않고 일본 전국 클리닉, 캠프와 국제 교류까지 볼 수 있습니다."],
+      ["배우기","육성을 더 잘 이해하기","선수·보호자·코치를 위한 실전형 글과 가이드를 제공합니다."],
+      ["남기기","경험을 쌓기","참가 이력, 돌아보기, 다음에 시도할 것을 자신의 기록으로 남깁니다."],
+      ["행동하기","배움을 다음 단계로","읽고 끝내지 않고 훈련, 프로그램 참가와 다음 도전으로 이어갑니다."]
+    ],
+    freeTitle:"무료 RBA ID부터 시작",freeBody:"프로그램을 찾고 공개 JOURNAL을 읽으며 자신에게 맞는 경로를 무료로 시작할 수 있습니다.",
+    paidTitle:"계속 성장하려면 HOMECOURT",paidBody:"월 3,300엔. 배우기→시도하기→돌아보기→다음 단계 결정의 성장 사이클을 이어갑니다.",
+    paidCta:"HOMECOURT 시작",freeCta:"무료로 시작",
+    whoTitle:"나에게 맞는 입구를 선택하세요.",who:[
+      ["PLAYER / 선수","더 많은 기회와 팀 밖의 농구 세계를 보고 싶다."],
+      ["PARENT / 보호자","아이의 환경과 선택을 위한 판단 자료를 늘리고 싶다."],
+      ["COACH / 코치","매주 지도와 훈련 설계를 계속 업데이트하고 싶다."]
+    ],
+    faqTitle:"가입 전 자주 묻는 질문",faq:[
+      ["현재 팀을 그만둬야 하나요?","아니요. 현재 환경을 존중하면서 팀 밖의 배움과 기회를 더하는 공간입니다."],
+      ["무료로도 사용할 수 있나요?","네. 무료 RBA ID로 시작할 수 있으며 월간 HOMECOURT는 선택 사항입니다."],
+      ["RBA 참가 경험이 없어도 되나요?","네. 처음 이용하는 분과 과거 참가자 모두 시작할 수 있습니다."]
+    ]
+  }
+} as const;
+
 export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
   const prefix=locale==="en"?"":`/${locale}`;
   const c=copy[locale];
@@ -29,8 +124,21 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
     .filter(post=>preferredCategories.includes(post.category))
     .slice(0,3);
   const latestJournal=journalPosts.slice(0,3);
+  const clear=clarityCopy[locale];
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={17}/>{ja&&!authReady?"登録再開のお知らせを受け取る":c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div>{ja&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開までは、公式LINEで新しい活動・記事・登録再開のお知らせを受け取れます。</p>:null}</div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
+    {!role?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">{clear.kicker}</p><h2>{clear.title}</h2></div><p>{clear.lead}</p></div>
+      <div className="homecourt-preview-grid">{clear.cards.map(([label,title,body],index)=><article key={label}><Compass/><span>{String(index+1).padStart(2,"0")} / {label}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card homecourt-plan-free"><div className="homecourt-plan-card-head"><span>FREE / RBA ID</span><strong>¥0</strong></div><h3>{clear.freeTitle}</h3><p>{clear.freeBody}</p><a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{clear.freeCta}<ArrowRight size={16}/></a></article>
+        <article className="homecourt-plan-card homecourt-plan-paid"><div className="homecourt-plan-card-head"><span>HOMECOURT / MONTHLY</span><strong>¥3,300</strong></div><h3>{clear.paidTitle}</h3><p>{clear.paidBody}</p><a className="button button-member" href={`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{clear.paidCta}<ArrowRight size={16}/></a></article>
+      </div>
+      <div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{clear.whoTitle}</h2></div></div>
+      <div className="homecourt-preview-grid">{clear.who.map(([label,body],index)=><article key={label}><Users/><span>{String(index+1).padStart(2,"0")}</span><h3>{label}</h3><p>{body}</p><a className="text-link" href={`${prefix}/my-homecourt/${index===0?"players":index===1?"families":"coaches"}`}>{label} <ArrowRight size={16}/></a></article>)}</div>
+      <div className="section-head"><div><p className="section-index">FAQ</p><h2>{clear.faqTitle}</h2></div></div>
+      <div className="homecourt-plan-grid">{clear.faq.map(([q,a])=><article className="homecourt-plan-card" key={q}><h3>{q}</h3><p>{a}</p></article>)}</div>
+    </section>:null}
     {!role&&ja?<section className="section-pad"><a className="button button-light" href="/ja/my-homecourt/participants">クリニックに参加した方へ：記録を始める<ArrowRight size={16}/></a></section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">START IN 60 SECONDS</p><h2>登録したら、まず3つ。</h2></div><p>長いプロフィール入力は後回し。最初に「見る・保存する・残す」を体験できる導線を用意します。</p></div>
