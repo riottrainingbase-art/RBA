@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { Bell, BookOpen, CalendarDays, CheckCircle2, ChevronRight, ClipboardList, CreditCard, House, LoaderCircle, LogOut, Menu, Plus, Search, ShieldCheck, StickyNote, UserRound, Users } from "lucide-react";
+import { Bell, BookOpen, CalendarDays, CheckCircle2, ChevronRight, ClipboardList, CreditCard, House, LoaderCircle, LogOut, Menu, Plus, Search, ShieldCheck, Sparkles, StickyNote, UserRound, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import type { Locale } from "./site-frame";
