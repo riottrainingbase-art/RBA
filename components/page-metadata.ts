@@ -27,7 +27,7 @@ const titles:Record<string,Record<Locale,string>>={
 const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
  "my-homecourt":{
   en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one RBA ID.",
-  ja:"MY HOME COURTは、予定・申込・参加履歴・Basketball Passport・写真や動画・次の育成機会を、ひとつのRBA IDでつなぐ成長記録です。",
+  ja:"MY HOME COURTは、所属チームの現在地、参加経験、次に行ける育成機会、Development Camp、RBA UNITED、アジア・世界への選択肢を、ひとつのRBA IDでつなぐ自分専用の育成ホームです。",
   "zh-tw":"MY HOME COURT以一個RBA ID整合行程、報名、參與紀錄、Basketball Passport、照片影片與下一個培育機會。",
   ko:"MY HOME COURT는 일정, 신청, 참가 기록, Basketball Passport, 사진·영상과 다음 성장 기회를 하나의 RBA ID로 연결합니다."
  },
