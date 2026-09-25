@@ -13,13 +13,14 @@ const copy = {
 
 // Enable only after the SMTP sender, delivery and callback have been verified.
 // This gate does not change Supabase authentication or existing member sessions.
-export function MemberLoginEntry({ locale, authError, next }: {
+export function MemberLoginEntry({ locale, authError, next, source }: {
   locale: Locale;
   next?: string;
+  source?: string;
   authError?: boolean | "browser" | "expired";
 }) {
   if (process.env.RBA_AUTH_EMAIL_READY === "true") {
-    return <MemberLogin locale={locale} authError={authError} next={next} />;
+    return <MemberLogin locale={locale} authError={authError} next={next} source={source} />;
   }
   const c = copy[locale];
   const destination=memberAuthDestination(next||null);
