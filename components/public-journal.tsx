@@ -68,6 +68,15 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
       </section>
 
+      {locale==="ja"?<section className="journal-evidence-standard section-pad">
+        <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>意見と根拠を、混ぜない。</h2></div><p>RBA JOURNALでは、研究・ガイドラインで確認できること、RBAが現場でどう解釈するか、まだ断定できないことを分けて掲載します。</p></div>
+        <div className="journal-evidence-grid">
+          <article><span>EVIDENCE</span><h3>研究・公式資料</h3><p>学術論文、系統的レビュー、コンセンサス、FIBA/WABC、WHO、AAPなど、原典を確認できる資料を優先します。</p></article>
+          <article><span>RBA INTERPRETATION</span><h3>現場での使い方</h3><p>研究結果をそのまま日本のU12・U15へ当てはめず、対象年代・競技環境・指導目的を踏まえてRBAの解釈を分けて書きます。</p></article>
+          <article><span>LIMITATIONS</span><h3>断定しない範囲</h3><p>研究対象が違う、直接比較の研究がない、因果関係までは分からない。そうした限界も本文と一緒に表示します。</p></article>
+        </div>
+      </section>:null}
+
       {locale==="ja"?<section className="journal-clinic-bridge section-pad">
         <div className="journal-clinic-copy">
           <p className="section-index inverse">NEXT LIVE LEARNING / 11.25</p>
