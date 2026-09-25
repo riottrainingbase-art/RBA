@@ -30,6 +30,21 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
     ko:{development:"선수 육성과 경기 학습",families:"보호자 가이드",coaching:"코치 학습과 훈련 설계",international:"일본·아시아 교류",programme:"RBA 프로그램과 다음 단계"}
   } as const;
   const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(({en:"Hello RBA, we are interested in a Japan–Asia basketball exchange.",ja:"RBAの海外交流について相談したいです。","zh-tw":"您好RBA，我們想詢問日本與亞洲的籃球交流。",ko:"RBA의 일본-아시아 농구 교류에 대해 문의하고 싶습니다."})[locale])}`;
+  const findPost=(slug:string)=>posts.find(post=>post.slug===slug);
+  const startHereSlugs=["winning-vs-developing","development-environment","parents-support-not-coach","who-is-playing"];
+  const startHere=startHereSlugs.map(findPost).filter(Boolean) as typeof posts;
+  const familyPaths=[
+    {label:"チーム選び・環境に迷っている",slug:"development-environment"},
+    {label:"試合後、子どもにどう声をかけるか",slug:"parents-support-not-coach"},
+    {label:"出場時間が少ない・機会が偏っている",slug:"playing-time-is-experience"},
+    {label:"小学生の役割を早く固定していいのか",slug:"protect-the-unfinished"}
+  ];
+  const coachPaths=[
+    {label:"勝利と育成をどう両立するか",slug:"winning-vs-developing"},
+    {label:"ベンチから指示しすぎていないか",slug:"who-is-playing"},
+    {label:"大差の試合をどう育成に変えるか",slug:"press-in-blowouts"},
+    {label:"判断を増やす練習をつくりたい",slug:"small-sided-games"}
+  ];
   return <SiteFrame locale={locale} languagePage="journal">
     <div className="journal-hub journal-cms">
       <section className="journal-cms-hero section-pad">
@@ -41,6 +56,20 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       {featured?<section className="journal-feature section-pad">
         <div><p className="section-index">{c.latest} / {categoryLabels[locale][featured.category as keyof typeof categoryLabels.en]||featured.category}</p><h2>{featured.title}</h2><p>{featured.standfirst}</p><Link className="button button-dark" href={journalHref(locale,featured.slug)}>{c.read}<ArrowRight size={17}/></Link></div>
         <aside><span>{featured.reading}</span><strong>{featured.audience.toUpperCase()}</strong><small>{featured.published_at?new Date(featured.published_at).toLocaleDateString(locale):""}</small></aside>
+      </section>:null}
+      {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
+        <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>まず、この4本から。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
+        <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p><h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
+        </Link>)}</div>
+      </section>:null}
+      {locale==="ja"?<section className="homecourt-role-section section-pad">
+        <div className="section-head"><div><p className="section-index">悩みから探す</p><h2>いま困っていることから読む。</h2></div><p>テーマ名が分からなくても大丈夫です。保護者・指導者それぞれのよくある悩みから記事へ進めます。</p></div>
+        <div className="homecourt-role-grid">
+          <article><span>PARENTS</span><h3>保護者の方</h3><p>チーム選び、出場時間、試合後の声かけ、役割固定など。</p>{familyPaths.map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
+          <article><span>COACHES</span><h3>指導者の方</h3><p>勝利と育成、ベンチワーク、プレス、判断を育てる練習設計など。</p>{coachPaths.map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
+          <article><span>PLAYERS / ALL</span><h3>選手・すべての方</h3><p>試合、練習、クリニック、海外交流を「次の成長」につなげる記事です。</p><Link href="#category-development">育成の記事を見る <ArrowRight size={15}/></Link><Link href="#category-international">海外交流の記事を見る <ArrowRight size={15}/></Link><Link href="/ja/opportunities">参加できる活動を探す <ArrowRight size={15}/></Link></article>
+        </div>
       </section>:null}
       <section className="journal-cms-index section-pad">
         <div className="section-head"><div><p className="section-index">{locale==="ja"?"読みたいテーマから探す":c.all}</p><h2>{locale==="ja"?"目的別に、すぐ読める。":`${posts.length} STORIES`}</h2></div><p>{locale==="ja"?"記事が増えても迷わないように、立場とテーマで整理しています。":"Browse by topic."}</p></div>
