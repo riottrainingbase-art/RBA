@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Check, Compass, Credi
 import { COACH_COMMUNITY_URL, HomecourtRole, PARENT_COMMUNITY_URL, homecourtRoles } from "./homecourt-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { programmes } from "./programme-data";
+import { getPublicJournalPosts } from "@/lib/public-content";
 
 const copy={
   en:{title:"Your next court starts here.",lead:"From everyday practice to courts you have not seen yet. Find clinics, learning, community and exchange built for players, parents and coaches.",free:"Discover what comes next",freeBody:"Find clinics, development ideas and opportunities that fit where you are now.",paid:"Expand your court",paidBody:"Meet new teammates, visit new places and experience different ways to play and learn.",community:"Community",communityBody:"Useful conversations for families and coaches, connected to real programmes—not an endless social feed.",impact:"RBA IMPACT",impactBody:"See how programme income and partner support are reinvested into access, education and safer development environments.",choose:"Choose your route",tools:"Member essentials",register:"Start with RBA ID",upgrade:"Explore MY HOME COURT",impactCta:"See impact & reinvestment"},
@@ -10,7 +11,7 @@ const copy={
   ko:{title:"다음 코트는 여기서 시작됩니다.",lead:"평소의 훈련에서 아직 만나지 못한 코트까지. 선수, 보호자와 코치가 자신에게 맞는 활동, 배움과 교류를 찾을 수 있습니다.",free:"다음 목표 발견하기",freeBody:"현재의 나에게 맞는 클리닉, 성장 콘텐츠와 새로운 기회를 찾아보세요.",paid:"코트를 넓히기",paidBody:"새로운 동료를 만나고 다른 도시와 플레이 스타일을 경험해 보세요.",community:"커뮤니티",communityBody:"실제 프로그램과 성장 과제를 중심으로 가족과 코치를 연결합니다.",impact:"RBA IMPACT",impactBody:"프로그램 수입과 파트너 지원이 참가 기회, 교육과 안전한 환경에 어떻게 재투자되는지 공개합니다.",choose:"역할 선택",tools:"회원 메뉴",register:"RBA ID로 시작",upgrade:"MY HOME COURT 알아보기",impactCta:"성과와 재투자 보기"},
 } as const;
 
-export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
+export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
   const prefix=locale==="en"?"":`/${locale}`;
   const c=copy[locale];
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
@@ -22,6 +23,12 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
   const nextProgrammes=programmes.filter(p=>!p.registrationClosed&&p.startDate>=today).slice(0,3);
   const selected=role?homecourtRoles[role]:null;
   const roleCommunity=role==="coaches"?COACH_COMMUNITY_URL:PARENT_COMMUNITY_URL;
+  const journalPosts=ja?await getPublicJournalPosts("ja",60):[];
+  const preferredCategories=role==="families"?["families","development"]:role==="coaches"?["coaching","development"]:["development","international"];
+  const recommendedJournal=journalPosts
+    .filter(post=>preferredCategories.includes(post.category))
+    .slice(0,3);
+  const latestJournal=journalPosts.slice(0,3);
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={17}/>{ja&&!authReady?"登録再開のお知らせを受け取る":c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div>{ja&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開までは、公式LINEで新しい活動・記事・登録再開のお知らせを受け取れます。</p>:null}</div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
     {!role&&ja?<section className="section-pad"><a className="button button-light" href="/ja/my-homecourt/participants">クリニックに参加した方へ：記録を始める<ArrowRight size={16}/></a></section>:null}
@@ -140,6 +147,15 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
       </div>
       <p className="homecourt-editorial-note">限定情報を売る場所ではなく、育成年代の家庭が判断しやすくなるための継続的な道具として育てていきます。</p>
     </section>:null}
+    {ja&&recommendedJournal.length?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">{role?"FOR YOU / JOURNAL":"RECOMMENDED / JOURNAL"}</p><h2>{role==="families"?"保護者の方に、今読んでほしい3本。":role==="coaches"?"指導者の方に、今読んでほしい3本。":role==="players"?"選手の成長につながる3本。":"今週、まずこの3本。"}</h2></div><p>JOURNALで読んで終わりではなく、気づきを次の練習・会話・活動へつなげます。</p></div>
+      <div className="homecourt-preview-grid">{recommendedJournal.map((post,index)=><article key={post.slug}><BookOpen/><span>{String(index+1).padStart(2,"0")}</span><h3>{post.title}</h3><p>{post.standfirst}</p><a className="text-link" href={`/ja/journal/${post.slug}`}>この記事を読む <ArrowRight size={16}/></a></article>)}</div>
+      <div className="homecourt-private-note"><History size={24}/><div><strong>読んだら、次にやることを一つ決める。</strong><p>「分かった」で終わらず、次の練習・試合・家庭で試すことをMY HOME COURTに残す使い方をおすすめします。</p></div></div>
+    </section>:null}
+    {!role&&ja&&latestJournal.length?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">LATEST / JOURNAL</p><h2>新しく追加された育成記事。</h2></div><p>公開済みの記事だけを表示します。更新されたら、ここからすぐ読めます。</p></div>
+      <div className="homecourt-preview-grid">{latestJournal.map((post,index)=><article key={post.slug}><FileText/><span>NEW {String(index+1).padStart(2,"0")}</span><h3>{post.title}</h3><p>{post.standfirst}</p><a className="text-link" href={`/ja/journal/${post.slug}`}>最新記事を読む <ArrowRight size={16}/></a></article>)}</div>
+    </section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">THIS WEEK / HOME COURT</p><h2>毎週、ここに戻る理由を。</h2></div><p>情報を増やすのではなく、今週やることを一つ決めるための入口です。</p></div>
       <div className="homecourt-preview-grid">
@@ -162,6 +178,15 @@ export function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRole}) {
     </section>:null}
     {!role?<section className="membership-path section-pad"><p className="section-index">DISCOVER / CONNECT / CHALLENGE</p><div className="membership-path-grid"><article><span>01 / DISCOVER</span><Sparkles/><h2>{c.free}</h2><p>{c.freeBody}</p><a href={registrationUrl}>{c.register}<ArrowRight size={16}/></a></article><article><span>02 / CONNECT</span><MessageCircle/><h2>{c.community}</h2><p>{c.communityBody}</p><a href={localePath(locale,"community")}>{c.community}<ArrowRight size={16}/></a></article><article><span>03 / CHALLENGE</span><CreditCard/><h2>{c.paid}</h2><p>{c.paidBody}</p><a href={ja?localePath(locale,"schedule"):registrationUrl}>{locale==="ja"?"次の活動を探す":locale==="zh-tw"?"登入後加入":locale==="ko"?"로그인 후 가입":"Sign in to join"}<ArrowRight size={16}/></a></article></div></section>:null}
     <section className="my-homecourt-role section-pad"><p className="section-index">PLAYER / PARENT / COACH</p><h2 className="member-section-title">{c.choose}</h2><div className="my-homecourt-role-grid">{Object.entries(homecourtRoles).map(([key,data])=><a key={key} className={role===key?"is-current":undefined} href={`${prefix}/my-homecourt/${key}`}><span>{data.shortLabel}</span><strong>{ja?data.label:data.shortLabel}</strong><p>{ja?data.description:"Open your RBA guide, community and next actions."}</p><ArrowRight size={20}/></a>)}</div></section>
+    {selected&&ja?<section className="homecourt-product-preview section-pad">
+      <div className="section-head"><div><p className="section-index">YOUR NEXT STEP</p><h2>読んだあとに、次の一つへ。</h2></div><p>情報を集めるだけで終わらないように、立場に合わせて次の行動を選べます。</p></div>
+      <div className="homecourt-preview-grid">
+        <article><BookOpen/><span>READ</span><h3>もう1本読む</h3><p>今の課題に近いJOURNALを読み、考え方の幅を広げる。</p><a className="text-link" href="/ja/journal">JOURNALへ <ArrowRight size={16}/></a></article>
+        <article><History/><span>REFLECT</span><h3>経験を一つ残す</h3><p>試合、練習、クリニックで気づいたことを記録する。</p><a className="text-link" href="/ja/my-homecourt/participants">参加・成長記録へ <ArrowRight size={16}/></a></article>
+        <article><Compass/><span>FIND</span><h3>次の活動を見る</h3><p>今の課題を試せるクリニックやキャンプを探す。</p><a className="text-link" href="/ja/opportunities">活動を探す <ArrowRight size={16}/></a></article>
+        <article><Sparkles/><span>NEXT</span><h3>次に試すことを決める</h3><p>学びを一つに絞り、次の練習で実際に試す。</p><a className="text-link" href="/ja/my-homecourt/participants">MY HOME COURTに残す <ArrowRight size={16}/></a></article>
+      </div>
+    </section>:null}
     {selected?<section className="member-route-actions section-pad"><div><p className="section-index">{ja?"次に進む":"YOUR NEXT ACTION"}</p><h2>{ja?`${selected.label}向けのご案内`:`${selected.shortLabel} ROUTE`}</h2><p>{ja?"参加する。学ぶ。仲間とつながる。今必要な入口から始められます。":"Find programmes, community and the next action for your role."}</p></div><div className="member-route-action-grid"><a href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles/><strong>{ja&&!authReady?"登録再開通知を受け取る":c.register}</strong><span>{ja?"活動・記録・学びを一つにつなぐ":"Connect activities, records and learning"}</span><ArrowRight/></a><a href={roleCommunity} target="_blank" rel="noreferrer"><Users/><strong>{c.community}</strong><span>{ja?(role==="coaches"?"指導者向けオープンコミュニティ":"選手・保護者向けオープンコミュニティ"):"Join the relevant open community"}</span><ArrowUpRight/></a><a href={localePath(locale,"opportunities")}><CalendarDays/><strong>{ja?"現在募集中の活動":"Current programmes"}</strong><span>{ja?"日程・対象・募集状況を比較":"Compare dates, eligibility and availability"}</span><ArrowRight/></a>{role==="coaches"?<><a href={localePath(locale,"d-hub")}><BookOpen/><strong>D-HUB</strong><span>{ja?"継続して学べる指導者向けプログラム":"Ongoing coach development"}</span><ArrowRight/></a><a href={localePath(locale,"events/torsten-loibl-online-clinic")}><Users/><strong>TORSTEN LOIBL</strong><span>{ja?"世界の育成現場に学ぶ指導者講習":"International coach clinic"}</span><ArrowRight/></a></>:null}</div></section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">SHARE YOUR HOME COURT</p><h2>一人で使うだけではなく、つながる。</h2></div><p>保護者、選手、指導者。関わる人が同じ場所を見られるほど、次の選択が分かりやすくなります。</p></div>
