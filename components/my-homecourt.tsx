@@ -342,6 +342,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <article><BookOpen/><span>READ</span><h3>もう1本読む</h3><p>今の課題に近いJOURNALを読み、考え方の幅を広げる。</p><a className="text-link" href="/ja/journal">JOURNALへ <ArrowRight size={16}/></a></article>
         <article><History/><span>REFLECT</span><h3>経験を一つ残す</h3><p>試合、練習、クリニックで気づいたことを記録する。</p><a className="text-link" href="/ja/my-homecourt/participants">参加・成長記録へ <ArrowRight size={16}/></a></article>
         <article><Compass/><span>FIND</span><h3>次の活動を見る</h3><p>今の課題を試せるクリニックやキャンプを探す。</p><a className="text-link" href="/ja/opportunities">活動を探す <ArrowRight size={16}/></a></article>
+        <article><Users/><span>UNITED</span><h3>個人で次の挑戦へ</h3><p>所属チームを続けながら、大会・遠征・国際交流などに個人参加する。</p><a className="text-link" href="/ja/united">RBA UNITEDを見る <ArrowRight size={16}/></a></article>
         <article><Sparkles/><span>NEXT</span><h3>次に試すことを決める</h3><p>学びを一つに絞り、次の練習で実際に試す。</p><a className="text-link" href="/ja/my-homecourt/participants">MY HOME COURTに残す <ArrowRight size={16}/></a></article>
       </div>
     </section>:null}
