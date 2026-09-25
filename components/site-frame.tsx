@@ -6,7 +6,7 @@ import { PublicUpdateBanner } from "./public-update-banner";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal";
+export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp";
 
 
 const labels = {
@@ -43,6 +43,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [c.partners,localePath(locale,"partners")],
     ["RBA IMPACT",localePath(locale,"impact")],
     [({en:"D-HUB / COACH DEVELOPMENT",ja:"D-HUB／指導者育成","zh-tw":"D-HUB／教練培育",ko:"D-HUB／코치 교육"})[locale],localePath(locale,"d-hub")],
+    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
     ["RBA UNITED",localePath(locale,"united")],
     ["RBA CONNECT",localePath(locale,"connect")],
     ["ORGANIZER",localePath(locale,"organizer")],
@@ -50,6 +51,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   ] as const;
   const nav=[
     [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
+    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")] as const,
     ["RBA UNITED",localePath(locale,"united")] as const,
     [({en:"MY HOME COURT",ja:"MY HOME COURTを使う","zh-tw":"使用MY HOME COURT",ko:"MY HOME COURT 이용"})[locale],localePath(locale,"my-homecourt")] as const,
     [({en:"Platform",ja:"育成プラットフォーム","zh-tw":"培育平台",ko:"육성 플랫폼"})[locale],localePath(locale,"platform")] as const,
