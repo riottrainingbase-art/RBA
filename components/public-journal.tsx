@@ -147,9 +147,9 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       </section>:null}
       {[
         {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
-        {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
+        {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["external-focus-not-body-parts","athlete-controlled-feedback","video-feedback-is-a-tool","minimal-intervention-coaching","why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
         {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["showa-myths-youth-basketball","read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
-        {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]}
+        {id:"coach-physical",label:"S&C / SAFETY",slugs:["warmup-is-part-of-coaching","plyometrics-youth-basketball","training-load-is-not-one-number","girls-strength-and-knee-health","acl-prevention-is-a-program","punishment-running-is-not-conditioning"]}
       ].map(group=>{
         const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;
         if(!grouped.length)return null;
@@ -255,7 +255,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const coachGroups=[
     {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
     {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["criticism-can-create-better-coaching","showa-myths-youth-basketball","read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
+    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["relationship-is-coaching-infrastructure","criticism-can-create-better-coaching","showa-myths-youth-basketball","read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
     {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]},
   ];
   return <SiteFrame locale={locale} languagePage="journal">
