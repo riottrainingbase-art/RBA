@@ -250,6 +250,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
 export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const posts=await getPublicJournalPosts(locale,60);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching"||post.coach_application?.length);
+  const recentCoachPosts=coachPosts.slice(0,8);
   const prefix=locale==="en"?"":`/${locale}`;
   const coachGroups=[
     {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
@@ -272,6 +273,15 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
         <a href="#coach-physical"><span>04</span>{locale==="ja"?"S&C / 安全":"S&C / Safety"}</a>
         <strong>{locale==="ja"?"公開記事は参考文献付き":"Published coach articles include sources"}</strong>
       </nav>
+      {recentCoachPosts.length?<section className="journal-cms-index journal-coach-latest section-pad">
+        <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"いま、指導者に読んでほしい記事。":"Latest coach articles"}</h2></div><p>{locale==="ja"?"新しい記事は自動でここに並びます。すべて参考文献付きです。":"New articles appear here automatically."}</p></div>
+        <div className="journal-cms-grid">{recentCoachPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
+          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>
+          {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
+          <h3>{post.title}</h3><p>{post.standfirst}</p><strong>{post.coach_application?.length?(locale==="ja"?"実践ツール付き":"Includes coach tool"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
+        </Link>)}</div>
+      </section>:null}
       <section className="homecourt-product-preview section-pad">
         <div className="section-head"><div><p className="section-index">COACHING LOOP</p><h2>READ → PLAN → COACH → REVIEW</h2></div><p>{locale==="ja"?"読むだけで終わらせず、次の練習で試せるところまで。":"Turn reading into the next practice."}</p></div>
         <div className="homecourt-preview-grid">
