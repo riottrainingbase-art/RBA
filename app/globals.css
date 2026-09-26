@@ -2213,3 +2213,37 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .journal-topic-nav>a{min-height:52px;padding:0 12px;font-size:12px}
   .journal-card-meta{margin-top:6px}
 }
+
+/* D-HUB paid member home */
+.dhub-member-page{background:#f4f5f2}
+.dhub-member-hero{position:relative;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;background:#f4f5f2}
+.dhub-member-hero>svg{margin-bottom:22px}
+.dhub-member-hero h1{max-width:900px;margin:12px 0 20px;font-size:clamp(44px,7vw,86px);line-height:.96;letter-spacing:-.055em}
+.dhub-member-hero>p:not(.section-index){max-width:760px;color:#566168;font-size:18px;line-height:1.85}
+.dhub-member-status{position:absolute;right:clamp(22px,5vw,70px);bottom:clamp(32px,5vw,70px);width:min(240px,32vw);padding:20px;border:1px solid #c8cdca;background:#fff}
+.dhub-member-status span,.dhub-member-status small{display:block;color:#6a7479;font-size:10px;font-weight:900;letter-spacing:.1em}
+.dhub-member-status strong{display:block;margin:12px 0;font-size:30px}
+.dhub-member-section{background:#fff}
+.dhub-member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dhub-member-grid article{min-height:270px;padding:24px;border:1px solid #cbd0cd;display:flex;flex-direction:column}
+.dhub-member-grid article>span{margin-top:18px;color:#7b8589;font-size:10px;font-weight:900;letter-spacing:.1em}
+.dhub-member-grid h3{margin:10px 0 12px;font-size:28px;line-height:1.1}
+.dhub-member-grid p{color:#5a656a;line-height:1.75}
+.dhub-member-grid a{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid #d5d9d6;text-decoration:none;font-weight:800}
+.dhub-member-dark{background:#171a1d;color:#fff}
+.dhub-member-dark .section-head>p,.dhub-member-dark p{color:#c7d0d4}
+.dhub-member-value{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#3b4347;border:1px solid #3b4347}
+.dhub-member-value>div{padding:24px;background:#20262a}
+.dhub-member-value span{display:block;color:#aeb9be;font-size:9px;font-weight:900;letter-spacing:.12em}
+.dhub-member-value strong{display:block;margin:14px 0 10px;font-size:34px}
+.dhub-member-value p{margin:0;line-height:1.75}
+.dhub-member-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+@media(max-width:900px){
+  .dhub-member-status{position:static;width:auto;margin-top:24px}
+  .dhub-member-grid,.dhub-member-value{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .dhub-member-hero{min-height:430px}
+  .dhub-member-hero h1{font-size:clamp(38px,12vw,56px)}
+  .dhub-member-hero>p:not(.section-index){font-size:16px}
+}
