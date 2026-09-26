@@ -53,8 +53,8 @@ export default function Page(){
         <p style={{fontSize:"clamp(22px,3vw,34px)",fontWeight:800,margin:"0 0 14px"}}>現代バスケットボールを学ぶ90分。</p>
         <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-          <a href="#apply" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>申込フォームへ ↓</a>
-          <a href="https://form.jotform.com/262678369675074" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>フォームを別画面で開く ↗</a>
+          <a href="#apply" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>STEP 1｜申込フォームへ ↓</a>
+          <a href="https://buy.stripe.com/fZu14pbuv3be2Qt3W77EQ0t" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>STEP 2｜月額登録へ ↗</a>
         </div>
       </section>
 
@@ -98,11 +98,23 @@ export default function Page(){
         <p style={{margin:"24px 0 0",fontSize:16,lineHeight:1.8,color:"#4d4d48"}}>最後は「何が見えた？」「なぜそのプレーを選んだ？」「次は何を変える？」まで振り返ります。正解を覚えるのではなく、自分でゲームを理解する力を育てます。</p>
       </section>
 
+      <section style={{padding:"64px 6vw",background:"#111",color:"#fff"}}>
+        <p style={{fontSize:12,letterSpacing:3,color:"#aaa",fontWeight:700}}>REGISTRATION FLOW</p>
+        <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 26px"}}>申込 → 月額登録 → MY HOME COURT</h2>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:12}}>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>01</strong><h3>申込フォーム</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>選手・保護者情報、現在の課題、安全上の共有事項を入力します。</p></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>02</strong><h3>月額サブスク登録</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>月3回・7,700円（税込）。Stripeの安全な決済画面から登録します。</p><a href="https://buy.stripe.com/fZu14pbuv3be2Qt3W77EQ0t" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}>月額登録へ →</a></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>03</strong><h3>RBAから確認メール</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>フォームと決済を確認後、受付確定と会場詳細をメールでご案内します。</p></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>04</strong><h3>MY HOME COURT</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>参加予定、成長記録、次の育成機会を一つの場所につなげます。</p><a href="/ja/my-homecourt" style={{color:"#fff",fontWeight:800}}>MY HOME COURTを見る →</a></div>
+        </div>
+        <p style={{margin:"24px 0 0",color:"#bbb",lineHeight:1.7}}>登録後の支払い方法変更・解約手続きはStripeの会員ページから行えます。<a href="https://billing.stripe.com/p/login/8x2dRb2XZ4fi1MpeAL7EQ00" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}> 月額登録を管理する ↗</a></p>
+      </section>
+
       <section style={{padding:"54px 6vw",background:"#ecece7"}}>
         <h2 style={{fontSize:"clamp(28px,4vw,44px)",margin:"0 0 18px"}}>お申込み前に</h2>
         <ul style={{lineHeight:1.9,fontSize:16,paddingLeft:22,margin:0,maxWidth:900}}>
           <li>対象はU15年代です。小学6年生も参加できます。</li><li>定員は25名です。定員到達後は受付停止またはキャンセル待ちとなります。</li>
-          <li>フォーム送信だけでは参加確定ではありません。RBAからの申込確認メールをもって受付確定となります。</li>
+          <li>フォーム送信と月額サブスクリプション登録の両方を確認後、RBAからの申込確認メールをもって受付確定となります。</li>
           <li>会場詳細は、申込確認メール内でご案内します。</li>
           <li>未成年者のため、保護者の方が内容をご確認のうえお申込みください。</li>
           <li>痛みや体調不良がある場合は無理に参加せず、事前にご相談ください。</li>
