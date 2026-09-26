@@ -7,16 +7,17 @@ import { Locale, localePath, SiteFrame } from "./site-frame";
 import { tr } from "./network-data";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { filterDevelopmentOpportunities } from "@/lib/discovery-filter";
 
 type Region="all"|"tohoku"|"kanto"|"kansai"|"kyushu"|"okinawa"|"online";
 type Age="all"|"U8"|"U10"|"U12"|"U15"|"COACH";
 type Kind="all"|"TRAIN"|"PLAY"|"TRAVEL"|"COACH";
 
 const copy={
-  ja:{title:"次の育成機会を、ここで見つける。",lead:"所属や地域だけで選択肢を決めず、日程・年代・目的から自分に合う活動を探せます。今のチームに所属したまま参加できる企画もあります。参加条件を確認したうえで、そのまま公式申込へ進めます。",filter:"条件を選ぶ",region:"地域",age:"対象",kind:"目的",all:"すべて",results:"件の募集中プログラム",empty:"条件に合う募集中の活動はありません。条件を変えてお探しください。",open:"募集中",date:"日程",place:"地域・会場",target:"対象",fee:"参加費",detail:"詳しく見る",apply:"公式申込へ",payment:"申込・決済案内",join:"RBA IDで、参加した経験を次につなげる",joinBody:"参加履歴や振り返り、次のおすすめ、学びをMY HOME COURTでまとめて確認できます。",regions:{tohoku:"東北",kanto:"関東",kansai:"関西",kyushu:"九州",okinawa:"沖縄",online:"オンライン"}},
-  en:{title:"Find your next development opportunity.",lead:"Compare date, region, age, type, fee and availability, then continue to the official application.",filter:"Choose filters",region:"Region",age:"Age",kind:"Purpose",all:"All",results:"open programmes",empty:"No open programmes match these filters.",open:"Open",date:"Date",place:"Region / venue",target:"For",fee:"Fee",detail:"View details",apply:"Official application",payment:"Registration & payment",join:"Connect the next step with RBA ID",joinBody:"Bring participation, recommendations and learning into MY HOME COURT.",regions:{tohoku:"Tohoku",kanto:"Kanto",kansai:"Kansai",kyushu:"Kyushu",okinawa:"Okinawa",online:"Online"}},
-  "zh-tw":{title:"在這裡找到下一個培育機會。",lead:"比較日期、地區、年齡、類型、費用及招募狀態，直接前往官方報名。",filter:"選擇條件",region:"地區",age:"對象",kind:"目的",all:"全部",results:"個開放報名活動",empty:"目前沒有符合條件的活動，請調整篩選。",open:"招募中",date:"日期",place:"地區・場地",target:"對象",fee:"費用",detail:"查看詳情",apply:"官方報名",payment:"報名與付款",join:"使用RBA ID連結下一步",joinBody:"在MY HOME COURT整理參加、推薦活動與學習內容。",regions:{tohoku:"東北",kanto:"關東",kansai:"關西",kyushu:"九州",okinawa:"沖繩",online:"線上"}},
-  ko:{title:"다음 성장 기회를 여기에서 찾으세요.",lead:"일정, 지역, 연령, 유형, 비용과 모집 상태를 비교하고 공식 신청으로 이동합니다.",filter:"조건 선택",region:"지역",age:"대상",kind:"목적",all:"전체",results:"개 모집 중 프로그램",empty:"조건에 맞는 모집 중 프로그램이 없습니다.",open:"모집 중",date:"일정",place:"지역・장소",target:"대상",fee:"참가비",detail:"자세히 보기",apply:"공식 신청",payment:"신청・결제 안내",join:"RBA ID로 다음 기회 연결",joinBody:"MY HOME COURT에서 참가, 추천 활동과 학습을 이어갑니다.",regions:{tohoku:"도호쿠",kanto:"간토",kansai:"간사이",kyushu:"규슈",okinawa:"오키나와",online:"온라인"}}
+  ja:{title:"次の育成機会を、ここで見つける。",lead:"所属や地域だけで選択肢を決めず、日程・年代・目的から自分に合う活動を探せます。今のチームに所属したまま参加できる企画もあります。参加条件を確認したうえで、そのまま公式申込へ進めます。",filter:"条件を選ぶ",region:"地域",age:"対象",kind:"目的",all:"すべて",from:"開始日",to:"終了日",online:"オンラインだけ見る",reset:"条件をリセット",rangeError:"終了日は開始日以降を選んでください。",results:"件の募集中プログラム",empty:"条件に合う募集中の活動はありません。条件を変えてお探しください。",open:"募集中",date:"日程",place:"地域・会場",target:"対象",fee:"参加費",detail:"詳しく見る",apply:"公式申込へ",payment:"申込・決済案内",join:"RBA IDで、参加した経験を次につなげる",joinBody:"参加履歴や振り返り、次のおすすめ、学びをMY HOME COURTでまとめて確認できます。",regions:{tohoku:"東北",kanto:"関東",kansai:"関西",kyushu:"九州",okinawa:"沖縄",online:"オンライン"}},
+  en:{title:"Find your next development opportunity.",lead:"Compare date, region, age, type, fee and availability, then continue to the official application.",filter:"Choose filters",region:"Region",age:"Age",kind:"Purpose",all:"All",from:"From",to:"To",online:"Online only",reset:"Reset filters",rangeError:"Choose an end date on or after the start date.",results:"open programmes",empty:"No open programmes match these filters.",open:"Open",date:"Date",place:"Region / venue",target:"For",fee:"Fee",detail:"View details",apply:"Official application",payment:"Registration & payment",join:"Connect the next step with RBA ID",joinBody:"Bring participation, recommendations and learning into MY HOME COURT.",regions:{tohoku:"Tohoku",kanto:"Kanto",kansai:"Kansai",kyushu:"Kyushu",okinawa:"Okinawa",online:"Online"}},
+  "zh-tw":{title:"在這裡找到下一個培育機會。",lead:"比較日期、地區、年齡、類型、費用及招募狀態，直接前往官方報名。",filter:"選擇條件",region:"地區",age:"對象",kind:"目的",all:"全部",from:"開始日期",to:"結束日期",online:"僅顯示線上活動",reset:"重設條件",rangeError:"結束日期需與開始日期相同或晚於開始日期。",results:"個開放報名活動",empty:"目前沒有符合條件的活動，請調整篩選。",open:"招募中",date:"日期",place:"地區・場地",target:"對象",fee:"費用",detail:"查看詳情",apply:"官方報名",payment:"報名與付款",join:"使用RBA ID連結下一步",joinBody:"在MY HOME COURT整理參加、推薦活動與學習內容。",regions:{tohoku:"東北",kanto:"關東",kansai:"關西",kyushu:"九州",okinawa:"沖繩",online:"線上"}},
+  ko:{title:"다음 성장 기회를 여기에서 찾으세요.",lead:"일정, 지역, 연령, 유형, 비용과 모집 상태를 비교하고 공식 신청으로 이동합니다.",filter:"조건 선택",region:"지역",age:"대상",kind:"목적",all:"전체",from:"시작일",to:"종료일",online:"온라인만 보기",reset:"조건 초기화",rangeError:"종료일은 시작일과 같거나 그 이후여야 합니다.",results:"개 모집 중 프로그램",empty:"조건에 맞는 모집 중 프로그램이 없습니다.",open:"모집 중",date:"일정",place:"지역・장소",target:"대상",fee:"참가비",detail:"자세히 보기",apply:"공식 신청",payment:"신청・결제 안내",join:"RBA ID로 다음 기회 연결",joinBody:"MY HOME COURT에서 참가, 추천 활동과 학습을 이어갑니다.",regions:{tohoku:"도호쿠",kanto:"간토",kansai:"간사이",kyushu:"규슈",okinawa:"오키나와",online:"온라인"}}
 } as const;
 
 const pathwayLabel=(locale:Locale,pathway?:string)=>({
@@ -32,6 +33,9 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
   const [region,setRegion]=useState<Region>("all");
   const [age,setAge]=useState<Age>("all");
   const [kind,setKind]=useState<Kind>("all");
+  const [from,setFrom]=useState("");
+  const [to,setTo]=useState("");
+  const [onlineOnly,setOnlineOnly]=useState(false);
   const db=useMemo(()=>createClient(),[]);
   const [userId,setUserId]=useState<string|null>(null);
   const [saved,setSaved]=useState<string[]>([]);
@@ -40,9 +44,13 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
     const timer=window.setTimeout(()=>{
       const q=new URLSearchParams(location.search);
       const r=q.get("region") as Region|null; const a=q.get("age") as Age|null; const k=q.get("kind") as Kind|null;
+      const f=q.get("from"); const t=q.get("to"); const o=q.get("online");
       if(r&&["tohoku","kanto","kansai","kyushu","okinawa","online"].includes(r))setRegion(r);
       if(a&&["U8","U10","U12","U15","COACH"].includes(a))setAge(a);
       if(k&&["TRAIN","PLAY","TRAVEL","COACH"].includes(k))setKind(k);
+      if(f&&/^\d{4}-\d{2}-\d{2}$/.test(f))setFrom(f);
+      if(t&&/^\d{4}-\d{2}-\d{2}$/.test(t))setTo(t);
+      if(o==="true")setOnlineOnly(true);
       void db.auth.getUser().then(async({data})=>{
         const id=data.user?.id||null;setUserId(id);
         if(!id)return;
@@ -53,12 +61,15 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
     },0);
     return ()=>window.clearTimeout(timer);
   },[db,locale]);
-  const visible=useMemo(()=>programmes.filter(p=>!p.registrationClosed&&(region==="all"||p.region===region)&&(age==="all"||p.ageGroups.some(group=>group===age))&&(kind==="all"||p.category===kind)),[region,age,kind]);
-  const update=(next:{region?:Region;age?:Age;kind?:Kind})=>{
+  const today=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  const invalidDateRange=Boolean(from&&to&&from>to);
+  const visible=useMemo(()=>filterDevelopmentOpportunities(programmes,{age:age==="all"?"":age,region:region==="all"?"":region,category:kind==="all"?"":kind,from,to,onlineOnly},today),[region,age,kind,from,to,onlineOnly,today]);
+  const update=(next:{region?:Region;age?:Age;kind?:Kind;from?:string;to?:string;onlineOnly?:boolean})=>{
     const r=next.region??region,a=next.age??age,k=next.kind??kind;
-    const q=new URLSearchParams(); if(r!=="all")q.set("region",r);if(a!=="all")q.set("age",a);if(k!=="all")q.set("kind",k);
+    const f=next.from??from,t=next.to??to,o=next.onlineOnly??onlineOnly;
+    const q=new URLSearchParams(); if(r!=="all")q.set("region",r);if(a!=="all")q.set("age",a);if(k!=="all")q.set("kind",k);if(f)q.set("from",f);if(t)q.set("to",t);if(o)q.set("online","true");
     history.replaceState(null,"",`${location.pathname}${q.size?`?${q}`:""}`);
-    if(userId)void db.from("analytics_events").insert({user_id:userId,event_name:"filter_apply",item_type:"opportunity",item_key:[r,a,k].join(":"),locale});
+    if(userId)void db.from("analytics_events").insert({user_id:userId,event_name:"filter_apply",item_type:"opportunity",item_key:[r,a,k,f,t,o].join(":"),locale});
   };
   async function toggleSave(p:(typeof programmes)[number]){
     if(!userId){router.push(`${locale==="en"?"":`/${locale}`}/my-homecourt/login?next=${encodeURIComponent(`${locale==="en"?"":`/${locale}`}/opportunities`)}`);return;}
@@ -82,7 +93,11 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
       <label>{c.region}<select value={region} onChange={e=>{const v=e.target.value as Region;setRegion(v);update({region:v})}}><option value="all">{c.all}</option>{Object.entries(c.regions).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label>
       <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U15","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
       <label>{c.kind}<select value={kind} onChange={e=>{const v=e.target.value as Kind;setKind(v);update({kind:v})}}><option value="all">{c.all}</option>{["TRAIN","PLAY","TRAVEL","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
-    </div></section>
+      <label>{c.from}<input type="date" value={from} onChange={e=>{setFrom(e.target.value);update({from:e.target.value})}}/></label>
+      <label>{c.to}<input type="date" min={from||undefined} value={to} onChange={e=>{setTo(e.target.value);update({to:e.target.value})}}/></label>
+      <label className="opportunity-online-filter"><input type="checkbox" checked={onlineOnly} onChange={e=>{setOnlineOnly(e.target.checked);update({onlineOnly:e.target.checked})}}/>{c.online}</label>
+      <button className="opportunity-filter-reset" type="button" onClick={()=>{setRegion("all");setAge("all");setKind("all");setFrom("");setTo("");setOnlineOnly(false);update({region:"all",age:"all",kind:"all",from:"",to:"",onlineOnly:false})}}>{c.reset}</button>
+    </div>{invalidDateRange?<p className="opportunity-filter-error" role="alert">{c.rangeError}</p>:null}</section>
     {locale==="ja"?<section className="registration-flow section-pad"><div><p className="section-index inverse">HOW TO JOIN</p><h2>参加までの流れを、分かりやすく。</h2></div><div><ol><li><span>01</span><div><strong>活動を探す</strong><p>年代・地域・目的から、自分に合う企画を絞り込みます。</p></div></li><li><span>02</span><div><strong>条件と費用を確認</strong><p>対象、会場、参加費、持ち物、宿泊の有無などを確認します。</p></div></li><li><span>03</span><div><strong>公式フォームから申し込む</strong><p>各カードの「このコートに挑戦する」から、RBAの公式申込フォームへ進みます。</p></div></li><li><span>04</span><div><strong>決済して受付を完了する</strong><p>フォーム送信後の案内に沿って決済し、RBAからの受付完了案内をご確認ください。</p></div></li></ol><p className="registration-note">普段所属しているチームがあっても、各企画の参加条件を満たせば申し込めます。大会・遠征など一部企画では個別条件がありますので、各申込ページを優先してください。</p></div></section>:null}
     <section className="opportunity-results section-pad" aria-live="polite">{visible.length?<div className="opportunity-card-grid">{visible.map(p=>{const detail=p.detailPath?localePath(locale,p.detailPath):null;return <article key={p.id}><div className="opportunity-card-top"><span>{pathwayLabel(locale,p.pathway)}</span><strong>{c.open}</strong></div><h2>{tr(p.title,locale)}</h2><dl><div><dt><CalendarDays/>{c.date}</dt><dd>{tr(p.date,locale)}</dd></div><div><dt><MapPin/>{c.place}</dt><dd>{tr(p.place,locale)}</dd></div><div><dt><Users/>{c.target}</dt><dd>{tr(p.audience,locale)}</dd></div><div><dt><CircleDollarSign/>{c.fee}</dt><dd>{tr(p.price,locale)}</dd></div></dl><div className="opportunity-card-actions"><button className="opportunity-save" type="button" aria-pressed={saved.includes(p.id)} disabled={saving===p.id} onClick={()=>void toggleSave(p)}><Bookmark fill={saved.includes(p.id)?"currentColor":"none"}/>{saved.includes(p.id)?({ja:"保存済み",en:"Saved","zh-tw":"已收藏",ko:"저장됨"})[locale] :({ja:"保存する",en:"Save","zh-tw":"收藏",ko:"저장"})[locale]}</button>{detail?<a href={detail}>{c.detail}<ArrowRight/></a>:null}<a href={p.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"このコートに挑戦する":c.apply}<ArrowUpRight/></a></div></article>})}</div>:<div className="opportunity-empty"><Search/><p>{c.empty}</p></div>}</section>
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
