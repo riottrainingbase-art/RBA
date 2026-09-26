@@ -96,7 +96,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
         <div><p className="section-index">NEW · SENDAI U15</p><h2>10月スタート。毎週木曜日、仙台で「ゲームで使える力」を育てる。</h2></div>
-        <p>U15年代向けの定期スクール。2026年10月スタート。小学6年生も参加できます。技術だけでなく、見る・判断する・実行するを年間36回で育てます。仙台市太白区、18:00〜19:30、原則月3回。定員25名。</p>
+        <p>U15年代向けの定期スクール。2026年10月スタート。小学6年生も参加できます。技術だけでなく、見る・判断する・実行するを年間36回で育てます。仙台市太白区、18:00〜19:30、原則月3回。入会金5,500円＋月額7,700円（税込）、定員25名。</p>
       </div>
       <div className="homecourt-preview-grid">
         <article><span>01</span><h3>SEE</h3><p>相手・味方・スペースを観て、プレー前から情報を集める。</p></article>
