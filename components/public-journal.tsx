@@ -139,9 +139,9 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
       </section>:null}
       {[
-        {id:"coach-game",label:"GAME COACHING",slugs:["winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
+        {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
         {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-        {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["read-before-you-react","who-is-playing","shouting-is-not-coaching"]},
+        {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
         {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]}
       ].map(group=>{
         const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;
@@ -240,9 +240,9 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching"||post.coach_application?.length);
   const prefix=locale==="en"?"":`/${locale}`;
   const coachGroups=[
-    {id:"coach-game",label:"GAME COACHING",slugs:["winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
+    {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
     {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["read-before-you-react","who-is-playing","shouting-is-not-coaching"]},
+    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
     {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]},
   ];
   return <SiteFrame locale={locale} languagePage="journal">
