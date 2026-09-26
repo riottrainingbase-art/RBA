@@ -145,6 +145,38 @@ export default function Page(){
         </ul>
       </section>
 
+      <section style={{padding:"72px 6vw",background:"#fff"}}>
+        <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>FREQUENTLY ASKED QUESTIONS</p>
+        <h2 style={{fontSize:"clamp(32px,5vw,52px)",lineHeight:1.08,margin:"12px 0 30px"}}>参加前によくある質問</h2>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
+          {[
+            ["小学6年生でも参加できますか？","はい。U15年代につながる準備期間として、小学6年生も参加できます。"],
+            ["今のチームを辞める必要はありますか？","ありません。所属チームでの活動を大切にしながら、個人として学ぶための追加環境として参加できます。"],
+            ["ポジションは固定されますか？","固定しません。運ぶ・攻める・パスする・守るなど、複数の役割を経験しながらゲーム理解を広げます。"],
+            ["経験年数やレベル差があっても大丈夫ですか？","申込時の経験や課題を確認し、少人数グループやSmall-Sided Gamesを使って安全面と学習負荷を調整します。"],
+            ["会場はどこですか？","仙台市太白区です。詳細は申込フォームと月額登録を確認後、RBAからの受付確認メールでご案内します。"],
+            ["欠席した場合はどうなりますか？","月3回の定期受講です。欠席・振替・キャンセルの扱いはRBAの案内および規定に沿ってご案内します。"],
+            ["月額登録の変更や解約はできますか？","Stripeの会員ページから支払い方法の変更や解約手続きができます。解約時期などはRBAの規定をご確認ください。"],
+            ["MY HOME COURTは何に使いますか？","参加記録、Basketball Passport、振り返り、次の育成機会の確認など、スクール外の成長管理に使えます。RBA IDは無料です。"],
+          ].map(([q,a])=><article key={q} style={{borderTop:"1px solid #d8d8d2",padding:"22px 4px 8px"}}><h3 style={{fontSize:18,margin:"0 0 10px"}}>{q}</h3><p style={{margin:0,lineHeight:1.8,color:"#4b4b47"}}>{a}</p></article>)}
+        </div>
+        <div style={{marginTop:34,padding:"24px",background:"#f3f3ef",border:"1px solid #dddcd6"}}>
+          <strong style={{display:"block",fontSize:20,marginBottom:8}}>参加前に確認したいことがある方へ</strong>
+          <p style={{margin:"0 0 14px",lineHeight:1.7,color:"#4b4b47"}}>学年、現在の課題、所属チームとの両立など、申込前の相談も受け付けています。</p>
+          <a href="mailto:riot.training.base@gmail.com?subject=RBA%20U15%20SKILL%20UP%20SCHOOL%E7%9B%B8%E8%AB%87" style={{fontWeight:800,color:"#111"}}>メールで相談する →</a>
+        </div>
+      </section>
+
+      <section style={{padding:"60px 6vw",background:"#111",color:"#fff",textAlign:"center"}}>
+        <p style={{fontSize:12,letterSpacing:3,color:"#aaa",fontWeight:700}}>START OCTOBER 2026 · 25 PLAYERS</p>
+        <h2 style={{fontSize:"clamp(34px,5vw,58px)",lineHeight:1.08,margin:"12px auto 18px",maxWidth:900}}>チームの外にも、成長できる場所を。</h2>
+        <p style={{maxWidth:760,margin:"0 auto 26px",lineHeight:1.8,color:"#d8d8d3"}}>毎週木曜日・原則月3回。技術と判断を、ゲームの中で育てる90分です。</p>
+        <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
+          <a href="#apply" style={{display:"inline-block",background:"#fff",color:"#111",padding:"15px 22px",fontWeight:900,textDecoration:"none"}}>申込フォームへ ↓</a>
+          <a href="https://buy.stripe.com/fZu14pbuv3be2Qt3W77EQ0t" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #777",color:"#fff",padding:"14px 22px",fontWeight:800,textDecoration:"none"}}>月額登録へ ↗</a>
+        </div>
+      </section>
+
       <section id="apply" style={{padding:"72px 4vw 88px",background:"#fff"}}>
         <div style={{maxWidth:980,margin:"0 auto"}}>
           <p style={{fontSize:12,letterSpacing:3,fontWeight:700}}>APPLICATION</p>
