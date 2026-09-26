@@ -3,7 +3,7 @@ import { ArrowRight, Brain, CheckCircle2, ClipboardList, Eye, Gamepad2, Repeat2,
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
-  title: "RBA TEAM TRAINING｜チーム練習設計と訪問トレーニング",
+  title: "RBA TEAM TRAINING｜チームの日常的な練習設計",
   description: "RBAのTEAM TRAININGは、練習テーマ、認知・判断、ゲーム形式、振り返りまでを一つの流れで設計するチーム向け育成機能です。必要に応じてRBAが現場へ伺うVISIT TRAININGにもつなげられます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-training" },
   openGraph: {
