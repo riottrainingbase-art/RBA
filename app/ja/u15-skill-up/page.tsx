@@ -3,8 +3,8 @@ import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: "RBA U15 SKILL UP SCHOOL｜仙台",
-  description: "毎週木曜日・原則月3回。仙台市太白区で開催するU15年代向け定期育成スクール。小学6年生も参加できます。技術と判断をゲームの中で育てます。定員25名。",
+  title: "仙台・太白区のU15バスケットボールスクール｜RBA U15 SKILL UP SCHOOL",
+  description: "仙台市太白区のU15バスケットボールスクール。小学6年生・中学生が対象。毎週木曜日・原則月3回、18:00〜19:30。所属チームはそのままで、見る・判断する・実行する力をゲームの中で育てます。定員25名。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/u15-skill-up" },
   openGraph: {
     title: "RBA U15 SKILL UP SCHOOL｜仙台",
@@ -44,8 +44,34 @@ const focus = [
   ["ADAPT","失敗から修正し、次へつなぐ"],
 ] as const;
 
+const structuredData = {
+  "@context":"https://schema.org",
+  "@type":"SportsActivityLocation",
+  name:"RBA U15 SKILL UP SCHOOL｜仙台",
+  description:"仙台市太白区で毎週木曜日・原則月3回開催する、小学6年生・U15年代向けのバスケットボール育成スクール。",
+  url:"https://riotbasketballacademy.com/ja/u15-skill-up",
+  sport:"Basketball",
+  address:{
+    "@type":"PostalAddress",
+    addressLocality:"仙台市太白区",
+    addressRegion:"宮城県",
+    addressCountry:"JP"
+  },
+  provider:{
+    "@type":"SportsOrganization",
+    name:"Riot Basketball Academy",
+    url:"https://riotbasketballacademy.com"
+  },
+  offers:{
+    "@type":"Offer",
+    priceCurrency:"JPY",
+    price:"7700",
+    description:"月3回・月会費7,700円（税込）。初回入会金5,500円（税込）。"
+  }
+};
+
 export default function Page(){
-  return <SiteFrame locale="ja" languagePage="opportunities">
+  return <SiteFrame locale="ja" languagePage="opportunities"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData)}}/>
     <main style={{background:"#f5f5f2",color:"#111"}}>
       <section style={{padding:"72px 6vw 56px",borderBottom:"1px solid #d6d6d0",background:"#fff"}}>
         <p style={{fontSize:13,letterSpacing:3,fontWeight:700,margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY · SENDAI · START OCT 2026</p>
@@ -112,6 +138,17 @@ export default function Page(){
         <p style={{margin:"28px 0 0",fontSize:17,lineHeight:1.8,maxWidth:850}}><strong>所属チームはそのままで大丈夫です。</strong> チーム活動とは別に、自分自身のバスケットボールを整理し、試し、振り返るための育成環境として参加できます。</p>
       </section>
 
+      <section style={{padding:"64px 6vw",background:"#f5f5f2"}}>
+        <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>SENDAI · TAIHAKU</p>
+        <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 18px"}}>仙台で中学生のバスケスクールを探している方へ。</h2>
+        <p style={{maxWidth:900,lineHeight:1.85,fontSize:17,color:"#444"}}>RBA U15 SKILL UP SCHOOLは、仙台市太白区で開催する小学6年生・中学生向けの定期育成スクールです。部活動やクラブチームの所属を変える必要はありません。普段のチーム活動を続けながら、個人として「見る・判断する・実行する」を整理し、ゲームの中で試す時間をつくります。</p>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:12,marginTop:24}}>
+          <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>仙台市太白区</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>毎週木曜日・18:00〜19:30。学校や所属チームと両立しやすい平日夜の90分です。</p></article>
+          <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>小学6年生から参加可</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>中学バスケへ進む前に、ゲーム理解と個人のFundamentalsを整理できます。</p></article>
+          <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>所属変更は不要</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>RBAは所属クラブの代替ではなく、選手個人の学習機会を追加する育成環境として設計しています。</p></article>
+        </div>
+      </section>
+
       <section style={{padding:"64px 6vw",background:"#ecece7"}}>
         <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>MY HOME COURT</p>
         <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 18px"}}>90分で終わらせず、成長を残す。</h2>
@@ -141,7 +178,7 @@ export default function Page(){
           <li>フォーム送信と初回決済（入会金5,500円＋初月会費7,700円）の両方を確認後、RBAからの申込確認メールをもって受付確定となります。</li>
           <li>会場詳細は、申込確認メール内でご案内します。</li>
           <li>未成年者のため、保護者の方が内容をご確認のうえお申込みください。</li>
-          <li>痛みや体調不良がある場合は無理に参加せず、事前にご相談ください。</li>
+          <li>痛みや体調不良がある場合は無理に参加せず、事前にご相談ください。</li><li>欠席・解約・返金等は<a href="/ja/policies#cancellation" style={{fontWeight:800,color:"#111"}}>RBAのキャンセル・返金方針</a>をご確認ください。</li>
         </ul>
       </section>
 
