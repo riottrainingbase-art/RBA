@@ -45,7 +45,7 @@ export const programmes: readonly Programme[] = [
     title: ["RBA U15 Skill Up School · Sendai", "RBA U15 SKILL UP SCHOOL｜仙台", "RBA U15技能提升學校｜仙台", "RBA U15 스킬업 스쿨｜센다이"],
     place: ["Taihaku, Sendai", "仙台市太白区", "仙台市太白區", "센다이시 다이하쿠구"],
     price: ["¥7,700 / 3 sessions per month", "月3回 7,700円（税込）", "每月3次 ¥7,700", "월 3회 ¥7,700"],
-    audience:["U15 players · capacity 25", "U15年代・定員25名", "U15球員・限額25名", "U15 선수 · 정원 25명"],
+    audience:["U15 players · Grade 6 welcome · capacity 25", "U15年代（小学6年生も参加可）・定員25名", "U15球員（小學6年級亦可參加）・限額25名", "U15 선수（초등학교 6학년도 참가 가능）· 정원 25명"],
     payment:["RBA confirms participation by email.", "申込内容を確認後、RBAからの確認メールをもって受付確定。会場詳細もメールでご案内します。", "由RBA確認後以電郵通知參加及場地詳情", "RBA 확인 이메일로 참가 확정 및 장소 안내"],
     applicationUrl: "https://form.jotform.com/262678369675074",
     region:"tohoku", category:"TRAIN", pathway:"clinic", ageGroups:["U15"],
