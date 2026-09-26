@@ -4,8 +4,8 @@ import { SiteFrame } from "@/components/site-frame";
 import { VisitTrainingObservation } from "@/components/visit-training-observation";
 
 export const metadata: Metadata = {
-  title: "RBA VISIT TRAINING｜チーム訪問型トレーニング",
-  description: "RBAが普段の体育館へ伺い、練習観察、オンコート指導、ゲーム観察、指導者フィードバックまで行う訪問型トレーニングです。TEAM TRAININGの考え方を、チームの日常へ実装します。",
+  title: "RBA TEAM TAKEOVER / VISIT TRAINING｜チーム練習をRBAが担当",
+  description: "RBAが普段の体育館へ伺い、90〜120分のチーム練習を丸ごと担当。練習設計、オンコート指導、ゲーム観察、指導者フィードバックまで行うTEAM TAKEOVER / VISIT TRAININGです。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-visit-clinic" },
   openGraph: {
     title: "RBA VISIT TRAINING｜普段の練習に、RBAが行きます。",
@@ -52,11 +52,11 @@ export default function Page(){
   return <SiteFrame locale="ja">
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja">← RBA</a>
-      <p className="section-index">RBA VISIT TRAINING</p>
-      <h1>普段の練習に、<br/>RBAが行きます。</h1>
-      <p>選手を別の会場へ集めるのではなく、RBAがいつもの体育館へ伺います。普段の練習環境、選手の年代、チームの課題を見ながら、そのチームに必要な育成テーマを組み立て、実際の練習の中で一緒に試す訪問型トレーニングです。</p>
+      <p className="section-index">RBA TEAM TAKEOVER / VISIT TRAINING</p>
+      <h1>いつもの練習を、<br/>一度RBAに任せてください。</h1>
+      <p>TEAM TAKEOVERは、単発の「技術クリニック」ではありません。RBAが普段の体育館へ伺い、90〜120分の通常練習を一度丸ごと担当します。事前にチームの課題を確認し、当日の選手の反応を見ながら内容を調整。終了後は、希望に応じて指導者へ次の練習につながるフィードバックまで行います。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
+        <a className="button button-orange" href="https://book.stripe.com/fZu14p2XZ7ru2QtdwH7EQ0x">TEAM TAKEOVERを予約する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="#programme">内容を見る<ArrowRight size={17}/></a>
       </div>
     </section>
@@ -136,23 +136,28 @@ export default function Page(){
 
     <section className="hosting-price section-pad">
       <div className="hosting-price-head">
-        <p className="section-index inverse">FEE</p>
-        <h2>費用は、実施内容を確認してから事前にご案内します。</h2>
-        <p>時間、対象人数、開催地域、選手指導のみか指導者フィードバックまで含むかによって内容が変わります。相談・初回見積りの時点では料金は発生しません。</p>
-        <div className="free-estimate"><span>開催相談・初回見積り</span><strong>受付中</strong></div>
+        <p className="section-index inverse">TEAM TAKEOVER / RESERVATION</p>
+        <h2>まずは予約金33,000円で、開催調整をスタートできます。</h2>
+        <p>予約金は最終料金の一部に充当します。90〜120分のチーム練習、事前ヒアリング、当日のオンコート指導、希望に応じた指導者フィードバックを基本に、開催地域・交通費・宿泊の有無・追加サポートを確認して残額をご案内します。</p>
+        <div className="free-estimate"><span>TEAM TAKEOVER 予約金</span><strong>¥33,000（税込）</strong></div>
       </div>
       <div className="price-formula">
-        <div className="price-total"><ShieldCheck/><span>事前に総額を確認</span></div>
-        <div className="price-item"><span className="price-plus">=</span><Users/><div><strong>企画・指導内容</strong><p>時間、人数、テーマ、指導体制に応じて算定します。</p></div></div>
-        <div className="price-item"><span className="price-plus">＋</span><Video/><div><strong>必要に応じた追加サポート</strong><p>ゲーム観察、指導者フィードバック、継続訪問などを希望に応じて組みます。</p></div></div>
-        <p className="price-note">交通費・宿泊費が必要な場合は、開催前に内訳を含めてご案内します。条件を確認し、合意いただいた内容だけで進めます。</p>
+        <div className="price-total"><ShieldCheck/><span>決済後に専用フォームへ移動</span></div>
+        <div className="price-item"><span className="price-plus">1</span><Users/><div><strong>予約金を決済</strong><p>Stripeで33,000円をお支払いください。</p></div></div>
+        <div className="price-item"><span className="price-plus">2</span><ClipboardList/><div><strong>チーム情報を送信</strong><p>決済後の専用フォームで、希望日・地域・年代・現在の課題を共有してください。</p></div></div>
+        <div className="price-item"><span className="price-plus">3</span><MessageSquare/><div><strong>日程・内容・残額を確定</strong><p>RBAで確認後、実施内容と費用を整理してご連絡します。</p></div></div>
+        <p className="price-note">交通費・宿泊費等が必要な場合は別途見積となります。日程はフォーム送信後に確定します。通常の開催相談・見積りから始めたい場合は、従来どおり相談フォームも利用できます。</p>
+        <div className="closing-actions">
+          <a className="button button-orange" href="https://book.stripe.com/fZu14p2XZ7ru2QtdwH7EQ0x">予約金33,000円で申し込む<ArrowRight size={17}/></a>
+          <a className="button button-dark" href="/ja/clinic-request">まず相談する<ArrowRight size={17}/></a>
+        </div>
       </div>
     </section>
 
     <section className="closing-cta section-pad">
-      <p className="eyebrow">RBA VISIT TRAINING</p>
-      <h2>「うちのチームにも来てもらえますか？」<br/>その一言からで大丈夫です。</h2>
-      <p>企画が固まっていなくても構いません。チームの状況を伺い、実施できる内容と費用を整理してご案内します。</p>
+      <p className="eyebrow">RBA TEAM TAKEOVER / VISIT TRAINING</p>
+      <h2>クリニックではなく、<br/>チームの“いつもの練習”を変える。</h2>
+      <p>一度の派手なイベントではなく、普段の練習で何を見るか、どう判断させるか、どんなゲームを使うかまで一緒に扱います。すぐ日程調整へ進みたい場合は予約金から、まず話を聞きたい場合は相談から選べます。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="mailto:riot.training.base@gmail.com?subject=RBA%20TEAM%20VISIT%20CLINIC%E7%9B%B8%E8%AB%87">メールで相談する<ArrowRight size={17}/></a>
