@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, ClipboardList, MessageSquare, Search, ShieldC
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
-  title: "RBA TEAM VISIT CLINIC｜チーム訪問型の出張育成クリニック",
+  title: "RBA VISIT TRAINING｜チーム訪問型トレーニング",
   description: "普段の練習環境にRBAが伺い、チームの課題に合わせて選手指導・ゲーム観察・指導者フィードバックまで組み立てる出張型育成プログラムです。宮城県内から県外までご相談いただけます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-visit-clinic" },
   openGraph: {
@@ -51,11 +51,11 @@ export default function Page(){
   return <SiteFrame locale="ja">
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja">← RBA</a>
-      <p className="section-index">RBA TEAM VISIT CLINIC</p>
+      <p className="section-index">RBA VISIT TRAINING / TEAM TRAINING</p>
       <h1>普段の練習に、<br/>RBAが行きます。</h1>
-      <p>選手を別の会場へ集めるのではなく、RBAがいつもの体育館へ伺います。普段の練習環境、選手の年代、チームの課題を見ながら、そのチームに必要な育成テーマを組み立てる出張型のクリニックです。</p>
+      <p>選手を別の会場へ集めるのではなく、RBAがいつもの体育館へ伺います。普段の練習環境、選手の年代、チームの課題を見ながら、そのチームに必要な育成テーマを組み立て、実際の練習の中で一緒に試す訪問型トレーニングです。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href="/ja/clinic-request">チーム訪問を相談する<ArrowRight size={17}/></a>
+        <a className="button button-orange" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="#programme">内容を見る<ArrowRight size={17}/></a>
       </div>
     </section>
@@ -147,11 +147,11 @@ export default function Page(){
     </section>
 
     <section className="closing-cta section-pad">
-      <p className="eyebrow">RBA TEAM VISIT CLINIC</p>
+      <p className="eyebrow">RBA VISIT TRAINING</p>
       <h2>「うちのチームにも来てもらえますか？」<br/>その一言からで大丈夫です。</h2>
       <p>企画が固まっていなくても構いません。チームの状況を伺い、実施できる内容と費用を整理してご案内します。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href="/ja/clinic-request">チーム訪問を相談する<ArrowRight size={17}/></a>
+        <a className="button button-orange" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="mailto:riot.training.base@gmail.com?subject=RBA%20TEAM%20VISIT%20CLINIC%E7%9B%B8%E8%AB%87">メールで相談する<ArrowRight size={17}/></a>
       </div>
     </section>
