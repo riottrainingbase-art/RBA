@@ -14,15 +14,15 @@ type RbaParticipation={id:string;attendance_status:string;events:{id:string;titl
 
 const copy={
   ja:{
-    title:"MY SCHEDULE",lead:"練習、試合、大会、学校行事、ケアの予定を一つにまとめ、次の予定までの時間も確認できます。",
+    title:"MY SCHEDULE",lead:"練習、試合、大会、学校行事、コンディショニングの予定を一つにまとめ、次の予定までの時間も確認できます。",
     next:"次の予定まで",personal:"自分の予定を追加",name:"予定名",type:"種類",start:"日時",venue:"場所",link:"関連リンク",linkLabel:"リンク名",countdown:"カウントダウンを表示",save:"予定を保存",
-    wellness:"TODAY / CONDITION",wellnessTitle:"今日の体調を残す",wellnessBody:"エネルギー、疲労感、張り・筋肉痛、睡眠、痛みを簡単に記録できます。自分の変化を振り返るための非公開記録です。",
+    wellness:"TODAY / CONDITION",wellnessTitle:"今日の体調を残す",wellnessBody:"エネルギー、疲労感、張り・筋肉痛、睡眠、痛みを簡単に記録できます。自分のコンディションの変化を振り返るための非公開記録です。",
     energy:"エネルギー",fatigue:"疲労感",soreness:"張り・筋肉痛",sleep:"睡眠時間",pain:"痛み",body:"気になる部位・状態",notes:"メモ",
-    careAt:"続けてケアの予定も登録する",careTitle:"ケア予定名",care:"CARE PLAN",careHeading:"ケアの予定を登録する",careType:"ケアの種類",provider:"担当・施設",careLocation:"場所",careLink:"予約・連絡リンク",careSave:"ケア予定を保存",
-    private:"体調記録とケア予定は非公開です。チームへ自動で共有されることはありません。ここでの記録は、医療上の診断や治療判断の代わりにはなりません。",
+    careAt:"続けてコンディショニングの予定も登録する",careTitle:"ケア予定名",care:"CARE PLAN",careHeading:"コンディショニングの予定を登録する",careType:"ケアの種類",provider:"担当・施設",careLocation:"場所",careLink:"予約・連絡リンク",careSave:"ケア予定を保存",
+    private:"体調記録とコンディショニング予定は非公開です。チームへ自動で共有されることはありません。また、ここでの記録は医療上の診断や治療判断の代わりにはなりません。",
     painCaution:"強い痛み、急な悪化、しびれ、外傷などがある場合は、予定調整だけで済ませず医療機関や有資格者へ相談してください。",
     noUpcoming:"今後の登録予定はありません。",saved:"保存しました。",error:"保存できませんでした。もう一度お試しください。",complete:"完了にする",done:"完了",open:"開く",
-    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",sourceRba:"RBA",prep:"EVENT PREP",prepTitle:"大会・イベントまでの準備",prepLead:"次の試合、大会、遠征に向けて必要な準備を、予定と一緒に管理できます。",target:"対象予定",task:"やること",due:"期限",taskSave:"準備を追加",taskEmpty:"準備項目はまだありません。",trend:"7 DAYS / CONDITION",trendTitle:"7日間のコンディション記録",trendLead:"7日間の変化を自分で振り返るための記録です。医療上の判断や診断には使用しません。",avgEnergy:"平均エネルギー",avgFatigue:"平均疲労",avgPain:"平均痛み",calendarAdd:"カレンダーに追加",taskDone:"完了",autoPlan:"大会の準備項目を作成",autoPlanLead:"大会日から逆算し、今から必要な準備項目を作成します。すでに登録されている同じ項目は重複して追加しません。",autoPlanButton:"準備項目を作成",autoPlanDone:"大会準備を作成しました。",autoTag:"AUTO"
+    sourceTeam:"TEAM",sourcePersonal:"MY",sourceCare:"CARE",sourceRba:"RBA",prep:"EVENT PREP",prepTitle:"大会・イベントまでの準備",prepLead:"次の試合、大会、遠征に向けて必要な準備を、予定と一緒に管理できます。",target:"対象予定",task:"やること",due:"期限",taskSave:"準備を追加",taskEmpty:"準備項目はまだありません。",trend:"7 DAYS / CONDITION",trendTitle:"7日間のコンディション記録",trendLead:"7日間の変化を自分で振り返るための記録です。医療上の判断や診断には使用しません。",avgEnergy:"平均エネルギー",avgFatigue:"平均疲労",avgPain:"平均痛み",calendarAdd:"カレンダーに追加",taskDone:"完了",autoPlan:"大会に向けた準備項目を作成",autoPlanLead:"大会日から逆算して、今から必要な準備項目を作成します。同じ内容がすでに登録されている場合は、重複して追加しません。",autoPlanButton:"準備項目を作成",autoPlanDone:"大会準備を作成しました。",autoTag:"AUTO"
   },
   en:{
     title:"MY SCHEDULE",lead:"Keep practices, games, tournaments, events and care on one timeline, with countdowns to what comes next.",
