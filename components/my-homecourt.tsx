@@ -134,7 +134,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       <div className="homecourt-preview-grid">{clear.cards.map(([label,title,body],index)=><article key={label}><Compass/><span>{String(index+1).padStart(2,"0")} / {label}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
       <div className="homecourt-plan-grid">
         <article className="homecourt-plan-card homecourt-plan-free"><div className="homecourt-plan-card-head"><span>FREE / RBA ID</span><strong>¥0</strong></div><h3>{clear.freeTitle}</h3><p>{clear.freeBody}</p><a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{clear.freeCta}<ArrowRight size={16}/></a></article>
-        <article className="homecourt-plan-card homecourt-plan-paid"><div className="homecourt-plan-card-head"><span>HOMECOURT / MONTHLY</span><strong>¥3,300</strong></div><h3>{clear.paidTitle}</h3><p>{clear.paidBody}</p><a className="button button-member" href={`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{clear.paidCta}<ArrowRight size={16}/></a></article>
+        <article className="homecourt-plan-card homecourt-plan-paid"><div className="homecourt-plan-card-head"><span>HOMECOURT / MONTHLY</span><strong>¥3,300</strong></div><h3>{clear.paidTitle}</h3><p>{clear.paidBody}</p><a className="button button-member" href={locale==="ja"?"/ja/my-homecourt/subscribe":`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{clear.paidCta}<ArrowRight size={16}/></a></article>
       </div>
       <div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{clear.whoTitle}</h2></div></div>
       <div className="homecourt-preview-grid">{clear.who.map(([label,body],index)=><article key={label}><Users/><span>{String(index+1).padStart(2,"0")}</span><h3>{label}</h3><p>{body}</p><a className="text-link" href={`${prefix}/my-homecourt/${index===0?"players":index===1?"families":"coaches"}`}>{label} <ArrowRight size={16}/></a></article>)}</div>
@@ -225,7 +225,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
             <li><Check size={17}/>DEVELOPMENT HORIZON｜地域〜世界までの機会整理</li>
             <li><Check size={17}/>MONTHLY REVIEW｜参加・保存・学び・目標を月単位で振り返る</li>
           </ul>
-          <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={16}/></a>
+          <a className="button button-member" href="/ja/my-homecourt/subscribe">HOMECOURT PLUSを始める<ArrowRight size={16}/></a>
         </article>
       </div>
       <div className="homecourt-value-line">
@@ -274,7 +274,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         </article>
       </div>
       <div className="homecourt-launch-actions">
-        <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">月額HOMECOURTを始める<ArrowRight size={17}/></a>
+        <a className="button button-member" href="/ja/my-homecourt/subscribe">月額HOMECOURTを始める<ArrowRight size={17}/></a>
         <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"まず無料でRBA IDを始める":"無料登録の再開通知を受け取る"}<ArrowRight size={17}/></a>
       </div>
     </section>:null}
