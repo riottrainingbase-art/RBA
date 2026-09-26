@@ -52,7 +52,7 @@ export default function Page(){
   return <SiteFrame locale="ja">
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja">← RBA</a>
-      <p className="section-index">RBA VISIT TRAINING / TEAM TRAINING</p>
+      <p className="section-index">RBA VISIT TRAINING</p>
       <h1>普段の練習に、<br/>RBAが行きます。</h1>
       <p>選手を別の会場へ集めるのではなく、RBAがいつもの体育館へ伺います。普段の練習環境、選手の年代、チームの課題を見ながら、そのチームに必要な育成テーマを組み立て、実際の練習の中で一緒に試す訪問型トレーニングです。</p>
       <div className="closing-actions">
