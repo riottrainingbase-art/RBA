@@ -23,18 +23,18 @@ export const metadata: Metadata = {
 };
 
 const months = [
-  ["4月","OBSERVE & DECIDE","見る・認知する・判断する"],
-  ["5月","CREATE ADVANTAGE","1on1で優位性をつくる"],
-  ["6月","USE ADVANTAGE","ズレを使い、次へつなぐ"],
-  ["7月","FINISHING","リング周辺の解決力"],
-  ["8月","SHOOTING IN CONTEXT","ゲーム状況からシュートを選ぶ"],
-  ["9月","SPACING","距離・角度・スペースを理解する"],
-  ["10月","OFF-BALL PLAY","カット・リロケート・リアクション"],
-  ["11月","PASSING & CONNECTING","優位性をパスでつなぐ"],
-  ["12月","TRANSITION","切り替えと数的優位の判断"],
-  ["1月","DEFENSIVE FUNDAMENTALS","1on1・クローズアウト・リカバリー"],
-  ["2月","TEAM DEFENCE","ヘルプ・ローテーション・判断"],
-  ["3月","COMPLETE PLAYER","年間の学びをゲームで統合する"],
+  ["10月","OBSERVE & DECIDE","見る・認知する・判断する"],
+  ["11月","CREATE ADVANTAGE","1on1で優位性をつくる"],
+  ["12月","USE ADVANTAGE","ズレを使い、次へつなぐ"],
+  ["1月","FINISHING","リング周辺の解決力"],
+  ["2月","SHOOTING IN CONTEXT","ゲーム状況からシュートを選ぶ"],
+  ["3月","SPACING","距離・角度・スペースを理解する"],
+  ["4月","OFF-BALL PLAY","カット・リロケート・リアクション"],
+  ["5月","PASSING & CONNECTING","優位性をパスでつなぐ"],
+  ["6月","TRANSITION","切り替えと数的優位の判断"],
+  ["7月","DEFENSIVE FUNDAMENTALS","1on1・クローズアウト・リカバリー"],
+  ["8月","TEAM DEFENCE","ヘルプ・ローテーション・判断"],
+  ["9月","COMPLETE PLAYER","年間の学びをゲームで統合する"],
 ] as const;
 
 const focus = [
@@ -48,7 +48,7 @@ export default function Page(){
   return <SiteFrame locale="ja" languagePage="opportunities">
     <main style={{background:"#f5f5f2",color:"#111"}}>
       <section style={{padding:"72px 6vw 56px",borderBottom:"1px solid #d6d6d0",background:"#fff"}}>
-        <p style={{fontSize:13,letterSpacing:3,fontWeight:700,margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY · SENDAI</p>
+        <p style={{fontSize:13,letterSpacing:3,fontWeight:700,margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY · SENDAI · START OCT 2026</p>
         <h1 style={{fontSize:"clamp(42px,8vw,92px)",lineHeight:.92,letterSpacing:-3,margin:"0 0 24px",fontWeight:900}}>RBA U15<br/>SKILL UP SCHOOL</h1>
         <p style={{fontSize:"clamp(22px,3vw,34px)",fontWeight:800,margin:"0 0 14px"}}>現代バスケットボールを学ぶ90分。</p>
         <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
@@ -62,7 +62,7 @@ export default function Page(){
         {[
           ["対象","U15年代（小学6年生も参加可）"],
           ["定員","25名"],
-          ["開催","毎週木曜日・原則月3回"],
+          ["開始","2026年10月"],["開催","毎週木曜日・原則月3回"],
           ["時間","18:00〜19:30"],
           ["会場","仙台市太白区"],
           ["月会費","7,700円（税込）"],
@@ -79,7 +79,7 @@ export default function Page(){
       </section>
 
       <section style={{padding:"72px 6vw",background:"#f5f5f2"}}>
-        <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>ANNUAL DEVELOPMENT PLAN · 36 SESSIONS</p>
+        <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>ANNUAL DEVELOPMENT PLAN · OCT 2026–SEP 2027 · 36 SESSIONS</p>
         <h2 style={{fontSize:"clamp(34px,5vw,58px)",lineHeight:1.08,margin:"12px 0 34px"}}>年間36回を、一つの成長ストーリーに。</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(250px,1fr))",gap:12}}>
           {months.map(([m,e,j],i)=><article key={m} style={{background:"#fff",padding:"24px 22px",border:"1px solid #dddcd6"}}>
