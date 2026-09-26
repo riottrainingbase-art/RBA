@@ -98,6 +98,30 @@ export default function Page(){
         <p style={{margin:"24px 0 0",fontSize:16,lineHeight:1.8,color:"#4d4d48"}}>最後は「何が見えた？」「なぜそのプレーを選んだ？」「次は何を変える？」まで振り返ります。正解を覚えるのではなく、自分でゲームを理解する力を育てます。</p>
       </section>
 
+      <section style={{padding:"72px 6vw",background:"#fff"}}>
+        <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>WHO THIS IS FOR</p>
+        <h2 style={{fontSize:"clamp(32px,5vw,54px)",lineHeight:1.08,margin:"12px 0 28px"}}>「もっとできるはず」を、練習だけで終わらせない。</h2>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:12}}>
+          {[
+            ["判断を速くしたい","ボールを持ってから考えるのではなく、受ける前から見て選ぶ習慣をつくる。"],
+            ["試合で技術を使いたい","ドリルでできる技術を、1on1〜4on4の判断の中で使える形へつなげる。"],
+            ["役割を広げたい","今のポジションだけに固定せず、運ぶ・攻める・パスする・守るを経験する。"],
+            ["中学・次のカテゴリーへ備えたい","小学6年生も参加可。U15年代につながるゲーム理解を早めに身につける。"],
+          ].map(([t,b])=><article key={t} style={{border:"1px solid #dddcd6",padding:24,background:"#fafaf7"}}><h3 style={{fontSize:21,margin:"0 0 10px"}}>{t}</h3><p style={{margin:0,lineHeight:1.75,color:"#4b4b47"}}>{b}</p></article>)}
+        </div>
+        <p style={{margin:"28px 0 0",fontSize:17,lineHeight:1.8,maxWidth:850}}><strong>所属チームはそのままで大丈夫です。</strong> チーム活動とは別に、自分自身のバスケットボールを整理し、試し、振り返るための育成環境として参加できます。</p>
+      </section>
+
+      <section style={{padding:"64px 6vw",background:"#ecece7"}}>
+        <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>MY HOME COURT</p>
+        <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 18px"}}>90分で終わらせず、成長を残す。</h2>
+        <p style={{maxWidth:860,lineHeight:1.85,fontSize:17,color:"#444"}}>スクールで取り組んだことを、MY HOME COURTのBasketball Passportや振り返りにつなげます。参加予定、学んだこと、次に試したいこと、次の育成機会を一つの場所で整理できます。RBA IDは無料です。</p>
+        <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:24}}>
+          <a href="/ja/my-homecourt" style={{display:"inline-block;background:"#111",color:"#fff",padding:"14px 20px",fontWeight:800,textDecoration:"none"}}>MY HOME COURTを見る →</a>
+          <a href="/ja/my-homecourt/login" style={{display:"inline-block;border:"1px solid #111",color:"#111",padding:"13px 20px",fontWeight:800,textDecoration:"none",background:"#fff"}}>無料RBA IDをつくる →</a>
+        </div>
+      </section>
+
       <section style={{padding:"64px 6vw",background:"#111",color:"#fff"}}>
         <p style={{fontSize:12,letterSpacing:3,color:"#aaa",fontWeight:700}}>REGISTRATION FLOW</p>
         <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 26px"}}>申込 → 月額登録 → MY HOME COURT</h2>
