@@ -7,7 +7,7 @@ import type { Locale } from "./site-frame";
 
 type ImportRow={title:string;starts_at:string;ends_at:string|null;event_type:string;venue:string|null};
 const words={
-  ja:{title:"既存のカレンダーを取り込む",body:"Googleカレンダーなどから書き出したICSまたはCSVファイルを読み込めます。内容を確認し、取り込みを実行するまではデータを送信しません。",choose:"ICS／CSVファイルを選ぶ",found:"件の予定を読み込みました",import:"確認した予定を取り込む",done:"予定を取り込みました",error:"ファイルを読み取れませんでした。ファイル形式と日時をご確認ください。"},
+  ja:{title:"既存のカレンダーから予定を取り込む",body:"Googleカレンダーなどから書き出したICSまたはCSVファイルを読み込めます。内容を確認して取り込みを実行するまでは、データは保存されません。",choose:"ICS／CSVファイルを選択",found:"件の予定が見つかりました",import:"選択した予定を取り込む",done:"予定を取り込みました",error:"ファイルを読み取れませんでした。ファイル形式と日時をご確認ください。"},
   en:{title:"Import an existing calendar",body:"Import ICS exported from Google Calendar or a CSV. Nothing is sent until you review and confirm.",choose:"Choose ICS / CSV",found:"items ready",import:"Import reviewed events",done:"Events imported",error:"We could not read that file. Check its format and dates."},
   "zh-tw":{title:"匯入現有日曆",body:"可匯入Google Calendar等匯出的ICS或CSV。確認匯入前不會傳送資料。",choose:"選擇ICS／CSV",found:"項已讀取",import:"匯入已確認行程",done:"已匯入行程",error:"無法讀取。請確認格式與日期。"},
   ko:{title:"기존 캘린더 가져오기",body:"Google Calendar 등에서 내보낸 ICS 또는 CSV를 가져옵니다. 확인 전에는 데이터가 전송되지 않습니다.",choose:"ICS／CSV 선택",found:"개 준비됨",import:"확인한 일정 가져오기",done:"일정을 가져왔습니다",error:"파일을 읽을 수 없습니다. 형식과 날짜를 확인하세요."}
