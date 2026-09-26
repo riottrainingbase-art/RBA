@@ -117,8 +117,8 @@ export default function Page(){
         <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 18px"}}>90分で終わらせず、成長を残す。</h2>
         <p style={{maxWidth:860,lineHeight:1.85,fontSize:17,color:"#444"}}>スクールで取り組んだことを、MY HOME COURTのBasketball Passportや振り返りにつなげます。参加予定、学んだこと、次に試したいこと、次の育成機会を一つの場所で整理できます。RBA IDは無料です。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:24}}>
-          <a href="/ja/my-homecourt" style={{display:"inline-block;background:"#111",color:"#fff",padding:"14px 20px",fontWeight:800,textDecoration:"none"}}>MY HOME COURTを見る →</a>
-          <a href="/ja/my-homecourt/login" style={{display:"inline-block;border:"1px solid #111",color:"#111",padding:"13px 20px",fontWeight:800,textDecoration:"none",background:"#fff"}}>無料RBA IDをつくる →</a>
+          <a href="/ja/my-homecourt" style={{display:"inline-block",background:"#111",color:"#fff",padding:"14px 20px",fontWeight:800,textDecoration:"none"}}>MY HOME COURTを見る →</a>
+          <a href="/ja/my-homecourt/login" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"13px 20px",fontWeight:800,textDecoration:"none",background:"#fff"}}>無料RBA IDをつくる →</a>
         </div>
       </section>
 
