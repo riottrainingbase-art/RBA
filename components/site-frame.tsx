@@ -47,7 +47,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["RBA UNITED",localePath(locale,"united")],
     ["RBA CONNECT",localePath(locale,"connect")],
     ["ORGANIZER",localePath(locale,"organizer")],
-    ...(locale==="ja"?[["RBAと活動をつくる","/ja/work-with-rba"] as const]:[]),
+    ...(locale==="ja"?[["出張育成クリニック","/ja/team-visit-clinic"] as const,["RBAと活動をつくる","/ja/work-with-rba"] as const]:[]),
     [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
   ] as const;
   const nav=[
