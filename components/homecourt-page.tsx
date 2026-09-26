@@ -46,7 +46,7 @@ export function HomecourtPage({locale}:{locale:Locale}) {
       <div className="homecourt-plan-intro">
         <p className="section-index">RBA ID / HOMECOURT</p>
         <h2>RBA IDとHOMECOURT PLUSは、できることが明確に分かれています。</h2>
-        <p>無料のRBA IDでは「知る・探す・記録する」。HOMECOURT PLUSでは、そこから「学ぶ・試す・振り返る・次を決める」までを継続できます。</p>
+        <p>RBA IDでは「知る・探す・記録する」。HOMECOURT PLUSでは、そこから「学ぶ・試す・振り返る・次を決める」までを継続できます。</p>
       </div>
       <div className="homecourt-plan-grid">
         <article className="homecourt-plan-card homecourt-plan-free">
@@ -75,7 +75,7 @@ export function HomecourtPage({locale}:{locale:Locale}) {
           <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={16}/></a>
         </article>
       </div>
-      <div className="homecourt-private-note"><ShieldCheck size={24}/><div><strong>無料版の機能を制限して、有料版へ誘導する仕組みではありません。</strong><p>活動を探す、公開記事を読む、経験を記録する機能はRBA IDで利用できます。HOMECOURT PLUSは、学びと実践を継続して整理したい方のための追加機能です。</p></div></div>
+      <div className="homecourt-private-note"><ShieldCheck size={24}/><div><strong>RBA IDの基本機能は、そのまま利用できます。</strong><p>活動を探す、公開記事を読む、経験を記録する機能はRBA IDで利用できます。HOMECOURT PLUSは、学びと実践を継続して整理したい方のための追加機能です。</p></div></div>
     </section>:null}
     <section className="homecourt-start section-pad"><div><p className="section-index inverse">START</p><h2>{c.steps}</h2></div><ol>{c.stepItems.map(([no,title,body])=><li key={no}><span>{no}</span><div><strong>{title}</strong><p>{body}</p></div></li>)}</ol></section>
     <section className="homecourt-start section-pad"><div><p className="section-index inverse">SHARE</p><h2>{locale==="ja"?"仲間にも、もうひとつのホームコートを。":"Share another home court."}</h2></div><ol><li><span>01</span><div><strong>{locale==="ja"?"指導者に共有":"Share with a coach"}</strong><p>{locale==="ja"?"全国の育成機会や学びを探せる入口として、そのままURLを共有できます。":"Share the public MY HOME COURT page."}</p><a className="text-link" href={`mailto:?subject=${encodeURIComponent("MY HOME COURT｜Riot Basketball Academy")}&body=${encodeURIComponent("全国のクリニック・学び・育成機会を探せるRBAのMY HOME COURTです。登録は無料です。\n\nhttps://riotbasketballacademy.com/ja/my-homecourt")}`}>{locale==="ja"?"友人にMY HOME COURTを共有":"Share MY HOME COURT"}<ArrowRight size={16}/></a></div></li><li><span>02</span><div><strong>{locale==="ja"?"所属チームを変えずに使える":"Use it alongside your team"}</strong><p>{locale==="ja"?"所属チームを変えずに、チーム外の学びや全国の育成機会、自分の成長記録につなげられます。":"Use it without leaving your current team."}</p></div></li><li><span>03</span><div><strong>{locale==="ja"?"一度の参加を、次の成長へ":"Turn one event into the next step"}</strong><p>{locale==="ja"?"クリニックへの参加、Basketball Passportへの記録、活動の保存、次の育成機会までをRBA IDでつなぎます。":"Connect events, Passport, saves and the next opportunity."}</p></div></li></ol></section>
