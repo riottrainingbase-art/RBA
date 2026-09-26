@@ -11,7 +11,7 @@ type Goal={id:string;title:string;horizon:string;action:string;success:string;ta
 type SavedOpportunity={id:string;title:string;href:string;metadata:{region?:string;category?:string}|null};
 
 const copy={
-  ja:{eyebrow:"DEVELOPMENT REPORT",title:"成長の記録を、1枚にまとめる。",lead:"Basketball Passport、週ごとのテーマ、月ごとの振り返り、次の目標と育成機会を一つにまとめます。自分自身の時間軸として使うレポートです。",print:"印刷・PDF保存",weekly:"最近のWEEKLY LOOP",monthly:"MONTHLY REVIEW",history:"BASKETBALL PASSPORT / 参加履歴",goals:"次の目標",horizon:"DEVELOPMENT HORIZON",empty:"まだ記録がありません。",privacy:"このレポートは非公開データから作成されます。共有する場合は、自分または保護者の判断で行ってください。",loading:"レポートを作成しています…"},
+  ja:{eyebrow:"DEVELOPMENT REPORT",title:"これまでの成長記録を、1枚にまとめる。",lead:"Basketball Passport、週ごとのテーマ、月ごとの振り返り、次の目標や育成機会を一つにまとめます。これまでの歩みを振り返り、次の行動を考えるためのレポートです。",print:"印刷・PDF保存",weekly:"最近のWEEKLY LOOP",monthly:"MONTHLY REVIEW",history:"BASKETBALL PASSPORT / 参加履歴",goals:"次の目標",horizon:"DEVELOPMENT HORIZON",empty:"まだ記録がありません。",privacy:"このレポートは非公開データから作成されます。共有する場合は、自分または保護者の判断で行ってください。",loading:"レポートを作成しています…"},
   en:{eyebrow:"DEVELOPMENT REPORT",title:"Put your development journey on one page.",lead:"Bring Basketball Passport, weekly themes, monthly reviews, next goals and opportunities together on your own timeline.",print:"Print / Save PDF",weekly:"Recent weekly loops",monthly:"Monthly reviews",history:"Basketball Passport / participation",goals:"Next goals",horizon:"Development horizon",empty:"No records yet.",privacy:"This report is built from private data. Share only if you choose to.",loading:"Building report…"},
   "zh-tw":{eyebrow:"DEVELOPMENT REPORT",title:"把成長紀錄整理成一頁。",lead:"整合 Basketball Passport、每週主題、每月回顧、下一個目標與機會。",print:"列印 / 儲存PDF",weekly:"最近每週循環",monthly:"每月回顧",history:"Basketball Passport／參加紀錄",goals:"下一個目標",horizon:"發展範圍",empty:"尚無紀錄。",privacy:"此報告由私人資料產生，僅在你選擇時分享。",loading:"建立報告中…"},
   ko:{eyebrow:"DEVELOPMENT REPORT",title:"성장 기록을 한 장에 정리합니다.",lead:"Basketball Passport, 주간 주제, 월간 회고, 다음 목표와 기회를 함께 봅니다.",print:"인쇄 / PDF 저장",weekly:"최근 주간 루프",monthly:"월간 리뷰",history:"Basketball Passport / 참가 기록",goals:"다음 목표",horizon:"성장 범위",empty:"기록이 아직 없습니다.",privacy:"이 보고서는 비공개 데이터로 만들어집니다. 공유 여부는 본인 또는 보호자가 결정합니다.",loading:"보고서 작성 중…"}
@@ -79,11 +79,11 @@ export function HomecourtDevelopmentReport({userId,locale,name,role,region}:{use
 
     <section className="homecourt-product-preview">
       <div className="section-head"><div><p className="section-index">{c.monthly}</p><h2>{latestMonthly?.focus||c.empty}</h2></div></div>
-      {monthly.length?<div className="homecourt-preview-grid">{monthly.slice(0,4).map(item=><article key={item.id}><CalendarDays/><span>{item.period_month}</span><h3>{item.focus||"—"}</h3>{item.wins?<p>{locale==="ja"?"できたこと｜":"WINS | "}{item.wins}</p>:null}{item.challenge?<p>{locale==="ja"?"課題｜":"CHALLENGE | "}{item.challenge}</p>:null}{item.next_action?<p>{locale==="ja"?"次へ｜":"NEXT | "}{item.next_action}</p>:null}</article>)}</div>:<p className="member-safety">{c.empty}</p>}
+      {monthly.length?<div className="homecourt-preview-grid">{monthly.slice(0,4).map(item=><article key={item.id}><CalendarDays/><span>{item.period_month}</span><h3>{item.focus||"—"}</h3>{item.wins?<p>{locale==="ja"?"できたこと｜":"WINS | "}{item.wins}</p>:null}{item.challenge?<p>{locale==="ja"?"課題｜":"CHALLENGE | "}{item.challenge}</p>:null}{item.next_action?<p>{locale==="ja"?"次に取り組むこと｜":"NEXT | "}{item.next_action}</p>:null}</article>)}</div>:<p className="member-safety">{c.empty}</p>}
     </section>
 
     <section className="homecourt-product-preview">
-      <div className="section-head"><div><p className="section-index">{c.history}</p><h2>{locale==="ja"?"経験を次の行動へ":"Experience to next action"}</h2></div></div>
+      <div className="section-head"><div><p className="section-index">{c.history}</p><h2>{locale==="ja"?"経験を、次の行動につなげる":"Experience to next action"}</h2></div></div>
       {history.length?<div className="homecourt-preview-grid">{history.slice(0,4).map(item=><article key={item.id}><CheckCircle2/><span>{item.occurred_on}</span><h3>{item.title}</h3><p>{item.venue||"—"}</p>{item.takeaway?<p>{item.takeaway}</p>:null}{item.next_action?<p>→ {item.next_action}</p>:null}</article>)}</div>:<p className="member-safety">{c.empty}</p>}
     </section>
 

@@ -7,13 +7,13 @@ import styles from "./member-journey.module.css";
 type Audience = "player" | "parent" | "coach";
 const content = {
   ja: {
-    title: "あの日の「楽しかった」を、次の挑戦へ。", intro: "クリニックでつかんだ感覚。仲間とのプレーで見つけた課題。今日の気づきを振り返りながら、次に挑戦したいことを見つけましょう。",
+    title: "あの日の経験を、次の挑戦へ。", intro: "クリニックでつかんだ感覚や、仲間とのプレーで見つけた課題。今日の気づきを振り返りながら、次に挑戦したいことを見つけましょう。",
     audience: "知りたい情報を選ぶ", roles: {player:"選手",parent:"保護者",coach:"コーチ・指導者"},
     clinic:"次のクリニックを探す", clinicBody:"開催地・対象年代・日程を確認して、自分に合う活動を見つけましょう。",
-    learn:["プレーのヒント","子どもの挑戦を支える","指導を学び直す"], learnBody:["練習で取り組むことを、一つ決めるところから。","結果だけでなく、本人が選んだことや挑戦したことに目を向けてみましょう。","D-HUBのプログラムから、練習の設計や選手への関わり方を考えます。"],
+    learn:["プレーのヒント","子どもの挑戦を支える","指導を学び直す"], learnBody:["次の練習で取り組むことを、一つ決めるところから始めます。","結果だけでなく、本人が選んだことや挑戦したことにも目を向けてみましょう。","D-HUBのプログラムを通して、練習設計や選手との関わり方を考えます。"],
     projects:"活動の幅を広げる", projectLabels:["RBA UNITED・交流活動","国内外の交流を相談する","地域でクリニックを開催する"],
     review:"今日の振り返り", questions:["何に取り組みましたか？","気づいたこと・できるようになったことは？","次に試してみたいことは？"],
-    privacy:"このメモはアカウントに保存されません。ページを離れる前にダウンロードしてください。ほかの人の個人情報は書かないでください。", download:"メモをダウンロード", downloaded:"ダウンロードを開始しました。ファイルを確認してください。", failed:"ダウンロードできませんでした。メモをコピーして保管してください。", support:"参加履歴の確認・困ったときの相談", supportBody:"以前の参加記録が見つからない場合は、参加した日付・会場を添えてご相談ください。", payments:"申込・支払いの案内", policies:"参加規約・安全方針",
+    privacy:"このメモはアカウントに保存されません。ページを離れる前にダウンロードしてください。ほかの人の個人情報は書かないでください。", download:"メモをダウンロード", downloaded:"ダウンロードを開始しました。ファイルを確認してください。", failed:"ダウンロードできませんでした。メモをコピーして保管してください。", support:"参加履歴の確認・お問い合わせ", supportBody:"以前の参加記録が見つからない場合は、参加した日付・会場を添えてご相談ください。", payments:"申込・お支払いの案内", policies:"参加規約・安全方針",
   },
   en: {
     title:"Turn your experience into a next step.",intro:"You do not need to belong to a team. Find an activity, reflect on practice and explore resources that fit you.",audience:"Choose your interests",roles:{player:"Player",parent:"Parent",coach:"Coach"},clinic:"Find your next clinic",clinicBody:"Check locations, age groups and dates to find an activity that fits.",learn:["Ideas for your game","Support your child","Develop your coaching"],learnBody:["Choose one thing to work on at your next practice.","Notice the choices and challenges your child takes on, as well as results.","Explore D-HUB programmes to reflect on practice design and your work with players."],projects:"Explore more opportunities",projectLabels:["RBA UNITED and exchange","Ask about exchange opportunities","Host a local clinic"],review:"Reflect on today",questions:["What did you work on?","What did you notice or learn?","What would you like to try next?"],privacy:"This note is not saved to your account. Download it before leaving this page. Do not include other people's personal information.",download:"Download your note",downloaded:"Download started. Please check your files.",failed:"Download failed. Copy your note to keep it.",support:"Help with past participation and other questions",supportBody:"If a past record is missing, contact us with the date and venue of your activity.",payments:"Registration and payment information",policies:"Participation and safety policies",

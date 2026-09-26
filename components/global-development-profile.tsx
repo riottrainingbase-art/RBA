@@ -79,7 +79,7 @@ export function GlobalDevelopmentProfile({userId,locale}:Props){
  return <section className={styles.shell} aria-labelledby="global-profile-title">
    <header><div><p>{c.eyebrow}</p><h3 id="global-profile-title">{c.title}</h3><span>{c.lead}</span></div><div className={styles.score}><small>{c.completion}</small><strong>{profile.profile_completion}%</strong><i><b style={{width:`${profile.profile_completion}%`}}/></i></div></header>
    <div className={styles.horizon}>
-     <div className={styles.horizonHead}><span>MY HORIZON</span><strong>{({ja:"今いる場所から、どこまで選択肢を広げたいか。",en:"How far do you want your basketball horizon to reach?","zh-tw":"從現在的位置，想把籃球視野拓展到哪裡？",ko:"지금 있는 곳에서 농구의 시야를 어디까지 넓히고 싶은가?"})[locale]}</strong></div>
+     <div className={styles.horizonHead}><span>MY HORIZON</span><strong>{({ja:"今いる場所から、どこまで選択肢を広げたいですか？",en:"How far do you want your basketball horizon to reach?","zh-tw":"從現在的位置，想把籃球視野拓展到哪裡？",ko:"지금 있는 곳에서 농구의 시야를 어디까지 넓히고 싶은가?"})[locale]}</strong></div>
      <div className={styles.horizonSteps}>
        {scopeOrder.map((scope,index)=><div key={scope} className={index<=activeScope?styles.scopeActive:undefined}><span>{String(index+1).padStart(2,"0")}</span><strong>{scope==="local"?"LOCAL":scope==="national"?"JAPAN":scope==="asia"?"ASIA":"WORLD"}</strong><small>{c.scopes[scope]}</small></div>)}
      </div>
@@ -89,7 +89,7 @@ export function GlobalDevelopmentProfile({userId,locale}:Props){
      </div>
      <div className={styles.nextRoute}>
        <span>NEXT ROUTE</span>
-       <strong>{profile.travel_scope==="local"?({ja:"まずは地域の中で、良い学びを増やす。",en:"Build stronger learning close to home.","zh-tw":"先在地區內增加更好的學習。",ko:"먼저 지역 안에서 좋은 배움을 늘립니다."})[locale]:profile.travel_scope==="national"?({ja:"日本全国から、育成と挑戦を選ぶ。",en:"Choose development and challenge opportunities across Japan.","zh-tw":"從日本全國選擇培育與挑戰機會。",ko:"일본 전국에서 성장과 도전 기회를 선택합니다."})[locale]:profile.travel_scope==="asia"?({ja:"日本とアジアを行き来する視野を持つ。",en:"Build a development view across Japan and Asia.","zh-tw":"建立往返日本與亞洲的培育視野。",ko:"일본과 아시아를 오가는 성장 시야를 만듭니다."})[locale]:({ja:"世界の育成環境も、普段から知っておく。",en:"Make the world part of your everyday development reference.","zh-tw":"讓世界成為日常培育的比較基準。",ko:"세계를 일상적인 성장의 비교 기준으로 둡니다."})[locale]}</strong>
+       <strong>{profile.travel_scope==="local"?({ja:"まずは地域の中で、良い学びの機会を増やす。",en:"Build stronger learning close to home.","zh-tw":"先在地區內增加更好的學習。",ko:"먼저 지역 안에서 좋은 배움을 늘립니다."})[locale]:profile.travel_scope==="national"?({ja:"日本全国から、自分に合う育成と挑戦の機会を選ぶ。",en:"Choose development and challenge opportunities across Japan.","zh-tw":"從日本全國選擇培育與挑戰機會。",ko:"일본 전국에서 성장과 도전 기회를 선택합니다."})[locale]:profile.travel_scope==="asia"?({ja:"日本とアジアの両方に、学びと挑戦の選択肢を持つ。",en:"Build a development view across Japan and Asia.","zh-tw":"建立往返日本與亞洲的培育視野。",ko:"일본과 아시아를 오가는 성장 시야를 만듭니다."})[locale]:({ja:"世界の育成環境も、日頃から知っておく。",en:"Make the world part of your everyday development reference.","zh-tw":"讓世界成為日常培育的比較基準。",ko:"세계를 일상적인 성장의 비교 기준으로 둡니다."})[locale]}</strong>
        <div>
          {profile.travel_scope==="local"?<a href={locale==="en"?"/opportunities":`/${locale}/opportunities`}>{({ja:"地域の育成機会を見る",en:"Explore local opportunities","zh-tw":"查看地區培育機會",ko:"지역 성장 기회 보기"})[locale]}</a>:null}
          {profile.travel_scope==="national"?<><a href={locale==="en"?"/camp":`/${locale}/camp`}>Development Camp</a><a href={locale==="en"?"/united":`/${locale}/united`}>RBA UNITED</a></>:null}
@@ -97,7 +97,7 @@ export function GlobalDevelopmentProfile({userId,locale}:Props){
          {profile.travel_scope==="global"?<><a href={locale==="en"?"/international":`/${locale}/international`}>{({ja:"世界の育成機会を見る",en:"Explore global opportunities","zh-tw":"查看全球培育機會",ko:"세계 성장 기회 보기"})[locale]}</a><a href={locale==="en"?"/journal":`/${locale}/journal`}>{({ja:"世界の育成記事を読む",en:"Read global development stories","zh-tw":"閱讀全球培育文章",ko:"세계 육성 기사 읽기"})[locale]}</a></>:null}
        </div>
      </div>
-     <p className={styles.horizonNote}>{({ja:"海外を目指す度合いを比べるための機能ではありません。今の自分に必要な活動範囲を、自分で選ぶためのプロフィールです。",en:"This is not a score for how international you are. It helps you choose the right scope for your development now.","zh-tw":"這不是比較誰更國際化的分數，而是幫助你選擇目前適合自己的成長範圍。",ko:"국제적 성향을 경쟁하는 점수가 아닙니다. 지금 자신에게 필요한 성장 범위를 스스로 선택하기 위한 프로필입니다."})[locale]}</p>
+     <p className={styles.horizonNote}>{({ja:"海外志向の強さを比べるための機能ではありません。今の自分に必要な活動範囲を、自分で選ぶためのプロフィールです。",en:"This is not a score for how international you are. It helps you choose the right scope for your development now.","zh-tw":"這不是比較誰更國際化的分數，而是幫助你選擇目前適合自己的成長範圍。",ko:"국제적 성향을 경쟁하는 점수가 아닙니다. 지금 자신에게 필요한 성장 범위를 스스로 선택하기 위한 프로필입니다."})[locale]}</p>
    </div>
    <form onSubmit={save}>
     <label>{c.position}<input name="position" defaultValue={profile.primary_position||""} maxLength={60} placeholder="PG / SG / Wing / Big"/></label>
