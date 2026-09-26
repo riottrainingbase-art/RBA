@@ -19,12 +19,20 @@ export const metadata: Metadata = {
 
 const routes = [
   {
+    icon: Users,
+    tag: "TEAM TRAINING",
+    title: "普段のチーム練習を設計する",
+    body: "テーマ、認知・判断、Small-Sided Game、振り返りまでを一つの流れで整理します。HOMECOURTのTEAM HOMEを使い、練習をチームの学習履歴として積み上げられます。",
+    href: "/ja/team-training",
+    cta: "TEAM TRAININGを見る",
+  },
+  {
     icon: Trophy,
-    tag: "TEAM VISIT CLINIC",
+    tag: "VISIT TRAINING",
     title: "普段の練習に、RBAを呼ぶ",
-    body: "RBAがチームの体育館へ伺い、普段の練習環境や育成課題を見ながら、そのチームに必要なテーマを組み立てます。選手指導だけでなく、希望に応じて指導者へのフィードバックや継続訪問にも対応します。",
+    body: "RBAがチームの体育館へ伺い、普段の練習を観察しながら、必要なテーマを一緒に実装します。オンコート指導、ゲーム観察、指導者フィードバック、継続訪問まで目的に合わせて組み立てます。",
     href: "/ja/team-visit-clinic",
-    cta: "TEAM VISIT CLINICを見る",
+    cta: "VISIT TRAININGを見る",
   },
   {
     icon: Users,
