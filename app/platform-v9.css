@@ -96,3 +96,11 @@
 .opportunity-card-actions .opportunity-save:disabled{cursor:wait;opacity:.55}
 .opportunity-card-actions .opportunity-save:focus-visible{outline:3px solid #9aa51f;outline-offset:2px}
 @media(max-width:560px){.opportunity-card-actions{display:grid;grid-template-columns:1fr}.opportunity-card-actions a,.opportunity-card-actions .opportunity-save{width:100%}}
+
+.opportunity-discovery-actions{padding-top:0;padding-bottom:24px}
+.opportunity-discovery-actions button,.opportunity-compare-heading button,.opportunity-compare-grid button,.opportunity-card-actions .opportunity-compare-action{min-height:48px;padding:10px 14px;border:1px solid #4f5351;background:#fff;color:#111;font:inherit;font-weight:800;text-align:left;cursor:pointer}
+.opportunity-discovery-actions button{display:inline-flex;align-items:center;gap:9px}.opportunity-discovery-actions svg{width:18px;height:18px}
+.opportunity-comparison{padding-top:24px;padding-bottom:32px;background:#fff;border-top:1px solid #c5c8c6;border-bottom:1px solid #c5c8c6;scroll-margin-top:20px}
+.opportunity-compare-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}.opportunity-compare-heading .section-index{margin:0}.opportunity-compare-heading h2{margin:3px 0 0;font-size:clamp(22px,3vw,32px)}
+.opportunity-compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.opportunity-compare-grid article{min-width:0;padding:18px;border:1px solid #c5c8c6;background:#f7f7f5}.opportunity-compare-grid h3{overflow-wrap:anywhere;margin:0 0 12px;font-size:20px;line-height:1.4}.opportunity-compare-grid dl{margin:0 0 14px}.opportunity-compare-grid dl>div{display:grid;grid-template-columns:minmax(90px,.45fr) minmax(0,1fr);gap:12px;padding:8px 0;border-top:1px solid #d1d3d1}.opportunity-compare-grid dd{margin:0;overflow-wrap:anywhere}.opportunity-discovery-message{padding-top:0;padding-bottom:24px;color:#333;font-weight:700}
+@media(max-width:760px){.opportunity-compare-grid{grid-template-columns:minmax(0,1fr)}.opportunity-discovery-actions button{width:100%;justify-content:center}}
