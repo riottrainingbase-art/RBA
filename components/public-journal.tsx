@@ -22,7 +22,7 @@ const categoryLabels={
 export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
-  const featured=posts[0], rest=posts.slice(1);
+  const featured=posts[0], rest=posts.slice(1), quickLatest=posts.slice(1,4);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching");
   const categoryOrder=["development","families","coaching","international","programme"] as const;
   const categoryDescriptions={
@@ -95,10 +95,17 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <div><p className="section-index">{c.latest} / {categoryLabels[locale][featured.category as keyof typeof categoryLabels.en]||featured.category}</p><h2>{featured.title}</h2><p>{featured.standfirst}</p><Link className="button button-dark" href={journalHref(locale,featured.slug)}>{c.read}<ArrowRight size={17}/></Link></div>
         <aside><span>{featured.reading}</span><strong>{featured.audience.toUpperCase()}</strong>{featured.evidence_level?<em className="journal-evidence-chip">{featured.evidence_level}</em>:null}<small>{featured.published_at?new Date(featured.published_at).toLocaleDateString(locale):""}</small></aside>
       </section>:null}
+      {quickLatest.length?<section className="journal-latest-rail section-pad">
+        <div className="journal-latest-rail-head"><p className="section-index">{locale==="ja"?"NEW / 新着":"NEW"}</p><strong>{locale==="ja"?"新しく公開した記事":"Recently published"}</strong></div>
+        <div className="journal-latest-rail-grid">{quickLatest.map(post=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <div className="journal-card-meta"><span>{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</span><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>
+          <h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={15}/></strong>
+        </Link>)}</div>
+      </section>:null}
       {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
         <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>まず、この4本から。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
         <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>参考文献 {post.source_references.length}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
         </Link>)}</div>
       </section>:null}
       {locale==="ja"?<section className="homecourt-role-section section-pad">
@@ -125,7 +132,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         return <section className="journal-cms-index section-pad" id={`category-${category}`} key={category}>
           <div className="section-head"><div><p className="section-index">{categoryLabels[locale][category]}</p><h2>{locale==="ja"?categoryDescriptions.ja[category]:categoryLabels[locale][category]}</h2></div><p>{grouped.length} STORIES</p></div>
           <div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-            <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
+            <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}{post.published_at?<span>{new Date(post.published_at).toLocaleDateString(locale)}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
           </Link>)}</div>
         </section>
       })}
@@ -247,7 +254,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const coachGroups=[
     {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
     {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
+    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["criticism-can-create-better-coaching","showa-myths-youth-basketball","read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
     {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]},
   ];
   return <SiteFrame locale={locale} languagePage="journal">
@@ -258,6 +265,13 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
         <h1>{locale==="ja"?"経験だけに頼らず、指導を更新する。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
         <p>{locale==="ja"?"研究やFIBA/WABCの資料、現場での経験を分けて整理し、練習設計・観察・振り返りまでつなげる指導者向けJOURNALです。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
       </section>
+      <nav className="journal-topic-nav section-pad" aria-label={locale==="ja"?"指導テーマ":"Coaching topics"}>
+        <a href="#coach-game"><span>01</span>{locale==="ja"?"試合運営":"Game coaching"}</a>
+        <a href="#coach-practice"><span>02</span>{locale==="ja"?"練習設計":"Practice design"}</a>
+        <a href="#coach-player"><span>03</span>{locale==="ja"?"選手育成":"Player development"}</a>
+        <a href="#coach-physical"><span>04</span>{locale==="ja"?"S&C / 安全":"S&C / Safety"}</a>
+        <strong>{locale==="ja"?"公開記事は参考文献付き":"Published coach articles include sources"}</strong>
+      </nav>
       <section className="homecourt-product-preview section-pad">
         <div className="section-head"><div><p className="section-index">COACHING LOOP</p><h2>READ → PLAN → COACH → REVIEW</h2></div><p>{locale==="ja"?"読むだけで終わらせず、次の練習で試せるところまで。":"Turn reading into the next practice."}</p></div>
         <div className="homecourt-preview-grid">
@@ -279,7 +293,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       {coachGroups.map(group=>{const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;return <section className="journal-cms-index section-pad" id={group.id} key={group.id}>
         <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{group.label}</h2></div><p>{grouped.length} ARTICLES</p></div>
         {grouped.length?<div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{post.coach_application?.length?(locale==="ja"?"実践ツール付き":"Includes coach tool"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{post.coach_application?.length?(locale==="ja"?"実践ツール付き":"Includes coach tool"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
         </Link>)}</div>:<p>{locale==="ja"?"このテーマの記事を準備しています。":"Articles for this theme are being prepared."}</p>}
       </section>})}
       <section className="journal-exchange-cta section-pad">
