@@ -54,7 +54,7 @@ export default function Page(){
         <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
           <a href="#apply" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>STEP 1｜申込フォームへ ↓</a>
-          <a href="https://buy.stripe.com/fZu14pbuv3be2Qt3W77EQ0t" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>STEP 2｜月額登録へ ↗</a>
+          <a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>STEP 2｜入会金＋初月決済へ ↗</a>
         </div>
       </section>
 
@@ -65,7 +65,7 @@ export default function Page(){
           ["開始","2026年10月"],["開催","毎週木曜日・原則月3回"],
           ["時間","18:00〜19:30"],
           ["会場","仙台市太白区"],
-          ["月会費","7,700円（税込）"],
+          ["入会金","5,500円（税込）"],["月会費","7,700円（税込）"],
         ].map(([k,v])=><div key={k} style={{background:"#fff",padding:"26px 24px"}}><div style={{fontSize:12,letterSpacing:2,color:"#6b6b65",marginBottom:8}}>{k}</div><strong style={{fontSize:22}}>{v}</strong></div>)}
       </section>
 
@@ -127,7 +127,7 @@ export default function Page(){
         <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 26px"}}>申込 → 月額登録 → MY HOME COURT</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:12}}>
           <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>01</strong><h3>申込フォーム</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>選手・保護者情報、現在の課題、安全上の共有事項を入力します。</p></div>
-          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>02</strong><h3>月額サブスク登録</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>月3回・7,700円（税込）。Stripeの安全な決済画面から登録します。</p><a href="https://buy.stripe.com/fZu14pbuv3be2Qt3W77EQ0t" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}>月額登録へ →</a></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>02</strong><h3>入会金＋月額登録</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>初回は入会金5,500円＋初月会費7,700円＝13,200円（税込）。翌月以降は月額7,700円（税込）です。Stripeの安全な決済画面から登録します。</p><a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}>月額登録へ →</a></div>
           <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>03</strong><h3>RBAから確認メール</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>フォームと決済を確認後、受付確定と会場詳細をメールでご案内します。</p></div>
           <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>04</strong><h3>MY HOME COURT</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>参加予定、成長記録、次の育成機会を一つの場所につなげます。</p><a href="/ja/my-homecourt" style={{color:"#fff",fontWeight:800}}>MY HOME COURTを見る →</a></div>
         </div>
@@ -138,7 +138,7 @@ export default function Page(){
         <h2 style={{fontSize:"clamp(28px,4vw,44px)",margin:"0 0 18px"}}>お申込み前に</h2>
         <ul style={{lineHeight:1.9,fontSize:16,paddingLeft:22,margin:0,maxWidth:900}}>
           <li>対象はU15年代です。小学6年生も参加できます。</li><li>定員は25名です。定員到達後は受付停止またはキャンセル待ちとなります。</li>
-          <li>フォーム送信と月額サブスクリプション登録の両方を確認後、RBAからの申込確認メールをもって受付確定となります。</li>
+          <li>フォーム送信と初回決済（入会金5,500円＋初月会費7,700円）の両方を確認後、RBAからの申込確認メールをもって受付確定となります。</li>
           <li>会場詳細は、申込確認メール内でご案内します。</li>
           <li>未成年者のため、保護者の方が内容をご確認のうえお申込みください。</li>
           <li>痛みや体調不良がある場合は無理に参加せず、事前にご相談ください。</li>
@@ -173,7 +173,7 @@ export default function Page(){
         <p style={{maxWidth:760,margin:"0 auto 26px",lineHeight:1.8,color:"#d8d8d3"}}>毎週木曜日・原則月3回。技術と判断を、ゲームの中で育てる90分です。</p>
         <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
           <a href="#apply" style={{display:"inline-block",background:"#fff",color:"#111",padding:"15px 22px",fontWeight:900,textDecoration:"none"}}>申込フォームへ ↓</a>
-          <a href="https://buy.stripe.com/fZu14pbuv3be2Qt3W77EQ0t" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #777",color:"#fff",padding:"14px 22px",fontWeight:800,textDecoration:"none"}}>月額登録へ ↗</a>
+          <a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #777",color:"#fff",padding:"14px 22px",fontWeight:800,textDecoration:"none"}}>月額登録へ ↗</a>
         </div>
       </section>
 
