@@ -93,6 +93,20 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     <section className="field-footprint section-pad"><div><p className="section-index inverse">{c.recordLabel}</p><h2>{c.recordTitle}</h2><p>{c.recordCopy}</p><a className="text-link light-link" href={localePath(locale,"about")}>{c.about}<ArrowRight size={16}/></a></div><div className="footprint-numbers"><div><strong>{locale==="ja"?"3,000+":"3,000+"}</strong><span>{ui(locale,"players")}</span></div><div><strong>25</strong><span>{({en:"ACTIVITY LOCATIONS",ja:"国内25地域で活動","zh-tw":"日本全國活動地區",ko:"일본 전역 활동 지역"})[locale]}</span></div><div><strong>JP × ASIA</strong><span>{ui(locale,"nextField")}</span></div></div></section>
 
+    {locale==="ja"?<section className="homecourt-product-preview section-pad">
+      <div className="section-head">
+        <div><p className="section-index">NEW · SENDAI U15</p><h2>毎週木曜日、仙台で「ゲームで使える力」を育てる。</h2></div>
+        <p>U15年代向けの定期スクール。技術だけでなく、見る・判断する・実行するを年間36回で育てます。仙台市太白区、18:00〜19:30、原則月3回。定員25名。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article><span>01</span><h3>SEE</h3><p>相手・味方・スペースを観て、プレー前から情報を集める。</p></article>
+        <article><span>02</span><h3>DECIDE</h3><p>1on1、スペーシング、ヘルプの状況から自分で選択する。</p></article>
+        <article><span>03</span><h3>ACT</h3><p>Small-Sided Gamesで判断と技術をゲームの中でつなぐ。</p></article>
+        <article><span>04</span><h3>36 SESSIONS</h3><p>月3回・年間36回。単発ではなく一年を通して育成を積み上げる。</p></article>
+      </div>
+      <div className="homecourt-launch-actions"><a className="button button-dark" href="/ja/u15-skill-up">年間計画・申込を見る<ArrowRight size={17}/></a><a className="text-link" href="https://form.jotform.com/262678369675074" target="_blank" rel="noreferrer">申込フォームを直接開く<ArrowUpRight size={16}/></a></div>
+    </section>:null}
+
     <GlobalMedia locale={locale}/>
     <NetworkMaps locale={locale}/>
     <GrowthSections locale={locale}/>
