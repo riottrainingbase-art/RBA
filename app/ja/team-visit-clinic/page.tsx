@@ -4,7 +4,7 @@ import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
   title: "RBA TEAM VISIT CLINIC｜チーム訪問型の出張育成クリニック",
-  description: "普段の練習環境にRBAが伺い、チームの課題に合わせて選手指導・ゲーム観察・指導者フィードバックまで組み立てる出張型育成プログラムです。",
+  description: "普段の練習環境にRBAが伺い、チームの課題に合わせて選手指導・ゲーム観察・指導者フィードバックまで組み立てる出張型育成プログラムです。宮城県内から県外までご相談いただけます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-visit-clinic" },
   openGraph: {
     title: "RBA TEAM VISIT CLINIC｜普段の練習に、RBAが行きます。",
