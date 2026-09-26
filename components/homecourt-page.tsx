@@ -31,6 +31,17 @@ export function HomecourtPage({locale}:{locale:Locale}) {
       {locale!=="ja"?<div className="homecourt-price"><span>{c.price}</span><strong>¥{HOMECOURT_PRICE_JPY.toLocaleString("ja-JP")}</strong><small>{c.note}</small></div>:null}
     </section>
     <section className="homecourt-role-section section-pad"><div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{c.included}</h2></div><p>{c.includedBody}</p></div><div className="homecourt-role-grid">{Object.entries(roleLabels).map(([role,data])=><article key={role}><span>{data.shortLabel}</span><Users size={28}/><h3>{data.label}</h3>{locale==="ja"?<p>{data.description}</p>:null}<ul>{data.items.map(item=><li key={item}><Check size={15}/>{item}</li>)}</ul><a href={`${prefix}/my-homecourt/${role}`}>{data.label}<ArrowRight size={16}/></a></article>)}</div></section>
+    {locale==="ja"?<section className="homecourt-product-preview section-pad">
+      <div className="section-head">
+        <div><p className="section-index">FOR TEAMS / COACHES</p><h2>チームの日常にも、MY HOME COURTをつなげる。</h2></div>
+        <p>指導者はTEAM HOMEで練習を設計し、必要に応じてRBAの訪問トレーニングへつなげられます。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article><Users/><span>01 / TEAM HOME</span><h3>チームを登録する</h3><p>予定、出欠、練習テーマ、メモを一つの場所で管理します。</p></article>
+        <article><Check/><span>02 / TEAM TRAINING</span><h3>練習を設計する</h3><p>テーマ、目的、メニュー、人数、コート数、観察ポイントを残し、次回の練習へつなげます。</p><a className="text-link" href="/ja/team-training">TEAM TRAININGを見る<ArrowRight size={16}/></a></article>
+        <article><Users/><span>03 / VISIT TRAINING</span><h3>RBAを現場に呼ぶ</h3><p>普段の体育館で、練習観察、オンコート指導、ゲーム観察、指導者フィードバックまで実施できます。</p><a className="text-link" href="/ja/team-visit-clinic">訪問トレーニングを見る<ArrowRight size={16}/></a></article>
+      </div>
+    </section>:null}
     {locale==="ja"?<section className="homecourt-plan-separation section-pad">
       <div className="homecourt-plan-intro">
         <p className="section-index">RBA ID / HOMECOURT</p>
