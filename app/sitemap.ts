@@ -4,7 +4,7 @@ import { getPublicJournalPosts, type ContentLocale } from "@/lib/public-content"
 const base="https://riotbasketballacademy.com";
 const locales=["","/ja","/zh-tw","/ko"] as const;
 const core=["","/players","/families","/coaches","/home-court","/my-homecourt","/my-homecourt/players","/my-homecourt/families","/my-homecourt/coaches","/community","/impact","/d-hub","/united","/connect","/organizer","/about","/approach","/schedule","/payments","/clinic-request","/events/torsten-loibl-online-clinic","/asia","/partners","/contact","/social","/policies","/camp","/faq","/international","/network","/opportunities","/platform","/regional-host","/sponsor","/team","/verified","/journal","/journal/coaches","/after-application"] as const;
-const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/radio","/links","/sponsors"] as const;
+const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/radio","/links","/sponsors"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
   {prefix:"/ja",locale:"ja"},
