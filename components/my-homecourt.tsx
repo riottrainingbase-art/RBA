@@ -297,7 +297,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
           <span>PERSONAL / MY HOME COURT</span>
           <h3>OWN</h3>
           <strong>自分のバスケットボールを持つ。</strong>
-          <p>参加履歴、Passport、Save、学び、目標、次の機会を、自分のRBA IDに残していきます。タイムラインではなく、自分専用の育成ホームです。</p>
+          <p>参加履歴、Basketball Passport、保存した活動、学び、目標、次の機会を、自分のRBA IDにまとめていきます。SNSのタイムラインではなく、自分の育成記録を整理するためのホームです。</p>
           <ul><li>経験が蓄積される</li><li>あとで戻れる</li><li>自分向けに整理される</li><li>次の行動につながる</li></ul>
         </article>
       </div>
