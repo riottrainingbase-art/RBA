@@ -8,9 +8,8 @@ export type HomecourtSubscription = {
 export function hasCurrentHomecourtSubscription(subscriptions:HomecourtSubscription[], now=Date.now()) {
  return subscriptions.some(subscription=>{
   if(subscription.plan_key!=="homecourt_monthly" || !["active","trialing"].includes(subscription.status))return false;
+  if(!subscription.cancel_at_period_end)return true;
   const end=subscription.current_period_end?Date.parse(subscription.current_period_end):NaN;
-  // Match member_article_bodies RLS: entitlement exists only through a known,
-  // future billing period. A missing end date must never unlock private copy.
   return Number.isFinite(end)&&end>now;
  });
 }

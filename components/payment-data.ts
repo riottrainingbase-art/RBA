@@ -6,6 +6,7 @@ export type PaymentOption = {
 
 
 export const eventPayments = {
+  "sendai-u15": [],
   yaima: [{ id: "yaima-rba", label: "RBA参加費", amount: 25000 }],
   kawasaki: [],
   "saga-fukuoka": [{ id: "saga-fukuoka-2day", label: "2日間・宿泊食事付", amount: 16500 }],
