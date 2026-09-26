@@ -18,7 +18,7 @@ const copy={
     next:"次の予定まで",personal:"自分の予定を追加",name:"予定名",type:"種類",start:"日時",venue:"場所",link:"関連リンク",linkLabel:"リンク名",countdown:"カウントダウンを表示",save:"予定を保存",
     wellness:"TODAY / CONDITION",wellnessTitle:"今日の体調を残す",wellnessBody:"エネルギー、疲労感、張り・筋肉痛、睡眠、痛みを簡単に記録できます。自分のコンディションの変化を振り返るための非公開記録です。",
     energy:"エネルギー",fatigue:"疲労感",soreness:"張り・筋肉痛",sleep:"睡眠時間",pain:"痛み",body:"気になる部位・状態",notes:"メモ",
-    careAt:"続けてコンディショニングの予定も登録する",careTitle:"ケア予定名",care:"CARE PLAN",careHeading:"コンディショニングの予定を登録する",careType:"ケアの種類",provider:"担当・施設",careLocation:"場所",careLink:"予約・連絡リンク",careSave:"ケア予定を保存",
+    careAt:"続けてコンディショニングの予定も登録する",careTitle:"コンディショニング予定名",care:"CARE PLAN",careHeading:"コンディショニングの予定を登録する",careType:"コンディショニングの種類",provider:"担当・施設",careLocation:"場所",careLink:"予約・連絡リンク",careSave:"コンディショニング予定を保存",
     private:"体調記録とコンディショニング予定は非公開です。チームへ自動で共有されることはありません。また、ここでの記録は医療上の診断や治療判断の代わりにはなりません。",
     painCaution:"強い痛み、急な悪化、しびれ、外傷などがある場合は、予定調整だけで済ませず医療機関や有資格者へ相談してください。",
     noUpcoming:"今後の登録予定はありません。",saved:"保存しました。",error:"保存できませんでした。もう一度お試しください。",complete:"完了にする",done:"完了",open:"開く",
@@ -189,7 +189,7 @@ export function HomecourtPlanner({locale,userId,timeZone,teamEvents,mode="full"}
     const careAt=String(fd.get("care_at")||"").trim();
     if(careAt){
       let scheduled_at:string;try{scheduled_at=zonedInputToIso(careAt,timeZone);}catch{setMessage(c.error);setBusy(false);return;}
-      const result=await supabase.from("homecourt_care_plans").insert({user_id:userId,title:String(fd.get("care_title")||"").trim()||"コンディショニング／ケア",care_type:"recovery",scheduled_at,wellness_checkin_id:saved.data.id,status:"planned"});
+      const result=await supabase.from("homecourt_care_plans").insert({user_id:userId,title:String(fd.get("care_title")||"").trim()||"コンディショニング",care_type:"recovery",scheduled_at,wellness_checkin_id:saved.data.id,status:"planned"});
       if(result.error){setMessage(c.error);setBusy(false);return;}
     }
     setMessage(c.saved);setBusy(false);await load();
