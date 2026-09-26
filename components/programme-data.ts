@@ -8,7 +8,8 @@ export type ProgrammeId =
   | "yamagata"
   | "shizugawa"
   | "kobe"
-  | "torsten";
+  | "torsten"
+  | "sendai-u15";
 
 
 export type Programme = {
@@ -24,7 +25,7 @@ export type Programme = {
   audience: Text4;
   payment: Text4;
   applicationUrl: string;
-  detailPath?: "events/torsten-loibl-online-clinic";
+  detailPath?: "events/torsten-loibl-online-clinic" | "u15-skill-up";
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
   pathway?: "development-camp" | "united" | "clinic" | "coach";
@@ -35,6 +36,21 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+  {
+    id: "sendai-u15",
+    startDate: "2026-10-01",
+    date: ["Every Thursday · 3x / month", "毎週木曜日・原則月3回", "每週四・原則每月3次", "매주 목요일 · 원칙 월 3회"],
+    datePrimary: ["THU", "木曜", "週四", "목요일"],
+    dateSecondary: ["18:00–19:30", "18:00〜19:30", "18:00–19:30", "18:00–19:30"],
+    title: ["RBA U15 Skill Up School · Sendai", "RBA U15 SKILL UP SCHOOL｜仙台", "RBA U15技能提升學校｜仙台", "RBA U15 스킬업 스쿨｜센다이"],
+    place: ["Taihaku, Sendai", "仙台市太白区", "仙台市太白區", "센다이시 다이하쿠구"],
+    price: ["¥7,700 / 3 sessions per month", "月3回 7,700円（税込）", "每月3次 ¥7,700", "월 3회 ¥7,700"],
+    audience:["U15 players · capacity 25", "U15年代・定員25名", "U15球員・限額25名", "U15 선수 · 정원 25명"],
+    payment:["RBA confirms participation by email.", "申込内容を確認後、RBAからの確認メールをもって受付確定。会場詳細もメールでご案内します。", "由RBA確認後以電郵通知參加及場地詳情", "RBA 확인 이메일로 참가 확정 및 장소 안내"],
+    applicationUrl: "https://form.jotform.com/262678369675074",
+    detailPath: "u15-skill-up",
+    region:"tohoku", category:"TRAIN", pathway:"clinic", ageGroups:["U15"],
+  },
   {
     id: "yaima",
     startDate: "2026-09-20",
