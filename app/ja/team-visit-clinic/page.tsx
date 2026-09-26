@@ -5,10 +5,10 @@ import { VisitTrainingObservation } from "@/components/visit-training-observatio
 
 export const metadata: Metadata = {
   title: "RBA VISIT TRAINING｜チーム訪問型トレーニング",
-  description: "普段の練習環境にRBAが伺い、チームの課題に合わせて選手指導・ゲーム観察・指導者フィードバックまで組み立てる出張型育成プログラムです。宮城県内から県外までご相談いただけます。",
+  description: "RBAが普段の体育館へ伺い、練習観察、オンコート指導、ゲーム観察、指導者フィードバックまで行う訪問型トレーニングです。TEAM TRAININGの考え方を、チームの日常へ実装します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-visit-clinic" },
   openGraph: {
-    title: "RBA TEAM VISIT CLINIC｜普段の練習に、RBAが行きます。",
+    title: "RBA VISIT TRAINING｜普段の練習に、RBAが行きます。",
     description: "単発の技術指導ではなく、チームの普段の環境を見ながら、必要な育成テーマを一緒に整理して実施します。",
     url: "https://riotbasketballacademy.com/ja/team-visit-clinic",
     siteName: "Riot Basketball Academy",
@@ -62,7 +62,7 @@ export default function Page(){
     </section>
 
     <section className="statement section-pad">
-      <p className="section-index">WHY TEAM VISIT</p>
+      <p className="section-index">WHY VISIT TRAINING</p>
       <div>
         <h2>単発の技術指導ではなく、<br/>普段の環境から考える。</h2>
         <p>同じ年代でも、必要な課題はチームごとに違います。ボールを持つ技術より先にスペーシングが必要なチームもあれば、1on1の判断やオフボールの動きを整理した方がよいチームもあります。事前に状況を聞き、必要に応じて普段の練習も見ながら内容を決めます。</p>
@@ -123,7 +123,7 @@ export default function Page(){
       <p className="section-index">OUR POSITION</p>
       <div>
         <h2>チームから選手を集めるための活動ではありません。</h2>
-        <p>RBA TEAM VISIT CLINICは、所属変更や選手勧誘を目的としたものではありません。今いるチームの活動を大切にしながら、普段とは違う視点を一つ加え、選手と指導者の学びをチームへ持ち帰るためのプログラムです。</p>
+        <p>RBA VISIT TRAININGは、所属変更や選手勧誘を目的としたものではありません。今いるチームの活動を大切にしながら、普段とは違う視点を一つ加え、選手と指導者の学びをチームへ持ち帰るためのプログラムです。</p>
       </div>
     </section>
 
