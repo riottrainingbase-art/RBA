@@ -141,7 +141,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       {[
         {id:"coach-game",label:"GAME COACHING",slugs:["winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
         {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-        {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["who-is-playing","shouting-is-not-coaching"]},
+        {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["read-before-you-react","who-is-playing","shouting-is-not-coaching"]},
         {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]}
       ].map(group=>{
         const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;
@@ -242,7 +242,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const coachGroups=[
     {id:"coach-game",label:"GAME COACHING",slugs:["winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
     {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["who-is-playing","shouting-is-not-coaching"]},
+    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["read-before-you-react","who-is-playing","shouting-is-not-coaching"]},
     {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]},
   ];
   return <SiteFrame locale={locale} languagePage="journal">
