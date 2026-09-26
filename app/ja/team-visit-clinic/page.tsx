@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2, ClipboardList, MessageSquare, Search, ShieldCheck, Users, Video, Repeat2 } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
+import { VisitTrainingObservation } from "@/components/visit-training-observation";
 
 export const metadata: Metadata = {
   title: "RBA VISIT TRAINING｜チーム訪問型トレーニング",
@@ -67,6 +68,8 @@ export default function Page(){
         <p>同じ年代でも、必要な課題はチームごとに違います。ボールを持つ技術より先にスペーシングが必要なチームもあれば、1on1の判断やオフボールの動きを整理した方がよいチームもあります。事前に状況を聞き、必要に応じて普段の練習も見ながら内容を決めます。</p>
       </div>
     </section>
+
+    <VisitTrainingObservation/>
 
     <section className="homecourt-product-preview section-pad" id="programme">
       <div className="section-head">
