@@ -20,11 +20,11 @@ export const metadata: Metadata = {
 const routes = [
   {
     icon: Trophy,
-    tag: "HOST A CLINIC",
-    title: "地域・クラブでRBAを開催する",
-    body: "対象年代、人数、会場、育成課題を確認し、クリニックやS&C、指導者向け講習を組み立てます。内容と費用は開催条件に合わせて事前にお見積りします。",
-    href: "/ja/clinic-request",
-    cta: "開催について相談する",
+    tag: "TEAM VISIT CLINIC",
+    title: "普段の練習に、RBAを呼ぶ",
+    body: "RBAがチームの体育館へ伺い、普段の練習環境や育成課題を見ながら、そのチームに必要なテーマを組み立てます。選手指導だけでなく、希望に応じて指導者へのフィードバックや継続訪問にも対応します。",
+    href: "/ja/team-visit-clinic",
+    cta: "TEAM VISIT CLINICを見る",
   },
   {
     icon: Users,
