@@ -69,6 +69,36 @@ Deno.serve(async (req:Request)=>{
     }
   }
 
+  // HOMECOURT is a recurring membership. Never create a second live/payment-troubled
+  // subscription for the same subject. Existing members should manage the current
+  // subscription rather than starting another Stripe checkout.
+  if(offer.slug==="homecourt-monthly" || offer.metadata?.program==="rba_homecourt"){
+    const {data:existing,error:existingError}=await admin.from("subscriptions")
+      .select("id,status,current_period_end,cancel_at_period_end")
+      .eq("user_id",subjectId)
+      .eq("plan_key","homecourt_monthly")
+      .in("status",["active","trialing","past_due","unpaid"])
+      .order("updated_at",{ascending:false})
+      .limit(1);
+    if(existingError) return json({error:"subscription_check_failed"},409);
+    const current=existing?.[0];
+    if(current){
+      const reason=["past_due","unpaid"].includes(current.status)
+        ?"subscription_payment_issue"
+        :"subscription_already_active";
+      await admin.from("checkout_access_logs").insert({
+        user_id:user.id,
+        subject_user_id:subjectId,
+        service_offer_id:offer.id,
+        application_id:null,
+        decision:"blocked",
+        reason,
+        provider_payment_link_id:route.provider_payment_link_id||null
+      });
+      return json({ok:false,decision:"blocked",reason},409);
+    }
+  }
+
   let event:any=null;
   const sourceEventSlug=offer.metadata?.source_event_slug||null;
   if(sourceEventSlug){
