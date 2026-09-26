@@ -25,7 +25,7 @@ export type Programme = {
   audience: Text4;
   payment: Text4;
   applicationUrl: string;
-  detailPath?: "events/torsten-loibl-online-clinic" | "u15-skill-up";
+  detailPath?: "events/torsten-loibl-online-clinic";
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
   pathway?: "development-camp" | "united" | "clinic" | "coach";
@@ -48,7 +48,6 @@ export const programmes: readonly Programme[] = [
     audience:["U15 players · capacity 25", "U15年代・定員25名", "U15球員・限額25名", "U15 선수 · 정원 25명"],
     payment:["RBA confirms participation by email.", "申込内容を確認後、RBAからの確認メールをもって受付確定。会場詳細もメールでご案内します。", "由RBA確認後以電郵通知參加及場地詳情", "RBA 확인 이메일로 참가 확정 및 장소 안내"],
     applicationUrl: "https://form.jotform.com/262678369675074",
-    detailPath: "u15-skill-up",
     region:"tohoku", category:"TRAIN", pathway:"clinic", ageGroups:["U15"],
   },
   {
