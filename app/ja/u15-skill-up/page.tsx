@@ -4,11 +4,11 @@ import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
   title: "RBA U15 SKILL UP SCHOOL｜仙台",
-  description: "毎週木曜日・原則月3回。仙台市太白区で開催するU15年代向け定期育成スクール。技術と判断をゲームの中で育てます。定員25名。",
+  description: "毎週木曜日・原則月3回。仙台市太白区で開催するU15年代向け定期育成スクール。小学6年生も参加できます。技術と判断をゲームの中で育てます。定員25名。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/u15-skill-up" },
   openGraph: {
     title: "RBA U15 SKILL UP SCHOOL｜仙台",
-    description: "現代バスケットボールを学ぶ90分。SEE / DECIDE / ACT。毎週木曜日、仙台市太白区。月3回7,700円、定員25名。",
+    description: "現代バスケットボールを学ぶ90分。小学6年生も参加可。SEE / DECIDE / ACT。毎週木曜日、仙台市太白区。月3回7,700円、定員25名。",
     url: "https://riotbasketballacademy.com/ja/u15-skill-up",
     siteName: "Riot Basketball Academy",
     type: "website",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "RBA U15 SKILL UP SCHOOL｜仙台",
-    description: "現代バスケットボールを学ぶ90分。毎週木曜日・原則月3回、定員25名。",
+    description: "現代バスケットボールを学ぶ90分。小学6年生も参加可。毎週木曜日・原則月3回、定員25名。",
     images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"],
   },
 };
@@ -60,7 +60,7 @@ export default function Page(){
 
       <section style={{padding:"48px 6vw",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:1,background:"#cfcfc9"}}>
         {[
-          ["対象","U15年代"],
+          ["対象","U15年代（小学6年生も参加可）"],
           ["定員","25名"],
           ["開催","毎週木曜日・原則月3回"],
           ["時間","18:00〜19:30"],
@@ -101,7 +101,7 @@ export default function Page(){
       <section style={{padding:"54px 6vw",background:"#ecece7"}}>
         <h2 style={{fontSize:"clamp(28px,4vw,44px)",margin:"0 0 18px"}}>お申込み前に</h2>
         <ul style={{lineHeight:1.9,fontSize:16,paddingLeft:22,margin:0,maxWidth:900}}>
-          <li>定員は25名です。定員到達後は受付停止またはキャンセル待ちとなります。</li>
+          <li>対象はU15年代です。小学6年生も参加できます。</li><li>定員は25名です。定員到達後は受付停止またはキャンセル待ちとなります。</li>
           <li>フォーム送信だけでは参加確定ではありません。RBAからの申込確認メールをもって受付確定となります。</li>
           <li>会場詳細は、申込確認メール内でご案内します。</li>
           <li>未成年者のため、保護者の方が内容をご確認のうえお申込みください。</li>
