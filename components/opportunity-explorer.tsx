@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, ArrowUpRight, Bookmark, CalendarDays, CircleDollarSign, MapPin, Search, SlidersHorizontal, Users } from "lucide-react";
-import { programmes } from "./programme-data";
+import { isProgrammeOpen, programmes } from "./programme-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { tr } from "./network-data";
 import { createClient } from "@/lib/supabase/client";
@@ -53,7 +53,7 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
     },0);
     return ()=>window.clearTimeout(timer);
   },[db,locale]);
-  const visible=useMemo(()=>programmes.filter(p=>!p.registrationClosed&&(region==="all"||p.region===region)&&(age==="all"||p.ageGroups.some(group=>group===age))&&(kind==="all"||p.category===kind)),[region,age,kind]);
+  const visible=useMemo(()=>programmes.filter(p=>isProgrammeOpen(p)&&(region==="all"||p.region===region)&&(age==="all"||p.ageGroups.some(group=>group===age))&&(kind==="all"||p.category===kind)),[region,age,kind]);
   const update=(next:{region?:Region;age?:Age;kind?:Kind})=>{
     const r=next.region??region,a=next.age??age,k=next.kind??kind;
     const q=new URLSearchParams(); if(r!=="all")q.set("region",r);if(a!=="all")q.set("age",a);if(k!=="all")q.set("kind",k);
