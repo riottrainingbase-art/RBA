@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LocalizedHome } from "@/components/localized-home";
+import { GlobalHome } from "@/components/global-home";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
@@ -20,5 +20,5 @@ export const metadata: Metadata = {
 export const revalidate=300;
 
 export default function Page() {
-  return <LocalizedHome locale="zh-tw" />;
+  return <GlobalHome locale="zh-tw" />;
 }
