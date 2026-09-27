@@ -157,7 +157,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに戻って来られる場所です。</p><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
           <article><span>COACH</span><h3>指導者</h3><p>D-HUB、Torsten、練習設計。毎週の指導をアップデートする学びをまとめます。</p><Link href="/ja/my-homecourt/coaches">指導者向けHOME <ArrowRight size={16}/></Link></article>
         </div>
-        <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
+        <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でMY HOME COURTを始める<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
       </section>:null}
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">{c.exchange}</p><h2>{c.exchangeTitle}</h2><p>{c.exchangeBody}</p></div>
@@ -198,6 +198,17 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
     ]
   };
   const journalLd={"@context":"https://schema.org","@graph":[articleLd,breadcrumbLd]};
+  const jaBridge=safetyInfo
+    ? {kicker:"SAFETY → ACTION",title:"安全の記事は、販売導線より先に安全確認へ。",body:"症状や復帰判断は記事だけで決めず、必要に応じて医療専門職へ。RBAの安全方針・参加規約もあわせて確認できます。",href:"/ja/policies",cta:"安全・参加方針を確認"}
+    : post.category==="coaching"
+      ? {kicker:"ARTICLE → COACHING",title:"読んだ内容を、次の練習設計へ。",body:"指導者向け記事は、D-HUBやオンライン講習、TEAM TRAININGで現場へつなげられます。",href:"/ja/d-hub",cta:"D-HUBで続ける"}
+      : post.category==="international"
+        ? {kicker:"ARTICLE → EXCHANGE",title:"海外を読むだけで終わらせず、実際の交流へ。",body:"現在の国際連携と、チーム単位での交流機会はInternational / HOMECOURT MATCHで確認できます。",href:"/ja/homecourt/match",cta:"HOMECOURT MATCHを見る"}
+        : post.category==="families"
+          ? {kicker:"ARTICLE → FAMILY",title:"家庭での判断を、次の一歩へ。",body:"チーム選び、出場機会、練習量など、家庭ごとの状況はMY HOME COURTで整理できます。",href:"/ja/my-homecourt/families",cta:"保護者向けHOMEを見る"}
+          : post.category==="programme"
+            ? {kicker:"ARTICLE → OPPORTUNITY",title:"読んだあと、実際の機会を探す。",body:"参加できるクリニック、キャンプ、交流はHOMECOURTから探せます。",href:"/ja/homecourt/explore",cta:"育成機会を探す"}
+            : {kicker:"ARTICLE → NEXT",title:"読んだ内容を、次の練習や挑戦へ。",body:"記事で得た気づきを、自分のDevelopment Timelineと次の育成機会へつなげます。",href:"/ja/my-homecourt",cta:"MY HOME COURTへ"};
   return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(journalLd)}}/>
     <header className="article-hero section-pad"><Link href={journalRoot(locale)} className="back-link">← {c.back}</Link><p className="section-index">{c.kicker} / {categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h1>{post.title}</h1><div className="article-hero-summary"><p>{post.standfirst}</p><div className="article-meta-row"><span>{post.reading}</span><span>{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</span>{post.source_references?.length?<a href="#sources">{locale==="ja"?`参考文献 ${post.source_references.length}件`:locale==="zh-tw"?`參考資料 ${post.source_references.length}`:locale==="ko"?`참고 자료 ${post.source_references.length}`:`${post.source_references.length} sources`}</a>:null}{post.reviewed_at?<span>{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</span>:null}</div></div></header>
     <JournalReaderTools title={post.title} locale={locale}/>
@@ -241,15 +252,15 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
 
     {locale==="ja"?<section className="article-learning-bridge section-pad">
       <div>
-        <p className="section-index inverse">ARTICLE → LIVE LEARNING</p>
-        <h2>読むだけで終わらせず、<br/>次の練習へ。</h2>
-        <p>11月25日のTorsten Loibl Online Clinicでは、「現代バスケットボールにおけるシューターの育成と活用」をテーマに、技術・練習設計・ゲーム戦略を90分でつなぎます。</p>
+        <p className="section-index inverse">{jaBridge.kicker}</p>
+        <h2>{jaBridge.title}</h2>
+        <p>{jaBridge.body}</p>
       </div>
       <div className="article-learning-panel">
-        <span>11.25 / 20:00 JST / ZOOM</span>
-        <strong>LIVE ¥3,300</strong>
-        <small>日本語逐次通訳付き</small>
-        <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">オンライン講習を見る <ArrowRight size={17}/></Link>
+        <span>RBA / NEXT STEP</span>
+        <strong>{post.category.toUpperCase()}</strong>
+        <small>{safetyInfo?"安全を優先":"記事の内容に合う次の入口"}</small>
+        <Link className="button button-member" href={jaBridge.href}>{jaBridge.cta} <ArrowRight size={17}/></Link>
       </div>
     </section>:null}
     {related.length?<section className="journal-cms-index section-pad">
@@ -258,7 +269,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
         <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][item.category as keyof typeof categoryLabels.en]||item.category}</p><h3>{item.title}</h3><p>{item.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
       </Link>)}</div>
     </section>:null}
-    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは情報を集める。</h3><p>新しい記事や活動、クリニック、全国・海外の育成機会をまとめて確認できる入口です。</p><a className="button button-light" href="/ja/my-homecourt">無料の入口を見る<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>学んだことを、普段の練習で試す。</h3><p>読むだけで終わらせず、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
+    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / MY HOME COURT</span><h3>まずは情報を集める。</h3><p>新しい記事や活動、クリニック、全国・海外の育成機会をまとめて確認できる入口です。</p><a className="button button-light" href="/ja/my-homecourt">無料の入口を見る<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>学んだことを、普段の練習で試す。</h3><p>読むだけで終わらせず、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
   </article></SiteFrame>;
 }
 

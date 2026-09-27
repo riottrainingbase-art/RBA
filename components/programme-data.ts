@@ -15,6 +15,7 @@ export type ProgrammeId =
 export type Programme = {
   id: ProgrammeId;
   startDate: string;
+  endDate?: string;
   registrationClosed?: boolean;
   date: Text4;
   datePrimary: Text4;
@@ -53,6 +54,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "yaima",
     startDate: "2026-09-20",
+    endDate: "2026-09-22",
     registrationClosed: true,
     date: ["20–22 SEP 2026", "2026.09.20–22", "2026.09.20–22", "2026.09.20–22"],
     datePrimary: ["20–22", "20〜22日", "20至22日", "20~22일"],
@@ -68,6 +70,8 @@ export const programmes: readonly Programme[] = [
   {
     id: "kawasaki",
     startDate: "2026-09-27",
+    endDate: "2026-09-27",
+    registrationClosed: true,
     date: ["27 SEP 2026", "2026.09.27", "2026.09.27", "2026.09.27"],
     datePrimary: ["27", "27日", "27日", "27일"],
     dateSecondary: ["SEP 2026", "2026年9月", "2026年9月", "2026년 9월"],
@@ -82,6 +86,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "saga-fukuoka",
     startDate: "2026-10-04",
+    endDate: "2026-10-05",
     date: ["04–05 OCT 2026", "2026.10.04–05", "2026.10.04–05", "2026.10.04–05"],
     datePrimary: ["04–05", "4〜5日", "4至5日", "4~5일"],
     dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
@@ -96,6 +101,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "yamagata",
     startDate: "2026-10-24",
+    endDate: "2026-10-24",
     date: ["24 OCT 2026", "2026.10.24", "2026.10.24", "2026.10.24"],
     datePrimary: ["24", "24日", "24日", "24일"],
     dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
@@ -110,6 +116,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "shizugawa",
     startDate: "2026-11-07",
+    endDate: "2026-11-08",
     date: ["07–08 NOV 2026", "2026.11.07–08", "2026.11.07–08", "2026.11.07–08"],
     datePrimary: ["07–08", "7〜8日", "7至8日", "7~8일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
@@ -124,6 +131,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "kobe",
     startDate: "2026-11-20",
+    endDate: "2026-11-23",
     date: ["20–23 NOV 2026", "2026.11.20–23", "2026.11.20–23", "2026.11.20–23"],
     datePrimary: ["20–23", "20〜23日", "20至23日", "20~23일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
@@ -138,6 +146,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "torsten",
     startDate: "2026-11-25",
+    endDate: "2026-11-25",
     date: ["25 NOV 2026", "2026.11.25", "2026.11.25", "2026.11.25"],
     datePrimary: ["25", "25日", "25日", "25일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
@@ -155,3 +164,20 @@ export const programmes: readonly Programme[] = [
 
 export const programmeById = Object.fromEntries(programmes.map((programme) => [programme.id, programme])) as Record<ProgrammeId, Programme>;
 export const torstenRegistrationUrl = programmeById.torsten.applicationUrl;
+
+
+export function programmeDateKey(date=new Date()){
+  const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(date);
+  const map=Object.fromEntries(parts.map(part=>[part.type,part.value]));
+  return `${map.year}-${map.month}-${map.day}`;
+}
+
+export function isProgrammeOpen(programme:Programme,date=new Date()){
+  if(programme.registrationClosed)return false;
+  if(!programme.endDate)return true;
+  return programme.endDate>=programmeDateKey(date);
+}
+
+export function openProgrammes(date=new Date()){
+  return programmes.filter(programme=>isProgrammeOpen(programme,date));
+}

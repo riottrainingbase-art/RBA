@@ -13,9 +13,9 @@ const groups=[
     ["RBA Social Hub","Start with the channel that fits you","/social"],
   ]},
   {label:"JOIN",items:[
-    ["Clinic Calendar","Dates and official application routes","/schedule"],
+    ["RBA Opportunities","Dates and official application routes","/opportunities"],
     ["Clinic advance announcements","Official LINE","https://lin.ee/5l1YG8N"],
-    ["MY HOME COURT","RBA ID gateway · PLAYER / PARENT / COACH","/my-homecourt"],
+    ["MY HOME COURT","Free account · PLAYER / PARENT / COACH","/my-homecourt"],
     ["D-HUB","Separate selection & performance pathway","/d-hub"],
   ]},
   {label:"LEARN & DISCUSS",items:[

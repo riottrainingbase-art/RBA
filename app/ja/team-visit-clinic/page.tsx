@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-visit-clinic" },
   openGraph: {
     title: "RBA VISIT TRAINING｜普段の練習に、RBAが行きます。",
-    description: "単発の技術指導ではなく、チームの普段の環境を見ながら、必要な育成テーマを一緒に整理して実施します。",
+    description: "単発の技術指導ではなく、チームの普段の環境を見ながら、必要な育成テーマを整理し、希望に応じてその後90日の実践までつなげます。",
     url: "https://riotbasketballacademy.com/ja/team-visit-clinic",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -70,6 +70,8 @@ export default function Page(){
     </section>
 
     <VisitTrainingObservation/>
+
+    <section className="access-promise section-pad"><p className="section-index">AFTER THE CLINIC</p><div><h2>RBAが帰った後の90日まで、続けられます。</h2><p>TEAM DEVELOPMENTでは、当日見えたチームの現象をREPORTにまとめ、12週間・3フェーズのテーマ・Small-Sided Game・観察ポイント・選手への問いまでTEAM HOMEへ残します。指導者は週ごとに変化を記録し、D30・D60・D90で変化を確認し、次回訪問で前回との違いを確認できます。</p><a className="text-link" href="/ja/team-development">TEAM DEVELOPMENTの仕組みを見る<ArrowRight size={16}/></a></div></section>
 
     <section className="homecourt-product-preview section-pad" id="programme">
       <div className="section-head">
