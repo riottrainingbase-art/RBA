@@ -296,6 +296,45 @@ create policy "homecourt opportunity preferences owner delete"
 on public.homecourt_opportunity_preferences for delete to authenticated
 using (user_id=(select auth.uid()));
 
+create table if not exists public.homecourt_travel_windows (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  country text not null,
+  city text,
+  starts_on date not null,
+  ends_on date not null,
+  age_group text,
+  interest_types text[] not null default '{}',
+  note text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  check (ends_on >= starts_on)
+);
+create index if not exists homecourt_travel_windows_user_date_idx
+  on public.homecourt_travel_windows(user_id, starts_on);
+alter table public.homecourt_travel_windows enable row level security;
+
+drop policy if exists "homecourt travel owner read" on public.homecourt_travel_windows;
+create policy "homecourt travel owner read"
+on public.homecourt_travel_windows for select to authenticated
+using (user_id=(select auth.uid()));
+
+drop policy if exists "homecourt travel owner insert" on public.homecourt_travel_windows;
+create policy "homecourt travel owner insert"
+on public.homecourt_travel_windows for insert to authenticated
+with check (user_id=(select auth.uid()));
+
+drop policy if exists "homecourt travel owner update" on public.homecourt_travel_windows;
+create policy "homecourt travel owner update"
+on public.homecourt_travel_windows for update to authenticated
+using (user_id=(select auth.uid()))
+with check (user_id=(select auth.uid()));
+
+drop policy if exists "homecourt travel owner delete" on public.homecourt_travel_windows;
+create policy "homecourt travel owner delete"
+on public.homecourt_travel_windows for delete to authenticated
+using (user_id=(select auth.uid()));
+
 create table if not exists public.homecourt_exchange_posts (
   id uuid primary key default gen_random_uuid(),
   entity_id uuid not null references public.platform_entities(id) on delete cascade,
