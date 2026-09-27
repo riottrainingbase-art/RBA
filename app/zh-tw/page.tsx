@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LocalizedHome } from "@/components/localized-home";
+import { GlobalHome } from "@/components/global-home";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Riot Basketball Academy | Youth Basketball Development Platform", description: "Riot Basketball Academy以青少年籃球發展為核心，連結球員、家長、教練、球隊、地方與國際夥伴，整合發展機會、安全保障、成長紀錄與國際交流。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
+export const revalidate=300;
+
 export default function Page() {
-  return <LocalizedHome locale="zh-tw" />;
+  return <GlobalHome locale="zh-tw" />;
 }

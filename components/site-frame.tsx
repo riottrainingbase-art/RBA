@@ -6,7 +6,7 @@ import { PublicUpdateBanner } from "./public-update-banner";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "work-with-rba";
+export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "work-with-rba" | "homecourt/explore" | "homecourt/match";
 
 
 const labels = {
@@ -28,40 +28,27 @@ export function localePath(locale:Locale, page?:LanguagePage){
 
 export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
   const c=labels[locale];
+  const prefix=locale==="en"?"":`/${locale}`;
+  const teamHref=locale==="ja"?"/ja/team-development":`${prefix}/team`;
   const fullNav=[
-    [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
-    [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
-    [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
-    ["RBA PLATFORM",localePath(locale,"platform")],
-    [({en:"About MY HOME COURT",ja:"MY HOME COURTとは","zh-tw":"MY HOME COURT介紹",ko:"MY HOME COURT 안내"})[locale],localePath(locale,"home-court")],
+    [({en:"Explore",ja:"育成環境を探す","zh-tw":"探索培育環境",ko:"성장 환경 찾기"})[locale],localePath(locale,"homecourt/explore")],
+    ["MY HOME COURT",localePath(locale,"my-homecourt")],
+    [({en:"Teams",ja:"チーム向け","zh-tw":"球隊",ko:"팀"})[locale],teamHref],
+    [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")],
+    [({en:"International",ja:"国際交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
+    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")],
+    ["D-HUB",localePath(locale,"d-hub")],
+    [({en:"Programmes",ja:"RBAの活動","zh-tw":"RBA活動",ko:"RBA 활동"})[locale],localePath(locale,"opportunities")],
+    [({en:"Partners",ja:"協賛・連携","zh-tw":"合作夥伴",ko:"파트너십"})[locale],localePath(locale,"partners")],
     [c.about,localePath(locale,"about")],
-    [c.approach,localePath(locale,"approach")],
-    [c.schedule,localePath(locale,"schedule")],
-    [c.payments,localePath(locale,"payments")],
-    [c.clinic,localePath(locale,"events/torsten-loibl-online-clinic")],
-    [c.asia,localePath(locale,"asia")],
-    [c.partners,localePath(locale,"partners")],
-    ["RBA IMPACT",localePath(locale,"impact")],
-    [({en:"D-HUB / COACH DEVELOPMENT",ja:"D-HUB／指導者育成","zh-tw":"D-HUB／教練培育",ko:"D-HUB／코치 교육"})[locale],localePath(locale,"d-hub")],
-    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
-    ["RBA UNITED",localePath(locale,"united")],
-    ["RBA CONNECT",localePath(locale,"connect")],
-    ["ORGANIZER",localePath(locale,"organizer")],
-    ...(locale==="ja"?[["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["訪問トレーニング","/ja/team-visit-clinic"] as const,["RBAと活動をつくる","/ja/work-with-rba"] as const]:[]),
-    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
+    [({en:"Safety / Terms",ja:"安全・参加規約","zh-tw":"安全・條款",ko:"안전・약관"})[locale],localePath(locale,"policies")],
   ] as const;
   const nav=[
-    [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
-    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")] as const,
-    ["RBA UNITED",localePath(locale,"united")] as const,
-    [({en:"MY HOME COURT",ja:"MY HOME COURTを使う","zh-tw":"使用MY HOME COURT",ko:"MY HOME COURT 이용"})[locale],localePath(locale,"my-homecourt")] as const,
-    [({en:"Platform",ja:"育成プラットフォーム","zh-tw":"培育平台",ko:"육성 플랫폼"})[locale],localePath(locale,"platform")] as const,
-    [({en:"Coaches",ja:"指導者", "zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
-    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
-    [({en:"Organisers",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최・협력"})[locale],localePath(locale,"organizer")] as const,
-    ...(locale==="ja"?[["TEAM TRAINING","/ja/team-training"] as const,["仙台U15","/ja/u15-skill-up"] as const,["RBAを地域に呼ぶ","/ja/work-with-rba"] as const]:[]),
-    [c.about,localePath(locale,"about")] as const,
+    [({en:"Explore",ja:"探す","zh-tw":"探索",ko:"찾기"})[locale],localePath(locale,"homecourt/explore")] as const,
+    ["MY HOME COURT",localePath(locale,"my-homecourt")] as const,
+    [({en:"Teams",ja:"チーム","zh-tw":"球隊",ko:"팀"})[locale],teamHref] as const,
+    [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
+    [({en:"RBA",ja:"RBAについて","zh-tw":"關於RBA",ko:"RBA 소개"})[locale],localePath(locale,"about")] as const,
   ];
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
@@ -71,9 +58,9 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <header className="site-header">
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{fullNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={memberHref}>MY HOME COURT / RBA ID</a><a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"homecourt/explore")}>{({en:"Find your next environment",ja:"HOMECOURTで次の環境を探す","zh-tw":"尋找下一個培育環境",ko:"다음 성장 환경 찾기"})[locale]}<ArrowRight size={16}/></a>{fullNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={memberHref}>MY HOME COURT / ACCOUNT</a><a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
       <div className="header-actions">
-        <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"RBA ID",ja:"RBA ID","zh-tw":"RBA ID","ko":"RBA ID"})[locale]}</span><ArrowRight size={14}/></a>
+        <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT","ko":"MY HOME COURT"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>
         <a href={localePath(locale,"contact")} className="header-contact">{c.contact}<ArrowUpRight size={15}/></a>
         <div className="language-links" role="group" aria-label="Language / 言語 / 語言 / 언어">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div>
@@ -87,7 +74,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
       <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.threads.com/@riot.basketball.academy" target="_blank" rel="noreferrer">Threads</a><a href="https://note.com/rba_official" target="_blank" rel="noreferrer">note</a><a href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">LINE</a><a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a></div>
       <div className="footer-legal"><p>{ui(locale,"city")}</p><p>{ui(locale,"representative")}</p><p>© 2026 Riot Basketball Academy</p><p>{c.safeguard}</p><a href={localePath(locale,"policies")}>{({en:"Privacy · Terms · Safety · Cancellation",ja:"プライバシー・参加規約・安全・キャンセル","zh-tw":"隱私・條款・安全・取消政策",ko:"개인정보・약관・안전・취소 정책"})[locale]}</a></div>
     </footer>
-    <a className="member-dock" href={memberHref}><House size={20}/><span>{locale==="ja"?"RBA IDをつくる":"MY HOME COURT"}</span><ArrowRight size={16}/></a>
+    <a className="member-dock" href={memberHref}><House size={20}/><span>{locale==="ja"?"MY HOME COURTを始める":"MY HOME COURT"}</span><ArrowRight size={16}/></a>
     <a className="whatsapp-dock" href={whatsappHref} target="_blank" rel="noreferrer" aria-label={c.whatsapp}><MessageCircle size={21}/><span>{c.whatsapp}</span></a>
   </div>;
 }

@@ -1,7 +1,7 @@
 import { ui } from "./ui-copy";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import { Locale, SiteFrame, localePath } from "@/components/site-frame";
-import { programmes } from "@/components/programme-data";
+import { openProgrammes } from "@/components/programme-data";
 import { tr } from "@/components/network-data";
 
 
@@ -17,7 +17,7 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
   const c=copy[locale];
   return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale} languagePage="schedule">
     <section className="inner-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{c.kicker}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p></section>
-    {locale==="ja"?<section className="homecourt-bridge section-pad"><div><p className="section-index inverse">RBA ID / ONE ID</p><h2>参加前の準備から、参加後の振り返りまで。</h2><p>RBA IDを作ると、気になる活動の保存、参加履歴、Basketball Passport、次のおすすめをMY HOME COURTでまとめて確認できます。以前RBAに参加した方も、同じRBA IDから利用できます。</p></div><a className="button button-light" href="/ja/my-homecourt/login?next=%2Fja%2Fopportunities">無料でRBA IDをつくる →</a></section>:null}
+    {locale==="ja"?<section className="homecourt-bridge section-pad"><div><p className="section-index inverse">MY HOME COURT</p><h2>参加前の準備から、参加後の振り返りまで。</h2><p>MY HOME COURTを始めると、気になる活動の保存、参加履歴、Basketball Passport、次のおすすめをMY HOME COURTでまとめて確認できます。以前RBAに参加した方も、同じアカウントから利用できます。</p></div><a className="button button-light" href="/ja/my-homecourt/login?next=%2Fja%2Fopportunities">MY HOME COURTを無料で始める →</a></section>:null}
     {locale==="ja"?<section className="registration-flow section-pad">
       <div><p className="section-index inverse">BEFORE YOU JOIN</p><h2>参加する前に、ひとつ準備しておく。</h2><p>当日を迎える前に、「どんなプレーを試したいか」「何を持ち帰りたいか」を一つ決めておくと、学びがより明確になります。</p></div>
       <div className="registration-flow-steps">
@@ -27,7 +27,7 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
         <article><span>04</span><strong>KEEP</strong><p>参加後はMY HOME COURTに経験を記録する。</p></article>
       </div>
     </section>:null}
-    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{programmes.filter(event=>!event.registrationClosed).map((event)=><article key={event.id}><time dateTime={event.startDate}><strong>{tr(event.datePrimary,locale)}</strong><span>{tr(event.dateSecondary,locale)}</span></time><div><p className="note-tag">{tr(event.place,locale)}</p><h3>{tr(event.title,locale)}</h3><p><strong>{c.target}：</strong>{tr(event.audience,locale)}</p><p className="event-price">{tr(event.price,locale)}</p><p className="event-payment"><strong>{c.payment}：</strong>{tr(event.payment,locale)}</p></div><div className="event-actions"><a href={event.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"このコートに参加する":c.apply}<ArrowUpRight size={17}/></a><a href={`${localePath(locale,"payments")}#${event.id}`}>{c.pay}<ArrowUpRight size={17}/></a></div></article>)}</section>
+    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{openProgrammes().map((event)=><article key={event.id}><time dateTime={event.startDate}><strong>{tr(event.datePrimary,locale)}</strong><span>{tr(event.dateSecondary,locale)}</span></time><div><p className="note-tag">{tr(event.place,locale)}</p><h3>{tr(event.title,locale)}</h3><p><strong>{c.target}：</strong>{tr(event.audience,locale)}</p><p className="event-price">{tr(event.price,locale)}</p><p className="event-payment"><strong>{c.payment}：</strong>{tr(event.payment,locale)}</p></div><div className="event-actions"><a href={event.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"このコートに参加する":c.apply}<ArrowUpRight size={17}/></a><a href={`${localePath(locale,"payments")}#${event.id}`}>{c.pay}<ArrowUpRight size={17}/></a></div></article>)}</section>
     <section className="calendar-notice section-pad"><div><h2>{c.notice}</h2><p>{c.noticeCopy}</p></div><a className="button button-light" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">{c.line}<ArrowUpRight size={17}/></a></section>
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale)}>{c.back}<span>→</span></a></section>
   </SiteFrame></div>;
