@@ -15,7 +15,7 @@ export function HomecourtPlusPage(){
       <section className="hc-plus-hero section-pad">
         <p className="section-index inverse">MY HOME COURT / PLUS</p>
         <h1>学んだことを、<br/>その週のバスケで使う。</h1>
-        <p>HOMECOURT PLUSは、記事を増やすための有料会員ではありません。今週やることを一つ決めて、試して、振り返って、次を決める。その流れを続けるための場所です。</p>
+        <p>HOMECOURT PLUSは、記事を読むためだけの有料プランではありません。今週やることを一つ決めて、試して、振り返って、次を決める。その流れを続けるための場所です。</p>
         <div className="hc-plus-price"><strong>¥3,300</strong><span>/ 月</span><small>税込・月額</small></div>
         <div className="hc-plus-actions">
           <a className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></a>
@@ -76,7 +76,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-compare section-pad" id="difference">
-        <div className="section-head"><div><p className="section-index">FREE / PLUS</p><h2>無料版との違い。</h2></div><p>無料版を小さくするのではなく、続けて使う部分をPLUSにしています。</p></div>
+        <div className="section-head"><div><p className="section-index">FREE / PLUS</p><h2>無料版との違い。</h2></div><p>無料版で入口を広く、PLUSでは継続して取り組むための機能を用意しています。</p></div>
         <div className="hc-plus-compare-grid">
           <article>
             <span>RBA ID / ¥0</span><h3>無料で使う</h3>
@@ -94,7 +94,7 @@ export function HomecourtPlusPage(){
       <section className="hc-plus-terms section-pad">
         <div><Clock3/><span>MONTHLY</span><strong>月額3,300円</strong><p>月額制です。契約内容・カード変更・解約手続きはStripeの会員ページから行えます。</p></div>
         <div><ShieldCheck/><span>CANCEL</span><strong>解約後も利用期間までは使えます</strong><p>月途中で解約した場合の日割り返金はありません。反映に少し時間がかかる場合があります。</p></div>
-        <div><Sparkles/><span>RBA ID</span><strong>現在の所属はそのまま</strong><p>チームを辞めたり、RBA所属になる必要はありません。外の学びを追加するための場所です。</p></div>
+        <div><Sparkles/><span>RBA ID</span><strong>現在の所属はそのまま</strong><p>チームを辞めたり、RBA所属になる必要はありません。今の所属を変えずに、外からの学びを取り入れるための場所です。</p></div>
       </section>
 
       <section className="hc-plus-final section-pad">
