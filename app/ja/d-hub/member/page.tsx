@@ -46,7 +46,7 @@ export default async function Page() {
             <p>Squareの月額購読が確認できたメンバーは、RBA IDでログインすると利用できます。すでに決済済みなのに入れない場合は、申込時・Square決済時・RBA IDのメールアドレスが異なる可能性があります。</p>
             <div className="dhub-member-actions">
               <a className="button button-dark" href={JOIN_FORM} target="_blank" rel="noreferrer">D-HUBへ参加する <ExternalLink size={16}/></a>
-              <Link className="button button-light" href="/ja/contact">決済済みの方はこちら <ArrowRight size={16}/></Link>
+              <Link className="button button-light" href="/ja/d-hub/access-request">Square決済済みの方はこちら <ArrowRight size={16}/></Link>
             </div>
           </section>
         </main>

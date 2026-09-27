@@ -2342,3 +2342,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .dhub-lesson-nav{grid-template-columns:1fr;gap:16px}
   .dhub-lesson-nav a:last-child{justify-self:start}
 }
+
+/* D-HUB access matching */
+.dhub-access-page{background:#f4f5f2}
+.dhub-access-hero h1{max-width:900px;margin:22px 0 18px;font-size:clamp(42px,6vw,78px);line-height:.98;letter-spacing:-.05em}
+.dhub-access-hero>p:not(.section-index){max-width:760px;color:#59646a;font-size:18px;line-height:1.8}
+.dhub-access-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:24px 48px;background:#fff}
+.dhub-access-copy h2{margin:10px 0 22px;font-size:clamp(32px,4vw,50px);line-height:1.05}
+.dhub-access-copy>div{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:16px 0;border-top:1px solid #d7dbd8}
+.dhub-access-copy>div p{margin:0}.dhub-access-copy>div strong,.dhub-access-copy>div span{display:block}
+.dhub-access-copy>div span{margin-top:4px;color:#657076;line-height:1.6}
+.dhub-access-form{padding:24px;background:#f4f5f2;border:1px solid #cbd0cd}
+.dhub-access-form label{display:block;margin:0 0 8px;font-size:11px;font-weight:900}
+.dhub-access-form input,.dhub-access-form textarea{width:100%;margin-bottom:18px;padding:13px;border:1px solid #bec5c1;background:#fff;font:inherit}
+.dhub-access-pending{display:flex;gap:8px;align-items:flex-start;margin-top:16px;color:#4e5b43;font-size:13px;line-height:1.6}
+.dhub-access-history{background:#eef0ed}
+.dhub-access-history>div:last-child{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.dhub-access-history article{padding:18px;background:#fff;border:1px solid #cbd0cd}
+.dhub-access-history article span,.dhub-access-history article small{display:block;color:#707b80;font-size:10px}
+.dhub-access-history article strong{display:block;margin:8px 0;font-size:18px}
+.dhub-admin-requests{background:#fff1d7}
+.dhub-admin-request-list{display:flex;flex-direction:column;gap:10px}
+.dhub-admin-request-list article{display:grid;grid-template-columns:1fr 1fr 1.2fr auto;gap:16px;align-items:center;padding:18px;background:#fff;border:1px solid #d7c599}
+.dhub-admin-request-list span{display:block;font-size:9px;font-weight:900;letter-spacing:.1em;color:#7b725d}
+.dhub-admin-request-list strong{display:block;margin-top:5px;font-size:13px}
+.dhub-admin-request-list small{display:block;margin-top:4px;color:#777;font-size:10px}
+.dhub-admin-request-list p{margin:5px 0 0;color:#555;font-size:12px;line-height:1.5}
+@media(max-width:900px){.dhub-access-grid{grid-template-columns:1fr}.dhub-admin-request-list article{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.dhub-access-history>div:last-child{grid-template-columns:1fr}.dhub-admin-request-list article{grid-template-columns:1fr}}
