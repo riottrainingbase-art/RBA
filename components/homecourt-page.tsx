@@ -34,12 +34,12 @@ export function HomecourtPage({locale}:{locale:Locale}) {
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
         <div><p className="section-index">FOR TEAMS / COACHES</p><h2>チームの日常にも、MY HOME COURTをつなげる。</h2></div>
-        <p>指導者はTEAM HOMEで練習を設計し、必要に応じてRBAの訪問トレーニングへつなげられます。</p>
+        <p>指導者はTEAM HOMEで練習を設計し、RBAの訪問トレーニング、TEAM DEVELOPMENT REPORT、30日フォローまで一つにつなげられます。</p>
       </div>
       <div className="homecourt-preview-grid">
         <article><Users/><span>01 / TEAM HOME</span><h3>チームを登録する</h3><p>予定、出欠、練習テーマ、メモを一つの場所で管理します。</p></article>
         <article><Check/><span>02 / TEAM TRAINING</span><h3>練習を設計する</h3><p>テーマ、目的、メニュー、人数、コート数、観察ポイントを残し、次回の練習へつなげます。</p><a className="text-link" href="/ja/team-training">TEAM TRAININGを見る<ArrowRight size={16}/></a></article>
-        <article><Users/><span>03 / VISIT TRAINING</span><h3>RBAを現場に呼ぶ</h3><p>普段の体育館で、練習観察、オンコート指導、ゲーム観察、指導者フィードバックまで実施できます。</p><a className="text-link" href="/ja/team-visit-clinic">訪問トレーニングを見る<ArrowRight size={16}/></a></article>
+        <article><Users/><span>03 / VISIT TRAINING</span><h3>RBAを現場に呼ぶ</h3><p>普段の体育館で、練習観察、オンコート指導、ゲーム観察、指導者フィードバックまで実施できます。</p><a className="text-link" href="/ja/team-visit-clinic">訪問トレーニングを見る<ArrowRight size={16}/></a></article><article><Check/><span>04 / TEAM DEVELOPMENT</span><h3>その後30日までつなぐ</h3><p>RBA TEAM REPORT、4週間の実践テーマ、週次チェックインをTEAM HOMEに残し、次回訪問で変化を確認します。</p><a className="text-link" href="/ja/team-development">TEAM DEVELOPMENTを見る<ArrowRight size={16}/></a></article>
       </div>
     </section>:null}
     {locale==="ja"?<section className="homecourt-plan-separation section-pad">
