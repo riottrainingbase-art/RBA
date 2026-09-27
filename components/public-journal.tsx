@@ -114,7 +114,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <article><strong>{posts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク</span><small>原典・公式資料を確認できる入口</small></article>
         <article><strong>{posts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>最終確認日を記事ごとに表示</small></article>
       </section>:null}
-      {locale==="ja"?<JournalLearningPathsGrid compact/>:null}\n\n      {locale==="ja"?<section className="journal-evidence-standard section-pad">
+      {locale==="ja"?<JournalLearningPathsGrid compact totalArticles={posts.length}/>:null}\n\n      {locale==="ja"?<section className="journal-evidence-standard section-pad">
         <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>根拠があることと、RBAの考えは分けて書きます。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
         <div className="journal-evidence-grid">
           <article><span>EVIDENCE</span><h3>研究・公式資料</h3><p>学術論文やFIBA/WABC、JBAなど、できる限り元の資料まで確認して掲載します。</p></article>
