@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import styles from "./homecourt-network.module.css";
 
 type Entity={id:string;name:string;country:string;region:string|null;city:string|null};
-type Post={id:string;entity_id:string;created_by:string;title:string;age_group:string;gender:string;country_from:string;city_from:string|null;target_countries:string[];mode:string;starts_on:string|null;ends_on:string|null;team_size_min:number|null;team_size_max:number|null;venue_available:boolean;languages:string[];purpose:string|null;level_note:string|null;public_note:string|null;status:string;created_at:string};
+type Post={id:string;entity_id:string;created_by?:string;title:string;age_group:string;gender:string;country_from:string;city_from:string|null;target_countries:string[];mode:string;starts_on:string|null;ends_on:string|null;team_size_min:number|null;team_size_max:number|null;venue_available:boolean;languages:string[];purpose:string|null;level_note:string|null;public_note:string|null;status:string;created_at:string};
 type Interest={id:string;post_id:string;responding_entity_id:string;created_by:string;note:string|null;status:string;created_at:string};
 
 export function HomecourtMatchWorkspace({userId}:{userId:string}){
@@ -35,7 +35,7 @@ export function HomecourtMatchWorkspace({userId}:{userId:string}){
     const ids=managed.map(x=>x.id);
     const [myPosts,allOpen]=await Promise.all([
       db.from("homecourt_exchange_posts").select("*").in("entity_id",ids).order("created_at",{ascending:false}),
-      db.from("homecourt_exchange_posts").select("*").eq("status","open").order("starts_on",{ascending:true,nullsFirst:false})
+      db.rpc("get_homecourt_exchange_posts")
     ]);
     const mine=(myPosts.data||[]) as Post[];
     const all=((allOpen.data||[]) as Post[]);
