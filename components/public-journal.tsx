@@ -20,7 +20,7 @@ const categoryLabels={
 } as const;
 
 export async function PublicJournalHub({locale}:{locale:Locale}){
-  const c=copy[locale], posts=await getPublicJournalPosts(locale);
+  const c=copy[locale], posts=await getPublicJournalPosts(locale,200);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const featured=posts[0], rest=posts.slice(1), quickLatest=posts.slice(1,4);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching");
@@ -248,7 +248,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
 }
 
 export async function PublicCoachJournalHub({locale}:{locale:Locale}){
-  const posts=await getPublicJournalPosts(locale,60);
+  const posts=await getPublicJournalPosts(locale,200);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching"||post.coach_application?.length);
   const recentCoachPosts=coachPosts.slice(0,8);
   const prefix=locale==="en"?"":`/${locale}`;
