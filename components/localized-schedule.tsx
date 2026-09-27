@@ -1,7 +1,7 @@
 import { ui } from "./ui-copy";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import { Locale, SiteFrame, localePath } from "@/components/site-frame";
-import { programmes } from "@/components/programme-data";
+import { openProgrammes } from "@/components/programme-data";
 import { tr } from "@/components/network-data";
 
 
@@ -27,7 +27,7 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
         <article><span>04</span><strong>KEEP</strong><p>参加後はMY HOME COURTに経験を記録する。</p></article>
       </div>
     </section>:null}
-    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{programmes.filter(event=>!event.registrationClosed).map((event)=><article key={event.id}><time dateTime={event.startDate}><strong>{tr(event.datePrimary,locale)}</strong><span>{tr(event.dateSecondary,locale)}</span></time><div><p className="note-tag">{tr(event.place,locale)}</p><h3>{tr(event.title,locale)}</h3><p><strong>{c.target}：</strong>{tr(event.audience,locale)}</p><p className="event-price">{tr(event.price,locale)}</p><p className="event-payment"><strong>{c.payment}：</strong>{tr(event.payment,locale)}</p></div><div className="event-actions"><a href={event.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"このコートに参加する":c.apply}<ArrowUpRight size={17}/></a><a href={`${localePath(locale,"payments")}#${event.id}`}>{c.pay}<ArrowUpRight size={17}/></a></div></article>)}</section>
+    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{openProgrammes().map((event)=><article key={event.id}><time dateTime={event.startDate}><strong>{tr(event.datePrimary,locale)}</strong><span>{tr(event.dateSecondary,locale)}</span></time><div><p className="note-tag">{tr(event.place,locale)}</p><h3>{tr(event.title,locale)}</h3><p><strong>{c.target}：</strong>{tr(event.audience,locale)}</p><p className="event-price">{tr(event.price,locale)}</p><p className="event-payment"><strong>{c.payment}：</strong>{tr(event.payment,locale)}</p></div><div className="event-actions"><a href={event.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"このコートに参加する":c.apply}<ArrowUpRight size={17}/></a><a href={`${localePath(locale,"payments")}#${event.id}`}>{c.pay}<ArrowUpRight size={17}/></a></div></article>)}</section>
     <section className="calendar-notice section-pad"><div><h2>{c.notice}</h2><p>{c.noticeCopy}</p></div><a className="button button-light" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">{c.line}<ArrowUpRight size={17}/></a></section>
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale)}>{c.back}<span>→</span></a></section>
   </SiteFrame></div>;
