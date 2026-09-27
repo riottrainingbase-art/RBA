@@ -9,7 +9,7 @@ function minutes(reading:string){
   return match?Number(match[0]):0;
 }
 
-export function JournalLearningPathsGrid({compact=false}:{compact?:boolean}){
+export function JournalLearningPathsGrid({compact=false,totalArticles}:{compact?:boolean;totalArticles?:number}){
   const paths=compact?journalLearningPaths.slice(0,10):journalLearningPaths;
   return <section className="journal-paths section-pad">
     <div className="section-head">
@@ -17,7 +17,7 @@ export function JournalLearningPathsGrid({compact=false}:{compact?:boolean}){
         <p className="section-index">READING PATHS</p>
         <h2>何から読めばいいか迷ったら。</h2>
       </div>
-      <p>251本を全部読む必要はありません。いまの立場や悩みに近いところから、6本ずつ順番にまとめました。</p>
+      <p>{totalArticles?`${totalArticles}本を全部読む必要はありません。`:"全部読む必要はありません。"}いまの立場や悩みに近いところから、6本ずつ順番にまとめました。</p>
     </div>
     <div className="journal-path-grid">
       {paths.map(path=><Link key={path.key} href={`/ja/journal/paths/${path.key}`} className="journal-path-card">
@@ -32,15 +32,16 @@ export function JournalLearningPathsGrid({compact=false}:{compact?:boolean}){
 }
 
 export async function PublicJournalLearningPathsHub(){
+  const posts=await getPublicJournalPosts("ja",500);
   return <SiteFrame locale="ja" languagePage="journal">
     <main className="journal-hub journal-path-page">
       <section className="journal-path-hero section-pad">
         <Link href="/ja/journal" className="back-link">← RBA JOURNAL</Link>
         <p className="section-index">RBA JOURNAL / READING PATHS</p>
-        <h1>251本を、順番に読む。</h1>
+        <h1>{posts.length}本を、順番に読む。</h1>
         <p>記事は増えましたが、最初から全部読む必要はありません。選手、保護者、指導者、U12、U15、3x3、S&C、女子選手、海外、チーム選び。いま必要なテーマから入ってください。</p>
       </section>
-      <JournalLearningPathsGrid/>
+      <JournalLearningPathsGrid totalArticles={posts.length}/>
       <section className="journal-path-note section-pad">
         <BookOpen/>
         <div>
