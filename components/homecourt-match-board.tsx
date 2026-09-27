@@ -20,7 +20,7 @@ export function HomecourtMatchBoard(){
 
   useEffect(()=>{
     const timer=window.setTimeout(async()=>{
-      const postQ=await db.from("homecourt_exchange_posts").select("*").eq("status","open").order("starts_on",{ascending:true,nullsFirst:false});
+      const postQ=await db.rpc("get_homecourt_exchange_posts");
       const rows=(postQ.data||[]) as Post[];
       setPosts(rows);
       const ids=Array.from(new Set(rows.map(x=>x.entity_id)));
