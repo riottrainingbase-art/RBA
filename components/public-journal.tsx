@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPublicJournalPost, getPublicJournalPosts } from "@/lib/public-content";
-import { Locale, localePath, SiteFrame } from "@/components/site-frame";\nimport { JournalExplorer } from "@/components/journal-explorer";
+import { Locale, localePath, SiteFrame } from "@/components/site-frame";
+import { JournalExplorer } from "@/components/journal-explorer";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -23,6 +24,13 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale,200);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const featured=posts[0], quickLatest=posts.slice(1,4);
+  const categoryOrder=["development","families","coaching","international","programme"] as const;
+  const categoryDescriptions={
+    ja:{development:"選手の成長、試合、練習、出場機会、U12・U15の育成を考える記事",families:"チーム選び、練習量、試合後の関わり方など保護者向けの記事",coaching:"練習設計、判断、ゲーム理解、コーチングを深める指導者向けの記事",international:"日本と世界の育成環境、海外交流、遠征から学ぶ記事",programme:"RBAのクリニック、キャンプ、学びを次の行動につなげる記事"},
+    en:{development:"Player development, practice and competition",families:"Guidance for families",coaching:"Coach learning and practice design",international:"Japan–Asia exchange and global development",programme:"RBA programmes and next steps"},
+    "zh-tw":{development:"球員培育與比賽學習",families:"家長指南",coaching:"教練學習與訓練設計",international:"日本與亞洲交流",programme:"RBA活動與下一步"},
+    ko:{development:"선수 육성과 경기 학습",families:"보호자 가이드",coaching:"코치 학습과 훈련 설계",international:"일본·아시아 교류",programme:"RBA 프로그램과 다음 단계"}
+  } as const;
   const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(({en:"Hello RBA, we are interested in a Japan–Asia basketball exchange.",ja:"RBAの海外交流について相談したいです。","zh-tw":"您好RBA，我們想詢問日本與亞洲的籃球交流。",ko:"RBA의 일본-아시아 농구 교류에 대해 문의하고 싶습니다."})[locale])}`;
   const findPost=(slug:string)=>posts.find(post=>post.slug===slug);
   const explorerItems=posts.map(post=>({
@@ -165,19 +173,13 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <nav className="journal-reading-nav" aria-label={locale==="ja"?"記事内目次":"Article sections"}>{post.sections.map((section,index)=><a href={`#section-${index+1}`} key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><strong>{section.heading}</strong></a>)}{post.coach_application?.length?<a href="#coach-application"><span>+</span><strong>{locale==="ja"?"現場での使い方":"Coach application"}</strong></a>:null}{post.source_references?.length?<a href="#sources"><span>↗</span><strong>{locale==="ja"?"参考文献":"Sources"}</strong></a>:null}</nav>
       <aside className="journal-reading-point"><span>{locale==="ja"?"まず、ここだけ":"KEY POINT"}</span><strong>{post.aside_title||c.kicker}</strong><p>{post.aside_text||post.standfirst}</p></aside>
     </section>
-    {post.evidence_summary||post.rba_interpretation||post.limitations?<section className="journal-evidence-compact section-pad" id="evidence">
-      <details>
-        <summary>
-          <div><span>EVIDENCE CHECK</span><strong>{locale==="ja"?"根拠・RBAの解釈・限界を確認する":locale==="zh-tw"?"查看證據、RBA解讀與限制":locale==="ko"?"근거·RBA 해석·한계 보기":"Evidence, interpretation and limitations"}</strong></div>
-          <div>{post.evidence_level?<small>{post.evidence_level}</small>:null}<b>＋</b></div>
-        </summary>
-        <div className="journal-evidence-grid">
-          {post.evidence_summary?<article><span>EVIDENCE</span><h3>{locale==="ja"?"研究・ガイドラインから言えること":locale==="zh-tw"?"研究與指南支持的內容":locale==="ko"?"연구·가이드라인이 지지하는 내용":"What the evidence supports"}</h3><p>{post.evidence_summary}</p></article>:null}
-          {post.rba_interpretation?<article><span>RBA INTERPRETATION</span><h3>{locale==="ja"?"RBAが現場でどう解釈するか":locale==="zh-tw"?"RBA如何在現場解讀":locale==="ko"?"RBA가 현장에서 어떻게 해석하는가":"How RBA applies it"}</h3><p>{post.rba_interpretation}</p></article>:null}
-          {post.limitations?<article><span>LIMITATIONS</span><h3>{locale==="ja"?"ここは断定しない":locale==="zh-tw"?"不應斷言的部分":locale==="ko"?"단정하지 않는 부분":"What this does not prove"}</h3><p>{post.limitations}</p></article>:null}
-        </div>
-        {post.reviewed_at?<p className="journal-evidence-reviewed">{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Last reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</p>:null}
-      </details>
+    {post.evidence_summary||post.rba_interpretation||post.limitations?<section className="journal-evidence section-pad" id="evidence">
+      <div className="journal-evidence-head"><p className="section-index">EVIDENCE CHECK</p><h2>{locale==="ja"?"根拠と、RBAの解釈を分けて読む。":locale==="zh-tw"?"把證據與RBA的解讀分開閱讀。":locale==="ko"?"근거와 RBA의 해석을 구분해서 읽습니다.":"Separate evidence from RBA interpretation."}</h2>{post.evidence_level?<span>{post.evidence_level}</span>:null}{post.reviewed_at?<small>{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Last reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</small>:null}</div>
+      <div className="journal-evidence-grid">
+        {post.evidence_summary?<article><span>EVIDENCE</span><h3>{locale==="ja"?"研究・ガイドラインから言えること":locale==="zh-tw"?"研究與指南支持的內容":locale==="ko"?"연구·가이드라인이 지지하는 내용":"What the evidence supports"}</h3><p>{post.evidence_summary}</p></article>:null}
+        {post.rba_interpretation?<article><span>RBA INTERPRETATION</span><h3>{locale==="ja"?"RBAが現場でどう解釈するか":locale==="zh-tw"?"RBA如何在現場解讀":locale==="ko"?"RBA가 현장에서 어떻게 해석하는가":"How RBA applies it"}</h3><p>{post.rba_interpretation}</p></article>:null}
+        {post.limitations?<article><span>LIMITATIONS</span><h3>{locale==="ja"?"ここは断定しない":locale==="zh-tw"?"不應斷言的部分":locale==="ko"?"단정하지 않는 부분":"What this does not prove"}</h3><p>{post.limitations}</p></article>:null}
+      </div>
     </section>:null}
     <div className="article-body section-pad"><aside className="article-side-note"><p>{locale==="ja"?"READING GUIDE":c.kicker}</p><strong>{post.aside_title||c.kicker}</strong><span>{post.aside_text||post.standfirst}</span><nav aria-label={locale==="ja"?"記事内目次":"Article sections"}>{post.sections.map((section,index)=><a href={`#section-${index+1}`} key={section.heading}><b>{String(index+1).padStart(2,"0")}</b>{section.heading}</a>)}</nav></aside><div>{post.sections.map((section,index)=><section id={`section-${index+1}`} key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.heading}</h2>{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets?.length?<ul>{section.bullets.map(b=><li key={b}>{b}</li>)}</ul>:null}</section>)}</div></div>
     {post.coach_application?.length?<section className="journal-coach-application section-pad" id="coach-application">
