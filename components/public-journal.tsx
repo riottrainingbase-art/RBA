@@ -173,13 +173,19 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <nav className="journal-reading-nav" aria-label={locale==="ja"?"記事内目次":"Article sections"}>{post.sections.map((section,index)=><a href={`#section-${index+1}`} key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><strong>{section.heading}</strong></a>)}{post.coach_application?.length?<a href="#coach-application"><span>+</span><strong>{locale==="ja"?"現場での使い方":"Coach application"}</strong></a>:null}{post.source_references?.length?<a href="#sources"><span>↗</span><strong>{locale==="ja"?"参考文献":"Sources"}</strong></a>:null}</nav>
       <aside className="journal-reading-point"><span>{locale==="ja"?"まず、ここだけ":"KEY POINT"}</span><strong>{post.aside_title||c.kicker}</strong><p>{post.aside_text||post.standfirst}</p></aside>
     </section>
-    {post.evidence_summary||post.rba_interpretation||post.limitations?<section className="journal-evidence section-pad" id="evidence">
-      <div className="journal-evidence-head"><p className="section-index">EVIDENCE CHECK</p><h2>{locale==="ja"?"根拠と、RBAの解釈を分けて読む。":locale==="zh-tw"?"把證據與RBA的解讀分開閱讀。":locale==="ko"?"근거와 RBA의 해석을 구분해서 읽습니다.":"Separate evidence from RBA interpretation."}</h2>{post.evidence_level?<span>{post.evidence_level}</span>:null}{post.reviewed_at?<small>{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Last reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</small>:null}</div>
-      <div className="journal-evidence-grid">
-        {post.evidence_summary?<article><span>EVIDENCE</span><h3>{locale==="ja"?"研究・ガイドラインから言えること":locale==="zh-tw"?"研究與指南支持的內容":locale==="ko"?"연구·가이드라인이 지지하는 내용":"What the evidence supports"}</h3><p>{post.evidence_summary}</p></article>:null}
-        {post.rba_interpretation?<article><span>RBA INTERPRETATION</span><h3>{locale==="ja"?"RBAが現場でどう解釈するか":locale==="zh-tw"?"RBA如何在現場解讀":locale==="ko"?"RBA가 현장에서 어떻게 해석하는가":"How RBA applies it"}</h3><p>{post.rba_interpretation}</p></article>:null}
-        {post.limitations?<article><span>LIMITATIONS</span><h3>{locale==="ja"?"ここは断定しない":locale==="zh-tw"?"不應斷言的部分":locale==="ko"?"단정하지 않는 부분":"What this does not prove"}</h3><p>{post.limitations}</p></article>:null}
-      </div>
+    {post.evidence_summary||post.rba_interpretation||post.limitations?<section className="journal-evidence-compact section-pad" id="evidence">
+      <details>
+        <summary>
+          <div><span>EVIDENCE CHECK</span><strong>{locale==="ja"?"根拠・RBAの解釈・限界を確認する":locale==="zh-tw"?"查看證據、RBA解讀與限制":locale==="ko"?"근거·RBA 해석·한계 보기":"Evidence, interpretation and limitations"}</strong></div>
+          <div>{post.evidence_level?<small>{post.evidence_level}</small>:null}<b>＋</b></div>
+        </summary>
+        <div className="journal-evidence-grid">
+          {post.evidence_summary?<article><span>EVIDENCE</span><h3>{locale==="ja"?"研究・ガイドラインから言えること":locale==="zh-tw"?"研究與指南支持的內容":locale==="ko"?"연구·가이드라인이 지지하는 내용":"What the evidence supports"}</h3><p>{post.evidence_summary}</p></article>:null}
+          {post.rba_interpretation?<article><span>RBA INTERPRETATION</span><h3>{locale==="ja"?"RBAが現場でどう解釈するか":locale==="zh-tw"?"RBA如何在現場解讀":locale==="ko"?"RBA가 현장에서 어떻게 해석하는가":"How RBA applies it"}</h3><p>{post.rba_interpretation}</p></article>:null}
+          {post.limitations?<article><span>LIMITATIONS</span><h3>{locale==="ja"?"ここは断定しない":locale==="zh-tw"?"不應斷言的部分":locale==="ko"?"단정하지 않는 부분":"What this does not prove"}</h3><p>{post.limitations}</p></article>:null}
+        </div>
+        {post.reviewed_at?<p className="journal-evidence-reviewed">{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Last reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</p>:null}
+      </details>
     </section>:null}
     <div className="article-body section-pad"><aside className="article-side-note"><p>{locale==="ja"?"READING GUIDE":c.kicker}</p><strong>{post.aside_title||c.kicker}</strong><span>{post.aside_text||post.standfirst}</span><nav aria-label={locale==="ja"?"記事内目次":"Article sections"}>{post.sections.map((section,index)=><a href={`#section-${index+1}`} key={section.heading}><b>{String(index+1).padStart(2,"0")}</b>{section.heading}</a>)}</nav></aside><div>{post.sections.map((section,index)=><section id={`section-${index+1}`} key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.heading}</h2>{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets?.length?<ul>{section.bullets.map(b=><li key={b}>{b}</li>)}</ul>:null}</section>)}</div></div>
     {post.coach_application?.length?<section className="journal-coach-application section-pad" id="coach-application">
