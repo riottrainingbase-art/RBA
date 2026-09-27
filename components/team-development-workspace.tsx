@@ -85,13 +85,15 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
   async function createCycle(e:FormEvent<HTMLFormElement>){
     e.preventDefault();setBusy(true);setMessage("");const form=new FormData(e.currentTarget);
     const entityId=String(form.get("entity_id"));
-    const source=String(form.get("source_service"));
+    const source=isAdmin?String(form.get("source_service")):"self_started";
+    const packageKey=isAdmin?String(form.get("package_key")):"custom";
+    const commercialStatus=isAdmin?String(form.get("commercial_status")):"included";
     const clinicOn=String(form.get("clinic_on")||"")||null;
     const result=await db.from("team_development_cycles").insert({
       entity_id:entityId,title:String(form.get("title")).trim(),source_service:source,
-      package_key:String(form.get("package_key")),status:clinicOn?"scheduled":"intake",clinic_on:clinicOn,
+      package_key:packageKey,status:clinicOn?"scheduled":"intake",clinic_on:clinicOn,
       plan_start_on:clinicOn,plan_end_on:clinicOn?datePlus(clinicOn,29):null,
-      next_followup_on:clinicOn?datePlus(clinicOn,30):null,commercial_status:String(form.get("commercial_status")),
+      next_followup_on:clinicOn?datePlus(clinicOn,30):null,commercial_status:commercialStatus,
       created_by:userId
     }).select("id").single();
     setBusy(false);setMessage(result.error?"TEAM DEVELOPMENTを作成できませんでした。運営権限をご確認ください。":"TEAM DEVELOPMENTを作成しました。まず事前ヒアリングを入力してください。");
@@ -169,9 +171,9 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
           {entities.length?<div className={styles.panel}><h3>新しいサイクル</h3><form className={styles.form} onSubmit={createCycle}>
             <label className={styles.wide}>チーム・団体<select name="entity_id" required>{entities.map(x=><option key={x.id} value={x.id}>{x.name} / {[x.region,x.city].filter(Boolean).join(" ")}</option>)}</select></label>
             <label className={styles.wide}>タイトル<input name="title" required placeholder="2026 秋｜RBA TEAM DEVELOPMENT"/></label>
-            <label>入口<select name="source_service"><option value="rba_team_clinic">TEAM CLINIC</option><option value="rba_visit_training">VISIT TRAINING</option><option value="partner_program">PARTNER</option><option value="self_started">TEAM HOME</option></select></label>
+            {isAdmin?<><label>入口<select name="source_service"><option value="rba_team_clinic">TEAM CLINIC</option><option value="rba_visit_training">VISIT TRAINING</option><option value="partner_program">PARTNER</option><option value="self_started">TEAM HOME</option></select></label>
             <label>プラン<select name="package_key"><option value="clinic">CLINIC</option><option value="clinic_30">CLINIC + 30</option><option value="partner">PARTNER</option><option value="custom">CUSTOM</option></select></label>
-            <label>実施日<input name="clinic_on" type="date"/></label><label>利用区分<select name="commercial_status"><option value="included">INCLUDED</option><option value="trial">TRIAL</option><option value="active">ACTIVE</option><option value="partner">PARTNER</option></select></label>
+            <label>実施日<input name="clinic_on" type="date"/></label><label>利用区分<select name="commercial_status"><option value="included">INCLUDED</option><option value="trial">TRIAL</option><option value="active">ACTIVE</option><option value="partner">PARTNER</option></select></label></>:<><input type="hidden" name="source_service" value="self_started"/><input type="hidden" name="package_key" value="custom"/><input type="hidden" name="commercial_status" value="included"/><label className={styles.wide}>開始日（任意）<input name="clinic_on" type="date"/></label><p className={styles.wide}>RBA TEAM CLINIC / PARTNERの区分は、RBA側で実施確認後に設定します。</p></>}
             <button className={styles.wide} disabled={busy}>{busy?<LoaderCircle/>:<CheckCircle2/>}作成</button>
           </form></div>:<div className={styles.empty}><ShieldCheck/><p>まずチーム・団体の運営者確認を完了してください。</p><a href="/ja/my-homecourt/app/claim">運営者確認へ<ArrowRight/></a></div>}
         </aside>
