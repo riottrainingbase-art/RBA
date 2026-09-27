@@ -213,7 +213,7 @@ returns uuid
 language plpgsql
 security definer
 set search_path = ''
-as $
+as $$
 declare
   s public.homecourt_entity_suggestions%rowtype;
   new_entity_id uuid;
@@ -256,7 +256,7 @@ begin
 
   return new_entity_id;
 end;
-$;
+$$;
 revoke all on function public.approve_homecourt_entity_suggestion(uuid) from public;
 grant execute on function public.approve_homecourt_entity_suggestion(uuid) to authenticated;
 
@@ -420,7 +420,7 @@ language sql
 stable
 security definer
 set search_path = ''
-as $
+as $$
   select
     p.id,p.entity_id,p.title,p.age_group,p.gender,p.country_from,p.city_from,
     p.target_countries,p.mode,p.starts_on,p.ends_on,p.team_size_min,p.team_size_max,
@@ -429,7 +429,7 @@ as $
   where p.status='open'
     and (p.ends_on is null or p.ends_on >= current_date - 7)
   order by p.starts_on nulls last,p.created_at desc;
-$;
+$$;
 revoke all on function public.get_homecourt_exchange_posts() from public;
 grant execute on function public.get_homecourt_exchange_posts() to anon, authenticated;
 
