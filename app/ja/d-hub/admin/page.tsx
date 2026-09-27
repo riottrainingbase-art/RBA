@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {notFound,redirect} from "next/navigation";
 import {revalidatePath} from "next/cache";
 import Link from "next/link";
-import {ArrowLeft,CheckCircle2,Link2,ShieldCheck,TriangleAlert,UserCheck} from "lucide-react";
+import {ArrowLeft,CheckCircle2,FileText,Link2,ShieldCheck,TriangleAlert,UserCheck} from "lucide-react";
 import {SiteFrame} from "@/components/site-frame";
 import {createClient} from "@/lib/supabase/server";
 
@@ -62,6 +62,11 @@ export default async function Page(){
       <div><span>RBA ID LINKED</span><strong>{linked}</strong><small>OF {rows.length}</small></div>
       <div><span>ACCESS REVIEW</span><strong>{soon}</strong><small>WITHIN 7 DAYS</small></div>
       <div><span>CURRICULUM</span><strong>{lessonCount||0}</strong><small>PAID LESSONS</small></div>
+    </section>
+
+    <section className="section-pad" style={{background:"#eef0ed"}}>
+      <div className="section-head"><div><p className="section-index">CONTENT CMS</p><h2>有料記事を、管理画面から更新。</h2></div><p>COACH LAB / PLAYERSの記事追加、参考文献、下書き、プレビュー、公開予約、複製、変更履歴をここで管理します。</p></div>
+      <Link className="button button-member" href="/ja/d-hub/admin/articles"><FileText size={16}/> ARTICLE CMSを開く</Link>
     </section>
 
     {pendingRequests.length?<section className="dhub-admin-requests section-pad">
