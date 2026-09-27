@@ -16,10 +16,10 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
   const localized=locales.flatMap(locale=>core.map(path=>locale+path));
   const journalPosts=(await Promise.all(localeMap.map(async item=>{
     try{
-      const posts=await getPublicJournalPosts(item.locale,100);
+      const posts=await getPublicJournalPosts(item.locale,500);
       return posts.map(post=>({
         path:`${item.prefix}/journal/${post.slug}`,
-        publishedAt:post.published_at,
+        lastModified:post.reviewed_at||post.updated_at||post.published_at,
       }));
     }catch{
       return [];
@@ -27,15 +27,15 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
   }))).flat();
 
   const entries=[
-    ...localized.map(path=>({path,publishedAt:null as string|null})),
-    ...legacy.map(path=>({path,publishedAt:null as string|null})),
+    ...localized.map(path=>({path,lastModified:null as string|null})),
+    ...legacy.map(path=>({path,lastModified:null as string|null})),
     ...journalPosts,
   ];
 
   const seen=new Set<string>();
   return entries.filter(entry=>{if(seen.has(entry.path))return false;seen.add(entry.path);return true;}).map(entry=>({
     url:base+(entry.path||"/"),
-    lastModified:entry.publishedAt?new Date(entry.publishedAt):new Date("2026-09-25T00:00:00Z"),
+    lastModified:entry.lastModified?new Date(entry.lastModified):new Date("2026-09-27T00:00:00Z"),
     changeFrequency:entry.path.includes("/journal/")||entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("torsten")?"weekly":"monthly",
     priority:entry.path===""?1:entry.path.includes("my-homecourt")||entry.path.includes("torsten")?0.95:entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("journal")||entry.path.includes("asia")?0.9:0.8,
   }));
