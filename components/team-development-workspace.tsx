@@ -12,9 +12,12 @@ type Finding={id:string;cycle_id:string;domain:string;finding_type:string;observ
 type Report={cycle_id:string;summary:string;strengths:string[];priorities:string[];coach_focus:string;player_message:string;family_message:string;status:string;issued_at:string|null;updated_at:string};
 type Week={id:string;cycle_id:string;week_no:number;starts_on:string|null;ends_on:string|null;title:string;focus:string;objective:string;small_sided_game:string;coach_observation:string;player_question:string;status:string};
 type Checkin={id:string;cycle_id:string;week_no:number|null;progress_state:string;worked:string;evidence:string;stuck:string;adjustment:string;submitted_at:string};
+type PhaseReview={id:string;cycle_id:string;phase_no:number;review_on:string;progress_state:string;what_changed:string;evidence:string;next_priority:string;rba_note:string;created_at:string};
 
 const sourceLabel:Record<string,string>={rba_team_clinic:"TEAM CLINIC",rba_visit_training:"VISIT TRAINING",partner_program:"PARTNER",self_started:"TEAM HOME",other:"OTHER"};
-const statusLabel:Record<string,string>={intake:"事前入力",scheduled:"実施予定",observed:"観察済み",report_ready:"REPORT発行",plan_active:"30日実践中",review_due:"振り返り",completed:"完了",paused:"一時停止"};
+const statusLabel:Record<string,string>={intake:"事前入力",scheduled:"実施予定",observed:"観察済み",report_ready:"REPORT発行",plan_active:"90日実践中",review_due:"振り返り",completed:"完了",paused:"一時停止"};
+const phaseLabel:Record<number,string>={1:"DAYS 1–30 / FOUNDATION",2:"DAYS 31–60 / TRANSFER",3:"DAYS 61–90 / AUTONOMY"};
+const phaseForWeek=(week:number)=>week<=4?1:week<=8?2:3;
 const progressLabel:Record<string,string>={not_started:"まだ試していない",trying:"試している",more_consistent:"安定して増えてきた",embedded:"チームの習慣になってきた"};
 const domainLabel:Record<string,string>={spacing:"SPACING",perception:"PERCEPTION",decision:"DECISION",advantage:"ADVANTAGE",off_ball:"OFF-BALL",transition:"TRANSITION",defense:"DEFENCE",communication:"COMMUNICATION",physical:"PHYSICAL",practice_design:"PRACTICE DESIGN",other:"OTHER"};
 
@@ -31,6 +34,7 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
   const [report,setReport]=useState<Report|null>(null);
   const [weeks,setWeeks]=useState<Week[]>([]);
   const [checkins,setCheckins]=useState<Checkin[]>([]);
+  const [phaseReviews,setPhaseReviews]=useState<PhaseReview[]>([]);
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
   const [tab,setTab]=useState<"overview"|"brief"|"report"|"plan"|"checkin">("overview");
@@ -61,15 +65,16 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
   }
 
   async function loadCycle(id:string){
-    if(!id){setBrief(null);setFindings([]);setReport(null);setWeeks([]);setCheckins([]);return;}
-    const [b,f,r,w,c]=await Promise.all([
+    if(!id){setBrief(null);setFindings([]);setReport(null);setWeeks([]);setCheckins([]);setPhaseReviews([]);return;}
+    const [b,f,r,w,c,p]=await Promise.all([
       db.from("team_development_briefs").select("*").eq("cycle_id",id).maybeSingle(),
       db.from("team_development_findings").select("*").eq("cycle_id",id).order("finding_type").order("priority",{ascending:true,nullsFirst:false}).order("created_at"),
       db.from("team_development_reports").select("*").eq("cycle_id",id).maybeSingle(),
       db.from("team_development_plan_weeks").select("*").eq("cycle_id",id).order("week_no"),
       db.from("team_development_checkins").select("*").eq("cycle_id",id).order("submitted_at",{ascending:false}),
+      db.from("team_development_phase_reviews").select("*").eq("cycle_id",id).order("phase_no"),
     ]);
-    setBrief((b.data||null) as Brief|null);setFindings((f.data||[]) as Finding[]);setReport((r.data||null) as Report|null);setWeeks((w.data||[]) as Week[]);setCheckins((c.data||[]) as Checkin[]);
+    setBrief((b.data||null) as Brief|null);setFindings((f.data||[]) as Finding[]);setReport((r.data||null) as Report|null);setWeeks((w.data||[]) as Week[]);setCheckins((c.data||[]) as Checkin[]);setPhaseReviews((p.data||[]) as PhaseReview[]);
   }
 
   async function reload(preferred?:string){
@@ -92,8 +97,8 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
     const result=await db.from("team_development_cycles").insert({
       entity_id:entityId,title:String(form.get("title")).trim(),source_service:source,
       package_key:packageKey,status:clinicOn?"scheduled":"intake",clinic_on:clinicOn,
-      plan_start_on:clinicOn,plan_end_on:clinicOn?datePlus(clinicOn,29):null,
-      next_followup_on:clinicOn?datePlus(clinicOn,30):null,commercial_status:commercialStatus,
+      plan_start_on:clinicOn,plan_end_on:clinicOn?datePlus(clinicOn,89):null,
+      next_followup_on:clinicOn?datePlus(clinicOn,90):null,commercial_status:commercialStatus,
       created_by:userId
     }).select("id").single();
     setBusy(false);setMessage(result.error?"TEAM DEVELOPMENTを作成できませんでした。運営権限をご確認ください。":"TEAM DEVELOPMENTを作成しました。まず事前ヒアリングを入力してください。");
@@ -132,17 +137,32 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
     setBusy(false);setMessage(result.error?"REPORTを保存できませんでした。":status==="issued"?"RBA TEAM DEVELOPMENT REPORTを発行しました。":"REPORT下書きを保存しました。");if(!result.error)await reload(selected.id);
   }
 
-  async function issueThirtyDayPlan(e:FormEvent<HTMLFormElement>){
+  async function issueNinetyDayPlan(e:FormEvent<HTMLFormElement>){
     e.preventDefault();if(!selected||!isAdmin)return;setBusy(true);const form=new FormData(e.currentTarget);
     const start=String(form.get("start_on")||selected.plan_start_on||new Date().toISOString().slice(0,10));
-    const rows=[1,2,3,4].map(week=>({cycle_id:selected.id,week_no:week,starts_on:datePlus(start,(week-1)*7),ends_on:datePlus(start,week*7-1),
-      title:String(form.get(`week_${week}_title`)||`WEEK ${week}`).trim(),focus:String(form.get(`week_${week}_focus`)||"").trim(),
-      objective:String(form.get(`week_${week}_objective`)||"").trim(),small_sided_game:String(form.get(`week_${week}_ssg`)||"").trim(),
-      coach_observation:String(form.get(`week_${week}_observe`)||"").trim(),player_question:String(form.get(`week_${week}_question`)||"").trim(),
-      status:week===1?"active":"planned",created_by:userId,updated_at:new Date().toISOString()}));
+    const rows=Array.from({length:12},(_,i)=>i+1).map(week=>{
+      const phase=phaseForWeek(week);
+      const phaseWeek=((week-1)%4)+1;
+      return {cycle_id:selected.id,week_no:week,starts_on:datePlus(start,(week-1)*7),ends_on:datePlus(start,Math.min(week*7-1,89)),
+        title:String(form.get(`phase_${phase}_title`)||phaseLabel[phase]).trim()+` / W${phaseWeek}`,
+        focus:String(form.get(`phase_${phase}_focus`)||"").trim(),
+        objective:String(form.get(`phase_${phase}_objective`)||"").trim(),
+        small_sided_game:String(form.get(`phase_${phase}_ssg`)||"").trim(),
+        coach_observation:String(form.get(`phase_${phase}_observe`)||"").trim(),
+        player_question:String(form.get(`phase_${phase}_question`)||"").trim(),
+        status:week===1?"active":"planned",created_by:userId,updated_at:new Date().toISOString()};
+    });
     const result=await db.from("team_development_plan_weeks").upsert(rows,{onConflict:"cycle_id,week_no"});
-    if(!result.error)await db.from("team_development_cycles").update({status:"plan_active",plan_start_on:start,plan_end_on:datePlus(start,27),next_followup_on:datePlus(start,30),updated_at:new Date().toISOString()}).eq("id",selected.id);
-    setBusy(false);setMessage(result.error?"30日プランを保存できませんでした。":"30 DAY DEVELOPMENT PLANを発行しました。");if(!result.error)await reload(selected.id);
+    if(!result.error)await db.from("team_development_cycles").update({status:"plan_active",package_key:selected.package_key==="clinic_30"?"clinic_90":selected.package_key,plan_start_on:start,plan_end_on:datePlus(start,89),next_followup_on:datePlus(start,90),updated_at:new Date().toISOString()}).eq("id",selected.id);
+    setBusy(false);setMessage(result.error?"90日プランを保存できませんでした。":"90 DAY DEVELOPMENT PLANを発行しました。");if(!result.error)await reload(selected.id);
+  }
+
+  async function savePhaseReview(e:FormEvent<HTMLFormElement>){
+    e.preventDefault();if(!selected)return;setBusy(true);const form=new FormData(e.currentTarget);const phase=Number(form.get("phase_no"));
+    const result=await db.from("team_development_phase_reviews").upsert({cycle_id:selected.id,phase_no:phase,review_on:String(form.get("review_on")),submitted_by:userId,
+      progress_state:String(form.get("progress_state")),what_changed:String(form.get("what_changed")||"").trim(),evidence:String(form.get("evidence")||"").trim(),
+      next_priority:String(form.get("next_priority")||"").trim(),rba_note:"",updated_at:new Date().toISOString()},{onConflict:"cycle_id,phase_no"});
+    setBusy(false);setMessage(result.error?"フェーズレビューを保存できませんでした。":`D${phase*30} REVIEWを保存しました。`);if(!result.error)await loadCycle(selected.id);
   }
 
   async function addCheckin(e:FormEvent<HTMLFormElement>){
@@ -163,10 +183,10 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
   const partnerCount=cycles.filter(x=>x.commercial_status==="partner"||x.package_key==="partner").length;
 
   return <div className={styles.workspacePage}>
-    <section className={styles.workspaceHero}><p>RBA / TEAM DEVELOPMENT</p><h1>チームのクリニックを、<br/>次の30日へ。</h1><p>事前ヒアリング、RBAの現場観察、TEAM REPORT、4週間の実践、指導者の振り返りを一つにつなぎます。選手個人の公開ランキングには使いません。</p></section>
-    <nav className={styles.workspaceNav}>{([["overview","全体"],["brief","事前"],["report","REPORT"],["plan","30 DAYS"],["checkin","振り返り"]] as const).map(([key,label])=><button key={key} aria-pressed={tab===key} onClick={()=>setTab(key)}>{label}</button>)}</nav>
+    <section className={styles.workspaceHero}><p>RBA / TEAM DEVELOPMENT</p><h1>チームのクリニックを、<br/>次の90日へ。</h1><p>事前ヒアリング、RBAの現場観察、TEAM REPORT、12週間の実践、D30・D60・D90の確認、指導者の振り返りを一つにつなぎます。選手個人の公開ランキングには使いません。</p></section>
+    <nav className={styles.workspaceNav}>{([["overview","全体"],["brief","事前"],["report","REPORT"],["plan","90 DAYS"],["checkin","振り返り"]] as const).map(([key,label])=><button key={key} aria-pressed={tab===key} onClick={()=>setTab(key)}>{label}</button>)}</nav>
     {message?<p className={styles.message} role="status">{message}</p>:null}
-    {isAdmin?<section className={styles.timelineStats}><article><span>SCHEDULED</span><strong>{scheduledCount}</strong><p>これから訪問・クリニック</p></article><article><span>30 DAYS</span><strong>{activePlanCount}</strong><p>実践中のチーム</p></article><article><span>FOLLOW-UP</span><strong>{followupDueCount}</strong><p>再確認のタイミング</p></article><article><span>PARTNER</span><strong>{partnerCount}</strong><p>継続パートナー</p></article></section>:null}
+    {isAdmin?<section className={styles.timelineStats}><article><span>SCHEDULED</span><strong>{scheduledCount}</strong><p>これから訪問・クリニック</p></article><article><span>90 DAYS</span><strong>{activePlanCount}</strong><p>実践中のチーム</p></article><article><span>FOLLOW-UP</span><strong>{followupDueCount}</strong><p>再確認のタイミング</p></article><article><span>PARTNER</span><strong>{partnerCount}</strong><p>継続パートナー</p></article></section>:null}
 
     <section className={styles.workspaceSection}>
       <div className={styles.workspaceGrid}>
@@ -178,7 +198,7 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
             <label className={styles.wide}>チーム・団体<select name="entity_id" required>{entities.map(x=><option key={x.id} value={x.id}>{x.name} / {[x.region,x.city].filter(Boolean).join(" ")}</option>)}</select></label>
             <label className={styles.wide}>タイトル<input name="title" required placeholder="2026 秋｜RBA TEAM DEVELOPMENT"/></label>
             {isAdmin?<><label>入口<select name="source_service"><option value="rba_team_clinic">TEAM CLINIC</option><option value="rba_visit_training">VISIT TRAINING</option><option value="partner_program">PARTNER</option><option value="self_started">TEAM HOME</option></select></label>
-            <label>プラン<select name="package_key"><option value="clinic">CLINIC</option><option value="clinic_30">CLINIC + 30</option><option value="partner">PARTNER</option><option value="custom">CUSTOM</option></select></label>
+            <label>プラン<select name="package_key"><option value="clinic">CLINIC</option><option value="clinic_30">CLINIC + 30（旧）</option><option value="clinic_90">CLINIC + 90</option><option value="partner">PARTNER</option><option value="custom">CUSTOM</option></select></label>
             <label>実施日<input name="clinic_on" type="date"/></label><label>利用区分<select name="commercial_status"><option value="included">INCLUDED</option><option value="trial">TRIAL</option><option value="active">ACTIVE</option><option value="partner">PARTNER</option></select></label></>:<><input type="hidden" name="source_service" value="self_started"/><input type="hidden" name="package_key" value="custom"/><input type="hidden" name="commercial_status" value="included"/><label className={styles.wide}>開始日（任意）<input name="clinic_on" type="date"/></label><p className={styles.wide}>RBA TEAM CLINIC / PARTNERの区分は、RBA側で実施確認後に設定します。</p></>}
             <button className={styles.wide} disabled={busy}>{busy?<LoaderCircle/>:<CheckCircle2/>}作成</button>
           </form></div>:<div className={styles.empty}><ShieldCheck/><p>まずチーム・団体の運営者確認を完了してください。</p><a href="/ja/my-homecourt/app/claim">運営者確認へ<ArrowRight/></a></div>}
@@ -187,12 +207,12 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
         <main className={styles.main}>
           {!selected?<div className={styles.empty}><ClipboardList/><h2>TEAM DEVELOPMENTを選択してください。</h2></div>:<>
             {tab==="overview"?<>
-              <div className={styles.panel}><span>{sourceLabel[selected.source_service]||selected.source_service}</span><h2>{selected.title}</h2><div className={styles.cycleMeta}><b>{entityName(selected.entity_id)}</b><b>{statusLabel[selected.status]||selected.status}</b><b>{selected.package_key}</b><b>{selected.commercial_status}</b>{selected.clinic_on?<b>{selected.clinic_on}</b>:null}{selected.next_followup_on?<b>FOLLOW-UP {selected.next_followup_on}</b>:null}</div><p>事前 → 現場 → REPORT → 30 DAYS → FOLLOW-UPの順に、一つのチーム履歴として残します。</p></div>
+              <div className={styles.panel}><span>{sourceLabel[selected.source_service]||selected.source_service}</span><h2>{selected.title}</h2><div className={styles.cycleMeta}><b>{entityName(selected.entity_id)}</b><b>{statusLabel[selected.status]||selected.status}</b><b>{selected.package_key}</b><b>{selected.commercial_status}</b>{selected.clinic_on?<b>{selected.clinic_on}</b>:null}{selected.next_followup_on?<b>FOLLOW-UP {selected.next_followup_on}</b>:null}</div><p>事前 → 現場 → REPORT → D30 → D60 → D90 → FOLLOW-UPの順に、一つのチーム履歴として残します。</p></div>
               <div className={styles.reportGrid}>
                 <article><ClipboardList/><h3>事前ヒアリング</h3><p>{brief?"入力済み":"未入力"}。現在の課題と「何を変えたいか」を共有します。</p></article>
                 <article><Eye/><h3>RBA OBSERVATION</h3><p>{findings.length}件。個人点数ではなく、チームに起きている現象を記録します。</p></article>
                 <article><Target/><h3>TEAM REPORT</h3><p>{report?.status==="issued"?"発行済み":"未発行"}。強みと優先課題を次の練習へ落とします。</p></article>
-                <article><RefreshCw/><h3>30 DAYS</h3><p>{weeks.length?weeks.length+"週を設定済み":"未設定"}。4週間の実践と振り返りをつなぎます。</p></article>
+                <article><RefreshCw/><h3>90 DAYS</h3><p>{weeks.length?weeks.length+"週を設定済み":"未設定"}。12週間を3フェーズで進め、D30・D60・D90で変化を確認します。</p></article>
               </div>
               <div className={styles.panel}><h3>TEAM DEVELOPMENT TIMELINE</h3><div className={styles.checkins}>
                 <div className={styles.checkinCard}><strong>START</strong><p>{selected.created_at.slice(0,10)} / {selected.title}</p></div>
@@ -212,7 +232,7 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
               <label>見る・判断する部分の課題<textarea name="perception_decision_challenge" rows={4} defaultValue={brief?.perception_decision_challenge||""}/></label>
               <label>身体・負荷・動きの課題<textarea name="physical_challenge" rows={4} defaultValue={brief?.physical_challenge||""}/></label>
               <label className={styles.wide}>指導者が今回見てほしいこと<textarea name="coach_goal" rows={4} defaultValue={brief?.coach_goal||""}/></label>
-              <label className={styles.wide}>30日後、どう変わっていてほしいか<textarea name="desired_change" rows={4} defaultValue={brief?.desired_change||""}/></label>
+              <label className={styles.wide}>90日後、どう変わっていてほしいか<textarea name="desired_change" rows={4} defaultValue={brief?.desired_change||""}/></label>
               <label className={styles.wide}>施設・人数・時間などの制約<textarea name="constraints" rows={3} defaultValue={brief?.constraints||""}/></label>
               <label className={styles.wide}>その他<textarea name="notes" rows={3} defaultValue={brief?.notes||""}/></label>
               <button className={styles.wide} disabled={busy}>事前ヒアリングを保存</button>
@@ -237,11 +257,11 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
             </>:null}
 
             {tab==="plan"?<>
-              <div className={styles.panel}><h2>30 DAY DEVELOPMENT PLAN</h2><p>RBAが帰った後の4週間を、練習テーマ・ゲーム・観察点・選手への問いまで残します。</p><div className={styles.weeks}>{weeks.map(w=><article className={styles.weekCard} key={w.id}><span>W{w.week_no}</span><div><strong>{w.title}</strong><p>{w.focus}</p><dl><div><dt>OBJECTIVE</dt><dd>{w.objective||"—"}</dd></div><div><dt>SMALL-SIDED GAME</dt><dd>{w.small_sided_game||"—"}</dd></div><div><dt>COACH OBSERVES</dt><dd>{w.coach_observation||"—"}</dd></div><div><dt>PLAYER QUESTION</dt><dd>{w.player_question||"—"}</dd></div></dl></div></article>)}</div></div>
-              {isAdmin?<div className={styles.panel}><h2>4週間を発行</h2><form className={styles.form} onSubmit={issueThirtyDayPlan}><label className={styles.wide}>開始日<input name="start_on" type="date" defaultValue={selected.plan_start_on||selected.clinic_on||new Date().toISOString().slice(0,10)}/></label>{[1,2,3,4].map(week=><div className={styles.wide} key={week}><h3>WEEK {week}</h3><div className={styles.form}><label>タイトル<input name={`week_${week}_title`} defaultValue={weeks.find(x=>x.week_no===week)?.title||""}/></label><label>FOCUS<input name={`week_${week}_focus`} defaultValue={weeks.find(x=>x.week_no===week)?.focus||""}/></label><label className={styles.wide}>目的<textarea name={`week_${week}_objective`} rows={2} defaultValue={weeks.find(x=>x.week_no===week)?.objective||""}/></label><label className={styles.wide}>Small-Sided Game<textarea name={`week_${week}_ssg`} rows={2} defaultValue={weeks.find(x=>x.week_no===week)?.small_sided_game||""}/></label><label>コーチが見ること<textarea name={`week_${week}_observe`} rows={3} defaultValue={weeks.find(x=>x.week_no===week)?.coach_observation||""}/></label><label>選手への問い<textarea name={`week_${week}_question`} rows={3} defaultValue={weeks.find(x=>x.week_no===week)?.player_question||""}/></label></div></div>)}<button className={styles.wide} disabled={busy}>30日プランを発行</button></form></div>:null}
+              <div className={styles.panel}><h2>90 DAY DEVELOPMENT PLAN</h2><p>RBAが帰った後の90日を、D1–30 / D31–60 / D61–90の3フェーズに分けます。毎週の練習テーマと、30日ごとの変化確認を残します。</p><div className={styles.weeks}>{weeks.map(w=><article className={styles.weekCard} key={w.id}><span>W{w.week_no}<br/><small>{phaseLabel[phaseForWeek(w.week_no)]}</small></span><div><strong>{w.title}</strong><p>{w.focus}</p><dl><div><dt>OBJECTIVE</dt><dd>{w.objective||"—"}</dd></div><div><dt>SMALL-SIDED GAME</dt><dd>{w.small_sided_game||"—"}</dd></div><div><dt>COACH OBSERVES</dt><dd>{w.coach_observation||"—"}</dd></div><div><dt>PLAYER QUESTION</dt><dd>{w.player_question||"—"}</dd></div></dl></div></article>)}</div></div>
+              {isAdmin?<div className={styles.panel}><h2>90日・3フェーズを発行</h2><form className={styles.form} onSubmit={issueNinetyDayPlan}><label className={styles.wide}>開始日<input name="start_on" type="date" defaultValue={selected.plan_start_on||selected.clinic_on||new Date().toISOString().slice(0,10)}/></label>{[1,2,3].map(phase=><div className={styles.wide} key={phase}><h3>{phaseLabel[phase]}</h3><div className={styles.form}><label>フェーズ名<input name={`phase_${phase}_title`} defaultValue={phase===1?"FOUNDATION":phase===2?"TRANSFER":"AUTONOMY"}/></label><label>FOCUS<input name={`phase_${phase}_focus`} defaultValue={weeks.find(x=>phaseForWeek(x.week_no)===phase)?.focus||""}/></label><label className={styles.wide}>目的<textarea name={`phase_${phase}_objective`} rows={2} defaultValue={weeks.find(x=>phaseForWeek(x.week_no)===phase)?.objective||""}/></label><label className={styles.wide}>Small-Sided Game<textarea name={`phase_${phase}_ssg`} rows={2} defaultValue={weeks.find(x=>phaseForWeek(x.week_no)===phase)?.small_sided_game||""}/></label><label>コーチが見ること<textarea name={`phase_${phase}_observe`} rows={3} defaultValue={weeks.find(x=>phaseForWeek(x.week_no)===phase)?.coach_observation||""}/></label><label>選手への問い<textarea name={`phase_${phase}_question`} rows={3} defaultValue={weeks.find(x=>phaseForWeek(x.week_no)===phase)?.player_question||""}/></label></div></div>)}<button className={styles.wide} disabled={busy}>90日プランを発行</button></form></div>:null}
             </>:null}
 
-            {tab==="checkin"?<div className={styles.panel}><h2>WEEKLY CHECK-IN</h2><p>結果の勝ち負けではなく、「何が増えたか」「どこで止まっているか」「次に何を変えるか」を残します。</p><div className={styles.checkins}>{checkins.map(c=><article className={styles.checkinCard} key={c.id}><span>WEEK {c.week_no||"-"} / {new Date(c.submitted_at).toLocaleDateString("ja-JP")}</span><h3>{progressLabel[c.progress_state]||c.progress_state}</h3>{c.worked?<p><strong>良くなったこと：</strong>{c.worked}</p>:null}{c.evidence?<p><strong>見えた変化：</strong>{c.evidence}</p>:null}{c.stuck?<p><strong>詰まっていること：</strong>{c.stuck}</p>:null}{c.adjustment?<p><strong>次の調整：</strong>{c.adjustment}</p>:null}</article>)}</div><form className={styles.form} onSubmit={addCheckin}><label>週<select name="week_no">{weeks.length?weeks.map(w=><option key={w.week_no} value={w.week_no}>WEEK {w.week_no}</option>):[1,2,3,4].map(w=><option key={w} value={w}>WEEK {w}</option>)}</select></label><label>今の状態<select name="progress_state"><option value="not_started">まだ試していない</option><option value="trying">試している</option><option value="more_consistent">安定して増えてきた</option><option value="embedded">習慣になってきた</option></select></label><label className={styles.wide}>良くなったこと<textarea name="worked" rows={3}/></label><label className={styles.wide}>実際に見えた変化<textarea name="evidence" rows={3}/></label><label>詰まっていること<textarea name="stuck" rows={3}/></label><label>次の練習で変えること<textarea name="adjustment" rows={3}/></label><button className={styles.wide} disabled={busy}>今週の振り返りを保存</button></form></div>:null}
+            {tab==="checkin"?<><div className={styles.panel}><h2>D30 / D60 / D90 REVIEW</h2><p>30日ごとに、単なる感想ではなく「何が変わったか」「何を根拠にそう言えるか」「次の30日で何を優先するか」を確認します。</p><div className={styles.checkins}>{phaseReviews.map(r=><article className={styles.checkinCard} key={r.id}><span>D{r.phase_no*30} / {new Date(r.review_on+"T12:00:00").toLocaleDateString("ja-JP")}</span><h3>{progressLabel[r.progress_state]||r.progress_state}</h3>{r.what_changed?<p><strong>変わったこと：</strong>{r.what_changed}</p>:null}{r.evidence?<p><strong>根拠：</strong>{r.evidence}</p>:null}{r.next_priority?<p><strong>次の30日の優先：</strong>{r.next_priority}</p>:null}</article>)}</div><form className={styles.form} onSubmit={savePhaseReview}><label>確認<select name="phase_no">{[1,2,3].map(p=><option key={p} value={p}>D{p*30}</option>)}</select></label><label>確認日<input name="review_on" type="date" required defaultValue={new Date().toISOString().slice(0,10)}/></label><label>今の状態<select name="progress_state"><option value="not_started">まだ定着していない</option><option value="trying">試している</option><option value="more_consistent">安定して増えてきた</option><option value="embedded">チームの習慣になってきた</option></select></label><label className={styles.wide}>変わったこと<textarea name="what_changed" rows={3}/></label><label className={styles.wide}>そう言える根拠<textarea name="evidence" rows={3}/></label><label className={styles.wide}>次の30日の優先課題<textarea name="next_priority" rows={3}/></label><button className={styles.wide} disabled={busy}>フェーズレビューを保存</button></form></div><div className={styles.panel}><h2>WEEKLY CHECK-IN</h2><p>結果の勝ち負けではなく、「何が増えたか」「どこで止まっているか」「次に何を変えるか」を残します。</p><div className={styles.checkins}>{checkins.map(c=><article className={styles.checkinCard} key={c.id}><span>WEEK {c.week_no||"-"} / {new Date(c.submitted_at).toLocaleDateString("ja-JP")}</span><h3>{progressLabel[c.progress_state]||c.progress_state}</h3>{c.worked?<p><strong>良くなったこと：</strong>{c.worked}</p>:null}{c.evidence?<p><strong>見えた変化：</strong>{c.evidence}</p>:null}{c.stuck?<p><strong>詰まっていること：</strong>{c.stuck}</p>:null}{c.adjustment?<p><strong>次の調整：</strong>{c.adjustment}</p>:null}</article>)}</div><form className={styles.form} onSubmit={addCheckin}><label>週<select name="week_no">{weeks.length?weeks.map(w=><option key={w.week_no} value={w.week_no}>WEEK {w.week_no}</option>):Array.from({length:12},(_,i)=>i+1).map(w=><option key={w} value={w}>WEEK {w}</option>)}</select></label><label>今の状態<select name="progress_state"><option value="not_started">まだ試していない</option><option value="trying">試している</option><option value="more_consistent">安定して増えてきた</option><option value="embedded">習慣になってきた</option></select></label><label className={styles.wide}>良くなったこと<textarea name="worked" rows={3}/></label><label className={styles.wide}>実際に見えた変化<textarea name="evidence" rows={3}/></label><label>詰まっていること<textarea name="stuck" rows={3}/></label><label>次の練習で変えること<textarea name="adjustment" rows={3}/></label><button className={styles.wide} disabled={busy}>今週の振り返りを保存</button></form></div></>:null}
           </>}
         </main>
       </div>
