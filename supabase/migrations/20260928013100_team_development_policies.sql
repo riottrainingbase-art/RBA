@@ -122,4 +122,4 @@ comment on table public.team_development_findings is
 comment on table public.team_development_reports is
 'RBA-issued team development report following a clinic or observation.';
 comment on table public.team_development_plan_weeks is
-'Structured follow-up plan, typically four weeks / 30 days, after RBA team clinic or visit training.';
+'Structured follow-up plan, typically 90 days across three development phases, after RBA team clinic or visit training.';
