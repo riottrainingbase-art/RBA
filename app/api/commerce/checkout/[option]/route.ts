@@ -24,13 +24,19 @@ export async function GET(request: Request, context: { params: Promise<{ option:
     if (authError || !user) return redirect(request, `${prefix}/my-homecourt/login?next=${encodeURIComponent(`/api/commerce/checkout/${option}?locale=${locale}`)}`);
     const { data, error } = await supabase.functions.invoke("rba-checkout-gateway", { body: { offer_slug: offers[option] } });
     // No fallback to a payment link when the existing gateway rejects the request.
-    if (error || !data?.ok || data.decision !== "allowed") return redirect(request, paymentEnquiryUrl(option,locale));
+    if (error || !data?.ok || data.decision !== "allowed") {
+      const reason=encodeURIComponent(String(data?.reason||data?.error||"checkout_unavailable"));
+      if(option==="homecourt-monthly"&&locale==="ja") return redirect(request, `/ja/my-homecourt/subscribe?status=${reason}`);
+      return redirect(request, paymentEnquiryUrl(option,locale));
+    }
     const destination = new URL(data.checkout_url);
     if (destination.protocol !== "https:" || !["book.stripe.com", "buy.stripe.com", "checkout.stripe.com"].includes(destination.hostname) || destination.username || destination.password) {
+      if(option==="homecourt-monthly"&&locale==="ja") return redirect(request, "/ja/my-homecourt/subscribe?status=checkout_unavailable");
       return redirect(request, paymentEnquiryUrl(option,locale));
     }
     return redirect(request, destination.href);
   } catch {
+    if(option==="homecourt-monthly"&&locale==="ja") return redirect(request, "/ja/my-homecourt/subscribe?status=checkout_unavailable");
     return redirect(request, paymentEnquiryUrl(option,locale));
   }
 }

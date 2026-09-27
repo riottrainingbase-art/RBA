@@ -172,7 +172,14 @@ export function MemberApp({locale,section,userId,email}:{locale:Locale;section:s
     : activation.history===0
       ? {title:locale==="ja"?"まず、経験を1件残す":"Add your first experience",body:locale==="ja"?"以前のRBA参加でも、最近の練習や試合でも大丈夫です。":"Start with one clinic, practice or game.",href:`${prefix}/my-homecourt/app/start`,cta:locale==="ja"?"最初の記録へ":"Add a record"}
       : activation.saves===0
-        ? {title:locale==="ja"?"気になる活動を1件保存する":"Save one next opportunity",body:locale==="ja"?"すぐに申し込む必要はありません。気になる活動を一つ保存しておきましょう。":"You do not need to apply yet. Save one option for later.",href:`${prefix}/opportunities`,cta:locale==="ja"?"活動を探す":"Find opportunities"}
+        ? {
+            title:locale==="ja"?"気になる活動を保存しておく":"Bookmark one next opportunity",
+            body:locale==="ja"
+              ?"すぐに申し込まなくても大丈夫です。気になる活動を保存して、あとで見返せます。"
+              :"You do not need to apply yet. Bookmark one option for later.",
+            href:`${prefix}/opportunities`,
+            cta:locale==="ja"?"活動を探す":"Find opportunities"
+          }
         : {title:locale==="ja"?"記録と保存ができたら、次は継続的な学びへ。":"Keep your growth loop going",body:locale==="ja"?"記録と保存ができたら、次は「学ぶ・試す・振り返る」を自分のペースで続けていきます。":"Continue learning, trying and reflecting.",href:`${prefix}/home-court`,cta:locale==="ja"?"HOMECOURT PLUSを見る":"Explore HOMECOURT"};
   function reportError(){setMessage(c.error);setBusy(false);}
   async function onboarding(e:FormEvent<HTMLFormElement>){

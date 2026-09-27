@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
@@ -171,8 +172,8 @@ export default async function Page({searchParams}:{searchParams:Promise<Record<s
         <h2 style={{fontSize:"clamp(30px,4vw,50px)",margin:"10px 0 18px"}}>一人への返信で終わらせない。</h2>
         <p style={{maxWidth:920,fontSize:17,lineHeight:1.9,color:"#d8d8d3"}}>共有価値のある質問は、個人情報を除いて要約・匿名化し、Threads、Instagram、RBA JOURNAL、ライブ等で回答する場合があります。一つの疑問を、同じ悩みを持つ選手・保護者・指導者が後から使える知識に変えます。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:24}}>
-          <a href="/ja/journal" style={{background:"#fff",color:"#111",padding:"14px 20px",fontWeight:900,textDecoration:"none"}}>RBA JOURNALを見る →</a>
-          <a href="/ja/journal/why-development-debate-becomes-winner-loser" style={{border:"1px solid #777",color:"#fff",padding:"13px 20px",fontWeight:800,textDecoration:"none"}}>勝敗と育成の議論を読む →</a>
+          <Link href="/ja/journal" style={{background:"#fff",color:"#111",padding:"14px 20px",fontWeight:900,textDecoration:"none"}}>RBA JOURNALを見る →</Link>
+          <Link href="/ja/journal/why-development-debate-becomes-winner-loser" style={{border:"1px solid #777",color:"#fff",padding:"13px 20px",fontWeight:800,textDecoration:"none"}}>勝敗と育成の議論を読む →</Link>
         </div>
       </section>
 
