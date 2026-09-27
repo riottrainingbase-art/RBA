@@ -156,11 +156,17 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
   const strengths=findings.filter(x=>x.finding_type==="strength");
   const priorities=findings.filter(x=>x.finding_type==="priority");
   const observations=findings.filter(x=>x.finding_type==="observation");
+  const today=new Date().toISOString().slice(0,10);
+  const scheduledCount=cycles.filter(x=>x.status==="scheduled").length;
+  const activePlanCount=cycles.filter(x=>x.status==="plan_active").length;
+  const followupDueCount=cycles.filter(x=>x.next_followup_on&&x.next_followup_on<=today&&!["completed","paused"].includes(x.status)).length;
+  const partnerCount=cycles.filter(x=>x.commercial_status==="partner"||x.package_key==="partner").length;
 
   return <div className={styles.workspacePage}>
     <section className={styles.workspaceHero}><p>RBA / TEAM DEVELOPMENT</p><h1>チームのクリニックを、<br/>次の30日へ。</h1><p>事前ヒアリング、RBAの現場観察、TEAM REPORT、4週間の実践、指導者の振り返りを一つにつなぎます。選手個人の公開ランキングには使いません。</p></section>
     <nav className={styles.workspaceNav}>{([["overview","全体"],["brief","事前"],["report","REPORT"],["plan","30 DAYS"],["checkin","振り返り"]] as const).map(([key,label])=><button key={key} aria-pressed={tab===key} onClick={()=>setTab(key)}>{label}</button>)}</nav>
     {message?<p className={styles.message} role="status">{message}</p>:null}
+    {isAdmin?<section className={styles.timelineStats}><article><span>SCHEDULED</span><strong>{scheduledCount}</strong><p>これから訪問・クリニック</p></article><article><span>30 DAYS</span><strong>{activePlanCount}</strong><p>実践中のチーム</p></article><article><span>FOLLOW-UP</span><strong>{followupDueCount}</strong><p>再確認のタイミング</p></article><article><span>PARTNER</span><strong>{partnerCount}</strong><p>継続パートナー</p></article></section>:null}
 
     <section className={styles.workspaceSection}>
       <div className={styles.workspaceGrid}>
@@ -181,7 +187,7 @@ export function TeamDevelopmentWorkspace({userId,isAdmin}:{userId:string;isAdmin
         <main className={styles.main}>
           {!selected?<div className={styles.empty}><ClipboardList/><h2>TEAM DEVELOPMENTを選択してください。</h2></div>:<>
             {tab==="overview"?<>
-              <div className={styles.panel}><span>{sourceLabel[selected.source_service]||selected.source_service}</span><h2>{selected.title}</h2><div className={styles.cycleMeta}><b>{entityName(selected.entity_id)}</b><b>{statusLabel[selected.status]||selected.status}</b><b>{selected.package_key}</b>{selected.clinic_on?<b>{selected.clinic_on}</b>:null}</div><p>事前 → 現場 → REPORT → 30 DAYS → FOLLOW-UPの順に、一つのチーム履歴として残します。</p></div>
+              <div className={styles.panel}><span>{sourceLabel[selected.source_service]||selected.source_service}</span><h2>{selected.title}</h2><div className={styles.cycleMeta}><b>{entityName(selected.entity_id)}</b><b>{statusLabel[selected.status]||selected.status}</b><b>{selected.package_key}</b><b>{selected.commercial_status}</b>{selected.clinic_on?<b>{selected.clinic_on}</b>:null}{selected.next_followup_on?<b>FOLLOW-UP {selected.next_followup_on}</b>:null}</div><p>事前 → 現場 → REPORT → 30 DAYS → FOLLOW-UPの順に、一つのチーム履歴として残します。</p></div>
               <div className={styles.reportGrid}>
                 <article><ClipboardList/><h3>事前ヒアリング</h3><p>{brief?"入力済み":"未入力"}。現在の課題と「何を変えたいか」を共有します。</p></article>
                 <article><Eye/><h3>RBA OBSERVATION</h3><p>{findings.length}件。個人点数ではなく、チームに起きている現象を記録します。</p></article>
