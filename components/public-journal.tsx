@@ -48,7 +48,7 @@ function findRelatedArticles(base:PublicJournalPost,posts:PublicJournalPost[],li
 }
 
 export async function PublicJournalHub({locale}:{locale:Locale}){
-  const c=copy[locale], posts=await getPublicJournalPosts(locale,200);
+  const c=copy[locale], posts=await getPublicJournalPosts(locale,500);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const categoryOrder=["development","families","coaching","international","programme"] as const;
   const categoryDescriptions={
@@ -181,7 +181,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
 export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:string}){
   const c=copy[locale], post=await getPublicJournalPost(locale,slug);
   if(!post)notFound();
-  const allPosts=await getPublicJournalPosts(locale,200);
+  const allPosts=await getPublicJournalPosts(locale,500);
   const related=findRelatedArticles(post,allPosts,3);
   const currentInfo=Boolean(post.evidence_level&&/CURRENT|OFFICIAL RULES|REGISTRATION|TRANSFER/i.test(post.evidence_level));
   const safetyInfo=Boolean(post.evidence_level&&/MEDICAL|CDC|CONCUSSION|PEDIATRIC|AAP/i.test(post.evidence_level));
@@ -274,7 +274,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
 }
 
 export async function PublicCoachJournalHub({locale}:{locale:Locale}){
-  const posts=await getPublicJournalPosts(locale,200);
+  const posts=await getPublicJournalPosts(locale,500);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching"||post.coach_application?.length);
   const recentCoachPosts=coachPosts.slice(0,8);
   const prefix=locale==="en"?"":`/${locale}`;
