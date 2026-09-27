@@ -197,7 +197,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
       </div>
 
       <div className="journal-results-head">
-        <strong>{initialised ? filtered.length : items.length} {c.results}</strong>
+        <strong>{locale==="ja" ? `${initialised ? filtered.length : items.length}件 / 全${items.length}本` : `${initialised ? filtered.length : items.length} ${c.results} / ${items.length}`}</strong>
         {hasFilters ? <button type="button" onClick={clear}><X size={14} />{c.clear}</button> : null}
       </div>
 
