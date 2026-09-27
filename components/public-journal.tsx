@@ -126,11 +126,11 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       </section>:null}
 
       {locale==="ja"?<section className="journal-evidence-standard section-pad">
-        <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>事実と解釈を、分けて伝える。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
+        <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>根拠があることと、RBAの考えは分けて書きます。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
         <div className="journal-evidence-grid">
-          <article><span>EVIDENCE</span><h3>研究・公式資料</h3><p>学術論文、系統的レビュー、コンセンサス、FIBA/WABC、WHO、AAPなど、原典を確認できる資料を優先します。</p></article>
-          <article><span>RBA INTERPRETATION</span><h3>現場での使い方</h3><p>研究結果をそのまま日本のU12・U15へ当てはめず、対象年代・競技環境・指導目的を踏まえてRBAの解釈を分けて書きます。</p></article>
-          <article><span>LIMITATIONS</span><h3>分かっていないこと</h3><p>研究対象が異なる、直接比較した研究がない、因果関係までは分からない。そうした限界も、本文とあわせて明記します。</p></article>
+          <article><span>EVIDENCE</span><h3>研究・公式資料</h3><p>学術論文やFIBA/WABC、JBAなど、できる限り元の資料まで確認して掲載します。</p></article>
+          <article><span>RBA INTERPRETATION</span><h3>RBAの考え方</h3><p>研究結果をそのまま当てはめるのではなく、日本のU12・U15の現場ではどう考えるかを分けて書きます。</p></article>
+          <article><span>LIMITATIONS</span><h3>断定できないこと</h3><p>研究対象が違う場合や、まだ十分な比較研究がない場合は、その点も書きます。</p></article>
         </div>
       </section>:null}
 
@@ -147,13 +147,13 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
       </section>:null}
       {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
-        <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>まず、この4本から。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
+        <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>RBAの考え方が分かる4本です。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
         <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>参考文献 {post.source_references.length}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
         </Link>)}</div>
       </section>:null}
       {locale==="ja"?<section className="homecourt-role-section section-pad">
-        <div className="section-head"><div><p className="section-index">悩みから探す</p><h2>いま抱えている悩みから探す。</h2></div><p>専門用語やテーマ名が分からなくても大丈夫です。保護者・指導者それぞれの悩みから記事を探せます。</p></div>
+        <div className="section-head"><div><p className="section-index">悩みから探す</p><h2>気になっていることから読めます。</h2></div><p>専門用語やテーマ名が分からなくても大丈夫です。保護者・指導者それぞれの悩みから記事を探せます。</p></div>
         <div className="homecourt-role-grid">
           <article><span>PARENTS</span><h3>保護者の方</h3><p>チーム選び、出場時間、試合後の声かけ、役割固定など。</p>{familyPaths.map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
           <article><span>COACHES</span><h3>指導者の方</h3><p>勝利と育成、ベンチワーク、プレス、判断を育てる練習設計など。</p><Link href="/ja/journal/coaches"><strong>指導者専用JOURNALへ</strong> <ArrowRight size={15}/></Link>{coachPaths.slice(0,5).map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
@@ -162,7 +162,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       </section>:null}
       
       {locale==="ja"?<section className="homecourt-role-section section-pad">
-        <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読むだけで終わらせない。</h2></div><p>自分の立場に合う情報を保存し、次の活動や学びにつなげるならMY HOME COURTへ。</p></div>
+        <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読んだあと、どう動くか。</h2></div><p>自分の立場に合う情報を保存し、次の活動や学びにつなげるならMY HOME COURTへ。</p></div>
         <div className="homecourt-role-grid">
           <article><span>PLAYER</span><h3>選手</h3><p>練習、試合、次のクリニック。今の自分に必要な情報をまとめて探せます。</p><Link href="/ja/my-homecourt/players">選手向けHOME <ArrowRight size={16}/></Link></article>
           <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに戻って来られる場所です。</p><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
@@ -215,14 +215,14 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
     {currentInfo?<section className="journal-current-notice section-pad"><span>CURRENT / 2026</span><div><strong>制度・ルールに関する記事です。</strong><p>{post.reviewed_at?`最終確認：${new Date(post.reviewed_at).toLocaleDateString("ja-JP")}。`:""} 大会要項・登録期限・競技規則は更新される場合があります。最新のJBA・都道府県協会・大会主管者の案内を優先してください。</p></div></section>:null}
     {safetyInfo?<section className="journal-safety-notice section-pad"><span>HEALTH / SAFETY</span><div><strong>健康・安全に関する一般情報です。</strong><p>診断や個別の復帰判断の代わりにはなりません。痛み・神経症状・頭部衝撃後の症状などがある場合は、医師・理学療法士等の適切な医療専門職へ相談してください。</p></div></section>:null}
     <section className="journal-reading-guide section-pad" aria-label={locale==="ja"?"この記事の読み方":"Article reading guide"}>
-      <div className="journal-reading-guide-copy"><p className="section-index">{locale==="ja"?"この記事の流れ":"IN THIS ARTICLE"}</p><h2>{locale==="ja"?"先に全体像をつかんでから読む。":"See the structure before you read."}</h2><p>{locale==="ja"?"気になる項目から読んでも、最初から順番に読んでも大丈夫です。見出しから該当箇所へ移動できます。":"Jump to the section you need, or read from the beginning."}</p></div>
+      <div className="journal-reading-guide-copy"><p className="section-index">{locale==="ja"?"この記事の流れ":"IN THIS ARTICLE"}</p><h2>{locale==="ja"?"気になるところから読んでください。":"See the structure before you read."}</h2><p>{locale==="ja"?"気になる項目から読んでも、最初から順番に読んでも大丈夫です。見出しから該当箇所へ移動できます。":"Jump to the section you need, or read from the beginning."}</p></div>
       <nav className="journal-reading-nav" aria-label={locale==="ja"?"記事内目次":"Article sections"}>{post.sections.map((section,index)=><a href={`#section-${index+1}`} key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><strong>{section.heading}</strong></a>)}{post.coach_application?.length?<a href="#coach-application"><span>+</span><strong>{locale==="ja"?"現場での使い方":"Coach application"}</strong></a>:null}{post.source_references?.length?<a href="#sources"><span>↗</span><strong>{locale==="ja"?"参考文献":"Sources"}</strong></a>:null}</nav>
       <aside className="journal-reading-point"><span>{locale==="ja"?"まず、ここだけ":"KEY POINT"}</span><strong>{post.aside_title||c.kicker}</strong><p>{post.aside_text||post.standfirst}</p></aside>
     </section>
     {post.evidence_summary||post.rba_interpretation||post.limitations?<section className="journal-evidence-compact section-pad" id="evidence">
       <details>
         <summary>
-          <div><span>EVIDENCE CHECK</span><strong>{locale==="ja"?"根拠・RBAの解釈・限界を確認する":locale==="zh-tw"?"查看證據、RBA解讀與限制":locale==="ko"?"근거·RBA 해석·한계 보기":"Evidence, interpretation and limitations"}</strong></div>
+          <div><span>EVIDENCE CHECK</span><strong>{locale==="ja"?"この記事の根拠とRBAの考え方":locale==="zh-tw"?"查看證據、RBA解讀與限制":locale==="ko"?"근거·RBA 해석·한계 보기":"Evidence, interpretation and limitations"}</strong></div>
           <div>{post.evidence_level?<small>{post.evidence_level}</small>:null}<b>＋</b></div>
         </summary>
         <div className="journal-evidence-grid">
@@ -264,12 +264,12 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       </div>
     </section>:null}
     {related.length?<section className="journal-cms-index section-pad">
-      <div className="section-head"><div><p className="section-index">{locale==="ja"?"関連記事":"RELATED"}</p><h2>{locale==="ja"?"次に読むなら、この3本。":"Keep reading"}</h2></div><p>{locale==="ja"?"現在公開されている記事だけを表示しています。":"Published articles only."}</p></div>
+      <div className="section-head"><div><p className="section-index">{locale==="ja"?"関連記事":"RELATED"}</p><h2>{locale==="ja"?"あわせて読みたい3本。":"Keep reading"}</h2></div><p>{locale==="ja"?"現在公開されている記事だけを表示しています。":"Published articles only."}</p></div>
       <div className="journal-cms-grid">{related.map((item,index)=><Link href={journalHref(locale,item.slug)} key={item.slug}>
         <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][item.category as keyof typeof categoryLabels.en]||item.category}</p><h3>{item.title}</h3><p>{item.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
       </Link>)}</div>
     </section>:null}
-    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは、選択肢を広げる。</h3><p>新しい記事や活動、クリニック、全国・海外の育成機会をまとめて確認できる入口です。</p><a className="button button-light" href="/ja/my-homecourt">無料の入口を見る<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>学びを、日常に残す。</h3><p>読むだけで終わらせず、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
+    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは情報を集める。</h3><p>新しい記事や活動、クリニック、全国・海外の育成機会をまとめて確認できる入口です。</p><a className="button button-light" href="/ja/my-homecourt">無料の入口を見る<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>学んだことを、普段の練習で試す。</h3><p>読むだけで終わらせず、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja">HOMECOURT PLUSを始める<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
   </article></SiteFrame>;
 }
 
