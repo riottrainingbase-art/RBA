@@ -6,7 +6,7 @@ import { PublicUpdateBanner } from "./public-update-banner";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "work-with-rba";
+export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "work-with-rba" | "homecourt/explore" | "homecourt/match";
 
 
 const labels = {
@@ -29,6 +29,8 @@ export function localePath(locale:Locale, page?:LanguagePage){
 export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
   const c=labels[locale];
   const fullNav=[
+    ["HOMECOURT / EXPLORE",localePath(locale,"homecourt/explore")],
+    ["HOMECOURT / MATCH",localePath(locale,"homecourt/match")],
     [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
     [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
     [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
@@ -51,7 +53,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
   ] as const;
   const nav=[
-    [({en:"Find",ja:"HOMECOURTで探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],locale==="ja"?"/ja/homecourt/explore":localePath(locale,"opportunities")] as const,
+    [({en:"HOMECOURT Explore",ja:"HOMECOURTで探す","zh-tw":"HOMECOURT探索",ko:"HOMECOURT 찾기"})[locale],localePath(locale,"homecourt/explore")] as const,
     [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")] as const,
     ["RBA UNITED",localePath(locale,"united")] as const,
     [({en:"MY HOME COURT",ja:"MY HOME COURTを使う","zh-tw":"使用MY HOME COURT",ko:"MY HOME COURT 이용"})[locale],localePath(locale,"my-homecourt")] as const,
@@ -71,7 +73,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <header className="site-header">
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={locale==="ja"?"/ja/homecourt/explore":localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"HOMECOURTで次の環境を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{fullNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={memberHref}>MY HOME COURT / ACCOUNT</a><a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"homecourt/explore")}>{({en:"Find your next environment",ja:"HOMECOURTで次の環境を探す","zh-tw":"尋找下一個培育環境",ko:"다음 성장 환경 찾기"})[locale]}<ArrowRight size={16}/></a>{fullNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={memberHref}>MY HOME COURT / ACCOUNT</a><a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
       <div className="header-actions">
         <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT","ko":"MY HOME COURT"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>
