@@ -2247,3 +2247,98 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .dhub-member-hero h1{font-size:clamp(38px,12vw,56px)}
   .dhub-member-hero>p:not(.section-index){font-size:16px}
 }
+
+/* D-HUB curriculum + lesson + admin */
+.dhub-progress-strip,.dhub-admin-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#cbd0cd;border-top:1px solid #cbd0cd;border-bottom:1px solid #cbd0cd;padding-top:0!important;padding-bottom:0!important}
+.dhub-progress-strip>div,.dhub-admin-stats>div{min-height:145px;padding:22px;background:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+.dhub-progress-strip span,.dhub-admin-stats span{font-size:9px;font-weight:900;letter-spacing:.12em;color:#7c8589}
+.dhub-progress-strip strong,.dhub-admin-stats strong{margin:8px 0;font-size:38px;line-height:1}
+.dhub-progress-strip small,.dhub-admin-stats small{font-size:10px;font-weight:800;color:#6b757a}
+.dhub-progress-next small{max-width:220px;line-height:1.4}
+.dhub-next-lesson{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:48px;background:#eef0ed}
+.dhub-next-lesson h2{max-width:780px;margin:12px 0 16px;font-size:clamp(38px,5vw,66px);line-height:1;letter-spacing:-.045em}
+.dhub-next-lesson>div:first-child>p:not(.section-index){max-width:700px;color:#59646a;font-size:18px;line-height:1.8}
+.dhub-next-card{padding:24px;background:#171a1d;color:#fff;align-self:end}
+.dhub-next-card>span{font-size:9px;font-weight:900;letter-spacing:.12em;color:#adb7bc}
+.dhub-next-card p{margin:16px 0 24px;color:#d1d7da;line-height:1.75}
+.dhub-curriculum{background:#eef0ed}
+.dhub-curriculum-groups{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dhub-curriculum-groups>section{background:#fff;border:1px solid #cbd0cd}
+.dhub-curriculum-groups header{padding:20px 22px;border-bottom:1px solid #d5d9d6}
+.dhub-curriculum-groups header span{font-size:9px;font-weight:900;letter-spacing:.12em;color:#7a8488}
+.dhub-curriculum-groups header h3{margin:8px 0 0;font-size:24px;line-height:1.12}
+.dhub-curriculum-groups>section>div{display:flex;flex-direction:column}
+.dhub-curriculum-groups a{display:grid;grid-template-columns:78px 1fr auto 20px;gap:12px;align-items:center;padding:15px 20px;border-bottom:1px solid #e1e4e2;text-decoration:none}
+.dhub-curriculum-groups a:last-child{border-bottom:0}
+.dhub-curriculum-groups a>span,.dhub-curriculum-groups a>small{font-size:9px;font-weight:900;letter-spacing:.08em;color:#7b8589}
+.dhub-curriculum-groups a>strong{font-size:14px;line-height:1.4}
+.dhub-curriculum-groups a.is-complete{background:#f3f6ef}
+.dhub-curriculum-groups a.is-complete>small{color:#50682d}
+.dhub-lesson-page{background:#fff}
+.dhub-lesson-hero{background:#f4f5f2}
+.dhub-lesson-hero h1{max-width:900px;margin:28px 0 18px;font-size:clamp(44px,7vw,86px);line-height:.96;letter-spacing:-.055em}
+.dhub-lesson-hero>p:not(.section-index){max-width:760px;font-size:20px;line-height:1.8;color:#535e64}
+.dhub-lesson-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.dhub-lesson-meta span{padding:7px 9px;border:1px solid #c7ccca;font-size:9px;font-weight:900;letter-spacing:.1em}
+.dhub-lesson-purpose{display:grid;grid-template-columns:minmax(200px,.35fr) minmax(0,.65fr);gap:44px;background:#171a1d;color:#fff}
+.dhub-lesson-purpose h2{margin:10px 0 0;font-size:38px}
+.dhub-lesson-purpose>p{max-width:760px;margin:0;color:#d0d7da;font-size:21px;line-height:1.8}
+.dhub-lesson-reading{background:#eef0ed}
+.dhub-lesson-reading-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.dhub-lesson-reading-grid a{display:grid;grid-template-columns:24px 1fr 18px;gap:12px;align-items:center;padding:18px;background:#fff;border:1px solid #cbd0cd;text-decoration:none}
+.dhub-lesson-reading-grid strong{text-transform:none;font-size:14px;line-height:1.4}
+.dhub-flow-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#cbd0cd;border:1px solid #cbd0cd}
+.dhub-flow-grid article{min-height:230px;padding:22px;background:#fff}
+.dhub-flow-grid span{font-size:9px;font-weight:900;letter-spacing:.1em;color:#7a8488}
+.dhub-flow-grid h3{margin:14px 0 12px;font-size:24px}
+.dhub-flow-grid p{color:#59646a;line-height:1.75}
+.dhub-field-task{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:42px;background:#111518;color:#fff}
+.dhub-field-task h2{max-width:600px;margin:12px 0 0;font-size:clamp(38px,5vw,64px);line-height:1}
+.dhub-field-task>div:last-child{align-self:end;padding:26px;border:1px solid #414a4f}
+.dhub-field-task strong{font-size:22px;line-height:1.55}
+.dhub-field-task p{color:#c6ced2;line-height:1.75}
+.dhub-reflection{background:#eef0ed}
+.dhub-reflection-grid{display:grid;grid-template-columns:minmax(260px,.7fr) minmax(0,1.3fr);gap:18px}
+.dhub-reflection-grid>div{background:#fff;border:1px solid #cbd0cd}
+.dhub-reflection-grid>div>div{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:18px;border-bottom:1px solid #e0e3e1}
+.dhub-reflection-grid>div>div:last-child{border-bottom:0}
+.dhub-reflection-grid>div span{font-size:10px;font-weight:900;color:#879095}
+.dhub-reflection-grid>div strong{line-height:1.5}
+.dhub-reflection form{padding:22px;background:#fff;border:1px solid #cbd0cd}
+.dhub-reflection label{display:block;margin-bottom:10px;font-size:12px;font-weight:900}
+.dhub-reflection textarea{width:100%;padding:14px;border:1px solid #bfc5c2;background:#fafbf9;font:inherit;line-height:1.7;resize:vertical}
+.dhub-reflection-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dhub-reflection form small{display:block;margin-top:12px;color:#59646a}
+.dhub-lesson-nav{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;background:#fff;border-top:1px solid #d7dbd8}
+.dhub-lesson-nav a{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:850}
+.dhub-lesson-nav a:last-child{justify-self:end}
+.dhub-admin-page{background:#f4f5f2}
+.dhub-admin-hero h1{max-width:900px;margin:22px 0 18px;font-size:clamp(42px,6vw,78px);line-height:.98;letter-spacing:-.05em}
+.dhub-admin-hero>p:not(.section-index){max-width:760px;color:#59646a;font-size:18px;line-height:1.8}
+.dhub-admin-table-wrap{background:#fff}
+.dhub-admin-table{border:1px solid #cbd0cd;overflow-x:auto}
+.dhub-admin-row{min-width:900px;display:grid;grid-template-columns:1.5fr .7fr .8fr .8fr .8fr;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid #e0e3e1}
+.dhub-admin-row:last-child{border-bottom:0}
+.dhub-admin-row.head{background:#171a1d;color:#fff;font-size:9px;font-weight:900;letter-spacing:.1em}
+.dhub-admin-row>span{display:flex;align-items:center;gap:6px;font-size:12px}
+.dhub-admin-row>span:first-child{display:flex;flex-direction:column;align-items:flex-start}
+.dhub-admin-row small{color:#6a7479}
+@media(max-width:900px){
+  .dhub-progress-strip,.dhub-admin-stats{grid-template-columns:1fr 1fr}
+  .dhub-next-lesson,.dhub-lesson-purpose,.dhub-field-task,.dhub-reflection-grid{grid-template-columns:1fr}
+  .dhub-curriculum-groups{grid-template-columns:1fr}
+  .dhub-flow-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .dhub-progress-strip,.dhub-admin-stats{grid-template-columns:1fr 1fr}
+  .dhub-progress-strip>div,.dhub-admin-stats>div{min-height:115px;padding:16px}
+  .dhub-progress-strip strong,.dhub-admin-stats strong{font-size:30px}
+  .dhub-curriculum-groups a{grid-template-columns:62px 1fr 18px}
+  .dhub-curriculum-groups a>small{display:none}
+  .dhub-flow-grid{grid-template-columns:1fr}
+  .dhub-lesson-reading-grid{grid-template-columns:1fr}
+  .dhub-lesson-hero h1{font-size:clamp(38px,11vw,56px)}
+  .dhub-lesson-hero>p:not(.section-index){font-size:17px}
+  .dhub-lesson-nav{grid-template-columns:1fr;gap:16px}
+  .dhub-lesson-nav a:last-child{justify-self:start}
+}
