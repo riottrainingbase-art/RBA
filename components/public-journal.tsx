@@ -6,6 +6,7 @@ import { getPublicJournalPost, getPublicJournalPosts, type PublicJournalPost } f
 import { Locale, localePath, SiteFrame } from "@/components/site-frame";
 import { JournalExplorer } from "@/components/journal-explorer";
 import { JournalReaderTools } from "@/components/journal-reader-tools";
+import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -113,19 +114,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <article><strong>{posts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク</span><small>原典・公式資料を確認できる入口</small></article>
         <article><strong>{posts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>最終確認日を記事ごとに表示</small></article>
       </section>:null}
-      {locale==="ja"?<section className="journal-collections section-pad">
-        <div className="section-head"><div><p className="section-index">CURATED COLLECTIONS</p><h2>テーマをまとめて読む。</h2></div><p>一つの記事だけで終わらず、同じ悩みを複数の角度から確認できます。</p></div>
-        <div className="journal-collection-grid">
-          <Link href="/ja/journal?q=U15#all-articles"><span>01 / U15</span><h3>進路・登録・クラブ選び</h3><p>部活、Bユース、クラブ、登録、移籍、セレクション。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
-          <Link href="/ja/journal?q=チーム選び#all-articles"><span>02 / TEAM</span><h3>チーム選び・移籍</h3><p>スポ少、クラブ、出場機会、規約、費用まで。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
-          <Link href="/ja/journal?q=試合に出られない#all-articles"><span>03 / PLAYING TIME</span><h3>出場時間・役割</h3><p>ベンチ、スタメン、交代、B戦、経験配分。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
-          <Link href="/ja/journal?q=判断#all-articles"><span>04 / DECISION</span><h3>判断を育てる練習</h3><p>3x3、少人数ゲーム、パス、スペーシング、戦術。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
-          <Link href="/ja/journal?q=怪我#all-articles"><span>05 / SAFETY</span><h3>怪我・安全・復帰</h3><p>捻挫、膝痛、オスグッド、脳震盪、Return to Play。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
-          <Link href="/ja/journal?q=海外#all-articles"><span>06 / WORLD</span><h3>海外・国際交流</h3><p>欧州から何を学ぶか、遠征、交流、持ち帰り方。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
-        </div>
-      </section>:null}
-
-      {locale==="ja"?<section className="journal-evidence-standard section-pad">
+      {locale==="ja"?<JournalLearningPathsGrid compact/>:null}\n\n      {locale==="ja"?<section className="journal-evidence-standard section-pad">
         <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>根拠があることと、RBAの考えは分けて書きます。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
         <div className="journal-evidence-grid">
           <article><span>EVIDENCE</span><h3>研究・公式資料</h3><p>学術論文やFIBA/WABC、JBAなど、できる限り元の資料まで確認して掲載します。</p></article>
