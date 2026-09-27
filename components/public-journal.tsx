@@ -139,24 +139,6 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
         <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
       </section>:null}
-      {[
-        {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
-        {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["external-focus-not-body-parts","athlete-controlled-feedback","video-feedback-is-a-tool","minimal-intervention-coaching","why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-        {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["showa-myths-youth-basketball","read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
-        {id:"coach-physical",label:"S&C / SAFETY",slugs:["warmup-is-part-of-coaching","plyometrics-youth-basketball","training-load-is-not-one-number","girls-strength-and-knee-health","acl-prevention-is-a-program","punishment-running-is-not-conditioning"]}
-      ].map(group=>{
-        const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;
-        if(!grouped.length)return null;
-        return <section className="journal-cms-index section-pad" id={group.id} key={group.id}>
-          <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{locale==="ja"?group.label:"COACH JOURNAL"}</h2></div><p>{grouped.length} ARTICLES</p></div>
-          <div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-            <span>{String(index+1).padStart(2,"0")}</span>
-            {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
-            <h3>{post.title}</h3><p>{post.standfirst}</p>
-            <strong>{post.coach_application?.length?(locale==="ja"?"COACH APPLICATION付き":"Includes coach application"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
-          </Link>)}</div>
-        </section>
-      })}
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">{c.exchange}</p><h2>{c.exchangeTitle}</h2><p>{c.exchangeBody}</p></div>
         <div><a className="button button-light" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17}/>{c.ask}</a><a className="button button-dark" href={localePath(locale,"international")}>International <ArrowUpRight size={16}/></a></div>
