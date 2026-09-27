@@ -49,3 +49,17 @@
 .exercise{border-left:5px solid #171717}
 @media(max-width:700px){.methodGrid{grid-template-columns:1fr 1fr}.methodGrid>div{min-height:130px}}
 @media(max-width:430px){.methodGrid{grid-template-columns:1fr}.methodGrid>div{min-height:0}}
+
+
+.libraryTop{margin:28px 0 16px;padding:22px;border:1px solid #d3d6d4;background:#171717;color:#fff;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.libraryTop>div>span{display:block;font-size:10px;font-weight:900;letter-spacing:.12em;color:#aeb7bb}
+.libraryTop strong{display:block;margin:6px 0;font-size:28px;line-height:1.3}
+.libraryTop p{margin:0;color:#c4cbce;font-size:14px}
+.libraryTop>a{flex:0 0 auto;min-height:44px;padding:10px 14px;border:1px solid #666;text-decoration:none;font-weight:700}
+.roleTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+.roleTabs a{min-height:82px;padding:14px;border:1px solid #c9cecb;text-decoration:none;display:flex;align-items:flex-end;justify-content:space-between;background:#fff}
+.roleTabs span{font-size:13px;font-weight:700}.roleTabs strong{font-size:24px}
+.roleTabs .activeRole{background:#171717;color:#fff;border-color:#171717}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 18px}
+.tags span{padding:4px 7px;background:#f0f2ef;border:1px solid #dde1de;font-size:10px;font-weight:700;color:#626c70}
+@media(max-width:700px){.libraryTop{align-items:flex-start;flex-direction:column}.libraryTop>a{width:100%;text-align:center}.roleTabs{grid-template-columns:1fr}.roleTabs a{min-height:58px}}
