@@ -6,7 +6,7 @@ create table if not exists public.team_development_cycles (
   event_id uuid references public.events(id) on delete set null,
   title text not null,
   source_service text not null default 'rba_team_clinic',
-  package_key text not null default 'clinic_30',
+  package_key text not null default 'clinic_90',
   status text not null default 'intake',
   clinic_on date,
   plan_start_on date,
@@ -18,7 +18,7 @@ create table if not exists public.team_development_cycles (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   constraint team_development_cycle_source_check check (source_service in ('rba_team_clinic','rba_visit_training','partner_program','self_started','other')),
-  constraint team_development_cycle_package_check check (package_key in ('clinic','clinic_30','partner','custom')),
+  constraint team_development_cycle_package_check check (package_key in ('clinic','clinic_30','clinic_90','partner','custom')),
   constraint team_development_cycle_status_check check (status in ('intake','scheduled','observed','report_ready','plan_active','review_due','completed','paused')),
   constraint team_development_cycle_commercial_check check (commercial_status in ('included','trial','active','partner','expired')),
   constraint team_development_cycle_date_check check (plan_end_on is null or plan_start_on is null or plan_end_on >= plan_start_on)
@@ -101,7 +101,7 @@ create table if not exists public.team_development_plan_weeks (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   unique(cycle_id, week_no),
-  constraint team_development_week_no_check check (week_no between 1 and 8),
+  constraint team_development_week_no_check check (week_no between 1 and 12),
   constraint team_development_week_status_check check (status in ('planned','active','complete')),
   constraint team_development_week_date_check check (ends_on is null or starts_on is null or ends_on >= starts_on)
 );
@@ -119,7 +119,7 @@ create table if not exists public.team_development_checkins (
   adjustment text not null default '',
   submitted_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  constraint team_development_checkin_week_check check (week_no is null or week_no between 1 and 8),
+  constraint team_development_checkin_week_check check (week_no is null or week_no between 1 and 12),
   constraint team_development_progress_state_check check (progress_state in ('not_started','trying','more_consistent','embedded'))
 );
 create index if not exists team_development_checkins_cycle_idx on public.team_development_checkins(cycle_id, week_no, submitted_at desc);
