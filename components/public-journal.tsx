@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPublicJournalPost, getPublicJournalPosts } from "@/lib/public-content";
-import { Locale, localePath, SiteFrame } from "@/components/site-frame";
+import { Locale, localePath, SiteFrame } from "@/components/site-frame";\nimport { JournalExplorer } from "@/components/journal-explorer";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -22,7 +22,7 @@ const categoryLabels={
 export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale,200);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
-  const featured=posts[0], rest=posts.slice(1), quickLatest=posts.slice(1,4);
+  const featured=posts[0], quickLatest=posts.slice(1,4);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching");
   const categoryOrder=["development","families","coaching","international","programme"] as const;
   const categoryDescriptions={
@@ -33,6 +33,17 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
   } as const;
   const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(({en:"Hello RBA, we are interested in a Japan–Asia basketball exchange.",ja:"RBAの海外交流について相談したいです。","zh-tw":"您好RBA，我們想詢問日本與亞洲的籃球交流。",ko:"RBA의 일본-아시아 농구 교류에 대해 문의하고 싶습니다."})[locale])}`;
   const findPost=(slug:string)=>posts.find(post=>post.slug===slug);
+  const explorerItems=posts.map(post=>({
+    slug:post.slug,
+    category:post.category,
+    audience:post.audience,
+    title:post.title,
+    standfirst:post.standfirst,
+    reading:post.reading,
+    published_at:post.published_at,
+    evidence_level:post.evidence_level,
+    source_count:post.source_references?.length||0
+  }));
   const startHereSlugs=["winning-vs-developing","development-environment","parents-support-not-coach","who-is-playing"];
   const startHere=startHereSlugs.map(findPost).filter(Boolean) as typeof posts;
   const familyPaths=[
@@ -113,30 +124,13 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <div className="homecourt-role-grid">
           <article><span>PARENTS</span><h3>保護者の方</h3><p>チーム選び、出場時間、試合後の声かけ、役割固定など。</p>{familyPaths.map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
           <article><span>COACHES</span><h3>指導者の方</h3><p>勝利と育成、ベンチワーク、プレス、判断を育てる練習設計など。</p><Link href="/ja/journal/coaches"><strong>指導者専用JOURNALへ</strong> <ArrowRight size={15}/></Link>{coachPaths.slice(0,5).map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
-          <article><span>PLAYERS / ALL</span><h3>選手・すべての方</h3><p>試合、練習、クリニック、海外交流を「次の成長」につなげる記事です。</p><Link href="#category-development">育成の記事を見る <ArrowRight size={15}/></Link><Link href="#category-international">海外交流の記事を見る <ArrowRight size={15}/></Link><Link href="/ja/opportunities">参加できる活動を探す <ArrowRight size={15}/></Link></article>
+          <article><span>PLAYERS / ALL</span><h3>選手・すべての方</h3><p>試合、練習、クリニック、海外交流を「次の成長」につなげる記事です。</p><Link href="#all-articles">育成の記事を見る <ArrowRight size={15}/></Link><Link href="#all-articles">海外交流の記事を見る <ArrowRight size={15}/></Link><Link href="/ja/opportunities">参加できる活動を探す <ArrowRight size={15}/></Link></article>
         </div>
       </section>:null}
       <section className="journal-cms-index section-pad">
         <div className="section-head"><div><p className="section-index">{locale==="ja"?"読みたいテーマから探す":c.all}</p><h2>{locale==="ja"?"目的別に、すぐ読める。":`${posts.length} STORIES`}</h2></div><p>{locale==="ja"?"記事が増えても迷わないように、立場とテーマで整理しています。":"Browse by topic."}</p></div>
         <div className="homecourt-role-grid">
-          {categoryOrder.map(category=>{
-            const count=posts.filter(post=>post.category===category).length;
-            if(!count)return null;
-            return <article key={category}><span>{String(count).padStart(2,"0")} ARTICLES</span><h3>{categoryLabels[locale][category]}</h3><p>{categoryDescriptions[locale][category]}</p><a href={`#category-${category}`}>{locale==="ja"?"このテーマの記事を見る":"View articles"} <ArrowRight size={16}/></a></article>
-          })}
-        </div>
-      </section>
-      {categoryOrder.map(category=>{
-        const grouped=rest.filter(post=>post.category===category);
-        if(!grouped.length)return null;
-        return <section className="journal-cms-index section-pad" id={`category-${category}`} key={category}>
-          <div className="section-head"><div><p className="section-index">{categoryLabels[locale][category]}</p><h2>{locale==="ja"?categoryDescriptions.ja[category]:categoryLabels[locale][category]}</h2></div><p>{grouped.length} STORIES</p></div>
-          <div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-            <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}{post.published_at?<span>{new Date(post.published_at).toLocaleDateString(locale)}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
-          </Link>)}</div>
-        </section>
-      })}
-      {locale==="ja"?<section className="homecourt-role-section section-pad">
+          <JournalExplorer locale={locale} items={explorerItems}/>\n      {locale==="ja"?<section className="homecourt-role-section section-pad">
         <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読むだけで終わらせない。</h2></div><p>自分の立場に合う情報を保存し、次の活動や学びにつなげるならMY HOME COURTへ。</p></div>
         <div className="homecourt-role-grid">
           <article><span>PLAYER</span><h3>選手</h3><p>練習、試合、次のクリニック。今の自分に必要な情報をまとめて探せます。</p><Link href="/ja/my-homecourt/players">選手向けHOME <ArrowRight size={16}/></Link></article>
