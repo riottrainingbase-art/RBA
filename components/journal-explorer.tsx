@@ -67,6 +67,7 @@ function normalize(value: string) {
 
 export function JournalExplorer({ locale, items }: { locale: Locale; items: JournalItem[] }) {
   const c = copy[locale];
+  const quickTerms = locale === "ja" ? ["試合に出られない", "U15", "移籍", "練習量", "怪我", "スクリーン"] : [];
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [audience, setAudience] = useState("any");
@@ -119,6 +120,11 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
           />
           {query ? <button type="button" onClick={() => { setQuery(""); resetVisible(); }} aria-label={c.clear}><X size={17} /></button> : null}
         </label>
+
+        {quickTerms.length ? <div className="journal-quick-search">
+          <span>よく探される</span>
+          <div>{quickTerms.map(term=><button type="button" key={term} onClick={() => { setQuery(term); setCategory("all"); setAudience("any"); setVisible(12); }}>{term}</button>)}</div>
+        </div> : null}
 
         <div className="journal-filter-row">
           <span>{c.category}</span>

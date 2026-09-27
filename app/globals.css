@@ -2584,3 +2584,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .journal-cms-article .article-body section li{font-size:17px;line-height:1.88}
   .journal-cms-article .article-body h2{font-size:27px}
 }
+
+
+/* Journal quick discovery + mobile reading trim */
+.journal-quick-search{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:start;padding-top:10px}
+.journal-quick-search>span{padding-top:7px;color:#6b7579;font-size:9px;font-weight:900;letter-spacing:.12em}
+.journal-quick-search>div{display:flex;flex-wrap:wrap;gap:6px}
+.journal-quick-search button{min-height:31px;padding:0 10px;border:0;background:#e9ece9;color:#394348;font:inherit;font-size:10px;font-weight:850;cursor:pointer}
+.journal-quick-search button:hover{background:#dfe3df}
+@media(max-width:620px){
+  .journal-quick-search{grid-template-columns:1fr;gap:6px}
+  .journal-quick-search>span{padding-top:0}
+  .journal-quick-search>div{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px;scrollbar-width:none}
+  .journal-quick-search>div::-webkit-scrollbar{display:none}
+  .journal-quick-search button{flex:0 0 auto}
+  .journal-reading-guide{gap:14px}
+  .journal-reading-guide-copy>p:not(.section-index){display:none}
+  .journal-reading-guide-copy h2{margin:6px 0 0;font-size:25px;line-height:1.2}
+  .journal-reading-point{display:none}
+}
