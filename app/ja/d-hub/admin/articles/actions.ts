@@ -110,14 +110,9 @@ export async function saveArticle(formData:FormData){
  const automatic=await referencesFromRelated(db,related);
  const references=dedupeRefs([...automatic,...manual]);
 
- if(!title||!summary||!category||sections.length<3||questions.length<3||action.length<10){
-  const back=payload.id?"/ja/d-hub/admin/articles/"+payload.id:"/ja/d-hub/admin/articles/new?program="+payload.program_type;
-  redirect(back+"?error=required");
- }
- if(payload.program_type==="coach_lab"&&references.length===0){
-  const back=payload.id?"/ja/d-hub/admin/articles/"+payload.id:"/ja/d-hub/admin/articles/new?program=coach_lab";
-  redirect(back+"?error=references");
- }
+ const back=payload.id?"/ja/d-hub/admin/articles/"+payload.id:"/ja/d-hub/admin/articles/new?program="+payload.program_type;
+ if(!title||!summary||!category||sections.length<3||questions.length<3||action.length<10)redirect(back+"?error=required");
+ if(payload.program_type==="coach_lab"&&references.length===0)redirect(back+"?error=references");
 
  let existing:any=null;
  if(payload.id){
@@ -126,22 +121,8 @@ export async function saveArticle(formData:FormData){
   if(!existing)redirect("/ja/d-hub/admin/articles?error=notfound");
  }
 
- let published=existing?.published||false;
- let publishedAt=existing?.published_at||null;
- if(intent==="draft"||intent==="unpublish"){published=false;publishedAt=null}
- if(intent==="publish"){published=true;publishedAt=new Date().toISOString()}
- if(intent==="schedule"){
-  const when=payload.publish_at?new Date(payload.publish_at):null;
-  if(!when||!Number.isFinite(when.getTime())||when.getTime()<=Date.now()+60000){
-   const back=payload.id?"/ja/d-hub/admin/articles/"+payload.id:"/ja/d-hub/admin/articles/new?program="+payload.program_type;
-   redirect(back+"?error=schedule");
-  }
-  published=true;publishedAt=when.toISOString();
- }
- if(!existing&&(intent==="save"||intent==="preview")){published=false;publishedAt=null}
-
  const slug=normalizeSlug(payload.slug||"",payload.program_type);
- const record={
+ const contentRecord={
   program_type:payload.program_type,
   slug,
   category,
@@ -154,19 +135,42 @@ export async function saveArticle(formData:FormData){
   related_public_slugs:related,
   source_references:references,
   editorial_note:cleanText(payload.editorial_note,3000),
-  published,
-  published_at:publishedAt,
   updated_at:new Date().toISOString(),
   updated_by:user.id
  };
 
+ const isLive=Boolean(existing?.published&&(!existing?.published_at||new Date(existing.published_at).getTime()<=Date.now()));
+
+ if(existing&&isLive&&(intent==="save"||intent==="preview")){
+  await db.from("dhub_paid_article_drafts").upsert({
+   article_id:existing.id,
+   payload:contentRecord,
+   updated_by:user.id,
+   updated_at:new Date().toISOString()
+  },{onConflict:"article_id"});
+  if(intent==="preview")redirect("/ja/d-hub/admin/articles/"+existing.id+"/preview");
+  redirect("/ja/d-hub/admin/articles/"+existing.id+"?saved=working-draft");
+ }
+
+ if(existing&&isLive&&intent==="schedule")redirect(back+"?error=schedule-live");
+
+ let published=existing?.published||false;
+ let publishedAt=existing?.published_at||null;
+ if(intent==="draft"||intent==="unpublish"){published=false;publishedAt=null}
+ if(intent==="publish"){published=true;publishedAt=new Date().toISOString()}
+ if(intent==="schedule"){
+  const when=payload.publish_at?new Date(payload.publish_at):null;
+  if(!when||!Number.isFinite(when.getTime())||when.getTime()<=Date.now()+60000)redirect(back+"?error=schedule");
+  published=true;publishedAt=when.toISOString();
+ }
+ if(!existing&&(intent==="save"||intent==="preview")){published=false;publishedAt=null}
+
+ const record={...contentRecord,published,published_at:publishedAt};
  let articleId=payload.id||"";
+
  if(existing){
   const {error}=await db.from("dhub_paid_articles").update(record).eq("id",existing.id);
-  if(error){
-   const back="/ja/d-hub/admin/articles/"+existing.id;
-   redirect(back+"?error=save");
-  }
+  if(error)redirect("/ja/d-hub/admin/articles/"+existing.id+"?error=save");
   articleId=existing.id;
  }else{
   const {data,error}=await db.from("dhub_paid_articles").insert({...record,created_by:user.id}).select("id").single();
@@ -174,7 +178,11 @@ export async function saveArticle(formData:FormData){
   articleId=data.id;
  }
 
+ if(intent==="publish"||intent==="draft"||intent==="unpublish"||intent==="schedule"){
+  await db.from("dhub_paid_article_drafts").delete().eq("article_id",articleId);
+ }
  await addRevision(db,articleId,user.id,intent);
+
  revalidatePath("/ja/d-hub/admin/articles");
  revalidatePath("/ja/d-hub/coaches/articles");
  revalidatePath("/ja/d-hub/players/articles");
@@ -193,8 +201,10 @@ export async function duplicateArticle(formData:FormData){
  const {count}=await db.from("dhub_paid_articles").select("id",{count:"exact",head:true}).eq("program_type",source.program_type).like("slug",source.slug+"-copy%");
  const slug=source.slug+"-copy-"+String((count||0)+1);
  const {data,error}=await db.from("dhub_paid_articles").insert({
-  ...source,id:undefined,slug,title:source.title+"（複製）",published:false,published_at:null,
-  created_at:undefined,updated_at:new Date().toISOString(),created_by:user.id,updated_by:user.id,
+  program_type:source.program_type,slug,title:source.title+"（複製）",category:source.category,summary:source.summary,reading:source.reading,
+  sections:source.sections,field_action:source.field_action,reflection_questions:source.reflection_questions,
+  related_public_slugs:source.related_public_slugs,source_references:source.source_references,
+  published:false,published_at:null,created_by:user.id,updated_by:user.id,
   editorial_note:"複製元："+source.slug
  }).select("id").single();
  if(error||!data)redirect("/ja/d-hub/admin/articles?error=duplicate");
@@ -216,6 +226,7 @@ export async function restoreRevision(formData:FormData){
   published:false,published_at:null,updated_at:new Date().toISOString(),updated_by:user.id
  };
  await db.from("dhub_paid_articles").update(allowed).eq("id",revision.article_id);
+ await db.from("dhub_paid_article_drafts").delete().eq("article_id",revision.article_id);
  await addRevision(db,revision.article_id,user.id,"restore revision");
  revalidatePath("/ja/d-hub/admin/articles");
  redirect("/ja/d-hub/admin/articles/"+revision.article_id+"?saved=restored");

@@ -11,7 +11,7 @@ type Ref={title?:string;source?:string;year?:number|null;url?:string;note?:strin
 type Article={
  id?:string;program_type:"coach_lab"|"players";slug:string;category:string;title:string;summary:string;reading:string;
  sections:Section[];field_action:string;reflection_questions:string[];related_public_slugs:string[];
- source_references:Ref[];editorial_note?:string;published?:boolean;published_at?:string|null;
+ source_references:Ref[];editorial_note?:string;published?:boolean;published_at?:string|null;has_admin_draft?:boolean;
 };
 type PublicPost={slug:string;title:string;category:string;referenceCount:number};
 type Revision={id:string;revision_no:number;created_at:string;change_note:string|null};
@@ -77,7 +77,7 @@ export function DhubArticleAdminEditor({initial,categories,publicPosts,revisions
  function toggleRelated(slug:string){setRelated(items=>items.includes(slug)?items.filter(x=>x!==slug):[...items,slug])}
  function updateRef(index:number,next:Partial<Ref>){setRefs(items=>items.map((item,i)=>i===index?{...item,...next}:item))}
 
- const currentState=!initial.published?"下書き":initial.published_at&&new Date(initial.published_at)>new Date()?"公開予約":"公開中";
+ const isLive=Boolean(initial.published&&(!initial.published_at||new Date(initial.published_at)<=new Date()));\n const currentState=!initial.published?"下書き":initial.published_at&&new Date(initial.published_at)>new Date()?"公開予約":initial.has_admin_draft?"公開中 / 編集下書きあり":"公開中";
 
  return <div className={styles.editorShell}>
   <div className={styles.editorTop}>
@@ -162,7 +162,7 @@ export function DhubArticleAdminEditor({initial,categories,publicPosts,revisions
        <button name="intent" value="preview"><Eye size={15}/> 保存してプレビュー</button>
        <button name="intent" value="draft"><FileText size={15}/> 下書きに戻す</button>
        <button className={styles.primary} name="intent" value="publish"><ArrowRight size={15}/> 今すぐ公開</button>
-       <button name="intent" value="schedule" disabled={!schedule}><ArrowRight size={15}/> 公開予約</button>
+       <button name="intent" value="schedule" disabled={!schedule||isLive}><ArrowRight size={15}/> 公開予約</button>\n       {isLive?<small>公開中の記事の予約差し替えは、いったん複製して新記事として予約してください。</small>:null}
       </div>
 
       <div className={styles.checkPanel}>
