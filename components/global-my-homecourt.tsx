@@ -47,7 +47,7 @@ const copy:Record<GlobalLocale,{
 export function GlobalMyHomecourt({locale}:{locale:GlobalLocale}){
  const c=copy[locale],prefix=locale==="en"?"":"/"+locale;
  return <SiteFrame locale={locale} languagePage="my-homecourt">
-  <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><p className="section-index inverse">MY HOME COURT</p><h1>{c.title}</h1><p>{c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={prefix+"/my-homecourt/login"}><House size={17}/>{c.start}<ArrowRight size={16}/></a><a className="button button-light" href={locale==="en"?"/homecourt-plus":prefix+"/homecourt-plus"}>{c.plus}<ArrowRight size={16}/></a></div></div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>MY</span><strong>HOME<br/>COURT</strong><small>DISCOVER / EXPERIENCE / TIMELINE / NEXT</small></div></section>
+  <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><p className="section-index inverse">MY HOME COURT</p><h1>{c.title}</h1><p>{c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={prefix+"/my-homecourt/login"}><House size={17}/>{c.start}<ArrowRight size={16}/></a><a className="button button-light" href={`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{c.plus}<ArrowRight size={16}/></a></div></div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>MY</span><strong>HOME<br/>COURT</strong><small>DISCOVER / EXPERIENCE / TIMELINE / NEXT</small></div></section>
 
   <section className="homecourt-product-preview section-pad"><div className="section-head"><div><p className="section-index">ONE SIMPLE LOOP</p><h2>{c.simple}</h2></div><p>{c.simpleBody}</p></div><div className="homecourt-preview-grid">
    <article><Compass/><span>01</span><h3>{c.discover}</h3><p>{c.discoverBody}</p><a className="text-link" href={prefix+"/homecourt/explore"}>HOMECOURT<ArrowRight size={16}/></a></article>
@@ -70,7 +70,7 @@ export function GlobalMyHomecourt({locale}:{locale:GlobalLocale}){
 
   <section className="homecourt-plan-separation section-pad"><div className="homecourt-plan-grid">
    <article className="homecourt-plan-card homecourt-plan-free"><div className="homecourt-plan-card-head"><span>FREE</span><strong>¥0</strong></div><h3>{c.freeTitle}</h3><p>{c.freeBody}</p><a className="button button-light" href={prefix+"/my-homecourt/login"}>{c.start}<ArrowRight size={16}/></a></article>
-   <article className="homecourt-plan-card homecourt-plan-paid"><div className="homecourt-plan-card-head"><span>HOMECOURT PLUS</span><strong>¥3,300</strong></div><h3>{c.paidTitle}</h3><p>{c.paidBody}</p><a className="button button-member" href={locale==="en"?"/homecourt-plus":prefix+"/homecourt-plus"}>{c.plus}<ArrowRight size={16}/></a></article>
+   <article className="homecourt-plan-card homecourt-plan-paid"><div className="homecourt-plan-card-head"><span>HOMECOURT PLUS</span><strong>¥3,300</strong></div><h3>{c.paidTitle}</h3><p>{c.paidBody}</p><a className="button button-member" href={`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{c.plus}<ArrowRight size={16}/></a></article>
   </div></section>
 
   <section className="asia-desk-home section-pad"><div><p className="section-index inverse">{c.world}</p><h2>{c.world}</h2></div><div><p>{c.worldBody}</p><a className="text-link light-link" href={prefix+"/international"}>INTERNATIONAL<ArrowRight size={16}/></a></div></section>
