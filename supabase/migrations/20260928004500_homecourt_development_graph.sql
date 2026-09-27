@@ -208,6 +208,57 @@ to authenticated
 using (private.is_global_admin())
 with check (private.is_global_admin());
 
+create or replace function public.approve_homecourt_entity_suggestion(suggestion_id uuid)
+returns uuid
+language plpgsql
+security definer
+set search_path = ''
+as $
+declare
+  s public.homecourt_entity_suggestions%rowtype;
+  new_entity_id uuid;
+  new_slug text;
+begin
+  if not private.is_global_admin() then
+    raise exception 'not authorized';
+  end if;
+
+  select * into s
+  from public.homecourt_entity_suggestions
+  where id=suggestion_id
+  for update;
+
+  if s.id is null or s.status <> 'pending' then
+    return null;
+  end if;
+
+  new_slug := 'homecourt-' || left(replace(gen_random_uuid()::text,'-',''),16);
+
+  insert into public.platform_entities(
+    entity_type,name,slug,country,region,city,website_url,status,verification_status,created_by
+  ) values (
+    s.entity_type,s.name,new_slug,upper(s.country),s.region,s.city,s.official_url,'active','unverified',(select auth.uid())
+  )
+  returning id into new_entity_id;
+
+  insert into public.homecourt_public_entities(
+    entity_id,entity_type,name,slug,country,region,city,description,website_url,
+    source_url,source_checked_at,last_confirmed_at,published
+  ) values (
+    new_entity_id,s.entity_type,s.name,new_slug,upper(s.country),s.region,s.city,
+    s.note,s.official_url,coalesce(s.source_url,s.official_url),now(),now(),true
+  );
+
+  update public.homecourt_entity_suggestions
+     set status='published',reviewed_by=(select auth.uid()),reviewed_at=now()
+   where id=s.id;
+
+  return new_entity_id;
+end;
+$;
+revoke all on function public.approve_homecourt_entity_suggestion(uuid) from public;
+grant execute on function public.approve_homecourt_entity_suggestion(uuid) to authenticated;
+
 create table if not exists public.homecourt_opportunity_preferences (
   user_id uuid primary key references public.profiles(id) on delete cascade,
   age_group text,
