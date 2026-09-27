@@ -2,9 +2,10 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
-import { getPublicJournalPost, getPublicJournalPosts } from "@/lib/public-content";
+import { getPublicJournalPost, getPublicJournalPosts, type PublicJournalPost } from "@/lib/public-content";
 import { Locale, localePath, SiteFrame } from "@/components/site-frame";
 import { JournalExplorer } from "@/components/journal-explorer";
+import { JournalReaderTools } from "@/components/journal-reader-tools";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -19,6 +20,32 @@ const categoryLabels={
   "zh-tw":{development:"培育",families:"家長",coaching:"教練",international:"國際交流",programme:"活動"},
   ko:{development:"육성",families:"보호자",coaching:"코칭",international:"국제 교류",programme:"프로그램"}
 } as const;
+
+const relatedTopicTerms=["U15","U12","ミニバス","Bユース","部活","クラブ","登録","移籍","セレクション","選抜","出場","プレータイム","ベンチ","スクリーン","マンツーマン","3x3","判断","パス","ドリブル","シュート","リバウンド","守備","プレス","トランジション","タイムアウト","練習","負荷","睡眠","怪我","捻挫","膝","オスグッド","脳震盪","ACL","復帰","保護者","チーム選び","海外","遠征","international","decision","screen","defense","training","injury"];
+
+function relatedArticleScore(base:PublicJournalPost,candidate:PublicJournalPost){
+  let score=0;
+  if(base.category===candidate.category)score+=5;
+  if(base.audience===candidate.audience)score+=3;
+  const baseText=`${base.title} ${base.standfirst} ${base.evidence_level||""}`.toLowerCase();
+  const candidateText=`${candidate.title} ${candidate.standfirst} ${candidate.evidence_level||""}`.toLowerCase();
+  for(const term of relatedTopicTerms){
+    const t=term.toLowerCase();
+    if(baseText.includes(t)&&candidateText.includes(t))score+=4;
+  }
+  if(base.evidence_level&&candidate.evidence_level&&base.evidence_level===candidate.evidence_level)score+=1;
+  return score;
+}
+
+function findRelatedArticles(base:PublicJournalPost,posts:PublicJournalPost[],limit=3){
+  return posts
+    .filter(candidate=>candidate.slug!==base.slug)
+    .map(candidate=>({candidate,score:relatedArticleScore(base,candidate)}))
+    .filter(item=>item.score>0)
+    .sort((a,b)=>b.score-a.score||new Date(b.candidate.published_at||0).getTime()-new Date(a.candidate.published_at||0).getTime())
+    .slice(0,limit)
+    .map(item=>item.candidate);
+}
 
 export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale,200);
@@ -80,6 +107,23 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
       </section>
       <JournalExplorer locale={locale} items={explorerItems}/>
+      {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="RBA JOURNALの情報量">
+        <article><strong>{posts.length}</strong><span>公開記事</span><small>育成・保護者・指導者・海外・プログラム</small></article>
+        <article><strong>{posts.filter(post=>post.evidence_summary||post.source_references?.length).length}</strong><span>根拠欄あり</span><small>EVIDENCE / RBA INTERPRETATION / LIMITATIONS</small></article>
+        <article><strong>{posts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク</span><small>原典・公式資料を確認できる入口</small></article>
+        <article><strong>{posts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>最終確認日を記事ごとに表示</small></article>
+      </section>:null}
+      {locale==="ja"?<section className="journal-collections section-pad">
+        <div className="section-head"><div><p className="section-index">CURATED COLLECTIONS</p><h2>テーマをまとめて読む。</h2></div><p>一つの記事だけで終わらず、同じ悩みを複数の角度から確認できます。</p></div>
+        <div className="journal-collection-grid">
+          <Link href="/ja/journal?q=U15#all-articles"><span>01 / U15</span><h3>進路・登録・クラブ選び</h3><p>部活、Bユース、クラブ、登録、移籍、セレクション。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
+          <Link href="/ja/journal?q=チーム選び#all-articles"><span>02 / TEAM</span><h3>チーム選び・移籍</h3><p>スポ少、クラブ、出場機会、規約、費用まで。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
+          <Link href="/ja/journal?q=試合に出られない#all-articles"><span>03 / PLAYING TIME</span><h3>出場時間・役割</h3><p>ベンチ、スタメン、交代、B戦、経験配分。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
+          <Link href="/ja/journal?q=判断#all-articles"><span>04 / DECISION</span><h3>判断を育てる練習</h3><p>3x3、少人数ゲーム、パス、スペーシング、戦術。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
+          <Link href="/ja/journal?q=怪我#all-articles"><span>05 / SAFETY</span><h3>怪我・安全・復帰</h3><p>捻挫、膝痛、オスグッド、脳震盪、Return to Play。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
+          <Link href="/ja/journal?q=海外#all-articles"><span>06 / WORLD</span><h3>海外・国際交流</h3><p>欧州から何を学ぶか、遠征、交流、持ち帰り方。</p><strong>まとめて探す <ArrowRight size={15}/></strong></Link>
+        </div>
+      </section>:null}
 
       {locale==="ja"?<section className="journal-evidence-standard section-pad">
         <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>事実と解釈を、分けて伝える。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
