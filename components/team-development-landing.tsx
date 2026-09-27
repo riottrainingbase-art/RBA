@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, CalendarRange, CheckCircle2, ClipboardList, Eye, RefreshCw, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarRange, ClipboardList, Eye, RefreshCw, ShieldCheck, Users } from "lucide-react";
 import styles from "./team-development.module.css";
 
 const flow=[
