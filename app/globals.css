@@ -2799,3 +2799,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
  .hc-plus-method-grid article,.hc-plus-tool-grid article,.hc-plus-month-grid article{min-height:0}
  .hc-plus-library-metrics article,.hc-plus-role-grid article{min-height:0}
 }
+
+
+/* HOMECOURT PLUS member hub v1 */
+.homecourt-plus-member{display:flex;flex-direction:column;gap:16px}
+.plus-member-hero{padding:28px;display:flex;justify-content:space-between;gap:24px;background:#171a1d;color:#fff}
+.plus-member-hero>div>p{margin:0;color:#aeb8bc;font-size:10px;font-weight:900;letter-spacing:.13em}
+.plus-member-hero h1{max-width:760px;margin:10px 0 12px;font-size:clamp(34px,4.5vw,58px);line-height:1.02;letter-spacing:-.045em}
+.plus-member-hero span{display:block;max-width:700px;color:#c4cccf;font-size:14px;line-height:1.7}
+.plus-member-hero>svg{width:42px;height:42px;flex:0 0 auto}
+.plus-member-start{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.plus-member-start>a{min-height:210px;padding:20px;display:flex;flex-direction:column;border:1px solid #cbd0cd;background:#fff;text-decoration:none}
+.plus-member-start>a>svg:first-child{width:22px;height:22px}
+.plus-member-start>a>span{margin-top:24px;color:#6f797e;font-size:9px;font-weight:900;letter-spacing:.11em}
+.plus-member-start>a>strong{margin-top:7px;font-size:18px;line-height:1.35}
+.plus-member-start>a>p{margin:8px 0 0;color:#5d676b;font-size:12px;line-height:1.6}
+.plus-member-start>a>svg:last-child{margin-top:auto;align-self:flex-end}
+.plus-member-next{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:24px;background:#eef0ed;border:1px solid #cbd0cd}
+.plus-member-next span{font-size:9px;font-weight:900;letter-spacing:.12em;color:#737d81}
+.plus-member-next strong{display:block;margin:5px 0;font-size:20px}.plus-member-next p{margin:0;color:#5e686d;font-size:13px}
+.plus-member-next>div:last-child{display:flex;gap:7px;flex-wrap:wrap}.plus-member-next a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border:1px solid #171a1d;text-decoration:none;font-size:11px;font-weight:900;background:#fff}
+@media(max-width:900px){.plus-member-start{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.plus-member-hero{padding:20px}.plus-member-start{grid-template-columns:1fr}.plus-member-start>a{min-height:0}.plus-member-next{grid-template-columns:1fr}.plus-member-next>div:last-child{flex-direction:column}.plus-member-next a{justify-content:center}}
