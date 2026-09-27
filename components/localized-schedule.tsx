@@ -17,7 +17,7 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
   const c=copy[locale];
   return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale} languagePage="schedule">
     <section className="inner-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{c.kicker}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p></section>
-    {locale==="ja"?<section className="homecourt-bridge section-pad"><div><p className="section-index inverse">RBA ID / ONE ID</p><h2>参加前の準備から、参加後の振り返りまで。</h2><p>RBA IDを作ると、気になる活動の保存、参加履歴、Basketball Passport、次のおすすめをMY HOME COURTでまとめて確認できます。以前RBAに参加した方も、同じRBA IDから利用できます。</p></div><a className="button button-light" href="/ja/my-homecourt/login?next=%2Fja%2Fopportunities">無料でRBA IDをつくる →</a></section>:null}
+    {locale==="ja"?<section className="homecourt-bridge section-pad"><div><p className="section-index inverse">MY HOME COURT</p><h2>参加前の準備から、参加後の振り返りまで。</h2><p>MY HOME COURTを始めると、気になる活動の保存、参加履歴、Basketball Passport、次のおすすめをMY HOME COURTでまとめて確認できます。以前RBAに参加した方も、同じアカウントから利用できます。</p></div><a className="button button-light" href="/ja/my-homecourt/login?next=%2Fja%2Fopportunities">MY HOME COURTを無料で始める →</a></section>:null}
     {locale==="ja"?<section className="registration-flow section-pad">
       <div><p className="section-index inverse">BEFORE YOU JOIN</p><h2>参加する前に、ひとつ準備しておく。</h2><p>当日を迎える前に、「どんなプレーを試したいか」「何を持ち帰りたいか」を一つ決めておくと、学びがより明確になります。</p></div>
       <div className="registration-flow-steps">
