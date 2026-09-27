@@ -237,7 +237,8 @@ begin
   insert into public.platform_entities(
     entity_type,name,slug,country,region,city,website_url,status,verification_status,created_by
   ) values (
-    s.entity_type,s.name,new_slug,upper(s.country),s.region,s.city,s.official_url,'active','unverified',(select auth.uid())
+    case when s.entity_type in ('team','organizer','facility','partner','supplier') then s.entity_type else 'team' end,
+    s.name,new_slug,upper(s.country),s.region,s.city,s.official_url,'active','unverified',(select auth.uid())
   )
   returning id into new_entity_id;
 
