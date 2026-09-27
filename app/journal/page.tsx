@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {PublicJournalHub} from "@/components/public-journal";
+import {PublicJournalHub} from "@/components/public-journal";export const dynamic="force-dynamic";export const revalidate=0;
 export const metadata:Metadata={
   title:"RBA Journal | Basketball Development in Japan",
   description:"Development guides, field notes, programme information and Japan–Asia exchange from Riot Basketball Academy.",
