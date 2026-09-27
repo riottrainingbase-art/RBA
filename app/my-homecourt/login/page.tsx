@@ -1,4 +1,4 @@
 import type { Metadata } from "next";
 import { MemberLoginEntry } from "@/components/member-login-entry";
-export const metadata:Metadata={title:"MY HOME COURT | Login",robots:{index:false,follow:false}};
+export const metadata:Metadata={title:"MY HOME COURT | Login",description:"Sign in to MY HOME COURT or create a free account.",robots:{index:false,follow:false},alternates:{canonical:"/my-homecourt/login"},openGraph:{title:"MY HOME COURT | Login",description:"Sign in to MY HOME COURT or create a free account.",url:"/my-homecourt/login",siteName:"Riot Basketball Academy",locale:"en_US",type:"website",images:["/rba-court-hero.png"]}};
 export default async function Page({searchParams}:{searchParams:Promise<{error?:string|string[];next?:string|string[]}>}){const query=await searchParams;return <MemberLoginEntry locale="en" next={typeof query.next==="string"?query.next:undefined} authError={query.error==="browser"||query.error==="expired"?query.error:query.error==="auth"}/>;}
