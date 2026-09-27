@@ -328,10 +328,11 @@ create index if not exists homecourt_exchange_posts_targets_gin
 alter table public.homecourt_exchange_posts enable row level security;
 
 drop policy if exists "homecourt exchange posts public read" on public.homecourt_exchange_posts;
-create policy "homecourt exchange posts public read"
+drop policy if exists "homecourt exchange posts manager read" on public.homecourt_exchange_posts;
+create policy "homecourt exchange posts manager read"
 on public.homecourt_exchange_posts for select
-to anon, authenticated
-using (status='open' or private.is_entity_manager(entity_id) or private.is_global_admin());
+to authenticated
+using (private.is_entity_manager(entity_id) or private.is_global_admin());
 
 drop policy if exists "homecourt exchange posts manager insert" on public.homecourt_exchange_posts;
 create policy "homecourt exchange posts manager insert"
@@ -351,6 +352,46 @@ create policy "homecourt exchange posts manager delete"
 on public.homecourt_exchange_posts for delete
 to authenticated
 using (private.is_entity_manager(entity_id));
+
+create or replace function public.get_homecourt_exchange_posts()
+returns table(
+  id uuid,
+  entity_id uuid,
+  title text,
+  age_group text,
+  gender text,
+  country_from text,
+  city_from text,
+  target_countries text[],
+  mode text,
+  starts_on date,
+  ends_on date,
+  team_size_min integer,
+  team_size_max integer,
+  venue_available boolean,
+  languages text[],
+  purpose text,
+  level_note text,
+  public_note text,
+  status text,
+  created_at timestamptz
+)
+language sql
+stable
+security definer
+set search_path = ''
+as $
+  select
+    p.id,p.entity_id,p.title,p.age_group,p.gender,p.country_from,p.city_from,
+    p.target_countries,p.mode,p.starts_on,p.ends_on,p.team_size_min,p.team_size_max,
+    p.venue_available,p.languages,p.purpose,p.level_note,p.public_note,p.status,p.created_at
+  from public.homecourt_exchange_posts p
+  where p.status='open'
+    and (p.ends_on is null or p.ends_on >= current_date - 7)
+  order by p.starts_on nulls last,p.created_at desc;
+$;
+revoke all on function public.get_homecourt_exchange_posts() from public;
+grant execute on function public.get_homecourt_exchange_posts() to anon, authenticated;
 
 create table if not exists public.homecourt_exchange_interests (
   id uuid primary key default gen_random_uuid(),
