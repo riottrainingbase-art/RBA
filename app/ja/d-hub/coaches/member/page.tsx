@@ -118,6 +118,11 @@ export default async function Page() {
           </div>
         </section>
 
+        <section className="dhub-next-lesson section-pad">
+          <div><p className="section-index">MEMBER ARTICLE LIBRARY</p><h2>無料JOURNALの、その先へ。</h2><p>練習の止めどころ、3x3の設計、ローテーション、女子U15の膝、保護者説明、映像レビュー。現場で迷いやすいところを、具体的に掘り下げています。</p></div>
+          <div className="dhub-next-card"><span>COACH LAB MEMBERS ONLY</span><p>参考文献を付けたうえで、研究の話だけにせず、次の練習でどう使うかまでまとめています。</p><Link className="button button-member" href="/ja/d-hub/coaches/articles">有料記事を読む <ArrowRight size={16}/></Link></div>
+        </section>
+
         <section className="dhub-curriculum section-pad">
           <div className="section-head">
             <div><p className="section-index">48-WEEK CURRICULUM</p><h2>12テーマ × 4レッスン。</h2></div>
