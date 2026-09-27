@@ -7,7 +7,7 @@ type GlobalLocale="en"|"zh-tw"|"ko";
 
 const copy:Record<GlobalLocale,{
   hero:string;lead:string;explore:string;team:string;proof1:string;proof2:string;
-  next:string;nextLead:string;all:string;
+  next:string;nextLead:string;all:string;detail:string;
   network:string;networkTitle:string;networkBody:string;
   teams:string;teamsTitle:string;teamsBody:string;
   coach:string;coachTitle:string;coachBody:string;
@@ -19,7 +19,7 @@ const copy:Record<GlobalLocale,{
     hero:"Built in the gym. Connected beyond it.",
     lead:"RBA connects young players, families, coaches and teams with development opportunities across Japan and Asia—without replacing the team they already belong to.",
     explore:"Explore development",team:"For teams",proof1:"participant visits since mid-2025",proof2:"locations across Japan",
-    next:"Next opportunities",nextLead:"A short list of currently open RBA programmes. Use HOMECOURT to explore more environments.",all:"View all RBA programmes",
+    next:"Next opportunities",nextLead:"A short list of currently open RBA programmes. Use HOMECOURT to explore more environments.",all:"View all RBA programmes",detail:"Details / apply",
     network:"HOMECOURT / DEVELOPMENT NETWORK",networkTitle:"Find. Experience. Keep the journey. Move next.",networkBody:"HOMECOURT is designed around real development experiences—not rankings. Explore environments and opportunities, then keep your own history in MY HOME COURT.",
     teams:"FOR TEAMS",teamsTitle:"Turn one clinic into a 90-day development cycle.",teamsBody:"RBA can connect observation, a team report, twelve weeks of practice and D30 / D60 / D90 reviews through TEAM DEVELOPMENT.",
     coach:"COACH DEVELOPMENT",coachTitle:"Learning should return to practice.",coachBody:"D-HUB, RBA JOURNAL and international coach learning connect ideas to real practice design and reflection.",
@@ -31,7 +31,7 @@ const copy:Record<GlobalLocale,{
     hero:"扎根球場，連結更大的世界。",
     lead:"RBA連結球員、家長、教練與球隊，從日本各地走向亞洲的培育機會，同時尊重球員現在所屬的球隊與環境。",
     explore:"探索培育機會",team:"球隊專區",proof1:"2025年中以來累計參與人次",proof2:"日本國內活動地區",
-    next:"近期機會",nextLead:"只顯示目前可參加的RBA活動。想探索更多培育環境，可使用HOMECOURT。",all:"查看全部RBA活動",
+    next:"近期機會",nextLead:"只顯示目前可參加的RBA活動。想探索更多培育環境，可使用HOMECOURT。",all:"查看全部RBA活動",detail:"詳情・報名",
     network:"HOMECOURT / DEVELOPMENT NETWORK",networkTitle:"探索、參與、留下經驗，再走向下一步。",networkBody:"HOMECOURT不是球員排名平台。從培育環境與活動開始，實際參與後，把自己的經驗留在MY HOME COURT。",
     teams:"FOR TEAMS",teamsTitle:"把一次訓練營，延伸成90天的球隊培育。",teamsBody:"RBA把現場觀察、TEAM REPORT、12週實踐，以及D30 / D60 / D90回顧連成TEAM DEVELOPMENT。",
     coach:"COACH DEVELOPMENT",coachTitle:"學習，最後要回到球場。",coachBody:"透過D-HUB、RBA JOURNAL與國際教練交流，把新的觀點帶回訓練設計與現場反思。",
@@ -43,7 +43,7 @@ const copy:Record<GlobalLocale,{
     hero:"코트에서 시작해, 더 넓은 세계와 연결합니다.",
     lead:"RBA는 선수, 보호자, 코치와 팀을 일본 전역과 아시아의 성장 기회에 연결합니다. 현재 소속팀과 환경을 존중하면서 선택지를 넓힙니다.",
     explore:"성장 기회 찾기",team:"팀을 위한 RBA",proof1:"2025년 중반 이후 누적 참가",proof2:"일본 국내 활동 지역",
-    next:"다음 기회",nextLead:"현재 참가 가능한 RBA 프로그램만 간단히 보여줍니다. 더 넓은 환경은 HOMECOURT에서 찾을 수 있습니다.",all:"RBA 프로그램 전체 보기",
+    next:"다음 기회",nextLead:"현재 참가 가능한 RBA 프로그램만 간단히 보여줍니다. 더 넓은 환경은 HOMECOURT에서 찾을 수 있습니다.",all:"RBA 프로그램 전체 보기",detail:"상세・신청",
     network:"HOMECOURT / DEVELOPMENT NETWORK",networkTitle:"찾고, 경험하고, 남기고, 다음으로.",networkBody:"HOMECOURT는 선수 순위 플랫폼이 아닙니다. 성장 환경과 기회를 찾고 실제 경험을 MY HOME COURT에 이어 갑니다.",
     teams:"FOR TEAMS",teamsTitle:"한 번의 클리닉을 90일의 팀 성장으로.",teamsBody:"현장 관찰, TEAM REPORT, 12주 실천, D30 / D60 / D90 리뷰를 TEAM DEVELOPMENT로 연결합니다.",
     coach:"COACH DEVELOPMENT",coachTitle:"배움은 다시 코트로 돌아와야 합니다.",coachBody:"D-HUB, RBA JOURNAL과 국제 코치 학습을 훈련 설계와 현장 성찰로 연결합니다.",
@@ -66,7 +66,7 @@ export function GlobalHome({locale}:{locale:GlobalLocale}){
     </section>
 
     <section className="paid-programmes section-pad"><div className="section-head"><div><p className="section-index">NEXT OPPORTUNITIES</p><h2>{c.next}</h2></div><p>{c.nextLead}</p></div>
-      <div className="paid-programme-grid">{upcoming.map(programme=><article key={programme.id}><time>{tr(programme.date,locale)}</time><h3>{tr(programme.title,locale)}</h3><p className="programme-place"><MapPin size={16}/>{tr(programme.place,locale)}</p><p className="programme-audience"><strong>TARGET</strong>{tr(programme.audience,locale)}</p><p className="programme-price">{tr(programme.price,locale)}</p><a className="programme-link" href={programme.detailPath?prefix+"/"+programme.detailPath:programme.applicationUrl} target={programme.detailPath?undefined:"_blank"} rel={programme.detailPath?undefined:"noreferrer"}>{c.all}<ArrowRight size={16}/></a></article>)}</div>
+      <div className="paid-programme-grid">{upcoming.map(programme=><article key={programme.id}><time>{tr(programme.date,locale)}</time><h3>{tr(programme.title,locale)}</h3><p className="programme-place"><MapPin size={16}/>{tr(programme.place,locale)}</p><p className="programme-audience"><strong>TARGET</strong>{tr(programme.audience,locale)}</p><p className="programme-price">{tr(programme.price,locale)}</p><a className="programme-link" href={programme.detailPath?prefix+"/"+programme.detailPath:programme.applicationUrl} target={programme.detailPath?undefined:"_blank"} rel={programme.detailPath?undefined:"noreferrer"}>{c.detail}<ArrowRight size={16}/></a></article>)}</div>
       <div className="programme-links"><a className="button button-orange" href={prefix+"/opportunities"}>{c.all}<ArrowRight size={17}/></a><a className="text-link" href={prefix+"/homecourt/explore"}>HOMECOURT<ArrowRight size={16}/></a></div>
     </section>
 
