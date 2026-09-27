@@ -54,7 +54,7 @@ export function HomecourtPremium({locale,active,role,region,historyCount,savedCo
   if(!active)return <section className="member-first3">
     <div className="member-first3-head"><div><span>{c.eyebrow}</span><h2>{c.title}</h2><p>{c.body}</p></div><Crown size={38}/></div>
     <div className="member-first3-grid">{features.map(([Icon,title,body])=><article key={title}><Icon/><span>PLUS FEATURE</span><strong>{title}</strong><p>{body}</p></article>)}</div>
-    <div className="member-next-step"><div><Sparkles/><span>{c.locked}</span><strong>{locale==="ja"?"月額3,300円・いつでも解約可能":"¥3,300 / month"}</strong><p>{locale==="ja"?"RBA IDの機能はそのまま。継続的に育成を記録・整理・実践したい方はHOMECOURT PLUSを利用できます。":"Keep your RBA ID; upgrade only if you want the full development loop."}</p></div><a href={`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{c.unlock}<ArrowRight/></a></div>
+    <div className="member-next-step"><div><Sparkles/><span>{c.locked}</span><strong>{locale==="ja"?"月額3,300円・いつでも解約可能":"¥3,300 / month"}</strong><p>{locale==="ja"?"RBA IDの機能はそのまま。継続的に育成を記録・整理・実践したい方はHOMECOURT PLUSを利用できます。":"Keep your RBA ID; upgrade only if you want the full development loop."}</p></div><a href={locale==="ja"?"/ja/homecourt-plus":`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{c.unlock}<ArrowRight/></a></div>
   </section>;
 
   return <section className="member-first3">
