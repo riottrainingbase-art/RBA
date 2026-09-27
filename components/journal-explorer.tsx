@@ -32,8 +32,8 @@ const searchAliases:Record<string,string[]>={
 const copy = {
   ja: {
     kicker: "ALL ARTICLES",
-    title: "必要な記事だけ探す。",
-    lead: "タイトルを眺め続けなくても大丈夫です。悩み・テーマ・対象者で絞り込めます。",
+    title: "知りたいことから探す。",
+    lead: "気になる言葉を入れるか、テーマや対象から絞り込んでください。",
     search: "例：試合に出られない、U15、スクリーン、捻挫…",
     category: "テーマ",
     audience: "対象",
@@ -45,9 +45,9 @@ const copy = {
     partners: "海外・パートナー",
     results: "件の記事",
     read: "記事を読む",
-    more: "さらに表示",
-    clear: "条件をクリア",
-    empty: "条件に合う記事がありません。検索語を短くするか、条件をクリアしてください。",
+    more: "続きを見る",
+    clear: "絞り込みを解除",
+    empty: "該当する記事が見つかりませんでした。言葉を変えるか、絞り込みを解除してみてください。",
     categories: { development: "育成", families: "保護者", coaching: "指導者", international: "海外交流", programme: "プログラム" }
   },
   en: {
@@ -148,7 +148,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
       <div className="journal-explorer-head">
         <div>
           <p className="section-index">{c.kicker}</p>
-          <h2>{locale === "ja" ? `${items.length}本から、必要な記事だけ探す。` : c.title}</h2>
+          <h2>{locale === "ja" ? `全${items.length}本から、知りたいことを探す。` : c.title}</h2>
         </div>
         <p>{c.lead}</p>
       </div>
@@ -166,7 +166,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
         </label>
 
         {quickTerms.length ? <div className="journal-quick-search">
-          <span>よく探される</span>
+          <span>よく読まれるテーマ</span>
           <div>{quickTerms.map(term=><button type="button" key={term} onClick={() => { setQuery(term); setCategory("all"); setAudience("any"); setVisible(12); }}>{term}</button>)}</div>
         </div> : null}
 
