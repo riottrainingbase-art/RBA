@@ -23,7 +23,6 @@ const categoryLabels={
 export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale,200);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
-  const featured=posts[0], quickLatest=posts.slice(1,4);
   const categoryOrder=["development","families","coaching","international","programme"] as const;
   const categoryDescriptions={
     ja:{development:"選手の成長、試合、練習、出場機会、U12・U15の育成を考える記事",families:"チーム選び、練習量、試合後の関わり方など保護者向けの記事",coaching:"練習設計、判断、ゲーム理解、コーチングを深める指導者向けの記事",international:"日本と世界の育成環境、海外交流、遠征から学ぶ記事",programme:"RBAのクリニック、キャンプ、学びを次の行動につなげる記事"},
@@ -80,6 +79,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
         </div>
       </section>
+      <JournalExplorer locale={locale} items={explorerItems}/>
 
       {locale==="ja"?<section className="journal-evidence-standard section-pad">
         <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>事実と解釈を、分けて伝える。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
@@ -102,17 +102,6 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">講習内容を見る <ArrowRight size={17}/></Link>
         </div>
       </section>:null}
-      {featured?<section className="journal-feature section-pad">
-        <div><p className="section-index">{c.latest} / {categoryLabels[locale][featured.category as keyof typeof categoryLabels.en]||featured.category}</p><h2>{featured.title}</h2><p>{featured.standfirst}</p><Link className="button button-dark" href={journalHref(locale,featured.slug)}>{c.read}<ArrowRight size={17}/></Link></div>
-        <aside><span>{featured.reading}</span><strong>{featured.audience.toUpperCase()}</strong>{featured.evidence_level?<em className="journal-evidence-chip">{featured.evidence_level}</em>:null}<small>{featured.published_at?new Date(featured.published_at).toLocaleDateString(locale):""}</small></aside>
-      </section>:null}
-      {quickLatest.length?<section className="journal-latest-rail section-pad">
-        <div className="journal-latest-rail-head"><p className="section-index">{locale==="ja"?"NEW / 新着":"NEW"}</p><strong>{locale==="ja"?"新しく公開した記事":"Recently published"}</strong></div>
-        <div className="journal-latest-rail-grid">{quickLatest.map(post=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-          <div className="journal-card-meta"><span>{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</span><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>
-          <h3>{post.title}</h3><p>{post.standfirst}</p><strong>{c.read}<ArrowRight size={15}/></strong>
-        </Link>)}</div>
-      </section>:null}
       {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
         <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>まず、この4本から。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
         <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
@@ -127,7 +116,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <article><span>PLAYERS / ALL</span><h3>選手・すべての方</h3><p>試合、練習、クリニック、海外交流を「次の成長」につなげる記事です。</p><Link href="#all-articles">育成の記事を見る <ArrowRight size={15}/></Link><Link href="#all-articles">海外交流の記事を見る <ArrowRight size={15}/></Link><Link href="/ja/opportunities">参加できる活動を探す <ArrowRight size={15}/></Link></article>
         </div>
       </section>:null}
-      <JournalExplorer locale={locale} items={explorerItems}/>
+      
       {locale==="ja"?<section className="homecourt-role-section section-pad">
         <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読むだけで終わらせない。</h2></div><p>自分の立場に合う情報を保存し、次の活動や学びにつなげるならMY HOME COURTへ。</p></div>
         <div className="homecourt-role-grid">
