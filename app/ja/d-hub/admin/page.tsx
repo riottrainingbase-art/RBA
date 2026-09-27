@@ -25,13 +25,13 @@ export default async function Page(){
     if(adminProfile?.role!=="admin")return;
 
     const requestId=String(formData.get("request_id")||"");
-    const {data:req}=await s.from("dhub_access_requests").select("id,user_id,square_email,status").eq("id",requestId).maybeSingle();
+    const {data:req}=await s.from("dhub_access_requests").select("id,user_id,square_email,status,program_type").eq("id",requestId).maybeSingle();
     if(!req||req.status!=="pending")return;
     const email=String(req.square_email||"").trim().toLowerCase();
     if(!email)return;
 
     const orFilter="email_normalized.eq."+email+",alternate_emails.cs.{"+email+"}";
-    const {data:members}=await s.from("dhub_memberships").select("id,status").or(orFilter).in("status",["active","grace"]).limit(1);
+    const {data:members}=await s.from("dhub_memberships").select("id,status").eq("program_type",req.program_type).or(orFilter).in("status",["active","grace"]).limit(1);
     const match=members?.[0];
     if(!match)return;
 
@@ -43,22 +43,22 @@ export default async function Page(){
   }
 
   const [{data:members},{count:lessonCount},{data:accessRequests}]=await Promise.all([
-    supabase.from("dhub_memberships").select("member_name,email_normalized,alternate_emails,linked_user_id,provider,status,amount_jpy,last_payment_at,access_until,source_reference").order("last_payment_at",{ascending:false}),
+    supabase.from("dhub_memberships").select("member_name,email_normalized,alternate_emails,linked_user_id,provider,status,amount_jpy,last_payment_at,access_until,source_reference,program_type,subject_name,subject_category").order("last_payment_at",{ascending:false}),
     supabase.from("dhub_lessons").select("id",{count:"exact",head:true}).eq("published",true),
-    supabase.from("dhub_access_requests").select("id,user_id,rba_email,square_email,square_invoice_no,note,status,created_at").eq("status","pending").order("created_at",{ascending:true})
+    supabase.from("dhub_access_requests").select("id,user_id,rba_email,square_email,square_invoice_no,note,status,created_at,program_type").eq("status","pending").order("created_at",{ascending:true})
   ]);
 
   const rows=members||[];
   const pendingRequests=accessRequests||[];
   const linked=rows.filter(r=>r.linked_user_id).length;
-  const active=rows.filter(r=>r.status==="active"||r.status==="grace").length;
+  const active=rows.filter(r=>r.status==="active"||r.status==="grace").length;const coachActive=rows.filter(r=>r.program_type==="coach_lab"&&(r.status==="active"||r.status==="grace")).length;const playerActive=rows.filter(r=>r.program_type==="players"&&(r.status==="active"||r.status==="grace")).length;
   const soon=rows.filter(r=>r.access_until&&new Date(r.access_until).getTime()-Date.now()<7*86400000).length;
 
   return <SiteFrame locale="ja" languagePage="d-hub"><main className="dhub-admin-page">
     <header className="dhub-admin-hero section-pad"><Link href="/ja/d-hub/member" className="back-link"><ArrowLeft size={15}/> MEMBER HOME</Link><ShieldCheck size={38}/><p className="section-index">D-HUB / ADMIN</p><h1>Square会員とRBA IDを、分けずに管理する。</h1><p>Squareの決済事実を基準に、サイト側ではD-HUBアクセス権だけを管理します。StripeのHOMECOURT購読とは分離しています。</p></header>
 
     <section className="dhub-admin-stats section-pad">
-      <div><span>ACTIVE / GRACE</span><strong>{active}</strong><small>PAID MEMBERS</small></div>
+      <div><span>COACH LAB</span><strong>{coachActive}</strong><small>PAID COACHES</small></div><div><span>PLAYERS</span><strong>{playerActive}</strong><small>PAID PLAYERS</small></div>
       <div><span>RBA ID LINKED</span><strong>{linked}</strong><small>OF {rows.length}</small></div>
       <div><span>ACCESS REVIEW</span><strong>{soon}</strong><small>WITHIN 7 DAYS</small></div>
       <div><span>CURRICULUM</span><strong>{lessonCount||0}</strong><small>PAID LESSONS</small></div>
@@ -67,7 +67,7 @@ export default async function Page(){
     {pendingRequests.length?<section className="dhub-admin-requests section-pad">
       <div className="section-head"><div><p className="section-index">ACCESS MATCHING</p><h2>決済済み会員の照合依頼。</h2></div><p>Square側のメールと既存の有料会員台帳が一致する場合だけ、RBA IDへアクセスを紐づけます。</p></div>
       <div className="dhub-admin-request-list">{pendingRequests.map(req=><article key={req.id}>
-        <div><span>RBA ID</span><strong>{req.rba_email}</strong></div>
+        <div><span>{req.program_type==="players"?"PLAYERS":"COACH LAB"}</span><strong>{req.rba_email}</strong></div>
         <div><span>SQUARE</span><strong>{req.square_email||"—"}</strong><small>{req.square_invoice_no?"請求書 #"+req.square_invoice_no:"請求書番号なし"}</small></div>
         <div><span>NOTE</span><p>{req.note||"補足なし"}</p></div>
         <form action={approveRequest}><input type="hidden" name="request_id" value={req.id}/><button className="button button-member" type="submit"><UserCheck size={15}/> Square会員と照合して承認</button></form>
@@ -76,7 +76,7 @@ export default async function Page(){
 
     <section className="dhub-admin-table-wrap section-pad">
       <div className="section-head"><div><p className="section-index">MEMBERSHIP LEDGER</p><h2>現在のD-HUBアクセス台帳。</h2></div><p>決済元はSquare。RBA IDとの照合結果だけをサイトに持ちます。</p></div>
-      <div className="dhub-admin-table"><div className="dhub-admin-row head"><span>MEMBER</span><span>STATUS</span><span>RBA ID</span><span>LAST PAYMENT</span><span>ACCESS UNTIL</span></div>
+      <div className="dhub-admin-table"><div className="dhub-admin-row head"><span>MEMBER</span><span>PROGRAM</span><span>STATUS</span><span>RBA ID</span><span>LAST PAYMENT</span><span>ACCESS UNTIL</span></div>
       {rows.map(row=><div className="dhub-admin-row" key={row.email_normalized}>
         <span><strong>{row.member_name||"—"}</strong><small>{row.email_normalized}</small>{row.alternate_emails?.length?<small>ALT: {row.alternate_emails.join(", ")}</small>:null}</span>
         <span>{row.status==="active"||row.status==="grace"?<CheckCircle2 size={15}/>:<TriangleAlert size={15}/>} {row.status.toUpperCase()}</span>
