@@ -910,4 +910,149 @@ export const memberArticles: MemberArticle[] = [
       "準備"
     ]
   }
+,
+  {
+    "slug": "coach-practice-observation-first",
+    "role": "coach",
+    "title": "練習メニューを決める前に、観察することを一つ決める",
+    "summary": "今日は何をさせるかより、何が起きたら学習が進んだと見るかを先に決める。",
+    "category": "練習設計",
+    "tags": [
+      "観察",
+      "練習設計",
+      "目的"
+    ]
+  },
+  {
+    "slug": "coach-timeout-one-message",
+    "role": "coach",
+    "title": "タイムアウトで、伝えることを一つに絞る",
+    "summary": "30秒で全部直そうとせず、次の1〜2ポゼッションで変えたいことだけ伝える。",
+    "category": "試合運営",
+    "tags": [
+      "タイムアウト",
+      "試合",
+      "声かけ"
+    ]
+  },
+  {
+    "slug": "coach-substitution-learning-goal",
+    "role": "coach",
+    "title": "交代に、育成上の目的を一つ持つ",
+    "summary": "疲れた選手を替えるだけでなく、誰にどんな経験を渡すかを考える。",
+    "category": "試合運営",
+    "tags": [
+      "交代",
+      "出場時間",
+      "育成"
+    ]
+  },
+  {
+    "slug": "coach-one-constraint-at-a-time",
+    "role": "coach",
+    "title": "制約は、一度に一つから",
+    "summary": "ノードリブル、3パス必須、片側限定。足しすぎず、狙った行動が出るかを見てから次へ進む。",
+    "category": "練習設計",
+    "tags": [
+      "制約",
+      "3x3",
+      "判断"
+    ]
+  },
+  {
+    "slug": "coach-postgame-three-notes",
+    "role": "coach",
+    "title": "試合後は、3つだけメモする",
+    "summary": "長い反省会より、良かったこと・困ったこと・次に試すことを一つずつ残す。",
+    "category": "振り返り",
+    "tags": [
+      "試合後",
+      "振り返り",
+      "記録"
+    ]
+  },
+  {
+    "slug": "coach-feedback-next-action",
+    "role": "coach",
+    "title": "フィードバックは、次に何をするかまで伝える",
+    "summary": "『遅い』『雑』で終わらず、次の1プレーで変えられる言葉へ置き換える。",
+    "category": "選手との関わり",
+    "tags": [
+      "フィードバック",
+      "声かけ",
+      "改善"
+    ]
+  },
+  {
+    "slug": "coach-parent-meeting-three-points",
+    "role": "coach",
+    "title": "保護者面談は、3点だけ準備して入る",
+    "summary": "強み、今の課題、次の一歩。評価を並べるより、家庭と共有したいことを整理する。",
+    "category": "保護者との対話",
+    "tags": [
+      "保護者",
+      "面談",
+      "対話"
+    ]
+  },
+  {
+    "slug": "coach-weekly-load-view",
+    "role": "coach",
+    "title": "今日の練習だけでなく、選手の1週間を見る",
+    "summary": "部活、クラブ、スクール、試合、移動。自分の練習だけを見て負荷を決めない。",
+    "category": "S&C・安全",
+    "tags": [
+      "負荷",
+      "回復",
+      "週間"
+    ]
+  },
+  {
+    "slug": "coach-return-to-play-boundary",
+    "role": "coach",
+    "title": "復帰の医学的判断を、コーチが背負わない",
+    "summary": "練習でできる動きは見られても、怪我の治癒や復帰可否は医療専門職の判断と分ける。",
+    "category": "S&C・安全",
+    "tags": [
+      "復帰",
+      "怪我",
+      "安全"
+    ]
+  },
+  {
+    "slug": "coach-video-one-clip",
+    "role": "coach",
+    "title": "映像ミーティングは、まず1クリップから",
+    "summary": "10分間の映像を見せ続けるより、一場面で何が見えていたかを選手と確認する。",
+    "category": "振り返り",
+    "tags": [
+      "映像",
+      "ミーティング",
+      "判断"
+    ]
+  },
+  {
+    "slug": "coach-playing-time-review",
+    "role": "coach",
+    "title": "出場時間を、感覚だけで振り返らない",
+    "summary": "誰を出したかではなく、誰にどんな経験が渡ったかを試合後に確認する。",
+    "category": "試合運営",
+    "tags": [
+      "出場時間",
+      "ローテーション",
+      "育成"
+    ]
+  },
+  {
+    "slug": "coach-plan-backward-from-game",
+    "role": "coach",
+    "title": "練習を、最後のゲームから逆算して作る",
+    "summary": "ドリルを積み上げるのではなく、最後の3on3・5on5で何を見たいかから戻って設計する。",
+    "category": "練習設計",
+    "tags": [
+      "練習計画",
+      "ゲーム",
+      "逆算"
+    ]
+  }
 ];
