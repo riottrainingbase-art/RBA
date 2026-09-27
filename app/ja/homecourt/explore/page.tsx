@@ -9,5 +9,5 @@ export const metadata:Metadata={
 };
 
 export default function Page(){
-  return <SiteFrame locale="ja" languagePage="home-court"><HomecourtExplore/></SiteFrame>;
+  return <SiteFrame locale="ja" languagePage="homecourt/explore"><HomecourtExplore/></SiteFrame>;
 }
