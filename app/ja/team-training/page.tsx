@@ -108,7 +108,7 @@ export default function Page(){
       <div>
         <h2>設計だけで終わらない。<br/>必要なら、RBAが現場へ行きます。</h2>
         <p>HOMECOURTで整理したチームの課題をもとに、RBAが普段の体育館へ伺い、練習観察、オンコート指導、ゲーム観察、指導者フィードバックまで行えます。チームのいつもの環境だからこそ見える課題を扱います。</p>
-        <a className="text-link" href="/ja/team-visit-clinic">RBA VISIT TRAININGを見る<ArrowRight size={16}/></a>
+        <a className="text-link" href="/ja/team-visit-clinic">RBA VISIT TRAININGを見る<ArrowRight size={16}/></a><br/><a className="text-link" href="/ja/team-development">TEAM DEVELOPMENTで30日までつなぐ<ArrowRight size={16}/></a>
       </div>
     </section>
 
