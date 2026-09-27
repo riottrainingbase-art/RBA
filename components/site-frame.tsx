@@ -28,42 +28,27 @@ export function localePath(locale:Locale, page?:LanguagePage){
 
 export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
   const c=labels[locale];
+  const prefix=locale==="en"?"":`/${locale}`;
+  const teamHref=locale==="ja"?"/ja/team-development":`${prefix}/team`;
   const fullNav=[
-    ["HOMECOURT / EXPLORE",localePath(locale,"homecourt/explore")],
-    ["HOMECOURT / MATCH",localePath(locale,"homecourt/match")],
-    [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
-    [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
-    [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
-    ["RBA PLATFORM",localePath(locale,"platform")],
-    [({en:"About MY HOME COURT",ja:"MY HOME COURTとは","zh-tw":"MY HOME COURT介紹",ko:"MY HOME COURT 안내"})[locale],localePath(locale,"home-court")],
+    [({en:"Explore",ja:"育成環境を探す","zh-tw":"探索培育環境",ko:"성장 환경 찾기"})[locale],localePath(locale,"homecourt/explore")],
+    ["MY HOME COURT",localePath(locale,"my-homecourt")],
+    [({en:"Teams",ja:"チーム向け","zh-tw":"球隊",ko:"팀"})[locale],teamHref],
+    [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")],
+    [({en:"International",ja:"国際交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
+    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")],
+    ["D-HUB",localePath(locale,"d-hub")],
+    [({en:"Programmes",ja:"RBAの活動","zh-tw":"RBA活動",ko:"RBA 활동"})[locale],localePath(locale,"opportunities")],
+    [({en:"Partners",ja:"協賛・連携","zh-tw":"合作夥伴",ko:"파트너십"})[locale],localePath(locale,"partners")],
     [c.about,localePath(locale,"about")],
-    [c.approach,localePath(locale,"approach")],
-    [c.schedule,localePath(locale,"schedule")],
-    [c.payments,localePath(locale,"payments")],
-    [c.clinic,localePath(locale,"events/torsten-loibl-online-clinic")],
-    [c.asia,localePath(locale,"asia")],
-    [c.partners,localePath(locale,"partners")],
-    ["RBA IMPACT",localePath(locale,"impact")],
-    [({en:"D-HUB / COACH DEVELOPMENT",ja:"D-HUB／指導者育成","zh-tw":"D-HUB／教練培育",ko:"D-HUB／코치 교육"})[locale],localePath(locale,"d-hub")],
-    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
-    ["RBA UNITED",localePath(locale,"united")],
-    ["RBA CONNECT",localePath(locale,"connect")],
-    ["ORGANIZER",localePath(locale,"organizer")],
-    ...(locale==="ja"?[["HOMECOURT / EXPLORE","/ja/homecourt/explore"] as const,["HOMECOURT / MATCH","/ja/homecourt/match"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["訪問トレーニング","/ja/team-visit-clinic"] as const,["RBAと活動をつくる","/ja/work-with-rba"] as const]:[]),
-    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
+    [({en:"Safety / Terms",ja:"安全・参加規約","zh-tw":"安全・條款",ko:"안전・약관"})[locale],localePath(locale,"policies")],
   ] as const;
   const nav=[
-    [({en:"HOMECOURT Explore",ja:"HOMECOURTで探す","zh-tw":"HOMECOURT探索",ko:"HOMECOURT 찾기"})[locale],localePath(locale,"homecourt/explore")] as const,
-    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")] as const,
-    ["RBA UNITED",localePath(locale,"united")] as const,
-    [({en:"MY HOME COURT",ja:"MY HOME COURTを使う","zh-tw":"使用MY HOME COURT",ko:"MY HOME COURT 이용"})[locale],localePath(locale,"my-homecourt")] as const,
-    [({en:"Platform",ja:"育成プラットフォーム","zh-tw":"培育平台",ko:"육성 플랫폼"})[locale],localePath(locale,"platform")] as const,
-    [({en:"Coaches",ja:"指導者", "zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
-    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
-    [({en:"Organisers",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최・협력"})[locale],localePath(locale,"organizer")] as const,
-    ...(locale==="ja"?[["TEAM DEVELOPMENT","/ja/team-development"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15","/ja/u15-skill-up"] as const,["RBAを地域に呼ぶ","/ja/work-with-rba"] as const]:[]),
-    [c.about,localePath(locale,"about")] as const,
+    [({en:"Explore",ja:"探す","zh-tw":"探索",ko:"찾기"})[locale],localePath(locale,"homecourt/explore")] as const,
+    ["MY HOME COURT",localePath(locale,"my-homecourt")] as const,
+    [({en:"Teams",ja:"チーム","zh-tw":"球隊",ko:"팀"})[locale],teamHref] as const,
+    [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
+    [({en:"RBA",ja:"RBAについて","zh-tw":"關於RBA",ko:"RBA 소개"})[locale],localePath(locale,"about")] as const,
   ];
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
