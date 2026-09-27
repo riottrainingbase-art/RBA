@@ -9,7 +9,7 @@ const locales=["","/ja","/zh-tw","/ko"] as const;
 const core=["","/players","/families","/coaches","/my-homecourt","/my-homecourt/players","/my-homecourt/families","/my-homecourt/coaches","/community","/impact","/d-hub","/united","/organizer","/about","/approach","/payments","/clinic-request","/events/torsten-loibl-online-clinic","/partners","/contact","/social","/policies","/camp","/faq","/international","/opportunities","/homecourt/explore","/homecourt/match","/platform","/regional-host","/team","/journal","/journal/coaches","/after-application"] as const;
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const productPages=["/ja/homecourt-plus"];
-const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/team-development","/radio","/links","/sponsors"] as const;
+const legacy=["/authentics","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/team-development"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
   {prefix:"/ja",locale:"ja"},
