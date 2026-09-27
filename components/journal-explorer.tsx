@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Search, X } from "lucide-react";
 
@@ -18,6 +18,16 @@ type JournalItem = {
 };
 
 const categoryOrder = ["development", "families", "coaching", "international", "programme"] as const;
+const searchAliases:Record<string,string[]>={
+  "試合に出られない":["出場","プレータイム","ベンチ","スタメン","交代","B戦","試合に出れない"],
+  "u15":["中学生","部活","Bユース","クラブ","登録","移籍","セレクション"],
+  "移籍":["退団","チーム変更","登録","クラブ変更"],
+  "練習量":["負荷","疲労","睡眠","掛け持ち","オーバーユース","回復"],
+  "怪我":["捻挫","膝","オスグッド","脳震盪","ACL","復帰","痛み","安全"],
+  "スクリーン":["ピック","screen","U12"],
+  "チーム選び":["スポ少","クラブ","Bユース","入会","規約","費用","体験"],
+  "判断":["decision","3x3","少人数","スペーシング","戦術","見る"]
+};
 
 const copy = {
   ja: {
@@ -72,6 +82,19 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
   const [category, setCategory] = useState("all");
   const [audience, setAudience] = useState("any");
   const [visible, setVisible] = useState(12);
+  const [initialised, setInitialised] = useState(false);
+
+  useEffect(() => {
+    const params=new URLSearchParams(window.location.search);
+    const q=params.get("q");
+    const cat=params.get("category");
+    const aud=params.get("audience");
+    if(q)setQuery(q);
+    if(cat)setCategory(cat);
+    if(aud)setAudience(aud);
+    setVisible(12);
+    setInitialised(true);
+  }, []);
 
   const availableAudiences = useMemo(() => {
     const values = new Set(items.map(item => item.audience));
@@ -80,13 +103,34 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
 
   const filtered = useMemo(() => {
     const q = normalize(query.trim());
-    return items.filter(item => {
-      if (category !== "all" && item.category !== category) return false;
-      if (audience !== "any" && item.audience !== audience) return false;
-      if (!q) return true;
-      return normalize([item.title, item.standfirst, item.evidence_level || "", item.category, item.audience].join(" ")).includes(q);
-    });
-  }, [items, query, category, audience]);
+    const aliases=q?(searchAliases[q]||[]):[];
+    const rawTerms=q.split(/\s+/).filter(Boolean);
+    return items
+      .map(item => {
+        if (category !== "all" && item.category !== category) return null;
+        if (audience !== "any" && item.audience !== audience) return null;
+        const categoryLabel=c.categories[item.category as keyof typeof c.categories]||item.category;
+        const audienceLabel=item.audience==="families"?c.families:item.audience==="coaches"?c.coaches:item.audience==="players"?c.players:item.audience==="partners"?c.partners:c.allPeople;
+        const title=normalize(item.title);
+        const standfirst=normalize(item.standfirst);
+        const evidence=normalize(item.evidence_level||"");
+        const haystack=normalize([item.title,item.standfirst,item.evidence_level||"",categoryLabel,audienceLabel].join(" "));
+        if(!q)return {item,score:0};
+        const direct=haystack.includes(q);
+        const tokenMatch=rawTerms.length>1&&rawTerms.every(term=>haystack.includes(term));
+        const aliasMatches=aliases.filter(term=>haystack.includes(normalize(term))).length;
+        if(!direct&&!tokenMatch&&!aliasMatches)return null;
+        let score=0;
+        if(title.includes(q))score+=12;
+        if(standfirst.includes(q))score+=6;
+        if(evidence.includes(q))score+=2;
+        score+=aliasMatches*3;
+        return {item,score};
+      })
+      .filter(Boolean)
+      .sort((a,b)=>(b?.score||0)-(a?.score||0))
+      .map(entry=>entry!.item);
+  }, [items, query, category, audience, c]);
 
   const shown = filtered.slice(0, visible);
   const hasFilters = Boolean(query || category !== "all" || audience !== "any");
@@ -153,7 +197,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
       </div>
 
       <div className="journal-results-head">
-        <strong>{filtered.length} {c.results}</strong>
+        <strong>{initialised ? filtered.length : items.length} {c.results}</strong>
         {hasFilters ? <button type="button" onClick={clear}><X size={14} />{c.clear}</button> : null}
       </div>
 
