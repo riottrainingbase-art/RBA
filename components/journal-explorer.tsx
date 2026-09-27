@@ -22,7 +22,7 @@ const categoryOrder = ["development", "families", "coaching", "international", "
 const copy = {
   ja: {
     kicker: "ALL ARTICLES",
-    title: "150本から、必要な記事だけ探す。",
+    title: "必要な記事だけ探す。",
     lead: "タイトルを眺め続けなくても大丈夫です。悩み・テーマ・対象者で絞り込めます。",
     search: "例：試合に出られない、U15、スクリーン、捻挫…",
     category: "テーマ",
@@ -70,7 +70,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [audience, setAudience] = useState("any");
-  const [visible, setVisible] = useState(24);
+  const [visible, setVisible] = useState(12);
 
   const availableAudiences = useMemo(() => {
     const values = new Set(items.map(item => item.audience));
@@ -90,12 +90,12 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
   const shown = filtered.slice(0, visible);
   const hasFilters = Boolean(query || category !== "all" || audience !== "any");
 
-  const resetVisible = () => setVisible(24);
+  const resetVisible = () => setVisible(12);
   const clear = () => {
     setQuery("");
     setCategory("all");
     setAudience("any");
-    setVisible(24);
+    setVisible(12);
   };
 
   return (
@@ -103,7 +103,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
       <div className="journal-explorer-head">
         <div>
           <p className="section-index">{c.kicker}</p>
-          <h2>{c.title}</h2>
+          <h2>{locale === "ja" ? `${items.length}本から、必要な記事だけ探す。` : c.title}</h2>
         </div>
         <p>{c.lead}</p>
       </div>
@@ -172,7 +172,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
       ) : <div className="journal-explorer-empty">{c.empty}</div>}
 
       {visible < filtered.length ? (
-        <button className="journal-load-more" type="button" onClick={() => setVisible(value => value + 24)}>
+        <button className="journal-load-more" type="button" onClick={() => setVisible(value => value + 12)}>
           {c.more}<span>{Math.min(visible, filtered.length)} / {filtered.length}</span>
         </button>
       ) : null}
