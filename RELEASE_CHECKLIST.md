@@ -47,6 +47,7 @@ Confirm:
 - TeamJBA / federation boundary wording is visible
 
 ## 5. Authenticated MY HOME COURT
+- confirm at least one authorised RBA operator has the database admin role before opening claim/suggestion review
 - login redirect is safe
 - Development Timeline reads only the signed-in user
 - claim application can be submitted
