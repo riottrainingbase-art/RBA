@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- checkout anchors intentionally avoid prefetching the server redirect endpoint. */
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPublicJournalPost, getPublicJournalPosts, type PublicJournalPost } from "@/lib/public-content";
@@ -200,6 +201,10 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   const journalLd={"@context":"https://schema.org","@graph":[articleLd,breadcrumbLd]};
   return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(journalLd)}}/>
     <header className="article-hero section-pad"><Link href={journalRoot(locale)} className="back-link">← {c.back}</Link><p className="section-index">{c.kicker} / {categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h1>{post.title}</h1><div className="article-hero-summary"><p>{post.standfirst}</p><div className="article-meta-row"><span>{post.reading}</span><span>{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</span>{post.source_references?.length?<a href="#sources">{locale==="ja"?`参考文献 ${post.source_references.length}件`:locale==="zh-tw"?`參考資料 ${post.source_references.length}`:locale==="ko"?`참고 자료 ${post.source_references.length}`:`${post.source_references.length} sources`}</a>:null}{post.reviewed_at?<span>{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</span>:null}</div></div></header>
+    {post.hero_image_url?<figure className="journal-article-hero-media">
+      <Image src={post.hero_image_url} alt={post.hero_image_alt||post.title} width={1600} height={1200} sizes="100vw" priority/>
+      <figcaption>RBA UNITED / YAIMA CUP 2026 · ISHIGAKI</figcaption>
+    </figure>:null}
     <JournalReaderTools title={post.title} locale={locale}/>
     {currentInfo?<section className="journal-current-notice section-pad"><span>CURRENT / 2026</span><div><strong>制度・ルールに関する記事です。</strong><p>{post.reviewed_at?`最終確認：${new Date(post.reviewed_at).toLocaleDateString("ja-JP")}。`:""} 大会要項・登録期限・競技規則は更新される場合があります。最新のJBA・都道府県協会・大会主管者の案内を優先してください。</p></div></section>:null}
     {safetyInfo?<section className="journal-safety-notice section-pad"><span>HEALTH / SAFETY</span><div><strong>健康・安全に関する一般情報です。</strong><p>診断や個別の復帰判断の代わりにはなりません。痛み・神経症状・頭部衝撃後の症状などがある場合は、医師・理学療法士等の適切な医療専門職へ相談してください。</p></div></section>:null}
