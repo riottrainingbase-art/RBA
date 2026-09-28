@@ -1,0 +1,6 @@
+# Deployment-control files require explicit ownership attention.
+/vercel.json @riottrainingbase-art
+/scripts/vercel-ignore-build.mjs @riottrainingbase-art
+/scripts/check-deployment-policy.mjs @riottrainingbase-art
+/.github/workflows/rba-release-qa.yml @riottrainingbase-art
+/DEPLOYMENT.md @riottrainingbase-art
