@@ -20,6 +20,14 @@ export const metadata: Metadata = {
 const routes = [
   {
     icon: Users,
+    tag: "MINIBASKET SUPPORT",
+    title: "ミニバスの育成環境を一緒に整える",
+    body: "今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、オンコート支援まで。どのサービスが必要か決まっていなくても、チーム育成診断から始められます。",
+    href: "/ja/minibasket-support",
+    cta: "ミニバス育成支援を見る",
+  },
+  {
+    icon: Users,
     tag: "TEAM TRAINING",
     title: "普段のチーム練習を設計する",
     body: "テーマ、認知・判断、Small-Sided Game、振り返りまでを一つの流れで整理します。HOMECOURTのTEAM HOMEを使い、練習をチームの学習履歴として積み上げられます。",
