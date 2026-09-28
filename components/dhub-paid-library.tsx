@@ -169,10 +169,27 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
   .order("published_at",{ascending:false}).order("title");
  const articles=(error?[]:(data||[])) as PaidArticle[];
  const curriculumCategory=locale==="ja"&&program==="players"?"小6→中1 年間カリキュラム":null;
+ const supportCategory=locale==="ja"&&program==="players"?"小6→中1 サポートツール":null;
  const curriculumArticles=curriculumCategory?articles
    .filter(article=>article.category===curriculumCategory&&article.editorial_note?.startsWith("GRADE6_12M|"))
    .sort((a,b)=>(a.editorial_note||"").localeCompare(b.editorial_note||"")):[];
- const categories=Array.from(new Set(articles.map(a=>a.category))).filter(category=>category!==curriculumCategory);
+ const supportArticles=supportCategory?articles
+   .filter(article=>article.category===supportCategory&&article.editorial_note?.startsWith("GRADE6_SUPPORT|"))
+   .sort((a,b)=>(a.editorial_note||"").localeCompare(b.editorial_note||"")):[];
+ const curriculumIds=curriculumArticles.map(article=>article.id);
+ const {data:curriculumProgressRows}=curriculumIds.length?await supabase.from("dhub_paid_article_progress")
+   .select("article_id,status").eq("user_id",user.id).in("article_id",curriculumIds):{data:[]};
+ const curriculumProgress=new Map((curriculumProgressRows||[]).map(row=>[row.article_id,row.status]));
+ const curriculumCompleted=Array.from(curriculumProgress.values()).filter(status=>status==="completed").length;
+ const now=new Date();
+ const nowYm=`${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,"0")}`;
+ const monthlyArticles=curriculumArticles.filter(article=>article.editorial_note?.split("|")[0]==="GRADE6_12M"&&article.editorial_note?.split("|")[1]!=="00");
+ const currentMonthArticle=monthlyArticles.find(article=>article.editorial_note?.endsWith(nowYm))
+   ||monthlyArticles.find(article=>String(article.editorial_note?.split("|")[2]||"")>nowYm)
+   ||monthlyArticles[monthlyArticles.length-1]
+   ||null;
+ const categories=Array.from(new Set(articles.map(a=>a.category)))
+   .filter(category=>category!==curriculumCategory&&category!==supportCategory);
 
  return <SiteFrame locale={locale} languagePage="d-hub"><main className={styles.shell}>
    <header className={styles.libraryHero}>
@@ -186,16 +203,26 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    {curriculumArticles.length?<section className={styles.curriculum}>
     <div className={styles.curriculumHead}>
       <div><p className={styles.eyebrow}>GRADE 6 → U15 / 12-MONTH PATH</p><h2>小6の今から、中1の秋まで。</h2><p>小学生最後の半年を「最後の大会のため」だけに使わず、中学で必要になる見る・判断する・実行する力へつなげます。2026年10月から2027年9月まで、毎月一つのテーマで進めます。</p></div>
-      <div className={styles.curriculumStats}><div><span>PATH</span><strong>12</strong><small>MONTHS</small></div><div><span>ARTICLES</span><strong>{curriculumArticles.length}</strong><small>ROADMAP + MONTHLY</small></div></div>
+      <div className={styles.curriculumStats}><div><span>PATH</span><strong>12</strong><small>MONTHS</small></div><div><span>COMPLETE</span><strong>{curriculumCompleted}/{curriculumArticles.length}</strong><small>YOUR PROGRESS</small></div></div>
     </div>
     <div className={styles.curriculumGrid}>{curriculumArticles.map((article,index)=>{
       const parts=(article.editorial_note||"").split("|");
       const label=parts[2]||"";
-      return <Link href={c.root+"/"+article.slug} key={article.slug} className={styles.curriculumCard}>
+      const status=curriculumProgress.get(article.id);
+      const isCurrent=currentMonthArticle?.id===article.id;
+      return <Link href={c.root+"/"+article.slug} key={article.slug} className={[styles.curriculumCard,isCurrent?styles.curriculumCurrent:""].filter(Boolean).join(" ")}>
         <div className={styles.curriculumCardMeta}><span>{index===0?"START / ROADMAP":`MONTH ${String(index).padStart(2,"0")}`}</span><span>{label}</span></div>
-        <h3>{article.title}</h3><p>{article.summary}</p><strong>{locale==="ja"?"この月を始める":"Start"} <ArrowRight size={15}/></strong>
+        <div className={styles.curriculumCardStatus}>{isCurrent?<b>NOW / NEXT</b>:null}{status==="completed"?<b>COMPLETED</b>:status==="started"?<b>IN PROGRESS</b>:null}</div>
+        <h3>{article.title}</h3><p>{article.summary}</p><strong>{status==="completed"?(locale==="ja"?"振り返る":"Review"):(locale==="ja"?"この月を始める":"Start")} <ArrowRight size={15}/></strong>
       </Link>;
     })}</div>
+   </section>:null}
+
+   {supportArticles.length?<section className={styles.supportTools}>
+     <div className={styles.supportToolsHead}><div><p className={styles.eyebrow}>GRADE 6 → U15 / SUPPORT TOOLS</p><h2>12か月を回すための、6つの道具。</h2></div><p>自主練、映像、成長期の身体、U15選び、質問の仕方。月別テーマだけでは足りない部分をここで補います。</p></div>
+     <div className={styles.supportToolsGrid}>{supportArticles.map((article,index)=><Link href={c.root+"/"+article.slug} key={article.slug}>
+       <span>{String(index+1).padStart(2,"0")}</span><h3>{article.title}</h3><p>{article.summary}</p><strong>使ってみる <ArrowRight size={15}/></strong>
+     </Link>)}</div>
    </section>:null}
 
    <nav className={styles.categoryNav}>{categories.map(category=><Link href={"#cat-"+category} key={category}>{category}</Link>)}</nav>
