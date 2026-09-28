@@ -9,6 +9,7 @@ type ReferenceInput={title?:string;source?:string;year?:number|null;url?:string;
 type Payload={
  id?:string;
  program_type:"coach_lab"|"players";
+ locale:"ja"|"en";
  slug?:string;
  category:string;
  title:string;
@@ -68,9 +69,9 @@ function dedupeRefs(refs:ReferenceInput[]){
  return out;
 }
 
-async function referencesFromRelated(db:Awaited<ReturnType<typeof createClient>>,slugs:string[]){
+async function referencesFromRelated(db:Awaited<ReturnType<typeof createClient>>,slugs:string[],locale:"ja"|"en"){
  if(!slugs.length)return [] as ReferenceInput[];
- const {data}=await db.from("public_journal_posts").select("slug,source_references").eq("locale","ja").in("slug",slugs);
+ const {data}=await db.from("public_journal_posts").select("slug,source_references").eq("locale",locale).in("slug",slugs);
  const refs:ReferenceInput[]=[];
  for(const row of data||[]){
   const list=Array.isArray(row.source_references)?row.source_references:[];
@@ -98,6 +99,7 @@ export async function saveArticle(formData:FormData){
  let payload:Payload;
  try{payload=JSON.parse(String(formData.get("payload")||"{}")) as Payload}catch{redirect("/ja/d-hub/admin/articles?error=payload")}
  if(payload.program_type!=="coach_lab"&&payload.program_type!=="players")redirect("/ja/d-hub/admin/articles?error=program");
+ if(payload.locale!=="ja"&&payload.locale!=="en")payload.locale="ja";
 
  const title=cleanText(payload.title,240);
  const summary=cleanText(payload.summary,700);
@@ -107,7 +109,7 @@ export async function saveArticle(formData:FormData){
  const action=cleanText(payload.field_action,2400);
  const related=unique((payload.related_public_slugs||[]).map(s=>cleanText(s,180)).filter(Boolean));
  const manual=normalizeRefs(payload.manual_references);
- const automatic=await referencesFromRelated(db,related);
+ const automatic=await referencesFromRelated(db,related,payload.locale);
  const references=dedupeRefs([...automatic,...manual]);
 
  if(!title||!summary||!category||sections.length<3||questions.length<3||action.length<10){
@@ -143,6 +145,7 @@ export async function saveArticle(formData:FormData){
  const slug=normalizeSlug(payload.slug||"",payload.program_type);
  const record={
   program_type:payload.program_type,
+  locale:payload.locale,
   slug,
   category,
   title,
@@ -180,6 +183,8 @@ export async function saveArticle(formData:FormData){
  revalidatePath("/ja/d-hub/players/articles");
  revalidatePath("/ja/d-hub/coaches/member");
  revalidatePath("/ja/d-hub/players/member");
+ revalidatePath("/d-hub/players/articles");
+ revalidatePath("/d-hub/players/member");
 
  if(intent==="preview")redirect("/ja/d-hub/admin/articles/"+articleId+"/preview");
  redirect("/ja/d-hub/admin/articles/"+articleId+"?saved="+intent);
@@ -209,7 +214,7 @@ export async function restoreRevision(formData:FormData){
  if(!revision)redirect("/ja/d-hub/admin/articles?error=revision");
  const s:any=revision.snapshot||{};
  const allowed={
-  program_type:s.program_type,slug:s.slug,category:s.category,title:s.title,summary:s.summary,reading:s.reading,
+  program_type:s.program_type,locale:s.locale||"ja",slug:s.slug,category:s.category,title:s.title,summary:s.summary,reading:s.reading,
   sections:s.sections,field_action:s.field_action,reflection_questions:s.reflection_questions,
   related_public_slugs:s.related_public_slugs,source_references:s.source_references,
   editorial_note:(s.editorial_note||"")+"\n復元後は下書きに戻しています。",
