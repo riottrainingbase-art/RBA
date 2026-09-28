@@ -27,7 +27,7 @@ export default async function Page(){
         <p>Access is available to an RBA ID linked to an active D-HUB PLAYERS ¥3,300 monthly Square subscription. COACH LAB membership is separate.</p>
         <div>
           <Link className="button button-dark" href="/d-hub/players">View D-HUB PLAYERS</Link>
-          <Link className="button button-light" href="/ja/d-hub/access-request?program=players">Already paid? Match your access <ArrowRight size={16}/></Link>
+          <Link className="button button-light" href="/d-hub/access-request?program=players">Already paid? Match your access <ArrowRight size={16}/></Link>
         </div>
       </section>
     </main>
