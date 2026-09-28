@@ -72,6 +72,7 @@ const migrations=[
   "supabase/migrations/20260928014500_homecourt_match_rpc_invoker.sql",
   "supabase/migrations/20260928014600_homecourt_admin_policies.sql",
   "supabase/migrations/20260928014700_rba_operator_scope.sql",
+  "supabase/migrations/20260928014800_rba_operator_cycle_access.sql",
 ];
 for(const migration of migrations) if(!exists(migration)) fail(`migration missing: ${migration}`);
 
