@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Static release audit
+        run: pnpm run audit:release
+
       - name: TypeScript and Next build
         run: pnpm run build
         env:
