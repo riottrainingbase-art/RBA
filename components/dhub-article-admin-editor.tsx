@@ -9,7 +9,7 @@ import styles from "@/app/ja/d-hub/admin/articles/admin-articles.module.css";
 type Section={heading:string;paragraphs:string[]};
 type Ref={title?:string;source?:string;year?:number|null;url?:string;note?:string};
 type Article={
- id?:string;program_type:"coach_lab"|"players";slug:string;category:string;title:string;summary:string;reading:string;
+ id?:string;program_type:"coach_lab"|"players";locale:"ja"|"en";slug:string;category:string;title:string;summary:string;reading:string;
  sections:Section[];field_action:string;reflection_questions:string[];related_public_slugs:string[];
  source_references:Ref[];editorial_note?:string;published?:boolean;published_at?:string|null;
 };
@@ -36,6 +36,7 @@ function localInputValue(iso?:string|null){
 
 export function DhubArticleAdminEditor({initial,categories,publicPosts,revisions=[]}:{initial:Article;categories:string[];publicPosts:PublicPost[];revisions?:Revision[]}){
  const [program,setProgram]=useState(initial.program_type);
+ const [locale,setLocale]=useState<"ja"|"en">(initial.locale||"ja");
  const [slug,setSlug]=useState(initial.slug||"");
  const [category,setCategory]=useState(initial.category||"");
  const [title,setTitle]=useState(initial.title||"");
@@ -60,7 +61,7 @@ export function DhubArticleAdminEditor({initial,categories,publicPosts,revisions
  },[postSearch,publicPosts,related]);
 
  const payload=JSON.stringify({
-  id:initial.id,program_type:program,slug,category,title,summary,reading,sections,
+  id:initial.id,program_type:program,locale,slug,category,title,summary,reading,sections,
   field_action:fieldAction,
   reflection_questions:questions.split("\n").map(x=>x.trim()).filter(Boolean),
   related_public_slugs:related,
@@ -91,11 +92,13 @@ export function DhubArticleAdminEditor({initial,categories,publicPosts,revisions
     <div>
      <p>D-HUB ARTICLE CMS</p>
      <h1>{initial.id?"記事を編集":"新しい記事を作る"}</h1>
-     <span>本文、参考文献、公開日時までこの画面で完結します。</span>
+     <span>本文、参考文献、公開日時、JA / ENまでこの画面で管理します。</span>
     </div>
     <div className={styles.programSwitch}>
      <button type="button" className={program==="coach_lab"?styles.active:""} onClick={()=>setProgram("coach_lab")}>COACH LAB</button>
      <button type="button" className={program==="players"?styles.active:""} onClick={()=>setProgram("players")}>PLAYERS</button>
+     <button type="button" className={locale==="ja"?styles.active:""} onClick={()=>setLocale("ja")}>JA</button>
+     <button type="button" className={locale==="en"?styles.active:""} onClick={()=>setLocale("en")}>EN</button>
     </div>
    </section>
 
