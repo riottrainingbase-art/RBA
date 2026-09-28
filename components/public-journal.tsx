@@ -154,7 +154,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読んだあと、どう動くか。</h2></div><p>自分の立場に合う情報を保存し、次の活動や学びにつなげるならMY HOME COURTへ。</p></div>
         <div className="homecourt-role-grid">
           <article><span>PLAYER</span><h3>選手</h3><p>練習、試合、次のクリニック。今の自分に必要な情報をまとめて探せます。</p><Link href="/ja/my-homecourt/players">選手向けHOME <ArrowRight size={16}/></Link></article>
-          <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに戻って来られる場所です。</p><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
+          <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに、感情だけで決めず整理できる記事をまとめています。</p><Link href="/ja/journal/families">保護者JOURNALへ <ArrowRight size={16}/></Link><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
           <article><span>COACH</span><h3>指導者</h3><p>D-HUB、Torsten、練習設計。毎週の指導をアップデートする学びをまとめます。</p><Link href="/ja/my-homecourt/coaches">指導者向けHOME <ArrowRight size={16}/></Link></article>
         </div>
         <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
@@ -326,6 +326,85 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">CONTINUE LEARNING</p><h2>{locale==="ja"?"記事から、継続的な指導者教育へ。":"Continue beyond the article."}</h2><p>{locale==="ja"?"D-HUB、Torsten Loibl Online Clinic、MY HOME COURTをつなぎ、毎週の指導を更新します。":"Connect Journal, D-HUB and coach education."}</p></div>
         <div><Link className="button button-light" href={`${prefix}/d-hub`}>D-HUB <ArrowRight size={16}/></Link><Link className="button button-dark" href={`${prefix}/my-homecourt/coaches`}>COACH HOME <ArrowRight size={16}/></Link></div>
+      </section>
+    </div>
+  </SiteFrame>;
+}
+
+
+export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
+  const posts=await getPublicJournalPosts(locale,500);
+  const familyPosts=posts.filter(post=>post.audience==="families"||post.category==="families");
+  const recentFamilyPosts=familyPosts.slice(0,12);
+  const prefix=locale==="en"?"":\`/\${locale}\`;
+  const findFamily=(slug:string)=>familyPosts.find(post=>post.slug===slug);
+  const familyGroups=[
+    {id:"family-start",label:"START HERE",title:"最初に読んでほしい記事",description:"保護者が毎回コーチになるのではなく、環境・経験・本人の声を見るところから。",slugs:["parents-support-not-coach","how-to-choose-youth-team","too-much-practice","child-wants-to-quit-basketball"]},
+    {id:"family-role",label:"ROLE / CONFIDENCE",title:"出場時間・役割・自信",description:"出る・出ないだけでなく、何を任され、何を経験できているかまで見ます。",slugs:["child-wants-to-be-relied-on","confidence-needs-evidence","role-and-playing-time-are-different","starter-is-not-status","make-team-but-no-minutes","confidence-after-bad-game"]},
+    {id:"family-choice",label:"TEAM / TRANSITION",title:"チーム選び・移籍・進路",description:"強さや名前だけでなく、毎週どんな経験が積めるかを同じ軸で比べます。",slugs:["how-to-choose-youth-team","when-to-change-teams","u15-team-comparison-checklist","new-team-first-three-months","parent-high-school-path-timing","strong-school-myth"]},
+    {id:"family-home",label:"AT HOME",title:"家庭での関わり方",description:"送迎の車、試合後、動画を見る時間。家庭までコーチングの場所にしすぎないために。",slugs:["parents-support-not-coach","parent-dont-promise-playing-time","parent-car-ride-not-coaching-session","parent-child-doesnt-talk-after-practice","parent-dont-coach-against-coach","watch-game-video-without-grading-child"]},
+    {id:"family-load",label:"LOAD / RECOVERY",title:"練習量・回復・安全",description:"チーム、スクール、移動、睡眠、学校生活まで含めて一週間の負荷を見ます。",slugs:["too-much-practice","sleep-is-part-of-training","parent-schedule-needs-empty-space","commute-time-is-part-of-load","travel-fatigue-is-part-of-tournament","knee-pain-is-not-just-growing-pain"]},
+    {id:"family-relationships",label:"RELATIONSHIPS",title:"チームの人間関係・相談",description:"困ったときに我慢か退団の二択へ急がず、事実・相談経路・安全を分けて考えます。",slugs:["asking-coach-is-not-complaining","when-coach-does-not-fit-child","teammate-conflict-needs-adult-support","belonging-is-part-of-development","parent-group-chat-does-not-run-team","leave-team-without-burning-bridges"]},
+    {id:"family-pathway",label:"U15 / PATHWAY",title:"U15・進路・セレクション",description:"登録、大会、出場機会、生活。名前の強さだけではなく、その先の数年で考えます。",slugs:["u15-school-or-club-2026","b-youth-vs-u15-club-2026","u15-registration-before-joining","u15-transfer-rules-2026","u15-tryout-rejection-next-step","playing-up-age-category"]},
+  ];
+  const sourceCount=familyPosts.reduce((sum,post)=>sum+(post.source_references?.length||0),0);
+  return <SiteFrame locale={locale} languagePage="journal">
+    <div className="journal-hub journal-cms">
+      <section className="journal-cms-hero section-pad">
+        <Link href={journalRoot(locale)} className="back-link">← RBA JOURNAL</Link>
+        <p className="section-index">RBA JOURNAL / PARENT</p>
+        <h1>{locale==="ja"?"保護者だからこそ、技術以外に見えるものがある。":"A journal for families in youth basketball."}</h1>
+        <p>{locale==="ja"?"チーム選び、出場時間、移籍、練習量、怪我、進路、試合後の声かけ。正解を押しつけるのではなく、何を確認し、何を急いで決めなくていいのかを整理します。":"Practical, evidence-aware guidance for families navigating youth basketball."}</p>
+      </section>
+
+      <nav className="journal-topic-nav section-pad" aria-label={locale==="ja"?"保護者向けテーマ":"Family topics"}>
+        <a href="#family-role"><span>01</span>{locale==="ja"?"役割・自信":"Role / confidence"}</a>
+        <a href="#family-choice"><span>02</span>{locale==="ja"?"チーム選び":"Team choice"}</a>
+        <a href="#family-home"><span>03</span>{locale==="ja"?"家庭での関わり":"At home"}</a>
+        <a href="#family-load"><span>04</span>{locale==="ja"?"練習量・安全":"Load / safety"}</a>
+        <a href="#family-pathway"><span>05</span>{locale==="ja"?"U15・進路":"U15 / pathway"}</a>
+        <strong>{locale==="ja"?\`\${familyPosts.length}本を公開中\`:\`\${familyPosts.length} articles\`}</strong>
+      </nav>
+
+      {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="保護者JOURNALの情報量">
+        <article><strong>{familyPosts.length}</strong><span>保護者向け記事</span><small>チーム・家庭・進路・安全まで</small></article>
+        <article><strong>{sourceCount}</strong><span>参考資料リンク</span><small>研究・公式資料の原典へ</small></article>
+        <article><strong>{familyPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>いつ確認した内容かを表示</small></article>
+        <article><strong>3</strong><span>書き分けるもの</span><small>EVIDENCE / RBAの解釈 / LIMITATIONS</small></article>
+      </section>:null}
+
+      <section className="journal-evidence-standard section-pad">
+        <div className="section-head"><div><p className="section-index">HOW TO READ</p><h2>{locale==="ja"?"結論を急がないためのJOURNALです。":"Use the journal to slow down the decision."}</h2></div><p>{locale==="ja"?"『辞めるべき』『もっと頑張るべき』を先に決めず、本人の経験、環境、負荷、相談できる余地を分けて見ます。":"Separate the athlete's experience, environment, load and support before deciding."}</p></div>
+        <div className="journal-evidence-grid">
+          <article><span>01 / FACT</span><h3>{locale==="ja"?"まず事実を見る":"Start with facts"}</h3><p>{locale==="ja"?"出場時間、練習日数、移動、睡眠、本人が実際に言ったこと。解釈の前に確認します。":"Check what is actually happening."}</p></article>
+          <article><span>02 / VOICE</span><h3>{locale==="ja"?"本人の言葉を残す":"Keep the athlete's voice"}</h3><p>{locale==="ja"?"大人が全部意味づけせず、本人がどう感じ、何を望んでいるかを聞きます。":"Do not replace the athlete's own perspective."}</p></article>
+          <article><span>03 / NEXT</span><h3>{locale==="ja"?"次の一つを決める":"Choose one next step"}</h3><p>{locale==="ja"?"相談する、休む、比較する、もう少し見る。大きな決断の前にできる一つを探します。":"Find the smallest useful next action."}</p></article>
+        </div>
+      </section>
+
+      {recentFamilyPosts.length?<section className="journal-cms-index section-pad">
+        <div className="section-head"><div><p className="section-index">LATEST PARENT JOURNAL</p><h2>{locale==="ja"?"いま、保護者に読んでほしい記事。":"Latest family articles"}</h2></div><p>{locale==="ja"?"新しい記事はここに追加されます。":"New family articles appear here."}</p></div>
+        <div className="journal-cms-grid">{recentFamilyPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
+          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?\`参考文献 \${post.source_references.length}\`:\`\${post.source_references.length} SOURCES\`}</span>:null}</div>
+          {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
+          <h3>{post.title}</h3><p>{post.standfirst}</p><strong>{locale==="ja"?"記事を読む":"Read"} <ArrowRight size={16}/></strong>
+        </Link>)}</div>
+      </section>:null}
+
+      {familyGroups.map(group=>{const grouped=group.slugs.map(findFamily).filter(Boolean) as typeof familyPosts;return <section className="journal-cms-index section-pad" id={group.id} key={group.id}>
+        <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{group.title}</h2></div><p>{group.description}</p></div>
+        {grouped.length?<div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
+          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?\`参考文献 \${post.source_references.length}\`:\`\${post.source_references.length} SOURCES\`}</span>:null}</div>
+          {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
+          <h3>{post.title}</h3><p>{post.standfirst}</p><strong>{locale==="ja"?"記事を読む":"Read"} <ArrowRight size={16}/></strong>
+        </Link>)}</div>:<p>{locale==="ja"?"このテーマの記事を準備しています。":"Articles are being prepared."}</p>}
+      </section>})}
+
+      <section className="journal-exchange-cta section-pad">
+        <div><p className="section-index inverse">WHEN YOU NEED THE NEXT STEP</p><h2>{locale==="ja"?"読むだけで整理できない悩みは、相談して構いません。":"When an article is not enough."}</h2><p>{locale==="ja"?"チーム選び、移籍、出場機会、練習量。個別事情が大きいテーマは、JOURNALだけで答えを決めません。":"Some decisions depend heavily on the individual context."}</p></div>
+        <div><Link className="button button-light" href={\`\${prefix}/my-homecourt/families\`}>{locale==="ja"?"保護者向けHOME":"Family home"} <ArrowRight size={16}/></Link><Link className="button button-dark" href={\`\${prefix}/contact\`}>{locale==="ja"?"RBAに相談":"Contact RBA"} <ArrowRight size={16}/></Link></div>
       </section>
     </div>
   </SiteFrame>;
