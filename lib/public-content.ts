@@ -31,7 +31,7 @@ export async function getLatestPublicUpdate(locale:ContentLocale){
 
 export async function getPublicJournalPosts(locale:ContentLocale,limit=60){
   const {data,error}=await db().from("public_journal_posts")
-    .select("locale,slug,category,audience,title,standfirst,reading,aside_title,aside_text,sections,cta_title,cta_body,published_at,updated_at,evidence_level,evidence_summary,rba_interpretation,limitations,source_references,reviewed_at,coach_application")
+    .select("locale,slug,category,audience,title,standfirst,reading,aside_title,aside_text,hero_image_url,hero_image_alt,sections,cta_title,cta_body,published_at,updated_at,evidence_level,evidence_summary,rba_interpretation,limitations,source_references,reviewed_at,coach_application")
     .eq("locale",locale).eq("published",true)
     .order("published_at",{ascending:false}).limit(limit);
   return error?[]:(data||[]) as PublicJournalPost[];
@@ -39,7 +39,7 @@ export async function getPublicJournalPosts(locale:ContentLocale,limit=60){
 
 export async function getPublicJournalPost(locale:ContentLocale,slug:string){
   const {data,error}=await db().from("public_journal_posts")
-    .select("locale,slug,category,audience,title,standfirst,reading,aside_title,aside_text,sections,cta_title,cta_body,published_at,updated_at,evidence_level,evidence_summary,rba_interpretation,limitations,source_references,reviewed_at,coach_application")
+    .select("locale,slug,category,audience,title,standfirst,reading,aside_title,aside_text,hero_image_url,hero_image_alt,sections,cta_title,cta_body,published_at,updated_at,evidence_level,evidence_summary,rba_interpretation,limitations,source_references,reviewed_at,coach_application")
     .eq("locale",locale).eq("slug",slug).eq("published",true).maybeSingle();
   return error?null:data as PublicJournalPost|null;
 }
