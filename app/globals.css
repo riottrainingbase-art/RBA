@@ -2830,3 +2830,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .member-next-step>.member-next-step-actions{width:100%;flex-direction:column}
   .member-next-step>.member-next-step-actions a{width:100%}
 }
+
+
+/* RBA JOURNAL / optional field-note hero image */
+.journal-article-hero-media{margin:0;background:#171a1d;overflow:hidden}
+.journal-article-hero-media img{display:block;width:100%;height:auto;max-width:1280px;margin:0 auto}
+.journal-article-hero-media figcaption{max-width:1280px;margin:0 auto;padding:12px clamp(20px,5vw,72px) 14px;color:#aeb6ba;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:720px){
+  .journal-article-hero-media figcaption{padding:10px 20px 12px;font-size:9px}
+}
