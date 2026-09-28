@@ -336,7 +336,7 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
   const posts=await getPublicJournalPosts(locale,500);
   const familyPosts=posts.filter(post=>post.audience==="families"||post.category==="families");
   const recentFamilyPosts=familyPosts.slice(0,12);
-  const prefix=locale==="en"?"":\`/\${locale}\`;
+  const prefix=locale==="en"?"":`/${locale}`;
   const findFamily=(slug:string)=>familyPosts.find(post=>post.slug===slug);
   const familyGroups=[
     {id:"family-start",label:"START HERE",title:"最初に読んでほしい記事",description:"保護者が毎回コーチになるのではなく、環境・経験・本人の声を見るところから。",slugs:["parents-support-not-coach","how-to-choose-youth-team","too-much-practice","child-wants-to-quit-basketball"]},
@@ -363,7 +363,7 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
         <a href="#family-home"><span>03</span>{locale==="ja"?"家庭での関わり":"At home"}</a>
         <a href="#family-load"><span>04</span>{locale==="ja"?"練習量・安全":"Load / safety"}</a>
         <a href="#family-pathway"><span>05</span>{locale==="ja"?"U15・進路":"U15 / pathway"}</a>
-        <strong>{locale==="ja"?\`\${familyPosts.length}本を公開中\`:\`\${familyPosts.length} articles\`}</strong>
+        <strong>{locale==="ja"?`${familyPosts.length}本を公開中`:`${familyPosts.length} articles`}</strong>
       </nav>
 
       {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="保護者JOURNALの情報量">
@@ -386,7 +386,7 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
         <div className="section-head"><div><p className="section-index">LATEST PARENT JOURNAL</p><h2>{locale==="ja"?"いま、保護者に読んでほしい記事。":"Latest family articles"}</h2></div><p>{locale==="ja"?"新しい記事はここに追加されます。":"New family articles appear here."}</p></div>
         <div className="journal-cms-grid">{recentFamilyPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
-          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?\`参考文献 \${post.source_references.length}\`:\`\${post.source_references.length} SOURCES\`}</span>:null}</div>
+          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>
           {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
           <h3>{post.title}</h3><p>{post.standfirst}</p><strong>{locale==="ja"?"記事を読む":"Read"} <ArrowRight size={16}/></strong>
         </Link>)}</div>
@@ -396,7 +396,7 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
         <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{group.title}</h2></div><p>{group.description}</p></div>
         {grouped.length?<div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
-          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?\`参考文献 \${post.source_references.length}\`:\`\${post.source_references.length} SOURCES\`}</span>:null}</div>
+          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>
           {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
           <h3>{post.title}</h3><p>{post.standfirst}</p><strong>{locale==="ja"?"記事を読む":"Read"} <ArrowRight size={16}/></strong>
         </Link>)}</div>:<p>{locale==="ja"?"このテーマの記事を準備しています。":"Articles are being prepared."}</p>}
@@ -404,7 +404,7 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
 
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">WHEN YOU NEED THE NEXT STEP</p><h2>{locale==="ja"?"読むだけで整理できない悩みは、相談して構いません。":"When an article is not enough."}</h2><p>{locale==="ja"?"チーム選び、移籍、出場機会、練習量。個別事情が大きいテーマは、JOURNALだけで答えを決めません。":"Some decisions depend heavily on the individual context."}</p></div>
-        <div><Link className="button button-light" href={\`\${prefix}/my-homecourt/families\`}>{locale==="ja"?"保護者向けHOME":"Family home"} <ArrowRight size={16}/></Link><Link className="button button-dark" href={\`\${prefix}/contact\`}>{locale==="ja"?"RBAに相談":"Contact RBA"} <ArrowRight size={16}/></Link></div>
+        <div><Link className="button button-light" href={`${prefix}/my-homecourt/families`}>{locale==="ja"?"保護者向けHOME":"Family home"} <ArrowRight size={16}/></Link><Link className="button button-dark" href={`${prefix}/contact`}>{locale==="ja"?"RBAに相談":"Contact RBA"} <ArrowRight size={16}/></Link></div>
       </section>
     </div>
   </SiteFrame>;
