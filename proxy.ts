@@ -12,6 +12,8 @@ function routeLanguage(pathname:string){
 export async function proxy(request:NextRequest){
   const host=request.headers.get("host")?.split(":")[0].toLowerCase();
   const language=routeLanguage(request.nextUrl.pathname);
+  const requestHeaders=new Headers(request.headers);
+  requestHeaders.set("x-rba-language",language);
 
   if(host==="www.riotbasketballacademy.com"){
     const url=request.nextUrl.clone();
@@ -23,7 +25,9 @@ export async function proxy(request:NextRequest){
   }
 
   const isMemberApp=/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/|$)/.test(request.nextUrl.pathname);
-  const response=isMemberApp?await updateSession(request):NextResponse.next();
+  const response=isMemberApp
+    ? await updateSession(request,requestHeaders)
+    : NextResponse.next({request:{headers:requestHeaders}});
   response.headers.set("Content-Language",language);
   return response;
 }
