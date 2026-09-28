@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- checkout anchors intentionally avoid prefetching the server redirect endpoint. */
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPublicJournalPost, getPublicJournalPosts, type PublicJournalPost } from "@/lib/public-content";
@@ -205,7 +204,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <Image src={post.hero_image_url} alt={post.hero_image_alt||post.title} width={1600} height={1200} sizes="100vw" priority/>
       <figcaption>RBA UNITED / YAIMA CUP 2026 · ISHIGAKI</figcaption>
     </figure>:null}
-    {post.hero_image_url?<figure className="journal-field-hero section-pad"><Image src={post.hero_image_url} alt={post.hero_image_alt||post.title} width={1000} height={750} unoptimized priority/><figcaption>{locale==="ja"?"RBA UNITED / YAIMA CUP 2026 — 石垣島での活動より":locale==="zh-tw"?"RBA UNITED / YAIMA CUP 2026":locale==="ko"?"RBA UNITED / YAIMA CUP 2026":"RBA UNITED / YAIMA CUP 2026"}</figcaption></figure>:null}
+    {post.hero_image_url?<figure className="journal-field-hero section-pad"><img src={post.hero_image_url} alt={post.hero_image_alt||post.title}/><figcaption>{locale==="ja"?"RBA UNITED / YAIMA CUP 2026 — 石垣島での活動より":locale==="zh-tw"?"RBA UNITED / YAIMA CUP 2026":locale==="ko"?"RBA UNITED / YAIMA CUP 2026":"RBA UNITED / YAIMA CUP 2026"}</figcaption></figure>:null}
     <JournalReaderTools title={post.title} locale={locale}/>
     {currentInfo?<section className="journal-current-notice section-pad"><span>CURRENT / 2026</span><div><strong>制度・ルールに関する記事です。</strong><p>{post.reviewed_at?`最終確認：${new Date(post.reviewed_at).toLocaleDateString("ja-JP")}。`:""} 大会要項・登録期限・競技規則は更新される場合があります。最新のJBA・都道府県協会・大会主管者の案内を優先してください。</p></div></section>:null}
     {safetyInfo?<section className="journal-safety-notice section-pad"><span>HEALTH / SAFETY</span><div><strong>健康・安全に関する一般情報です。</strong><p>診断や個別の復帰判断の代わりにはなりません。痛み・神経症状・頭部衝撃後の症状などがある場合は、医師・理学療法士等の適切な医療専門職へ相談してください。</p></div></section>:null}
