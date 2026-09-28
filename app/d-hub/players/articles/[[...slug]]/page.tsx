@@ -1,0 +1,14 @@
+import type {Metadata} from "next";
+import {DhubPaidLibrary} from "@/components/dhub-paid-library";
+
+export const dynamic="force-dynamic";
+
+export const metadata:Metadata={
+  title:{absolute:"D-HUB PLAYERS Member Articles | RBA"},
+  robots:{index:false,follow:false}
+};
+
+export default async function Page({params}:{params:Promise<{slug?:string[]}>}){
+  const {slug}=await params;
+  return <DhubPaidLibrary program="players" slug={slug} locale="en"/>;
+}
