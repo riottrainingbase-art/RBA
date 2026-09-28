@@ -1,5 +1,5 @@
 import { ArrowRight, BookOpen, CalendarDays, ClipboardList, Globe2, House, MapPin, Users } from "lucide-react";
-import { SiteFrame, type Locale } from "./site-frame";
+import { SiteFrame } from "./site-frame";
 import { openProgrammes } from "./programme-data";
 import { tr } from "./network-data";
 
