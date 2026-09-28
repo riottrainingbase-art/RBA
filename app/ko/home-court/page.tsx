@@ -1,4 +1,5 @@
-import { pageMetadata } from "@/components/page-metadata";
-import { HomecourtPage } from "@/components/homecourt-page";
-export const metadata=pageMetadata("ko","home-court");
-export default function Page(){return <HomecourtPage locale="ko"/>}
+import { permanentRedirect } from "next/navigation";
+
+export default function Page(){
+  permanentRedirect("/ko/my-homecourt");
+}
