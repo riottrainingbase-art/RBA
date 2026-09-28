@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LocalizedHome } from "@/components/localized-home";
+import { JapaneseHome } from "@/components/japanese-home";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
@@ -11,12 +11,15 @@ export const metadata: Metadata = {
     description: "勝つことと育てることを同じにしない。全国の活動、指導者の学び、MY HOME COURT、Japan × Asiaの交流を一つの場所から。",
     url: "https://riotbasketballacademy.com/ja/",
     siteName: "Riot Basketball Academy",
+    locale: "ja_JP",
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
   twitter: { card: "summary_large_image", title: "RBA｜子どもの未来から育成を考える", description: "勝つことと育てることを同じにしない。所属や地域を越えて、次の育成機会へ。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
+export const revalidate=300;
+
 export default function Page() {
-  return <LocalizedHome locale="ja" />;
+  return <JapaneseHome />;
 }

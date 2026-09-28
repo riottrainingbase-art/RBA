@@ -1,4 +1,4 @@
 import type { Metadata } from "next";
 import { MemberLoginEntry } from "@/components/member-login-entry";
-export const metadata:Metadata={title:"RBA ID 로그인",robots:{index:false,follow:false}};
+export const metadata:Metadata={title:"MY HOME COURT | 로그인",description:"MY HOME COURT에 로그인하거나 무료 계정을 만드세요.",robots:{index:false,follow:false},alternates:{canonical:"/ko/my-homecourt/login"},openGraph:{title:"MY HOME COURT | 로그인",description:"MY HOME COURT에 로그인하거나 무료 계정을 만드세요.",url:"/ko/my-homecourt/login",siteName:"Riot Basketball Academy",locale:"ko_KR",type:"website",images:["/rba-court-hero.png"]}};
 export default async function Page({searchParams}:{searchParams:Promise<{error?:string|string[];next?:string|string[]}>}){const query=await searchParams;return <MemberLoginEntry locale="ko" next={typeof query.next==="string"?query.next:undefined} authError={query.error==="browser"||query.error==="expired"?query.error:query.error==="auth"}/>;}

@@ -26,10 +26,10 @@ const titles:Record<string,Record<Locale,string>>={
 };
 const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
  "my-homecourt":{
-  en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one RBA ID.",
-  ja:"MY HOME COURTは、所属チーム、これまでの経験、次に参加できる育成機会、Development Camp、RBA UNITED、国内外の選択肢を、一つのRBA IDでつなぐ自分専用の育成ページです。",
-  "zh-tw":"MY HOME COURT以一個RBA ID整合行程、報名、參與紀錄、Basketball Passport、照片影片與下一個培育機會。",
-  ko:"MY HOME COURT는 일정, 신청, 참가 기록, Basketball Passport, 사진·영상과 다음 성장 기회를 하나의 RBA ID로 연결합니다."
+  en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one MY HOME COURT account.",
+  ja:"MY HOME COURTは、所属チーム、これまでの経験、次に参加できる育成機会、Development Camp、RBA UNITED、国内外の選択肢を、自分のアカウントでつなぐ育成ページです。",
+  "zh-tw":"MY HOME COURT以一個MY HOME COURT account整合行程、報名、參與紀錄、Basketball Passport、照片影片與下一個培育機會。",
+  ko:"MY HOME COURT는 일정, 신청, 참가 기록, Basketball Passport, 사진·영상과 다음 성장 기회를 하나의 MY HOME COURT account로 연결합니다."
  },
  coaches:{
   en:"Coach development at RBA: D-HUB weekly learning, Torsten Loibl Online Clinic, practice design, LTAD, S&C and international coach exchange.",

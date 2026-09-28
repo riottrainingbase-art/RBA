@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import "./platform-v9.css";
 
@@ -24,14 +25,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders=await headers();
+  const language=requestHeaders.get("x-rba-language")||"en";
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{__html:`(()=>{const p=location.pathname;document.documentElement.lang=p==='/ja'||p.startsWith('/ja/')?'ja':p==='/zh-tw'||p.startsWith('/zh-tw/')?'zh-Hant-TW':p==='/ko'||p.startsWith('/ko/')?'ko':'en'})()`}} /></head>
+    <html lang={language} suppressHydrationWarning>
       <body className="antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context":"https://schema.org", "@type":"SportsOrganization", name:"Riot Basketball Academy", alternateName:"RBA",
