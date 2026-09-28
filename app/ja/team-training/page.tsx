@@ -43,7 +43,7 @@ export default function Page(){
       <h1>練習を、<br/>選手の学びが残る時間に。</h1>
       <p>TEAM TRAININGは、メニューを並べるための機能ではありません。何を見て、どう判断し、どんなプレーを試し、次の練習へ何を残すかまでを一つの流れで設計します。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href="/ja/my-homecourt">MY HOME COURTを見る<ArrowRight size={17}/></a>
+        <a className="button button-orange" href="/ja/minibasket-support">ミニバス育成支援を見る<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/team-visit-clinic">訪問トレーニングを見る<ArrowRight size={17}/></a>
       </div>
     </section>
@@ -124,7 +124,7 @@ export default function Page(){
       <h2>チームの日常に、<br/>育成の仕組みを入れる。</h2>
       <p>自分たちでTEAM TRAININGを使うことも、RBAを現場へ呼ぶこともできます。今のチームを変えるのではなく、今いる環境の中に新しい学び方を加えます。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href="/ja/my-homecourt">MY HOME COURTを開く<ArrowRight size={17}/></a>
+        <a className="button button-orange" href="/ja/minibasket-support">チーム育成診断から始める<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
       </div>
     </section>
