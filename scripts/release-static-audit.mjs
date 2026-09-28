@@ -69,6 +69,7 @@ const migrations=[
   "supabase/migrations/20260928013300_homecourt_indexes_policy_cleanup.sql",
   "supabase/migrations/20260928014000_team_development_90_day_cycle.sql",
   "supabase/migrations/20260928014500_homecourt_match_rpc_invoker.sql",
+  "supabase/migrations/20260928014600_homecourt_admin_policies.sql",
 ];
 for(const migration of migrations) if(!exists(migration)) fail(`migration missing: ${migration}`);
 
