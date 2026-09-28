@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: "勝つことと育てることを同じにしない。全国の活動、指導者の学び、MY HOME COURT、Japan × Asiaの交流を一つの場所から。",
     url: "https://riotbasketballacademy.com/ja/",
     siteName: "Riot Basketball Academy",
+    locale: "ja_JP",
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
