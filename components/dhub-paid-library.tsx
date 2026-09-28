@@ -1,6 +1,7 @@
 import "server-only";
 import Link from "next/link";
 import {notFound,redirect} from "next/navigation";
+import {revalidatePath} from "next/cache";
 import {ArrowLeft,ArrowRight,BookOpen,ExternalLink} from "lucide-react";
 import {createClient} from "@/lib/supabase/server";
 import {SiteFrame} from "@/components/site-frame";
@@ -63,6 +64,42 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
   if(error||!data)notFound();
   const article=data as PaidArticle;
   const sources=Array.isArray(article.source_references)?article.source_references:[];
+  const isPlayerPath=program==="players"&&locale==="ja"&&article.editorial_note?.startsWith("GRADE6_12M|");
+  const {data:articleProgress}=isPlayerPath?await supabase.from("dhub_paid_article_progress")
+    .select("status,reflection,next_action,completed_at")
+    .eq("user_id",user.id).eq("article_id",article.id).maybeSingle():{data:null};
+  const {data:pathRows}=isPlayerPath?await supabase.from("dhub_paid_articles")
+    .select("id,slug,title,editorial_note")
+    .eq("program_type","players").eq("locale","ja").eq("category","小6→中1 年間カリキュラム").eq("published",true):{data:[]};
+  const orderedPath=(pathRows||[]).sort((a,b)=>String(a.editorial_note||"").localeCompare(String(b.editorial_note||"")));
+  const pathIndex=isPlayerPath?orderedPath.findIndex(item=>item.id===article.id):-1;
+  const previousPath=pathIndex>0?orderedPath[pathIndex-1]:null;
+  const nextPath=pathIndex>=0&&pathIndex<orderedPath.length-1?orderedPath[pathIndex+1]:null;
+
+  async function savePlayerArticleProgress(fd:FormData){
+    "use server";
+    if(program!=="players"||locale!=="ja")return;
+    const x=await createClient();
+    const {data:{user:u}}=await x.auth.getUser();
+    if(!u)return;
+    const {data:access}=await x.rpc("has_dhub_player_access");
+    if(!access)return;
+    const articleId=String(fd.get("article_id")||"");
+    const status=String(fd.get("status")||"started")==="completed"?"completed":"started";
+    await x.from("dhub_paid_article_progress").upsert({
+      user_id:u.id,
+      article_id:articleId,
+      status,
+      reflection:String(fd.get("reflection")||"").slice(0,4000),
+      next_action:String(fd.get("next_action")||"").slice(0,1000),
+      completed_at:status==="completed"?new Date().toISOString():null,
+      updated_at:new Date().toISOString()
+    },{onConflict:"user_id,article_id"});
+    revalidatePath(c.root+"/"+article.slug);
+    revalidatePath(c.root);
+    revalidatePath(c.home);
+  }
+
   return <SiteFrame locale={locale} languagePage="d-hub"><main className={styles.shell}>
     <header className={styles.articleHero}>
       <Link href={c.root} className={styles.back}><ArrowLeft size={15}/> {locale==="ja"?"記事一覧へ":"Article library"}</Link>
@@ -94,7 +131,23 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
         <p className={styles.eyebrow}>{locale==="ja"?"振り返る時の問い":"REFLECTION QUESTIONS"}</p>
         {article.reflection_questions.map((q,index)=><div key={q}><span>{String(index+1).padStart(2,"0")}</span><strong>{q}</strong></div>)}
       </section>
+
+      {isPlayerPath?<section className={styles.pathProgress}>
+        <div className={styles.pathProgressHead}><div><p className={styles.eyebrow}>MY MONTH / SAVE YOUR LEARNING</p><h2>今月を、自分の記録にする。</h2></div><span data-status={articleProgress?.status||"not-started"}>{articleProgress?.status==="completed"?"COMPLETED":articleProgress?.status==="started"?"IN PROGRESS":"NOT STARTED"}</span></div>
+        <form action={savePlayerArticleProgress}>
+          <input type="hidden" name="article_id" value={article.id}/>
+          <label>実際に起きたこと<textarea name="reflection" rows={7} defaultValue={articleProgress?.reflection||""} placeholder="試合や練習で、実際に見えたこと・できたこと・困ったことを残す。"/></label>
+          <label>次の練習でやること<input name="next_action" defaultValue={articleProgress?.next_action||""} placeholder="一つだけ決める"/></label>
+          <div><button className="button button-light" name="status" value="started">保存する</button><button className="button button-member" name="status" value="completed">今月を完了</button></div>
+        </form>
+      </section>:null}
     </article>
+
+    {isPlayerPath?<nav className={styles.pathNav}>
+      {previousPath?<Link href={c.root+"/"+previousPath.slug}><ArrowLeft size={15}/><span><small>PREVIOUS</small>{previousPath.title}</span></Link>:<span/>}
+      <Link href={c.root}>12-MONTH PATH</Link>
+      {nextPath?<Link href={c.root+"/"+nextPath.slug}><span><small>NEXT</small>{nextPath.title}</span><ArrowRight size={15}/></Link>:<span/>}
+    </nav>:null}
 
     {article.related_public_slugs?.length?<section className={styles.related}>
       <div><p className={styles.eyebrow}>{locale==="ja"?"無料JOURNALも確認する":"RELATED JOURNAL"}</p><h2>{locale==="ja"?"根拠や背景を読み直す。":"Read the wider context."}</h2></div>
