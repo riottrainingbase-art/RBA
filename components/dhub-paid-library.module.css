@@ -19,3 +19,26 @@
 .curriculumCard:first-child strong{border-top-color:#d1d5d2}
 @media(max-width:900px){.curriculumHead{grid-template-columns:1fr}.curriculumGrid{grid-template-columns:1fr 1fr}.curriculumCard:first-child{grid-column:span 2}}
 @media(max-width:620px){.curriculum{padding:34px 20px}.curriculumGrid{grid-template-columns:1fr}.curriculumCard:first-child{grid-column:auto}.curriculumCard{min-height:0}.curriculumStats{width:100%}.curriculumStats>div{min-width:0;flex:1}}
+
+.pathProgress{margin:34px 0 54px;padding:24px;background:#fff;border:1px solid #cbd0cd}
+.pathProgressHead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:20px}
+.pathProgressHead h2{margin:8px 0 0;font-size:clamp(28px,3.5vw,40px);line-height:1.08}
+.pathProgressHead>span{padding:7px 9px;border:1px solid #cbd0cd;font-size:9px;font-weight:900;letter-spacing:.08em}
+.pathProgressHead>span[data-status="completed"]{background:#171a1d;color:#fff;border-color:#171a1d}
+.pathProgress form{display:grid;gap:16px}
+.pathProgress label{display:grid;gap:8px;font-size:11px;font-weight:900;letter-spacing:.03em}
+.pathProgress textarea,.pathProgress input{width:100%;padding:13px 14px;border:1px solid #bcc3bf;background:#f7f8f5;color:#171a1d;font:inherit;font-size:15px;line-height:1.6}
+.pathProgress form>div{display:flex;gap:8px;flex-wrap:wrap}
+.pathNav{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;border-top:1px solid #cbd0cd;border-bottom:1px solid #cbd0cd;background:#fff}
+.pathNav>a{min-height:92px;padding:16px clamp(20px,4vw,50px);display:flex;align-items:center;gap:12px;color:#171a1d;text-decoration:none}
+.pathNav>a:nth-child(2){justify-content:center;background:#171a1d;color:#fff;font-size:10px;font-weight:900;letter-spacing:.1em}
+.pathNav>a:last-child{justify-content:flex-end;text-align:right}
+.pathNav span{display:flex;flex-direction:column;gap:4px;max-width:340px;font-weight:800;line-height:1.35}
+.pathNav small{font-size:8px;color:#849095;letter-spacing:.12em}
+@media(max-width:620px){
+ .pathProgress{margin:24px 0 40px;padding:18px}
+ .pathProgressHead{display:block}.pathProgressHead>span{display:inline-flex;margin-top:14px}
+ .pathNav{grid-template-columns:1fr 1fr}
+ .pathNav>a:nth-child(2){grid-column:1/-1;grid-row:1}
+ .pathNav>a{padding:14px 18px;font-size:12px}
+}
