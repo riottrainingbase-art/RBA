@@ -13,6 +13,7 @@ export type PublicUpdate={kind:"journal"|"programme"|"exchange"|"platform";local
 export type PublicJournalPost={
   locale:ContentLocale;slug:string;category:string;audience:string;title:string;standfirst:string;reading:string;
   aside_title:string|null;aside_text:string|null;
+  hero_image_url:string|null;hero_image_alt:string|null;
   sections:{heading:string;paragraphs:string[];bullets?:string[]}[];
   cta_title:string|null;cta_body:string|null;published_at:string|null;updated_at:string|null;
   evidence_level:string|null;evidence_summary:string|null;rba_interpretation:string|null;limitations:string|null;
