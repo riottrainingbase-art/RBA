@@ -268,8 +268,9 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const recentCoachPosts=coachPosts.slice(0,8);
   const prefix=locale==="en"?"":`/${locale}`;
   const coachGroups=[
+    {id:"coach-u12",label:"U12 / FUNDAMENTALS",slugs:["why-youth-practice-becomes-shortcut-drills","why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
     {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
-    {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
+    {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["three-on-three-is-not-small-five-on-five","too-many-constraints-change-the-game","questions-are-not-always-better","stop-practice-less-often"]},
     {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["relationship-is-coaching-infrastructure","criticism-can-create-better-coaching","showa-myths-youth-basketball","read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
     {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]},
   ];
@@ -278,18 +279,19 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       <section className="journal-cms-hero section-pad">
         <Link href={journalRoot(locale)} className="back-link">← RBA JOURNAL</Link>
         <p className="section-index">RBA JOURNAL / COACH</p>
-        <h1>{locale==="ja"?"経験だけに頼らず、指導を更新する。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
-        <p>{locale==="ja"?"研究やFIBA/WABCの資料、現場での経験を分けて整理し、練習設計・観察・振り返りまでつなげる指導者向けJOURNALです。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
+        <h1>{locale==="ja"?"練習メニューを増やす前に、何を育てたいかを考える。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
+        <p>{locale==="ja"?"ミニバスの基礎、練習設計、ゲームコーチング、S&C、安全。答えを集めるのではなく、目の前の選手をどう見るかまで考える指導者向けJOURNALです。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
       </section>
       <nav className="journal-topic-nav section-pad" aria-label={locale==="ja"?"指導テーマ":"Coaching topics"}>
-        <a href="#coach-game"><span>01</span>{locale==="ja"?"試合運営":"Game coaching"}</a>
-        <a href="#coach-practice"><span>02</span>{locale==="ja"?"練習設計":"Practice design"}</a>
-        <a href="#coach-player"><span>03</span>{locale==="ja"?"選手育成":"Player development"}</a>
-        <a href="#coach-physical"><span>04</span>{locale==="ja"?"S&C / 安全":"S&C / Safety"}</a>
+        <a href="#coach-u12"><span>01</span>{locale==="ja"?"U12 / 基礎":"U12 / Fundamentals"}</a>
+        <a href="#coach-game"><span>02</span>{locale==="ja"?"試合運営":"Game coaching"}</a>
+        <a href="#coach-practice"><span>03</span>{locale==="ja"?"練習設計":"Practice design"}</a>
+        <a href="#coach-player"><span>04</span>{locale==="ja"?"選手育成":"Player development"}</a>
+        <a href="#coach-physical"><span>05</span>{locale==="ja"?"S&C / 安全":"S&C / Safety"}</a>
         <strong>{locale==="ja"?"公開記事は参考文献付き":"Published coach articles include sources"}</strong>
       </nav>
       {recentCoachPosts.length?<section className="journal-cms-index journal-coach-latest section-pad">
-        <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"いま、指導者に読んでほしい記事。":"Latest coach articles"}</h2></div><p>{locale==="ja"?"新しい記事は自動でここに並びます。すべて参考文献付きです。":"New articles appear here automatically."}</p></div>
+        <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"今の練習を、一度疑ってみる。":"Latest coach articles"}</h2></div><p>{locale==="ja"?"新しい記事はここに並びます。メニューを集めるより、なぜその練習をするのかから考えます。":"New articles appear here automatically."}</p></div>
         <div className="journal-cms-grid">{recentCoachPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
           <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>
