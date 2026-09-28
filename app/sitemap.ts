@@ -8,6 +8,7 @@ const base="https://riotbasketballacademy.com";
 const locales=["","/ja","/zh-tw","/ko"] as const;
 const core=["","/players","/families","/coaches","/home-court","/my-homecourt","/my-homecourt/players","/my-homecourt/families","/my-homecourt/coaches","/community","/impact","/d-hub","/united","/connect","/organizer","/about","/approach","/schedule","/payments","/clinic-request","/events/torsten-loibl-online-clinic","/asia","/partners","/contact","/social","/policies","/camp","/faq","/international","/network","/opportunities","/platform","/regional-host","/sponsor","/team","/verified","/journal","/journal/coaches","/after-application"] as const;
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
+const journalFamilyPages=["/ja/journal/families"];
 const productPages=["/ja/homecourt-plus"];
 const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support","/radio","/links","/sponsors"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
@@ -35,6 +36,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...localized.map(path=>({path,lastModified:null as string|null})),
     ...legacy.map(path=>({path,lastModified:null as string|null})),
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
+    ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
     ...productPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalPosts,
   ];
