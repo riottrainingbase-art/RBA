@@ -133,7 +133,7 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
     <div className={styles.grid}>{articles.filter(a=>a.category===category).map(article=>{
       const refs=Array.isArray(article.source_references)?article.source_references.length:0;
       return <Link href={c.root+"/"+article.slug} key={article.slug} className={styles.card}>
-        <div className={styles.cardMeta}><span>{article.reading}</span>{refs?<span>参考文献 {refs}</span>:null}</div>
+        <div className={styles.cardMeta}><span>{article.reading}</span>{refs?<span>{locale==="ja"?`参考文献 ${refs}`:`${refs} sources`}</span>:null}</div>
         <h2>{article.title}</h2>
         <p>{article.summary}</p>
         <strong>{locale==="ja"?"記事を読む":"Read article"} <ArrowRight size={15}/></strong>
