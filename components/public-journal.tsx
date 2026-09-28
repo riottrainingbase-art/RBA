@@ -369,9 +369,9 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
 
       {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="保護者JOURNALの情報量">
         <article><strong>{familyPosts.length}</strong><span>保護者向け記事</span><small>チーム・家庭・進路・安全まで</small></article>
-        <article><strong>{sourceCount}</strong><span>参考資料リンク</span><small>研究・公式資料の原典へ</small></article>
-        <article><strong>{familyPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>いつ確認した内容かを表示</small></article>
-        <article><strong>3</strong><span>書き分けるもの</span><small>EVIDENCE / RBAの解釈 / LIMITATIONS</small></article>
+        <article><strong>{sourceCount}</strong><span>参考資料リンク・延べ</span><small>各記事から原典へ直接つなぐ</small></article>
+        <article><strong>{new Set(familyPosts.flatMap(post=>post.source_references.map(ref=>ref.url))).size}</strong><span>ユニーク参考資料</span><small>同じ原典の重複利用は1件として集計</small></article>
+        <article><strong>{familyPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>いつ確認した内容かを記事ごとに表示</small></article>
       </section>:null}
 
       <section className="journal-evidence-standard section-pad">
@@ -381,6 +381,7 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
           <article><span>02 / VOICE</span><h3>{locale==="ja"?"本人の言葉を残す":"Keep the athlete's voice"}</h3><p>{locale==="ja"?"大人が全部意味づけせず、本人がどう感じ、何を望んでいるかを聞きます。":"Do not replace the athlete's own perspective."}</p></article>
           <article><span>03 / NEXT</span><h3>{locale==="ja"?"次の一つを決める":"Choose one next step"}</h3><p>{locale==="ja"?"相談する、休む、比較する、もう少し見る。大きな決断の前にできる一つを探します。":"Find the smallest useful next action."}</p></article>
         </div>
+        {locale==="ja"?<div className="homecourt-launch-actions"><Link className="button button-light" href="/ja/journal/families/references">参考文献ライブラリを見る <ArrowRight size={17}/></Link></div>:null}
       </section>
 
       {recentFamilyPosts.length?<section className="journal-cms-index section-pad">
@@ -406,6 +407,109 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
       <section className="journal-exchange-cta section-pad">
         <div><p className="section-index inverse">WHEN YOU NEED THE NEXT STEP</p><h2>{locale==="ja"?"読むだけで整理できない悩みは、相談して構いません。":"When an article is not enough."}</h2><p>{locale==="ja"?"チーム選び、移籍、出場機会、練習量。個別事情が大きいテーマは、JOURNALだけで答えを決めません。":"Some decisions depend heavily on the individual context."}</p></div>
         <div><Link className="button button-light" href={`${prefix}/my-homecourt/families`}>{locale==="ja"?"保護者向けHOME":"Family home"} <ArrowRight size={16}/></Link><Link className="button button-dark" href={`${prefix}/contact`}>{locale==="ja"?"RBAに相談":"Contact RBA"} <ArrowRight size={16}/></Link></div>
+      </section>
+    </div>
+  </SiteFrame>;
+}
+
+type FamilyReferenceItem={
+  title:string;
+  source:string;
+  year?:string|number|null;
+  url:string;
+  note?:string|null;
+  usedBy:number;
+  articles:{slug:string;title:string}[];
+};
+
+function familyReferenceGroup(ref:FamilyReferenceItem){
+  const haystack=`${ref.source} ${ref.title}`.toLowerCase();
+  if(haystack.includes("japan basketball")||haystack.includes("jba")||haystack.includes("日本バスケットボール協会"))return "JBA / JAPAN RULES";
+  if(haystack.includes("fiba")||haystack.includes("world association of basketball coaches")||haystack.includes("wabc"))return "FIBA / COACHING";
+  if(haystack.includes("ioc")||haystack.includes("international olympic committee"))return "IOC / CONSENSUS";
+  if(haystack.includes("american academy of pediatrics")||haystack.includes("pediatrics")||haystack.includes("cdc")||haystack.includes("medical")||haystack.includes("injur")||haystack.includes("concussion")||haystack.includes("osgood"))return "MEDICAL / SAFETY";
+  if(haystack.includes("systematic review")||haystack.includes("meta-analysis")||haystack.includes("meta analysis")||haystack.includes("scoping review")||haystack.includes("rapid review"))return "SYSTEMATIC REVIEWS";
+  return "RESEARCH / OTHER";
+}
+
+export async function PublicFamilyReferenceLibrary({locale}:{locale:Locale}){
+  const posts=await getPublicJournalPosts(locale,500);
+  const familyPosts=posts.filter(post=>post.audience==="families"||post.category==="families");
+  const sourceMap=new Map<string,FamilyReferenceItem>();
+  let totalLinks=0;
+  for(const post of familyPosts){
+    for(const ref of post.source_references||[]){
+      totalLinks+=1;
+      const current=sourceMap.get(ref.url);
+      if(current){
+        current.usedBy+=1;
+        if(!current.articles.some(article=>article.slug===post.slug))current.articles.push({slug:post.slug,title:post.title});
+      }else{
+        sourceMap.set(ref.url,{
+          title:ref.title,
+          source:ref.source,
+          year:ref.year,
+          url:ref.url,
+          note:ref.note,
+          usedBy:1,
+          articles:[{slug:post.slug,title:post.title}]
+        });
+      }
+    }
+  }
+  const references=[...sourceMap.values()].sort((a,b)=>{
+    const ay=Number(a.year)||0, by=Number(b.year)||0;
+    return by-ay||b.usedBy-a.usedBy||a.title.localeCompare(b.title,"ja");
+  });
+  const groupOrder=["JBA / JAPAN RULES","FIBA / COACHING","IOC / CONSENSUS","MEDICAL / SAFETY","SYSTEMATIC REVIEWS","RESEARCH / OTHER"];
+  const currentSources=references.filter(ref=>(Number(ref.year)||0)>=2024).length;
+  const allThreePlus=familyPosts.every(post=>(post.source_references?.length||0)>=3);
+  const latestReviewed=familyPosts.map(post=>post.reviewed_at).filter(Boolean).sort().at(-1)||null;
+  return <SiteFrame locale={locale} languagePage="journal">
+    <div className="journal-hub journal-cms">
+      <section className="journal-cms-hero section-pad">
+        <Link href="/ja/journal/families" className="back-link">← 保護者JOURNAL</Link>
+        <p className="section-index">RBA JOURNAL / SOURCE LIBRARY</p>
+        <h1>{locale==="ja"?"参考文献を、見える場所に置く。":"Family Journal source library"}</h1>
+        <p>{locale==="ja"?"RBA JOURNALで何を根拠に書いているのかを、記事の奥に隠しません。現行ルールは公式資料、一般化する主張はレビューやコンセンサス、医療・安全は専門機関のガイダンスを優先します。":"A transparent library of sources used across the family journal."}</p>
+      </section>
+
+      {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="参考文献監査状況">
+        <article><strong>{familyPosts.length}</strong><span>対象記事</span><small>保護者向けJOURNAL全体</small></article>
+        <article><strong>{totalLinks}</strong><span>参考資料リンク・延べ</span><small>記事ごとの引用・参考資料</small></article>
+        <article><strong>{references.length}</strong><span>ユニーク参考資料</span><small>重複URLを除いて集計</small></article>
+        <article><strong>{currentSources}</strong><span>2024年以降</span><small>新しい資料だけで古い基礎研究を置き換えるわけではありません</small></article>
+      </section>:null}
+
+      <section className="journal-evidence-standard section-pad">
+        <div className="section-head"><div><p className="section-index">SOURCE STANDARD</p><h2>{locale==="ja"?"資料は、役割を分けて使います。":"How sources are used"}</h2></div><p>{locale==="ja"?`最終監査: ${latestReviewed?new Date(latestReviewed).toLocaleDateString("ja-JP"):"—"} / 全記事3件以上: ${allThreePlus?"確認済み":"要確認"}`:"Evidence is matched to the type of claim."}</p></div>
+        <div className="journal-evidence-grid">
+          <article><span>01 / CURRENT RULES</span><h3>{locale==="ja"?"制度は公式情報を優先":"Current rules first"}</h3><p>{locale==="ja"?"JBAの登録・移籍・大会要件など、変わり得る制度は公式の現行ページを優先します。":"Use current official sources for changing rules."}</p></article>
+          <article><span>02 / SYNTHESIS</span><h3>{locale==="ja"?"一般化はレビューを優先":"Prefer evidence synthesis"}</h3><p>{locale==="ja"?"保護者の関わり、動機づけ、継続、専門化などは、単一研究だけで断定せず系統的レビュー・メタ解析を優先します。":"Prefer systematic reviews and meta-analyses for broad claims."}</p></article>
+          <article><span>03 / SAFETY</span><h3>{locale==="ja"?"安全は専門機関へ戻す":"Safety sources"}</h3><p>{locale==="ja"?"脳震盪、復帰、成長期の痛み、負荷管理はAAP・CDC・IOCなどの専門資料を中心に扱います。":"Use medical and safeguarding authorities for safety claims."}</p></article>
+          <article><span>04 / LIMITS</span><h3>{locale==="ja"?"研究とRBAの考えを混ぜない":"Keep interpretation separate"}</h3><p>{locale==="ja"?"研究が直接証明していないことはLIMITATIONSへ書き、RBAの現場解釈とは分けます。":"Separate evidence, interpretation and limitations."}</p></article>
+        </div>
+      </section>
+
+      {groupOrder.map(group=>{
+        const grouped=references.filter(ref=>familyReferenceGroup(ref)===group);
+        if(!grouped.length)return null;
+        return <section className="journal-cms-index section-pad" key={group}>
+          <div className="section-head"><div><p className="section-index">{group}</p><h2>{group}</h2></div><p>{grouped.length} SOURCES</p></div>
+          <div className="journal-cms-grid">{grouped.map((ref,index)=><a href={ref.url} target="_blank" rel="noreferrer" key={ref.url}>
+            <span>{String(index+1).padStart(2,"0")}</span>
+            <p className="note-tag">{ref.year||"YEAR N/A"} · {ref.usedBy} ARTICLES</p>
+            <h3>{ref.title}</h3>
+            <p>{ref.source}</p>
+            {ref.note?<p>{ref.note}</p>:null}
+            <strong>原典を開く <ArrowUpRight size={16}/></strong>
+          </a>)}</div>
+        </section>;
+      })}
+
+      <section className="journal-evidence-standard section-pad">
+        <div className="section-head"><div><p className="section-index">TRACEABILITY</p><h2>{locale==="ja"?"どの記事で使っているかも追えます。":"Trace sources back to articles."}</h2></div><p>{locale==="ja"?"各記事の末尾にも参考資料を残しています。出典だけを並べるのではなく、本文のEVIDENCE・RBA INTERPRETATION・LIMITATIONSと一緒に確認してください。":"Each article keeps its own source list."}</p></div>
+        <div className="homecourt-launch-actions"><Link className="button button-light" href="/ja/journal/families">保護者JOURNALへ戻る <ArrowRight size={17}/></Link><Link className="button button-dark" href="/ja/journal">JOURNAL全体を見る <ArrowRight size={17}/></Link></div>
       </section>
     </div>
   </SiteFrame>;
