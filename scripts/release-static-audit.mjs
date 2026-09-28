@@ -58,6 +58,7 @@ const requiredRoutes=[
   "app/ja/my-homecourt/app/match/page.tsx",
   "app/ja/my-homecourt/app/team-development/page.tsx",
   "app/ja/team-development/page.tsx",
+  "lib/rba-operator.ts",
 ];
 for(const route of requiredRoutes) if(!exists(route)) fail(`required route missing: ${route}`);
 
@@ -70,6 +71,7 @@ const migrations=[
   "supabase/migrations/20260928014000_team_development_90_day_cycle.sql",
   "supabase/migrations/20260928014500_homecourt_match_rpc_invoker.sql",
   "supabase/migrations/20260928014600_homecourt_admin_policies.sql",
+  "supabase/migrations/20260928014700_rba_operator_scope.sql",
 ];
 for(const migration of migrations) if(!exists(migration)) fail(`migration missing: ${migration}`);
 
