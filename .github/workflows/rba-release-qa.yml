@@ -1,15 +1,16 @@
-name: RBA Release QA
+name: RBA Preflight QA
 
 on:
-  push:
+  pull_request:
     branches:
-      - preview-rba
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  build:
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[preview]') || contains(github.event.head_commit.message, '[deploy]')
+  static-checks:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -27,10 +28,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: TypeScript and Next build
-        run: pnpm run build
-        env:
-          NEXT_TELEMETRY_DISABLED: "1"
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
-          RBA_AUTH_EMAIL_READY: "false"
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --pretty false
+
+      - name: ESLint
+        run: pnpm run lint
