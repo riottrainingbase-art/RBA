@@ -13,7 +13,7 @@ type Section={heading:string;paragraphs:string[]};
 type PaidArticle={
  id:string;slug:string;category:string;title:string;summary:string;reading:string;
  sections:Section[];field_action:string;reflection_questions:string[];
- related_public_slugs:string[];source_references:Source[];published_at:string|null;
+ related_public_slugs:string[];source_references:Source[];published_at:string|null;editorial_note:string;
 };
 
 const config={
@@ -111,11 +111,15 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
  }
 
  const {data,error}=await supabase.from("dhub_paid_articles")
-  .select("id,slug,category,title,summary,reading,source_references,published_at")
+  .select("id,slug,category,title,summary,reading,source_references,published_at,editorial_note")
   .eq("program_type",program).eq("locale",locale).eq("published",true)
   .order("published_at",{ascending:false}).order("title");
  const articles=(error?[]:(data||[])) as PaidArticle[];
- const categories=Array.from(new Set(articles.map(a=>a.category)));
+ const curriculumCategory=locale==="ja"&&program==="players"?"小6→中1 年間カリキュラム":null;
+ const curriculumArticles=curriculumCategory?articles
+   .filter(article=>article.category===curriculumCategory&&article.editorial_note?.startsWith("GRADE6_12M|"))
+   .sort((a,b)=>(a.editorial_note||"").localeCompare(b.editorial_note||"")):[];
+ const categories=Array.from(new Set(articles.map(a=>a.category))).filter(category=>category!==curriculumCategory);
 
  return <SiteFrame locale={locale} languagePage="d-hub"><main className={styles.shell}>
    <header className={styles.libraryHero}>
@@ -125,6 +129,21 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
     <p className={styles.lead}>{c.lead}</p>
     <div className={styles.libraryStats}><div><span>{locale==="ja"?"公開中":"PUBLISHED"}</span><strong>{articles.length}</strong><small>ARTICLES</small></div><div><span>{locale==="ja"?"対象":"FOR"}</span><strong>{c.audience}</strong><small>MEMBERS ONLY</small></div></div>
    </header>
+
+   {curriculumArticles.length?<section className={styles.curriculum}>
+    <div className={styles.curriculumHead}>
+      <div><p className={styles.eyebrow}>GRADE 6 → U15 / 12-MONTH PATH</p><h2>小6の今から、中1の秋まで。</h2><p>小学生最後の半年を「最後の大会のため」だけに使わず、中学で必要になる見る・判断する・実行する力へつなげます。2026年10月から2027年9月まで、毎月一つのテーマで進めます。</p></div>
+      <div className={styles.curriculumStats}><div><span>PATH</span><strong>12</strong><small>MONTHS</small></div><div><span>ARTICLES</span><strong>{curriculumArticles.length}</strong><small>ROADMAP + MONTHLY</small></div></div>
+    </div>
+    <div className={styles.curriculumGrid}>{curriculumArticles.map((article,index)=>{
+      const parts=(article.editorial_note||"").split("|");
+      const label=parts[2]||"";
+      return <Link href={c.root+"/"+article.slug} key={article.slug} className={styles.curriculumCard}>
+        <div className={styles.curriculumCardMeta}><span>{index===0?"START / ROADMAP":`MONTH ${String(index).padStart(2,"0")}`}</span><span>{label}</span></div>
+        <h3>{article.title}</h3><p>{article.summary}</p><strong>{locale==="ja"?"この月を始める":"Start"} <ArrowRight size={15}/></strong>
+      </Link>;
+    })}</div>
+   </section>:null}
 
    <nav className={styles.categoryNav}>{categories.map(category=><Link href={"#cat-"+category} key={category}>{category}</Link>)}</nav>
 
