@@ -220,7 +220,7 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    articles:track.slugs
      .map(slug=>articleBySlug.get(slug))
      .filter((article): article is PaidArticle=>Boolean(article)),
- })).filter(track=>track.articles.length>0);
+ })).filter(track=>track.articles.length>0):[];
 
  return <SiteFrame locale={locale} languagePage="d-hub"><main className={styles.shell}>
    <header className={styles.libraryHero}>
