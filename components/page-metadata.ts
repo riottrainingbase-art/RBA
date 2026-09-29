@@ -25,6 +25,30 @@ const titles:Record<string,Record<Locale,string>>={
  "events/torsten-loibl-online-clinic":{en:"Torsten Loibl Online Clinic · 25 November 2026",ja:"トーステン・ロイブル講習｜2026年11月25日","zh-tw":"Torsten Loibl 線上講座｜2026年11月25日",ko:"Torsten Loibl 온라인 클리닉｜2026년 11월 25일"},
 };
 const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
+ players:{
+  en:"Find current RBA development opportunities, clinics, camps and continuing learning for youth basketball players.",
+  ja:"選手向けに、募集中のクリニック・キャンプ・継続スクール・育成記事・MY HOME COURTへの入口をまとめています。",
+  "zh-tw":"整理球員可參加的訓練營、營隊、持續課程與學習入口。",
+  ko:"선수를 위한 모집 중 클리닉, 캠프, 정기 프로그램과 학습 콘텐츠를 한곳에 모았습니다."
+ },
+ families:{
+  en:"Clear guidance for families on eligibility, fees, registration, safety, cancellations and next development opportunities.",
+  ja:"保護者向けに、対象年代、参加費、申込・決済、安全面、キャンセル条件、次の育成機会を分かりやすくまとめています。",
+  "zh-tw":"為家長整理參加資格、費用、報名、付款、安全與取消規定。",
+  ko:"보호자를 위해 대상 연령, 참가비, 신청·결제, 안전, 취소 조건과 다음 성장 기회를 정리했습니다."
+ },
+ coaches:{
+  en:"Coach learning at RBA: D-HUB, practice design, S&C, international coach education and ways to bring RBA to your team or region.",
+  ja:"指導者向けに、D-HUB、練習設計、S&C、海外指導者からの学び、チーム・地域でのRBA開催方法をまとめています。",
+  "zh-tw":"為教練整理D-HUB、訓練設計、S&C、國際教練學習與地區合作。",
+  ko:"코치를 위해 D-HUB, 훈련 설계, S&C, 해외 코치 학습과 지역 협력 정보를 정리했습니다."
+ },
+ about:{
+  en:"RBA's purpose, mission, development principles and work across youth basketball in Japan and Asia.",
+  ja:"Riot Basketball AcademyのPurpose、Mission、育成方針と、日本・アジアで取り組む活動を紹介します。",
+  "zh-tw":"介紹RBA的Purpose、Mission、培育原則與日本・亞洲的活動。",
+  ko:"RBA의 Purpose, Mission, 육성 원칙과 일본·아시아에서의 활동을 소개합니다."
+ },
  "my-homecourt":{
   en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one RBA ID.",
   ja:"MY HOME COURTは、所属チーム、これまでの経験、次に参加できる育成機会、Development Camp、RBA UNITED、国内外の選択肢を、一つのRBA IDでつなぐ自分専用の育成ページです。",
