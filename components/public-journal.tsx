@@ -273,11 +273,13 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const recentCoachPosts=coachPosts.slice(0,8);
   const prefix=locale==="en"?"":`/${locale}`;
   const coachGroups=[
-    {id:"coach-u12",label:"U12 / FUNDAMENTALS",slugs:["why-youth-practice-becomes-shortcut-drills","why-man-to-man-first","screens-before-reading","small-sided-games","why-3x3-helps-development"]},
-    {id:"coach-game",label:"GAME COACHING",slugs:["dont-end-development-debate-with-score","why-development-debate-becomes-winner-loser","winning-vs-developing","playing-time-is-experience","press-in-blowouts","value-of-b-games"]},
-    {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["three-on-three-is-not-small-five-on-five","too-many-constraints-change-the-game","questions-are-not-always-better","stop-practice-less-often"]},
-    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["relationship-is-coaching-infrastructure","criticism-can-create-better-coaching","showa-myths-youth-basketball","read-before-you-react","adults-must-keep-learning-in-youth-development","who-is-playing","shouting-is-not-coaching"]},
-    {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","punishment-running-is-not-conditioning"]},
+    {id:"coach-u12",label:"U12 / FUNDAMENTALS",slugs:["why-youth-practice-becomes-shortcut-drills","why-man-to-man-first","screens-before-reading","small-sided-games","coach-catch-before-dribble-scan","coach-passing-window-before-pass-type"]},
+    {id:"coach-offense",label:"OFFENSE / DECISION MAKING",slugs:["coach-teach-advantage-before-move","coach-drive-reactions-off-ball","spacing-is-a-relationship","after-pass-keep-playing","point-guard-is-not-only-decision-maker","offense-rules-need-priority"]},
+    {id:"coach-game",label:"GAME COACHING",slugs:["who-is-playing","mistake-does-not-always-mean-substitution","press-in-blowouts","value-of-b-games","substitution-is-development-design","timeout-questions-not-orders"]},
+    {id:"coach-practice",label:"PRACTICE DESIGN",slugs:["coach-one-theme-per-session","coach-4on0-to-4on4-progression","three-on-three-is-not-small-five-on-five","too-many-constraints-change-the-game","questions-are-not-always-better","stop-practice-less-often"]},
+    {id:"coach-reflection",label:"FEEDBACK / REFLECTION",slugs:["coach-good-bad-next-reflection","athlete-controlled-feedback","feedback-is-not-better-when-more","minimal-intervention-coaching","coach-observe-before-correct","coach-video-ask-before-tell"]},
+    {id:"coach-player",label:"PLAYER DEVELOPMENT",slugs:["coach-award-behavior-not-talent","relationship-is-coaching-infrastructure","mastery-climate-over-ranking","criticism-can-create-better-coaching","showa-myths-youth-basketball","read-before-you-react"]},
+    {id:"coach-physical",label:"S&C / SAFETY",slugs:["girls-strength-and-knee-health","acl-prevention-is-a-program","coach-create-pain-reporting-culture","coach-growth-spurt-adjust-load","training-load-is-not-one-number","punishment-running-is-not-conditioning"]},
   ];
   return <SiteFrame locale={locale} languagePage="journal">
     <div className="journal-hub journal-cms">
@@ -289,12 +291,20 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       </section>
       <nav className="journal-topic-nav section-pad" aria-label={locale==="ja"?"指導テーマ":"Coaching topics"}>
         <a href="#coach-u12"><span>01</span>{locale==="ja"?"U12 / 基礎":"U12 / Fundamentals"}</a>
-        <a href="#coach-game"><span>02</span>{locale==="ja"?"試合運営":"Game coaching"}</a>
-        <a href="#coach-practice"><span>03</span>{locale==="ja"?"練習設計":"Practice design"}</a>
-        <a href="#coach-player"><span>04</span>{locale==="ja"?"選手育成":"Player development"}</a>
-        <a href="#coach-physical"><span>05</span>{locale==="ja"?"S&C / 安全":"S&C / Safety"}</a>
-        <strong>{locale==="ja"?"公開記事は参考文献付き":"Published coach articles include sources"}</strong>
+        <a href="#coach-offense"><span>02</span>{locale==="ja"?"オフェンス / 判断":"Offense / Decisions"}</a>
+        <a href="#coach-game"><span>03</span>{locale==="ja"?"試合運営":"Game coaching"}</a>
+        <a href="#coach-practice"><span>04</span>{locale==="ja"?"練習設計":"Practice design"}</a>
+        <a href="#coach-reflection"><span>05</span>{locale==="ja"?"FB / 振り返り":"Feedback / Reflection"}</a>
+        <a href="#coach-player"><span>06</span>{locale==="ja"?"選手育成":"Player development"}</a>
+        <a href="#coach-physical"><span>07</span>{locale==="ja"?"S&C / 安全":"S&C / Safety"}</a>
+        <strong>{locale==="ja"?`${coachPosts.length}本を公開中`:`${coachPosts.length} coach articles`}</strong>
       </nav>
+      {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="指導者JOURNALの情報量">
+        <article><strong>{coachPosts.length}</strong><span>指導者向け記事</span><small>U12・練習設計・試合・S&Cまで</small></article>
+        <article><strong>{coachPosts.filter(post=>post.coach_application?.length).length}</strong><span>実践ツール付き</span><small>READ → PLAN → COACH → REVIEW</small></article>
+        <article><strong>{coachPosts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク・延べ</span><small>原典・公式資料へ直接つなぐ</small></article>
+        <article><strong>{coachPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>更新日を記事ごとに確認可能</small></article>
+      </section>:null}
       {recentCoachPosts.length?<section className="journal-cms-index journal-coach-latest section-pad">
         <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"今の練習を、一度疑ってみる。":"Latest coach articles"}</h2></div><p>{locale==="ja"?"新しい記事はここに並びます。メニューを集めるより、なぜその練習をするのかから考えます。":"New articles appear here automatically."}</p></div>
         <div className="journal-cms-grid">{recentCoachPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
