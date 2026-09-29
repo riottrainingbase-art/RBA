@@ -172,7 +172,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   if(!post)notFound();
   const allPosts=await getPublicJournalPosts(locale,500);
   const related=findRelatedArticles(post,allPosts,3);
-  const currentInfo=Boolean(post.evidence_level&&/CURRENT|OFFICIAL RULES|REGISTRATION|TRANSFER/i.test(post.evidence_level));
+  const currentInfo=Boolean(post.evidence_level&&/(CURRENT RULES|OFFICIAL RULES|REGISTRATION|TRANSFER|COMPETITION RULES|JBA CURRENT)/i.test(post.evidence_level));
   const safetyInfo=Boolean(post.evidence_level&&/MEDICAL|CDC|CONCUSSION|PEDIATRIC|AAP/i.test(post.evidence_level));
   const articleUrl="https://riotbasketballacademy.com"+journalHref(locale,slug);
   const articleLd={
@@ -244,7 +244,19 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div className="journal-source-list">{post.source_references.map((ref,index)=><a key={ref.url+index} href={ref.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,"0")}</span><div><strong>{ref.title}</strong><small>{ref.source}{ref.year?" · "+ref.year:""}</small>{ref.note?<p>{ref.note}</p>:null}</div><ArrowUpRight size={17}/></a>)}</div>
     </section>:null}
 
-    {locale==="ja"?<section className="article-learning-bridge section-pad">
+    {locale==="ja"?(post.category==="programme"?<section className="article-learning-bridge section-pad">
+      <div>
+        <p className="section-index inverse">ARTICLE → NEXT OPPORTUNITY</p>
+        <h2>この2日間を、<br/>次の育成機会へ。</h2>
+        <p>Development CampやClinicは、受けて終わりではなく、所属チームで試し、振り返り、次の機会へつなげるためにあります。現在募集中のRBAプログラムはOPPORTUNITIESにまとめています。</p>
+      </div>
+      <div className="article-learning-panel">
+        <span>RBA / OPPORTUNITIES</span>
+        <strong>NEXT CAMP / CLINIC</strong>
+        <small>全国・海外の育成機会を更新</small>
+        <Link className="button button-member" href="/ja/opportunities">募集中の活動を見る <ArrowRight size={17}/></Link>
+      </div>
+    </section>:post.category==="coaching"?<section className="article-learning-bridge section-pad">
       <div>
         <p className="section-index inverse">ARTICLE → LIVE LEARNING</p>
         <h2>読むだけで終わらせず、<br/>次の練習へ。</h2>
@@ -256,7 +268,19 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
         <small>日本語逐次通訳付き</small>
         <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">オンライン講習を見る <ArrowRight size={17}/></Link>
       </div>
-    </section>:null}
+    </section>:<section className="article-learning-bridge section-pad">
+      <div>
+        <p className="section-index inverse">ARTICLE → ACTION</p>
+        <h2>読んだことを、<br/>次の行動へ。</h2>
+        <p>記事を保存し、次の練習・試合・相談・育成機会へつなげる入口としてMY HOME COURTを使えます。</p>
+      </div>
+      <div className="article-learning-panel">
+        <span>RBA / MY HOME COURT</span>
+        <strong>READ → TRY → REVIEW</strong>
+        <small>学びを残し、次を選ぶ</small>
+        <Link className="button button-member" href="/ja/my-homecourt">MY HOME COURTを見る <ArrowRight size={17}/></Link>
+      </div>
+    </section>):null}
     {related.length?<section className="journal-cms-index section-pad">
       <div className="section-head"><div><p className="section-index">{locale==="ja"?"関連記事":"RELATED"}</p><h2>{locale==="ja"?"あわせて読みたい3本。":"Keep reading"}</h2></div><p>{locale==="ja"?"現在公開されている記事だけを表示しています。":"Published articles only."}</p></div>
       <div className="journal-cms-grid">{related.map((item,index)=><Link href={journalHref(locale,item.slug)} key={item.slug}>
