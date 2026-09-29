@@ -164,130 +164,20 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
     </section>:null}
     
     {!role&&ja?<HomecourtConversionSection/>:null}
-    {!role&&ja?<section className="homecourt-plan-separation section-pad">
-      <div className="homecourt-plan-intro">
-        <p className="section-index">FREE / HOMECOURT</p>
-        <h2>まず知る。そこから、学びを続ける。</h2>
-        <p>RBA IDは、育成の選択肢を広げるための入口です。HOMECOURTでは、学んだことを試し、振り返り、次の課題を決めるところまでを日常につなげていきます。</p>
-      </div>
-      <div className="homecourt-plan-grid">
-        <article className="homecourt-plan-card homecourt-plan-free">
-          <div className="homecourt-plan-card-head"><span>FREE / RBA ID</span><strong>¥0</strong><small>まずはここから</small></div>
-          <h3>知る・探す・つながる</h3>
-          <p>「知らなかったから選べなかった」を減らすための入口です。</p>
-          <ul>
-            <li><Check size={17}/>全国のクリニック・キャンプを探す</li>
-            <li><Check size={17}/>年代・地域・目的から次の活動を探す</li>
-            <li><Check size={17}/>参加履歴や自分の歩みを整理する</li>
-            <li><Check size={17}/>PLAYER / PARENT / COACHの入口を使う</li>
-            <li><Check size={17}/>RBAからの新しい機会を受け取る</li>
-          </ul>
-          <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"無料でRBA IDをつくる":"LINEで登録再開通知を受け取る"}<ArrowRight size={16}/></a>
-        </article>
-        <article className="homecourt-plan-card homecourt-plan-paid">
-          <div className="homecourt-plan-card-head"><span>HOMECOURT PLUS / MONTHLY</span><strong>¥3,300</strong><small>月額・税込</small></div>
-          <h3>記録を、次の行動に変える</h3>
-          <p>情報を増やすためではなく、これまでの記録や予定を使って「今週何をやるか」「次に何を変えるか」まで決めるためのメンバーシップです。</p>
-          <ul>
-            <li><Check size={17}/>WEEKLY DEVELOPMENT｜今週のテーマ・実践・振り返り</li>
-            <li><Check size={17}/>SMART PREP｜大会・遠征から逆算する準備管理</li>
-            <li><Check size={17}/>CONDITION TREND｜疲労・痛み・睡眠など7日間の推移</li>
-            <li><Check size={17}/>MEMBER LEARNING｜会員限定の学習ライブラリ</li>
-            <li><Check size={17}/>DEVELOPMENT HORIZON｜地域〜世界までの機会整理</li>
-            <li><Check size={17}/>MONTHLY REVIEW｜参加・保存・学び・目標を月単位で振り返る</li>
-          </ul>
-          <a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSの内容を見る<ArrowRight size={16}/></a>
-        </article>
-      </div>
-      <div className="homecourt-value-line">
-        <span>RBA ID</span><strong>知る・探す・記録する</strong><ArrowRight size={18}/><span>HOMECOURT PLUS</span><strong>整理する・実践する・振り返る</strong>
-      </div>
-      <div className="homecourt-growth-loop">
-        <div><span>01</span><strong>LEARN</strong><p>今の自分に必要なテーマを学ぶ。</p></div>
-        <div><span>02</span><strong>TRY</strong><p>次の練習や試合で一つ試す。</p></div>
-        <div><span>03</span><strong>REFLECT</strong><p>できた・できなかっただけで終わらせず振り返る。</p></div>
-        <div><span>04</span><strong>NEXT</strong><p>次に変えることを一つ決める。</p></div>
-      </div>
-      <p className="homecourt-plan-note">無料版の機能を意図的に弱くすることはしません。活動を探す、公開情報を読む、経験を記録する機能はRBA IDで使えます。有料版では、その記録を材料に「次の行動を決める」ための高度な機能を追加します。</p>
-    </section>:null}
-    {!role&&ja?<section className="homecourt-product-preview section-pad">
-      <div className="section-head"><div><p className="section-index">WHO IS THIS FOR?</p><h2>こんな人に、MY HOME COURTは向いています。</h2></div><p>「情報が欲しい人」ではなく、育成の選択肢と行動を増やしたい人のための場所です。</p></div>
-      <div className="homecourt-preview-grid">
-        <article><Users/><span>PARENT</span><h3>今の環境が本当に合っているか考えたい</h3><p>チーム選び、出場時間、練習量、移籍、保護者の関わり方まで、判断材料を持ちたいご家庭へ。</p><a className="text-link" href="/ja/my-homecourt/families">保護者向けを見る <ArrowRight size={16}/></a></article>
-        <article><Sparkles/><span>PLAYER</span><h3>もっと外の世界を見てみたい</h3><p>今のチームを大切にしながら、全国のクリニックやキャンプ、海外交流にも挑戦したい選手へ。</p><a className="text-link" href="/ja/my-homecourt/players">選手向けを見る <ArrowRight size={16}/></a></article>
-        <article><BookOpen/><span>COACH</span><h3>毎週の指導を更新したい</h3><p>戦術だけでなく、判断、練習設計、S&C、育成年代の考え方まで継続して学びたい指導者へ。</p><a className="text-link" href="/ja/my-homecourt/coaches">指導者向けを見る <ArrowRight size={16}/></a></article>
-        <article><Compass/><span>PAST PARTICIPANT</span><h3>RBA参加を一度きりで終わらせたくない</h3><p>過去のクリニックやキャンプで得た経験を残し、次の挑戦につなげたい方へ。</p><a className="text-link" href="/ja/my-homecourt/participants">参加記録を始める <ArrowRight size={16}/></a></article>
-      </div>
-    </section>:null}
+    
+    
 
-    {!role&&ja?<section className="homecourt-plan-separation section-pad">
-      <div className="homecourt-plan-intro">
-        <p className="section-index">BEFORE YOU JOIN</p>
-        <h2>よくある迷いに、先に答えます。</h2>
-        <p>「自分に必要か分からない」を残さないために、登録前によくある疑問を整理します。</p>
-      </div>
-      <div className="homecourt-plan-grid">
-        <article className="homecourt-plan-card">
-          <h3>今のチームを辞める必要はありますか？</h3>
-          <p>ありません。MY HOME COURTは移籍を促す場所ではなく、今いる環境を大切にしながら、所属の外にも学びと機会を持つための場所です。</p>
-        </article>
-        <article className="homecourt-plan-card">
-          <h3>無料だけでも使えますか？</h3>
-          <p>使えます。活動を探す、JOURNALを読む、RBAの新しい機会を知るところから始められます。継続的な実践ガイドや振り返りを使いたい方は月額HOMECOURTへ進めます。</p>
-        </article>
-        <article className="homecourt-plan-card">
-          <h3>月額3,300円で何が変わりますか？</h3>
-          <p>情報が増えるだけではありません。学ぶ→試す→振り返る→次を決める、という成長のサイクルを日常に持ち込めるようにします。</p>
-        </article>
-        <article className="homecourt-plan-card">
-          <h3>RBAのクリニックに参加したことがなくても大丈夫ですか？</h3>
-          <p>大丈夫です。初めての方も、過去参加者も、選手・保護者・指導者それぞれの入口から使えます。</p>
-        </article>
-      </div>
-      <div className="homecourt-launch-actions">
-        <a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSの内容を見る<ArrowRight size={17}/></a>
-        <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"まず無料でRBA IDを始める":"無料登録の再開通知を受け取る"}<ArrowRight size={17}/></a>
-      </div>
-    </section>:null}
+    
 
-    {!role&&ja?<section className="homecourt-editorial-difference section-pad">
-      <div className="homecourt-editorial-head">
-        <p className="section-index">SOCIAL / MY HOME COURT</p>
-        <h2>SNSは「流れる」。<br/>MY HOME COURTは「残る」。</h2>
-        <p>InstagramやThreads、Xは、RBAを知る・新しい考えに触れる・活動を見つけるための入口です。MY HOME COURTは、その先で自分の経験を残し、次に何をするかを決める場所です。</p>
-      </div>
-      <div className="homecourt-editorial-grid">
-        <article>
-          <span>OPEN / SOCIAL</span>
-          <h3>DISCOVER</h3>
-          <strong>知る・見る・出会う。</strong>
-          <p>投稿はタイムラインに流れていきます。新しい情報や考え方に触れ、RBAや育成機会を知るための場所です。</p>
-          <ul><li>新着情報</li><li>育成についての発信</li><li>クリニック告知</li><li>世界・現場との接点</li></ul>
-        </article>
-        <article className="homecourt-editorial-premium">
-          <span>PERSONAL / MY HOME COURT</span>
-          <h3>OWN</h3>
-          <strong>自分のバスケットボールを持つ。</strong>
-          <p>参加履歴、Basketball Passport、保存した活動、学び、目標、次の機会を、自分のRBA IDにまとめていきます。SNSのタイムラインではなく、自分の育成記録を整理するためのホームです。</p>
-          <ul><li>経験が蓄積される</li><li>あとで戻れる</li><li>自分向けに整理される</li><li>次の行動につながる</li></ul>
-        </article>
-      </div>
-      <div className="homecourt-use-loop">
-        <div><span>01</span><strong>SEE</strong><p>SNSで知る。</p></div>
-        <div><span>02</span><strong>SAVE</strong><p>HOME COURTに残す。</p></div>
-        <div><span>03</span><strong>DO</strong><p>実際に参加・実践する。</p></div>
-        <div><span>04</span><strong>BUILD</strong><p>経験を次へつなぐ。</p></div>
-      </div>
-      <p className="homecourt-editorial-note">フォロワー数や投稿の反応を競う場所ではありません。MY HOME COURTの中心は、自分の経験・学び・次の選択です。</p>
-    </section>:null}
+    
     
     {!role&&ja?<section className="homecourt-product-preview section-pad">
-      <div className="section-head"><div><p className="section-index">THIS WEEK / HOME COURT</p><h2>毎週、ここに戻る理由を。</h2></div><p>情報を増やすのではなく、今週やることを一つ決めるための入口です。</p></div>
+      <div className="section-head"><div><p className="section-index">THIS WEEK / HOME COURT</p><h2>今週やることを、一つ決める。</h2></div><p>読む・探す・振り返る。今週必要な一つから始めます。</p></div>
       <div className="homecourt-preview-grid">
-        <article><BookOpen/><span>READ</span><h3>今週、一つ読む</h3><p>育成・保護者・指導者・海外交流から、自分に必要なテーマを選ぶ。</p><a className="text-link" href="/ja/journal">RBA JOURNALへ <ArrowRight size={16}/></a></article>
-        <article><Compass/><span>FIND</span><h3>次の機会を一つ見る</h3><p>参加するかどうかは後でいい。まず、自分の地域の外にも選択肢があることを知る。</p><a className="text-link" href="/ja/opportunities">育成機会を探す <ArrowRight size={16}/></a></article>
-        <article><History/><span>REFLECT</span><h3>今週の経験を一つ残す</h3><p>できたこと、迷ったこと、次に試したいこと。成長を結果だけで終わらせない。</p><a className="text-link" href="/ja/my-homecourt/participants">参加・成長記録へ <ArrowRight size={16}/></a></article>
-        <article><Users/><span>CONNECT</span><h3>所属の外と一つつながる</h3><p>選手・保護者・指導者、それぞれの立場から、新しい考え方や人に触れる。</p><a className="text-link" href="/ja/community">RBAコミュニティへ <ArrowRight size={16}/></a></article>
+        <article><BookOpen/><span>READ</span><h3>今週、一つ読む</h3><p>今の課題に近い記事を一つ選ぶ。</p><a className="text-link" href="/ja/journal">RBA JOURNALへ <ArrowRight size={16}/></a></article>
+        <article><Compass/><span>FIND</span><h3>次の機会を一つ見る</h3><p>地域の外も含め、次の育成機会を一つ確認する。</p><a className="text-link" href="/ja/opportunities">育成機会を探す <ArrowRight size={16}/></a></article>
+        <article><History/><span>REFLECT</span><h3>今週の経験を一つ残す</h3><p>できたことと、次に試すことを短く残す。</p><a className="text-link" href="/ja/my-homecourt/participants">参加・成長記録へ <ArrowRight size={16}/></a></article>
+        <article><Users/><span>CONNECT</span><h3>所属の外と一つつながる</h3><p>所属の外にある学びや考え方にも触れる。</p><a className="text-link" href="/ja/community">RBAコミュニティへ <ArrowRight size={16}/></a></article>
       </div>
       {nextProgrammes.length?<div className="homecourt-private-note"><CalendarDays size={24}/><div><strong>次に参加できるRBA</strong><p>{nextProgrammes.map(p=>`${p.date[1]}｜${p.title[1]}｜${p.place[1]}`).join("　／　")}</p></div></div>:null}
     </section>:null}
