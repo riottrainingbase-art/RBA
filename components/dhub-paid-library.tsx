@@ -6,6 +6,7 @@ import {ArrowLeft,ArrowRight,BookOpen,ExternalLink} from "lucide-react";
 import {createClient} from "@/lib/supabase/server";
 import {SiteFrame} from "@/components/site-frame";
 import styles from "./dhub-paid-library.module.css";
+import {DhubPlayerLibraryExplorer} from "./dhub-player-library-explorer";
 
 type Program="coach_lab"|"players";
 type PaidLocale="ja"|"en";
@@ -222,6 +223,11 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
        <div className={styles.trackLinks}>{track.articles.map(article=><Link href={c.root+"/"+article.slug} key={article.slug}>{article.title} <ArrowRight size={14}/></Link>)}</div>
      </article>)}</div>
    </section>:null}
+
+   {locale==="ja"&&program==="players"?<DhubPlayerLibraryExplorer root={c.root} articles={articles.map(article=>({
+     slug:article.slug,category:article.category,title:article.title,summary:article.summary,reading:article.reading,
+     sourceCount:Array.isArray(article.source_references)?article.source_references.length:0
+   }))}/>:null}
 
    {curriculumArticles.length?<section className={styles.curriculum}>
     <div className={styles.curriculumHead}>
