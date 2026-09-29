@@ -3083,3 +3083,58 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   }
   .header-member svg:last-child{display:none}
 }
+
+
+/* JA READABILITY 2026-09-30 */
+html:lang(ja) body {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  font-kerning: normal;
+  font-feature-settings: "palt" 1;
+}
+:lang(ja) p,
+:lang(ja) li,
+:lang(ja) h1,
+:lang(ja) h2,
+:lang(ja) h3 {
+  line-break: strict;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+:lang(ja) .hero-copy h1 {
+  font-size: clamp(48px, 6.2vw, 96px);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+:lang(ja) .hero-lede {
+  max-width: 34em;
+  line-height: 1.72;
+}
+:lang(ja) .statement h2,
+:lang(ja) .section-head h2,
+:lang(ja) .inner-hero h1,
+:lang(ja) .closing-cta h2,
+:lang(ja) .homecourt-home-copy h2,
+:lang(ja) .field-footprint h2 {
+  letter-spacing: -.03em;
+  line-height: 1.08;
+}
+:lang(ja) .statement>div>p,
+:lang(ja) .section-head>p,
+:lang(ja) .homecourt-home-copy>p:not(.section-index),
+:lang(ja) .field-footprint>div:first-child>p:not(.section-index) {
+  line-height: 1.85;
+}
+:lang(ja) .site-header nav {
+  gap: 22px;
+  font-size: 12px;
+}
+@media (max-width: 1320px) {
+  :lang(ja) .site-header nav { gap: 16px; font-size: 11px; }
+  :lang(ja) .header-actions { gap: 10px; }
+}
+@media (max-width: 900px) {
+  :lang(ja) .hero-copy h1 { font-size: clamp(46px, 13vw, 72px); line-height: 1.02; }
+  :lang(ja) .section-pad { padding-top: 64px; padding-bottom: 64px; }
+  :lang(ja) .section-head { margin-bottom: 38px; }
+  :lang(ja) .audience-grid article { min-height: 0; }
+}
