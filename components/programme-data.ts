@@ -90,7 +90,7 @@ export const programmes: readonly Programme[] = [
     price: ["Participation: ¥16,500", "参加費 16,500円（税込）", "參加費 16,500日圓", "참가비 16,500엔"],
     audience:["U8 / U10 / U12 / U15 players", "U8・U10・U12・U15選手", "U8・U10・U12・U15球員", "U8·U10·U12·U15 선수"],
     payment:["Payment is required after submitting the form.", "フォーム送信後、参加費のお支払いが完了すると申込が確定します", "提交表單後完成付款才確認報名", "폼 제출 후 결제 완료 시 신청 확정"],
-    applicationUrl: "https://forms.gle/NJ4widb21vR1Eanj6",
+    applicationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfTiiqA9Ak6xpzmrhSIN34HHjGOsDcNBLlTws0cYF9bCqyO9w/viewform?usp=send_form",
     region:"kyushu", category:"TRAIN", pathway:"development-camp", ageGroups:["U8","U10","U12","U15"],
   },
   {
