@@ -52,13 +52,13 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   ] as const;
   const nav=[
     [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
+    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
     [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")] as const,
     ["RBA UNITED",localePath(locale,"united")] as const,
     [({en:"MY HOME COURT",ja:"MY HOME COURTを使う","zh-tw":"使用MY HOME COURT",ko:"MY HOME COURT 이용"})[locale],localePath(locale,"my-homecourt")] as const,
     [({en:"Platform",ja:"育成プラットフォーム","zh-tw":"培育平台",ko:"육성 플랫폼"})[locale],localePath(locale,"platform")] as const,
     [({en:"Coaches",ja:"指導者", "zh-tw":"教練",ko:"코치"})[locale],localePath(locale,"coaches")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
-    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
     [({en:"Organisers",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최・협력"})[locale],localePath(locale,"organizer")] as const,
     ...(locale==="ja"?[["ミニバス育成支援","/ja/minibasket-support"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15","/ja/u15-skill-up"] as const,["RBAを地域に呼ぶ","/ja/work-with-rba"] as const]:[]),
     [c.about,localePath(locale,"about")] as const,
