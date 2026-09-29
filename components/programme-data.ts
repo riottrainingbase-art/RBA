@@ -81,9 +81,9 @@ export const programmes: readonly Programme[] = [
   },
   {
     id: "saga-fukuoka",
-    startDate: "2026-10-04",
-    date: ["04–05 OCT 2026", "2026.10.04–05", "2026.10.04–05", "2026.10.04–05"],
-    datePrimary: ["04–05", "4〜5日", "4至5日", "4~5일"],
+    startDate: "2026-10-03",
+    date: ["03–04 OCT 2026", "2026.10.03–04", "2026.10.03–04", "2026.10.03–04"],
+    datePrimary: ["03–04", "3〜4日", "3至4日", "3~4일"],
     dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
     title: ["Saga × Fukuoka 2Days Development Camp", "佐賀 × 福岡 2Days Development Camp", "佐賀 × 福岡兩日培育營", "사가 × 후쿠오카 2Days Development Camp"],
     place: ["Saga & Okawa, Fukuoka", "佐賀・福岡（大川）", "佐賀・福岡（大川）", "사가・후쿠오카 오카와"],
