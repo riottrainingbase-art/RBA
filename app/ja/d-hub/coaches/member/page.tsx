@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const BAND_URL = "https://band.us/n/aaa2bdj9xcJ1o";
-const JOIN_FORM = "https://form.jotform.com/262590542634055";
+const JOIN_FORM = "https://form.jotform.com/262498803883068";
 
 type Lesson = {
   id:string;
@@ -30,7 +30,7 @@ export default async function Page() {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/ja/my-homecourt/login?next=%2Fja%2Fd-hub%2Fmember");
+    redirect("/ja/my-homecourt/login?next=%2Fja%2Fd-hub%2Fcoaches%2Fmember");
   }
 
   const { data: hasAccess } = await supabase.rpc("has_dhub_coach_access");
