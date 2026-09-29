@@ -73,6 +73,19 @@ export function LocalizedHome({locale}:{locale:Locale}){
   return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale}>
     <section className="hero-grid"><div className="hero-copy"><p className="eyebrow">RIOT BASKETBALL ACADEMY · JAPAN</p><h1><span>{c.title[0]}</span><span>{c.title[1]}</span></h1><p className="hero-lede">{c.lede}</p><PlatformQuickFinder locale={locale}/>{locale==="ja"&&<a className="hero-clinic-alert" href={localePath(locale,"events/torsten-loibl-online-clinic")}><span>NOW OPEN</span><strong>{c.clinicHero}</strong><ArrowRight size={18}/></a>}<div className="hero-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.primary}<ArrowRight size={17}/></a><a className="button button-member" href={locale==="en"?"/my-homecourt/login":`/${locale}/my-homecourt/login${locale==="ja"?"?source=homepage":""}`}><House size={17}/>{locale==="ja"?"RBA IDを無料でつくる":hc.open}<ArrowRight size={17}/></a><a className="text-link light-link" href={localePath(locale,"clinic-request")}>{c.secondary}<ArrowRight size={16}/></a></div><div className="hero-proof">{c.proof.map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></div><div className="hero-image" role="img" aria-label={c.image}><div className="image-note">{c.image}</div><MoveDown className="scroll-mark" size={19}/></div></section>
 
+    {locale==="ja"?<section className="rba-quick-entry section-pad">
+      <div className="section-head">
+        <div><p className="section-index">30 SEC / START HERE</p><h2>まず30秒で、RBAを見る。</h2></div>
+        <p>全部を理解してから使う必要はありません。気になる入口だけ開いてください。記事、活動、指導者向け学び、遠征・交流を4つに分けました。</p>
+      </div>
+      <div className="rba-quick-entry-grid">
+        <a href="/ja/journal/rba-united-yaima-cup-2026"><span>01 / VOICES</span><h3>参加者の声から見る</h3><p>YAIMA CUPで選手・保護者に何が残ったのか。まず30秒で読めます。</p><strong>30秒で見る<ArrowRight size={16}/></strong></a>
+        <a href="/ja/journal"><span>02 / JOURNAL</span><h3>育成記事から見る</h3><p>ミニバス、U15、出場時間、練習量、チーム選び。気になる悩みから読めます。</p><strong>気になる記事を探す<ArrowRight size={16}/></strong></a>
+        <a href="/ja/d-hub/coaches"><span>03 / COACHES</span><h3>指導者向けの学びを見る</h3><p>D-HUB COACH LAB、実践記事、年間カリキュラム。現場で試せる形にしています。</p><strong>D-HUBを見る<ArrowRight size={16}/></strong></a>
+        <a href="/ja/opportunities"><span>04 / JOIN</span><h3>今参加できる活動を見る</h3><p>クリニック、キャンプ、RBA UNITED、スクール。募集中のものだけ確認できます。</p><strong>募集中を見る<ArrowRight size={16}/></strong></a>
+      </div>
+    </section>:null}
+
     <PaidProgrammes locale={locale}/>
 
     <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={locale==="ja"?"/ja/my-homecourt/login?source=homepage-homecourt":localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
