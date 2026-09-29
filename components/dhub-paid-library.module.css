@@ -58,5 +58,10 @@
 .supportToolsGrid h3{margin:18px 0 10px;font-size:clamp(22px,2.4vw,30px);line-height:1.15;letter-spacing:-.02em}
 .supportToolsGrid p{color:#59646a;line-height:1.7}
 .supportToolsGrid strong{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:13px;border-top:1px solid #d5d9d6;font-size:11px}
+.trackCard{min-height:300px;padding:20px;background:#fff;border:1px solid #cbd0cd;color:#171a1d;display:flex;flex-direction:column}
+.trackCard>span{font-size:9px;font-weight:900;letter-spacing:.08em;color:#8a9498}
+.trackLinks{display:flex;flex-direction:column;gap:0;margin-top:auto;padding-top:14px}
+.trackLinks a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #d5d9d6;color:#171a1d;text-decoration:none;font-size:11px;font-weight:900;line-height:1.45}
+.trackLinks a:hover{text-decoration:underline}
 @media(max-width:900px){.supportToolsHead{grid-template-columns:1fr}.supportToolsGrid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.supportTools{padding:34px 20px}.supportToolsGrid{grid-template-columns:1fr}.supportToolsGrid>a{min-height:0}}
