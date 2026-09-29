@@ -5,12 +5,23 @@ export const U12_MATERIAL_SLUG = "u12-fundamentals";
 export const U12_OFFER_OPTION = "u12-fundamentals";
 export const U12_OFFER_SLUG = "rba-coaching-guide-u12-fundamentals";
 
+export type DigitalMaterialRecord = {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  summary: string | null;
+  content: unknown;
+  publication_status: string;
+  service_offer_id: string;
+};
+
 export async function getDigitalMaterial(slug: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
-    return { user: null, material: null, hasAccess: false };
+    return { user: null, material: null as DigitalMaterialRecord | null, hasAccess: false };
   }
 
   const { data: material, error } = await supabase
@@ -19,9 +30,13 @@ export async function getDigitalMaterial(slug: string) {
     .eq("slug", slug)
     .maybeSingle();
 
-  if (error) {
-    return { user, material: null, hasAccess: false };
+  if (error || !material) {
+    return { user, material: null as DigitalMaterialRecord | null, hasAccess: false };
   }
 
-  return { user, material, hasAccess: Boolean(material) };
+  return {
+    user,
+    material: material as DigitalMaterialRecord,
+    hasAccess: true,
+  };
 }
