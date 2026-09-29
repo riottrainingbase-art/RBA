@@ -190,6 +190,15 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    ||null;
  const categories=Array.from(new Set(articles.map(a=>a.category)))
    .filter(category=>category!==curriculumCategory&&category!==supportCategory);
+ const articleBySlug=new Map(articles.map(article=>[article.slug,article]));
+ const featuredPlayerTracks=locale==="ja"&&program==="players"?[
+   {label:"READ THE GAME",title:"見る・判断する",description:"ボールを受ける前、Drive前、1on1、Helpの位置。技を出す前に何を見るか。",slugs:["advantage-before-catch","count-help-defenders","scan-before-ball-arrives"]},
+   {label:"CREATE ADVANTAGE",title:"1on1・Passing・Finishing",description:"抜くことだけを目的にせず、角度・タイミング・Passing Windowから優位を作る。",slugs:["change-pace-before-move","passing-window-angle","finish-read-rim-protector"]},
+   {label:"WITHOUT THE BALL",title:"オフボール・Spacing",description:"Pass後、Driveへの合わせ、DeniedへのBackdoor。ボールがない時間もプレーする。",slugs:["drift-lift-on-drive","backdoor-when-denied","cut-when-defender-turns-head"]},
+   {label:"STOP THE BALL",title:"守備",description:"スティールの前に進路を守る。Closeout、Gap、Help、Screen Communicationまで。",slugs:["contain-first-two-dribbles","gap-help-recover","screen-defense-communication"]},
+   {label:"3x3 LAB",title:"3x3で判断回数を増やす",description:"Spacing、Pass-Cut-Fill、Transition、Communicationを少人数ゲームで磨く。",slugs:["3x3-space-after-check","3x3-pass-cut-fill","3x3-transition-first-possession"]},
+   {label:"BUILD THE ATHLETE",title:"身体・回復・栄養",description:"成長期の身体を守りながら、着地・筋力・水分・大会日の回復まで整える。",slugs:["landing-quiet-control","strength-basics-youth","hydration-before-thirst"]}
+ ].map(track=>({...track,articles:track.slugs.map(slug=>articleBySlug.get(slug)).filter(Boolean) as PaidArticle[]})).filter(track=>track.articles.length);
 
  return <SiteFrame locale={locale} languagePage="d-hub"><main className={styles.shell}>
    <header className={styles.libraryHero}>
@@ -197,8 +206,16 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
     <p className={styles.eyebrow}>{c.label} / PAID ARTICLE LIBRARY</p>
     <h1>{c.heading}</h1>
     <p className={styles.lead}>{c.lead}</p>
-    <div className={styles.libraryStats}><div><span>{locale==="ja"?"公開中":"PUBLISHED"}</span><strong>{articles.length}</strong><small>ARTICLES</small></div><div><span>{locale==="ja"?"対象":"FOR"}</span><strong>{c.audience}</strong><small>MEMBERS ONLY</small></div></div>
+    <div className={styles.libraryStats}><div><span>{locale==="ja"?"公開中":"PUBLISHED"}</span><strong>{articles.length}</strong><small>ARTICLES</small></div><div><span>{locale==="ja"?"カテゴリー":"CATEGORIES"}</span><strong>{categories.length+(curriculumArticles.length?1:0)+(supportArticles.length?1:0)}</strong><small>LEARNING AREAS</small></div><div><span>{locale==="ja"?"対象":"FOR"}</span><strong>{c.audience}</strong><small>MEMBERS ONLY</small></div></div>
    </header>
+
+   {featuredPlayerTracks.length?<section className={styles.supportTools}>
+     <div className={styles.supportToolsHead}><div><p className={styles.eyebrow}>PLAYER LEARNING PATHS / START HERE</p><h2>100本から探さなくていい。今の課題から入る。</h2></div><p>技名から探すのではなく、ゲームで困っている場面から3本ずつ選びました。1本読んだら、次の練習で一つだけ試します。</p></div>
+     <div className={styles.supportToolsGrid}>{featuredPlayerTracks.map((track,index)=><article key={track.label}>
+       <span>{String(index+1).padStart(2,"0")}</span><h3>{track.title}</h3><p>{track.description}</p>
+       {track.articles.map(article=><Link href={c.root+"/"+article.slug} key={article.slug}>{article.title} <ArrowRight size={14}/></Link>)}
+     </article>)}</div>
+   </section>:null}
 
    {curriculumArticles.length?<section className={styles.curriculum}>
     <div className={styles.curriculumHead}>
