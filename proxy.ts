@@ -13,7 +13,9 @@ export async function proxy(request:NextRequest){
   const isMemberApp=/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/|$)/.test(request.nextUrl.pathname);
   const pathname=request.nextUrl.pathname;
   const language=pathname==="/ja"||pathname.startsWith("/ja/")?"ja":pathname==="/zh-tw"||pathname.startsWith("/zh-tw/")?"zh-Hant-TW":pathname==="/ko"||pathname.startsWith("/ko/")?"ko":"en";
-  const response=isMemberApp?await updateSession(request):NextResponse.next();
+  const requestHeaders=new Headers(request.headers);
+  requestHeaders.set("x-rba-lang",language);
+  const response=isMemberApp?await updateSession(request,requestHeaders):NextResponse.next({request:{headers:requestHeaders}});
   response.headers.set("Content-Language",language);
   return response;
 }
