@@ -11,6 +11,10 @@ export async function proxy(request:NextRequest){
     return NextResponse.redirect(url,308);
   }
   const isMemberApp=/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/|$)/.test(request.nextUrl.pathname);
-  return isMemberApp?updateSession(request):NextResponse.next();
+  const pathname=request.nextUrl.pathname;
+  const language=pathname==="/ja"||pathname.startsWith("/ja/")?"ja":pathname==="/zh-tw"||pathname.startsWith("/zh-tw/")?"zh-Hant-TW":pathname==="/ko"||pathname.startsWith("/ko/")?"ko":"en";
+  const response=isMemberApp?await updateSession(request):NextResponse.next();
+  response.headers.set("Content-Language",language);
+  return response;
 }
 export const config={matcher:["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"]};
