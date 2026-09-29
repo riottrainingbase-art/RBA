@@ -40,11 +40,55 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
         <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">ライブ参加 ¥3,300で申し込む<ArrowUpRight size={17}/></a>
       </div>
     </section>:null}
+
+    {locale==="ja"?<section className="torsten-format section-pad">
+      <div className="section-head">
+        <div><p className="section-index">HOW TO JOIN</p><h2>参加方法は、無理のない形で選べます。</h2></div>
+        <p>当日参加できる方も、練習や仕事と重なる方も。それぞれの生活に合わせて学べるようにしています。</p>
+      </div>
+      <div className="torsten-format-grid">
+        <article><span>LIVE</span><h3>その場で学ぶ</h3><strong>¥3,300</strong><p>11月25日 20:00〜21:30。Zoomで参加し、90分をリアルタイムで学びます。</p><a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">LIVEで申し込む<ArrowUpRight size={16}/></a></article>
+        <article><span>ON-DEMAND</span><h3>あとから繰り返す</h3><strong>¥4,400</strong><p>30日間視聴できます。通常練習や仕事と重なる方、見返しながら練習へ落とし込みたい方に向いています。</p><a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">ON-DEMANDで申し込む<ArrowUpRight size={16}/></a></article>
+        <article><span>TEAM / STAFF</span><h3>スタッフで学びを共有する</h3><strong>USE CASE</strong><p>一人がLIVEで学び、他のスタッフは各自の視聴方法で確認し、その後チーム内で練習設計を話し合う使い方もできます。</p><a href="#team-use">チームでの使い方を見る<ArrowDown size={16}/></a></article>
+      </div>
+      <p className="torsten-format-note">※ 視聴権の共有を意味するものではありません。参加・視聴される方は、それぞれ必要な申込区分をご確認ください。</p>
+    </section>:null}
+
+    {locale==="ja"?<section className="torsten-team-use section-pad" id="team-use">
+      <div><p className="section-index inverse">FOR TEAM STAFF</p><h2>講習を「聞いて終わり」にしない。</h2><p>チームで活用するなら、講習の前後まで含めると学びが現場に残りやすくなります。</p></div>
+      <div className="torsten-team-steps">
+        <article><span>01</span><strong>BEFORE</strong><h3>今の課題を1つ決める</h3><p>「練習では入るが試合では打てない」「良いシュートの基準が揃っていない」など、チームの問いを一つ持って参加します。</p></article>
+        <article><span>02</span><strong>LEARN</strong><h3>共通言語を拾う</h3><p>フォームだけでなく、スペーシング、判断、アドバンテージ、ショットクオリティの見方を共有します。</p></article>
+        <article><span>03</span><strong>NEXT PRACTICE</strong><h3>翌週に1つだけ試す</h3><p>メニューを全部変えるのではなく、練習条件や観察項目を一つだけ変えて選手の反応を見ます。</p></article>
+      </div>
+    </section>:null}
+
     <section className="event-audiences section-pad" id="audience"><div className="section-head"><div><p className="section-index">{c.audienceLabel}</p><h2>{c.audienceTitle}</h2></div><p>{c.audienceNote}</p></div><div className="audience-grid">{c.audiences.map(([label,body],index)=><article key={label}>{index===0?<GraduationCap size={32}/>:<Users size={32}/>}<span>0{index+1}</span><h3>{label}</h3><p>{body}</p><a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a></article>)}</div></section>
     <section className="torsten-credentials section-pad"><div><p className="section-index inverse">{c.careerLabel}</p><h2>{c.careerTitle}</h2></div><div>{c.career.map(([label,detail])=><article key={label}><span>{label}</span><strong>{detail}</strong></article>)}</div></section>
     <section className="event-record section-pad"><aside><p className="section-index">LIVE / ZOOM</p><strong>{({en:"25 NOV 2026",ja:"2026年11月25日","zh-tw":"2026年11月25日",ko:"2026년 11월 25일"})[locale]}</strong><span>{ui(locale,"time")}<br/>{ui(locale,"interpretation")}</span></aside><div><p className="eyebrow">{ui(locale,"theme")}</p><h2>{c.shift[0]}<br/>{c.shift[1]}</h2><p>{c.body}</p><p>{c.price}</p><p>{ui(locale,"external")}</p><div className="closing-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href={announcementUrl} target="_blank" rel="noreferrer">{c.article}<BookOpen size={17}/></a></div></div></section>
     <section className="event-principles section-pad"><p className="section-index inverse">{c.learn}</p><div><h2>{c.learnTitle[0]}<br/>{c.learnTitle[1]}</h2><ul>{c.points.map((point,index)=><li key={point}>{String(index+1).padStart(2,"0")}｜{point}</li>)}</ul></div></section>
     <section className="event-record section-pad"><aside><p className="section-index">{c.speaker}</p><strong>TORSTEN<br/>LOIBL</strong><span>{ui(locale,"headCoach")}</span></aside><div><p className="eyebrow">{ui(locale,"experience")}</p><h2>{c.speakerTitle[0]}<br/>{c.speakerTitle[1]}</h2><p>{c.speakerBody}</p><div className="closing-actions"><a className="button button-dark" href={previousReportUrl} target="_blank" rel="noreferrer">{c.report}<ArrowUpRight size={17}/></a><a className="text-link" href={profileUrl} target="_blank" rel="noreferrer">{c.profile}<ArrowUpRight size={16}/></a></div></div></section>
+    {locale==="ja"?<section className="torsten-related section-pad">
+      <div className="section-head"><div><p className="section-index">FREE READING</p><h2>申込前に、まず無料で読んでみる。</h2></div><p>今回のテーマに近いRBA JOURNALです。講習が自分に必要か、ここから判断しても構いません。</p></div>
+      <div className="torsten-related-grid">
+        <a href="/ja/journal/shooting-practice-needs-shot-context"><span>01</span><h3>シュート練習は、本数だけでは足りない</h3><p>移動、判断、疲労、守備、キャッチまで含めて一本のシュートとして考えます。</p><strong>無料で読む<ArrowRight size={16}/></strong></a>
+        <a href="/ja/journal/coach-shot-selection-advantage"><span>02</span><h3>シュートセレクションを、場所だけで教えない</h3><p>守備との距離、時間、味方との関係まで含めてショットを見ます。</p><strong>無料で読む<ArrowRight size={16}/></strong></a>
+        <a href="/ja/journal/shot-quality-before-percentage"><span>03</span><h3>シューターを成功率だけで評価しない</h3><p>入った・外れたの前に、良いシュートを生み出す判断を見ます。</p><strong>無料で読む<ArrowRight size={16}/></strong></a>
+      </div>
+    </section>:null}
+
+    {locale==="ja"?<section className="torsten-faq section-pad">
+      <div className="section-head"><div><p className="section-index">FAQ</p><h2>参加前によくある質問。</h2></div><p>迷いやすい点だけ先にまとめています。</p></div>
+      <div className="torsten-faq-list">
+        <details><summary>英語が分からなくても参加できますか？</summary><p>はい。日本語の逐次通訳付きで進行します。</p></details>
+        <details><summary>指導者資格がなくても参加できますか？</summary><p>参加できます。指導者、チームスタッフ、教員、保護者、選手が対象です。</p></details>
+        <details><summary>当日参加できません。</summary><p>30日間のON-DEMAND視聴を選べます。通常練習や仕事と重なる方はこちらをご利用ください。</p></details>
+        <details><summary>シュートフォームだけを扱う講習ですか？</summary><p>いいえ。技術に加えて、練習設計、スペーシング、判断、アドバンテージ、試合でのショット創出まで扱います。</p></details>
+        <details><summary>U12やU15の指導にも使えますか？</summary><p>育成年代の指導にも活用できる考え方を扱います。ただし、年齢や発達段階に合わせて現場で調整することが前提です。</p></details>
+        <details><summary>チームスタッフで受講したいです。</summary><p>可能です。各参加者が必要な申込方法を選び、講習後にチーム内で共通言語や練習課題を整理する使い方がおすすめです。</p></details>
+      </div>
+    </section>:null}
+
     <section className="event-share section-pad"><div><p className="section-index inverse">{c.shareLabel}</p><h2>{c.shareTitle}</h2></div><div><p>{c.shareBody}</p><blockquote>{c.shareText}</blockquote><EventShareActions title={c.title.join(" ")} text={c.shareText} copyLabel={c.copy} shareLabel={c.share} copiedLabel={c.copied}/></div></section>
     <section className="event-member-bridge section-pad"><div className="event-member-number" aria-hidden="true"><span>RBA</span><strong>NEXT</strong><small>OPPORTUNITY</small></div><div><p className="section-index">{c.memberLabel}</p><h2>{c.memberTitle}</h2><p>{c.memberBody}</p><div className="event-member-roles">{c.memberRoles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><p className="event-member-note">{c.memberNote}</p><div className="closing-actions"><a className="button button-member" href={memberRegistrationUrl}><Sparkles size={17}/>{c.memberJoin}<ArrowRight size={17}/></a><a className="button button-dark" href={localePath(locale,"my-homecourt")}><House size={17}/>{c.memberOpen}<ArrowRight size={17}/></a></div></div></section>
     <CoachEducationLoop locale={locale}/>
