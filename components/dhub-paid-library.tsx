@@ -211,9 +211,9 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
 
    {featuredPlayerTracks.length?<section className={styles.supportTools}>
      <div className={styles.supportToolsHead}><div><p className={styles.eyebrow}>PLAYER LEARNING PATHS / START HERE</p><h2>100本から探さなくていい。今の課題から入る。</h2></div><p>技名から探すのではなく、ゲームで困っている場面から3本ずつ選びました。1本読んだら、次の練習で一つだけ試します。</p></div>
-     <div className={styles.supportToolsGrid}>{featuredPlayerTracks.map((track,index)=><article key={track.label}>
-       <span>{String(index+1).padStart(2,"0")}</span><h3>{track.title}</h3><p>{track.description}</p>
-       {track.articles.map(article=><Link href={c.root+"/"+article.slug} key={article.slug}>{article.title} <ArrowRight size={14}/></Link>)}
+     <div className={styles.supportToolsGrid}>{featuredPlayerTracks.map((track,index)=><article className={styles.trackCard} key={track.label}>
+       <span>{String(index+1).padStart(2,"0")} / {track.label}</span><h3>{track.title}</h3><p>{track.description}</p>
+       <div className={styles.trackLinks}>{track.articles.map(article=><Link href={c.root+"/"+article.slug} key={article.slug}>{article.title} <ArrowRight size={14}/></Link>)}</div>
      </article>)}</div>
    </section>:null}
 
