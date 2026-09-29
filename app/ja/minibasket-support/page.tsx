@@ -163,6 +163,30 @@ export default function Page() {
       </div>
     </section>
 
+    <section className="homecourt-product-preview section-pad">
+      <div className="section-head">
+        <div>
+          <p className="section-index">RBA COACHING GUIDE Vol.1</p>
+          <h2>U12で本当に教えるべきこと</h2>
+        </div>
+        <p>FIBA/WABCの公開コーチング資料を参照し、発達段階、Game-Based Teaching、Fundamentals、3x3・4x4、90分の練習設計までを日本のU12現場向けに整理したRBAオリジナル教材です。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article>
+          <span>DIGITAL GUIDE / ¥3,300</span>
+          <h3>「何を教えるか」より、学ぶ順番から整理する。</h3>
+          <p>読むだけで終わらないよう、4週間の実装プランと練習評価チェックリストまで収録しています。</p>
+          <a className="text-link" href="/ja/materials/u12-fundamentals">教材の内容を見る<ArrowRight size={16}/></a>
+        </article>
+        <article>
+          <span>NOT AN OFFICIAL TRANSLATION</span>
+          <h3>公式資料の翻訳販売ではありません。</h3>
+          <p>FIBA/WABCの公開資料を参照し、RBAが独自の解説・練習設計を加えて再構成しています。</p>
+          <a className="text-link" href="/ja/materials">RBA COACHING MATERIALSを見る<ArrowRight size={16}/></a>
+        </article>
+      </div>
+    </section>
+
     <section className="closing-cta section-pad">
       <p className="eyebrow">START WITH YOUR TEAM</p>
       <h2>どのサービスが必要か、<br/>決めてから来なくて大丈夫です。</h2>
