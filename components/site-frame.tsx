@@ -63,7 +63,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const memberHref=authReady?`${locale==="en"?"":`/${locale}`}/my-homecourt/login`:localePath(locale,"my-homecourt");
-  return <div className="site-shell"><DocumentLanguage language={locale==="zh-tw"?"zh-Hant-TW":locale}/>
+  return <div className={`site-shell locale-${locale}`} lang={locale==="zh-tw"?"zh-Hant-TW":locale}><DocumentLanguage language={locale==="zh-tw"?"zh-Hant-TW":locale}/>
     <a className="skip-link" href="#main-content">{({en:"Skip to content",ja:"本文へ移動","zh-tw":"跳至內容",ko:"본문으로 이동"})[locale]}</a>
     <header className="site-header">
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
