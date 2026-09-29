@@ -215,7 +215,12 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    {label:"DHO + INTERIOR",title:"DHO・Post・Interior",description:"Handoff、Reject、Seal、High-Low。形ではなく守備の前後関係から読む。",slugs:["dho-read-defender","post-seal-early","high-low-read"]},
    {label:"SPECIAL SITUATIONS",title:"BLOB・SLOB・Foul Game",description:"終盤やOut of Boundsも、暗記ではなくScore・Time・Spacing・Safetyから判断する。",slugs:["bobj-sideline-spacing","slob-advance-ball","foul-or-no-foul-awareness"]},
    {label:"BUILD THE ATHLETE",title:"身体・回復・リーダーシップ",description:"成長期の身体、睡眠・回復、声かけ。長く成長するための土台を整える。",slugs:["landing-quiet-control","strength-basics-youth","pregame-nerves-routine"]}
- ].map(track=>({...track,articles:track.slugs.map(slug=>articleBySlug.get(slug)).filter(Boolean) as PaidArticle[]})).filter(track=>track.articles.length);
+ ].map(track=>({
+   ...track,
+   articles:track.slugs
+     .map(slug=>articleBySlug.get(slug))
+     .filter((article): article is PaidArticle=>Boolean(article)),
+ })).filter(track=>track.articles.length>0):[];
 
  return <SiteFrame locale={locale} languagePage="d-hub"><main className={styles.shell}>
    <header className={styles.libraryHero}>
