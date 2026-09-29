@@ -65,8 +65,9 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
   if(error||!data)notFound();
   const article=data as PaidArticle;
   const sources=Array.isArray(article.source_references)?article.source_references:[];
-  const isPlayerPath=program==="players"&&locale==="ja"&&article.editorial_note?.startsWith("GRADE6_12M|");
-  const {data:articleProgress}=isPlayerPath?await supabase.from("dhub_paid_article_progress")
+  const isJaPlayerArticle=program==="players"&&locale==="ja";
+  const isPlayerPath=isJaPlayerArticle&&article.editorial_note?.startsWith("GRADE6_12M|");
+  const {data:articleProgress}=isJaPlayerArticle?await supabase.from("dhub_paid_article_progress")
     .select("status,reflection,next_action,completed_at")
     .eq("user_id",user.id).eq("article_id",article.id).maybeSingle():{data:null};
   const {data:pathRows}=isPlayerPath?await supabase.from("dhub_paid_articles")
@@ -133,13 +134,13 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
         {article.reflection_questions.map((q,index)=><div key={q}><span>{String(index+1).padStart(2,"0")}</span><strong>{q}</strong></div>)}
       </section>
 
-      {isPlayerPath?<section className={styles.pathProgress}>
-        <div className={styles.pathProgressHead}><div><p className={styles.eyebrow}>MY MONTH / SAVE YOUR LEARNING</p><h2>今月を、自分の記録にする。</h2></div><span data-status={articleProgress?.status||"not-started"}>{articleProgress?.status==="completed"?"COMPLETED":articleProgress?.status==="started"?"IN PROGRESS":"NOT STARTED"}</span></div>
+      {isJaPlayerArticle?<section className={styles.pathProgress}>
+        <div className={styles.pathProgressHead}><div><p className={styles.eyebrow}>{isPlayerPath?"MY MONTH / SAVE YOUR LEARNING":"MY LEARNING / SAVE YOUR NEXT ACTION"}</p><h2>{isPlayerPath?"今月を、自分の記録にする。":"読んだことを、自分のプレーに残す。"}</h2></div><span data-status={articleProgress?.status||"not-started"}>{articleProgress?.status==="completed"?"COMPLETED":articleProgress?.status==="started"?"IN PROGRESS":"NOT STARTED"}</span></div>
         <form action={savePlayerArticleProgress}>
           <input type="hidden" name="article_id" value={article.id}/>
-          <label>実際に起きたこと<textarea name="reflection" rows={7} defaultValue={articleProgress?.reflection||""} placeholder="試合や練習で、実際に見えたこと・できたこと・困ったことを残す。"/></label>
-          <label>次の練習でやること<input name="next_action" defaultValue={articleProgress?.next_action||""} placeholder="一つだけ決める"/></label>
-          <div><button className="button button-light" name="status" value="started">保存する</button><button className="button button-member" name="status" value="completed">今月を完了</button></div>
+          <label>実際に起きたこと<textarea name="reflection" rows={7} defaultValue={articleProgress?.reflection||""} placeholder="練習や試合で、見えたこと・できたこと・困ったことを残す。"/></label>
+          <label>次の練習・試合でやること<input name="next_action" defaultValue={articleProgress?.next_action||""} placeholder="一つだけ決める"/></label>
+          <div><button className="button button-light" name="status" value="started">記録を保存</button><button className="button button-member" name="status" value="completed">{isPlayerPath?"今月を完了":"この記事を完了"}</button></div>
         </form>
       </section>:null}
     </article>
@@ -169,6 +170,12 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
   .eq("program_type",program).eq("locale",locale).eq("published",true)
   .order("published_at",{ascending:false}).order("title");
  const articles=(error?[]:(data||[])) as PaidArticle[];
+ const allPlayerIds=locale==="ja"&&program==="players"?articles.map(article=>article.id):[];
+ const {data:allPlayerProgressRows}=allPlayerIds.length?await supabase.from("dhub_paid_article_progress")
+   .select("article_id,status").eq("user_id",user.id).in("article_id",allPlayerIds):{data:[]};
+ const allPlayerProgress=new Map((allPlayerProgressRows||[]).map(row=>[row.article_id,row.status]));
+ const allPlayerCompleted=Array.from(allPlayerProgress.values()).filter(status=>status==="completed").length;
+ const allPlayerStarted=Array.from(allPlayerProgress.values()).filter(status=>status==="started").length;
  const curriculumCategory=locale==="ja"&&program==="players"?"小6→中1 年間カリキュラム":null;
  const supportCategory=locale==="ja"&&program==="players"?"小6→中1 サポートツール":null;
  const curriculumArticles=curriculumCategory?articles
@@ -213,7 +220,7 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
     <p className={styles.eyebrow}>{c.label} / PAID ARTICLE LIBRARY</p>
     <h1>{c.heading}</h1>
     <p className={styles.lead}>{c.lead}</p>
-    <div className={styles.libraryStats}><div><span>{locale==="ja"?"公開中":"PUBLISHED"}</span><strong>{articles.length}</strong><small>ARTICLES</small></div><div><span>{locale==="ja"?"カテゴリー":"CATEGORIES"}</span><strong>{categories.length+(curriculumArticles.length?1:0)+(supportArticles.length?1:0)}</strong><small>LEARNING AREAS</small></div><div><span>{locale==="ja"?"対象":"FOR"}</span><strong>{c.audience}</strong><small>MEMBERS ONLY</small></div></div>
+    <div className={styles.libraryStats}><div><span>{locale==="ja"?"公開中":"PUBLISHED"}</span><strong>{articles.length}</strong><small>ARTICLES</small></div><div><span>{locale==="ja"?"カテゴリー":"CATEGORIES"}</span><strong>{categories.length+(curriculumArticles.length?1:0)+(supportArticles.length?1:0)}</strong><small>LEARNING AREAS</small></div>{locale==="ja"&&program==="players"?<><div><span>COMPLETED</span><strong>{allPlayerCompleted}</strong><small>YOUR ARTICLES</small></div><div><span>IN PROGRESS</span><strong>{allPlayerStarted}</strong><small>YOUR ARTICLES</small></div></>:null}<div><span>{locale==="ja"?"対象":"FOR"}</span><strong>{c.audience}</strong><small>MEMBERS ONLY</small></div></div>
    </header>
 
    {featuredPlayerTracks.length?<section className={styles.supportTools}>
@@ -260,8 +267,9 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
     <div className={styles.groupHead}><span>{category}</span><strong>{articles.filter(a=>a.category===category).length}{locale==="ja"?"本":" ARTICLES"}</strong></div>
     <div className={styles.grid}>{articles.filter(a=>a.category===category).map(article=>{
       const refs=Array.isArray(article.source_references)?article.source_references.length:0;
+      const status=allPlayerProgress.get(article.id);
       return <Link href={c.root+"/"+article.slug} key={article.slug} className={styles.card}>
-        <div className={styles.cardMeta}><span>{article.reading}</span>{refs?<span>{locale==="ja"?`参考文献 ${refs}`:`${refs} sources`}</span>:null}</div>
+        <div className={styles.cardMeta}><span>{article.reading}</span>{refs?<span>{locale==="ja"?`参考文献 ${refs}`:`${refs} sources`}</span>:null}{status?<span>{status==="completed"?"COMPLETED":"IN PROGRESS"}</span>:null}</div>
         <h2>{article.title}</h2>
         <p>{article.summary}</p>
         <strong>{locale==="ja"?"記事を読む":"Read article"} <ArrowRight size={15}/></strong>
