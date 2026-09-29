@@ -211,6 +211,9 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    {label:"3x3 LAB",title:"3x3で判断回数を増やす",description:"Spacing、Pass-Cut-Fill、Transition、Communicationを少人数ゲームで磨く。",slugs:["3x3-space-after-check","3x3-pass-cut-fill","3x3-transition-first-possession"]},
    {label:"BEAT PRESSURE",title:"Press・Trap対応",description:"Trap、Inbound、Middle Flash、Press Break。囲まれてから頑張る前に出口を作る。",slugs:["trap-escape-pass-fake","middle-flash-vs-press","press-break-spacing"]},
    {label:"GAME MANAGEMENT",title:"終盤判断・役割",description:"Score / Time / Foul、Late Clock、Final Shot。終盤をコーチの指示待ちにしない。",slugs:["score-time-foul-awareness","late-clock-advance","final-shot-rebound-roles"]},
+   {label:"ZONE READS",title:"Zone Defenseを読む",description:"外から回すだけにしない。Gap、High Post、Short Corner、Skipで守備を動かす。",slugs:["zone-gap-attack","zone-high-post-read","zone-short-corner"]},
+   {label:"DHO + INTERIOR",title:"DHO・Post・Interior",description:"Handoff、Reject、Seal、High-Low。形ではなく守備の前後関係から読む。",slugs:["dho-read-defender","post-seal-early","high-low-read"]},
+   {label:"SPECIAL SITUATIONS",title:"BLOB・SLOB・Foul Game",description:"終盤やOut of Boundsも、暗記ではなくScore・Time・Spacing・Safetyから判断する。",slugs:["bobj-sideline-spacing","slob-advance-ball","foul-or-no-foul-awareness"]},
    {label:"BUILD THE ATHLETE",title:"身体・回復・リーダーシップ",description:"成長期の身体、睡眠・回復、声かけ。長く成長するための土台を整える。",slugs:["landing-quiet-control","strength-basics-youth","pregame-nerves-routine"]}
  ].map(track=>({...track,articles:track.slugs.map(slug=>articleBySlug.get(slug)).filter(Boolean) as PaidArticle[]})).filter(track=>track.articles.length);
 
