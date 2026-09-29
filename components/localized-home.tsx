@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ui } from "./ui-copy";
 import { NetworkMaps } from "./network-maps";
 import { ArrowRight, ArrowUpRight, House, MessageCircle, MoveDown, Users } from "lucide-react";
@@ -23,15 +24,15 @@ const copy={
     contactLabel:"START WITH THE REAL QUESTION",contactTitle:["What does your environment","need next?"],contactCopy:"Clinics, camps, coach learning, Japan–Asia exchange, S&C dialogue and aligned partnerships.",contact:"Contact RBA",whatsapp:"Talk on WhatsApp"
   },
   ja:{
-    title:["子どもの未来から、","育成を考える。"],lede:"所属チームや地域だけで、子どもの選択肢を決めなくていい。RBAは、今いる環境を大切にしながら、全国・アジアの学びや挑戦へつながれる育成プラットフォームです。",
-    primary:"募集中の活動を見る",secondary:"RBAを地域に呼ぶ",proof:[["3,000+","2025年半ば以降の延べ参加者"],["25","国内25地域で活動"],["4言語","日本語・英語・繁体字中国語・韓国語"]],image:"次のコートが、ここから見つかる。",
-    clinicLabel:"全国の指導者へ · 2026年11月25日",clinicTitle:"世界の育成現場に学ぶ、日本語通訳付きオンライン講習。",clinicCopy:"レバンガ北海道ヘッドコーチ、トーステン・ロイブル氏による90分のオンライン講習です。シューターの育成方法、練習の組み立て方、試合で質の高いシュートチャンスをつくる考え方を、日本語の逐次通訳付きで学びます。",clinicDetail:"講習内容と講師実績を見る",clinicApply:"11月25日の講習に申し込む",clinicHero:"11月25日｜トーステン・ロイブル オンライン講習",clinicAchievements:[["B.LEAGUE","レバンガ北海道 ヘッドコーチ"],["日本代表","U16・U18・U19日本代表を指導"],["3x3日本代表","ナショナルチームを指導"],["世界一","2019年女子U23ワールドカップ優勝時のディレクターコーチ"]],
-    routesLabel:"育成を、行動に変える",routesTitle:"参加する。育つ。挑戦する。つながる。",routesCopy:"目的に合わせて、Development CampとRBA UNITEDを使い分けながら、次の一歩を選べます。",routes:[["選手・保護者","クリニックや現在募集中の育成機会を探す","opportunities"],["DEVELOPMENT CAMP","練習・ゲーム・振り返りを通して育成を深める","camp"],["RBA UNITED","大会・遠征・国際交流へ期間限定チームで挑戦する","united"],["指導者","トーステン氏のオンライン講習で学ぶ","events/torsten-loibl-online-clinic"],["ミニバスチーム","今いるチームの育成環境を外部から整理する","minibasket-support"],["主催者・団体","地域やクラブでRBAの活動をつくる","work-with-rba"],["海外アカデミー","日本との責任ある交流をつくる","asia"]],
-    position:"私たちの考え方",positionTitle:["勝つことと、","育てることは同じではない。"],positionCopy:"私たちが問い直したいのは、勝利そのものではありません。U12で何を優先し、その経験が15歳、18歳になったときの判断、自立、プレーの幅につながるのか。子どもが見て、選び、実行し、振り返れる環境を、ゲーム理解とS&Cの両面からつくります。",readApproach:"RBAの育成方針を読む",
-    workLabel:"RBAが取り組むこと",workTitle:"発信だけで終わらせず、育成環境そのものをつくる。",work:[["01","選手が判断する","状況を見る、選ぶ、実行する、振り返る。コーチの答えではなく、自分の判断を育てます。"],["02","身体を守りながら伸ばす","S&C、負荷管理、回復、睡眠、栄養まで含め、長く競技を続ける土台をつくります。"],["03","指導者が学び続ける","観察、問い、練習設計、国内外の知見をつなぎ、指導を更新できる場をつくります。"],["04","所属の外にも機会をつくる","地域や所属だけで選択肢が決まらないよう、全国・アジアの学びと挑戦につなげます。"]],
-    asiaLabel:ui("ja","access"),asiaTitle:["日本のバスケットボールへ、","最初の一歩を。"],asiaCopy:"アジアのアカデミー、チーム、指導者、ご家族に向けた相談窓口です。団体名、対象年代、希望時期、交流の目的をお知らせください。実現できる形と次の一歩を、RBAが一緒に整理します。",asiaCta:"海外連携を相談する",
-    recordLabel:"活動実績",recordTitle:"地域ごとの違いを大切に、全国へ。",recordCopy:"仙台、川崎、神戸、佐賀、沖縄など、さまざまな地域で活動してきました。それぞれの地域やチームの背景を尊重し、現場の声を聞きながら、子どもの長期的な成長を軸にプログラムを組み立てています。",about:"RBAについて",
-    contactLabel:"育成の違和感を、そのままにしない",contactTitle:["いまの環境から、","次の一歩をつくる。"],contactCopy:"選手の成長、チーム環境、指導者の学び、クリニック、キャンプ、海外交流、S&Cまで。まだ答えが出ていない段階から一緒に整理できます。",contact:"RBAに相談する",whatsapp:"WhatsAppで相談"
+    title:["子どもの未来から、","育成を考える。"],lede:"所属や地域だけで、子どもの選択肢を決めなくていい。今いる環境を大切にしながら、全国・アジアの学びと挑戦につながれる育成プラットフォームです。",
+    primary:"募集中の活動を見る",secondary:"RBAを地域に呼ぶ",proof:[["3,000+","2025年半ば以降・延べ参加者"],["25","国内25地域で活動"],["4言語","日本語・英語・繁体字中国語・韓国語"]],image:"次のコートが、ここから見つかる。",
+    clinicLabel:"全国の指導者へ · 2026年11月25日",clinicTitle:"世界の育成現場から学ぶ、90分。",clinicCopy:"レバンガ北海道ヘッドコーチ、トーステン・ロイブル氏によるオンライン講習。シューターの育成、練習設計、質の高いシュート機会のつくり方を、日本語の逐次通訳付きで学びます。",clinicDetail:"講習内容と講師実績を見る",clinicApply:"11月25日の講習に申し込む",clinicHero:"11月25日｜トーステン・ロイブル オンライン講習",clinicAchievements:[["B.LEAGUE","レバンガ北海道 ヘッドコーチ"],["日本代表","U16・U18・U19を指導"],["3x3日本代表","ナショナルチームを指導"],["世界一","2019年女子U23ワールドカップ優勝時のディレクターコーチ"]],
+    routesLabel:"目的から選ぶ",routesTitle:"今の目的から、次の一歩へ。",routesCopy:"参加、学び、遠征、地域開催、海外交流。必要な入口だけ選べます。",routes:[["選手・保護者","クリニックや現在募集中の育成機会を探す","opportunities"],["DEVELOPMENT CAMP","練習・ゲーム・振り返りを通して育成を深める","camp"],["RBA UNITED","大会・遠征・国際交流へ期間限定チームで挑戦する","united"],["指導者","トーステン氏のオンライン講習で学ぶ","events/torsten-loibl-online-clinic"],["ミニバスチーム","今いるチームの育成環境を外部から整理する","minibasket-support"],["主催者・団体","地域やクラブでRBAの活動をつくる","work-with-rba"],["海外アカデミー","日本との責任ある交流をつくる","asia"]],
+    position:"私たちの考え方",positionTitle:["勝つことと、","育てることは同じではない。"],positionCopy:"問い直したいのは、勝利そのものではありません。U12での経験が、15歳、18歳の判断、自立、プレーの幅につながるか。見る・選ぶ・実行する・振り返る力を、ゲーム理解とS&Cの両面から育てます。",readApproach:"RBAの育成方針を読む",
+    workLabel:"RBAが取り組むこと",workTitle:"育成を、環境からつくる。",work:[["01","選手が判断する","状況を見る、選ぶ、実行する、振り返る。コーチの答えではなく、自分の判断を育てます。"],["02","身体を守りながら伸ばす","S&C、負荷管理、回復、睡眠、栄養まで含め、長く競技を続ける土台をつくります。"],["03","指導者が学び続ける","観察、問い、練習設計、国内外の知見をつなぎ、指導を更新できる場をつくります。"],["04","所属の外にも機会をつくる","地域や所属だけで選択肢が決まらないよう、全国・アジアの学びと挑戦につなげます。"]],
+    asiaLabel:ui("ja","access"),asiaTitle:["日本のバスケットボールへ、","最初の一歩を。"],asiaCopy:"アジアのアカデミー、チーム、指導者、ご家族の相談窓口です。対象年代、時期、目的を伺い、実現できる次の一歩を整理します。",asiaCta:"海外連携を相談する",
+    recordLabel:"活動実績",recordTitle:"地域ごとの違いを大切に、全国へ。",recordCopy:"仙台、川崎、神戸、佐賀、沖縄などで活動してきました。地域やチームの背景を尊重し、子どもの長期的な成長を軸にプログラムを設計します。",about:"RBAについて",
+    contactLabel:"育成の違和感を、そのままにしない",contactTitle:["いまの環境から、","次の一歩をつくる。"],contactCopy:"選手、チーム、指導者、地域、海外交流、S&C。答えが決まっていない段階から相談できます。",contact:"RBAに相談する",whatsapp:"WhatsAppで相談"
   },
   "zh-tw":{
     title:["扎根球場，","連結亞洲。"],lede:"RBA是以日本仙台為基地的青少年籃球培育機構。我們整合現代球員發展、科學化體能訓練、教練學習與有明確目的的國際交流。",
@@ -59,7 +60,7 @@ const copy={
 
 const homecourtCopy={
   en:{label:"RBA HOMECOURT / FREE MEMBER ACCESS",title:"Start free from MY HOME COURT.",body:"Choose PLAYER, PARENT or COACH. Access programmes, communities and role-based content, then upgrade only when paid membership fits.",open:"Open MY HOME COURT",about:"Free & paid membership",roles:["PLAYER","PARENT","COACH"]},
-  ja:{label:"RBA / MY HOME COURT",title:"もう一つ、自分の育成環境を持つ。",body:"チームに所属していても、地域の外に目を向けていい。違う指導者から学んでもいい。これまでの経験を残し、次の挑戦を自分で選べる。MY HOME COURTは、活動情報・育成記事・Basketball Passport・全国や海外の機会を一つにつなぐ、自分の成長を支える場所です。RBA IDは無料で利用できます。継続して学び、試し、振り返りたい方には月額3,300円のHOMECOURTも用意しています。",open:"無料でRBA IDをつくる",about:"月額3,300円でできること",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
+  ja:{label:"RBA / MY HOME COURT",title:"もうひとつ、自分の育成環境を持つ。",body:"今のチームを大切にしながら、外の学びにもつながれる。活動情報、育成記事、Basketball Passport、全国・海外の機会を一つにまとめた、自分の成長を支える場所です。RBA IDは無料。継続して学びたい方には月額3,300円のHOMECOURTもあります。",open:"無料でRBA IDをつくる",about:"月額3,300円でできること",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
   "zh-tw":{label:"RBA HOMECOURT / 會員專區",title:"會員請從MY HOME COURT開始。",body:"活動日程、報名、付款、規則與角色專屬內容，集中在同一個清楚入口。",open:"開啟會員專區",about:"了解RBA HOMECOURT",roles:["球員","家長","教練"]},
   ko:{label:"RBA HOMECOURT / 회원 페이지",title:"회원은 MY HOME COURT에서 시작하세요.",body:"일정, 신청, 결제, 규정과 역할별 콘텐츠를 하나의 명확한 입구에 모았습니다.",open:"회원 페이지 열기",about:"RBA HOMECOURT 안내",roles:["선수","보호자","코치"]},
 } as const;
@@ -75,12 +76,12 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     {locale==="ja"?<section className="rba-quick-entry section-pad">
       <div className="section-head">
-        <div><p className="section-index">30 SEC / START HERE</p><h2>まず30秒で、RBAを見る。</h2></div>
-        <p>全部を理解してから使う必要はありません。気になる入口だけ開いてください。記事、活動、指導者向け学び、遠征・交流を4つに分けました。</p>
+        <div><p className="section-index">30 SEC / START HERE</p><h2>まずは、気になる入口から。</h2></div>
+        <p>RBAのすべてを読む必要はありません。今の目的に近い入口から進めます。</p>
       </div>
       <div className="rba-quick-entry-grid">
-        <a href="/ja/journal/rba-united-yaima-cup-2026"><span>01 / VOICES</span><h3>参加者の声から見る</h3><p>YAIMA CUPで選手・保護者に何が残ったのか。まず30秒で読めます。</p><strong>30秒で見る<ArrowRight size={16}/></strong></a>
-        <a href="/ja/journal"><span>02 / JOURNAL</span><h3>育成記事から見る</h3><p>ミニバス、U15、出場時間、練習量、チーム選び。気になる悩みから読めます。</p><strong>気になる記事を探す<ArrowRight size={16}/></strong></a>
+        <Link href="/ja/journal/rba-united-yaima-cup-2026"><span>01 / VOICES</span><h3>参加者の声から見る</h3><p>YAIMA CUPで選手・保護者に何が残ったのか。まず30秒で読めます。</p><strong>30秒で見る<ArrowRight size={16}/></strong></Link>
+        <Link href="/ja/journal"><span>02 / JOURNAL</span><h3>育成記事から見る</h3><p>ミニバス、U15、出場時間、練習量、チーム選び。気になる悩みから読めます。</p><strong>気になる記事を探す<ArrowRight size={16}/></strong></Link>
         <a href="/ja/d-hub/coaches"><span>03 / COACHES</span><h3>指導者向けの学びを見る</h3><p>D-HUB COACH LAB、実践記事、年間カリキュラム。現場で試せる形にしています。</p><strong>D-HUBを見る<ArrowRight size={16}/></strong></a>
         <a href="/ja/opportunities"><span>04 / JOIN</span><h3>今参加できる活動を見る</h3><p>クリニック、キャンプ、RBA UNITED、スクール。募集中のものだけ確認できます。</p><strong>募集中を見る<ArrowRight size={16}/></strong></a>
       </div>
@@ -90,7 +91,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={locale==="ja"?"/ja/my-homecourt/login?source=homepage-homecourt":localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
 
-    {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>RBAのクリニック、キャンプ、交流は「所属を変えるため」だけの場所ではありません。各プログラムの参加条件を満たしていれば、普段とは違う指導者、仲間、地域、考え方に触れ、自分のバスケットボールを広げる機会として参加できます。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
+    {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>RBAは、所属を変えるためだけの場所ではありません。今のチームを大切にしながら、違う指導者、仲間、地域、考え方に触れ、自分のバスケットボールを広げられます。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
     <AudienceJourneys locale={locale}/>
     {locale==="ja"&&torstenFeature}
     {locale!=="ja"&&torstenFeature}
@@ -108,8 +109,8 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
-        <div><p className="section-index">NEW · SENDAI U15</p><h2>10月スタート。毎週木曜日、仙台で「ゲームで使える力」を育てる。</h2></div>
-        <p>U15年代向けの定期スクール。2026年10月スタート。小学6年生も参加できます。技術だけでなく、見る・判断する・実行するを年間36回で育てます。仙台市太白区、18:00〜19:30、原則月3回。入会金5,500円＋月額7,700円（税込）、定員25名。</p>
+        <div><p className="section-index">NEW · SENDAI U15</p><h2>毎週木曜、仙台で「ゲームで使える力」を育てる。</h2></div>
+        <p>U15年代向けの定期スクール。小学6年生も参加可。見る・判断する・実行する力を、月3回・年間36回で育てます。仙台市太白区／18:00〜19:30／入会金5,500円＋月額7,700円（税込）／定員25名。</p>
       </div>
       <div className="homecourt-preview-grid">
         <article><span>01</span><h3>SEE</h3><p>相手・味方・スペースを観て、プレー前から情報を集める。</p></article>
