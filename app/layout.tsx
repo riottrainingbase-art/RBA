@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import Script from "next/script";
 import "./globals.css";
 import "./platform-v9.css";
 
@@ -34,6 +35,8 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{__html:`(()=>{const p=location.pathname;document.documentElement.lang=p==='/ja'||p.startsWith('/ja/')?'ja':p==='/zh-tw'||p.startsWith('/zh-tw/')?'zh-Hant-TW':p==='/ko'||p.startsWith('/ko/')?'ko':'en'})()`}} /></head>
       <body className="antialiased">
+        <Script id="vercel-analytics-bootstrap" strategy="afterInteractive">{`window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}`}</Script>
+        <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context":"https://schema.org", "@type":"SportsOrganization", name:"Riot Basketball Academy", alternateName:"RBA",
           url:"https://riotbasketballacademy.com", logo:"https://riotbasketballacademy.com/rba-logo-original.jpg",
