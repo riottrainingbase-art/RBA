@@ -47,7 +47,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["RBA UNITED",localePath(locale,"united")],
     ["RBA CONNECT",localePath(locale,"connect")],
     ["ORGANIZER",localePath(locale,"organizer")],
-    ...(locale==="ja"?[["ミニバス育成支援","/ja/minibasket-support"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["訪問トレーニング","/ja/team-visit-clinic"] as const,["RBAと活動をつくる","/ja/work-with-rba"] as const]:[]),
+    ...(locale==="ja"?[["コーチ向け教材","/ja/materials"] as const,["ミニバス育成支援","/ja/minibasket-support"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["訪問トレーニング","/ja/team-visit-clinic"] as const,["RBAと活動をつくる","/ja/work-with-rba"] as const]:[]),
     [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
   ] as const;
   const nav=[
