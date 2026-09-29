@@ -41,7 +41,7 @@ export default function Page(){
       <a className="back-link" href="/ja">← RBA</a>
       <p className="section-index">RBA TEAM TRAINING</p>
       <h1>練習を、<br/>選手の学びが残る時間に。</h1>
-      <p>TEAM TRAININGは、メニューを並べるための機能ではありません。何を見て、どう判断し、どんなプレーを試し、次の練習へ何を残すかまでを一つの流れで設計します。</p>
+      <p>TEAM TRAININGは、メニュー集ではありません。何を見るか、どう判断するか、何を試すかまでを一つの流れで設計します。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="/ja/minibasket-support">ミニバス育成支援を見る<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/team-visit-clinic">訪問トレーニングを見る<ArrowRight size={17}/></a>
@@ -52,14 +52,14 @@ export default function Page(){
       <p className="section-index">WHY TEAM TRAINING</p>
       <div>
         <h2>「何をやるか」より先に、<br/>「何を学ばせるか」を決める。</h2>
-        <p>同じドリルでも、目的が違えば選手の学びは変わります。RBAでは、技術・判断・スペーシング・ゲーム理解・身体づくりを別々に扱わず、その日のテーマに合わせてつなげます。</p>
+        <p>同じドリルでも、目的が違えば学びは変わります。技術、判断、スペーシング、ゲーム理解、身体づくりを、その日のテーマでつなげます。</p>
       </div>
     </section>
 
     <section className="homecourt-product-preview section-pad">
       <div className="section-head">
         <div><p className="section-index">RBA TEAM TRAINING MODEL</p><h2>6つの視点で、練習を設計する。</h2></div>
-        <p>全部を毎回入れる必要はありません。年代、人数、コート数、チームの課題に合わせて必要なものを選びます。</p>
+        <p>すべてを毎回入れる必要はありません。年代、人数、コート、課題に合わせて選びます。</p>
       </div>
       <div className="homecourt-preview-grid">
         {principles.map(([tag,title,body],i)=><article key={tag}>
@@ -74,7 +74,7 @@ export default function Page(){
       <p className="section-index">IN MY HOME COURT</p>
       <div>
         <h2>TEAM HOMEの練習計画とつながります。</h2>
-        <p>指導者は、練習テーマ、目的、メニュー、参加人数、コート数、必要物品、コーチメモを保存できます。練習後の気づきは次回の計画へ残し、単発のメニュー集ではなく、チームの学習履歴として積み上げます。</p>
+        <p>練習テーマ、目的、人数、コート数、観察メモを保存し、練習後の気づきを次回へつなげます。単発のメニューではなく、チームの学習履歴として残します。</p>
       </div>
     </section>
 
@@ -107,7 +107,7 @@ export default function Page(){
       <p className="section-index">VISIT TRAINING</p>
       <div>
         <h2>設計だけで終わらない。<br/>必要なら、RBAが現場へ行きます。</h2>
-        <p>HOMECOURTで整理したチームの課題をもとに、RBAが普段の体育館へ伺い、練習観察、オンコート指導、ゲーム観察、指導者フィードバックまで行えます。チームのいつもの環境だからこそ見える課題を扱います。</p>
+        <p>整理した課題をもとに、RBAが普段の体育館へ伺います。練習・ゲームの観察、オンコート指導、指導者フィードバックまで、いつもの環境だから見える課題を扱います。</p>
         <a className="text-link" href="/ja/team-visit-clinic">RBA VISIT TRAININGを見る<ArrowRight size={16}/></a>
       </div>
     </section>
@@ -122,7 +122,7 @@ export default function Page(){
     <section className="closing-cta section-pad">
       <p className="eyebrow">RBA TEAM TRAINING / VISIT TRAINING</p>
       <h2>チームの日常に、<br/>育成の仕組みを入れる。</h2>
-      <p>自分たちでTEAM TRAININGを使うことも、RBAを現場へ呼ぶこともできます。今のチームを変えるのではなく、今いる環境の中に新しい学び方を加えます。</p>
+      <p>TEAM TRAININGを自分たちで使うことも、RBAを現場へ呼ぶこともできます。今いる環境に、新しい学び方を加えます。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="/ja/minibasket-support">チーム育成診断から始める<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
