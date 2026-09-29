@@ -27,10 +27,11 @@ export default async function Page(){
       <LockKeyhole size={42}/>
       <p className="section-index">D-HUB PLAYERS / MEMBER ACCESS</p>
       <h1>PLAYERSメンバー専用ページです。</h1>
-      <p>SquareのD-HUB PLAYERS月額購読を確認できたRBA IDで利用できます。COACH LABの会員権とは別です。</p>
+      <p>D-HUB PLAYERS月額会員、またはGream U15の在籍選手として確認できたRBA IDで利用できます。COACH LABの会員権とは別です。</p>
       <div>
         <Link className="button button-dark" href="/ja/d-hub/players">PLAYERSを見る</Link>
         <Link className="button button-light" href="/ja/d-hub/access-request?program=players">決済済みの方の照合 <ArrowRight size={16}/></Link>
+        <Link className="button button-light" href="/ja/my-homecourt/app/team">Gream招待コードで参加 <ArrowRight size={16}/></Link>
       </div>
     </section>
   </main></SiteFrame>;
@@ -52,6 +53,14 @@ export default async function Page(){
     s.from("dhub_paid_article_progress").select("article_id,status").eq("user_id",user.id),
     s.from("dhub_player_diary").select("id",{count:"exact",head:true}).eq("user_id",user.id)
   ]);
+
+  const {data:greamMembershipRows}=await s.from("team_memberships")
+    .select("member_role,status,teams(name,category)")
+    .eq("user_id",user.id)
+    .eq("status","active")
+    .eq("member_role","player");
+  const greamMemberships=(greamMembershipRows||[]) as unknown as Array<{member_role:string;status:string;teams:{name:string;category:string}|null}>;
+  const activeGreamTeam=greamMemberships.find(item=>item.teams?.category==="gream_u15")?.teams||null;
 
   const list=mods||[];
   const done=new Set((prog||[]).filter(x=>x.status==="completed").map(x=>x.module_id));
@@ -81,7 +90,7 @@ export default async function Page(){
       <p className="section-index">D-HUB PLAYERS / MEMBER</p>
       <h1>練習・試合・振り返りを、<br/>自分でつなぐ。</h1>
       <p>見る。選ぶ。実行する。ゲームで試す。振り返る。次の練習を決める。D-HUB PLAYERSは、その循環を自分で回せる選手になるための場所です。</p>
-      <div className="dhub-player-status"><span>MEMBERSHIP</span><strong>ACTIVE</strong><small>{grade} / Square 月額3,300円</small></div>
+      <div className="dhub-player-status"><span>MEMBERSHIP</span><strong>ACTIVE</strong><small>{grade} / {activeGreamTeam?activeGreamTeam.name+" 在籍特典":"D-HUB PLAYERS 月額会員"}</small></div>
     </section>
 
     <section className="dhub-player-home-actions section-pad">
