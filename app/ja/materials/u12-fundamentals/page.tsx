@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowRight, BookOpen, CheckCircle2, ExternalLink, LockKeyhole, RefreshCw } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
-import { getDigitalMaterial, U12_MATERIAL_SLUG, U12_OFFER_OPTION } from "@/lib/digital-material-access";
+import { getDigitalMaterial, type DigitalMaterialRecord, U12_MATERIAL_SLUG, U12_OFFER_OPTION } from "@/lib/digital-material-access";
 
 export const metadata: Metadata = {
   title: "U12で本当に教えるべきこと｜RBA COACHING GUIDE Vol.1",
@@ -9,12 +9,37 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://riotbasketballacademy.com/ja/materials/u12-fundamentals" },
 };
 
+type HeadingBody = { heading:string; body:string };
+type FrameworkItem = { step:string; ja:string; body:string };
+type SampleGame = { title:string; purpose:string; rule:string };
+type TimelineItem = { time:string; title:string; body:string };
+type WeekItem = { week:string; theme:string; focus:string; game:string };
+
+type MaterialChapter = {
+  no:string;
+  basis:string;
+  title:string;
+  lead?:string;
+  points?:HeadingBody[];
+  coachingQuestions?:string[];
+  practiceIdeas?:string[];
+  framework?:FrameworkItem[];
+  redFlags?:string[];
+  sampleGames?:SampleGame[];
+  do?:string[];
+  avoid?:string[];
+  timeline?:TimelineItem[];
+  weeks?:WeekItem[];
+  checklist?:string[];
+  finalPrompt?:string;
+};
+
 type MaterialContent = {
   version?: string;
   audience?: string;
   notice?: string;
   howToUse?: string[];
-  chapters?: Array<Record<string, any>>;
+  chapters?: MaterialChapter[];
   sources?: Array<{ title:string; url:string; note?:string }>;
   nextSteps?: Array<{ title:string; body:string; href:string }>;
 };
@@ -90,9 +115,9 @@ function SalesPage({ paymentPending=false }: { paymentPending?: boolean }) {
   </>;
 }
 
-function PaidGuide({ material }:{ material:any }) {
+function PaidGuide({ material }:{ material:DigitalMaterialRecord }) {
   const c=(material.content||{}) as MaterialContent;
-  const chapters=Array.isArray(c.chapters)?c.chapters:[];
+  const chapters:MaterialChapter[]=Array.isArray(c.chapters)?c.chapters:[];
 
   return <>
     <section className="inner-hero section-pad">
@@ -114,7 +139,7 @@ function PaidGuide({ material }:{ material:any }) {
       </div>
     </section>
 
-    {chapters.map((chapter:any,index:number)=><section className={index%2===0?"homecourt-product-preview section-pad":"statement section-pad"} id={`chapter-${chapter.no}`} key={chapter.no}>
+    {chapters.map((chapter,index)=><section className={index%2===0?"homecourt-product-preview section-pad":"statement section-pad"} id={`chapter-${chapter.no}`} key={chapter.no}>
       {index%2!==0 ? <p className="section-index">{chapter.no} / {chapter.basis}</p> : null}
       <div className={index%2===0?"section-head":undefined}>
         <div>
@@ -125,36 +150,36 @@ function PaidGuide({ material }:{ material:any }) {
       </div>
 
       {Array.isArray(chapter.points) ? <div className="homecourt-preview-grid">
-        {chapter.points.map((p:any,i:number)=><article key={i}><span>{String(i+1).padStart(2,"0")}</span><h3>{p.heading}</h3><p>{p.body}</p></article>)}
+        {chapter.points.map((p,i)=><article key={i}><span>{String(i+1).padStart(2,"0")}</span><h3>{p.heading}</h3><p>{p.body}</p></article>)}
       </div> : null}
 
       {Array.isArray(chapter.framework) ? <div className="homecourt-preview-grid">
-        {chapter.framework.map((p:any)=><article key={p.step}><span>{p.step}</span><h3>{p.ja}</h3><p>{p.body}</p></article>)}
+        {chapter.framework.map((p)=><article key={p.step}><span>{p.step}</span><h3>{p.ja}</h3><p>{p.body}</p></article>)}
       </div> : null}
 
       {Array.isArray(chapter.sampleGames) ? <div className="homecourt-preview-grid">
-        {chapter.sampleGames.map((g:any,i:number)=><article key={i}><span>GAME {String(i+1).padStart(2,"0")}</span><h3>{g.title}</h3><p><strong>目的：</strong>{g.purpose}</p><p><strong>ルール：</strong>{g.rule}</p></article>)}
+        {chapter.sampleGames.map((g,i)=><article key={i}><span>GAME {String(i+1).padStart(2,"0")}</span><h3>{g.title}</h3><p><strong>目的：</strong>{g.purpose}</p><p><strong>ルール：</strong>{g.rule}</p></article>)}
       </div> : null}
 
       {Array.isArray(chapter.timeline) ? <div className="hosting-ready"><ul>
-        {chapter.timeline.map((x:any)=><li key={x.time}><span>{x.time}</span><div><strong>{x.title}</strong><p>{x.body}</p></div><CheckCircle2/></li>)}
+        {chapter.timeline.map((x)=><li key={x.time}><span>{x.time}</span><div><strong>{x.title}</strong><p>{x.body}</p></div><CheckCircle2/></li>)}
       </ul></div> : null}
 
       {Array.isArray(chapter.weeks) ? <div className="homecourt-preview-grid">
-        {chapter.weeks.map((w:any)=><article key={w.week}><span>{w.week} / {w.theme}</span><h3>{w.focus}</h3><p>{w.game}</p></article>)}
+        {chapter.weeks.map((w)=><article key={w.week}><span>{w.week} / {w.theme}</span><h3>{w.focus}</h3><p>{w.game}</p></article>)}
       </div> : null}
 
-      {Array.isArray(chapter.coachingQuestions) ? <div className="homecourt-private-note"><div><strong>COACHING QUESTIONS</strong><ul>{chapter.coachingQuestions.map((x:string,i:number)=><li key={i}>{x}</li>)}</ul></div></div> : null}
-      {Array.isArray(chapter.practiceIdeas) ? <div className="homecourt-private-note"><div><strong>PRACTICE IDEAS</strong><ul>{chapter.practiceIdeas.map((x:string,i:number)=><li key={i}>{x}</li>)}</ul></div></div> : null}
-      {Array.isArray(chapter.redFlags) ? <div className="homecourt-private-note"><div><strong>RED FLAGS</strong><ul>{chapter.redFlags.map((x:string,i:number)=><li key={i}>{x}</li>)}</ul></div></div> : null}
+      {Array.isArray(chapter.coachingQuestions) ? <div className="homecourt-private-note"><div><strong>COACHING QUESTIONS</strong><ul>{chapter.coachingQuestions.map((x,i)=><li key={i}>{x}</li>)}</ul></div></div> : null}
+      {Array.isArray(chapter.practiceIdeas) ? <div className="homecourt-private-note"><div><strong>PRACTICE IDEAS</strong><ul>{chapter.practiceIdeas.map((x,i)=><li key={i}>{x}</li>)}</ul></div></div> : null}
+      {Array.isArray(chapter.redFlags) ? <div className="homecourt-private-note"><div><strong>RED FLAGS</strong><ul>{chapter.redFlags.map((x,i)=><li key={i}>{x}</li>)}</ul></div></div> : null}
 
       {Array.isArray(chapter.do) || Array.isArray(chapter.avoid) ? <div className="homecourt-preview-grid">
-        <article><span>DO</span><h3>増やしたい関わり</h3><ul>{(chapter.do||[]).map((x:string,i:number)=><li key={i}>{x}</li>)}</ul></article>
-        <article><span>AVOID</span><h3>減らしたい関わり</h3><ul>{(chapter.avoid||[]).map((x:string,i:number)=><li key={i}>{x}</li>)}</ul></article>
+        <article><span>DO</span><h3>増やしたい関わり</h3><ul>{(chapter.do||[]).map((x,i)=><li key={i}>{x}</li>)}</ul></article>
+        <article><span>AVOID</span><h3>減らしたい関わり</h3><ul>{(chapter.avoid||[]).map((x,i)=><li key={i}>{x}</li>)}</ul></article>
       </div> : null}
 
       {Array.isArray(chapter.checklist) ? <div className="hosting-ready"><ul>
-        {chapter.checklist.map((x:string,i:number)=><li key={i}><span>{String(i+1).padStart(2,"0")}</span><div><strong>{x}</strong></div><CheckCircle2/></li>)}
+        {chapter.checklist.map((x,i)=><li key={i}><span>{String(i+1).padStart(2,"0")}</span><div><strong>{x}</strong></div><CheckCircle2/></li>)}
       </ul>{chapter.finalPrompt?<p>{chapter.finalPrompt}</p>:null}</div> : null}
     </section>)}
 
