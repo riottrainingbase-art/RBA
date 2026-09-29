@@ -192,12 +192,18 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    .filter(category=>category!==curriculumCategory&&category!==supportCategory);
  const articleBySlug=new Map(articles.map(article=>[article.slug,article]));
  const featuredPlayerTracks=locale==="ja"&&program==="players"?[
-   {label:"READ THE GAME",title:"見る・判断する",description:"ボールを受ける前、Drive前、1on1、Helpの位置。技を出す前に何を見るか。",slugs:["advantage-before-catch","count-help-defenders","scan-before-ball-arrives"]},
-   {label:"CREATE ADVANTAGE",title:"1on1・Passing・Finishing",description:"抜くことだけを目的にせず、角度・タイミング・Passing Windowから優位を作る。",slugs:["change-pace-before-move","passing-window-angle","finish-read-rim-protector"]},
-   {label:"WITHOUT THE BALL",title:"オフボール・Spacing",description:"Pass後、Driveへの合わせ、DeniedへのBackdoor。ボールがない時間もプレーする。",slugs:["drift-lift-on-drive","backdoor-when-denied","cut-when-defender-turns-head"]},
-   {label:"STOP THE BALL",title:"守備",description:"スティールの前に進路を守る。Closeout、Gap、Help、Screen Communicationまで。",slugs:["contain-first-two-dribbles","gap-help-recover","screen-defense-communication"]},
+   {label:"READ THE GAME",title:"見る・判断する",description:"Catch前、Drive前、Helpの位置。技を出す前にゲームの情報を読む。",slugs:["advantage-before-catch","count-help-defenders","read-defender-feet"]},
+   {label:"HANDLE PRESSURE",title:"Ball Handling・Footwork",description:"Dribbleの高さ、Pocket、Pivot、Stop。Pressureの中でも顔を上げて次を選ぶ。",slugs:["dribble-height-by-pressure","pocket-dribble-protect","pivot-create-angle"]},
+   {label:"CREATE ADVANTAGE",title:"1on1・Finishing",description:"技の数ではなく、角度・緩急・2人目の守備から優位を作る。",slugs:["change-pace-before-move","retreat-re-attack","finish-read-rim-protector"]},
+   {label:"PASS + SPACE",title:"Passing・Spacing",description:"Passing Window、Paint Touch、Second/Third Side。ボールを動かして守備を動かす。",slugs:["passing-window-angle","paint-touch-relocate","third-side-extra-pass"]},
+   {label:"WITHOUT THE BALL",title:"Off-ball・Cut",description:"Pass後、Driveへの合わせ、DeniedへのBackdoor。ボールがない時間もプレーする。",slugs:["drift-lift-on-drive","backdoor-when-denied","cut-when-defender-turns-head"]},
+   {label:"U15 SCREEN READS",title:"Screen・PnRを読む",description:"Screenを自動で使わない。Use / Reject / Snake / Tagを守備から選ぶ。",slugs:["screen-read-before-use","reject-screen","weakside-tag-read-pnr"]},
+   {label:"STOP THE BALL",title:"守備",description:"Stealの前に進路を守る。Closeout、Gap、Help、Screen Communicationまで。",slugs:["contain-first-two-dribbles","gap-help-recover","screen-defense-communication"]},
+   {label:"RUN + REBOUND",title:"Transition・Rebound",description:"Reboundから3秒、Wide Lane、Pitch Ahead、Rim/Ball。攻守の切り替えを速くする。",slugs:["guard-rebound-push","transition-wide-lanes","transition-defense-rim-ball"]},
    {label:"3x3 LAB",title:"3x3で判断回数を増やす",description:"Spacing、Pass-Cut-Fill、Transition、Communicationを少人数ゲームで磨く。",slugs:["3x3-space-after-check","3x3-pass-cut-fill","3x3-transition-first-possession"]},
-   {label:"BUILD THE ATHLETE",title:"身体・回復・栄養",description:"成長期の身体を守りながら、着地・筋力・水分・大会日の回復まで整える。",slugs:["landing-quiet-control","strength-basics-youth","hydration-before-thirst"]}
+   {label:"BEAT PRESSURE",title:"Press・Trap対応",description:"Trap、Inbound、Middle Flash、Press Break。囲まれてから頑張る前に出口を作る。",slugs:["trap-escape-pass-fake","middle-flash-vs-press","press-break-spacing"]},
+   {label:"GAME MANAGEMENT",title:"終盤判断・役割",description:"Score / Time / Foul、Late Clock、Final Shot。終盤をコーチの指示待ちにしない。",slugs:["score-time-foul-awareness","late-clock-advance","final-shot-rebound-roles"]},
+   {label:"BUILD THE ATHLETE",title:"身体・回復・リーダーシップ",description:"成長期の身体、睡眠・回復、声かけ。長く成長するための土台を整える。",slugs:["landing-quiet-control","strength-basics-youth","pregame-nerves-routine"]}
  ].map(track=>({...track,articles:track.slugs.map(slug=>articleBySlug.get(slug)).filter(Boolean) as PaidArticle[]})).filter(track=>track.articles.length);
 
  return <SiteFrame locale={locale} languagePage="d-hub"><main className={styles.shell}>
@@ -210,7 +216,7 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    </header>
 
    {featuredPlayerTracks.length?<section className={styles.supportTools}>
-     <div className={styles.supportToolsHead}><div><p className={styles.eyebrow}>PLAYER LEARNING PATHS / START HERE</p><h2>100本から探さなくていい。今の課題から入る。</h2></div><p>技名から探すのではなく、ゲームで困っている場面から3本ずつ選びました。1本読んだら、次の練習で一つだけ試します。</p></div>
+     <div className={styles.supportToolsHead}><div><p className={styles.eyebrow}>PLAYER LEARNING PATHS / START HERE</p><h2>{articles.length}本から探さなくていい。今の課題から入る。</h2></div><p>技名から探すのではなく、ゲームで困っている場面から3本ずつ選びました。Gream / U15選手も、まず一つのPATHから始めて、次の練習で一つだけ試します。</p></div>
      <div className={styles.supportToolsGrid}>{featuredPlayerTracks.map((track,index)=><article className={styles.trackCard} key={track.label}>
        <span>{String(index+1).padStart(2,"0")} / {track.label}</span><h3>{track.title}</h3><p>{track.description}</p>
        <div className={styles.trackLinks}>{track.articles.map(article=><Link href={c.root+"/"+article.slug} key={article.slug}>{article.title} <ArrowRight size={14}/></Link>)}</div>
