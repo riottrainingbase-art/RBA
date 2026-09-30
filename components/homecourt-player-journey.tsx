@@ -37,12 +37,12 @@ export function HomecourtPlayerJourney({
   teamLinked,
   hasNextEvent,
 }:Props){
-  const {xp,level,nextFloor,levelProgress,momentum}=computePlayerJourney({
+  const {xp,level,nextFloor,levelProgress,momentum,maxLevel}=computePlayerJourney({
     historyCount,savedCount,journalViews,setupPercent,teamLinked,hasNextEvent
   });
 
   const quests=[
-    {code:"01",label:"SAVE DATA",title:"RBA IDの初期設定を完了する",done:setupPercent===100,href:"/ja/my-homecourt/app/my"},
+    {code:"01",label:"SAVE DATA",title:"RBA IDの初期設定を完了する",done:setupPercent>=100,href:"/ja/my-homecourt/app/my"},
     {code:"02",label:"FIRST STAMP",title:"Basketball Passportに経験を1件残す",done:historyCount>=1,href:"/ja/my-homecourt/app/start"},
     {code:"03",label:"SCOUT",title:"気になる活動を1件保存する",done:savedCount>=1,href:"/ja/opportunities"},
     {code:"04",label:"STUDY",title:"JOURNALを1本読む",done:journalViews>=1,href:"/ja/journal"},
@@ -80,7 +80,7 @@ export function HomecourtPlayerJourney({
         <strong>{String(level).padStart(2,"0")}</strong>
         <b>{PLAYER_JOURNEY_LEVEL_NAMES[level-1]}</b>
         <div><i style={{width:`${levelProgress}%`}}/></div>
-        <small>{xp} XP / NEXT {nextFloor} XP</small>
+        <small>{maxLevel?`${xp} XP / MAX LEVEL`:`${xp} XP / NEXT ${nextFloor} XP`}</small>
       </div>
     </header>
 
@@ -127,6 +127,22 @@ export function HomecourtPlayerJourney({
       </div>
     </section>
 
+    <section className={styles.pathSection}>
+      <div className={styles.sectionHead}>
+        <div><p>GROWTH PATHS</p><h3>自分の成長ルートは、一つじゃない。</h3></div>
+        <span>得点や技術点ではなく、どんな経験を増やしたか。</span>
+      </div>
+      <div className={styles.pathGrid}>
+        {[
+          {name:"EXPERIENCE",label:"PLAY",value:Math.min(100,historyCount*20),detail:`${historyCount} EXPERIENCE`,href:"/ja/my-homecourt/app/start"},
+          {name:"DISCOVERY",label:"EXPLORE",value:Math.min(100,savedCount*25),detail:`${savedCount} SAVED`,href:"/ja/opportunities"},
+          {name:"LEARNING",label:"LEARN",value:Math.min(100,journalViews*10),detail:`${journalViews} ARTICLES`,href:"/ja/journal"},
+          {name:"CONNECTION",label:"CONNECT",value:(teamLinked?50:0)+(hasNextEvent?50:0),detail:teamLinked||hasNextEvent?"CONNECTED":"OPEN",href:teamLinked?"/ja/my-homecourt/app/team":"/ja/opportunities"},
+        ].map(path=><Link href={path.href} key={path.name}>
+          <span>{path.label}</span><strong>{path.name}</strong><div><i style={{width:`${path.value}%`}}/></div><small>{path.detail}</small>
+        </Link>)}
+      </div>
+
     <section className={styles.storySection}>
       <div className={styles.sectionHead}>
         <div><p>STORY MAP</p><h3>経験を増やすと、次の章が開く。</h3></div>
@@ -162,6 +178,9 @@ export function HomecourtPlayerJourney({
         <article data-tier={(teamLinked||hasNextEvent)?"BRONZE":"LOCKED"}>
           <div><Trophy/></div><span>CHALLENGE</span><strong>{(teamLinked||hasNextEvent)?"BRONZE":"LOCKED"}</strong><small>{(teamLinked||hasNextEvent)?"NEXT STEP CONNECTED":"次の予定をつなぐ"}</small>
         </article>
+        <article data-tier={completedQuests===quests.length?"GOLD":"LOCKED"}>
+          <div><Star/></div><span>SEASON 01</span><strong>{completedQuests===quests.length?"CLEAR":"LOCKED"}</strong><small>{completedQuests}/6 QUESTS</small>
+        </article>
       </div>
     </section>
 
@@ -179,7 +198,7 @@ export function HomecourtPlayerJourneyPreview({registrationUrl}:{registrationUrl
       <p>RBA ID / PLAYER JOURNEY</p>
       <h2>RBA IDを、あなたのバスケット人生の「セーブデータ」に。</h2>
       <span>登録して終わりではなく、経験を残す。QUESTを進める。BADGEを集める。次の挑戦を見つける。</span>
-      <Link href={registrationUrl}>PLAYER JOURNEYを始める <ArrowRight/></Link>
+      <a href={registrationUrl} target={registrationUrl.startsWith("http")?"_blank":undefined} rel={registrationUrl.startsWith("http")?"noreferrer":undefined}>PLAYER JOURNEYを始める <ArrowRight/></a>
     </div>
     <div className={styles.previewCards}>
       <article><Sparkles/><span>LEVEL</span><strong>経験で上がる</strong><small>能力評価ではなくJourney XP</small></article>
