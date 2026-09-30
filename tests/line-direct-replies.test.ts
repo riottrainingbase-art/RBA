@@ -40,3 +40,15 @@ test("upcoming list uses active programme filtering", () => {
     true,
   );
 });
+
+
+test("deterministic RTB front-desk answers are available without AI", () => {
+  for (const value of [
+    "仙台市若林区大和町",
+    "パーソナルトレーニング",
+    "中学生年代のウエイト導入",
+    "contactEmail",
+  ]) {
+    assert.equal(source.includes(value), true, `missing ${value}`);
+  }
+});
