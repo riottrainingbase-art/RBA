@@ -131,6 +131,7 @@ const STAFF_KEYWORDS = [
 ];
 
 export type StaffCategory = "billing" | "health" | "schedule" | "human";
+export type ServiceHint = "RTB" | "RBA" | "UNKNOWN";
 
 const AMBIGUOUS_KEYWORDS = [
   "予約",
@@ -181,6 +182,16 @@ function hasAny(text: string, keywords: string[]) {
 export function isMenuRequest(input: string): boolean {
   const text = normalize(input);
   return text.length === 0 || EXACT_MENU_REQUESTS.has(text) || hasAny(text, MENU_PHRASES);
+}
+
+export function inferServiceHint(input: string): ServiceHint {
+  const text = normalize(input);
+  const rtb = hasAny(text, RTB_KEYWORDS);
+  const rba = hasAny(text, RBA_KEYWORDS);
+
+  if (rtb && !rba) return "RTB";
+  if (rba && !rtb) return "RBA";
+  return "UNKNOWN";
 }
 
 export function inferStaffCategory(input: string): StaffCategory {
