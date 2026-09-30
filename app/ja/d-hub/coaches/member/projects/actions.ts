@@ -169,7 +169,11 @@ export async function updateProjectApplicationStatus(formData:FormData){
   const supabase=await createClient();
   const {data:isAdmin}=await supabase.rpc("is_dhub_project_admin");
   if(!isAdmin)throw new Error("Admin access required");
-  const {error}=await supabase.from("dhub_project_applications").update({status,admin_note:adminNote,updated_at:new Date().toISOString()}).eq("id",id);
+  const {error}=await supabase.rpc("dhub_admin_update_application_status",{
+    p_application_id:id,
+    p_status:status,
+    p_admin_note:adminNote,
+  });
   if(error)throw new Error(error.message);
   revalidatePath("/ja/d-hub/coaches/member/projects/admin");
 }
