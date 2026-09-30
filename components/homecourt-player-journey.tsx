@@ -142,6 +142,7 @@ export function HomecourtPlayerJourney({
           <span>{path.label}</span><strong>{path.name}</strong><div><i style={{width:`${path.value}%`}}/></div><small>{path.detail}</small>
         </Link>)}
       </div>
+    </section>
 
     <section className={styles.storySection}>
       <div className={styles.sectionHead}>
