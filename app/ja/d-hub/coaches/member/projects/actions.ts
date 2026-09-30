@@ -111,8 +111,11 @@ const toMoney=(value:FormDataEntryValue|null)=>{
 
 export async function createProject(formData:FormData){
   const supabase=await createClient();
-  const {data:isAdmin}=await supabase.rpc("is_dhub_project_admin");
-  if(!isAdmin)throw new Error("Admin access required");
+  const [{data:isAdmin},{data:{user}}]=await Promise.all([
+    supabase.rpc("is_dhub_project_admin"),
+    supabase.auth.getUser(),
+  ]);
+  if(!isAdmin||!user)throw new Error("Admin access required");
 
   const parsed=projectSchema.parse({
     title:String(formData.get("title")||""),
@@ -149,6 +152,7 @@ export async function createProject(formData:FormData){
     ends_at:toIso(String(formData.get("ends_at")||"")),
     application_deadline:toIso(String(formData.get("application_deadline")||"")),
     published_at:parsed.status==="open"?new Date().toISOString():null,
+    created_by:user.id,
   });
   if(error)throw new Error(error.message);
   revalidatePath("/ja/d-hub/coaches/member/projects");
