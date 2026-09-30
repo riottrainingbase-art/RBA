@@ -7,6 +7,7 @@ import {createClient} from "@/lib/supabase/server";
 import {SiteFrame} from "@/components/site-frame";
 import styles from "./dhub-paid-library.module.css";
 import {DhubPlayerLibraryExplorer} from "./dhub-player-library-explorer";
+import {DhubCoachLibraryExplorer} from "./dhub-coach-library-explorer";
 
 type Program="coach_lab"|"players";
 type PaidLocale="ja"|"en";
@@ -65,9 +66,10 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
   if(error||!data)notFound();
   const article=data as PaidArticle;
   const sources=Array.isArray(article.source_references)?article.source_references:[];
+  const isJaTrackableArticle=locale==="ja"&&(program==="players"||program==="coach_lab");
   const isJaPlayerArticle=program==="players"&&locale==="ja";
   const isPlayerPath=isJaPlayerArticle&&article.editorial_note?.startsWith("GRADE6_12M|");
-  const {data:articleProgress}=isJaPlayerArticle?await supabase.from("dhub_paid_article_progress")
+  const {data:articleProgress}=isJaTrackableArticle?await supabase.from("dhub_paid_article_progress")
     .select("status,reflection,next_action,completed_at")
     .eq("user_id",user.id).eq("article_id",article.id).maybeSingle():{data:null};
   const {data:pathRows}=isPlayerPath?await supabase.from("dhub_paid_articles")
@@ -78,15 +80,23 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
   const previousPath=pathIndex>0?orderedPath[pathIndex-1]:null;
   const nextPath=pathIndex>=0&&pathIndex<orderedPath.length-1?orderedPath[pathIndex+1]:null;
 
-  async function savePlayerArticleProgress(fd:FormData){
+  async function saveArticleProgress(fd:FormData){
     "use server";
-    if(program!=="players"||locale!=="ja")return;
+    if(locale!=="ja"||(program!=="players"&&program!=="coach_lab"))return;
     const x=await createClient();
     const {data:{user:u}}=await x.auth.getUser();
     if(!u)return;
-    const {data:access}=await x.rpc("has_dhub_player_access");
+    const {data:access}=await x.rpc(program==="coach_lab"?"has_dhub_coach_access":"has_dhub_player_access");
     if(!access)return;
     const articleId=String(fd.get("article_id")||"");
+    const {data:validArticle}=await x.from("dhub_paid_articles")
+      .select("id")
+      .eq("id",articleId)
+      .eq("program_type",program)
+      .eq("locale",locale)
+      .eq("published",true)
+      .maybeSingle();
+    if(!validArticle)return;
     const status=String(fd.get("status")||"started")==="completed"?"completed":"started";
     await x.from("dhub_paid_article_progress").upsert({
       user_id:u.id,
@@ -134,12 +144,12 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
         {article.reflection_questions.map((q,index)=><div key={q}><span>{String(index+1).padStart(2,"0")}</span><strong>{q}</strong></div>)}
       </section>
 
-      {isJaPlayerArticle?<section className={styles.pathProgress}>
-        <div className={styles.pathProgressHead}><div><p className={styles.eyebrow}>{isPlayerPath?"MY MONTH / SAVE YOUR LEARNING":"MY LEARNING / SAVE YOUR NEXT ACTION"}</p><h2>{isPlayerPath?"今月を、自分の記録にする。":"読んだことを、自分のプレーに残す。"}</h2></div><span data-status={articleProgress?.status||"not-started"}>{articleProgress?.status==="completed"?"COMPLETED":articleProgress?.status==="started"?"IN PROGRESS":"NOT STARTED"}</span></div>
-        <form action={savePlayerArticleProgress}>
+      {isJaTrackableArticle?<section className={styles.pathProgress}>
+        <div className={styles.pathProgressHead}><div><p className={styles.eyebrow}>{program==="coach_lab"?"COACHING NOTE / SAVE YOUR LEARNING":isPlayerPath?"MY MONTH / SAVE YOUR LEARNING":"MY LEARNING / SAVE YOUR NEXT ACTION"}</p><h2>{program==="coach_lab"?"読んだことを、次の指導へ残す。":isPlayerPath?"今月を、自分の記録にする。":"読んだことを、自分のプレーに残す。"}</h2></div><span data-status={articleProgress?.status||"not-started"}>{articleProgress?.status==="completed"?"COMPLETED":articleProgress?.status==="started"?"IN PROGRESS":"NOT STARTED"}</span></div>
+        <form action={saveArticleProgress}>
           <input type="hidden" name="article_id" value={article.id}/>
-          <label>実際に起きたこと<textarea name="reflection" rows={7} defaultValue={articleProgress?.reflection||""} placeholder="練習や試合で、見えたこと・できたこと・困ったことを残す。"/></label>
-          <label>次の練習・試合でやること<input name="next_action" defaultValue={articleProgress?.next_action||""} placeholder="一つだけ決める"/></label>
+          <label>{program==="coach_lab"?"実際の現場で起きたこと":"実際に起きたこと"}<textarea name="reflection" rows={7} defaultValue={articleProgress?.reflection||""} placeholder={program==="coach_lab"?"練習・試合・保護者対応などで、実際に起きたことを事実ベースで残す。":"練習や試合で、見えたこと・できたこと・困ったことを残す。"}/></label>
+          <label>{program==="coach_lab"?"次の現場で一つ変えること":"次の練習・試合でやること"}<input name="next_action" defaultValue={articleProgress?.next_action||""} placeholder="一つだけ決める"/></label>
           <div><button className="button button-light" name="status" value="started">記録を保存</button><button className="button button-member" name="status" value="completed">{isPlayerPath?"今月を完了":"この記事を完了"}</button></div>
         </form>
       </section>:null}
@@ -170,7 +180,7 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
   .eq("program_type",program).eq("locale",locale).eq("published",true)
   .order("published_at",{ascending:false}).order("title");
  const articles=(error?[]:(data||[])) as PaidArticle[];
- const allPlayerIds=locale==="ja"&&program==="players"?articles.map(article=>article.id):[];
+ const allPlayerIds=locale==="ja"&&(program==="players"||program==="coach_lab")?articles.map(article=>article.id):[];
  const {data:allPlayerProgressRows}=allPlayerIds.length?await supabase.from("dhub_paid_article_progress")
    .select("article_id,status").eq("user_id",user.id).in("article_id",allPlayerIds):{data:[]};
  const allPlayerProgress=new Map((allPlayerProgressRows||[]).map(row=>[row.article_id,row.status]));
@@ -199,6 +209,20 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
  const categories=Array.from(new Set(articles.map(a=>a.category)))
    .filter(category=>category!==curriculumCategory&&category!==supportCategory);
  const articleBySlug=new Map(articles.map(article=>[article.slug,article]));
+ const featuredCoachTracks=locale==="ja"&&program==="coach_lab"?[
+   {label:"START HERE",title:"まず現場を棚卸しする",description:"記事を読む前に、自チームの課題を可視化する。90分の棚卸しと30日実装から始める。",slugs:["90min-youth-development-system-review","30day-reset-pro-implementation","world-map-to-my-team-rule-audit"]},
+   {label:"PRACTICE DESIGN",title:"練習設計を更新する",description:"待ち時間、難易度、制約、ゲームへの接続。メニュー名ではなく学習環境から設計する。",slugs:["reduce-waiting-lines","practice-too-easy-no-learning","change-constraints-change-learning"]},
+   {label:"GAME COACHING",title:"試合で経験を渡す",description:"出場時間、交代、タイムアウトを、勝敗だけでなく選手の経験設計として見直す。",slugs:["playing-time-experience-map","substitution-after-mistake","timeout-ask-before-answer"]},
+   {label:"OBSERVATION",title:"選手をどう見るか",description:"結果や印象で評価せず、見る・選ぶ・実行する・修正するを観察する。",slugs:["what-should-coaches-observe","evaluation-is-not-ranking","talent-bias-selection-review"]},
+   {label:"S&C / SAFETY",title:"成長期の身体と安全",description:"ACL、ジャンプ負荷、月間試合密度。単発メニューではなく週・月単位で安全を設計する。",slugs:["girls-u15-deceleration","jump-load-needs-easy-days","monthly-competition-load-audit"]},
+   {label:"PARENTS / ORGANIZATION",title:"保護者・組織と話す",description:"出場時間、成長、役割を抽象語で済ませず、説明できる運用へ変える。",slugs:["explain-development-with-behaviors","playing-time-conversation","organization-client-risk"]},
+   {label:"PRO COACH",title:"指導を仕事として続ける",description:"学習計画、継続案件、条件整理。指導技術だけでなく専門職としての実務を整える。",slugs:["coach-learning-year-plan","repeat-client-review","end-project-cleanly"]},
+   {label:"SHOOTER DEVELOPMENT",title:"フォームの先まで見る",description:"シューターをフォームだけで育てず、準備・スペーシング・判断・アドバンテージまで扱う。",slugs:["develop-shooters-not-just-shooting-form","video-first-watch-no-pause","what-should-coaches-observe"]}
+ ].map(track=>({
+   ...track,
+   articles:track.slugs.map(slug=>articleBySlug.get(slug)).filter((article): article is PaidArticle=>Boolean(article)),
+ })).filter(track=>track.articles.length>0):[];
+
  const featuredPlayerTracks=locale==="ja"&&program==="players"?[
    {label:"READ THE GAME",title:"見る・判断する",description:"Catch前、Drive前、Helpの位置。技を出す前にゲームの情報を読む。",slugs:["advantage-before-catch","count-help-defenders","read-defender-feet"]},
    {label:"HANDLE PRESSURE",title:"Ball Handling・Footwork",description:"Dribbleの高さ、Pocket、Pivot、Stop。Pressureの中でも顔を上げて次を選ぶ。",slugs:["dribble-height-by-pressure","pocket-dribble-protect","pivot-create-angle"]},
@@ -228,8 +252,16 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
     <p className={styles.eyebrow}>{c.label} / PAID ARTICLE LIBRARY</p>
     <h1>{c.heading}</h1>
     <p className={styles.lead}>{c.lead}</p>
-    <div className={styles.libraryStats}><div><span>{locale==="ja"?"公開中":"PUBLISHED"}</span><strong>{articles.length}</strong><small>ARTICLES</small></div><div><span>{locale==="ja"?"カテゴリー":"CATEGORIES"}</span><strong>{categories.length+(curriculumArticles.length?1:0)+(supportArticles.length?1:0)}</strong><small>LEARNING AREAS</small></div>{locale==="ja"&&program==="players"?<><div><span>COMPLETED</span><strong>{allPlayerCompleted}</strong><small>YOUR ARTICLES</small></div><div><span>IN PROGRESS</span><strong>{allPlayerStarted}</strong><small>YOUR ARTICLES</small></div></>:null}<div><span>{locale==="ja"?"対象":"FOR"}</span><strong>{c.audience}</strong><small>MEMBERS ONLY</small></div></div>
+    <div className={styles.libraryStats}><div><span>{locale==="ja"?"公開中":"PUBLISHED"}</span><strong>{articles.length}</strong><small>ARTICLES</small></div><div><span>{locale==="ja"?"カテゴリー":"CATEGORIES"}</span><strong>{categories.length+(curriculumArticles.length?1:0)+(supportArticles.length?1:0)}</strong><small>LEARNING AREAS</small></div>{locale==="ja"&&(program==="players"||program==="coach_lab")?<><div><span>COMPLETED</span><strong>{allPlayerCompleted}</strong><small>YOUR ARTICLES</small></div><div><span>IN PROGRESS</span><strong>{allPlayerStarted}</strong><small>YOUR ARTICLES</small></div></>:null}<div><span>{locale==="ja"?"対象":"FOR"}</span><strong>{c.audience}</strong><small>MEMBERS ONLY</small></div></div>
    </header>
+
+   {featuredCoachTracks.length?<section className={styles.supportTools}>
+     <div className={styles.supportToolsHead}><div><p className={styles.eyebrow}>COACH LAB / START FROM YOUR PROBLEM</p><h2>今の現場から、8つの入口を選ぶ。</h2></div><p>72本を上から読む必要はありません。今困っている場面に近いルートから3本だけ選び、次の練習・試合で一つ試してください。</p></div>
+     <div className={styles.supportToolsGrid}>{featuredCoachTracks.map((track,index)=><article className={styles.trackCard} key={track.label}>
+       <span>{String(index+1).padStart(2,"0")} / {track.label}</span><h3>{track.title}</h3><p>{track.description}</p>
+       <div className={styles.trackLinks}>{track.articles.map(article=><Link href={c.root+"/"+article.slug} key={article.slug}>{article.title} <ArrowRight size={14}/></Link>)}</div>
+     </article>)}</div>
+   </section>:null}
 
    {featuredPlayerTracks.length?<section className={styles.supportTools}>
      <div className={styles.supportToolsHead}><div><p className={styles.eyebrow}>PLAYER LEARNING PATHS / START HERE</p><h2>{articles.length}本から探さなくていい。今の課題から入る。</h2></div><p>技名から探すのではなく、ゲームで困っている場面から3本ずつ選びました。Gream / U15選手も、まず一つのPATHから始めて、次の練習で一つだけ試します。</p></div>
@@ -238,6 +270,12 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
        <div className={styles.trackLinks}>{track.articles.map(article=><Link href={c.root+"/"+article.slug} key={article.slug}>{article.title} <ArrowRight size={14}/></Link>)}</div>
      </article>)}</div>
    </section>:null}
+
+   {locale==="ja"&&program==="coach_lab"?<DhubCoachLibraryExplorer root={c.root} articles={articles.map(article=>({
+     slug:article.slug,category:article.category,title:article.title,summary:article.summary,reading:article.reading,
+     sourceCount:Array.isArray(article.source_references)?article.source_references.length:0,
+     status:(allPlayerProgress.get(article.id) as "started"|"completed"|undefined)||null
+   }))}/>:null}
 
    {locale==="ja"&&program==="players"?<DhubPlayerLibraryExplorer root={c.root} articles={articles.map(article=>({
      slug:article.slug,category:article.category,title:article.title,summary:article.summary,reading:article.reading,
