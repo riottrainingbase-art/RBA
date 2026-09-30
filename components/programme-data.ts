@@ -30,6 +30,7 @@ export type Programme = {
   payment: Text4;
   applicationUrl: string;
   applicationLabel?: Text4;
+  statusLabel?: Text4;
   detailPath?: string;
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online" | "international";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
@@ -162,6 +163,7 @@ export const programmes: readonly Programme[] = [
     payment:["Free early interest form. No payment is due yet.", "無料先行エントリー。現時点では決済不要です。", "免費預先登記，目前無需付款。", "무료 사전 엔트리이며 현재 결제는 없습니다."],
     applicationUrl: "https://form.jotform.com/262704343667057",
     applicationLabel:["Free early entry","無料先行エントリー","免費預先登記","무료 사전 엔트리"],
+    statusLabel:["Early interest open","先行エントリー受付中","預先登記開放中","사전 엔트리 접수 중"],
     detailPath: "journal/rba-united-malaysia-mvpibc-2026",
     region:"international", category:"TRAVEL", pathway:"united", ageGroups:["U11","U13","U15","U17"],
   },
@@ -179,6 +181,7 @@ export const programmes: readonly Programme[] = [
     payment:["Free early interest form. No payment is due yet.", "無料先行エントリー。現時点では決済不要です。", "免費預先登記，目前無需付款。", "무료 사전 엔트리이며 현재 결제는 없습니다."],
     applicationUrl: "https://form.jotform.com/262704343667057",
     applicationLabel:["Free early entry","無料先行エントリー","免費預先登記","무료 사전 엔트리"],
+    statusLabel:["Early interest open","先行エントリー受付中","預先登記開放中","사전 엔트리 접수 중"],
     detailPath: "journal/rba-united-incheon-iyibs-2027",
     region:"international", category:"TRAVEL", pathway:"united", ageGroups:["U12","U15","U17"],
   },
