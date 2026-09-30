@@ -207,3 +207,9 @@
 @media(max-width:390px){
  .journal-article-tools button{padding:0 8px;font-size:9px}
 }
+
+
+@media(display-mode:standalone) and (max-width:1180px){
+ .site-header{padding-top:max(8px,env(safe-area-inset-top));min-height:calc(68px + env(safe-area-inset-top))}
+ .mobile-site-menu>div{top:calc(68px + env(safe-area-inset-top));max-height:calc(100dvh - 68px - env(safe-area-inset-top))}
+}
