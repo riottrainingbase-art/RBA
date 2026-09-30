@@ -131,6 +131,9 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           </div>
           <p>各国の制度を並べるだけではなく、なぜその仕組みが生まれたのか、何を守ろうとしているのか、日本の育成年代と何が違うのかまで原典から確認します。</p>
         </div>
+        <div className="homecourt-launch-actions">
+          <Link className="button button-member" href={journalHref(locale,"world-youth-basketball-map-2026-synthesis")}>9か国比較｜共通点と違いをまとめて読む <ArrowRight size={17}/></Link>
+        </div>
         <div className="journal-cms-grid">{worldMapPosts.map(({item,post},index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span>
           <p className="note-tag">{item.country} / {item.label}</p>
