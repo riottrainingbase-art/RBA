@@ -8,7 +8,7 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
   if(!p)return {title:"RBA JOURNAL"};
   const base="https://riotbasketballacademy.com";
   const url=base+"/ja"+"/journal/"+slug;
-  const socialImage=p.hero_image_url?.startsWith("http")?p.hero_image_url:base+(p.hero_image_url||"/rba-court-hero.png");
+  const socialImage=p.hero_image_url?.startsWith("http")?p.hero_image_url:p.hero_image_url?.startsWith("/")?base+p.hero_image_url:base+"/rba-court-hero.png";
   return {
     title:p.title,
     description:p.standfirst,
