@@ -4,8 +4,8 @@ import { ArrowRight, BookOpen, Compass, CreditCard, History, Sparkles } from "lu
 export function HomecourtConversionSection(){
   return <section className="homecourt-product-preview section-pad">
     <div className="section-head">
-      <div><p className="section-index">HOMECOURT / MONTHLY ¥3,300</p><h2>一度のクリニックを、<br/>次の成長につなげる。</h2></div>
-      <p>HOMECOURTは、記事を読むだけのサービスではありません。経験を記録し、学び、次に試すことを決め、日々の練習や新しい挑戦につなげるための育成環境です。</p>
+      <div><p className="section-index">HOMECOURT PLUS / MONTHLY ¥3,300</p><h2>一度のクリニックを、<br/>次の成長につなげる。</h2></div>
+      <p>MY HOME COURTは無料の育成ホーム。HOMECOURT PLUSは、その中で教科書・実践ガイド・週次レビューを使い、学んだことを次の練習や判断につなげる月額プランです。</p>
     </div>
     <div className="homecourt-preview-grid">
       <article><History/><span>01</span><h3>記録する</h3><p>参加履歴や振り返り、気づき、次に試したいことをBasketball Passportに残します。</p></article>
@@ -21,10 +21,10 @@ export function HomecourtConversionSection(){
         <a className="button button-light" href="/ja/my-homecourt/login">RBA IDをつくる<ArrowRight size={16}/></a>
       </article>
       <article className="homecourt-plan-card homecourt-plan-paid">
-        <div className="homecourt-plan-card-head"><span>MY HOME COURT</span><strong>¥3,300 / 月</strong></div>
-        <h3>学びを、日々の成長につなげる。</h3>
-        <p>学ぶ、試す、振り返る、次を決める。その流れを日々のバスケットボールに取り入れます。</p>
-        <a className="button button-member" href="/api/commerce/checkout/homecourt-monthly?locale=ja"><CreditCard size={16}/>月額HOMECOURTを始める<ArrowRight size={16}/></a>
+        <div className="homecourt-plan-card-head"><span>HOMECOURT PLUS</span><strong>¥3,300 / 月</strong></div>
+        <h3>教科書を、日々の行動につなげる。</h3>
+        <p>RBA DEVELOPMENT LIBRARYで深く理解し、WEEKLY DEVELOPMENTで一つ試し、MONTHLY REVIEWで振り返ります。</p>
+        <a className="button button-member" href="/ja/homecourt-plus"><CreditCard size={16}/>HOMECOURT PLUSを見る<ArrowRight size={16}/></a>
       </article>
     </div>
     <p className="homecourt-editorial-note">今のチームを辞める必要はありません。所属先を変えるためではなく、今いる環境を大切にしながら、外にも学びや挑戦の選択肢を持つためのサービスです。</p>
