@@ -113,6 +113,9 @@ async function processEvent(event: unknown) {
 
   if (!isLineMessageEvent(event)) return;
 
+  // This account is designed as a one-to-one customer contact, not a group-chat bot.
+  if (event.source?.type && event.source.type !== "user") return;
+
   if (!isLineTextMessageEvent(event)) {
     await replyToLine(event.replyToken, NON_TEXT_TEXT, MENU_QUICK_REPLIES);
     return;
