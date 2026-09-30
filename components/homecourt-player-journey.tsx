@@ -19,6 +19,7 @@ import styles from "./homecourt-player-journey.module.css";
 import {computePlayerJourney,journeyTier,PLAYER_JOURNEY_LEVEL_NAMES} from "@/lib/homecourt-game";
 import {HomecourtPlayerStudio} from "./homecourt-player-studio";
 import {defaultPlayerCustomization,RbaHomeCourtScene,RbaPlayerAvatar} from "./homecourt-player-avatar";
+import {HomecourtSeasonBoard} from "./homecourt-season-board";
 
 type Props={
   userId:string;
@@ -115,6 +116,8 @@ export function HomecourtPlayerJourney({
       </div>
       <Link href={nextQuest.done?"/ja/opportunities":nextQuest.href}>{nextQuest.done?"次の挑戦を探す":"MISSION START"} <ArrowRight/></Link>
     </section>
+
+    <HomecourtSeasonBoard userId={userId}/>
 
     <section className={styles.questSection}>
       <div className={styles.sectionHead}>
