@@ -89,6 +89,14 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
     const {data:access}=await x.rpc(program==="coach_lab"?"has_dhub_coach_access":"has_dhub_player_access");
     if(!access)return;
     const articleId=String(fd.get("article_id")||"");
+    const {data:validArticle}=await x.from("dhub_paid_articles")
+      .select("id")
+      .eq("id",articleId)
+      .eq("program_type",program)
+      .eq("locale",locale)
+      .eq("published",true)
+      .maybeSingle();
+    if(!validArticle)return;
     const status=String(fd.get("status")||"started")==="completed"?"completed":"started";
     await x.from("dhub_paid_article_progress").upsert({
       user_id:u.id,
