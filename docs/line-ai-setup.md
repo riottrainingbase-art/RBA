@@ -91,15 +91,17 @@ The bot explicitly tells users not to send passwords, full card details, medical
 1. Open the Messaging API channel attached to the existing RIOT / Riot Training Base LINE Official Account.
 2. Copy the Channel secret to `LINE_CHANNEL_SECRET`.
 3. Issue/copy a Channel access token and store it as `LINE_CHANNEL_ACCESS_TOKEN`.
-4. Set the Preview webhook URL first:
+4. Check Vercel Deployment Protection before using a Preview URL. If the Preview is protected by Vercel Authentication, LINE cannot complete the login flow.
+5. Create a temporary Deployment Protection Exception for the dedicated Preview domain, or use another supported public test endpoint. Keep the rest of the project protected.
+6. Set the public Preview webhook URL:
    `https://<preview-host>/api/line/webhook`
-5. Click **Verify**.
-6. Enable **Use webhook**.
-7. Review LINE Official Account Manager response settings:
+7. Click **Verify**.
+8. Enable **Use webhook**.
+9. Review LINE Official Account Manager response settings:
    - avoid duplicate built-in auto-replies
    - keep the greeting message only if it complements the webhook welcome
-8. Test follow, menu, RTB inquiry, RBA inquiry, billing/refund inquiry, and non-text input.
-9. After validation, use the production webhook URL.
+10. Test follow, menu, RTB inquiry, RBA inquiry, billing/refund inquiry, and non-text input.
+11. After validation, remove any temporary Preview exception that is no longer needed and use the production webhook URL.
 
 ## OpenAI
 
@@ -141,21 +143,26 @@ No OpenAI SDK package is required.
    - `service: "RIOT LINE concierge (RTB + RBA)"`
 3. Add all required Preview environment variables.
 4. GET reports `ready: true`.
-5. LINE Developers **Verify** succeeds.
-6. Add/follow the account from a test LINE user and confirm the RTB/RBA welcome menu.
-7. Send: `パーソナルトレーニングを相談したい`
+5. Confirm the Preview webhook is publicly reachable by LINE. A Vercel login screen means Deployment Protection still blocks the webhook.
+6. LINE Developers **Verify** succeeds.
+7. Add/follow the account from a test LINE user and confirm the RTB/RBA welcome menu.
+8. Send: `パーソナルトレーニングを相談したい`
    - should route to RTB.
-8. Send: `U15の活動を知りたい`
+9. Send: `U15の活動を知りたい`
    - should route to RBA.
-9. Send: `料金を知りたい`
+10. Send: `料金を知りたい`
    - should ask whether RTB or RBA.
-10. Send: `返金について確認したい`
-   - should bypass AI and request staff confirmation.
-11. Send an image without text.
+11. Send: `返金について確認したい`
+   - should bypass AI and request billing staff confirmation.
+12. Send: `腰痛がある`
+   - should bypass AI and request health/safety staff confirmation.
+13. Send: `怪我予防のトレーニングを相談したい`
+   - should route to RTB rather than medical handling.
+14. Send an image without text.
    - should ask for a short text explanation.
-12. Confirm there are no duplicate LINE Official Account Manager auto-replies.
-13. Check Vercel runtime logs for `[line-webhook]` errors.
-14. Only then merge/promote to Production.
+15. Confirm there are no duplicate LINE Official Account Manager auto-replies.
+16. Check Vercel runtime logs for `[line-webhook]` errors.
+17. Only then merge/promote to Production.
 
 
 ## Recommended LINE Official Account profile alignment
