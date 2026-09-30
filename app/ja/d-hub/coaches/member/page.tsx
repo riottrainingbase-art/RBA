@@ -54,11 +54,12 @@ export default async function Page() {
     );
   }
 
-  const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }, { data: projectRows }] = await Promise.all([
+  const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }, { data: projectRows }, { data: announcementRows }] = await Promise.all([
     supabase.from("dhub_memberships").select("member_name,status,provider,last_payment_at,access_until").eq("program_type","coach_lab").limit(1),
     supabase.from("dhub_lessons").select("id,week_no,module_no,module_title,title,guiding_question,purpose").eq("published",true).order("week_no"),
     supabase.from("dhub_lesson_progress").select("lesson_id,status,updated_at").eq("user_id",user.id),
     supabase.from("dhub_projects").select("id,title,summary,category,region,application_deadline").eq("status","open").order("application_deadline",{ascending:true,nullsFirst:false}).limit(3),
+    supabase.from("dhub_announcements").select("id,title,body,action_label,action_url,pinned,published_at").eq("published",true).eq("program_type","coach_lab").order("pinned",{ascending:false}).order("published_at",{ascending:false}).limit(5),
   ]);
 
   const membership = membershipRows?.[0];
@@ -66,6 +67,7 @@ export default async function Page() {
   const completed=new Set((progressRows||[]).filter(row=>row.status==="completed").map(row=>row.lesson_id));
   const completedCount=completed.size;
   const openProjects=projectRows||[];
+  const announcements=announcementRows||[];
   const completionPercent=lessons.length?Math.round((completedCount/lessons.length)*100):0;
   const nextLesson=lessons.find(lesson=>!completed.has(lesson.id))||lessons[lessons.length-1];
 
@@ -87,6 +89,22 @@ export default async function Page() {
             <small>Square 月額3,300円</small>
           </div>
         </section>
+
+        {announcements.length?<section className="dhub-member-section section-pad">
+          <div className="section-head">
+            <div><p className="section-index">D-HUB UPDATES</p><h2>今、確認してほしいこと。</h2></div>
+            <p>PROJECTSや運営からの重要なお知らせを、BANDだけに頼らずMEMBER HOMEにも表示します。</p>
+          </div>
+          <div className="dhub-curriculum-groups">
+            {announcements.map(item=><section key={item.id}>
+              <header><span>{item.pinned?"PINNED":"UPDATE"}</span><h3>{item.title}</h3></header>
+              <div>
+                <p>{item.body}</p>
+                {item.action_url?<Link className="text-link" href={item.action_url}>{item.action_label||"確認する"} <ArrowRight size={15}/></Link>:null}
+              </div>
+            </section>)}
+          </div>
+        </section>:null}
 
         <section className="dhub-progress-strip section-pad">
           <div><span>CURRICULUM</span><strong>48</strong><small>WEEKLY LESSONS</small></div>
