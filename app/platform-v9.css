@@ -200,3 +200,10 @@
  .whatsapp-dock{display:none!important}
  .member-dock{left:12px!important;right:12px!important;bottom:max(10px,env(safe-area-inset-bottom))!important;width:auto!important;justify-content:center!important}
 }
+
+
+.journal-article-tools button[aria-pressed="true"]{background:#111;color:#fff;border-color:#111}
+.journal-article-tools button:disabled{opacity:.55;cursor:wait}
+@media(max-width:390px){
+ .journal-article-tools button{padding:0 8px;font-size:9px}
+}
