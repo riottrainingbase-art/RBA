@@ -16,6 +16,11 @@ assert.ok(studio.includes("RbaPlayerAvatar"),"MY PLAYER studio must render the a
 assert.ok(studio.includes("RbaHomeCourtScene"),"MY PLAYER studio must render the evolving HOME COURT");
 assert.ok(studio.includes('eq("attendance_status","attended")'),"Official memories must require attended status");
 assert.ok(studio.includes("RBA VERIFIED"),"Verified RBA memories must have a distinct surface");
+assert.ok(studio.includes("setLoadError(true)"),"Customization load failure must enter a safe error state");
+assert.ok(studio.includes("既存設定を上書きしないため、編集を停止しています。"),"Load failure must explicitly prevent accidental overwrite");
+assert.ok(studio.includes('select("id",{count:"exact",head:true})'),"Official-memory count must not depend on the six displayed cards");
+assert.ok(studio.includes('events!inner(country)'),"Verified overseas unlock must use a dedicated full-history query");
+assert.ok(studio.includes("WORLD MEMORY UNLOCKED"),"Older overseas memories must not produce a blank WORLD label");
 assert.ok(studio.includes("MEMORY WALL / RBA VERIFIED"),"Verified events must appear on a dedicated memory wall");
 assert.ok(ui.includes("DEMO / YOUR COURT EVOLVES"),"Public signup preview must show a live MY PLAYER court demo");
 assert.ok(member.includes('.eq("item_type","opportunity")'),"Scout progress must count opportunity saves only");
@@ -46,6 +51,11 @@ assert.ok(match,"Level thresholds are missing");
 const thresholds=match[1].split(",").map(x=>Number(x.trim()));
 assert.equal(thresholds[0],0,"Level 1 must start at zero");
 for(let i=1;i<thresholds.length;i++)assert.ok(thresholds[i]>thresholds[i-1],"Level thresholds must strictly increase");
+const setupOnlyXp=150;
+assert.ok(setupOnlyXp<thresholds[1],"Completing onboarding alone must remain Level 01");
+assert.ok(setupOnlyXp+12>=thresholds[1],"One unique JOURNAL read must be enough to reach Level 02");
+assert.ok(setupOnlyXp+25>=thresholds[1],"One saved opportunity must be enough to reach Level 02");
+assert.ok(setupOnlyXp+35>=thresholds[1],"One Passport experience must be enough to reach Level 02");
 
 const maxXp=100+8*35+5*25+10*12+50;
 assert.ok(maxXp>=thresholds.at(-1),"Highest level must be reachable within capped XP");
@@ -61,6 +71,8 @@ assert.ok(migration.includes("security definer"),"Private trigger must be privil
 assert.ok(migration.includes("v_uid <> new.user_id"),"Privileged trigger must still verify the authenticated owner");
 assert.ok(migration.includes("attendance_status='attended'"),"Verified-only cosmetics must depend on attended RBA participation");
 assert.ok(migration.includes("coalesce(e.country,'JP') <> 'JP'"),"GLOBAL cosmetics must require verified overseas participation");
+assert.ok(migration.includes("when v_xp >= 160 then 2"),"DB validator must match Level 02 threshold");
+assert.ok(migration.includes("when v_xp >= 660 then 8"),"DB validator must match maximum Journey threshold");
 assert.ok(migration.includes("is distinct from old.shoe_style"),"Existing verified cosmetics must not block unrelated edits after record correction");
 assert.ok(migration.includes("is distinct from old.court_theme"),"Existing court themes must not block unrelated edits after record correction");
 
@@ -81,11 +93,16 @@ console.log(JSON.stringify({
     "no login streak pressure",
     "no public leaderboard",
     "no ability scoring",
+    "Level 01 onboarding start",
+    "any first durable action reaches Level 02",
     "all levels reachable",
     "unique JOURNAL read counting",
     "opportunity-only scout counting",
     "max-level state",
     "monotonic LEVEL progression",
+    "safe customization load failure",
+    "full verified-memory unlock summary",
+    "older overseas GLOBAL unlock",
     "MY PLAYER customization",
     "evolving HOME COURT",
     "RLS-protected customization",

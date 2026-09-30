@@ -3,3 +3,4 @@
 .memoryWall p{margin:0;color:#c6d05a;font-size:9px;font-weight:950;letter-spacing:.14em}.memoryWall h4{margin:6px 0 8px;font-size:20px}.memoryWall>div>span{color:#9da7ab;font-size:11px;line-height:1.55}
 .memoryCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.memoryCards article{display:grid;gap:4px;padding:12px;background:#0d1011;border-left:4px solid #c6d05a}.memoryCards strong{font-size:11px}.memoryCards span,.memoryCards small{color:#8f999d;font-size:8px;font-weight:800}
 @media(max-width:760px){.memoryWall{grid-template-columns:1fr}.memoryCards{grid-template-columns:1fr}}
+.loading{margin:10px 0;padding:24px;display:grid;gap:8px;justify-items:start;background:#111518;color:#fff;border:1px solid #343b3e}.loading span{color:#aab4b8;font-size:12px;line-height:1.6}.loading button{min-height:44px;padding:0 14px;border:1px solid #fff;background:#fff;color:#111;font-weight:900;cursor:pointer}

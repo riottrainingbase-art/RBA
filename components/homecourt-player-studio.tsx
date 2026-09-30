@@ -47,34 +47,62 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
   const supabase=useMemo(()=>createClient(),[]);
   const [config,setConfig]=useState<PlayerCustomization>(defaultPlayerCustomization);
   const [official,setOfficial]=useState<OfficialMemory[]>([]);
+  const [officialCount,setOfficialCount]=useState(0);
+  const [hasVerifiedWorld,setHasVerifiedWorld]=useState(false);
+  const [verifiedWorldCountry,setVerifiedWorldCountry]=useState<string|null>(null);
   const [loading,setLoading]=useState(true);
+  const [loadError,setLoadError]=useState(false);
+  const [verificationError,setVerificationError]=useState(false);
   const [saving,setSaving]=useState(false);
   const [status,setStatus]=useState("");
 
   useEffect(()=>{
     let active=true;
     void (async()=>{
-      const [customQ,memoryQ]=await Promise.all([
+      const [customQ,memoryQ,officialCountQ,worldQ]=await Promise.all([
         supabase.from("homecourt_player_customization")
           .select("skin_tone,hair_style,hair_color,jersey_style,shorts_style,shoe_style,accessory,jersey_number,court_theme")
           .eq("user_id",userId).maybeSingle(),
         supabase.from("participations")
-          .select("id,attendance_status,events(title,country,region,starts_at)")
+          .select("id,attendance_status,joined_at,events(title,country,region,starts_at)")
           .eq("player_user_id",userId)
           .eq("attendance_status","attended")
-          .limit(30)
+          .order("joined_at",{ascending:false})
+          .limit(6),
+        supabase.from("participations")
+          .select("id",{count:"exact",head:true})
+          .eq("player_user_id",userId)
+          .eq("attendance_status","attended"),
+        supabase.from("participations")
+          .select("id,events!inner(country)")
+          .eq("player_user_id",userId)
+          .eq("attendance_status","attended")
+          .neq("events.country","JP")
+          .limit(1)
       ]);
       if(!active)return;
+      if(customQ.error){
+        setLoadError(true);
+        setLoading(false);
+        return;
+      }
       if(customQ.data)setConfig({...defaultPlayerCustomization,...customQ.data} as PlayerCustomization);
       if(!memoryQ.error)setOfficial((memoryQ.data||[]) as unknown as OfficialMemory[]);
+      if(!officialCountQ.error)setOfficialCount(officialCountQ.count||0);
+      if(memoryQ.error||officialCountQ.error||worldQ.error)setVerificationError(true);
+      if(!worldQ.error){
+        const worldRows=(worldQ.data||[]) as unknown as Array<{events:{country?:string|null}|null}>;
+        setHasVerifiedWorld(worldRows.length>0);
+        setVerifiedWorldCountry(worldRows[0]?.events?.country||null);
+      }
       setLoading(false);
     })();
     return()=>{active=false;};
   },[supabase,userId]);
 
-  const officialCount=official.length;
-  const foreignCountries=Array.from(new Set(official.map(row=>row.events?.country).filter((country):country is string=>Boolean(country&&country!=="JP"))));
-  const hasWorld=foreignCountries.length>0;
+  const visibleForeignCountries=Array.from(new Set(official.map(row=>row.events?.country).filter((country):country is string=>Boolean(country&&country!=="JP"))));
+  const worldCountries=visibleForeignCountries.length?visibleForeignCountries:(verifiedWorldCountry?[verifiedWorldCountry]:[]);
+  const hasWorld=hasVerifiedWorld;
 
   const unlocks={
     ballRack:historyCount>=1,
@@ -102,13 +130,14 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
   }
 
   if(loading)return <section className={styles.loading}><LoaderCircle className="spin"/><span>MY PLAYERを読み込み中</span></section>;
+  if(loadError)return <section className={styles.loading}><strong>MY PLAYERを安全に読み込めませんでした。</strong><span>既存設定を上書きしないため、編集を停止しています。</span><button type="button" onClick={()=>window.location.reload()}>再読み込み</button></section>;
 
   return <section className={styles.shell}>
     <div className={styles.head}>
       <div><p>MY PLAYER / MY HOME COURT</p><h3>経験が増えると、自分のコートも育つ。</h3><span>見た目は自分で選ぶ。限定アイテムはRBAでの実際の経験から解放されます。</span></div>
       <div className={styles.memory}>
-        <span>RBA VERIFIED</span><strong>{officialCount}</strong><small>OFFICIAL MEMORIES</small>
-        {hasWorld?<b>WORLD / {foreignCountries.join(" · ")}</b>:null}
+        <span>RBA VERIFIED</span><strong>{verificationError?"—":officialCount}</strong><small>{verificationError?"VERIFY DATA TEMPORARILY UNAVAILABLE":"OFFICIAL MEMORIES"}</small>
+        {!verificationError&&hasWorld?<b>{worldCountries.length?`WORLD / ${worldCountries.join(" · ")}`:"WORLD MEMORY UNLOCKED"}</b>:null}
       </div>
     </div>
 

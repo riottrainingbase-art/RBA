@@ -76,9 +76,9 @@ begin
     + case when v_setup then 50 else 0 end;
 
   v_level := case
-    when v_xp >= 660 then 8 when v_xp >= 595 then 7 when v_xp >= 515 then 6
-    when v_xp >= 425 then 5 when v_xp >= 325 then 4 when v_xp >= 225 then 3
-    when v_xp >= 125 then 2 else 1 end;
+    when v_xp >= 660 then 8 when v_xp >= 600 then 7 when v_xp >= 530 then 6
+    when v_xp >= 450 then 5 when v_xp >= 350 then 4 when v_xp >= 250 then 3
+    when v_xp >= 160 then 2 else 1 end;
 
   select count(*)::int into v_official
   from public.participations
