@@ -19,7 +19,7 @@
 .nextMission h3{margin:2px 0 6px;font-size:28px;letter-spacing:-.025em}
 .nextMission span{color:#566168}
 .nextMission a,.previewLead a{display:inline-flex;align-items:center;gap:9px;padding:13px 16px;background:#111;color:#fff;font-weight:900}
-.questSection,.choiceSection,.storySection,.medalSection{padding:28px;border-top:1px solid #2c3234}
+.questSection,.choiceSection,.pathSection,.storySection,.medalSection{padding:28px;border-top:1px solid #2c3234}
 .sectionHead{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
 .sectionHead h3{margin:0;font-size:26px}
 .sectionHead>span{max-width:390px;color:#9da7ab;font-size:12px;line-height:1.5;text-align:right}
@@ -35,6 +35,13 @@
 .choiceGrid svg{width:24px;height:24px}
 .choiceGrid strong{font-size:18px;line-height:1.35}
 .choiceGrid small{color:#697278}
+.pathGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.pathGrid a{display:grid;gap:8px;padding:18px;background:#101314;border:1px solid #333a3c;color:#fff}
+.pathGrid span{color:#c6d05a;font-size:9px;font-weight:950;letter-spacing:.13em}
+.pathGrid strong{font-size:18px}
+.pathGrid div{height:7px;background:#2a3032;overflow:hidden}
+.pathGrid i{display:block;height:100%;background:#c6d05a}
+.pathGrid small{color:#8e989d;font-size:9px;font-weight:900;letter-spacing:.1em}
 .chapterGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .chapterGrid>a,.chapterGrid>article{display:grid;grid-template-columns:1fr auto;gap:8px;padding:18px;border:1px solid #333a3c;background:#141718;color:#fff;min-height:150px}
 .chapterGrid>article{opacity:.46}
@@ -63,4 +70,4 @@
 .previewCards span,.previewCards small{display:block;margin-top:14px;color:#8f9a9f;font-size:9px;font-weight:900;letter-spacing:.13em}
 .previewCards strong{display:block;margin-top:6px;font-size:18px}
 .previewCards small{margin-top:6px;line-height:1.5;letter-spacing:0}
-@media(max-width:760px){.hero,.preview{grid-template-columns:1fr}.hero{padding:22px 16px}.level{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:8px}.level>strong{grid-row:2/5}.level>div,.level small{grid-column:1/-1}.statusGrid{grid-template-columns:repeat(2,1fr)}.nextMission{grid-template-columns:1fr;padding:22px 16px}.nextMission a{justify-content:center}.questSection,.choiceSection,.storySection,.medalSection{padding:24px 16px}.sectionHead{align-items:start;flex-direction:column}.sectionHead>span{text-align:left}.questGrid,.choiceGrid,.chapterGrid{grid-template-columns:1fr}.medalGrid{grid-template-columns:1fr 1fr}.footer{grid-template-columns:1fr;padding:20px 16px}.footer a{justify-content:space-between}.preview{padding:32px 16px}.previewCards{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.hero,.preview{grid-template-columns:1fr}.hero{padding:22px 16px}.level{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:8px}.level>strong{grid-row:2/5}.level>div,.level small{grid-column:1/-1}.statusGrid{grid-template-columns:repeat(2,1fr)}.nextMission{grid-template-columns:1fr;padding:22px 16px}.nextMission a{justify-content:center}.questSection,.choiceSection,.pathSection,.storySection,.medalSection{padding:24px 16px}.sectionHead{align-items:start;flex-direction:column}.sectionHead>span{text-align:left}.questGrid,.choiceGrid,.pathGrid,.chapterGrid{grid-template-columns:1fr}.medalGrid{grid-template-columns:1fr 1fr}.footer{grid-template-columns:1fr;padding:20px 16px}.footer a{justify-content:space-between}.preview{padding:32px 16px}.previewCards{grid-template-columns:1fr 1fr}}
