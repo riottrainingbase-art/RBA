@@ -1,8 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import Script from "next/script";
 import "./globals.css";
 import "./platform-v9.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#090a0b",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://riotbasketballacademy.com"),
@@ -23,6 +30,11 @@ export const metadata: Metadata = {
     icon: "/rba-logo-original.jpg",
     shortcut: "/rba-logo-original.jpg",
     apple: "/rba-logo-original.jpg",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "RBA",
+    statusBarStyle: "black-translucent",
   },
 };
 
