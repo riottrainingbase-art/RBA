@@ -19,6 +19,12 @@ const categoryLabel:Record<string,string>={on_court:"オンコート",team_suppo
 const statusLabel:Record<string,string>={draft:"準備中",open:"募集中",matching:"選考・調整中",filled:"担当決定",completed:"完了",cancelled:"中止"};
 const applicationStatus:Record<string,string>={submitted:"応募済み",reviewing:"確認中",shortlisted:"候補",selected:"担当決定",not_selected:"見送り",withdrawn:"辞退",completed:"完了"};
 const formatDate=(v:string|null)=>v?new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}).format(new Date(v)):"—";
+const jstDateTimeLocal=(v:string|null)=>{
+  if(!v)return "";
+  const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date(v));
+  const get=(type:string)=>parts.find(part=>part.type===type)?.value||"";
+  return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
+};
 
 export default async function Page(){
   const supabase=await createClient();
@@ -87,7 +93,7 @@ export default async function Page(){
           <label>状態<select name="status" defaultValue={project.status}><option value="draft">DRAFT</option><option value="open">OPEN</option><option value="matching">MATCHING</option><option value="filled">FILLED</option><option value="completed">COMPLETED</option><option value="cancelled">CANCELLED</option></select></label>
           <label>地域<input name="region" defaultValue={project.region}/></label>
           <label>会場<input name="venue" defaultValue={project.venue||""}/></label>
-          <label>応募締切<input name="application_deadline" type="datetime-local" defaultValue={project.application_deadline?new Date(project.application_deadline).toISOString().slice(0,16):""}/></label>
+          <label>応募締切<input name="application_deadline" type="datetime-local" defaultValue={jstDateTimeLocal(project.application_deadline)}/></label>
           <label>募集人数<input name="roles_needed" type="number" min="1" max="100" defaultValue={project.roles_needed}/></label>
           <label>報酬種別<select name="compensation_type" defaultValue={project.compensation_type}><option value="paid">有償</option><option value="expenses_only">実費支給のみ</option><option value="volunteer">無償協力</option></select></label>
           <label>報酬下限（円）<input name="compensation_jpy_min" type="number" min="0" defaultValue={project.compensation_jpy_min??""}/></label>
