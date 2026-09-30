@@ -173,3 +173,21 @@
 .member-login-policy{margin:0;color:#657078;font-size:12px;line-height:1.7}
 .member-login-policy a{text-decoration:underline}
 .member-onboarding .member-terms{background:#f7f8f6}
+
+
+/* Returning members: saved items should be one tap away. */
+.member-saved{margin:18px 22px 0;padding:22px;background:#fff;border:1px solid #d0d4d1}
+.member-saved-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start}
+.member-saved-head span{color:#657078;font-size:10px;font-weight:900;letter-spacing:.12em}
+.member-saved-head h2{margin:4px 0 2px;font-size:26px;line-height:1.35}
+.member-saved-head p{margin:0;color:#657078;font-size:13px}
+.member-saved-head>strong{min-width:42px;height:42px;display:grid;place-items:center;background:#111;color:#fff;font-size:15px}
+.member-saved-list{margin-top:16px;border-top:1px solid #d0d4d1}
+.member-saved-list a{min-height:64px;display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:10px;align-items:center;border-bottom:1px solid #d0d4d1}
+.member-saved-list a>span{font-size:10px;font-weight:900;color:#657078}
+.member-saved-list a>strong{min-width:0;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.member-saved-list svg{width:18px;height:18px}
+@media(max-width:560px){
+ .member-saved{margin:14px 18px 0;padding:18px}
+ .member-saved-list a{grid-template-columns:46px minmax(0,1fr) auto}
+}
