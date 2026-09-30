@@ -51,6 +51,16 @@ const RBA_KEYWORDS = [
   "3x3",
   "スクール",
   "クラブ",
+  "佐賀",
+  "福岡",
+  "山形",
+  "志津川",
+  "神戸",
+  "kobe",
+  "トーステン",
+  "torsten",
+  "ロイブル",
+  "loibl",
 ];
 
 const BILLING_KEYWORDS = [
