@@ -101,7 +101,7 @@ function configurationState() {
     lineChannelSecret: Boolean(process.env.LINE_CHANNEL_SECRET),
     lineChannelAccessToken: Boolean(process.env.LINE_CHANNEL_ACCESS_TOKEN),
     openAiApiKey: Boolean(process.env.OPENAI_API_KEY),
-    openAiModel: process.env.OPENAI_MODEL?.trim() || "gpt-5.6-luna",
+    openAiModel: process.env.OPENAI_MODEL?.trim() || "gpt-6-luna",
   };
 }
 
