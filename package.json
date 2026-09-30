@@ -15,7 +15,7 @@
     "audit:homecourt-ja": "node audit/homecourt-japanese/check.mjs",
     "audit:deploy-policy": "node scripts/check-deployment-policy.mjs",
     "audit:site-ja": "node audit/site-japanese/check.mjs",
-    "test:line": "node --test tests/line-intents.test.ts",
+    "test:line": "node --test tests/line-*.test.ts",
     "line:rich-menu": "node scripts/line/setup-rich-menu.mjs",
     "line:rich-menu:image": "node scripts/line/setup-rich-menu.mjs --image-only",
     "line:rich-menu:dry-run": "node scripts/line/setup-rich-menu.mjs --dry-run"

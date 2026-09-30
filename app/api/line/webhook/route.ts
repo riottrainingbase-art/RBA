@@ -2,6 +2,7 @@ import { after, NextResponse } from "next/server";
 import { generateRiotLineReply } from "@/lib/line/ai";
 import { inferConciergeRoute, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
 import { OFFICIAL_LINKS } from "@/lib/line/knowledge";
+import { privateRateLimitKey, SlidingWindowRateLimiter } from "@/lib/line/rate-limit";
 import {
   getLineWebhookEventId,
   isLineFollowEvent,
@@ -21,6 +22,16 @@ const completedWebhookEventIds = new Set<string>();
 const inFlightWebhookEventIds = new Set<string>();
 const completedWebhookEventOrder: string[] = [];
 const MAX_RECENT_WEBHOOK_EVENTS = 500;
+const AI_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const parsedAiRateLimit = Number.parseInt(process.env.LINE_AI_MAX_PER_10_MIN ?? "20", 10);
+const AI_RATE_LIMIT_MAX = Number.isFinite(parsedAiRateLimit) && parsedAiRateLimit > 0
+  ? parsedAiRateLimit
+  : 20;
+const aiRateLimiter = new SlidingWindowRateLimiter(
+  AI_RATE_LIMIT_MAX,
+  AI_RATE_LIMIT_WINDOW_MS,
+  2000,
+);
 
 const MENU_QUICK_REPLIES: QuickReplyItem[] = [
   { label: "RTB｜パーソナル", text: "RTBのパーソナルトレーニングについて相談したい" },
@@ -95,6 +106,10 @@ const NON_TEXT_TEXT = `ありがとうございます。
 
 画像やファイルについて確認が必要な場合は、何を確認してほしいかを文章でも一言添えてください。`;
 
+const RATE_LIMIT_TEXT = `自動案内の連続利用が多いため、少し時間をおいてからもう一度お試しください。
+
+返金・予約変更・怪我や体調・その他スタッフ確認が必要な内容は、「スタッフ相談」と送っていただければ人対応の案内へ切り替わります。`;
+
 const FALLBACK_TEXT = `現在、自動案内を一時的に利用できません。
 
 RTB：${OFFICIAL_LINKS.rtbLinktree}
@@ -145,6 +160,17 @@ async function processEvent(event: unknown) {
   if (route === "ambiguous") {
     await replyToLine(event.replyToken, AMBIGUOUS_TEXT, MENU_QUICK_REPLIES);
     return;
+  }
+
+  const lineUserId = event.source?.userId;
+  const channelSecret = process.env.LINE_CHANNEL_SECRET;
+  if (lineUserId && channelSecret) {
+    const key = privateRateLimitKey(lineUserId, channelSecret);
+    const limit = aiRateLimiter.check(key);
+    if (!limit.allowed) {
+      await replyToLine(event.replyToken, RATE_LIMIT_TEXT, MENU_QUICK_REPLIES);
+      return;
+    }
   }
 
   try {
@@ -209,6 +235,11 @@ export async function GET() {
       privacy: {
         conversationStorage: false,
         lineUserIdStorage: false,
+        rateLimitKey: "HMAC in-memory only",
+      },
+      aiRateLimit: {
+        maxPerTenMinutes: AI_RATE_LIMIT_MAX,
+        windowMinutes: 10,
       },
     },
     {

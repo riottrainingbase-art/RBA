@@ -30,9 +30,12 @@ LINE_CHANNEL_SECRET=
 LINE_CHANNEL_ACCESS_TOKEN=
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-6-luna
+LINE_AI_MAX_PER_10_MIN=20
 ```
 
 `OPENAI_MODEL` is optional. The current default is `gpt-6-luna`.
+
+`LINE_AI_MAX_PER_10_MIN` is optional. The default is 20 AI-generated replies per LINE user per 10-minute warm-instance window. Menu responses and staff-required routing do not consume this AI limit.
 
 Never put secret values in GitHub.
 
@@ -128,6 +131,7 @@ No OpenAI SDK package is required.
 - Rejects unexpectedly large webhook bodies.
 - Keeps all credentials in server-side environment variables.
 - Does not store LINE user IDs.
+- Rate limiting uses an in-memory HMAC of the LINE user ID, keyed by the LINE channel secret; the raw LINE user ID is not stored in the limiter.
 - Does not store conversation contents.
 - Does not expose secret values from the readiness endpoint.
 - Does not log user message text.
