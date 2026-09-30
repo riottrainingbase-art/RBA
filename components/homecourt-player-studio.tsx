@@ -51,6 +51,8 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
   const [hasVerifiedWorld,setHasVerifiedWorld]=useState(false);
   const [verifiedWorldCountry,setVerifiedWorldCountry]=useState<string|null>(null);
   const [loading,setLoading]=useState(true);
+  const [loadError,setLoadError]=useState(false);
+  const [verificationError,setVerificationError]=useState(false);
   const [saving,setSaving]=useState(false);
   const [status,setStatus]=useState("");
 
@@ -79,9 +81,15 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
           .limit(1)
       ]);
       if(!active)return;
+      if(customQ.error){
+        setLoadError(true);
+        setLoading(false);
+        return;
+      }
       if(customQ.data)setConfig({...defaultPlayerCustomization,...customQ.data} as PlayerCustomization);
       if(!memoryQ.error)setOfficial((memoryQ.data||[]) as unknown as OfficialMemory[]);
       if(!officialCountQ.error)setOfficialCount(officialCountQ.count||0);
+      if(memoryQ.error||officialCountQ.error||worldQ.error)setVerificationError(true);
       if(!worldQ.error){
         const worldRows=(worldQ.data||[]) as unknown as Array<{events:{country?:string|null}|null}>;
         setHasVerifiedWorld(worldRows.length>0);
@@ -122,13 +130,14 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
   }
 
   if(loading)return <section className={styles.loading}><LoaderCircle className="spin"/><span>MY PLAYERを読み込み中</span></section>;
+  if(loadError)return <section className={styles.loading}><strong>MY PLAYERを安全に読み込めませんでした。</strong><span>既存設定を上書きしないため、編集を停止しています。</span><button type="button" onClick={()=>window.location.reload()}>再読み込み</button></section>;
 
   return <section className={styles.shell}>
     <div className={styles.head}>
       <div><p>MY PLAYER / MY HOME COURT</p><h3>経験が増えると、自分のコートも育つ。</h3><span>見た目は自分で選ぶ。限定アイテムはRBAでの実際の経験から解放されます。</span></div>
       <div className={styles.memory}>
-        <span>RBA VERIFIED</span><strong>{officialCount}</strong><small>OFFICIAL MEMORIES</small>
-        {hasWorld?<b>{worldCountries.length?`WORLD / ${worldCountries.join(" · ")}`:"WORLD MEMORY UNLOCKED"}</b>:null}
+        <span>RBA VERIFIED</span><strong>{verificationError?"—":officialCount}</strong><small>{verificationError?"VERIFY DATA TEMPORARILY UNAVAILABLE":"OFFICIAL MEMORIES"}</small>
+        {!verificationError&&hasWorld?<b>{worldCountries.length?`WORLD / ${worldCountries.join(" · ")}`:"WORLD MEMORY UNLOCKED"}</b>:null}
       </div>
     </div>
 
