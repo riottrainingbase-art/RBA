@@ -25,6 +25,10 @@ test("RBA development inquiries route to RBA", () => {
   assert.equal(inferConciergeRoute("クリニックに参加したい"), "rba");
   assert.equal(inferConciergeRoute("指導者向けD-HUBについて知りたい"), "rba");
   assert.equal(inferConciergeRoute("海外交流について知りたい"), "rba");
+  assert.equal(inferConciergeRoute("佐賀福岡キャンプについて知りたい"), "rba");
+  assert.equal(inferConciergeRoute("山形の参加方法を知りたい"), "rba");
+  assert.equal(inferConciergeRoute("神戸キャンプの料金は？"), "rba");
+  assert.equal(inferConciergeRoute("トーステンのオンライン講習について"), "rba");
 });
 
 test("generic price and booking questions ask which service", () => {
