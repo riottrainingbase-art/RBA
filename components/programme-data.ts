@@ -27,7 +27,7 @@ export type Programme = {
   audience: Text4;
   payment: Text4;
   applicationUrl: string;
-  detailPath?: "events/torsten-loibl-online-clinic";
+  detailPath?: "events/torsten-loibl-online-clinic" | "camp/saga-fukuoka-2026";
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
   pathway?: "development-camp" | "united" | "clinic" | "coach";
@@ -94,10 +94,11 @@ export const programmes: readonly Programme[] = [
     dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
     title: ["Saga × Fukuoka 2Days Development Camp", "佐賀 × 福岡 2Days Development Camp", "佐賀 × 福岡兩日培育營", "사가 × 후쿠오카 2Days Development Camp"],
     place: ["Saga & Okawa, Fukuoka", "佐賀・福岡（大川）", "佐賀・福岡（大川）", "사가・후쿠오카 오카와"],
-    price: ["Participation: ¥16,500", "参加費 16,500円（税込）", "參加費 16,500日圓", "참가비 16,500엔"],
+    price: ["Full 2 days ¥16,500 / day ¥7,700 / session ¥4,400", "2日間 16,500円／日帰り 7,700円／1セッション 4,400円（税込）", "兩日 ¥16,500／單日 ¥7,700／單節 ¥4,400", "2일 ¥16,500 / 당일 ¥7,700 / 1세션 ¥4,400"],
     audience:["U8 / U10 / U12 / U15 players", "U8・U10・U12・U15選手", "U8・U10・U12・U15球員", "U8·U10·U12·U15 선수"],
-    payment:["Payment is required after submitting the form.", "フォーム送信後、参加費のお支払いが完了すると申込が確定します", "提交表單後完成付款才確認報名", "폼 제출 후 결제 완료 시 신청 확정"],
+    payment:["Submit the common form, then complete payment for your selected plan.", "共通申込フォーム送信後、選択した参加プランの決済完了で申込確定です", "提交共用表單後，完成所選方案付款即確認報名", "공통 신청 폼 제출 후 선택 플랜 결제 완료 시 신청 확정"],
     applicationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfTiiqA9Ak6xpzmrhSIN34HHjGOsDcNBLlTws0cYF9bCqyO9w/viewform?usp=send_form",
+    detailPath: "camp/saga-fukuoka-2026",
     region:"kyushu", category:"TRAIN", pathway:"development-camp", ageGroups:["U8","U10","U12","U15"],
   },
   {
