@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, Building2, Globe2, Handshake, MapPinned, Trophy, Users } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, Building2, Globe2, Handshake, MapPinned, Trophy, Users } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
@@ -25,6 +25,14 @@ const routes = [
     body: "今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、オンコート支援まで。どのサービスが必要か決まっていなくても、チーム育成診断から始められます。",
     href: "/ja/minibasket-support",
     cta: "ミニバス育成支援を見る",
+  },
+  {
+    icon: BriefcaseBusiness,
+    tag: "D-HUB COACH NETWORK",
+    title: "必要な現場に、適任の指導者をつなぐ",
+    body: "クリニック、チーム支援、地域開催、国際交流、イベント運営などの依頼をRBAが整理し、D-HUB COACH LABを含むネットワークから役割に合う人材を検討します。単なる名簿紹介ではなく、条件・責任・安全要件まで確認して案件化します。",
+    href: "/ja/d-hub/coaches",
+    cta: "D-HUB COACH NETWORKを見る",
   },
   {
     icon: Users,
