@@ -12,6 +12,13 @@ function compile(path,dependencies={}){
 }
 const {memberAuthDestination}=compile('lib/member-auth-redirect.ts');
 let count=0;
+const loginEntrySource=fs.readFileSync('components/member-login-entry.tsx','utf8');
+assert.ok(!loginEntrySource.includes('RBA_AUTH_EMAIL_READY'),'RBA ID email login must not be silently disabled by an environment gate');count++;
+assert.ok(!loginEntrySource.includes('一時停止しています'),'RBA ID login entry must not show the obsolete suspension notice');count++;
+assert.ok(loginEntrySource.includes('return <MemberLogin'),'Signed-out users must receive the live RBA ID email login form');count++;
+const participantSource=fs.readFileSync('app/ja/my-homecourt/participants/page.tsx','utf8');
+assert.ok(!participantSource.includes('登録再開通知'),'Participant route must point to live RBA ID login');count++;
+assert.ok(!participantSource.includes('>"ログイン"</a>'),'Participant login copy must not render quote characters');count++;
 const browserClientSource=fs.readFileSync('lib/supabase/client.ts','utf8');
 assert.match(browserClientSource,/flowType:\s*"implicit"/);
 assert.match(browserClientSource,/detectSessionInUrl:\s*true/);count+=2;
