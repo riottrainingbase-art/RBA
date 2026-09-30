@@ -357,3 +357,25 @@ Deterministic answers include:
 This layer runs before the AI rate limiter, so official fact answers stay available even if OpenAI is temporarily unavailable or the user has reached the AI reply limit.
 
 Capacity, individual registration status, payment completion and refund status are still never inferred from programme data.
+
+
+## Runtime observability
+
+The webhook emits structured, privacy-safe outcome logs to Vercel Runtime Logs.
+
+Outcomes:
+- `follow`
+- `non_text`
+- `menu`
+- `staff`
+- `ambiguous`
+- `deterministic`
+- `rate_limited`
+- `ai`
+- `fallback`
+
+The structured outcome logger does not include raw message text or LINE user IDs.
+
+AI outcomes include only route and processing duration in milliseconds. Staff outcomes include only handoff category and RTB/RBA/UNKNOWN service hint.
+
+Use Vercel Runtime Logs with the query `[line-webhook] outcome` to review aggregate behavior without reading user messages.
