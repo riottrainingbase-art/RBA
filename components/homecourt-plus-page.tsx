@@ -15,7 +15,7 @@ export function HomecourtPlusPage(){
       <section className="hc-plus-hero section-pad">
         <p className="section-index inverse">MY HOME COURT / PLUS</p>
         <h1>学んだことを、<br/>その週のバスケで使う。</h1>
-        <p>HOMECOURT PLUSは、記事を読むためだけの有料プランではありません。今週やることを一つ決めて、試して、振り返って、次を決める。その流れを続けるための場所です。</p>
+        <p>HOMECOURT PLUSは、RBA DEVELOPMENT LIBRARYの教科書・研究整理と、週次・月次の実践ツールを一つにした月額プランです。深く理解するだけで終わらず、今週やることを一つ決め、試し、振り返り、次を決めるところまでつなげます。</p>
         <div className="hc-plus-price"><strong>¥3,300</strong><span>/ 月</span><small>税込・月額</small></div>
         <div className="hc-plus-actions">
           <a className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></a>
@@ -35,11 +35,28 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-library section-pad">
-        <div className="section-head"><div><p className="section-index">MEMBER LEARNING</p><h2>{counts.total}本の実践ガイド。</h2></div><p>無料JOURNALで考え方や根拠を知り、PLUSでは「次に何をするか」まで落とし込みます。</p></div>
+        <div className="section-head"><div><p className="section-index">RBA DEVELOPMENT LIBRARY</p><h2>{counts.total}本の実践ガイド＋教科書。</h2></div><p>無料JOURNALは「考える入口」。PLUSでは、保存して何度も参照する教科書・DEEP DIVE・実践ガイドとして体系化します。</p></div>
         <div className="hc-plus-library-metrics">
           <article><strong>{counts.player}</strong><span>選手向け</span><p>試合の判断、1on1、シュート、守備、振り返り、コンディション。</p></article>
           <article><strong>{counts.parent}</strong><span>保護者向け</span><p>出場時間、移籍、進路、練習量、指導者との対話、家庭での関わり。</p></article>
           <article><strong>{counts.coach}</strong><span>指導者向け</span><p>練習設計、試合運営、フィードバック、保護者面談、S&C・安全。</p></article>
+        </div>
+      </section>
+
+      <section className="hc-plus-tools section-pad">
+        <div className="section-head"><div><p className="section-index">LIBRARY STRUCTURE</p><h2>記事ではなく、育成の資料庫として整理する。</h2></div><p>必要なテーマを探しやすいように、知識を棚ごとに整理します。内容は追加・更新され、古い制度情報は更新履歴を残します。</p></div>
+        <div className="hc-plus-tool-grid">
+          <article><BookOpen/><span>YOUTH DEVELOPMENT</span><h3>発達・LTAD・成熟</h3><p>成長、Relative Age、Early / Late Developer、Talent Development。</p></article>
+          <article><Target/><span>PRACTICE / GAME</span><h3>練習設計とゲーム理解</h3><p>CLA、SSG、Decision Making、Spacing、Advantage、Feedback。</p></article>
+          <article><HeartPulse/><span>S&C / GIRLS</span><h3>身体づくりと女子育成</h3><p>Strength、Load、Recovery、ACL、成長期、女子の競技環境。</p></article>
+          <article><Users/><span>PARENT / COACH</span><h3>保護者・指導者</h3><p>チーム選び、移籍、出場時間、対話、観察、コーチ教育。</p></article>
+          <article><Sparkles/><span>3x3 / COMPETITION</span><h3>3x3と競技環境</h3><p>3x3 pathway、試合数、出場機会、リーグ・大会設計。</p></article>
+          <article><FileText/><span>WORLD MAP / RESEARCH</span><h3>世界の制度と一次資料</h3><p>FIBA・各国協会・研究論文を国・テーマ・年代から参照できます。</p></article>
+        </div>
+        <div className="hc-plus-library-metrics">
+          <article><strong>GUIDE</strong><span>5〜10分</span><p>次の練習や会話で一つ使うための実践ガイド。</p></article>
+          <article><strong>DEEP DIVE</strong><span>15〜30分</span><p>研究・一次資料と現場への意味まで深く整理。</p></article>
+          <article><strong>TEXTBOOK</strong><span>保存版</span><p>章立て・参考文献・比較表・チェックリストまで含む教科書。</p></article>
         </div>
       </section>
 
@@ -88,6 +105,14 @@ export function HomecourtPlusPage(){
             <ul><li><Check/>会員向け実践ガイド {counts.total}本</li><li><Check/>WEEKLY DEVELOPMENT</li><li><Check/>7日間のコンディション推移</li><li><Check/>SMART PREP / 大会・遠征準備</li><li><Check/>MONTHLY REVIEW</li><li><Check/>DEVELOPMENT REPORT / PDF</li></ul>
             <a className="button button-member" href="/ja/my-homecourt/app/plus">PLUSを始める <ArrowRight size={16}/></a>
           </article>
+        </div>
+      </section>
+
+      <section className="hc-plus-compare section-pad">
+        <div className="section-head"><div><p className="section-index">PLUS / D-HUB</p><h2>調べる場所と、続けて実践するプログラムは分ける。</h2></div><p>同じテーマを扱っても役割は違います。HOMECOURT PLUSは必要なときに戻る教科書・道具。D-HUBは順番に学び、現場で試し、振り返る継続プログラムです。</p></div>
+        <div className="hc-plus-compare-grid">
+          <article><span>HOMECOURT PLUS</span><h3>読む・調べる・記録する</h3><ul><li><Check/>DEVELOPMENT LIBRARY</li><li><Check/>WEEKLY DEVELOPMENT</li><li><Check/>SMART PREP / CONDITION</li><li><Check/>MONTHLY REVIEW</li></ul></article>
+          <article className="is-plus"><span>D-HUB</span><h3>カリキュラムで実践する</h3><ul><li><Check/>COACH LAB / 指導者</li><li><Check/>PLAYERS / 選手</li><li><Check/>課題 → 実践 → 振り返り</li><li><Check/>順番のある継続育成</li></ul><Link className="button button-member" href="/ja/d-hub">D-HUBを見る <ArrowRight size={16}/></Link></article>
         </div>
       </section>
 
