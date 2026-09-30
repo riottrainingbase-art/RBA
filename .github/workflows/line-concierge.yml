@@ -1,0 +1,31 @@
+name: LINE concierge checks
+
+on:
+  push:
+    branches:
+      - preview-rba
+    paths:
+      - "lib/line/**"
+      - "app/api/line/**"
+      - "tests/line-intents.test.ts"
+      - "package.json"
+  pull_request:
+    paths:
+      - "lib/line/**"
+      - "app/api/line/**"
+      - "tests/line-intents.test.ts"
+      - "package.json"
+
+permissions:
+  contents: read
+
+jobs:
+  routing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Run LINE routing regression tests
+        run: node --test tests/line-intents.test.ts
