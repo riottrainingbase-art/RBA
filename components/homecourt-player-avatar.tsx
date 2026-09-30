@@ -1,11 +1,12 @@
 "use client";
 
+import {useId} from "react";
 import {Circle,BookOpen,Compass,Globe2,Trophy} from "lucide-react";
 import styles from "./homecourt-player-avatar.module.css";
 
 export type PlayerCustomization={
   skin_tone:"tone-1"|"tone-2"|"tone-3"|"tone-4"|"tone-5";
-  hair_style:"short"|"crop"|"waves"|"curly"|"braids"|"long";
+  hair_style:"spiky"|"short"|"crop"|"waves"|"curly"|"braids"|"long";
   hair_color:"black"|"brown"|"dark-brown"|"ash";
   jersey_style:"rba-black"|"rba-white"|"rba-signal"|"street-dark"|"practice-grey";
   shorts_style:"match"|"black"|"white"|"signal";
@@ -16,58 +17,154 @@ export type PlayerCustomization={
 };
 
 export const defaultPlayerCustomization:PlayerCustomization={
-  skin_tone:"tone-3",hair_style:"short",hair_color:"black",jersey_style:"rba-black",
-  shorts_style:"match",shoe_style:"basic",accessory:"none",jersey_number:0,court_theme:"base"
+  skin_tone:"tone-3",hair_style:"spiky",hair_color:"dark-brown",jersey_style:"rba-black",
+  shorts_style:"match",shoe_style:"basic",accessory:"none",jersey_number:23,court_theme:"base"
 };
 
-const skin={ "tone-1":"#f4cfb5","tone-2":"#dfad88","tone-3":"#bc7f59","tone-4":"#8c593d","tone-5":"#5c3829"} as const;
-const hair={black:"#131313",brown:"#5a3927","dark-brown":"#2c1d17",ash:"#66635f"} as const;
-const kit={
-  "rba-black":{body:"#111416",trim:"#c6d05a",text:"#fff"},
-  "rba-white":{body:"#f4f5ef",trim:"#111416",text:"#111416"},
-  "rba-signal":{body:"#c6d05a",trim:"#111416",text:"#111416"},
-  "street-dark":{body:"#293137",trim:"#fff",text:"#fff"},
-  "practice-grey":{body:"#aeb6b8",trim:"#303638",text:"#111416"},
+const skin={
+  "tone-1":{base:"#f4cfb5",shade:"#dca688",highlight:"#ffe3cf"},
+  "tone-2":{base:"#dfad88",shade:"#bd7e5b",highlight:"#f4c5a2"},
+  "tone-3":{base:"#bc7f59",shade:"#8e573d",highlight:"#d99d74"},
+  "tone-4":{base:"#8c593d",shade:"#653a29",highlight:"#aa7150"},
+  "tone-5":{base:"#5c3829",shade:"#3f251d",highlight:"#774c39"}
 } as const;
 
-function Hair({style,color}:{style:PlayerCustomization["hair_style"];color:string}){
-  if(style==="curly")return <g fill={color}>{[[88,50],[101,34],[119,28],[137,32],[153,43],[159,59],[142,60],[122,54],[102,60]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="16"/>)}</g>;
-  if(style==="braids")return <><path d="M83 61c2-29 18-43 43-43s43 16 44 44c-25-12-61-9-87-1Z" fill={color}/><g stroke={color} strokeWidth="7" strokeLinecap="round"><path d="M93 55 82 100"/><path d="M104 52 98 104"/><path d="M151 53 159 100"/><path d="M160 58 173 98"/></g></>;
-  if(style==="long")return <path d="M81 62c2-31 18-45 45-45 28 0 45 18 45 48l-8 67-23-12-35 3-23 10Z" fill={color}/>;
-  if(style==="waves")return <><path d="M82 60c2-27 18-42 44-42 27 0 43 17 45 44-25-12-62-10-89-2Z" fill={color}/><path d="M91 43c12 5 18 5 29 0s20-5 32 0M91 53c12 5 18 5 29 0s20-5 32 0" fill="none" stroke="#ffffff33" strokeWidth="3"/></>;
-  if(style==="crop")return <path d="M83 58c4-23 20-37 43-37 24 0 39 14 43 38-24-8-59-8-86-1Z" fill={color}/>;
-  return <path d="M84 58c5-26 20-39 43-39 24 0 39 15 42 41-21-11-58-11-85-2Z" fill={color}/>;
+const hair={
+  black:{base:"#141414",light:"#36302d"},
+  brown:{base:"#5a3927",light:"#896044"},
+  "dark-brown":{base:"#2c1d17",light:"#5e4030"},
+  ash:{base:"#66635f",light:"#96918b"}
+} as const;
+
+const kit={
+  "rba-black":{body:"#101315",shade:"#050607",trim:"#f3f4ef",accent:"#c6d05a",text:"#ffffff"},
+  "rba-white":{body:"#f4f5ef",shade:"#ced2d0",trim:"#111416",accent:"#c6d05a",text:"#111416"},
+  "rba-signal":{body:"#c6d05a",shade:"#919a35",trim:"#111416",accent:"#ffffff",text:"#111416"},
+  "street-dark":{body:"#293137",shade:"#11181c",trim:"#ffffff",accent:"#6fd4e7",text:"#ffffff"},
+  "practice-grey":{body:"#aeb6b8",shade:"#737b7e",trim:"#303638",accent:"#ffffff",text:"#111416"}
+} as const;
+
+function Hair({style,color,showBand=true}:{style:PlayerCustomization["hair_style"];color:{base:string;light:string};showBand?:boolean}){
+  if(style==="curly")return <g>
+    <g fill={color.base}>{[[84,61],[95,43],[111,32],[130,29],[149,34],[164,47],[169,64],[151,66],[131,59],[111,65],[93,72]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="17"/>)}</g>
+    <g fill={color.light} opacity=".65">{[[97,42],[128,31],[157,49]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="7"/>)}</g>
+  </g>;
+
+  if(style==="braids")return <g>
+    <path d="M81 70c0-34 18-53 48-53 31 0 49 21 49 56-23-15-69-13-97-3Z" fill={color.base}/>
+    <path d="M93 55c21-13 46-17 68-2" fill="none" stroke={color.light} strokeWidth="6" strokeLinecap="round"/>
+    <g stroke={color.base} strokeWidth="8" strokeLinecap="round"><path d="M91 61 77 118"/><path d="M104 58 96 124"/><path d="M155 59 164 122"/><path d="M168 64 181 116"/></g>
+  </g>;
+
+  if(style==="long")return <g>
+    <path d="M76 72c1-37 20-57 52-57 34 0 54 23 54 61l-8 87-24-17-46 2-27 18Z" fill={color.base}/>
+    <path d="M91 42c18-16 45-19 70-1" fill="none" stroke={color.light} strokeWidth="7" strokeLinecap="round"/>
+  </g>;
+
+  if(style==="waves")return <g>
+    <path d="M80 70c3-33 21-51 49-51 30 0 48 20 50 53-27-14-70-12-99-2Z" fill={color.base}/>
+    <path d="M91 44c12 6 20 6 31 0 11-6 21-6 36 0M90 56c13 6 21 6 32 0 11-6 21-6 36 0" fill="none" stroke={color.light} strokeWidth="4" strokeLinecap="round"/>
+  </g>;
+
+  if(style==="crop")return <g>
+    <path d="M82 70c5-28 22-45 47-45 27 0 44 17 48 47-27-10-67-10-95-2Z" fill={color.base}/>
+    <path d="M96 43c17-8 39-8 57 0" fill="none" stroke={color.light} strokeWidth="5" strokeLinecap="round"/>
+  </g>;
+
+  if(style==="short")return <g>
+    <path d="M82 70c4-31 21-48 48-48 29 0 46 19 48 51-24-15-67-13-96-3Z" fill={color.base}/>
+    <path d="M98 37c18-8 37-6 53 4" fill="none" stroke={color.light} strokeWidth="6" strokeLinecap="round"/>
+  </g>;
+
+  return <g>
+    <path d="M79 71 86 49 96 53 98 31 110 39 119 17 129 34 143 12 148 36 166 24 164 45 181 39 173 62 184 69c-25-13-75-14-105 2Z" fill={color.base}/>
+    <path d="M95 49 110 37M121 36l9-13M144 37l12-11M158 49l13-5" stroke={color.light} strokeWidth="5" strokeLinecap="round"/>
+    {showBand?<g><path d="M84 64c27-10 66-10 93 0l-3 15c-29-9-58-9-87 0Z" fill="#111416"/><text x="130" y="73" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="950">RBA</text></g>:null}
+  </g>;
+}
+
+function PlayerFace({config}:{config:PlayerCustomization}){
+  const s=skin[config.skin_tone], h=hair[config.hair_color];
+  return <g>
+    <ellipse cx="77" cy="90" rx="10" ry="14" fill={s.base}/><ellipse cx="183" cy="90" rx="10" ry="14" fill={s.base}/>
+    <ellipse cx="130" cy="87" rx="50" ry="58" fill={s.base}/>
+    <path d="M92 89c8-10 22-13 34-5M137 84c12-8 27-5 34 5" fill="none" stroke={s.shade} strokeWidth="3.5" strokeLinecap="round"/>
+    <ellipse cx="111" cy="96" rx="10" ry="13" fill="#fff"/>
+    <ellipse cx="151" cy="96" rx="10" ry="13" fill="#fff"/>
+    <ellipse cx="112" cy="98" rx="6.5" ry="8.5" fill="#30251f"/><ellipse cx="150" cy="98" rx="6.5" ry="8.5" fill="#30251f"/>
+    <circle cx="114" cy="95" r="2.4" fill="#fff"/><circle cx="152" cy="95" r="2.4" fill="#fff"/>
+    <path d="M130 102c-2 5-3 8 2 9" fill="none" stroke={s.shade} strokeWidth="2.2" strokeLinecap="round"/>
+    <path d="M115 121c10 8 22 8 32 0" fill="none" stroke="#673d32" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M102 116c-6 2-9 4-11 7M159 116c6 2 9 4 11 7" stroke={s.highlight} strokeWidth="3" strokeLinecap="round" opacity=".35"/>
+    <Hair style={config.hair_style} color={h}/>
+    {config.accessory==="headband"&&config.hair_style!=="spiky"?<g><path d="M84 66c28-9 65-9 93 0" fill="none" stroke="#111416" strokeWidth="10"/><text x="130" y="69" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="950">RBA</text></g>:null}
+  </g>;
 }
 
 export function RbaPlayerAvatar({config,name="PLAYER"}:{config:PlayerCustomization;name?:string}){
-  const k=kit[config.jersey_style];
-  const shoe=config.shoe_style==="global"?"#c6d05a":config.shoe_style==="court-pro"?"#f4f5ef":config.shoe_style==="high-top"?"#24292c":config.shoe_style==="low-top"?"#848c90":"#4c5559";
+  const id=useId().replace(/:/g,"");
+  const s=skin[config.skin_tone], k=kit[config.jersey_style];
   const shortsColor=config.shorts_style==="white"?"#f4f5ef":config.shorts_style==="signal"?"#c6d05a":config.shorts_style==="black"?"#090a0b":k.body;
+  const shoe=config.shoe_style==="global"?{body:"#f5f6f2",accent:"#c6d05a"}:config.shoe_style==="court-pro"?{body:"#f7f7f3",accent:"#111416"}:config.shoe_style==="high-top"?{body:"#171b1e",accent:"#f4f5ef"}:config.shoe_style==="low-top"?{body:"#f0f2ef",accent:"#6fd4e7"}:{body:"#f7f7f2",accent:"#111416"};
+
   return <div className={styles.avatarWrap} aria-label={`${name}のMY PLAYERキャラクター`}>
-    <svg viewBox="0 0 250 370" role="img">
-      <ellipse cx="125" cy="346" rx="77" ry="13" fill="#00000035"/>
-      <path d="M101 217 91 319h26l12-94Z" fill={skin[config.skin_tone]}/>
-      <path d="M148 217 160 319h-27l-12-94Z" fill={skin[config.skin_tone]}/>
-      <path d="M87 304h34v29c-7 9-42 9-48 2 0-11 6-23 14-31Z" fill={shoe}/>
-      <path d="M130 304h35c8 9 13 19 13 30-7 8-43 8-49-2Z" fill={shoe}/>
-      {config.shoe_style==="high-top"?<><path d="M87 294h33v19H86Z" fill={shoe}/><path d="M132 294h32v19h-32Z" fill={shoe}/></>:null}
-      <path d="M93 183c21-13 46-13 65 0l9 70c-28 14-58 14-84 0Z" fill={shortsColor}/>
-      <path d="M95 128c16-9 45-9 61 0l18 63-20 18-11-38v58h-37v-58l-11 38-20-18Z" fill={k.body} stroke={k.trim} strokeWidth="5"/>
-      <path d="M76 190 63 248" stroke={skin[config.skin_tone]} strokeWidth="20" strokeLinecap="round"/>
-      <path d="M173 190 189 247" stroke={skin[config.skin_tone]} strokeWidth="20" strokeLinecap="round"/>
-      {config.accessory==="sleeve"?<path d="M177 194 188 232" stroke="#111416" strokeWidth="16" strokeLinecap="round"/>:null}
-      {config.accessory==="wristband"?<path d="M64 226 61 240" stroke="#c6d05a" strokeWidth="10" strokeLinecap="round"/>:null}
-      {config.accessory==="towel"?<path d="M151 226h18v49h-18Z" fill="#f2f3ef"/>:null}
-      <text x="125" y="160" fill={k.text} textAnchor="middle" fontSize="17" fontWeight="900">RBA</text>
-      <text x="125" y="193" fill={k.text} textAnchor="middle" fontSize="30" fontWeight="900">{config.jersey_number}</text>
-      <rect x="102" y="93" width="47" height="43" rx="18" fill={skin[config.skin_tone]}/>
-      <ellipse cx="125" cy="72" rx="45" ry="52" fill={skin[config.skin_tone]}/>
-      <Hair style={config.hair_style} color={hair[config.hair_color]}/>
-      {config.accessory==="headband"?<path d="M84 66c25-8 57-8 83 0" fill="none" stroke="#c6d05a" strokeWidth="8"/>:null}
-      <circle cx="109" cy="78" r="3.2" fill="#151515"/><circle cx="141" cy="78" r="3.2" fill="#151515"/>
-      <path d="M114 99c7 6 15 6 22 0" fill="none" stroke="#55342b" strokeWidth="3" strokeLinecap="round"/>
+    <svg viewBox="0 0 260 420" role="img" aria-hidden="true">
+      <defs>
+        <linearGradient id={`${id}-jersey`} x1="0" x2="1"><stop offset="0" stopColor={k.body}/><stop offset="1" stopColor={k.shade}/></linearGradient>
+        <radialGradient id={`${id}-ball`} cx=".35" cy=".3"><stop offset="0" stopColor="#f29a42"/><stop offset=".65" stopColor="#d86b1f"/><stop offset="1" stopColor="#9a4216"/></radialGradient>
+      </defs>
+      <ellipse cx="132" cy="398" rx="92" ry="15" fill="#00000036"/>
+
+      <path d="M98 269c11 2 24 3 35 2l-11 83-28-2Z" fill={s.base}/>
+      <path d="M139 271c11 1 23 0 34-3l10 84-29 2Z" fill={s.base}/>
+      <path d="M94 338h30l2 24H92Z" fill="#f4f5ef"/><path d="M153 338h30l2 24h-32Z" fill="#f4f5ef"/>
+      <path d="M96 345h24M155 345h24" stroke="#111416" strokeWidth="4" opacity=".8"/>
+
+      <g>
+        <path d="M77 354c16-7 34-6 47 2l7 26c-15 12-56 14-68 5 1-13 5-25 14-33Z" fill={shoe.body} stroke="#111416" strokeWidth="4"/>
+        <path d="M149 357c17-8 34-7 48 2 8 8 12 18 12 28-14 10-55 8-67-2Z" fill={shoe.body} stroke="#111416" strokeWidth="4"/>
+        <path d="M75 372c16-4 33-3 48 2M153 374c17-3 33-2 47 2" stroke={shoe.accent} strokeWidth="7" strokeLinecap="round"/>
+        <path d="M84 360h30M159 362h28" stroke="#6a6f72" strokeWidth="2.5" strokeDasharray="5 4"/>
+      </g>
+
+      <path d="M89 224c24-13 57-14 84-1l10 67c-28 17-70 17-101 1Z" fill={shortsColor} stroke={k.trim} strokeWidth="4"/>
+      <path d="M130 229v62M94 275c20 5 50 5 79-1" fill="none" stroke={k.trim} strokeWidth="3" opacity=".7"/>
+      <text x="98" y="282" fill={k.text} fontSize="10" fontWeight="950">RBA</text>
+
+      <path d="M96 148c19-12 48-12 68 0 13 25 20 54 19 87-31 17-73 17-104 0-1-33 6-62 17-87Z" fill={`url(#${id}-jersey)`} stroke={k.trim} strokeWidth="5"/>
+      <path d="M103 148c3 13 13 21 27 21 14 0 24-8 28-21" fill="none" stroke={k.trim} strokeWidth="5"/>
+      <path d="M91 162c-10 19-17 43-19 67M170 161c12 20 19 42 21 67" fill="none" stroke={s.base} strokeWidth="21" strokeLinecap="round"/>
+      <path d="M75 224c-2 18-5 31-11 44" fill="none" stroke={s.base} strokeWidth="19" strokeLinecap="round"/>
+      <path d="M191 226c2 17 6 31 12 43" fill="none" stroke={s.base} strokeWidth="19" strokeLinecap="round"/>
+
+      {config.accessory==="sleeve"?<path d="M186 190c5 16 7 29 6 43" stroke="#111416" strokeWidth="17" strokeLinecap="round"/>:null}
+      {config.accessory==="wristband"?<path d="M67 242 63 256" stroke={k.accent} strokeWidth="11" strokeLinecap="round"/>:null}
+      {config.accessory==="towel"?<path d="M165 238h18v52h-18Z" fill="#f2f3ef" stroke="#b8bfbb" strokeWidth="2"/>:null}
+
+      <circle cx="67" cy="258" r="38" fill={`url(#${id}-ball)`} stroke="#6f2e13" strokeWidth="3"/>
+      <path d="M30 258h74M67 220c-17 19-17 57 0 76M67 220c17 19 17 57 0 76M39 232c16 15 41 37 57 53" fill="none" stroke="#5d2611" strokeWidth="3"/>
+      <text x="67" y="264" fill="#1a0d08" textAnchor="middle" fontSize="13" fontWeight="950" transform="rotate(-16 67 264)">RBA</text>
+
+      <text x="130" y="190" fill={k.text} textAnchor="middle" fontSize="20" fontWeight="950" letterSpacing="1">RBA</text>
+      <text x="130" y="225" fill={k.text} textAnchor="middle" fontSize="38" fontWeight="950">{config.jersey_number}</text>
+      <rect x="108" y="132" width="45" height="28" rx="13" fill={s.base}/>
+      <PlayerFace config={config}/>
     </svg>
     <div className={styles.nameplate}><span>MY PLAYER</span><strong>{name||"PLAYER"}</strong></div>
+  </div>;
+}
+
+export function RbaPlayerMiniAvatar({skinTone="tone-3",hairStyle="spiky",hairColor="dark-brown",jerseyStyle="rba-black",jerseyNumber=23}:{skinTone?:PlayerCustomization["skin_tone"];hairStyle?:PlayerCustomization["hair_style"];hairColor?:PlayerCustomization["hair_color"];jerseyStyle?:PlayerCustomization["jersey_style"];jerseyNumber?:number}){
+  const config:PlayerCustomization={...defaultPlayerCustomization,skin_tone:skinTone,hair_style:hairStyle,hair_color:hairColor,jersey_style:jerseyStyle,jersey_number:jerseyNumber};
+  const s=skin[config.skin_tone], k=kit[config.jersey_style];
+  return <div className={styles.miniAvatar}>
+    <svg viewBox="58 15 145 185" role="img" aria-label="MY PLAYER">
+      <path d="M95 146c20-13 51-13 71 0l11 62H83Z" fill={k.body} stroke={k.trim} strokeWidth="5"/>
+      <text x="130" y="178" fill={k.text} textAnchor="middle" fontSize="18" fontWeight="950">RBA</text>
+      <text x="130" y="201" fill={k.text} textAnchor="middle" fontSize="24" fontWeight="950">{config.jersey_number}</text>
+      <rect x="108" y="132" width="45" height="28" rx="13" fill={s.base}/>
+      <PlayerFace config={config}/>
+    </svg>
   </div>;
 }
 
