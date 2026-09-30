@@ -7,7 +7,7 @@ export type PlayerJourneyInput={
   hasNextEvent:boolean;
 };
 
-export const PLAYER_JOURNEY_LEVEL_THRESHOLDS=[0,175,275,375,475,550,610,660] as const;
+export const PLAYER_JOURNEY_LEVEL_THRESHOLDS=[0,160,250,350,450,530,600,660] as const;
 export const PLAYER_JOURNEY_LEVEL_NAMES=["START","EXPLORER","PLAYER","REVIEWER","CHALLENGER","CONNECTOR","WORLD","LEGACY"] as const;
 
 export function computePlayerJourney(input:PlayerJourneyInput){
