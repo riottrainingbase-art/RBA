@@ -49,7 +49,7 @@ export function DhubCoachLibraryExplorer({articles,root}:{articles:CoachExplorer
     <div className={styles.explorerHead}>
       <div>
         <p className={styles.eyebrow}>QUICK FIND / COACH LAB</p>
-        <h2>72本を、全部読む必要はありません。</h2>
+        <h2>{articles.length}本を、全部読む必要はありません。</h2>
         <p>今の現場で困っていることから探してください。「出場時間」「3x3」「保護者」「ACL」「練習設計」「映像」のような言葉でも絞れます。</p>
       </div>
       <div className={styles.explorerSearch}>
