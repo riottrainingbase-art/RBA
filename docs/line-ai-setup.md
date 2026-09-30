@@ -340,3 +340,19 @@ The webhook payload intentionally does **not** contain:
 It only includes the handoff category, RTB/RBA hint when inferable, opaque LINE webhook event ID, timestamp, and a short prompt to check the LINE Official Account chat.
 
 `RIOT_STAFF_ALERT_BEARER_TOKEN` is optional and adds a Bearer token to the alert request.
+
+
+## Deterministic answers before AI
+
+The LINE concierge answers stable, official facts without calling OpenAI whenever possible.
+
+Deterministic answers include:
+- RTB location / service overview / contact email
+- RBA and MY HOME COURT official links
+- named RBA programme details
+- current RBA programme list
+- programme date, location, target, fee and application URL from `components/programme-data.ts`
+
+This layer runs before the AI rate limiter, so official fact answers stay available even if OpenAI is temporarily unavailable or the user has reached the AI reply limit.
+
+Capacity, individual registration status, payment completion and refund status are still never inferred from programme data.
