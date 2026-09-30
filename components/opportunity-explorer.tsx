@@ -68,7 +68,7 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
       await db.from("homecourt_saves").delete().eq("user_id",userId).eq("item_type","opportunity").eq("item_key",p.id);
       setSaved(current=>current.filter(id=>id!==p.id));
     }else{
-      const result=await db.from("homecourt_saves").insert({user_id:userId,item_type:"opportunity",item_key:p.id,title:tr(p.title,locale),href:p.detailPath?localePath(locale,p.detailPath):p.applicationUrl,metadata:{category:p.category,region:p.region,start_date:p.startDate}});
+      const result=await db.from("homecourt_saves").insert({user_id:userId,item_type:"opportunity",item_key:p.id,title:tr(p.title,locale),href:p.detailPath?`${locale==="en"?"":`/${locale}`}/${p.detailPath}`:p.applicationUrl,metadata:{category:p.category,region:p.region,start_date:p.startDate}});
       if(!result.error)setSaved(current=>[...current,p.id]);
     }
     void db.from("analytics_events").insert({user_id:userId,event_name:exists?"opportunity_unsave":"opportunity_save",item_type:"opportunity",item_key:p.id,locale});
