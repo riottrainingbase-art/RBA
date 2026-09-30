@@ -16,6 +16,11 @@ assert.ok(studio.includes("RbaPlayerAvatar"),"MY PLAYER studio must render the a
 assert.ok(studio.includes("RbaHomeCourtScene"),"MY PLAYER studio must render the evolving HOME COURT");
 assert.ok(studio.includes('eq("attendance_status","attended")'),"Official memories must require attended status");
 assert.ok(studio.includes("RBA VERIFIED"),"Verified RBA memories must have a distinct surface");
+assert.ok(studio.includes("setLoadError(true)"),"Customization load failure must enter a safe error state");
+assert.ok(studio.includes("既存設定を上書きしないため、編集を停止しています。"),"Load failure must explicitly prevent accidental overwrite");
+assert.ok(studio.includes('select("id",{count:"exact",head:true})'),"Official-memory count must not depend on the six displayed cards");
+assert.ok(studio.includes('events!inner(country)'),"Verified overseas unlock must use a dedicated full-history query");
+assert.ok(studio.includes("WORLD MEMORY UNLOCKED"),"Older overseas memories must not produce a blank WORLD label");
 assert.ok(studio.includes("MEMORY WALL / RBA VERIFIED"),"Verified events must appear on a dedicated memory wall");
 assert.ok(ui.includes("DEMO / YOUR COURT EVOLVES"),"Public signup preview must show a live MY PLAYER court demo");
 assert.ok(member.includes('.eq("item_type","opportunity")'),"Scout progress must count opportunity saves only");
@@ -66,6 +71,8 @@ assert.ok(migration.includes("security definer"),"Private trigger must be privil
 assert.ok(migration.includes("v_uid <> new.user_id"),"Privileged trigger must still verify the authenticated owner");
 assert.ok(migration.includes("attendance_status='attended'"),"Verified-only cosmetics must depend on attended RBA participation");
 assert.ok(migration.includes("coalesce(e.country,'JP') <> 'JP'"),"GLOBAL cosmetics must require verified overseas participation");
+assert.ok(migration.includes("when v_xp >= 160 then 2"),"DB validator must match Level 02 threshold");
+assert.ok(migration.includes("when v_xp >= 660 then 8"),"DB validator must match maximum Journey threshold");
 assert.ok(migration.includes("is distinct from old.shoe_style"),"Existing verified cosmetics must not block unrelated edits after record correction");
 assert.ok(migration.includes("is distinct from old.court_theme"),"Existing court themes must not block unrelated edits after record correction");
 
@@ -93,6 +100,9 @@ console.log(JSON.stringify({
     "opportunity-only scout counting",
     "max-level state",
     "monotonic LEVEL progression",
+    "safe customization load failure",
+    "full verified-memory unlock summary",
+    "older overseas GLOBAL unlock",
     "MY PLAYER customization",
     "evolving HOME COURT",
     "RLS-protected customization",
