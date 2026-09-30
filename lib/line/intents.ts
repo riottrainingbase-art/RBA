@@ -153,8 +153,12 @@ export function isMenuRequest(input: string): boolean {
 export function inferConciergeRoute(input: string): ConciergeRoute {
   const text = normalize(input);
 
-  // Staff-required topics take precedence over service routing.
-  if (hasAny(text, STAFF_KEYWORDS)) return "staff";
+  const preventionInquiry =
+    text.includes("予防") &&
+    (text.includes("怪我") || text.includes("けが") || text.includes("ケガ") || text.includes("acl"));
+
+  // Staff-required topics take precedence, except clearly preventive training questions.
+  if (!preventionInquiry && hasAny(text, STAFF_KEYWORDS)) return "staff";
 
   const rtb = hasAny(text, RTB_KEYWORDS);
   const rba = hasAny(text, RBA_KEYWORDS);
