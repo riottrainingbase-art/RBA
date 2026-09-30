@@ -35,6 +35,27 @@ const aiRateLimiter = new SlidingWindowRateLimiter(
   2000,
 );
 
+type LineOutcome =
+  | "follow"
+  | "non_text"
+  | "menu"
+  | "staff"
+  | "ambiguous"
+  | "deterministic"
+  | "rate_limited"
+  | "ai"
+  | "fallback";
+
+function logLineOutcome(
+  outcome: LineOutcome,
+  detail: Record<string, string | number | boolean | null> = {},
+) {
+  console.info("[line-webhook] outcome", {
+    outcome,
+    ...detail,
+  });
+}
+
 const MENU_QUICK_REPLIES: QuickReplyItem[] = [
   { label: "RTB｜パーソナル", text: "RTBのパーソナルトレーニングについて相談したい" },
   { label: "RBA｜バスケ", text: "RBAのバスケットボール活動について知りたい" },
@@ -169,6 +190,7 @@ function configurationState() {
 async function processEvent(event: unknown) {
   if (isLineFollowEvent(event)) {
     await replyToLine(event.replyToken, WELCOME_TEXT, MENU_QUICK_REPLIES);
+    logLineOutcome("follow");
     return;
   }
 
@@ -179,6 +201,7 @@ async function processEvent(event: unknown) {
 
   if (!isLineTextMessageEvent(event)) {
     await replyToLine(event.replyToken, NON_TEXT_TEXT, MENU_QUICK_REPLIES);
+    logLineOutcome("non_text");
     return;
   }
 
@@ -186,6 +209,7 @@ async function processEvent(event: unknown) {
 
   if (isMenuRequest(userText)) {
     await replyToLine(event.replyToken, WELCOME_TEXT, MENU_QUICK_REPLIES);
+    logLineOutcome("menu");
     return;
   }
 
@@ -195,6 +219,7 @@ async function processEvent(event: unknown) {
     const staffCategory = inferStaffCategory(userText);
     const serviceHint = inferServiceHint(userText);
     await replyToLine(event.replyToken, STAFF_TEXT[staffCategory], MENU_QUICK_REPLIES);
+    logLineOutcome("staff", { category: staffCategory, serviceHint });
 
     try {
       await sendStaffAlert({
@@ -209,13 +234,16 @@ async function processEvent(event: unknown) {
   }
 
   if (route === "ambiguous") {
+    const topic = inferAmbiguousTopic(userText);
     await replyToLine(event.replyToken, AMBIGUOUS_TEXT, ambiguousQuickReplies(userText));
+    logLineOutcome("ambiguous", { topic });
     return;
   }
 
   const directReply = deterministicLineReply(userText);
   if (directReply) {
     await replyToLine(event.replyToken, directReply, MENU_QUICK_REPLIES);
+    logLineOutcome("deterministic", { route });
     return;
   }
 
@@ -226,18 +254,22 @@ async function processEvent(event: unknown) {
     const limit = aiRateLimiter.check(key);
     if (!limit.allowed) {
       await replyToLine(event.replyToken, RATE_LIMIT_TEXT, MENU_QUICK_REPLIES);
+      logLineOutcome("rate_limited", { route });
       return;
     }
   }
 
   try {
+    const startedAt = Date.now();
     const reply = await generateRiotLineReply(userText, route);
     await replyToLine(event.replyToken, reply, MENU_QUICK_REPLIES);
+    logLineOutcome("ai", { route, durationMs: Date.now() - startedAt });
   } catch (error) {
     console.error("[line-webhook] message processing failed", error);
 
     try {
       await replyToLine(event.replyToken, FALLBACK_TEXT, MENU_QUICK_REPLIES);
+      logLineOutcome("fallback", { route });
     } catch (fallbackError) {
       console.error("[line-webhook] fallback reply failed", fallbackError);
       throw fallbackError;
