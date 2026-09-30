@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowRight, BadgeJapaneseYen, BriefcaseBusiness, ExternalLink, Handshake, MapPinned, MessageCircle, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, BadgeJapaneseYen, BriefcaseBusiness, ExternalLink, Handshake, MessageCircle, ShieldCheck, Users } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
 
