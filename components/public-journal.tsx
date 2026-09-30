@@ -1,3 +1,4 @@
+import { unitedProjects } from "@/lib/united-projects";
 import { UnitedArticleCTA } from "./united-projects";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
@@ -279,7 +280,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div className="journal-source-list">{post.source_references.map((ref,index)=><a key={ref.url+index} href={ref.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,"0")}</span><div><strong>{ref.title}</strong><small>{ref.source}{ref.year?" · "+ref.year:""}</small>{ref.note?<p>{ref.note}</p>:null}</div><ArrowUpRight size={17}/></a>)}</div>
     </section>:null}
 
-    {locale==="ja"?(post.category==="programme"?<section className="article-learning-bridge section-pad">
+    {locale==="ja"&&!unitedProjects.some(project=>project.slug===slug)?(post.category==="programme"?<section className="article-learning-bridge section-pad">
       <div>
         <p className="section-index inverse">ARTICLE → NEXT OPPORTUNITY</p>
         <h2>この2日間を、<br/>次の育成機会へ。</h2>
