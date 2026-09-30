@@ -86,10 +86,12 @@ jobs:
       - name: ESLint changed files
         if: github.event_name == 'pull_request'
         env:
-          BASE_REF: ${{ github.base_ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          git fetch origin "$BASE_REF" --depth=1
-          FILES="$(git diff --name-only --diff-filter=ACMR "origin/$BASE_REF...HEAD" -- '*.ts' '*.tsx' '*.js' '*.mjs')"
+          git cat-file -e "$BASE_SHA^{commit}" || git fetch origin "$BASE_SHA"
+          git cat-file -e "$HEAD_SHA^{commit}" || git fetch origin "$HEAD_SHA"
+          FILES="$(git diff --name-only --diff-filter=ACMR "$BASE_SHA...$HEAD_SHA" -- '*.ts' '*.tsx' '*.js' '*.mjs')"
           if [ -z "$FILES" ]; then
             echo "No changed JavaScript/TypeScript files to lint."
             exit 0
