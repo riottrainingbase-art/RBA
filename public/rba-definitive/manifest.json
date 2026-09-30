@@ -1,19 +1,52 @@
 {
-  "name": "Riot Basketball Academy",
+  "name": "RBA MY HOME COURT",
   "short_name": "RBA",
-  "description": "Youth Basketball Development Platform connecting players, teams, organizers, regions and Asia.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#060606",
-  "theme_color": "#060606",
-  "id": "/",
+  "description": "Riot Basketball AcademyのMY HOME COURT。活動、育成記事、参加履歴、学びを一つにつなぐRBA IDのホーム。",
+  "id": "/ja/my-homecourt/app",
+  "start_url": "/ja/my-homecourt/app?source=home-screen",
   "scope": "/",
+  "lang": "ja",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "portrait",
+  "background_color": "#f3f3f1",
+  "theme_color": "#090a0b",
+  "categories": [
+    "sports",
+    "education",
+    "lifestyle"
+  ],
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "MY HOME COURT",
+      "short_name": "HOME",
+      "url": "/ja/my-homecourt/app?source=home-screen-shortcut"
+    },
+    {
+      "name": "JOURNAL",
+      "short_name": "JOURNAL",
+      "url": "/ja/journal?source=home-screen-shortcut"
+    },
+    {
+      "name": "活動を探す",
+      "short_name": "活動",
+      "url": "/ja/opportunities?source=home-screen-shortcut"
+    },
+    {
+      "name": "D-HUB",
+      "short_name": "D-HUB",
+      "url": "/ja/d-hub?source=home-screen-shortcut"
     }
   ]
 }

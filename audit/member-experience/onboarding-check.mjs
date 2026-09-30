@@ -15,7 +15,7 @@ for(const scenario of ['existing-role','new-role','role-denied','profile-denied'
    }};
    return {update(){calls.push('profile');return {eq:()=>({select:()=>({maybeSingle:async()=>({data:scenario==='profile-missing'?null:{id:'test-user'},error:scenario==='profile-denied'?{}:null})})})};}};
  }};
- const context={FormData:class{get(k){return k==='role'?'player':'RBA test'}},userId:'test-user',locale:'ja',setBusy:x=>{busy=x},setMessage:()=>{},reportError:()=>{errors++;busy=false},load:async()=>{loaded++},supabase};
+ const context={FormData:class{get(k){if(k==='role')return 'player';if(k==='terms')return 'on';if(k==='marketing_consent')return null;return 'RBA test'}},userId:'test-user',locale:'ja',setBusy:x=>{busy=x},setMessage:()=>{},reportError:()=>{errors++;busy=false},load:async()=>{loaded++},supabase};
  vm.runInNewContext(code,context);await context.submit({preventDefault(){},currentTarget:{}});
  assert.equal(busy,false,scenario);const success=['existing-role','new-role'].includes(scenario);assert.equal(loaded,success?1:0,scenario);assert.equal(errors,success?0:1,scenario);if(['role-denied','network-failure'].includes(scenario))assert.deepEqual(calls,['role']);
 }
