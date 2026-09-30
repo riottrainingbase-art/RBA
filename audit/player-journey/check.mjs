@@ -8,6 +8,9 @@ const publicPage=fs.readFileSync("components/homecourt-page.tsx","utf8");
 
 assert.ok(member.includes("HomecourtPlayerJourney"),"MY HOME COURT must render Player Journey");
 assert.ok(publicPage.includes("HomecourtPlayerJourneyPreview"),"Public RBA ID page must preview Player Journey");
+assert.ok(member.includes('.eq("item_type","opportunity")'),"Scout progress must count opportunity saves only");
+assert.ok(member.includes('.eq("item_type","journal")'),"Learning progress must count JOURNAL views only");
+assert.ok(member.includes('new Set((viewsQ.data||[]).map(row=>row.item_key)'),"JOURNAL XP must use unique item keys rather than reload count");
 
 for(const forbidden of [
   ["random progression",/Math\.random/],
@@ -24,6 +27,8 @@ assert.ok(game.includes("Math.min(history,8)*35"),"History XP must remain capped
 assert.ok(game.includes("Math.min(saves,5)*25"),"Saved-opportunity XP must remain capped");
 assert.ok(game.includes("Math.min(views,10)*12"),"Journal-view XP must remain capped");
 assert.ok(game.includes("Momentum counts different kinds of engagement"),"Momentum must be breadth-based, not consecutive-day based");
+assert.ok(game.includes("const maxLevel="),"Max-level state must be explicit");
+assert.ok(game.includes("levelProgress=maxLevel?100"),"Max-level progress bar must stay at 100%");
 
 const match=game.match(/PLAYER_JOURNEY_LEVEL_THRESHOLDS=\[([^\]]+)\]/);
 assert.ok(match,"Level thresholds are missing");
@@ -53,6 +58,9 @@ console.log(JSON.stringify({
     "no public leaderboard",
     "no ability scoring",
     "all levels reachable",
+    "unique JOURNAL read counting",
+    "opportunity-only scout counting",
+    "max-level state",
     "player choice and autonomy copy"
   ]
 },null,2));
