@@ -15,7 +15,7 @@ let count=0;
 const browserClientSource=fs.readFileSync('lib/supabase/client.ts','utf8');
 assert.match(browserClientSource,/flowType:\s*"implicit"/);
 assert.match(browserClientSource,/detectSessionInUrl:\s*true/);count+=2;
-for(const prefix of ['','/ja','/ko','/zh-tw'])for(const section of ['','/calendar','/team','/notifications','/my','/admin']){
+for(const prefix of ['','/ja','/ko','/zh-tw'])for(const section of ['','/calendar','/team','/notifications','/my','/admin','/start','/plus','/report','/learn']){
  const path=`${prefix}/my-homecourt/app${section}`;assert.equal(memberAuthDestination(path),path);count++;
 }
 for(const value of [null,'','//evil.test','/\\evil.test','https://evil.test','/%2f%2fevil.test','/ja/my-homecourt/app/../../outside','/ja/my-homecourt/app?next=https://evil.test','/ja/my-homecourt/app#token','/ja/my-homecourt/app/unknown']){assert.equal(memberAuthDestination(value),'/ja/my-homecourt/app');count++;}
@@ -63,9 +63,9 @@ for(const next of ['https://evil.test/ja/my-homecourt/app','//evil.test/ja/my-ho
  assert.equal(result.location,'https://preview.example.test/ja/my-homecourt/app');count++;
 }
 function find(node,type){if(!node||typeof node!=='object')return null;if(node.type===type)return node;const children=node.props?.children;for(const child of Array.isArray(children)?children:[children]){const result=find(child,type);if(result)return result;}return null;}
-for(const scenario of ['success','returned-error','rate-limit','thrown-error','no-consent','invalid-form','double-submit']){
+for(const scenario of ['success','returned-error','rate-limit','thrown-error','invalid-form','double-submit']){
  let stateIndex=0,requests=0,options,finish;
- const states=[' qa@example.test ','player',scenario!=='no-consent',false,false,''];
+ const states=[' qa@example.test ','player',false,false,''];
  const result=scenario==='double-submit'?new Promise(resolve=>finish=resolve):null;
  const react={useState:initial=>{const i=stateIndex++;if(!(i in states))states[i]=initial;return [states[i],value=>states[i]=value];},useRef:()=>({current:false})};
  const {MemberLogin}=compile('components/member-login.tsx',{'react':react,'@/lib/supabase/client':{createEmailLinkClient:()=>({auth:{signInWithOtp:async input=>{requests++;options=input;if(scenario==='thrown-error')throw Error('network');if(result)return result;return {error:scenario==='returned-error'?{status:500}:scenario==='rate-limit'?{status:429}:null};}}})}});
@@ -74,12 +74,12 @@ for(const scenario of ['success','returned-error','rate-limit','thrown-error','n
  const first=form.props.onSubmit(event);
  if(scenario==='double-submit'){await form.props.onSubmit(event);assert.equal(requests,1);finish({error:null});}
  await first;
- assert.equal(states[3],false,'busy must clear');
- const blocked=['no-consent','invalid-form'].includes(scenario);assert.equal(requests,blocked?0:1);
- const success=['success','double-submit'].includes(scenario);assert.equal(states[4],success);
- if(!blocked&&!success)assert(states[5].length>0);
+ assert.equal(states[2],false,'busy must clear');
+ const blocked=scenario==='invalid-form';assert.equal(requests,blocked?0:1);
+ const success=['success','double-submit'].includes(scenario);assert.equal(states[3],success);
+ if(!blocked&&!success)assert(states[4].length>0);
  if(options){assert.equal(options.email,'qa@example.test');assert.equal(options.options.emailRedirectTo,'https://preview.example.test/auth/finish?next=%2Fja%2Fmy-homecourt%2Fapp');}
  count++;
 }
-const report={passed:count,scope:'Unit checks with simulated Supabase responses: destination allowlist, browser-independent token-hash confirmation, legacy callback recovery, login send success/error/rate limit/network exception, consent/validity guards and synchronous duplicate prevention. No real email was sent; inbox, SMTP and browser E2E unverified.'};
+const report={passed:count,scope:'Unit checks with simulated Supabase responses: destination allowlist, browser-independent token-hash confirmation, legacy callback recovery, login send success/error/rate limit/network exception, validity guard, first-time consent handoff and synchronous duplicate prevention. No real email was sent; inbox, SMTP and browser E2E unverified.'};
 fs.writeFileSync('audit/email-registration/unit-results.json',JSON.stringify(report,null,2)+'\n');console.log(report);
