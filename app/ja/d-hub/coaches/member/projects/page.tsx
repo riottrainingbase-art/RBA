@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { ArrowRight, BadgeJapaneseYen, BriefcaseBusiness, CalendarDays, ExternalLink, Handshake, MapPin, MessageCircle, ShieldCheck, Users } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
-import { applyToProject, saveProjectProfile, withdrawProjectApplication } from "./actions";
+import { applyToProject, respondAssignment, respondProjectInvite, saveProjectProfile, submitMemberProjectReport, withdrawProjectApplication } from "./actions";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
@@ -24,6 +24,9 @@ type Project={
   expense_terms:string;cancellation_terms:string;safeguarding_notes:string;contact_notes:string;
 };
 type Application={id:string;project_id:string;status:string;proposed_role:string;submitted_at:string};
+type Invite={id:string;project_id:string;role_title:string;message:string;status:string;expires_at:string|null;created_at:string};
+type Assignment={id:string;project_id:string;role_title:string;scope_of_work:string;compensation_jpy:number;expense_terms:string;expected_hours:number|null;payment_due_at:string|null;cancellation_terms:string;terms_status:string;offered_at:string|null};
+type MemberReport={assignment_id:string;actual_hours:number|null;delivery_summary:string;reflection:string;issues:string;next_step:string;submitted_at:string|null};
 type ProjectProfile={
   display_name:string;base_region:string;travel_ok:boolean;specialties:string[];age_groups:string[];
   credentials:string[];languages:string[];bio:string;portfolio_url:string|null;open_to_projects:boolean;
@@ -61,17 +64,27 @@ export default async function Page(){
   const {data:hasAccess}=await supabase.rpc("has_dhub_coach_access");
   if(!hasAccess)redirect("/ja/d-hub/coaches/member");
 
-  const [{data:projectRows},{data:applicationRows},{data:profileRow},{data:isAdmin}]=await Promise.all([
+  const [{data:projectRows},{data:applicationRows},{data:profileRow},{data:isAdmin},{data:inviteRows},{data:assignmentRows},{data:reportRows}]=await Promise.all([
     supabase.from("dhub_projects").select("id,slug,title,summary,category,status,region,venue,starts_at,ends_at,application_deadline,roles_needed,target_age_groups,required_experience,required_credentials,required_languages,responsibilities,compensation_type,compensation_jpy_min,compensation_jpy_max,expense_terms,cancellation_terms,safeguarding_notes,contact_notes").in("status",["open","matching","filled","completed"]).order("application_deadline",{ascending:true,nullsFirst:false}).order("starts_at",{ascending:true,nullsFirst:false}),
     supabase.from("dhub_project_applications").select("id,project_id,status,proposed_role,submitted_at").eq("user_id",user.id),
     supabase.from("dhub_project_profiles").select("display_name,base_region,travel_ok,specialties,age_groups,credentials,languages,bio,portfolio_url,open_to_projects").eq("user_id",user.id).maybeSingle(),
     supabase.rpc("is_dhub_project_admin"),
+    supabase.from("dhub_project_invites").select("id,project_id,role_title,message,status,expires_at,created_at").eq("user_id",user.id).order("created_at",{ascending:false}),
+    supabase.from("dhub_project_assignments").select("id,project_id,role_title,scope_of_work,compensation_jpy,expense_terms,expected_hours,payment_due_at,cancellation_terms,terms_status,offered_at").eq("user_id",user.id).order("created_at",{ascending:false}),
+    supabase.from("dhub_project_member_reports").select("assignment_id,actual_hours,delivery_summary,reflection,issues,next_step,submitted_at").eq("user_id",user.id),
   ]);
 
   const projects=(projectRows||[]) as Project[];
   const applications=(applicationRows||[]) as Application[];
   const profile=(profileRow||null) as ProjectProfile|null;
   const applicationByProject=new Map(applications.map(item=>[item.project_id,item]));
+  const invites=(inviteRows||[]) as Invite[];
+  const assignments=(assignmentRows||[]) as Assignment[];
+  const reports=(reportRows||[]) as MemberReport[];
+  const projectById=new Map(projects.map(project=>[project.id,project]));
+  const reportByAssignment=new Map(reports.map(report=>[report.assignment_id,report]));
+  const pendingInvites=invites.filter(invite=>invite.status==="pending"&&(!invite.expires_at||new Date(invite.expires_at)>new Date()));
+  const liveAssignments=assignments.filter(assignment=>!["declined","cancelled"].includes(assignment.terms_status));
   const openProjects=projects.filter(p=>p.status==="open");
   const activeApplications=applications.filter(a=>!["withdrawn","not_selected","completed"].includes(a.status));
 
@@ -112,6 +125,55 @@ export default async function Page(){
           <button className="button button-member" type="submit">プロフィールを保存 <ArrowRight size={16}/></button>
         </form>
       </section>
+
+      {pendingInvites.length?<section className="dhub-member-section section-pad">
+        <div className="section-head"><div><p className="section-index">DIRECT INVITES</p><h2>RBAからの個別相談。</h2></div><p>公開募集ではなく、経験・地域・役割などを見て個別に相談している案件です。受諾しても担当確定ではありません。条件調整を経て正式な担当条件を提示します。</p></div>
+        <div className="dhub-curriculum-groups">{pendingInvites.map(invite=>{
+          const project=projectById.get(invite.project_id);
+          return <section key={invite.id}><header><span>DIRECT / INVITED</span><h3>{project?.title||"D-HUB PROJECT"}</h3></header><div>
+            <p><strong>相談役割：</strong>{invite.role_title||"RBAと調整"}</p>
+            <p>{invite.message||"案件詳細を確認のうえ、参加可能か回答してください。"}</p>
+            <p>回答期限：{formatDate(invite.expires_at,true)}</p>
+            <div className="dhub-member-actions">
+              <form action={respondProjectInvite}><input type="hidden" name="invite_id" value={invite.id}/><input type="hidden" name="response" value="accepted"/><button className="button button-member" type="submit">相談を受ける</button></form>
+              <form action={respondProjectInvite}><input type="hidden" name="invite_id" value={invite.id}/><input type="hidden" name="response" value="declined"/><button className="button button-light" type="submit">今回は辞退する</button></form>
+            </div>
+          </div></section>
+        })}</div>
+      </section>:null}
+
+      {liveAssignments.length?<section className="dhub-member-section section-pad">
+        <div className="section-head"><div><p className="section-index">ASSIGNMENT TERMS</p><h2>担当条件と実施記録。</h2></div><p>「担当決定」の前に、役割・報酬・実費・時間・キャンセル条件を確認します。未成年に関わる案件は、受諾後にRBA側の安全確認が完了してからREADYになります。</p></div>
+        <div className="dhub-curriculum-groups">{liveAssignments.map(assignment=>{
+          const project=projectById.get(assignment.project_id);
+          const report=reportByAssignment.get(assignment.id);
+          return <section key={assignment.id}><header><span>{assignment.terms_status.toUpperCase()}</span><h3>{project?.title||"D-HUB PROJECT"}｜{assignment.role_title}</h3></header><div>
+            <div className="dhub-member-value">
+              <div><BadgeJapaneseYen/><span>COMPENSATION</span><strong>¥{assignment.compensation_jpy.toLocaleString()}</strong><p>{assignment.expense_terms||"実費条件は個別確認"}</p></div>
+              <div><CalendarDays/><span>TIME / PAYMENT</span><strong>{assignment.expected_hours!==null?`約 ${assignment.expected_hours}h`:"時間は案件条件による"}</strong><p>支払予定：{formatDate(assignment.payment_due_at,true)}</p></div>
+            </div>
+            <p><strong>業務範囲：</strong>{assignment.scope_of_work}</p>
+            <p><strong>キャンセル：</strong>{assignment.cancellation_terms||"案件条件に従う"}</p>
+            {assignment.terms_status==="offered"?<div className="dhub-member-actions">
+              <form action={respondAssignment}><input type="hidden" name="assignment_id" value={assignment.id}/><input type="hidden" name="response" value="accepted"/><button className="button button-member" type="submit">この条件で受諾する</button></form>
+              <form action={respondAssignment}><input type="hidden" name="assignment_id" value={assignment.id}/><input type="hidden" name="response" value="declined"/><button className="button button-light" type="submit">辞退する</button></form>
+            </div>:null}
+            {assignment.terms_status==="accepted"?<div className="dhub-next-card"><span>SAFETY CHECK</span><strong>RBA確認中</strong><p>条件受諾済みです。本人確認、資格、安全管理、緊急時対応など必要項目をRBA側で確認しています。</p></div>:null}
+            {["ready","active","completed"].includes(assignment.terms_status)?<details className="dhub-next-card" open={assignment.terms_status==="active"&&!report}>
+              <summary>{report?"実施レポートを更新する":"実施後レポートを提出する"}</summary>
+              <form action={submitMemberProjectReport} className="dhub-profile-form">
+                <input type="hidden" name="assignment_id" value={assignment.id}/>
+                <label>実働時間<input name="actual_hours" type="number" min="0" step="0.25" defaultValue={report?.actual_hours??""}/></label>
+                <label>実施した内容<textarea name="delivery_summary" maxLength={5000} defaultValue={report?.delivery_summary||""}/></label>
+                <label>振り返り<textarea name="reflection" maxLength={5000} defaultValue={report?.reflection||""}/></label>
+                <label>問題・気になった点<textarea name="issues" maxLength={5000} defaultValue={report?.issues||""}/></label>
+                <label>次につなげること<textarea name="next_step" maxLength={3000} defaultValue={report?.next_step||""}/></label>
+                <button className="button button-member" type="submit">{report?"レポートを更新":"レポートを提出"} <ArrowRight size={16}/></button>
+              </form>
+            </details>:null}
+          </div></section>
+        })}</div>
+      </section>:null}
 
       <section className="dhub-member-section section-pad" id="project-board">
         <div className="section-head"><div><p className="section-index">PROJECT BOARD</p><h2>現在のD-HUB案件。</h2></div><p>案件がない時は、無理に募集を作りません。RBA側で条件を確認できた案件だけを掲載します。</p></div>
