@@ -66,7 +66,7 @@ export async function generateRiotLineReply(
     throw new Error("OPENAI_API_KEY is not configured");
   }
 
-  const model = process.env.OPENAI_MODEL?.trim() || "gpt-5.6-luna";
+  const model = process.env.OPENAI_MODEL?.trim() || "gpt-6-luna";
   const input = userText.trim().slice(0, 4000);
   const instructions = [
     RIOT_SYSTEM_PROMPT,
