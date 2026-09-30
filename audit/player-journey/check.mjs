@@ -46,6 +46,11 @@ assert.ok(match,"Level thresholds are missing");
 const thresholds=match[1].split(",").map(x=>Number(x.trim()));
 assert.equal(thresholds[0],0,"Level 1 must start at zero");
 for(let i=1;i<thresholds.length;i++)assert.ok(thresholds[i]>thresholds[i-1],"Level thresholds must strictly increase");
+const setupOnlyXp=150;
+assert.ok(setupOnlyXp<thresholds[1],"Completing onboarding alone must remain Level 01");
+assert.ok(setupOnlyXp+12>=thresholds[1],"One unique JOURNAL read must be enough to reach Level 02");
+assert.ok(setupOnlyXp+25>=thresholds[1],"One saved opportunity must be enough to reach Level 02");
+assert.ok(setupOnlyXp+35>=thresholds[1],"One Passport experience must be enough to reach Level 02");
 
 const maxXp=100+8*35+5*25+10*12+50;
 assert.ok(maxXp>=thresholds.at(-1),"Highest level must be reachable within capped XP");
@@ -81,6 +86,8 @@ console.log(JSON.stringify({
     "no login streak pressure",
     "no public leaderboard",
     "no ability scoring",
+    "Level 01 onboarding start",
+    "any first durable action reaches Level 02",
     "all levels reachable",
     "unique JOURNAL read counting",
     "opportunity-only scout counting",
