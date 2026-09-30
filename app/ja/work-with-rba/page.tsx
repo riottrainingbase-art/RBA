@@ -32,8 +32,8 @@ const routes = [
     tag: "D-HUB COACH NETWORK",
     title: "必要な現場に、適任の指導者をつなぐ",
     body: "クリニック、チーム支援、地域開催、国際交流、イベント運営などの依頼をRBAが整理し、D-HUB COACH LABを含むネットワークから役割に合う人材を検討します。単なる名簿紹介ではなく、条件・責任・安全要件まで確認して案件化します。",
-    href: "/ja/d-hub/coaches",
-    cta: "D-HUB COACH NETWORKを見る",
+    href: "https://form.jotform.com/262722347194056",
+    cta: "指導・運営を依頼する",
   },
   {
     icon: Users,
