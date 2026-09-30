@@ -54,16 +54,18 @@ export default async function Page() {
     );
   }
 
-  const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }] = await Promise.all([
+  const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }, { data: projectRows }] = await Promise.all([
     supabase.from("dhub_memberships").select("member_name,status,provider,last_payment_at,access_until").eq("program_type","coach_lab").limit(1),
     supabase.from("dhub_lessons").select("id,week_no,module_no,module_title,title,guiding_question,purpose").eq("published",true).order("week_no"),
     supabase.from("dhub_lesson_progress").select("lesson_id,status,updated_at").eq("user_id",user.id),
+    supabase.from("dhub_projects").select("id,title,summary,category,region,application_deadline").eq("status","open").order("application_deadline",{ascending:true,nullsFirst:false}).limit(3),
   ]);
 
   const membership = membershipRows?.[0];
   const lessons=(lessonRows||[]) as Lesson[];
   const completed=new Set((progressRows||[]).filter(row=>row.status==="completed").map(row=>row.lesson_id));
   const completedCount=completed.size;
+  const openProjects=projectRows||[];
   const completionPercent=lessons.length?Math.round((completedCount/lessons.length)*100):0;
   const nextLesson=lessons.find(lesson=>!completed.has(lesson.id))||lessons[lessons.length-1];
 
@@ -119,8 +121,8 @@ export default async function Page() {
         </section>
 
         <section className="dhub-next-lesson section-pad">
-          <div><p className="section-index">D-HUB PROJECTS</p><h2>学びを、実際の案件へ。</h2><p>RBAに届くクリニック、チーム支援、地域開催、国際交流などの依頼を、条件の合うCOACH LABメンバーへつなぐ仕組みを整えています。案件・収入を保証するものではなく、報酬・役割・安全条件を確認したうえで個別に募集します。</p></div>
-          <div className="dhub-next-card"><BriefcaseBusiness/><span>MEMBER PROJECT NETWORK</span><p>仕事を得るための追加課金はありません。案件情報はBANDとPROJECTSページで共有します。</p><Link className="button button-member" href="/ja/d-hub/coaches/member/projects">D-HUB PROJECTSを見る <ArrowRight size={16}/></Link></div>
+          <div><p className="section-index">D-HUB PROJECTS</p><h2>学びを、実際の案件へ。</h2><p>RBAに届くクリニック、チーム支援、地域開催、国際交流などの依頼を、条件の合うCOACH LABメンバーへつなぎます。案件・収入を保証するものではなく、報酬・役割・安全条件を確認した案件だけを掲載します。</p></div>
+          <div className="dhub-next-card"><BriefcaseBusiness/><span>OPEN PROJECTS</span><strong>{openProjects.length}</strong><p>{openProjects.length?openProjects.map(project=>project.title).join(" / "):"現在募集中の案件はありません。"}</p><Link className="button button-member" href="/ja/d-hub/coaches/member/projects">{openProjects.length?"案件を確認する":"PROJECTSを開く"} <ArrowRight size={16}/></Link></div>
         </section>
 
         <section className="dhub-next-lesson section-pad">
