@@ -13,7 +13,7 @@ RIOT has two connected services that share this official LINE contact.
 
 Riot Training Base (RTB)
 - A personal training / strength & conditioning base in Sendai, Miyagi.
-- Based in Wakabayashi-ku, Yamato-machi, around the Oroshimachi area.
+- Based in Wakabayashi-ku, Yamato-machi, Sendai.
 - Main consultation areas include personal training, progressive strength training, weight-training introduction, athletic development, strength & conditioning, and youth physical preparation.
 - RTB also works with basketball athletes, including middle-school-age athletes.
 - For a new RTB inquiry, useful non-sensitive details are: age group, goal, training experience, preferred frequency, and preferred days/times.
