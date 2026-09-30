@@ -15,7 +15,9 @@ const RTB_KEYWORDS = [
   "conditioning",
   "フィジカル",
   "トレーナー",
-  "acl",
+  "acl予防",
+  "怪我予防",
+  "ケガ予防",
   "ジャンプ",
   "スプリント",
   "基礎筋力",
@@ -52,25 +54,45 @@ const RBA_KEYWORDS = [
 ];
 
 const STAFF_KEYWORDS = [
+  "スタッフ",
+  "担当者",
+  "人に相談",
+  "直接相談",
   "返金",
   "二重決済",
   "決済エラー",
   "引き落とし",
+  "支払い",
+  "振込",
   "未払い",
   "請求",
   "領収書",
   "退会",
   "解約",
-  "キャンセル料",
+  "キャンセル",
+  "予約変更",
+  "日程変更",
+  "欠席",
+  "遅刻",
   "クレーム",
   "苦情",
   "事故",
   "怪我",
   "けが",
+  "腰痛",
+  "膝痛",
+  "肩痛",
   "痛み",
   "診断",
   "医師",
   "病院",
+  "手術",
+  "術後",
+  "断裂",
+  "損傷",
+  "リハビリ",
+  "リウマチ",
+  "半月板",
   "アレルギー",
   "個人情報",
   "カード番号",
@@ -94,14 +116,25 @@ const AMBIGUOUS_KEYWORDS = [
   "問い合わせ",
 ];
 
-const MENU_KEYWORDS = [
+const EXACT_MENU_REQUESTS = new Set([
   "メニュー",
   "menu",
-  "何ができる",
-  "できること",
   "案内",
+  "お問い合わせ",
+  "問い合わせ",
   "はじめまして",
   "初めまして",
+  "こんにちは",
+  "こんばんは",
+  "おはよう",
+  "おはようございます",
+]);
+
+const MENU_PHRASES = [
+  "何ができる",
+  "できること",
+  "メニューを見たい",
+  "案内を見たい",
 ];
 
 function normalize(value: string) {
@@ -114,12 +147,13 @@ function hasAny(text: string, keywords: string[]) {
 
 export function isMenuRequest(input: string): boolean {
   const text = normalize(input);
-  return text.length === 0 || hasAny(text, MENU_KEYWORDS);
+  return text.length === 0 || EXACT_MENU_REQUESTS.has(text) || hasAny(text, MENU_PHRASES);
 }
 
 export function inferConciergeRoute(input: string): ConciergeRoute {
   const text = normalize(input);
 
+  // Staff-required topics take precedence over service routing.
   if (hasAny(text, STAFF_KEYWORDS)) return "staff";
 
   const rtb = hasAny(text, RTB_KEYWORDS);
