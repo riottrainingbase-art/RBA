@@ -198,6 +198,49 @@ Recommended rich-menu information architecture:
 
 Do not enable a second long automatic greeting in LINE Official Account Manager if the webhook follow event is already sending the RTB/RBA welcome message. Avoid duplicate replies.
 
+
+## Rich menu automation
+
+The repository includes a dependency-free rich-menu generator and provisioning script.
+
+Generate the 1200×810 PNG only:
+
+```bash
+npm run line:rich-menu:image
+```
+
+Preview the rich-menu JSON without calling LINE:
+
+```bash
+npm run line:rich-menu:dry-run
+```
+
+Provision the rich menu to the connected LINE Official Account:
+
+```bash
+LINE_CHANNEL_ACCESS_TOKEN=... npm run line:rich-menu
+```
+
+The script:
+
+1. Generates `public/line-rich-menu.png`
+2. Validates the rich-menu object with LINE
+3. Creates the rich menu
+4. Uploads the generated PNG
+5. Sets it as the default rich menu for all users
+6. Deletes the newly-created rich menu if upload/default activation fails
+
+Menu areas:
+
+- RTB → starts an RTB personal training / S&C conversation
+- RBA PLAYERS → starts an RBA player / parent conversation
+- RBA COACHES → starts a coach education conversation
+- HOME COURT → opens MY HOME COURT
+- RBA WEBSITE → opens the official RBA website
+- STAFF → starts a staff-confirmation conversation
+
+The script does not delete a previously active rich menu after a successful switch. Keep the previous menu temporarily for rollback, then remove it manually after validation if desired.
+
 ## Deliberately not enabled yet
 
 Persistent conversation memory is intentionally disabled.
