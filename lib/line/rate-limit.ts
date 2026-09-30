@@ -8,18 +8,21 @@ export type RateLimitResult = {
 
 export class SlidingWindowRateLimiter {
   private readonly buckets = new Map<string, number[]>();
+  private readonly maxEvents: number;
+  private readonly windowMs: number;
+  private readonly maxKeys: number;
 
-  constructor(
-    private readonly maxEvents: number,
-    private readonly windowMs: number,
-    private readonly maxKeys = 2000,
-  ) {
+  constructor(maxEvents: number, windowMs: number, maxKeys = 2000) {
     if (!Number.isFinite(maxEvents) || maxEvents < 1) {
       throw new Error("maxEvents must be at least 1");
     }
     if (!Number.isFinite(windowMs) || windowMs < 1) {
       throw new Error("windowMs must be at least 1");
     }
+
+    this.maxEvents = maxEvents;
+    this.windowMs = windowMs;
+    this.maxKeys = maxKeys;
   }
 
   check(key: string, now = Date.now()): RateLimitResult {
