@@ -7,14 +7,14 @@ on:
     paths:
       - "lib/line/**"
       - "app/api/line/**"
-      - "tests/line-intents.test.ts"
+      - "tests/line-*.test.ts"
       - "package.json"
       - "scripts/line/**"
   pull_request:
     paths:
       - "lib/line/**"
       - "app/api/line/**"
-      - "tests/line-intents.test.ts"
+      - "tests/line-*.test.ts"
       - "package.json"
       - "scripts/line/**"
 
@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: "24"
       - name: Run LINE routing regression tests
-        run: node --test tests/line-intents.test.ts
+        run: node --test tests/line-*.test.ts
       - name: Generate LINE rich menu image
         run: node scripts/line/setup-rich-menu.mjs --image-only
       - name: Verify LINE rich menu image
