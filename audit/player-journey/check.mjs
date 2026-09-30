@@ -17,7 +17,7 @@ for(const forbidden of [
   ["paid progression",/hasPaidMembership|subscription|checkout/i],
   ["login streak pressure",/連続ログイン|毎日ログイン|ログインを続け/i],
   ["public leaderboard",/leaderboard|ランキング順位|全国順位/i],
-  ["player ability score",/シュート\s*\d+|ドリブル\s*\d+|能力値/i],
+  ["player ability score",/シュート\s*[:：]?\s*\d+|ドリブル\s*[:：]?\s*\d+|能力値\s*[:：]\s*\d+/i],
 ]){
   assert.ok(!game.match(forbidden[1]),`Progression rule contains ${forbidden[0]}`);
   assert.ok(!ui.match(forbidden[1]),`Player Journey UI contains ${forbidden[0]}`);
