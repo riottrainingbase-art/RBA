@@ -157,6 +157,40 @@ No OpenAI SDK package is required.
 13. Check Vercel runtime logs for `[line-webhook]` errors.
 14. Only then merge/promote to Production.
 
+
+## Recommended LINE Official Account profile alignment
+
+The current account is used by both RTB and RBA, so the public profile should make that clear before a user sends the first message.
+
+Recommended display name:
+
+```
+Riot Training Base｜RBA
+```
+
+Recommended status message:
+
+```
+RTB｜パーソナル・S&C / RBA｜育成・全国クリニック
+```
+
+Recommended short description:
+
+```
+仙台のRiot Training Base（パーソナル・S&C）と、Riot Basketball Academy（U12/U15育成・クリニック・キャンプ・指導者教育）の共通公式LINEです。
+```
+
+Recommended rich-menu information architecture:
+
+1. RTB｜パーソナル・S&C
+2. RBA｜選手・保護者
+3. RBA｜指導者
+4. MY HOME COURT
+5. RBA公式サイト
+6. スタッフ相談
+
+Do not enable a second long automatic greeting in LINE Official Account Manager if the webhook follow event is already sending the RTB/RBA welcome message. Avoid duplicate replies.
+
 ## Deliberately not enabled yet
 
 Persistent conversation memory is intentionally disabled.
