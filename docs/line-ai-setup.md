@@ -31,6 +31,8 @@ LINE_CHANNEL_ACCESS_TOKEN=
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-6-luna
 LINE_AI_MAX_PER_10_MIN=20
+RIOT_STAFF_ALERT_WEBHOOK_URL=
+RIOT_STAFF_ALERT_BEARER_TOKEN=
 ```
 
 `OPENAI_MODEL` is optional. The current default is `gpt-6-luna`.
@@ -257,3 +259,19 @@ A future version can use Supabase for opt-in conversation state, inquiry status,
 - deletion behavior
 - staff access rules
 - user notice / consent
+
+
+## Optional staff handoff alert
+
+Set `RIOT_STAFF_ALERT_WEBHOOK_URL` if staff should receive a notification when LINE routes an inquiry to human handling.
+
+The webhook payload intentionally does **not** contain:
+- the user's LINE user ID
+- the user's message text
+- medical details
+- payment details
+- name or contact information
+
+It only includes the handoff category, RTB/RBA hint when inferable, opaque LINE webhook event ID, timestamp, and a short prompt to check the LINE Official Account chat.
+
+`RIOT_STAFF_ALERT_BEARER_TOKEN` is optional and adds a Bearer token to the alert request.
