@@ -9,7 +9,9 @@ export type ProgrammeId =
   | "shizugawa"
   | "kobe"
   | "torsten"
-  | "sendai-u15";
+  | "sendai-u15"
+  | "malaysia-2026"
+  | "incheon-2027";
 
 
 export type Programme = {
@@ -27,11 +29,13 @@ export type Programme = {
   audience: Text4;
   payment: Text4;
   applicationUrl: string;
-  detailPath?: "events/torsten-loibl-online-clinic";
-  region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
+  applicationLabel?: Text4;
+  statusLabel?: Text4;
+  detailPath?: string;
+  region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online" | "international";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
   pathway?: "development-camp" | "united" | "clinic" | "coach";
-  ageGroups: readonly ("U8" | "U10" | "U12" | "U15" | "COACH")[];
+  ageGroups: readonly ("U8" | "U10" | "U11" | "U12" | "U13" | "U15" | "U17" | "COACH")[];
 };
 
 
@@ -144,6 +148,42 @@ export const programmes: readonly Programme[] = [
     payment:["Select a plan, submit and complete the corresponding payment.", "プランを選んでフォームを送信し、選択したプランのお支払いを完了してください", "選擇方案並提交後完成對應付款", "플랜 선택·제출 후 해당 결제 완료"],
     applicationUrl: "https://form.jotform.com/262591727805061",
     region:"kansai", category:"TRAVEL", pathway:"development-camp", ageGroups:["U12","U15"],
+  },
+  {
+    id: "malaysia-2026",
+    startDate: "2026-12-05",
+    endDate: "2026-12-13",
+    date: ["05–13 DEC 2026 · dates vary by category", "2026.12.05–13｜カテゴリー別日程", "2026.12.05–13｜依組別不同", "2026.12.05–13 · 카테고리별 일정"],
+    datePrimary: ["05–13", "5〜13日", "5至13日", "5~13일"],
+    dateSecondary: ["DEC 2026", "2026年12月", "2026年12月", "2026년 12월"],
+    title: ["RBA UNITED · Malaysia 2026", "RBA UNITED｜Malaysia 2026 国際大会", "RBA UNITED｜Malaysia 2026 國際賽事", "RBA UNITED｜Malaysia 2026 국제대회"],
+    place: ["Puchong, Malaysia", "マレーシア・プチョン", "馬來西亞・蒲種", "말레이시아・푸총"],
+    price: ["RBA operations ¥66,000 + verified event/travel costs", "RBA UNITED運営参加費 66,000円（税込）＋大会・渡航実費", "RBA營運費 ¥66,000＋賽事與旅程實費", "RBA 운영 참가비 ¥66,000 + 대회·여행 실비"],
+    audience:["U11 / U13 / U15 / U17 · category conditions apply", "U11・U13・U15・U17（カテゴリー別条件あり）", "U11・U13・U15・U17（依組別條件）", "U11·U13·U15·U17（카테고리별 조건）"],
+    payment:["Free early interest form. No payment is due yet.", "無料先行エントリー。現時点では決済不要です。", "免費預先登記，目前無需付款。", "무료 사전 엔트리이며 현재 결제는 없습니다."],
+    applicationUrl: "https://form.jotform.com/262704343667057",
+    applicationLabel:["Free early entry","無料先行エントリー","免費預先登記","무료 사전 엔트리"],
+    statusLabel:["Early interest open","先行エントリー受付中","預先登記開放中","사전 엔트리 접수 중"],
+    detailPath: "journal/rba-united-malaysia-mvpibc-2026",
+    region:"international", category:"TRAVEL", pathway:"united", ageGroups:["U11","U13","U15","U17"],
+  },
+  {
+    id: "incheon-2027",
+    startDate: "2027-01-29",
+    endDate: "2027-01-31",
+    date: ["29–31 JAN 2027 · arrival example 28 JAN", "2027.01.29–31｜資料上の到着例 1/28", "2027.01.29–31｜資料到達示例 1/28", "2027.01.29–31 · 자료상 도착 예시 1/28"],
+    datePrimary: ["29–31", "29〜31日", "29至31日", "29~31일"],
+    dateSecondary: ["JAN 2027", "2027年1月", "2027年1月", "2027년 1월"],
+    title: ["RBA UNITED · Incheon 2027", "RBA UNITED｜Incheon 2027 国際大会", "RBA UNITED｜Incheon 2027 國際賽事", "RBA UNITED｜Incheon 2027 국제대회"],
+    place: ["Incheon, Republic of Korea", "韓国・仁川", "韓國・仁川", "대한민국・인천"],
+    price: ["RBA operations ¥66,000 + verified event/travel costs", "RBA UNITED運営参加費 66,000円（税込）＋大会・渡航実費", "RBA營運費 ¥66,000＋賽事與旅程實費", "RBA 운영 참가비 ¥66,000 + 대회·여행 실비"],
+    audience:["U12 / U15 / U17 · birth-year cutoff pending organizer confirmation", "U12・U15・U17（出生年基準は主催者確認中）", "U12・U15・U17（出生年標準待主辦方確認）", "U12·U15·U17（출생연도 기준 주최 측 확인 중）"],
+    payment:["Free early interest form. No payment is due yet.", "無料先行エントリー。現時点では決済不要です。", "免費預先登記，目前無需付款。", "무료 사전 엔트리이며 현재 결제는 없습니다."],
+    applicationUrl: "https://form.jotform.com/262704343667057",
+    applicationLabel:["Free early entry","無料先行エントリー","免費預先登記","무료 사전 엔트리"],
+    statusLabel:["Early interest open","先行エントリー受付中","預先登記開放中","사전 엔트리 접수 중"],
+    detailPath: "journal/rba-united-incheon-iyibs-2027",
+    region:"international", category:"TRAVEL", pathway:"united", ageGroups:["U12","U15","U17"],
   },
   {
     id: "torsten",

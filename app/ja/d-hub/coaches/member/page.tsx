@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowRight, BookOpen, CheckCircle2, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, BriefcaseBusiness, CheckCircle2, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
 
@@ -54,16 +54,20 @@ export default async function Page() {
     );
   }
 
-  const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }] = await Promise.all([
+  const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }, { data: projectRows }, { data: announcementRows }] = await Promise.all([
     supabase.from("dhub_memberships").select("member_name,status,provider,last_payment_at,access_until").eq("program_type","coach_lab").limit(1),
     supabase.from("dhub_lessons").select("id,week_no,module_no,module_title,title,guiding_question,purpose").eq("published",true).order("week_no"),
     supabase.from("dhub_lesson_progress").select("lesson_id,status,updated_at").eq("user_id",user.id),
+    supabase.from("dhub_projects").select("id,title,summary,category,region,application_deadline").eq("status","open").order("application_deadline",{ascending:true,nullsFirst:false}).limit(3),
+    supabase.from("dhub_announcements").select("id,title,body,action_label,action_url,pinned,published_at").eq("published",true).eq("program_type","coach_lab").order("pinned",{ascending:false}).order("published_at",{ascending:false}).limit(5),
   ]);
 
   const membership = membershipRows?.[0];
   const lessons=(lessonRows||[]) as Lesson[];
   const completed=new Set((progressRows||[]).filter(row=>row.status==="completed").map(row=>row.lesson_id));
   const completedCount=completed.size;
+  const openProjects=projectRows||[];
+  const announcements=announcementRows||[];
   const completionPercent=lessons.length?Math.round((completedCount/lessons.length)*100):0;
   const nextLesson=lessons.find(lesson=>!completed.has(lesson.id))||lessons[lessons.length-1];
 
@@ -85,6 +89,22 @@ export default async function Page() {
             <small>Square 月額3,300円</small>
           </div>
         </section>
+
+        {announcements.length?<section className="dhub-member-section section-pad">
+          <div className="section-head">
+            <div><p className="section-index">D-HUB UPDATES</p><h2>今、確認してほしいこと。</h2></div>
+            <p>PROJECTSや運営からの重要なお知らせを、BANDだけに頼らずMEMBER HOMEにも表示します。</p>
+          </div>
+          <div className="dhub-curriculum-groups">
+            {announcements.map(item=><section key={item.id}>
+              <header><span>{item.pinned?"PINNED":"UPDATE"}</span><h3>{item.title}</h3></header>
+              <div>
+                <p>{item.body}</p>
+                {item.action_url?<Link className="text-link" href={item.action_url}>{item.action_label||"確認する"} <ArrowRight size={15}/></Link>:null}
+              </div>
+            </section>)}
+          </div>
+        </section>:null}
 
         <section className="dhub-progress-strip section-pad">
           <div><span>CURRICULUM</span><strong>48</strong><small>WEEKLY LESSONS</small></div>
@@ -116,6 +136,11 @@ export default async function Page() {
             <article><NotebookPen/><span>02 / TEST</span><h3>練習で試す</h3><p>D-HUBの課題を一つ実施し、実際に起きたことを記録します。</p>{nextLesson?<Link href={`/ja/d-hub/coaches/member/lessons/${nextLesson.week_no}`}>NEXT LESSON <ArrowRight size={15}/></Link>:<Link href="/ja/my-homecourt/coaches">COACH HOME <ArrowRight size={15}/></Link>}</article>
             <article><MessageCircle/><span>03 / DISCUSS</span><h3>D-HUBで話す</h3><p>実際に起きたことを持ち帰り、他の指導者と考えます。</p><a href={BAND_URL} target="_blank" rel="noreferrer">BANDを開く <ExternalLink size={15}/></a></article>
           </div>
+        </section>
+
+        <section className="dhub-next-lesson section-pad">
+          <div><p className="section-index">D-HUB PROJECTS</p><h2>学びを、実際の案件へ。</h2><p>RBAに届くクリニック、チーム支援、地域開催、国際交流などの依頼を、条件の合うCOACH LABメンバーへつなぎます。案件・収入を保証するものではなく、報酬・役割・安全条件を確認した案件だけを掲載します。</p></div>
+          <div className="dhub-next-card"><BriefcaseBusiness/><span>OPEN PROJECTS</span><strong>{openProjects.length}</strong><p>{openProjects.length?openProjects.map(project=>project.title).join(" / "):"現在募集中の案件はありません。"}</p><Link className="button button-member" href="/ja/d-hub/coaches/member/projects">{openProjects.length?"案件を確認する":"PROJECTSを開く"} <ArrowRight size={16}/></Link></div>
         </section>
 
         <section className="dhub-next-lesson section-pad">

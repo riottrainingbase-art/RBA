@@ -205,6 +205,9 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   if(!post)notFound();
   const allPosts=await getPublicJournalPosts(locale,500);
   const related=findRelatedArticles(post,allPosts,3);
+  const isUnitedRecruitment=locale==="ja"&&["rba-united-malaysia-mvpibc-2026","rba-united-incheon-iyibs-2027"].includes(slug);
+  const unitedEarlyEntryUrl="https://form.jotform.com/262704343667057";
+  const unitedLineUrl="https://lin.ee/5l1YG8N";
   const currentInfo=Boolean(post.evidence_level&&/(CURRENT RULES|OFFICIAL RULES|REGISTRATION|TRANSFER|COMPETITION RULES|JBA CURRENT)/i.test(post.evidence_level));
   const safetyInfo=Boolean(post.evidence_level&&/MEDICAL|CDC|CONCUSSION|PEDIATRIC|AAP/i.test(post.evidence_level));
   const articleUrl="https://riotbasketballacademy.com"+journalHref(locale,slug);
@@ -277,7 +280,21 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div className="journal-source-list">{post.source_references.map((ref,index)=><a key={ref.url+index} href={ref.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,"0")}</span><div><strong>{ref.title}</strong><small>{ref.source}{ref.year?" · "+ref.year:""}</small>{ref.note?<p>{ref.note}</p>:null}</div><ArrowUpRight size={17}/></a>)}</div>
     </section>:null}
 
-    {locale==="ja"?(post.category==="programme"?<section className="article-learning-bridge section-pad">
+    {isUnitedRecruitment?<section className="article-learning-bridge section-pad">
+      <div>
+        <p className="section-index inverse">RBA UNITED / EARLY ENTRY</p>
+        <h2>興味がある段階で、<br/>まず名前を入れてください。</h2>
+        <p>先行エントリーは無料で、現時点では決済も参加確定もありません。カテゴリー条件・主催者確認事項・最終費用が揃った段階でRBAから案内し、内容を確認した方だけ本申込へ進みます。</p>
+      </div>
+      <div className="article-learning-panel">
+        <span>FREE / NO PAYMENT NOW</span>
+        <strong>先行エントリー受付中</strong>
+        <small>生年月日・希望カテゴリー・連絡先を登録</small>
+        <a className="button button-member" href={unitedEarlyEntryUrl} target="_blank" rel="noreferrer">無料で先行エントリー <ArrowUpRight size={17}/></a>
+        <a className="text-link light-link" href={unitedLineUrl} target="_blank" rel="noreferrer"><MessageCircle size={16}/>参加前にLINEで相談</a>
+      </div>
+    </section>:null}
+    {!isUnitedRecruitment&&locale==="ja"?(post.category==="programme"?<section className="article-learning-bridge section-pad">
       <div>
         <p className="section-index inverse">ARTICLE → NEXT OPPORTUNITY</p>
         <h2>この2日間を、<br/>次の育成機会へ。</h2>
@@ -320,7 +337,11 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
         <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][item.category as keyof typeof categoryLabels.en]||item.category}</p><h3>{item.title}</h3><p>{item.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
       </Link>)}</div>
     </section>:null}
-    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、育成機会、参加履歴を一つのRBA IDでつなぐ無料の入口です。</p><a className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の行動に変える。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
+    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{isUnitedRecruitment?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}>
+      <article className="homecourt-plan-card homecourt-plan-paid"><span>STEP 1 / FREE</span><h3>無料で先行エントリーする</h3><p>まだ参加を確定する必要はありません。人数とカテゴリーの成立可能性を確認するための入口です。</p><a className="button button-member" href={unitedEarlyEntryUrl} target="_blank" rel="noreferrer">先行エントリー <ArrowUpRight size={17}/></a></article>
+      <article className="homecourt-plan-card"><span>COACH / GROUP</span><h3>複数名・費用を相談する</h3><p>指導者からのご相談、複数選手での参加、費用面の相談も受け付けています。企画条件を確認し、可能な範囲で個別にご案内します。</p><a className="button button-dark" href={unitedLineUrl} target="_blank" rel="noreferrer"><MessageCircle size={17}/>公式LINEで相談</a></article>
+      <article className="homecourt-plan-card"><span>ALL UNITED</span><h3>他の海外企画も確認する</h3><p>現在のRBA UNITED募集を一つのページで確認できます。所属チームを続けながら参加できます。</p><Link className="button button-light" href="/ja/united">RBA UNITEDへ <ArrowRight size={17}/></Link></article>
+    </div>:locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、育成機会、参加履歴を一つのRBA IDでつなぐ無料の入口です。</p><a className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の行動に変える。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={isUnitedRecruitment?"/ja/united":post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>{isUnitedRecruitment?"RBA UNITEDへ戻る":"自分向けのHOMEを見る"} <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>{isUnitedRecruitment?"先行エントリーだけでは決済・参加確定になりません。指導者経由・複数名での参加や費用面についても、公式LINEからご相談ください。":"無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。"}</p>:null}</footer>
   </article></SiteFrame>;
 }
 
