@@ -16,6 +16,8 @@ assert.ok(studio.includes("RbaPlayerAvatar"),"MY PLAYER studio must render the a
 assert.ok(studio.includes("RbaHomeCourtScene"),"MY PLAYER studio must render the evolving HOME COURT");
 assert.ok(studio.includes('eq("attendance_status","attended")'),"Official memories must require attended status");
 assert.ok(studio.includes("RBA VERIFIED"),"Verified RBA memories must have a distinct surface");
+assert.ok(studio.includes("MEMORY WALL / RBA VERIFIED"),"Verified events must appear on a dedicated memory wall");
+assert.ok(ui.includes("DEMO / YOUR COURT EVOLVES"),"Public signup preview must show a live MY PLAYER court demo");
 assert.ok(member.includes('.eq("item_type","opportunity")'),"Scout progress must count opportunity saves only");
 assert.ok(member.includes('.eq("item_type","journal")'),"Learning progress must count JOURNAL views only");
 assert.ok(member.includes('new Set((viewsQ.data||[]).map(row=>row.item_key)'),"JOURNAL XP must use unique item keys rather than reload count");
@@ -29,6 +31,7 @@ for(const forbidden of [
 ]){
   assert.ok(!game.match(forbidden[1]),`Progression rule contains ${forbidden[0]}`);
   assert.ok(!ui.match(forbidden[1]),`Player Journey UI contains ${forbidden[0]}`);
+  assert.ok(!studio.match(forbidden[1]),`MY PLAYER studio contains ${forbidden[0]}`);
 }
 
 assert.ok(game.includes("Math.min(history,8)*35"),"History XP must remain capped");
@@ -58,6 +61,8 @@ assert.ok(migration.includes("security definer"),"Private trigger must be privil
 assert.ok(migration.includes("v_uid <> new.user_id"),"Privileged trigger must still verify the authenticated owner");
 assert.ok(migration.includes("attendance_status='attended'"),"Verified-only cosmetics must depend on attended RBA participation");
 assert.ok(migration.includes("coalesce(e.country,'JP') <> 'JP'"),"GLOBAL cosmetics must require verified overseas participation");
+assert.ok(migration.includes("is distinct from old.shoe_style"),"Existing verified cosmetics must not block unrelated edits after record correction");
+assert.ok(migration.includes("is distinct from old.court_theme"),"Existing court themes must not block unrelated edits after record correction");
 
 assert.ok(ui.includes("XPは上手さや序列ではなく"),"UI must explain XP is not player ability");
 assert.ok(ui.includes("公開ランキングはありません"),"UI must explicitly reject public ranking");
