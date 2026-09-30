@@ -53,11 +53,7 @@ const RBA_KEYWORDS = [
   "クラブ",
 ];
 
-const STAFF_KEYWORDS = [
-  "スタッフ",
-  "担当者",
-  "人に相談",
-  "直接相談",
+const BILLING_KEYWORDS = [
   "返金",
   "二重決済",
   "決済エラー",
@@ -67,6 +63,9 @@ const STAFF_KEYWORDS = [
   "未払い",
   "請求",
   "領収書",
+];
+
+const SCHEDULE_KEYWORDS = [
   "退会",
   "解約",
   "キャンセル",
@@ -74,8 +73,9 @@ const STAFF_KEYWORDS = [
   "日程変更",
   "欠席",
   "遅刻",
-  "クレーム",
-  "苦情",
+];
+
+const HEALTH_KEYWORDS = [
   "事故",
   "怪我",
   "けが",
@@ -94,10 +94,28 @@ const STAFF_KEYWORDS = [
   "リウマチ",
   "半月板",
   "アレルギー",
+];
+
+const HUMAN_KEYWORDS = [
+  "スタッフ",
+  "担当者",
+  "人に相談",
+  "直接相談",
+  "クレーム",
+  "苦情",
   "個人情報",
   "カード番号",
   "パスワード",
 ];
+
+const STAFF_KEYWORDS = [
+  ...BILLING_KEYWORDS,
+  ...SCHEDULE_KEYWORDS,
+  ...HEALTH_KEYWORDS,
+  ...HUMAN_KEYWORDS,
+];
+
+export type StaffCategory = "billing" | "health" | "schedule" | "human";
 
 const AMBIGUOUS_KEYWORDS = [
   "予約",
@@ -148,6 +166,14 @@ function hasAny(text: string, keywords: string[]) {
 export function isMenuRequest(input: string): boolean {
   const text = normalize(input);
   return text.length === 0 || EXACT_MENU_REQUESTS.has(text) || hasAny(text, MENU_PHRASES);
+}
+
+export function inferStaffCategory(input: string): StaffCategory {
+  const text = normalize(input);
+  if (hasAny(text, BILLING_KEYWORDS)) return "billing";
+  if (hasAny(text, HEALTH_KEYWORDS)) return "health";
+  if (hasAny(text, SCHEDULE_KEYWORDS)) return "schedule";
+  return "human";
 }
 
 export function inferConciergeRoute(input: string): ConciergeRoute {
