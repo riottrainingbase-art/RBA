@@ -22,6 +22,7 @@ export function JournalReaderTools({title,locale,slug}:{title:string;locale:Loca
       setUserId(user.id);
       // A signed-in JOURNAL read is part of RBA ID activation and powers the member HOME's starter progress.
       void supabase.from("analytics_events").insert({user_id:user.id,event_name:"view",item_type:"journal",item_key:slug,locale,metadata:{source:"journal"}});
+      void supabase.from("development_action_events").insert({user_id:user.id,action_type:"learn",item_type:"journal",item_key:slug,metadata:{locale,source:"journal"}});
       const {data}=await supabase.from("homecourt_saves").select("id").eq("user_id",user.id).eq("item_type","content").eq("item_key",slug).maybeSingle();
       if(active)setSaved(Boolean(data));
     })();
