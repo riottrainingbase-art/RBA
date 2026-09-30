@@ -220,7 +220,7 @@ export function HomecourtPlayerJourneyPreview({registrationUrl}:{registrationUrl
     <div className={styles.previewGame}>
       <div className={styles.previewDemo}>
         <span>DEMO / YOUR COURT EVOLVES</span>
-        <RbaHomeCourtScene config={defaultPlayerCustomization} unlocks={{ballRack:true,notebook:true,scoutBoard:true,teamBanner:false,nextBoard:true,globe:false,trophy:false,officialMemory:false}}>
+        <RbaHomeCourtScene compact config={defaultPlayerCustomization} unlocks={{ballRack:true,notebook:true,scoutBoard:true,teamBanner:false,nextBoard:true,globe:false,trophy:false,officialMemory:false}}>
           <RbaPlayerAvatar config={defaultPlayerCustomization} name="YOUR PLAYER"/>
         </RbaHomeCourtScene>
       </div>
