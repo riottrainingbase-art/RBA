@@ -10,6 +10,7 @@ const studio=fs.readFileSync("components/homecourt-player-studio.tsx","utf8");
 const seasonBoard=fs.readFileSync("components/homecourt-season-board.tsx","utf8");
 const migration=fs.readFileSync("supabase/migrations/20260930141000_homecourt_player_customization.sql","utf8");
 const seasonMigration=fs.readFileSync("supabase/migrations/20260930154627_homecourt_season_board_and_avatar_v2.sql","utf8");
+const seasonHardening=fs.readFileSync("supabase/migrations/20260930155143_homecourt_season_board_privacy_hardening.sql","utf8");
 
 assert.ok(member.includes("HomecourtPlayerJourney"),"MY HOME COURT must render Player Journey");
 assert.ok(publicRoute.includes('import { MyHomecourt } from "@/components/my-homecourt"'),"Japanese public MY HOME COURT route must render the dynamic MyHomecourt component");
@@ -94,13 +95,14 @@ assert.ok(seasonBoard.includes("実名は表示しません。"),"Season Board m
 assert.ok(seasonBoard.includes("課金額や能力値はポイントに入りません。"),"Season Board must exclude payments and ability scoring");
 assert.ok(seasonBoard.includes("SEASON BOARDに参加する"),"Season Board must be explicit opt-in");
 assert.ok(seasonMigration.includes("participate boolean not null default false"),"Season Board participation must default off");
-assert.ok(seasonMigration.includes("^PLAYER-[A-Z0-9]{5}$"),"Season Board must use anonymous generated RBA tags");
+assert.ok(seasonHardening.includes("^PLAYER-[A-Z0-9]{8}$"),"Season Board must use collision-resistant anonymous RBA tags");
+assert.ok(seasonHardening.includes("where p.id=v_uid and p.role='player'"),"Season Board read RPC must be limited to player accounts");
 assert.ok(seasonMigration.includes("revoke all on public.homecourt_ranking_preferences from anon, authenticated"),"Ranking preference writes must not be directly exposed");
 assert.ok(seasonMigration.includes("grant execute on function public.get_homecourt_season_board(integer) to authenticated"),"Season Board RPC must require authentication");
 assert.ok(seasonMigration.includes("revoke all on function public.get_homecourt_season_board(integer) from public, anon, authenticated"),"Season Board RPC must revoke default public execution");
-assert.ok(!seasonMigration.includes("display_name"),"Season Board RPC must not expose profile names");
-assert.ok(!seasonMigration.includes("birth_year"),"Season Board RPC must not expose birth year");
-assert.ok(!seasonMigration.includes("region"),"Season Board RPC must not expose region");
+assert.ok(!seasonHardening.includes("display_name"),"Season Board RPC must not expose profile names");
+assert.ok(!seasonHardening.includes("birth_year"),"Season Board RPC must not expose birth year");
+assert.ok(!seasonHardening.includes("region"),"Season Board RPC must not expose region");
 assert.ok(!seasonMigration.match(/subscription|checkout|amount_total/i),"Season points must not include paid status or spend");
 assert.ok(seasonMigration.includes("least((")&&seasonMigration.includes("),5) as passport_actions"),"Passport points must be capped");
 assert.ok(seasonMigration.includes("),10) as learning_actions"),"Journal points must be capped");
