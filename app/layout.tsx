@@ -32,7 +32,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const requestLanguage=(await headers()).get("x-rba-lang");
-  const language=requestLanguage==="ja"||requestLanguage==="zh-Hant-TW"||requestLanguage==="ko"?"${requestLanguage}":"en";
+  const language=requestLanguage==="ja"||requestLanguage==="zh-Hant-TW"||requestLanguage==="ko"?requestLanguage:"en";
   return (
     <html lang={language} suppressHydrationWarning>
       <body className="antialiased">
