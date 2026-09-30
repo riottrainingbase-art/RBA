@@ -2,6 +2,7 @@
 import { ArrowRight, Check, House, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { homecourtFreeRegistrationUrl, HOMECOURT_PRICE_JPY, homecourtRoles } from "./homecourt-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
+import { HomecourtPlayerJourneyPreview } from "./homecourt-player-journey";
 
 
 const copy = {
@@ -30,6 +31,7 @@ export function HomecourtPage({locale}:{locale:Locale}) {
       <div className="homecourt-launch-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={18}/>{locale==="ja"&&!authReady?"登録再開のお知らせを受け取る":c.free}<ArrowRight size={17}/></a><a className="button button-light" href={`${prefix}/my-homecourt`}><House size={18}/>{c.start}<ArrowRight size={17}/></a></div>{locale==="ja"&&authReady?<p className="registration-note"><strong>登録無料・約1分。</strong> メールアドレスからRBA IDを作成し、PLAYER／PARENT／COACHから自分の入口を選べます。</p>:null}{locale==="ja"&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開のお知らせは公式LINEでご案内します。</p>:null}
       {locale!=="ja"?<div className="homecourt-price"><span>{c.price}</span><strong>¥{HOMECOURT_PRICE_JPY.toLocaleString("ja-JP")}</strong><small>{c.note}</small></div>:null}
     </section>
+    {locale==="ja"?<HomecourtPlayerJourneyPreview registrationUrl={registrationUrl}/>:null}
     <section className="homecourt-role-section section-pad"><div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{c.included}</h2></div><p>{c.includedBody}</p></div><div className="homecourt-role-grid">{Object.entries(roleLabels).map(([role,data])=><article key={role}><span>{data.shortLabel}</span><Users size={28}/><h3>{data.label}</h3>{locale==="ja"?<p>{data.description}</p>:null}<ul>{data.items.map(item=><li key={item}><Check size={15}/>{item}</li>)}</ul><a href={`${prefix}/my-homecourt/${role}`}>{data.label}<ArrowRight size={16}/></a></article>)}</div></section>
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
