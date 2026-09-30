@@ -1,4 +1,4 @@
-import { after, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { generateRiotLineReply } from "@/lib/line/ai";
 import { deterministicLineReply } from "@/lib/line/direct-replies";
 import { inferConciergeRoute, inferServiceHint, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
@@ -203,6 +203,7 @@ async function processEvent(event: unknown) {
       await replyToLine(event.replyToken, FALLBACK_TEXT, MENU_QUICK_REPLIES);
     } catch (fallbackError) {
       console.error("[line-webhook] fallback reply failed", fallbackError);
+      throw fallbackError;
     }
   }
 }
@@ -236,7 +237,17 @@ async function processEventOnce(event: unknown) {
 }
 
 async function processEvents(events: unknown[]) {
-  await Promise.allSettled(events.map((event) => processEventOnce(event)));
+  const results = await Promise.allSettled(events.map((event) => processEventOnce(event)));
+  const failures = results.filter(
+    (result): result is PromiseRejectedResult => result.status === "rejected",
+  );
+
+  if (failures.length > 0) {
+    throw new AggregateError(
+      failures.map((failure) => failure.reason),
+      "One or more LINE webhook events failed",
+    );
+  }
 }
 
 export async function GET() {
@@ -309,10 +320,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // Return 200 quickly and perform message replies after the response.
-  after(async () => {
+  try {
     await processEvents(events);
-  });
-
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("[line-webhook] event batch failed", error);
+    return NextResponse.json({ ok: false }, { status: 500 });
+  }
 }
