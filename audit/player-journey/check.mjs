@@ -11,8 +11,14 @@ const seasonBoard=fs.readFileSync("components/homecourt-season-board.tsx","utf8"
 const migration=fs.readFileSync("supabase/migrations/20260930141000_homecourt_player_customization.sql","utf8");
 const seasonMigration=fs.readFileSync("supabase/migrations/20260930154627_homecourt_season_board_and_avatar_v2.sql","utf8");
 const seasonHardening=fs.readFileSync("supabase/migrations/20260930155143_homecourt_season_board_privacy_hardening.sql","utf8");
+const antiGrind=fs.readFileSync("supabase/migrations/20260930155950_homecourt_season_board_antigrind.sql","utf8");
 
 assert.ok(member.includes("HomecourtPlayerJourney"),"MY HOME COURT must render Player Journey");
+assert.ok(member.includes('const navSections=["home","journey"'),"MY JOURNEY must be a first-class app route");
+assert.ok(member.includes('active==="journey"&&locale==="ja"&&data.profile.role==="player"'),"Japanese player MY JOURNEY route must render Player Journey");
+assert.ok(member.includes('MY JOURNEYを開く'),"Simplified player HOME must link clearly to MY JOURNEY");
+assert.ok(member.includes('player-main-nav'),"Japanese player bottom navigation must use the simplified primary nav");
+assert.ok(member.includes('<span>JOURNEY</span>'),"Primary player nav must expose JOURNEY directly");
 assert.ok(publicRoute.includes('import { MyHomecourt } from "@/components/my-homecourt"'),"Japanese public MY HOME COURT route must render the dynamic MyHomecourt component");
 assert.ok(publicRoute.includes('return <MyHomecourt locale="ja"/>'),"Japanese public MY HOME COURT route must return MyHomecourt for signed-out users");
 assert.ok(!publicRoute.includes("DefinitiveStaticPage"),"Japanese public MY HOME COURT route must not fall back to the legacy definitive static page");
@@ -104,6 +110,10 @@ assert.ok(!seasonHardening.includes("display_name"),"Season Board RPC must not e
 assert.ok(!seasonHardening.includes("birth_year"),"Season Board RPC must not expose birth year");
 assert.ok(!seasonHardening.includes("region"),"Season Board RPC must not expose region");
 assert.ok(!seasonMigration.match(/subscription|checkout|amount_total/i),"Season points must not include paid status or spend");
+assert.ok(antiGrind.includes("count(distinct h.created_at::date)"),"Passport ranking points must be capped to unique activity days");
+assert.ok(antiGrind.includes("count(distinct s.item_key)"),"Saved opportunity ranking points must use unique items");
+assert.ok(antiGrind.includes("count(distinct a.item_key)"),"Journal ranking points must use unique articles");
+assert.ok(antiGrind.includes("count(distinct pa.event_id)"),"Verified ranking points must use unique RBA events");
 assert.ok(seasonMigration.includes("least((")&&seasonMigration.includes("),5) as passport_actions"),"Passport points must be capped");
 assert.ok(seasonMigration.includes("),10) as learning_actions"),"Journal points must be capped");
 assert.ok(seasonMigration.includes("),4) as verified_actions"),"Verified-event points must be capped");
@@ -120,6 +130,8 @@ console.log(JSON.stringify({
     "no paid XP",
     "no login streak pressure",
     "no public national ranking",
+    "MY JOURNEY first-class route",
+    "simplified player HOME",
     "private opt-in Season Board",
     "anonymous ranking tags",
     "no paid or ability-based Season points",
