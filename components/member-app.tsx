@@ -19,6 +19,7 @@ import { JapanTeamMap } from "./japan-team-map";
 import { HomecourtPlanner } from "./homecourt-planner";
 import { HomecourtPlusMemberHub } from "./homecourt-plus-member-hub";
 import { IPhoneHomeScreenCard } from "./iphone-home-screen-card";
+import { MemberActivationPath } from "./member-activation-path";
 
 type Profile={id:string;role:"player"|"parent"|"coach"|"admin";display_name:string|null;preferred_language:string;timezone:string;onboarding_completed:boolean;birth_year:number|null;region:string|null;marketing_consent:boolean};
 type UserRole={role:string;status:string};
@@ -216,7 +217,7 @@ export function MemberApp({locale,section,userId,email,learningCount}:{locale:Lo
     </section>:null}
     {message?<div className="member-alert" role="alert">{message}<button onClick={()=>setMessage("")}>×</button></div>:null}
     {active==="calendar"&&isCoach&&selectedTeam?<div className="member-import-wrap"><CalendarImport locale={locale} teamId={selectedTeam.id} timezone={selectedTeam.timezone} userId={userId} onImported={load}/></div>:null}
-    {active==="home"?<><section className="member-summary">
+    {active==="home"?<><MemberActivationPath locale={locale} userId={userId} role={data.profile.role} hasExperience={activation.history>0} hasSave={activation.saves>0}/><section className="member-summary">
       <article><span>{locale==="ja"?"活動拠点":"WHERE I AM"}</span><strong>{selectedTeam?.region||data.profile.region||"—"}</strong><p>{selectedTeam?.name||({ja:"所属チーム未設定",en:"No home team set","zh-tw":"尚未設定所屬球隊",ko:"소속팀 미설정"})[locale]}</p></article>
       <article><span>{locale==="ja"?"次の予定":"NEXT STEP"}</span><strong>{nextEvent?.title||({ja:"次の機会を探す",en:"Find the next opportunity","zh-tw":"尋找下一個機會",ko:"다음 기회 찾기"})[locale]}</strong><p>{nextEvent?new Date(nextEvent.starts_at).toLocaleDateString(locale,{timeZone:displayTimeZone}):({ja:"日本全国から選べます",en:"Explore opportunities across Japan","zh-tw":"可從日本全國選擇",ko:"일본 전국에서 선택할 수 있습니다"})[locale]}</p></article>
       <article><span>{locale==="ja"?"その先へ":"HORIZON"}</span><strong>{data.profile.role==="player"?"LOCAL → WORLD":"RBA NETWORK"}</strong><p>{({ja:"今いる場所を起点に、全国・アジア・世界へ",en:"From your home base to Japan, Asia and the world","zh-tw":"從現在的位置走向日本、亞洲與世界",ko:"지금 있는 곳에서 일본·아시아·세계로"})[locale]}</p></article>
