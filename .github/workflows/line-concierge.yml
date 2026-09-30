@@ -38,3 +38,5 @@ jobs:
           node -e "const fs=require('fs');const b=fs.readFileSync('public/line-rich-menu.png');if(b.length>1000000)throw new Error('rich menu image exceeds 1MB');if(b.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')throw new Error('not a PNG');console.log('rich menu PNG bytes:',b.length)"
       - name: Validate LINE rich menu dry run
         run: node scripts/line/setup-rich-menu.mjs --dry-run
+      - name: Validate LINE preflight script syntax
+        run: node --check scripts/line/preflight.mjs

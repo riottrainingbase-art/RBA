@@ -249,6 +249,71 @@ Menu areas:
 
 The script does not delete a previously active rich menu after a successful switch. Keep the previous menu temporarily for rollback, then remove it manually after validation if desired.
 
+
+## Production preflight automation
+
+The repository includes a read-only-by-default preflight command for the final LINE/OpenAI connection.
+
+### Read-only validation
+
+This checks:
+- required environment variables
+- LINE channel access token by reading bot information
+- current configured LINE webhook endpoint
+- a requested webhook URL by using LINE's official webhook test endpoint
+- OpenAI key presence
+
+```bash
+LINE_WEBHOOK_URL=https://your-preview-or-production-host/api/line/webhook \
+npm run line:preflight
+```
+
+This does **not** change the LINE webhook endpoint.
+
+### Live OpenAI connection check
+
+Add `--openai-live` to send one minimal Responses API request with `store:false`:
+
+```bash
+LINE_WEBHOOK_URL=https://your-preview-or-production-host/api/line/webhook \
+npm run line:preflight -- --openai-live
+```
+
+This consumes only the tokens needed for the tiny connection test.
+
+### Apply the LINE webhook endpoint
+
+After the read-only test succeeds:
+
+```bash
+LINE_WEBHOOK_URL=https://riotbasketballacademy.com/api/line/webhook \
+npm run line:preflight -- --apply --openai-live
+```
+
+With `--apply`, the script:
+1. confirms LINE bot credentials
+2. reads the existing webhook endpoint
+3. validates the requested HTTPS URL
+4. sets the channel webhook endpoint through the official LINE Messaging API
+5. calls LINE's webhook test endpoint
+6. performs the optional minimal OpenAI live test
+
+The LINE webhook endpoint API can set the URL, but the channel's **Use webhook** state must still be enabled. The preflight report shows the current `active` state so an inactive channel is visible immediately.
+
+### Recommended go-live sequence
+
+1. Set Preview environment variables.
+2. Expose only the dedicated Preview webhook to LINE if Vercel Deployment Protection blocks it.
+3. Run read-only preflight against Preview.
+4. Run `--openai-live`.
+5. Run the real LINE message test matrix.
+6. Provision the rich menu.
+7. Confirm staff-alert delivery if configured.
+8. Promote the validated Preview artifact to Production.
+9. Run preflight with Production URL and `--apply --openai-live`.
+10. Confirm LINE webhook `active: true`.
+11. Send one final real LINE message and check Vercel runtime logs.
+
 ## Deliberately not enabled yet
 
 Persistent conversation memory is intentionally disabled.
