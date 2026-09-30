@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 const BAND_URL="https://band.us/n/aaa2bdj9xcJ1o";
 const LINE_URL="https://lin.ee/5l1YG8N";
+const PROJECT_REQUEST_URL="https://form.jotform.com/262722347194056";
 
 type Project={
   id:string;slug:string;title:string;summary:string;category:string;status:string;region:string;venue:string|null;
@@ -183,7 +184,7 @@ export default async function Page(){
 
       <section className="dhub-next-lesson section-pad">
         <div><p className="section-index">BRING A PROJECT</p><h2>メンバー側から案件を持ち込むこともできます。</h2><p>自チームで研修したい、地域でCampを開きたい、指導者講習を企画したい。現場で見つけたニーズをRBAと一緒に整理します。</p></div>
-        <div className="dhub-next-card"><span>RBA / CONSULT</span><p>案件化できるか、誰が担当するか、予算・安全・役割を確認してから進めます。</p><a className="button button-dark" href={LINE_URL} target="_blank" rel="noreferrer"><MessageCircle size={16}/>案件をRBAに相談</a><Link className="text-link" href="/ja/work-with-rba">RBAの実施メニューを見る <ArrowRight size={16}/></Link></div>
+        <div className="dhub-next-card"><span>RBA / CONSULT</span><p>案件化できるか、誰が担当するか、予算・安全・役割を確認してから進めます。</p><a className="button button-member" href={PROJECT_REQUEST_URL} target="_blank" rel="noreferrer">案件依頼フォーム <ExternalLink size={16}/></a><a className="button button-dark" href={LINE_URL} target="_blank" rel="noreferrer"><MessageCircle size={16}/>案件をRBAに相談</a><Link className="text-link" href="/ja/work-with-rba">RBAの実施メニューを見る <ArrowRight size={16}/></Link></div>
       </section>
     </main>
   </SiteFrame>;
