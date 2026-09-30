@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages -- checkout anchors intentionally avoid prefetching the server redirect endpoint. */
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -51,13 +50,6 @@ function findRelatedArticles(base:PublicJournalPost,posts:PublicJournalPost[],li
 export async function PublicJournalHub({locale}:{locale:Locale}){
   const c=copy[locale], posts=await getPublicJournalPosts(locale,500);
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
-  const categoryOrder=["development","families","coaching","international","programme"] as const;
-  const categoryDescriptions={
-    ja:{development:"選手の成長、試合、練習、出場機会、U12・U15の育成を考える記事",families:"チーム選び、練習量、試合後の関わり方など保護者向けの記事",coaching:"練習設計、判断、ゲーム理解、コーチングを深める指導者向けの記事",international:"日本と世界の育成環境、海外交流、遠征から学ぶ記事",programme:"RBAのクリニック、キャンプ、学びを次の行動につなげる記事"},
-    en:{development:"Player development, practice and competition",families:"Guidance for families",coaching:"Coach learning and practice design",international:"Japan–Asia exchange and global development",programme:"RBA programmes and next steps"},
-    "zh-tw":{development:"球員培育與比賽學習",families:"家長指南",coaching:"教練學習與訓練設計",international:"日本與亞洲交流",programme:"RBA活動與下一步"},
-    ko:{development:"선수 육성과 경기 학습",families:"보호자 가이드",coaching:"코치 학습과 훈련 설계",international:"일본·아시아 교류",programme:"RBA 프로그램과 다음 단계"}
-  } as const;
   const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(({en:"Hello RBA, we are interested in a Japan–Asia basketball exchange.",ja:"RBAの海外交流について相談したいです。","zh-tw":"您好RBA，我們想詢問日本與亞洲的籃球交流。",ko:"RBA의 일본-아시아 농구 교류에 대해 문의하고 싶습니다."})[locale])}`;
   const findPost=(slug:string)=>posts.find(post=>post.slug===slug);
   const explorerItems=posts.map(post=>({
