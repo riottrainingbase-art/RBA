@@ -65,6 +65,9 @@ jobs:
       - name: HOME COURT Japanese + iPhone regression audit
         run: pnpm run audit:homecourt-ja
 
+      - name: Player Journey progression and safety audit
+        run: pnpm run audit:player-journey
+
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
 

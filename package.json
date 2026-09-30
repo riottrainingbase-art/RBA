@@ -14,7 +14,8 @@
     "db:generate": "drizzle-kit generate",
     "audit:homecourt-ja": "node audit/homecourt-japanese/check.mjs",
     "audit:deploy-policy": "node scripts/check-deployment-policy.mjs",
-    "audit:site-ja": "node audit/site-japanese/check.mjs"
+    "audit:site-ja": "node audit/site-japanese/check.mjs",
+    "audit:player-journey": "node audit/player-journey/check.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
