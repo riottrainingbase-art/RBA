@@ -5,7 +5,7 @@ const roots=["app","components","lib","definitive-content","public/rba-definitiv
 const exts=new Set([".ts",".tsx",".js",".mjs",".html",".css",".json"]);
 const mojibake=[
   ["replacement-char",/�/],
-  ["utf8-double-encoded",/(?:縺|譁|繧|螟|蜿|驟|髯|蛹)/],
+  ["utf8-double-encoded",/(?:縺[ｧｨ九後]|譁[�]|繧[�]|螟[�]|蜿[�]|髯[�]|蛹[�])/],
   ["latin-mojibake",/(?:â€|â€™|â€œ|â€|Ã.|Â[^s])/],
 ];
 const stale=[
