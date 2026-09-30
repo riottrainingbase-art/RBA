@@ -98,7 +98,8 @@ const projectSchema=z.object({
 
 const toIso=(value:string)=>{
   if(!value)return null;
-  const d=new Date(value);
+  const normalized=/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?$/.test(value)?`${value}+09:00`:value;
+  const d=new Date(normalized);
   return Number.isNaN(d.getTime())?null:d.toISOString();
 };
 const toMoney=(value:FormDataEntryValue|null)=>{
