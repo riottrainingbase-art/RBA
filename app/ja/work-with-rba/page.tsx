@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight, BriefcaseBusiness, Building2, Globe2, Handshake, MapPinned, Trophy, Users } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -139,7 +140,7 @@ export default function Page() {
         <p>基本的な育成情報や考え方は、できる限りJOURNALで公開します。料金をいただくのは、人、時間、場所、運営、個別設計、継続伴走など、実際の提供責任が伴う部分です。</p>
       </div>
       <div className="homecourt-plan-grid">
-        <article className="homecourt-plan-card"><span>OPEN / FREE</span><h3>知識への入口</h3><p>JOURNAL、育成方針、研究や公式資料への入口、活動情報。必要以上に情報を囲い込みません。</p><a className="button button-light" href="/ja/journal">JOURNALを見る<ArrowRight size={17}/></a></article>
+        <article className="homecourt-plan-card"><span>OPEN / FREE</span><h3>知識への入口</h3><p>JOURNAL、育成方針、研究や公式資料への入口、活動情報。必要以上に情報を囲い込みません。</p><Link className="button button-light" href="/ja/journal">JOURNALを見る<ArrowRight size={17}/></Link></article>
         <article className="homecourt-plan-card"><span>PAID / SERVICE</span><h3>実際に動く支援</h3><p>オンコート指導、チーム観察、プログラム設計、遠征運営、個別レビュー、地域開催、継続伴走など、実務と責任が発生する活動です。</p><a className="button button-dark" href="/ja/contact">相談する<ArrowRight size={17}/></a></article>
       </div>
     </section>
