@@ -1,0 +1,66 @@
+name: RBA Platform Branch QA
+
+on:
+  push:
+    branches:
+      - work/platform-foundation-20261001
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-platform-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Enable pnpm
+        run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Deployment policy audit
+        run: pnpm run audit:deploy-policy
+
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --pretty false
+
+      - name: HOME COURT Japanese audit
+        run: pnpm run audit:homecourt-ja
+
+      - name: Site Japanese audit
+        run: pnpm run audit:site-ja
+
+      - name: Member onboarding audit
+        run: node audit/member-experience/onboarding-check.mjs
+
+      - name: Email registration audit
+        run: node audit/email-registration/check.mjs
+
+      - name: Member learning access audit
+        run: node audit/member-learning/check.mjs
+
+      - name: Member route/render audit
+        run: node audit/member-experience/check.mjs
+
+      - name: ESLint platform changes
+        run: |
+          git fetch origin main --depth=1
+          FILES="$(git diff --name-only --diff-filter=ACMR origin/main...HEAD -- '*.ts' '*.tsx' '*.js' '*.mjs')"
+          if [ -z "$FILES" ]; then
+            echo "No changed JS/TS files."
+            exit 0
+          fi
+          printf '%s\n' "$FILES"
+          printf '%s\n' "$FILES" | xargs pnpm exec eslint
