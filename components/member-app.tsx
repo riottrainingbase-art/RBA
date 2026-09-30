@@ -215,6 +215,7 @@ export function MemberApp({locale,section,userId,email,learningCount}:{locale:Lo
       <article><span>{locale==="ja"?"次の予定":"NEXT STEP"}</span><strong>{nextEvent?.title||({ja:"次の機会を探す",en:"Find the next opportunity","zh-tw":"尋找下一個機會",ko:"다음 기회 찾기"})[locale]}</strong><p>{nextEvent?new Date(nextEvent.starts_at).toLocaleDateString(locale,{timeZone:displayTimeZone}):({ja:"日本全国から選べます",en:"Explore opportunities across Japan","zh-tw":"可從日本全國選擇",ko:"일본 전국에서 선택할 수 있습니다"})[locale]}</p></article>
       <article><span>{locale==="ja"?"その先へ":"HORIZON"}</span><strong>{data.profile.role==="player"?"LOCAL → WORLD":"RBA NETWORK"}</strong><p>{({ja:"今いる場所を起点に、全国・アジア・世界へ",en:"From your home base to Japan, Asia and the world","zh-tw":"從現在的位置走向日本、亞洲與世界",ko:"지금 있는 곳에서 일본·아시아·세계로"})[locale]}</p></article>
     </section>{locale==="ja"?<>{data.profile.role==="player"?<HomecourtPlayerJourney
+    userId={userId}
     displayName={data.profile.display_name||email.split("@")[0]}
     historyCount={activation.history}
     savedCount={activation.opportunities}
