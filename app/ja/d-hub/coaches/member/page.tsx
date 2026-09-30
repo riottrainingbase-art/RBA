@@ -78,8 +78,8 @@ export default async function Page() {
         <section className="dhub-member-hero section-pad">
           <ShieldCheck size={42}/>
           <p className="section-index">D-HUB COACH LAB / PAID MEMBER</p>
-          <h1>学んで、試して、また戻ってくる。</h1>
-          <p>D-HUB COACH LABは記事を読むだけの有料版ではありません。48回のカリキュラム、毎週の実践課題、指導者同士の対話、振り返りを一つにつなげます。</p>
+          <h1>読んで終わらず、練習で確かめる。</h1>
+          <p>D-HUB COACH LABは、有料記事を読むだけの場所ではありません。48回のカリキュラムを使いながら、実際の練習で試し、振り返り、必要なら他の指導者と話すところまでを一つの流れにします。</p>
           <div className="dhub-member-status">
             <span>MEMBERSHIP</span>
             <strong>{membership?.status === "grace" ? "GRACE" : "ACTIVE"}</strong>
@@ -110,12 +110,12 @@ export default async function Page() {
         <section className="dhub-member-section section-pad">
           <div className="section-head">
             <div><p className="section-index">COACHING LOOP</p><h2>READ → PLAN → COACH → REVIEW</h2></div>
-            <p>無料JOURNALで根拠を読み、D-HUBで実践課題へ変え、現場で試して記録し、BANDでケースを持ち寄ります。</p>
+            <p>無料JOURNALで背景を知り、D-HUBで自分の練習に置き換え、実際に試して振り返ります。必要なときはBANDで具体的な事例を持ち寄ります。</p>
           </div>
           <div className="dhub-member-grid">
-            <article><BookOpen/><span>01 / READ</span><h3>根拠を読む</h3><p>指導者JOURNALから、今の課題に近い記事を一本選びます。</p><Link href="/ja/journal/coaches">COACH JOURNAL <ArrowRight size={15}/></Link></article>
-            <article><NotebookPen/><span>02 / TEST</span><h3>練習で試す</h3><p>D-HUBの課題を一つ実施し、実際に起きたことを記録します。</p>{nextLesson?<Link href={`/ja/d-hub/coaches/member/lessons/${nextLesson.week_no}`}>NEXT LESSON <ArrowRight size={15}/></Link>:<Link href="/ja/my-homecourt/coaches">COACH HOME <ArrowRight size={15}/></Link>}</article>
-            <article><MessageCircle/><span>03 / DISCUSS</span><h3>D-HUBで話す</h3><p>実際に起きたことを持ち帰り、他の指導者と考えます。</p><a href={BAND_URL} target="_blank" rel="noreferrer">BANDを開く <ExternalLink size={15}/></a></article>
+            <article><BookOpen/><span>01 / READ</span><h3>背景を知る</h3><p>指導者JOURNALから、今の悩みや課題に近い記事を一本選びます。</p><Link href="/ja/journal/coaches">COACH JOURNAL <ArrowRight size={15}/></Link></article>
+            <article><NotebookPen/><span>02 / TEST</span><h3>自分の練習で試す</h3><p>D-HUBから一つ選び、自分の練習で試します。うまくいったかどうかだけでなく、実際に何が起きたかを残します。</p>{nextLesson?<Link href={`/ja/d-hub/coaches/member/lessons/${nextLesson.week_no}`}>NEXT LESSON <ArrowRight size={15}/></Link>:<Link href="/ja/my-homecourt/coaches">COACH HOME <ArrowRight size={15}/></Link>}</article>
+            <article><MessageCircle/><span>03 / DISCUSS</span><h3>必要なら、他の指導者と話す</h3><p>練習で起きたことを持ち寄り、別の見方や次の工夫を一緒に考えます。</p><a href={BAND_URL} target="_blank" rel="noreferrer">BANDを開く <ExternalLink size={15}/></a></article>
           </div>
         </section>
 
@@ -149,7 +149,7 @@ export default async function Page() {
         <section className="dhub-member-section dhub-member-dark section-pad">
           <div className="section-head">
             <div><p className="section-index inverse">MEMBER VALUE</p><h2>無料JOURNALとの違い。</h2></div>
-            <p>無料では「理解する」。D-HUBでは「自分の現場で使い、振り返り、次を修正する」まで進めます。</p>
+            <p>無料JOURNALで知るだけで終わらず、自分の練習で試し、振り返って、次の練習を変えるところまで扱います。</p>
           </div>
           <div className="dhub-member-value">
             <div><span>FREE JOURNAL</span><strong>KNOW</strong><p>研究、参考文献、RBAの解釈、限界を読む。</p></div>
