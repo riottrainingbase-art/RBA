@@ -47,6 +47,8 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
   const supabase=useMemo(()=>createClient(),[]);
   const [config,setConfig]=useState<PlayerCustomization>(defaultPlayerCustomization);
   const [official,setOfficial]=useState<OfficialMemory[]>([]);
+  const [officialCount,setOfficialCount]=useState(0);
+  const [hasVerifiedWorld,setHasVerifiedWorld]=useState(false);
   const [loading,setLoading]=useState(true);
   const [saving,setSaving]=useState(false);
   const [status,setStatus]=useState("");
@@ -54,27 +56,39 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
   useEffect(()=>{
     let active=true;
     void (async()=>{
-      const [customQ,memoryQ]=await Promise.all([
+      const [customQ,memoryQ,officialCountQ,worldQ]=await Promise.all([
         supabase.from("homecourt_player_customization")
           .select("skin_tone,hair_style,hair_color,jersey_style,shorts_style,shoe_style,accessory,jersey_number,court_theme")
           .eq("user_id",userId).maybeSingle(),
         supabase.from("participations")
-          .select("id,attendance_status,events(title,country,region,starts_at)")
+          .select("id,attendance_status,joined_at,events(title,country,region,starts_at)")
           .eq("player_user_id",userId)
           .eq("attendance_status","attended")
-          .limit(30)
+          .order("joined_at",{ascending:false})
+          .limit(6),
+        supabase.from("participations")
+          .select("id",{count:"exact",head:true})
+          .eq("player_user_id",userId)
+          .eq("attendance_status","attended"),
+        supabase.from("participations")
+          .select("id,events!inner(country)")
+          .eq("player_user_id",userId)
+          .eq("attendance_status","attended")
+          .neq("events.country","JP")
+          .limit(1)
       ]);
       if(!active)return;
       if(customQ.data)setConfig({...defaultPlayerCustomization,...customQ.data} as PlayerCustomization);
       if(!memoryQ.error)setOfficial((memoryQ.data||[]) as unknown as OfficialMemory[]);
+      if(!officialCountQ.error)setOfficialCount(officialCountQ.count||0);
+      if(!worldQ.error)setHasVerifiedWorld((worldQ.data||[]).length>0);
       setLoading(false);
     })();
     return()=>{active=false;};
   },[supabase,userId]);
 
-  const officialCount=official.length;
   const foreignCountries=Array.from(new Set(official.map(row=>row.events?.country).filter((country):country is string=>Boolean(country&&country!=="JP"))));
-  const hasWorld=foreignCountries.length>0;
+  const hasWorld=hasVerifiedWorld;
 
   const unlocks={
     ballRack:historyCount>=1,
