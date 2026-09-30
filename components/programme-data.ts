@@ -15,6 +15,8 @@ export type ProgrammeId =
 export type Programme = {
   id: ProgrammeId;
   startDate: string;
+  endDate?: string;
+  ongoing?: boolean;
   registrationClosed?: boolean;
   date: Text4;
   datePrimary: Text4;
@@ -39,6 +41,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "sendai-u15",
     startDate: "2026-10-01",
+    ongoing: true,
     date: ["Every Thursday · 3x / month", "毎週木曜日・原則月3回", "每週四・原則每月3次", "매주 목요일 · 원칙 월 3회"],
     datePrimary: ["THU", "木曜", "週四", "목요일"],
     dateSecondary: ["18:00–19:30", "18:00〜19:30", "18:00–19:30", "18:00–19:30"],
@@ -53,6 +56,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "yaima",
     startDate: "2026-09-20",
+    endDate: "2026-09-22",
     registrationClosed: true,
     date: ["20–22 SEP 2026", "2026.09.20–22", "2026.09.20–22", "2026.09.20–22"],
     datePrimary: ["20–22", "20〜22日", "20至22日", "20~22일"],
@@ -68,6 +72,8 @@ export const programmes: readonly Programme[] = [
   {
     id: "kawasaki",
     startDate: "2026-09-27",
+    endDate: "2026-09-27",
+    registrationClosed: true,
     date: ["27 SEP 2026", "2026.09.27", "2026.09.27", "2026.09.27"],
     datePrimary: ["27", "27日", "27日", "27일"],
     dateSecondary: ["SEP 2026", "2026年9月", "2026年9月", "2026년 9월"],
@@ -82,6 +88,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "saga-fukuoka",
     startDate: "2026-10-03",
+    endDate: "2026-10-04",
     date: ["03–04 OCT 2026", "2026.10.03–04", "2026.10.03–04", "2026.10.03–04"],
     datePrimary: ["03–04", "3〜4日", "3至4日", "3~4일"],
     dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
@@ -96,6 +103,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "yamagata",
     startDate: "2026-10-24",
+    endDate: "2026-10-24",
     date: ["24 OCT 2026", "2026.10.24", "2026.10.24", "2026.10.24"],
     datePrimary: ["24", "24日", "24日", "24일"],
     dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
@@ -110,6 +118,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "shizugawa",
     startDate: "2026-11-07",
+    endDate: "2026-11-08",
     date: ["07–08 NOV 2026", "2026.11.07–08", "2026.11.07–08", "2026.11.07–08"],
     datePrimary: ["07–08", "7〜8日", "7至8日", "7~8일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
@@ -124,6 +133,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "kobe",
     startDate: "2026-11-20",
+    endDate: "2026-11-23",
     date: ["20–23 NOV 2026", "2026.11.20–23", "2026.11.20–23", "2026.11.20–23"],
     datePrimary: ["20–23", "20〜23日", "20至23日", "20~23일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
@@ -138,6 +148,7 @@ export const programmes: readonly Programme[] = [
   {
     id: "torsten",
     startDate: "2026-11-25",
+    endDate: "2026-11-25",
     date: ["25 NOV 2026", "2026.11.25", "2026.11.25", "2026.11.25"],
     datePrimary: ["25", "25日", "25日", "25일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
@@ -155,3 +166,16 @@ export const programmes: readonly Programme[] = [
 
 export const programmeById = Object.fromEntries(programmes.map((programme) => [programme.id, programme])) as Record<ProgrammeId, Programme>;
 export const torstenRegistrationUrl = programmeById.torsten.applicationUrl;
+
+
+function japanDateKey(now: Date){
+  const parts=new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(now);
+  const get=(type:string)=>parts.find(part=>part.type===type)?.value||"";
+  return `${get("year")}-${get("month")}-${get("day")}`;
+}
+
+export function isProgrammeActive(programme: Programme, now=new Date()){
+  if(programme.registrationClosed)return false;
+  if(programme.ongoing)return true;
+  return (programme.endDate||programme.startDate)>=japanDateKey(now);
+}
