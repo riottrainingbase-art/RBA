@@ -213,3 +213,32 @@ export async function updateProject(formData:FormData){
   revalidatePath("/ja/d-hub/coaches/member/projects");
   revalidatePath("/ja/d-hub/coaches/member/projects/admin");
 }
+
+
+export async function updateProjectFinancials(formData:FormData){
+  const projectId=String(formData.get("project_id")||"");
+  if(!z.string().uuid().safeParse(projectId).success)throw new Error("Invalid project");
+
+  const supabase=await createClient();
+  const {data:isAdmin}=await supabase.rpc("is_dhub_project_admin");
+  if(!isAdmin)throw new Error("Admin access required");
+
+  const paymentStatus=String(formData.get("payment_status")||"unbilled");
+  if(!["unbilled","invoiced","partially_paid","paid","refunded","cancelled"].includes(paymentStatus))throw new Error("Invalid payment status");
+
+  const payload={
+    project_id:projectId,
+    client_fee_jpy:toMoney(formData.get("client_fee_jpy"))??0,
+    member_compensation_jpy:toMoney(formData.get("member_compensation_jpy"))??0,
+    travel_budget_jpy:toMoney(formData.get("travel_budget_jpy"))??0,
+    other_direct_cost_jpy:toMoney(formData.get("other_direct_cost_jpy"))??0,
+    payment_status:paymentStatus,
+    invoice_reference:String(formData.get("invoice_reference")||"").trim().slice(0,300)||null,
+    internal_notes:String(formData.get("internal_notes")||"").trim().slice(0,4000),
+    updated_at:new Date().toISOString(),
+  };
+
+  const {error}=await supabase.from("dhub_project_financials").upsert(payload);
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
