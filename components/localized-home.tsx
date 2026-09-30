@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ui } from "./ui-copy";
 import { NetworkMaps } from "./network-maps";
 import { ArrowRight, ArrowUpRight, House, MessageCircle, MoveDown, Users } from "lucide-react";
@@ -59,7 +60,7 @@ const copy={
 
 const homecourtCopy={
   en:{label:"RBA HOMECOURT / FREE MEMBER ACCESS",title:"Start free from MY HOME COURT.",body:"Choose PLAYER, PARENT or COACH. Access programmes, communities and role-based content, then upgrade only when paid membership fits.",open:"Open MY HOME COURT",about:"Free & paid membership",roles:["PLAYER","PARENT","COACH"]},
-  ja:{label:"RBA / MY HOME COURT",title:"もう一つ、自分の育成環境を持つ。",body:"MY HOME COURTは、活動、育成記事、参加履歴、次の挑戦を一つにつなぐ場所です。RBA IDは無料。継続学習向けに月額3,300円のHOMECOURTも用意しています。",open:"無料でRBA IDをつくる",about:"月額3,300円でできること",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
+  ja:{label:"RBA / MY HOME COURT",title:"学びと経験を、自分の記録につなげる。",body:"MY HOME COURTは、活動、育成記事、参加履歴、次の挑戦を一つにつなぐ自分専用のページです。RBA IDは無料。さらに深く学び、毎週の実践につなげたい方には月額3,300円のHOMECOURT PLUSがあります。",open:"無料でRBA IDをつくる",about:"HOMECOURT PLUSを見る",roles:["PLAYER／選手","PARENT／保護者","COACH／指導者"]},
   "zh-tw":{label:"RBA HOMECOURT / 會員專區",title:"會員請從MY HOME COURT開始。",body:"活動日程、報名、付款、規則與角色專屬內容，集中在同一個清楚入口。",open:"開啟會員專區",about:"了解RBA HOMECOURT",roles:["球員","家長","教練"]},
   ko:{label:"RBA HOMECOURT / 회원 페이지",title:"회원은 MY HOME COURT에서 시작하세요.",body:"일정, 신청, 결제, 규정과 역할별 콘텐츠를 하나의 명확한 입구에 모았습니다.",open:"회원 페이지 열기",about:"RBA HOMECOURT 안내",roles:["선수","보호자","코치"]},
 } as const;
@@ -75,14 +76,14 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     {locale==="ja"?<section className="rba-quick-entry section-pad">
       <div className="section-head">
-        <div><p className="section-index">30 SEC / START HERE</p><h2>まず30秒で、RBAを見る。</h2></div>
-        <p>気になる入口だけ開けば大丈夫です。記事、活動、指導者向け学び、参加機会を4つに分けました。</p>
+        <div><p className="section-index">START HERE</p><h2>まずは、ここから。</h2></div>
+        <p>知りたいことに近い入口から見てください。記事、活動、指導者向けの学び、参加機会の4つに分けています。</p>
       </div>
       <div className="rba-quick-entry-grid">
-        <a href="/ja/journal/rba-united-yaima-cup-2026"><span>01 / VOICES</span><h3>参加者の声から見る</h3><p>YAIMA CUPで選手・保護者に何が残ったのか。まず30秒で読めます。</p><strong>30秒で見る<ArrowRight size={16}/></strong></a>
-        <a href="/ja/journal"><span>02 / JOURNAL</span><h3>育成記事から見る</h3><p>ミニバス、U15、出場時間、練習量、チーム選び。気になる悩みから読めます。</p><strong>気になる記事を探す<ArrowRight size={16}/></strong></a>
-        <a href="/ja/d-hub/coaches"><span>03 / COACHES</span><h3>指導者向けの学びを見る</h3><p>D-HUB COACH LAB、実践記事、年間カリキュラム。現場で試せる形にしています。</p><strong>D-HUBを見る<ArrowRight size={16}/></strong></a>
-        <a href="/ja/opportunities"><span>04 / JOIN</span><h3>今参加できる活動を見る</h3><p>クリニック、キャンプ、RBA UNITED、スクール。募集中のものだけ確認できます。</p><strong>募集中を見る<ArrowRight size={16}/></strong></a>
+        <Link href="/ja/journal/rba-united-yaima-cup-2026"><span>01 / VOICES</span><h3>参加者の声から知る</h3><p>YAIMA CUPで選手・保護者に何が残ったのか。実際の声から活動の雰囲気を知れます。</p><strong>参加者の声を読む<ArrowRight size={16}/></strong></Link>
+        <Link href="/ja/journal"><span>02 / JOURNAL</span><h3>育成記事から見る</h3><p>ミニバス、U15、出場時間、練習量、チーム選び。気になる悩みから読めます。</p><strong>気になる記事を探す<ArrowRight size={16}/></strong></Link>
+        <Link href="/ja/d-hub/coaches"><span>03 / COACHES</span><h3>指導者向けの学びを見る</h3><p>D-HUB COACH LAB、実践記事、年間カリキュラム。現場で試せる形にしています。</p><strong>D-HUBを見る<ArrowRight size={16}/></strong></Link>
+        <Link href="/ja/opportunities"><span>04 / JOIN</span><h3>今参加できる活動を見る</h3><p>クリニック、キャンプ、RBA UNITED、スクール。募集中のものだけ確認できます。</p><strong>募集中を見る<ArrowRight size={16}/></strong></Link>
       </div>
     </section>:null}
 

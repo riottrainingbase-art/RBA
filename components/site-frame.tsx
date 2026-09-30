@@ -11,7 +11,7 @@ export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" |
 
 const labels = {
   en: { about:"About", approach:"Approach", schedule:"Calendar", payments:"Registration & payment", clinic:"Torsten Clinic", asia:"Japan Access", partners:"Partners", contact:"Contact", whatsapp:"Talk to RBA", explore:"EXPLORE", follow:"FOLLOW / CONTACT", statement:<>Participation. Development. Education.<br/>A national basketball platform.</>, safeguard:"Child safeguarding, media consent and context guide every public field story.", message:"Hello RBA, I would like to ask about a clinic, event, Japan–Asia exchange or partnership." },
-  ja: { about:"RBAについて", approach:"育成方針", schedule:"開催日程", payments:"申込・決済", clinic:"指導者講習", asia:"海外連携", partners:"協賛・連携", contact:"お問い合わせ", whatsapp:"WhatsAppで相談", explore:"サイト案内", follow:"公式チャンネル", statement:<>育成の選択肢を、全国へ。<br/>日本とアジアをつなぐバスケットボール・プラットフォーム。</>, safeguard:"子どもの安全を最優先にし、写真・映像の使用についても本人・保護者の同意を大切にしています。活動の背景や意図が正しく伝わる発信を心がけています。", message:"RBAについて相談があります。クリニック、イベント、海外交流、協賛について詳しく教えてください。" },
+  ja: { about:"RBAについて", approach:"育成方針", schedule:"開催日程", payments:"申込・決済", clinic:"指導者講習", asia:"海外連携", partners:"協賛・連携", contact:"お問い合わせ", whatsapp:"WhatsAppで相談", explore:"サイト案内", follow:"公式チャンネル", statement:<>育成の選択肢を、全国へ。<br/>日本とアジアをつなぐバスケットボール・プラットフォーム。</>, safeguard:"子どもの安全、写真・映像の利用、参加時のルールは安全方針にまとめています。", message:"RBAについて相談があります。クリニック、イベント、海外交流、協賛について詳しく教えてください。" },
   "zh-tw": { about:"關於RBA", approach:"培育理念", schedule:"活動日程", payments:"報名・付款", clinic:"教練講座", asia:"日本交流", partners:"合作夥伴", contact:"聯絡我們", whatsapp:"WhatsApp洽詢", explore:"網站導覽", follow:"官方平台", statement:<>把世界標準帶給日本的孩子。<br/>成為連結日本與亞洲的培育橋樑。</>, safeguard:"所有公開內容均重視兒少安全、影像使用同意與完整脈絡。", message:"您好RBA，我想詢問訓練營、日本交流、教練講座或合作方案。" },
   ko: { about:"RBA 소개", approach:"육성 철학", schedule:"프로그램 일정", payments:"신청・결제", clinic:"코치 클리닉", asia:"일본 교류", partners:"파트너십", contact:"문의하기", whatsapp:"WhatsApp 상담", explore:"사이트 안내", follow:"공식 채널", statement:<>세계적 기준을 일본의 아이들에게.<br/>일본과 아시아를 잇는 육성의 다리.</>, safeguard:"모든 공개 콘텐츠는 아동 보호, 촬영·게시 동의와 정확한 맥락을 우선합니다.", message:"안녕하세요 RBA. 클리닉, 일본 교류, 코치 교육 또는 파트너십에 대해 문의하고 싶습니다." },
 } as const;
@@ -38,9 +38,10 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
     ["RBA UNITED",localePath(locale,"united")],
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")],
+    ...(locale==="ja"?[["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
     [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
-    ...(locale==="ja"?[["HOMECOURT PLUS","/ja/homecourt-plus"] as const,["コーチ向け教材","/ja/materials"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["ミニバス育成支援","/ja/minibasket-support"] as const]:[]),
+    ...(locale==="ja"?[["コーチ向け教材","/ja/materials"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["ミニバス育成支援","/ja/minibasket-support"] as const]:[]),
     [c.about,localePath(locale,"about")],
     [({en:"Policies",ja:"参加規約・安全方針","zh-tw":"條款・安全",ko:"약관·안전"})[locale],localePath(locale,"policies")] as const,
   ] as const;

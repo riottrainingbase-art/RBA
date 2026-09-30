@@ -2,7 +2,7 @@ import type { Locale } from "./site-frame";
 export type Text4=readonly[string,string,string,string];
 export const tr=(v:Text4,l:Locale)=>v[({en:0,ja:1,"zh-tw":2,ko:3})[l]];
 export type ActivityType="clinic"|"camp"|"3x3"|"school";
-export type MapPoint={id:string;lon:number;lat:number;name:Text4;status:"activity"|"planned"|"partner"|"discussion";detail:Text4;activities?:ActivityType[]};
+export type MapPoint={id:string;lon:number;lat:number;name:Text4;status:"activity"|"planned"|"partner"|"discussion";statusLabel?:Text4;detail:Text4;activities?:ActivityType[]};
 const typeNames={en:{clinic:"Clinic",camp:"Camp","3x3":"3x3",school:"School"},ja:{clinic:"クリニック",camp:"キャンプ","3x3":"3x3",school:"スクール"},"zh-tw":{clinic:"訓練營",camp:"培育營","3x3":"3x3",school:"課程"},ko:{clinic:"클리닉",camp:"캠프","3x3":"3x3",school:"스쿨"}} as const;
 const record=(id:string,lon:number,lat:number,name:Text4,activities:ActivityType[],example:Text4):MapPoint=>({id,lon,lat,name,status:"activity",activities,detail:(["en","ja","zh-tw","ko"] as Locale[]).map((l,i)=>`${activities.map(x=>typeNames[l][x]).join(l==="ja"||l==="zh-tw"?"／":" / ")}. ${example[i]}`) as unknown as Text4});
 
@@ -42,9 +42,9 @@ export const plannedJapanPoints:MapPoint[]=[
 ];
 export const worldPoints:MapPoint[]=[
  {id:"taiwan",lon:121.56,lat:25.08,name:["Taipei · Taiwan","台湾・台北","台灣・台北","대만・타이베이"],status:"partner",detail:["Spartan Academy · verified youth basketball collaboration.","Spartan Academy。確認済みの育成年代連携。","Spartan Academy；已確認的青少年籃球合作。","Spartan Academy. 확인된 유소년 농구 협력."]},
- {id:"malaysia",lon:101.69,lat:3.14,name:["Malaysia","マレーシア","馬來西亞","말레이시아"],status:"discussion",detail:["MVP Basketball Academy · curriculum, technical-advisor and event collaboration discussions.","MVP Basketball Academy。カリキュラム、技術アドバイザー、イベント連携を協議中。","MVP Basketball Academy；正洽談課程、技術顧問與活動合作。","MVP Basketball Academy. 커리큘럼, 기술 자문과 이벤트 협력 협의 중."]},
- {id:"indonesia",lon:106.85,lat:-6.21,name:["Indonesia","インドネシア","印尼","인도네시아"],status:"discussion",detail:["AirOne Basketball Club · initial online meeting completed.","AirOne Basketball Club。初回オンライン面談を実施。","AirOne Basketball Club；已完成首次線上會談。","AirOne Basketball Club. 첫 온라인 미팅 완료."]},
- {id:"korea",lon:126.98,lat:37.57,name:["South Korea","韓国","韓國","대한민국"],status:"discussion",detail:["HIGH RAISE and PLAYGROUND · coach and youth-development relationship discussions.","HIGH RAISE、PLAYGROUND。指導者・育成年代の連携を協議。","HIGH RAISE、PLAYGROUND；洽談教練與青少年培育合作。","HIGH RAISE, PLAYGROUND. 코치 및 유소년 육성 협력 협의 중."]},
- {id:"philippines",lon:120.98,lat:14.60,name:["Philippines","フィリピン","菲律賓","필리핀"],status:"discussion",detail:["Youth basketball representatives · exchange discussions started.","育成年代バスケットボール関係者と交流協議を開始。","已與青少年籃球相關人士展開交流討論。","유소년 농구 관계자와 교류 협의 시작."]},
- {id:"guam",lon:144.79,lat:13.44,name:["Guam","グアム","關島","괌"],status:"discussion",detail:["Basketball representative contact · relationship and meeting discussions.","現地バスケットボール関係者と面談・連携を協議。","正與當地籃球相關人士洽談會面與合作。","현지 농구 관계자와 미팅 및 협력 협의 중."]},
+ {id:"malaysia",lon:101.69,lat:3.14,name:["Malaysia","マレーシア","馬來西亞","말레이시아"],status:"discussion",statusLabel:["In discussion","連携内容を調整中","協議中","협의 중"],detail:["MVP Basketball Academy · curriculum, technical-advisor and event collaboration discussions.","MVP Basketball Academy。カリキュラム、技術アドバイザー、イベント連携を協議中。","MVP Basketball Academy；正洽談課程、技術顧問與活動合作。","MVP Basketball Academy. 커리큘럼, 기술 자문과 이벤트 협력 협의 중."]},
+ {id:"indonesia",lon:106.85,lat:-6.21,name:["Indonesia","インドネシア","印尼","인도네시아"],status:"discussion",statusLabel:["Initial meeting complete","初回面談済み","已完成首次會談","첫 미팅 완료"],detail:["AirOne Basketball Club · initial online meeting completed.","AirOne Basketball Club。初回オンライン面談を実施。","AirOne Basketball Club；已完成首次線上會談。","AirOne Basketball Club. 첫 온라인 미팅 완료."]},
+ {id:"korea",lon:126.98,lat:37.57,name:["South Korea","韓国","韓國","대한민국"],status:"discussion",statusLabel:["In discussion","連携を協議中","協議中","협의 중"],detail:["HIGH RAISE and PLAYGROUND · coach and youth-development relationship discussions.","HIGH RAISE、PLAYGROUND。指導者・育成年代の連携を協議。","HIGH RAISE、PLAYGROUND；洽談教練與青少年培育合作。","HIGH RAISE, PLAYGROUND. 코치 및 유소년 육성 협력 협의 중."]},
+ {id:"philippines",lon:120.98,lat:14.60,name:["Philippines","フィリピン","菲律賓","필리핀"],status:"discussion",statusLabel:["Exchange discussion started","交流を検討中","已展開交流討論","교류 협의 시작"],detail:["Youth basketball representatives · exchange discussions started.","育成年代バスケットボール関係者と交流協議を開始。","已與青少年籃球相關人士展開交流討論。","유소년 농구 관계자와 교류 협의 시작."]},
+ {id:"guam",lon:144.79,lat:13.44,name:["Guam","グアム","關島","괌"],status:"discussion",statusLabel:["Meeting coordination","面談を調整中","洽談會面中","미팅 조율 중"],detail:["Basketball representative contact · relationship and meeting discussions.","現地バスケットボール関係者と面談・連携を協議。","正與當地籃球相關人士洽談會面與合作。","현지 농구 관계자와 미팅 및 협력 협의 중."]},
 ];

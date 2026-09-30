@@ -101,8 +101,8 @@ export default function Page() {
     <section className="access-promise section-pad">
       <p className="section-index">RBA POSITION</p>
       <div>
-        <h2>チームを否定しない。<br/>選手を奪わない。</h2>
-        <p>今いる指導者や所属環境を尊重したうえで、必要な視点だけを加えます。移籍勧誘や選手獲得を目的とした支援ではありません。RBAの方法を一方的に押し付けるのではなく、年代、人数、練習時間、地域事情に合わせて現実的な改善を考えます。</p>
+        <h2>今いるチームを大切にしながら、<br/>外から育成を支える。</h2>
+        <p>今いる指導者や所属環境を尊重し、チームの日常に必要な視点を一緒に整理します。移籍勧誘や選手獲得を目的とせず、年代、人数、練習時間、地域事情に合わせて、続けられる改善を考えます。</p>
       </div>
     </section>
 
@@ -115,7 +115,7 @@ export default function Page() {
 
     <section className="homecourt-product-preview section-pad" id="support">
       <div className="section-head">
-        <div><p className="section-index">SUPPORT ROUTES</p><h2>必要なところから、必要な分だけ。</h2></div>
+        <div><p className="section-index">SUPPORT ROUTES</p><h2>必要なところから始める。</h2></div>
         <p>最初から長期契約を前提にしません。診断後、チームの状況に合う支援だけを整理します。</p>
       </div>
       <div className="homecourt-preview-grid">

@@ -43,12 +43,12 @@ export function HomecourtPremium({locale,active,role,region,historyCount,savedCo
   const nextLabel=nextEvent?.title||(locale==="ja"?"次の活動はまだ未設定":"No next event set");
 
   const features=[
-    [Target,locale==="ja"?"WEEKLY DEVELOPMENT":"WEEKLY DEVELOPMENT",locale==="ja"?"今週のテーマ設定から、実践、振り返り、次の一歩までを一つの流れでつなげます。":"Connect a weekly theme, action, reflection and next step."],
-    [Gauge,locale==="ja"?"CONDITION TREND":"CONDITION TREND",locale==="ja"?"体調・疲労・痛み・睡眠の7日間の推移を確認しながら、練習や予定を調整できます。":"Review seven-day condition trends alongside your schedule."],
-    [CalendarDays,locale==="ja"?"SMART PREP":"SMART PREP",locale==="ja"?"大会や遠征から逆算して、準備・回復・持ち物・振り返りを整理・管理できます。":"Work backward from tournaments and trips to manage preparation."],
-    [BookOpen,locale==="ja"?"MEMBER LEARNING":"MEMBER LEARNING",locale==="ja"?"会員向けの学習コンテンツを読み、次の練習や実践につなげます。":"Use member learning and turn it into the next practice."],
-    [Globe2,locale==="ja"?"DEVELOPMENT HORIZON":"DEVELOPMENT HORIZON",locale==="ja"?"地域・全国・アジア・世界から、自分に必要な範囲の機会を整理する。":"Set the right horizon from local to global opportunities."],
-    [History,locale==="ja"?"MONTHLY REVIEW":"MONTHLY REVIEW",locale==="ja"?"参加・保存・学び・目標を月単位で振り返り、次の1か月を決める。":"Review participation, saves, learning and goals each month."],
+    [Target,locale==="ja"?"WEEKLY DEVELOPMENT｜今週のテーマ":"WEEKLY DEVELOPMENT",locale==="ja"?"今週のテーマ設定から、実践、振り返り、次の一歩までを一つの流れでつなげます。":"Connect a weekly theme, action, reflection and next step."],
+    [Gauge,locale==="ja"?"CONDITION｜7日間の状態":"CONDITION TREND",locale==="ja"?"体調・疲労・痛み・睡眠の7日間の推移を確認しながら、練習や予定を調整できます。":"Review seven-day condition trends alongside your schedule."],
+    [CalendarDays,locale==="ja"?"SMART PREP｜試合・遠征準備":"SMART PREP",locale==="ja"?"大会や遠征から逆算して、準備・回復・持ち物・振り返りを整理・管理できます。":"Work backward from tournaments and trips to manage preparation."],
+    [BookOpen,locale==="ja"?"LEARNING｜会員向け学習":"MEMBER LEARNING",locale==="ja"?"会員向けの学習コンテンツを読み、次の練習や実践につなげます。":"Use member learning and turn it into the next practice."],
+    [Globe2,locale==="ja"?"NEXT OPPORTUNITY｜次の機会":"DEVELOPMENT HORIZON",locale==="ja"?"地域・全国・アジア・世界から、自分に必要な範囲の機会を整理する。":"Set the right horizon from local to global opportunities."],
+    [History,locale==="ja"?"MONTHLY REVIEW｜月次振り返り":"MONTHLY REVIEW",locale==="ja"?"参加・保存・学び・目標を月単位で振り返り、次の1か月を決める。":"Review participation, saves, learning and goals each month."],
   ] as const;
 
   if(!active)return <section className="member-first3">

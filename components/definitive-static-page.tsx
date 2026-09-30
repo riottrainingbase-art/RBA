@@ -28,7 +28,7 @@ export function DefinitiveStaticPage({ page, locale }: Props) {
       {/* Static V6 pages share the recovered platform stylesheet verbatim. */}
       {/* eslint-disable-next-line @next/next/no-css-tags */}
       <link rel="stylesheet" href="/rba-definitive/assets/platform-mobile-v8.css" />
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <div className={`definitive-static locale-${locale}`} lang={locale==="zh-tw"?"zh-Hant-TW":locale} dangerouslySetInnerHTML={{ __html: html }} />
       <Script src="/rba-definitive/assets/site.js" strategy="afterInteractive" />
     </>
   );
