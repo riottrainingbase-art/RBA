@@ -47,7 +47,7 @@ export function HomecourtSeasonBoard({userId}:{userId:string}){
     setLoading(false);
   },[supabase,userId]);
 
-  useEffect(()=>{void load();},[load]);
+  useEffect(()=>{const timer=window.setTimeout(()=>{void load();},0);return()=>window.clearTimeout(timer);},[load]);
 
   async function toggle(){
     setBusy(true);setMessage("");
