@@ -150,13 +150,15 @@
 
 
 /* HOME COURT tap clarity */
-.member-header-account{width:44px;height:44px;display:grid!important;place-items:center;border:1px solid #394147;color:#fff;background:#171b1e}
-.member-header-account svg{width:20px;height:20px}
+.member-header-account,.member-header-notifications{width:44px;height:44px;display:grid!important;place-items:center;border:1px solid #394147;color:#fff;background:#171b1e}
+.member-header-account svg,.member-header-notifications svg{width:20px;height:20px}
+.member-header-notifications{position:relative}
+.member-header-notifications>i{position:absolute;top:3px;right:3px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;border-radius:999px;background:var(--signal);color:#111;font-size:9px;font-style:normal;font-weight:900;border:2px solid #0c0f11}
 .member-bottom-nav a{touch-action:manipulation}
 @media(max-width:560px){
  .member-app>header>a span{font-size:10px;letter-spacing:.06em}
  .member-app>header>div{gap:6px}
- .member-header-account{border-color:#2c3236;background:#111416}
+ .member-header-account,.member-header-notifications{border-color:#2c3236;background:#111416}
  .member-summary{gap:8px}
  .member-summary article{min-height:118px;padding:16px}
  .member-summary strong{font-size:21px;line-height:1.25}
@@ -193,8 +195,6 @@
 }
 
 
-.member-header-account{position:relative}
-.member-header-account>i{position:absolute;top:3px;right:3px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;border-radius:999px;background:var(--signal);color:#111;font-size:9px;font-style:normal;font-weight:900;border:2px solid #0c0f11}
 @media(display-mode:standalone){
  /* Public JOURNAL / opportunity pages still need a clear one-tap route back into the installed HOME COURT. */
  .whatsapp-dock{display:none!important}
