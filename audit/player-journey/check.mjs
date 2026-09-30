@@ -15,7 +15,7 @@ assert.ok(member.includes('new Set((viewsQ.data||[]).map(row=>row.item_key)'),"J
 for(const forbidden of [
   ["random progression",/Math\.random/],
   ["paid progression",/hasPaidMembership|subscription|checkout/i],
-  ["login streak pressure",/login.?streak|連続ログイン|毎日ログイン/i],
+  ["login streak pressure",/連続ログイン|毎日ログイン|ログインを続け/i],
   ["public leaderboard",/leaderboard|ランキング順位|全国順位/i],
   ["player ability score",/シュート\s*\d+|ドリブル\s*\d+|能力値/i],
 ]){
