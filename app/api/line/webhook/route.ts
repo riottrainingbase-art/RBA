@@ -1,6 +1,6 @@
 import { after, NextResponse } from "next/server";
 import { generateRiotLineReply } from "@/lib/line/ai";
-import { inferConciergeRoute, isMenuRequest } from "@/lib/line/intents";
+import { inferConciergeRoute, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
 import { OFFICIAL_LINKS } from "@/lib/line/knowledge";
 import {
   isLineFollowEvent,
@@ -41,15 +41,48 @@ const AMBIGUOUS_TEXT = `ありがとうございます。
 🏋️ RTB：パーソナル・S&C・トレーニング
 🏀 RBA：バスケットボールの育成・クリニック・キャンプ等`;
 
-const STAFF_TEXT = `こちらはスタッフ確認が必要な内容です。
+const STAFF_TEXT = {
+  billing: `決済・返金についてはスタッフ確認が必要です。
+
+このトークに、
+・お名前
+・RTB / RBA どちらについてか
+・対象の予約／イベント
+・確認したい内容
+・わかれば決済時期
+を送ってください。
+
+決済用の秘密情報は送らないでください。`,
+
+  health: `怪我・痛み・体調面については、安全のため自動案内では判断しません。
+
+このトークに、
+・RTB / RBA どちらについてか
+・年代
+・参加予定の活動／トレーニング
+・運動時に配慮が必要な点
+を必要な範囲で送ってください。
+
+詳細な医療資料は送らず、症状が強い場合や緊急性がある場合は医療機関へご相談ください。`,
+
+  schedule: `予約・欠席・キャンセル・日程変更はスタッフ確認が必要です。
+
+このトークに、
+・お名前
+・RTB / RBA どちらについてか
+・対象の予約／イベント
+・元の日程
+・希望する変更内容
+を送ってください。`,
+
+  human: `スタッフ確認が必要な内容として承ります。
 
 このトークに、
 ・RTB / RBA どちらについてか
 ・確認したい内容
 ・必要であればお名前
-を、必要な範囲だけ送ってください。
-
-カード番号、パスワード、医療記録などの機密情報は送らないでください。`;
+を、必要な範囲だけ送ってください。`,
+} as const;
 
 const NON_TEXT_TEXT = `ありがとうございます。
 現在の自動案内はテキストを中心に対応しています。
@@ -95,7 +128,8 @@ async function processEvent(event: unknown) {
   const route = inferConciergeRoute(userText);
 
   if (route === "staff") {
-    await replyToLine(event.replyToken, STAFF_TEXT, MENU_QUICK_REPLIES);
+    const staffCategory = inferStaffCategory(userText);
+    await replyToLine(event.replyToken, STAFF_TEXT[staffCategory], MENU_QUICK_REPLIES);
     return;
   }
 
