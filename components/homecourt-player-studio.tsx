@@ -21,7 +21,7 @@ type Props={
 type OfficialMemory={id:string;events:{title?:string|null;country?:string|null;region?:string|null;starts_at?:string|null}|null};
 
 const hairOptions=[
-  ["short","SHORT",1],["crop","CROP",1],["waves","WAVES",2],["curly","CURLY",3],["braids","BRAIDS",4],["long","LONG",5]
+  ["spiky","RBA SPIKY",1],["short","SHORT",1],["crop","CROP",1],["waves","WAVES",2],["curly","CURLY",3],["braids","BRAIDS",4],["long","LONG",5]
 ] as const;
 const jerseyOptions=[
   ["rba-black","RBA BLACK",1],["practice-grey","PRACTICE",1],["rba-white","RBA WHITE",2],["rba-signal","SIGNAL",3],["street-dark","STREET",4]
