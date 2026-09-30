@@ -11,6 +11,8 @@ Purpose: ship the iPhone / MY HOME COURT / JOURNAL / PLUS usability work in one 
 - Promote that exact validated artifact to Production.
 
 ## P0 — must pass before Preview
+
+Static QA gate: PASSED on GitHub Actions before this Preview checkpoint.
 - [ ] Japanese HOME COURT audit passes
 - [ ] No broken internal routes in changed member/JOURNAL surfaces
 - [ ] Existing session bypasses login
