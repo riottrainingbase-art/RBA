@@ -124,6 +124,31 @@ export default function Page() {
       </article>)}
     </section>
 
+    <section className="homecourt-plan-separation section-pad">
+      <div className="homecourt-plan-intro">
+        <p className="section-index">WHAT RBA CHARGES FOR</p>
+        <h2>無料で開くものと、料金をいただくものを分けます。</h2>
+        <p>基本的な育成情報や考え方は、できる限りJOURNALで公開します。料金をいただくのは、人、時間、場所、運営、個別設計、継続伴走など、実際の提供責任が伴う部分です。</p>
+      </div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card"><span>OPEN / FREE</span><h3>知識への入口</h3><p>JOURNAL、育成方針、研究や公式資料への入口、活動情報。必要以上に情報を囲い込みません。</p><a className="button button-light" href="/ja/journal">JOURNALを見る<ArrowRight size={17}/></a></article>
+        <article className="homecourt-plan-card"><span>PAID / SERVICE</span><h3>実際に動く支援</h3><p>オンコート指導、チーム観察、プログラム設計、遠征運営、個別レビュー、地域開催、継続伴走など、実務と責任が発生する活動です。</p><a className="button button-dark" href="/ja/contact">相談する<ArrowRight size={17}/></a></article>
+      </div>
+    </section>
+
+    <section className="homecourt-product-preview section-pad">
+      <div className="section-head">
+        <div><p className="section-index">MONETIZATION RULES</p><h2>売上を増やしても、情報商材化しないための基準。</h2></div>
+        <p>新しい商品や会員プランは、以下の基準を満たすものだけを採用します。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article><Users/><span>01</span><h3>現場が変わるか</h3><p>知識が増えるだけでなく、選手・指導者・チームの行動や環境が変わること。</p></article>
+        <article><Trophy/><span>02</span><h3>成果を約束しない</h3><p>「これで上手くなる」「勝てる」など、根拠のない成功保証を商品説明に使わない。</p></article>
+        <article><MapPinned/><span>03</span><h3>実体のある提供</h3><p>指導、レビュー、運営、場所、記録、相談、伴走など、料金の対価を説明できること。</p></article>
+        <article><Handshake/><span>04</span><h3>無料情報を残す</h3><p>有料化のために基本情報を隠さず、公開情報と有料サービスの役割を分ける。</p></article>
+      </div>
+    </section>
+
     <section className="statement section-pad">
       <p className="section-index">BUSINESS PRINCIPLE</p>
       <div>
