@@ -19,6 +19,7 @@ import styles from "./homecourt-player-journey.module.css";
 import {computePlayerJourney,journeyTier,PLAYER_JOURNEY_LEVEL_NAMES} from "@/lib/homecourt-game";
 import {HomecourtPlayerStudio} from "./homecourt-player-studio";
 import {defaultPlayerCustomization,RbaHomeCourtScene,RbaPlayerAvatar} from "./homecourt-player-avatar";
+import {HomecourtSeasonBoard} from "./homecourt-season-board";
 
 type Props={
   userId:string;
@@ -116,10 +117,12 @@ export function HomecourtPlayerJourney({
       <Link href={nextQuest.done?"/ja/opportunities":nextQuest.href}>{nextQuest.done?"次の挑戦を探す":"MISSION START"} <ArrowRight/></Link>
     </section>
 
+    <HomecourtSeasonBoard userId={userId}/>
+
     <section className={styles.questSection}>
       <div className={styles.sectionHead}>
         <div><p>QUEST BOARD</p><h3>今シーズンの6つのQUEST</h3></div>
-        <span>毎日やる必要はありません。できる時に、自分の順番で。</span>
+        <span>毎日やる必要はありません。できるときに、自分のペースで。</span>
       </div>
       <div className={styles.questGrid}>
         {quests.map(q=><Link key={q.code} href={q.href} className={q.done?styles.questDone:undefined}>
@@ -146,7 +149,7 @@ export function HomecourtPlayerJourney({
     <section className={styles.pathSection}>
       <div className={styles.sectionHead}>
         <div><p>GROWTH PATHS</p><h3>自分の成長ルートは、一つじゃない。</h3></div>
-        <span>得点や技術点ではなく、どんな経験を増やしたか。</span>
+        <span>得点や技術点ではなく、どんな経験を積み重ねてきたか。</span>
       </div>
       <div className={styles.pathGrid}>
         {[
@@ -162,7 +165,7 @@ export function HomecourtPlayerJourney({
 
     <section className={styles.storySection}>
       <div className={styles.sectionHead}>
-        <div><p>STORY MAP</p><h3>経験を増やすと、次の章が開く。</h3></div>
+        <div><p>STORY MAP</p><h3>経験を重ねると、次の章が開く。</h3></div>
         <span>速く進む必要はありません。</span>
       </div>
       <div className={styles.chapterGrid}>
@@ -181,7 +184,7 @@ export function HomecourtPlayerJourney({
 
     <section className={styles.medalSection}>
       <div className={styles.sectionHead}>
-        <div><p>BADGE CASE</p><h3>上手さではなく、積み重ねを集める。</h3></div>
+        <div><p>BADGE CASE</p><h3>上手さではなく、積み重ねを形にする。</h3></div>
         <span>BRONZE → SILVER → GOLD → PLATINUM</span>
       </div>
       <div className={styles.medalGrid}>
@@ -202,7 +205,7 @@ export function HomecourtPlayerJourney({
     </section>
 
     <footer className={styles.footer}>
-      <div><Medal/><strong>NO RANKING / NO PAY-TO-WIN</strong><p>他の選手との順位、能力値、課金によるXP優位は作りません。昨日の自分より経験が増えたかを見るモードです。</p></div>
+      <div><Medal/><strong>NO RANKING / NO PAY-TO-WIN</strong><p>他の選手との順位や能力値、課金によるXPの優位はありません。他人と比べるのではなく、自分の経験がどれだけ広がったかを振り返るための仕組みです。</p></div>
       <Link href="/ja/my-homecourt/app/start">BASKETBALL PASSPORT <ArrowRight/></Link>
       <Link href="/ja/international"><Globe2/> WORLD <ArrowRight/></Link>
     </footer>
@@ -214,7 +217,7 @@ export function HomecourtPlayerJourneyPreview({registrationUrl}:{registrationUrl
     <div className={styles.previewLead}>
       <p>RBA ID / PLAYER JOURNEY</p>
       <h2>RBA IDを、あなたのバスケット人生の「セーブデータ」に。</h2>
-      <span>登録して終わりではなく、経験を残す。QUESTを進める。BADGEを集める。次の挑戦を見つける。</span>
+      <span>登録して終わりではありません。経験を残し、QUESTを進め、BADGEを集めながら、次の挑戦を見つけていきます。</span>
       <a href={registrationUrl} target={registrationUrl.startsWith("http")?"_blank":undefined} rel={registrationUrl.startsWith("http")?"noreferrer":undefined}>PLAYER JOURNEYを始める <ArrowRight/></a>
     </div>
     <div className={styles.previewGame}>
@@ -225,10 +228,10 @@ export function HomecourtPlayerJourneyPreview({registrationUrl}:{registrationUrl
         </RbaHomeCourtScene>
       </div>
       <div className={styles.previewCards}>
-        <article><Sparkles/><span>LEVEL</span><strong>経験で上がる</strong><small>能力評価ではなくJourney XP</small></article>
-        <article><Flag/><span>QUEST</span><strong>次にやることが見える</strong><small>自分の順番で進める</small></article>
-        <article><Map/><span>PASSPORT</span><strong>参加経験を集める</strong><small>地域から世界まで</small></article>
-        <article><Medal/><span>BADGES</span><strong>積み重ねを残す</strong><small>公開ランキングなし</small></article>
+        <article><Sparkles/><span>LEVEL</span><strong>経験を重ねてレベルアップ</strong><small>上手さではなく、経験がXPになる</small></article>
+        <article><Flag/><span>QUEST</span><strong>次の一歩が見つかる</strong><small>自分のペースで進める</small></article>
+        <article><Map/><span>PASSPORT</span><strong>経験を記録する</strong><small>参加した場所や挑戦を残す</small></article>
+        <article><Medal/><span>BADGES</span><strong>挑戦の証を集める</strong><small>他の選手とのランキングはありません</small></article>
       </div>
     </div>
   </section>;

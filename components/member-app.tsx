@@ -45,7 +45,7 @@ const copy={
 } as const;
 
 const empty:AppData={profile:null,roles:[],memberships:[],events:[],notices:[],platformNotifications:[],notes:[],collections:[],orders:[],subscriptions:[],history:[],saves:[]};
-const navSections=["home","calendar","team","notifications","my","plus","report","admin"] as const;
+const navSections=["home","journey","calendar","team","notifications","my","plus","report","admin"] as const;
 const practiceCopy={
   ja:{practice:"TEAM TRAININGを設計",theme:"今日のテーマ",objective:"選手にどんな変化・学びを残したいか",menu:"練習の流れ（1行に1項目）",people:"参加予定人数",courts:"コート数",equipment:"必要物品",coachNotes:"観察ポイント・次回へのメモ",save:"TEAM TRAININGを保存",attend:"参加",absent:"欠席",undecided:"未定",saved:"出欠を保存しました"},
   en:{practice:"Add practice",theme:"Theme",objective:"Objective",menu:"Menu (one item per line)",people:"Expected players",courts:"Courts",equipment:"Equipment",coachNotes:"Coach note",save:"Save practice plan",attend:"Going",absent:"Absent",undecided:"Undecided",saved:"Attendance saved"},
@@ -210,7 +210,36 @@ export function MemberApp({locale,section,userId,email,learningCount}:{locale:Lo
     {active==="home"&&locale==="ja"?<IPhoneHomeScreenCard compact/>:null}
     {message?<div className="member-alert" role="alert">{message}<button onClick={()=>setMessage("")}>×</button></div>:null}
     {active==="calendar"&&isCoach&&selectedTeam?<div className="member-import-wrap"><CalendarImport locale={locale} teamId={selectedTeam.id} timezone={selectedTeam.timezone} userId={userId} onImported={load}/></div>:null}
-    {active==="home"?<><section className="member-summary">
+    {active==="home"&&locale==="ja"&&data.profile.role==="player"?<section className="player-home-simple">
+      <div className="player-home-simple-hero">
+        <div><span>MY HOME COURT</span><h1>今日は、ここから。</h1><p>全部を見る必要はありません。今の自分に必要な一つを選びます。</p></div>
+        <a className="player-home-journey-cta" href={appHref("journey")}><Sparkles/><strong>MY JOURNEYを開く</strong><small>LEVEL・QUEST・MY PLAYER・SEASON BOARD</small><ChevronRight/></a>
+      </div>
+      <div className="player-home-today-grid">
+        <a href={appHref("journey")}><Sparkles/><span>MY JOURNEY</span><strong>自分の成長を見る</strong><small>経験・LEVEL・次のQUEST</small><ChevronRight/></a>
+        <a href="/ja/my-homecourt/app/start"><ClipboardList/><span>PASSPORT</span><strong>経験を残す</strong><small>練習・試合・RBA参加を記録</small><ChevronRight/></a>
+        <a href="/ja/opportunities"><Search/><span>OPPORTUNITIES</span><strong>次の挑戦を探す</strong><small>クリニック・キャンプ・海外交流</small><ChevronRight/></a>
+      </div>
+      <section className="player-home-now">
+        <div><span>NEXT</span><h2>{nextEvent?.title||"次の予定はまだありません"}</h2><p>{nextEvent?new Date(nextEvent.starts_at).toLocaleString("ja-JP",{timeZone:displayTimeZone,month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"次に挑戦したい活動を探してみましょう。"}</p></div>
+        <a href={nextEvent?appHref("calendar"):"/ja/opportunities"}>{nextEvent?"予定を見る":"活動を探す"}<ChevronRight/></a>
+      </section>
+      {data.saves.filter(item=>item.item_type==="opportunity").length?<section className="player-home-saved">
+        <div><span>SAVED</span><h2>あとで見る活動</h2></div>
+        {data.saves.filter(item=>item.item_type==="opportunity").slice(0,3).map(item=><a key={item.id} href={item.href}><strong>{item.title}</strong><ChevronRight/></a>)}
+      </section>:null}
+    </section>:null}
+    {active==="journey"&&locale==="ja"&&data.profile.role==="player"?<HomecourtPlayerJourney
+      userId={userId}
+      displayName={data.profile.display_name||email.split("@")[0]}
+      historyCount={activation.history}
+      savedCount={activation.opportunities}
+      journalViews={activation.views}
+      setupPercent={setupPercent}
+      teamLinked={teams.length>0}
+      hasNextEvent={Boolean(nextEvent)}
+    />:null}
+    {active==="home"&&!(locale==="ja"&&data.profile.role==="player")?<><section className="member-summary">
       <article><span>{locale==="ja"?"活動拠点":"WHERE I AM"}</span><strong>{selectedTeam?.region||data.profile.region||"—"}</strong><p>{selectedTeam?.name||({ja:"所属チーム未設定",en:"No home team set","zh-tw":"尚未設定所屬球隊",ko:"소속팀 미설정"})[locale]}</p></article>
       <article><span>{locale==="ja"?"次の予定":"NEXT STEP"}</span><strong>{nextEvent?.title||({ja:"次の機会を探す",en:"Find the next opportunity","zh-tw":"尋找下一個機會",ko:"다음 기회 찾기"})[locale]}</strong><p>{nextEvent?new Date(nextEvent.starts_at).toLocaleDateString(locale,{timeZone:displayTimeZone}):({ja:"日本全国から選べます",en:"Explore opportunities across Japan","zh-tw":"可從日本全國選擇",ko:"일본 전국에서 선택할 수 있습니다"})[locale]}</p></article>
       <article><span>{locale==="ja"?"その先へ":"HORIZON"}</span><strong>{data.profile.role==="player"?"LOCAL → WORLD":"RBA NETWORK"}</strong><p>{({ja:"今いる場所を起点に、全国・アジア・世界へ",en:"From your home base to Japan, Asia and the world","zh-tw":"從現在的位置走向日本、亞洲與世界",ko:"지금 있는 곳에서 일본·아시아·세계로"})[locale]}</p></article>
@@ -231,5 +260,11 @@ export function MemberApp({locale,section,userId,email,learningCount}:{locale:Lo
     {active==="report"?<>{hasPaidMembership?<HomecourtDevelopmentReport userId={userId} locale={locale} name={data.profile.display_name||email.split("@")[0]} role={data.profile.role} region={data.profile.region}/>:<section className="member-section"><div className="member-section-head"><div><p>HOMECOURT PLUS</p><h1>{locale==="ja"?"DEVELOPMENT REPORTはHOMECOURT PLUSで利用できます":"Development Report is a PLUS feature"}</h1></div></div><div className="member-next-step"><div><Sparkles/><span>REPORT</span><strong>{locale==="ja"?"週・月・参加履歴を一つのレポートにまとめます。":"Combine weekly, monthly and participation history."}</strong></div><a href={`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{locale==="ja"?"PLUSを始める":"Start PLUS"}<ChevronRight/></a></div></section>}</>:null}
     {active==="my"?<section className="member-section"><div className="member-section-head"><div><p>RBA ID</p><h1>{c.my}</h1></div></div><div className="member-plan"><div><CreditCard/><span>{c.memberStatus}</span><strong>{hasPaidMembership?c.paidMember:c.freeMember}</strong><small>{hasPaidMembership?c.verified:(locale==="ja"?"RBA IDをご利用中":"RBA ID ACTIVE")}</small></div>{!hasPaidMembership?<><a href={`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{({ja:"HOMECOURT PLUSを始める",en:"Start HOMECOURT membership","zh-tw":"開始HOMECOURT月費會員","ko":"HOMECOURT 월간 멤버십 시작"})[locale]}<ChevronRight/></a><a href={`${prefix}/payments`}>{({ja:"活動・申込・決済を見る",en:"View programmes and payments","zh-tw":"查看活動、報名與付款",ko:"활동·신청·결제 보기"})[locale]}<ChevronRight/></a></>:null}</div><MemberBilling subscriptions={data.subscriptions} locale={locale}/><NotificationPreferences userId={userId} locale={locale}/><form className="member-account-form" onSubmit={updateProfile}><h2>{c.account}</h2><label>{c.name}<input name="name" defaultValue={data.profile.display_name||""} required/></label><label>{c.timezone}<select name="timezone" defaultValue={data.profile.timezone||"Asia/Tokyo"}><option value="Asia/Tokyo">Asia/Tokyo</option><option value="Asia/Seoul">Asia/Seoul</option><option value="Asia/Taipei">Asia/Taipei</option><option value="Asia/Singapore">Asia/Singapore</option><option value="Australia/Sydney">Australia/Sydney</option><option value="Europe/Berlin">Europe/Berlin</option></select></label><button disabled={busy}>{busy?<LoaderCircle className="spin"/>:<CheckCircle2/>}{c.saveProfile}</button></form><div className="member-profile"><strong>{data.profile.display_name}</strong><span>{email}</span><p>{c.roles}</p><div>{data.roles.map(item=><span key={item.role}>{roleName(item.role,locale)} · {roleStatusLabel(item.status,locale)}</span>)}</div><p>{c.addRole}</p><div>{["player","parent","coach","organizer","official","facility","partner"].filter(x=>!data.roles.some(item=>item.role===x)).map(role=><button key={role} onClick={()=>addRole(role)} disabled={busy}>+ {roleName(role,locale)}</button>)}</div>{data.profile.role==="admin"?<a href={appHref("admin")}>ADMIN / BUSINESS DASHBOARD <ChevronRight/></a>:null}<p className="member-safety"><ShieldCheck/>{c.safe}</p><a href={`${prefix}/policies`}>POLICY / SAFETY <ChevronRight/></a><button className="member-signout" onClick={signOut}><LogOut/>{c.signout}</button></div></section>:null}
     {active==="admin"&&data.profile.role==="admin"?<section className="member-section"><div className="member-section-head"><div><p>RBA ADMIN / BUSINESS</p><h1>PLATFORM DASHBOARD</h1></div></div><div className="admin-metrics">{[["RBA ID",adminStats?.members||0],["ONBOARDING",adminStats?.onboarded||0],["EMAIL CONSENT",adminStats?.marketing||0],["HOMECOURT PAID",adminStats?.paid||0],["PASSPORT USERS",adminStats?.historyUsers||0],["SAVE USERS",adminStats?.savedUsers||0],["TEAM",adminStats?.teams||0],["ORDER",adminStats?.orders||0],["PAYMENT VOLUME",`¥${(adminStats?.volume||0).toLocaleString("ja-JP")}`],["PUBLIC EVENT",adminStats?.events||0]].map(([label,value])=><article key={label}><span>{label}</span><strong>{value}</strong></article>)}</div><div className="member-safety"><ShieldCheck/>{locale==="ja"?`利用ファネル：RBA ID → 初期設定 → Basketball Passport / 活動の保存 → HOMECOURT PLUS。登録者数だけでなく、実際に利用を始めた人数と有料プランへの移行状況を確認します。`:"Track the acquisition funnel from RBA ID to activation and paid HOMECOURT."}</div><div className="admin-metrics">{[["FUNNEL / ONBOARD",`${adminRates?.onboard||0}%`],["FUNNEL / PASSPORT",`${adminRates?.passport||0}%`],["FUNNEL / SAVE",`${adminRates?.saved||0}%`],["FUNNEL / PAID",`${adminRates?.paid||0}%`]].map(([label,value])=><article key={label}><span>{label}</span><strong>{value}</strong></article>)}</div><div className="member-safety"><ShieldCheck/>{locale==="ja"?"売上額だけでなく、手数料・原価・返金を共通取引台帳から分離して集計できる構造です。実績がない項目は0で表示します。":"Revenue, fees, costs and refunds remain separately reportable in the transaction ledger. Unrecorded values show as zero."}</div></section>:null}
-  </main><nav className="member-bottom-nav" aria-label="MY HOME COURT"><a className={active==="home"?"active":""} href={appHref("home")}><House/><span>{c.home}</span></a><a href={`${prefix}/opportunities`}><Search/><span>{({ja:"探す",en:"Discover","zh-tw":"探索",ko:"찾기"})[locale]}</span></a><a href={`${appHref("home")}#passport-title`}><ClipboardList/><span>{({ja:"記録",en:"Passport","zh-tw":"記錄",ko:"기록"})[locale]}</span></a>{hasPaidMembership?<a className={active==="plus"?"active":""} href={appHref("plus")}><Sparkles/><span>PLUS</span></a>:<a href={`${prefix}/journal`}><BookOpen/><span>{({ja:"学ぶ",en:"Learn","zh-tw":"學習",ko:"배우기"})[locale]}</span></a>}<a className={active==="my"?"active":""} href={appHref("my")}><Menu/><span>{c.my}</span></a></nav></div>;
+  </main>{locale==="ja"&&data.profile.role==="player"?<nav className="member-bottom-nav player-main-nav" aria-label="MY HOME COURT">
+    <a className={active==="home"?"active":""} href={appHref("home")}><House/><span>ホーム</span></a>
+    <a className={active==="journey"?"active":""} href={appHref("journey")}><Sparkles/><span>JOURNEY</span></a>
+    <a href="/ja/my-homecourt/app/start"><ClipboardList/><span>記録</span></a>
+    <a href="/ja/opportunities"><Search/><span>探す</span></a>
+    <a className={active==="my"?"active":""} href={appHref("my")}><Menu/><span>設定</span></a>
+  </nav>:<nav className="member-bottom-nav" aria-label="MY HOME COURT"><a className={active==="home"?"active":""} href={appHref("home")}><House/><span>{c.home}</span></a><a href={`${prefix}/opportunities`}><Search/><span>{({ja:"探す",en:"Discover","zh-tw":"探索",ko:"찾기"})[locale]}</span></a><a href={`${appHref("home")}#passport-title`}><ClipboardList/><span>{({ja:"記録",en:"Passport","zh-tw":"記錄",ko:"기록"})[locale]}</span></a>{hasPaidMembership?<a className={active==="plus"?"active":""} href={appHref("plus")}><Sparkles/><span>PLUS</span></a>:<a href={`${prefix}/journal`}><BookOpen/><span>{({ja:"学ぶ",en:"Learn","zh-tw":"學習",ko:"배우기"})[locale]}</span></a>}<a className={active==="my"?"active":""} href={appHref("my")}><Menu/><span>{c.my}</span></a></nav>}</div>;
 }
