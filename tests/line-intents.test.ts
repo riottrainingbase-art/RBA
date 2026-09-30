@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   inferConciergeRoute,
+  inferServiceHint,
   inferStaffCategory,
   isMenuRequest,
 } from "../lib/line/intents.ts";
@@ -69,4 +70,13 @@ test("service-specific operational questions keep service context", () => {
   assert.equal(inferConciergeRoute("RTBの料金を知りたい"), "rtb");
   assert.equal(inferConciergeRoute("RBAキャンプの料金を知りたい"), "rba");
   assert.equal(inferConciergeRoute("RTBの予約をしたい"), "rtb");
+});
+
+
+test("staff service hints identify RTB and RBA without guessing ambiguous cases", () => {
+  assert.equal(inferServiceHint("RTBの返金について"), "RTB");
+  assert.equal(inferServiceHint("RBAのキャンプを欠席します"), "RBA");
+  assert.equal(inferServiceHint("パーソナルトレーニングの予約を変更したい"), "RTB");
+  assert.equal(inferServiceHint("U15の予約変更について"), "RBA");
+  assert.equal(inferServiceHint("返金について確認したい"), "UNKNOWN");
 });
