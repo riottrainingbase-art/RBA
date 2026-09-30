@@ -9,12 +9,14 @@ on:
       - "app/api/line/**"
       - "tests/line-intents.test.ts"
       - "package.json"
+      - "scripts/line/**"
   pull_request:
     paths:
       - "lib/line/**"
       - "app/api/line/**"
       - "tests/line-intents.test.ts"
       - "package.json"
+      - "scripts/line/**"
 
 permissions:
   contents: read
@@ -29,3 +31,10 @@ jobs:
           node-version: "24"
       - name: Run LINE routing regression tests
         run: node --test tests/line-intents.test.ts
+      - name: Generate LINE rich menu image
+        run: node scripts/line/setup-rich-menu.mjs --image-only
+      - name: Verify LINE rich menu image
+        run: |
+          node -e "const fs=require('fs');const b=fs.readFileSync('public/line-rich-menu.png');if(b.length>1000000)throw new Error('rich menu image exceeds 1MB');if(b.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')throw new Error('not a PNG');console.log('rich menu PNG bytes:',b.length)"
+      - name: Validate LINE rich menu dry run
+        run: node scripts/line/setup-rich-menu.mjs --dry-run
