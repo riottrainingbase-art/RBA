@@ -55,8 +55,25 @@ assert.ok(!map.includes('viewBox="0 0 100 105"'),"Legacy hand-drawn schematic Ja
 assert.ok(map.includes("まだ所属チームが登録されていません。"),"Japanese empty-state copy is required");
 
 const premium=fs.readFileSync("components/homecourt-premium.tsx","utf8");
-assert.ok(premium.includes("育成を「続く流れ」に変えるためのプランです。"),"Canonical HOMECOURT PLUS Japanese headline is missing");
+assert.ok(premium.includes("無料で使いながら、必要になったらPLUSへ。"),"Canonical HOMECOURT PLUS Japanese headline is missing");
 assert.ok(premium.includes(">PLUS FEATURE<"),"PLUS feature cards must keep label/title visually separate");
+
+const memberApp=fs.readFileSync("components/member-app.tsx","utf8");
+assert.ok(memberApp.includes('my:"設定"'),"Japanese bottom navigation must use a clear settings label");
+assert.ok(memberApp.includes('無料JOURNALを1本読む'),"RBA ID starter flow must include a measurable free learning action");
+assert.ok(memberApp.includes('className="member-header-account"'),"Header account control must open settings instead of signing out");
+assert.ok(!memberApp.includes('href:`${prefix}/home-court`'),"Legacy /home-court upgrade route must not return");
+
+const login=fs.readFileSync("components/member-login.tsx","utf8");
+assert.ok(login.includes("パスワードは不要です。"),"Japanese login must explain passwordless access");
+assert.ok(!login.includes('checked={terms}'),"Returning-member login must not repeat first-time terms consent");
+
+const manifest=JSON.parse(fs.readFileSync("public/rba-definitive/manifest.json","utf8"));
+assert.equal(manifest.display,"standalone","RBA manifest must remain installable as a standalone web app");
+assert.ok(String(manifest.start_url||"").startsWith("/ja/my-homecourt/app"),"Installed RBA must open MY HOME COURT");
+
+const authRedirect=fs.readFileSync("lib/member-auth-redirect.ts","utf8");
+for(const route of ["plus","report","journal"])assert.ok(authRedirect.includes(route),`Login return allowlist must include ${route}`);
 
 if(failures.length){
   console.error(JSON.stringify({status:"failed",failures},null,2));
@@ -65,6 +82,6 @@ if(failures.length){
 console.log(JSON.stringify({
   status:"passed",
   filesChecked:files.length,
-  rulesChecked:forbidden.length+3,
-  scope:"HOMECOURT Japanese copy regressions, legacy labels, Japan-map implementation and empty-state guard."
+  rulesChecked:forbidden.length+13,
+  scope:"HOMECOURT Japanese copy, iPhone installability, passwordless return paths, navigation clarity, legacy labels and Japan-map guard."
 },null,2));
