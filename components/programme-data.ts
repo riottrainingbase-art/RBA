@@ -27,7 +27,7 @@ export type Programme = {
   audience: Text4;
   payment: Text4;
   applicationUrl: string;
-  detailPath?: string;
+  detailPath?: "events/torsten-loibl-online-clinic" | "camp/saga-fukuoka-2026";
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
   pathway?: "development-camp" | "united" | "clinic" | "coach";
