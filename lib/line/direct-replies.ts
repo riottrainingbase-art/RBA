@@ -153,6 +153,42 @@ function directOfficialLinkReply(text: string) {
   const normalized = normalize(text);
 
   if (
+    normalized.includes("問い合わせ先") ||
+    normalized.includes("連絡先") ||
+    normalized.includes("メールアドレス")
+  ) {
+    return `RIOT公式窓口はこちらです。\n${OFFICIAL_LINKS.contactEmail}`;
+  }
+
+  if (
+    normalized.includes("rtb") &&
+    (normalized.includes("場所") ||
+      normalized.includes("どこ") ||
+      normalized.includes("住所"))
+  ) {
+    return [
+      "Riot Training Base（RTB）は仙台市若林区大和町にあります。",
+      "詳しい来店案内・最新情報はこちらです。",
+      OFFICIAL_LINKS.rtbLinktree,
+      "※予約時の詳細案内はスタッフからご確認ください。",
+    ].join("\n");
+  }
+
+  if (
+    normalized.includes("rtb") &&
+    (normalized.includes("何ができる") ||
+      normalized.includes("何をして") ||
+      normalized.includes("どんな") ||
+      normalized.includes("サービス"))
+  ) {
+    return [
+      "RTBでは、パーソナルトレーニング、S&C、筋力・ウエイトトレーニング、アスリートの身体づくりなどを行っています。",
+      "中学生年代のウエイト導入やバスケットボール選手のフィジカル相談にも対応しています。",
+      `案内：${OFFICIAL_LINKS.rtbLinktree}`,
+    ].join("\n");
+  }
+
+  if (
     normalized.includes("my home court") ||
     normalized.includes("my homecourt") ||
     normalized.includes("ホームコート")
