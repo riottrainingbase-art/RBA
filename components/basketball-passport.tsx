@@ -69,7 +69,7 @@ export function BasketballPassport({userId}:{userId:string}){
   try{
    const result=form.entry?await db.from(tables[form.kind]).update(payload).eq("user_id",userId).eq("id",form.entry.id).select("id").single():await db.from(tables[form.kind]).insert(payload).select("id").single();
    if(result.error){setMessage(result.error.code==="23505"?"同じ記録が登録されています。自分の記録は1人までです。既存の記録をご確認ください。":"保存できませんでした。入力内容を残しています。通信状態と日付を確認し、もう一度お試しください。");return;}
-   const selected=form.kind==="person"?result.data.id:personId;setForm(null);if(await load(selected))setMessage("アカウントに保存しました。");
+   const selected=form.kind==="person"?result.data.id:personId;if(form.kind!=="person"){const actionType=form.kind==="history"?"do":"reflect";void db.from("development_action_events").insert({user_id:userId,action_type:actionType,item_type:`passport_${form.kind}`,item_key:result.data.id,metadata:{person_id:selected}});}setForm(null);if(await load(selected))setMessage("アカウントに保存しました。");
   }catch{setMessage("通信できませんでした。入力内容を残しています。もう一度お試しください。");}
   finally{setBusy(false);}
  }
