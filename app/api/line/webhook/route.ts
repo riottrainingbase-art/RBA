@@ -3,6 +3,7 @@ import { generateRiotLineReply } from "@/lib/line/ai";
 import { inferConciergeRoute, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
 import { OFFICIAL_LINKS } from "@/lib/line/knowledge";
 import {
+  getLineWebhookEventId,
   isLineFollowEvent,
   isLineMessageEvent,
   isLineTextMessageEvent,
@@ -15,6 +16,11 @@ import {
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
+
+const completedWebhookEventIds = new Set<string>();
+const inFlightWebhookEventIds = new Set<string>();
+const completedWebhookEventOrder: string[] = [];
+const MAX_RECENT_WEBHOOK_EVENTS = 500;
 
 const MENU_QUICK_REPLIES: QuickReplyItem[] = [
   { label: "RTB｜パーソナル", text: "RTBのパーソナルトレーニングについて相談したい" },
@@ -155,8 +161,36 @@ async function processEvent(event: unknown) {
   }
 }
 
+function rememberCompletedEvent(eventId: string) {
+  if (completedWebhookEventIds.has(eventId)) return;
+  completedWebhookEventIds.add(eventId);
+  completedWebhookEventOrder.push(eventId);
+
+  while (completedWebhookEventOrder.length > MAX_RECENT_WEBHOOK_EVENTS) {
+    const oldest = completedWebhookEventOrder.shift();
+    if (oldest) completedWebhookEventIds.delete(oldest);
+  }
+}
+
+async function processEventOnce(event: unknown) {
+  const eventId = getLineWebhookEventId(event);
+
+  if (eventId && (completedWebhookEventIds.has(eventId) || inFlightWebhookEventIds.has(eventId))) {
+    return;
+  }
+
+  if (eventId) inFlightWebhookEventIds.add(eventId);
+
+  try {
+    await processEvent(event);
+    if (eventId) rememberCompletedEvent(eventId);
+  } finally {
+    if (eventId) inFlightWebhookEventIds.delete(eventId);
+  }
+}
+
 async function processEvents(events: unknown[]) {
-  await Promise.allSettled(events.map((event) => processEvent(event)));
+  await Promise.allSettled(events.map((event) => processEventOnce(event)));
 }
 
 export async function GET() {
