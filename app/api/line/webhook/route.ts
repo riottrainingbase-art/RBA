@@ -245,6 +245,10 @@ export async function GET() {
         configured.lineChannelSecret &&
         configured.lineChannelAccessToken &&
         configured.openAiApiKey,
+      deployment: {
+        environment: process.env.VERCEL_ENV ?? null,
+        gitCommit: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 12) ?? null,
+      },
       privacy: {
         conversationStorage: false,
         lineUserIdStorage: false,
