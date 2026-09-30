@@ -132,6 +132,8 @@ No OpenAI SDK package is required.
 - Does not expose secret values from the readiness endpoint.
 - Does not log user message text.
 - Uses request timeouts for LINE and OpenAI calls.
+- Uses `webhookEventId` for best-effort in-memory duplicate suppression on warm instances.
+- Failed events are not marked completed, so LINE redelivery can retry them.
 - Returns HTTP 200 quickly and processes replies with Next.js `after()`.
 - Treats payment, health, and sensitive-account cases as staff-required.
 
