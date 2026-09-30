@@ -83,6 +83,11 @@ const HEALTH_KEYWORDS = [
   "膝痛",
   "肩痛",
   "痛み",
+  "痛い",
+  "疼痛",
+  "違和感",
+  "腫れ",
+  "しびれ",
   "診断",
   "医師",
   "病院",
@@ -172,7 +177,13 @@ export function inferStaffCategory(input: string): StaffCategory {
   const text = normalize(input);
   if (hasAny(text, BILLING_KEYWORDS)) return "billing";
   if (hasAny(text, HEALTH_KEYWORDS)) return "health";
-  if (hasAny(text, SCHEDULE_KEYWORDS)) return "schedule";
+  if (
+    hasAny(text, SCHEDULE_KEYWORDS) ||
+    ((text.includes("予約") || text.includes("日程")) &&
+      (text.includes("変更") || text.includes("ずら") || text.includes("振替") || text.includes("振り替え")))
+  ) {
+    return "schedule";
+  }
   return "human";
 }
 
@@ -183,8 +194,12 @@ export function inferConciergeRoute(input: string): ConciergeRoute {
     text.includes("予防") &&
     (text.includes("怪我") || text.includes("けが") || text.includes("ケガ") || text.includes("acl"));
 
+  const scheduleChangeInquiry =
+    (text.includes("予約") || text.includes("日程")) &&
+    (text.includes("変更") || text.includes("ずら") || text.includes("振替") || text.includes("振り替え"));
+
   // Staff-required topics take precedence, except clearly preventive training questions.
-  if (!preventionInquiry && hasAny(text, STAFF_KEYWORDS)) return "staff";
+  if (!preventionInquiry && (hasAny(text, STAFF_KEYWORDS) || scheduleChangeInquiry)) return "staff";
 
   const rtb = hasAny(text, RTB_KEYWORDS);
   const rba = hasAny(text, RBA_KEYWORDS);
