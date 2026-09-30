@@ -15,10 +15,10 @@ type Props={
 const copy={
   ja:{
     eyebrow:"HOMECOURT PLUS / MEMBER",
-    title:"HOMECOURT PLUSは、情報を増やすためではなく、育成を「続く流れ」に変えるためのプランです。",
-    body:"RBA IDでは、「知る・探す・記録する」を一つにつなげます。HOMECOURT PLUSでは、その記録をもとに、今週のテーマ設定から実践、振り返り、次の挑戦までを自然につなげていきます。",
-    locked:"HOMECOURT PLUSで使える機能",
-    unlock:"HOMECOURT PLUSを始める",
+    title:"無料で使いながら、必要になったらPLUSへ。",
+    body:"RBA IDは無料のまま使えます。HOMECOURT PLUSは、今週のテーマ、実践、振り返り、次の挑戦までを継続して整理したい方向けです。",
+    locked:"PLUSで増えること",
+    unlock:"HOMECOURT PLUSを見る",
     active:"HOMECOURT PLUS",
     activeTitle:"今週の育成ループ",
     activeBody:"全部やる必要はありません。今週は一つ決めて、試して、振り返る。そこから次を選びます。",
@@ -53,14 +53,14 @@ export function HomecourtPremium({locale,active,role,region,historyCount,savedCo
 
   if(!active)return <section className="member-first3">
     <div className="member-first3-head"><div><span>{c.eyebrow}</span><h2>{c.title}</h2><p>{c.body}</p></div><Crown size={38}/></div>
-    <div className="member-first3-grid">{features.map(([Icon,title,body])=><article key={title}><Icon/><span>PLUS FEATURE</span><strong>{title}</strong><p>{body}</p></article>)}</div>
+    <div className="member-first3-grid">{features.slice(0,3).map(([Icon,title,body])=><article key={title}><Icon/><span>PLUS FEATURE</span><strong>{title}</strong><p>{body}</p></article>)}</div>
     <div className="member-next-step"><div><Sparkles/><span>{c.locked}</span><strong>{locale==="ja"?"月額3,300円・いつでも解約可能":"¥3,300 / month"}</strong><p>{locale==="ja"?"RBA IDの機能はそのまま。継続的に育成を記録・整理・実践したい方はHOMECOURT PLUSを利用できます。":"Keep your RBA ID; upgrade only if you want the full development loop."}</p></div><a href={locale==="ja"?"/ja/homecourt-plus":`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{c.unlock}<ArrowRight/></a></div>
   </section>;
 
   return <section className="member-first3">
     <div className="member-first3-head"><div><span>{c.active}</span><h2>{c.activeTitle}</h2><p>{c.activeBody}</p></div><Crown size={38}/></div>
     <div className="member-first3-grid">
-      <a href={`${prefix}/my-homecourt/app/learn`}><BookOpen/><span>01 / LEARN</span><strong>{roleTheme}</strong><p>{locale==="ja"?"今週必要なテーマを一つだけ選びます。":"Pick one useful theme for this week."}</p><ArrowRight/></a>
+      <a href={`${prefix}/my-homecourt/app/plus`}><BookOpen/><span>01 / LEARN</span><strong>{roleTheme}</strong><p>{locale==="ja"?"今週必要なテーマを一つだけ選びます。":"Pick one useful theme for this week."}</p><ArrowRight/></a>
       <a href={`${prefix}/my-homecourt/app/calendar`}><CalendarDays/><span>02 / PREP</span><strong>{nextLabel}</strong><p>{locale==="ja"?"次の予定から逆算して、準備とコンディションを整えます。":"Prepare from your next scheduled event."}</p><ArrowRight/></a>
       <a href={`${prefix}/my-homecourt/app/home#passport-title`}><History/><span>03 / REFLECT</span><strong>{locale==="ja"?`記録 ${historyCount}件`:`${historyCount} records`}</strong><p>{locale==="ja"?"できたこと・課題・次に試すことを残します。":"Keep what worked, what did not and what comes next."}</p><ArrowRight/></a>
       <a href={`${prefix}/opportunities`}><Compass/><span>04 / NEXT</span><strong>{locale==="ja"?`保存 ${savedCount}件 / 閲覧 ${viewCount}件`:`${savedCount} saved`}</strong><p>{locale==="ja"?`${region||"全国"}を起点に、次の挑戦を選びます。`:"Choose the next opportunity that fits."}</p><ArrowRight/></a>
