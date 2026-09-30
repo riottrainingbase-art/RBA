@@ -65,6 +65,21 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
   }));
   const startHereSlugs=["winning-vs-developing","development-environment","parents-support-not-coach","who-is-playing"];
   const startHere=startHereSlugs.map(findPost).filter(Boolean) as typeof posts;
+
+  const worldMapItems=[
+    {country:"FINLAND",label:"フィンランド",slug:"world-map-finland-child-sport-reform-2026",focus:"順位表・地域決勝・子ども中心の競技設計"},
+    {country:"GERMANY",label:"ドイツ",slug:"world-map-germany-mini-basketball-bio-banding-2026",focus:"U12ルール・コーチ教育・Bio-Banding"},
+    {country:"SPAIN",label:"スペイン",slug:"world-map-spain-metodo-feb-2026",focus:"継続評価・大会を育成へ戻す仕組み"},
+    {country:"FRANCE",label:"フランス",slug:"world-map-france-development-pathway-2026",focus:"U13からつながる全国育成経路"},
+    {country:"AUSTRALIA",label:"オーストラリア",slug:"world-map-australia-participation-to-performance-2026",focus:"普及からハイパフォーマンスまでの接続"},
+    {country:"SERBIA",label:"セルビア",slug:"world-map-serbia-coach-education-2026",focus:"伝統を更新する継続的なコーチ教育"},
+    {country:"ENGLAND",label:"イングランド",slug:"world-map-england-development-rules-2026",focus:"出場機会と個人守備を制度で守る"},
+    {country:"CANADA",label:"カナダ",slug:"world-map-canada-youth-rules-2026",focus:"年齢相応のルールと長期的な選手育成"},
+    {country:"USA",label:"アメリカ",slug:"world-map-usa-basketball-guidelines-2026",focus:"試合数・休養・早期専門化まで含めた設計"}
+  ];
+  const worldMapPosts=worldMapItems
+    .map(item=>({item,post:findPost(item.slug)}))
+    .filter(entry=>Boolean(entry.post)) as {item:(typeof worldMapItems)[number];post:PublicJournalPost}[];
   const familyPaths=[
     {label:"チーム選びで迷っている",slug:"how-to-choose-youth-team"},
     {label:"今のチームから移るべきか悩んでいる",slug:"when-to-change-teams"},
@@ -106,7 +121,30 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <article><strong>{posts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク</span><small>原典・公式資料を確認できる入口</small></article>
         <article><strong>{posts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>最終確認日を記事ごとに表示</small></article>
       </section>:null}
-      {locale==="ja"?<JournalLearningPathsGrid compact totalArticles={posts.length}/>:null}\n\n      {locale==="ja"?<section className="journal-evidence-standard section-pad">
+      {locale==="ja"?<JournalLearningPathsGrid compact totalArticles={posts.length}/>:null}
+
+      {locale==="ja"&&worldMapPosts.length?<section className="journal-cms-index section-pad" id="world-youth-basketball-map">
+        <div className="section-head">
+          <div>
+            <p className="section-index">WORLD YOUTH BASKETBALL MAP 2026</p>
+            <h2>「海外ではこうしている」で終わらせない。</h2>
+          </div>
+          <p>各国の制度を並べるだけではなく、なぜその仕組みが生まれたのか、何を守ろうとしているのか、日本の育成年代と何が違うのかまで原典から確認します。</p>
+        </div>
+        <div className="journal-cms-grid">{worldMapPosts.map(({item,post},index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span>
+          <p className="note-tag">{item.country} / {item.label}</p>
+          <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>参考文献 {post.source_references.length}</span>:null}</div>
+          {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
+          <h3>{post.title}</h3>
+          <p>{item.focus}</p>
+          <strong>背景から読む <ArrowRight size={16}/></strong>
+        </Link>)}</div>
+        {findPost("perceptual-cognitive-training-transfer-2026")?<div className="homecourt-launch-actions">
+          <Link className="button button-light" href={journalHref(locale,"perceptual-cognitive-training-transfer-2026")}>2026 RESEARCH NOTE｜「認知トレーニング」は試合へ転移するか <ArrowRight size={17}/></Link>
+        </div>:null}
+      </section>:null}
+\n\n      {locale==="ja"?<section className="journal-evidence-standard section-pad">
         <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>根拠があることと、RBAの考えは分けて書きます。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
         <div className="journal-evidence-grid">
           <article><span>EVIDENCE</span><h3>研究・公式資料</h3><p>学術論文やFIBA/WABC、JBAなど、できる限り元の資料まで確認して掲載します。</p></article>
