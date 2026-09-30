@@ -4,12 +4,17 @@ import assert from "node:assert/strict";
 const game=fs.readFileSync("lib/homecourt-game.ts","utf8");
 const ui=fs.readFileSync("components/homecourt-player-journey.tsx","utf8");
 const member=fs.readFileSync("components/member-app.tsx","utf8");
+const publicRoute=fs.readFileSync("app/ja/my-homecourt/page.tsx","utf8");
 const publicPage=fs.readFileSync("components/my-homecourt.tsx","utf8");
 const studio=fs.readFileSync("components/homecourt-player-studio.tsx","utf8");
 const migration=fs.readFileSync("supabase/migrations/20260930141000_homecourt_player_customization.sql","utf8");
 
 assert.ok(member.includes("HomecourtPlayerJourney"),"MY HOME COURT must render Player Journey");
+assert.ok(publicRoute.includes('import { MyHomecourt } from "@/components/my-homecourt"'),"Japanese public MY HOME COURT route must render the dynamic MyHomecourt component");
+assert.ok(publicRoute.includes('return <MyHomecourt locale="ja"/>'),"Japanese public MY HOME COURT route must return MyHomecourt for signed-out users");
+assert.ok(!publicRoute.includes("DefinitiveStaticPage"),"Japanese public MY HOME COURT route must not fall back to the legacy definitive static page");
 assert.ok(publicPage.includes("HomecourtPlayerJourneyPreview"),"Actual public MY HOME COURT page must preview Player Journey");
+assert.ok(publicPage.includes('{ja&&!role?<HomecourtPlayerJourneyPreview registrationUrl={registrationUrl}/>:null}'),"Japanese root MY HOME COURT must mount Player Journey preview directly");
 assert.ok(ui.includes("HomecourtPlayerStudio"),"Player Journey must include MY PLAYER studio");
 assert.ok(member.includes("userId={userId}"),"Authenticated RBA ID must be passed into MY PLAYER studio");
 assert.ok(studio.includes("RbaPlayerAvatar"),"MY PLAYER studio must render the avatar");
@@ -100,6 +105,7 @@ console.log(JSON.stringify({
     "opportunity-only scout counting",
     "max-level state",
     "monotonic LEVEL progression",
+    "public route cannot regress to legacy static page",
     "safe customization load failure",
     "full verified-memory unlock summary",
     "older overseas GLOBAL unlock",
