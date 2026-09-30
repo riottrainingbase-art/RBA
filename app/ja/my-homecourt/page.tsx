@@ -1,4 +1,6 @@
 import { pageMetadata } from "@/components/page-metadata";
 import { MyHomecourt } from "@/components/my-homecourt";
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 export const metadata=pageMetadata("ja","my-homecourt");
-export default function Page(){return <MyHomecourt locale="ja"/>}
+export default async function Page(){const supabase=await createClient();const {data:{user}}=await supabase.auth.getUser();if(user)redirect("/ja/my-homecourt/app");return <MyHomecourt locale="ja"/>}
