@@ -1,6 +1,6 @@
 "use client";
 
-import {Basketball,BookOpen,Compass,Globe2,Trophy} from "lucide-react";
+import {Circle,BookOpen,Compass,Globe2,Trophy} from "lucide-react";
 import styles from "./homecourt-player-avatar.module.css";
 
 export type PlayerCustomization={
@@ -88,7 +88,7 @@ export function RbaHomeCourtScene({config,unlocks,children,compact=false}:{confi
     <div className={styles.floor}>
       <div className={styles.key}><span/></div>
       <div className={styles.playerStage}>{children}</div>
-      {unlocks.ballRack?<div className={styles.propBall}><Basketball/><Basketball/><Basketball/></div>:null}
+      {unlocks.ballRack?<div className={styles.propBall}><Circle/><Circle/><Circle/></div>:null}
       {unlocks.notebook?<div className={styles.propBook}><BookOpen/><span>JOURNAL</span></div>:null}
       {unlocks.nextBoard?<div className={styles.propNext}><span>NEXT</span><strong>CHALLENGE</strong></div>:null}
       {unlocks.trophy?<div className={styles.propTrophy}><Trophy/><span>SEASON</span></div>:null}
