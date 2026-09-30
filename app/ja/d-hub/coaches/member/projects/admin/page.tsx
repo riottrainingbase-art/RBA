@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { ArrowLeft, ArrowRight, BriefcaseBusiness, Users } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
-import { createProject, updateProject, updateProjectApplicationStatus } from "../actions";
+import { createProject, updateProject, updateProjectApplicationStatus, updateProjectFinancials } from "../actions";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:{absolute:"D-HUB PROJECT ADMIN | RBA"},robots:{index:false,follow:false}};
@@ -12,6 +12,9 @@ export const metadata:Metadata={title:{absolute:"D-HUB PROJECT ADMIN | RBA"},rob
 type Project={id:string;title:string;slug:string;status:string;category:string;region:string;venue:string|null;application_deadline:string|null;roles_needed:number;compensation_type:string;compensation_jpy_min:number|null;compensation_jpy_max:number|null;expense_terms:string;cancellation_terms:string;safeguarding_notes:string};
 type Application={
   id:string;project_id:string;user_id:string;proposed_role:string;motivation:string;availability_note:string;member_note:string;admin_note:string;status:string;submitted_at:string;
+};
+type Financial={
+  project_id:string;client_fee_jpy:number;member_compensation_jpy:number;travel_budget_jpy:number;other_direct_cost_jpy:number;payment_status:string;invoice_reference:string|null;internal_notes:string;
 };
 type Profile={user_id:string;display_name:string;base_region:string;specialties:string[];age_groups:string[];credentials:string[];languages:string[];travel_ok:boolean;open_to_projects:boolean};
 
@@ -33,16 +36,22 @@ export default async function Page(){
   const {data:isAdmin}=await supabase.rpc("is_dhub_project_admin");
   if(!isAdmin)redirect("/ja/d-hub/coaches/member/projects");
 
-  const [{data:projectRows},{data:applicationRows},{data:profileRows}]=await Promise.all([
+  const [{data:projectRows},{data:applicationRows},{data:profileRows},{data:financialRows}]=await Promise.all([
     supabase.from("dhub_projects").select("id,title,slug,status,category,region,venue,application_deadline,roles_needed,compensation_type,compensation_jpy_min,compensation_jpy_max,expense_terms,cancellation_terms,safeguarding_notes").order("created_at",{ascending:false}),
     supabase.from("dhub_project_applications").select("id,project_id,user_id,proposed_role,motivation,availability_note,member_note,admin_note,status,submitted_at").order("submitted_at",{ascending:false}),
     supabase.from("dhub_project_profiles").select("user_id,display_name,base_region,specialties,age_groups,credentials,languages,travel_ok,open_to_projects"),
+    supabase.from("dhub_project_financials").select("project_id,client_fee_jpy,member_compensation_jpy,travel_budget_jpy,other_direct_cost_jpy,payment_status,invoice_reference,internal_notes"),
   ]);
   const projects=(projectRows||[]) as Project[];
   const applications=(applicationRows||[]) as Application[];
   const profiles=(profileRows||[]) as Profile[];
   const projectById=new Map(projects.map(p=>[p.id,p]));
   const profileById=new Map(profiles.map(p=>[p.user_id,p]));
+  const financials=(financialRows||[]) as Financial[];
+  const financialByProject=new Map(financials.map(item=>[item.project_id,item]));
+  const totalClientFees=financials.reduce((sum,item)=>sum+item.client_fee_jpy,0);
+  const totalDirectCosts=financials.reduce((sum,item)=>sum+item.member_compensation_jpy+item.travel_budget_jpy+item.other_direct_cost_jpy,0);
+  const totalGrossMargin=totalClientFees-totalDirectCosts;
 
   return <SiteFrame locale="ja" languagePage="d-hub"><main className="dhub-member-page">
     <section className="dhub-member-hero section-pad">
@@ -84,9 +93,16 @@ export default async function Page(){
       </form>
     </section>
 
+    <section className="dhub-progress-strip section-pad">
+      <div><span>CLIENT FEES</span><strong>¥{totalClientFees.toLocaleString()}</strong><small>登録済み案件売上</small></div>
+      <div><span>DIRECT COSTS</span><strong>¥{totalDirectCosts.toLocaleString()}</strong><small>報酬・交通・直接費</small></div>
+      <div><span>GROSS MARGIN</span><strong>¥{totalGrossMargin.toLocaleString()}</strong><small>管理前粗利</small></div>
+      <div className="dhub-progress-next"><span>PAID</span><strong>{financials.filter(item=>item.payment_status==="paid").length}</strong><small>入金済み案件</small></div>
+    </section>
+
     <section className="dhub-member-section section-pad">
-      <div className="section-head"><div><p className="section-index">PROJECTS</p><h2>{projects.length}件の案件。</h2></div></div>
-      <div className="dhub-curriculum-groups">{projects.map(project=><section key={project.id}><header><span>{categoryLabel[project.category]||project.category} / {statusLabel[project.status]||project.status}</span><h3>{project.title}</h3></header><div>
+      <div className="section-head"><div><p className="section-index">PROJECTS</p><h2>{projects.length}件の案件。</h2></div><p>クライアント売上とメンバー報酬は別テーブルで管理し、メンバー側の案件一覧には内部粗利を表示しません。</p></div>
+      <div className="dhub-curriculum-groups">{projects.map(project=>{const financial=financialByProject.get(project.id);const directCosts=(financial?.member_compensation_jpy||0)+(financial?.travel_budget_jpy||0)+(financial?.other_direct_cost_jpy||0);const gross=(financial?.client_fee_jpy||0)-directCosts;return <section key={project.id}><header><span>{categoryLabel[project.category]||project.category} / {statusLabel[project.status]||project.status}</span><h3>{project.title}</h3></header><div>
         <p>{project.region||"地域未定"} / 募集 {project.roles_needed}名 / 締切 {formatDate(project.application_deadline)} / 応募 {applications.filter(a=>a.project_id===project.id).length}件</p>
         <form action={updateProject} className="dhub-profile-form">
           <input type="hidden" name="project_id" value={project.id}/>
@@ -103,7 +119,22 @@ export default async function Page(){
           <label>安全・未成年対応<textarea name="safeguarding_notes" defaultValue={project.safeguarding_notes}/></label>
           <button className="button button-dark" type="submit">案件条件を更新</button>
         </form>
-      </div></section>)}</div>
+        <div className="dhub-next-card">
+          <span>PROJECT ECONOMICS / ADMIN ONLY</span>
+          <strong>売上 ¥{(financial?.client_fee_jpy||0).toLocaleString()} / 直接費 ¥{directCosts.toLocaleString()} / 粗利 ¥{gross.toLocaleString()}</strong>
+          <form action={updateProjectFinancials} className="dhub-profile-form">
+            <input type="hidden" name="project_id" value={project.id}/>
+            <label>クライアント請求額（円）<input name="client_fee_jpy" type="number" min="0" defaultValue={financial?.client_fee_jpy||0}/></label>
+            <label>メンバー報酬予算（円）<input name="member_compensation_jpy" type="number" min="0" defaultValue={financial?.member_compensation_jpy||0}/></label>
+            <label>交通・宿泊予算（円）<input name="travel_budget_jpy" type="number" min="0" defaultValue={financial?.travel_budget_jpy||0}/></label>
+            <label>その他直接費（円）<input name="other_direct_cost_jpy" type="number" min="0" defaultValue={financial?.other_direct_cost_jpy||0}/></label>
+            <label>入金状態<select name="payment_status" defaultValue={financial?.payment_status||"unbilled"}><option value="unbilled">未請求</option><option value="invoiced">請求済み</option><option value="partially_paid">一部入金</option><option value="paid">入金済み</option><option value="refunded">返金済み</option><option value="cancelled">キャンセル</option></select></label>
+            <label>請求・決済参照<input name="invoice_reference" defaultValue={financial?.invoice_reference||""}/></label>
+            <label>内部収支メモ<textarea name="internal_notes" defaultValue={financial?.internal_notes||""}/></label>
+            <button className="button button-member" type="submit">収支を更新</button>
+          </form>
+        </div>
+      </div></section>})}</div>
     </section>
 
     <section className="dhub-member-section section-pad">
