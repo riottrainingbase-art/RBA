@@ -49,6 +49,7 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
   const [official,setOfficial]=useState<OfficialMemory[]>([]);
   const [officialCount,setOfficialCount]=useState(0);
   const [hasVerifiedWorld,setHasVerifiedWorld]=useState(false);
+  const [verifiedWorldCountry,setVerifiedWorldCountry]=useState<string|null>(null);
   const [loading,setLoading]=useState(true);
   const [saving,setSaving]=useState(false);
   const [status,setStatus]=useState("");
@@ -81,13 +82,18 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
       if(customQ.data)setConfig({...defaultPlayerCustomization,...customQ.data} as PlayerCustomization);
       if(!memoryQ.error)setOfficial((memoryQ.data||[]) as unknown as OfficialMemory[]);
       if(!officialCountQ.error)setOfficialCount(officialCountQ.count||0);
-      if(!worldQ.error)setHasVerifiedWorld((worldQ.data||[]).length>0);
+      if(!worldQ.error){
+        const worldRows=(worldQ.data||[]) as unknown as Array<{events:{country?:string|null}|null}>;
+        setHasVerifiedWorld(worldRows.length>0);
+        setVerifiedWorldCountry(worldRows[0]?.events?.country||null);
+      }
       setLoading(false);
     })();
     return()=>{active=false;};
   },[supabase,userId]);
 
-  const foreignCountries=Array.from(new Set(official.map(row=>row.events?.country).filter((country):country is string=>Boolean(country&&country!=="JP"))));
+  const visibleForeignCountries=Array.from(new Set(official.map(row=>row.events?.country).filter((country):country is string=>Boolean(country&&country!=="JP"))));
+  const worldCountries=visibleForeignCountries.length?visibleForeignCountries:(verifiedWorldCountry?[verifiedWorldCountry]:[]);
   const hasWorld=hasVerifiedWorld;
 
   const unlocks={
@@ -122,7 +128,7 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
       <div><p>MY PLAYER / MY HOME COURT</p><h3>経験が増えると、自分のコートも育つ。</h3><span>見た目は自分で選ぶ。限定アイテムはRBAでの実際の経験から解放されます。</span></div>
       <div className={styles.memory}>
         <span>RBA VERIFIED</span><strong>{officialCount}</strong><small>OFFICIAL MEMORIES</small>
-        {hasWorld?<b>WORLD / {foreignCountries.join(" · ")}</b>:null}
+        {hasWorld?<b>{worldCountries.length?`WORLD / ${worldCountries.join(" · ")}`:"WORLD MEMORY UNLOCKED"}</b>:null}
       </div>
     </div>
 
