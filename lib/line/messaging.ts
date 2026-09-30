@@ -14,7 +14,14 @@ export type LineSource = {
   roomId?: string;
 };
 
-export type LineTextMessageEvent = {
+export type LineWebhookEventBase = {
+  webhookEventId?: string;
+  deliveryContext?: {
+    isRedelivery?: boolean;
+  };
+};
+
+export type LineTextMessageEvent = LineWebhookEventBase & {
   type: "message";
   replyToken: string;
   source?: LineSource;
@@ -25,7 +32,7 @@ export type LineTextMessageEvent = {
   };
 };
 
-export type LineGenericMessageEvent = {
+export type LineGenericMessageEvent = LineWebhookEventBase & {
   type: "message";
   replyToken: string;
   source?: LineSource;
@@ -35,7 +42,7 @@ export type LineGenericMessageEvent = {
   };
 };
 
-export type LineFollowEvent = {
+export type LineFollowEvent = LineWebhookEventBase & {
   type: "follow";
   replyToken: string;
   source?: LineSource;
@@ -62,6 +69,12 @@ export function verifyLineSignature(
 
   if (actualBuffer.length !== expectedBuffer.length) return false;
   return timingSafeEqual(actualBuffer, expectedBuffer);
+}
+
+export function getLineWebhookEventId(value: unknown): string | null {
+  if (!value || typeof value !== "object") return null;
+  const id = (value as LineWebhookEventBase).webhookEventId;
+  return typeof id === "string" && id.length > 0 ? id : null;
 }
 
 export function isLineTextMessageEvent(value: unknown): value is LineTextMessageEvent {
