@@ -246,3 +246,179 @@ export async function updateProjectFinancials(formData:FormData){
   if(error)throw new Error(error.message);
   revalidatePath("/ja/d-hub/coaches/member/projects/admin");
 }
+
+
+export async function updateClientRequestStatus(formData:FormData){
+  const id=String(formData.get("request_id")||"");
+  const status=String(formData.get("status")||"new");
+  if(!z.string().uuid().safeParse(id).success)throw new Error("Invalid request");
+  if(!["new","reviewing","qualified","proposal","converted","declined","archived"].includes(status))throw new Error("Invalid request status");
+  const supabase=await createClient();
+  const {data:isAdmin}=await supabase.rpc("is_dhub_project_admin");
+  if(!isAdmin)throw new Error("Admin access required");
+  const {error}=await supabase.from("dhub_client_requests").update({status,updated_at:new Date().toISOString()}).eq("id",id);
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
+
+export async function convertClientRequest(formData:FormData){
+  const requestId=String(formData.get("request_id")||"");
+  const slug=String(formData.get("slug")||"").trim();
+  const title=String(formData.get("title")||"").trim();
+  if(!z.string().uuid().safeParse(requestId).success)throw new Error("Invalid request");
+  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))throw new Error("slugを確認してください");
+  if(title.length<3||title.length>160)throw new Error("案件名を確認してください");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_admin_convert_client_request",{p_request_id:requestId,p_slug:slug,p_title:title});
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
+
+export async function inviteProjectMember(formData:FormData){
+  const projectId=String(formData.get("project_id")||"");
+  const userId=String(formData.get("user_id")||"");
+  const roleTitle=String(formData.get("role_title")||"").trim().slice(0,200);
+  const message=String(formData.get("message")||"").trim().slice(0,2000);
+  const expiresAt=toIso(String(formData.get("expires_at")||""));
+  if(!z.string().uuid().safeParse(projectId).success||!z.string().uuid().safeParse(userId).success)throw new Error("Invalid project/member");
+  if(!roleTitle)throw new Error("役割を入力してください");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_admin_invite_member",{p_project_id:projectId,p_user_id:userId,p_role_title:roleTitle,p_message:message,p_expires_at:expiresAt});
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
+
+export async function respondProjectInvite(formData:FormData){
+  const inviteId=String(formData.get("invite_id")||"");
+  const response=String(formData.get("response")||"");
+  if(!z.string().uuid().safeParse(inviteId).success)throw new Error("Invalid invite");
+  if(!["accepted","declined"].includes(response))throw new Error("Invalid response");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_respond_project_invite",{p_invite_id:inviteId,p_response:response});
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects");
+}
+
+export async function offerProjectAssignment(formData:FormData){
+  const projectId=String(formData.get("project_id")||"");
+  const userId=String(formData.get("user_id")||"");
+  const applicationId=String(formData.get("application_id")||"");
+  const roleTitle=String(formData.get("role_title")||"").trim().slice(0,200);
+  const scope=String(formData.get("scope_of_work")||"").trim().slice(0,5000);
+  const compensation=toMoney(formData.get("compensation_jpy"))??0;
+  const expenseTerms=String(formData.get("expense_terms")||"").trim().slice(0,2000);
+  const expectedHoursRaw=String(formData.get("expected_hours")||"").trim();
+  const expectedHours=expectedHoursRaw?Number(expectedHoursRaw):null;
+  const paymentDueAt=toIso(String(formData.get("payment_due_at")||""));
+  const cancellationTerms=String(formData.get("cancellation_terms")||"").trim().slice(0,2000);
+  if(!z.string().uuid().safeParse(projectId).success||!z.string().uuid().safeParse(userId).success)throw new Error("Invalid assignment");
+  if(applicationId&&!z.string().uuid().safeParse(applicationId).success)throw new Error("Invalid application");
+  if(!roleTitle||!scope)throw new Error("役割と業務範囲を入力してください");
+  if(expectedHours!==null&&(!Number.isFinite(expectedHours)||expectedHours<0))throw new Error("予定時間を確認してください");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_admin_offer_assignment",{
+    p_project_id:projectId,p_user_id:userId,p_application_id:applicationId||null,p_role_title:roleTitle,
+    p_scope_of_work:scope,p_compensation_jpy:compensation,p_expense_terms:expenseTerms,
+    p_expected_hours:expectedHours,p_payment_due_at:paymentDueAt,p_cancellation_terms:cancellationTerms
+  });
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
+
+export async function respondAssignment(formData:FormData){
+  const assignmentId=String(formData.get("assignment_id")||"");
+  const response=String(formData.get("response")||"");
+  if(!z.string().uuid().safeParse(assignmentId).success)throw new Error("Invalid assignment");
+  if(!["accepted","declined"].includes(response))throw new Error("Invalid response");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_respond_assignment",{p_assignment_id:assignmentId,p_response:response});
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects");
+}
+
+export async function updateAssignmentSafety(formData:FormData){
+  const assignmentId=String(formData.get("assignment_id")||"");
+  if(!z.string().uuid().safeParse(assignmentId).success)throw new Error("Invalid assignment");
+  const checked=(name:string)=>formData.get(name)==="on";
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_admin_update_safety_check",{
+    p_assignment_id:assignmentId,
+    p_minors_involved:checked("minors_involved"),
+    p_identity_verified:checked("identity_verified"),
+    p_credentials_verified:checked("credentials_verified"),
+    p_supervision_confirmed:checked("supervision_confirmed"),
+    p_emergency_process_confirmed:checked("emergency_process_confirmed"),
+    p_media_policy_confirmed:checked("media_policy_confirmed"),
+    p_transport_responsibility_confirmed:checked("transport_responsibility_confirmed"),
+    p_overnight_responsibility_confirmed:checked("overnight_responsibility_confirmed"),
+    p_medical_escalation_confirmed:checked("medical_escalation_confirmed"),
+    p_communication_boundaries_confirmed:checked("communication_boundaries_confirmed"),
+    p_notes:String(formData.get("notes")||"").trim().slice(0,4000),
+  });
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
+
+export async function markAssignmentReady(formData:FormData){
+  const assignmentId=String(formData.get("assignment_id")||"");
+  if(!z.string().uuid().safeParse(assignmentId).success)throw new Error("Invalid assignment");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_admin_mark_assignment_ready",{p_assignment_id:assignmentId});
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+  revalidatePath("/ja/d-hub/coaches/member/projects");
+}
+
+export async function setAssignmentStatus(formData:FormData){
+  const assignmentId=String(formData.get("assignment_id")||"");
+  const status=String(formData.get("status")||"");
+  if(!z.string().uuid().safeParse(assignmentId).success)throw new Error("Invalid assignment");
+  if(!["active","completed","cancelled"].includes(status))throw new Error("Invalid status");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_admin_set_assignment_status",{p_assignment_id:assignmentId,p_status:status});
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+  revalidatePath("/ja/d-hub/coaches/member/projects");
+}
+
+export async function submitMemberProjectReport(formData:FormData){
+  const assignmentId=String(formData.get("assignment_id")||"");
+  const hoursRaw=String(formData.get("actual_hours")||"").trim();
+  const hours=hoursRaw?Number(hoursRaw):null;
+  if(!z.string().uuid().safeParse(assignmentId).success)throw new Error("Invalid assignment");
+  if(hours!==null&&(!Number.isFinite(hours)||hours<0))throw new Error("実働時間を確認してください");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_submit_member_project_report",{
+    p_assignment_id:assignmentId,p_actual_hours:hours,
+    p_delivery_summary:String(formData.get("delivery_summary")||"").trim().slice(0,5000),
+    p_reflection:String(formData.get("reflection")||"").trim().slice(0,5000),
+    p_issues:String(formData.get("issues")||"").trim().slice(0,5000),
+    p_next_step:String(formData.get("next_step")||"").trim().slice(0,3000),
+  });
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects");
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
+
+export async function closeProject(formData:FormData){
+  const projectId=String(formData.get("project_id")||"");
+  if(!z.string().uuid().safeParse(projectId).success)throw new Error("Invalid project");
+  const participantRaw=String(formData.get("participant_count")||"").trim();
+  const participantCount=participantRaw?Number(participantRaw):null;
+  const incidentCount=Number(formData.get("incident_count")||0);
+  if(participantCount!==null&&(!Number.isInteger(participantCount)||participantCount<0))throw new Error("参加人数を確認してください");
+  if(!Number.isInteger(incidentCount)||incidentCount<0)throw new Error("インシデント件数を確認してください");
+  const supabase=await createClient();
+  const {error}=await supabase.rpc("dhub_admin_close_project",{
+    p_project_id:projectId,p_participant_count:participantCount,
+    p_client_confirmed:formData.get("client_confirmed")==="on",
+    p_client_feedback:String(formData.get("client_feedback")||"").trim().slice(0,5000),
+    p_incident_count:incidentCount,
+    p_safeguarding_incident:formData.get("safeguarding_incident")==="on",
+    p_delivery_summary:String(formData.get("delivery_summary")||"").trim().slice(0,5000),
+    p_next_opportunity:String(formData.get("next_opportunity")||"").trim().slice(0,3000),
+  });
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+  revalidatePath("/ja/d-hub/coaches/member/projects");
+}
