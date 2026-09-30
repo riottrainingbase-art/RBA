@@ -18,7 +18,8 @@
     "test:line": "node --test tests/line-*.test.ts",
     "line:rich-menu": "node scripts/line/setup-rich-menu.mjs",
     "line:rich-menu:image": "node scripts/line/setup-rich-menu.mjs --image-only",
-    "line:rich-menu:dry-run": "node scripts/line/setup-rich-menu.mjs --dry-run"
+    "line:rich-menu:dry-run": "node scripts/line/setup-rich-menu.mjs --dry-run",
+    "line:preflight": "node scripts/line/preflight.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
