@@ -1,5 +1,7 @@
 import { memberAuthDestination } from "@/lib/member-auth-redirect";
 import { paymentEnquiryUrl } from "@/lib/payment-enquiry";
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 import { ArrowLeft, Mail, MessageCircle } from "lucide-react";
 import { MemberLogin } from "./member-login";
 import type { Locale } from "./site-frame";
@@ -13,17 +15,26 @@ const copy = {
 
 // Enable only after the SMTP sender, delivery and callback have been verified.
 // This gate does not change Supabase authentication or existing member sessions.
-export function MemberLoginEntry({ locale, authError, next, source }: {
+export async function MemberLoginEntry({ locale, authError, next, source }: {
   locale: Locale;
   next?: string;
   source?: string;
   authError?: boolean | "browser" | "expired";
 }) {
+  // Returning members should never be asked to sign in again while their session is still valid.
+  const destination=memberAuthDestination(next||null);
+  try {
+    const supabase=await createClient();
+    const {data:{user}}=await supabase.auth.getUser();
+    if(user) redirect(destination);
+  } catch {
+    // If session lookup fails, keep the normal sign-in/recovery experience available.
+  }
+
   if (process.env.RBA_AUTH_EMAIL_READY === "true") {
     return <MemberLogin locale={locale} authError={authError} next={next} source={source} />;
   }
   const c = copy[locale];
-  const destination=memberAuthDestination(next||null);
   const paymentOption=destination.startsWith("/api/commerce/checkout/")?destination.split("/").pop()?.split("?")[0]:null;
   const prefix = locale === "en" ? "" : `/${locale}`;
   return <main className="member-login-shell">
