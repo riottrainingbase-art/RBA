@@ -17,8 +17,10 @@ import {
 } from "lucide-react";
 import styles from "./homecourt-player-journey.module.css";
 import {computePlayerJourney,journeyTier,PLAYER_JOURNEY_LEVEL_NAMES} from "@/lib/homecourt-game";
+import {HomecourtPlayerStudio} from "./homecourt-player-studio";
 
 type Props={
+  userId:string;
   displayName:string;
   historyCount:number;
   savedCount:number;
@@ -29,6 +31,7 @@ type Props={
 };
 
 export function HomecourtPlayerJourney({
+  userId,
   displayName,
   historyCount,
   savedCount,
@@ -90,6 +93,18 @@ export function HomecourtPlayerJourney({
       <article><span>DISCOVERY</span><strong>{savedCount}</strong><small>SAVED</small></article>
       <article><span>MOMENTUM</span><strong>{"●".repeat(momentum)}{"○".repeat(3-momentum)}</strong><small>ACTIVITY TYPES</small></article>
     </div>
+
+    <HomecourtPlayerStudio
+      userId={userId}
+      name={displayName}
+      level={level}
+      historyCount={historyCount}
+      savedCount={savedCount}
+      journalViews={journalViews}
+      teamLinked={teamLinked}
+      hasNextEvent={hasNextEvent}
+      seasonClear={completedQuests===quests.length}
+    />
 
     <section className={styles.nextMission}>
       <div>
