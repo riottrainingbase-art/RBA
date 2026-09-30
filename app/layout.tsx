@@ -31,9 +31,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestLanguage=(await headers()).get("x-rba-lang");
+  const language=requestLanguage==="ja"||requestLanguage==="zh-Hant-TW"||requestLanguage==="ko"?"${requestLanguage}":"en";
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{__html:`(()=>{const p=location.pathname;document.documentElement.lang=p==='/ja'||p.startsWith('/ja/')?'ja':p==='/zh-tw'||p.startsWith('/zh-tw/')?'zh-Hant-TW':p==='/ko'||p.startsWith('/ko/')?'ko':'en'})()`}} /></head>
+    <html lang={language} suppressHydrationWarning>
       <body className="antialiased">
         <Script id="vercel-analytics-bootstrap" strategy="afterInteractive">{`window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}`}</Script>
         <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
