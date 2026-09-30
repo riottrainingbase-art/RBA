@@ -1,0 +1,1 @@
+import type {Metadata} from "next";import {DevelopmentPartnerBeta} from "@/components/development-partner-beta";export const metadata:Metadata={title:"RBA DEVELOPMENT PARTNER β | Riot Basketball Academy",description:"地域のクラブ・団体と、指導者教育、育成機会、交流をつなぐRBA DEVELOPMENT PARTNER β構想。"};export default function Page(){return <DevelopmentPartnerBeta/>}
