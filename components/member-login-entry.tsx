@@ -23,13 +23,15 @@ export async function MemberLoginEntry({ locale, authError, next, source }: {
 }) {
   // Returning members should never be asked to sign in again while their session is still valid.
   const destination=memberAuthDestination(next||null);
+  let hasSession=false;
   try {
     const supabase=await createClient();
     const {data:{user}}=await supabase.auth.getUser();
-    if(user) redirect(destination);
+    hasSession=Boolean(user);
   } catch {
     // If session lookup fails, keep the normal sign-in/recovery experience available.
   }
+  if(hasSession) redirect(destination);
 
   if (process.env.RBA_AUTH_EMAIL_READY === "true") {
     return <MemberLogin locale={locale} authError={authError} next={next} source={source} />;
