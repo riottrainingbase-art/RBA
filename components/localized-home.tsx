@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ui } from "./ui-copy";
 import { NetworkMaps } from "./network-maps";
 import { ArrowRight, ArrowUpRight, House, MessageCircle, MoveDown, Users } from "lucide-react";
@@ -79,10 +80,10 @@ export function LocalizedHome({locale}:{locale:Locale}){
         <p>知りたいことに近い入口から見てください。記事、活動、指導者向けの学び、参加機会の4つに分けています。</p>
       </div>
       <div className="rba-quick-entry-grid">
-        <a href="/ja/journal/rba-united-yaima-cup-2026"><span>01 / VOICES</span><h3>参加者の声から知る</h3><p>YAIMA CUPで選手・保護者に何が残ったのか。実際の声から活動の雰囲気を知れます。</p><strong>参加者の声を読む<ArrowRight size={16}/></strong></a>
-        <a href="/ja/journal"><span>02 / JOURNAL</span><h3>育成記事から見る</h3><p>ミニバス、U15、出場時間、練習量、チーム選び。気になる悩みから読めます。</p><strong>気になる記事を探す<ArrowRight size={16}/></strong></a>
-        <a href="/ja/d-hub/coaches"><span>03 / COACHES</span><h3>指導者向けの学びを見る</h3><p>D-HUB COACH LAB、実践記事、年間カリキュラム。現場で試せる形にしています。</p><strong>D-HUBを見る<ArrowRight size={16}/></strong></a>
-        <a href="/ja/opportunities"><span>04 / JOIN</span><h3>今参加できる活動を見る</h3><p>クリニック、キャンプ、RBA UNITED、スクール。募集中のものだけ確認できます。</p><strong>募集中を見る<ArrowRight size={16}/></strong></a>
+        <Link href="/ja/journal/rba-united-yaima-cup-2026"><span>01 / VOICES</span><h3>参加者の声から知る</h3><p>YAIMA CUPで選手・保護者に何が残ったのか。実際の声から活動の雰囲気を知れます。</p><strong>参加者の声を読む<ArrowRight size={16}/></strong></Link>
+        <Link href="/ja/journal"><span>02 / JOURNAL</span><h3>育成記事から見る</h3><p>ミニバス、U15、出場時間、練習量、チーム選び。気になる悩みから読めます。</p><strong>気になる記事を探す<ArrowRight size={16}/></strong></Link>
+        <Link href="/ja/d-hub/coaches"><span>03 / COACHES</span><h3>指導者向けの学びを見る</h3><p>D-HUB COACH LAB、実践記事、年間カリキュラム。現場で試せる形にしています。</p><strong>D-HUBを見る<ArrowRight size={16}/></strong></Link>
+        <Link href="/ja/opportunities"><span>04 / JOIN</span><h3>今参加できる活動を見る</h3><p>クリニック、キャンプ、RBA UNITED、スクール。募集中のものだけ確認できます。</p><strong>募集中を見る<ArrowRight size={16}/></strong></Link>
       </div>
     </section>:null}
 
