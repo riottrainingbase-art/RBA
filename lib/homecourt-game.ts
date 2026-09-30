@@ -32,13 +32,14 @@ export function computePlayerJourney(input:PlayerJourneyInput){
   }
   level=Math.min(level,PLAYER_JOURNEY_LEVEL_THRESHOLDS.length);
   const currentFloor=PLAYER_JOURNEY_LEVEL_THRESHOLDS[Math.max(0,level-1)]||0;
-  const nextFloor=PLAYER_JOURNEY_LEVEL_THRESHOLDS[level]||currentFloor+500;
-  const levelProgress=Math.max(0,Math.min(100,Math.round(((xp-currentFloor)/(nextFloor-currentFloor))*100)));
+  const maxLevel=level===PLAYER_JOURNEY_LEVEL_THRESHOLDS.length;
+  const nextFloor=maxLevel?PLAYER_JOURNEY_LEVEL_THRESHOLDS[PLAYER_JOURNEY_LEVEL_THRESHOLDS.length-1]:PLAYER_JOURNEY_LEVEL_THRESHOLDS[level];
+  const levelProgress=maxLevel?100:Math.max(0,Math.min(100,Math.round(((xp-currentFloor)/(nextFloor-currentFloor))*100)));
 
   // Momentum counts different kinds of engagement, never consecutive-day login streaks.
   const momentum=[history>0,saves>0,views>0].filter(Boolean).length;
 
-  return {xp,level,currentFloor,nextFloor,levelProgress,momentum};
+  return {xp,level,currentFloor,nextFloor,levelProgress,momentum,maxLevel};
 }
 
 export function journeyTier(value:number,thresholds:readonly number[]){
