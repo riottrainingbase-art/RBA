@@ -32,9 +32,6 @@ on public.homecourt_player_customization for update to authenticated
 using ((select auth.uid())=user_id)
 with check ((select auth.uid())=user_id);
 
-create index if not exists homecourt_player_customization_updated_at_idx
-on public.homecourt_player_customization(updated_at desc);
-
 create schema if not exists private;
 
 create or replace function private.validate_homecourt_player_customization()
@@ -53,6 +50,11 @@ declare
   v_level int;
   v_official int;
   v_world boolean;
+  v_check_hair boolean;
+  v_check_jersey boolean;
+  v_check_shoe boolean;
+  v_check_accessory boolean;
+  v_check_court boolean;
 begin
   v_uid := (select auth.uid());
   if v_uid is null or v_uid <> new.user_id then raise exception 'not allowed'; end if;
@@ -90,25 +92,31 @@ begin
       and coalesce(e.country,'JP') <> 'JP'
   ) into v_world;
 
-  if new.hair_style='waves' and v_level < 2 then raise exception 'item locked'; end if;
-  if new.hair_style='curly' and v_level < 3 then raise exception 'item locked'; end if;
-  if new.hair_style='braids' and v_level < 4 then raise exception 'item locked'; end if;
-  if new.hair_style='long' and v_level < 5 then raise exception 'item locked'; end if;
-  if new.jersey_style='rba-white' and v_level < 2 then raise exception 'item locked'; end if;
-  if new.jersey_style='rba-signal' and v_level < 3 then raise exception 'item locked'; end if;
-  if new.jersey_style='street-dark' and v_level < 4 then raise exception 'item locked'; end if;
-  if new.shoe_style='high-top' and v_level < 2 then raise exception 'item locked'; end if;
-  if new.shoe_style='low-top' and v_level < 3 then raise exception 'item locked'; end if;
-  if new.shoe_style='court-pro' and v_official < 1 then raise exception 'item locked'; end if;
-  if new.shoe_style='global' and not v_world then raise exception 'item locked'; end if;
-  if new.accessory='wristband' and v_level < 2 then raise exception 'item locked'; end if;
-  if new.accessory='sleeve' and v_level < 3 then raise exception 'item locked'; end if;
-  if new.accessory='headband' and v_level < 4 then raise exception 'item locked'; end if;
-  if new.accessory='towel' and v_official < 1 then raise exception 'item locked'; end if;
-  if new.court_theme='night' and v_level < 2 then raise exception 'item locked'; end if;
-  if new.court_theme='street' and v_level < 3 then raise exception 'item locked'; end if;
-  if new.court_theme='arena' and v_official < 3 then raise exception 'item locked'; end if;
-  if new.court_theme='global' and not v_world then raise exception 'item locked'; end if;
+  v_check_hair := tg_op='INSERT' or new.hair_style is distinct from old.hair_style;
+  v_check_jersey := tg_op='INSERT' or new.jersey_style is distinct from old.jersey_style;
+  v_check_shoe := tg_op='INSERT' or new.shoe_style is distinct from old.shoe_style;
+  v_check_accessory := tg_op='INSERT' or new.accessory is distinct from old.accessory;
+  v_check_court := tg_op='INSERT' or new.court_theme is distinct from old.court_theme;
+
+  if v_check_hair and new.hair_style='waves' and v_level < 2 then raise exception 'item locked'; end if;
+  if v_check_hair and new.hair_style='curly' and v_level < 3 then raise exception 'item locked'; end if;
+  if v_check_hair and new.hair_style='braids' and v_level < 4 then raise exception 'item locked'; end if;
+  if v_check_hair and new.hair_style='long' and v_level < 5 then raise exception 'item locked'; end if;
+  if v_check_jersey and new.jersey_style='rba-white' and v_level < 2 then raise exception 'item locked'; end if;
+  if v_check_jersey and new.jersey_style='rba-signal' and v_level < 3 then raise exception 'item locked'; end if;
+  if v_check_jersey and new.jersey_style='street-dark' and v_level < 4 then raise exception 'item locked'; end if;
+  if v_check_shoe and new.shoe_style='high-top' and v_level < 2 then raise exception 'item locked'; end if;
+  if v_check_shoe and new.shoe_style='low-top' and v_level < 3 then raise exception 'item locked'; end if;
+  if v_check_shoe and new.shoe_style='court-pro' and v_official < 1 then raise exception 'item locked'; end if;
+  if v_check_shoe and new.shoe_style='global' and not v_world then raise exception 'item locked'; end if;
+  if v_check_accessory and new.accessory='wristband' and v_level < 2 then raise exception 'item locked'; end if;
+  if v_check_accessory and new.accessory='sleeve' and v_level < 3 then raise exception 'item locked'; end if;
+  if v_check_accessory and new.accessory='headband' and v_level < 4 then raise exception 'item locked'; end if;
+  if v_check_accessory and new.accessory='towel' and v_official < 1 then raise exception 'item locked'; end if;
+  if v_check_court and new.court_theme='night' and v_level < 2 then raise exception 'item locked'; end if;
+  if v_check_court and new.court_theme='street' and v_level < 3 then raise exception 'item locked'; end if;
+  if v_check_court and new.court_theme='arena' and v_official < 3 then raise exception 'item locked'; end if;
+  if v_check_court and new.court_theme='global' and not v_world then raise exception 'item locked'; end if;
   return new;
 end;
 $$;
