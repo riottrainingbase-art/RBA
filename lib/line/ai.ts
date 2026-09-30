@@ -76,7 +76,8 @@ export async function generateRbaLineReply(userText: string): Promise<string> {
       model,
       instructions: RBA_SYSTEM_PROMPT,
       input,
-      max_output_tokens: 500,\n      store: false,
+      max_output_tokens: 500,
+      store: false,
     }),
     cache: "no-store",
   });
