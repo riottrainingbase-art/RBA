@@ -17,8 +17,11 @@ import {
 } from "lucide-react";
 import styles from "./homecourt-player-journey.module.css";
 import {computePlayerJourney,journeyTier,PLAYER_JOURNEY_LEVEL_NAMES} from "@/lib/homecourt-game";
+import {HomecourtPlayerStudio} from "./homecourt-player-studio";
+import {defaultPlayerCustomization,RbaHomeCourtScene,RbaPlayerAvatar} from "./homecourt-player-avatar";
 
 type Props={
+  userId:string;
   displayName:string;
   historyCount:number;
   savedCount:number;
@@ -29,6 +32,7 @@ type Props={
 };
 
 export function HomecourtPlayerJourney({
+  userId,
   displayName,
   historyCount,
   savedCount,
@@ -90,6 +94,18 @@ export function HomecourtPlayerJourney({
       <article><span>DISCOVERY</span><strong>{savedCount}</strong><small>SAVED</small></article>
       <article><span>MOMENTUM</span><strong>{"●".repeat(momentum)}{"○".repeat(3-momentum)}</strong><small>ACTIVITY TYPES</small></article>
     </div>
+
+    <HomecourtPlayerStudio
+      userId={userId}
+      name={displayName}
+      level={level}
+      historyCount={historyCount}
+      savedCount={savedCount}
+      journalViews={journalViews}
+      teamLinked={teamLinked}
+      hasNextEvent={hasNextEvent}
+      seasonClear={completedQuests===quests.length}
+    />
 
     <section className={styles.nextMission}>
       <div>
@@ -201,11 +217,19 @@ export function HomecourtPlayerJourneyPreview({registrationUrl}:{registrationUrl
       <span>登録して終わりではなく、経験を残す。QUESTを進める。BADGEを集める。次の挑戦を見つける。</span>
       <a href={registrationUrl} target={registrationUrl.startsWith("http")?"_blank":undefined} rel={registrationUrl.startsWith("http")?"noreferrer":undefined}>PLAYER JOURNEYを始める <ArrowRight/></a>
     </div>
-    <div className={styles.previewCards}>
-      <article><Sparkles/><span>LEVEL</span><strong>経験で上がる</strong><small>能力評価ではなくJourney XP</small></article>
-      <article><Flag/><span>QUEST</span><strong>次にやることが見える</strong><small>自分の順番で進める</small></article>
-      <article><Map/><span>PASSPORT</span><strong>参加経験を集める</strong><small>地域から世界まで</small></article>
-      <article><Medal/><span>BADGES</span><strong>積み重ねを残す</strong><small>公開ランキングなし</small></article>
+    <div className={styles.previewGame}>
+      <div className={styles.previewDemo}>
+        <span>DEMO / YOUR COURT EVOLVES</span>
+        <RbaHomeCourtScene compact config={defaultPlayerCustomization} unlocks={{ballRack:true,notebook:true,scoutBoard:true,teamBanner:false,nextBoard:true,globe:false,trophy:false,officialMemory:false}}>
+          <RbaPlayerAvatar config={defaultPlayerCustomization} name="YOUR PLAYER"/>
+        </RbaHomeCourtScene>
+      </div>
+      <div className={styles.previewCards}>
+        <article><Sparkles/><span>LEVEL</span><strong>経験で上がる</strong><small>能力評価ではなくJourney XP</small></article>
+        <article><Flag/><span>QUEST</span><strong>次にやることが見える</strong><small>自分の順番で進める</small></article>
+        <article><Map/><span>PASSPORT</span><strong>参加経験を集める</strong><small>地域から世界まで</small></article>
+        <article><Medal/><span>BADGES</span><strong>積み重ねを残す</strong><small>公開ランキングなし</small></article>
+      </div>
     </div>
   </section>;
 }

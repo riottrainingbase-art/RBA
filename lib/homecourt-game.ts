@@ -7,7 +7,7 @@ export type PlayerJourneyInput={
   hasNextEvent:boolean;
 };
 
-export const PLAYER_JOURNEY_LEVEL_THRESHOLDS=[0,150,275,400,525,650,750,825] as const;
+export const PLAYER_JOURNEY_LEVEL_THRESHOLDS=[0,125,225,325,425,515,595,660] as const;
 export const PLAYER_JOURNEY_LEVEL_NAMES=["START","EXPLORER","PLAYER","REVIEWER","CHALLENGER","CONNECTOR","WORLD","LEGACY"] as const;
 
 export function computePlayerJourney(input:PlayerJourneyInput){
@@ -22,8 +22,6 @@ export function computePlayerJourney(input:PlayerJourneyInput){
     Math.min(history,8)*35+
     Math.min(saves,5)*25+
     Math.min(views,10)*12+
-    (input.teamLinked?80:0)+
-    (input.hasNextEvent?80:0)+
     (input.setupPercent>=100?50:0);
 
   let level=1;
@@ -36,6 +34,8 @@ export function computePlayerJourney(input:PlayerJourneyInput){
   const nextFloor=maxLevel?PLAYER_JOURNEY_LEVEL_THRESHOLDS[PLAYER_JOURNEY_LEVEL_THRESHOLDS.length-1]:PLAYER_JOURNEY_LEVEL_THRESHOLDS[level];
   const levelProgress=maxLevel?100:Math.max(0,Math.min(100,Math.round(((xp-currentFloor)/(nextFloor-currentFloor))*100)));
 
+  // Team links and future schedules never add XP because they can disappear later.
+  // LEVEL is intentionally monotonic as long as durable history/saves/reads remain.
   // Momentum counts different kinds of engagement, never consecutive-day login streaks.
   const momentum=[history>0,saves>0,views>0].filter(Boolean).length;
 

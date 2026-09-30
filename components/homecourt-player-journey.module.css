@@ -64,6 +64,7 @@
 .previewLead h2{max-width:650px;margin:8px 0 14px;font-size:clamp(32px,5vw,58px);line-height:1.02;letter-spacing:-.045em}
 .previewLead>span{display:block;max-width:620px;color:#b6c0c4;line-height:1.75}
 .previewLead a{margin-top:22px;background:#c6d05a;color:#111}
+.previewGame{display:grid;gap:8px}.previewDemo{position:relative}.previewDemo>span{position:absolute;z-index:8;left:12px;top:12px;padding:6px 8px;background:#111;color:#c6d05a;font-size:8px;font-weight:950;letter-spacing:.12em}
 .previewCards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .previewCards article{padding:20px;background:#171b1c;border:1px solid #32383a}
 .previewCards svg{width:24px;color:#c6d05a}
