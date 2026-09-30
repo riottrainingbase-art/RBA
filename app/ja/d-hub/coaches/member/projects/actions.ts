@@ -168,3 +168,43 @@ export async function updateProjectApplicationStatus(formData:FormData){
   if(error)throw new Error(error.message);
   revalidatePath("/ja/d-hub/coaches/member/projects/admin");
 }
+
+
+export async function updateProject(formData:FormData){
+  const id=String(formData.get("project_id")||"");
+  if(!z.string().uuid().safeParse(id).success)throw new Error("Invalid project");
+
+  const supabase=await createClient();
+  const {data:isAdmin}=await supabase.rpc("is_dhub_project_admin");
+  if(!isAdmin)throw new Error("Admin access required");
+
+  const status=String(formData.get("status")||"draft");
+  const rolesNeeded=Number(formData.get("roles_needed")||1);
+  const compensationMin=toMoney(formData.get("compensation_jpy_min"));
+  const compensationMax=toMoney(formData.get("compensation_jpy_max"));
+  if(!["draft","open","matching","filled","completed","cancelled"].includes(status))throw new Error("Invalid status");
+  if(!Number.isInteger(rolesNeeded)||rolesNeeded<1||rolesNeeded>100)throw new Error("募集人数を確認してください");
+  if(compensationMin!==null&&compensationMax!==null&&compensationMax<compensationMin)throw new Error("報酬上限は下限以上にしてください");
+
+  const {data:before,error:beforeError}=await supabase.from("dhub_projects").select("status").eq("id",id).single();
+  if(beforeError)throw new Error(beforeError.message);
+
+  const {error}=await supabase.from("dhub_projects").update({
+    status,
+    region:String(formData.get("region")||"").trim().slice(0,120),
+    venue:String(formData.get("venue")||"").trim().slice(0,200)||null,
+    application_deadline:toIso(String(formData.get("application_deadline")||"")),
+    roles_needed:rolesNeeded,
+    compensation_type:String(formData.get("compensation_type")||"paid"),
+    compensation_jpy_min:compensationMin,
+    compensation_jpy_max:compensationMax,
+    expense_terms:String(formData.get("expense_terms")||"").trim().slice(0,1500),
+    cancellation_terms:String(formData.get("cancellation_terms")||"").trim().slice(0,1500),
+    safeguarding_notes:String(formData.get("safeguarding_notes")||"").trim().slice(0,2000),
+    published_at:status==="open"&&before?.status!=="open"?new Date().toISOString():undefined,
+    updated_at:new Date().toISOString(),
+  }).eq("id",id);
+  if(error)throw new Error(error.message);
+  revalidatePath("/ja/d-hub/coaches/member/projects");
+  revalidatePath("/ja/d-hub/coaches/member/projects/admin");
+}
