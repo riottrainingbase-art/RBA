@@ -61,6 +61,24 @@ jobs:
       - name: TypeScript
         run: pnpm exec tsc --noEmit --pretty false
 
+      - name: HOME COURT Japanese + iPhone regression audit
+        run: pnpm run audit:homecourt-ja
+
+      - name: Site Japanese regression audit
+        run: pnpm run audit:site-ja
+
+      - name: Member onboarding audit
+        run: node audit/member-experience/onboarding-check.mjs
+
+      - name: Email registration and safe-return audit
+        run: node audit/email-registration/check.mjs
+
+      - name: Member learning access audit
+        run: node audit/member-learning/check.mjs
+
+      - name: Member experience route/render audit
+        run: node audit/member-experience/check.mjs
+
       - name: ESLint changed files
         if: github.event_name == 'pull_request'
         env:
