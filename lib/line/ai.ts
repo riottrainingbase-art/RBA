@@ -1,4 +1,5 @@
 import { COMMON_KNOWLEDGE, routeContext, type ConciergeRoute } from "@/lib/line/knowledge";
+import { currentRbaProgrammeKnowledge } from "@/lib/line/programme-knowledge";
 
 const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 
@@ -68,11 +69,17 @@ export async function generateRiotLineReply(
 
   const model = process.env.OPENAI_MODEL?.trim() || "gpt-6-luna";
   const input = userText.trim().slice(0, 4000);
-  const instructions = [
+  const sections = [
     RIOT_SYSTEM_PROMPT,
     COMMON_KNOWLEDGE,
     routeContext(route),
-  ].join("\n\n---\n\n");
+  ];
+
+  if (route === "rba" || route === "general") {
+    sections.push(currentRbaProgrammeKnowledge());
+  }
+
+  const instructions = sections.join("\n\n---\n\n");
 
   const response = await fetch(OPENAI_RESPONSES_URL, {
     method: "POST",
