@@ -96,3 +96,120 @@
 .opportunity-card-actions .opportunity-save:disabled{cursor:wait;opacity:.55}
 .opportunity-card-actions .opportunity-save:focus-visible{outline:3px solid #9aa51f;outline-offset:2px}
 @media(max-width:560px){.opportunity-card-actions{display:grid;grid-template-columns:1fr}.opportunity-card-actions a,.opportunity-card-actions .opportunity-save{width:100%}}
+
+
+/* ===== RBA iPhone / installed HOME COURT UX ===== */
+.home-screen-card-wrap{width:min(920px,100%);margin:18px auto;padding:0 22px}
+.iphone-home-screen-card{position:relative;width:min(920px,calc(100% - 44px));margin:18px auto;padding:22px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;background:#0c0f11;color:#fff;border:1px solid #394147;box-shadow:0 16px 40px #0002}
+.home-screen-card-wrap .iphone-home-screen-card{width:100%;margin:0}
+.iphone-home-screen-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--signal);color:#111}
+.iphone-home-screen-icon svg{width:25px;height:25px}
+.iphone-home-screen-copy{min-width:0}
+.iphone-home-screen-copy>span{display:block;color:#aeb7bc;font-size:10px;font-weight:900;letter-spacing:.12em}
+.iphone-home-screen-copy>strong{display:block;margin:4px 36px 5px 0;font-size:22px;line-height:1.35}
+.iphone-home-screen-copy>p{margin:0;color:#d3d9dc;font-size:14px;line-height:1.75}
+.iphone-home-screen-copy ol{margin:16px 0 12px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;list-style:none}
+.iphone-home-screen-copy li{min-height:66px;padding:10px;display:flex;align-items:center;gap:8px;background:#171b1e;border:1px solid #343a3e;font-size:12px;line-height:1.55}
+.iphone-home-screen-copy li svg{width:18px;height:18px;flex:none}
+.iphone-home-screen-copy>a{display:inline-flex;min-height:44px;align-items:center;border-bottom:1px solid currentColor;font-size:12px;font-weight:900}
+.iphone-home-screen-close{position:absolute;top:10px;right:10px;width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;color:#fff;cursor:pointer}
+.iphone-home-screen-close svg{width:19px;height:19px}
+.iphone-home-screen-card.is-compact{margin:14px 22px 4px;width:calc(100% - 44px);box-shadow:none}
+@media(max-width:620px){
+ .home-screen-card-wrap{padding:0 18px;margin:14px auto}
+ .iphone-home-screen-card,.iphone-home-screen-card.is-compact{width:calc(100% - 36px);margin:14px 18px;padding:18px;grid-template-columns:42px minmax(0,1fr);gap:12px}
+ .home-screen-card-wrap .iphone-home-screen-card{width:100%;margin:0}
+ .iphone-home-screen-icon{width:42px;height:42px}
+ .iphone-home-screen-copy>strong{font-size:19px}
+ .iphone-home-screen-copy ol{grid-template-columns:1fr}
+ .iphone-home-screen-copy li{min-height:50px}
+}
+
+/* Respect iPhone safe areas when HOME COURT runs from the Home Screen. */
+@supports(padding:max(0px)){
+ .member-app{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+ .member-app>header{padding-top:max(10px,env(safe-area-inset-top))}
+ .member-bottom-nav{height:calc(76px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)}
+ .member-login-shell,.member-onboarding{padding-top:max(24px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom))}
+}
+@media(display-mode:standalone){
+ body{overscroll-behavior-y:none}
+ .member-app>header{background:#0c0f11}
+ .member-bottom-nav{background:#07090a}
+}
+@media(max-width:560px){
+ .member-app>main{padding-bottom:4px}
+ .member-bottom-nav a{min-height:54px;gap:3px;font-size:9px}
+ .member-bottom-nav svg{width:21px;height:21px}
+ .member-next-step,.member-first3,.member-today,.member-section,.member-coach-desk,.member-network,.member-latest{scroll-margin-top:82px}
+ .member-login-copy{min-height:280px;padding:30px 22px}
+ .member-login-copy h1{font-size:36px;line-height:1.25;letter-spacing:0}
+ .member-login-card{min-height:0;margin:14px auto}
+ .member-login-card form,.member-login-sent{padding:24px 20px}
+}
+
+
+/* HOME COURT tap clarity */
+.member-header-account,.member-header-notifications{width:44px;height:44px;display:grid!important;place-items:center;border:1px solid #394147;color:#fff;background:#171b1e}
+.member-header-account svg,.member-header-notifications svg{width:20px;height:20px}
+.member-header-notifications{position:relative}
+.member-header-notifications>i{position:absolute;top:3px;right:3px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;border-radius:999px;background:var(--signal);color:#111;font-size:9px;font-style:normal;font-weight:900;border:2px solid #0c0f11}
+.member-bottom-nav a{touch-action:manipulation}
+@media(max-width:560px){
+ .member-app>header>a span{font-size:10px;letter-spacing:.06em}
+ .member-app>header>div{gap:6px}
+ .member-header-account,.member-header-notifications{border-color:#2c3236;background:#111416}
+ .member-summary{gap:8px}
+ .member-summary article{min-height:118px;padding:16px}
+ .member-summary strong{font-size:21px;line-height:1.25}
+ .member-summary p{line-height:1.55}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+
+/* Progressive disclosure: completed setup should get out of the way. */
+.member-first3.is-complete{display:none}
+.member-login-policy{margin:0;color:#657078;font-size:12px;line-height:1.7}
+.member-login-policy a{text-decoration:underline}
+.member-onboarding .member-terms{background:#f7f8f6}
+
+
+/* Returning members: saved items should be one tap away. */
+.member-saved{margin:18px 22px 0;padding:22px;background:#fff;border:1px solid #d0d4d1}
+.member-saved-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start}
+.member-saved-head span{color:#657078;font-size:10px;font-weight:900;letter-spacing:.12em}
+.member-saved-head h2{margin:4px 0 2px;font-size:26px;line-height:1.35}
+.member-saved-head p{margin:0;color:#657078;font-size:13px}
+.member-saved-head>strong{min-width:42px;height:42px;display:grid;place-items:center;background:#111;color:#fff;font-size:15px}
+.member-saved-list{margin-top:16px;border-top:1px solid #d0d4d1}
+.member-saved-list a{min-height:64px;display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:10px;align-items:center;border-bottom:1px solid #d0d4d1}
+.member-saved-list a>span{font-size:10px;font-weight:900;color:#657078}
+.member-saved-list a>strong{min-width:0;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.member-saved-list svg{width:18px;height:18px}
+@media(max-width:560px){
+ .member-saved{margin:14px 18px 0;padding:18px}
+ .member-saved-list a{grid-template-columns:46px minmax(0,1fr) auto}
+}
+
+
+@media(display-mode:standalone){
+ /* Public JOURNAL / opportunity pages still need a clear one-tap route back into the installed HOME COURT. */
+ .whatsapp-dock{display:none!important}
+ .member-dock{left:12px!important;right:12px!important;bottom:max(10px,env(safe-area-inset-bottom))!important;width:auto!important;justify-content:center!important}
+}
+
+
+.journal-article-tools button[aria-pressed="true"]{background:#111;color:#fff;border-color:#111}
+.journal-article-tools button:disabled{opacity:.55;cursor:wait}
+@media(max-width:390px){
+ .journal-article-tools button{padding:0 8px;font-size:9px}
+}
+
+
+@media(display-mode:standalone) and (max-width:1180px){
+ .site-header{padding-top:max(8px,env(safe-area-inset-top));min-height:calc(68px + env(safe-area-inset-top))}
+ .mobile-site-menu>div{top:calc(68px + env(safe-area-inset-top));max-height:calc(100dvh - 68px - env(safe-area-inset-top))}
+}
