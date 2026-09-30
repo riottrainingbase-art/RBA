@@ -134,6 +134,17 @@ export function HomecourtPlayerStudio({userId,name,level,historyCount,savedCount
       </div>
     </div>
 
+    {official.length?<section className={styles.memoryWall}>
+      <div><p>MEMORY WALL / RBA VERIFIED</p><h4>実際に参加した場所が、ここに残る。</h4><span>自己申告の履歴とは別に、RBAが出席確認した記録だけを表示します。</span></div>
+      <div className={styles.memoryCards}>
+        {official.slice(0,6).map(row=><article key={row.id}>
+          <strong>{row.events?.title||"RBA EXPERIENCE"}</strong>
+          <span>{[row.events?.region,row.events?.country&&row.events.country!=="JP"?row.events.country:null].filter(Boolean).join(" / ")||"RBA"}</span>
+          <small>{row.events?.starts_at?new Date(row.events.starts_at).toLocaleDateString("ja-JP",{year:"numeric",month:"short",day:"numeric"}):"VERIFIED"}</small>
+        </article>)}
+      </div>
+    </section>:null}
+
     <details className={styles.customize}>
       <summary><Sparkles/> MY PLAYERをカスタムする</summary>
       <div className={styles.editor}>
