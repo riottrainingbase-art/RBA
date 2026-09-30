@@ -76,8 +76,8 @@ export type CourtUnlocks={
   nextBoard:boolean; globe:boolean; trophy:boolean; officialMemory:boolean;
 };
 
-export function RbaHomeCourtScene({config,unlocks,children}:{config:PlayerCustomization;unlocks:CourtUnlocks;children:React.ReactNode}){
-  return <div className={styles.court} data-theme={config.court_theme}>
+export function RbaHomeCourtScene({config,unlocks,children,compact=false}:{config:PlayerCustomization;unlocks:CourtUnlocks;children:React.ReactNode;compact?:boolean}){
+  return <div className={styles.court} data-theme={config.court_theme} data-compact={compact?"true":"false"}>
     <div className={styles.wall}>
       <div className={styles.wordmark}>RBA <small>MY HOME COURT</small></div>
       {unlocks.teamBanner?<div className={styles.banner}>TEAM CONNECTION</div>:null}
