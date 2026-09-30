@@ -36,6 +36,9 @@ jobs:
       - name: TypeScript
         run: pnpm exec tsc --noEmit --pretty false
 
+      - name: Build without deployment
+        run: pnpm run build
+
       - name: HOME COURT Japanese audit
         run: pnpm run audit:homecourt-ja
 
