@@ -4,12 +4,12 @@ import { redirect } from "next/navigation";
 import { ArrowLeft, ArrowRight, BriefcaseBusiness, Users } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
-import { createProject, updateProjectApplicationStatus } from "../actions";
+import { createProject, updateProject, updateProjectApplicationStatus } from "../actions";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:{absolute:"D-HUB PROJECT ADMIN | RBA"},robots:{index:false,follow:false}};
 
-type Project={id:string;title:string;slug:string;status:string;category:string;region:string;application_deadline:string|null;roles_needed:number};
+type Project={id:string;title:string;slug:string;status:string;category:string;region:string;venue:string|null;application_deadline:string|null;roles_needed:number;compensation_type:string;compensation_jpy_min:number|null;compensation_jpy_max:number|null;expense_terms:string;cancellation_terms:string;safeguarding_notes:string};
 type Application={
   id:string;project_id:string;user_id:string;proposed_role:string;motivation:string;availability_note:string;member_note:string;admin_note:string;status:string;submitted_at:string;
 };
@@ -28,7 +28,7 @@ export default async function Page(){
   if(!isAdmin)redirect("/ja/d-hub/coaches/member/projects");
 
   const [{data:projectRows},{data:applicationRows},{data:profileRows}]=await Promise.all([
-    supabase.from("dhub_projects").select("id,title,slug,status,category,region,application_deadline,roles_needed").order("created_at",{ascending:false}),
+    supabase.from("dhub_projects").select("id,title,slug,status,category,region,venue,application_deadline,roles_needed,compensation_type,compensation_jpy_min,compensation_jpy_max,expense_terms,cancellation_terms,safeguarding_notes").order("created_at",{ascending:false}),
     supabase.from("dhub_project_applications").select("id,project_id,user_id,proposed_role,motivation,availability_note,member_note,admin_note,status,submitted_at").order("submitted_at",{ascending:false}),
     supabase.from("dhub_project_profiles").select("user_id,display_name,base_region,specialties,age_groups,credentials,languages,travel_ok,open_to_projects"),
   ]);
@@ -80,7 +80,24 @@ export default async function Page(){
 
     <section className="dhub-member-section section-pad">
       <div className="section-head"><div><p className="section-index">PROJECTS</p><h2>{projects.length}件の案件。</h2></div></div>
-      <div className="dhub-curriculum-groups">{projects.map(project=><section key={project.id}><header><span>{categoryLabel[project.category]||project.category} / {statusLabel[project.status]||project.status}</span><h3>{project.title}</h3></header><div><p>{project.region||"地域未定"} / 募集 {project.roles_needed}名 / 締切 {formatDate(project.application_deadline)}</p><p>応募 {applications.filter(a=>a.project_id===project.id).length}件</p></div></section>)}</div>
+      <div className="dhub-curriculum-groups">{projects.map(project=><section key={project.id}><header><span>{categoryLabel[project.category]||project.category} / {statusLabel[project.status]||project.status}</span><h3>{project.title}</h3></header><div>
+        <p>{project.region||"地域未定"} / 募集 {project.roles_needed}名 / 締切 {formatDate(project.application_deadline)} / 応募 {applications.filter(a=>a.project_id===project.id).length}件</p>
+        <form action={updateProject} className="dhub-profile-form">
+          <input type="hidden" name="project_id" value={project.id}/>
+          <label>状態<select name="status" defaultValue={project.status}><option value="draft">DRAFT</option><option value="open">OPEN</option><option value="matching">MATCHING</option><option value="filled">FILLED</option><option value="completed">COMPLETED</option><option value="cancelled">CANCELLED</option></select></label>
+          <label>地域<input name="region" defaultValue={project.region}/></label>
+          <label>会場<input name="venue" defaultValue={project.venue||""}/></label>
+          <label>応募締切<input name="application_deadline" type="datetime-local" defaultValue={project.application_deadline?new Date(project.application_deadline).toISOString().slice(0,16):""}/></label>
+          <label>募集人数<input name="roles_needed" type="number" min="1" max="100" defaultValue={project.roles_needed}/></label>
+          <label>報酬種別<select name="compensation_type" defaultValue={project.compensation_type}><option value="paid">有償</option><option value="expenses_only">実費支給のみ</option><option value="volunteer">無償協力</option></select></label>
+          <label>報酬下限（円）<input name="compensation_jpy_min" type="number" min="0" defaultValue={project.compensation_jpy_min??""}/></label>
+          <label>報酬上限（円）<input name="compensation_jpy_max" type="number" min="0" defaultValue={project.compensation_jpy_max??""}/></label>
+          <label>交通・宿泊等<textarea name="expense_terms" defaultValue={project.expense_terms}/></label>
+          <label>キャンセル条件<textarea name="cancellation_terms" defaultValue={project.cancellation_terms}/></label>
+          <label>安全・未成年対応<textarea name="safeguarding_notes" defaultValue={project.safeguarding_notes}/></label>
+          <button className="button button-dark" type="submit">案件条件を更新</button>
+        </form>
+      </div></section>)}</div>
     </section>
 
     <section className="dhub-member-section section-pad">
