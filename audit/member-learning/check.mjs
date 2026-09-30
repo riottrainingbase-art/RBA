@@ -28,9 +28,10 @@ let records=[],dbError=null,user={id:'test-user'},bodyError=null;
 const secret='TEST_ONLY_PRIVATE_BODY';
 const testBody={sections:[{title:'Test section',paragraphs:[secret]}],action:'Test action',questions:['Test question']};
 const bodyQuery={select:()=>bodyQuery,eq:()=>bodyQuery,maybeSingle:async()=>({data:testBody,error:bodyError})};
+const profileQuery={select:()=>profileQuery,eq:(key,value)=>{assert.equal(key,'id');assert.equal(value,'test-user');return profileQuery;},maybeSingle:async()=>({data:{role:'parent'},error:null})};
 const query={select:()=>query,eq:(key,value)=>{if(key==='user_id')assert.equal(value,'test-user');return query;},then:resolve=>resolve({data:records,error:dbError})};
 const Page=load('app/ja/my-homecourt/app/learn/[[...slug]]/page.tsx',{
- '@/lib/supabase/server':{createClient:async()=>({auth:{getUser:async()=>({data:{user}})},from:table=>{if(table==='member_article_bodies')return bodyQuery;assert.equal(table,'subscriptions');return query;}})},
+ '@/lib/supabase/server':{createClient:async()=>({auth:{getUser:async()=>({data:{user}})},from:table=>{if(table==='member_article_bodies')return bodyQuery;if(table==='profiles')return profileQuery;assert.equal(table,'subscriptions');return query;}})},
  '@/lib/member-articles':articles,
  'zod':{z},
  '@/lib/member-article-access':{canReadMemberArticles},
