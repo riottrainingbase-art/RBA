@@ -147,3 +147,22 @@
  .member-login-card{min-height:0;margin:14px auto}
  .member-login-card form,.member-login-sent{padding:24px 20px}
 }
+
+
+/* HOME COURT tap clarity */
+.member-header-account{width:44px;height:44px;display:grid!important;place-items:center;border:1px solid #394147;color:#fff;background:#171b1e}
+.member-header-account svg{width:20px;height:20px}
+.member-bottom-nav a{touch-action:manipulation}
+@media(max-width:560px){
+ .member-app>header>a span{font-size:10px;letter-spacing:.06em}
+ .member-app>header>div{gap:6px}
+ .member-header-account{border-color:#2c3236;background:#111416}
+ .member-summary{gap:8px}
+ .member-summary article{min-height:118px;padding:16px}
+ .member-summary strong{font-size:21px;line-height:1.25}
+ .member-summary p{line-height:1.55}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
