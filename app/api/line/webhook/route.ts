@@ -1,14 +1,67 @@
-import { NextResponse } from "next/server";
-import { generateRbaLineReply } from "@/lib/line/ai";
+import { after, NextResponse } from "next/server";
+import { generateRiotLineReply } from "@/lib/line/ai";
+import { inferConciergeRoute, isMenuRequest } from "@/lib/line/intents";
+import { OFFICIAL_LINKS } from "@/lib/line/knowledge";
 import {
+  isLineFollowEvent,
+  isLineMessageEvent,
   isLineTextMessageEvent,
   replyToLine,
   type LineWebhookBody,
+  type QuickReplyItem,
   verifyLineSignature,
 } from "@/lib/line/messaging";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 30;
+
+const MENU_QUICK_REPLIES: QuickReplyItem[] = [
+  { label: "RTB｜パーソナル", text: "RTBのパーソナルトレーニングについて相談したい" },
+  { label: "RBA｜バスケ", text: "RBAのバスケットボール活動について知りたい" },
+  { label: "RBA｜指導者", text: "RBAの指導者向け活動について知りたい" },
+  { label: "スタッフ相談", text: "スタッフに確認してほしいことがあります" },
+];
+
+const WELCOME_TEXT = `お問い合わせありがとうございます。
+
+このLINEは、
+🏋️ Riot Training Base（RTB）
+🏀 Riot Basketball Academy（RBA）
+の共通窓口です。
+
+RTB：パーソナル／S&C／筋力・ウエイトトレーニング
+RBA：U12・U15育成／クリニック／キャンプ／指導者教育／交流
+
+相談内容をそのまま文章で送ってください。内容に合わせてご案内します。`;
+
+const AMBIGUOUS_TEXT = `ありがとうございます。
+どちらについてのお問い合わせでしょうか？
+
+🏋️ RTB：パーソナル・S&C・トレーニング
+🏀 RBA：バスケットボールの育成・クリニック・キャンプ等`;
+
+const STAFF_TEXT = `こちらはスタッフ確認が必要な内容です。
+
+このトークに、
+・RTB / RBA どちらについてか
+・確認したい内容
+・必要であればお名前
+を、必要な範囲だけ送ってください。
+
+カード番号、パスワード、医療記録などの機密情報は送らないでください。`;
+
+const NON_TEXT_TEXT = `ありがとうございます。
+現在の自動案内はテキストを中心に対応しています。
+
+画像やファイルについて確認が必要な場合は、何を確認してほしいかを文章でも一言添えてください。`;
+
+const FALLBACK_TEXT = `現在、自動案内を一時的に利用できません。
+
+RTB：${OFFICIAL_LINKS.rtbLinktree}
+RBA：${OFFICIAL_LINKS.rbaWebsite}
+
+お急ぎの場合は、このトークに要件を残していただくか、${OFFICIAL_LINKS.contactEmail} までご連絡ください。`;
 
 function configurationState() {
   return {
@@ -19,18 +72,73 @@ function configurationState() {
   };
 }
 
+async function processEvent(event: unknown) {
+  if (isLineFollowEvent(event)) {
+    await replyToLine(event.replyToken, WELCOME_TEXT, MENU_QUICK_REPLIES);
+    return;
+  }
+
+  if (!isLineMessageEvent(event)) return;
+
+  if (!isLineTextMessageEvent(event)) {
+    await replyToLine(event.replyToken, NON_TEXT_TEXT, MENU_QUICK_REPLIES);
+    return;
+  }
+
+  const userText = event.message.text.trim();
+
+  if (isMenuRequest(userText)) {
+    await replyToLine(event.replyToken, WELCOME_TEXT, MENU_QUICK_REPLIES);
+    return;
+  }
+
+  const route = inferConciergeRoute(userText);
+
+  if (route === "staff") {
+    await replyToLine(event.replyToken, STAFF_TEXT, MENU_QUICK_REPLIES);
+    return;
+  }
+
+  if (route === "ambiguous") {
+    await replyToLine(event.replyToken, AMBIGUOUS_TEXT, MENU_QUICK_REPLIES);
+    return;
+  }
+
+  try {
+    const reply = await generateRiotLineReply(userText, route);
+    await replyToLine(event.replyToken, reply, MENU_QUICK_REPLIES);
+  } catch (error) {
+    console.error("[line-webhook] message processing failed", error);
+
+    try {
+      await replyToLine(event.replyToken, FALLBACK_TEXT, MENU_QUICK_REPLIES);
+    } catch (fallbackError) {
+      console.error("[line-webhook] fallback reply failed", fallbackError);
+    }
+  }
+}
+
+async function processEvents(events: unknown[]) {
+  await Promise.allSettled(events.map((event) => processEvent(event)));
+}
+
 export async function GET() {
   const configured = configurationState();
 
   return NextResponse.json(
     {
       ok: true,
-      service: "RBA LINE AI webhook",
+      service: "RIOT LINE concierge (RTB + RBA)",
+      version: "2",
       configured,
       ready:
         configured.lineChannelSecret &&
         configured.lineChannelAccessToken &&
         configured.openAiApiKey,
+      privacy: {
+        conversationStorage: false,
+        lineUserIdStorage: false,
+      },
     },
     {
       headers: {
@@ -48,6 +156,12 @@ export async function POST(request: Request) {
   }
 
   const rawBody = await request.text();
+
+  if (rawBody.length > 512_000) {
+    console.warn("[line-webhook] rejected oversized request");
+    return NextResponse.json({ ok: false }, { status: 413 });
+  }
+
   const signature = request.headers.get("x-line-signature");
 
   if (!verifyLineSignature(rawBody, signature, channelSecret)) {
@@ -69,28 +183,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const jobs = events
-    .filter(isLineTextMessageEvent)
-    .map(async (event) => {
-      try {
-        const reply = await generateRbaLineReply(event.message.text);
-        await replyToLine(event.replyToken, reply);
-      } catch (error) {
-        console.error("[line-webhook] message processing failed", error);
-
-        // If OpenAI fails but LINE itself is configured, send a safe fallback.
-        try {
-          await replyToLine(
-            event.replyToken,
-            "現在、自動案内を利用できません。お手数ですが、RBA公式サイト（https://riotbasketballacademy.com/ja）をご確認いただくか、riot.training.base@gmail.com までお問い合わせください。",
-          );
-        } catch (fallbackError) {
-          console.error("[line-webhook] fallback reply failed", fallbackError);
-        }
-      }
-    });
-
-  await Promise.allSettled(jobs);
+  // Return 200 quickly and perform message replies after the response.
+  after(async () => {
+    await processEvents(events);
+  });
 
   return NextResponse.json({ ok: true });
 }

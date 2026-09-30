@@ -2,20 +2,43 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 const LINE_REPLY_URL = "https://api.line.me/v2/bot/message/reply";
 
+export type QuickReplyItem = {
+  label: string;
+  text: string;
+};
+
+export type LineSource = {
+  type?: string;
+  userId?: string;
+  groupId?: string;
+  roomId?: string;
+};
+
 export type LineTextMessageEvent = {
   type: "message";
   replyToken: string;
-  source?: {
-    type?: string;
-    userId?: string;
-    groupId?: string;
-    roomId?: string;
-  };
+  source?: LineSource;
   message: {
     type: "text";
     id?: string;
     text: string;
   };
+};
+
+export type LineGenericMessageEvent = {
+  type: "message";
+  replyToken: string;
+  source?: LineSource;
+  message: {
+    type: string;
+    id?: string;
+  };
+};
+
+export type LineFollowEvent = {
+  type: "follow";
+  replyToken: string;
+  source?: LineSource;
 };
 
 export type LineWebhookBody = {
@@ -53,11 +76,55 @@ export function isLineTextMessageEvent(value: unknown): value is LineTextMessage
   );
 }
 
-export async function replyToLine(replyToken: string, text: string): Promise<void> {
+export function isLineMessageEvent(value: unknown): value is LineGenericMessageEvent {
+  if (!value || typeof value !== "object") return false;
+
+  const event = value as Partial<LineGenericMessageEvent>;
+  return (
+    event.type === "message" &&
+    typeof event.replyToken === "string" &&
+    typeof event.message?.type === "string"
+  );
+}
+
+export function isLineFollowEvent(value: unknown): value is LineFollowEvent {
+  if (!value || typeof value !== "object") return false;
+
+  const event = value as Partial<LineFollowEvent>;
+  return event.type === "follow" && typeof event.replyToken === "string";
+}
+
+function createQuickReply(items: QuickReplyItem[]) {
+  const normalized = items
+    .slice(0, 13)
+    .map((item) => ({
+      type: "action" as const,
+      action: {
+        type: "message" as const,
+        label: item.label.slice(0, 20),
+        text: item.text.slice(0, 300),
+      },
+    }));
+
+  return normalized.length > 0 ? { items: normalized } : undefined;
+}
+
+export async function replyToLine(
+  replyToken: string,
+  text: string,
+  quickReplies: QuickReplyItem[] = [],
+): Promise<void> {
   const accessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN;
   if (!accessToken) {
     throw new Error("LINE_CHANNEL_ACCESS_TOKEN is not configured");
   }
+
+  const quickReply = createQuickReply(quickReplies);
+  const message = {
+    type: "text",
+    text: text.slice(0, 5000),
+    ...(quickReply ? { quickReply } : {}),
+  };
 
   const response = await fetch(LINE_REPLY_URL, {
     method: "POST",
@@ -67,14 +134,10 @@ export async function replyToLine(replyToken: string, text: string): Promise<voi
     },
     body: JSON.stringify({
       replyToken,
-      messages: [
-        {
-          type: "text",
-          text: text.slice(0, 5000),
-        },
-      ],
+      messages: [message],
     }),
     cache: "no-store",
+    signal: AbortSignal.timeout(8_000),
   });
 
   if (!response.ok) {
