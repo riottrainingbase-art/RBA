@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  inferAmbiguousTopic,
   inferConciergeRoute,
   inferServiceHint,
   inferStaffCategory,
@@ -79,4 +80,13 @@ test("staff service hints identify RTB and RBA without guessing ambiguous cases"
   assert.equal(inferServiceHint("パーソナルトレーニングの予約を変更したい"), "RTB");
   assert.equal(inferServiceHint("U15の予約変更について"), "RBA");
   assert.equal(inferServiceHint("返金について確認したい"), "UNKNOWN");
+});
+
+
+test("ambiguous topics preserve the user's original intent", () => {
+  assert.equal(inferAmbiguousTopic("料金を知りたい"), "price");
+  assert.equal(inferAmbiguousTopic("予約できますか"), "booking");
+  assert.equal(inferAmbiguousTopic("体験したい"), "application");
+  assert.equal(inferAmbiguousTopic("場所はどこですか"), "location");
+  assert.equal(inferAmbiguousTopic("問い合わせしたい"), "general");
 });
