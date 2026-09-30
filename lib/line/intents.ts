@@ -132,6 +132,7 @@ const STAFF_KEYWORDS = [
 
 export type StaffCategory = "billing" | "health" | "schedule" | "human";
 export type ServiceHint = "RTB" | "RBA" | "UNKNOWN";
+export type AmbiguousTopic = "price" | "booking" | "application" | "location" | "general";
 
 const AMBIGUOUS_KEYWORDS = [
   "予約",
@@ -182,6 +183,47 @@ function hasAny(text: string, keywords: string[]) {
 export function isMenuRequest(input: string): boolean {
   const text = normalize(input);
   return text.length === 0 || EXACT_MENU_REQUESTS.has(text) || hasAny(text, MENU_PHRASES);
+}
+
+export function inferAmbiguousTopic(input: string): AmbiguousTopic {
+  const text = normalize(input);
+
+  if (
+    text.includes("料金") ||
+    text.includes("費用") ||
+    text.includes("値段") ||
+    text.includes("いくら")
+  ) {
+    return "price";
+  }
+
+  if (
+    text.includes("予約") ||
+    text.includes("空き") ||
+    text.includes("空いて")
+  ) {
+    return "booking";
+  }
+
+  if (
+    text.includes("申し込み") ||
+    text.includes("申込み") ||
+    text.includes("申込") ||
+    text.includes("体験") ||
+    text.includes("見学")
+  ) {
+    return "application";
+  }
+
+  if (
+    text.includes("場所") ||
+    text.includes("どこ") ||
+    text.includes("会場")
+  ) {
+    return "location";
+  }
+
+  return "general";
 }
 
 export function inferServiceHint(input: string): ServiceHint {

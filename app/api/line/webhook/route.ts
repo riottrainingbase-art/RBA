@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { generateRiotLineReply } from "@/lib/line/ai";
 import { deterministicLineReply } from "@/lib/line/direct-replies";
-import { inferConciergeRoute, inferServiceHint, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
+import { inferAmbiguousTopic, inferConciergeRoute, inferServiceHint, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
 import { OFFICIAL_LINKS } from "@/lib/line/knowledge";
 import { privateRateLimitKey, SlidingWindowRateLimiter } from "@/lib/line/rate-limit";
 import { sendStaffAlert } from "@/lib/line/staff-alert";
@@ -59,6 +59,43 @@ const AMBIGUOUS_TEXT = `ありがとうございます。
 
 🏋️ RTB：パーソナル・S&C・トレーニング
 🏀 RBA：バスケットボールの育成・クリニック・キャンプ等`;
+
+function ambiguousQuickReplies(userText: string): QuickReplyItem[] {
+  const topic = inferAmbiguousTopic(userText);
+
+  switch (topic) {
+    case "price":
+      return [
+        { label: "RTBの料金", text: "RTBの料金について知りたい" },
+        { label: "RBAの料金", text: "RBAの料金について知りたい" },
+        { label: "スタッフ相談", text: "スタッフに確認してほしいことがあります" },
+      ];
+
+    case "booking":
+      return [
+        { label: "RTBの予約", text: "RTBの予約・空き状況について知りたい" },
+        { label: "RBAの空き", text: "RBAの参加可能な活動・空き状況について知りたい" },
+        { label: "スタッフ相談", text: "スタッフに確認してほしいことがあります" },
+      ];
+
+    case "application":
+      return [
+        { label: "RTB体験・申込", text: "RTBの体験・申込方法について知りたい" },
+        { label: "RBA参加申込", text: "RBAの参加申込方法について知りたい" },
+        { label: "スタッフ相談", text: "スタッフに確認してほしいことがあります" },
+      ];
+
+    case "location":
+      return [
+        { label: "RTBの場所", text: "RTBの場所について知りたい" },
+        { label: "RBAの会場", text: "RBAの活動会場について知りたい" },
+        { label: "スタッフ相談", text: "スタッフに確認してほしいことがあります" },
+      ];
+
+    default:
+      return MENU_QUICK_REPLIES;
+  }
+}
 
 const STAFF_TEXT = {
   billing: `決済・返金についてはスタッフ確認が必要です。
@@ -172,7 +209,7 @@ async function processEvent(event: unknown) {
   }
 
   if (route === "ambiguous") {
-    await replyToLine(event.replyToken, AMBIGUOUS_TEXT, MENU_QUICK_REPLIES);
+    await replyToLine(event.replyToken, AMBIGUOUS_TEXT, ambiguousQuickReplies(userText));
     return;
   }
 
