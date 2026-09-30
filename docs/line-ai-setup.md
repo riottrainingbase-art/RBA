@@ -29,10 +29,10 @@ Set these in the Vercel project:
 LINE_CHANNEL_SECRET=
 LINE_CHANNEL_ACCESS_TOKEN=
 OPENAI_API_KEY=
-OPENAI_MODEL=gpt-5.6-luna
+OPENAI_MODEL=gpt-6-luna
 ```
 
-`OPENAI_MODEL` is optional. The current default is `gpt-5.6-luna`.
+`OPENAI_MODEL` is optional. The current default is `gpt-6-luna`.
 
 Never put secret values in GitHub.
 
@@ -110,7 +110,7 @@ The app calls the OpenAI Responses API over HTTPS.
 Default model:
 
 ```
-gpt-5.6-luna
+gpt-6-luna
 ```
 
 Responses use:
