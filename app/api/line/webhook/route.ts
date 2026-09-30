@@ -1,8 +1,9 @@
 import { after, NextResponse } from "next/server";
 import { generateRiotLineReply } from "@/lib/line/ai";
-import { inferConciergeRoute, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
+import { inferConciergeRoute, inferServiceHint, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
 import { OFFICIAL_LINKS } from "@/lib/line/knowledge";
 import { privateRateLimitKey, SlidingWindowRateLimiter } from "@/lib/line/rate-limit";
+import { sendStaffAlert } from "@/lib/line/staff-alert";
 import {
   getLineWebhookEventId,
   isLineFollowEvent,
@@ -123,6 +124,7 @@ function configurationState() {
     lineChannelAccessToken: Boolean(process.env.LINE_CHANNEL_ACCESS_TOKEN),
     openAiApiKey: Boolean(process.env.OPENAI_API_KEY),
     openAiModel: process.env.OPENAI_MODEL?.trim() || "gpt-6-luna",
+    staffAlertWebhook: Boolean(process.env.RIOT_STAFF_ALERT_WEBHOOK_URL),
   };
 }
 
@@ -153,7 +155,18 @@ async function processEvent(event: unknown) {
 
   if (route === "staff") {
     const staffCategory = inferStaffCategory(userText);
+    const serviceHint = inferServiceHint(userText);
     await replyToLine(event.replyToken, STAFF_TEXT[staffCategory], MENU_QUICK_REPLIES);
+
+    try {
+      await sendStaffAlert({
+        category: staffCategory,
+        serviceHint,
+        webhookEventId: getLineWebhookEventId(event),
+      });
+    } catch (error) {
+      console.error("[line-webhook] staff alert failed", error);
+    }
     return;
   }
 
