@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowRight, BookOpen, CheckCircle2, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, BriefcaseBusiness, CheckCircle2, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
 
@@ -116,6 +116,11 @@ export default async function Page() {
             <article><NotebookPen/><span>02 / TEST</span><h3>練習で試す</h3><p>D-HUBの課題を一つ実施し、実際に起きたことを記録します。</p>{nextLesson?<Link href={`/ja/d-hub/coaches/member/lessons/${nextLesson.week_no}`}>NEXT LESSON <ArrowRight size={15}/></Link>:<Link href="/ja/my-homecourt/coaches">COACH HOME <ArrowRight size={15}/></Link>}</article>
             <article><MessageCircle/><span>03 / DISCUSS</span><h3>D-HUBで話す</h3><p>実際に起きたことを持ち帰り、他の指導者と考えます。</p><a href={BAND_URL} target="_blank" rel="noreferrer">BANDを開く <ExternalLink size={15}/></a></article>
           </div>
+        </section>
+
+        <section className="dhub-next-lesson section-pad">
+          <div><p className="section-index">D-HUB PROJECTS</p><h2>学びを、実際の案件へ。</h2><p>RBAに届くクリニック、チーム支援、地域開催、国際交流などの依頼を、条件の合うCOACH LABメンバーへつなぐ仕組みを整えています。案件・収入を保証するものではなく、報酬・役割・安全条件を確認したうえで個別に募集します。</p></div>
+          <div className="dhub-next-card"><BriefcaseBusiness/><span>MEMBER PROJECT NETWORK</span><p>仕事を得るための追加課金はありません。案件情報はBANDとPROJECTSページで共有します。</p><Link className="button button-member" href="/ja/d-hub/coaches/member/projects">D-HUB PROJECTSを見る <ArrowRight size={16}/></Link></div>
         </section>
 
         <section className="dhub-next-lesson section-pad">
