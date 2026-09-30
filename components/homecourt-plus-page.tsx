@@ -18,7 +18,7 @@ export function HomecourtPlusPage(){
         <p>HOMECOURT PLUSは、RBA DEVELOPMENT LIBRARYの教科書・研究整理と、週次・月次の実践ツールを一つにした月額プランです。深く理解するだけで終わらず、今週やることを一つ決め、試し、振り返り、次を決めるところまでつなげます。</p>
         <div className="hc-plus-price"><strong>¥3,300</strong><span>/ 月</span><small>税込・月額</small></div>
         <div className="hc-plus-actions">
-          <a className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></a>
+          <Link className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></Link>
           <a className="button button-light" href="#difference">無料版との違いを見る <ArrowRight size={17}/></a>
         </div>
         <p className="hc-plus-small">今のチームに所属したまま使えます。決済にはRBA IDでのログインが必要です。</p>
@@ -103,7 +103,7 @@ export function HomecourtPlusPage(){
           <article className="is-plus">
             <span>HOMECOURT PLUS / ¥3,300</span><h3>毎週使う</h3>
             <ul><li><Check/>会員向け実践ガイド {counts.total}本</li><li><Check/>WEEKLY DEVELOPMENT</li><li><Check/>7日間のコンディション推移</li><li><Check/>SMART PREP / 大会・遠征準備</li><li><Check/>MONTHLY REVIEW</li><li><Check/>DEVELOPMENT REPORT / PDF</li></ul>
-            <a className="button button-member" href="/ja/my-homecourt/app/plus">PLUSを始める <ArrowRight size={16}/></a>
+            <Link className="button button-member" href="/ja/my-homecourt/app/plus">PLUSを始める <ArrowRight size={16}/></Link>
           </article>
         </div>
       </section>
@@ -126,7 +126,7 @@ export function HomecourtPlusPage(){
         <p className="section-index inverse">START HOMECOURT PLUS</p>
         <h2>毎週、一つだけ。</h2>
         <p>全部をやる必要はありません。今の自分に必要なものを一つ選び、次の練習へ持っていく。その繰り返しに使ってください。</p>
-        <a className="button button-light" href="/ja/my-homecourt/app/plus">月額3,300円で始める <ArrowRight size={17}/></a>
+        <Link className="button button-light" href="/ja/my-homecourt/app/plus">月額3,300円で始める <ArrowRight size={17}/></Link>
       </section>
     </main>
   </SiteFrame>;
