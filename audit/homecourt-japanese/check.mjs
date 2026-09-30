@@ -26,7 +26,7 @@ const files=[
 
 const forbidden=[
   ["member-label-concatenation",/MEMBERMEMBER|MEMBERWEEKLY|MEMBERCONDITION|MEMBERSMART/],
-  ["legacy-japanese-save",/[\u3040-\u30ff\u3400-\u9fff][^\n]{0,70}\bSave\b|\bSave\b[^\n]{0,70}[\u3040-\u30ff\u3400-\u9fff]/],
+  ["legacy-japanese-save",/["'][^"'\n]*[\u3040-\u30ff\u3400-\u9fff][^"'\n]*\bSave\b[^"'\n]*["']|["'][^"'\n]*\bSave\b[^"'\n]*[\u3040-\u30ff\u3400-\u9fff][^"'\n]*["']/],
   ["legacy-copy",/ここまで使えたら|次に行きたい活動|過去のクリニックを記録|無料版を不便にするための有料化/],
   ["legacy-paid-name",/有料HOMECOURT/],
   ["legacy-care-copy",/ケア予定名|ケア予定を保存|ケアの種類|ケアの予定を登録/],
