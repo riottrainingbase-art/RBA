@@ -16,9 +16,7 @@ import {
   Trophy,
 } from "lucide-react";
 import styles from "./homecourt-player-journey.module.css";
-
-type HistoryItem={occurred_on:string|null};
-type SaveItem={created_at:string};
+import {computePlayerJourney,journeyTier,PLAYER_JOURNEY_LEVEL_NAMES} from "@/lib/homecourt-game";
 
 type Props={
   displayName:string;
@@ -28,32 +26,7 @@ type Props={
   setupPercent:number;
   teamLinked:boolean;
   hasNextEvent:boolean;
-  history:HistoryItem[];
-  saves:SaveItem[];
 };
-
-const levelThresholds=[0,150,300,500,750,1050,1400,1800];
-const levelNames=["START","EXPLORER","PLAYER","REVIEWER","CHALLENGER","CONNECTOR","WORLD","LEGACY"];
-
-function levelForXp(xp:number){
-  let level=1;
-  for(let i=1;i<levelThresholds.length;i++)if(xp>=levelThresholds[i])level=i+1;
-  return Math.min(level,levelThresholds.length);
-}
-
-function tierFor(value:number,thresholds:number[]){
-  const names=["LOCKED","BRONZE","SILVER","GOLD","PLATINUM"] as const;
-  let index=0;
-  thresholds.forEach((threshold,i)=>{if(value>=threshold)index=i+1;});
-  return names[index];
-}
-
-function isRecent(value:string|null|undefined,days:number){
-  if(!value)return false;
-  const time=new Date(value).getTime();
-  if(!Number.isFinite(time))return false;
-  return Date.now()-time<=days*86400000;
-}
 
 export function HomecourtPlayerJourney({
   displayName,
@@ -63,22 +36,10 @@ export function HomecourtPlayerJourney({
   setupPercent,
   teamLinked,
   hasNextEvent,
-  history,
-  saves,
 }:Props){
-  const xp=
-    100+
-    Math.min(historyCount,20)*35+
-    Math.min(savedCount,10)*25+
-    Math.min(journalViews,20)*12+
-    (teamLinked?80:0)+
-    (hasNextEvent?80:0)+
-    (setupPercent===100?50:0);
-
-  const level=levelForXp(xp);
-  const currentFloor=levelThresholds[Math.max(0,level-1)]||0;
-  const nextFloor=levelThresholds[level]||currentFloor+500;
-  const levelProgress=Math.min(100,Math.round(((xp-currentFloor)/(nextFloor-currentFloor))*100));
+  const {xp,level,nextFloor,levelProgress,momentum}=computePlayerJourney({
+    historyCount,savedCount,journalViews,setupPercent,teamLinked,hasNextEvent
+  });
 
   const quests=[
     {code:"01",label:"SAVE DATA",title:"RBA IDの初期設定を完了する",done:setupPercent===100,href:"/ja/my-homecourt/app/my"},
@@ -91,11 +52,6 @@ export function HomecourtPlayerJourney({
   const completedQuests=quests.filter(q=>q.done).length;
   const nextQuest=quests.find(q=>!q.done)||quests[quests.length-1];
 
-  const recentActions=
-    history.filter(item=>isRecent(item.occurred_on,30)).length+
-    saves.filter(item=>isRecent(item.created_at,30)).length;
-  const momentum=Math.min(3,recentActions);
-
   const chapters=[
     {level:1,label:"CHAPTER 01",title:"BEGIN",body:"自分のセーブデータをつくる。",href:"/ja/my-homecourt/app/start"},
     {level:2,label:"CHAPTER 02",title:"EXPLORE",body:"次の場所と機会を探す。",href:"/ja/opportunities"},
@@ -106,9 +62,9 @@ export function HomecourtPlayerJourney({
   ];
 
   const medals=[
-    {name:"JOURNEY",value:historyCount,tier:tierFor(historyCount,[1,3,5,10]),next:[1,3,5,10],icon:<Map/>},
-    {name:"SCOUT",value:savedCount,tier:tierFor(savedCount,[1,3,5,10]),next:[1,3,5,10],icon:<Compass/>},
-    {name:"READER",value:journalViews,tier:tierFor(journalViews,[1,3,10,20]),next:[1,3,10,20],icon:<BookOpen/>},
+    {name:"JOURNEY",value:historyCount,tier:journeyTier(historyCount,[1,3,5,10]),next:[1,3,5,10],icon:<Map/>},
+    {name:"SCOUT",value:savedCount,tier:journeyTier(savedCount,[1,3,5,10]),next:[1,3,5,10],icon:<Compass/>},
+    {name:"READER",value:journalViews,tier:journeyTier(journalViews,[1,3,10,20]),next:[1,3,10,20],icon:<BookOpen/>},
   ];
 
   return <section className={styles.shell} aria-labelledby="player-journey-title">
@@ -122,7 +78,7 @@ export function HomecourtPlayerJourney({
       <div className={styles.level}>
         <span>LEVEL</span>
         <strong>{String(level).padStart(2,"0")}</strong>
-        <b>{levelNames[level-1]}</b>
+        <b>{PLAYER_JOURNEY_LEVEL_NAMES[level-1]}</b>
         <div><i style={{width:`${levelProgress}%`}}/></div>
         <small>{xp} XP / NEXT {nextFloor} XP</small>
       </div>
@@ -132,7 +88,7 @@ export function HomecourtPlayerJourney({
       <article><span>SEASON QUEST</span><strong>{completedQuests}/6</strong><small>COMPLETED</small></article>
       <article><span>PASSPORT</span><strong>{historyCount}</strong><small>EXPERIENCES</small></article>
       <article><span>DISCOVERY</span><strong>{savedCount}</strong><small>SAVED</small></article>
-      <article><span>MOMENTUM</span><strong>{"●".repeat(momentum)}{"○".repeat(3-momentum)}</strong><small>LAST 30 DAYS</small></article>
+      <article><span>MOMENTUM</span><strong>{"●".repeat(momentum)}{"○".repeat(3-momentum)}</strong><small>ACTIVITY TYPES</small></article>
     </div>
 
     <section className={styles.nextMission}>
