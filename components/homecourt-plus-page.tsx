@@ -15,13 +15,21 @@ export function HomecourtPlusPage(){
       <section className="hc-plus-hero section-pad">
         <p className="section-index inverse">MY HOME COURT / PLUS</p>
         <h1>学んだことを、<br/>その週のバスケで使う。</h1>
-        <p>HOMECOURT PLUSは、RBA DEVELOPMENT LIBRARYの教科書・研究整理と、週次・月次の実践ツールを一つにした月額プランです。深く理解するだけで終わらず、今週やることを一つ決め、試し、振り返り、次を決めるところまでつなげます。</p>
+        <p>HOMECOURT PLUSは「有料記事をたくさん読む場所」ではありません。今週やることを一つ決め、練習や試合で試し、振り返り、次を決めるための育成ツールです。DEVELOPMENT LIBRARYは、その行動を支えるための資料として使います。</p>
         <div className="hc-plus-price"><strong>¥3,300</strong><span>/ 月</span><small>税込・月額</small></div>
         <div className="hc-plus-actions">
           <Link className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></Link>
           <a className="button button-light" href="#difference">無料版との違いを見る <ArrowRight size={17}/></a>
         </div>
         <p className="hc-plus-small">今のチームに所属したまま使えます。決済にはRBA IDでのログインが必要です。</p>
+      </section>
+
+      <section className="hc-plus-compare section-pad">
+        <div className="section-head"><div><p className="section-index">OUR PRINCIPLE</p><h2>情報そのものを、必要以上に囲い込みません。</h2></div><p>基本的な育成情報や考え方はJOURNALで広く公開します。PLUSの料金は「秘密の情報」へのアクセス料ではなく、継続して実践・記録・振り返りを行うための機能と運用に対するものです。</p></div>
+        <div className="hc-plus-compare-grid">
+          <article><span>OPEN / FREE</span><h3>知る・考える</h3><ul><li><Check/>RBA JOURNALの育成記事</li><li><Check/>研究・公式資料への入口</li><li><Check/>募集中の活動情報</li><li><Check/>RBAの育成方針</li></ul><Link className="button button-light" href="/ja/journal">無料JOURNALを見る <ArrowRight size={16}/></Link></article>
+          <article className="is-plus"><span>PLUS / PRACTICE</span><h3>続ける・残す・見直す</h3><ul><li><Check/>今週のテーマを設定する</li><li><Check/>コンディションと予定を記録する</li><li><Check/>月ごとに振り返る</li><li><Check/>成長記録を一つにつなげる</li></ul></article>
+        </div>
       </section>
 
       <section className="hc-plus-method section-pad">
@@ -35,7 +43,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-library section-pad">
-        <div className="section-head"><div><p className="section-index">RBA DEVELOPMENT LIBRARY</p><h2>{counts.total}本の実践ガイド＋教科書。</h2></div><p>無料JOURNALは「考える入口」。PLUSでは、保存して何度も参照できる教科書、深掘り解説、実践ガイドとして整理します。</p></div>
+        <div className="section-head"><div><p className="section-index">RBA DEVELOPMENT LIBRARY</p><h2>必要なときに戻れる、育成の資料庫。</h2></div><p>価値を「記事数」で競いません。無料JOURNALで考え方を公開し、PLUSでは実践中に必要な資料を探しやすく整理します。現在の収録数は{counts.total}本です。</p></div>
         <div className="hc-plus-library-metrics">
           <article><strong>{counts.player}</strong><span>選手向け</span><p>試合の判断、1on1、シュート、守備、振り返り、コンディション。</p></article>
           <article><strong>{counts.parent}</strong><span>保護者向け</span><p>出場時間、移籍、進路、練習量、指導者との対話、家庭での関わり。</p></article>
@@ -113,6 +121,14 @@ export function HomecourtPlusPage(){
         <div className="hc-plus-compare-grid">
           <article><span>HOMECOURT PLUS</span><h3>調べる・学ぶ・記録する</h3><ul><li><Check/>DEVELOPMENT LIBRARY</li><li><Check/>WEEKLY DEVELOPMENT</li><li><Check/>試合・遠征準備 / CONDITION</li><li><Check/>MONTHLY REVIEW</li></ul></article>
           <article className="is-plus"><span>D-HUB</span><h3>順番に学び、現場で試す</h3><ul><li><Check/>COACH LAB / 指導者</li><li><Check/>PLAYERS / 選手</li><li><Check/>課題 → 実践 → 振り返り</li><li><Check/>順番のある継続育成</li></ul><Link className="button button-member" href="/ja/d-hub">D-HUBを見る <ArrowRight size={16}/></Link></article>
+        </div>
+      </section>
+
+      <section className="hc-plus-compare section-pad">
+        <div className="section-head"><div><p className="section-index">RIGHT FIT</p><h2>「読むだけ」が目的なら、PLUSは必要ありません。</h2></div><p>まず無料JOURNALを使ってください。PLUSは、毎週のテーマ設定・記録・振り返りを継続したい人のためのプランです。</p></div>
+        <div className="hc-plus-compare-grid">
+          <article><span>JOURNAL / FREE</span><h3>まず知りたい人</h3><p>育成の考え方、研究、制度、保護者・指導者向け情報を読むことが目的なら、無料JOURNALから始められます。</p><Link className="button button-light" href="/ja/journal">JOURNALへ <ArrowRight size={16}/></Link></article>
+          <article className="is-plus"><span>HOMECOURT PLUS</span><h3>実践を続けたい人</h3><p>自分のテーマ、状態、予定、振り返りを継続して残し、次の行動へつなげたい人に向いています。</p></article>
         </div>
       </section>
 
