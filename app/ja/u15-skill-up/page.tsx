@@ -75,12 +75,12 @@ export default function Page(){
     <main style={{background:"#f5f5f2",color:"#111"}}>
       <section style={{padding:"72px 6vw 56px",borderBottom:"1px solid #d6d6d0",background:"#fff"}}>
         <p style={{fontSize:13,letterSpacing:3,fontWeight:700,margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY · SENDAI · START OCT 2026</p>
-        <h1 style={{fontSize:"clamp(42px,8vw,92px)",lineHeight:.92,letterSpacing:-3,margin:"0 0 24px",fontWeight:900}}>RBA U15<br/>SKILL UP SCHOOL</h1>
-        <p style={{fontSize:"clamp(22px,3vw,34px)",fontWeight:800,margin:"0 0 14px"}}>現代バスケットボールを学ぶ90分。</p>
+        <h1 style={{fontSize:"clamp(38px,6vw,72px)",lineHeight:.92,letterSpacing:-3,margin:"0 0 24px",fontWeight:900}}>RBA U15<br/>SKILL UP SCHOOL</h1>
+        <p style={{fontSize:"clamp(20px,2.4vw,30px)",fontWeight:800,margin:"0 0 14px"}}>現代バスケットボールを学ぶ90分。</p>
         <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-          <a href="#apply" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>STEP 1｜申込フォームへ ↓</a>
-          <a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>STEP 2｜入会金＋初月決済へ ↗</a>
+          <a href="#apply" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>STEP 1｜参加申込</a>
+          <a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>STEP 2｜初回決済（入会金込） ↗</a>
         </div>
       </section>
 
@@ -97,7 +97,7 @@ export default function Page(){
 
       <section style={{padding:"72px 6vw",background:"#111",color:"#fff"}}>
         <p style={{fontSize:12,letterSpacing:3,color:"#aaa",fontWeight:700}}>DEVELOPMENT PRINCIPLE</p>
-        <h2 style={{fontSize:"clamp(34px,5vw,60px)",lineHeight:1.05,margin:"12px 0 18px"}}>SKILL × PERCEPTION × DECISION × GAME</h2>
+        <h2 style={{fontSize:"clamp(30px,4.2vw,50px)",lineHeight:1.05,margin:"12px 0 18px"}}>SKILL × PERCEPTION × DECISION × GAME</h2>
         <p style={{maxWidth:780,fontSize:18,lineHeight:1.8,color:"#d8d8d3"}}>チームで決められた役割だけではなく、一人のバスケットボール選手としてできることを増やす。技術と判断を切り離さず、ゲームの中で学びます。</p>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:12,marginTop:34}}>
           {focus.map(([a,b])=><div key={a} style={{border:"1px solid #3e3e3a",padding:22}}><div style={{fontSize:28,fontWeight:900,marginBottom:9}}>{a}</div><div style={{color:"#d7d7d1",lineHeight:1.6}}>{b}</div></div>)}
@@ -106,7 +106,7 @@ export default function Page(){
 
       <section style={{padding:"72px 6vw",background:"#f5f5f2"}}>
         <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>ANNUAL DEVELOPMENT PLAN · OCT 2026–SEP 2027 · 36 SESSIONS</p>
-        <h2 style={{fontSize:"clamp(34px,5vw,58px)",lineHeight:1.08,margin:"12px 0 34px"}}>年間36回を、一つの成長ストーリーに。</h2>
+        <h2 style={{fontSize:"clamp(30px,4.2vw,50px)",lineHeight:1.08,margin:"12px 0 34px"}}>年間36回を、一つの成長ストーリーに。</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(250px,1fr))",gap:12}}>
           {months.map(([m,e,j],i)=><article key={m} style={{background:"#fff",padding:"24px 22px",border:"1px solid #dddcd6"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:12}}><strong style={{fontSize:26}}>{m}</strong><span style={{fontSize:11,letterSpacing:2,color:"#777"}}>{String(i+1).padStart(2,"0")}/12</span></div>
@@ -126,7 +126,7 @@ export default function Page(){
 
       <section style={{padding:"72px 6vw",background:"#fff"}}>
         <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>WHO THIS IS FOR</p>
-        <h2 style={{fontSize:"clamp(32px,5vw,54px)",lineHeight:1.08,margin:"12px 0 28px"}}>「もっとできるはず」を、練習だけで終わらせない。</h2>
+        <h2 style={{fontSize:"clamp(30px,4vw,48px)",lineHeight:1.08,margin:"12px 0 28px"}}>「もっとできるはず」を、練習だけで終わらせない。</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:12}}>
           {[
             ["判断を速くしたい","ボールを持ってから考えるのではなく、受ける前から見て選ぶ習慣をつくる。"],
