@@ -1,5 +1,6 @@
 import { after, NextResponse } from "next/server";
 import { generateRiotLineReply } from "@/lib/line/ai";
+import { deterministicLineReply } from "@/lib/line/direct-replies";
 import { inferConciergeRoute, inferServiceHint, inferStaffCategory, isMenuRequest } from "@/lib/line/intents";
 import { OFFICIAL_LINKS } from "@/lib/line/knowledge";
 import { privateRateLimitKey, SlidingWindowRateLimiter } from "@/lib/line/rate-limit";
@@ -172,6 +173,12 @@ async function processEvent(event: unknown) {
 
   if (route === "ambiguous") {
     await replyToLine(event.replyToken, AMBIGUOUS_TEXT, MENU_QUICK_REPLIES);
+    return;
+  }
+
+  const directReply = deterministicLineReply(userText);
+  if (directReply) {
+    await replyToLine(event.replyToken, directReply, MENU_QUICK_REPLIES);
     return;
   }
 
