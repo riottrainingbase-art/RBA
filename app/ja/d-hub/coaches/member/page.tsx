@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { ArrowRight, BookOpen, CheckCircle2, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
+import { CoachPracticeLoop } from "@/components/coach-practice-loop";
 
 export const dynamic = "force-dynamic";
 
@@ -117,6 +118,8 @@ export default async function Page() {
             <article><MessageCircle/><span>03 / DISCUSS</span><h3>D-HUBで話す</h3><p>実際に起きたことを持ち帰り、他の指導者と考えます。</p><a href={BAND_URL} target="_blank" rel="noreferrer">BANDを開く <ExternalLink size={15}/></a></article>
           </div>
         </section>
+
+        <section className="dhub-member-section section-pad"><CoachPracticeLoop userId={user.id} lessonId={nextLesson?.id}/></section>
 
         <section className="dhub-next-lesson section-pad">
           <div><p className="section-index">MEMBER ARTICLE LIBRARY</p><h2>無料JOURNALの、その先へ。</h2><p>練習の止めどころ、3x3の設計、ローテーション、女子U15の膝、保護者説明、映像レビュー。現場で迷いやすいところを、具体的に掘り下げています。</p></div>
