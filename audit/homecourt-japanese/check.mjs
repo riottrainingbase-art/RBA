@@ -59,8 +59,9 @@ assert.ok(premium.includes("無料で使いながら、必要になったらPLUS
 assert.ok(premium.includes(">PLUS FEATURE<"),"PLUS feature cards must keep label/title visually separate");
 
 const memberApp=fs.readFileSync("components/member-app.tsx","utf8");
+const activationPath=fs.readFileSync("components/member-activation-path.tsx","utf8");
 assert.ok(memberApp.includes('my:"設定"'),"Japanese bottom navigation must use a clear settings label");
-assert.ok(memberApp.includes('無料JOURNALを1本読む'),"RBA ID starter flow must include a measurable free learning action");
+assert.ok(activationPath.includes('無料JOURNALを1本読む'),"RBA ID starter flow must include a measurable free learning action");
 assert.ok(memberApp.includes('className="member-header-account"'),"Header account control must open settings instead of signing out");
 assert.ok(!memberApp.includes('href:`${prefix}/home-court`'),"Legacy /home-court upgrade route must not return");
 
