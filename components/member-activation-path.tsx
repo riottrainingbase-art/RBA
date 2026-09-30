@@ -9,7 +9,7 @@ export function MemberActivationPath({locale,userId,role,hasExperience,hasSave}:
  useEffect(()=>{void db.from("development_action_events").select("id",{count:"exact",head:true}).eq("user_id",userId).eq("action_type","learn").then(({count})=>setLearned((count||0)>0))},[db,userId]);
  const steps=[
   {done:hasSave,label:"01 / DISCOVER",title:"気になる活動を一つ保存",body:"今すぐ申し込む必要はありません。気になる活動を一つ、あとで見返せるように残しておきます。",href:"/ja/opportunities",icon:<Compass/>},
-  {done:learned,label:"02 / LEARN",title:role==="coach"?"今週考えたいテーマを一つ選ぶ":"記事を一つ読む",body:role==="coach"?"次の練習で何を見て、何を試すかを一つ決めます。":"全部読む必要はありません。今の自分に関係するものを一つ選べば十分です。",href:role==="coach"?"/ja/d-hub":"/ja/journal",icon:<BookOpen/>},
+  {done:learned,label:"02 / LEARN",title:role==="coach"?"今週考えたいテーマを一つ選ぶ":"無料JOURNALを1本読む",body:role==="coach"?"次の練習で何を見て、何を試すかを一つ決めます。":"全部読む必要はありません。今の自分に関係するものを一つ選べば十分です。",href:role==="coach"?"/ja/d-hub":"/ja/journal",icon:<BookOpen/>},
   {done:hasExperience,label:"03 / REFLECT",title:"最近の経験を一つ残す",body:"練習、試合、クリニックなどから一つ選び、気づいたことと次に試したいことを残します。",href:"/ja/my-homecourt/app/start",icon:<NotebookPen/>}
  ];
  const done=steps.filter(x=>x.done).length;
