@@ -9,7 +9,7 @@ import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
-  ja:{kicker:"RBA JOURNAL",title:"育成を、もっと深く。もっと広く。",lead:"研究・公式資料で確認できること、RBAが現場でどう解釈するか、まだ断定できないことを分けて届けます。読むだけで終わらず、次の練習・判断・行動まで。",latest:"最新記事",all:"記事一覧",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"日本とアジアの次の交流を、一緒につくる。",exchangeBody:"海外アカデミー、チーム、指導者の皆さまへ。来日プログラム、合同クリニック、指導者講習、育成年代の交流についてRBAへご相談ください。",ask:"WhatsAppでRBAに相談",read:"記事を読む",back:"JOURNALへ戻る"},
+  ja:{kicker:"RBA JOURNAL",title:"育成を、もっと深く。もっと広く。",lead:"研究・公式資料で確認できること、RBAではどう考えるか、まだ断定できないことを分けて届けます。読むだけで終わらず、次の練習・判断・行動まで。",latest:"最新記事",all:"記事一覧",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"日本とアジアの次の交流を、一緒につくる。",exchangeBody:"海外アカデミー、チーム、指導者の皆さまへ。来日プログラム、合同クリニック、指導者講習、育成年代の交流についてRBAへご相談ください。",ask:"WhatsAppでRBAに相談",read:"記事を読む",back:"JOURNALへ戻る"},
   "zh-tw":{kicker:"RBA JOURNAL",title:"讓培育連結更廣的世界。",lead:"分享球員、家長、教練與亞洲夥伴都能使用的培育觀點、現場筆記與國際交流。",latest:"最新文章",all:"所有文章",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"一起建立日本與亞洲的下一次交流。",exchangeBody:"歡迎學院、球隊與教練洽詢日本交流、聯合訓練營、教練教育與青少年合作。",ask:"WhatsApp聯絡RBA",read:"閱讀文章",back:"返回JOURNAL"},
   ko:{kicker:"RBA JOURNAL",title:"육성을 더 넓은 세계로.",lead:"선수, 보호자, 코치와 아시아 파트너를 위한 육성 관점, 현장 기록, 국제 교류를 공유합니다.",latest:"최신 글",all:"전체 글",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"일본과 아시아의 다음 교류를 함께 만듭니다.",exchangeBody:"아카데미, 팀, 코치는 일본 교류, 공동 클리닉, 코치 교육과 유소년 교류를 RBA에 문의할 수 있습니다.",ask:"WhatsApp으로 RBA 문의",read:"글 읽기",back:"JOURNAL로 돌아가기"}
 } as const;
@@ -129,11 +129,11 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
             <p className="section-index">WORLD YOUTH BASKETBALL MAP 2026</p>
             <h2>「海外ではこうしている」で終わらせない。</h2>
           </div>
-          <p>各国の制度を並べるだけではなく、なぜその仕組みが生まれたのか、何を守ろうとしているのか、日本の育成年代と何が違うのかまで原典から確認します。</p>
+          <p>各国の制度を並べるだけではなく、なぜその仕組みが必要になったのか、何を変えようとしているのかを一次資料から確認します。そのうえで、日本の現場で考えたいことを整理します。</p>
         </div>
         <div className="homecourt-launch-actions">
           <Link className="button button-member" href="/ja/journal/world-youth-basketball-map">WORLD MAPを開く <ArrowRight size={17}/></Link>
-          <Link className="button button-light" href={journalHref(locale,"world-youth-basketball-map-2026-synthesis")}>14か国比較｜共通点と違いを読む <ArrowRight size={17}/></Link>
+          <Link className="button button-light" href={journalHref(locale,"world-youth-basketball-map-2026-synthesis")}>14か国をまとめて読む <ArrowRight size={17}/></Link>
         </div>
         <div className="journal-cms-grid">{worldMapPosts.map(({item,post},index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span>
@@ -142,14 +142,14 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           {post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}
           <h3>{post.title}</h3>
           <p>{item.focus}</p>
-          <strong>背景から読む <ArrowRight size={16}/></strong>
+          <strong>詳しく読む <ArrowRight size={16}/></strong>
         </Link>)}</div>
         {findPost("perceptual-cognitive-training-transfer-2026")?<div className="homecourt-launch-actions">
           <Link className="button button-light" href={journalHref(locale,"perceptual-cognitive-training-transfer-2026")}>2026 RESEARCH NOTE｜「認知トレーニング」は試合へ転移するか <ArrowRight size={17}/></Link>
         </div>:null}
       </section>:null}
 \n\n      {locale==="ja"?<section className="journal-evidence-standard section-pad">
-        <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>根拠があることと、RBAの考えは分けて書きます。</h2></div><p>RBA JOURNALでは、研究やガイドラインで確認できること、RBAが現場でどう解釈しているか、現時点では断定できないことを分けて掲載します。</p></div>
+        <div className="section-head"><div><p className="section-index">EDITORIAL STANDARD</p><h2>資料から確認できることと、RBAの考えは分けて書きます。</h2></div><p>RBA JOURNALでは、研究や公式資料から確認できること、そこからRBAがどう考えるか、まだ言い切れないことを分けて掲載します。</p></div>
         <div className="journal-evidence-grid">
           <article><span>EVIDENCE</span><h3>研究・公式資料</h3><p>学術論文やFIBA/WABC、JBAなど、できる限り元の資料まで確認して掲載します。</p></article>
           <article><span>RBA INTERPRETATION</span><h3>RBAの考え方</h3><p>研究結果をそのまま当てはめるのではなく、日本のU12・U15の現場ではどう考えるかを分けて書きます。</p></article>
@@ -185,11 +185,11 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       </section>:null}
       
       {locale==="ja"?<section className="homecourt-role-section section-pad">
-        <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読んだあと、どう動くか。</h2></div><p>自分の立場に合う情報を保存し、次の活動や学びにつなげるならMY HOME COURTへ。</p></div>
+        <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読んで終わりにしないために。</h2></div><p>気になった記事を読んだら、実際の練習や参加した活動と結びつけて残せます。MY HOME COURTは、そのための場所です。</p></div>
         <div className="homecourt-role-grid">
           <article><span>PLAYER</span><h3>選手</h3><p>練習、試合、次のクリニック。今の自分に必要な情報をまとめて探せます。</p><Link href="/ja/my-homecourt/players">選手向けHOME <ArrowRight size={16}/></Link></article>
           <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに、感情だけで決めず整理できる記事をまとめています。</p><Link href="/ja/journal/families">保護者JOURNALへ <ArrowRight size={16}/></Link><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
-          <article><span>COACH</span><h3>指導者</h3><p>D-HUB、Torsten、練習設計。毎週の指導をアップデートする学びをまとめます。</p><Link href="/ja/my-homecourt/coaches">指導者向けHOME <ArrowRight size={16}/></Link></article>
+          <article><span>COACH</span><h3>指導者</h3><p>D-HUB、Torsten、練習設計。毎週の練習を考え直す材料や、指導者向けの学びをまとめています。</p><Link href="/ja/my-homecourt/coaches">指導者向けHOME <ArrowRight size={16}/></Link></article>
         </div>
         <div className="homecourt-launch-actions">{authReady?<Link className="button button-member" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></Link>:<a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">登録再開のお知らせを受け取る<ArrowRight size={17}/></a>}<Link className="button button-dark" href="/ja/homecourt-plus">教科書・PLUSを見る<ArrowRight size={17}/></Link><Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
       </section>:null}
@@ -254,9 +254,9 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
           <div>{post.evidence_level?<small>{post.evidence_level}</small>:null}<b>＋</b></div>
         </summary>
         <div className="journal-evidence-grid">
-          {post.evidence_summary?<article><span>EVIDENCE</span><h3>{locale==="ja"?"研究・ガイドラインから言えること":locale==="zh-tw"?"研究與指南支持的內容":locale==="ko"?"연구·가이드라인이 지지하는 내용":"What the evidence supports"}</h3><p>{post.evidence_summary}</p></article>:null}
+          {post.evidence_summary?<article><span>EVIDENCE</span><h3>{locale==="ja"?"研究・公式資料から確認できること":locale==="zh-tw"?"研究與指南支持的內容":locale==="ko"?"연구·가이드라인이 지지하는 내용":"What the evidence supports"}</h3><p>{post.evidence_summary}</p></article>:null}
           {post.rba_interpretation?<article><span>RBA INTERPRETATION</span><h3>{locale==="ja"?"RBAが現場でどう解釈するか":locale==="zh-tw"?"RBA如何在現場解讀":locale==="ko"?"RBA가 현장에서 어떻게 해석하는가":"How RBA applies it"}</h3><p>{post.rba_interpretation}</p></article>:null}
-          {post.limitations?<article><span>LIMITATIONS</span><h3>{locale==="ja"?"ここは断定しない":locale==="zh-tw"?"不應斷言的部分":locale==="ko"?"단정하지 않는 부분":"What this does not prove"}</h3><p>{post.limitations}</p></article>:null}
+          {post.limitations?<article><span>LIMITATIONS</span><h3>{locale==="ja"?"まだ言い切れないこと":locale==="zh-tw"?"不應斷言的部分":locale==="ko"?"단정하지 않는 부분":"What this does not prove"}</h3><p>{post.limitations}</p></article>:null}
         </div>
         {post.reviewed_at?<p className="journal-evidence-reviewed">{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Last reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</p>:null}
       </details>
