@@ -55,7 +55,8 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   ];
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
-  const memberHref=authReady?`${locale==="en"?"":`/${locale}`}/my-homecourt/login`:localePath(locale,"my-homecourt");
+  // Always enter through the member app when auth is live. Existing sessions open immediately; signed-out users are redirected to login and returned to the app afterwards.
+  const memberHref=authReady?`${locale==="en"?"":`/${locale}`}/my-homecourt/app`:localePath(locale,"my-homecourt");
   return <div className={`site-shell locale-${locale}`} lang={locale==="zh-tw"?"zh-Hant-TW":locale}><DocumentLanguage language={locale==="zh-tw"?"zh-Hant-TW":locale}/>
     <a className="skip-link" href="#main-content">{({en:"Skip to content",ja:"本文へ移動","zh-tw":"跳至內容",ko:"본문으로 이동"})[locale]}</a>
     <header className="site-header">
