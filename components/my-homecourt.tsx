@@ -6,6 +6,7 @@ import { programmes } from "./programme-data";
 import { getPublicJournalPosts } from "@/lib/public-content";
 import { HomecourtConversionSection } from "./homecourt-conversion-section";
 import { IPhoneHomeScreenCard } from "./iphone-home-screen-card";
+import { HomecourtPlayerJourneyPreview } from "./homecourt-player-journey";
 
 const copy={
   en:{title:"Your next court starts here.",lead:"From everyday practice to courts you have not seen yet. Find clinics, learning, community and exchange built for players, parents and coaches.",free:"Discover what comes next",freeBody:"Find clinics, development ideas and opportunities that fit where you are now.",paid:"Expand your court",paidBody:"Meet new teammates, visit new places and experience different ways to play and learn.",community:"Community",communityBody:"Useful conversations for families and coaches, connected to real programmes—not an endless social feed.",impact:"RBA IMPACT",impactBody:"See how programme income and partner support are reinvested into access, education and safer development environments.",choose:"Choose your route",tools:"Member essentials",register:"Start with RBA ID",upgrade:"Explore MY HOME COURT",impactCta:"See impact & reinvestment"},
@@ -131,6 +132,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={17}/>{ja&&!authReady?"登録再開のお知らせを受け取る":c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div>{ja&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開までは、公式LINEで新しい活動・記事・登録再開のお知らせを受け取れます。</p>:null}</div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
     {ja&&!role?<div className="home-screen-card-wrap"><IPhoneHomeScreenCard/></div>:null}
+    {ja&&!role?<HomecourtPlayerJourneyPreview registrationUrl={registrationUrl}/>:null}
     {!role?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">{clear.kicker}</p><h2>{clear.title}</h2></div><p>{clear.lead}</p></div>
       <div className="homecourt-preview-grid">{clear.cards.map(([label,title,body],index)=><article key={label}><Compass/><span>{String(index+1).padStart(2,"0")} / {label}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
