@@ -31,6 +31,8 @@ test("RBA development inquiries route to RBA", () => {
   assert.equal(inferConciergeRoute("山形の参加方法を知りたい"), "rba");
   assert.equal(inferConciergeRoute("神戸キャンプの料金は？"), "rba");
   assert.equal(inferConciergeRoute("トーステンのオンライン講習について"), "rba");
+  assert.equal(inferConciergeRoute("川崎の料金は？"), "rba");
+  assert.equal(inferConciergeRoute("やいまカップについて知りたい"), "rba");
 });
 
 test("generic price and booking questions ask which service", () => {
