@@ -30,23 +30,41 @@
   const words=({ja:['メニューを開く','メニューを閉じる','ページ内メニュー'], 'zh-tw':['開啟選單','關閉選單','頁面章節'], ko:['메뉴 열기','메뉴 닫기','페이지 목차']})[locale] || ['Open menu','Close menu','Page sections'];
   const btn=$('.mobile-btn'), panel=$('.mobile-panel');
   let previousOverflow='';
-  const closeMenu=(restoreFocus=false)=>{
-    if(!panel?.classList.contains('open'))return;
-    panel.classList.remove('open'); panel.setAttribute('aria-hidden','true');
-    btn?.setAttribute('aria-expanded','false');btn?.setAttribute('aria-label',words[0]);
-    document.body.style.overflow=previousOverflow;
-    if(restoreFocus)btn?.focus();
+  const unlockPageScroll=()=>{
+    const restore=previousOverflow==='hidden'?'':previousOverflow;
+    document.body.style.overflow=restore;
+    document.documentElement.style.overflow='';
+    document.body.removeAttribute('data-rba-scroll-lock');
+    previousOverflow='';
+  };
+  const closeMenu=(restoreFocus=false,forceUnlock=false)=>{
+    const wasOpen=Boolean(panel?.classList.contains('open'));
+    if(wasOpen){
+      panel?.classList.remove('open'); panel?.setAttribute('aria-hidden','true');
+      btn?.setAttribute('aria-expanded','false');btn?.setAttribute('aria-label',words[0]);
+    }
+    if(wasOpen||forceUnlock||document.body.getAttribute('data-rba-scroll-lock')==='menu')unlockPageScroll();
+    if(restoreFocus&&wasOpen)btn?.focus();
   };
   const openMenu=()=>{
     if(!panel)return;
     previousOverflow=document.body.style.overflow;
     panel.classList.add('open');panel.setAttribute('aria-hidden','false');
     btn?.setAttribute('aria-expanded','true');btn?.setAttribute('aria-label',words[1]);
-    document.body.style.overflow='hidden';panel.querySelector('a[href]')?.focus();
+    document.body.setAttribute('data-rba-scroll-lock','menu');
+    document.body.style.overflow='hidden';
+    panel.querySelector('a[href]')?.focus();
   };
+  // Safari/PWA and bfcache can restore a page after the menu was open. Never carry a stale
+  // body overflow lock into a restored document.
+  closeMenu(false,true);
+  addEventListener('pageshow',()=>closeMenu(false,true));
+  addEventListener('pagehide',()=>closeMenu(false,true));
+  addEventListener('popstate',()=>closeMenu(false,true));
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')closeMenu(false,true);});
   btn?.setAttribute('aria-label',words[0]);
   btn?.addEventListener('click',()=>panel?.classList.contains('open')?closeMenu(true):openMenu());
-  $$('.mobile-panel a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
+  $('.mobile-panel a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
   document.addEventListener('keydown',e=>{
     if(!panel?.classList.contains('open'))return;
     if(e.key==='Escape'){e.preventDefault();closeMenu(true);}
