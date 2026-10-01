@@ -132,7 +132,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
         <p>クリニック、キャンプ、地域開催、海外交流、企業連携など、実際の活動を一緒につくります。</p>
       </div>
       <div className="homecourt-preview-grid">
-        <article><span>01</span><h3>ミニバスの育成環境を整える</h3><p>今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、訪問支援まで。まずチーム育成診断で、今の状況を整理します。</p><a className="text-link" href="/ja/minibasket-support">MINIBASKET SUPPORTを見る<ArrowRight size={16}/></a></article>
+        <article><span>01</span><h3>ミニバスの練習やチームづくりを見直す</h3><p>今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、訪問支援まで。まずチーム育成診断で、今の状況を整理します。</p><a className="text-link" href="/ja/minibasket-support">MINIBASKET SUPPORTを見る<ArrowRight size={16}/></a></article>
         <article><span>02</span><h3>継続拠点をつくる</h3><p>地域の指導者、会場、チームと連携し、一度きりではない活動の形をつくります。</p><a className="text-link" href="/ja/regional-host">REGIONAL HOSTを見る<ArrowRight size={16}/></a></article>
         <article><span>03</span><h3>海外とつなぐ</h3><p>交流試合、キャンプ、指導者交流などを、目的と年代に合わせて組み立てます。</p><a className="text-link" href="/ja/international">海外連携を見る<ArrowRight size={16}/></a></article>
         <article><span>04</span><h3>企業として支える</h3><p>協賛を地域開催、参加機会、安全な活動環境、国内外の交流へ具体的につなげます。</p><a className="text-link" href="/ja/partners">協賛・連携を見る<ArrowRight size={16}/></a></article>
