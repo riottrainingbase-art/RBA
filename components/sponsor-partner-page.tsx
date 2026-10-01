@@ -5,18 +5,18 @@ import {localePath} from "./site-frame";
 const c={
  ja:{
   kicker:"CORPORATE PARTNERSHIP / BASKETBALL",
-  title:"子どもたちの「次の挑戦」を、企業と一緒につくる。",
-  lead:"RBAは、全国のバスケットボールクリニック、キャンプ、指導者教育、国際交流と、MY HOME COURTをつなぐ育成プラットフォームです。企業のご支援を、ロゴ掲出だけでなく、実際の育成機会へ変えていきます。",
+  title:"子どもたちの活動を、企業と一緒に支える。",
+  lead:"RBAは、全国のクリニックやキャンプ、指導者教育、国際交流、MY HOME COURTを運営しています。企業のご支援は、会場費、移動、参加支援、安全な運営など、具体的な活動に使います。",
   metrics:[["3,000+","延べ参加者"],["25","国内活動地域"],["4","対応言語"]],
   section:"WHY RBA",sectionTitle:"広告枠ではなく、バスケットボールの育成環境を支える。",
-  values:[["PLAY","プレーする機会","地域や所属だけで挑戦の機会が決まらないよう、外のコートへつなぎます。"],["LEARN","学ぶ機会","選手だけでなく、指導者・保護者にも現代バスケットボールの学びを届けます。"],["PREPARE","身体を準備する","S&C、回復、栄養、怪我予防まで含め、長く競技を続ける土台をつくります。"],["CONNECT","次のコートへ","日本各地とアジアをつなぎ、異なるプレースタイルや価値観に触れる機会をつくります。"]],
-  platform:"MY HOME COURT",platformTitle:"イベントで終わらせず、日常の成長へ。",
-  platformBody:"練習・試合・大会の予定、カウントダウン、大会準備、参加履歴、Basketball Passport、次の育成機会を一つのHOMEへ。スポンサー企業は個人データにアクセスするのではなく、この育成環境を支えるパートナーとして関わります。",
+  values:[["PLAY","プレーする機会","地域や所属だけで選択肢が決まらないよう、地域外の活動にも参加できる機会を増やします。"],["LEARN","学ぶ機会","選手だけでなく、指導者や保護者が学べる機会もつくります。"],["PREPARE","身体を準備する","S&C、回復、栄養、怪我予防まで含め、長く競技を続ける土台をつくります。"],["CONNECT","次のコートへ","日本各地とアジアをつなぎ、異なるプレースタイルや価値観に触れる機会をつくります。"]],
+  platform:"MY HOME COURT",platformTitle:"イベント後も、参加履歴や振り返りを残せるように。",
+  platformBody:"練習や試合の予定、大会準備、参加履歴、Basketball PassportなどをMY HOME COURTで確認できます。スポンサー企業が個人データを見ることはなく、活動を支える企業・団体として関わっていただきます。",
   categories:[["SPORTS / APPAREL","ボール・ウェア・用具・大会準備"],["HEALTH / MEDICAL","怪我予防・安全・コンディショニング"],["FOOD / NUTRITION","補食・栄養教育・キャンプ"],["TRAVEL / MOBILITY","遠征・移動安全・国内外交流"],["IT / DIGITAL","MY HOME COURT・運営基盤"],["LOCAL BUSINESS","地域クリニック・参加機会"]],
   pilot:"FIRST PARTNER PILOT",pilotTitle:"まずは90日・5万円から。",pilotBody:"最初から年間契約をお願いしません。1つのバスケットボール企画を一緒に動かし、支援の使途と成果を確認したうえで、継続を双方で判断します。",
   included:["公式サイトのパートナー掲載","対象企画での社名・ロゴ掲出または連携","SNS・JOURNAL等での活動紹介","実施後の簡易インパクトレポート"],
   safety:"RBAが守ること",safetyItems:["未成年者への直接営業は行いません","健康・体調などの個人データをスポンサーへ提供しません","広告と育成コンテンツを明確に分けます","肖像・コメントの利用は同意を前提とします"],
-  cta:"最初の一社を探しています。",ctaBody:"企業が大切にしている価値と、RBAの育成活動が重なる場所を先に決めます。まず一つの企画からご相談ください。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
+  cta:"まずは一つの企画からご相談ください。",ctaBody:"企業・団体が大切にしていることと、RBAの活動で実際に支援できることを確認したうえで、連携内容を決めます。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
  },
  en:{
   kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"Build the next opportunity for young players—together.",lead:"RBA connects youth basketball clinics, camps, coach education, international exchange and MY HOME COURT. Corporate support becomes real development opportunities, not just logo placement.",
