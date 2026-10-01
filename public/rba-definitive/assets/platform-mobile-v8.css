@@ -386,3 +386,13 @@ html,body{max-width:100%;overflow-x:hidden}
   .program-card{min-height:280px;padding:30px 24px}
   .program-card h3{font-size:clamp(32px,10vw,46px);line-height:1}
 }
+
+
+/* D-HUB mobile resilience: safe-area spacing and restored-page scroll safety. */
+@supports (padding: max(0px)){
+  .mobile-panel.open{padding-bottom:max(24px,calc(16px + env(safe-area-inset-bottom)))}
+}
+@media (pointer:coarse){
+  html,body{touch-action:pan-y pinch-zoom}
+  .mobile-panel.open{touch-action:pan-y;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
+}
