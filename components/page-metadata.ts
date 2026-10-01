@@ -27,13 +27,13 @@ const titles:Record<string,Record<Locale,string>>={
 const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
  players:{
   en:"Find current RBA development opportunities, clinics, camps and continuing learning for youth basketball players.",
-  ja:"選手向けに、募集中のクリニック・キャンプ・継続スクール・育成記事・MY HOME COURTへの入口をまとめています。",
+  ja:"選手向けに、募集中のクリニック・キャンプ・継続スクール・育成記事・MY HOME COURTをまとめています。",
   "zh-tw":"整理球員可參加的訓練營、營隊、持續課程與學習入口。",
   ko:"선수를 위한 모집 중 클리닉, 캠프, 정기 프로그램과 학습 콘텐츠를 한곳에 모았습니다."
  },
  families:{
   en:"Clear guidance for families on eligibility, fees, registration, safety, cancellations and next development opportunities.",
-  ja:"保護者向けに、対象年代、参加費、申込・決済、安全面、キャンセル条件、次の育成機会を分かりやすくまとめています。",
+  ja:"保護者向けに、対象年代、参加費、申込・決済、安全面、キャンセル条件、参加できる活動をまとめています。",
   "zh-tw":"為家長整理參加資格、費用、報名、付款、安全與取消規定。",
   ko:"보호자를 위해 대상 연령, 참가비, 신청·결제, 안전, 취소 조건과 다음 성장 기회를 정리했습니다."
  },
@@ -45,19 +45,19 @@ const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
  },
  "my-homecourt":{
   en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one RBA ID.",
-  ja:"MY HOME COURTは、所属チーム、これまでの経験、次に参加できる育成機会、Development Camp、RBA UNITED、国内外の選択肢を、一つのRBA IDでつなぐ自分専用の育成ページです。",
+  ja:"MY HOME COURTは、活動を探す、参加履歴を残す、育成記事を読む、振り返るといった機能をRBA IDで利用できる会員ページです。",
   "zh-tw":"MY HOME COURT以一個RBA ID整合行程、報名、參與紀錄、Basketball Passport、照片影片與下一個培育機會。",
   ko:"MY HOME COURT는 일정, 신청, 참가 기록, Basketball Passport, 사진·영상과 다음 성장 기회를 하나의 RBA ID로 연결합니다."
  },
  coaches:{
   en:"Coach development at RBA: D-HUB weekly learning, Torsten Loibl Online Clinic, practice design, LTAD, S&C and international coach exchange.",
-  ja:"D-HUBの継続学習、トーステン・ロイブル氏の講習、練習設計、長期育成、S&C、国際交流をつなぐRBAの指導者向け学習環境です。",
+  ja:"D-HUB、トーステン・ロイブル氏の講習、練習設計、長期育成、S&C、国際交流など、指導者向けの学びをまとめています。",
   "zh-tw":"連結D-HUB持續學習、Torsten Loibl線上講座、訓練設計、LTAD、S&C與國際交流的RBA教練培育。",
   ko:"D-HUB 지속 학습, Torsten Loibl 온라인 클리닉, 훈련 설계, LTAD, S&C와 국제 교류를 연결하는 RBA 코치 교육."
  },
  "d-hub":{
   en:"D-HUB is RBA's continuous coach-development programme: 48 sessions a year connecting short online learning, court practice and reflection.",
-  ja:"D-HUBは年間48回。短時間のオンライン学習、現場での実践、振り返りをつなぐRBAの継続型指導者育成プログラムです。",
+  ja:"D-HUBは年間48回の継続プログラムです。短い学習、実際の練習での実践、振り返りを繰り返します。",
   "zh-tw":"D-HUB全年48次，連結短時間線上學習、場上實踐與反思，是RBA的持續性教練培育計畫。",
   ko:"D-HUB는 연간 48회, 짧은 온라인 학습과 현장 실천·성찰을 연결하는 RBA의 지속형 코치 교육 프로그램입니다."
  },
@@ -91,19 +91,19 @@ export function homecourtRoleMetadata(locale:Locale,role:"players"|"families"|"c
  const data={
   players:{
    en:{title:"MY HOME COURT for Players",description:"A personal basketball home for players: see your team location, keep experiences, discover Development Camps and RBA UNITED, and expand from Japan to Asia and the world."},
-   ja:{title:"選手のMY HOME COURT｜今いる場所から次の挑戦へ",description:"所属チーム、これまでの経験、次に参加できる育成機会、Development Camp、RBA UNITED、海外交流を一つにつなぐ選手向けMY HOME COURTです。"},
+   ja:{title:"選手のMY HOME COURT｜活動・記録・振り返り",description:"所属チームを変えずに、参加できる活動、これまでの経験、Development Camp、RBA UNITED、海外交流を確認できる選手向けMY HOME COURTです。"},
    "zh-tw":{title:"球員 MY HOME COURT｜從現在的位置走向世界",description:"把所屬球隊、參與經驗、下一個培育機會、Development Camp、RBA UNITED與國際交流連在一起。"},
    ko:{title:"선수 MY HOME COURT｜현재 위치에서 세계로",description:"소속팀, 경험 지역, 다음 성장 기회, Development Camp, RBA UNITED와 국제 교류를 하나로 연결하는 선수용 MY HOME COURT."}
   },
   families:{
    en:{title:"MY HOME COURT for Families",description:"A clearer development home for families: team environment, participation history, development articles, next opportunities and global pathways in one place."},
-   ja:{title:"保護者のMY HOME COURT｜育成を考える情報を一つに",description:"チーム環境、参加履歴、育成記事、次の活動、全国や海外の選択肢を一つにつなぐ保護者向けMY HOME COURTです。"},
+   ja:{title:"保護者のMY HOME COURT｜活動・申込・育成情報",description:"チーム環境、参加履歴、育成記事、参加できる活動、申込情報をまとめて確認できる保護者向けMY HOME COURTです。"},
    "zh-tw":{title:"家長 MY HOME COURT｜把培育判斷集中在一處",description:"整合球隊環境、參與紀錄、培育文章、下一個活動與日本及海外的選擇。"},
    ko:{title:"보호자 MY HOME COURT｜성장 판단 자료를 한곳에",description:"팀 환경, 참가 이력, 성장 콘텐츠, 다음 활동과 일본·해외 선택지를 하나로 연결합니다."}
   },
   coaches:{
    en:{title:"MY HOME COURT for Coaches",description:"A coach development home connecting D-HUB, practice design, coach learning, team operations and international development perspectives."},
-   ja:{title:"指導者のMY HOME COURT｜学びを日々の指導へ",description:"D-HUB、練習設計、指導者講習、TEAM HOME、育成記事、海外の育成事例を一つにつなぐ指導者向けMY HOME COURTです。"},
+   ja:{title:"指導者のMY HOME COURT｜D-HUB・練習設計・育成記事",description:"D-HUB、練習設計、指導者講習、TEAM HOME、育成記事、海外の育成事例をまとめて確認できる指導者向けMY HOME COURTです。"},
    "zh-tw":{title:"教練 MY HOME COURT｜連結學習與現場",description:"整合D-HUB、訓練設計、教練學習、TEAM HOME、培育文章與國際培育視角。"},
    ko:{title:"코치 MY HOME COURT｜배움과 현장을 연결",description:"D-HUB, 훈련 설계, 코치 교육, TEAM HOME, 성장 콘텐츠와 국제 육성 관점을 하나로 연결합니다."}
   }
