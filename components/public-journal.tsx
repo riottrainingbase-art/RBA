@@ -98,7 +98,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
     {label:"U12でスクリーンをどう扱うか考えたい",slug:"screens-before-reading"},
     {label:"ベンチから指示しすぎていないか",slug:"who-is-playing"},
     {label:"大差の試合をどう育成に変えるか",slug:"press-in-blowouts"},
-    {label:"B戦を育成機会として設計したい",slug:"value-of-b-games"},
+    {label:"B戦を選手の経験に使いたい",slug:"value-of-b-games"},
     {label:"罰走とコンディショニングを分けたい",slug:"punishment-running-is-not-conditioning"},
     {label:"怒鳴る指導を見直したい",slug:"shouting-is-not-coaching"},
     {label:"判断を増やす練習をつくりたい",slug:"small-sided-games"}
@@ -283,13 +283,13 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
     {locale==="ja"&&!unitedProjects.some(project=>project.slug===slug)?(post.category==="programme"?<section className="article-learning-bridge section-pad">
       <div>
         <p className="section-index inverse">ARTICLE → NEXT OPPORTUNITY</p>
-        <h2>この2日間を、<br/>次の育成機会へ。</h2>
+        <h2>この2日間を、<br/>次の練習にどう持ち帰るか。</h2>
         <p>Development CampやClinicは、受けて終わりではなく、所属チームで試し、振り返り、次の機会へつなげるためにあります。現在募集中のRBAプログラムはOPPORTUNITIESにまとめています。</p>
       </div>
       <div className="article-learning-panel">
         <span>RBA / OPPORTUNITIES</span>
         <strong>NEXT CAMP / CLINIC</strong>
-        <small>全国・海外の育成機会を更新</small>
+        <small>全国・海外の活動情報を更新</small>
         <Link className="button button-member" href="/ja/opportunities">募集中の活動を見る <ArrowRight size={17}/></Link>
       </div>
     </section>:post.category==="coaching"?<section className="article-learning-bridge section-pad">
@@ -308,7 +308,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div>
         <p className="section-index inverse">ARTICLE → ACTION</p>
         <h2>読んだことを、<br/>次の行動へ。</h2>
-        <p>記事を保存し、次の練習・試合・相談・育成機会へつなげる入口としてMY HOME COURTを使えます。</p>
+        <p>記事を保存し、次の練習や試合、相談するときに見返す場所としてMY HOME COURTを使えます。</p>
       </div>
       <div className="article-learning-panel">
         <span>RBA / MY HOME COURT</span>
@@ -323,7 +323,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
         <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][item.category as keyof typeof categoryLabels.en]||item.category}</p><h3>{item.title}</h3><p>{item.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
       </Link>)}</div>
     </section>:null}
-    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、育成機会、参加履歴を一つのRBA IDでつなぐ無料の入口です。</p><a className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の行動に変える。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
+    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、募集中の活動、参加履歴をRBA IDでまとめて確認できます。</p><a className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>読んだことを、練習や振り返りに使う。</h3><p>DEVELOPMENT LIBRARYの保存版資料・DEEP DIVE・実践ガイドを読み、実際に試して振り返りたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
     {locale==="ja"?<UnitedArticleCTA slug={slug}/>:null}
   </article></SiteFrame>;
 }
