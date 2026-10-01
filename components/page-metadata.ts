@@ -27,37 +27,37 @@ const titles:Record<string,Record<Locale,string>>={
 const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
  players:{
   en:"Find current RBA development opportunities, clinics, camps and continuing learning for youth basketball players.",
-  ja:"選手向けに、募集中のクリニック・キャンプ・継続スクール・育成記事・MY HOME COURTへの入口をまとめています。",
+  ja:"選手向けに、募集中のクリニック、キャンプ、定期スクール、育成記事、MY HOME COURTへの入口をまとめています。",
   "zh-tw":"整理球員可參加的訓練營、營隊、持續課程與學習入口。",
   ko:"선수를 위한 모집 중 클리닉, 캠프, 정기 프로그램과 학습 콘텐츠를 한곳에 모았습니다."
  },
  families:{
   en:"Clear guidance for families on eligibility, fees, registration, safety, cancellations and next development opportunities.",
-  ja:"保護者向けに、対象年代、参加費、申込・決済、安全面、キャンセル条件、次の育成機会を分かりやすくまとめています。",
+  ja:"保護者向けに、対象年代、参加費、申込・決済方法、安全面、キャンセル条件、次に参加できる活動をまとめています。",
   "zh-tw":"為家長整理參加資格、費用、報名、付款、安全與取消規定。",
   ko:"보호자를 위해 대상 연령, 참가비, 신청·결제, 안전, 취소 조건과 다음 성장 기회를 정리했습니다."
  },
  about:{
   en:"RBA's purpose, mission, development principles and work across youth basketball in Japan and Asia.",
-  ja:"Riot Basketball AcademyのPurpose、Mission、育成方針と、日本・アジアで取り組む活動を紹介します。",
+  ja:"Riot Basketball Academyの目的、育成方針、日本・アジアで取り組む活動を紹介します。",
   "zh-tw":"介紹RBA的Purpose、Mission、培育原則與日本・亞洲的活動。",
   ko:"RBA의 Purpose, Mission, 육성 원칙과 일본·아시아에서의 활동을 소개합니다."
  },
  "my-homecourt":{
   en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one RBA ID.",
-  ja:"MY HOME COURTは、所属チーム、これまでの経験、次に参加できる育成機会、Development Camp、RBA UNITED、国内外の選択肢を、一つのRBA IDでつなぐ自分専用の育成ページです。",
+  ja:"MY HOME COURTは、参加履歴、振り返り、育成記事、次に参加できる活動を、一つのRBA IDで確認できる自分専用のページです。",
   "zh-tw":"MY HOME COURT以一個RBA ID整合行程、報名、參與紀錄、Basketball Passport、照片影片與下一個培育機會。",
   ko:"MY HOME COURT는 일정, 신청, 참가 기록, Basketball Passport, 사진·영상과 다음 성장 기회를 하나의 RBA ID로 연결합니다."
  },
  coaches:{
   en:"Coach development at RBA: D-HUB weekly learning, Torsten Loibl Online Clinic, practice design, LTAD, S&C and international coach exchange.",
-  ja:"D-HUBの継続学習、トーステン・ロイブル氏の講習、練習設計、長期育成、S&C、国際交流をつなぐRBAの指導者向け学習環境です。",
+  ja:"D-HUB、トーステン・ロイブル氏の講習、練習設計、長期育成、S&C、海外の育成知見を学べる指導者向けページです。",
   "zh-tw":"連結D-HUB持續學習、Torsten Loibl線上講座、訓練設計、LTAD、S&C與國際交流的RBA教練培育。",
   ko:"D-HUB 지속 학습, Torsten Loibl 온라인 클리닉, 훈련 설계, LTAD, S&C와 국제 교류를 연결하는 RBA 코치 교육."
  },
  "d-hub":{
   en:"D-HUB is RBA's continuous coach-development programme: 48 sessions a year connecting short online learning, court practice and reflection.",
-  ja:"D-HUBは年間48回。短時間のオンライン学習、現場での実践、振り返りをつなぐRBAの継続型指導者育成プログラムです。",
+  ja:"D-HUBは、短く学び、現場で試し、振り返ることを継続するRBAの指導者・選手向け育成プログラムです。",
   "zh-tw":"D-HUB全年48次，連結短時間線上學習、場上實踐與反思，是RBA的持續性教練培育計畫。",
   ko:"D-HUB는 연간 48회, 짧은 온라인 학습과 현장 실천·성찰을 연결하는 RBA의 지속형 코치 교육 프로그램입니다."
  },
