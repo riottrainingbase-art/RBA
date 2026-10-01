@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, Brain, CheckCircle2, ClipboardList, Eye, Gamepad2, Repeat2, ShieldCheck, Target, Users } from "lucide-react";
+import { ArrowRight, Brain, CheckCircle2, ClipboardList, Eye, Gamepad2, Target, Users } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
