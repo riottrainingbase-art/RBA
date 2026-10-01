@@ -16,7 +16,7 @@
     "audit:deploy-policy": "node scripts/check-deployment-policy.mjs",
     "audit:site-ja": "node audit/site-japanese/check.mjs",
     "audit:player-journey": "node audit/player-journey/check.mjs",
-    "audit:dhub-mobile": "node audit/dhub-mobile/check.mjs"
+    "audit:dhub-mobile": "node audit/dhub-mobile/check.mjs",\n    "audit:platform-quality": "node audit/platform-quality/check.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
