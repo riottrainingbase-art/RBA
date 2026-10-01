@@ -65,7 +65,7 @@ export default async function Page() {
   }
 
   const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }, { data: paidRows }] = await Promise.all([
-    supabase.from("dhub_memberships").select("member_name,status,provider,last_payment_at,access_until").eq("program_type","coach_lab").limit(1),
+    supabase.from("dhub_memberships").select("member_name,status,provider,last_payment_at,access_until,linked_user_id,email_normalized,alternate_emails,amount_jpy").eq("program_type","coach_lab"),
     supabase.from("dhub_lessons").select("id,week_no,module_no,module_title,title,guiding_question,purpose").eq("published",true).order("week_no"),
     supabase.from("dhub_lesson_progress").select("lesson_id,status,updated_at").eq("user_id",user.id),
     supabase.from("dhub_paid_articles")
@@ -76,7 +76,13 @@ export default async function Page() {
       .order("published_at",{ascending:false})
   ]);
 
-  const membership = membershipRows?.[0];
+  const signedInEmail=(user.email||"").trim().toLowerCase();
+  const membership=(membershipRows||[]).find(row=>{
+    if(row.linked_user_id===user.id)return true;
+    if(String(row.email_normalized||"").trim().toLowerCase()===signedInEmail)return true;
+    return Array.isArray(row.alternate_emails)&&row.alternate_emails.some((email:string)=>String(email).trim().toLowerCase()===signedInEmail);
+  });
+  const membershipLabel=membership?.status?String(membership.status).toUpperCase():"ACCESS VERIFIED";
   const lessons=(lessonRows||[]) as Lesson[];
   const completed=new Set((progressRows||[]).filter(row=>row.status==="completed").map(row=>row.lesson_id));
   const completedCount=completed.size;
@@ -112,8 +118,8 @@ export default async function Page() {
           <p>D-HUB COACH LABは記事を読むだけの有料版ではありません。48回のカリキュラム、毎週の実践課題、指導者同士の対話、振り返りを一つにつなげます。</p>
           <div className="dhub-member-status">
             <span>MEMBERSHIP</span>
-            <strong>{membership?.status === "grace" ? "GRACE" : "ACTIVE"}</strong>
-            <small>Square 月額3,300円</small>
+            <strong>{membershipLabel}</strong>
+            <small>{membership?.provider==="square"&&membership?.amount_jpy?"Square 月額"+membership.amount_jpy.toLocaleString("ja-JP")+"円":"D-HUB COACH LAB"}</small>
           </div>
         </section>
 
