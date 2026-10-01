@@ -393,6 +393,5 @@ html,body{max-width:100%;overflow-x:hidden}
   .mobile-panel.open{padding-bottom:max(24px,calc(16px + env(safe-area-inset-bottom)))}
 }
 @media (pointer:coarse){
-  html,body{touch-action:pan-y pinch-zoom}
   .mobile-panel.open{touch-action:pan-y;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
 }
