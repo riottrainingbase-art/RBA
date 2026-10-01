@@ -11,14 +11,14 @@ const titles:Record<string,Record<Locale,string>>={
  "d-hub":{en:"D-HUB｜Coach development",ja:"D-HUB｜指導者育成","zh-tw":"D-HUB｜教練培育",ko:"D-HUB｜코치 교육"},
  united:{en:"RBA UNITED",ja:"RBA UNITED｜個人参加型チーム","zh-tw":"RBA UNITED",ko:"RBA UNITED"},
  connect:{en:"RBA CONNECT",ja:"RBA CONNECT｜国内・国際ネットワーク","zh-tw":"RBA CONNECT",ko:"RBA CONNECT"},
- organizer:{en:"ORGANIZER HOME",ja:"大会・イベント主催者の方へ","zh-tw":"主辦單位專區",ko:"대회·이벤트 주최자 안내"},
+ organizer:{en:"ORGANIZER HOME",ja:"主催者・地域パートナーの方へ","zh-tw":"主辦單位專區",ko:"대회·이벤트 주최자 안내"},
  about:{en:"About RBA",ja:"RBAについて","zh-tw":"關於RBA",ko:"RBA 소개"},
  approach:{en:"Development approach",ja:"育成方針","zh-tw":"培育理念",ko:"육성 철학"},
  schedule:{en:"Programme calendar",ja:"開催日程","zh-tw":"活動日程",ko:"프로그램 일정"},
  payments:{en:"Official registration and payment",ja:"公式申込・決済","zh-tw":"官方報名與付款",ko:"공식 신청·결제"},
  "clinic-request":{en:"Clinic request",ja:"クリニック開催のご相談","zh-tw":"訓練營邀約",ko:"클리닉 요청"},
  asia:{en:"Japan–Asia exchange",ja:"海外連携","zh-tw":"日本交流",ko:"일본 교류"},
- partners:{en:"Partners",ja:"協賛・連携","zh-tw":"合作夥伴",ko:"파트너십"},
+ partners:{en:"Partners",ja:"パートナー・協賛","zh-tw":"合作夥伴",ko:"파트너십"},
  contact:{en:"Contact RBA",ja:"お問い合わせ","zh-tw":"聯絡RBA",ko:"RBA 문의"},
  social:{en:"Official channels",ja:"公式チャンネル","zh-tw":"官方平台",ko:"공식 채널"},
  policies:{en:"Privacy, terms and safety policies",ja:"プライバシー・参加規約・安全方針","zh-tw":"隱私、條款與安全政策",ko:"개인정보, 약관 및 안전 정책"},
@@ -80,7 +80,7 @@ export function pageMetadata(locale:Locale,page:LanguagePage):Metadata {
   ? ({en:"25 November 2026, 20:00 JST on Zoom. Torsten Loibl on shooter development, shooting programme design and high-percentage shots. Live ¥3,300; 30-day on-demand ¥4,400.",ja:"2026年11月25日20:00、Zoom開催。トーステン・ロイブル氏から、シューターの育成、シュート練習の設計、確率の高いシュートを生み出す戦略を学ぶ90分。ライブ参加3,300円、30日間オンデマンド4,400円。","zh-tw":"2026年11月25日日本時間20:00線上舉行。Torsten Loibl分享射手培養、投籃訓練設計與創造高命中率機會。直播3,300日圓，30天隨選4,400日圓。",ko:"2026년 11월 25일 20:00(JST) Zoom 진행. Torsten Loibl에게 슈터 육성, 슈팅 프로그램 설계와 높은 확률의 슛을 만드는 전략을 배우는 90분. 라이브 3,300엔, 30일 다시보기 4,400엔."})[locale]
   : page==="payments"
     ? ({en:"Official RBA programme application forms and secure Stripe payment pages.",ja:"RBAの各プログラムの公式申込フォームとStripe決済ページです。","zh-tw":"RBA各項活動的官方報名表與安全Stripe付款頁面。",ko:"RBA 프로그램의 공식 신청서와 안전한 Stripe 결제 페이지입니다."})[locale]
-    : ({en:`${title}: programmes, information and enquiries at Riot Basketball Academy.`,ja:`Riot Basketball Academyの${title}に関する情報をご案内します。`,"zh-tw":`${title}。Riot Basketball Academy活動資訊與洽詢。`,ko:`${title}. Riot Basketball Academy의 프로그램 안내와 문의.`})[locale]);
+    : ({en:`${title}: programmes, information and enquiries at Riot Basketball Academy.`,ja:`Riot Basketball Academy（RBA）の「${title}」に関する情報をまとめています。`,"zh-tw":`${title}。Riot Basketball Academy活動資訊與洽詢。`,ko:`${title}. Riot Basketball Academy의 프로그램 안내와 문의.`})[locale]);
  return {title,description,twitter:{card:"summary_large_image",title,description,images:["/rba-court-hero.png"]},alternates:{canonical:localePath(locale,page),languages:{en:localePath("en",page),ja:localePath("ja",page),"zh-Hant-TW":localePath("zh-tw",page),ko:localePath("ko",page),"x-default":localePath("en",page)}},openGraph:{title,description,images:["/rba-court-hero.png"],url:localePath(locale,page),siteName:"Riot Basketball Academy",locale:{en:"en_US",ja:"ja_JP","zh-tw":"zh_TW",ko:"ko_KR"}[locale],type:"website"}};
 }
 
