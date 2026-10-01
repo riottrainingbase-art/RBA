@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const months = [
   ["10月","OBSERVE & DECIDE","見る・認知する・判断する"],
   ["11月","CREATE ADVANTAGE","1on1で優位性をつくる"],
-  ["12月","USE ADVANTAGE","ズレを使い、次へつなぐ"],
+  ["12月","USE ADVANTAGE","ズレを使って、味方を生かす"],
   ["1月","FINISHING","リング周辺の解決力"],
   ["2月","SHOOTING IN CONTEXT","ゲーム状況からシュートを選ぶ"],
   ["3月","SPACING","距離・角度・スペースを理解する"],
@@ -41,7 +41,7 @@ const focus = [
   ["SEE","相手・味方・スペースを観る"],
   ["DECIDE","状況に応じて選択する"],
   ["ACT","技術をゲームの中で実行する"],
-  ["ADAPT","失敗から修正し、次へつなぐ"],
+  ["ADAPT","失敗から修正し、もう一度試す"],
 ] as const;
 
 const structuredData = {
