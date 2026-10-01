@@ -40,6 +40,30 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
         <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">ライブ参加 ¥3,300で申し込む<ArrowUpRight size={17}/></a>
       </div>
     </section>:null}
+    {locale==="ja"?<section className="torsten-demand section-pad">
+      <div className="torsten-demand-head">
+        <div>
+          <p className="section-index">REAL QUESTIONS FROM COACHES</p>
+          <h2>すでに届いている質問から、<br/>90分の中身をつくります。</h2>
+        </div>
+        <div className="torsten-demand-note">
+          <strong>当日予定があっても参加できます。</strong>
+          <p>オンデマンドは30日間。仕事や練習と重なっても、自分のタイミングで繰り返し視聴できます。</p>
+          <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">30日オンデマンド ¥4,400で申し込む<ArrowUpRight size={17}/></a>
+        </div>
+      </div>
+      <div className="torsten-question-grid">
+        {[
+          "U8では、シュートフォームをどこまで教えるべきか？",
+          "練習では入るのに、試合になると打てないのはなぜか？",
+          "シュートドリルを5対5の判断へ、どうつなげるか？",
+          "スペーシングとアドバンテージを、育成年代でどう教えるか？",
+          "リングが少なく人数が多い時、どうシュート練習を設計するか？",
+          "答えを与えすぎず、選手自身の判断をどう引き出すか？"
+        ].map((question,index)=><article key={question}><span>Q{String(index+1).padStart(2,"0")}</span><h3>{question}</h3></article>)}
+      </div>
+      <p className="torsten-demand-foot">申込フォームに寄せられた実際の関心テーマをもとに、技術・練習設計・ゲーム理解を一つの流れとして扱います。</p>
+    </section>:null}
     <section className="event-audiences section-pad" id="audience"><div className="section-head"><div><p className="section-index">{c.audienceLabel}</p><h2>{c.audienceTitle}</h2></div><p>{c.audienceNote}</p></div><div className="audience-grid">{c.audiences.map(([label,body],index)=><article key={label}>{index===0?<GraduationCap size={32}/>:<Users size={32}/>}<span>0{index+1}</span><h3>{label}</h3><p>{body}</p><a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a></article>)}</div></section>
     <section className="torsten-credentials section-pad"><div><p className="section-index inverse">{c.careerLabel}</p><h2>{c.careerTitle}</h2></div><div>{c.career.map(([label,detail])=><article key={label}><span>{label}</span><strong>{detail}</strong></article>)}</div></section>
     <section className="event-record section-pad"><aside><p className="section-index">LIVE / ZOOM</p><strong>{({en:"25 NOV 2026",ja:"2026年11月25日","zh-tw":"2026年11月25日",ko:"2026년 11월 25일"})[locale]}</strong><span>{ui(locale,"time")}<br/>{ui(locale,"interpretation")}</span></aside><div><p className="eyebrow">{ui(locale,"theme")}</p><h2>{c.shift[0]}<br/>{c.shift[1]}</h2><p>{c.body}</p><p>{c.price}</p><p>{ui(locale,"external")}</p><div className="closing-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href={announcementUrl} target="_blank" rel="noreferrer">{c.article}<BookOpen size={17}/></a></div></div></section>
@@ -51,8 +75,8 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
     <section className="event-final section-pad"><p className="eyebrow">TORSTEN LOIBL ONLINE CLINIC VOL.2</p><h2>{c.finalTitle}</h2><p>{c.finalBody}</p><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a></section>
 
     {locale==="ja"?<div className="torsten-mobile-sticky" role="region" aria-label="オンライン講習申込">
-      <div><strong>11/25 20:00</strong><span>Torsten Online Clinic</span></div>
-      <a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">申込 ¥3,300 <ArrowUpRight size={15}/></a>
+      <div><strong>11/25 20:00</strong><span>LIVE ¥3,300 / 録画30日 ¥4,400</span></div>
+      <a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">申込 <ArrowUpRight size={15}/></a>
     </div>:null}
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale,"schedule")}>{c.back}<ArrowRight size={24}/></a></section>
   </SiteFrame></div>;
