@@ -1,0 +1,43 @@
+name: RBA Japanese Copy Audit
+
+on:
+  push:
+    branches:
+      - fix/ja-site-copy-audit-20261001
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  copy-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Enable pnpm
+        run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: Build without deploy
+        run: pnpm run build
+      - name: HOME COURT Japanese audit
+        run: pnpm run audit:homecourt-ja
+      - name: Site Japanese audit
+        run: pnpm run audit:site-ja
+      - name: ESLint changed JS/TS
+        run: |
+          git fetch origin preview-rba --depth=1
+          FILES="$(git diff --name-only --diff-filter=ACMR origin/preview-rba...HEAD -- '*.ts' '*.tsx' '*.js' '*.mjs')"
+          if [ -n "$FILES" ]; then printf '%s\n' "$FILES" | xargs pnpm exec eslint; fi
+      - name: Language smell report
+        shell: bash
+        run: |
+          echo "=== Japanese phrases to review (report only) ==="
+          TERMS='育成機会|次の一歩|現在地|実装|アップデート|育成インフラ|品質フレームワーク|学習履歴|スケールさせ|現場へつな|一つにつな|次へつな|育成環境'
+          grep -RInE "$TERMS" app/ja components definitive-content/ja             --include='*.ts' --include='*.tsx' --include='*.html'             | grep -vE 'node_modules|\.next' || true
