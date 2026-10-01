@@ -4,12 +4,12 @@ import { SiteFrame } from "@/components/site-frame";
 import { VisitTrainingObservation } from "@/components/visit-training-observation";
 
 export const metadata: Metadata = {
-  title: "RBA TEAM TAKEOVER / VISIT TRAINING｜チーム練習をRBAが担当",
-  description: "RBAが普段の体育館へ伺い、90〜120分のチーム練習を丸ごと担当。練習設計、オンコート指導、ゲーム観察、指導者フィードバックまで行うTEAM TAKEOVER / VISIT TRAININGです。",
+  title: "RBA VISIT TRAINING｜普段のチーム練習にRBAが伺います",
+  description: "RBAが普段の体育館へ伺い、90〜120分のチーム練習を担当します。事前ヒアリング、オンコート指導、ゲーム観察、必要に応じた指導者への振り返りまで行います。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-visit-clinic" },
   openGraph: {
     title: "RBA VISIT TRAINING｜普段の練習に、RBAが行きます。",
-    description: "単発の技術指導ではなく、チームの普段の環境を見ながら、必要な育成テーマを一緒に整理して実施します。",
+    description: "決まったメニューを持ち込むのではなく、普段の練習や試合で困っていることを確認したうえで内容を決めます。",
     url: "https://riotbasketballacademy.com/ja/team-visit-clinic",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const themes = [
   ["SEE / DECIDE", "相手・味方・スペースを見て、プレー前から判断する習慣を育てます。"],
-  ["1on1 / ADVANTAGE", "抜くことだけでなく、優位性をつくり、使い、次のプレーへつなげます。"],
+  ["1on1 / ADVANTAGE", "抜くことだけでなく、できたズレをどう使うか、次に誰を生かすかまで扱います。"],
   ["SPACING / OFF-BALL", "ボールを持っていない時間の立ち位置、角度、カット、リロケートを整理します。"],
   ["FINISHING / SHOOTING", "ゲーム状況から、どのフィニッシュやシュートを選ぶかまで扱います。"],
   ["DEFENCE / TRANSITION", "1on1、クローズアウト、ヘルプ、切り替えを判断とセットで学びます。"],
@@ -36,15 +36,15 @@ const formats = [
   },
   {
     tag:"TEAM DEVELOPMENT",
-    title:"チーム育成サポート",
+    title:"選手指導＋指導者フィードバック",
     body:"選手への指導に加えて、練習の見え方や課題を指導者と共有します。『何を教えるか』だけでなく、『どう練習を設計するか』まで整理します。",
-    items:["選手向けクリニック","指導者フィードバック","練習設計・次の課題整理"],
+    items:["選手向けクリニック","指導者フィードバック","練習の組み立て・次回のテーマ整理"],
   },
   {
     tag:"CONTINUOUS SUPPORT",
     title:"継続訪問",
     body:"一度のクリニックで終わらず、同じテーマを継続して確認したいチーム向けです。実施間隔や内容はチーム状況に合わせて相談します。",
-    items:["定期的なオンコート指導","前回からの変化確認","継続テーマの更新"],
+    items:["定期的なオンコート指導","前回からの変化確認","継続して確認するテーマを決める"],
   },
 ] as const;
 
@@ -53,8 +53,8 @@ export default function Page(){
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja">← RBA</a>
       <p className="section-index">RBA TEAM TAKEOVER / VISIT TRAINING</p>
-      <h1>いつもの練習を、<br/>一度RBAに任せてください。</h1>
-      <p>TEAM TAKEOVERは、単発の「技術クリニック」ではありません。RBAが普段の体育館へ伺い、90〜120分の通常練習を一度丸ごと担当します。事前にチームの課題を確認し、当日の選手の反応を見ながら内容を調整。終了後は、希望に応じて指導者へ次の練習につながるフィードバックまで行います。</p>
+      <h1>いつもの体育館で、<br/>RBAがチーム練習を担当します。</h1>
+      <p>決まった内容を一方的に行うクリニックではありません。RBAが普段の体育館へ伺い、90〜120分のチーム練習を担当します。事前に困っていることや希望テーマを確認し、当日の選手の様子を見ながら内容を調整します。終了後は、希望に応じて指導者と振り返りを行います。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="https://book.stripe.com/fZu14p2XZ7ru2QtdwH7EQ0x">TEAM TAKEOVERを予約する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="#programme">内容を見る<ArrowRight size={17}/></a>
@@ -74,7 +74,7 @@ export default function Page(){
     <section className="homecourt-product-preview section-pad" id="programme">
       <div className="section-head">
         <div><p className="section-index">WHAT WE CAN WORK ON</p><h2>チームの課題に合わせて、テーマを組みます。</h2></div>
-        <p>すべてを一度に詰め込むのではなく、対象年代と現在地に合わせて優先順位を決めます。</p>
+        <p>すべてを一度に詰め込むのではなく、対象年代と今のチーム状況に合わせて優先順位を決めます。</p>
       </div>
       <div className="homecourt-preview-grid">
         {themes.map(([title,body],i)=><article key={title}><span>{String(i+1).padStart(2,"0")}</span><h3>{title}</h3><p>{body}</p></article>)}
@@ -112,10 +112,10 @@ export default function Page(){
     </section>
 
     <section className="hosting-roles section-pad">
-      <div className="section-head"><div><p className="section-index inverse">FOR COACHES</p><h2>選手だけでなく、チームの学びにつなげます。</h2></div></div>
+      <div className="section-head"><div><p className="section-index inverse">FOR COACHES</p><h2>選手への指導だけでなく、指導者とも振り返ります。</h2></div></div>
       <div className="role-grid">
         <article><Users aria-hidden="true"/><h3>選手へ</h3><ul><li>技術をゲームで使う</li><li>見る・判断する習慣をつくる</li><li>役割やポジションに固定されない経験を増やす</li></ul></article>
-        <article><Repeat2 aria-hidden="true"/><h3>指導者へ</h3><ul><li>練習で何を見るかを共有する</li><li>問いかけや制約条件の使い方を整理する</li><li>次の練習へ持ち帰れるテーマを残す</li></ul></article>
+        <article><Repeat2 aria-hidden="true"/><h3>指導者へ</h3><ul><li>練習で何を見るかを共有する</li><li>問いかけや制約条件の使い方を整理する</li><li>次の練習で続けたいテーマを決める</li></ul></article>
       </div>
     </section>
 
@@ -123,14 +123,14 @@ export default function Page(){
       <p className="section-index">OUR POSITION</p>
       <div>
         <h2>チームから選手を集めるための活動ではありません。</h2>
-        <p>RBA VISIT TRAININGは、所属変更や選手勧誘を目的としたものではありません。今いるチームの活動を大切にしながら、普段とは違う視点を一つ加え、選手と指導者の学びをチームへ持ち帰るためのプログラムです。</p>
+        <p>RBA VISIT TRAININGは、所属変更や選手勧誘を目的としたものではありません。今いるチームの活動を大切にしながら、普段とは違う視点から練習を見直し、選手と指導者の両方が今後も続けられることを整理するプログラムです。</p>
       </div>
     </section>
 
     <section className="hosting-ready section-pad">
       <div><p className="section-index">BEFORE YOU CONTACT US</p><h2>まずは、この5つだけ教えてください。</h2></div>
       <ul>
-        {["チーム名・開催地域","対象年代とおおよその人数","希望日または時期","今、チームで感じている課題","選手に持ち帰ってほしいこと"].map((item,i)=><li key={item}><span>{String(i+1).padStart(2,"0")}</span><strong>{item}</strong><CheckCircle2/></li>)}
+        {["チーム名・開催地域","対象年代とおおよその人数","希望日または時期","今、チームで感じている課題","選手に経験してほしいこと"].map((item,i)=><li key={item}><span>{String(i+1).padStart(2,"0")}</span><strong>{item}</strong><CheckCircle2/></li>)}
       </ul>
     </section>
 
@@ -156,8 +156,8 @@ export default function Page(){
 
     <section className="closing-cta section-pad">
       <p className="eyebrow">RBA TEAM TAKEOVER / VISIT TRAINING</p>
-      <h2>クリニックではなく、<br/>チームの“いつもの練習”を変える。</h2>
-      <p>一度の派手なイベントではなく、普段の練習で何を見るか、どう判断させるか、どんなゲームを使うかまで一緒に扱います。すぐ日程調整へ進みたい場合は予約金から、まず話を聞きたい場合は相談から選べます。</p>
+      <h2>特別な一日より、<br/>普段の練習に残るものを。</h2>
+      <p>普段の練習で何を見るか、選手にどんな判断を経験してほしいか、どんなゲーム形式を使うかまで一緒に考えます。日程調整まで進めたい方は予約金から、まず内容を相談したい方は相談フォームから進めます。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="mailto:riot.training.base@gmail.com?subject=RBA%20TEAM%20VISIT%20CLINIC%E7%9B%B8%E8%AB%87">メールで相談する<ArrowRight size={17}/></a>
