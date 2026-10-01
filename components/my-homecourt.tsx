@@ -10,7 +10,7 @@ import { HomecourtPlayerJourneyPreview } from "./homecourt-player-journey";
 
 const copy={
   en:{title:"Your next court starts here.",lead:"From everyday practice to courts you have not seen yet. Find clinics, learning, community and exchange built for players, parents and coaches.",free:"Discover what comes next",freeBody:"Find clinics, development ideas and opportunities that fit where you are now.",paid:"Expand your court",paidBody:"Meet new teammates, visit new places and experience different ways to play and learn.",community:"Community",communityBody:"Useful conversations for families and coaches, connected to real programmes—not an endless social feed.",impact:"RBA IMPACT",impactBody:"See how programme income and partner support are reinvested into access, education and safer development environments.",choose:"Choose your route",tools:"Member essentials",register:"Start with RBA ID",upgrade:"Explore MY HOME COURT",impactCta:"See impact & reinvestment"},
-  ja:{title:"これまでの参加を、これからの成長へ。",lead:"RBAのクリニックやキャンプで得た経験を、その日だけで終わらせない。参加履歴、振り返り、写真・動画、目標、次の活動を一つにつなぎ、自分の変化を振り返れる場所です。",free:"次の活動を見つける",freeBody:"年代・地域・目的に合う、現在募集中の活動を探せます。",paid:"経験を次の成長につなぐ",paidBody:"参加履歴や振り返りを残し、今の自分に合う学びや次の挑戦へ進めます。",community:"仲間と学ぶ",communityBody:"保護者と指導者が、現場での気づきや育成に関する問いを共有できます。",impact:"RBA IMPACT",impactBody:"参加費、会費、協賛金を、参加機会・指導者教育・安全な育成環境へどのように還元しているかをお伝えします。",choose:"立場に合う入口を選ぶ",tools:"よく使うメニュー",register:"MY HOME COURTを開く",upgrade:"MY HOME COURTについて",impactCta:"活動実績と再投資方針を見る"},
+  ja:{title:"参加したことを、あとから振り返れるように。",lead:"RBAのクリニックやキャンプへの参加履歴、振り返り、写真・動画、目標、保存した活動をまとめて確認できる会員ページです。",free:"次の活動を見つける",freeBody:"年代・地域・目的に合う、現在募集中の活動を探せます。",paid:"参加したことを記録する",paidBody:"参加履歴や振り返りを残し、読みたい記事や参加したい活動を探せます。",community:"仲間と学ぶ",communityBody:"保護者と指導者が、現場での気づきや育成に関する問いを共有できます。",impact:"RBA IMPACT",impactBody:"参加費、会費、協賛金を、会場、参加支援、指導者教育、安全な運営などにどう使っているかをお伝えします。",choose:"立場に合う入口を選ぶ",tools:"よく使うメニュー",register:"MY HOME COURTを開く",upgrade:"MY HOME COURTについて",impactCta:"活動実績と再投資方針を見る"},
   "zh-tw":{title:"下一座球場，從這裡開始。",lead:"從平常的練習走向還沒見過的球場。球員、家長與教練都能找到適合自己的活動、學習與交流機會。",free:"發現下一個目標",freeBody:"探索適合現在自己的訓練營、培育內容與新機會。",paid:"拓展你的球場",paidBody:"認識新的夥伴、前往不同城市，接觸新的打法與學習方式。",community:"社群",communityBody:"以實際活動與培育問題為中心，連結家長與教練。",impact:"RBA IMPACT",impactBody:"公開活動收入與合作支持如何再投入參與機會、教育與安全環境。",choose:"選擇入口",tools:"會員選單",register:"使用RBA ID開始",upgrade:"了解MY HOME COURT",impactCta:"查看成果與再投資"},
   ko:{title:"다음 코트는 여기서 시작됩니다.",lead:"평소의 훈련에서 아직 만나지 못한 코트까지. 선수, 보호자와 코치가 자신에게 맞는 활동, 배움과 교류를 찾을 수 있습니다.",free:"다음 목표 발견하기",freeBody:"현재의 나에게 맞는 클리닉, 성장 콘텐츠와 새로운 기회를 찾아보세요.",paid:"코트를 넓히기",paidBody:"새로운 동료를 만나고 다른 도시와 플레이 스타일을 경험해 보세요.",community:"커뮤니티",communityBody:"실제 프로그램과 성장 과제를 중심으로 가족과 코치를 연결합니다.",impact:"RBA IMPACT",impactBody:"프로그램 수입과 파트너 지원이 참가 기회, 교육과 안전한 환경에 어떻게 재투자되는지 공개합니다.",choose:"역할 선택",tools:"회원 메뉴",register:"RBA ID로 시작",upgrade:"MY HOME COURT 알아보기",impactCta:"성과와 재투자 보기"},
 } as const;
@@ -41,7 +41,7 @@ const clarityCopy={
   },
   ja:{
     kicker:"まずここから",title:"MY HOME COURTでできること。",
-    lead:"活動を探す。学ぶ。経験を残す。次を決める。MY HOME COURTは、この4つを一つにつなぎます。",
+    lead:"活動を探す。記事を読む。経験を残す。次にやってみることを決める。必要な機能から使えます。",
     cards:[
       ["探す","次の機会を見つける","全国のクリニック、キャンプ、海外交流から次の機会を探せます。"],
       ["学ぶ","育成について理解を深める","立場に合う育成記事や実践のヒントを読めます。"],
@@ -53,7 +53,7 @@ const clarityCopy={
     paidCta:"PLUSの内容を見る",freeCta:"RBA IDから始める",
     whoTitle:"あなたに合う入口を選ぶ。",who:[
       ["PLAYER / 選手","今のチームに所属したまま、もっと多くの機会や外のバスケットボールにも触れたい。"],
-      ["PARENT / 保護者","子どもの育成環境や次の選択について、チーム以外からも判断材料を得たい。"],
+      ["PARENT / 保護者","子どものチームや活動について、所属先以外の情報も参考にしたい。"],
       ["COACH / 指導者","経験だけに頼らず、毎週の指導や練習設計を学び続けたい。"]
     ],
     faqTitle:"登録前によくある質問",faq:[
