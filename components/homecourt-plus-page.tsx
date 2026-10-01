@@ -15,7 +15,7 @@ export function HomecourtPlusPage(){
       <section className="hc-plus-hero section-pad">
         <p className="section-index inverse">MY HOME COURT / PLUS</p>
         <h1>学んだことを、<br/>その週のバスケで使う。</h1>
-        <p>HOMECOURT PLUSは、RBA DEVELOPMENT LIBRARYの教科書・研究整理と、週次・月次の実践ツールを一つにした月額プランです。深く理解するだけで終わらず、今週やることを一つ決め、試し、振り返り、次を決めるところまでつなげます。</p>
+        <p>HOMECOURT PLUSは、会員向けの記事・ガイドと、週ごと・月ごとの記録機能を使える月額プランです。今週やることを一つ決め、練習や試合で試し、あとから振り返る流れを続けられます。</p>
         <div className="hc-plus-price"><strong>¥3,300</strong><span>/ 月</span><small>税込・月額</small></div>
         <div className="hc-plus-actions">
           <Link className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></Link>
@@ -35,7 +35,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-library section-pad">
-        <div className="section-head"><div><p className="section-index">RBA DEVELOPMENT LIBRARY</p><h2>{counts.total}本の実践ガイド＋教科書。</h2></div><p>無料JOURNALは「考える入口」。PLUSでは、保存して何度も参照できる教科書、深掘り解説、実践ガイドとして整理します。</p></div>
+        <div className="section-head"><div><p className="section-index">RBA DEVELOPMENT LIBRARY</p><h2>{counts.total}本の実践ガイドと保存版資料。</h2></div><p>無料JOURNALより詳しく読みたいテーマを、保存版資料、深掘り解説、実践ガイドとして整理しています。</p></div>
         <div className="hc-plus-library-metrics">
           <article><strong>{counts.player}</strong><span>選手向け</span><p>試合の判断、1on1、シュート、守備、振り返り、コンディション。</p></article>
           <article><strong>{counts.parent}</strong><span>保護者向け</span><p>出場時間、移籍、進路、練習量、指導者との対話、家庭での関わり。</p></article>
@@ -44,7 +44,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-tools section-pad">
-        <div className="section-head"><div><p className="section-index">LIBRARY STRUCTURE</p><h2>記事ではなく、育成の資料庫として整理する。</h2></div><p>必要なテーマを探しやすいように、知識を棚ごとに整理します。内容は追加・更新され、古い制度情報は更新履歴を残します。</p></div>
+        <div className="section-head"><div><p className="section-index">LIBRARY STRUCTURE</p><h2>テーマごとに、探しやすく整理する。</h2></div><p>必要なテーマを探しやすいように分野ごとに整理します。内容を更新した場合は、古い制度情報も含めて更新履歴を残します。</p></div>
         <div className="hc-plus-tool-grid">
           <article><BookOpen/><span>YOUTH DEVELOPMENT</span><h3>発達・LTAD・成熟</h3><p>成長、Relative Age、Early / Late Developer、Talent Development。</p></article>
           <article><Target/><span>PRACTICE / GAME</span><h3>練習設計とゲーム理解</h3><p>CLA、SSG、Decision Making、Spacing、Advantage、Feedback。</p></article>
@@ -54,20 +54,20 @@ export function HomecourtPlusPage(){
           <article><FileText/><span>WORLD MAP / RESEARCH</span><h3>世界の制度と一次資料</h3><p>FIBA・各国協会・研究論文を国・テーマ・年代から参照できます。</p></article>
         </div>
         <div className="hc-plus-library-metrics">
-          <article><strong>GUIDE</strong><span>実践ガイド｜5〜10分</span><p>次の練習や会話で一つ使うための短いガイド。</p></article>
+          <article><strong>GUIDE</strong><span>実践ガイド｜5〜10分</span><p>次の練習や会話で、一つ試すための短いガイドです。</p></article>
           <article><strong>DEEP DIVE</strong><span>深掘り解説｜15〜30分</span><p>研究・一次資料と、現場でどう考えるかまで整理します。</p></article>
           <article><strong>TEXTBOOK</strong><span>保存版教材</span><p>章立て、参考文献、比較表、チェックリストまで含む教科書です。</p></article>
         </div>
       </section>
 
       <section className="hc-plus-tools section-pad">
-        <div className="section-head"><div><p className="section-index">PLUS TOOLS</p><h2>読むだけで終わらないための機能。</h2></div><p>実際に今のMY HOME COURTで使える機能だけを載せています。</p></div>
+        <div className="section-head"><div><p className="section-index">PLUS TOOLS</p><h2>読んだことを、練習や振り返りに使う機能。</h2></div><p>実際に今のMY HOME COURTで使える機能だけを載せています。</p></div>
         <div className="hc-plus-tool-grid">
           <article><Target/><span>WEEKLY DEVELOPMENT</span><h3>今週のテーマ</h3><p>テーマ、実際にやること、できたと判断する目印まで一つにまとめます。</p></article>
           <article><HeartPulse/><span>CONDITION</span><h3>7日間のコンディション</h3><p>エネルギー、疲労、睡眠、痛みの記録を一週間単位で見返せます。</p></article>
           <article><CalendarDays/><span>SMART PREP｜試合・遠征の準備</span><h3>大会・遠征の準備</h3><p>予定から逆算して、持ち物、移動、回復、準備項目を整理できます。</p></article>
           <article><BookOpen/><span>LEARN</span><h3>会員向け実践ガイド</h3><p>読む → 一つ試す → 振り返る、までを記事の中で進められます。</p></article>
-          <article><History/><span>MONTHLY REVIEW</span><h3>1か月を振り返る</h3><p>今月の変化、続けたいこと、次の一歩を月ごとに残します。</p></article>
+          <article><History/><span>MONTHLY REVIEW</span><h3>1か月を振り返る</h3><p>今月の変化、続けたいこと、来月試したいことを残します。</p></article>
           <article><FileText/><span>DEVELOPMENT REPORT</span><h3>成長記録を1枚にする</h3><p>週次テーマ、月次レビュー、参加履歴をまとめ、印刷・PDF保存できます。</p></article>
         </div>
         <p className="hc-plus-health"><ShieldCheck size={17}/>コンディション記録は医療診断や能力評価ではありません。痛みや症状がある場合は、医療専門職の判断を優先してください。</p>
@@ -93,7 +93,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-compare section-pad" id="difference">
-        <div className="section-head"><div><p className="section-index">FREE / PLUS</p><h2>無料版との違い。</h2></div><p>無料版で入口を広く、PLUSでは継続して取り組むための機能を用意しています。</p></div>
+        <div className="section-head"><div><p className="section-index">FREE / PLUS</p><h2>無料版との違い。</h2></div><p>無料版では活動を探す・記事を読む・記録する機能を使えます。PLUSでは、毎週のテーマや振り返り、会員向けガイドを追加で使えます。</p></div>
         <div className="hc-plus-compare-grid">
           <article>
             <span>RBA ID / ¥0</span><h3>無料で使う</h3>
@@ -109,17 +109,17 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-compare section-pad">
-        <div className="section-head"><div><p className="section-index">PLUS / D-HUB</p><h2>PLUSで学ぶ。D-HUBで実践する。</h2></div><p>HOMECOURT PLUSは、必要なときに戻れる教科書と育成ツール。D-HUBは、テーマに沿って現場で試し、振り返りを続けるプログラムです。</p></div>
+        <div className="section-head"><div><p className="section-index">PLUS / D-HUB</p><h2>PLUSは個人で使う。D-HUBは継続カリキュラムで学ぶ。</h2></div><p>HOMECOURT PLUSは、必要なときに読み返せるガイドと記録ツールです。D-HUBは、順番のあるカリキュラムに沿って学び、実際の練習で試して振り返るプログラムです。</p></div>
         <div className="hc-plus-compare-grid">
           <article><span>HOMECOURT PLUS</span><h3>調べる・学ぶ・記録する</h3><ul><li><Check/>DEVELOPMENT LIBRARY</li><li><Check/>WEEKLY DEVELOPMENT</li><li><Check/>試合・遠征準備 / CONDITION</li><li><Check/>MONTHLY REVIEW</li></ul></article>
-          <article className="is-plus"><span>D-HUB</span><h3>順番に学び、現場で試す</h3><ul><li><Check/>COACH LAB / 指導者</li><li><Check/>PLAYERS / 選手</li><li><Check/>課題 → 実践 → 振り返り</li><li><Check/>順番のある継続育成</li></ul><Link className="button button-member" href="/ja/d-hub">D-HUBを見る <ArrowRight size={16}/></Link></article>
+          <article className="is-plus"><span>D-HUB</span><h3>順番に学び、現場で試す</h3><ul><li><Check/>COACH LAB / 指導者</li><li><Check/>PLAYERS / 選手</li><li><Check/>課題 → 実践 → 振り返り</li><li><Check/>継続して取り組むカリキュラム</li></ul><Link className="button button-member" href="/ja/d-hub">D-HUBを見る <ArrowRight size={16}/></Link></article>
         </div>
       </section>
 
       <section className="hc-plus-terms section-pad">
         <div><Clock3/><span>MONTHLY</span><strong>月額3,300円</strong><p>月額制です。契約内容・カード変更・解約手続きはStripeの会員ページから行えます。</p></div>
         <div><ShieldCheck/><span>CANCEL</span><strong>解約後も利用期間までは使えます</strong><p>月途中で解約した場合の日割り返金はありません。反映に少し時間がかかる場合があります。</p></div>
-        <div><Sparkles/><span>RBA ID</span><strong>現在の所属はそのまま</strong><p>チームを辞めたり、RBA所属になる必要はありません。今の所属を変えずに、外からの学びを取り入れるための場所です。</p></div>
+        <div><Sparkles/><span>RBA ID</span><strong>現在の所属はそのまま</strong><p>チームを辞めたり、RBA所属になる必要はありません。今の所属を変えずに、チーム外の記事や活動も利用できます。</p></div>
       </section>
 
       <section className="hc-plus-final section-pad">
