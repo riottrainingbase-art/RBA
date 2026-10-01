@@ -140,7 +140,7 @@ export default async function Page(){
     <section className="dhub-player-cycle section-pad">
       <div className="section-head"><div><p className="section-index">DEVELOPMENT CYCLE</p><h2>成長を、一回で判断しない。</h2></div></div>
       <div className="dhub-player-cycle-grid">
-        <div><Compass/><strong>ASSESSMENT</strong><p>現在地を知る</p></div>
+        <div><Compass/><strong>ASSESSMENT</strong><p>今の状態を確認する</p></div>
         <div><Target/><strong>DEVELOPMENT</strong><p>課題を試す</p></div>
         <div><Users/><strong>GAME EXPERIENCE</strong><p>ゲームで確かめる</p></div>
         <div><NotebookPen/><strong>FEEDBACK</strong><p>振り返る</p></div>
