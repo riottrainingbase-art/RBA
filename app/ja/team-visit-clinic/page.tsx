@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle2, ClipboardList, MessageSquare, Search, ShieldCheck, Users, Video, Repeat2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardList, MessageSquare, Search, ShieldCheck, Users, Repeat2 } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { VisitTrainingObservation } from "@/components/visit-training-observation";
 
