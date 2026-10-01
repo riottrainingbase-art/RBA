@@ -210,7 +210,7 @@ export async function DhubPaidLibrary({program,slug,locale="ja"}:{program:Progra
    .filter(category=>category!==curriculumCategory&&category!==supportCategory);
  const articleBySlug=new Map(articles.map(article=>[article.slug,article]));
  const featuredCoachTracks=locale==="ja"&&program==="coach_lab"?[
-   {label:"START HERE",title:"まず現場を棚卸しする",description:"記事を読む前に、自チームの課題を可視化する。90分の棚卸しと30日実装から始める。",slugs:["90min-youth-development-system-review","30day-reset-pro-implementation","world-map-to-my-team-rule-audit"]},
+   {label:"START HERE",title:"まず現場を棚卸しする",description:"記事を読む前に、自チームの状況を整理する。90分の振り返りと30日間の実践から始める。",slugs:["90min-youth-development-system-review","30day-reset-pro-implementation","world-map-to-my-team-rule-audit"]},
    {label:"PRACTICE DESIGN",title:"練習設計を更新する",description:"待ち時間、難易度、制約、ゲームへの接続。メニュー名ではなく学習環境から設計する。",slugs:["reduce-waiting-lines","practice-too-easy-no-learning","change-constraints-change-learning"]},
    {label:"GAME COACHING",title:"試合で経験を渡す",description:"出場時間、交代、タイムアウトを、勝敗だけでなく選手の経験設計として見直す。",slugs:["playing-time-experience-map","substitution-after-mistake","timeout-ask-before-answer"]},
    {label:"OBSERVATION",title:"選手をどう見るか",description:"結果や印象で評価せず、見る・選ぶ・実行する・修正するを観察する。",slugs:["what-should-coaches-observe","evaluation-is-not-ranking","talent-bias-selection-review"]},
