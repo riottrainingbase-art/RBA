@@ -76,7 +76,7 @@ function SalesPage({ paymentPending=false }: { paymentPending?: boolean }) {
     <section className="homecourt-product-preview section-pad" id="contents">
       <div className="section-head">
         <div><p className="section-index">WHAT YOU GET</p><h2>読むだけで終わらない10章。</h2></div>
-        <p>考え方だけでなく、90分練習テンプレート、4週間の実装プラン、練習評価チェックリストまで入れています。</p>
+        <p>考え方だけでなく、90分練習テンプレート、4週間の実践プラン、練習評価チェックリストまで入れています。</p>
       </div>
       <div className="homecourt-preview-grid">
         {[
@@ -88,7 +88,7 @@ function SalesPage({ paymentPending=false }: { paymentPending?: boolean }) {
           ["06","3x3 / 4x4","Small-Sided Gamesを学習量に変える"],
           ["07","COACHING","教えすぎない。でも放っておかない"],
           ["08","90 MIN","RBAオリジナル練習テンプレート"],
-          ["09","4 WEEKS","4週間の実装プラン"],
+          ["09","4 WEEKS","4週間の実践プラン"],
           ["10","CHECK","練習を見る10項目"],
         ].map(([n,k,t])=><article key={n}><span>{n} / {k}</span><h3>{t}</h3></article>)}
       </div>
