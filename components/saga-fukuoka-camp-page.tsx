@@ -16,7 +16,7 @@ const paymentLinks={
 const copy={
   ja:{
     title:"佐賀 × 福岡 2DAYS DEVELOPMENT CAMP",
-    lead:"2日間参加だけでなく、日帰り・1セッションから参加できます。技術を覚えるだけで終わらず、「見る・考える・選ぶ」をゲームへつなげます。",
+    lead:"2日間の通し参加だけでなく、日帰り・1セッションから参加できます。技術を反復するだけでなく、周りを見て判断し、ゲームの中で使うところまで練習します。",
     date:"2026年10月3日（土）– 4日（日）",place:"佐賀・福岡（大川）",target:"U8・U10・U12・U15",
     form:"まず共通申込フォームへ",pay:"決済へ進む",how:"申込は2ステップ",howBody:"①共通フォームを送信　②下の参加プランから該当するStripe決済を完了。決済完了で申込確定です。",
     fullNote:"2日間のクリニック、宿泊、BBQ、朝食、2日目昼食を含むフルプラン。",
@@ -109,18 +109,18 @@ export function SagaFukuokaCampPage({locale}:{locale:Locale}){
     </section>
 
     <section className="homecourt-product-preview section-pad">
-      <div className="section-head"><div><p className="section-index">PROGRAM</p><h2>{c.schedule}</h2></div><p>{locale==="ja"?"DAY 1は土台づくりからゲームへ。DAY 2は前日の学びを、より実戦に近い状況へ移します。":locale==="en"?"Day 1 builds the foundation and connects it to games. Day 2 transfers the learning into more game-like situations.":locale==="zh-tw"?"第1日建立基礎並連到比賽，第2日把學習轉移到更接近實戰的情境。":"DAY 1은 기초에서 게임으로, DAY 2는 배운 내용을 실전 상황으로 전이합니다."}</p></div>
+      <div className="section-head"><div><p className="section-index">PROGRAM</p><h2>{c.schedule}</h2></div><p>{locale==="ja"?"DAY 1は基本を確認しながらゲームへ進みます。DAY 2は前日に取り組んだことを、より試合に近い状況で試します。":locale==="en"?"Day 1 builds the foundation and connects it to games. Day 2 transfers the learning into more game-like situations.":locale==="zh-tw"?"第1日建立基礎並連到比賽，第2日把學習轉移到更接近實戰的情境。":"DAY 1은 기초에서 게임으로, DAY 2는 배운 내용을 실전 상황으로 전이합니다."}</p></div>
       <div className="homecourt-preview-grid">{sessions.map(([d,t,b,time])=><article key={d}><Clock3/><span>{d}</span><h3>{t}</h3><strong>{time}</strong><p>{b}</p></article>)}</div>
     </section>
 
     <section className="homecourt-plan-separation section-pad" id="plans">
-      <div className="homecourt-plan-intro"><p className="section-index">ENTRY OPTIONS</p><h2>{c.plans}</h2><p>{locale==="ja"?"フル参加が難しい選手も、1日・1セッションからRBAの育成環境を体験できます。":locale==="en"?"If the full camp is difficult, join for one day or even one session.":locale==="zh-tw"?"若無法參加全程，也可從單日或單節開始。":"전체 참가가 어렵다면 하루 또는 한 세션부터 참가할 수 있습니다."}</p></div>
+      <div className="homecourt-plan-intro"><p className="section-index">ENTRY OPTIONS</p><h2>{c.plans}</h2><p>{locale==="ja"?"2日間の参加が難しい場合は、1日または1セッションから参加できます。":locale==="en"?"If the full camp is difficult, join for one day or even one session.":locale==="zh-tw"?"若無法參加全程，也可從單日或單節開始。":"전체 참가가 어렵다면 하루 또는 한 세션부터 참가할 수 있습니다."}</p></div>
       <div className="homecourt-plan-grid">{planData.map(p=><article className="homecourt-plan-card" key={p.key}><span>{p.time}</span><h3>{p.label[li]}</h3><strong>{p.price}</strong><p>{p.kind==="full"?c.fullNote:p.kind==="day"?c.dayNote:c.sessionNote}</p><a className="button button-dark" href={paymentLinks[p.key]} target="_blank" rel="noreferrer">{c.pay}<ArrowRight/></a></article>)}</div>
     </section>
 
     <section className="network-release section-pad">
       <CheckCircle2/>
-      <div><p className="section-index">DEVELOPMENT FIRST</p><h2>{locale==="ja"?"「できた」を「使える」に変える。":locale==="en"?"Turn “I can do it” into “I can use it.”":locale==="zh-tw"?"把「做得到」變成「用得上」。":"‘할 수 있다’를 ‘쓸 수 있다’로."}</h2><p>{c.note}</p></div>
+      <div><p className="section-index">DEVELOPMENT FIRST</p><h2>{locale==="ja"?"練習したことを、ゲームで使ってみる。":locale==="en"?"Turn “I can do it” into “I can use it.”":locale==="zh-tw"?"把「做得到」變成「用得上」。":"‘할 수 있다’를 ‘쓸 수 있다’로."}</h2><p>{c.note}</p></div>
       <a className="button button-member" href={registrationUrl} target="_blank" rel="noreferrer">{c.form}<ArrowRight/></a>
     </section>
   </SiteFrame>;
