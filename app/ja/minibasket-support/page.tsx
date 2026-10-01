@@ -6,11 +6,11 @@ const intakeUrl = "https://form.jotform.com/262698980384072";
 
 export const metadata: Metadata = {
   title: "RBA MINI BASKETBALL DEVELOPMENT SUPPORT｜ミニバス・U12チーム育成支援",
-  description: "今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、オンコート支援まで。RBAが外部の育成パートナーとしてミニバス・U12チームの育成環境づくりを支援します。",
+  description: "今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、オンコート支援まで。ミニバス・U12チームの普段の活動を外部から支援します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/minibasket-support" },
   openGraph: {
     title: "RBA MINI BASKETBALL DEVELOPMENT SUPPORT",
-    description: "選手を集めるためではなく、今いるチームの育成環境を良くするための外部サポート。",
+    description: "選手の移籍を目的とせず、今いるチームの練習や指導を外部から支援します。",
     url: "https://riotbasketballacademy.com/ja/minibasket-support",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -31,9 +31,9 @@ const challenges = [
 const support = [
   {
     tag: "01 / DEVELOPMENT CHECK",
-    title: "チーム育成診断",
-    body: "最初に、年代、人数、練習頻度、試合環境、指導者が感じている課題を整理します。何を申し込むか決まっていなくても大丈夫です。",
-    items: ["チーム状況の整理", "優先課題の言語化", "次の支援方法を提案"],
+    title: "初回ヒアリング",
+    body: "最初に、年代、人数、練習頻度、試合環境、指導者が困っていることを確認します。利用したいサービスが決まっていなくても大丈夫です。",
+    items: ["チームの状況を確認", "優先して取り組むことを整理", "必要な支援方法をご提案"],
   },
   {
     tag: "02 / COACH SUPPORT",
@@ -44,8 +44,8 @@ const support = [
   {
     tag: "03 / TEAM DEVELOPMENT",
     title: "継続的な練習設計サポート",
-    body: "単発の相談で終わらず、一定期間のテーマを決めて、練習・試合・振り返りをつなげます。",
-    items: ["月次テーマ設計", "実施後レビュー", "チームの学習履歴を蓄積"],
+    body: "必要に応じて一定期間のテーマを決め、練習や試合を見ながら振り返りを続けます。",
+    items: ["月次テーマ設計", "実施後レビュー", "練習と振り返りを記録"],
   },
   {
     tag: "04 / VISIT TRAINING",
@@ -56,11 +56,11 @@ const support = [
 ] as const;
 
 const flow = [
-  ["01", "フォームで現在地を共有", "チーム名、年代、人数、練習状況、困っていることを送ってください。フォーム送信だけで料金は発生しません。"],
-  ["02", "RBAが課題を整理", "必要に応じて練習・試合映像や追加情報を確認し、優先して扱うテーマを絞ります。"],
+  ["01", "フォームで今の状況を共有", "チーム名、年代、人数、練習状況、困っていることを送ってください。フォーム送信だけで料金は発生しません。"],
+  ["02", "RBAが状況を確認", "必要に応じて練習・試合映像や追加情報を確認し、優先して扱うテーマを絞ります。"],
   ["03", "支援方法を提案", "オンライン相談、映像レビュー、練習設計、TEAM TRAINING、VISIT TRAININGなどから必要な範囲だけを提案します。"],
   ["04", "実際の練習で試す", "資料だけで終わらせず、普段の練習やゲームの中で試し、選手の反応を見ます。"],
-  ["05", "振り返って次へつなぐ", "うまくいったこと、次に見ることを残し、必要なら継続支援やMY HOME COURT / D-HUBへつなげます。"],
+  ["05", "振り返って、次に試すことを決める", "うまくいったこと、次に確認したいことを残します。必要であれば継続支援やD-HUBもご案内します。"],
 ] as const;
 
 export default function Page() {
@@ -68,10 +68,10 @@ export default function Page() {
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja/team">← RBA FOR TEAMS</a>
       <p className="section-index">RBA MINI BASKETBALL DEVELOPMENT SUPPORT</p>
-      <h1>今いるチームを、<br/>より良い育成環境に。</h1>
-      <p>RBAが目指すのは、選手を別のチームへ集めることではありません。ミニバス・U12の今いる環境を大切にしながら、外部の育成パートナーとして、練習設計、ゲームの見方、指導者の学び、選手の経験づくりを一緒に整理します。</p>
+      <h1>今いるチームで、<br/>できることを増やす。</h1>
+      <p>RBAへの移籍を前提にした支援ではありません。今のチームで活動を続けながら、練習設計、ゲームの見方、指導者の関わり方、選手の経験をどう増やすかを一緒に考えます。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href={intakeUrl} target="_blank" rel="noreferrer">チーム育成診断を始める<ArrowRight size={17}/></a>
+        <a className="button button-orange" href={intakeUrl} target="_blank" rel="noreferrer">初回ヒアリングを始める<ArrowRight size={17}/></a>
         <a className="button button-dark" href="#support">支援内容を見る<ArrowRight size={17}/></a>
       </div>
     </section>
@@ -101,8 +101,8 @@ export default function Page() {
     <section className="access-promise section-pad">
       <p className="section-index">RBA POSITION</p>
       <div>
-        <h2>今いるチームを大切にしながら、<br/>外から育成を支える。</h2>
-        <p>今いる指導者や所属環境を尊重し、チームの日常に必要な視点を一緒に整理します。移籍勧誘や選手獲得を目的とせず、年代、人数、練習時間、地域事情に合わせて、続けられる改善を考えます。</p>
+        <h2>今いるチームを大切にしながら、<br/>外部の視点も取り入れる。</h2>
+        <p>今いる指導者や所属環境を尊重しながら、普段の練習を一緒に見直します。移籍勧誘や選手獲得を目的とせず、年代、人数、練習時間、地域事情に合わせて、無理なく続けられる方法を考えます。</p>
       </div>
     </section>
 
@@ -115,8 +115,8 @@ export default function Page() {
 
     <section className="homecourt-product-preview section-pad" id="support">
       <div className="section-head">
-        <div><p className="section-index">SUPPORT ROUTES</p><h2>必要なところから始める。</h2></div>
-        <p>最初から長期契約を前提にしません。診断後、チームの状況に合う支援だけを整理します。</p>
+        <div><p className="section-index">SUPPORT ROUTES</p><h2>必要な内容だけ選べます。</h2></div>
+        <p>最初から長期契約を前提にしません。初回ヒアリング後、チームの状況に合う支援だけをご提案します。</p>
       </div>
       <div className="homecourt-preview-grid">
         {support.map(item=><article key={item.tag}>
@@ -157,8 +157,8 @@ export default function Page() {
     <section className="access-promise section-pad">
       <p className="section-index">AFTER SUPPORT</p>
       <div>
-        <h2>支援が終わっても、<br/>チームに学びが残る形へ。</h2>
-        <p>指導者はD-HUBで学びを深め、TEAM TRAININGで練習設計を残し、必要に応じてMY HOME COURTと選手の振り返りをつなげられます。RBAがいない日常でも育成を続けられる状態を目指します。</p>
+        <h2>RBAがいない日も、<br/>同じ考え方で練習を続けられるように。</h2>
+        <p>指導者はD-HUBで学び、TEAM TRAININGに練習計画や振り返りを残せます。RBAの訪問がない日も、チーム自身で考えながら練習を続けられる状態を目指します。</p>
         <a className="text-link" href="/ja/d-hub">D-HUBを見る<ArrowRight size={16}/></a>
       </div>
     </section>
@@ -175,7 +175,7 @@ export default function Page() {
         <article>
           <span>DIGITAL GUIDE / ¥3,300</span>
           <h3>「何を教えるか」より、学ぶ順番から整理する。</h3>
-          <p>読むだけで終わらないよう、4週間の実装プランと練習評価チェックリストまで収録しています。</p>
+          <p>読むだけで終わらないよう、4週間で試す内容と練習のチェックリストも収録しています。</p>
           <a className="text-link" href="/ja/materials/u12-fundamentals">教材の内容を見る<ArrowRight size={16}/></a>
         </article>
         <article>
@@ -189,10 +189,10 @@ export default function Page() {
 
     <section className="closing-cta section-pad">
       <p className="eyebrow">START WITH YOUR TEAM</p>
-      <h2>どのサービスが必要か、<br/>決めてから来なくて大丈夫です。</h2>
-      <p>今のチームで困っていること、3〜6か月後に選手にできるようになってほしいことを教えてください。RBA側で状況を整理し、必要な次の一歩を提案します。フォーム送信だけで料金は発生しません。</p>
+      <h2>必要なサービスが、<br/>決まっていなくても大丈夫です。</h2>
+      <p>今のチームで困っていること、3〜6か月後に選手にできるようになってほしいことを教えてください。RBAで状況を確認し、必要な方法をご提案します。フォーム送信だけで料金は発生しません。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href={intakeUrl} target="_blank" rel="noreferrer">チーム育成診断フォーム<ArrowRight size={17}/></a>
+        <a className="button button-orange" href={intakeUrl} target="_blank" rel="noreferrer">初回ヒアリングフォーム<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/team-visit-clinic">VISIT TRAININGを見る<ArrowRight size={17}/></a>
       </div>
     </section>
