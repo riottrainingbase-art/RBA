@@ -229,7 +229,7 @@ export function HomecourtPlayerJourneyPreview({registrationUrl}:{registrationUrl
       </div>
       <div className={styles.previewCards}>
         <article><Sparkles/><span>LEVEL</span><strong>経験を重ねてレベルアップ</strong><small>上手さではなく、経験がXPになる</small></article>
-        <article><Flag/><span>QUEST</span><strong>次の一歩が見つかる</strong><small>自分のペースで進める</small></article>
+        <article><Flag/><span>QUEST</span><strong>次にやることが見つかる</strong><small>自分のペースで進める</small></article>
         <article><Map/><span>PASSPORT</span><strong>経験を記録する</strong><small>参加した場所や挑戦を残す</small></article>
         <article><Medal/><span>BADGES</span><strong>挑戦の証を集める</strong><small>他の選手とのランキングはありません</small></article>
       </div>
