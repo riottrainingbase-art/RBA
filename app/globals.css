@@ -3367,3 +3367,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .player-home-now{grid-template-columns:1fr}
   .player-home-now>a{justify-content:center}
 }
+
+
+/* Mobile fixed-action safety: keep page content and docks clear of iPhone/PWA safe areas. */
+@media(max-width:560px){
+  .site-shell>main#main-content{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .whatsapp-dock,.member-dock{bottom:calc(14px + env(safe-area-inset-bottom))}
+}
