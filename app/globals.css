@@ -3328,3 +3328,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
     line-height:1.14!important;
   }
 }
+
+
+/* Torsten 200-person growth campaign */
+.torsten-demand{background:#0f1214;color:#fff;border-top:8px solid var(--orange)}
+.torsten-demand-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(36px,7vw,110px);align-items:end}
+.torsten-demand-head h2{margin:14px 0 0;font-size:clamp(40px,5.8vw,80px);line-height:.96;letter-spacing:-.055em}
+.torsten-demand-note{padding:26px;border:1px solid #394146;background:#171b1e}
+.torsten-demand-note strong{display:block;font-size:22px;line-height:1.35}
+.torsten-demand-note p{margin:12px 0 22px;color:#bdc6ca;line-height:1.8}
+.torsten-question-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:42px;background:#394146;border:1px solid #394146}
+.torsten-question-grid article{min-height:210px;padding:26px;background:#171b1e;display:flex;flex-direction:column;justify-content:space-between}
+.torsten-question-grid span{font-size:11px;font-weight:900;letter-spacing:.13em;color:var(--orange)}
+.torsten-question-grid h3{margin:28px 0 0;font-size:clamp(24px,2.4vw,34px);line-height:1.15;letter-spacing:-.035em}
+.torsten-demand-foot{max-width:920px;margin:24px 0 0;color:#bdc6ca;line-height:1.9}
+@media(max-width:900px){
+  .torsten-demand-head{grid-template-columns:1fr}
+  .torsten-question-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .torsten-question-grid{grid-template-columns:1fr}
+  .torsten-question-grid article{min-height:0}
+  .torsten-demand-note{padding:22px}
+  .torsten-demand-head h2{font-size:clamp(34px,10vw,50px)}
+}
