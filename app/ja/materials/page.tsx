@@ -40,7 +40,7 @@ export default async function Page() {
             <li>身体操作とFundamentals</li>
             <li>3x3・4x4の使い方</li>
             <li>RBAオリジナル90分練習テンプレート</li>
-            <li>4週間の実装プラン・評価チェックリスト</li>
+            <li>4週間の実践プラン・評価チェックリスト</li>
           </ul>
         </article>
         <article>
