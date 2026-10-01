@@ -3,8 +3,8 @@ import { ArrowRight, CheckCircle2, History, House, Search, ShieldCheck } from "l
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata:Metadata={
-  title:"申込後の次の一歩｜RBA ID・MY HOME COURT",
-  description:"RBAのクリニックやキャンプに申し込んだ後は、同じメールアドレスでRBA IDを作成し、参加予定や記録、次の育成機会をMY HOME COURTでまとめて確認できます。",
+  title:"申込後のご案内｜RBA ID・MY HOME COURT",
+  description:"RBAのクリニックやキャンプに申し込んだ後は、同じメールアドレスでRBA IDを作成すると、参加予定や過去の記録、募集中の活動をMY HOME COURTで確認できます。",
   alternates:{canonical:"https://riotbasketballacademy.com/ja/after-application"},
   robots:{index:true,follow:true},
   openGraph:{
@@ -28,7 +28,7 @@ export default function Page(){
       <p>RBAのクリニック、キャンプ、講習へお申し込みいただいた方へ。申込時と同じメールアドレスでRBA IDを作成すると、今回の参加予定、過去の経験、保存した活動、学びをMY HOME COURTでまとめて確認できます。</p>
       <div className="closing-actions">
         <a className="button button-member" href="/ja/my-homecourt/login?source=after-application&next=%2Fja%2Fmy-homecourt%2Fapp"><House size={17}/>RBA IDをつくる<ArrowRight size={17}/></a>
-        <a className="button button-dark" href="/ja/opportunities"><Search size={17}/>次の育成機会を見る<ArrowRight size={17}/></a>
+        <a className="button button-dark" href="/ja/opportunities"><Search size={17}/>募集中の活動を見る<ArrowRight size={17}/></a>
       </div>
     </section>
 
