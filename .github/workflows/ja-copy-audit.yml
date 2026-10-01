@@ -9,12 +9,18 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ja-copy-audit-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   copy-and-build:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 24
