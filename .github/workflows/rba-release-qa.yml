@@ -71,6 +71,9 @@ jobs:
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
 
+      - name: D-HUB mobile and access regression audit
+        run: pnpm run audit:dhub-mobile
+
       - name: Member onboarding audit
         run: node audit/member-experience/onboarding-check.mjs
 
