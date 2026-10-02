@@ -1,7 +1,7 @@
 "use client";
 
-export default function Error({reset}:{error:Error & {digest?:string};reset:()=>void}){
-  return <main className="system-state-page system-state-standalone">
+export default function Error({error,reset}:{error:Error & {digest?:string};reset:()=>void}){
+  return <main className="system-state-page system-state-standalone" data-error-digest={error.digest||undefined}>
     <p className="section-index">RBA / TEMPORARY ERROR</p>
     <h1>ページを表示できませんでした。</h1>
     <p>一時的な通信・表示エラーの可能性があります。入力内容や決済を再実行する前に、画面を再読み込みしてください。同じ状態が続く場合はお問い合わせください。</p>
