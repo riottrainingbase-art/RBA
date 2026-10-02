@@ -448,3 +448,21 @@ RTB = trust / physical experience
 RBA = basketball / events / national reach
 SELECT = curated third-party products
 ORIGINAL = only what demand proves should exist
+
+
+## 14. Compliance guardrails
+
+For RTB original apparel and socks, treat quality labeling as part of product cost and production readiness.
+
+Japan's Household Goods Quality Labeling framework applies to specified textile products, including shirts, trousers, underwear, socks and hats. Current textile rules require proper fiber-composition labeling and care-label handling under the applicable standards.
+
+Operational rule:
+- Do not approve OEM until supplier confirms compliant Japanese labeling.
+- Include label / tag cost in landed cost.
+- Keep manufacturer / seller identification and care instructions correct.
+- Do not copy health/performance claims from overseas marketing without confirming Japanese compliance.
+- Avoid food/supplements in the pilot; they add a different compliance burden.
+
+Primary source:
+- https://www.caa.go.jp/policies/policy/representation/household_goods/
+- https://www.caa.go.jp/policies/policy/representation/household_goods/law/law_04.html
