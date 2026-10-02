@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import styles from "./rtb-select.module.css";
 import { DocumentLanguage } from "@/components/document-language";
+import { RtbSelectTrackedLink } from "@/components/rtb-select-tracked-link";
 
 const consumerForm = "https://form.jotform.com/262738772653065";
 const partnerForm = "https://form.jotform.com/262738687005061";
@@ -66,7 +67,7 @@ export default function Page(){
         <nav className={styles.toplinks} aria-label="RTB SELECT navigation">
           <a href="#concept">Concept</a>
           <a href="#brands">For brands</a>
-          <a href={consumerForm} target="_blank" rel="noreferrer">Early access ↗</a>
+          <RtbSelectTrackedLink eventName="rtb_select_consumer_form_click" eventLocation="header" href={consumerForm} target="_blank" rel="noreferrer">Early access ↗</RtbSelectTrackedLink>
         </nav>
       </header>
 
@@ -78,7 +79,7 @@ export default function Page(){
         </div>
         <aside className={styles.heroAside}>
           <p>RTBの入口を「商品を大量に並べる店」にはしません。実際に試し、用途を理解し、必要なら注文する。予約・受注・小ロットを中心に、在庫リスクを抑えて始めます。</p>
-          <a className={styles.primary} href={consumerForm} target="_blank" rel="noreferrer">先行案内・取扱希望を登録 ↗</a>
+          <RtbSelectTrackedLink className={styles.primary} eventName="rtb_select_consumer_form_click" eventLocation="hero" href={consumerForm} target="_blank" rel="noreferrer">先行案内・取扱希望を登録 ↗</RtbSelectTrackedLink>
           <p className={styles.note}>登録だけで注文・決済は確定しません。</p>
         </aside>
       </section>
@@ -123,7 +124,7 @@ export default function Page(){
           <p>欲しいカテゴリー、ブランド、予算、サイズ、店頭受取か配送か。最初の仕入れを勘で決めないための需要調査です。回答数と希望が集まったものから取扱交渉を進めます。</p>
         </div>
         <div className={styles.dropActions}>
-          <a className={styles.primary} href={consumerForm} target="_blank" rel="noreferrer">先行案内・取扱希望を登録 ↗</a>
+          <RtbSelectTrackedLink className={styles.primary} eventName="rtb_select_consumer_form_click" eventLocation="request_section" href={consumerForm} target="_blank" rel="noreferrer">先行案内・取扱希望を登録 ↗</RtbSelectTrackedLink>
           <a className={styles.secondary} href="mailto:riot.training.base@gmail.com?subject=RTB%20SELECT%20%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">メールで相談する</a>
         </div>
       </div>
@@ -147,7 +148,7 @@ export default function Page(){
           <aside className={styles.partnerCta}>
             <h3>取扱・販売テストのご相談</h3>
             <p>掛率、最低発注、委託条件、サンプル貸与、EC可否、イベント販売など、可能な条件から相談します。</p>
-            <a className={styles.primary} href={partnerForm} target="_blank" rel="noreferrer">ブランド・代理店向けフォーム ↗</a>
+            <RtbSelectTrackedLink className={styles.primary} eventName="rtb_select_partner_form_click" eventLocation="brand_section" href={partnerForm} target="_blank" rel="noreferrer">ブランド・代理店向けフォーム ↗</RtbSelectTrackedLink>
             <div style={{height:10}} />
             <a className={styles.secondary} href="mailto:riot.training.base@gmail.com?subject=RTB%20SELECT%20%E5%8F%96%E6%89%B1%E3%83%BB%E6%8F%90%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで商談する</a>
           </aside>
@@ -158,7 +159,7 @@ export default function Page(){
     <footer className={styles.footer}>
       <div className={styles.shell+" "+styles.footerInner}>
         <div><strong>RIOT TRAINING BASE / SENDAI</strong><p>TRAINING · PERFORMANCE · LIFESTYLE</p></div>
-        <a href={consumerForm} target="_blank" rel="noreferrer">RTB SELECT 先行案内 ↗</a>
+        <RtbSelectTrackedLink eventName="rtb_select_consumer_form_click" eventLocation="footer" href={consumerForm} target="_blank" rel="noreferrer">RTB SELECT 先行案内 ↗</RtbSelectTrackedLink>
       </div>
     </footer>
   </main></>;
