@@ -1,0 +1,14 @@
+import type { Metadata } from "next";
+import { rtbFunnels as f } from "@/lib/rtb-commercial";
+export const metadata:Metadata={
+ title:{absolute:"仙台・若林区のパーソナルトレーニング｜Riot Training Base"},
+ description:"仙台市若林区大和町・卸町周辺。完全予約制のパーソナルトレーニング・S&C施設。運動を始めたい一般の方から学生・競技者まで。駐車場あり。初回15分無料相談・施設見学。",
+ robots:{index:false,follow:false},
+};
+const faq=[
+ ["運動初心者でも利用できますか？","はい。競技者専用ではありません。運動を始めたい方、久しぶりに再開したい方も目的と現在の状態から整理します。"],
+ ["学生や競技者も利用できますか？","はい。基礎筋力、ウエイトトレーニング導入、S&Cなど、年代・競技・経験に合わせて進めます。"],
+ ["最初から入会が必要ですか？","いいえ。まずは初回相談から利用できます。フォーム送信だけで契約や課金は発生しません。"],
+ ["治療や診断を受けられますか？","RTBは医療機関ではなく、診断・治療は行いません。必要な場合は医療機関への相談をご案内します。"],
+];
+export default function Page(){const ld={"@context":"https://schema.org","@type":"ExerciseGym",name:"Riot Training Base",url:"https://riotbasketballacademy.com/rtb",telephone:"080-3248-3703",address:{"@type":"PostalAddress",postalCode:"984-0042",addressRegion:"宮城県",addressLocality:"仙台市若林区",streetAddress:"大和町4-23-33 栄福ビル1F",addressCountry:"JP"},description:"仙台市若林区の完全予約制パーソナルトレーニング・S&C施設。一般の方から学生・競技者まで対応。"};return <main style={{fontFamily:"Arial,sans-serif",background:"#f2f0e9",color:"#111",minHeight:"100vh"}}><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(ld)}}/><div style={{maxWidth:960,margin:"auto",padding:"30px 20px 90px"}}><a href="/rtb" style={{color:"#111",textDecoration:"none",fontWeight:900}}>RTB / RIOT TRAINING BASE</a><section style={{padding:"80px 0 60px"}}><p style={{fontWeight:900,letterSpacing:2,fontSize:12}}>SENDAI / WAKABAYASHI</p><h1 style={{fontSize:"clamp(44px,8vw,92px)",lineHeight:.92,letterSpacing:"-.06em",margin:"18px 0"}}>仙台で、<br/>これから動ける身体を。</h1><p style={{fontSize:20,lineHeight:1.7,maxWidth:720}}>若林区大和町・卸町周辺の完全予約制パーソナルトレーニング／S&C施設。一般の身体づくりから学生・競技者まで、目的と現在地に合わせて進めます。</p><a href={f.start} target="_blank" rel="noreferrer" style={{display:"inline-block",background:"#111",color:"#fff",padding:"16px 22px",textDecoration:"none",fontWeight:900,marginTop:22}}>初回相談・Assessment →</a></section><section style={{borderTop:"1px solid #bbb",padding:"50px 0"}}><h2 style={{fontSize:38}}>こんな方へ</h2><p style={{fontSize:17,lineHeight:2}}>運動を始めたい ／ 筋力をつけたい ／ 久しぶりにトレーニングを再開したい ／ 競技の土台をつくりたい ／ ウエイトトレーニングを学びたい ／ 自分に必要なトレーニングを整理したい</p></section><section style={{borderTop:"1px solid #bbb",padding:"50px 0"}}><h2 style={{fontSize:38}}>FAQ</h2>{faq.map(([q,a])=><article key={q} style={{padding:"24px 0",borderBottom:"1px solid #ccc"}}><h3>{q}</h3><p style={{lineHeight:1.8,color:"#555"}}>{a}</p></article>)}</section><section style={{padding:"60px 0"}}><h2 style={{fontSize:42}}>まず、相談から。</h2><p>フォーム送信だけで予約・契約・課金は確定しません。</p><a href={f.start} target="_blank" rel="noreferrer" style={{display:"inline-block",background:"#111",color:"#fff",padding:"16px 22px",textDecoration:"none",fontWeight:900}}>RTB START →</a></section></div></main>}
