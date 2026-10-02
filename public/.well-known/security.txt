@@ -1,0 +1,5 @@
+Contact: mailto:riot.training.base@gmail.com
+Canonical: https://riotbasketballacademy.com/.well-known/security.txt
+Policy: https://riotbasketballacademy.com/ja/policies
+Preferred-Languages: ja, en
+Expires: 2027-10-02T00:00:00Z
