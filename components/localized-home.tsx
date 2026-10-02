@@ -87,6 +87,20 @@ export function LocalizedHome({locale}:{locale:Locale}){
       </div>
     </section>:null}
 
+    {locale==="ja"?<section className="homecourt-product-preview section-pad">
+      <div className="section-head">
+        <div><p className="section-index">DEVELOPMENT GUIDE</p><h2>ミニバス・U12・U15。<br/>今の悩みから育成を探す。</h2></div>
+        <p>出場時間、チーム選び、移籍、練習設計、S&C、女子選手の身体づくり。記事の数ではなく、今困っていることから必要な情報へ進めます。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article><span>01</span><h3>ミニバス・U12</h3><p>勝敗、出場機会、マンツーマン、役割固定。小学生年代で何を残すか。</p><Link className="text-link" href="/ja/journal/paths/u12">U12の育成を読む<ArrowRight size={16}/></Link></article>
+        <article><span>02</span><h3>U15・進路</h3><p>部活、クラブ、Bユース、登録、移籍、生活まで3年間の環境を整理する。</p><Link className="text-link" href="/ja/journal/paths/u15">U15を整理する<ArrowRight size={16}/></Link></article>
+        <article><span>03</span><h3>チーム選び・移籍</h3><p>強さだけでなく、毎週どんな経験を積めるかを同じ基準で比べる。</p><Link className="text-link" href="/ja/journal/paths/team-choice">チーム選びを読む<ArrowRight size={16}/></Link></article>
+        <article><span>04</span><h3>指導・S&amp;C</h3><p>練習設計、判断、負荷、回復、女子選手の身体づくりまで。</p><Link className="text-link" href="/ja/development">育成ガイドを開く<ArrowRight size={16}/></Link></article>
+      </div>
+      <div className="homecourt-launch-actions"><Link className="button button-dark" href="/ja/development">育成テーマから探す<ArrowRight size={17}/></Link></div>
+    </section>:null}
+
     <PaidProgrammes locale={locale}/>
 
     <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={locale==="ja"?"/ja/my-homecourt/login?source=homepage-homecourt":localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
