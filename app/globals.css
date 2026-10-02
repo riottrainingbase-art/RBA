@@ -3435,3 +3435,49 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .platform-architecture-grid>a,.platform-trust-grid>a,.platform-scale-model article{min-height:0;padding:22px}
   .platform-architecture .section-head h2,.platform-trust-center .section-head h2,.platform-scale-model h2{font-size:clamp(34px,10.8vw,48px);line-height:1.08}
 }
+
+
+/* Corporate / operating information */
+.corporate-page{background:#f3f3f1}
+.corporate-hero{background:#121619;color:#fff}
+.corporate-hero h1{max-width:920px;margin:14px 0 22px;font-size:clamp(48px,7vw,92px);line-height:.95;letter-spacing:-.06em}
+.corporate-hero>p:not(.section-index){max-width:760px;color:#cbd2d5;font-size:19px;line-height:1.8}
+.corporate-updated{margin-top:28px;font-size:11px;letter-spacing:.08em;color:#9ea8ad}
+.corporate-overview .section-head,.corporate-metrics .section-head,.corporate-governance .section-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:42px;align-items:end;margin-bottom:32px}
+.corporate-overview .section-head h2,.corporate-metrics .section-head h2,.corporate-governance .section-head h2,.corporate-system h2,.corporate-disclosures h2{margin:10px 0 0;font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-.05em}
+.corporate-overview .section-head>p,.corporate-metrics .section-head>p,.corporate-governance .section-head>p{margin:0;color:#59646a;font-size:16px;line-height:1.8}
+.corporate-overview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#c8cdca;border:1px solid #c8cdca}
+.corporate-overview-grid article{min-height:190px;padding:24px;background:#fff;display:flex;flex-direction:column}
+.corporate-overview-grid svg{margin-bottom:30px}
+.corporate-overview-grid span{font-size:9px;font-weight:900;letter-spacing:.12em;color:#7a8488}
+.corporate-overview-grid strong{margin-top:10px;font-size:18px;line-height:1.4}
+.corporate-contact-note{margin-top:22px;color:#59646a}.corporate-contact-note a{text-decoration:underline;text-underline-offset:3px}
+.corporate-system{background:#20262a;color:#fff}
+.corporate-system>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:34px;background:#424a4e;border:1px solid #424a4e}
+.corporate-system article{min-height:260px;padding:26px;background:#262d31}
+.corporate-system span{font-size:9px;font-weight:900;letter-spacing:.13em;color:#aab4b9}
+.corporate-system h3{margin:30px 0 12px;font-size:25px}.corporate-system p{margin:0;color:#cbd2d5;line-height:1.78}
+.corporate-metrics-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#c8cdca;border:1px solid #c8cdca}
+.corporate-metrics-grid article{padding:26px;background:#fff}
+.corporate-metrics-grid svg{margin-bottom:26px}.corporate-metrics-grid strong{display:block;font-size:48px;letter-spacing:-.05em;line-height:1}
+.corporate-metrics-grid h3{margin:10px 0 14px;font-size:20px}.corporate-metrics-grid p{margin:0;color:#59646a;line-height:1.8}
+.corporate-governance{background:#111517;color:#fff}
+.corporate-governance .section-head>p{color:#c5ced2}
+.corporate-governance-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#394145;border:1px solid #394145}
+.corporate-governance-grid article{padding:24px;background:#1c2225;min-height:220px}
+.corporate-governance-grid h3{margin:24px 0 10px;font-size:21px}.corporate-governance-grid p{margin:0;color:#c5ced2;line-height:1.75}
+.corporate-disclosures>div{display:grid;grid-template-columns:1fr;border-top:1px solid #c8cdca;margin-top:30px}
+.corporate-disclosures a{display:grid;grid-template-columns:minmax(140px,.35fr) 1fr auto;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid #c8cdca}
+.corporate-disclosures a span{font-size:10px;font-weight:900;letter-spacing:.1em;color:#7a8488}.corporate-disclosures a strong{font-size:20px}
+@media(max-width:900px){
+ .corporate-overview .section-head,.corporate-metrics .section-head,.corporate-governance .section-head{grid-template-columns:1fr;gap:14px}
+ .corporate-overview-grid{grid-template-columns:1fr 1fr}
+ .corporate-system>div,.corporate-governance-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+ .corporate-hero h1{font-size:clamp(42px,12vw,58px)}
+ .corporate-overview-grid,.corporate-metrics-grid{grid-template-columns:1fr}
+ .corporate-overview-grid article,.corporate-system article,.corporate-governance-grid article{min-height:0}
+ .corporate-disclosures a{grid-template-columns:1fr auto;gap:8px 16px}
+ .corporate-disclosures a span{grid-column:1/3}
+}
