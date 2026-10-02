@@ -74,6 +74,9 @@ jobs:
       - name: D-HUB mobile and access regression audit
         run: pnpm run audit:dhub-mobile
 
+      - name: Platform enterprise quality audit
+        run: pnpm run audit:platform-quality
+
       - name: Member onboarding audit
         run: node audit/member-experience/onboarding-check.mjs
 

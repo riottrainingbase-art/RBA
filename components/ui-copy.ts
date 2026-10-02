@@ -8,7 +8,7 @@ const words = {
  representative:["Representative: Masato Nishio","代表：西尾優人","代表：西尾優人","대표: Masato Nishio"],
  nav:["Main menu","メインメニュー","主選單","주 메뉴"],
  home:["RBA home","RBAトップ","RBA首頁","RBA 홈"],
- players:["Young players","これまでに指導した子どもたち","青少年球員","유소년 선수"],
+ players:["Participant visits since mid-2025","延べ参加者（2025年半ば以降）","2025年中以來累計參與人次","2025년 중반 이후 누적 참가 인원"],
  venues:["Activity locations in Japan","国内で活動してきた地域","日本全國活動地區","일본 전역 활동 지역"],
  nextField:["Next field","次に広げる地域","下一個活動地區","다음 활동 지역"],
  access:["Japan access desk","日本・アジア交流窓口","日本交流窗口","일본 교류 창구"],
