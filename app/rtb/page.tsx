@@ -10,8 +10,8 @@ const personal=[
  ["04 / SELECT","RTB SELECT","商品別","実際に使う理由があるものだけ。委託・予約・小ロットを優先し、在庫を積まずに選びます。","SELECTを見る","/rtb-select"],
 ];
 const biz=[
- ["01 / TEAM","Team S&C",yen(p.teamSpot90)+"〜","SPOT 90分22,000円〜／月2回38,500円〜／月4回66,000円〜。",f.teamCorporate],
- ["02 / CORPORATE","Corporate Performance",yen(p.corporateTrial)+"〜","Trial 33,000円〜／月1回44,000円〜／月2回等77,000円〜。",f.teamCorporate],
+ ["01 / TEAM","Team S&C",yen(p.teamSpot90)+"〜","SPOT 90分22,000円〜／月2回38,500円〜／月4回66,000円〜。","/rtb/team-sc"],
+ ["02 / CORPORATE","Corporate Performance",yen(p.corporateTrial)+"〜","Trial 33,000円〜／月1回44,000円〜／月2回等77,000円〜。","/rtb/corporate"],
  ["03 / BRAND","Product Test",yen(p.productTestStart)+"〜","14日33,000円〜／30日55,000円〜／FIELD 110,000円〜。肯定的評価や売上は保証しません。",f.productTest],
 ];
 export default function Page(){return <div className={s["rtb-site"]}>
