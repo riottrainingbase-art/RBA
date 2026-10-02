@@ -21,6 +21,15 @@ requireText("components/localized-home.tsx","TRUST / GOVERNANCE","homepage trust
 requireText("components/site-frame.tsx","安全・運営・透明性","trust footer");
 requireText("components/platform-operating-system.tsx","HOW RBA SCALES","platform scale model");
 requireText("app/layout.tsx",'name:"Masato Nishio",alternateName:"西尾優人"',"representative structured-data identity");
+requireText("app/ja/corporate/page.tsx","数字は、定義と一緒に公開する。","public metric definitions");
+requireText("app/ja/corporate/page.tsx","西尾優人 / Masato Nishio","operating information identity");
+requireText("components/site-frame.tsx","運営情報・公開指標","corporate disclosure footer link");
+requireText("definitive-content/ja/policies.html","最終更新：2026年10月2日","policy revision date");
+requireText("definitive-content/ja/verified.html","最終更新：2026年10月2日","verified revision date");
+requireText("public/.well-known/security.txt","Contact: mailto:riot.training.base@gmail.com","security contact");
+requireText("app/ja/not-found.tsx","お探しのページが","Japanese 404 recovery");
+requireText("app/ja/error.tsx","ページを表示できませんでした","Japanese error recovery");
+requireText("app/sitemap.ts","/ja/corporate","corporate page sitemap entry");
 
 for(const file of roots.flatMap(root=>walk(root))){
   const source=read(file);
@@ -41,6 +50,10 @@ console.log(JSON.stringify({
     "scale model visible from platform page",
     "representative identity consistency",
     "no unsupported largest-scale claims",
-    "no known awkward Japanese metadata pattern"
+    "no known awkward Japanese metadata pattern",
+    "operating information and public metric definitions",
+    "policy and RBA VERIFIED revision dates",
+    "security contact and public error recovery",
+    "corporate page discoverability"
   ]
 },null,2));
