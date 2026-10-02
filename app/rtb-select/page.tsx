@@ -1,12 +1,15 @@
 
 import type { Metadata } from "next";
 import styles from "./rtb-select.module.css";
+import { DocumentLanguage } from "@/components/document-language";
 
 const consumerForm = "https://form.jotform.com/262738772653065";
 const partnerForm = "https://form.jotform.com/262738687005061";
 
 export const metadata: Metadata = {
   title: { absolute: "RTB SELECT｜TRAIN / RECOVER / WEAR" },
+  authors: [{ name: "Riot Training Base" }],
+  keywords: ["Riot Training Base","RTB SELECT","仙台 パーソナルトレーニング","トレーニングウェア","スポーツ リカバリー","仙台 スポーツ用品"],
   description: "Riot Training Baseが仙台から始める、トレーニング・アパレル・リカバリーの小型セレクト。大量仕入れではなく、予約・受注・小ロットから必要なものだけを扱います。",
   alternates: { canonical: "https://riotbasketballacademy.com/rtb-select" },
   openGraph: {
@@ -15,6 +18,11 @@ export const metadata: Metadata = {
     url: "https://riotbasketballacademy.com/rtb-select",
     siteName: "Riot Training Base",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "RTB SELECT｜TRAIN / RECOVER / WEAR",
+    description: "必要なものだけを、必要な人へ。RTBの小型セレクトプロジェクト。",
   },
   robots: { index: false, follow: false },
 };
@@ -48,7 +56,7 @@ const steps = [
 ];
 
 export default function Page(){
-  return <main className={styles.page}>
+  return <><DocumentLanguage language="ja"/><main className={styles.page}>
     <div className={styles.shell}>
       <header className={styles.topbar}>
         <a className={styles.brand} href="#top" aria-label="RTB SELECT">
@@ -153,5 +161,5 @@ export default function Page(){
         <a href={consumerForm} target="_blank" rel="noreferrer">RTB SELECT 先行案内 ↗</a>
       </div>
     </footer>
-  </main>;
+  </main></>;
 }
