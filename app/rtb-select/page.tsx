@@ -65,6 +65,7 @@ export default function Page(){
           <span className={styles.brandText}><strong>RIOT TRAINING BASE</strong><span>PERFORMANCE / LIFESTYLE · SENDAI</span></span>
         </a>
         <nav className={styles.toplinks} aria-label="RTB SELECT navigation">
+          <a href="/rtb-revenue">RTB</a>
           <a href="#concept">Concept</a>
           <a href="#brands">For brands</a>
           <RtbSelectTrackedLink eventName="rtb_select_consumer_form_click" eventLocation="header" href={consumerForm} target="_blank" rel="noreferrer">Early access ↗</RtbSelectTrackedLink>
@@ -125,7 +126,7 @@ export default function Page(){
         </div>
         <div className={styles.dropActions}>
           <RtbSelectTrackedLink className={styles.primary} eventName="rtb_select_consumer_form_click" eventLocation="request_section" href={consumerForm} target="_blank" rel="noreferrer">先行案内・取扱希望を登録 ↗</RtbSelectTrackedLink>
-          <a className={styles.secondary} href="mailto:riot.training.base@gmail.com?subject=RTB%20SELECT%20%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">メールで相談する</a>
+          <a className={styles.secondary} href="/rtb-revenue">RTBのサービスを見る</a>
         </div>
       </div>
     </section>
