@@ -60,12 +60,12 @@ export default function Page(){
   return <><DocumentLanguage language="ja"/><main className={styles.page}>
     <div className={styles.shell}>
       <header className={styles.topbar}>
-        <a className={styles.brand} href="#top" aria-label="RTB SELECT">
+        <a className={styles.brand} href="/rtb" aria-label="Riot Training Base">
           <span className={styles.brandMark}>RTB</span>
           <span className={styles.brandText}><strong>RIOT TRAINING BASE</strong><span>PERFORMANCE / LIFESTYLE · SENDAI</span></span>
         </a>
         <nav className={styles.toplinks} aria-label="RTB SELECT navigation">
-          <a href="/rtb-revenue">RTB</a>
+          <a href="/rtb">RTB HOME</a>
           <a href="#concept">Concept</a>
           <a href="#brands">For brands</a>
           <RtbSelectTrackedLink eventName="rtb_select_consumer_form_click" eventLocation="header" href={consumerForm} target="_blank" rel="noreferrer">Early access ↗</RtbSelectTrackedLink>
