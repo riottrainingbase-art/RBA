@@ -115,6 +115,16 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
       </section>
       <JournalExplorer locale={locale} items={explorerItems}/>
+      {locale==="ja"?<section className="homecourt-product-preview section-pad">
+        <div className="section-head">
+          <div><p className="section-index">DEVELOPMENT GUIDE</p><h2>記事が多くても、迷わない。</h2></div>
+          <p>ミニバス・U12、U15、出場時間、チーム選び、指導、S&amp;C。いま困っていることから、必要な記事だけを探せます。</p>
+        </div>
+        <div className="homecourt-launch-actions">
+          <Link className="button button-dark" href="/ja/development">育成テーマから探す <ArrowRight size={17}/></Link>
+          <Link className="text-link" href="/ja/opportunities">読むだけでなく、参加できる活動を見る <ArrowRight size={16}/></Link>
+        </div>
+      </section>:null}
       {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="RBA JOURNALの情報量">
         <article><strong>{posts.length}</strong><span>公開記事</span><small>育成・保護者・指導者・海外・プログラム</small></article>
         <article><strong>{posts.filter(post=>post.evidence_summary||post.source_references?.length).length}</strong><span>根拠欄あり</span><small>EVIDENCE / RBA INTERPRETATION / LIMITATIONS</small></article>
