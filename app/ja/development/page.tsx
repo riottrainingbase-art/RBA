@@ -86,11 +86,39 @@ export default function DevelopmentPage() {
       acceptedAnswer: { "@type": "Answer", text },
     })),
   };
+  const collectionJson = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "RBA バスケットボール育成ガイド",
+    url: "https://riotbasketballacademy.com/ja/development",
+    inLanguage: "ja",
+    isPartOf: { "@type": "WebSite", name: "Riot Basketball Academy", url: "https://riotbasketballacademy.com/" },
+    about: ["ミニバス","U12","U15","出場時間","チーム選び","バスケットボール指導","S&C"],
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: topics.map((topic,index)=>({
+        "@type": "ListItem",
+        position:index+1,
+        name:topic.title,
+        url:`https://riotbasketballacademy.com${topic.href}`,
+      })),
+    },
+  };
+  const breadcrumbJson = {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    itemListElement:[
+      {"@type":"ListItem",position:1,name:"RBA",item:"https://riotbasketballacademy.com/ja"},
+      {"@type":"ListItem",position:2,name:"育成ガイド",item:"https://riotbasketballacademy.com/ja/development"},
+    ],
+  };
 
   return (
     <SiteFrame locale="ja" languagePage="journal">
       <main className="journal-hub journal-cms">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJson) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
         <section className="journal-cms-hero section-pad">
           <p className="section-index">RBA DEVELOPMENT GUIDE</p>
           <h1>バスケットボール育成を、<br/>悩みから探す。</h1>
