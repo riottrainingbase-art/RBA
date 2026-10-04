@@ -56,7 +56,7 @@ const copy = {
   municipality: ["City / area", "市区町村・地域", "市／地區", "시・지역"] as Text4,
   coordinator: ["Regional lead", "地域責任者", "區域負責人", "지역 책임자"] as Text4,
   coordinatorPending: ["To be added", "確認後に掲載", "日後公布", "추후 공개"] as Text4,
-  coordinate: ["Map coordinate", "地図上の代表座標", "地圖代表座標", "지도 대표 좌표"] as Text4,
+  coordinate: ["Map coordinate", "地図上の代表地点", "地圖代表座標", "지도 대표 좌표"] as Text4,
   regional: ["Regional details", "地域ページを見る", "區域詳情頁", "지역 상세 페이지"] as Text4,
   contact: ["Discuss a clinic or exchange", "クリニック・地域開催について相談する", "洽詢訓練營或區域活動", "클리닉·지역 개최 문의"] as Text4,
   programme: ["Related programme", "関連プログラム", "相關活動", "관련 프로그램"] as Text4,
