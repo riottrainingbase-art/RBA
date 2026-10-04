@@ -434,6 +434,9 @@ function MapPanel({ locale, kind }: { locale: Locale; kind: "japan" | "world" })
             Shoreline data is derived from: United States. National Imagery and Mapping Agency.
             “Vector Map Level 0 (VMAP0).” Bethesda, MD: Denver, CO: The Agency; USGS Information Services, 1997.
           </p>
+          <p>
+            Low-opacity fallback silhouette: <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth</a>.
+          </p>
         </details>
       ) : (
         <p className="network-credit">
