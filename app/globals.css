@@ -3352,3 +3352,42 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .torsten-demand-note{padding:22px}
   .torsten-demand-head h2{font-size:clamp(34px,10vw,50px)}
 }
+
+
+/* RBA Saga regional hub */
+.saga-hub section[id]{scroll-margin-top:108px}
+.saga-hub .journal-cms-hero{min-height:min(72vh,760px)}
+.saga-status-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:22px}
+.saga-status-row span{padding:8px 10px;border:1px solid #171a1d;font-size:10px;font-weight:900;letter-spacing:.13em}
+.saga-status-row strong{font-size:13px;line-height:1.55}
+.saga-section-nav{display:flex;gap:0;overflow-x:auto;padding:0 clamp(22px,7vw,110px);background:#171a1d;color:#fff;border-top:1px solid #30373a;border-bottom:1px solid #30373a;scrollbar-width:none}
+.saga-section-nav::-webkit-scrollbar{display:none}
+.saga-section-nav a{flex:none;min-height:54px;display:flex;align-items:center;padding:0 20px;border-right:1px solid #394044;color:#eef1f2;font-size:12px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.saga-section-nav a:first-child{border-left:1px solid #394044}
+.saga-section-nav a:hover{background:#c6d05a;color:#111}
+.saga-hub .journal-cms-grid>article{min-height:320px;padding:26px;display:flex;flex-direction:column;background:#fff}
+.saga-hub .journal-cms-grid>article>span{font-size:11px;font-weight:900;letter-spacing:.12em;color:#777}
+.saga-hub .journal-cms-grid>article>p:not(.note-tag){margin:0;color:#59646a;line-height:1.8}
+.saga-hub .journal-cms-grid>article .note-tag{margin-top:16px;color:#687319}
+.saga-hub .saga-grid-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.saga-hub .saga-faq-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.saga-hub .journal-evidence-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.saga-hub .journal-evidence-grid article>svg{margin-bottom:16px;color:#2d7d55}
+.saga-hub .homecourt-preview-grid article>svg{margin-bottom:24px;color:#2d7d55}
+.saga-hub .homecourt-preview-grid article .text-link{margin-top:auto;padding-top:18px;border-top:1px solid #d2d5d3;display:flex;align-items:center;justify-content:space-between;font-weight:900}
+.saga-hub .homecourt-plan-card>svg{color:#2d7d55}
+.saga-hub .homecourt-plan-card>span{margin-top:22px;font-size:11px;font-weight:900;letter-spacing:.12em}
+.saga-hub .network-release>div:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.saga-hub .network-release .text-link{font-weight:900}
+@media(max-width:1100px){
+  .saga-hub .saga-grid-four,.saga-hub .journal-evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .saga-hub section[id]{scroll-margin-top:24px}
+  .saga-hub .journal-cms-hero{min-height:520px}
+  .saga-section-nav{padding:0 16px}
+  .saga-section-nav a{min-height:50px;padding:0 15px;font-size:11px}
+  .saga-hub .saga-grid-four,.saga-hub .saga-faq-grid,.saga-hub .journal-evidence-grid{grid-template-columns:1fr}
+  .saga-hub .journal-cms-grid>article{min-height:0;padding:22px}
+  .saga-status-row{align-items:flex-start;flex-direction:column}
+}
