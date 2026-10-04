@@ -105,7 +105,7 @@ export default function RegionsPage() {
           <div className="section-head">
             <div>
               <p className="section-index">CURRENT NETWORK</p>
-              <h2>開催済みと開催予定を、分けて表示。</h2>
+              <h2>活動実績と開催予定を、分けて表示。</h2>
             </div>
             <p>
               これまでに開催した地域と、これから開催を予定している地域は明確に分けて表示します。
@@ -115,8 +115,8 @@ export default function RegionsPage() {
           <div className="homecourt-preview-grid">
             <article><MapPinned /><span>ACTIVITY RECORD</span><h3>{stats.activity}</h3><p>現在、活動実績として掲載している地域・地点です。</p></article>
             <article><Compass /><span>PLANNED</span><h3>{stats.planned}</h3><p>今後の開催予定として、活動実績とは分けて掲載している地域・地点です。</p></article>
-            <article><UsersRound /><span>REGIONAL PAGE</span><h3>EXPANDING</h3><p>佐賀を最初の専用地域ページとして公開。継続して開催している地域へ順次広げます。</p></article>
-            <article><UserRoundCog /><span>REGIONAL LEAD</span><h3>READY</h3><p>地域責任者が正式に決まった地域から、確認できた氏名と役割を掲載できるようにしています。</p></article>
+            <article><UsersRound /><span>REGIONAL PAGE</span><h3>EXPANDING</h3><p>佐賀を最初の専用地域ページとして公開し、継続して開催している地域へ順次広げます。</p></article>
+            <article><UserRoundCog /><span>REGIONAL LEAD</span><h3>READY</h3><p>地域責任者が正式に決まった地域から、確認できた氏名と役割を掲載します。</p></article>
           </div>
         </section>
 
@@ -155,7 +155,7 @@ export default function RegionsPage() {
             </h2>
             <p>
               各拠点には「地域責任者」の情報欄を用意しています。
-              氏名と役割が正式に確認できるまでは「後日掲載」とし、候補者や未確認の名前は公開しません。
+              氏名と役割が正式に確認できるまでは「確認後に掲載」とし、候補者や未確認の名前は公開しません。
             </p>
           </div>
           <div className="homecourt-plan-grid">
@@ -169,7 +169,7 @@ export default function RegionsPage() {
               <ShieldCheck />
               <span>BEFORE CONFIRMATION</span>
               <h3>未確認の名前は載せない</h3>
-              <p>本人同意や役割確認が取れていない段階では、名前を公開せず「後日掲載」とします。</p>
+              <p>本人同意や役割の確認が取れていない段階では、名前を公開せず「確認後に掲載」とします。</p>
             </article>
           </div>
         </section>
