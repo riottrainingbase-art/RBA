@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getPublicJournalPosts, type ContentLocale } from "@/lib/public-content";
 import { journalLearningPaths } from "@/lib/journal-learning-paths";
+import sagaContent from "@/content/saga.json";
 
 export const revalidate=300;
 
@@ -10,7 +11,10 @@ const core=["","/players","/families","/coaches","/home-court","/my-homecourt","
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
 const productPages=["/ja/homecourt-plus","/ja/development"];
-const regionalPages=["/ja/regions","/ja/saga"];
+const regionalPages=[
+  {path:"/ja/regions",lastModified:"2026-10-04T00:00:00Z"},
+  {path:"/ja/saga",lastModified:`${sagaContent.updatedAt}T00:00:00Z`},
+];
 const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support","/radio","/links","/sponsors"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
@@ -39,7 +43,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
     ...productPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
-    ...regionalPages.map(path=>({path,lastModified:"2026-10-04T00:00:00Z"})),
+    ...regionalPages,
     ...journalPosts,
   ];
 
