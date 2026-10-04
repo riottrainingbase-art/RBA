@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://riotbasketballacademy.com/ja/saga" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "RBA 佐賀｜一度きりで終わらない育成機会を",
+    title: "RBA佐賀｜一度きりで終わらない育成機会を",
     description:
       "佐賀で継続してきた育成年代のバスケットボールクリニック・キャンプと、2026年末・その先の育成機会を紹介します。",
     url: "https://riotbasketballacademy.com/ja/saga",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RBA 佐賀｜育成年代バスケットボール",
+    title: "RBA佐賀｜育成年代バスケットボール",
     description: "2025年から続く佐賀での活動と、2026年末・その先の育成機会を紹介します。",
     images: ["https://riotbasketballacademy.com/rba-court-hero.png"],
   },
@@ -198,7 +198,7 @@ const faq = [
   ],
   [
     "シュートやドリブルなど個人スキルも練習しますか？",
-    "行います。ただし、技術の形だけで終わらず、相手・味方・スペースがある状況で『いつ使うか』までつなげることを重視します。",
+    "行います。ただし、技術を形だけ覚えて終わるのではなく、相手・味方・スペースがある状況で『いつ使うか』までつなげることを重視します。",
   ],
   [
     "保護者や指導者は見学できますか？",
@@ -224,7 +224,7 @@ export default function SagaPage() {
   const pageJson = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "RBA 佐賀",
+    name: "RBA佐賀",
     url: "https://riotbasketballacademy.com/ja/saga",
     inLanguage: "ja",
     description:
@@ -259,7 +259,7 @@ export default function SagaPage() {
   const serviceJson = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "RBA 佐賀｜育成年代バスケットボールクリニック・キャンプ",
+    name: "RBA佐賀｜育成年代バスケットボールクリニック・キャンプ",
     serviceType: "Youth basketball development clinics and camps",
     areaServed: { "@type": "AdministrativeArea", name: "佐賀県" },
     audience: [
@@ -282,7 +282,7 @@ export default function SagaPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "RBA", item: "https://riotbasketballacademy.com/ja" },
-      { "@type": "ListItem", position: 2, name: "RBA 佐賀", item: "https://riotbasketballacademy.com/ja/saga" },
+      { "@type": "ListItem", position: 2, name: "RBA佐賀", item: "https://riotbasketballacademy.com/ja/saga" },
     ],
   };
 
@@ -297,11 +297,11 @@ export default function SagaPage() {
         <section className="journal-cms-hero section-pad">
           <p className="section-index">RBA SAGA / REGIONAL DEVELOPMENT</p>
           <h1>
-            RBA 佐賀。<br />
+            RBA佐賀。<br />
             一度きりで終わらない、育成の機会を。
           </h1>
           <p>
-            Riot Basketball Academyでは、現在確認できる申込記録では、2025年9月から佐賀で育成年代のクリニック・キャンプを継続しています。
+            現在確認できる申込記録では、Riot Basketball Academyは2025年9月から佐賀で育成年代のクリニック・キャンプを継続しています。
             目指しているのは、強い選手だけを集めることでも、所属チームを変えてもらうことでもありません。
             今いる環境を大切にしながら、地域の外でも学び、試し、その経験を普段のバスケットボールへ持ち帰れる場所を佐賀につくります。
           </p>
@@ -340,7 +340,7 @@ export default function SagaPage() {
           <div className="section-head">
             <div>
               <p className="section-index">SAGA IN NUMBERS</p>
-              <h2>佐賀で、継続して積み上げる。</h2>
+              <h2>佐賀で、学びを積み重ねる。</h2>
             </div>
             <p>
               過去4期の申込フォームを開催ごとに整理すると、4期合計で延べ100名を超える選手の申込みが確認できます。
@@ -352,7 +352,7 @@ export default function SagaPage() {
               <Repeat2 />
               <span>CONTINUITY</span>
               <h3>2025 → 2026</h3>
-              <p>季節をまたいで開催。地域へ戻りながら、学びを積み上げています。</p>
+              <p>季節をまたいで開催を重ね、学びを積み上げています。</p>
             </article>
             <article>
               <UsersRound />
@@ -416,7 +416,7 @@ export default function SagaPage() {
               <h2>これまでの佐賀開催。</h2>
             </div>
             <p>
-              開催ごとに同じメニューを繰り返すのではなく、参加する年代や地域の日程、選手の課題に合わせて、内容と形式を更新してきました。
+              開催ごとに同じメニューを繰り返すのではなく、参加年代や地域の大会日程、選手の課題に合わせて、内容と形式を更新してきました。
             </p>
           </div>
           <div className="journal-cms-grid saga-grid-four">
@@ -472,7 +472,7 @@ export default function SagaPage() {
           </div>
           <div className="homecourt-launch-actions">
             <Link className="button button-light" href="/ja/approach">
-              RBAの育成方針 <BookOpen size={16} />
+              RBAの育成方針を見る <BookOpen size={16} />
             </Link>
             <Link className="button button-light" href="/ja/development">
               育成ガイド <ArrowRight size={16} />
@@ -484,10 +484,10 @@ export default function SagaPage() {
           <div className="section-head">
             <div>
               <p className="section-index">WHO THIS IS FOR</p>
-              <h2>選手だけでなく、地域のみなさんとつくる。</h2>
+              <h2>選手だけでなく、地域の皆さんとつくる。</h2>
             </div>
             <p>
-              佐賀で育成環境を続けていくには、選手だけでなく、保護者、指導者、会場を支える方、地域の協力者、企業・団体が、それぞれ無理のない形で関われることが大切です。
+              佐賀で育成環境を続けていくには、選手だけでなく、保護者、指導者、会場を提供・運営してくださる方、地域の協力者、企業・団体が、それぞれ無理のない形で関われることが大切です。
             </p>
           </div>
           <div className="homecourt-preview-grid">
@@ -510,7 +510,7 @@ export default function SagaPage() {
             <p className="section-index">NEXT / YEAR END 2026</p>
             <h2>
               12月28日・29日、<br />
-              佐賀 年末クリニックを予定。
+              佐賀で年末クリニックを予定。
             </h2>
             <p>
               現在は、年末の予定を組んでいただくための先行案内段階です。会場、対象カテゴリー、参加費、定員、申込方法は確定後に正式発表します。
@@ -606,7 +606,7 @@ export default function SagaPage() {
               <Target />
               <span>01 / MODERN GAME</span>
               <h3>現代のゲームから逆算する</h3>
-              <p>慣習だけでメニューを決めず、スペーシング、シュート、1on1、判断、トランジションなど、現代のゲームに必要な要素から課題を整理します。</p>
+              <p>慣習だけでメニューを決めず、スペーシング、シュート、1on1、判断、トランジションなど、現代バスケットボールで求められる要素から課題を整理します。</p>
             </article>
             <article>
               <Compass />
@@ -624,7 +624,7 @@ export default function SagaPage() {
               <ShieldCheck />
               <span>04 / LONG TERM</span>
               <h3>長く続けられる身体へ</h3>
-              <p>年齢、疲労、回復、成長期を無視せず、必要に応じてS&amp;Cの考え方も組み込みます。</p>
+              <p>年齢や成長段階、疲労、回復を踏まえ、必要に応じてS&amp;Cの考え方も取り入れます。</p>
             </article>
           </div>
         </section>
@@ -635,7 +635,7 @@ export default function SagaPage() {
               <p className="section-index">FAQ</p>
               <h2>RBA佐賀について、よくある質問。</h2>
             </div>
-            <p>正式募集ごとに条件が変わるものは断定せず、その都度最新情報を案内します。</p>
+            <p>会場や参加条件など、開催ごとに変わる情報は正式募集時の最新情報をご確認ください。</p>
           </div>
           <div className="journal-cms-grid saga-faq-grid">
             {faq.map(([q, a], index) => (
@@ -651,7 +651,7 @@ export default function SagaPage() {
             <div>
               <strong>開催情報は「正式募集ページ」を優先します</strong>
               <p>
-                このページは佐賀での活動全体をまとめる地域ハブです。日時、会場、参加費、対象、定員、キャンセル条件などについて、
+                このページは佐賀での活動全体をまとめた地域ページです。日時、会場、参加費、対象、定員、キャンセル条件などについて、
                 各開催の正式募集ページと記載が異なる場合は、正式募集ページの最新情報を優先してください。
               </p>
             </div>
@@ -672,7 +672,7 @@ export default function SagaPage() {
               育成の選択肢は増やせる。
             </h2>
             <p>
-              RBA佐賀が目指すのは、RBAだけで完結する環境ではありません。佐賀・九州の子どもたちが、必要なときに普段とは違う学びの場へ参加できることを大切にします。
+              RBA佐賀が目指すのは、RBAの中だけで育成を完結させることではありません。佐賀・九州の子どもたちが、必要なときに普段とは違う学びの場にも参加できることを大切にします。
               選手・保護者・指導者、そして地域で開催を支えてくださる方と一緒に、無理なく続けられる形をつくっていきます。
             </p>
           </div>
