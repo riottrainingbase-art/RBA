@@ -370,7 +370,7 @@ export default function SagaPage() {
               <MapPin />
               <span>AREA</span>
               <h3>SAGA / KYUSHU</h3>
-              <p>佐賀を軸に、所属や市町を越えて九州の選手が学べる機会へ。</p>
+              <p>佐賀県内外からの申込もあり、所属や市町を越えて九州の選手が学べる機会へ。</p>
             </article>
           </div>
         </section>
@@ -385,7 +385,7 @@ export default function SagaPage() {
               </h2>
             </div>
             <p>
-              RBA佐賀は、所属チームと競合する場所ではなく、普段の活動だけでは得にくい刺激や学びを補完する地域拠点として設計します。
+              RBA佐賀は、所属チームと競合する場所ではなく、普段の活動だけでは得にくい刺激や学びを補完する「地域の学びの入口」として設計します。
             </p>
           </div>
           <div className="journal-evidence-grid">
@@ -396,6 +396,16 @@ export default function SagaPage() {
                 <p>{body}</p>
               </article>
             ))}
+          </div>
+          <div className="homecourt-private-note">
+            <ShieldCheck />
+            <div>
+              <strong>「RBA佐賀」は固定チームや常設スクールの名称ではありません</strong>
+              <p>
+                現時点では、佐賀エリアで継続して行うRBAのクリニック、キャンプ、学習機会をまとめる地域ページです。
+                選手登録や移籍を前提とせず、開催ごとの対象・会場・料金・申込条件は正式募集時に個別に案内します。
+              </p>
+            </div>
           </div>
         </section>
 
@@ -594,9 +604,9 @@ export default function SagaPage() {
           <div className="journal-evidence-grid">
             <article>
               <Target />
-              <span>01 / PURPOSE</span>
-              <h3>目的を先に決める</h3>
-              <p>何を学ばせたいのかを決めてから、ドリル・ゲーム・ルールを選びます。</p>
+              <span>01 / MODERN GAME</span>
+              <h3>現代のゲームから逆算する</h3>
+              <p>「昔からこうしてきた」だけで決めず、スペーシング、シュート、1on1、判断、トランジションなど今のゲームに必要な要素から課題を整理します。</p>
             </article>
             <article>
               <Compass />
@@ -635,6 +645,21 @@ export default function SagaPage() {
                 <p>{a}</p>
               </article>
             ))}
+          </div>
+          <div className="homecourt-private-note">
+            <ShieldCheck />
+            <div>
+              <strong>開催情報は「正式募集ページ」を優先します</strong>
+              <p>
+                このページは佐賀での活動全体をまとめる地域ハブです。日時、会場、参加費、対象、定員、キャンセル条件などについて、
+                各開催の正式募集ページと記載が異なる場合は、正式募集ページの最新情報を優先してください。
+              </p>
+            </div>
+          </div>
+          <div className="homecourt-launch-actions">
+            <Link className="button button-light" href="/ja/policies">
+              参加規約・安全方針を見る <ArrowRight size={16} />
+            </Link>
           </div>
         </section>
 
