@@ -38,7 +38,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
     ["RBA UNITED",localePath(locale,"united")],
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")],
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["RBA 佐賀","/ja/saga"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
+    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
     [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
     ...(locale==="ja"?[["コーチ向け教材","/ja/materials"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["ミニバス育成支援","/ja/minibasket-support"] as const]:[]),
