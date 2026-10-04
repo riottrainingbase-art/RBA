@@ -72,7 +72,7 @@ export const japanPoints:MapPoint[]=[
  record("ibaraki",140.45,36.34,["Ibaraki","茨城","茨城","이바라키"],["clinic","3x3"],["BACKBONE pre-event and clinic.","BACKBONEプレイベント、クリニックを開催。","BACKBONE預備活動與訓練營。","BACKBONE 프리 이벤트 및 클리닉."]),
  record("tochigi",139.88,36.57,["Tochigi","栃木","栃木","도치기"],["clinic"],["RBA skill-up clinic.","スキルアップクリニックを開催。","RBA技能提升訓練營。","RBA 스킬업 클리닉."]),
  record("saitama",139.65,35.86,["Saitama","埼玉","埼玉","사이타마"],["clinic","3x3"],["Clinics and 3x3 programmes.","クリニック、3x3プログラムを開催。","訓練營與3x3活動。","클리닉 및 3x3 프로그램."]),
- record("kazo",139.60,36.13,["Kazo · Saitama","埼玉・加須","埼玉・加須","사이타마・가조"],["3x3"],["3x3 basketball class.","3x3バスケットボール教室。","3x3籃球課程。","3x3 농구 교실."]),
+ record("kazo",139.60,36.13,["Kazo · Saitama","埼玉・加須","埼玉・加須","사이타마・가조"],["3x3"],["3x3 basketball class.","3x3バスケットボール教室を開催。","3x3籃球課程。","3x3 농구 교실."]),
  record("harayama",139.69,35.87,["Harayama · Saitama","埼玉・原山","埼玉・原山","사이타마・하라야마"],["clinic"],["Clinic at Harayama Junior High School.","原山中学校でクリニックを開催。","原山中學訓練營。","하라야마 중학교 클리닉."]),
  record("kozaki",140.41,35.90,["Kozaki · Chiba","千葉・神崎","千葉・神崎","지바・고자키"],["3x3"],["HBC wolves presents BACKBONE Chiba.","HBC wolves presents BACKBONE千葉を開催。","HBC wolves主辦BACKBONE千葉。","HBC wolves 주최 BACKBONE 지바."]),
  record("kawasaki",139.70,35.53,["Kawasaki · Kanagawa","神奈川・川崎","神奈川・川崎","가나가와・가와사키"],["clinic"],["RBA clinic and U12 Development Camp.","クリニック、U12 DEVELOPMENT CAMPを開催。","RBA訓練營與U12培育營。","RBA 클리닉 및 U12 Development Camp."]),
@@ -85,7 +85,7 @@ export const japanPoints:MapPoint[]=[
  record("okawa",130.38,33.21,["Okawa · Fukuoka","福岡・大川","福岡・大川","후쿠오카・오카와"],["camp"],["Saga × Okawa 2DAYS DEVELOPMENT CAMP.","佐賀 × 大川 2DAYS DEVELOPMENT CAMPを開催。","佐賀・大川兩日培育營。","사가・오카와 2DAYS DEVELOPMENT CAMP."]),
  record("okinawa",127.81,26.33,["Okinawa City","沖縄市","沖繩市","오키나와시"],["clinic"],["RBA Basketball Clinic.","沖縄市でRBAクリニックを開催。","沖繩市RBA訓練營。","오키나와시 RBA 클리닉."]),
  record("tomigusuku",127.67,26.16,["Tomigusuku · Okinawa","沖縄・豊見城","沖繩・豐見城","오키나와・도미구스쿠"],["clinic"],["RBA Tomigusuku Clinic.","豊見城でRBAクリニックを開催。","沖繩豐見城訓練營。","도미구스쿠 RBA 클리닉."]),
- record("itoman",127.67,26.12,["Itoman · Okinawa","沖縄・糸満","沖繩・糸滿","오키나와・이토만"],["3x3"],["BACKBONE 3x3 Chapter Round 1.","BACKBONE 3x3 CHAPTER Round1。","BACKBONE 3x3 CHAPTER Round1。","BACKBONE 3x3 CHAPTER Round1."]),
+ record("itoman",127.67,26.12,["Itoman · Okinawa","沖縄・糸満","沖繩・糸滿","오키나와・이토만"],["3x3"],["BACKBONE 3x3 Chapter Round 1.","BACKBONE 3x3 CHAPTER Round1を開催。","BACKBONE 3x3 CHAPTER Round1。","BACKBONE 3x3 CHAPTER Round1."]),
  record("ishigaki",124.16,24.34,["Ishigaki Island","石垣島","石垣島","이시가키섬"],["clinic","camp"],["Clinics and camps on Ishigaki Island.","石垣島でクリニック、キャンプを開催。","石垣島訓練營與培育營。","이시가키섬 클리닉 및 캠프."]),
  record("nanjo",127.77,26.16,["Nanjo · Okinawa","沖縄・南城","沖繩・南城","오키나와・난조"],["camp"],["On-ball defence specialised camp.","オンボールディフェンス特化キャンプを開催。","持球防守專項培育營。","온볼 디펜스 특화 캠프."]),
 ];
@@ -94,7 +94,7 @@ export const plannedJapanPoints:MapPoint[]=[
  {id:"tatsuno-planned",lon:134.55,lat:34.86,name:["Tatsuno · Hyogo · planned","兵庫・たつの・開催予定","兵庫・龍野・預定活動","효고・다쓰노・개최 예정"],status:"planned",activities:["camp"],detail:["Development Camp planned for 20–23 November 2026; not included in the 25-location record.","2026年11月20〜23日にDevelopment Campを予定。活動実績25地点には含めていません。","預定2026年11月20日至23日舉辦培育營；不計入25個活動地點。","2026년 11월 20~23일 Development Camp 예정. 25개 활동 실적에는 미포함."]}
 ];
 export const worldPoints:MapPoint[]=[
- {id:"taiwan",lon:121.56,lat:25.08,name:["Taipei · Taiwan","台湾・台北","台灣・台北","대만・타이베이"],status:"partner",detail:["Spartan Academy · verified youth basketball collaboration.","Spartan Academyとの育成年代連携を確認済み。","Spartan Academy；已確認的青少年籃球合作。","Spartan Academy. 확인된 유소년 농구 협력."]},
+ {id:"taiwan",lon:121.56,lat:25.08,name:["Taipei · Taiwan","台湾・台北","台灣・台北","대만・타이베이"],status:"partner",detail:["Spartan Academy · verified youth basketball collaboration.","Spartan Academyと育成年代で連携しています。","Spartan Academy；已確認的青少年籃球合作。","Spartan Academy. 확인된 유소년 농구 협력."]},
  {id:"malaysia",lon:101.69,lat:3.14,name:["Malaysia","マレーシア","馬來西亞","말레이시아"],status:"discussion",statusLabel:["In discussion","連携内容を調整中","協議中","협의 중"],detail:["MVP Basketball Academy · curriculum, technical-advisor and event collaboration discussions.","MVP Basketball Academyと、カリキュラム、技術アドバイザー、イベント連携について協議中。","MVP Basketball Academy；正洽談課程、技術顧問與活動合作。","MVP Basketball Academy. 커리큘럼, 기술 자문과 이벤트 협력 협의 중."]},
  {id:"indonesia",lon:106.85,lat:-6.21,name:["Indonesia","インドネシア","印尼","인도네시아"],status:"discussion",statusLabel:["Initial meeting complete","初回面談済み","已完成首次會談","첫 미팅 완료"],detail:["AirOne Basketball Club · initial online meeting completed.","AirOne Basketball Clubと初回オンライン面談を実施済み。","AirOne Basketball Club；已完成首次線上會談。","AirOne Basketball Club. 첫 온라인 미팅 완료."]},
  {id:"korea",lon:126.98,lat:37.57,name:["South Korea","韓国","韓國","대한민국"],status:"discussion",statusLabel:["In discussion","連携を協議中","協議中","협의 중"],detail:["HIGH RAISE and PLAYGROUND · coach and youth-development relationship discussions.","HIGH RAISE、PLAYGROUNDと、指導者・育成年代の連携について協議中。","HIGH RAISE、PLAYGROUND；洽談教練與青少年培育合作。","HIGH RAISE, PLAYGROUND. 코치 및 유소년 육성 협력 협의 중."]},
