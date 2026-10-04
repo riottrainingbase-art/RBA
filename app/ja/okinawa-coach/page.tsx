@@ -7,9 +7,13 @@ import {
   GraduationCap,
   HeartHandshake,
   MapPin,
+  MessageCircle,
+  Sparkles,
   UsersRound,
 } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
+
+const APPLY_URL = "https://form.jotform.com/262765305419057";
 
 export const metadata: Metadata = {
   title: { absolute: "RBA沖縄｜育成年代バスケットボール コーチ募集" },
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
     "沖縄 ミニバス コーチ",
     "沖縄 U12 バスケ",
     "沖縄 U15 バスケ",
+    "バスケットボール 指導 沖縄",
     "Riot Basketball Academy",
     "RBA 沖縄",
   ],
@@ -51,62 +56,69 @@ const roleCards = [
     tag: "COACHING",
     title: "育成年代のトレーニング",
     body:
-      "U12・U15年代を中心に、スキルだけでなく、見る・考える・選ぶ・実行する力を育てます。RBAの考え方を共有しながら、現場に合う内容を一緒につくります。",
+      "U12・U15年代を中心に、技術だけでなく、見る・考える・選ぶ・実行する力を育てます。RBAの考え方を共有しながら、沖縄の現場に合う内容を一緒につくります。",
   },
   {
     icon: UsersRound,
     tag: "COMMUNICATION",
-    title: "選手との対話・保護者との連携",
+    title: "選手との対話",
     body:
-      "一方的に教えるのではなく、選手の反応を見ながら問いかけ、考える時間をつくります。活動前後の案内や現場でのコミュニケーションも大切な役割です。",
+      "一方的に答えを与えるのではなく、選手の反応を見ながら問いかけ、試し、振り返る時間をつくります。保護者との現場でのコミュニケーションも大切にします。",
   },
   {
     icon: MapPin,
     tag: "LOCAL",
     title: "沖縄で続く活動をつくる",
     body:
-      "単発のクリニックで終わらず、地域に合った頻度や会場を考えながら、無理なく続けられる育成機会を本部と一緒に育てていきます。",
+      "単発のクリニックだけではなく、地域に合った頻度や会場を考えながら、子どもたちが継続して学べる機会を育てていきます。",
   },
 ];
 
-const rbaSupport = [
+const supportCards = [
   {
     icon: HeartHandshake,
-    tag: "SUPPORT",
-    title: "運営は本部がサポート",
+    tag: "OPERATIONS",
+    title: "運営はRBA本部が支える",
     body:
-      "募集、申込、決済、会員管理、料金設定、契約などの運営面はRBA本部が担当します。コーチが現場の指導に集中しやすい形をつくります。",
+      "募集、申込、決済、会員管理、料金設定などの運営面は本部が担当します。現地コーチが、できるだけ指導と選手に向き合う時間へ集中できる形にします。",
   },
   {
     icon: GraduationCap,
-    tag: "LEARNING",
+    tag: "COACH DEVELOPMENT",
     title: "コーチ自身も学び続ける",
     body:
-      "D-HUBやRBAのコーチネットワーク、オンライン講習などを通じて、指導者自身も新しい考え方や実践を学べます。",
+      "D-HUB、指導者講習、RBAのコーチネットワークなどを通じて、練習設計や育成年代の考え方を継続して学べます。",
   },
   {
     icon: Globe2,
-    tag: "NETWORK",
+    tag: "JAPAN × ASIA",
     title: "県外・海外ともつながる",
     body:
-      "RBAが全国・海外でつくっているクリニック、キャンプ、交流機会ともつながります。沖縄の選手に新しい経験を届けることも目指します。",
+      "RBAが全国やアジアでつくっているクリニック、キャンプ、交流企画とも接続します。沖縄の選手とコーチに、新しい経験が届く流れをつくります。",
   },
 ];
 
-const requirements = [
-  "子どもの成長を、目の前の勝敗だけで判断しない方",
-  "選手をよく見て、対話しながら指導できる方",
-  "RBAの育成方針を学び、現場で試し、振り返れる方",
-  "選手・保護者・関係者に誠実に対応できる方",
-  "沖縄県内で継続して活動できる方",
+const values = [
+  "目の前の勝敗だけで、子どもの可能性を決めつけない",
+  "教え込むだけではなく、選手が考える時間をつくる",
+  "できた・できないだけでなく、挑戦の過程を見る",
+  "自分の指導を振り返り、学び続ける",
+  "選手・保護者・ほかの指導者に誠実である",
 ];
 
 const welcome = [
-  "育成年代の指導経験",
+  "育成年代のバスケットボール指導経験",
   "JBA公認コーチライセンス",
   "学校・クラブ・スクール・地域活動などでの指導経験",
   "S&C、トレーナー、理学療法など身体づくりに関する経験",
   "英語など、国際交流に生かせる経験",
+];
+
+const flow = [
+  ["01", "フォームから連絡", "正式応募だけでなく「まず話を聞きたい」でも大丈夫です。2〜3分程度のフォームから送ってください。"],
+  ["02", "オンラインで話す", "これまでの経験、現在の活動、沖縄でどんな関わり方ができそうかをお互いに確認します。"],
+  ["03", "必要に応じて現場で確認", "指導経験がある方は、必要に応じて実際のオンコートでの関わり方も確認します。派手な技術より、観察・対話・安全への配慮を見ます。"],
+  ["04", "条件を確認してスタート", "役割、頻度、報酬、交通費、契約条件などを確認し、双方が納得したうえで始めます。"],
 ];
 
 const faq = [
@@ -127,8 +139,16 @@ const faq = [
     "可能です。現在の活動を尊重しながら、無理なく両立できる形を相談します。",
   ],
   [
+    "競技歴が長くないと難しいですか？",
+    "競技歴だけで判断しません。子どもをよく見て学び続けられること、RBAの考え方を理解しようとする姿勢を大切にします。",
+  ],
+  [
     "仙台から毎回来るのですか？",
     "日常の活動は沖縄の現地コーチを中心に進め、RBA本部や県外コーチは特別クリニック、研修、交流企画などで関わる形を想定しています。",
+  ],
+  [
+    "まだ応募するか決めていません。",
+    "問題ありません。「少し興味がある」「話だけ聞いてみたい」という段階でもフォームから相談できます。",
   ],
 ];
 
@@ -143,18 +163,44 @@ export default function OkinawaCoachPage() {
     })),
   };
 
+  const jobJson = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: "育成年代バスケットボール コーチ（沖縄）",
+    description:
+      "沖縄で育成年代の選手に継続して学べる環境をつくるRiot Basketball Academyの現地コーチ募集です。まずは月2〜4回程度から相談できます。",
+    datePosted: "2026-10-05",
+    employmentType: ["PART_TIME", "CONTRACTOR"],
+    directApply: true,
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "Riot Basketball Academy",
+      sameAs: "https://riotbasketballacademy.com",
+      logo: "https://riotbasketballacademy.com/rba-logo-original.jpg",
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "沖縄県",
+        addressCountry: "JP",
+      },
+    },
+    qualifications:
+      "JBA公認コーチライセンスや育成年代での指導経験は歓迎しますが、必須ではありません。",
+    responsibilities:
+      "育成年代のトレーニング、選手との対話、保護者との現場コミュニケーション、RBA本部との活動共有。",
+    url: "https://riotbasketballacademy.com/ja/okinawa-coach",
+  };
+
   return (
     <SiteFrame locale="ja">
       <main className="saga-hub">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jobJson) }} />
 
         <section className="inner-hero section-pad">
-          <a className="back-link" href="/ja">
-            ← RBA
-          </a>
+          <a className="back-link" href="/ja">← RBA</a>
           <p className="section-index">RBA OKINAWA / COACH RECRUITMENT</p>
           <h1>
             沖縄で、
@@ -167,11 +213,11 @@ export default function OkinawaCoachPage() {
             まずは月2〜4回程度から。現在のお仕事やチームでの活動と両立しながら関わることも可能です。
           </p>
           <div className="closing-actions">
-            <a className="button button-orange" href="#apply">
-              募集内容を見る <ArrowRight size={17} />
+            <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer">
+              応募・相談フォーム <ArrowRight size={17} />
             </a>
-            <a className="button button-dark" href="/ja/contact">
-              まず話を聞いてみる <ArrowRight size={17} />
+            <a className="button button-dark" href="#details">
+              募集内容を見る <ArrowRight size={17} />
             </a>
           </div>
         </section>
@@ -179,12 +225,12 @@ export default function OkinawaCoachPage() {
         <section className="access-promise section-pad">
           <p className="section-index">WHY OKINAWA</p>
           <div>
-            <h2>単発ではなく、沖縄に「続く育成環境」をつくりたい。</h2>
+            <h2>県外から誰かが来た日だけではなく、沖縄に「日常の育成環境」を。</h2>
             <p>
-              RBAは、県外からコーチが来た日だけ学べる場所ではなく、
-              沖縄の子どもたちが日常の中で継続して学べる環境をつくりたいと考えています。
-              現地コーチが中心となり、RBA本部や県外・海外のコーチが特別な機会でつながる。
-              そんな形を一緒につくっていきます。
+              RBAがつくりたいのは、一度きりの特別イベントだけではありません。
+              沖縄の子どもたちが、普段の生活の中で継続して学び、試し、成長できる場所です。
+              日常は現地コーチが中心になり、RBA本部や県外・海外のコーチが特別な機会でつながる。
+              その循環を沖縄でつくりたいと考えています。
             </p>
           </div>
         </section>
@@ -192,11 +238,12 @@ export default function OkinawaCoachPage() {
         <section className="homecourt-product-preview section-pad">
           <div className="section-head">
             <div>
-              <p className="section-index">YOUR ROLE</p>
+              <p className="section-index">WHAT YOU WILL DO</p>
               <h2>お願いしたいのは、子どもたちと向き合うこと。</h2>
             </div>
             <p>
-              指導だけを一方的にお願いするのではなく、RBAの育成方針を共有しながら、沖縄の現場に合う形を一緒に考えます。
+              決められたメニューをただ回す役割ではありません。
+              RBAの育成方針を共有し、沖縄の選手を見ながら、現場に合う学び方を一緒につくります。
             </p>
           </div>
           <div className="homecourt-preview-grid">
@@ -214,15 +261,16 @@ export default function OkinawaCoachPage() {
         <section className="homecourt-product-preview section-pad">
           <div className="section-head">
             <div>
-              <p className="section-index">RBA SUPPORT</p>
-              <h2>一人で抱え込まない仕組みにする。</h2>
+              <p className="section-index">WHAT RBA BRINGS</p>
+              <h2>コーチ一人に、全部を背負わせない。</h2>
             </div>
             <p>
-              現場のコーチが指導に集中できるように、運営や学びの部分はRBA本部が支えます。
+              RBA本部は運営を支えるだけでなく、指導者の学びや全国・海外との接点もつくります。
+              「沖縄の現場」と「RBAのネットワーク」をつなぐ形です。
             </p>
           </div>
           <div className="homecourt-preview-grid">
-            {rbaSupport.map(({ icon: Icon, tag, title, body }) => (
+            {supportCards.map(({ icon: Icon, tag, title, body }) => (
               <article key={tag}>
                 <Icon size={28} />
                 <span>{tag}</span>
@@ -233,13 +281,14 @@ export default function OkinawaCoachPage() {
           </div>
         </section>
 
-        <section id="apply" className="access-promise section-pad">
+        <section id="details" className="access-promise section-pad">
           <p className="section-index">WORKING STYLE</p>
           <div>
-            <h2>まずは月2〜4回程度から。</h2>
+            <h2>小さく始めて、続けられる形をつくる。</h2>
             <p>
               最初から大きなスクール運営を任せる想定ではありません。
-              会場、参加人数、現在のお仕事との両立を見ながら、小さく始めて継続できる形をつくります。
+              まずは月2〜4回程度を目安に、会場、参加人数、現在のお仕事との両立を見ながら始めます。
+              活動を続ける中で、必要に応じて頻度や役割を調整していきます。
             </p>
           </div>
         </section>
@@ -249,76 +298,112 @@ export default function OkinawaCoachPage() {
             <CalendarDays size={28} />
             <span>FREQUENCY</span>
             <h2>活動頻度</h2>
-            <p>月2〜4回程度から相談。活動状況を見ながら調整します。</p>
+            <p>月2〜4回程度から相談。現在の仕事やチーム活動との両立も可能です。</p>
           </article>
           <article>
             <MapPin size={28} />
             <span>LOCATION</span>
             <h2>活動場所</h2>
-            <p>沖縄県内。会場やエリアは参加者の状況を見ながら決めていきます。</p>
+            <p>沖縄県内。会場やエリアは、参加者の状況や活動内容を見ながら決めていきます。</p>
           </article>
           <article>
             <HeartHandshake size={28} />
             <span>COMPENSATION</span>
             <h2>報酬</h2>
-            <p>経験、担当内容、活動時間、頻度を確認したうえで、開始前にお伝えします。</p>
+            <p>経験、担当内容、活動時間、頻度を確認し、活動開始前に条件をお伝えします。</p>
           </article>
           <article>
             <BadgeCheck size={28} />
             <span>LICENSE</span>
             <h2>資格</h2>
-            <p>JBA公認コーチライセンス歓迎。必須ではありません。</p>
+            <p>JBA公認コーチライセンス歓迎。必須ではありません。経験だけでなく、育成への姿勢を重視します。</p>
           </article>
+        </section>
+
+        <section className="statement section-pad">
+          <p className="section-index">RBA COACHING VALUES</p>
+          <div>
+            <h2>
+              「何を知っているか」だけでなく、
+              <br />
+              「どう子どもを見るか」。
+            </h2>
+            <p>
+              RBAでは、指導者の肩書きや過去の競技実績だけで判断しません。
+              育成年代のコーチとして大切にしたい考え方があります。
+            </p>
+            {values.map((item) => (
+              <p key={item}>
+                <Sparkles size={15} aria-hidden="true" /> {item}
+              </p>
+            ))}
+          </div>
         </section>
 
         <section className="homecourt-product-preview section-pad">
           <div className="section-head">
             <div>
-              <p className="section-index">WHO WE ARE LOOKING FOR</p>
-              <h2>肩書きより、子どもとの向き合い方を大切にします。</h2>
+              <p className="section-index">EXPERIENCE</p>
+              <h2>こんな経験があれば、生かせます。</h2>
             </div>
             <p>
-              「強いチームを率いていた」「有名な選手だった」ことだけで判断しません。
-              子どもを観察し、問いかけ、一緒に学べる方と活動したいと考えています。
+              すべてを満たす必要はありません。指導経験が浅い方でも、学ぶ姿勢があり、育成年代に丁寧に向き合える方は相談してください。
             </p>
           </div>
           <div className="access-grid">
             <article>
               <GraduationCap size={28} />
-              <span>IMPORTANT</span>
-              <h2>大切にすること</h2>
-              {requirements.map((item) => (
+              <span>WELCOME</span>
+              <h2>歓迎する経験</h2>
+              {welcome.map((item) => (
                 <p key={item}>・{item}</p>
               ))}
             </article>
             <article>
-              <HeartHandshake size={28} />
-              <span>WELCOME</span>
-              <h2>生かせる経験</h2>
-              {welcome.map((item) => (
-                <p key={item}>・{item}</p>
-              ))}
-              <p>※すべてを満たす必要はありません。</p>
+              <MessageCircle size={28} />
+              <span>FIRST CONTACT</span>
+              <h2>まだ迷っていても大丈夫です</h2>
+              <p>
+                「正式に応募するかは決めていない」「どんな活動になるのか聞きたい」という段階でも構いません。
+                フォームで「まず話を聞きたい」を選んでください。
+              </p>
+              <a className="text-link" href={APPLY_URL} target="_blank" rel="noreferrer">
+                応募・相談フォームを開く <ArrowRight size={16} />
+              </a>
             </article>
           </div>
         </section>
 
-        <section className="statement section-pad">
-          <p className="section-index">HOW TO START</p>
+        <section className="homecourt-product-preview section-pad">
+          <div className="section-head">
+            <div>
+              <p className="section-index">HOW IT STARTS</p>
+              <h2>応募して、すぐ任せるわけではありません。</h2>
+            </div>
+            <p>
+              お互いの考え方や現在の活動を確認してから、無理のない形で始めます。
+            </p>
+          </div>
+          <div className="homecourt-preview-grid">
+            {flow.map(([index, title, body]) => (
+              <article key={index}>
+                <span>{index}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="access-promise section-pad">
+          <p className="section-index">OPERATIONS</p>
           <div>
-            <h2>まずは、一度話しましょう。</h2>
+            <h2>現場と運営の役割は、始める前に確認します。</h2>
             <p>
-              応募時点で長い履歴書は必要ありません。
-              現在の活動、これまでの指導経験、対応できそうな曜日や時間帯、
-              RBA沖縄に興味を持った理由を簡単に教えてください。
+              募集・申込・決済・会員管理などの運営はRBA本部が担当します。
+              現地コーチには、合意した範囲で指導と現場対応をお願いします。
+              報酬、交通費、活動頻度、連絡方法なども、曖昧なままスタートしません。
             </p>
-            <p>
-              お話ししたうえで、お互いに合いそうであれば、
-              活動内容・報酬・頻度・契約条件を確認してスタートします。
-            </p>
-            <a className="text-link" href="/ja/contact">
-              応募・相談する <ArrowRight size={16} />
-            </a>
           </div>
         </section>
 
@@ -348,12 +433,12 @@ export default function OkinawaCoachPage() {
             新しい育成の選択肢を。
           </h2>
           <p>
-            まずは月2〜4回から。
-            子どもたちにも、コーチにも、無理なく続く環境を一緒につくっていきたいと考えています。
+            いきなり大きく始める必要はありません。
+            まずは一度話して、お互いに合う形を探しましょう。
           </p>
           <div className="closing-actions">
-            <a className="button button-orange" href="/ja/contact">
-              応募・相談する <ArrowRight size={17} />
+            <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer">
+              応募・相談フォーム <ArrowRight size={17} />
             </a>
             <a className="button button-dark" href="/ja/coaches">
               RBAの指導者向け活動を見る <ArrowRight size={17} />
