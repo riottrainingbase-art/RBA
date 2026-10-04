@@ -218,6 +218,20 @@ export default function OkinawaCoachPage() {
       <div className="saga-hub">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jobJson) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "RBA", item: "https://riotbasketballacademy.com/ja" },
+                { "@type": "ListItem", position: 2, name: "コーチ・指導者", item: "https://riotbasketballacademy.com/ja/coaches" },
+                { "@type": "ListItem", position: 3, name: "RBA沖縄 コーチ募集", item: "https://riotbasketballacademy.com/ja/okinawa-coach" },
+              ],
+            }),
+          }}
+        />
 
         <section className="inner-hero section-pad">
           <a className="back-link" href="/ja">← RBA</a>
@@ -250,8 +264,9 @@ export default function OkinawaCoachPage() {
             <p>
               RBAがつくりたいのは、一度きりの特別イベントだけではありません。
               沖縄の子どもたちが、普段の生活の中で継続して学び、試し、成長できる場所です。
-              日常は現地コーチが中心になり、RBA本部や県外・海外のコーチが特別な機会でつながる。
-              その循環を沖縄でつくりたいと考えています。
+              日常は現地コーチが中心となり、RBA本部や県外・海外のコーチは、
+              特別クリニックや研修、交流企画などで関わります。
+              地域に根づく日常と、地域の外につながる機会の両方を沖縄でつくりたいと考えています。
             </p>
           </div>
         </section>
@@ -373,6 +388,18 @@ export default function OkinawaCoachPage() {
             <h2>資格</h2>
             <p>JBA公認コーチライセンス歓迎。必須ではありません。経験だけでなく、育成への姿勢を重視します。</p>
           </article>
+          <article>
+            <UsersRound size={28} />
+            <span>AGE GROUP</span>
+            <h2>対象年代</h2>
+            <p>U12・U15年代を中心に想定。実際の対象やカテゴリーは、会場や参加状況を見ながら決めます。</p>
+          </article>
+          <article>
+            <CalendarDays size={28} />
+            <span>START</span>
+            <h2>開始時期</h2>
+            <p>採用ありきで急いで始めず、コーチ・会場・参加者の準備が整った段階でスタートします。</p>
+          </article>
         </section>
 
         <section className="statement section-pad">
@@ -445,10 +472,11 @@ export default function OkinawaCoachPage() {
           <div className="section-head">
             <div>
               <p className="section-index">HOW IT STARTS</p>
-              <h2>応募して、すぐ任せるわけではありません。</h2>
+              <h2>話し合ってから、少しずつ始めます。</h2>
             </div>
             <p>
-              お互いの考え方や現在の活動を確認してから、無理のない形で始めます。
+              これまでの経験や現在の活動、RBAが大切にしている育成の考え方を確認し、
+              お互いに無理のない役割から始めます。
             </p>
           </div>
           <div className="homecourt-preview-grid">
