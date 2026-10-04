@@ -108,14 +108,14 @@ const supportCards = [
     tag: "COACH DEVELOPMENT",
     title: "コーチ自身も学び続ける",
     body:
-      "D-HUB、指導者講習、RBAのコーチネットワークなどを通じて、練習設計や育成年代の考え方を継続して学べます。",
+      "RBAの指導方針や教材を共有し、必要に応じてD-HUB、指導者講習、コーチネットワークなどの学習機会にもつなげます。",
   },
   {
     icon: Globe2,
     tag: "JAPAN × ASIA",
     title: "県外・海外ともつながる",
     body:
-      "RBAが全国やアジアでつくっているクリニック、キャンプ、交流企画とも接続します。沖縄の選手とコーチに、新しい経験が届く流れをつくります。",
+      "RBAが全国やアジアで行うクリニック、キャンプ、交流企画と、内容や条件が合う場合に連携する機会をつくります。沖縄の選手とコーチが地域の外にも学びを広げられる形を目指します。",
   },
 ];
 
@@ -191,7 +191,6 @@ export default function OkinawaCoachPage() {
     description:
       "沖縄で育成年代の選手に継続して学べる環境をつくるRiot Basketball Academyの現地コーチ募集です。まずは月2〜4回程度から相談できます。",
     datePosted: "2026-10-05",
-    employmentType: ["PART_TIME", "CONTRACTOR"],
     directApply: true,
     hiringOrganization: {
       "@type": "Organization",
@@ -216,7 +215,7 @@ export default function OkinawaCoachPage() {
 
   return (
     <SiteFrame locale="ja">
-      <main className="saga-hub">
+      <div className="saga-hub">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jobJson) }} />
 
@@ -235,12 +234,13 @@ export default function OkinawaCoachPage() {
           </p>
           <div className="closing-actions">
             <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer">
-              応募・相談フォーム <ArrowRight size={17} />
+              応募・相談フォーム（約3分） <ArrowRight size={17} />
             </a>
             <a className="button button-dark" href="#details">
               募集内容を見る <ArrowRight size={17} />
             </a>
           </div>
+          <p>正式応募でなくても、「まず話を聞きたい」という段階で大丈夫です。</p>
         </section>
 
         <section className="access-promise section-pad">
@@ -395,6 +395,18 @@ export default function OkinawaCoachPage() {
           </div>
         </section>
 
+        <section className="access-promise section-pad">
+          <p className="section-index">CHILD SAFEGUARDING</p>
+          <div>
+            <h2>子どもの安全と尊重を、指導より先に。</h2>
+            <p>
+              RBAでは、選手との適切な距離、保護者への透明な連絡、写真・動画や個人情報の扱い、
+              ケガや事故が起きたときの共有を大切にします。
+              威圧や恐怖で選手を動かすのではなく、安全に挑戦できる環境をつくることを共通の前提にします。
+            </p>
+          </div>
+        </section>
+
         <section className="homecourt-product-preview section-pad">
           <div className="section-head">
             <div>
@@ -457,7 +469,7 @@ export default function OkinawaCoachPage() {
             <p>
               募集・申込・決済・会員管理などの運営はRBA本部が担当します。
               現地コーチには、合意した範囲で指導と現場対応をお願いします。
-              報酬、交通費、活動頻度、連絡方法なども、曖昧なままスタートしません。
+              報酬、交通費、活動頻度、担当範囲、連絡方法などは、実際の役割に合わせて開始前に確認します。
             </p>
           </div>
         </section>
@@ -500,7 +512,7 @@ export default function OkinawaCoachPage() {
             </a>
           </div>
         </section>
-      </main>
+      </div>
     </SiteFrame>
   );
 }
