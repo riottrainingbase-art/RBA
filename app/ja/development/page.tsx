@@ -160,6 +160,20 @@ export default function DevelopmentPage() {
           </div>
         </section>
 
+        <section className="homecourt-product-preview section-pad">
+          <div className="section-head">
+            <div><p className="section-index">REGIONAL EXAMPLE / SAGA</p><h2>考え方を、地域の現場へ。</h2></div>
+            <p>RBA佐賀では、所属を変えずに参加できるクリニック・キャンプを継続し、基礎、小局面、判断、ゲームへの転移を地域で積み上げています。</p>
+          </div>
+          <div className="homecourt-preview-grid">
+            <article><span>01</span><h3>継続開催</h3><p>2025年から季節をまたいで佐賀へ戻り、一度きりではない育成機会をつくっています。</p></article>
+            <article><span>02</span><h3>U8 → U15</h3><p>低学年から中学生まで、発達段階と競技経験に合わせて課題を調整します。</p></article>
+            <article><span>03</span><h3>ゲームへつなぐ</h3><p>1on1、2on2、3on3、スペーシング、5on5へ。技術を判断と切り離しません。</p></article>
+            <article><span>04</span><h3>次の機会へ</h3><p>地域開催から全国キャンプ、県外交流、Japan × Asiaまで、必要な選手に次の選択肢をつなぎます。</p></article>
+          </div>
+          <div className="homecourt-launch-actions"><Link className="button button-dark" href="/ja/saga">RBA佐賀を見る <ArrowRight size={17}/></Link></div>
+        </section>
+
         <section className="journal-cms-index section-pad">
           <div className="section-head"><div><p className="section-index">FAQ</p><h2>よくある育成の問い。</h2></div><p>結論を急がず、確認すべきことを分けます。</p></div>
           <div className="journal-cms-grid">
