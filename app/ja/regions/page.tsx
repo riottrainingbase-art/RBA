@@ -8,7 +8,7 @@ import { japanPoints, plannedJapanPoints } from "@/components/network-data";
 export const metadata: Metadata = {
   title: { absolute: "RBA全国活動マップ｜バスケットボール育成クリニック・キャンプ・地域拠点" },
   description:
-    "Riot Basketball Academy（RBA）の全国活動マップ。国土地理院の地理院タイルを背景に、これまでの活動地域、今後の開催予定、地域ごとの詳細ページ、確認できた地域責任者情報を一つの地図から確認できます。",
+    "Riot Basketball Academy（RBA）の全国活動マップ。国土地理院の地理院タイルを背景に、これまでの活動地域、今後の開催予定、地域ごとの詳細ページ、確認済みの地域責任者情報を一つの地図から確認できます。",
   keywords: [
     "RBA 全国",
     "バスケットボール クリニック 全国",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 const steps = [
   ["01", "地図から探す", "番号または地域名を選ぶと、その場所の活動内容、都道府県・市区町村などの地域情報、地図上の代表地点を確認できます。"],
   ["02", "地域ごとのページで詳しく見る", "継続して開催している地域から、順次専用ページを整備します。これまでの活動、次回の予定、その地域で大切にする育成方針を一つにまとめます。"],
-  ["03", "責任者を明確にする", "地域責任者が正式に決まった拠点から、氏名と役割を掲載します。役割が確認できていない段階では、推測で名前を載せません。"],
+  ["03", "地域責任者を明確にする", "地域責任者が正式に決まった拠点から、氏名と役割を掲載します。役割が確認できていない段階では、推測で名前を載せません。"],
   ["04", "地域から次の機会へ", "地域のクリニックだけで終わらず、Development Camp、RBA UNITED、指導者向けの学び、Japan × Asiaの交流へと選択肢を広げます。"],
 ] as const;
 
@@ -105,7 +105,7 @@ export default function RegionsPage() {
           <div className="section-head">
             <div>
               <p className="section-index">CURRENT NETWORK</p>
-              <h2>活動実績と開催予定を、分けて表示。</h2>
+              <h2>活動実績と開催予定を分けて表示。</h2>
             </div>
             <p>
               これまでに開催した地域と、これから開催を予定している地域は明確に分けて表示します。
@@ -116,7 +116,7 @@ export default function RegionsPage() {
             <article><MapPinned /><span>ACTIVITY RECORD</span><h3>{stats.activity}</h3><p>現在、活動実績として掲載している地域・地点です。</p></article>
             <article><Compass /><span>PLANNED</span><h3>{stats.planned}</h3><p>今後の開催予定として、活動実績とは分けて掲載している地域・地点です。</p></article>
             <article><UsersRound /><span>REGIONAL PAGE</span><h3>EXPANDING</h3><p>佐賀を最初の専用地域ページとして整備し、継続して開催している地域へ順次広げます。</p></article>
-            <article><UserRoundCog /><span>REGIONAL LEAD</span><h3>READY</h3><p>地域責任者が正式に決まった地域から、確認できた氏名と役割を掲載します。</p></article>
+            <article><UserRoundCog /><span>REGIONAL LEAD</span><h3>READY</h3><p>地域責任者が正式に決まった地域から、確認済みの氏名と役割を掲載します。</p></article>
           </div>
         </section>
 
@@ -128,7 +128,7 @@ export default function RegionsPage() {
               <p className="section-index">HOW THE NETWORK GROWS</p>
               <h2>
                 全国に広がっても、<br />
-                情報の基準は揃える。
+                情報の基準をそろえる。
               </h2>
             </div>
             <p>
@@ -150,8 +150,8 @@ export default function RegionsPage() {
           <div className="homecourt-plan-intro">
             <p className="section-index">REGIONAL LEAD / FUTURE READY</p>
             <h2>
-              地域責任者は、<br />
-              確認できた情報だけを掲載する。
+              地域責任者の情報は、<br />
+              確認できたものだけを掲載する。
             </h2>
             <p>
               各拠点には「地域責任者」の情報欄を用意しています。
@@ -162,7 +162,7 @@ export default function RegionsPage() {
             <article className="homecourt-plan-card">
               <UserRoundCog />
               <span>WHEN CONFIRMED</span>
-              <h3>確認できた氏名・役割を掲載</h3>
+              <h3>確認済みの氏名・役割を掲載</h3>
               <p>地域責任者や開催コーディネーターなど、正式な役割が確認できた時点で掲載します。</p>
             </article>
             <article className="homecourt-plan-card">
