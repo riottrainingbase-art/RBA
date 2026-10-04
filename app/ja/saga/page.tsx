@@ -265,7 +265,7 @@ export default function SagaPage() {
 
   return (
     <SiteFrame locale="ja" languagePage="camp">
-      <main className="journal-hub journal-cms">
+      <main className="journal-hub journal-cms saga-hub">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
@@ -277,10 +277,14 @@ export default function SagaPage() {
             単発で終わらない育成機会を。
           </h1>
           <p>
-            Riot Basketball Academyは、確認できる申込記録では2025年9月から佐賀で育成年代のクリニック・キャンプを継続しています。
+            Riot Basketball Academyでは、現存する申込記録で確認できる範囲では、2025年9月から佐賀で育成年代のクリニック・キャンプを継続しています。
             目指しているのは、強い選手だけを集めることでも、所属チームを変えてもらうことでもありません。
             今いる環境を大切にしながら、地域の外でも学び、試し、その経験を普段のバスケットボールへ持ち帰れる場所を佐賀につくります。
           </p>
+          <div className="saga-status-row" aria-label="ページ更新情報">
+            <span>UPDATED 2026.10.04</span>
+            <strong>12/28・29は開催予定／会場・対象・参加費・申込方法は未確定</strong>
+          </div>
           <div className="homecourt-launch-actions">
             <Link className="button button-dark" href="#next">
               12/28・29の予定を見る <ArrowRight size={17} />
@@ -298,6 +302,15 @@ export default function SagaPage() {
             </a>
           </div>
         </section>
+
+        <nav className="saga-section-nav" aria-label="RBA佐賀 ページ内メニュー">
+          <a href="#concept">RBA佐賀とは</a>
+          <a href="#history">これまで</a>
+          <a href="#development">育成内容</a>
+          <a href="#next">12/28・29</a>
+          <a href="#roadmap">今後</a>
+          <a href="#faq">FAQ</a>
+        </nav>
 
         <section className="homecourt-product-preview section-pad">
           <div className="section-head">
@@ -338,7 +351,7 @@ export default function SagaPage() {
           </div>
         </section>
 
-        <section className="journal-evidence-standard section-pad">
+        <section className="journal-evidence-standard section-pad" id="concept">
           <div className="section-head">
             <div>
               <p className="section-index">WHAT RBA SAGA IS</p>
@@ -372,7 +385,7 @@ export default function SagaPage() {
               開催ごとに同じメニューを繰り返すのではなく、参加年代、地域日程、選手の課題に合わせて形式を更新してきました。
             </p>
           </div>
-          <div className="journal-cms-grid">
+          <div className="journal-cms-grid saga-grid-four">
             {history.map((item) => (
               <article key={item.index}>
                 <span>{item.index}</span>
@@ -393,13 +406,13 @@ export default function SagaPage() {
             </div>
           </div>
           <div className="homecourt-launch-actions">
-            <Link className="button button-light" href="/ja/camp/saga-fukuoka-2026">
-              2026年10月のプログラムを見る <ArrowRight size={16} />
+            <Link className="button button-light" href="/ja/approach">
+              RBAの育成方針を見る <ArrowRight size={16} />
             </Link>
           </div>
         </section>
 
-        <section className="journal-evidence-standard section-pad">
+        <section className="journal-evidence-standard section-pad" id="development">
           <div className="section-head">
             <div>
               <p className="section-index">DEVELOPMENT DESIGN</p>
@@ -520,10 +533,10 @@ export default function SagaPage() {
           </div>
         </section>
 
-        <section className="journal-cms-index section-pad">
+        <section className="journal-cms-index section-pad" id="roadmap">
           <div className="section-head">
             <div>
-              <p className="section-index">ROADMAP / NOT A PROMISE</p>
+              <p className="section-index">ROADMAP / DIRECTION, NOT A PROMISE</p>
               <h2>佐賀で、これから育てたいもの。</h2>
             </div>
             <p>
@@ -531,7 +544,7 @@ export default function SagaPage() {
               「大きく見せる」より、実際に継続できることを優先します。
             </p>
           </div>
-          <div className="journal-cms-grid">
+          <div className="journal-cms-grid saga-grid-four">
             {roadmap.map(([phase, title, body], index) => (
               <article key={phase}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
@@ -582,7 +595,7 @@ export default function SagaPage() {
           </div>
         </section>
 
-        <section className="journal-cms-index section-pad">
+        <section className="journal-cms-index section-pad" id="faq">
           <div className="section-head">
             <div>
               <p className="section-index">FAQ</p>
@@ -590,7 +603,7 @@ export default function SagaPage() {
             </div>
             <p>正式募集ごとに条件が変わるものは断定せず、その都度最新情報を案内します。</p>
           </div>
-          <div className="journal-cms-grid">
+          <div className="journal-cms-grid saga-faq-grid">
             {faq.map(([q, a], index) => (
               <article key={q}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
