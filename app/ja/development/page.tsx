@@ -163,7 +163,7 @@ export default function DevelopmentPage() {
         <section className="homecourt-product-preview section-pad">
           <div className="section-head">
             <div><p className="section-index">REGIONAL EXAMPLE / SAGA</p><h2>考え方を、地域の現場へ。</h2></div>
-            <p>RBA佐賀では、今の所属を続けながら参加できるクリニック・キャンプを継続し、基礎から小局面、判断を伴うゲームへと学びをつなげています。</p>
+            <p>RBA佐賀では、今の所属を続けながら参加できるクリニック・キャンプを継続し、基礎から小局面へ、さらに判断を伴うゲームへと学びをつなげています。</p>
           </div>
           <div className="homecourt-preview-grid">
             <article><span>01</span><h3>継続開催</h3><p>2025年から季節をまたいで佐賀で開催を重ね、一度きりで終わらない育成機会をつくっています。</p></article>
