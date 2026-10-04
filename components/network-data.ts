@@ -3,6 +3,59 @@ export type Text4=readonly[string,string,string,string];
 export const tr=(v:Text4,l:Locale)=>v[({en:0,ja:1,"zh-tw":2,ko:3})[l]];
 export type ActivityType="clinic"|"camp"|"3x3"|"school";
 export type MapPoint={id:string;lon:number;lat:number;name:Text4;status:"activity"|"planned"|"partner"|"discussion";statusLabel?:Text4;detail:Text4;activities?:ActivityType[]};
+export type JapanRegion="hokkaido"|"tohoku"|"kanto"|"koshinetsu-hokuriku"|"tokai"|"kansai"|"chugoku"|"shikoku"|"kyushu"|"okinawa";
+export type RegionalLead={name:string;role?:Text4};
+export type JapanLocationProfile={
+  region:JapanRegion;
+  prefecture:Text4;
+  municipality?:Text4;
+  coordinateLevel:"city"|"area"|"prefecture";
+  lead?:RegionalLead;
+  page?:Partial<Record<Locale,string>>;
+};
+
+export const japanRegionLabels:Record<JapanRegion,Text4>={
+  hokkaido:["Hokkaido","北海道","北海道","홋카이도"],
+  tohoku:["Tohoku","東北","東北","도호쿠"],
+  kanto:["Kanto","関東","關東","간토"],
+  "koshinetsu-hokuriku":["Koshinetsu / Hokuriku","甲信越・北陸","甲信越・北陸","고신에쓰・호쿠리쿠"],
+  tokai:["Tokai","東海","東海","도카이"],
+  kansai:["Kansai","関西","關西","간사이"],
+  chugoku:["Chugoku","中国","中國","주고쿠"],
+  shikoku:["Shikoku","四国","四國","시코쿠"],
+  kyushu:["Kyushu","九州","九州","규슈"],
+  okinawa:["Okinawa","沖縄","沖繩","오키나와"],
+};
+
+export const japanLocationProfiles:Record<string,JapanLocationProfile>={
+  hokkaido:{region:"hokkaido",prefecture:["Hokkaido","北海道","北海道","홋카이도"],coordinateLevel:"prefecture"},
+  akita:{region:"tohoku",prefecture:["Akita","秋田県","秋田縣","아키타현"],coordinateLevel:"prefecture"},
+  yuzawa:{region:"tohoku",prefecture:["Akita","秋田県","秋田縣","아키타현"],municipality:["Yuzawa","湯沢市","湯澤市","유자와시"],coordinateLevel:"city"},
+  sendai:{region:"tohoku",prefecture:["Miyagi","宮城県","宮城縣","미야기현"],municipality:["Sendai","仙台市","仙台市","센다이시"],coordinateLevel:"city"},
+  shizugawa:{region:"tohoku",prefecture:["Miyagi","宮城県","宮城縣","미야기현"],municipality:["Shizugawa / Minamisanriku","南三陸町・志津川","南三陸町・志津川","미나미산리쿠・시즈가와"],coordinateLevel:"area"},
+  "yamagata-planned":{region:"tohoku",prefecture:["Yamagata","山形県","山形縣","야마가타현"],municipality:["Yamagata","山形市周辺","山形市周邊","야마가타시 일대"],coordinateLevel:"area"},
+  niigata:{region:"koshinetsu-hokuriku",prefecture:["Niigata","新潟県","新潟縣","니가타현"],coordinateLevel:"prefecture"},
+  ibaraki:{region:"kanto",prefecture:["Ibaraki","茨城県","茨城縣","이바라키현"],coordinateLevel:"prefecture"},
+  tochigi:{region:"kanto",prefecture:["Tochigi","栃木県","栃木縣","도치기현"],coordinateLevel:"prefecture"},
+  saitama:{region:"kanto",prefecture:["Saitama","埼玉県","埼玉縣","사이타마현"],coordinateLevel:"prefecture"},
+  kazo:{region:"kanto",prefecture:["Saitama","埼玉県","埼玉縣","사이타마현"],municipality:["Kazo","加須市","加須市","가조시"],coordinateLevel:"city"},
+  harayama:{region:"kanto",prefecture:["Saitama","埼玉県","埼玉縣","사이타마현"],municipality:["Harayama / Saitama","さいたま市・原山","埼玉市・原山","사이타마시・하라야마"],coordinateLevel:"area"},
+  kozaki:{region:"kanto",prefecture:["Chiba","千葉県","千葉縣","지바현"],municipality:["Kozaki","神崎町","神崎町","고자키마치"],coordinateLevel:"area"},
+  kawasaki:{region:"kanto",prefecture:["Kanagawa","神奈川県","神奈川縣","가나가와현"],municipality:["Kawasaki","川崎市","川崎市","가와사키시"],coordinateLevel:"city"},
+  takahama:{region:"tokai",prefecture:["Aichi","愛知県","愛知縣","아이치현"],municipality:["Takahama","高浜市","高濱市","다카하마시"],coordinateLevel:"city"},
+  toyota:{region:"tokai",prefecture:["Aichi","愛知県","愛知縣","아이치현"],municipality:["Toyota","豊田市","豐田市","도요타시"],coordinateLevel:"city"},
+  ise:{region:"tokai",prefecture:["Mie","三重県","三重縣","미에현"],municipality:["Ise","伊勢市","伊勢市","이세시"],coordinateLevel:"city"},
+  osaka:{region:"kansai",prefecture:["Osaka","大阪府","大阪府","오사카부"],municipality:["Osaka","大阪市周辺","大阪市周邊","오사카시 일대"],coordinateLevel:"area"},
+  kobe:{region:"kansai",prefecture:["Hyogo","兵庫県","兵庫縣","효고현"],municipality:["Kobe","神戸市","神戶市","고베시"],coordinateLevel:"city"},
+  "tatsuno-planned":{region:"kansai",prefecture:["Hyogo","兵庫県","兵庫縣","효고현"],municipality:["Tatsuno","たつの市","龍野市","다쓰노시"],coordinateLevel:"city"},
+  saga:{region:"kyushu",prefecture:["Saga","佐賀県","佐賀縣","사가현"],municipality:["Saga","佐賀市周辺","佐賀市周邊","사가시 일대"],coordinateLevel:"area",page:{ja:"/ja/saga"}},
+  okawa:{region:"kyushu",prefecture:["Fukuoka","福岡県","福岡縣","후쿠오카현"],municipality:["Okawa","大川市","大川市","오카와시"],coordinateLevel:"city"},
+  okinawa:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Okinawa City","沖縄市","沖繩市","오키나와시"],coordinateLevel:"city"},
+  tomigusuku:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Tomigusuku","豊見城市","豐見城市","도미구스쿠시"],coordinateLevel:"city"},
+  itoman:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Itoman","糸満市","糸滿市","이토만시"],coordinateLevel:"city"},
+  nanjo:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Nanjo","南城市","南城市","난조시"],coordinateLevel:"city"},
+  ishigaki:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Ishigaki","石垣市","石垣市","이시가키시"],coordinateLevel:"city"},
+};
 const typeNames={en:{clinic:"Clinic",camp:"Camp","3x3":"3x3",school:"School"},ja:{clinic:"クリニック",camp:"キャンプ","3x3":"3x3",school:"スクール"},"zh-tw":{clinic:"訓練營",camp:"培育營","3x3":"3x3",school:"課程"},ko:{clinic:"클리닉",camp:"캠프","3x3":"3x3",school:"스쿨"}} as const;
 const record=(id:string,lon:number,lat:number,name:Text4,activities:ActivityType[],example:Text4):MapPoint=>({id,lon,lat,name,status:"activity",activities,detail:(["en","ja","zh-tw","ko"] as Locale[]).map((l,i)=>`${activities.map(x=>typeNames[l][x]).join(l==="ja"||l==="zh-tw"?"／":" / ")}. ${example[i]}`) as unknown as Text4});
 
