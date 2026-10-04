@@ -8,7 +8,7 @@ import { japanPoints, plannedJapanPoints } from "@/components/network-data";
 export const metadata: Metadata = {
   title: { absolute: "RBA 全国活動マップ｜バスケットボール育成クリニック・キャンプ・地域拠点" },
   description:
-    "Riot Basketball Academy（RBA）の全国活動マップ。国土地理院の地理院タイルを背景に、これまでの活動地域、開催予定、地域詳細ページ、今後掲載する地域責任者情報を一つの地図から確認できます。",
+    "Riot Basketball Academy（RBA）の全国活動マップ。国土地理院の地理院タイルを背景に、これまでの活動地域、今後の開催予定、地域ごとの詳細ページ、確認済みの地域責任者情報を一つの地図から確認できます。",
   keywords: [
     "RBA 全国",
     "バスケットボール クリニック 全国",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   openGraph: {
     title: "RBA 全国活動マップ｜地域から育成機会を探す",
-    description: "活動実績、開催予定、地域詳細、地域責任者を全国地図から確認できるRBAの地域ネットワーク。",
+    description: "活動実績、開催予定、地域ごとの詳細情報を全国地図から確認できるRBAの地域ネットワーク。",
     url: "https://riotbasketballacademy.com/ja/regions",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -38,10 +38,10 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  ["01", "地図から探す", "番号または地域一覧を押すと、その場所の活動内容、都道府県・市地域、代表座標、地域責任者欄が表示されます。"],
-  ["02", "地域ページへ進む", "継続開催地域は、順次専用ページを整備。過去の活動、次回予定、地域の育成方針を一つにまとめます。"],
-  ["03", "責任者を明確にする", "地域責任者が正式に決まった拠点から、氏名・役割を掲載できるデータ構造にしています。未確定の段階では推測で名前を載せません。"],
-  ["04", "全国から次の機会へ", "地域のクリニックだけで終わらず、Development Camp、RBA UNITED、指導者学習、Japan × Asiaへつなげます。"],
+  ["01", "地図から探す", "番号または地域名を選ぶと、その場所の活動内容、都道府県・市区町村などの地域情報、地図上の代表地点を確認できます。"],
+  ["02", "地域ページへ進む", "継続して開催している地域から、順次専用ページを整備します。これまでの活動、次回予定、地域で大切にする育成方針を一つにまとめます。"],
+  ["03", "責任者を明確にする", "地域責任者が正式に決まった拠点から、氏名と役割を掲載します。役割が確認できていない段階では、推測で名前を載せません。"],
+  ["04", "地域から次の機会へ", "地域のクリニックだけで終わらず、Development Camp、RBA UNITED、指導者向けの学び、Japan × Asiaへと選択肢を広げます。"],
 ] as const;
 
 export default function RegionsPage() {
@@ -87,9 +87,9 @@ export default function RegionsPage() {
             一枚の地図から。
           </h1>
           <p>
-            「どこで活動しているのか」「次はどこで参加できるのか」「その地域では誰が窓口なのか」を、
-            地域ごとに探せる全国ネットワークへ。地図の背景には国土地理院の地理院タイルを使用し、
-            各拠点は代表地点の緯度・経度から配置しています。
+            「どこで活動しているのか」「次はどこで参加できるのか」「その地域の詳しい情報はどこで見られるのか」を、
+            一つの地図から探せるようにしました。背景地図には国土地理院の地理院タイルを使用し、
+            地図上の位置は各地域の代表地点をもとに表示しています。
           </p>
           <div className="homecourt-launch-actions">
             <Link className="button button-dark" href="#network">
@@ -105,18 +105,18 @@ export default function RegionsPage() {
           <div className="section-head">
             <div>
               <p className="section-index">CURRENT NETWORK</p>
-              <h2>実績と予定を、分けて表示。</h2>
+              <h2>開催済みと開催予定を、分けて表示。</h2>
             </div>
             <p>
-              開催した地域と、これから開催する予定の地域を同じ扱いにはしません。
-              地図上のステータスを分け、実績を予定のように見せたり、予定を実績のように見せたりしない設計です。
+              これまでに開催した地域と、これから開催を予定している地域は明確に分けて表示します。
+              どこまでが実績で、どこからが予定なのかが一目で分かるようにしています。
             </p>
           </div>
           <div className="homecourt-preview-grid">
-            <article><MapPinned /><span>ACTIVITY RECORD</span><h3>{stats.activity}</h3><p>現在のデータ上で活動実績として登録している地域・地点。</p></article>
-            <article><Compass /><span>PLANNED</span><h3>{stats.planned}</h3><p>開催予定として分離して表示している地域・地点。</p></article>
-            <article><UsersRound /><span>REGIONAL PAGE</span><h3>EXPANDING</h3><p>佐賀から専用地域ページを開始。継続開催地域へ順次広げます。</p></article>
-            <article><UserRoundCog /><span>REGIONAL LEAD</span><h3>READY</h3><p>責任者名と役割を後から安全に追加できる構造を実装しています。</p></article>
+            <article><MapPinned /><span>ACTIVITY RECORD</span><h3>{stats.activity}</h3><p>現在、活動実績として掲載している地域・地点です。</p></article>
+            <article><Compass /><span>PLANNED</span><h3>{stats.planned}</h3><p>今後の開催予定として、活動実績とは分けて掲載している地域・地点です。</p></article>
+            <article><UsersRound /><span>REGIONAL PAGE</span><h3>EXPANDING</h3><p>佐賀を最初の専用地域ページとして公開。継続して開催している地域へ順次広げます。</p></article>
+            <article><UserRoundCog /><span>REGIONAL LEAD</span><h3>READY</h3><p>地域責任者が正式に決まった地域から、確認できた氏名と役割を掲載できるようにしています。</p></article>
           </div>
         </section>
 
@@ -127,12 +127,12 @@ export default function RegionsPage() {
             <div>
               <p className="section-index">HOW THE NETWORK GROWS</p>
               <h2>
-                全国展開しても、<br />
-                情報を雑に増やさない。
+                全国に広がっても、<br />
+                情報の基準は揃える。
               </h2>
             </div>
             <p>
-              拠点数だけを増やすのではなく、場所、活動実績、次回予定、地域責任者、詳細ページを同じルールで管理します。
+              拠点数だけを増やすのではなく、場所、活動実績、次回予定、地域責任者、詳細ページを同じ基準で整理して公開します。
             </p>
           </div>
           <div className="journal-evidence-grid">
@@ -150,25 +150,25 @@ export default function RegionsPage() {
           <div className="homecourt-plan-intro">
             <p className="section-index">REGIONAL LEAD / FUTURE READY</p>
             <h2>
-              地域責任者を、<br />
-              後から正式に掲載できる。
+              地域責任者は、<br />
+              確認できた情報だけを掲載する。
             </h2>
             <p>
-              現在の地図データには、各拠点ごとに「地域責任者」の情報欄を用意しています。
-              氏名・役割が正式に決まるまでは「後日掲載」と表示し、候補者や未確認の名前は公開しません。
+              各拠点には「地域責任者」の情報欄を用意しています。
+              氏名と役割が正式に確認できるまでは「後日掲載」とし、候補者や未確認の名前は公開しません。
             </p>
           </div>
           <div className="homecourt-plan-grid">
             <article className="homecourt-plan-card">
               <UserRoundCog />
               <span>WHEN CONFIRMED</span>
-              <h3>氏名・役割を追加</h3>
-              <p>地域責任者、開催コーディネーターなど、正式な役割が確定した時点で掲載できます。</p>
+              <h3>確認できた氏名・役割を掲載</h3>
+              <p>地域責任者や開催コーディネーターなど、正式な役割が確認できた時点で掲載します。</p>
             </article>
             <article className="homecourt-plan-card">
               <ShieldCheck />
               <span>BEFORE CONFIRMATION</span>
-              <h3>推測で載せない</h3>
+              <h3>未確認の名前は載せない</h3>
               <p>本人同意や役割確認が取れていない段階では、名前を公開せず「後日掲載」とします。</p>
             </article>
           </div>
@@ -180,11 +180,11 @@ export default function RegionsPage() {
             <p className="section-index">BUILD A REGIONAL HUB</p>
             <h2>
               あなたの地域にも、<br />
-              継続する育成機会を。
+              継続できる育成機会を。
             </h2>
             <p>
-              体育館、地域チーム、指導者、企業・団体などと連携し、一度きりではない開催モデルをつくります。
-              開催候補地は「実績」と分けて管理し、決まった情報から順に公開します。
+              体育館、地域のチーム、指導者、企業・団体などと連携し、一度きりで終わらない開催の形をつくります。
+              開催候補地は活動実績と分けて管理し、確定した情報から順に公開します。
             </p>
           </div>
           <div>
