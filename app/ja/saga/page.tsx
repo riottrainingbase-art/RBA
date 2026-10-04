@@ -367,7 +367,7 @@ export default function SagaPage() {
         <section className="journal-cms-index section-pad" id="future">
           <div className="section-head">
             <div>
-              <p className="section-index">WHAT'S NEXT</p>
+              <p className="section-index">WHAT’S NEXT</p>
               <h2>{sagaContent.roadmap.title}</h2>
             </div>
             <p>{sagaContent.roadmap.intro}</p>
