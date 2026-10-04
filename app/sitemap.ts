@@ -10,7 +10,7 @@ const core=["","/players","/families","/coaches","/home-court","/my-homecourt","
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
 const productPages=["/ja/homecourt-plus","/ja/development"];
-const regionalPages=["/ja/regions","/ja/saga"];
+const regionalPages=["/ja/regions","/ja/saga","/ja/okinawa-coach"];
 const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support","/radio","/links","/sponsors"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
@@ -47,7 +47,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
   return entries.filter(entry=>{if(seen.has(entry.path))return false;seen.add(entry.path);return true;}).map(entry=>({
     url:base+(entry.path||"/"),
     lastModified:entry.lastModified?new Date(entry.lastModified):new Date("2026-09-27T00:00:00Z"),
-    changeFrequency:entry.path.includes("/journal/")||entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("torsten")||entry.path.includes("/saga")?"weekly":"monthly",
-    priority:entry.path===""?1:entry.path.includes("my-homecourt")||entry.path.includes("torsten")?0.95:entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("journal")||entry.path.includes("asia")||entry.path.includes("/saga")?0.9:0.8,
+    changeFrequency:entry.path.includes("/journal/")||entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("torsten")||(entry.path.includes("/saga")||entry.path.includes("/okinawa-coach"))?"weekly":"monthly",
+    priority:entry.path===""?1:entry.path.includes("my-homecourt")||entry.path.includes("torsten")?0.95:entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("journal")||entry.path.includes("asia")||(entry.path.includes("/saga")||entry.path.includes("/okinawa-coach"))?0.9:0.8,
   }));
 }

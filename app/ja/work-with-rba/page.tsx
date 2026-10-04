@@ -59,6 +59,14 @@ const routes = [
     cta: "地域開催について見る",
   },
   {
+    icon: Users,
+    tag: "RBA OKINAWA / COACH",
+    title: "沖縄で育成コーチとして関わる",
+    body: "沖縄の日常のトレーニングを担う現地コーチを募集しています。本部が募集・決済・会員管理を持ち、現地コーチが育成年代の指導に集中できる運営体制をつくります。",
+    href: "/ja/okinawa-coach",
+    cta: "沖縄コーチ募集を見る",
+  },
+  {
     icon: Globe2,
     tag: "JAPAN × ASIA",
     title: "国内外の交流機会をつくる",
