@@ -74,6 +74,27 @@ const roleCards = [
   },
 ];
 
+const involvementCards = [
+  {
+    tag: "REGULAR COACH",
+    title: "定期セッションを担当する",
+    body:
+      "月2〜4回程度の育成セッションを中心に、継続して選手を見る関わり方です。毎回すべてを一人で担う前提ではなく、活動規模に合わせて体制をつくります。",
+  },
+  {
+    tag: "ASSIST / CLINIC",
+    title: "アシスタント・単発から関わる",
+    body:
+      "まずは特別クリニックやイベントのサポートから関わることも可能です。現在の仕事やチーム活動がある方も、無理のない頻度から相談できます。",
+  },
+  {
+    tag: "S&C / SUPPORT",
+    title: "身体づくりの専門性を生かす",
+    body:
+      "S&C、トレーナー、理学療法などの経験がある方は、身体づくりやコンディショニングの面から関わる形も相談できます。",
+  },
+];
+
 const supportCards = [
   {
     icon: HeartHandshake,
@@ -278,6 +299,40 @@ export default function OkinawaCoachPage() {
                 <p>{body}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="homecourt-product-preview section-pad">
+          <div className="section-head">
+            <div>
+              <p className="section-index">WAYS TO JOIN</p>
+              <h2>関わり方は、一つに決めなくて大丈夫です。</h2>
+            </div>
+            <p>
+              定期的に担当する形だけでなく、アシスタントや単発クリニック、身体づくりのサポートなど、
+              経験や現在の生活に合う関わり方から始められます。
+            </p>
+          </div>
+          <div className="homecourt-preview-grid">
+            {involvementCards.map(({ tag, title, body }) => (
+              <article key={tag}>
+                <span>{tag}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="access-promise section-pad">
+          <p className="section-index">NOT A NEW CLUB TEAM</p>
+          <div>
+            <h2>所属チームを変えてもらうための活動ではありません。</h2>
+            <p>
+              RBA沖縄は、新しいクラブチームをつくって選手を囲い込むことを目的にしていません。
+              子どもたちが今いるチームや学校での活動を大切にしながら、
+              もう一つ学べる場所を地域につくることを目指します。
+            </p>
           </div>
         </section>
 
