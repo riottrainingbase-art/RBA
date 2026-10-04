@@ -680,6 +680,9 @@ export default function SagaPage() {
             <Link className="button button-member" href="/ja/contact">
               RBA佐賀について相談する <ArrowRight size={16} />
             </Link>
+            <Link className="text-link light-link" href="/ja/regions">
+              全国の活動拠点を見る <ArrowRight size={16} />
+            </Link>
             <Link className="text-link light-link" href="/ja/regional-host">
               佐賀で開催を支える <ArrowRight size={16} />
             </Link>
