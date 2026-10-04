@@ -10,7 +10,7 @@ const core=["","/players","/families","/coaches","/home-court","/my-homecourt","
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
 const productPages=["/ja/homecourt-plus","/ja/development"];
-const regionalPages=["/ja/saga"];
+const regionalPages=["/ja/regions","/ja/saga"];
 const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support","/radio","/links","/sponsors"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
