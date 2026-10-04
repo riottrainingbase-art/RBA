@@ -3420,6 +3420,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
 .saga-hub .homecourt-plan-card>span{margin-top:22px;font-size:11px;font-weight:900;letter-spacing:.12em}
 .saga-hub .network-release>div:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
 .saga-hub .network-release .text-link{font-weight:900}
+.saga-data-note{margin:24px 0 0;color:#6b7478;font-size:12px;line-height:1.7}
+.saga-session-time{display:block;font-size:18px;font-weight:800;letter-spacing:.01em;margin-top:6px}
+.saga-hub .homecourt-plan-card p{margin-top:18px}
+
 @media(max-width:1100px){
   .saga-hub .saga-grid-four,.saga-hub .journal-evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
