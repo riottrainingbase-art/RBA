@@ -8,7 +8,7 @@ import { japanPoints, plannedJapanPoints } from "@/components/network-data";
 export const metadata: Metadata = {
   title: { absolute: "RBA全国活動マップ｜バスケットボール育成クリニック・キャンプ・地域拠点" },
   description:
-    "Riot Basketball Academy（RBA）の全国活動マップ。国土地理院の地理院タイルを背景に、これまでの活動地域、今後の開催予定、地域ごとの詳細ページ、確認済みの地域責任者情報を一つの地図から確認できます。",
+    "Riot Basketball Academy（RBA）の全国活動マップ。国土地理院の地理院タイルを背景に、これまでの活動地域、今後の開催予定、地域ごとの詳細ページ、確認できた地域責任者情報を一つの地図から確認できます。",
   keywords: [
     "RBA 全国",
     "バスケットボール クリニック 全国",
@@ -184,7 +184,7 @@ export default function RegionsPage() {
             </h2>
             <p>
               体育館、地域のチーム、指導者、企業・団体などと連携し、一度きりで終わらない開催の形をつくります。
-              開催候補地は活動実績と分けて管理し、確定した情報から順に公開します。
+              開催候補地は活動実績と分けて扱い、確定した情報から順に公開します。
             </p>
           </div>
           <div>
