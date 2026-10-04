@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 const steps = [
   ["01", "地図から探す", "番号または地域名を選ぶと、その場所の活動内容、都道府県・市区町村などの地域情報、地図上の代表地点を確認できます。"],
-  ["02", "地域ページへ進む", "継続して開催している地域から、順次専用ページを整備します。これまでの活動、次回予定、地域で大切にする育成方針を一つにまとめます。"],
+  ["02", "地域ごとのページで詳しく見る", "継続して開催している地域から、順次専用ページを整備します。これまでの活動、次回の予定、その地域で大切にする育成方針を一つにまとめます。"],
   ["03", "責任者を明確にする", "地域責任者が正式に決まった拠点から、氏名と役割を掲載します。役割が確認できていない段階では、推測で名前を載せません。"],
   ["04", "地域から次の機会へ", "地域のクリニックだけで終わらず、Development Camp、RBA UNITED、指導者向けの学び、Japan × Asiaへと選択肢を広げます。"],
 ] as const;
@@ -115,7 +115,7 @@ export default function RegionsPage() {
           <div className="homecourt-preview-grid">
             <article><MapPinned /><span>ACTIVITY RECORD</span><h3>{stats.activity}</h3><p>現在、活動実績として掲載している地域・地点です。</p></article>
             <article><Compass /><span>PLANNED</span><h3>{stats.planned}</h3><p>今後の開催予定として、活動実績とは分けて掲載している地域・地点です。</p></article>
-            <article><UsersRound /><span>REGIONAL PAGE</span><h3>EXPANDING</h3><p>佐賀を最初の専用地域ページとして公開し、継続して開催している地域へ順次広げます。</p></article>
+            <article><UsersRound /><span>REGIONAL PAGE</span><h3>EXPANDING</h3><p>佐賀を最初の専用地域ページとして整備し、継続して開催している地域へ順次広げます。</p></article>
             <article><UserRoundCog /><span>REGIONAL LEAD</span><h3>READY</h3><p>地域責任者が正式に決まった地域から、確認できた氏名と役割を掲載します。</p></article>
           </div>
         </section>
@@ -132,7 +132,7 @@ export default function RegionsPage() {
               </h2>
             </div>
             <p>
-              拠点数だけを増やすのではなく、場所、活動実績、次回予定、地域責任者、詳細ページを同じ基準で整理して公開します。
+              拠点数だけを増やすのではなく、場所、活動実績、次回の予定、地域責任者、詳細ページを同じ基準で整理して公開します。
             </p>
           </div>
           <div className="journal-evidence-grid">
