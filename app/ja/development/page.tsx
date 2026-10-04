@@ -169,7 +169,7 @@ export default function DevelopmentPage() {
             <article><span>01</span><h3>継続開催</h3><p>2025年から季節をまたいで佐賀で開催を重ね、一度きりで終わらない育成機会をつくっています。</p></article>
             <article><span>02</span><h3>U8 → U15</h3><p>低学年から中学生まで、身体の発達や競技経験に合わせて課題を調整します。</p></article>
             <article><span>03</span><h3>ゲームへつなぐ</h3><p>1on1、2on2、3on3、スペーシング、5on5へ。技術を判断と切り離しません。</p></article>
-            <article><span>04</span><h3>次の機会へ</h3><p>地域開催から全国キャンプ、県外交流、Japan × Asiaまで、希望する選手が次の挑戦へ進める導線をつくります。</p></article>
+            <article><span>04</span><h3>次の機会へ</h3><p>地域開催から全国キャンプ、県外交流、Japan × Asiaの交流まで、希望する選手が次の挑戦へ進める導線をつくります。</p></article>
           </div>
           <div className="homecourt-launch-actions"><Link className="button button-dark" href="/ja/saga">RBA佐賀を見る <ArrowRight size={17}/></Link></div>
         </section>
