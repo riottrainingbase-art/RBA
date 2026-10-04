@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     "RBA 佐賀",
   ],
   alternates: { canonical: "https://riotbasketballacademy.com/ja/saga" },
+  robots: { index: true, follow: true },
   openGraph: {
     title: "RBA 佐賀｜単発で終わらない育成機会を",
     description:
@@ -228,6 +229,7 @@ export default function SagaPage() {
     inLanguage: "ja",
     description:
       "Riot Basketball Academyの佐賀エリアにおける育成年代バスケットボールの継続クリニック・キャンプ情報。",
+    dateModified: "2026-10-04",
     isPartOf: {
       "@type": "WebSite",
       name: "Riot Basketball Academy",
@@ -254,6 +256,27 @@ export default function SagaPage() {
     },
   };
 
+  const serviceJson = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "RBA 佐賀｜育成年代バスケットボールクリニック・キャンプ",
+    serviceType: "Youth basketball development clinics and camps",
+    areaServed: { "@type": "AdministrativeArea", name: "佐賀県" },
+    audience: [
+      { "@type": "Audience", audienceType: "U8" },
+      { "@type": "Audience", audienceType: "U10" },
+      { "@type": "Audience", audienceType: "U12" },
+      { "@type": "Audience", audienceType: "U15" },
+      { "@type": "Audience", audienceType: "Parents and coaches" },
+    ],
+    provider: {
+      "@type": "SportsOrganization",
+      name: "Riot Basketball Academy",
+      url: "https://riotbasketballacademy.com/",
+    },
+    url: "https://riotbasketballacademy.com/ja/saga",
+  };
+
   const breadcrumbJson = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -265,8 +288,9 @@ export default function SagaPage() {
 
   return (
     <SiteFrame locale="ja" languagePage="camp">
-      <main className="journal-hub journal-cms saga-hub">
+      <div className="journal-hub journal-cms saga-hub">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJson) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
 
@@ -636,7 +660,7 @@ export default function SagaPage() {
             </Link>
           </div>
         </section>
-      </main>
+      </div>
     </SiteFrame>
   );
 }
