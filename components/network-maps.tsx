@@ -19,6 +19,7 @@ import { programmeById } from "./programme-data";
 
 const copy = {
   title: ["From Japan to the world.", "日本の現場から、世界へ。", "從日本球場，連結世界。", "일본의 현장에서 세계로."] as Text4,
+  japanTitle: ["RBA activity network across Japan.", "RBA 全国活動マップ。", "RBA 日本全國活動地圖。", "RBA 일본 전국 활동 지도."] as Text4,
   intro: [
     "Explore RBA activity locations and international relationships. The Japan map uses GSI tiles and representative geographic coordinates.",
     "RBAの活動地域と海外連携を地図から確認できます。日本地図は国土地理院の地理院タイルをリアルタイム表示し、各拠点は代表地点の緯度・経度から配置しています。",
@@ -452,42 +453,51 @@ function MapPanel({ locale, kind }: { locale: Locale; kind: "japan" | "world" })
   );
 }
 
-export function NetworkMaps({ locale }: { locale: Locale }) {
+export function NetworkMaps({
+  locale,
+  japanOnly = false,
+}: {
+  locale: Locale;
+  japanOnly?: boolean;
+}) {
   const [view, setView] = useState<"japan" | "world">("japan");
+  const activeView = japanOnly ? "japan" : view;
 
   return (
     <section className="network-section section-pad" id="network">
       <div className="section-head">
         <div>
-          <p className="section-index">RBA / JAPAN × WORLD</p>
-          <h2>{tr(copy.title, locale)}</h2>
+          <p className="section-index">{japanOnly ? "RBA / JAPAN NETWORK" : "RBA / JAPAN × WORLD"}</p>
+          <h2>{tr(japanOnly ? copy.japanTitle : copy.title, locale)}</h2>
         </div>
         <p>{tr(copy.intro, locale)}</p>
       </div>
-      <div className="network-tabs" role="tablist" aria-label="RBA network">
-        <button
-          type="button"
-          role="tab"
-          id="network-tab-japan"
-          aria-selected={view === "japan"}
-          aria-controls="network-panel-japan"
-          onClick={() => setView("japan")}
-        >
-          {tr(copy.japan, locale)}
-        </button>
-        <button
-          type="button"
-          role="tab"
-          id="network-tab-world"
-          aria-selected={view === "world"}
-          aria-controls="network-panel-world"
-          onClick={() => setView("world")}
-        >
-          {tr(copy.world, locale)}
-        </button>
-      </div>
-      <div role="tabpanel" id={`network-panel-${view}`} aria-labelledby={`network-tab-${view}`}>
-        <MapPanel locale={locale} kind={view} />
+      {!japanOnly ? (
+        <div className="network-tabs" role="tablist" aria-label="RBA network">
+          <button
+            type="button"
+            role="tab"
+            id="network-tab-japan"
+            aria-selected={view === "japan"}
+            aria-controls="network-panel-japan"
+            onClick={() => setView("japan")}
+          >
+            {tr(copy.japan, locale)}
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="network-tab-world"
+            aria-selected={view === "world"}
+            aria-controls="network-panel-world"
+            onClick={() => setView("world")}
+          >
+            {tr(copy.world, locale)}
+          </button>
+        </div>
+      ) : null}
+      <div role="tabpanel" id={`network-panel-${activeView}`} aria-labelledby={japanOnly ? undefined : `network-tab-${activeView}`}>
+        <MapPanel locale={locale} kind={activeView} />
       </div>
     </section>
   );
