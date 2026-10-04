@@ -56,7 +56,7 @@ export default function RegionsPage() {
     name: "RBA全国活動マップ",
     url: "https://riotbasketballacademy.com/ja/regions",
     inLanguage: "ja",
-    dateModified: "2026-10-04",
+    dateModified: "2026-10-05",
     isPartOf: {
       "@type": "WebSite",
       name: "Riot Basketball Academy",
@@ -171,6 +171,20 @@ export default function RegionsPage() {
               <h3>未確認の名前は載せない</h3>
               <p>本人の同意や役割の確認が取れていない段階では、名前を公開せず「確認後に掲載」とします。</p>
             </article>
+          </div>
+        </section>
+
+        <section className="access-promise section-pad">
+          <p className="section-index">RBA OKINAWA / COACH RECRUITMENT</p>
+          <div>
+            <h2>沖縄で、日常の育成環境を一緒につくるコーチを募集しています。</h2>
+            <p>
+              県外からコーチが来る日だけではなく、沖縄の子どもたちが継続して学べる環境をつくるため、
+              現地で指導に関わっていただける方を探しています。まずは月2〜4回程度から相談できます。
+            </p>
+            <Link className="text-link" href="/ja/okinawa-coach">
+              沖縄コーチ募集を見る <ArrowRight size={16} />
+            </Link>
           </div>
         </section>
 
