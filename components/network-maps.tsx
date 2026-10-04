@@ -19,7 +19,7 @@ import { programmeById } from "./programme-data";
 
 const copy = {
   title: ["From Japan to the world.", "日本の現場から、世界へ。", "從日本球場，連結世界。", "일본의 현장에서 세계로."] as Text4,
-  japanTitle: ["RBA activity network across Japan.", "RBA 全国活動マップ。", "RBA 日本全國活動地圖。", "RBA 일본 전국 활동 지도."] as Text4,
+  japanTitle: ["RBA activity network across Japan.", "RBA全国活動マップ。", "RBA 日本全國活動地圖。", "RBA 일본 전국 활동 지도."] as Text4,
   intro: [
     "Explore RBA activity locations and international relationships. The Japan map uses GSI tiles and representative geographic coordinates.",
     "RBAの活動地域と海外連携を地図から確認できます。日本地図には国土地理院の地理院タイルを使用し、各拠点は地域の代表地点をもとに表示しています。",
