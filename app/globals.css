@@ -905,7 +905,48 @@ button, a { -webkit-tap-highlight-color:transparent; }
 .network-note { font-size:14px; line-height:1.8; margin-top:24px; color:#526064; }
 .network-credit { font-size:12px; margin-top:12px; color:#526064; }
 .network-credit a { text-decoration:underline; }
-@media(max-width:800px){ .network-layout { grid-template-columns:1fr; } .network-locations { grid-template-columns:repeat(2,minmax(0,1fr)); } .network-detail { padding:22px; } .network-tabs button { font-size:14px; } .network-pin { width:26px; height:26px; font-size:10px; } }
+
+/* National network map — official GSI basemap + scalable regional directory */
+.network-gsi-map{display:block;width:100%;height:auto;background:#edf0f0}
+.network-map-source-badge{position:absolute;left:10px;bottom:10px;z-index:1;padding:5px 7px;background:rgba(255,255,255,.9);border:1px solid #aeb6b7;font-size:9px;font-weight:900;letter-spacing:.08em}
+.network-filter-block{display:grid;grid-template-columns:90px 1fr;gap:12px 18px;align-items:start;margin:0 0 14px}
+.network-filter-block>span{padding-top:12px;color:#5d686d;font-size:11px;font-weight:900;letter-spacing:.12em}
+.network-filter-block .network-filters{margin-bottom:0}
+.network-detail-meta{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:24px 0;background:#c6cece;border:1px solid #c6cece}
+.network-detail-meta>div{min-width:0;padding:14px;background:#f5f6f4}
+.network-detail-meta span,.network-detail-meta strong,.network-detail-meta small{display:block}
+.network-detail-meta span{margin-bottom:5px;color:#667276;font-size:10px;font-weight:900;letter-spacing:.1em}
+.network-detail-meta strong{font-size:15px;line-height:1.45}
+.network-detail-meta small{margin-top:5px;color:#667276;font-size:12px;line-height:1.5}
+.network-coordinate-note{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:13px 0;border-top:1px solid #d3d7d6;border-bottom:1px solid #d3d7d6}
+.network-coordinate-note strong{font-size:11px;letter-spacing:.08em}
+.network-coordinate-note span{font-variant-numeric:tabular-nums;font-size:12px}
+.network-coordinate-note small{grid-column:1/-1;color:#667276;font-size:11px}
+.network-detail>a.network-primary-link{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;background:#17252a;color:#fff;text-decoration:none;font-weight:900}
+.network-upcoming{margin-top:20px;padding:16px;border:1px solid #c6cece;background:#f5f6f4}
+.network-upcoming strong{font-size:11px;letter-spacing:.09em}
+.network-upcoming p{margin:7px 0 12px;line-height:1.6}
+.network-upcoming a{text-decoration:underline;font-weight:900}
+.network-locations button small{display:block;margin-top:4px;color:#778286;font-size:11px;line-height:1.4}
+.network-empty{padding:22px;border:1px solid #c6cece;background:#fff;color:#526064}
+.network-map-attribution{margin-top:12px;color:#526064;font-size:11px;line-height:1.65}
+.network-map-attribution summary{cursor:pointer;width:max-content;font-weight:900;text-decoration:underline}
+.network-map-attribution p{max-width:920px;margin:7px 0}
+.network-map-attribution a{text-decoration:underline}
+@media(max-width:800px){
+  .network-layout{grid-template-columns:1fr}
+  .network-locations{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .network-detail{padding:22px}
+  .network-tabs button{font-size:14px}
+  .network-pin{width:28px;height:28px;font-size:10px}
+  .network-filter-block{grid-template-columns:1fr;gap:6px}
+  .network-filter-block>span{padding-top:0}
+}
+@media(max-width:520px){
+  .network-locations{grid-template-columns:1fr}
+  .network-detail-meta{grid-template-columns:1fr}
+  .network-map-source-badge{left:6px;bottom:6px;font-size:8px}
+}
 .language-links { display:flex; flex-wrap:wrap; gap:4px; }
 .language-links a { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:8px; border:1px solid #aaa; font-size:14px; background:#fff; color:#111; text-decoration:none; }
 .language-links a[aria-current="true"] { background:#111; color:#fff; border-color:#111; }
@@ -3351,4 +3392,43 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .torsten-question-grid article{min-height:0}
   .torsten-demand-note{padding:22px}
   .torsten-demand-head h2{font-size:clamp(34px,10vw,50px)}
+}
+
+
+/* RBA Saga regional hub */
+.saga-hub section[id]{scroll-margin-top:108px}
+.saga-hub .journal-cms-hero{min-height:min(72vh,760px)}
+.saga-status-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:22px}
+.saga-status-row span{padding:8px 10px;border:1px solid #171a1d;font-size:10px;font-weight:900;letter-spacing:.13em}
+.saga-status-row strong{font-size:13px;line-height:1.55}
+.saga-section-nav{display:flex;gap:0;overflow-x:auto;padding:0 clamp(22px,7vw,110px);background:#171a1d;color:#fff;border-top:1px solid #30373a;border-bottom:1px solid #30373a;scrollbar-width:none}
+.saga-section-nav::-webkit-scrollbar{display:none}
+.saga-section-nav a{flex:none;min-height:54px;display:flex;align-items:center;padding:0 20px;border-right:1px solid #394044;color:#eef1f2;font-size:12px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.saga-section-nav a:first-child{border-left:1px solid #394044}
+.saga-section-nav a:hover{background:#c6d05a;color:#111}
+.saga-hub .journal-cms-grid>article{min-height:320px;padding:26px;display:flex;flex-direction:column;background:#fff}
+.saga-hub .journal-cms-grid>article>span{font-size:11px;font-weight:900;letter-spacing:.12em;color:#777}
+.saga-hub .journal-cms-grid>article>p:not(.note-tag){margin:0;color:#59646a;line-height:1.8}
+.saga-hub .journal-cms-grid>article .note-tag{margin-top:16px;color:#687319}
+.saga-hub .saga-grid-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.saga-hub .saga-faq-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.saga-hub .journal-evidence-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.saga-hub .journal-evidence-grid article>svg{margin-bottom:16px;color:#2d7d55}
+.saga-hub .homecourt-preview-grid article>svg{margin-bottom:24px;color:#2d7d55}
+.saga-hub .homecourt-preview-grid article .text-link{margin-top:auto;padding-top:18px;border-top:1px solid #d2d5d3;display:flex;align-items:center;justify-content:space-between;font-weight:900}
+.saga-hub .homecourt-plan-card>svg{color:#2d7d55}
+.saga-hub .homecourt-plan-card>span{margin-top:22px;font-size:11px;font-weight:900;letter-spacing:.12em}
+.saga-hub .network-release>div:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.saga-hub .network-release .text-link{font-weight:900}
+@media(max-width:1100px){
+  .saga-hub .saga-grid-four,.saga-hub .journal-evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .saga-hub section[id]{scroll-margin-top:24px}
+  .saga-hub .journal-cms-hero{min-height:520px}
+  .saga-section-nav{padding:0 16px}
+  .saga-section-nav a{min-height:50px;padding:0 15px;font-size:11px}
+  .saga-hub .saga-grid-four,.saga-hub .saga-faq-grid,.saga-hub .journal-evidence-grid{grid-template-columns:1fr}
+  .saga-hub .journal-cms-grid>article{min-height:0;padding:22px}
+  .saga-status-row{align-items:flex-start;flex-direction:column}
 }
