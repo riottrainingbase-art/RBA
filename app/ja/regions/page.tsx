@@ -6,7 +6,7 @@ import { NetworkMaps } from "@/components/network-maps";
 import { japanPoints, plannedJapanPoints } from "@/components/network-data";
 
 export const metadata: Metadata = {
-  title: { absolute: "RBA 全国活動マップ｜バスケットボール育成クリニック・キャンプ・地域拠点" },
+  title: { absolute: "RBA全国活動マップ｜バスケットボール育成クリニック・キャンプ・地域拠点" },
   description:
     "Riot Basketball Academy（RBA）の全国活動マップ。国土地理院の地理院タイルを背景に、これまでの活動地域、今後の開催予定、地域ごとの詳細ページ、確認済みの地域責任者情報を一つの地図から確認できます。",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://riotbasketballacademy.com/ja/regions" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "RBA 全国活動マップ｜地域から育成機会を探す",
+    title: "RBA全国活動マップ｜地域から育成機会を探す",
     description: "活動実績、開催予定、地域ごとの詳細情報を全国地図から確認できるRBAの地域ネットワーク。",
     url: "https://riotbasketballacademy.com/ja/regions",
     siteName: "Riot Basketball Academy",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RBA 全国活動マップ",
+    title: "RBA全国活動マップ",
     description: "地域からRBAの育成機会を探す。",
     images: ["https://riotbasketballacademy.com/rba-court-hero.png"],
   },
@@ -53,7 +53,7 @@ export default function RegionsPage() {
   const pageJson = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "RBA 全国活動マップ",
+    name: "RBA全国活動マップ",
     url: "https://riotbasketballacademy.com/ja/regions",
     inLanguage: "ja",
     dateModified: "2026-10-04",
