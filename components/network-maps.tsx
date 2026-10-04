@@ -111,14 +111,6 @@ const offsets: Record<string, [number, number]> = {
 };
 
 const relatedProgramme: Record<string, { text: Text4; href: string }> = {
-  saga: {
-    text: ["Saga × Fukuoka 2Days Development Camp", "佐賀 × 福岡 2Days Development Camp", "佐賀 × 福岡兩日培育營", "사가 × 후쿠오카 2Days Development Camp"],
-    href: "/ja/saga",
-  },
-  okawa: {
-    text: ["Saga × Fukuoka 2Days Development Camp", "佐賀 × 福岡 2Days Development Camp", "佐賀 × 福岡兩日培育營", "사가 × 후쿠오카 2Days Development Camp"],
-    href: "/ja/saga",
-  },
   "yamagata-planned": {
     text: ["24 Oct · Yamagata 1Day Clinic", "10月24日 · 山形1Day Clinic", "10月24日 · 山形一日訓練營", "10월 24일 · 야마가타 1Day Clinic"],
     href: programmeById.yamagata.applicationUrl,
@@ -132,7 +124,6 @@ const relatedProgramme: Record<string, { text: Text4; href: string }> = {
     href: programmeById.kobe.applicationUrl,
   },
 };
-
 const GSI_ZOOM = 5;
 const TILE_SIZE = 256;
 const JAPAN_BOUNDS = { west: 121.5, east: 148.5, north: 46.5, south: 23.0 };
