@@ -63,7 +63,7 @@ const history = [
   {
     index: "02",
     date: "2026 / JAN",
-    title: "佐賀 2DAYS CAMP",
+    title: "佐賀・2DAYS CAMP",
     body:
       "1月24日・25日に開催。単発の技術練習ではなく、2日間を通して学びを積み上げる形式で実施しました。申込記録では28名の選手の申込みが確認できます。",
   },
@@ -115,7 +115,7 @@ const programme = [
   [
     "02",
     "1ON1 → SMALL SIDED GAME",
-    "1on1から2on2・3on3へ。相手、味方、スペースを見ながら、自分で選ぶ回数を増やします。",
+    "1on1から2on2・3on3へ。相手、味方、スペースを見ながら、自分で判断する回数を増やします。",
   ],
   [
     "03",
@@ -154,7 +154,7 @@ const audiences = [
   [
     "PARTNER",
     "企業・団体",
-    "地域の子どもたちの参加機会を広げたり、会場確保や安全な運営、県外・海外交流を支えたりしたい。",
+    "地域の子どもたちの参加機会を広げ、会場確保や安全な運営、県外・海外交流を支えたい。",
     "/ja/partners",
     "協賛・連携を見る",
   ],
@@ -179,7 +179,7 @@ const roadmap = [
   [
     "CONNECT",
     "佐賀から県外・アジアへ",
-    "希望する選手・指導者が、準備状況に応じてRBAの全国キャンプ、県外交流、Japan × Asiaの国際交流へ進めるよう、次の選択肢を用意します。",
+    "希望する選手・指導者が、準備状況に応じてRBAの全国キャンプ、県外交流、Japan × Asiaの交流へ進めるよう、次の選択肢を用意します。",
   ],
 ];
 
@@ -228,7 +228,7 @@ export default function SagaPage() {
     url: "https://riotbasketballacademy.com/ja/saga",
     inLanguage: "ja",
     description:
-      "Riot Basketball Academyの佐賀エリアにおける育成年代バスケットボールの継続クリニック・キャンプ情報。",
+      "Riot Basketball Academyが佐賀で継続して行う、育成年代向けバスケットボールクリニック・キャンプの情報。",
     dateModified: "2026-10-04",
     isPartOf: {
       "@type": "WebSite",
@@ -247,7 +247,7 @@ export default function SagaPage() {
     ],
     mainEntity: {
       "@type": "ItemList",
-      name: "RBA佐賀 開催記録",
+      name: "RBA佐賀の開催記録",
       itemListElement: history.map((item, index) => ({
         "@type": "ListItem",
         position: index + 1,
@@ -370,7 +370,7 @@ export default function SagaPage() {
               <MapPin />
               <span>AREA</span>
               <h3>SAGA / KYUSHU</h3>
-              <p>佐賀県内外から申込みがあり、市町や所属の枠を越えて九州の選手が学べる機会になっています。</p>
+              <p>佐賀県内外からの申込みがあり、市町村や所属の枠を越えて、九州の選手が学べる機会になっています。</p>
             </article>
           </div>
         </section>
@@ -594,7 +594,7 @@ export default function SagaPage() {
           <div className="section-head">
             <div>
               <p className="section-index">RBA SAGA STANDARD</p>
-              <h2>増やしたいのは、試合数ではなく学習機会。</h2>
+              <h2>増やしたいのは、試合数ではなく学びの機会。</h2>
             </div>
             <p>
               試合をたくさんこなすことや、早い段階で勝つことだけを目的にはしません。
@@ -618,7 +618,7 @@ export default function SagaPage() {
               <UsersRound />
               <span>03 / EXPERIENCE</span>
               <h3>経験を一部に集中させない</h3>
-              <p>育成年代では、プレーすること自体が学習です。練習でもゲームでも関与する時間を大切にします。</p>
+              <p>育成年代では、プレーすること自体が学びになります。練習でもゲームでも、実際に関わる時間を大切にします。</p>
             </article>
             <article>
               <ShieldCheck />
