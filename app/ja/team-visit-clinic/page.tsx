@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://riotbasketballacademy.com/ja/team-visit-clinic" },
   openGraph: {
     title: "RBA VISIT TRAINING｜普段の練習に、RBAが行きます。",
-    description: "単発の技術指導ではなく、チームの普段の環境を見ながら、必要な育成テーマを一緒に整理して実施します。",
+    description: "単発の技術指導ではなく、普段の練習を見ながら課題を確認し、そのチームに必要な内容を決めて実施します。",
     url: "https://riotbasketballacademy.com/ja/team-visit-clinic",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 
 const themes = [
   ["SEE / DECIDE", "相手・味方・スペースを見て、プレー前から判断する習慣を育てます。"],
-  ["1on1 / ADVANTAGE", "抜くことだけでなく、優位性をつくり、使い、次のプレーへつなげます。"],
-  ["SPACING / OFF-BALL", "ボールを持っていない時間の立ち位置、角度、カット、リロケートを整理します。"],
+  ["1on1 / ADVANTAGE", "抜くことだけでなく、優位性をつくり、その後のパスやシュートまで判断します。"],
+  ["SPACING / OFF-BALL", "ボールを持っていない時間の立ち位置、角度、カット、リロケートを扱います。"],
   ["FINISHING / SHOOTING", "ゲーム状況から、どのフィニッシュやシュートを選ぶかまで扱います。"],
   ["DEFENCE / TRANSITION", "1on1、クローズアウト、ヘルプ、切り替えを判断とセットで学びます。"],
   ["SMALL-SIDED GAMES", "2on2・3on3・4on4を使い、技術と判断をゲームの中で結びます。"],
@@ -37,8 +37,8 @@ const formats = [
   {
     tag:"TEAM DEVELOPMENT",
     title:"チーム育成サポート",
-    body:"選手への指導に加えて、練習の見え方や課題を指導者と共有します。『何を教えるか』だけでなく、『どう練習を設計するか』まで整理します。",
-    items:["選手向けクリニック","指導者フィードバック","練習設計・次の課題整理"],
+    body:"選手への指導に加えて、練習の見え方や課題を指導者と共有します。『何を教えるか』だけでなく、『どう練習を組み立てるか』まで一緒に考えます。",
+    items:["選手向けクリニック","指導者フィードバック","練習設計・次の課題を決める"],
   },
   {
     tag:"CONTINUOUS SUPPORT",
@@ -54,7 +54,7 @@ export default function Page(){
       <a className="back-link" href="/ja">← RBA</a>
       <p className="section-index">RBA TEAM TAKEOVER / VISIT TRAINING</p>
       <h1>いつもの練習を、<br/>一度RBAに任せてください。</h1>
-      <p>TEAM TAKEOVERは、単発の「技術クリニック」ではありません。RBAが普段の体育館へ伺い、90〜120分の通常練習を一度丸ごと担当します。事前にチームの課題を確認し、当日の選手の反応を見ながら内容を調整。終了後は、希望に応じて指導者へ次の練習につながるフィードバックまで行います。</p>
+      <p>TEAM TAKEOVERは、単発の「技術クリニック」ではありません。RBAが普段の体育館へ伺い、90〜120分の通常練習を一度丸ごと担当します。事前にチームの課題を確認し、当日の選手の反応を見ながら内容を調整。終了後は、希望に応じて指導者へ、次回の練習で使えるフィードバックも行います。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="https://book.stripe.com/fZu14p2XZ7ru2QtdwH7EQ0x">TEAM TAKEOVERを予約する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="#programme">内容を見る<ArrowRight size={17}/></a>
@@ -65,7 +65,7 @@ export default function Page(){
       <p className="section-index">WHY VISIT TRAINING</p>
       <div>
         <h2>単発の技術指導ではなく、<br/>普段の環境から考える。</h2>
-        <p>同じ年代でも、必要な課題はチームごとに違います。ボールを持つ技術より先にスペーシングが必要なチームもあれば、1on1の判断やオフボールの動きを整理した方がよいチームもあります。事前に状況を聞き、必要に応じて普段の練習も見ながら内容を決めます。</p>
+        <p>同じ年代でも、必要な課題はチームごとに違います。ボールを持つ技術より先にスペーシングが必要なチームもあれば、1on1の判断やオフボールの動きを見直した方がよいチームもあります。事前に状況を聞き、必要に応じて普段の練習も見ながら内容を決めます。</p>
       </div>
     </section>
 
@@ -91,7 +91,7 @@ export default function Page(){
 
     <section className="access-grid section-pad">
       <article><Search/><span>01</span><h2>事前ヒアリング</h2><p>年代、人数、活動状況、現在の課題、希望テーマを確認します。</p></article>
-      <article><ClipboardList/><span>02</span><h2>内容を設計</h2><p>扱うテーマ、練習の流れ、ゲーム形式、振り返りまで事前に整理します。</p></article>
+      <article><ClipboardList/><span>02</span><h2>内容を決める</h2><p>扱うテーマ、練習の流れ、ゲーム形式、振り返りまで事前に決めます。</p></article>
       <article><Users/><span>03</span><h2>チームの体育館で実施</h2><p>普段の環境を生かしながら、選手が自分で見て判断する時間を増やします。</p></article>
       <article><MessageSquare/><span>04</span><h2>実施後に共有</h2><p>必要に応じて、指導者へ見えた課題や今後の練習テーマをフィードバックします。</p></article>
     </section>
@@ -112,10 +112,10 @@ export default function Page(){
     </section>
 
     <section className="hosting-roles section-pad">
-      <div className="section-head"><div><p className="section-index inverse">FOR COACHES</p><h2>選手だけでなく、チームの学びにつなげます。</h2></div></div>
+      <div className="section-head"><div><p className="section-index inverse">FOR COACHES</p><h2>選手だけでなく、指導者にも学びを残します。</h2></div></div>
       <div className="role-grid">
         <article><Users aria-hidden="true"/><h3>選手へ</h3><ul><li>技術をゲームで使う</li><li>見る・判断する習慣をつくる</li><li>役割やポジションに固定されない経験を増やす</li></ul></article>
-        <article><Repeat2 aria-hidden="true"/><h3>指導者へ</h3><ul><li>練習で何を見るかを共有する</li><li>問いかけや制約条件の使い方を整理する</li><li>次の練習へ持ち帰れるテーマを残す</li></ul></article>
+        <article><Repeat2 aria-hidden="true"/><h3>指導者へ</h3><ul><li>練習で何を見るかを共有する</li><li>問いかけや制約条件の使い方を見直す</li><li>次の練習へ持ち帰れるテーマを残す</li></ul></article>
       </div>
     </section>
 
@@ -145,7 +145,7 @@ export default function Page(){
         <div className="price-total"><ShieldCheck/><span>決済後に専用フォームへ移動</span></div>
         <div className="price-item"><span className="price-plus">1</span><Users/><div><strong>予約金を決済</strong><p>Stripeで33,000円をお支払いください。</p></div></div>
         <div className="price-item"><span className="price-plus">2</span><ClipboardList/><div><strong>チーム情報を送信</strong><p>決済後の専用フォームで、希望日・地域・年代・現在の課題を共有してください。</p></div></div>
-        <div className="price-item"><span className="price-plus">3</span><MessageSquare/><div><strong>日程・内容・残額を確定</strong><p>RBAで確認後、実施内容と費用を整理してご連絡します。</p></div></div>
+        <div className="price-item"><span className="price-plus">3</span><MessageSquare/><div><strong>日程・内容・残額を確定</strong><p>RBAで確認後、実施内容と費用をご連絡します。</p></div></div>
         <p className="price-note">交通費・宿泊費等が必要な場合は別途見積となります。日程はフォーム送信後に確定します。通常の開催相談・見積りから始めたい場合は、従来どおり相談フォームも利用できます。</p>
         <div className="closing-actions">
           <a className="button button-orange" href="https://book.stripe.com/fZu14p2XZ7ru2QtdwH7EQ0x">予約金33,000円で申し込む<ArrowRight size={17}/></a>
