@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- shared locale navigation intentionally uses plain anchors. */
 import { DocumentLanguage } from "./document-language";
 import { ui } from "./ui-copy";
 import Image from "next/image";
