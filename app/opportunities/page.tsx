@@ -18,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <OpportunityExplorer locale="en" />;
+  return <OpportunityExplorer locale="en" authReady={process.env.RBA_AUTH_EMAIL_READY==="true"} />;
 }
