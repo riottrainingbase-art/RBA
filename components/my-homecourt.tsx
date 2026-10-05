@@ -3,7 +3,6 @@ import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Check, Compass, Credi
 import { COACH_COMMUNITY_URL, HomecourtRole, PARENT_COMMUNITY_URL, homecourtRoles } from "./homecourt-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
-import { getPublicJournalPosts } from "@/lib/public-content";
 import { HomecourtConversionSection } from "./homecourt-conversion-section";
 import { IPhoneHomeScreenCard } from "./iphone-home-screen-card";
 
@@ -120,12 +119,6 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
   const nextProgrammes=programmes.filter(p=>isProgrammeActive(p)).slice(0,3);
   const selected=role?homecourtRoles[role]:null;
   const roleCommunity=role==="coaches"?COACH_COMMUNITY_URL:PARENT_COMMUNITY_URL;
-  const journalPosts=ja?await getPublicJournalPosts("ja",60):[];
-  const preferredCategories=role==="families"?["families","development"]:role==="coaches"?["coaching","development"]:["development","international"];
-  const recommendedJournal=journalPosts
-    .filter(post=>preferredCategories.includes(post.category))
-    .slice(0,3);
-  const latestJournal=journalPosts.slice(0,3);
   const clear=clarityCopy[locale];
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={17}/>{ja&&!authReady?"登録再開のお知らせを受け取る":c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div>{ja&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開までは、公式LINEで新しい活動・記事・登録再開のお知らせを受け取れます。</p>:null}</div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
