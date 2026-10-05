@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import Script from "next/script";
+import { ArrowRight, House, Search } from "lucide-react";
 import { localePath, type LanguagePage, type Locale } from "@/components/site-frame";
 
 type RbaLocale = Locale;
@@ -76,6 +77,7 @@ export function DefinitiveStaticPage({ page, locale }: Props) {
     <StaticHeader locale={locale} page={page}/>
     <main id="main-content"><div className={`definitive-static locale-${locale}`} dangerouslySetInnerHTML={{ __html: html }} /></main>
     <StaticFooter locale={locale}/>
+    {locale==="ja"?<><a className="member-dock" href="/ja/my-homecourt"><House size={20}/><span>MY HOME COURT</span><ArrowRight size={16}/></a><a className="opportunities-dock" href="/ja/opportunities"><Search size={20}/><span>活動を探す</span><ArrowRight size={16}/></a></>:null}
     <Script src="/rba-definitive/assets/site.js" strategy="afterInteractive" />
   </div>;
 }
