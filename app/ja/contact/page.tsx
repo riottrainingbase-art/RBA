@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://riotbasketballacademy.com/ja/contact" },
   openGraph: {
     title: "RBAお問い合わせ｜参加・チーム・地域開催・海外交流",
-    description: "内容に合うRBAの窓口から、迷わず次の一歩へ。",
+    description: "参加、チーム支援、地域開催、海外交流など、相談内容に合う窓口をご案内します。",
     url: "https://riotbasketballacademy.com/ja/contact",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -59,8 +59,8 @@ export default function Page() {
     <section className="inner-hero section-pad">
       <Link className="back-link" href="/ja">← RBA</Link>
       <p className="section-index">CONTACT RBA</p>
-      <h1>相談内容に合う、<br/>入口から。</h1>
-      <p>参加の申込先を探す、チームで相談する、海外交流を考える。専用ページがある内容は、まずそこから進む方が早く確認できます。どこにも当てはまらない場合は、お問い合わせフォームをご利用ください。</p>
+      <h1>相談したい内容から、<br/>お選びください。</h1>
+      <p>活動への参加、チーム支援、海外交流など、相談内容ごとに専用ページがあります。該当する項目を選んでください。どれに当てはまるか分からない場合は、お問い合わせフォームからご連絡ください。</p>
     </section>
 
     <section className="access-grid section-pad">
@@ -75,7 +75,7 @@ export default function Page() {
 
     <section className="closing-cta section-pad">
       <p className="eyebrow">NOT SURE WHERE TO START?</p>
-      <h2>まだ整理できていなくても、<br/>相談できます。</h2>
+      <h2>相談内容がまとまっていなくても、<br/>大丈夫です。</h2>
       <p>地域、対象年代、人数、希望時期、困っていることなど、分かる範囲だけで構いません。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="https://form.jotform.com/262590542634055" target="_blank" rel="noreferrer">お問い合わせフォーム<ArrowRight size={17}/></a>
