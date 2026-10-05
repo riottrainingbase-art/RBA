@@ -18,7 +18,7 @@ export function HomecourtPlusPage(){
       <section className="hc-plus-hero section-pad">
         <p className="section-index inverse">MY HOME COURT / PLUS</p>
         <h1>学んだことを、<br/>その週のバスケで使う。</h1>
-        <p>HOMECOURT PLUSは、RBA DEVELOPMENT LIBRARYの教科書・研究整理と、週次・月次の実践ツールを一つにした月額プランです。深く理解するだけで終わらず、今週やることを一つ決め、試し、振り返り、次を決めるところまでつなげます。</p>
+        <p>HOMECOURT PLUSは、RBA DEVELOPMENT LIBRARYの教科書・研究解説と、週次・月次の実践ツールをまとめた月額プランです。読むだけで終わらず、今週やることを一つ決め、試し、振り返るところまで続けられます。</p>
         <div className="hc-plus-price"><strong>¥3,300</strong><span>/ 月</span><small>税込・月額</small></div>
         <div className="hc-plus-actions">
           <Link className="button button-member" href={startHref}>{startLabel} <ArrowRight size={17}/></Link>
@@ -38,7 +38,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-library section-pad">
-        <div className="section-head"><div><p className="section-index">RBA DEVELOPMENT LIBRARY</p><h2>{counts.total}本の実践ガイド＋教科書。</h2></div><p>無料JOURNALは「考える入口」。PLUSでは、保存して何度も参照できる教科書、深掘り解説、実践ガイドとして整理します。</p></div>
+        <div className="section-head"><div><p className="section-index">RBA DEVELOPMENT LIBRARY</p><h2>{counts.total}本の実践ガイド＋教科書。</h2></div><p>無料JOURNALでは考えるきっかけを届け、PLUSでは何度も見返せる教科書、深掘り解説、実践ガイドを利用できます。</p></div>
         <div className="hc-plus-library-metrics">
           <article><strong>{counts.player}</strong><span>選手向け</span><p>試合の判断、1on1、シュート、守備、振り返り、コンディション。</p></article>
           <article><strong>{counts.parent}</strong><span>保護者向け</span><p>出場時間、移籍、進路、練習量、指導者との対話、家庭での関わり。</p></article>
@@ -47,7 +47,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-tools section-pad">
-        <div className="section-head"><div><p className="section-index">LIBRARY STRUCTURE</p><h2>記事ではなく、育成の資料庫として整理する。</h2></div><p>必要なテーマを探しやすいように、知識を棚ごとに整理します。内容は追加・更新され、古い制度情報は更新履歴を残します。</p></div>
+        <div className="section-head"><div><p className="section-index">LIBRARY STRUCTURE</p><h2>必要なときに戻れる、育成の資料庫。</h2></div><p>必要なテーマを探しやすいよう、内容を分野ごとに分けています。新しい資料を追加し、制度情報を更新した場合は更新履歴を残します。</p></div>
         <div className="hc-plus-tool-grid">
           <article><BookOpen/><span>YOUTH DEVELOPMENT</span><h3>発達・LTAD・成熟</h3><p>成長、Relative Age、Early / Late Developer、Talent Development。</p></article>
           <article><Target/><span>PRACTICE / GAME</span><h3>練習設計とゲーム理解</h3><p>CLA、SSG、Decision Making、Spacing、Advantage、Feedback。</p></article>
@@ -70,7 +70,7 @@ export function HomecourtPlusPage(){
           <article><HeartPulse/><span>CONDITION</span><h3>7日間のコンディション</h3><p>エネルギー、疲労、睡眠、痛みの記録を一週間単位で見返せます。</p></article>
           <article><CalendarDays/><span>SMART PREP｜試合・遠征の準備</span><h3>大会・遠征の準備</h3><p>予定から逆算して、持ち物、移動、回復、準備項目を整理できます。</p></article>
           <article><BookOpen/><span>LEARN</span><h3>会員向け実践ガイド</h3><p>読む → 一つ試す → 振り返る、までを記事の中で進められます。</p></article>
-          <article><History/><span>MONTHLY REVIEW</span><h3>1か月を振り返る</h3><p>今月の変化、続けたいこと、次の一歩を月ごとに残します。</p></article>
+          <article><History/><span>MONTHLY REVIEW</span><h3>1か月を振り返る</h3><p>今月の変化、続けたいこと、来月試したいことを残します。</p></article>
           <article><FileText/><span>DEVELOPMENT REPORT</span><h3>成長記録を1枚にする</h3><p>週次テーマ、月次レビュー、参加履歴をまとめ、印刷・PDF保存できます。</p></article>
         </div>
         <p className="hc-plus-health"><ShieldCheck size={17}/>コンディション記録は医療診断や能力評価ではありません。痛みや症状がある場合は、医療専門職の判断を優先してください。</p>
@@ -96,7 +96,7 @@ export function HomecourtPlusPage(){
       </section>
 
       <section className="hc-plus-compare section-pad" id="difference">
-        <div className="section-head"><div><p className="section-index">FREE / PLUS</p><h2>無料版との違い。</h2></div><p>無料版で入口を広く、PLUSでは継続して取り組むための機能を用意しています。</p></div>
+        <div className="section-head"><div><p className="section-index">FREE / PLUS</p><h2>無料版との違い。</h2></div><p>無料版では記事や活動を確認でき、PLUSでは毎週の実践と振り返りを続けるための機能を使えます。</p></div>
         <div className="hc-plus-compare-grid">
           <article>
             <span>RBA ID / ¥0</span><h3>無料で使う</h3>
