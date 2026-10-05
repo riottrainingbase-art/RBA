@@ -20,7 +20,7 @@ const localeMap:{prefix:string;locale:ContentLocale}[]=[
 ];
 
 export default async function sitemap():Promise<MetadataRoute.Sitemap>{
-  const localized=locales.flatMap(locale=>core.map(path=>locale+path)).filter(path=>path!=="/ja/team");
+  const localized=locales.flatMap(locale=>core.map(path=>locale+path)).filter(path=>!["/ja/team","/ja/schedule","/ja/home-court"].includes(path));
   const journalPosts=(await Promise.all(localeMap.map(async item=>{
     try{
       const posts=await getPublicJournalPosts(item.locale,500);
