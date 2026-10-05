@@ -1,7 +1,7 @@
 # RBA Company Operating System
 
 ## North Star
-RBA is being built as a scalable youth-development platform company, not a collection of disconnected clinics.
+RBA is a scalable youth-development platform company. It must not operate as a collection of founder-dependent clinics.
 
 Every material operating decision is evaluated against:
 1. Development value
@@ -13,93 +13,252 @@ Every material operating decision is evaluated against:
 7. Governance
 8. Auditability
 
-## Business units
-- ACADEMY
-- EVENTS
-- UNITED
-- DHUB
-- HOMECOURT
-- GLOBAL
-- PARTNERS
+## Customer-facing operating model
 
-## Expansion model
-POP-UP → RECURRING → PARTNER → HUB
+RBA has four customer-facing product lines:
 
-## Source and production control
-- GitHub is the source of truth.
-- main represents the production baseline.
-- Feature/final-candidate changes are developed in branches.
-- Preview review is mandatory before merge/production.
-- Production should not be edited directly except a documented emergency procedure.
+1. **ACADEMY** — recurring local development programmes, beginning with Sendai.
+2. **DEVELOPMENT** — clinics, camps, team development and Regional Host delivery.
+3. **MEMBERSHIP** — MY HOME COURT as the account/operating layer, with role-based player, family and coach development paths. D-HUB is the coach pathway inside this model, not a separate administrative stack.
+4. **UNITED / GLOBAL** — a limited number of flagship domestic and international programmes.
+
+JOURNAL, content, sponsors, partners, commerce, identity, notifications and analytics are shared platform capabilities. They are not separate founder-managed businesses.
+
+### Legacy accounting mapping
+Until the data model is migrated, the existing internal codes may remain:
+ACADEMY / EVENTS / UNITED / DHUB / HOMECOURT / GLOBAL / PARTNERS.
+
+The customer experience must not expose this internal fragmentation. Management reporting should provide both legacy-code and four-line rollups during transition.
+
+## Founder operating rule
+
+The founder owns only:
+- development doctrine and brand principles;
+- selected high-value coaching;
+- major strategic partnerships and international relationships;
+- final approval for material product, safety, legal, reputational or capital decisions.
+
+The founder does **not** own routine:
+- inbox triage;
+- application review for standard offers;
+- participant lists;
+- payment checking;
+- standard reminders;
+- calendar coordination;
+- standard quotations;
+- venue follow-up;
+- ordinary refunds within approved policy;
+- routine website updates;
+- social publishing;
+- invoice/receipt chasing;
+- attendance reconciliation.
+
+**Founder speed is not a valid reason to keep a repeatable task founder-owned.**
+
+## Default automation policy
+
+The normal path is automated. Humans work exceptions.
+
+A workflow may require a human decision only when one or more of the following are true:
+- safeguarding or child-safety concern;
+- medical/injury information requiring appropriate professional handling;
+- overnight or international travel exception;
+- non-standard contract, price, refund or liability term;
+- capacity, identity, consent or payment data cannot be established authoritatively;
+- complaint, dispute, reputational risk or material financial anomaly;
+- strategic partner decision above delegated authority.
+
+Everything else should progress from state to state without founder intervention.
+
+## One operating system
+
+MY HOME COURT is the operating system of record for:
+- RBA ID / identity;
+- role and guardian relationships;
+- consent;
+- applications and waitlists;
+- orders, subscriptions and payment state;
+- participation and check-in;
+- schedules and reminders;
+- player development records;
+- coach development;
+- safeguarding records;
+- notifications;
+- post-program feedback and next-step recommendations.
+
+External forms may be temporary intake adapters. They must write into the same system of record and must not become a second database.
 
 ## Commerce
-- One governed commerce architecture only.
-- No second checkout/order/payment stack.
-- No direct public Stripe links when the governed routing layer should be used.
-- Capacity-controlled products fail closed when authoritative capacity is unknown.
-- Unknown prices remain inquiry-only; prices are never guessed.
 
-## Monthly management close
-Each of the 7 business units should close monthly:
-- revenue
-- gross profit
-- operating profit
-- active/new/repeat customers
-- events held
-- participants
-- refunds
-- founder-dependent revenue
+- Stripe is the target governed payment rail.
+- One checkout gateway, one order model and one transaction ledger.
+- Payment success is webhook-driven; redirects are not proof of payment.
+- Standard eligible offers move: eligibility → capacity reservation → checkout → payment webhook → participation automatically.
+- Capacity-controlled offers fail closed when authoritative capacity is unknown.
+- Existing subscriptions must be detected before allowing duplicate checkout.
+- Unknown prices and non-standard scopes remain inquiry-only.
+- Square-based D-HUB billing is a transition dependency to retire; do not create new independent billing logic around it.
 
-Founder Dependency Ratio:
+## Communications
+
+Platform state is authoritative. Email/other channels mirror platform events.
+
+Users should receive automatic communications for:
+- account/onboarding completion;
+- application receipt;
+- eligibility/acceptance where rules are deterministic;
+- payment required;
+- payment confirmed;
+- waitlist offer/expiry;
+- event reminders;
+- schedule/venue updates;
+- pre-event checklist;
+- post-event feedback;
+- next relevant opportunity;
+- subscription payment problems and renewal/cancellation state.
+
+Founder communication should be exception-only.
+
+## Management by exception
+
+The founder should receive one concise operational digest rather than continuous operational messages.
+
+Digest categories:
+- critical safety/legal/reputational;
+- payment/reconciliation exceptions;
+- capacity/data-quality blocks;
+- event margin exceptions;
+- partner follow-up above threshold;
+- founder-dependency exceptions;
+- approvals waiting specifically for founder authority.
+
+No empty digest is required.
+
+## Founder Dependency Ratio
+
+Founder Dependency Ratio =
 founder-dependent revenue / total revenue
 
-## MY HOME COURT
-MY HOME COURT is the member and operating system of record for:
-- identity
-- roles
-- player development
-- guardian relationships and consent
-- participation
-- applications and waitlists
-- payments/orders
-- coach development
-- safety records
-- notifications
+Additional operating measures:
+- founder touches per week;
+- founder routine-admin minutes per week;
+- automatic order rate;
+- automatic participation-confirmation rate;
+- exception rate per 100 transactions;
+- median time application → confirmed participation;
+- unmatched payment count/age;
+- unresolved critical exception age.
 
-It is not positioned primarily as an information-product subscription.
+Target state:
+- routine founder administration: <= 3 hours/week;
+- standard eligible orders: >= 95% no-touch;
+- standard reminders: 100% automated;
+- payment reconciliation: >= 99% automatic, exceptions queued;
+- founder-dependent revenue ratio: declines quarter over quarter.
 
-## D-HUB
-D-HUB is coach-development infrastructure:
-Learn → Practice → Observe → Reflect
+## Event operating model
 
-The annual structure is 48 weekly sessions with field application and development records.
-It must not imply FIBA/WABC certification unless formally obtained.
+An event is not launch-ready until authoritative values exist for:
+- owner;
+- programme type;
+- date/time;
+- venue or approved venue status;
+- capacity;
+- price/payment route;
+- eligibility;
+- guardian/consent requirements;
+- cancellation/refund policy;
+- safeguarding owner/escalation;
+- communications schedule.
+
+Missing mandatory data blocks public checkout rather than creating manual founder work.
+
+## Regional Host model
+
+National expansion defaults to Host-led delivery.
+
+Host owns:
+- venue and local logistics;
+- local recruitment where agreed;
+- local day-of operations;
+- locally delegated participant support.
+
+RBA owns:
+- programme standard;
+- coach assignment/quality;
+- governed commerce and participant record;
+- safeguarding standards;
+- brand;
+- post-program development record.
+
+Founder participation is optional unless the offer is explicitly sold as founder-led.
+
+## Content operating model
+
+One real activity should create reusable source material once. Approved derivatives can be generated for Journal, social, email and partner reporting.
+
+Automation may draft, resize, schedule and distribute content.
+A human must approve any item involving:
+- minors or identifying media;
+- partner logo/name/quote;
+- medical/performance claim;
+- contentious evidence claim;
+- contractual or reputational implications.
+
+Founder can approve doctrine-heavy content in batches, not post-by-post operations.
+
+## Source and production control
+
+- GitHub is the source of truth for application code and database migrations.
+- main represents the intended production baseline.
+- Production database schema drift must be recovered into version control before further structural production changes.
+- Feature changes are developed in branches.
+- Preview/testing is mandatory before production promotion.
+- Direct production schema editing is emergency-only and must be recovered immediately into migration history.
 
 ## Safeguarding
-Safeguarding is a launch and operating requirement, not a future enhancement.
-The organization requires:
-- accountable primary officer
-- deputy/escalation path
-- reporting pathway
-- incident handling
-- access control
-- coach screening/verification
-- documented training
-- auditable actions
 
-## Governance
-Core governance documents must be versioned, reviewed, approved, effective-dated, published, and acceptance-tracked where appropriate.
+Safeguarding is never delegated to unreviewed automation.
 
-## International
-Every international program should have:
-- accountable owner
-- agreement/status
-- safeguarding plan
-- participant/guardian controls
-- financial model
-- operational plan
-- insurance/travel controls
-- post-program review
+Automation may:
+- collect;
+- validate completeness;
+- route;
+- timestamp;
+- remind;
+- restrict access;
+- preserve audit evidence.
+
+A qualified accountable human retains decisions on actual safeguarding cases.
+
+Required organizational controls:
+- primary safeguarding officer;
+- deputy/escalation route;
+- reporting pathway;
+- incident handling;
+- access control;
+- coach screening/verification;
+- documented training;
+- auditable actions.
+
+## Monthly management close
+
+Management close is generated from the operating system, not assembled manually from inboxes.
+
+Close must cover:
+- revenue;
+- gross profit;
+- operating profit;
+- active/new/repeat customers;
+- events held;
+- participants;
+- refunds;
+- founder-dependent revenue;
+- open exceptions;
+- safeguarding/governance review status.
+
+A human approves the close; the data collection and calculations are automated.
 
 ## Auditability
-Material decisions, risks, production changes, monthly closes, exceptions and approvals should be retained as structured evidence.
+
+Material decisions, risks, production changes, monthly closes, exceptions, approvals and automation dispatches must be retained as structured evidence.
