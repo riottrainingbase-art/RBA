@@ -782,9 +782,12 @@ button, a { -webkit-tap-highlight-color:transparent; }
 @media (max-width:560px) {
   .site-header { padding:18px 20px 0; gap:12px; }
   .header-contact { display:none; }
-  .whatsapp-dock { right:14px; bottom:14px; min-width:50px; min-height:50px; padding:0 14px; justify-content:center; }
+  .whatsapp-dock,.opportunities-dock { right:14px; bottom:14px; min-width:50px; min-height:50px; padding:0 14px; justify-content:center; }
   .whatsapp-dock span { display:none; }
   .member-dock { left:14px; bottom:14px; min-height:50px; padding:0 14px; }
+  .locale-ja .member-dock,.locale-ja .opportunities-dock{width:calc(50% - 21px);justify-content:center;padding:0 10px}
+  .locale-ja .member-dock span,.locale-ja .opportunities-dock span{display:inline;font-size:10px;white-space:nowrap}
+  .locale-ja .member-dock svg:last-child,.locale-ja .opportunities-dock svg:last-child{display:none}
   .header-contact { display:none; }
   .brand-lockup>span:last-child { display:none; }
   .brand-logo { width:36px; height:auto; }
