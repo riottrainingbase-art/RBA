@@ -64,6 +64,9 @@ assert.ok(memberApp.includes('無料JOURNALを1本読む'),"RBA ID starter flow 
 assert.ok(memberApp.includes('className="member-header-account"'),"Header account control must open settings instead of signing out");
 assert.ok(!memberApp.includes('href:`${prefix}/home-court`'),"Legacy /home-court upgrade route must not return");
 
+const homecourtPage=fs.readFileSync("components/homecourt-page.tsx","utf8");
+assert.ok(homecourtPage.includes('authReady?"RBA IDをつくる":"登録再開のお知らせを受け取る"'),"HOMECOURT free-plan CTA must reflect auth availability");
+
 const login=fs.readFileSync("components/member-login.tsx","utf8");
 assert.ok(login.includes("パスワードは不要です。"),"Japanese login must explain passwordless access");
 assert.ok(!login.includes('checked={terms}'),"Returning-member login must not repeat first-time terms consent");
