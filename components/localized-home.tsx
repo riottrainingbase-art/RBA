@@ -117,7 +117,6 @@ export function LocalizedHome({locale}:{locale:Locale}){
       <div className="homecourt-launch-actions"><Link className="button button-dark" href="/ja/development">育成テーマから探す<ArrowRight size={17}/></Link></div>
     </section>:null}
 
-    {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>所属を変えなくても、違う指導者や仲間から学べます。今いる環境を大切にしながら、外の経験を足していくための活動です。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
     {locale!=="ja"?<AudienceJourneys locale={locale}/>:null}
     {locale==="ja"&&torstenFeature}
     {locale!=="ja"&&torstenFeature}
@@ -127,15 +126,11 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     <section className="statement section-pad"><p className="section-index">{c.position}</p><div><h2>{c.positionTitle[0]}<br/>{c.positionTitle[1]}</h2><p>{c.positionCopy}</p><a className="text-link" href={localePath(locale,"approach")}>{c.readApproach}<ArrowRight size={16}/></a></div></section>
 
-    <section className="rba-standards section-pad"><div className="section-head"><div><p className="section-index">{c.workLabel}</p><h2>{c.workTitle}</h2></div></div><div className="standards-grid">{c.work.map(([n,t,b])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{b}</p></article>)}</div></section>
-
-    <section className="asia-desk-home section-pad"><div><p className="section-index inverse">{c.asiaLabel}</p><h2>{c.asiaTitle[0]}<br/>{c.asiaTitle[1]}</h2></div><div><p>{c.asiaCopy}</p><div className="desk-languages"><span>ENGLISH</span><span>日本語</span><span>繁體中文</span><span>한국어</span></div><a className="button button-light" href={localePath(locale,"asia")}>{c.asiaCta}<ArrowRight size={17}/></a></div></section>
+    {locale!=="ja"?<><section className="rba-standards section-pad"><div className="section-head"><div><p className="section-index">{c.workLabel}</p><h2>{c.workTitle}</h2></div></div><div className="standards-grid">{c.work.map(([n,t,b])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{b}</p></article>)}</div></section><section className="asia-desk-home section-pad"><div><p className="section-index inverse">{c.asiaLabel}</p><h2>{c.asiaTitle[0]}<br/>{c.asiaTitle[1]}</h2></div><div><p>{c.asiaCopy}</p><div className="desk-languages"><span>ENGLISH</span><span>日本語</span><span>繁體中文</span><span>한국어</span></div><a className="button button-light" href={localePath(locale,"asia")}>{c.asiaCta}<ArrowRight size={17}/></a></div></section></>:null}
 
     <section className="field-footprint section-pad"><div><p className="section-index inverse">{c.recordLabel}</p><h2>{c.recordTitle}</h2><p>{c.recordCopy}</p>{locale==="ja"?<><a className="text-link light-link" href="/ja/regions">全国の活動拠点を見る<ArrowRight size={16}/></a><a className="text-link light-link" href="/ja/saga">RBA佐賀を見る<ArrowRight size={16}/></a></>:null}<a className="text-link light-link" href={localePath(locale,"about")}>{c.about}<ArrowRight size={16}/></a></div><div className="footprint-numbers"><div><strong>{locale==="ja"?"3,000+":"3,000+"}</strong><span>{ui(locale,"players")}</span></div><div><strong>25</strong><span>{({en:"ACTIVITY LOCATIONS",ja:"国内25地域で活動","zh-tw":"日本全國活動地區",ko:"일본 전역 활동 지역"})[locale]}</span></div><div><strong>JP × ASIA</strong><span>{ui(locale,"nextField")}</span></div></div></section>
 
-    <GlobalMedia locale={locale}/>
-    <NetworkMaps locale={locale}/>
-    <GrowthSections locale={locale}/>
-    <section className="closing-cta section-pad"><p className="eyebrow">{c.contactLabel}</p><h2>{c.contactTitle[0]}<br/>{c.contactTitle[1]}</h2><p>{c.contactCopy}</p><div className="closing-actions"><a className="button button-orange" href={localePath(locale,"contact")}>{c.contact}<ArrowRight size={17}/></a><a className="button button-dark" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17}/>{c.whatsapp}</a></div></section>
+    {locale!=="ja"?<><GlobalMedia locale={locale}/><NetworkMaps locale={locale}/><GrowthSections locale={locale}/></>:null}
+    <section className="closing-cta section-pad"><p className="eyebrow">{c.contactLabel}</p><h2>{c.contactTitle[0]}<br/>{c.contactTitle[1]}</h2><p>{c.contactCopy}</p><div className="closing-actions">{locale==="ja"?<><a className="button button-orange" href="/ja/opportunities">活動を探す<ArrowRight size={17}/></a><a className="button button-dark" href="/ja/contact">RBAに相談する<ArrowRight size={17}/></a></>:<><a className="button button-orange" href={localePath(locale,"contact")}>{c.contact}<ArrowRight size={17}/></a><a className="button button-dark" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17}/>{c.whatsapp}</a></>}</div></section>
   </SiteFrame></div>;
 }
