@@ -69,6 +69,57 @@ Deno.serve(async (req:Request)=>{
     }
   }
 
+  // Recurring memberships share one governed duplicate-subscription gate.
+  const subscriptionPlanKey=String(
+    offer.metadata?.subscription_plan_key
+    || ((offer.slug==="homecourt-monthly" || offer.metadata?.program==="rba_homecourt")?"homecourt_monthly":"")
+  );
+  const dhubProgramType=String(offer.metadata?.dhub_program_type||"")||null;
+
+  if(subscriptionPlanKey){
+    const {data:existing,error:existingError}=await admin.from("subscriptions")
+      .select("id,status,current_period_end,cancel_at_period_end")
+      .eq("user_id",subjectId)
+      .eq("plan_key",subscriptionPlanKey)
+      .in("status",["active","trialing","past_due","unpaid"])
+      .order("updated_at",{ascending:false})
+      .limit(1);
+    if(existingError) return json({error:"subscription_check_failed"},409);
+    const current=existing?.[0];
+    if(current){
+      const reason=["past_due","unpaid"].includes(current.status)
+        ?"subscription_payment_issue"
+        :"subscription_already_active";
+      await admin.from("checkout_access_logs").insert({
+        user_id:user.id,subject_user_id:subjectId,service_offer_id:offer.id,application_id:null,
+        decision:"blocked",reason,provider_payment_link_id:route.provider_payment_link_id||null
+      });
+      return json({ok:false,decision:"blocked",reason},409);
+    }
+
+    // Preserve legacy Square D-HUB access and prevent double charging during migration.
+    if(dhubProgramType){
+      const {data:legacy,error:legacyError}=await admin.from("dhub_memberships")
+        .select("id,provider,status,access_until")
+        .eq("linked_user_id",subjectId)
+        .eq("program_type",dhubProgramType)
+        .in("status",["active","grace"])
+        .order("updated_at",{ascending:false})
+        .limit(1);
+      if(legacyError)return json({error:"legacy_membership_check_failed"},409);
+      const membership=legacy?.[0];
+      const valid=membership && (!membership.access_until || Date.parse(membership.access_until)>=Date.now());
+      if(valid){
+        const reason="dhub_membership_already_active";
+        await admin.from("checkout_access_logs").insert({
+          user_id:user.id,subject_user_id:subjectId,service_offer_id:offer.id,application_id:null,
+          decision:"blocked",reason,provider_payment_link_id:route.provider_payment_link_id||null
+        });
+        return json({ok:false,decision:"blocked",reason,provider:membership.provider},409);
+      }
+    }
+  }
+
   let event:any=null;
   const sourceEventSlug=offer.metadata?.source_event_slug||null;
   if(sourceEventSlug){
