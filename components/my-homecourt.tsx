@@ -44,16 +44,16 @@ const clarityCopy={
     cards:[
       ["探す","次の機会を見つける","全国のクリニック、キャンプ、海外交流から次の機会を探せます。"],
       ["学ぶ","育成について理解を深める","立場に合う育成記事や実践のヒントを読めます。"],
-      ["残す","経験を記録する","参加履歴、振り返り、次に試すことを残せます。"],
+      ["残す","参加した経験を記録する","参加履歴、振り返り、次に試すことを残せます。"],
       ["動く","学びを次の行動につなげる","学びを次の練習や挑戦につなげます。"]
     ],
     freeTitle:"まずはRBA IDから",freeBody:"活動を探す、JOURNALを読む、経験を残す。RBA IDは無料です。",
     paidTitle:"学びと振り返りを、日常の流れにする",paidBody:"「学ぶ・試す・振り返る・次を決める」を継続する有料プランです。",
     paidCta:"PLUSの内容を見る",freeCta:"RBA IDから始める",
-    whoTitle:"あなたに合う入口を選ぶ。",who:[
-      ["PLAYER / 選手","今のチームに所属したまま、もっと多くの機会や外のバスケットボールにも触れたい。"],
-      ["PARENT / 保護者","子どもの育成環境や次の選択について、チーム以外からも判断材料を得たい。"],
-      ["COACH / 指導者","経験だけに頼らず、毎週の指導や練習設計を学び続けたい。"]
+    whoTitle:"立場に合うページから始める。",who:[
+      ["PLAYER / 選手","今のチームに所属したまま、地域の外でも学びや挑戦の機会を増やしたい。"],
+      ["PARENT / 保護者","子どもの育成環境や次の選択について、所属チーム以外の情報も確認したい。"],
+      ["COACH / 指導者","経験だけに頼らず、練習設計や選手育成について継続して学びたい。"]
     ],
     faqTitle:"登録前によくある質問",faq:[
       ["今のチームを辞める必要はありますか？","ありません。今いる環境を大切にしながら、所属の外にも学びと機会を持つための場所です。"],
@@ -179,7 +179,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <article><BookOpen/><span>READ</span><h3>今週、一つ読む</h3><p>今の課題に近い記事を一つ選ぶ。</p><a className="text-link" href="/ja/journal">RBA JOURNALへ <ArrowRight size={16}/></a></article>
         <article><Compass/><span>FIND</span><h3>次の機会を一つ見る</h3><p>地域の外も含め、次の育成機会を一つ確認する。</p><a className="text-link" href="/ja/opportunities">育成機会を探す <ArrowRight size={16}/></a></article>
         <article><History/><span>REFLECT</span><h3>今週の経験を一つ残す</h3><p>できたことと、次に試すことを短く残す。</p><a className="text-link" href="/ja/my-homecourt/participants">参加・成長記録へ <ArrowRight size={16}/></a></article>
-        <article><Users/><span>CONNECT</span><h3>所属の外と一つつながる</h3><p>所属の外にある学びや考え方にも触れる。</p><a className="text-link" href="/ja/community">RBAコミュニティへ <ArrowRight size={16}/></a></article>
+        <article><Users/><span>CONNECT</span><h3>所属の外の情報にも触れる</h3><p>所属チーム以外の学びや考え方も確認する。</p><a className="text-link" href="/ja/community">RBAコミュニティへ <ArrowRight size={16}/></a></article>
       </div>
       {nextProgrammes.length?<div className="homecourt-private-note"><CalendarDays size={24}/><div><strong>次に参加できるRBA</strong><p>{nextProgrammes.map(p=>`${p.date[1]}｜${p.title[1]}｜${p.place[1]}`).join("　／　")}</p></div></div>:null}
     </section>:null}
@@ -198,7 +198,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
     </section>:null}
     {selected?<section className="member-route-actions section-pad"><div><p className="section-index">{ja?"次に進む":"YOUR NEXT ACTION"}</p><h2>{ja?`${selected.label}向けのご案内`:`${selected.shortLabel} ROUTE`}</h2><p>{ja?"参加する。学ぶ。仲間とつながる。今必要な入口から始められます。":"Find programmes, community and the next action for your role."}</p></div><div className="member-route-action-grid"><a href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles/><strong>{ja&&!authReady?"登録再開通知を受け取る":c.register}</strong><span>{ja?"活動・記録・学びを一つにつなぐ":"Connect activities, records and learning"}</span><ArrowRight/></a><a href={roleCommunity} target="_blank" rel="noreferrer"><Users/><strong>{c.community}</strong><span>{ja?(role==="coaches"?"指導者向けオープンコミュニティ":"選手・保護者向けオープンコミュニティ"):"Join the relevant open community"}</span><ArrowUpRight/></a><a href={localePath(locale,"opportunities")}><CalendarDays/><strong>{ja?"現在募集中の活動":"Current programmes"}</strong><span>{ja?"日程・対象・募集状況を比較":"Compare dates, eligibility and availability"}</span><ArrowRight/></a>{role==="players"?<><a href={localePath(locale,"camp")}><BookOpen/><strong>Development Camp</strong><span>{({ja:"育成を深める。練習・ゲーム・振り返りを持ち帰る",en:"Develop through training, games and reflection","zh-tw":"透過訓練、比賽與反思深化培育",ko:"훈련·게임·회고를 통해 성장하기"})[locale]}</span><ArrowRight/></a><a href={localePath(locale,"united")}><Users/><strong>RBA UNITED</strong><span>{({ja:"大会・遠征・国際交流へ、期間限定チームで挑戦",en:"Join a time-limited team for tournaments, trips and exchanges","zh-tw":"以期間限定團隊挑戰大會、遠征與交流",ko:"기간 한정 팀으로 대회·원정·교류에 도전"})[locale]}</span><ArrowRight/></a></>:null}{role==="coaches"?<><a href={localePath(locale,"d-hub")}><BookOpen/><strong>D-HUB</strong><span>{ja?"継続して学べる指導者向けプログラム":"Ongoing coach development"}</span><ArrowRight/></a><a href={localePath(locale,"events/torsten-loibl-online-clinic")}><Users/><strong>TORSTEN LOIBL</strong><span>{ja?"世界の育成現場に学ぶ指導者講習":"International coach clinic"}</span><ArrowRight/></a></>:null}</div></section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad">
-      <div className="section-head"><div><p className="section-index">SHARE YOUR HOME COURT</p><h2>一人で使うだけではなく、つながる。</h2></div><p>保護者、選手、指導者。関わる人が同じ場所を見られるほど、次の選択が分かりやすくなります。</p></div>
+      <div className="section-head"><div><p className="section-index">SHARE YOUR HOME COURT</p><h2>家族や指導者とも、必要な情報を共有する。</h2></div><p>保護者、選手、指導者が必要な情報を共有できると、次に何をするかを相談しやすくなります。</p></div>
       <div className="homecourt-preview-grid">
         <article><Users/><span>PARENT</span><h3>保護者に共有</h3><p>参加履歴や次の活動を、家族で確認する入口として。</p><a className="text-link" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Friotbasketballacademy.com%2Fja%2Fmy-homecourt%2Ffamilies" target="_blank" rel="noreferrer">LINEで共有 <ArrowUpRight size={16}/></a></article>
         <article><Users/><span>PLAYER</span><h3>選手に共有</h3><p>自分の経験をPassportに残し、次に試すことを決めるために。</p><a className="text-link" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Friotbasketballacademy.com%2Fja%2Fmy-homecourt%2Fplayers" target="_blank" rel="noreferrer">LINEで共有 <ArrowUpRight size={16}/></a></article>
@@ -206,7 +206,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <article><Sparkles/><span>FREE</span><h3>RBA IDを始める</h3><p>初めてでも、過去参加者でも。同じ入口から無料で始められます。</p><a className="text-link" href="/ja/my-homecourt/login">無料でRBA IDをつくる <ArrowRight size={16}/></a></article>
       </div>
     </section>:null}
-    <section className="my-homecourt-tools section-pad"><div className="section-head"><div><p className="section-index">{ja?"よく使うメニュー":"QUICK ACCESS"}</p><h2>{c.tools}</h2></div><p>{ja?"活動を探す、申し込む、相談する。次の一歩に必要な情報を、ここから。":"Find programmes, applications, support and essential information here."}</p></div><div className="my-homecourt-tool-grid"><a href={localePath(locale,"schedule")}><CalendarDays/><strong>{ja?"開催日程・募集中の活動":"Programme calendar"}</strong><span>{ja?"対象年代、日程、会場を確認":"Check dates and eligibility"}</span></a><a href={localePath(locale,"payments")}><CreditCard/><strong>{ja?"申込・決済":"Registration & payment"}</strong><span>{ja?"公式の申込フォームと決済先を確認":"Official forms and payment links"}</span></a><a href={localePath(locale,"policies")}><FileText/><strong>{ja?"参加規約・安全方針":"Policies & safety"}</strong><span>{ja?"参加前に確認していただきたい大切な情報":"Important information before joining"}</span></a><a href={localePath(locale,"contact")}><LifeBuoy/><strong>{ja?"RBAへ相談する":"Ask RBA"}</strong><span>{ja?"申込や決済で不明な点はこちら":"Ask before payment when unclear"}</span></a></div></section>
+    <section className="my-homecourt-tools section-pad"><div className="section-head"><div><p className="section-index">{ja?"よく使うメニュー":"QUICK ACCESS"}</p><h2>{c.tools}</h2></div><p>{ja?"活動を探す、申し込む、相談する。よく使うページをここにまとめています。":"Find programmes, applications, support and essential information here."}</p></div><div className="my-homecourt-tool-grid"><a href={localePath(locale,"schedule")}><CalendarDays/><strong>{ja?"開催日程・募集中の活動":"Programme calendar"}</strong><span>{ja?"対象年代、日程、会場を確認":"Check dates and eligibility"}</span></a><a href={localePath(locale,"payments")}><CreditCard/><strong>{ja?"申込・決済":"Registration & payment"}</strong><span>{ja?"公式の申込フォームと決済先を確認":"Official forms and payment links"}</span></a><a href={localePath(locale,"policies")}><FileText/><strong>{ja?"参加規約・安全方針":"Policies & safety"}</strong><span>{ja?"参加前に確認していただきたい大切な情報":"Important information before joining"}</span></a><a href={localePath(locale,"contact")}><LifeBuoy/><strong>{ja?"RBAへ相談する":"Ask RBA"}</strong><span>{ja?"申込や決済で不明な点はこちら":"Ask before payment when unclear"}</span></a></div></section>
     <section className="impact-entry section-pad"><HeartHandshake size={42}/><div><p className="section-index">RBA IMPACT / REINVESTMENT</p><h2>{c.impact}</h2><p>{c.impactBody}</p></div><a className="button button-dark" href={localePath(locale,"impact")}>{c.impactCta}<ArrowRight size={17}/></a></section>
     {selected?<section className="my-homecourt-content section-pad"><div><LockKeyhole size={34}/><p className="section-index">{ja?"コンテンツ案内":"CONTENT ROADMAP"}</p><h2>{ja?`${selected.label}のコンテンツ`:"Content for this route"}</h2><p>{ja?"動画、資料、お知らせを、立場に合わせて整理します。参加履歴や家族情報などの個人情報は、ログインした本人と権限を持つ関係者だけに表示します。":"Videos, resources and notices are organised for this route. Personal records are shown only to authenticated, authorised people."}</p></div><ul>{selected.items.map(item=><li key={item}><House size={17}/>{item}</li>)}<li><Check size={17}/>{ja?"指導者はD-HUBの継続学習や、トーステン講習へ進めます。":"Coaches can continue to D-HUB and the Torsten Loibl clinic."}</li></ul></section>:null}
   </SiteFrame>;

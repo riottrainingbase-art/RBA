@@ -2,12 +2,12 @@ import type {Metadata} from "next";
 import {DefinitiveStaticPage} from "@/components/definitive-static-page";
 
 export const metadata:Metadata={
-  title:{absolute:"D-HUB｜実践を続ける指導者・選手育成プログラム | RBA"},
-  description:"D-HUBは有料記事の置き場ではなく、COACH LABとPLAYERSで課題・実践・振り返りを続けるRBAの継続育成プログラムです。HOMECOURT PLUSのDEVELOPMENT LIBRARYとは役割を分けています。",
+  title:{absolute:"D-HUB｜学びを実践につなげる指導者・選手向けプログラム | RBA"},
+  description:"D-HUBは、テーマを決め、実践し、振り返ることを続けるRBAの継続型プログラムです。指導者向けのCOACH LABと、選手向けのPLAYERSがあります。",
   alternates:{canonical:"https://riotbasketballacademy.com/ja/d-hub"},
   openGraph:{
     title:"D-HUB｜COACH LAB / PLAYERS",
-    description:"読むだけで終わらせず、テーマを決め、現場で試し、振り返り、次へ進む継続育成プログラム。",
+    description:"テーマを決め、現場で試し、振り返る。学びを継続的な実践に変えるプログラム。",
     url:"https://riotbasketballacademy.com/ja/d-hub",
     siteName:"Riot Basketball Academy",
     locale:"ja_JP",
@@ -17,7 +17,7 @@ export const metadata:Metadata={
   twitter:{
     card:"summary_large_image",
     title:"D-HUB｜COACH LAB / PLAYERS",
-    description:"課題 → 実践 → 振り返りを続けるRBAの継続育成プログラム。",
+    description:"課題を決め、実践し、振り返ることを続けるRBAの継続型プログラム。",
     images:["https://riotbasketballacademy.com/rba-court-hero.png"]
   }
 };
