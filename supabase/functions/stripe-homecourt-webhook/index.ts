@@ -134,15 +134,31 @@ async function resolveCommerceContext(supabase:any,session:any,subjectId:string|
   }
   return {route,offer,event,application};
 }
+function dhubMembershipStatus(stripeStatus:string){
+  if(["active","trialing"].includes(stripeStatus))return "active";
+  if(["past_due","unpaid"].includes(stripeStatus))return "grace";
+  if(stripeStatus==="canceled")return "cancelled";
+  return "inactive";
+}
+function dhubProgramFromPlan(planKey:string){
+  if(planKey==="dhub_coach_lab_monthly")return "coach_lab";
+  if(planKey==="dhub_players_monthly")return "players";
+  return null;
+}
+async function checkoutEmail(supabase:any,session:any,userId:string){
+  const direct=String(session.customer_details?.email||session.customer_email||"").trim().toLowerCase();
+  if(direct)return direct;
+  const {data}=await supabase.auth.admin.getUserById(userId);
+  return String(data?.user?.email||"").trim().toLowerCase();
+}
 async function processCheckout(supabase:any,event:any,session:any) {
   const subjectFromRef=await resolveByClientRef(supabase,session);
   const emailUser=await resolveByEmail(supabase,session);
   const subjectId=subjectFromRef || emailUser;
   const payerId=emailUser || subjectId;
   const metadata=session.metadata||{};
-  const program=metadata.program||"";
+  const rawProgram=metadata.program||"";
   const eventKey=metadata.event||"";
-  const isHomecourt=program==="rba_homecourt";
   const isPaid=session.payment_status==="paid" || event.type==="checkout.session.async_payment_succeeded";
   const customerId=sid(session.customer), subscriptionId=sid(session.subscription);
 
@@ -152,6 +168,15 @@ async function processCheckout(supabase:any,event:any,session:any) {
   }
 
   const commerce=await resolveCommerceContext(supabase,session,subjectId,payerId);
+  const resolvedProgram=String(commerce.offer?.metadata?.program||rawProgram||"");
+  const dhubProgramType=String(commerce.offer?.metadata?.dhub_program_type||"")||null;
+  const isHomecourt=resolvedProgram==="rba_homecourt";
+  const planKey=String(
+    commerce.offer?.metadata?.subscription_plan_key
+    || (isHomecourt?"homecourt_monthly":"")
+  );
+  const isManagedSubscription=Boolean(subscriptionId)&&(isHomecourt||Boolean(dhubProgramType&&planKey));
+
   const resolvedEventSlug=commerce.event?.slug || EVENT_SLUGS[eventKey] || null;
   let rbaEvent=commerce.event;
   if(!rbaEvent && resolvedEventSlug){
@@ -165,7 +190,7 @@ async function processCheckout(supabase:any,event:any,session:any) {
     application_id:commerce.application?.id||null,
     event_id:rbaEvent?.id||null,
     service_offer_id:commerce.offer?.id||null,
-    order_type:isHomecourt?"subscription":"event",
+    order_type:isManagedSubscription?"subscription":"event",
     status:isPaid?"paid":"awaiting_payment",
     amount_subtotal:session.amount_subtotal??null,
     amount_total:session.amount_total??null,
@@ -177,6 +202,7 @@ async function processCheckout(supabase:any,event:any,session:any) {
     confirmed_at:isPaid?new Date().toISOString():null,
     metadata:{
       ...metadata,
+      program:resolvedProgram||null,
       offer_slug:commerce.offer?.slug||null,
       stripe_payment_link:sid(session.payment_link),
       stripe_customer_id:customerId,
@@ -195,20 +221,46 @@ async function processCheckout(supabase:any,event:any,session:any) {
       provider:"stripe",provider_transaction_id:session.id,occurred_at:new Date().toISOString(),
       metadata:{
         checkout_session_id:session.id,payment_intent_id:sid(session.payment_intent),
-        event:eventKey||null,program:program||null,plan:metadata.plan||null,
+        event:eventKey||null,program:resolvedProgram||null,plan:planKey||metadata.plan||null,
         subject_user_id:subjectId,offer_slug:commerce.offer?.slug||null
       },
     },{onConflict:"provider,provider_transaction_id"});
     if(error) throw error;
   }
 
-  if(isHomecourt && subscriptionId) {
+  if(isManagedSubscription && subscriptionId) {
     const {error}=await supabase.from("subscriptions").upsert({
       user_id:subjectId,provider:"stripe",provider_customer_id:customerId,
       provider_subscription_id:subscriptionId,status:isPaid?"active":"inactive",
-      plan_key:"homecourt_monthly",updated_at:new Date().toISOString(),
+      plan_key:planKey,updated_at:new Date().toISOString(),
     },{onConflict:"provider_subscription_id"});
     if(error) throw error;
+
+    if(dhubProgramType){
+      const email=await checkoutEmail(supabase,session,subjectId);
+      if(!email)throw new Error("dhub_subscription_email_required");
+      const now=new Date().toISOString();
+      const {error:dhubError}=await supabase.from("dhub_memberships").upsert({
+        email_normalized:email,
+        linked_user_id:subjectId,
+        provider:"stripe",
+        plan_key:planKey,
+        program_type:dhubProgramType,
+        status:isPaid?"active":"grace",
+        amount_jpy:session.amount_total??3300,
+        last_payment_at:isPaid?now:null,
+        access_until:null,
+        source_reference:subscriptionId,
+        notes:"Stripe governed membership",
+        metadata:{
+          stripe_customer_id:customerId,
+          service_offer_slug:commerce.offer?.slug||null,
+          migrated_from_square:false
+        },
+        updated_at:now
+      },{onConflict:"email_normalized,program_type"});
+      if(dhubError)throw dhubError;
+    }
   }
 
   if(isPaid && commerce.application?.id){
@@ -237,16 +289,19 @@ async function processCheckout(supabase:any,event:any,session:any) {
     const noteBody=commerce.offer?.title
       ? `${commerce.offer.title} のお支払いが完了しました。`
       : "RBAのお支払いが完了しました。";
+    const actionUrl=dhubProgramType
+      ? (dhubProgramType==="coach_lab"?"/ja/d-hub/coaches/member":"/ja/d-hub/players/member")
+      : "/ja/my-homecourt";
     const {error:paymentNoticeError}=await supabase.from("platform_notifications").upsert({
       user_id:payerId,notification_type:"payment_confirmed",title:noteTitle,body:noteBody,
-      action_url:"/ja/my-homecourt",dedupe_key:`${session.id}:payment_confirmed:${payerId}`
+      action_url:actionUrl,dedupe_key:`${session.id}:payment_confirmed:${payerId}`
     },{onConflict:"dedupe_key",ignoreDuplicates:true});
     if(paymentNoticeError) throw paymentNoticeError;
     if(subjectId!==payerId){
       const {error:participantNoticeError}=await supabase.from("platform_notifications").upsert({
         user_id:subjectId,notification_type:"participation_confirmed",title:"参加が確定しました",
         body:commerce.offer?.title ? `${commerce.offer.title} の参加が確定しました。` : "RBAプログラムの参加が確定しました。",
-        action_url:"/ja/my-homecourt",dedupe_key:`${session.id}:participation_confirmed:${subjectId}`
+        action_url:actionUrl,dedupe_key:`${session.id}:participation_confirmed:${subjectId}`
       },{onConflict:"dedupe_key",ignoreDuplicates:true});
       if(participantNoticeError) throw participantNoticeError;
     }
@@ -254,25 +309,46 @@ async function processCheckout(supabase:any,event:any,session:any) {
 
   await logAction(supabase,"payment_matched",session.id,payerId,order?.id||null,{
     subject_user_id:subjectId,
-    event:eventKey||null,program:program||null,plan:metadata.plan||null,
+    event:eventKey||null,program:resolvedProgram||null,plan:planKey||metadata.plan||null,
     offer_slug:commerce.offer?.slug||null,paid:isPaid
   },`${event.id}:payment_matched`);
 }
 async function processSubscription(supabase:any,event:any,s:any) {
-  const isHomecourt=s.metadata?.program==="rba_homecourt" || (s.items?.data||[]).some((i:any)=>i.price?.id===HOMECOURT_PRICE_ID);
-  if(!isHomecourt) return false;
-  const {data,error}=await supabase.from("subscriptions").update({
-    status:subStatus(s.status),current_period_end:currentPeriodEnd(s),
+  const {data:owned,error:ownedError}=await supabase.from("subscriptions")
+    .select("user_id,plan_key").eq("provider_subscription_id",s.id).maybeSingle();
+  if(ownedError)throw ownedError;
+
+  const managedByMetadata=["rba_homecourt","rba_dhub"].includes(String(s.metadata?.program||""))
+    || (s.items?.data||[]).some((i:any)=>i.price?.id===HOMECOURT_PRICE_ID);
+  if(!owned?.user_id){
+    if(managedByMetadata)throw new Error("subscription_owner_not_ready");
+    return false;
+  }
+
+  const status=subStatus(s.status);
+  const periodEnd=currentPeriodEnd(s);
+  const {error}=await supabase.from("subscriptions").update({
+    status,current_period_end:periodEnd,
     cancel_at_period_end:!!s.cancel_at_period_end,provider_customer_id:sid(s.customer),
     updated_at:new Date().toISOString(),
-  }).eq("provider_subscription_id",s.id).select("user_id").maybeSingle();
+  }).eq("provider_subscription_id",s.id);
   if(error) throw error;
-  // Stripe can deliver subscription.created before checkout.session.completed.
-  // Failing here asks Stripe to retry after checkout has created the owned row,
-  // instead of permanently recording a successful no-op.
-  if(!data?.user_id) throw new Error("subscription_owner_not_ready");
-  if(data?.user_id) await logAction(supabase,"subscription_updated",s.id,data.user_id,null,{
-    status:s.status,cancel_at_period_end:!!s.cancel_at_period_end
+
+  const dhubProgramType=dhubProgramFromPlan(String(owned.plan_key||""));
+  if(dhubProgramType){
+    const {error:dhubError}=await supabase.from("dhub_memberships").update({
+      status:dhubMembershipStatus(s.status),
+      access_until:periodEnd,
+      source_reference:s.id,
+      updated_at:new Date().toISOString()
+    }).eq("linked_user_id",owned.user_id)
+      .eq("program_type",dhubProgramType)
+      .eq("provider","stripe");
+    if(dhubError)throw dhubError;
+  }
+
+  await logAction(supabase,"subscription_updated",s.id,owned.user_id,null,{
+    plan_key:owned.plan_key,status:s.status,cancel_at_period_end:!!s.cancel_at_period_end
   },`${event.id}:subscription_updated`);
   return true;
 }
@@ -280,14 +356,35 @@ async function processInvoice(supabase:any,invoice:any,paid:boolean) {
   const subscriptionId=sid(invoice.subscription) || sid(invoice.parent?.subscription_details?.subscription);
   if(!subscriptionId) return false;
   const {data:owned,error:ownedError}=await supabase.from("subscriptions")
-    .select("user_id").eq("provider_subscription_id",subscriptionId).maybeSingle();
+    .select("user_id,plan_key").eq("provider_subscription_id",subscriptionId).maybeSingle();
   if(ownedError) throw ownedError;
-  if(!owned?.user_id) throw new Error("invoice_subscription_owner_not_ready");
-  const {error}=await supabase.rpc("set_homecourt_invoice_state",{
-    p_subscription_id:subscriptionId,p_paid:paid,p_invoice_id:invoice.id
-  });
-  if(error) throw error;
-  return true;
+  if(!owned?.user_id) return false;
+
+  if(owned.plan_key==="homecourt_monthly"){
+    const {error}=await supabase.rpc("set_homecourt_invoice_state",{
+      p_subscription_id:subscriptionId,p_paid:paid,p_invoice_id:invoice.id
+    });
+    if(error) throw error;
+    return true;
+  }
+
+  const dhubProgramType=dhubProgramFromPlan(String(owned.plan_key||""));
+  if(dhubProgramType){
+    const now=new Date().toISOString();
+    const {error:subError}=await supabase.from("subscriptions").update({
+      status:paid?"active":"past_due",updated_at:now
+    }).eq("provider_subscription_id",subscriptionId);
+    if(subError)throw subError;
+    const patch:any={status:paid?"active":"grace",updated_at:now};
+    if(paid)patch.last_payment_at=now;
+    const {error:dhubError}=await supabase.from("dhub_memberships").update(patch)
+      .eq("linked_user_id",owned.user_id)
+      .eq("program_type",dhubProgramType)
+      .eq("provider","stripe");
+    if(dhubError)throw dhubError;
+    return true;
+  }
+  return false;
 }
 async function processRefund(supabase:any,refund:any) {
   const paymentIntentId=sid(refund.payment_intent);
