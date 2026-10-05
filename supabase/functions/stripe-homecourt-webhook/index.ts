@@ -2,7 +2,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import Stripe from "npm:stripe@22.4.0";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const stripe = new Stripe("sk_webhook_verification_only", { apiVersion: "2026-08-26.preview" as never });
+const stripe = new Stripe("webhook_verification_only", { apiVersion: "2026-08-26.preview" as never });
 const HOMECOURT_PRICE_ID = "price_1UHNz5RXDnnSs6XNPrBsJvEq";
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const EVENT_SLUGS: Record<string,string> = {
