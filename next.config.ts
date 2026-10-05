@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
         destination: "/organizer",
         permanent: true,
       },
+      {
+        source: "/ja/team",
+        destination: "/ja/organizer",
+        permanent: true,
+      },
     ];
   },
 };
