@@ -65,7 +65,9 @@ export function ProgrammeApplication({locale,offerSlug,checkoutHref}:{locale:Loc
    }
    if(data.next==="checkout"&&checkoutHref){
      setDone("checkout");
-     window.location.assign(checkoutHref);
+     const destination=new URL(checkoutHref,window.location.origin);
+     destination.searchParams.set("subject",String(data.subject_user_id||subject));
+     window.location.assign(destination.pathname+destination.search);
      return;
    }
    setDone("review");setBusy(false);
