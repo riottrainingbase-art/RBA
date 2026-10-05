@@ -47,10 +47,10 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   ] as const;
   const nav=[
     [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
-    [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const]:[]),
-    [({en:"D-HUB",ja:"D-HUB","zh-tw":"D-HUB",ko:"D-HUB"})[locale],localePath(locale,"d-hub")] as const,
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")] as const,
+    [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
+    [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"지도자"})[locale],localePath(locale,"coaches")] as const,
+    [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
     [c.about,localePath(locale,"about")] as const,
   ];
