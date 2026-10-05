@@ -16,6 +16,8 @@ const awkward=[
   ["players-meta",/Riot Basketball Academyの選手の方へに関する情報をご案内します。/],
   ["families-meta",/Riot Basketball Academyの保護者の方へに関する情報をご案内します。/],
   ["coaches-meta",/Riot Basketball Academyのコーチ・指導者の方へに関する情報をご案内します。/],
+  ["organizer-mixed-language",/(?:ClinicやCamp|地域交流を増やしたいTeam|Basketballを通じた交流人口)/],
+  ["hardcoded-ja-member-signup",/href=["']\/ja\/my-homecourt\/login["'][^>]*>無料でRBA IDをつくる/],
 ];
 
 function walk(dir,out=[]){
