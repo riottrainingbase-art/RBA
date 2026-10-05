@@ -101,7 +101,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     <PaidProgrammes locale={locale}/>
 
-    <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={memberStartHref}><House size={17}/>{memberStartLabel}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
+    <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={memberStartHref}><House size={17}/>{memberStartLabel}<ArrowRight size={17}/></a><a className="text-link" href={locale==="ja"?"/ja/homecourt-plus":localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
