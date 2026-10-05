@@ -1,7 +1,7 @@
 import { DocumentLanguage } from "./document-language";
 import { ui } from "./ui-copy";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, House, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, House, MessageCircle, Search } from "lucide-react";
 import { PublicUpdateBanner } from "./public-update-banner";
 
 
@@ -72,6 +72,6 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
       <div className="footer-legal"><p>{ui(locale,"city")}</p><p>{ui(locale,"representative")}</p><p>© 2026 Riot Basketball Academy</p><p>{c.safeguard}</p><a href={localePath(locale,"policies")}>{({en:"Privacy · Terms · Safety · Cancellation",ja:"プライバシー・参加規約・安全・キャンセル","zh-tw":"隱私・條款・安全・取消政策",ko:"개인정보・약관・안전・취소 정책"})[locale]}</a></div>
     </footer>
     <a className="member-dock" href={memberHref}><House size={20}/><span>MY HOME COURT</span><ArrowRight size={16}/></a>
-    <a className="whatsapp-dock" href={whatsappHref} target="_blank" rel="noreferrer" aria-label={c.whatsapp}><MessageCircle size={21}/><span>{c.whatsapp}</span></a>
+    {locale==="ja"?<a className="opportunities-dock" href="/ja/opportunities"><Search size={20}/><span>活動を探す</span><ArrowRight size={16}/></a>:<a className="whatsapp-dock" href={whatsappHref} target="_blank" rel="noreferrer" aria-label={c.whatsapp}><MessageCircle size={21}/><span>{c.whatsapp}</span></a>}
   </div>;
 }
