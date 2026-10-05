@@ -27,10 +27,10 @@ export default async function Page(){
       <LockKeyhole size={42}/>
       <p className="section-index">D-HUB PLAYERS / MEMBER ACCESS</p>
       <h1>PLAYERSメンバー専用ページです。</h1>
-      <p>D-HUB PLAYERS月額会員、またはGream U15の在籍選手として確認できたRBA IDで利用できます。COACH LABの会員権とは別です。</p>
+      <p>D-HUB PLAYERS月額会員、またはGream U15の在籍選手として確認できたRBA IDで利用できます。新規加入はRBA IDで参加選手を確認し、Stripe月額決済後に自動で利用できます。COACH LABの会員権とは別です。</p>
       <div>
-        <Link className="button button-dark" href="/ja/d-hub/players">PLAYERSを見る</Link>
-        <Link className="button button-light" href="/ja/d-hub/access-request?program=players">決済済みの方の照合 <ArrowRight size={16}/></Link>
+        <Link className="button button-dark" href="/ja/apply/dhub-players-monthly">PLAYERSに参加する</Link>
+        <Link className="button button-light" href="/ja/d-hub/access-request?program=players">既存Square会員の照合 <ArrowRight size={16}/></Link>
         <Link className="button button-light" href="/ja/my-homecourt/app/team">Gream招待コードで参加 <ArrowRight size={16}/></Link>
       </div>
     </section>
