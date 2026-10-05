@@ -109,27 +109,15 @@ Deno.serve(async(req:Request)=>{
   const applicationType=applicationKind==="team"?"team":"standard";
   const eventId=event?.id||null;
 
-  const {data:existing}=await admin.from("program_applications")
+  let existingQuery=admin.from("program_applications")
     .select("id,status")
     .eq("applicant_user_id",user.id)
     .eq("subject_user_id",subjectId)
     .eq("service_offer_id",offer.id)
-    .eq("application_type",applicationType)
-    .is("event_id",eventId===null?null:undefined)
-    .limit(1);
-
+    .eq("application_type",applicationType);
+  existingQuery=eventId?existingQuery.eq("event_id",eventId):existingQuery.is("event_id",null);
+  const {data:existing}=await existingQuery.order("submitted_at",{ascending:false}).limit(1);
   let application:any=existing?.[0]||null;
-  if(eventId){
-    const {data:existingEvent}=await admin.from("program_applications")
-      .select("id,status")
-      .eq("applicant_user_id",user.id)
-      .eq("subject_user_id",subjectId)
-      .eq("service_offer_id",offer.id)
-      .eq("application_type",applicationType)
-      .eq("event_id",eventId)
-      .order("submitted_at",{ascending:false}).limit(1);
-    application=existingEvent?.[0]||application;
-  }
 
   if(application){
     if(["rejected","withdrawn"].includes(application.status)){
