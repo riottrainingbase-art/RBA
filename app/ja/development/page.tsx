@@ -77,6 +77,7 @@ const faq = [
 ];
 
 export default function DevelopmentPage() {
+  const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const faqJson = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -115,7 +116,7 @@ export default function DevelopmentPage() {
 
   return (
     <SiteFrame locale="ja" languagePage="journal">
-      <main className="journal-hub journal-cms">
+      <div className="journal-hub journal-cms">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
@@ -195,10 +196,10 @@ export default function DevelopmentPage() {
           </div>
           <div>
             <Link className="button button-light" href="/ja/opportunities">募集中を見る <ArrowRight size={16}/></Link>
-            <Link className="button button-dark" href="/ja/my-homecourt/login?source=development-hub">RBA IDを無料でつくる <ArrowRight size={16}/></Link>
+            <Link className="button button-dark" href={authReady?"/ja/my-homecourt/login?source=development-hub":"/ja/my-homecourt"}>{authReady?"RBA IDを無料でつくる":"MY HOME COURTを見る"} <ArrowRight size={16}/></Link>
           </div>
         </section>
-      </main>
+      </div>
     </SiteFrame>
   );
 }
