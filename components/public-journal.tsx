@@ -1,3 +1,5 @@
+import { unitedProjects } from "@/lib/united-projects";
+import { UnitedArticleCTA } from "./united-projects";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -243,6 +245,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   const journalLd={"@context":"https://schema.org","@graph":[articleLd,breadcrumbLd]};
   return <SiteFrame locale={locale} languagePage="journal"><article className="journal-article journal-cms-article"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(journalLd)}}/>
     <header className="article-hero section-pad"><Link href={journalRoot(locale)} className="back-link">← {c.back}</Link><p className="section-index">{c.kicker} / {categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><h1>{post.title}</h1><div className="article-hero-summary"><p>{post.standfirst}</p><div className="article-meta-row"><span>{post.reading}</span><span>{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</span>{post.source_references?.length?<a href="#sources">{locale==="ja"?`参考文献 ${post.source_references.length}件`:locale==="zh-tw"?`參考資料 ${post.source_references.length}`:locale==="ko"?`참고 자료 ${post.source_references.length}`:`${post.source_references.length} sources`}</a>:null}{post.reviewed_at?<span>{locale==="ja"?"最終レビュー":locale==="zh-tw"?"最後審查":locale==="ko"?"최종 검토":"Reviewed"} · {new Date(post.reviewed_at).toLocaleDateString(locale)}</span>:null}</div></div></header>
+    {locale==="ja"?<UnitedArticleCTA slug={slug}/>:null}
     {post.hero_image_url?<figure className="journal-field-hero section-pad"><img src={post.hero_image_url} alt={post.hero_image_alt||post.title}/><figcaption>{post.hero_image_alt||post.title}</figcaption></figure>:null}
     <JournalReaderTools title={post.title} locale={locale} slug={post.slug}/>
     {locale==="ja"?<section className="journal-quick-summary section-pad">
@@ -287,7 +290,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div className="journal-source-list">{post.source_references.map((ref,index)=><a key={ref.url+index} href={ref.url} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,"0")}</span><div><strong>{ref.title}</strong><small>{ref.source}{ref.year?" · "+ref.year:""}</small>{ref.note?<p>{ref.note}</p>:null}</div><ArrowUpRight size={17}/></a>)}</div>
     </section>:null}
 
-    {locale==="ja"?(post.category==="programme"?<section className="article-learning-bridge section-pad">
+    {locale==="ja"&&!unitedProjects.some(project=>project.slug===slug)?(post.category==="programme"?<section className="article-learning-bridge section-pad">
       <div>
         <p className="section-index inverse">ARTICLE → NEXT OPPORTUNITY</p>
         <h2>この2日間を、<br/>次の育成機会へ。</h2>
@@ -331,6 +334,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       </Link>)}</div>
     </section>:null}
     <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、育成機会、参加履歴を一つのRBA IDでつなぐ無料の入口です。</p><a className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の行動に変える。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
+    {locale==="ja"?<UnitedArticleCTA slug={slug}/>:null}
   </article></SiteFrame>;
 }
 
