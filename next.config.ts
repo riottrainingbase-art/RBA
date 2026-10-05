@@ -35,6 +35,16 @@ const nextConfig: NextConfig = {
         destination: "/ja/organizer",
         permanent: true,
       },
+      {
+        source: "/ja/schedule",
+        destination: "/ja/opportunities",
+        permanent: true,
+      },
+      {
+        source: "/ja/home-court",
+        destination: "/ja/my-homecourt",
+        permanent: true,
+      },
     ];
   },
 };
