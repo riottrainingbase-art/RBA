@@ -2,7 +2,7 @@
 import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Check, Compass, CreditCard, FileText, HeartHandshake, History, House, LifeBuoy, LockKeyhole, MessageCircle, Sparkles, Users } from "lucide-react";
 import { COACH_COMMUNITY_URL, HomecourtRole, PARENT_COMMUNITY_URL, homecourtRoles } from "./homecourt-data";
 import { Locale, localePath, SiteFrame } from "./site-frame";
-import { programmes } from "./programme-data";
+import { isProgrammeActive, programmes } from "./programme-data";
 import { getPublicJournalPosts } from "@/lib/public-content";
 import { HomecourtConversionSection } from "./homecourt-conversion-section";
 import { IPhoneHomeScreenCard } from "./iphone-home-screen-card";
@@ -117,8 +117,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
     ? (locale==="en"?"/my-homecourt/login":`/${locale}/my-homecourt/login${locale==="ja"?"?source=my-homecourt":""}`)
     : "https://lin.ee/5l1YG8N";
   const ja=locale==="ja";
-  const today=new Date().toISOString().slice(0,10);
-  const nextProgrammes=programmes.filter(p=>!p.registrationClosed&&p.startDate>=today).slice(0,3);
+  const nextProgrammes=programmes.filter(p=>isProgrammeActive(p)).slice(0,3);
   const selected=role?homecourtRoles[role]:null;
   const roleCommunity=role==="coaches"?COACH_COMMUNITY_URL:PARENT_COMMUNITY_URL;
   const journalPosts=ja?await getPublicJournalPosts("ja",60):[];
@@ -203,7 +202,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <article><Users/><span>PARENT</span><h3>保護者に共有</h3><p>参加履歴や次の活動を、家族で確認する入口として。</p><a className="text-link" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Friotbasketballacademy.com%2Fja%2Fmy-homecourt%2Ffamilies" target="_blank" rel="noreferrer">LINEで共有 <ArrowUpRight size={16}/></a></article>
         <article><Users/><span>PLAYER</span><h3>選手に共有</h3><p>自分の経験をPassportに残し、次に試すことを決めるために。</p><a className="text-link" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Friotbasketballacademy.com%2Fja%2Fmy-homecourt%2Fplayers" target="_blank" rel="noreferrer">LINEで共有 <ArrowUpRight size={16}/></a></article>
         <article><BookOpen/><span>COACH</span><h3>指導者に共有</h3><p>D-HUB、Torsten、育成記事まで、指導者の学びを一つの入口へ。</p><a className="text-link" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Friotbasketballacademy.com%2Fja%2Fmy-homecourt%2Fcoaches" target="_blank" rel="noreferrer">指導者へ共有 <ArrowUpRight size={16}/></a></article>
-        <article><Sparkles/><span>FREE</span><h3>RBA IDを始める</h3><p>初めてでも、過去参加者でも。同じ入口から無料で始められます。</p><a className="text-link" href="/ja/my-homecourt/login">無料でRBA IDをつくる <ArrowRight size={16}/></a></article>
+        <article><Sparkles/><span>FREE</span><h3>RBA IDを始める</h3><p>{authReady?"初めてでも、過去参加者でも。同じ入口から無料で始められます。":"RBA IDの登録・ログインメールは現在調整中です。再開まではMY HOME COURTの内容をご確認いただけます。"}</p><a className="text-link" href={authReady?"/ja/my-homecourt/login":"/ja/my-homecourt"}>{authReady?"無料でRBA IDをつくる":"MY HOME COURTを見る"} <ArrowRight size={16}/></a></article>
       </div>
     </section>:null}
     <section className="my-homecourt-tools section-pad"><div className="section-head"><div><p className="section-index">{ja?"よく使うメニュー":"QUICK ACCESS"}</p><h2>{c.tools}</h2></div><p>{ja?"活動を探す、申し込む、相談する。次の一歩に必要な情報を、ここから。":"Find programmes, applications, support and essential information here."}</p></div><div className="my-homecourt-tool-grid"><a href={localePath(locale,"schedule")}><CalendarDays/><strong>{ja?"開催日程・募集中の活動":"Programme calendar"}</strong><span>{ja?"対象年代、日程、会場を確認":"Check dates and eligibility"}</span></a><a href={localePath(locale,"payments")}><CreditCard/><strong>{ja?"申込・決済":"Registration & payment"}</strong><span>{ja?"公式の申込フォームと決済先を確認":"Official forms and payment links"}</span></a><a href={localePath(locale,"policies")}><FileText/><strong>{ja?"参加規約・安全方針":"Policies & safety"}</strong><span>{ja?"参加前に確認していただきたい大切な情報":"Important information before joining"}</span></a><a href={localePath(locale,"contact")}><LifeBuoy/><strong>{ja?"RBAへ相談する":"Ask RBA"}</strong><span>{ja?"申込や決済で不明な点はこちら":"Ask before payment when unclear"}</span></a></div></section>
