@@ -20,6 +20,16 @@ const nextConfig: NextConfig = {
         destination: "/ja/my-homecourt?payment=complete",
         permanent: false,
       },
+      {
+        source: "/ja/work-with-rba",
+        destination: "/ja/organizer",
+        permanent: true,
+      },
+      {
+        source: "/work-with-rba",
+        destination: "/organizer",
+        permanent: true,
+      },
     ];
   },
 };
