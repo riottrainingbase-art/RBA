@@ -29,27 +29,21 @@ export function localePath(locale:Locale, page?:LanguagePage){
 export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
   const c=labels[locale];
   const fullNav=[
-    [({en:"Find opportunities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
-    [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
-    [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
-    [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
-    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")],
-    [({en:"D-HUB",ja:"D-HUB","zh-tw":"D-HUB",ko:"D-HUB"})[locale],localePath(locale,"d-hub")],
-    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
-    ["RBA UNITED",localePath(locale,"united")],
-    [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")],
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
-    [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
-    ...(locale==="ja"?[["コーチ向け教材","/ja/materials"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["ミニバス育成支援","/ja/minibasket-support"] as const]:[]),
-    [c.about,localePath(locale,"about")],
-    [({en:"Policies",ja:"参加規約・安全方針","zh-tw":"條款・安全",ko:"약관·안전"})[locale],localePath(locale,"policies")] as const,
-  ] as const;
-  const nav=[
-    [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
+    [({en:"Find opportunities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")] as const,
+    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const]:[]),
     [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
     [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"지도자"})[locale],localePath(locale,"coaches")] as const,
+    ["RBA UNITED",localePath(locale,"united")] as const,
+    [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
+    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
+    [c.about,localePath(locale,"about")] as const,
+    [({en:"Policies",ja:"参加規約・安全方針","zh-tw":"條款・安全",ko:"약관·안전"})[locale],localePath(locale,"policies")] as const,
+  ];
+  const nav=[
+    [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
+    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const]:[[({en:"Journal","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale as "en"|"zh-tw"|"ko"],localePath(locale,"journal")] as const]),
+    [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")] as const,
     [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
     [c.about,localePath(locale,"about")] as const,
