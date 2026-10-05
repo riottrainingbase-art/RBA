@@ -35,7 +35,7 @@ export function OperationsDashboard({locale}:{locale:Locale}){
     setData(result as OpsData);setLoading(false);
   },[locale,supabase]);
 
-  useEffect(()=>{void load();},[load]);
+  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(timer);},[load]);
 
   async function action(actionName:string,exceptionId?:string){
     setBusy(exceptionId||actionName);setError("");
