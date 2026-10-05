@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const months = [
   ["10月","OBSERVE & DECIDE","見る・認知する・判断する"],
   ["11月","CREATE ADVANTAGE","1on1で優位性をつくる"],
-  ["12月","USE ADVANTAGE","ズレを使い、次へつなぐ"],
+  ["12月","USE ADVANTAGE","ズレを使い、次の攻撃へ展開する"],
   ["1月","FINISHING","リング周辺の解決力"],
   ["2月","SHOOTING IN CONTEXT","ゲーム状況からシュートを選ぶ"],
   ["3月","SPACING","距離・角度・スペースを理解する"],
@@ -41,7 +41,7 @@ const focus = [
   ["SEE","相手・味方・スペースを観る"],
   ["DECIDE","状況に応じて選択する"],
   ["ACT","技術をゲームの中で実行する"],
-  ["ADAPT","失敗から修正し、次へつなぐ"],
+  ["ADAPT","失敗から修正し、次のプレーで試す"],
 ] as const;
 
 const structuredData = {
@@ -77,7 +77,7 @@ export default function Page(){
         <p style={{fontSize:13,letterSpacing:3,fontWeight:700,margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY · SENDAI · START OCT 2026</p>
         <h1 style={{fontSize:"clamp(38px,6vw,72px)",lineHeight:.92,letterSpacing:-3,margin:"0 0 24px",fontWeight:900}}>RBA U15<br/>SKILL UP SCHOOL</h1>
         <p style={{fontSize:"clamp(20px,2.4vw,30px)",fontWeight:800,margin:"0 0 14px"}}>現代バスケットボールを学ぶ90分。</p>
-        <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
+        <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間を通して扱い、ゲームで使えるFundamentalsを育てます。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
           <a href="#apply" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>STEP 1｜参加申込</a>
           <a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>STEP 2｜初回決済（入会金込） ↗</a>
@@ -130,29 +130,29 @@ export default function Page(){
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:12}}>
           {[
             ["判断を速くしたい","ボールを持ってから考えるのではなく、受ける前から見て選ぶ習慣をつくる。"],
-            ["試合で技術を使いたい","ドリルでできる技術を、1on1〜4on4の判断の中で使える形へつなげる。"],
+            ["試合で技術を使いたい","ドリルでできる技術を、1on1〜4on4の判断の中で使える形にする。"],
             ["役割を広げたい","今のポジションだけに固定せず、運ぶ・攻める・パスする・守るを経験する。"],
-            ["中学・次のカテゴリーへ備えたい","小学6年生も参加可。U15年代につながるゲーム理解を早めに身につける。"],
+            ["中学・次のカテゴリーへ備えたい","小学6年生も参加可。U15年代で必要になるゲーム理解を早めに身につける。"],
           ].map(([t,b])=><article key={t} style={{border:"1px solid #dddcd6",padding:24,background:"#fafaf7"}}><h3 style={{fontSize:21,margin:"0 0 10px"}}>{t}</h3><p style={{margin:0,lineHeight:1.75,color:"#4b4b47"}}>{b}</p></article>)}
         </div>
-        <p style={{margin:"28px 0 0",fontSize:17,lineHeight:1.8,maxWidth:850}}><strong>所属チームはそのままで大丈夫です。</strong> チーム活動とは別に、自分自身のバスケットボールを整理し、試し、振り返るための育成環境として参加できます。</p>
+        <p style={{margin:"28px 0 0",fontSize:17,lineHeight:1.8,maxWidth:850}}><strong>所属チームはそのままで大丈夫です。</strong> チーム活動とは別に、自分自身のプレーを学び、試し、振り返る場として参加できます。</p>
       </section>
 
       <section style={{padding:"64px 6vw",background:"#f5f5f2"}}>
         <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>SENDAI · TAIHAKU</p>
         <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 18px"}}>仙台で中学生のバスケスクールを探している方へ。</h2>
-        <p style={{maxWidth:900,lineHeight:1.85,fontSize:17,color:"#444"}}>RBA U15 SKILL UP SCHOOLは、仙台市太白区で開催する小学6年生・中学生向けの定期育成スクールです。部活動やクラブチームの所属を変える必要はありません。普段のチーム活動を続けながら、個人として「見る・判断する・実行する」を整理し、ゲームの中で試す時間をつくります。</p>
+        <p style={{maxWidth:900,lineHeight:1.85,fontSize:17,color:"#444"}}>RBA U15 SKILL UP SCHOOLは、仙台市太白区で開催する小学6年生・中学生向けの定期育成スクールです。部活動やクラブチームの所属を変える必要はありません。普段のチーム活動を続けながら、個人として「見る・判断する・実行する」を学び、ゲームの中で試す時間をつくります。</p>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:12,marginTop:24}}>
           <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>仙台市太白区</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>毎週木曜日・18:00〜19:30。学校や所属チームと両立しやすい平日夜の90分です。</p></article>
-          <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>小学6年生から参加可</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>中学バスケへ進む前に、ゲーム理解と個人のFundamentalsを整理できます。</p></article>
-          <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>所属変更は不要</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>RBAは所属クラブの代替ではなく、選手個人の学習機会を追加する育成環境として設計しています。</p></article>
+          <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>小学6年生から参加可</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>中学バスケへ進む前に、ゲーム理解と個人のFundamentalsを身につけます。</p></article>
+          <article style={{background:"#fff",border:"1px solid #dddcd6",padding:22}}><strong>所属変更は不要</strong><p style={{lineHeight:1.7,color:"#4b4b47"}}>RBAは所属クラブの代わりではなく、選手個人が追加で学べる場として運営しています。</p></article>
         </div>
       </section>
 
       <section style={{padding:"64px 6vw",background:"#ecece7"}}>
         <p style={{fontSize:12,letterSpacing:3,fontWeight:700,color:"#666"}}>MY HOME COURT</p>
         <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 18px"}}>90分で終わらせず、成長を残す。</h2>
-        <p style={{maxWidth:860,lineHeight:1.85,fontSize:17,color:"#444"}}>スクールで取り組んだことを、MY HOME COURTのBasketball Passportや振り返りにつなげます。参加予定、学んだこと、次に試したいこと、次の育成機会を一つの場所で整理できます。RBA IDは無料です。</p>
+        <p style={{maxWidth:860,lineHeight:1.85,fontSize:17,color:"#444"}}>スクールで取り組んだことは、MY HOME COURTのBasketball Passportに記録できます。参加予定、学んだこと、次に試したいこと、今後の活動をまとめて確認できます。RBA IDは無料です。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:24}}>
           <a href="/ja/my-homecourt" style={{display:"inline-block",background:"#111",color:"#fff",padding:"14px 20px",fontWeight:800,textDecoration:"none"}}>MY HOME COURTを見る →</a>
           <a href="/ja/my-homecourt/login" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"13px 20px",fontWeight:800,textDecoration:"none",background:"#fff"}}>無料RBA IDをつくる →</a>
@@ -166,7 +166,7 @@ export default function Page(){
           <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>01</strong><h3>申込フォーム</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>選手・保護者情報、現在の課題、安全上の共有事項を入力します。</p></div>
           <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>02</strong><h3>入会金＋月額登録</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>初回は入会金5,500円＋初月会費7,700円＝13,200円（税込）。翌月以降は月額7,700円（税込）です。Stripeの安全な決済画面から登録します。</p><a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}>月額登録へ →</a></div>
           <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>03</strong><h3>RBAから確認メール</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>フォームと決済を確認後、受付確定と会場詳細をメールでご案内します。</p></div>
-          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>04</strong><h3>MY HOME COURT</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>参加予定、成長記録、次の育成機会を一つの場所につなげます。</p><a href="/ja/my-homecourt" style={{color:"#fff",fontWeight:800}}>MY HOME COURTを見る →</a></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>04</strong><h3>MY HOME COURT</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>参加予定、成長記録、今後の活動を一つの場所で確認できます。</p><a href="/ja/my-homecourt" style={{color:"#fff",fontWeight:800}}>MY HOME COURTを見る →</a></div>
         </div>
         <p style={{margin:"24px 0 0",color:"#bbb",lineHeight:1.7}}>登録後の支払い方法変更・解約手続きはStripeの会員ページから行えます。<a href="https://billing.stripe.com/p/login/8x2dRb2XZ4fi1MpeAL7EQ00" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}> 月額登録を管理する ↗</a></p>
       </section>
@@ -188,13 +188,13 @@ export default function Page(){
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
           {[
             ["小学6年生でも参加できますか？","はい。U15年代につながる準備期間として、小学6年生も参加できます。"],
-            ["今のチームを辞める必要はありますか？","ありません。所属チームでの活動を大切にしながら、個人として学ぶための追加環境として参加できます。"],
+            ["今のチームを辞める必要はありますか？","ありません。所属チームでの活動を大切にしながら、個人として追加で学ぶ場として参加できます。"],
             ["ポジションは固定されますか？","固定しません。運ぶ・攻める・パスする・守るなど、複数の役割を経験しながらゲーム理解を広げます。"],
             ["経験年数やレベル差があっても大丈夫ですか？","申込時の経験や課題を確認し、少人数グループやSmall-Sided Gamesを使って安全面と学習負荷を調整します。"],
             ["会場はどこですか？","仙台市太白区です。詳細は申込フォームと月額登録を確認後、RBAからの受付確認メールでご案内します。"],
             ["欠席した場合はどうなりますか？","月3回の定期受講です。欠席・振替・キャンセルの扱いはRBAの案内および規定に沿ってご案内します。"],
             ["月額登録の変更や解約はできますか？","Stripeの会員ページから支払い方法の変更や解約手続きができます。解約時期などはRBAの規定をご確認ください。"],
-            ["MY HOME COURTは何に使いますか？","参加記録、Basketball Passport、振り返り、次の育成機会の確認など、スクール外の成長管理に使えます。RBA IDは無料です。"],
+            ["MY HOME COURTは何に使いますか？","参加記録、Basketball Passport、振り返り、次に参加できる活動の確認など、スクール外での振り返りに使えます。RBA IDは無料です。"],
           ].map(([q,a])=><article key={q} style={{borderTop:"1px solid #d8d8d2",padding:"22px 4px 8px"}}><h3 style={{fontSize:18,margin:"0 0 10px"}}>{q}</h3><p style={{margin:0,lineHeight:1.8,color:"#4b4b47"}}>{a}</p></article>)}
         </div>
         <div style={{marginTop:34,padding:"24px",background:"#f3f3ef",border:"1px solid #dddcd6"}}>
