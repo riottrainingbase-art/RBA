@@ -32,6 +32,19 @@ function walk(dir,out=[]){
 
 const files=roots.flatMap(root=>walk(root));
 const failures=[];
+
+const homepage=fs.readFileSync("components/localized-home.tsx","utf8");
+for(const required of [
+  'START HERE / あなたはどなたですか？',
+  'href="/ja/opportunities"',
+  'href="/ja/coaches"',
+  'href="/ja/organizer"',
+  'href="/ja/international"',
+  'href={memberStartHref}',
+]){
+  if(!homepage.includes(required))failures.push({file:"components/localized-home.tsx",rule:"homepage-primary-route-missing",sample:required});
+}
+if(homepage.includes('href="/ja/work-with-rba"'))failures.push({file:"components/localized-home.tsx",rule:"legacy-homepage-organizer-route",sample:'/ja/work-with-rba'});
 for(const file of files){
   let source;
   try{source=fs.readFileSync(file,"utf8");}catch{continue}
