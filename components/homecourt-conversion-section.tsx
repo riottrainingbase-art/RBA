@@ -17,7 +17,7 @@ export function HomecourtConversionSection(){
         <div className="homecourt-plan-card-head"><span>RBA ID</span><strong>¥0</strong></div>
         <h3>まずはRBA IDから始める。</h3>
         <p>活動を探す、JOURNALを読む、自分に合う入口を見つける。RBA IDの登録だけで料金が発生することはありません。</p>
-        <a className="button button-light" href="/ja/my-homecourt/login">RBA IDをつくる<ArrowRight size={16}/></a>
+        <a className="button button-light" href="/ja/my-homecourt">RBA ID / MY HOME COURTを見る<ArrowRight size={16}/></a>
       </article>
       <article className="homecourt-plan-card homecourt-plan-paid">
         <div className="homecourt-plan-card-head"><span>HOMECOURT PLUS</span><strong>¥3,300 / 月</strong></div>
