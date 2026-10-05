@@ -146,7 +146,10 @@ Deno.serve(async(req:Request)=>{
     application=data;
   }
 
-  const needsManual=checkoutPolicy==="manual_after_application"||checkoutPolicy==="inquiry_only";
+  const capacityControlled=Boolean(offer.metadata?.capacity_controlled);
+  const effectiveCapacity=Number(offer.capacity||event?.capacity||0);
+  const capacityReady=!capacityControlled||(Number.isFinite(effectiveCapacity)&&effectiveCapacity>0);
+  const needsManual=checkoutPolicy==="manual_after_application"||checkoutPolicy==="inquiry_only"||!capacityReady;
   await admin.from("platform_notifications").upsert({
     user_id:user.id,
     notification_type:"application_received",
@@ -164,6 +167,7 @@ Deno.serve(async(req:Request)=>{
     status:application.status,
     next:needsManual?"review":"checkout",
     checkout_policy:checkoutPolicy,
+    capacity_ready:capacityReady,
     subject_user_id:subjectId
   });
 });
