@@ -9,7 +9,7 @@ import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
-  ja:{kicker:"RBA JOURNAL",title:"育成を、もっと深く。もっと広く。",lead:"研究・公式資料で確認できること、RBAが現場でどう解釈するか、まだ断定できないことを分けて届けます。読むだけで終わらず、次の練習・判断・行動まで。",latest:"最新記事",all:"記事一覧",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"日本とアジアの次の交流を、一緒につくる。",exchangeBody:"海外アカデミー、チーム、指導者の皆さまへ。来日プログラム、合同クリニック、指導者講習、育成年代の交流についてRBAへご相談ください。",ask:"WhatsAppでRBAに相談",read:"記事を読む",back:"JOURNALへ戻る"},
+  ja:{kicker:"RBA JOURNAL",title:"育成を、もっと深く。もっと広く。",lead:"研究・公式資料で確認できること、RBAがどう考えるか、まだ断定できないことを分けて掲載します。必要な記事だけ読み、次の練習やチーム選びの参考にしてください。",latest:"最新記事",all:"記事一覧",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"日本とアジアの次の交流を、一緒につくる。",exchangeBody:"海外アカデミー、チーム、指導者の皆さまへ。来日プログラム、合同クリニック、指導者講習、育成年代の交流についてRBAへご相談ください。",ask:"WhatsAppでRBAに相談",read:"記事を読む",back:"JOURNALへ戻る"},
   "zh-tw":{kicker:"RBA JOURNAL",title:"讓培育連結更廣的世界。",lead:"分享球員、家長、教練與亞洲夥伴都能使用的培育觀點、現場筆記與國際交流。",latest:"最新文章",all:"所有文章",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"一起建立日本與亞洲的下一次交流。",exchangeBody:"歡迎學院、球隊與教練洽詢日本交流、聯合訓練營、教練教育與青少年合作。",ask:"WhatsApp聯絡RBA",read:"閱讀文章",back:"返回JOURNAL"},
   ko:{kicker:"RBA JOURNAL",title:"육성을 더 넓은 세계로.",lead:"선수, 보호자, 코치와 아시아 파트너를 위한 육성 관점, 현장 기록, 국제 교류를 공유합니다.",latest:"최신 글",all:"전체 글",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"일본과 아시아의 다음 교류를 함께 만듭니다.",exchangeBody:"아카데미, 팀, 코치는 일본 교류, 공동 클리닉, 코치 교육과 유소년 교류를 RBA에 문의할 수 있습니다.",ask:"WhatsApp으로 RBA 문의",read:"글 읽기",back:"JOURNAL로 돌아가기"}
 } as const;
@@ -128,7 +128,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="RBA JOURNALの情報量">
         <article><strong>{posts.length}</strong><span>公開記事</span><small>育成・保護者・指導者・海外・プログラム</small></article>
         <article><strong>{posts.filter(post=>post.evidence_summary||post.source_references?.length).length}</strong><span>根拠欄あり</span><small>EVIDENCE / RBA INTERPRETATION / LIMITATIONS</small></article>
-        <article><strong>{posts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク</span><small>原典・公式資料を確認できる入口</small></article>
+        <article><strong>{posts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク</span><small>原典・公式資料へのリンク</small></article>
         <article><strong>{posts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>最終確認日を記事ごとに表示</small></article>
       </section>:null}
       {locale==="ja"?<JournalLearningPathsGrid compact totalArticles={posts.length}/>:null}
@@ -189,15 +189,15 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <div className="homecourt-role-grid">
           <article><span>PARENTS</span><h3>保護者の方</h3><p>チーム選び、出場時間、試合後の声かけ、役割固定など。</p>{familyPaths.map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
           <article><span>COACHES</span><h3>指導者の方</h3><p>勝利と育成、ベンチワーク、プレス、判断を育てる練習設計など。</p><Link href="/ja/journal/coaches"><strong>指導者専用JOURNALへ</strong> <ArrowRight size={15}/></Link>{coachPaths.slice(0,5).map(item=>{const post=findPost(item.slug);return post?<Link key={item.slug} href={journalHref(locale,item.slug)}>{item.label} <ArrowRight size={15}/></Link>:null})}</article>
-          <article><span>PLAYERS / ALL</span><h3>選手・すべての方</h3><p>試合、練習、クリニック、海外交流を「次の成長」につなげる記事です。</p><Link href="#all-articles">育成の記事を見る <ArrowRight size={15}/></Link><Link href="#all-articles">海外交流の記事を見る <ArrowRight size={15}/></Link><Link href="/ja/opportunities">参加できる活動を探す <ArrowRight size={15}/></Link></article>
+          <article><span>PLAYERS / ALL</span><h3>選手・すべての方</h3><p>試合、練習、クリニック、海外交流のあとに、次に何を試すか考えるための記事です。</p><Link href="#all-articles">育成の記事を見る <ArrowRight size={15}/></Link><Link href="#all-articles">海外交流の記事を見る <ArrowRight size={15}/></Link><Link href="/ja/opportunities">参加できる活動を探す <ArrowRight size={15}/></Link></article>
         </div>
       </section>:null}
       
       {locale==="ja"?<section className="homecourt-role-section section-pad">
-        <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読んだあと、どう動くか。</h2></div><p>自分の立場に合う情報を保存し、次の活動や学びにつなげるならMY HOME COURTへ。</p></div>
+        <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読んだあと、どう動くか。</h2></div><p>気になった記事を保存したり、参加した活動を振り返ったりするならMY HOME COURTを使えます。</p></div>
         <div className="homecourt-role-grid">
           <article><span>PLAYER</span><h3>選手</h3><p>練習、試合、次のクリニック。今の自分に必要な情報をまとめて探せます。</p><Link href="/ja/my-homecourt/players">選手向けHOME <ArrowRight size={16}/></Link></article>
-          <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに、感情だけで決めず整理できる記事をまとめています。</p><Link href="/ja/journal/families">保護者JOURNALへ <ArrowRight size={16}/></Link><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
+          <article><span>PARENT</span><h3>保護者</h3><p>チーム選び、出場時間、移籍、練習量。迷ったときに確認したいポイントを記事にまとめています。</p><Link href="/ja/journal/families">保護者JOURNALへ <ArrowRight size={16}/></Link><Link href="/ja/my-homecourt/families">保護者向けHOME <ArrowRight size={16}/></Link></article>
           <article><span>COACH</span><h3>指導者</h3><p>D-HUB、Torsten、練習設計。毎週の指導をアップデートする学びをまとめます。</p><Link href="/ja/my-homecourt/coaches">指導者向けHOME <ArrowRight size={16}/></Link></article>
         </div>
         <div className="homecourt-launch-actions"><Link className="button button-member" href={authReady?"/ja/my-homecourt/login":"/ja/my-homecourt"}>{authReady?"無料でRBA IDをつくる":"MY HOME COURTを見る"}<ArrowRight size={17}/></Link><Link className="button button-dark" href="/ja/homecourt-plus">教科書・PLUSを見る<ArrowRight size={17}/></Link><Link className="button button-light" href="/ja/opportunities">募集中の活動を見る<ArrowRight size={17}/></Link></div>
@@ -292,7 +292,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div>
         <p className="section-index inverse">ARTICLE → NEXT OPPORTUNITY</p>
         <h2>この2日間を、<br/>次の育成機会へ。</h2>
-        <p>Development CampやClinicは、受けて終わりではなく、所属チームで試し、振り返り、次の機会へつなげるためにあります。現在募集中のRBAプログラムはOPPORTUNITIESにまとめています。</p>
+        <p>Development CampやClinicでは、参加して終わるのではなく、学んだことを所属チームで試し、振り返るところまで大切にします。現在募集中のRBAプログラムはOPPORTUNITIESで確認できます。</p>
       </div>
       <div className="article-learning-panel">
         <span>RBA / OPPORTUNITIES</span>
@@ -304,7 +304,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div>
         <p className="section-index inverse">ARTICLE → LIVE LEARNING</p>
         <h2>読むだけで終わらせず、<br/>次の練習へ。</h2>
-        <p>11月25日のTorsten Loibl Online Clinicでは、「現代バスケットボールにおけるシューターの育成と活用」をテーマに、技術・練習設計・ゲーム戦略を90分でつなぎます。</p>
+        <p>11月25日のTorsten Loibl Online Clinicでは、「現代バスケットボールにおけるシューターの育成と活用」をテーマに、技術、練習設計、ゲーム戦略を90分で学びます。</p>
       </div>
       <div className="article-learning-panel">
         <span>11.25 / 20:00 JST / ZOOM</span>
@@ -315,8 +315,8 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
     </section>:<section className="article-learning-bridge section-pad">
       <div>
         <p className="section-index inverse">ARTICLE → ACTION</p>
-        <h2>読んだことを、<br/>次の行動へ。</h2>
-        <p>記事を保存し、次の練習・試合・相談・育成機会へつなげる入口としてMY HOME COURTを使えます。</p>
+        <h2>読んだことを、<br/>次の練習で試す。</h2>
+        <p>気になった記事を保存し、次の練習や試合で試したいことをMY HOME COURTに残せます。</p>
       </div>
       <div className="article-learning-panel">
         <span>RBA / MY HOME COURT</span>
@@ -331,7 +331,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
         <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][item.category as keyof typeof categoryLabels.en]||item.category}</p><h3>{item.title}</h3><p>{item.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
       </Link>)}</div>
     </section>:null}
-    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、育成機会、参加履歴を一つのRBA IDでつなぐ無料の入口です。</p><a className="button button-light" href={authReady?"/ja/my-homecourt/login":"/ja/my-homecourt"}>{authReady?"無料でRBA IDをつくる":"MY HOME COURTを見る"}<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の行動に変える。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
+    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、募集中の活動、参加履歴を一つのRBA IDでまとめて確認できます。</p><a className="button button-light" href={authReady?"/ja/my-homecourt/login":"/ja/my-homecourt"}>{authReady?"無料でRBA IDをつくる":"MY HOME COURTを見る"}<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の練習で使う。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
   </article></SiteFrame>;
 }
 
@@ -370,7 +370,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="指導者JOURNALの情報量">
         <article><strong>{coachPosts.length}</strong><span>指導者向け記事</span><small>U12・練習設計・試合・S&Cまで</small></article>
         <article><strong>{coachPosts.filter(post=>post.coach_application?.length).length}</strong><span>実践ツール付き</span><small>READ → PLAN → COACH → REVIEW</small></article>
-        <article><strong>{coachPosts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク・延べ</span><small>原典・公式資料へ直接つなぐ</small></article>
+        <article><strong>{coachPosts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク・延べ</span><small>原典・公式資料へのリンク</small></article>
         <article><strong>{coachPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>更新日を記事ごとに確認可能</small></article>
       </section>:null}
       {recentCoachPosts.length?<section className="journal-cms-index journal-coach-latest section-pad">
@@ -407,7 +407,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
         </Link>)}</div>:<p>{locale==="ja"?"このテーマの記事を準備しています。":"Articles for this theme are being prepared."}</p>}
       </section>})}
       <section className="journal-exchange-cta section-pad">
-        <div><p className="section-index inverse">CONTINUE LEARNING</p><h2>{locale==="ja"?"記事から、継続的な指導者教育へ。":"Continue beyond the article."}</h2><p>{locale==="ja"?"D-HUB、Torsten Loibl Online Clinic、MY HOME COURTをつなぎ、毎週の指導を更新します。":"Connect Journal, D-HUB and coach education."}</p></div>
+        <div><p className="section-index inverse">CONTINUE LEARNING</p><h2>{locale==="ja"?"記事から、継続的な指導者教育へ。":"Continue beyond the article."}</h2><p>{locale==="ja"?"D-HUB、Torsten Loibl Online Clinic、MY HOME COURTを使い分けながら、毎週の指導を見直せます。":"Connect Journal, D-HUB and coach education."}</p></div>
         <div><Link className="button button-light" href={`${prefix}/d-hub`}>D-HUB <ArrowRight size={16}/></Link><Link className="button button-dark" href={`${prefix}/my-homecourt/coaches`}>COACH HOME <ArrowRight size={16}/></Link></div>
       </section>
     </div>
@@ -451,7 +451,7 @@ export async function PublicFamilyJournalHub({locale}:{locale:Locale}){
 
       {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="保護者JOURNALの情報量">
         <article><strong>{familyPosts.length}</strong><span>保護者向け記事</span><small>チーム・家庭・進路・安全まで</small></article>
-        <article><strong>{sourceCount}</strong><span>参考資料リンク・延べ</span><small>各記事から原典へ直接つなぐ</small></article>
+        <article><strong>{sourceCount}</strong><span>参考資料リンク・延べ</span><small>各記事から原典を確認できます</small></article>
         <article><strong>{new Set(familyPosts.flatMap(post=>post.source_references.map(ref=>ref.url))).size}</strong><span>ユニーク参考資料</span><small>同じ原典の重複利用は1件として集計</small></article>
         <article><strong>{familyPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>いつ確認した内容かを記事ごとに表示</small></article>
       </section>:null}
