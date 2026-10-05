@@ -302,6 +302,8 @@ button, a { -webkit-tap-highlight-color:transparent; }
 .whatsapp-dock:hover { transform:translateY(-3px); background:#2f363a; }
 .member-dock { position:fixed; left:22px; bottom:22px; z-index:20; display:flex; align-items:center; gap:10px; min-height:52px; padding:0 18px; color:var(--ink); background:var(--signal); border:1px solid #9a9e9e; box-shadow:0 12px 34px #00000035; font-size:12px; font-weight:900; letter-spacing:.03em; transition:transform .2s ease,box-shadow .2s ease; }
 .member-dock:hover { transform:translateY(-3px); box-shadow:0 16px 38px #0004; }
+.opportunities-dock { position:fixed; right:22px; bottom:22px; z-index:20; display:flex; align-items:center; gap:10px; min-height:52px; padding:0 18px; color:white; background:#101214; border:1px solid #4a5358; box-shadow:0 12px 34px #00000035; font-size:12px; font-weight:900; letter-spacing:.02em; transition:transform .2s ease,background .2s ease; }
+.opportunities-dock:hover { transform:translateY(-3px); background:#2f363a; }
 .asia-desk-home { display:grid; grid-template-columns:1fr 1fr; gap:80px; color:white; background:#252b2f; border-top:1px solid #465158; }
 .asia-desk-home h2 { margin:16px 0 0; font-size:clamp(42px,6vw,82px); line-height:.95; letter-spacing:-.06em; }
 .asia-desk-home>div:last-child { align-self:end; }
