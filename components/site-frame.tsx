@@ -23,6 +23,9 @@ const languageLabels:Record<Locale,string>={en:"EN",ja:"日本語","zh-tw":"繁�
 
 export function localePath(locale:Locale, page?:LanguagePage){
   const prefix=locale==="en"?"":`/${locale}`;
+  if(locale==="ja"&&page==="schedule")return "/ja/opportunities";
+  if(locale==="ja"&&page==="home-court")return "/ja/my-homecourt";
+  if(locale==="ja"&&page==="work-with-rba")return "/ja/organizer";
   return page?`${prefix}/${page}`:prefix||"/";
 }
 
@@ -64,7 +67,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
         <div className="language-links" role="group" aria-label="Language / 言語 / 語言 / 언어">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div>
       </div>
     </header>
-    <PublicUpdateBanner locale={locale}/>
+    {!languagePage||languagePage==="journal"?<PublicUpdateBanner locale={locale}/>:null}
     <main id="main-content">{children}</main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
