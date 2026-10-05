@@ -4,11 +4,11 @@ import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
   title: "RBAと一緒に活動をつくる｜開催・地域連携・協賛",
-  description: "クリニック、Development Camp、RBA UNITED、地域開催、海外交流、協賛・連携。RBAと一緒に実際の育成機会をつくりたいチーム・主催者・企業向けの案内です。",
+  description: "クリニック、Development Camp、RBA UNITED、地域開催、海外交流、協賛・連携。RBAと一緒に実際の活動をつくりたいチーム・主催者・企業向けの案内です。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/work-with-rba" },
   openGraph: {
     title: "RBAと一緒に活動をつくる",
-    description: "情報を売るのではなく、実際のコート、活動、交流、育成機会を一緒につくる。",
+    description: "情報だけで終わらせず、実際のコート、活動、交流を一緒につくる。",
     url: "https://riotbasketballacademy.com/ja/work-with-rba",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -30,7 +30,7 @@ const routes = [
     icon: Users,
     tag: "TEAM TRAINING",
     title: "普段のチーム練習を設計する",
-    body: "テーマ、認知・判断、Small-Sided Game、振り返りまでを一つの流れで整理します。HOMECOURTのTEAM HOMEを使い、練習をチームの学習履歴として積み上げられます。",
+    body: "テーマ、見る・判断する課題、Small-Sided Game、振り返りまでを一つの流れで組み立てます。TEAM HOMEに練習内容を残し、前回からの変化も確認できます。",
     href: "/ja/team-training",
     cta: "TEAM TRAININGを見る",
   },
@@ -38,7 +38,7 @@ const routes = [
     icon: Trophy,
     tag: "VISIT TRAINING",
     title: "普段の練習に、RBAを呼ぶ",
-    body: "RBAがチームの体育館へ伺い、普段の練習を観察しながら、必要なテーマを一緒に実装します。オンコート指導、ゲーム観察、指導者フィードバック、継続訪問まで目的に合わせて組み立てます。",
+    body: "RBAがチームの体育館へ伺い、普段の練習を観察しながら、必要なテーマを実際の練習で一緒に試します。オンコート指導、ゲーム観察、指導者フィードバック、継続訪問まで目的に合わせて組み立てます。",
     href: "/ja/team-visit-clinic",
     cta: "VISIT TRAININGを見る",
   },
@@ -78,7 +78,7 @@ const routes = [
     icon: Handshake,
     tag: "PARTNERSHIP",
     title: "企業・地域パートナーとして支える",
-    body: "広告枠を売るだけではなく、地域開催、参加機会、育成環境、海外交流など、支援がどこに使われるかを明確にした連携をつくります。",
+    body: "広告枠を売るだけではなく、地域開催、参加費の負担軽減、安全な活動環境、海外交流など、支援の使い道が分かる連携を行います。",
     href: "/ja/partners",
     cta: "協賛・連携について見る",
   },
@@ -86,7 +86,7 @@ const routes = [
     icon: Building2,
     tag: "ORGANIZER",
     title: "大会・イベント運営を一緒につくる",
-    body: "募集、参加者管理、決済、会場運営、安全管理など、実際の開催に必要な業務を整理します。提供できる機能から段階的に運用します。",
+    body: "募集、参加者管理、決済、会場運営、安全管理など、開催に必要な業務を確認します。できる範囲から段階的に運用します。",
     href: "/ja/organizer",
     cta: "主催者向け案内を見る",
   },
@@ -97,8 +97,8 @@ export default function Page() {
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja">← RBA</a>
       <p className="section-index">WORK WITH RBA</p>
-      <h1>情報を売るのではなく、<br/>実際の育成機会をつくる。</h1>
-      <p>RBAが一緒につくりたいのは、教材を買って終わる関係ではありません。子どもが実際にプレーできる場、指導者が学びを現場で試せる場、地域や海外とつながる機会を増やしていきます。</p>
+      <h1>情報だけで終わらせず、<br/>実際に活動できる場をつくる。</h1>
+      <p>RBAが一緒につくりたいのは、教材を買って終わる関係ではありません。子どもが実際にプレーできる場、指導者が学んだことを試せる場、地域や海外と交流できる機会を増やします。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="/ja/clinic-request">RBAを地域に呼ぶ<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/contact">まず相談する<ArrowRight size={17}/></a>
@@ -107,7 +107,7 @@ export default function Page() {
 
     <section className="homecourt-product-preview section-pad">
       <div className="section-head">
-        <div><p className="section-index">REAL PROGRAMMES / REAL PLACES</p><h2>売るのは情報ではなく、実際に動く仕組み。</h2></div>
+        <div><p className="section-index">REAL PROGRAMMES / REAL PLACES</p><h2>大切にするのは、実際に活動が続くこと。</h2></div>
         <p>参加費、開催費、協賛、地域連携など、実際の活動に価値が生まれる形を中心に事業を組み立てます。</p>
       </div>
       <div className="homecourt-preview-grid">
@@ -120,7 +120,7 @@ export default function Page() {
 
     <section className="access-promise section-pad">
       <p className="section-index">CHOOSE A ROUTE</p>
-      <div><h2>目的に合わせて、RBAとの関わり方を選べます。</h2><p>まだ企画が固まっていなくても構いません。地域、対象年代、人数、やりたいことが分かる範囲から整理します。</p></div>
+      <div><h2>目的に合わせて、RBAとの関わり方を選べます。</h2><p>まだ企画が固まっていなくても構いません。地域、対象年代、人数、やりたいことなど、分かる範囲から一緒に確認します。</p></div>
     </section>
     <section className="access-grid section-pad">
       {routes.map(({icon:Icon,tag,title,body,href,cta}) => <article key={tag}>
@@ -136,7 +136,7 @@ export default function Page() {
       <p className="section-index">BUSINESS PRINCIPLE</p>
       <div>
         <h2>RBAの事業は、<br/>コートに戻ってくる。</h2>
-        <p>収益をつくることと、育成を良くすることを分けません。参加者が増える、地域開催が増える、指導者が学ぶ、企業支援で新しい機会が生まれる。その循環自体をRBAの事業にしていきます。</p>
+        <p>RBAは、事業として継続できることと、育成環境を良くすることの両方を大切にします。参加者が増え、地域開催が続き、指導者が学び、企業支援で新しい活動が生まれる形を目指します。</p>
         <a className="text-link" href="/ja/impact">RBA IMPACTを見る<ArrowRight size={16}/></a>
       </div>
     </section>
@@ -144,7 +144,7 @@ export default function Page() {
     <section className="closing-cta section-pad">
       <p className="eyebrow">START A REAL PROJECT</p>
       <h2>まず、地域と対象年代、<br/>やりたいことを教えてください。</h2>
-      <p>クリニック、キャンプ、地域開催、海外交流、協賛・連携まで。実現できる形を一緒に整理します。</p>
+      <p>クリニック、キャンプ、地域開催、海外交流、協賛・連携まで。実施できる形を一緒に考えます。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="/ja/clinic-request">開催相談を始める<ArrowRight size={17}/></a>
         <a className="button button-dark" href="/ja/contact">その他の連携を相談する<ArrowRight size={17}/></a>
