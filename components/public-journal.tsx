@@ -188,8 +188,8 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
       
       <section className="journal-full-library section-pad" id="all-articles">
         <div className="section-head">
-          <div><p className="section-index">${locale==="ja"?"ALL ARTICLES":c.all}</p><h2>${locale==="ja"?`全${posts.length}本から、必要な記事を探す。`:c.all}</h2></div>
-          <p>${locale==="ja"?"ここまででテーマが決まらなかった方は、キーワード・対象・カテゴリから全記事を検索できます。":"Search the full RBA Journal library."}</p>
+          <div><p className="section-index">{locale==="ja"?"ALL ARTICLES":c.all}</p><h2>{locale==="ja"?`全${posts.length}本から、必要な記事を探す。`:c.all}</h2></div>
+          <p>{locale==="ja"?"ここまででテーマが決まらなかった方は、キーワード・対象・カテゴリから全記事を検索できます。":"Search the full RBA Journal library."}</p>
         </div>
         <JournalExplorer locale={locale} items={explorerItems}/>
       </section>
