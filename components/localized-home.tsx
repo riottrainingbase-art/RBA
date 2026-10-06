@@ -106,6 +106,23 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
+        <div><p className="section-index">RBA QUESTIONS</p><h2>当たり前を、子どもの未来から問い直す。</h2></div>
+        <p>炎上させるためではなく、育成年代で本当に守りたいものを考えるために。RBAは、現場でよくある「当たり前」を、根拠と実践の両方から問い直します。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article><span>QUESTION 01</span><h3>試合に出られない小学生は、本当に育成されているのか？</h3><p>出場時間は「ご褒美」ではなく、判断・失敗・修正を経験する機会です。</p><Link className="text-link" href="/ja/journal/playing-time-is-experience">出場機会を考える<ArrowRight size={16}/></Link></article>
+        <article><span>QUESTION 02</span><h3>強豪チームに入れば、本当に伸びるのか？</h3><p>戦績や知名度では見えない、毎週の出場機会・役割・指導環境まで比べます。</p><Link className="text-link" href="/ja/journal/strong-school-myth">強豪信仰を考える<ArrowRight size={16}/></Link></article>
+        <article><span>QUESTION 03</span><h3>練習量は、多いほどいいのか？</h3><p>長時間練習と成長を同じにせず、負荷、回復、睡眠、試合数まで含めて考えます。</p><Link className="text-link" href="/ja/journal/too-much-practice">練習量を考える<ArrowRight size={16}/></Link></article>
+        <article><span>QUESTION 04</span><h3>ベンチから答えを出し続けたとき、誰がバスケットボールをしているのか？</h3><p>指示の量ではなく、選手自身が見る・選ぶ・修正する時間をどう残すか。</p><Link className="text-link" href="/ja/journal/who-is-playing">指導を考える<ArrowRight size={16}/></Link></article>
+      </div>
+      <div className="homecourt-launch-actions">
+        <Link className="button button-dark" href="/ja/journal">RBA JOURNALを見る<ArrowRight size={17}/></Link>
+        <Link className="button button-light" href="/ja/opportunities">NEXT COURTを見る<ArrowRight size={17}/></Link>
+      </div>
+    </section>:null}
+
+    {locale==="ja"?<section className="homecourt-product-preview section-pad">
+      <div className="section-head">
         <div><p className="section-index">DEVELOPMENT GUIDE</p><h2>ミニバス・U12・U15。<br/>今の悩みから必要な情報を探す。</h2></div>
         <p>出場時間、チーム選び、移籍、練習設計、S&C、女子選手の身体づくり。記事を順番に読む必要はありません。今困っていることから必要な情報を選べます。</p>
       </div>

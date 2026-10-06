@@ -117,13 +117,31 @@ Impact proof
 
 Do not stop provocative content; rebalance it.
 
-- 30% problem / structural issue
+- 40% problem / structural issue
 - 25% field evidence and participant outcomes
-- 20% practical coaching / S&C education
-- 15% Japan × Asia proof
+- 15% practical coaching / S&C education
+- 10% Japan × Asia proof
 - 10% direct offer
 
 Every post must have one next action only.
+
+### Problem-led content is an acquisition engine
+
+Problem-led content remains RBA's largest organic reach lever. Do not reduce it simply to look more corporate. Instead, give every provocative post a second layer:
+
+1. State the question clearly.
+2. Show what is known from evidence or official guidance.
+3. Explain the structural reason the problem persists.
+4. Offer a practical alternative.
+5. Show what RBA actually does.
+6. Send the reader to one next step.
+
+The goal is not outrage. The goal is **recognition → reflection → trust → action**.
+
+Use three families of questions:
+- **Child-centred contradiction** — "Is this really for the child?"
+- **Evidence vs tradition** — "Is the common practice actually supported?"
+- **System / structure** — "What in the rules, culture or incentives creates this?"
 
 Examples:
 - Issue post → full article / RBA ID.
