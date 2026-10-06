@@ -24,7 +24,7 @@ const copy={
     contactLabel:"START WITH THE REAL QUESTION",contactTitle:["What does your environment","need next?"],contactCopy:"Clinics, camps, coach learning, Japan–Asia exchange, S&C dialogue and aligned partnerships.",contact:"Contact RBA",whatsapp:"Talk on WhatsApp"
   },
   ja:{
-    title:["子どもの未来から、","育成を考える。"],lede:"今いるチームを大切にしながら、地域の外にも学びと挑戦を。RBAは、選手・保護者・指導者が、全国・アジアのクリニックやキャンプ、学びの場に参加できる育成プラットフォームです。",
+    title:["今いるチームを大切に。","学びは、地域の外へ。"],lede:"RBAは、所属を変えなくても全国・アジアの学びと挑戦につながれる育成プラットフォームです。クリニック、キャンプ、指導者の学び、地域開催、国際交流を、次の一歩につながる形で届けます。",
     primary:"募集中の活動を見る",secondary:"RBAを地域に呼ぶ",proof:[["3,000+","2025年半ば以降の延べ参加者"],["25","国内25地域で活動"],["4言語","日本語・英語・繁体字中国語・韓国語"]],image:"次に参加できる活動が、ここから見つかる。",
     clinicLabel:"全国の指導者へ · 2026年11月25日",clinicTitle:"世界の育成現場から、90分で学ぶ。",clinicCopy:"トーステン・ロイブル氏から、シューター育成、練習設計、試合で良いシュートを生み出す考え方を学ぶ90分。日本語逐次通訳付きです。",clinicDetail:"講習内容と講師実績を見る",clinicApply:"11月25日の講習に申し込む",clinicHero:"11月25日｜トーステン・ロイブル オンライン講習",clinicAchievements:[["B.LEAGUE","レバンガ北海道 ヘッドコーチ"],["日本代表","U16・U18・U19日本代表を指導"],["3x3日本代表","ナショナルチームを指導"],["世界一","2019年女子U23ワールドカップ優勝時のディレクターコーチ"]],
     routesLabel:"育成を、行動に変える",routesTitle:"目的に合う活動を選ぶ。",routesCopy:"クリニック、キャンプ、RBA UNITED、指導者向け講習。今の目的に合う活動を選べます。",routes:[["選手・保護者","クリニックや現在募集中の活動を探す","opportunities"],["DEVELOPMENT CAMP","練習・ゲーム・振り返りを通して育成を深める","camp"],["RBA UNITED","大会・遠征・国際交流へ期間限定チームで挑戦する","united"],["指導者","トーステン氏のオンライン講習で学ぶ","events/torsten-loibl-online-clinic"],["ミニバスチーム","今いるチームの練習や育成を外部から見直す","minibasket-support"],["主催者・団体","地域やクラブでRBAの活動をつくる","organizer"],["海外アカデミー","日本との責任ある交流をつくる","asia"]],
@@ -80,14 +80,15 @@ export function LocalizedHome({locale}:{locale:Locale}){
     {locale==="ja"?<>
       <section className="rba-quick-entry section-pad">
         <div className="section-head">
-          <div><p className="section-index">START HERE / あなたはどなたですか？</p><h2>選手・保護者・指導者・チームから選ぶ。</h2></div>
-          <p>RBAのサービス名を知らなくても大丈夫です。自分の立場を選ぶと、必要な情報をすぐ確認できます。</p>
+          <div><p className="section-index">START HERE / 5つの入口</p><h2>今の目的から、RBAを選ぶ。</h2></div>
+          <p>サービス名を覚える必要はありません。参加したい、学びたい、地域に呼びたい、支えたい、海外とつながりたい。目的から選べます。</p>
         </div>
         <div className="rba-quick-entry-grid">
           <Link href="/ja/opportunities"><span>01 / PLAYER & FAMILY</span><h3>選手・保護者</h3><p>今参加できるクリニック、キャンプ、スクール、大会・遠征を確認する。</p><strong>参加できる活動を見る<ArrowRight size={16}/></strong></Link>
           <Link href="/ja/coaches"><span>02 / COACH</span><h3>指導者</h3><p>育成記事、D-HUB、オンライン講習、練習設計など、指導に役立つ情報を学ぶ。</p><strong>指導者向けを見る<ArrowRight size={16}/></strong></Link>
           <Link href="/ja/organizer"><span>03 / TEAM & ORGANIZER</span><h3>チーム・団体</h3><p>チーム練習、訪問指導、地域開催、大会・イベント運営について相談する。</p><strong>チーム・団体向けを見る<ArrowRight size={16}/></strong></Link>
-          <Link href="/ja/international"><span>04 / INTERNATIONAL</span><h3>海外・連携</h3><p>日本とアジアの交流、遠征、アカデミー連携、企業・地域との協働について相談する。</p><strong>海外・連携を見る<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/partners"><span>04 / PARTNER</span><h3>企業・パートナー</h3><p>地域の育成機会、安全な活動環境、コーチ教育、国際交流を企業・地域と一緒につくる。</p><strong>パートナー向けを見る<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/international"><span>05 / JAPAN × ASIA</span><h3>海外アカデミー</h3><p>日本とアジアの交流、遠征、指導者交流、アカデミー連携について相談する。</p><strong>国際連携を見る<ArrowRight size={16}/></strong></Link>
         </div>
       </section>
       <section className="homecourt-product-preview section-pad">
