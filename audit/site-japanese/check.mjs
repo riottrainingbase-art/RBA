@@ -16,6 +16,8 @@ const awkward=[
   ["players-meta",/Riot Basketball Academyの選手の方へに関する情報をご案内します。/],
   ["families-meta",/Riot Basketball Academyの保護者の方へに関する情報をご案内します。/],
   ["coaches-meta",/Riot Basketball Academyのコーチ・指導者の方へに関する情報をご案内します。/],
+  ["organizer-mixed-language",/(?:ClinicやCamp|地域交流を増やしたいTeam|Basketballを通じた交流人口)/],
+  ["hardcoded-ja-member-signup",/href=["']\/ja\/my-homecourt\/login["'][^>]*>無料でRBA IDをつくる/],
 ];
 
 function walk(dir,out=[]){
@@ -30,6 +32,49 @@ function walk(dir,out=[]){
 
 const files=roots.flatMap(root=>walk(root));
 const failures=[];
+
+const homepage=fs.readFileSync("components/localized-home.tsx","utf8");
+for(const required of [
+  'START HERE / あなたはどなたですか？',
+  'href="/ja/opportunities"',
+  'href="/ja/coaches"',
+  'href="/ja/organizer"',
+  'href="/ja/international"',
+  'href={memberStartHref}',
+]){
+  if(!homepage.includes(required))failures.push({file:"components/localized-home.tsx",rule:"homepage-primary-route-missing",sample:required});
+}
+if(homepage.includes('href="/ja/work-with-rba"'))failures.push({file:"components/localized-home.tsx",rule:"legacy-homepage-organizer-route",sample:'/ja/work-with-rba'});
+const canonicalUiFiles=[
+  "components/localized-home.tsx",
+  "components/site-frame.tsx",
+  "components/audience-page.tsx",
+  "components/my-homecourt.tsx",
+  "components/opportunity-explorer.tsx",
+];
+for(const file of canonicalUiFiles){
+  const source=fs.readFileSync(file,"utf8");
+  for(const legacy of ["/ja/schedule","/ja/home-court","/ja/work-with-rba","/ja/team"]){
+    if(source.includes(`href="${legacy}"`)||source.includes(`href=\'${legacy}\'`))failures.push({file,rule:"legacy-primary-route",sample:legacy});
+  }
+}
+
+const opportunitySource=fs.readFileSync("components/opportunity-explorer.tsx","utf8");
+const controlsIndex=opportunitySource.indexOf('className="opportunity-controls');
+const resultsIndex=opportunitySource.indexOf('className="opportunity-results');
+const explanationIndex=opportunitySource.indexOf('className="homecourt-plan-separation');
+if(!(controlsIndex>=0&&resultsIndex>controlsIndex&&explanationIndex>resultsIndex)){
+  failures.push({file:"components/opportunity-explorer.tsx",rule:"opportunity-results-must-come-first",sample:"ordering regression"});
+}
+
+const staticShell=fs.readFileSync("components/definitive-static-page.tsx","utf8");
+for(const required of ["function StaticHeader","function StaticFooter","extractContent","MY HOME COURT"]){
+  if(!staticShell.includes(required))failures.push({file:"components/definitive-static-page.tsx",rule:"static-shell-regression",sample:required});
+}
+
+if(!fs.existsSync("docs/RBA_SITE_INFORMATION_ARCHITECTURE.md")){
+  failures.push({file:"docs/RBA_SITE_INFORMATION_ARCHITECTURE.md",rule:"information-architecture-doc-missing",sample:"missing"});
+}
 for(const file of files){
   let source;
   try{source=fs.readFileSync(file,"utf8");}catch{continue}

@@ -59,7 +59,7 @@ export function HomecourtPage({locale}:{locale:Locale}) {
             <li><Check size={17}/>気になる活動を保存する</li>
             <li><Check size={17}/>PLAYER / PARENT / COACHの入口を使う</li>
           </ul>
-          <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>RBA IDをつくる<ArrowRight size={16}/></a>
+          <a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{authReady?"RBA IDをつくる":"登録再開のお知らせを受け取る"}<ArrowRight size={16}/></a>
         </article>
         <article className="homecourt-plan-card homecourt-plan-paid">
           <div className="homecourt-plan-card-head"><span>HOMECOURT PLUS</span><strong>¥3,300</strong><small>月額・税込</small></div>

@@ -11,7 +11,7 @@ const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
 const productPages=["/ja/homecourt-plus","/ja/development"];
 const regionalPages=["/ja/regions","/ja/saga","/ja/okinawa-coach"];
-const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support","/radio","/links","/sponsors"] as const;
+const secondaryJapanese=["/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
   {prefix:"/ja",locale:"ja"},
@@ -20,7 +20,7 @@ const localeMap:{prefix:string;locale:ContentLocale}[]=[
 ];
 
 export default async function sitemap():Promise<MetadataRoute.Sitemap>{
-  const localized=locales.flatMap(locale=>core.map(path=>locale+path));
+  const localized=locales.flatMap(locale=>core.map(path=>locale+path)).filter(path=>!["/ja/team","/ja/schedule","/ja/home-court"].includes(path));
   const journalPosts=(await Promise.all(localeMap.map(async item=>{
     try{
       const posts=await getPublicJournalPosts(item.locale,500);
@@ -35,7 +35,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
 
   const entries=[
     ...localized.map(path=>({path,lastModified:null as string|null})),
-    ...legacy.map(path=>({path,lastModified:null as string|null})),
+    ...secondaryJapanese.map(path=>({path,lastModified:null as string|null})),
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
     ...productPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
