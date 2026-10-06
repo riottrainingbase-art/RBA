@@ -56,7 +56,7 @@ const clarityCopy={
     ],
     faqTitle:"登録前によくある質問",faq:[
       ["今のチームを辞める必要はありますか？","ありません。今いる環境を大切にしながら、所属チームの外でも学んだり、新しい活動に参加したりできる場所です。"],
-      ["無料でも使えますか？","はい。RBA IDから無料で始められます。月額HOMECOURTは必要な方だけが選べます。"],
+      ["無料でも使えますか？","はい。RBA IDから無料で始められます。HOMECOURT PLUSは、必要な方だけが選ぶ月額プランです。"],
       ["RBAに参加したことがなくても使えますか？","使えます。初めての方も、過去参加者も同じ入口から始められます。"]
     ]
   },
@@ -128,7 +128,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       <div className="homecourt-preview-grid">{clear.cards.map(([label,title,body],index)=><article key={label}><Compass/><span>{String(index+1).padStart(2,"0")} / {label}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
       <div className="homecourt-plan-grid">
         <article className="homecourt-plan-card homecourt-plan-free"><div className="homecourt-plan-card-head"><span>FREE / RBA ID</span><strong>¥0</strong></div><h3>{clear.freeTitle}</h3><p>{clear.freeBody}</p><a className="button button-light" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}>{clear.freeCta}<ArrowRight size={16}/></a></article>
-        <article className="homecourt-plan-card homecourt-plan-paid"><div className="homecourt-plan-card-head"><span>HOMECOURT / MONTHLY</span><strong>¥3,300</strong></div><h3>{clear.paidTitle}</h3><p>{clear.paidBody}</p><a className="button button-member" href={ja?"/ja/homecourt-plus":`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{clear.paidCta}<ArrowRight size={16}/></a></article>
+        <article className="homecourt-plan-card homecourt-plan-paid"><div className="homecourt-plan-card-head"><span>HOMECOURT PLUS / MONTHLY</span><strong>¥3,300</strong></div><h3>{clear.paidTitle}</h3><p>{clear.paidBody}</p><a className="button button-member" href={ja?"/ja/homecourt-plus":`/api/commerce/checkout/homecourt-monthly?locale=${locale}`}>{clear.paidCta}<ArrowRight size={16}/></a></article>
       </div>
       <div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{clear.whoTitle}</h2></div></div>
       <div className="homecourt-preview-grid">{clear.who.map(([label,body],index)=><article key={label}><Users/><span>{String(index+1).padStart(2,"0")}</span><h3>{label}</h3><p>{body}</p><a className="text-link" href={`${prefix}/my-homecourt/${index===0?"players":index===1?"families":"coaches"}`}>{label} <ArrowRight size={16}/></a></article>)}</div>
