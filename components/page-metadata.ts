@@ -5,7 +5,7 @@ const titles:Record<string,Record<Locale,string>>={
  families:{en:"For families",ja:"保護者の方へ","zh-tw":"家長專區",ko:"보호자 안내"},
  coaches:{en:"For coaches",ja:"コーチ・指導者の方へ","zh-tw":"教練專區",ko:"코치·지도자 안내"},
  "home-court":{en:"MY HOME COURT",ja:"MY HOME COURT｜利用案内","zh-tw":"MY HOME COURT","ko":"MY HOME COURT"},
- "my-homecourt":{en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"},
+ "my-homecourt":{en:"MY HOME COURT",ja:"MY HOME COURT｜活動・学び・参加記録を一つに","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"},
  community:{en:"RBA community",ja:"RBAコミュニティ","zh-tw":"RBA社群",ko:"RBA 커뮤니티"},
  impact:{en:"RBA IMPACT",ja:"RBA IMPACT｜成果と再投資方針","zh-tw":"RBA IMPACT",ko:"RBA IMPACT"},
  "d-hub":{en:"D-HUB｜Coach development",ja:"D-HUB｜指導者育成","zh-tw":"D-HUB｜教練培育",ko:"D-HUB｜코치 교육"},
@@ -18,7 +18,7 @@ const titles:Record<string,Record<Locale,string>>={
  payments:{en:"Official registration and payment",ja:"公式申込・決済","zh-tw":"官方報名與付款",ko:"공식 신청·결제"},
  "clinic-request":{en:"Clinic request",ja:"クリニック開催のご相談","zh-tw":"訓練營邀約",ko:"클리닉 요청"},
  asia:{en:"Japan–Asia exchange",ja:"海外連携","zh-tw":"日本交流",ko:"일본 교류"},
- partners:{en:"Partners",ja:"協賛・連携","zh-tw":"合作夥伴",ko:"파트너십"},
+ partners:{en:"Partners",ja:"企業・パートナー｜RBAの育成環境を支える","zh-tw":"合作夥伴",ko:"파트너십"},
  contact:{en:"Contact RBA",ja:"お問い合わせ","zh-tw":"聯絡RBA",ko:"RBA 문의"},
  social:{en:"Official channels",ja:"公式チャンネル","zh-tw":"官方平台",ko:"공식 채널"},
  policies:{en:"Privacy, terms and safety policies",ja:"プライバシー・参加規約・安全方針","zh-tw":"隱私、條款與安全政策",ko:"개인정보, 약관 및 안전 정책"},
@@ -45,7 +45,7 @@ const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
  },
  "my-homecourt":{
   en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one RBA ID.",
-  ja:"MY HOME COURTは、所属チーム、これまでの経験、次に参加できる活動、Development Camp、RBA UNITED、国内外の情報を一つのRBA IDで確認できる自分専用ページです。",
+  ja:"MY HOME COURTは、RBAの活動を探す、育成記事を読む、参加経験を記録する、次の挑戦を決める流れを一つにつなぐ自分専用の入口です。今のチームに所属したまま利用できます。",
   "zh-tw":"MY HOME COURT以一個RBA ID整合行程、報名、參與紀錄、Basketball Passport、照片影片與下一個培育機會。",
   ko:"MY HOME COURT는 일정, 신청, 참가 기록, Basketball Passport, 사진·영상과 다음 성장 기회를 하나의 RBA ID로 연결합니다."
  },
@@ -72,6 +72,12 @@ const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
   ja:"RBA各プログラムの公式申込フォーム、お支払い案内、契約中の方のStripe請求ポータルをまとめています。",
   "zh-tw":"彙整RBA各項活動的官方報名表、付款指南與既有會員的Stripe帳單入口。",
   ko:"RBA 프로그램 공식 신청서, 결제 안내와 기존 회원용 Stripe 청구 포털을 한곳에서 확인할 수 있습니다."
+ },
+ partners:{
+  en:"Partner with RBA to support youth basketball access, safer development environments, coach education and Japan–Asia exchange through clear, measurable projects.",
+  ja:"RBAの協賛・パートナー情報。地域の参加機会、安全な育成環境、指導者教育、国内外の交流を、使途と成果が見える企画として企業・地域と一緒につくります。",
+  "zh-tw":"與RBA合作，透過用途與成果清楚的企劃，支持青少年參與機會、安全培育環境、教練教育與日本・亞洲交流。",
+  ko:"RBA와 함께 지역 참가 기회, 안전한 육성 환경, 코치 교육과 일본·아시아 교류를 목적과 성과가 분명한 프로젝트로 만듭니다."
  }
 };
 export function pageMetadata(locale:Locale,page:LanguagePage):Metadata {
