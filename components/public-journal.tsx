@@ -114,7 +114,12 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
         </div>
       </section>
-      <JournalExplorer locale={locale} items={explorerItems}/>
+      {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
+        <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>RBAの考え方が分かる4本です。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
+        <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
+          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>参考文献 {post.source_references.length}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
+        </Link>)}</div>
+      </section>:null}
       {locale==="ja"?<section className="homecourt-product-preview section-pad">
         <div className="section-head">
           <div><p className="section-index">DEVELOPMENT GUIDE</p><h2>記事が多くても、迷わない。</h2></div>
@@ -124,12 +129,6 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link className="button button-dark" href="/ja/development">育成テーマから探す <ArrowRight size={17}/></Link>
           <Link className="text-link" href="/ja/opportunities">読むだけでなく、参加できる活動を見る <ArrowRight size={16}/></Link>
         </div>
-      </section>:null}
-      {locale==="ja"?<section className="journal-library-metrics section-pad" aria-label="RBA JOURNALの情報量">
-        <article><strong>{posts.length}</strong><span>公開記事</span><small>育成・保護者・指導者・海外・プログラム</small></article>
-        <article><strong>{posts.filter(post=>post.evidence_summary||post.source_references?.length).length}</strong><span>根拠欄あり</span><small>EVIDENCE / RBA INTERPRETATION / LIMITATIONS</small></article>
-        <article><strong>{posts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク</span><small>原典・公式資料へのリンク</small></article>
-        <article><strong>{posts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>最終確認日を記事ごとに表示</small></article>
       </section>:null}
       {locale==="ja"?<JournalLearningPathsGrid compact totalArticles={posts.length}/>:null}
 
@@ -178,12 +177,6 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">講習内容を見る <ArrowRight size={17}/></Link>
         </div>
       </section>:null}
-      {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
-        <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>RBAの考え方が分かる4本です。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
-        <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
-          <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">START HERE</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>参考文献 {post.source_references.length}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>この記事から読む <ArrowRight size={16}/></strong>
-        </Link>)}</div>
-      </section>:null}
       {locale==="ja"?<section className="homecourt-role-section section-pad">
         <div className="section-head"><div><p className="section-index">悩みから探す</p><h2>気になっていることから読めます。</h2></div><p>専門用語やテーマ名が分からなくても大丈夫です。保護者・指導者それぞれの悩みから記事を探せます。</p></div>
         <div className="homecourt-role-grid">
@@ -193,6 +186,13 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
       </section>:null}
       
+      <section className="journal-full-library section-pad" id="all-articles">
+        <div className="section-head">
+          <div><p className="section-index">{locale==="ja"?"ALL ARTICLES":c.all}</p><h2>{locale==="ja"?`全${posts.length}本から、必要な記事を探す。`:c.all}</h2></div>
+          <p>{locale==="ja"?"ここまででテーマが決まらなかった方は、キーワード・対象・カテゴリから全記事を検索できます。":"Search the full RBA Journal library."}</p>
+        </div>
+        <JournalExplorer locale={locale} items={explorerItems}/>
+      </section>
       {locale==="ja"?<section className="homecourt-role-section section-pad">
         <div className="section-head"><div><p className="section-index">FROM JOURNAL TO ACTION</p><h2>読んだあと、どう動くか。</h2></div><p>気になった記事を保存したり、参加した活動を振り返ったりするならMY HOME COURTを使えます。</p></div>
         <div className="homecourt-role-grid">

@@ -71,69 +71,50 @@ export function LocalizedHome({locale}:{locale:Locale}){
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const memberStartHref=authReady?(locale==="en"?"/my-homecourt/login":`/${locale}/my-homecourt/login${locale==="ja"?"?source=homepage":""}`):localePath(locale,"my-homecourt");
   const memberStartLabel=locale==="ja"?(authReady?"RBA IDを無料でつくる":"MY HOME COURTを見る"):hc.open;
+  const heroSecondaryHref=locale==="ja"&&!authReady?"/ja/journal":memberStartHref;
+  const heroSecondaryLabel=locale==="ja"&&!authReady?"RBA JOURNALを読む":memberStartLabel;
   const message=locale==="ja"?"RBAについて相談したいです。":locale==="zh-tw"?"您好RBA，我想詢問活動或日本交流。":locale==="ko"?"안녕하세요 RBA. 프로그램이나 일본 교류에 대해 문의하고 싶습니다.":"Hello RBA, I would like to discuss a programme or Japan–Asia exchange.";
   const whatsapp="https://wa.me/818032483703?text="+encodeURIComponent(message);
   const torstenFeature=<section className={`torsten-feature section-pad${locale==="ja"?" torsten-feature-ja":""}`}><div><p className="section-index inverse">{c.clinicLabel}</p><p className="torsten-name">TORSTEN<br/>LOIBL</p></div><div><p className="eyebrow">{ui(locale,"offer")}</p><h2>{c.clinicTitle}</h2><p>{c.clinicCopy}</p><div className="torsten-achievements">{c.clinicAchievements.map(([label,detail])=><div key={label}><strong>{label}</strong><span>{detail}</span></div>)}</div><div className="sponsor-actions"><a className="button button-light" href={localePath(locale,"events/torsten-loibl-online-clinic")}>{c.clinicDetail}<ArrowRight size={17}/></a><a className="text-link light-link" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.clinicApply}<ArrowUpRight size={16}/></a></div></div></section>;
   return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale}>
-    <section className="hero-grid"><div className="hero-copy"><p className="eyebrow">RIOT BASKETBALL ACADEMY · JAPAN</p><h1><span>{c.title[0]}</span><span>{c.title[1]}</span></h1><p className="hero-lede">{c.lede}</p>{locale!=="ja"?<PlatformQuickFinder locale={locale}/>:null}{locale==="ja"&&<a className="hero-clinic-alert" href={localePath(locale,"events/torsten-loibl-online-clinic")}><span>NOW OPEN</span><strong>{c.clinicHero}</strong><ArrowRight size={18}/></a>}<div className="hero-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.primary}<ArrowRight size={17}/></a><a className="button button-member" href={memberStartHref}><House size={17}/>{memberStartLabel}<ArrowRight size={17}/></a>{locale!=="ja"?<a className="text-link light-link" href={localePath(locale,"clinic-request")}>{c.secondary}<ArrowRight size={16}/></a>:null}</div><div className="hero-proof">{c.proof.map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></div><div className="hero-image" role="img" aria-label={c.image}><div className="image-note">{c.image}</div><MoveDown className="scroll-mark" size={19}/></div></section>
+    <section className="hero-grid"><div className="hero-copy"><p className="eyebrow">RIOT BASKETBALL ACADEMY · JAPAN</p><h1><span>{c.title[0]}</span><span>{c.title[1]}</span></h1><p className="hero-lede">{c.lede}</p>{locale!=="ja"?<PlatformQuickFinder locale={locale}/>:null}{locale==="ja"&&<a className="hero-clinic-alert" href={localePath(locale,"events/torsten-loibl-online-clinic")}><span>NOW OPEN</span><strong>{c.clinicHero}</strong><ArrowRight size={18}/></a>}<div className="hero-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.primary}<ArrowRight size={17}/></a><a className="button button-member" href={heroSecondaryHref}>{locale==="ja"&&!authReady?null:<House size={17}/>} {heroSecondaryLabel}<ArrowRight size={17}/></a>{locale!=="ja"?<a className="text-link light-link" href={localePath(locale,"clinic-request")}>{c.secondary}<ArrowRight size={16}/></a>:null}</div><div className="hero-proof">{c.proof.map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></div><div className="hero-image" role="img" aria-label={c.image}><div className="image-note">{c.image}</div><MoveDown className="scroll-mark" size={19}/></div></section>
 
     {locale==="ja"?<>
-      <section className="rba-quick-entry section-pad">
+      <section className="rba-questions section-pad">
         <div className="section-head">
-          <div><p className="section-index">START HERE / 5つの入口</p><h2>今の目的から、RBAを選ぶ。</h2></div>
-          <p>サービス名を覚える必要はありません。参加したい、学びたい、地域に呼びたい、支えたい、海外とつながりたい。目的から選べます。</p>
+          <div><p className="section-index inverse">RBA QUESTIONS</p><h2>当たり前を、<br/>子どもの未来から問い直す。</h2></div>
+          <p>誰かを責めるためではなく、育成年代で本当に残したいものを考えるために。RBAは、現場で見過ごされやすい問いを、根拠と実践の両方から掘り下げます。</p>
         </div>
-        <div className="rba-quick-entry-grid">
-          <Link href="/ja/opportunities"><span>01 / PLAYER & FAMILY</span><h3>選手・保護者</h3><p>今参加できるクリニック、キャンプ、スクール、大会・遠征を確認する。</p><strong>参加できる活動を見る<ArrowRight size={16}/></strong></Link>
-          <Link href="/ja/coaches"><span>02 / COACH</span><h3>指導者</h3><p>育成記事、D-HUB、オンライン講習、練習設計など、指導に役立つ情報を学ぶ。</p><strong>指導者向けを見る<ArrowRight size={16}/></strong></Link>
-          <Link href="/ja/organizer"><span>03 / TEAM & ORGANIZER</span><h3>チーム・団体</h3><p>チーム練習、訪問指導、地域開催、大会・イベント運営について相談する。</p><strong>チーム・団体向けを見る<ArrowRight size={16}/></strong></Link>
-          <Link href="/ja/partners"><span>04 / PARTNER</span><h3>企業・パートナー</h3><p>地域の育成機会、安全な活動環境、コーチ教育、国際交流を企業・地域と一緒につくる。</p><strong>パートナー向けを見る<ArrowRight size={16}/></strong></Link>
-          <Link href="/ja/international"><span>05 / JAPAN × ASIA</span><h3>海外アカデミー</h3><p>日本とアジアの交流、遠征、指導者交流、アカデミー連携について相談する。</p><strong>国際連携を見る<ArrowRight size={16}/></strong></Link>
+        <div className="rba-question-grid">
+          <Link href="/ja/journal/playing-time-is-experience"><span>01 / PLAYING TIME</span><h3>試合に出られない小学生は、本当に育成されているのか？</h3><p>出場時間を「ご褒美」ではなく、判断・失敗・修正を経験する機会として考えます。</p><strong>出場機会を考える<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/journal/strong-school-myth"><span>02 / TEAM CHOICE</span><h3>強豪チームに入れば、本当に伸びるのか？</h3><p>戦績や知名度では見えない、毎週の出場機会・役割・生活まで含めて考えます。</p><strong>チーム選びを考える<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/journal/too-much-practice"><span>03 / TRAINING LOAD</span><h3>練習量は、多いほどいいのか？</h3><p>長時間練習と成長を同じにせず、負荷・回復・睡眠・試合数まで含めて見直します。</p><strong>練習量を考える<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/journal/who-is-playing"><span>04 / COACHING</span><h3>ベンチから答えを出し続けたとき、誰がバスケットボールをしているのか？</h3><p>選手自身が見る・選ぶ・修正する時間を、どう残すかを考えます。</p><strong>指導を考える<ArrowRight size={16}/></strong></Link>
+        </div>
+        <div className="homecourt-launch-actions">
+          <Link className="button button-light" href="/ja/journal">RBA JOURNALを見る<ArrowRight size={17}/></Link>
+          <Link className="text-link light-link" href="/ja/development">育成テーマから探す<ArrowRight size={16}/></Link>
         </div>
       </section>
-      <section className="homecourt-product-preview section-pad">
+
+      <section className="rba-quick-entry section-pad">
         <div className="section-head">
-          <div><p className="section-index">FIND BY CONDITION</p><h2>年代・地域・目的から探す。</h2></div>
-          <p>参加する活動を探している方は、条件を選ぶだけで現在募集中の企画に絞り込めます。</p>
+          <div><p className="section-index">START HERE / 5つの入口</p><h2>目的が違えば、入口も違う。</h2></div>
+          <p>RBAのサービス名を覚える必要はありません。参加する、学ぶ、地域に呼ぶ、支える、海外とつながる。今したいことから進めます。</p>
         </div>
-        <PlatformQuickFinder locale={locale}/>
+        <div className="rba-quick-entry-grid">
+          <Link href="/ja/opportunities"><span>01 / PLAYER & FAMILY</span><h3>選手・保護者</h3><p>現在参加できるクリニック、キャンプ、スクール、大会・遠征を探す。</p><strong>活動を探す<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/coaches"><span>02 / COACH</span><h3>指導者</h3><p>JOURNAL、D-HUB、オンライン講習、練習設計から、次の指導を考える。</p><strong>指導者向けを見る<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/organizer"><span>03 / TEAM & ORGANIZER</span><h3>チーム・団体</h3><p>訪問指導、地域開催、チーム育成、大会・イベント運営を相談する。</p><strong>地域にRBAを呼ぶ<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/partners"><span>04 / PARTNER</span><h3>企業・パートナー</h3><p>育成機会、安全、指導者教育、国際交流を企業・地域と一緒につくる。</p><strong>連携を見る<ArrowRight size={16}/></strong></Link>
+          <Link href="/ja/international"><span>05 / JAPAN × ASIA</span><h3>海外アカデミー</h3><p>交流試合、遠征、キャンプ、指導者交流、アカデミー連携を相談する。</p><strong>国際連携を見る<ArrowRight size={16}/></strong></Link>
+        </div>
       </section>
     </>:null}
 
     <PaidProgrammes locale={locale}/>
 
     <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={memberStartHref}><House size={17}/>{memberStartLabel}<ArrowRight size={17}/></a><a className="text-link" href={locale==="ja"?"/ja/homecourt-plus":localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
-
-    {locale==="ja"?<section className="homecourt-product-preview section-pad">
-      <div className="section-head">
-        <div><p className="section-index">RBA QUESTIONS</p><h2>当たり前を、子どもの未来から問い直す。</h2></div>
-        <p>炎上させるためではなく、育成年代で本当に守りたいものを考えるために。RBAは、現場でよくある「当たり前」を、根拠と実践の両方から問い直します。</p>
-      </div>
-      <div className="homecourt-preview-grid">
-        <article><span>QUESTION 01</span><h3>試合に出られない小学生は、本当に育成されているのか？</h3><p>出場時間は「ご褒美」ではなく、判断・失敗・修正を経験する機会です。</p><Link className="text-link" href="/ja/journal/playing-time-is-experience">出場機会を考える<ArrowRight size={16}/></Link></article>
-        <article><span>QUESTION 02</span><h3>強豪チームに入れば、本当に伸びるのか？</h3><p>戦績や知名度では見えない、毎週の出場機会・役割・指導環境まで比べます。</p><Link className="text-link" href="/ja/journal/strong-school-myth">強豪信仰を考える<ArrowRight size={16}/></Link></article>
-        <article><span>QUESTION 03</span><h3>練習量は、多いほどいいのか？</h3><p>長時間練習と成長を同じにせず、負荷、回復、睡眠、試合数まで含めて考えます。</p><Link className="text-link" href="/ja/journal/too-much-practice">練習量を考える<ArrowRight size={16}/></Link></article>
-        <article><span>QUESTION 04</span><h3>ベンチから答えを出し続けたとき、誰がバスケットボールをしているのか？</h3><p>指示の量ではなく、選手自身が見る・選ぶ・修正する時間をどう残すか。</p><Link className="text-link" href="/ja/journal/who-is-playing">指導を考える<ArrowRight size={16}/></Link></article>
-      </div>
-      <div className="homecourt-launch-actions">
-        <Link className="button button-dark" href="/ja/journal">RBA JOURNALを見る<ArrowRight size={17}/></Link>
-        <Link className="button button-light" href="/ja/opportunities">NEXT COURTを見る<ArrowRight size={17}/></Link>
-      </div>
-    </section>:null}
-
-    {locale==="ja"?<section className="homecourt-product-preview section-pad">
-      <div className="section-head">
-        <div><p className="section-index">DEVELOPMENT GUIDE</p><h2>ミニバス・U12・U15。<br/>今の悩みから必要な情報を探す。</h2></div>
-        <p>出場時間、チーム選び、移籍、練習設計、S&C、女子選手の身体づくり。記事を順番に読む必要はありません。今困っていることから必要な情報を選べます。</p>
-      </div>
-      <div className="homecourt-preview-grid">
-        <article><span>01</span><h3>ミニバス・U12</h3><p>勝敗、出場機会、マンツーマン、役割固定。小学生年代で何を残すか。</p><Link className="text-link" href="/ja/journal/paths/u12">U12の育成を読む<ArrowRight size={16}/></Link></article>
-        <article><span>02</span><h3>U15・進路</h3><p>部活、クラブ、Bユース、登録、移籍、生活まで、3年間でどんな経験ができるかを考える。</p><Link className="text-link" href="/ja/journal/paths/u15">U15の進路を考える<ArrowRight size={16}/></Link></article>
-        <article><span>03</span><h3>チーム選び・移籍</h3><p>強さや知名度だけでなく、毎週どんな経験を積めるかで比べる。</p><Link className="text-link" href="/ja/journal/paths/team-choice">チーム選びを読む<ArrowRight size={16}/></Link></article>
-        <article><span>04</span><h3>指導・S&amp;C</h3><p>練習設計、判断、負荷、回復、女子選手の身体づくりまで。</p><Link className="text-link" href="/ja/development">育成ガイドを開く<ArrowRight size={16}/></Link></article>
-      </div>
-      <div className="homecourt-launch-actions"><Link className="button button-dark" href="/ja/development">育成テーマから探す<ArrowRight size={17}/></Link></div>
-    </section>:null}
 
     {locale!=="ja"?<AudienceJourneys locale={locale}/>:null}
     {locale==="ja"&&torstenFeature}
@@ -146,7 +127,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     {locale!=="ja"?<><section className="rba-standards section-pad"><div className="section-head"><div><p className="section-index">{c.workLabel}</p><h2>{c.workTitle}</h2></div></div><div className="standards-grid">{c.work.map(([n,t,b])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{b}</p></article>)}</div></section><section className="asia-desk-home section-pad"><div><p className="section-index inverse">{c.asiaLabel}</p><h2>{c.asiaTitle[0]}<br/>{c.asiaTitle[1]}</h2></div><div><p>{c.asiaCopy}</p><div className="desk-languages"><span>ENGLISH</span><span>日本語</span><span>繁體中文</span><span>한국어</span></div><a className="button button-light" href={localePath(locale,"asia")}>{c.asiaCta}<ArrowRight size={17}/></a></div></section></>:null}
 
-    <section className="field-footprint section-pad"><div><p className="section-index inverse">{c.recordLabel}</p><h2>{c.recordTitle}</h2><p>{c.recordCopy}</p>{locale==="ja"?<><a className="text-link light-link" href="/ja/regions">全国の活動拠点を見る<ArrowRight size={16}/></a><a className="text-link light-link" href="/ja/saga">RBA佐賀を見る<ArrowRight size={16}/></a></>:null}<a className="text-link light-link" href={localePath(locale,"about")}>{c.about}<ArrowRight size={16}/></a></div><div className="footprint-numbers"><div><strong>{locale==="ja"?"3,000+":"3,000+"}</strong><span>{ui(locale,"players")}</span></div><div><strong>25</strong><span>{({en:"ACTIVITY LOCATIONS",ja:"国内25地域で活動","zh-tw":"日本全國活動地區",ko:"일본 전역 활동 지역"})[locale]}</span></div><div><strong>JP × ASIA</strong><span>{ui(locale,"nextField")}</span></div></div></section>
+    <section className="field-footprint section-pad"><div><p className="section-index inverse">{c.recordLabel}</p><h2>{c.recordTitle}</h2><p>{c.recordCopy}</p>{locale==="ja"?<><a className="text-link light-link" href="/ja/regions">全国の活動拠点を見る<ArrowRight size={16}/></a><a className="text-link light-link" href="/ja/saga">RBA佐賀を見る<ArrowRight size={16}/></a></>:null}<a className="text-link light-link" href={localePath(locale,"about")}>{c.about}<ArrowRight size={16}/></a></div><div className="footprint-numbers"><div><strong>3,000+</strong><span>{locale==="ja"?"2025年半ば以降の延べ参加者":ui(locale,"players")}</span></div><div><strong>25</strong><span>{({en:"ACTIVITY LOCATIONS",ja:"国内25地域で活動","zh-tw":"日本全國活動地區",ko:"일본 전역 활동 지역"})[locale]}</span></div><div><strong>JP × ASIA</strong><span>{ui(locale,"nextField")}</span></div></div></section>
 
     {locale!=="ja"?<><GlobalMedia locale={locale}/><NetworkMaps locale={locale}/><GrowthSections locale={locale}/></>:null}
     <section className="closing-cta section-pad"><p className="eyebrow">{c.contactLabel}</p><h2>{c.contactTitle[0]}<br/>{c.contactTitle[1]}</h2><p>{c.contactCopy}</p><div className="closing-actions">{locale==="ja"?<><a className="button button-orange" href="/ja/opportunities">活動を探す<ArrowRight size={17}/></a><a className="button button-dark" href="/ja/contact">RBAに相談する<ArrowRight size={17}/></a></>:<><a className="button button-orange" href={localePath(locale,"contact")}>{c.contact}<ArrowRight size={17}/></a><a className="button button-dark" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={17}/>{c.whatsapp}</a></>}</div></section>
