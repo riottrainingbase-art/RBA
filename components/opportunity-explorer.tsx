@@ -23,6 +23,7 @@ const pathwayLabel=(locale:Locale,pathway?:string)=>({
   "development-camp":({ja:"DEVELOPMENT CAMP",en:"DEVELOPMENT CAMP","zh-tw":"DEVELOPMENT CAMP",ko:"DEVELOPMENT CAMP"})[locale],
   united:"RBA UNITED",
   clinic:({ja:"CLINIC",en:"CLINIC","zh-tw":"CLINIC",ko:"CLINIC"})[locale],
+  school:({ja:"SCHOOL",en:"SCHOOL","zh-tw":"SCHOOL",ko:"SCHOOL"})[locale],
   coach:({ja:"COACH EDUCATION",en:"COACH EDUCATION","zh-tw":"COACH EDUCATION",ko:"COACH EDUCATION"})[locale],
 }[pathway||""]||"RBA");
 
