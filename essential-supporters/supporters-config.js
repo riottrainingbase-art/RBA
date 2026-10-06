@@ -1,0 +1,1 @@
+window.ESSENTIAL_SUPPORTERS={status:"setup",checkout:{monthly:{supporter:"",supporter_plus:"",patron:""},yearly:{supporter:"",supporter_plus:"",patron:""}},customerPortalUrl:""};
