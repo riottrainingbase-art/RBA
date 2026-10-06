@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     type: "website",
     images: ["/rba-court-hero.png"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "RBAお問い合わせ｜参加・チーム・地域開催・海外交流",
+    description: "参加、チーム支援、地域開催、海外交流など、相談内容に合う窓口をご案内します。",
+    images: ["/rba-court-hero.png"],
+  },
 };
 
 const routes = [
