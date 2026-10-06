@@ -18,6 +18,10 @@ const awkward=[
   ["coaches-meta",/Riot Basketball Academyのコーチ・指導者の方へに関する情報をご案内します。/],
   ["organizer-mixed-language",/(?:ClinicやCamp|地域交流を増やしたいTeam|Basketballを通じた交流人口)/],
   ["hardcoded-ja-member-signup",/href=["']\/ja\/my-homecourt\/login["'][^>]*>無料でRBA IDをつくる/],
+  ["legacy-homecourt-paid-name",/(?:月額HOMECOURT|有料HOMECOURT|HOMECOURT \/ MONTHLY)/],
+  ["legacy-opportunity-cta",/このコートに挑戦する/],
+  ["legacy-business-english-ja",/(?:Basketball Program|将来Vision|外部Organizer)/],
+  ["legacy-abstract-start-cta",/次の一歩を、ここから始める/],
 ];
 
 function walk(dir,out=[]){
@@ -75,6 +79,18 @@ for(const required of ["function StaticHeader","function StaticFooter","extractC
 if(!fs.existsSync("docs/RBA_SITE_INFORMATION_ARCHITECTURE.md")){
   failures.push({file:"docs/RBA_SITE_INFORMATION_ARCHITECTURE.md",rule:"information-architecture-doc-missing",sample:"missing"});
 }
+if(!fs.existsSync("docs/RBA_JAPANESE_COPY_STYLE_GUIDE.md")){
+  failures.push({file:"docs/RBA_JAPANESE_COPY_STYLE_GUIDE.md",rule:"japanese-copy-style-guide-missing",sample:"missing"});
+}
+
+const programmeSource=fs.readFileSync("components/programme-data.ts","utf8");
+if(!programmeSource.includes('id: "sendai-u15"')||!programmeSource.includes('pathway:"school"')){
+  failures.push({file:"components/programme-data.ts",rule:"sendai-u15-must-be-school",sample:"pathway must be school"});
+}
+const quickFinderSource=fs.readFileSync("components/platform-quick-finder.tsx","utf8");
+if(!quickFinderSource.includes('ja:{label:"活動を探す"')){
+  failures.push({file:"components/platform-quick-finder.tsx",rule:"quick-finder-ja-label",sample:"活動を探す"});
+}
 for(const file of files){
   let source;
   try{source=fs.readFileSync(file,"utf8");}catch{continue}
@@ -91,5 +107,5 @@ if(failures.length){
 console.log(JSON.stringify({
   status:"passed",
   filesChecked:files.length,
-  scope:"Japanese mojibake, stale Saga dates and known unnatural metadata regressions."
+  scope:"Japanese mojibake, stale dates, product naming, programme labels, CTA wording and known unnatural copy regressions."
 },null,2));
