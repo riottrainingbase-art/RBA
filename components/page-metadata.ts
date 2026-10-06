@@ -45,7 +45,7 @@ const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
  },
  "my-homecourt":{
   en:"MY HOME COURT brings schedules, applications, participation history, Basketball Passport, photos, film and next opportunities together under one RBA ID.",
-  ja:"MY HOME COURTは、所属チーム、これまでの経験、次に参加できる活動、Development Camp、RBA UNITED、国内外の情報を一つのRBA IDで確認できる自分専用ページです。",
+  ja:"MY HOME COURTは、RBAの活動を探す、育成記事を読む、参加経験を記録する、次の挑戦を決める流れを一つにつなぐ自分専用の入口です。今のチームに所属したまま利用できます。",
   "zh-tw":"MY HOME COURT以一個RBA ID整合行程、報名、參與紀錄、Basketball Passport、照片影片與下一個培育機會。",
   ko:"MY HOME COURT는 일정, 신청, 참가 기록, Basketball Passport, 사진·영상과 다음 성장 기회를 하나의 RBA ID로 연결합니다."
  },
@@ -72,6 +72,12 @@ const descriptions:Partial<Record<LanguagePage,Record<Locale,string>>>={
   ja:"RBA各プログラムの公式申込フォーム、お支払い案内、契約中の方のStripe請求ポータルをまとめています。",
   "zh-tw":"彙整RBA各項活動的官方報名表、付款指南與既有會員的Stripe帳單入口。",
   ko:"RBA 프로그램 공식 신청서, 결제 안내와 기존 회원용 Stripe 청구 포털을 한곳에서 확인할 수 있습니다."
+ },
+ partners:{
+  en:"Partner with RBA to support youth basketball access, safer development environments, coach education and Japan–Asia exchange through clear, measurable projects.",
+  ja:"RBAの協賛・パートナー情報。地域の参加機会、安全な育成環境、指導者教育、国内外の交流を、使途と成果が見える企画として企業・地域と一緒につくります。",
+  "zh-tw":"與RBA合作，透過用途與成果清楚的企劃，支持青少年參與機會、安全培育環境、教練教育與日本・亞洲交流。",
+  ko:"RBA와 함께 지역 참가 기회, 안전한 육성 환경, 코치 교육과 일본·아시아 교류를 목적과 성과가 분명한 프로젝트로 만듭니다."
  }
 };
 export function pageMetadata(locale:Locale,page:LanguagePage):Metadata {
