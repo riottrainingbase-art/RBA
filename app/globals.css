@@ -2934,12 +2934,33 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
 @media(max-width:620px){.dhub-player-profile-form form,.dhub-player-diary-entry form,.diary-row{grid-template-columns:1fr}.dhub-player-profile-form label,.dhub-player-profile-form label.wide,.dhub-player-diary-entry form>label,.diary-row{grid-column:1}.dhub-player-diary-list{grid-template-columns:1fr}.dhub-player-home-actions{grid-template-columns:1fr}.dhub-player-profile-hero,.dhub-player-diary-hero{min-height:auto}}
 
 
+/* RBA QUESTIONS / issue-led homepage funnel */
+.rba-questions{background:var(--ink);color:#fff;border-top:1px solid #283036;border-bottom:1px solid #283036}
+.rba-questions .section-head{margin-bottom:28px}
+.rba-questions .section-head h2{margin:8px 0 0;max-width:850px;font-size:clamp(44px,6vw,82px);line-height:.94;letter-spacing:-.055em}
+.rba-questions .section-head>p{max-width:660px;color:#b9c3c8;line-height:1.8}
+.rba-question-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#354047;border:1px solid #354047}
+.rba-question-grid>a{min-height:330px;padding:28px;display:flex;flex-direction:column;background:#101315;color:#fff;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.rba-question-grid>a:hover{background:#171c20;transform:translateY(-3px)}
+.rba-question-grid span{font-size:10px;font-weight:950;letter-spacing:.14em;color:#9eaaaf}
+.rba-question-grid h3{margin:34px 0 14px;max-width:620px;font-size:clamp(28px,3.1vw,46px);line-height:1.03;letter-spacing:-.045em}
+.rba-question-grid p{max-width:620px;margin:0;color:#b8c1c6;line-height:1.75}
+.rba-question-grid strong{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:22px;border-top:1px solid #343d42;font-size:12px}
+.rba-questions .homecourt-launch-actions{margin-top:28px}
+.rba-questions .button-light{background:#fff;color:#111}
+@media(max-width:760px){
+  .rba-questions{padding-left:20px!important;padding-right:20px!important}
+  .rba-question-grid{grid-template-columns:1fr}
+  .rba-question-grid>a{min-height:0;padding:22px}
+  .rba-question-grid h3{margin-top:22px;font-size:30px}
+}
+
 /* Discoverability / low-friction entry points */
 .rba-quick-entry{background:#eef0ed}
 .rba-quick-entry .section-head{margin-bottom:24px}
 .rba-quick-entry .section-head h2{margin:8px 0 0;font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.045em}
 .rba-quick-entry .section-head>p{max-width:680px;color:#59646a;line-height:1.75}
-.rba-quick-entry-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:#b8bdb9;border:1px solid #b8bdb9}
+.rba-quick-entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#b8bdb9;border:1px solid #b8bdb9}
 .rba-quick-entry-grid>a{min-height:280px;padding:22px;display:flex;flex-direction:column;background:#fff;color:#171a1d;text-decoration:none}
 .rba-quick-entry-grid>a>span{font-size:9px;font-weight:950;letter-spacing:.12em;color:#788287}
 .rba-quick-entry-grid h3{margin:28px 0 10px;font-size:clamp(23px,2.5vw,32px);line-height:1.08;letter-spacing:-.025em}
