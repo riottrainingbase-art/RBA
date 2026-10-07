@@ -1,4 +1,4 @@
 import type { Metadata } from "next";
 import { DsmPage } from "@/components/gream-dsm";
-export const metadata: Metadata = { title: {absolute:"GREAM DSM｜秋田県大仙市のU15バスケットボールクラブ"},description:"秋田県大仙市を中心に活動するU15クラブチームGREAM DSM。チーム紹介、体験・活動に関する相談、スポンサー募集をご案内します。",alternates:{canonical:"https://riotbasketballacademy.com/ja/gream-dsm"},openGraph:{title:"GREAM DSM｜大仙市のU15クラブチーム",images:["/gream-dsm/team.webp"]}};
+export const metadata: Metadata = { title: {absolute:"GREAM DSM｜秋田県大仙市のU15バスケットボールクラブ"},description:"秋田県大仙市を中心に活動するU15クラブチームGREAM DSM。チーム紹介、体験・活動に関する相談、スポンサー募集をご案内します。",alternates:{canonical:"https://riotbasketballacademy.com/ja/gream-dsm"},openGraph:{title:"GREAM DSM｜大仙市のU15クラブチーム",locale:"ja_JP",type:"website",images:[{url:"https://riotbasketballacademy.com/gream-dsm/team.webp",width:1477,height:1108,alt:"GREAM DSMの集合写真"}]},twitter:{card:"summary_large_image",images:["https://riotbasketballacademy.com/gream-dsm/team.webp"]}};
 export default function Page(){return <DsmPage/>;}
