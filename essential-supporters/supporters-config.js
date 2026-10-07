@@ -1,1 +1,1 @@
-window.ESSENTIAL_SUPPORTERS={status:"setup",checkout:{monthly:{supporter:"",supporter_plus:"",patron:""},yearly:{supporter:"",supporter_plus:"",patron:""}},customerPortalUrl:""};
+window.ESSENTIAL_SUPPORTERS={status:"prelaunch",prelaunchUrl:"https://form.jotform.com/262791874869076",partnerInquiryUrl:"https://form.jotform.com/262791310335049",checkout:{monthly:{supporter:"",supporter_plus:"",patron:""},yearly:{supporter:"",supporter_plus:"",patron:""}},customerPortalUrl:""};
