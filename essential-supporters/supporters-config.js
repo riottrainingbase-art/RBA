@@ -1,1 +1,18 @@
-window.ESSENTIAL_SUPPORTERS={status:"setup",checkout:{monthly:{supporter:"",supporter_plus:"",patron:""},yearly:{supporter:"",supporter_plus:"",patron:""}},customerPortalUrl:""};
+window.ESSENTIAL_SUPPORTERS={
+  status:"live",
+  prelaunchUrl:"https://form.jotform.com/262791874869076",
+  partnerInquiryUrl:"https://form.jotform.com/262791310335049",
+  checkout:{
+    monthly:{
+      supporter:"https://buy.stripe.com/6oU9AV9mnh24cr350b7EQ0M",
+      supporter_plus:"https://buy.stripe.com/14A6oJfKL1364YB2S37EQ0O",
+      patron:"https://buy.stripe.com/00wbJ3aqr27aaiV64f7EQ0Q"
+    },
+    yearly:{
+      supporter:"https://buy.stripe.com/8x29AV5675jmfDf1NZ7EQ0N",
+      supporter_plus:"https://buy.stripe.com/dRm00l4234fi0Il0JV7EQ0P",
+      patron:"https://buy.stripe.com/cNi5kFaqr27a3UxeAL7EQ0R"
+    }
+  },
+  customerPortalUrl:"https://billing.stripe.com/p/login/aFa28t1TV5jm3UxeAL7EQ01"
+};

@@ -1,0 +1,98 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "https://essential-ballers-akita.riot-training-base.chatgpt.site/admin",
+      "permanent": false
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://essential-ballers-akita.riot-training-base.chatgpt.site/admin/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/supporters",
+      "destination": "https://support.essentialballersakita.team/",
+      "permanent": false
+    },
+    {
+      "source": "/supporters.html",
+      "destination": "https://support.essentialballersakita.team/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/partners",
+      "destination": "/partners.html"
+    },
+    {
+      "source": "/festival",
+      "destination": "/festival.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/club-20261006-11.js",
+      "destination": "/club-20261006-11.js"
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://essential-ballers-akita.riot-training-base.chatgpt.site/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/partners.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/festival.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/privacy.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/club-20261006-11.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
