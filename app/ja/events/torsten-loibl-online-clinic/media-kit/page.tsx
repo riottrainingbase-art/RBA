@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
 import { torstenRegistrationUrl } from "@/components/programme-data";
+import { TorstenMediaCopyActions } from "@/components/torsten-media-copy-actions";
 
 const eventUrl = "https://riotbasketballacademy.com/ja/events/torsten-loibl-online-clinic";
 const quoteShort =
@@ -82,12 +83,12 @@ export default function MediaKitPage() {
           <article style={card}>
             <h3 style={{ fontSize: 20, marginBottom: 12 }}>短文版｜グループ・SNS向け</h3>
             <p style={{ lineHeight: 1.8, whiteSpace: "pre-wrap" }}>{quoteShort}</p>
-            <p><strong>講習詳細：</strong><a href={eventUrl}>{eventUrl}</a></p>
+            <TorstenMediaCopyActions title="Torsten Loibl Online Clinic Vol.2" copyText={quoteShort} eventUrl={eventUrl} />
           </article>
           <article style={card}>
             <h3 style={{ fontSize: 20, marginBottom: 12 }}>長文版｜メディア・団体案内向け</h3>
             <p style={{ lineHeight: 1.8, whiteSpace: "pre-wrap" }}>{quoteLong}</p>
-            <p><strong>講習詳細：</strong><a href={eventUrl}>{eventUrl}</a></p>
+            <TorstenMediaCopyActions title="Torsten Loibl Online Clinic Vol.2" copyText={quoteLong} eventUrl={eventUrl} />
           </article>
         </div>
       </section>
