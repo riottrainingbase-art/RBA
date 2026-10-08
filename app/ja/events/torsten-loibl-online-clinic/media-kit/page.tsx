@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
 import { torstenRegistrationUrl } from "@/components/programme-data";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const card: React.CSSProperties = {
+const card: CSSProperties = {
   border: "1px solid #d9d9d9",
   borderRadius: 12,
   padding: "clamp(18px,3vw,30px)",
