@@ -16,7 +16,7 @@ export function DsmInquiry() {
     const data = new FormData(event.currentTarget);
     const value = (key: string) => String(data.get(key) || "").trim();
     setDraft([
-      "GREAM DSMの協賛について相談です。", "",
+      "DSM GREAMの協賛について相談です。", "",
       `希望する支援：${kind}`,
       `会社・団体名：${value("company") || "個人"}`,
       `お名前：${value("name")}`,
@@ -54,7 +54,7 @@ export function DsmInquiry() {
       <button className={s.primary} type="submit">相談文を確認する</button>
     </form>
     <p role="status" aria-live="polite">{notice}</p>
-    {draft ? <div className={s.draft}><label>作成した相談文<textarea readOnly value={draft} rows={12} /></label><div className={s.actions}><a className={s.primary} href={`mailto:${recipient}?subject=${encodeURIComponent(`GREAM DSM｜${kind}の相談`)}&body=${encodeURIComponent(draft)}`}>メールアプリを開く</a><button className={s.secondary} type="button" onClick={copy}>相談文をコピー</button></div></div> : null}
+    {draft ? <div className={s.draft}><label>作成した相談文<textarea readOnly value={draft} rows={12} /></label><div className={s.actions}><a className={s.primary} href={`mailto:${recipient}?subject=${encodeURIComponent(`DSM GREAM｜${kind}の相談`)}&body=${encodeURIComponent(draft)}`}>メールアプリを開く</a><button className={s.secondary} type="button" onClick={copy}>相談文をコピー</button></div></div> : null}
     <noscript><p>下のメール・フォームから直接ご相談いただけます。</p></noscript>
   </div>;
 }
