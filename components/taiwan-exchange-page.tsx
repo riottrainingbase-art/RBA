@@ -70,7 +70,7 @@ const copy:Record<Locale,Text>={
 
 export function TaiwanExchangePage({locale}:{locale:Locale}){
  const c=copy[locale];
- return <SiteFrame locale={locale}>
+ return <SiteFrame locale={locale} languagePage="taiwan">
   <div className="taiwan-exchange">
    <section className="taiwan-hero section-pad">
     <p className="section-index inverse">{c.eyebrow}</p>
