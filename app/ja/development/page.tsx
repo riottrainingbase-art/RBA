@@ -26,6 +26,13 @@ export const metadata: Metadata = {
 
 const topics = [
   {
+    index: "07",
+    title: "GREAM OKINAWA U13 年間プログラム",
+    body: "年間12か月の実践設計。技術・判断・試合経験・安全・評価を一貫して確認できます。",
+    href: "/ja/gream-okinawa-u13",
+    cta: "U13年間育成計画を見る",
+  },
+  {
     index: "01",
     title: "ミニバス・U12",
     body: "勝つことと育てること、出場時間、マンツーマン、役割固定。小学生年代で何を残すかを考えます。",
