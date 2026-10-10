@@ -26,7 +26,7 @@ const pathwayLabel=(locale:Locale,pathway?:string)=>({
   coach:({ja:"COACH EDUCATION",en:"COACH EDUCATION","zh-tw":"COACH EDUCATION",ko:"COACH EDUCATION"})[locale],
 }[pathway||""]||"RBA");
 
-export function OpportunityExplorer({locale}:{locale:Locale}){
+export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean}){
   const c=copy[locale];
   const router=useRouter();
   const [region,setRegion]=useState<Region>("all");
@@ -90,6 +90,12 @@ export function OpportunityExplorer({locale}:{locale:Locale}){
       <label>{c.kind}<select value={kind} onChange={e=>{const v=e.target.value as Kind;setKind(v);update({kind:v})}}><option value="all">{c.all}</option>{["TRAIN","PLAY","TRAVEL","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
     </div></section>
     {locale==="ja"?<section className="registration-flow section-pad"><div><p className="section-index inverse">HOW TO JOIN</p><h2>参加までの流れを、分かりやすく。</h2></div><div><ol><li><span>01</span><div><strong>活動を探す</strong><p>年代・地域・目的から、自分に合う企画を絞り込みます。</p></div></li><li><span>02</span><div><strong>条件と費用を確認</strong><p>対象、会場、参加費、持ち物、宿泊の有無などを確認します。</p></div></li><li><span>03</span><div><strong>公式フォームから申し込む</strong><p>各カードの「このコートに挑戦する」から、RBAの公式申込フォームへ進みます。</p></div></li><li><span>04</span><div><strong>決済して受付を完了する</strong><p>フォーム送信後の案内に沿って決済し、RBAからの受付完了案内をご確認ください。</p></div></li></ol><p className="registration-note">普段所属しているチームがあっても、各企画の参加条件を満たせば申し込めます。大会・遠征など一部企画では個別条件がありますので、各申込ページを優先してください。</p></div></section>:null}
+    {locale==="ja"?<section className="section-pad" style={{background:"linear-gradient(110deg,#212a37,#10141b)",borderTop:"4px solid #e9dc35",color:"#fff"}}>
+      <p style={{fontSize:12,fontWeight:900,letterSpacing:".14em",color:"#e9dc35"}}>BACKBONE 3×3 / CHIBA CHAPTER ROUND 3</p>
+      <h2 style={{fontSize:"clamp(28px,5vw,56px)",fontWeight:900,margin:"12px 0",color:"#fff"}}>10月25日（日）千葉チャプター開催</h2>
+      <p style={{color:"#d1dbe4",lineHeight:2}}>神崎中学校体育館／9:00〜16:00／小学1年生〜中学3年生／定員60名／6,600円（税込）。午前は育成クリニック、午後は3x3ゲーム。個人参加も歓迎です。</p>
+      <a href="/backbone/chiba" style={{display:"inline-block",padding:"15px 22px",marginTop:12,background:"#e9dc35",color:"#11151a",fontWeight:900,fontSize:13}}>千葉Round 3の詳細・申込はこちら ↗</a>
+    </section>:null}
     <section className="opportunity-results section-pad" aria-live="polite">{visible.length?<div className="opportunity-card-grid">{visible.map(p=>{const detail=p.detailPath?localePath(locale,p.detailPath):null;return <article key={p.id}><div className="opportunity-card-top"><span>{pathwayLabel(locale,p.pathway)}</span><strong>{c.open}</strong></div><h2>{tr(p.title,locale)}</h2><dl><div><dt><CalendarDays/>{c.date}</dt><dd>{tr(p.date,locale)}</dd></div><div><dt><MapPin/>{c.place}</dt><dd>{tr(p.place,locale)}</dd></div><div><dt><Users/>{c.target}</dt><dd>{tr(p.audience,locale)}</dd></div><div><dt><CircleDollarSign/>{c.fee}</dt><dd>{tr(p.price,locale)}</dd></div></dl><div className="opportunity-card-actions"><button className="opportunity-save" type="button" aria-pressed={saved.includes(p.id)} disabled={saving===p.id} onClick={()=>void toggleSave(p)}><Bookmark fill={saved.includes(p.id)?"currentColor":"none"}/>{saved.includes(p.id)?({ja:"保存済み",en:"Saved","zh-tw":"已收藏",ko:"저장됨"})[locale] :({ja:"保存する",en:"Save","zh-tw":"收藏",ko:"저장"})[locale]}</button>{detail?<a href={detail}>{c.detail}<ArrowRight/></a>:null}<a href={p.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"このコートに挑戦する":c.apply}<ArrowUpRight/></a></div></article>})}</div>:<div className="opportunity-empty"><Search/><p>{c.empty}</p></div>}</section>
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">YOUR NEXT COURT</p><h2>「どこに行く？」より、「何を試す？」</h2></div><p>参加する活動を選んだら、当日に試したいことを一つ決めてみましょう。参加後はMY HOME COURTに記録し、次の挑戦につなげられます。</p></div>
