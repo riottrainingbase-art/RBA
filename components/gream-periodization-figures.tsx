@@ -1,55 +1,60 @@
 import type { CSSProperties } from "react";
 const phases=[
- {months:"4–6月",title:"基礎形成",desc:"止まる・動く・1対1",tone:"#d9e8e7"},
- {months:"7–9月",title:"発展",desc:"2対1・2対2・3対3",tone:"#bed6d6"},
- {months:"10–12月",title:"実戦への応用",desc:"攻守の切り替え・連係",tone:"#9fc1c5"},
- {months:"1–3月",title:"定着と評価",desc:"5対5・振り返り",tone:"#789ea6"}
-];
-const weeks=[
- {n:"1",name:"導入",sub:"現在地を確認",h:34},
- {n:"2",name:"発展",sub:"条件を変える",h:55},
- {n:"3",name:"応用",sub:"ゲームで試す",h:70},
- {n:"4",name:"調整・評価",sub:"回復と振り返り",h:32}
-];
-const panel:CSSProperties={border:"1px solid #cbd5d7",borderRadius:12,padding:"clamp(16px,3vw,30px)",margin:"20px 0 28px",background:"#f6f8f8",color:"#14252b"};
+ ["4–6月","基礎形成","停止・1対1"],
+ ["7–9月","発展","2対1・3対3"],
+ ["10–12月","応用","攻守の連係"],
+ ["1–3月","定着・評価","5対5・振り返り"]
+] as const;
+const monthLabels=["4月","5月","6月","7月","8月","9月","10月","11月","12月","1月","2月","3月"];
+const plan=[
+ ["低","中","中","調整"],["中","中","中〜高","調整"],
+ ["中","中","中〜高","調整"],["低〜中","中","中〜高","調整"],
+ ["中","中","中〜高","調整"],["中","中","中〜高","調整"],
+ ["中","中","中〜高","調整"],["中","中","中〜高","調整"],
+ ["低〜中","中","中〜高","調整"],["中","中","中〜高","調整"],
+ ["中","中","試合対応","調整"],["低〜中","中","中","調整"]
+] as const;
+const panel:CSSProperties={border:"1px solid #cad6d7",borderRadius:12,padding:"clamp(14px,3vw,26px)",margin:"22px 0",background:"#f6f8f8",color:"#14252b"};
 export function GreamPeriodizationFigures(){
- return <section aria-label="GREAM沖縄U13 ピリオダイゼーションの図解" style={{margin:"0 0 36px"}}>
- <div style={{fontWeight:900,letterSpacing:".12em",fontSize:12,color:"#3b6570"}}>GREAM OKINAWA U13 / PERIODIZATION</div>
- <h2 style={{fontSize:"clamp(23px,3vw,34px)",lineHeight:1.45,margin:"12px 0 14px"}}>年間・月間・週間の計画を、ひとつにつなぐ。</h2>
- <p style={{fontSize:14,lineHeight:1.9}}>練習のテーマだけでなく、試合、疲労、回復も含めて考えるための図です。数字は練習負荷の測定値ではなく、構成を理解するための例を示しています。</p>
+ return <section aria-label="GREAM沖縄U13の年間・週間計画と実際の負荷の区別" style={{margin:"0 0 36px"}}>
+ <p style={{fontSize:12,fontWeight:900,letterSpacing:".12em",color:"#365d65"}}>GREAM OKINAWA U13 / EVIDENCE-INFORMED PERIODIZATION</p>
+ <h2 style={{fontSize:"clamp(22px,3vw,34px)",lineHeight:1.45,margin:"10px 0"}}>計画と実測値を、混同しない。</h2>
+ <p>以下は指導の重点と計画上の負荷区分です。実際の運動負荷を測定した曲線ではありません。</p>
  <figure style={panel}>
- <figcaption style={{fontWeight:900,fontSize:15,marginBottom:14}}>図1｜年間の4つの時期（マクロサイクル）</figcaption>
+ <figcaption style={{fontWeight:900,marginBottom:12}}>図1｜年間の学習の重点（マクロサイクル）</figcaption>
  <div style={{display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:5}}>
- {phases.map((p,i)=><div key={p.months} style={{padding:"13px 7px",background:p.tone,borderTop:"4px solid #244852",minWidth:0}}>
- <div style={{fontSize:10,fontWeight:800}}>第{i+1}期</div><div style={{fontSize:"clamp(11px,1.8vw,15px)",fontWeight:900,margin:"4px 0"}}>{p.months}</div>
- <div style={{fontSize:"clamp(10px,1.6vw,13px)",fontWeight:800}}>{p.title}</div><div style={{fontSize:"clamp(9px,1.3vw,11px)",lineHeight:1.55,marginTop:8}}>{p.desc}</div></div>)}
- </div>
- <div style={{padding:"11px 8px",marginTop:8,background:"#e7ecec",fontSize:12,textAlign:"center",fontWeight:700}}>年間を通じて継続：個人技術 ／ 判断 ／ S&amp;C ／ 安全と回復</div>
- <p style={{fontSize:11,lineHeight:1.75,marginTop:12}}>各期は重点を示すもので、ほかの能力を練習しない期間ではありません。</p>
- </figure>
- <figure style={panel}>
- <figcaption style={{fontWeight:900,fontSize:15,marginBottom:10}}>図2｜4週間の組み立て（メゾサイクル）</figcaption>
- <div style={{display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:8,alignItems:"end",height:160,borderBottom:"2px solid #47616a",padding:"0 3px"}}>
- {weeks.map(w=><div key={w.n} style={{height:"100%",display:"flex",flexDirection:"column",justifyContent:"end",alignItems:"center",gap:5}}>
- <div style={{width:"100%",maxWidth:100,height:w.h+18,background:w.n==="4"?"#a8bec1":"#355c68",borderRadius:"4px 4px 0 0"}}/>
+ {phases.map((p,i)=><div key={p[0]} style={{padding:"13px 7px",background:["#d9e8e7","#bad5d5","#97bdc0","#769fa6"][i],minWidth:0}}>
+ <strong style={{display:"block",fontSize:"clamp(11px,1.6vw,16px)"}}>{p[0]}</strong><b style={{display:"block",fontSize:"clamp(10px,1.4vw,14px)"}}>{p[1]}</b><small style={{fontSize:"clamp(9px,1.1vw,12px)"}}>{p[2]}</small>
  </div>)}
  </div>
- <div style={{display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:8,marginTop:10}}>
- {weeks.map(w=><div key={w.n} style={{textAlign:"center"}}><b style={{display:"block",fontSize:12}}>第{w.n}週</b><span style={{display:"block",fontSize:12,fontWeight:800}}>{w.name}</span><span style={{display:"block",fontSize:10}}>{w.sub}</span></div>)}
- </div>
- <p style={{fontSize:11,lineHeight:1.75,marginTop:14}}>棒の高さは負荷の実測値ではありません。学習の進め方を示す模式図です。大会や疲労状況に応じて順番・強度を変えます。「3週増やして4週下げる」を義務づけるものではありません。</p>
+ <p style={{fontSize:12,marginTop:12}}>個人技術、判断、S&amp;C、回復は年間を通して継続します。各期は指導の重点を表し、運動強度の増減を表すものではありません。</p>
  </figure>
  <figure style={panel}>
- <figcaption style={{fontWeight:900,fontSize:15,marginBottom:12}}>図3｜1週間の配置例（ミクロサイクル）</figcaption>
- <div style={{display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:7}}>
- {[
- ["練習A","技術と新しい課題"],
- ["練習B","少人数ゲーム"],
- ["試合・交流","実戦で試す"],
- ["休養・調整","回復を確保"]
- ].map((x,i)=><div key={x[0]} style={{background:i===3?"#dbe6e5":"#e7ecec",padding:"12px 7px",borderTop:i===3?"4px solid #7c9b9e":"4px solid #345b65",minWidth:0}}><b style={{display:"block",fontSize:"clamp(10px,1.5vw,13px)"}}>{x[0]}</b><span style={{fontSize:"clamp(9px,1.3vw,11px)"}}>{x[1]}</span></div>)}
+ <figcaption style={{fontWeight:900,marginBottom:12}}>図2｜48週間の計画区分（メゾ・ミクロサイクル）</figcaption>
+ <div style={{overflowX:"auto"}}>
+ <table style={{borderCollapse:"separate",borderSpacing:4,width:"100%",minWidth:620,textAlign:"center",fontSize:12}}>
+ <thead><tr><th style={{textAlign:"left"}}>週</th>{monthLabels.map(m=><th key={m}>{m}</th>)}</tr></thead>
+ <tbody>{[0,1,2,3].map(w=><tr key={w}><th style={{textAlign:"left",whiteSpace:"nowrap"}}>第{w+1}週</th>{plan.map((m,i)=><td key={i} style={{background:m[w]==="調整"?"#d5dede":m[w]==="試合対応"?"#eadcc5":"#b6d0d1",padding:"7px 2px",fontSize:11}}>
+ <small style={{display:"block"}}>W{String(i*4+w+1).padStart(2,"0")}</small><b>{m[w]}</b>
+ </td>)}</tr>)}</tbody>
+ </table>
  </div>
- <p style={{fontSize:11,lineHeight:1.75,marginTop:13}}>実際の曜日を示すものではありません。週1回なら1回の練習内で学習をつなぎ、試合が続く週は練習量を抑えます。学校や他団体での活動も合わせて確認します。</p>
+ <p style={{fontSize:12,marginTop:12}}>低・中・中〜高・調整・試合対応は本人の通常の活動に対する相対的な運用目安で、実測値ではありません。大会・学校活動・成長・痛み・疲労に応じて変更します。</p>
  </figure>
+ <figure style={panel}>
+ <figcaption style={{fontWeight:900,marginBottom:12}}>図3｜毎週の判断の流れ</figcaption>
+ <div style={{display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:5}}>
+ {[
+ ["計画","技術・試合・休養"],
+ ["実施","時間・対人本数"],
+ ["確認","RPE・疲労・痛み"],
+ ["調整","翌週の負荷と課題"]
+ ].map((x,i)=><div key={x[0]} style={{padding:"12px 7px",background:i===3?"#b7d0d1":"#e1e9e8",minWidth:0}}>
+ <strong style={{display:"block",fontSize:"clamp(10px,1.5vw,14px)"}}>{x[0]}</strong><small style={{fontSize:"clamp(9px,1.2vw,12px)"}}>{x[1]}</small>
+ </div>)}
+ </div>
+ <p style={{fontSize:12,marginTop:12}}>実測データは未収集です。session-RPE（時間×主観的運動強度）は個人内の変化を見る補助指標であり、傷害リスクを直接予測する値ではありません。実測の負荷曲線は記録が集まってから作成します。</p>
+ </figure>
+ <p style={{fontSize:12}}>参考：IOC Youth Athletic Development Consensus（2015）、Booth et al.（2017）。年間計画の区分と配色はGREAMの独自設計です。</p>
  </section>;
 }
