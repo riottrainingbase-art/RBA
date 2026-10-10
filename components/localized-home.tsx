@@ -10,6 +10,7 @@ import { CoachEducationLoop } from "./coach-education-loop";
 import { AudienceJourneys } from "@/components/audience-journeys";
 import { torstenRegistrationUrl } from "@/components/programme-data";
 import { PlatformQuickFinder } from "@/components/platform-quick-finder";
+import { BookLaunchFeature } from "@/components/book-launch";
 
 const copy={
   en:{
@@ -86,6 +87,8 @@ export function LocalizedHome({locale}:{locale:Locale}){
         <Link href="/ja/opportunities"><span>04 / JOIN</span><h3>今参加できる活動を見る</h3><p>クリニック、キャンプ、RBA UNITED、スクール。募集中のものだけ確認できます。</p><strong>募集中を見る<ArrowRight size={16}/></strong></Link>
       </div>
     </section>:null}
+
+    {locale==="ja"?<BookLaunchFeature/>:null}
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
