@@ -1,49 +1,60 @@
-# Taiwan Pilot — Unit Economics & Release Gates
-**Internal only; not an offer or quote.**
+# ASIA BRIDGES — 2027 Japan–Taiwan Pilot Economics
+**Status: internal hypotheses only, not quoted, contracted or approved. Updated 2026-10-10.**
 
-## Price and cost inputs
-| Variable | Meaning | Example hypothesis (JPY) | Evidence required |
-|---|---|---:|---|
-| P | Programme fee per participant, excluding flights/hotel | 44,000 | Written customer willingness-to-pay / approved pricing |
-| N | Paid participants | 16 | Confirmed enrolment / provider success |
-| F | Fixed direct event costs | 385,000 | Venue, coaches, interpreter, insurance and admin quotes |
-| V | Variable direct costs per participant | 12,500 | Consumables, meal/transport if actually in programme scope, payment fee |
-| R | Revenue | P × N = 704,000 | Paid invoices, provider transactions |
-| C | Direct cost | F + V × N = 585,000 | Invoices / verified quotations |
-| G | Contribution before overhead and tax | R - C = 119,000 | Reconciled actuals |
-| B | Break-even participant count | CEILING(F / (P - V)) = 13 | All cost inputs evidenced |
+## Annual calendar (proposed)
+- January–February: contracting identity, safeguarding, supplier costs, legal review.
+- March: first online coach exchange.
+- May: **Japan-hosted** U12/U15 two-day camp.
+- June: Japan event reconciliation and Taiwan planning.
+- July: Taiwan work/entry/tax/safeguarding verification.
+- August: **Taiwan-hosted** U12/U15 two-day camp.
+- September: second online coach exchange.
+- October–December: 2028 planning, audited event reconciliation and renewal decision.
 
-**Warning:** Numbers above are illustrative, not verified. Do not populate Airtable 'Quoted Revenue JPY', 'Verified Direct Cost JPY' or 'Expected Contribution JPY' from these assumptions.
+Dates and host entities are **not agreed** with Elton or SPARTANS. Do not open bookings.
 
-## Three-case decision model
-| Case | N | Revenue | Direct cost | Contribution |
-|---|---:|---:|---:|---:|
-| Downside | 10 | 440,000 | 510,000 | -70,000 |
-| Base | 16 | 704,000 | 585,000 | 119,000 |
-| Upside | 20 | 880,000 | 635,000 | 245,000 |
+## Base assumptions (JPY)
+| Metric | Japan-hosted | Taiwan-hosted | Annual |
+|---|---:|---:|---:|
+| Participants | 16 | 16 | 32 participant-slots |
+| Programme-only price per person | 48,000 | 48,000 | n/a |
+| Revenue | 768,000 | 768,000 | 1,536,000 |
+| Fixed direct cost | 350,000 | 380,000 | 730,000 |
+| Variable direct cost | 176,000 (11,000 ×16) | 192,000 (12,000 ×16) | 368,000 |
+| Total direct cost | 526,000 | 572,000 | 1,098,000 |
+| Contribution before overhead and tax | 242,000 | 196,000 | 438,000 |
 
-**Stress test:** evaluate no-show/refund rate, FX, venue cancellation, local staff replacement, flight disruptions, emergency medical transport and refunds before approving deposits.
+Fixed direct cost hypotheses:
+- Japan: court 60,000; coaching 120,000; interpretation 40,000; safeguarding/insurance 35,000; operations 75,000; promotion 20,000.
+- Taiwan: court 70,000; coaching 130,000; interpretation 40,000; safeguarding/insurance 40,000; operations 75,000; promotion 25,000.
 
-## Minimum operational release criteria
-1. **Demand:** named buyer/academy; actual count and budget evidence.
-2. **Delivery:** written venue availability and coaching/interpretation coverage.
-3. **Legal:** confirm the travel/teaching/tax arrangement with qualified providers as necessary.
-4. **Safety:** named supervising adults, emergency plan, insurance, parental consent and media permission.
-5. **Commercial:** signed scope, minimum number, cancellation/refund policy, partner payment and margin floor.
-6. **Payments:** approved seller identity, canonical payment route, settlement reconciliation and refund reserves.
-7. **Marketing:** consented partner brand use, fact-checked translations, canonical RBA site, no child image without permission.
-8. **Technical:** TypeScript, ESLint, build, accessibility, language routing and real form routing verified.
-9. **Governance:** one opportunity per programme; DNC and send ledger before external messages; change log entry.
-10. **Release:** single controlled preview, QA, promote verified preview artifact; no automatic feature-branch deployment.
+**Flights and accommodation excluded.** They must not be bundled or arranged for compensation without a legally appropriate travel provider and clear customer contract.
 
-## Weekly metrics
-- Qualified organisational enquiries (not generic site views)
-- Reply within agreed business-day SLA
-- Written pilot scopes accepted
-- Paid enrolments verified by provider
-- Contribution after verified direct costs
-- Delivery incidents and safeguarding compliance
-- Repeat interest / signed next-event intent
+## Sensitivity
+| Participants per event | Japan contribution | Taiwan contribution |
+|---|---:|---:|
+| 10 | 20,000 | -20,000 |
+| 16 | 242,000 | 196,000 |
+| 20 | 390,000 | 340,000 |
 
-## Separation of business lines
-RBA: programme service. RTB: B2B S&C education. JPNentry: sourcing/verification. No shared customer list without consent; no cross-company payments or double counting.
+Mathematical break-even: Japan 10, Taiwan 11. Target 16 each, but this is **not** a contractual minimum or guaranteed attendance. Cancellation exposure, refunds, exchange rates, labor and shared overhead may change the result.
+
+## Commercial mechanism
+The legally identified host operator sells programme services and is accountable for participant contract, billing, refunds and taxes. The other partner is paid a separately specified service fee for actual coaching, recruitment or operational deliverables. No automatic 50/50 gross revenue split or undefined “profit share.” Any optional performance bonus requires an agreed formula after evidenced expenses, reserve and tax treatment.
+
+For illustration only, a 50/50 division of hypothetical event contribution would be JPY 121,000 each for Japan and JPY 98,000 each for Taiwan, JPY 219,000 per party annually. **Not a proposed or agreed payment.**
+
+## Release gates
+1. Legal contracting entity for both parties and named signatories.
+2. One signed event-specific schedule and one budget/fee schedule per event.
+3. Actual quotes for courts, coaches, interpreters, insurance and operations.
+4. Travel-industry scope, Taiwan coaching work/entry rules and cross-border tax treatment checked by qualified professionals.
+5. Safeguarding, guardian consent, media rights, insurance and emergency plan.
+6. Approved seller identity, payment route and refund reserve.
+7. Full RBA preflight and four-language QA, including live Jotform submission routing and privacy notice.
+8. Never put speculative figures in Airtable evidenced-revenue or cash fields.
+9. No unapproved partner name/logo claims, no automated customer outreach, DNC/dedupe always enforced.
+10. No production deployment until controlled preview and review.
+
+## Source of truth
+Master Project Governance: RBA-ASIA-BRIDGES-TW. Opportunity: Taiwan Partnership Pipeline, key TW-RBA-EXCHANGE-PILOT-2027. Official RBA domain: https://riotbasketballacademy.com/.
