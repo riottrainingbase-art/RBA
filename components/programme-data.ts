@@ -2,6 +2,7 @@ import type { Text4 } from "./network-data";
 
 
 export type ProgrammeId =
+  | "chiba-backbone"
   | "yaima"
   | "kawasaki"
   | "saga-fukuoka"
@@ -9,7 +10,8 @@ export type ProgrammeId =
   | "shizugawa"
   | "kobe"
   | "torsten"
-  | "sendai-u15";
+  | "sendai-u15"
+  | "backbone-chiba";
 
 
 export type Programme = {
@@ -30,7 +32,7 @@ export type Programme = {
   detailPath?: "events/torsten-loibl-online-clinic" | "camp/saga-fukuoka-2026";
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
-  pathway?: "development-camp" | "united" | "clinic" | "school" | "coach";
+  pathway?: "development-camp" | "united" | "clinic" | "coach";
   ageGroups: readonly ("U8" | "U10" | "U12" | "U15" | "COACH")[];
 };
 
@@ -38,6 +40,22 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+  {
+    id: "chiba-backbone",
+    startDate: "2026-10-25",
+    endDate: "2026-10-25",
+    date: ["25 OCT 2026", "2026.10.25（日）", "2026.10.25", "2026.10.25"],
+    datePrimary: ["25", "25日", "25日", "25일"],
+    dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
+    title: ["BACKBONE 3×3 Chiba Chapter Round 3", "BACKBONE 3×3 千葉チャプター Round 3", "BACKBONE 3×3 千葉站 Round 3", "BACKBONE 3×3 치바 챕터 Round 3"],
+    place: ["Kozaki Junior High School Gym, Chiba", "千葉県神崎町・神崎中学校体育館", "千葉縣神崎町・神崎中學體育館", "지바현 고자키마치・고자키 중학교 체육관"],
+    price: ["¥6,600 incl. tax", "参加費 6,600円（税込）", "參加費 6,600日圓（含稅）", "참가비 6,600엔(세금 포함)"],
+    audience: ["Grades 1–9 · capacity 60", "小学1年生〜中学3年生・定員60名", "小學1年級至國中3年級・名額60人", "초등 1학년~중학 3학년・정원 60명"],
+    payment: ["Apply through the organiser's form. Payment terms are provided there.", "主催者の公式フォームからお申し込みください。支払方法は申込先の案内をご確認ください。", "請透過主辦單位官方表單報名並確認付款說明", "주최 측 공식 신청서에서 신청 및 결제 안내를 확인하세요"],
+    applicationUrl: "https://docs.google.com/forms/d/e/1FAIpQLScP3NPWCVgySjcP1TyqMdXQ4Cw9CUBhMk78DJPP1dlLl3hShw/viewform",
+    region: "kanto", category: "PLAY", pathway: "clinic", ageGroups: ["U8","U10","U12","U15"],
+  },
+
   {
     id: "sendai-u15",
     startDate: "2026-10-01",
@@ -47,11 +65,11 @@ export const programmes: readonly Programme[] = [
     dateSecondary: ["18:00–19:30", "18:00〜19:30", "18:00–19:30", "18:00–19:30"],
     title: ["RBA U15 Skill Up School · Sendai", "RBA U15 SKILL UP SCHOOL｜仙台", "RBA U15技能提升學校｜仙台", "RBA U15 스킬업 스쿨｜센다이"],
     place: ["Taihaku, Sendai", "仙台市太白区", "仙台市太白區", "센다이시 다이하쿠구"],
-    price: ["Enrollment ¥5,500 + ¥7,700 / month", "入会金5,500円＋月3回／月額7,700円（税込）", "入會費¥5,500＋每月3次¥7,700", "입회비 ¥5,500 + 월 3회 ¥7,700"],
+    price: ["Enrollment ¥5,500 + ¥7,700 / month", "入会金5,500円＋月3回7,700円（税込）", "入會費¥5,500＋每月3次¥7,700", "입회비 ¥5,500 + 월 3회 ¥7,700"],
     audience:["U15 players · Grade 6 welcome · capacity 25", "U15年代（小学6年生も参加可）・定員25名", "U15球員（小學6年級亦可參加）・限額25名", "U15 선수（초등학교 6학년도 참가 가능）· 정원 25명"],
     payment:["RBA confirms participation by email.", "申込内容を確認後、RBAからの確認メールをもって受付確定。会場詳細もメールでご案内します。", "由RBA確認後以電郵通知參加及場地詳情", "RBA 확인 이메일로 참가 확정 및 장소 안내"],
     applicationUrl: "https://form.jotform.com/262678369675074",
-    region:"tohoku", category:"TRAIN", pathway:"school", ageGroups:["U15"],
+    region:"tohoku", category:"TRAIN", pathway:"clinic", ageGroups:["U15"],
   },
   {
     id: "yaima",
@@ -102,6 +120,21 @@ export const programmes: readonly Programme[] = [
     region:"kyushu", category:"TRAIN", pathway:"development-camp", ageGroups:["U8","U10","U12","U15"],
   },
   {
+    id: "backbone-chiba",
+    startDate: "2026-10-25",
+    endDate: "2026-10-25",
+    date: ["25 OCT 2026", "2026.10.25（日）", "2026.10.25", "2026.10.25"],
+    datePrimary: ["25", "25日", "25日", "25일"],
+    dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
+    title: ["BACKBONE 3×3 Chiba Chapter Round 3", "BACKBONE 3×3 千葉 CHAPTER Round 3", "BACKBONE 3×3 千葉站 第3回", "BACKBONE 3×3 지바 챕터 3라운드"],
+    place: ["Chiba Prefecture · venue details via organiser", "千葉県内（会場詳細は主催者へ確認）", "千葉縣（會場請向主辦方確認）", "지바현（장소는 주최 측 확인）"],
+    price: ["¥6,600 per person (tax included)", "1名6,600円（税込）", "每人¥6,600（含稅）", "1인 ¥6,600（세금 포함）"],
+    audience: ["Age eligibility: confirm with organiser", "対象年代は主催者へご確認ください。個人参加歓迎・当日チーム編成", "參加年齡請向主辦方確認", "참가 연령은 주최 측에 확인"],
+    payment: ["Apply through official Google Form; payment guidance from organiser", "公式Googleフォームからお申し込みください。お支払い方法は主催者の案内をご確認ください。", "請使用官方表單報名", "공식 Google 양식으로 신청"],
+    applicationUrl: "https://docs.google.com/forms/d/e/1FAIpQLScP3NPWCVgySjcP1TyqMdXQ4Cw9CUBhMk78DJPP1dlLl3hShw/viewform",
+    region: "kanto", category: "PLAY", ageGroups: [],
+  },
+  {
     id: "yamagata",
     startDate: "2026-10-24",
     endDate: "2026-10-24",
@@ -140,7 +173,7 @@ export const programmes: readonly Programme[] = [
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
     title: ["KOBE Development Camp 2026", "KOBE Development Camp 2026", "KOBE培育營2026", "KOBE Development Camp 2026"],
     place: ["Tatsuno, Hyogo", "兵庫・たつの", "兵庫・龍野", "효고・다쓰노"],
-    price: ["From ¥6,600 / full camp with stay ¥52,800", "半日 6,600円〜／全日程・宿泊・食事付き 52,800円", "半日 ¥6,600起／全程含住宿餐食 ¥52,800", "반일 ¥6,600부터 / 전 일정 숙박·식사 포함 ¥52,800"],
+    price: ["From ¥6,600 / full camp with stay ¥52,800", "半日 6,600円〜／全日程・宿泊食事付 52,800円", "半日 ¥6,600起／全程含住宿餐食 ¥52,800", "반일 ¥6,600부터 / 전 일정 숙박·식사 포함 ¥52,800"],
     audience:["Grades 5–9", "小学5年〜中学3年", "小學5年級至國中3年級", "초등 5학년~중학 3학년"],
     payment:["Select a plan, submit and complete the corresponding payment.", "プランを選んでフォームを送信し、選択したプランのお支払いを完了してください", "選擇方案並提交後完成對應付款", "플랜 선택·제출 후 해당 결제 완료"],
     applicationUrl: "https://form.jotform.com/262591727805061",
@@ -155,7 +188,7 @@ export const programmes: readonly Programme[] = [
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
     title: ["Torsten Loibl Online Clinic Vol.2", "トーステン・ロイブル オンライン講習 Vol.2", "Torsten Loibl線上講座 Vol.2", "Torsten Loibl 온라인 클리닉 Vol.2"],
     place: ["Online · Zoom", "オンライン・Zoom", "線上・Zoom", "온라인・Zoom"],
-    price: ["Live ¥3,300 / 30-day on-demand ¥4,400", "ライブ参加 3,300円／30日間オンデマンド 4,400円", "直播 ¥3,300／30日隨選 ¥4,400", "라이브 ¥3,300 / 30일 다시보기 ¥4,400"],
+    price: ["Live ¥3,300 / 30-day on-demand ¥4,400", "ライブ 3,300円／30日オンデマンド 4,400円", "直播 ¥3,300／30日隨選 ¥4,400", "라이브 ¥3,300 / 30일 다시보기 ¥4,400"],
     audience:["Coaches, players, families and performance staff", "指導者・選手・保護者・トレーナー・S&Cコーチ", "教練、球員、家長及體能人員", "코치, 선수, 보호자와 퍼포먼스 스태프"],
     payment:["Submit the form, then pay from the confirmation screen.", "フォーム送信後、確認画面の決済リンクからお支払いください", "提交表單後從確認畫面付款", "폼 제출 후 확인 화면의 결제 링크로 결제"],
     applicationUrl: "https://forms.gle/fy4etmavBtw1s7FQ8",
