@@ -1,3 +1,4 @@
+import "./taiwan-exchange.css";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ClipboardCheck, Globe2, ShieldCheck, Users } from "lucide-react";
 import { ContactForm } from "./contact-form";
