@@ -10,7 +10,7 @@ The pilot is a repeatable **Japan–Taiwan development exchange**, not a travel 
 
 ## 2. One pilot first
 
-**Product:** one reciprocal U12/U15 basketball development weekend with joint training, at least one age-appropriate friendly game, coach dialogue, and post-event learning summary.
+**Product:** two 2027 U12/U15 basketball development weekends, one Japan-hosted (proposed May) and one Taiwan-hosted (proposed August) with joint training, at least one age-appropriate friendly game, coach dialogue, and post-event learning summary.
 
 **Buyer:** one club/academy or participating families, identified in writing; avoid double charging a club and individual players for the same service.
 
@@ -22,7 +22,7 @@ The pilot is a repeatable **Japan–Taiwan development exchange**, not a travel 
 
 ## 3. Pricing model — hypothesis only
 
-For a 16-person pilot: gross service fee JPY 44,000 per player => gross revenue JPY 704,000. Hypothetical fixed direct costs JPY 385,000 and variable costs JPY 12,500 per player => contribution JPY 119,000 before central overhead and tax. These are NOT validated quotes and must not be published as final prices. Break-even at 13 participants; require a cash reserve and cancellation stress test before proceeding. Do not include flights or hotels without appropriate registered travel provider and contractual scope.
+For each 16-person event, hypothetical programme-only fee JPY 48,000 per participant gives JPY 768,000 gross revenue. Japan-hosted hypothetical direct cost JPY 526,000 gives JPY 242,000 contribution; Taiwan-hosted hypothetical direct cost JPY 572,000 gives JPY 196,000 contribution. Annual hypothetical contribution JPY 438,000 before overhead and tax. These are NOT validated quotes or approved public prices. Refer to asia-bridges-taiwan-unit-economics.md for sensitivity and cost breakdown. Flights and hotels excluded.
 
 RTB B2B S&C and JPNentry sourcing are separate entities/product lanes; do not combine payment links, customer lists, consent or revenues with RBA. Any shared referral must have customer consent and an explicit scope.
 
