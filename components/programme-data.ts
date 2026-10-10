@@ -9,7 +9,8 @@ export type ProgrammeId =
   | "shizugawa"
   | "kobe"
   | "torsten"
-  | "sendai-u15";
+  | "sendai-u15"
+  | "backbone-chiba";
 
 
 export type Programme = {
@@ -100,6 +101,21 @@ export const programmes: readonly Programme[] = [
     applicationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfTiiqA9Ak6xpzmrhSIN34HHjGOsDcNBLlTws0cYF9bCqyO9w/viewform?usp=send_form",
     detailPath: "camp/saga-fukuoka-2026",
     region:"kyushu", category:"TRAIN", pathway:"development-camp", ageGroups:["U8","U10","U12","U15"],
+  },
+  {
+    id: "backbone-chiba",
+    startDate: "2026-10-25",
+    endDate: "2026-10-25",
+    date: ["25 OCT 2026", "2026.10.25（日）", "2026.10.25", "2026.10.25"],
+    datePrimary: ["25", "25日", "25日", "25일"],
+    dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
+    title: ["BACKBONE 3×3 Chiba Chapter Round 3", "BACKBONE 3×3 千葉 CHAPTER Round 3", "BACKBONE 3×3 千葉站 第3回", "BACKBONE 3×3 지바 챕터 3라운드"],
+    place: ["Chiba Prefecture · venue details via organiser", "千葉県内（会場詳細は主催者へ確認）", "千葉縣（會場請向主辦方確認）", "지바현（장소는 주최 측 확인）"],
+    price: ["¥6,600 per person (tax included)", "1名6,600円（税込）", "每人¥6,600（含稅）", "1인 ¥6,600（세금 포함）"],
+    audience: ["Age eligibility: confirm with organiser", "対象年代は主催者へご確認ください。個人参加歓迎・当日チーム編成", "參加年齡請向主辦方確認", "참가 연령은 주최 측에 확인"],
+    payment: ["Apply through official Google Form; payment guidance from organiser", "公式Googleフォームからお申し込みください。お支払い方法は主催者の案内をご確認ください。", "請使用官方表單報名", "공식 Google 양식으로 신청"],
+    applicationUrl: "https://docs.google.com/forms/d/e/1FAIpQLScP3NPWCVgySjcP1TyqMdXQ4Cw9CUBhMk78DJPP1dlLl3hShw/viewform",
+    region: "kanto", category: "PLAY", ageGroups: [],
   },
   {
     id: "yamagata",
