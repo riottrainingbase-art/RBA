@@ -91,6 +91,12 @@ export function TaiwanExchangePage({locale}:{locale:Locale}){
     <div><Globe2 aria-hidden="true" size={30}/><h2>{c.howTitle}</h2><ol>{c.steps.map(([no,label])=><li key={no}><b>{no}</b><span>{label}</span></li>)}</ol></div>
    </section>
    <section className="taiwan-safety section-pad"><ShieldCheck aria-hidden="true" size={36}/><div><h2>{c.safetyTitle}</h2><p>{c.safety}</p></div></section>
+   <section className="taiwan-safety section-pad" aria-label="Japan Taiwan sponsorship"><Users aria-hidden="true" size={36}/><div>
+    <h2>{({ja:"2027年の日台交流を、企業と一緒につくる。",en:"Support meaningful Japan–Taiwan youth exchange.","zh-tw":"一起支持2027年日台青少年籃球交流。",ko:"2027년 일본·대만 유소년 교류를 함께 지원합니다."})[locale]}</h2>
+    <p>{({ja:"参加機会、指導者教育、安全管理を支える企業・団体の皆さまからの協賛相談を受け付けています。開催条件は準備中で、協賛内容は書面で確認します。",en:"We welcome corporate enquiries about supporting access, coach education and safe operations. Programme details remain under discussion; sponsorship terms are agreed in writing.","zh-tw":"歡迎企業與團體洽詢支持參與機會、教練教育及安全營運。活動仍在規劃中，合作條件將以書面確認。",ko:"참여 기회, 코치 교육, 안전 운영을 지원할 기업·단체의 협찬 문의를 받습니다. 세부 조건은 서면으로 협의합니다."})[locale]}</p>
+    <Link className="button button-dark" href={localePath(locale,"partners")}>{({ja:"企業協賛・パートナーのご案内",en:"Corporate partnerships","zh-tw":"企業合作與贊助","ko":"기업 후원·파트너십"})[locale]}<ArrowRight size={17}/></Link>
+    {locale==="ja"?<p><Link className="text-link" href="/ja/journal/japan-taiwan-2027-partner-sponsorship">JOURNAL｜2027年日台育成交流 協賛パートナー募集 <ArrowRight size={15}/></Link></p>:null}
+   </div></section>
    <section className="taiwan-enquiry section-pad" id="taiwan-enquiry"><p className="section-index">JAPAN × TAIWAN / CONTACT</p><h2>{c.inquiryTitle}</h2><p>{c.inquiryLead}</p><ContactForm locale={locale}/></section>
   </div>
  </SiteFrame>;
