@@ -2,6 +2,7 @@ import type { Text4 } from "./network-data";
 
 
 export type ProgrammeId =
+  | "chiba-backbone"
   | "yaima"
   | "kawasaki"
   | "saga-fukuoka"
@@ -39,6 +40,22 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+  {
+    id: "chiba-backbone",
+    startDate: "2026-10-25",
+    endDate: "2026-10-25",
+    date: ["25 OCT 2026", "2026.10.25（日）", "2026.10.25", "2026.10.25"],
+    datePrimary: ["25", "25日", "25日", "25일"],
+    dateSecondary: ["OCT 2026", "2026年10月", "2026年10月", "2026년 10월"],
+    title: ["BACKBONE 3×3 Chiba Chapter Round 3", "BACKBONE 3×3 千葉チャプター Round 3", "BACKBONE 3×3 千葉站 Round 3", "BACKBONE 3×3 치바 챕터 Round 3"],
+    place: ["Kozaki Junior High School Gym, Chiba", "千葉県神崎町・神崎中学校体育館", "千葉縣神崎町・神崎中學體育館", "지바현 고자키마치・고자키 중학교 체육관"],
+    price: ["¥6,600 incl. tax", "参加費 6,600円（税込）", "參加費 6,600日圓（含稅）", "참가비 6,600엔(세금 포함)"],
+    audience: ["Grades 1–9 · capacity 60", "小学1年生〜中学3年生・定員60名", "小學1年級至國中3年級・名額60人", "초등 1학년~중학 3학년・정원 60명"],
+    payment: ["Apply through the organiser's form. Payment terms are provided there.", "主催者の公式フォームからお申し込みください。支払方法は申込先の案内をご確認ください。", "請透過主辦單位官方表單報名並確認付款說明", "주최 측 공식 신청서에서 신청 및 결제 안내를 확인하세요"],
+    applicationUrl: "https://docs.google.com/forms/d/e/1FAIpQLScP3NPWCVgySjcP1TyqMdXQ4Cw9CUBhMk78DJPP1dlLl3hShw/viewform",
+    region: "kanto", category: "PLAY", pathway: "clinic", ageGroups: ["U8","U10","U12","U15"],
+  },
+
   {
     id: "sendai-u15",
     startDate: "2026-10-01",
