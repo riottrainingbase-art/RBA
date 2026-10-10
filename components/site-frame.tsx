@@ -40,7 +40,6 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"지도자"})[locale],localePath(locale,"coaches")] as const,
     ["RBA UNITED",localePath(locale,"united")] as const,
     ["BACKBONE 3×3","/backbone"] as const,
-    ["BACKBONE 3×3","/backbone"] as const,
     [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
     [c.about,localePath(locale,"about")] as const,
