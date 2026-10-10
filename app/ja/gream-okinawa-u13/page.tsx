@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
  title:{absolute:"GREAM OKINAWA U13｜年間育成プログラム｜RBA"},
- description:"GREAM沖縄U13の12か月育成計画。FIBA/WABC等を参照し、判断・技術・試合経験・身体づくり・評価・安全を一貫して設計。",
+ description:"2026年10月から2027年3月の沖縄県大会日程に対応。GREAM沖縄U13の12か月育成体系と、試合経験・判断・身体づくり・安全・評価の方針。",
  alternates:{canonical:"https://riotbasketballacademy.com/ja/gream-okinawa-u13"},
  openGraph:{title:"GREAM OKINAWA U13｜年間育成プログラム",description:"今の勝敗で、未来の可能性を決めない。",url:"https://riotbasketballacademy.com/ja/gream-okinawa-u13",type:"article",locale:"ja_JP"}
 };
