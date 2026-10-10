@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1120" viewBox="0 0 1440 1120">
+<rect x="0" y="0" width="1440" height="1120" rx="0" fill="#10191f"/>
+<style>text{font-family:"Noto Sans CJK JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}</style>
+<text x="62" y="60" font-size="19" fill="#85b0b3" font-weight="900" text-anchor="start">GREAM OKINAWA U13  /  COMPETITION-ANCHORED PERIODIZATION</text>
+<text x="62" y="130" font-size="48" fill="#f3f5f3" font-weight="900" text-anchor="start">試合期は、公式大会日程から逆算する。</text>
+<text x="62" y="178" font-size="23" fill="#bbced0" font-weight="500" text-anchor="start">2026年度（2026年4月〜2027年3月）／ U13向けの競技期設計</text>
+<text x="62" y="238" font-size="25" fill="#f3f5f3" font-weight="800" text-anchor="start">01  大会の優先順位  |  参加資格を確認して最終決定</text>
+<rect x="62" y="260" width="433" height="151" rx="8" fill="#d7e7e4"/>
+<text x="80" y="300" font-size="23" fill="#10191f" font-weight="900" text-anchor="start">A  主目標候補</text>
+<text x="80" y="342" font-size="19" fill="#10191f" font-weight="800" text-anchor="start">2027年1月23・24・30・31日</text>
+<text x="80" y="382" font-size="17" fill="#10191f" font-weight="600" text-anchor="start">沖縄県U13・U14選手権</text>
+<rect x="507" y="260" width="433" height="151" rx="8" fill="#b7d3d3"/>
+<text x="525" y="300" font-size="23" fill="#10191f" font-weight="900" text-anchor="start">B  準備試合</text>
+<text x="525" y="342" font-size="19" fill="#10191f" font-weight="800" text-anchor="start">2026年12月12・13・19・20日</text>
+<text x="525" y="382" font-size="17" fill="#10191f" font-weight="600" text-anchor="start">U14クラブGAME（参加条件を確認）</text>
+<rect x="952" y="260" width="433" height="151" rx="8" fill="#8aafb6"/>
+<text x="970" y="300" font-size="23" fill="#10191f" font-weight="900" text-anchor="start">C  経験試合</text>
+<text x="970" y="342" font-size="19" fill="#10191f" font-weight="800" text-anchor="start">6月・9〜10月のU15大会</text>
+<text x="970" y="382" font-size="17" fill="#10191f" font-weight="600" text-anchor="start">参加資格・安全・経験機会を確認</text>
+<text x="62" y="466" font-size="24" fill="#f3f5f3" font-weight="800" text-anchor="start">02  年間の競技期  |  棒は期間の区分であり、運動負荷の実測値ではない</text>
+<text x="221.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">4月</text>
+<text x="324.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">5月</text>
+<text x="427.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">6月</text>
+<text x="530.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">7月</text>
+<text x="633.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">8月</text>
+<text x="736.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">9月</text>
+<text x="839.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">10月</text>
+<text x="942.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">11月</text>
+<text x="1045.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">12月</text>
+<text x="1148.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">1月</text>
+<text x="1251.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">2月</text>
+<text x="1354.5" y="507" font-size="19" fill="#f3f5f3" font-weight="800" text-anchor="middle">3月</text>
+<text x="62" y="564" font-size="18" fill="#f3f5f3" font-weight="800" text-anchor="start">基礎・発展</text>
+<rect x="172" y="528" width="717" height="49" rx="5" fill="#4e7480"/>
+<text x="184" y="560" font-size="17" fill="#10191f" font-weight="800" text-anchor="start">4〜10月</text>
+<text x="62" y="630" font-size="18" fill="#f3f5f3" font-weight="800" text-anchor="start">実戦準備</text>
+<rect x="893" y="594" width="202" height="49" rx="5" fill="#83afb3"/>
+<text x="905" y="626" font-size="17" fill="#10191f" font-weight="800" text-anchor="start">11〜12月</text>
+<text x="62" y="696" font-size="18" fill="#f3f5f3" font-weight="800" text-anchor="start">直前調整</text>
+<rect x="1099" y="660" width="99" height="49" rx="5" fill="#c4d9d8"/>
+<text x="1111" y="692" font-size="17" fill="#10191f" font-weight="800" text-anchor="start">1月中旬</text>
+<text x="62" y="762" font-size="18" fill="#f3f5f3" font-weight="800" text-anchor="start">主目標候補</text>
+<rect x="1099" y="726" width="99" height="49" rx="5" fill="#e1c995"/>
+<text x="1111" y="758" font-size="17" fill="#10191f" font-weight="800" text-anchor="start">1月23〜31日</text>
+<text x="62" y="828" font-size="18" fill="#f3f5f3" font-weight="800" text-anchor="start">回復・再評価</text>
+<rect x="1202" y="792" width="202" height="49" rx="5" fill="#64878c"/>
+<text x="1214" y="824" font-size="17" fill="#10191f" font-weight="800" text-anchor="start">2〜3月</text>
+<text x="62" y="912" font-size="24" fill="#f3f5f3" font-weight="800" text-anchor="start">03  主目標の前後に行うこと</text>
+<rect x="62" y="932" width="256" height="94" rx="7" fill="#243a42"/>
+<text x="75" y="965" font-size="19" fill="#f3f5f3" font-weight="900" text-anchor="start">8〜10週前</text>
+<text x="75" y="1000" font-size="16" fill="#bbced0" font-weight="600" text-anchor="start">3対3・4対4の連係</text>
+<rect x="328" y="932" width="256" height="94" rx="7" fill="#243a42"/>
+<text x="341" y="965" font-size="19" fill="#f3f5f3" font-weight="900" text-anchor="start">4〜7週前</text>
+<text x="341" y="1000" font-size="16" fill="#bbced0" font-weight="600" text-anchor="start">実戦で判断を確認</text>
+<rect x="594" y="932" width="256" height="94" rx="7" fill="#243a42"/>
+<text x="607" y="965" font-size="19" fill="#f3f5f3" font-weight="900" text-anchor="start">試合直前</text>
+<text x="607" y="1000" font-size="16" fill="#bbced0" font-weight="600" text-anchor="start">対人の量を調整</text>
+<rect x="860" y="932" width="256" height="94" rx="7" fill="#d9c796"/>
+<text x="873" y="965" font-size="19" fill="#10191f" font-weight="900" text-anchor="start">大会期間</text>
+<text x="873" y="1000" font-size="16" fill="#10191f" font-weight="600" text-anchor="start">試合と回復を優先</text>
+<rect x="1126" y="932" width="256" height="94" rx="7" fill="#243a42"/>
+<text x="1139" y="965" font-size="19" fill="#f3f5f3" font-weight="900" text-anchor="start">大会後</text>
+<text x="1139" y="1000" font-size="16" fill="#bbced0" font-weight="600" text-anchor="start">本人の学びを再評価</text>
+<text x="62" y="1063" font-size="18" fill="#bbced0" font-weight="600" text-anchor="start">重要：大会日程は協会の2026年度計画に基づく予定。GREAM U13の参加資格・登録・出場は未確認。</text>
+<text x="62" y="1091" font-size="17" fill="#bbced0" font-weight="500" text-anchor="start">出場できない場合は、1月下旬の同年代交流戦・評価ゲームを検討する。翌年度の日程は未確定。</text>
+</svg>
