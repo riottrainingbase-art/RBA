@@ -5,15 +5,60 @@ import "./backbone.css";
 const chapters=[["KOBE","#46c2ff"],["AICHI","#ff6e40"],["CHIBA","#e9dc35"],["MIYAGI","#9fc9ff"],["OKINAWA","#f75a79"],["SAPPORO","#3cd3a3"],["SAGA","#ae92ff"],["IBARAKI","#bdc9d5"]];
 const rules=[["会場・設備","使用許可、コートの安全性、設営時間、代替会場を確認します。"],["現地運営体制","成人責任者、受付、審判、試合進行、安全管理の担当を明確にします。"],["子どもの安全","保護者同意、保険、緊急時の対応、撮影・掲載同意を確認します。"],["競技・育成方針","対象年代、出場機会、試合時間、競技規則と独自ルールを要項に明記します。"],["参加募集","定員、参加費、申込方法、キャンセル条件、個人情報の取扱いを確定します。"],["費用・契約","主催者名義、担当業務、経費、分配、赤字負担、精算期限を書面で合意します。"]];
 export function BackboneExperience(){
- const [sound,setSound]=useState(false);const [word,setWord]=useState(0);const audio=useRef<AudioContext|null>(null);
+ const [sound,setSound]=useState(false);
+ const [word,setWord]=useState(0);
+ const audio=useRef<AudioContext|null>(null);
+ const beatTimer=useRef<ReturnType<typeof setInterval>|null>(null);
+ const step=useRef(0);
  useEffect(()=>{const id=setInterval(()=>setWord(n=>(n+1)%5),2000);return()=>clearInterval(id)},[]);
- useEffect(()=>{if(!sound)return;let i=0;const ctx=audio.current??new AudioContext();audio.current=ctx;void ctx.resume();const play=()=>{const t=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();o.frequency.setValueAtTime(i%4===0?95:170,t);o.frequency.exponentialRampToValueAtTime(55,t+.15);g.gain.setValueAtTime(.07,t);g.gain.exponentialRampToValueAtTime(.001,t+.17);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+.18);i++};play();const id=setInterval(play,430);return()=>clearInterval(id)},[sound]);
- return <div className="bb"><header className="bb-header"><Link href="/backbone" className="bb-logo">BACKBONE <span>3×3</span></Link><nav><a href="#about">理念</a><a href="#chapters">地域</a><a href="#fees">参加費</a><a href="#rules">開催要件</a><a href="#apply">開催申請</a><button onClick={()=>setSound(!sound)} aria-pressed={sound}>♪ SOUND {sound?"ON":"OFF"}</button></nav></header>
+ function stopAudio(){
+   if(beatTimer.current){clearInterval(beatTimer.current);beatTimer.current=null}
+   setSound(false);
+   if(audio.current&&audio.current.state==="running")void audio.current.suspend();
+ }
+ function playStep(){
+   const ctx=audio.current;
+   if(!ctx||ctx.state!=="running")return;
+   const t=ctx.currentTime,position=step.current%16;
+   function tone(freq:number,decay:number,volume:number,type:OscillatorType="sine"){
+     const o=ctx!.createOscillator(),g=ctx!.createGain();
+     o.type=type;o.frequency.setValueAtTime(freq,t);
+     if(type==="sine")o.frequency.exponentialRampToValueAtTime(Math.max(35,freq*.45),t+decay);
+     g.gain.setValueAtTime(volume,t);
+     g.gain.exponentialRampToValueAtTime(.0001,t+decay);
+     o.connect(g);g.connect(ctx!.destination);o.start(t);o.stop(t+decay+.02);
+   }
+   if(position===0||position===7||position===10)tone(105,.21,.18);
+   if(position===4||position===12){tone(210,.11,.06,"triangle");tone(310,.055,.025,"sawtooth")}
+   if(position%2===0)tone(3600,.027,.008,"triangle");
+   if(position===0||position===8)tone(position===0?110:82,.25,.018,"triangle");
+   step.current++;
+ }
+ function toggleSound(){
+   if(beatTimer.current){stopAudio();return}
+   try{
+     // Called directly inside a user gesture: iOS Safari requires AudioContext resume here.
+     const ctx=audio.current??new AudioContext();
+     audio.current=ctx;
+     void ctx.resume().then(()=>{
+       if(beatTimer.current)return;
+       step.current=0;playStep();
+       beatTimer.current=setInterval(playStep,165);
+       setSound(true);
+     }).catch(()=>stopAudio());
+   }catch{stopAudio()}
+ }
+ useEffect(()=>{
+   const onVisibility=()=>{if(document.hidden&&beatTimer.current){clearInterval(beatTimer.current);beatTimer.current=null;setSound(false);void audio.current?.suspend()}};
+   document.addEventListener("visibilitychange",onVisibility);
+   return ()=>{document.removeEventListener("visibilitychange",onVisibility);if(beatTimer.current)clearInterval(beatTimer.current);void audio.current?.close()};
+ },[]);
+ return <div className="bb"><header className="bb-header"><Link href="/backbone" className="bb-logo">BACKBONE <span>3×3</span></Link><button className="bb-mobile-sound" type="button" onClick={toggleSound} aria-pressed={sound} aria-label={sound?"音楽を停止":"音楽を再生"}>{sound?"♫ 音楽 ON":"♫ 音楽 OFF"}</button><nav><a href="#about">理念</a><a href="#chapters">地域</a><a href="#fees">参加費</a><a href="#rules">開催要件</a><a href="#apply">開催申請</a><button type="button" onClick={toggleSound} aria-pressed={sound}>♪ SOUND {sound?"ON":"OFF"}</button></nav></header>
  <main><section className="bb-hero"><div className="bb-hero-inner"><small>RIOT BASKETBALL ACADEMY / DEVELOPMENT NETWORK</small><h1>BACK<br/>BONE.</h1><h2>地域から、育成の軸をつくる。</h2><p>プレーする。考える。挑戦する。3x3を通じて子どもたちの経験機会を広げる、RBAの育成プロジェクトです。</p><a className="bb-btn" href="#apply">地域開催を相談する ↗</a></div></section>
  <section id="about"><h2>THE PROJECT.</h2><p>勝敗だけでなく、試合への参加機会、判断、挑戦、振り返りを大切にします。地域の指導者やチームと協力し、継続できる育成環境を目指します。</p><div className="bb-grid"><article><b>01</b><h3>経験機会</h3><p>一部の選手に出場が偏らないように工夫します。</p></article><article><b>02</b><h3>意思決定</h3><p>自分で見て、考え、選ぶ経験を重ねます。</p></article><article><b>03</b><h3>地域連携</h3><p>地域の現場に学びと機会を残します。</p></article></div></section>
  <section id="next-chiba"><div className="bb-notice" style={{borderLeftColor:"#e9dc35",background:"linear-gradient(115deg,#35381e,#121923)",padding:"clamp(25px,5vw,55px)"}}><small style={{color:"#e9dc35",letterSpacing:".18em",fontWeight:900}}>25 OCT 2026 / CHIBA CHAPTER / ROUND 3</small><h2 style={{fontSize:"clamp(50px,9vw,120px)",border:0,margin:"15px 0"}}>CHIBA. NEXT.</h2><h3>10月25日（日）千葉チャプター Round 3 開催。</h3><p>8:40受付／9:00〜16:00。午前は育成クリニック、午後は3x3ゲーム。参加費6,600円（税込）。個人参加歓迎。</p><Link className="bb-btn" href="/backbone/chiba">開催要項・申込を見る ↗</Link></div></section><section id="chapters"><h2>CHAPTERS.</h2><p>2025–26シーズンのInstagram掲載地域です。現在の募集状況ではありません。</p><div className="bb-chapters">{chapters.map(([name,color])=><article key={name} style={{borderBottomColor:color}}><strong>{name}</strong><small>BACKBONE / CHAPTER</small></article>)}</div><a className="bb-btn secondary" href="https://www.instagram.com/backbone3x3/" target="_blank" rel="noopener noreferrer">公式Instagram ↗</a></section>
  <section id="fees"><h2>PARTICIPATION.</h2><div className="bb-price"><p>基本参加費・1日開催</p><strong>6,600円 <small>税込／1日</small></strong></div><p>半日・複数日・特別企画は開催ごとに別途決定します。選手の参加申込は、各開催の募集要項確定後に受け付けます。</p></section>
  <section id="rules"><h2>ORGANIZER GUIDE.</h2><p>地域オーガナイザー・共催団体を募集しています。以下は新規開催の検討基準です。</p><div className="bb-grid two">{rules.map(([title,body],i)=><article key={title}><b>{String(i+1).padStart(2,"0")}</b><h3>{title}</h3><p>{body}</p></article>)}</div><div className="bb-notice"><strong>収益分配について</strong><p>正式な分配率・金額は一般公開していません。申請内容を確認した方に、開催規模・担当業務・費用負担に応じて個別に提示します。申請だけで開催・契約・分配条件は確定しません。</p></div></section>
- <section id="motion"><h2>IN MOTION.</h2><div className="bb-motion"><strong>{["3×3","PLAY","THINK","GROW","BACKBONE"][word]}</strong></div><p>オリジナルのモーションと電子ビートを使用しています。実際の試合映像・楽曲は許諾確認後に追加します。</p></section>
+ <section id="motion"><h2>MOTION PREVIEW.</h2><div className="bb-motion"><strong>{["3×3","PLAY","THINK","GROW","BACKBONE"][word]}</strong></div><p>こちらは文字と図形によるモーショングラフィックです。試合動画ではありません。音楽は画面上部の「音楽 OFF」をタップして再生できます。実際のBACKBONEの試合映像は、使用許諾を確認できた動画ファイルを受領後に追加します。</p><a className="bb-btn secondary" href="https://www.instagram.com/backbone3x3/" target="_blank" rel="noopener noreferrer">BACKBONE公式Instagramで映像を見る ↗</a></section>
  <section id="apply"><h2>HOST A CHAPTER.</h2><div className="bb-grid"><article><b>01</b><h3>申請</h3><p>地域・会場・運営体制を共有。</p></article><article><b>02</b><h3>協議・条件提示</h3><p>安全・役割・予算・分配を確認。</p></article><article><b>03</b><h3>書面合意・開催</h3><p>要項を確定して募集を開始。</p></article></div><div className="bb-notice"><h3>地域の子どもたちに、次の機会を。</h3><p>地域オーガナイザー・共催希望者の申請窓口です。選手向けの参加申込ではありません。</p><a className="bb-btn" href="https://form.jotform.com/262818373047058" target="_blank" rel="noopener noreferrer">オーガナイザー申請 ↗</a><a className="bb-btn secondary" href="mailto:riot.training.base@gmail.com?subject=BACKBONE%203x3%20%E5%8D%94%E8%B3%9B%E7%9B%B8%E8%AB%87">協賛相談 ↗</a></div></section></main><footer className="bb-footer">BACKBONE 3×3 — RIOT BASKETBALL ACADEMY <Link href="/ja">RBA公式サイトへ ↗</Link></footer></div>
 }
