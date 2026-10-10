@@ -1,15 +1,219 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="860" viewBox="0 0 1440 860"><rect width="1440" height="860" fill="#101a20"/><style>text{font-family:"Noto Sans CJK JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}.title{fill:#f6f8f7;font-size:48px;font-weight:900}.small{fill:#c8d8da;font-size:19px}.month{fill:#f6f8f7;font-size:22px;font-weight:800}.wk{fill:#b4c8cc;font-size:11px}.note{fill:#b8cbd0;font-size:17px}.phase{fill:#0f2228;font-size:21px;font-weight:900}</style>
-<text x="62" y="66" fill="#9cbac0" font-size="19" letter-spacing="4" font-weight="800">GREAM OKINAWA U13 / 48-WEEK PERIODIZATION</text>
-<text x="62" y="136" class="title">48週間のピリオダイゼーション</text><text x="62" y="177" class="small">技術・対人ゲーム・S&amp;C・回復を毎週つなぐ年間計画</text>
-<rect x="62" y="221" width="330" height="86" fill="#d8e8e6"/><rect x="395" y="221" width="330" height="86" fill="#bad5d5"/><rect x="728" y="221" width="330" height="86" fill="#97bdc0"/><rect x="1061" y="221" width="317" height="86" fill="#739fa6"/>
-<text x="78" y="257" class="phase">4–6月｜基礎形成</text><text x="411" y="257" class="phase">7–9月｜発展</text><text x="744" y="257" class="phase">10–12月｜実戦への応用</text><text x="1077" y="257" class="phase">1–3月｜定着と評価</text>
-<text x="78" y="285" class="phase" font-size="15">動作・1対1</text><text x="411" y="285" class="phase">少人数の判断</text><text x="744" y="285" class="phase">攻守の連係</text><text x="1077" y="285" class="phase">5対5・次年度へ</text>
-<text x="62" y="369" fill="#e3edee" font-size="25" font-weight="800">各週の計画上の負荷目安（相対的な区分）</text>
-<line x1="62" y1="570" x2="1378" y2="570" stroke="#78969d" stroke-width="2"/>
-<text x="94" y="619" text-anchor="middle" class="month">4月</text><rect x="62" y="530" width="16" height="40" rx="3" fill="#b8d1d1"/><text x="70" y="590" text-anchor="middle" class="wk">1</text><rect x="83" y="494" width="16" height="76" rx="3" fill="#b8d1d1"/><text x="91" y="590" text-anchor="middle" class="wk">2</text><rect x="104" y="494" width="16" height="76" rx="3" fill="#b8d1d1"/><text x="112" y="590" text-anchor="middle" class="wk">3</text><rect x="125" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="133" y="590" text-anchor="middle" class="wk">4</text><text x="204" y="619" text-anchor="middle" class="month">5月</text><rect x="172" y="494" width="16" height="76" rx="3" fill="#b8d1d1"/><text x="180" y="590" text-anchor="middle" class="wk">5</text><rect x="193" y="494" width="16" height="76" rx="3" fill="#b8d1d1"/><text x="201" y="590" text-anchor="middle" class="wk">6</text><rect x="214" y="458" width="16" height="112" rx="3" fill="#b8d1d1"/><text x="222" y="590" text-anchor="middle" class="wk">7</text><rect x="235" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="243" y="590" text-anchor="middle" class="wk">8</text><text x="314" y="619" text-anchor="middle" class="month">6月</text><rect x="282" y="494" width="16" height="76" rx="3" fill="#b8d1d1"/><text x="290" y="590" text-anchor="middle" class="wk">9</text><rect x="303" y="494" width="16" height="76" rx="3" fill="#b8d1d1"/><text x="311" y="590" text-anchor="middle" class="wk">10</text><rect x="324" y="458" width="16" height="112" rx="3" fill="#b8d1d1"/><text x="332" y="590" text-anchor="middle" class="wk">11</text><rect x="345" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="353" y="590" text-anchor="middle" class="wk">12</text><text x="424" y="619" text-anchor="middle" class="month">7月</text><rect x="392" y="512" width="16" height="58" rx="3" fill="#93babc"/><text x="400" y="590" text-anchor="middle" class="wk">13</text><rect x="413" y="494" width="16" height="76" rx="3" fill="#93babc"/><text x="421" y="590" text-anchor="middle" class="wk">14</text><rect x="434" y="458" width="16" height="112" rx="3" fill="#93babc"/><text x="442" y="590" text-anchor="middle" class="wk">15</text><rect x="455" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="463" y="590" text-anchor="middle" class="wk">16</text><text x="534" y="619" text-anchor="middle" class="month">8月</text><rect x="502" y="494" width="16" height="76" rx="3" fill="#93babc"/><text x="510" y="590" text-anchor="middle" class="wk">17</text><rect x="523" y="494" width="16" height="76" rx="3" fill="#93babc"/><text x="531" y="590" text-anchor="middle" class="wk">18</text><rect x="544" y="458" width="16" height="112" rx="3" fill="#93babc"/><text x="552" y="590" text-anchor="middle" class="wk">19</text><rect x="565" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="573" y="590" text-anchor="middle" class="wk">20</text><text x="644" y="619" text-anchor="middle" class="month">9月</text><rect x="612" y="494" width="16" height="76" rx="3" fill="#93babc"/><text x="620" y="590" text-anchor="middle" class="wk">21</text><rect x="633" y="494" width="16" height="76" rx="3" fill="#93babc"/><text x="641" y="590" text-anchor="middle" class="wk">22</text><rect x="654" y="458" width="16" height="112" rx="3" fill="#93babc"/><text x="662" y="590" text-anchor="middle" class="wk">23</text><rect x="675" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="683" y="590" text-anchor="middle" class="wk">24</text><text x="754" y="619" text-anchor="middle" class="month">10月</text><rect x="722" y="494" width="16" height="76" rx="3" fill="#6c9ea6"/><text x="730" y="590" text-anchor="middle" class="wk">25</text><rect x="743" y="494" width="16" height="76" rx="3" fill="#6c9ea6"/><text x="751" y="590" text-anchor="middle" class="wk">26</text><rect x="764" y="458" width="16" height="112" rx="3" fill="#6c9ea6"/><text x="772" y="590" text-anchor="middle" class="wk">27</text><rect x="785" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="793" y="590" text-anchor="middle" class="wk">28</text><text x="864" y="619" text-anchor="middle" class="month">11月</text><rect x="832" y="494" width="16" height="76" rx="3" fill="#6c9ea6"/><text x="840" y="590" text-anchor="middle" class="wk">29</text><rect x="853" y="494" width="16" height="76" rx="3" fill="#6c9ea6"/><text x="861" y="590" text-anchor="middle" class="wk">30</text><rect x="874" y="458" width="16" height="112" rx="3" fill="#6c9ea6"/><text x="882" y="590" text-anchor="middle" class="wk">31</text><rect x="895" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="903" y="590" text-anchor="middle" class="wk">32</text><text x="974" y="619" text-anchor="middle" class="month">12月</text><rect x="942" y="512" width="16" height="58" rx="3" fill="#6c9ea6"/><text x="950" y="590" text-anchor="middle" class="wk">33</text><rect x="963" y="494" width="16" height="76" rx="3" fill="#6c9ea6"/><text x="971" y="590" text-anchor="middle" class="wk">34</text><rect x="984" y="458" width="16" height="112" rx="3" fill="#6c9ea6"/><text x="992" y="590" text-anchor="middle" class="wk">35</text><rect x="1005" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="1013" y="590" text-anchor="middle" class="wk">36</text><text x="1084" y="619" text-anchor="middle" class="month">1月</text><rect x="1052" y="494" width="16" height="76" rx="3" fill="#497985"/><text x="1060" y="590" text-anchor="middle" class="wk">37</text><rect x="1073" y="494" width="16" height="76" rx="3" fill="#497985"/><text x="1081" y="590" text-anchor="middle" class="wk">38</text><rect x="1094" y="458" width="16" height="112" rx="3" fill="#497985"/><text x="1102" y="590" text-anchor="middle" class="wk">39</text><rect x="1115" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="1123" y="590" text-anchor="middle" class="wk">40</text><text x="1194" y="619" text-anchor="middle" class="month">2月</text><rect x="1162" y="494" width="16" height="76" rx="3" fill="#497985"/><text x="1170" y="590" text-anchor="middle" class="wk">41</text><rect x="1183" y="494" width="16" height="76" rx="3" fill="#497985"/><text x="1191" y="590" text-anchor="middle" class="wk">42</text><rect x="1204" y="500" width="16" height="70" rx="3" fill="#497985"/><text x="1212" y="590" text-anchor="middle" class="wk">43</text><rect x="1225" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="1233" y="590" text-anchor="middle" class="wk">44</text><text x="1304" y="619" text-anchor="middle" class="month">3月</text><rect x="1272" y="512" width="16" height="58" rx="3" fill="#497985"/><text x="1280" y="590" text-anchor="middle" class="wk">45</text><rect x="1293" y="494" width="16" height="76" rx="3" fill="#497985"/><text x="1301" y="590" text-anchor="middle" class="wk">46</text><rect x="1314" y="494" width="16" height="76" rx="3" fill="#497985"/><text x="1322" y="590" text-anchor="middle" class="wk">47</text><rect x="1335" y="541" width="16" height="29" rx="3" fill="#6e8086"/><text x="1343" y="590" text-anchor="middle" class="wk">48</text>
-<text x="62" y="666" class="note">■ 棒の高さは負荷の実測値ではありません。週ごとの指導方針を示す模式図です。</text>
-<text x="62" y="699" class="note">■ 「調整」は一律の休みではなく、技術の確認・評価・回復を優先する週です。</text>
-<text x="62" y="732" class="note">■ 試合・学校活動・成長・疲労に応じて、負荷の順序や大きさを変更します。</text>
-<rect x="62" y="768" width="1316" height="55" rx="6" fill="#263c44"/>
-<text x="80" y="803" fill="#e5eff0" font-size="19" font-weight="700">毎週の確認：技術課題 ／ 対人ゲーム ／ S&amp;C ／ 疲労・痛み ／ 次週の修正</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1510" viewBox="0 0 1440 1510">
+<rect x="0" y="0" width="1440" height="1510" rx="0" fill="#101a20" stroke="none"/>
+<style>text{font-family:"Noto Sans CJK JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}</style>
+<text x="62" y="58" fill="#7fa9ad" font-size="19" font-weight="800" text-anchor="start">GREAM OKINAWA U13   /   EVIDENCE-INFORMED PERIODIZATION</text>
+<text x="62" y="127" fill="#f3f6f4" font-size="48" font-weight="900" text-anchor="start">育成の計画と実際の負荷を、混同しない。</text>
+<text x="62" y="172" fill="#bed0d1" font-size="21" font-weight="500" text-anchor="start">年間48週の指導計画  ×  試合・回復  ×  個人別の負荷モニタリング</text>
+<text x="62" y="238" fill="#f3f6f4" font-size="26" font-weight="800" text-anchor="start">01  年間の重点  |  カリキュラムの期分け</text>
+<rect x="62" y="260" width="326" height="123" rx="7" fill="#d9e8e7" stroke="none"/>
+<text x="79" y="296" fill="#101a20" font-size="23" font-weight="900" text-anchor="start">4–6月</text>
+<text x="79" y="331" fill="#101a20" font-size="25" font-weight="900" text-anchor="start">基礎形成</text>
+<text x="79" y="360" fill="#101a20" font-size="18" font-weight="600" text-anchor="start">停止・1対1</text>
+<rect x="394" y="260" width="326" height="123" rx="7" fill="#bad5d5" stroke="none"/>
+<text x="411" y="296" fill="#101a20" font-size="23" font-weight="900" text-anchor="start">7–9月</text>
+<text x="411" y="331" fill="#101a20" font-size="25" font-weight="900" text-anchor="start">発展</text>
+<text x="411" y="360" fill="#101a20" font-size="18" font-weight="600" text-anchor="start">2対1・3対3</text>
+<rect x="726" y="260" width="326" height="123" rx="7" fill="#97bdc0" stroke="none"/>
+<text x="743" y="296" fill="#101a20" font-size="23" font-weight="900" text-anchor="start">10–12月</text>
+<text x="743" y="331" fill="#101a20" font-size="25" font-weight="900" text-anchor="start">応用</text>
+<text x="743" y="360" fill="#101a20" font-size="18" font-weight="600" text-anchor="start">攻守の連係</text>
+<rect x="1058" y="260" width="326" height="123" rx="7" fill="#769fa6" stroke="none"/>
+<text x="1075" y="296" fill="#101a20" font-size="23" font-weight="900" text-anchor="start">1–3月</text>
+<text x="1075" y="331" fill="#101a20" font-size="25" font-weight="900" text-anchor="start">定着・評価</text>
+<text x="1075" y="360" fill="#101a20" font-size="18" font-weight="600" text-anchor="start">5対5・振り返り</text>
+<text x="62" y="415" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">※これは「何を学ぶか」の計画です。年間の運動強度や体力の変化を示す図ではありません。</text>
+<text x="62" y="481" fill="#f3f6f4" font-size="26" font-weight="800" text-anchor="start">02  48週間の計画区分  |  数値ではなく、週ごとの運用上の目安</text>
+<rect x="62" y="505" width="1316" height="400" rx="9" fill="#18272e" stroke="none"/>
+<text x="195" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">4月</text>
+<text x="300" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">5月</text>
+<text x="405" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">6月</text>
+<text x="510" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">7月</text>
+<text x="615" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">8月</text>
+<text x="720" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">9月</text>
+<text x="825" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">10月</text>
+<text x="930" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">11月</text>
+<text x="1035" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">12月</text>
+<text x="1140" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">1月</text>
+<text x="1245" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">2月</text>
+<text x="1350" y="551" fill="#f3f6f4" font-size="19" font-weight="800" text-anchor="middle">3月</text>
+<text x="74" y="605" fill="#bed0d1" font-size="17" font-weight="700" text-anchor="start">第1週</text>
+<rect x="146" y="568" width="98" height="58" rx="5" fill="#b8d0d0" stroke="none"/>
+<text x="195" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W01</text>
+<text x="195" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">低</text>
+<rect x="251" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="300" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W05</text>
+<text x="300" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="356" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="405" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W09</text>
+<text x="405" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="461" y="568" width="98" height="58" rx="5" fill="#9fbfc2" stroke="none"/>
+<text x="510" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W13</text>
+<text x="510" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">低〜中</text>
+<rect x="566" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="615" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W17</text>
+<text x="615" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="671" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="720" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W21</text>
+<text x="720" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="776" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="825" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W25</text>
+<text x="825" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="881" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="930" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W29</text>
+<text x="930" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="986" y="568" width="98" height="58" rx="5" fill="#9fbfc2" stroke="none"/>
+<text x="1035" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W33</text>
+<text x="1035" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">低〜中</text>
+<rect x="1091" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="1140" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W37</text>
+<text x="1140" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="1196" y="568" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="1245" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W41</text>
+<text x="1245" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="1301" y="568" width="98" height="58" rx="5" fill="#9fbfc2" stroke="none"/>
+<text x="1350" y="594" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W45</text>
+<text x="1350" y="615" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">低〜中</text>
+<text x="74" y="678" fill="#bed0d1" font-size="17" font-weight="700" text-anchor="start">第2週</text>
+<rect x="146" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="195" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W02</text>
+<text x="195" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="251" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="300" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W06</text>
+<text x="300" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="356" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="405" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W10</text>
+<text x="405" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="461" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="510" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W14</text>
+<text x="510" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="566" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="615" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W18</text>
+<text x="615" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="671" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="720" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W22</text>
+<text x="720" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="776" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="825" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W26</text>
+<text x="825" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="881" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="930" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W30</text>
+<text x="930" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="986" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="1035" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W34</text>
+<text x="1035" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="1091" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="1140" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W38</text>
+<text x="1140" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="1196" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="1245" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W42</text>
+<text x="1245" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="1301" y="641" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="1350" y="667" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W46</text>
+<text x="1350" y="688" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<text x="74" y="751" fill="#bed0d1" font-size="17" font-weight="700" text-anchor="start">第3週</text>
+<rect x="146" y="714" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="195" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W03</text>
+<text x="195" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<rect x="251" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="300" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W07</text>
+<text x="300" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="356" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="405" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W11</text>
+<text x="405" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="461" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="510" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W15</text>
+<text x="510" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="566" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="615" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W19</text>
+<text x="615" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="671" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="720" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W23</text>
+<text x="720" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="776" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="825" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W27</text>
+<text x="825" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="881" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="930" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W31</text>
+<text x="930" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="986" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="1035" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W35</text>
+<text x="1035" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="1091" y="714" width="98" height="58" rx="5" fill="#457986" stroke="none"/>
+<text x="1140" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W39</text>
+<text x="1140" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中〜高</text>
+<rect x="1196" y="714" width="98" height="58" rx="5" fill="#c2a881" stroke="none"/>
+<text x="1245" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W43</text>
+<text x="1245" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">試合対応</text>
+<rect x="1301" y="714" width="98" height="58" rx="5" fill="#76a6ae" stroke="none"/>
+<text x="1350" y="740" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W47</text>
+<text x="1350" y="761" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">中</text>
+<text x="74" y="824" fill="#bed0d1" font-size="17" font-weight="700" text-anchor="start">第4週</text>
+<rect x="146" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="195" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W04</text>
+<text x="195" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="251" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="300" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W08</text>
+<text x="300" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="356" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="405" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W12</text>
+<text x="405" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="461" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="510" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W16</text>
+<text x="510" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="566" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="615" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W20</text>
+<text x="615" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="671" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="720" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W24</text>
+<text x="720" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="776" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="825" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W28</text>
+<text x="825" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="881" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="930" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W32</text>
+<text x="930" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="986" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="1035" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W36</text>
+<text x="1035" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="1091" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="1140" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W40</text>
+<text x="1140" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="1196" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="1245" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W44</text>
+<text x="1245" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<rect x="1301" y="787" width="98" height="58" rx="5" fill="#657c82" stroke="none"/>
+<text x="1350" y="813" fill="#101a20" font-size="15" font-weight="900" text-anchor="middle">W48</text>
+<text x="1350" y="834" fill="#101a20" font-size="14" font-weight="700" text-anchor="middle">調整</text>
+<text x="81" y="877" fill="#bed0d1" font-size="17" font-weight="600" text-anchor="start">計画区分は「選手本人に対する相対的な目安」。測定された運動負荷ではありません。</text>
+<text x="62" y="953" fill="#f3f6f4" font-size="26" font-weight="800" text-anchor="start">03  週間の実施と測定  |  事前計画 → 実施 → 記録 → 次週の調整</text>
+<rect x="62" y="981" width="319" height="171" rx="9" fill="#18272e" stroke="#38515a"/>
+<text x="80" y="1016" fill="#f3f6f4" font-size="22" font-weight="900" text-anchor="start">01  事前計画</text>
+<text x="80" y="1053" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">技術・判断課題</text>
+<text x="80" y="1086" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">試合・学校活動</text>
+<text x="80" y="1119" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">休養の確保</text>
+<text x="384" y="1075" fill="#7fa9ad" font-size="27" font-weight="900" text-anchor="start">›</text>
+<rect x="395" y="981" width="319" height="171" rx="9" fill="#18272e" stroke="#38515a"/>
+<text x="413" y="1016" fill="#f3f6f4" font-size="22" font-weight="900" text-anchor="start">02  練習・試合</text>
+<text x="413" y="1053" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">実施時間</text>
+<text x="413" y="1086" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">対人ゲームの本数</text>
+<text x="413" y="1119" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">出場・役割</text>
+<text x="717" y="1075" fill="#7fa9ad" font-size="27" font-weight="900" text-anchor="start">›</text>
+<rect x="728" y="981" width="319" height="171" rx="9" fill="#18272e" stroke="#38515a"/>
+<text x="746" y="1016" fill="#f3f6f4" font-size="22" font-weight="900" text-anchor="start">03  選手の反応</text>
+<text x="746" y="1053" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">主観的運動強度</text>
+<text x="746" y="1086" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">痛み・疲労</text>
+<text x="746" y="1119" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">睡眠・回復</text>
+<text x="1050" y="1075" fill="#7fa9ad" font-size="27" font-weight="900" text-anchor="start">›</text>
+<rect x="1061" y="981" width="319" height="171" rx="9" fill="#18272e" stroke="#38515a"/>
+<text x="1079" y="1016" fill="#f3f6f4" font-size="22" font-weight="900" text-anchor="start">04  次週の調整</text>
+<text x="1079" y="1053" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">続ける課題</text>
+<text x="1079" y="1086" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">減らす負荷</text>
+<text x="1079" y="1119" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">必要な相談</text>
+<rect x="62" y="1190" width="1316" height="173" rx="9" fill="#233942" stroke="none"/>
+<text x="85" y="1230" fill="#f3f6f4" font-size="23" font-weight="900" text-anchor="start">実測データ：現時点では未収集</text>
+<text x="85" y="1267" fill="#d7e7e6" font-size="19" font-weight="600" text-anchor="start">記録例：session-RPE = 練習時間（分） × 主観的運動強度（0–10）</text>
+<text x="85" y="1304" fill="#bed0d1" font-size="18" font-weight="500" text-anchor="start">この値は個人内の変化を追う補助指標であり、傷害リスクの予測値ではありません。</text>
+<text x="85" y="1339" fill="#bed0d1" font-size="18" font-weight="500" text-anchor="start">測定後に初めて「実績の推移」を作図する。推定した負荷曲線を実測値として描かない。</text>
+<text x="62" y="1414" fill="#7fa9ad" font-size="17" font-weight="700" text-anchor="start">設計原則：IOC Youth Athletic Development (2015) / Booth et al., BJSM (2017)</text>
+<text x="62" y="1450" fill="#bed0d1" font-size="17" font-weight="500" text-anchor="start">成長・成熟の個人差、試合日程、暑熱、痛み、学校・他団体の活動を考慮して週ごとに修正する。</text>
 </svg>
