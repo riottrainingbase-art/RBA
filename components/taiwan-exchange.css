@@ -1,0 +1,35 @@
+/* Taiwan exchange landing page — RBA monochrome editorial system */
+.taiwan-exchange h1,.taiwan-exchange h2,.taiwan-exchange h3{letter-spacing:-.045em;line-height:1.12}
+.taiwan-exchange h2{font-size:clamp(30px,4.2vw,58px);max-width:950px;margin:20px 0}
+.taiwan-exchange p{max-width:850px}
+.taiwan-hero{background:#111315;color:#fff;min-height:650px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.taiwan-hero h1{font-size:clamp(45px,7vw,100px);max-width:1000px;margin:24px 0}
+.taiwan-lead{font-size:clamp(18px,2vw,25px);color:#d0d3d4;line-height:1.6}
+.taiwan-status{display:flex;align-items:flex-start;gap:14px;margin-top:32px;padding:18px 20px;max-width:760px;border:1px solid #6d7579;background:#242729}
+.taiwan-status span{display:flex;flex-direction:column;gap:5px;color:#e4e6e6;font-size:14px}
+.taiwan-status strong{font-size:11px;letter-spacing:.14em;color:#b6c0c3}
+.taiwan-actions{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:28px}
+.taiwan-story{background:#f3f3f1}
+.taiwan-wide{font-size:clamp(18px,1.6vw,22px);line-height:1.75}
+.taiwan-footnote{font-size:13px;color:#555e62;border-left:3px solid #555e62;padding-left:16px;margin-top:28px}
+.taiwan-programmes{background:#25292c;color:#fff}
+.taiwan-programmes .taiwan-wide{color:#d1d5d7}
+.taiwan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#697073;margin-top:46px;border:1px solid #697073}
+.taiwan-grid article{background:#25292c;padding:36px;min-height:230px}
+.taiwan-grid article span{color:#aeb7bc;font-size:12px;font-weight:900;letter-spacing:.18em}
+.taiwan-grid h3{font-size:clamp(22px,2.5vw,33px);margin:24px 0 12px}
+.taiwan-grid p{color:#d1d5d7;line-height:1.75}
+.taiwan-operations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;background:#e2e3e1}
+.taiwan-operations h2{font-size:clamp(28px,3vw,43px)}
+.taiwan-operations p{line-height:1.85}
+.taiwan-operations ol{list-style:none;padding:0;margin:24px 0 0}
+.taiwan-operations li{display:flex;gap:18px;padding:17px 0;border-top:1px solid #aeb3b4}
+.taiwan-operations li b{font-size:12px;color:#62686c}
+.taiwan-safety{display:flex;align-items:flex-start;gap:28px;background:#d1d5d6}
+.taiwan-safety svg{flex:0 0 auto;margin-top:12px}
+.taiwan-safety p{line-height:1.85}
+.taiwan-enquiry{background:#f3f3f1}
+.taiwan-enquiry>p{font-size:18px;line-height:1.75}
+.taiwan-enquiry .contact-online{padding:40px 0 0}
+.taiwan-enquiry .contact-online h2{font-size:clamp(25px,3vw,38px)}
+@media(max-width:750px){.taiwan-hero{min-height:600px}.taiwan-grid,.taiwan-operations{grid-template-columns:1fr}.taiwan-grid article{min-height:auto;padding:28px}.taiwan-operations{gap:35px}.taiwan-safety{flex-direction:column;gap:6px}.taiwan-status{padding:15px}}
