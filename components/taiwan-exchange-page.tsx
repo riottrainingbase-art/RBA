@@ -142,7 +142,7 @@ export function TaiwanExchangePage({locale}:{locale:Locale}){
     <p className="section-index">QUESTIONS / ANSWERS</p><h2>{faqHeading[locale]}</h2>
     <div className="taiwan-faq-list">{faq[locale].map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
    </section>
-   <section className="taiwan-enquiry section-pad" id="taiwan-enquiry"><p className="section-index">JAPAN × TAIWAN / CONTACT</p><h2>{c.inquiryTitle}</h2><p>{c.inquiryLead}</p><ContactForm locale={locale}/></section>
+   <section className="taiwan-enquiry section-pad" id="taiwan-enquiry"><p className="section-index">JAPAN × TAIWAN / CONTACT</p><h2>{c.inquiryTitle}</h2><p>{c.inquiryLead}</p><ContactForm locale={locale} campaign="taiwan_2026_launch"/></section>
   </div>
  </SiteFrame>;
 }
