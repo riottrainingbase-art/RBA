@@ -94,6 +94,12 @@ const faq:Record<Locale,readonly [string,string][]>={
   ["문의하면 비용이 발생하나요?","아니요. 문의는 무료이며 예약이나 결제 의무가 생기지 않습니다."]
  ]
 };
+const coachResource:Record<Locale,{label:string;title:string;intro:string;prompts:readonly string[];note:string}>={
+ ja:{label:"FREE COACHING RESOURCE / 01",title:"答えを教える前に、3つの問いを。",intro:"次のゲーム形式練習で、プレーを止めすぎずに使える問いかけです。",prompts:["いま何が見えていた？","ほかにどんな選択肢があった？","次は何を変えてみる？"],note:"指導者同士の対話のきっかけとして自由にお使いください。"},
+ en:{label:"FREE COACHING RESOURCE / 01",title:"Three questions before giving the answer.",intro:"Try these during a game-based practice without stopping play too often.",prompts:["What did you notice?","What other options did you have?","What would you try differently next time?"],note:"A simple resource to spark dialogue between coaches."},
+ "zh-tw":{label:"免費教練資源 / 01",title:"給答案之前，先問三個問題。",intro:"在情境式練習中，試著減少中斷比賽，讓球員先表達自己的觀察。",prompts:["你剛才看到了什麼？","當時還有哪些選擇？","下一次你想怎麼調整？"],note:"歡迎台灣教練在練習中使用，也期待交流不同的帶領方式。"},
+ ko:{label:"무료 코칭 자료 / 01",title:"답을 알려 주기 전에 세 가지 질문.",intro:"게임형 훈련에서 플레이를 지나치게 멈추지 않고 활용해 보세요.",prompts:["방금 무엇을 보았나요?","다른 선택지는 무엇이었나요?","다음에는 무엇을 바꿔 볼까요?"],note:"코치 간 대화를 위한 간단한 자료입니다."}
+};
 const faqHeading:Record<Locale,string>={ja:"よくあるご質問",en:"Frequently asked questions","zh-tw":"常見問題",ko:"자주 묻는 질문"};
 
 export function TaiwanExchangePage({locale}:{locale:Locale}){
@@ -125,6 +131,13 @@ export function TaiwanExchangePage({locale}:{locale:Locale}){
     <Link className="button button-dark" href={localePath(locale,"partners")}>{({ja:"企業協賛・パートナーのご案内",en:"Corporate partnerships","zh-tw":"企業合作與贊助","ko":"기업 후원·파트너십"})[locale]}<ArrowRight size={17}/></Link>
     {locale==="ja"?<p><Link className="text-link" href="/ja/journal/japan-taiwan-2027-partner-sponsorship">JOURNAL｜2027年日台育成交流 協賛パートナー募集 <ArrowRight size={15}/></Link></p>:null}
    </div></section>
+   <section className="taiwan-resource section-pad" aria-label={coachResource[locale].label}>
+    <p className="section-index">{coachResource[locale].label}</p>
+    <h2>{coachResource[locale].title}</h2>
+    <p className="taiwan-wide">{coachResource[locale].intro}</p>
+    <ol className="taiwan-resource-list">{coachResource[locale].prompts.map((prompt,i)=><li key={prompt}><span>{String(i+1).padStart(2,"0")}</span><strong>{prompt}</strong></li>)}</ol>
+    <p className="taiwan-footnote">{coachResource[locale].note}</p>
+   </section>
    <section className="taiwan-faq section-pad" aria-label={faqHeading[locale]}>
     <p className="section-index">QUESTIONS / ANSWERS</p><h2>{faqHeading[locale]}</h2>
     <div className="taiwan-faq-list">{faq[locale].map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
