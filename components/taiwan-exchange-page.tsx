@@ -68,6 +68,34 @@ const copy:Record<Locale,Text>={
  }
 };
 
+const faq:Record<Locale,readonly [string,string][]>={
+ ja:[
+  ["次回の台湾クリニックはいつですか？","現時点で開催日・料金・募集開始日は確定していません。正式決定後、RBA公式サイトでご案内します。"],
+  ["台湾の学校やクラブから相談できますか？","はい。成人の団体担当者から、対象年代、参加人数、希望時期、目的をお知らせください。"],
+  ["指導者向けの講習もありますか？","対面・オンラインの交流を検討できます。内容や費用は個別に協議します。"],
+  ["問い合わせは有料ですか？","無料です。問い合わせだけで予約や支払いは発生しません。"]
+ ],
+ en:[
+  ["When is the next Taiwan clinic?","Dates, fees and registration are not confirmed. We will publish confirmed details on the official RBA site."],
+  ["Can a Taiwan school or academy enquire?","Yes. An adult representative can share age groups, estimated numbers, timing and learning goals."],
+  ["Do you offer coach development?","We can discuss in-person or online coach exchange. Scope and fees are agreed separately."],
+  ["Is an enquiry a booking?","No. Enquiries are free and do not create a booking or payment obligation."]
+ ],
+ "zh-tw":[
+  ["下一場台灣訓練營什麼時候舉辦？","目前尚未確定日期、費用及報名時間。確定後將透過RBA官方網站公告。"],
+  ["台灣的學校或籃球學院可以洽詢嗎？","可以。請由成年負責人提供年齡層、預估人數、希望時期與學習目標。"],
+  ["有教練研習或線上交流嗎？","可以洽談實體或線上教練交流。課程內容與費用須另行確認。"],
+  ["提交洽詢會產生費用嗎？","不會。洽詢免費，也不代表已完成報名或預約。"]
+ ],
+ ko:[
+  ["다음 대만 클리닉은 언제인가요?","일정, 비용, 모집은 아직 확정되지 않았습니다. 확정 후 RBA 공식 사이트에 공지합니다."],
+  ["대만 학교나 아카데미도 문의할 수 있나요?","네. 성인 담당자가 연령, 예상 인원, 시기 및 학습 목표를 알려 주세요."],
+  ["코치 교육도 진행하나요?","대면 및 온라인 교류를 협의할 수 있으며 내용과 비용은 별도 확정합니다."],
+  ["문의하면 비용이 발생하나요?","아니요. 문의는 무료이며 예약이나 결제 의무가 생기지 않습니다."]
+ ]
+};
+const faqHeading:Record<Locale,string>={ja:"よくあるご質問",en:"Frequently asked questions","zh-tw":"常見問題",ko:"자주 묻는 질문"};
+
 export function TaiwanExchangePage({locale}:{locale:Locale}){
  const c=copy[locale];
  return <SiteFrame locale={locale} languagePage="taiwan">
@@ -97,6 +125,10 @@ export function TaiwanExchangePage({locale}:{locale:Locale}){
     <Link className="button button-dark" href={localePath(locale,"partners")}>{({ja:"企業協賛・パートナーのご案内",en:"Corporate partnerships","zh-tw":"企業合作與贊助","ko":"기업 후원·파트너십"})[locale]}<ArrowRight size={17}/></Link>
     {locale==="ja"?<p><Link className="text-link" href="/ja/journal/japan-taiwan-2027-partner-sponsorship">JOURNAL｜2027年日台育成交流 協賛パートナー募集 <ArrowRight size={15}/></Link></p>:null}
    </div></section>
+   <section className="taiwan-faq section-pad" aria-label={faqHeading[locale]}>
+    <p className="section-index">QUESTIONS / ANSWERS</p><h2>{faqHeading[locale]}</h2>
+    <div className="taiwan-faq-list">{faq[locale].map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+   </section>
    <section className="taiwan-enquiry section-pad" id="taiwan-enquiry"><p className="section-index">JAPAN × TAIWAN / CONTACT</p><h2>{c.inquiryTitle}</h2><p>{c.inquiryLead}</p><ContactForm locale={locale}/></section>
   </div>
  </SiteFrame>;
