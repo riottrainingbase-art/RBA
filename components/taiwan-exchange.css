@@ -33,3 +33,14 @@
 .taiwan-enquiry .contact-online{padding:40px 0 0}
 .taiwan-enquiry .contact-online h2{font-size:clamp(25px,3vw,38px)}
 @media(max-width:750px){.taiwan-hero{min-height:600px}.taiwan-grid,.taiwan-operations{grid-template-columns:1fr}.taiwan-grid article{min-height:auto;padding:28px}.taiwan-operations{gap:35px}.taiwan-safety{flex-direction:column;gap:6px}.taiwan-status{padding:15px}}
+
+/* Taiwan FAQ: native accessible disclosure, no JS required */
+.taiwan-faq{background:#fff;color:#17191b}
+.taiwan-faq-list{max-width:940px;border-top:1px solid #c7cbcb;margin-top:34px}
+.taiwan-faq details{border-bottom:1px solid #c7cbcb;padding:0}
+.taiwan-faq summary{cursor:pointer;font-size:clamp(17px,1.6vw,21px);font-weight:750;padding:22px 38px 22px 0;position:relative;list-style:none;line-height:1.5}
+.taiwan-faq summary::-webkit-details-marker{display:none}
+.taiwan-faq summary:after{content:"+";position:absolute;right:5px;top:20px;font-size:27px;font-weight:400}
+.taiwan-faq details[open] summary:after{content:"−"}
+.taiwan-faq details p{line-height:1.85;margin:0 0 22px;color:#50585b}
+.taiwan-faq summary:focus-visible{outline:3px solid #37474f;outline-offset:4px}
