@@ -44,3 +44,11 @@
 .taiwan-faq details[open] summary:after{content:"−"}
 .taiwan-faq details p{line-height:1.85;margin:0 0 22px;color:#50585b}
 .taiwan-faq summary:focus-visible{outline:3px solid #37474f;outline-offset:4px}
+
+/* Useful coaching content as a lightweight, shareable acquisition asset */
+.taiwan-resource{background:#e8ebea;color:#1c2224}
+.taiwan-resource-list{list-style:none;padding:0;max-width:900px;margin:32px 0 0;border-top:1px solid #a9b0b0}
+.taiwan-resource-list li{display:flex;gap:25px;align-items:baseline;padding:22px 0;border-bottom:1px solid #a9b0b0}
+.taiwan-resource-list span{font-size:12px;font-weight:800;letter-spacing:.16em;color:#566066}
+.taiwan-resource-list strong{font-size:clamp(20px,2.2vw,30px);font-weight:700;line-height:1.5}
+@media(max-width:750px){.taiwan-resource-list li{gap:15px;padding:19px 0}}
