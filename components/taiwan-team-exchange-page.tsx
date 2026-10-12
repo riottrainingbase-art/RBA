@@ -95,7 +95,7 @@ export function TaiwanTeamExchangePage({locale}:{locale:Locale}){
  const c=words[locale];
  const e=experience[locale];
  const back=locale==="en"?"/taiwan":`/${locale}/taiwan`;
- return <SiteFrame locale={locale} languagePage="taiwan">
+ return <SiteFrame locale={locale} languagePage="taiwan/exchange">
   <div className="taiwan-exchange">
    <section className="taiwan-hero section-pad taiwan-team-hero">
     <p className="section-index inverse">{c.eyebrow}</p>
