@@ -1,0 +1,44 @@
+name: Taiwan Preview Static QA
+on:
+  pull_request:
+    branches: [preview-rba]
+    paths:
+      - "app/**/taiwan/**"
+      - "app/taiwan/**"
+      - "components/taiwan-*.tsx"
+      - "components/taiwan-*.css"
+      - "components/site-frame.tsx"
+      - "components/international-platform.tsx"
+      - "components/contact-form.tsx"
+      - "app/sitemap.ts"
+      - ".github/workflows/rba-taiwan-preview-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  taiwan-static-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Keep the deployment policy intact
+        run: pnpm run audit:deploy-policy
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: ESLint changed TypeScript and TSX
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "$BASE_REF" --depth=1
+          FILES="$(git diff --name-only --diff-filter=ACMR "origin/$BASE_REF...HEAD" -- '*.ts' '*.tsx' '*.js' '*.mjs')"
+          if [ -z "$FILES" ]; then exit 0; fi
+          printf '%s\n' "$FILES" | xargs pnpm exec eslint
