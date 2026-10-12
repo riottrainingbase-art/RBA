@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ClipboardList, ShieldCheck, Users, MapPin } from "lucide-react";
 import { SiteFrame, type Locale } from "./site-frame";
 import { ContactForm } from "./contact-form";
@@ -56,6 +57,7 @@ const words:Record<Locale,{
  back:"대만 교류 페이지",cta:"교류 상담"
  }
 };
+const approvedTaiwanMedia=process.env.RBA_TAIWAN_MEDIA_APPROVED==="true";
 const experience:Record<Locale,{eyebrow:string;title:string;lead:string;proofTitle:string;proof:string;ideasTitle:string;ideas:readonly [string,string][];sampleTitle:string;sampleNotice:string;sample:readonly [string,string][];closing:string}>={
  ja:{
  eyebrow:"MORE THAN A TOUR / REAL DEVELOPMENT",title:"海外に行くだけでは、終わらせない。",lead:"知らない相手とプレーする。違う言葉で伝える。自分で判断する。その経験を、子どもたちの次の成長につなげたい。",
@@ -115,6 +117,10 @@ export function TaiwanTeamExchangePage({locale}:{locale:Locale}){
     <p className="section-index">{e.eyebrow}</p>
     <h2>{e.title}</h2><p className="taiwan-wide">{e.lead}</p>
     <div className="taiwan-partner-proof"><span>2026 / TAIWAN CLINIC</span><h3>{e.proofTitle}</h3><p>{e.proof}</p></div>
+    {approvedTaiwanMedia?<div className="taiwan-real-gallery" aria-label="2026 Taiwan clinic field photographs">
+     <figure className="taiwan-real-gallery-main"><Image src="/taiwan/2026/spartans-clinic-action.jpg" alt="RBA and SPARTANS Academy youth basketball clinic in Taiwan, October 2026" width={1500} height={1050} sizes="(max-width: 750px) 100vw, 60vw"/><figcaption>RBA × SPARTANS / OCTOBER 2026</figcaption></figure>
+     <figure><Image src="/taiwan/2026/spartans-clinic-circle.jpg" alt="Local coaches and youth players gathering during a Taiwan basketball clinic" width={1200} height={900} sizes="(max-width: 750px) 100vw, 40vw"/><figcaption>ON THE COURT / TAIWAN</figcaption></figure>
+    </div>:null}
     <h3 className="taiwan-experience-heading">{e.ideasTitle}</h3>
     <div className="taiwan-experience-grid">{e.ideas.map(([heading,body],i)=><article key={heading}><span>{String(i+1).padStart(2,"0")} / {heading}</span><p>{body}</p></article>)}</div>
     <div className="taiwan-sample"><h3>{e.sampleTitle}</h3><p className="taiwan-footnote">{e.sampleNotice}</p><div>{e.sample.map(([day,activity])=><div className="taiwan-sample-day" key={day}><b>{day}</b><p>{activity}</p></div>)}</div></div>
