@@ -1,4 +1,5 @@
 import "./taiwan-exchange.css";
+import { TaiwanRbaPathways } from "./taiwan-rba-pathways";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ClipboardCheck, Globe2, ShieldCheck, Users } from "lucide-react";
 import { ContactForm } from "./contact-form";
@@ -133,6 +134,7 @@ export function TaiwanExchangePage({locale}:{locale:Locale}){
     <p className="section-index inverse">DEVELOPMENT BEFORE TOURISM</p><h2>{c.workTitle}</h2><p className="taiwan-wide">{c.workIntro}</p>
     <div className="taiwan-grid">{c.programs.map(([title,description],i)=><article key={title}><span>{String(i+1).padStart(2,"0")}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
    </section>
+   <TaiwanRbaPathways locale={locale}/>
    <section className="taiwan-operations section-pad">
     <div><Users aria-hidden="true" size={30}/><h2>{c.whoTitle}</h2><p>{c.whoText}</p></div>
     <div><Globe2 aria-hidden="true" size={30}/><h2>{c.howTitle}</h2><ol>{c.steps.map(([no,label])=><li key={no}><b>{no}</b><span>{label}</span></li>)}</ol></div>
