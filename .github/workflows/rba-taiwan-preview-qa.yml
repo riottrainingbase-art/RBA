@@ -38,7 +38,14 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
-          git fetch origin "$BASE_REF" --depth=1
-          FILES="$(git diff --name-only --diff-filter=ACMR "origin/$BASE_REF...HEAD" -- '*.ts' '*.tsx' '*.js' '*.mjs')"
+          # A shallow fetch can drop the PR merge base after preview-rba advances.
+          # Checkout already uses fetch-depth: 0; fetch the branch without truncating history.
+          git fetch origin "$BASE_REF"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            FILES="$(git diff --name-only --diff-filter=ACMR "$BASE_SHA" HEAD -- '*.ts' '*.tsx' '*.js' '*.mjs')"
+          else
+            FILES="$(git diff --name-only --diff-filter=ACMR HEAD^ HEAD -- '*.ts' '*.tsx' '*.js' '*.mjs')"
+          fi
           if [ -z "$FILES" ]; then exit 0; fi
           printf '%s\n' "$FILES" | xargs pnpm exec eslint
