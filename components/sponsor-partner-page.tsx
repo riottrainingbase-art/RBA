@@ -131,36 +131,94 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
  const mail="mailto:riot.training.base@gmail.com?subject="+subject+"&body="+body;
  return <main className="sponsor-page">
   <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={prefix+"/my-homecourt"}>{x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
-  <section className="khm-partner" aria-labelledby="khm-partner-title"><style>{`.khm-partner{background:#f3f0e8;color:#222;padding:64px clamp(24px,6vw,88px)}.khm-partner-inner{max-width:1180px;margin:auto}.khm-partner-kicker{font-size:11px;letter-spacing:.15em;color:#715e36}.khm-partner h2{font-size:clamp(24px,3vw,38px);line-height:1.5;margin:12px 0 30px}.khm-partner-card{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:center;border-top:1px solid #c9bfab;border-bottom:1px solid #c9bfab;padding:30px 0}.khm-partner-mark{display:flex;align-items:center;justify-content:center;background:#e9e2d4;min-height:210px}.khm-partner-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}.khm-partner-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply}.khm-partner h3{font-size:26px;line-height:1.5;margin:0 0 12px}.khm-partner-copy{font-size:14px;line-height:1.9;max-width:750px}.khm-partner-location{font-size:12px;color:#625e54;margin:15px 0}.khm-partner-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;padding:13px 0;border-bottom:1px solid #85734b;color:#222;min-height:48px;font-size:14px}.khm-partner-link:focus-visible{outline:3px solid #85734b;outline-offset:5px}.khm-partner-link:hover{color:#755b22}@media(max-width:640px){.khm-partner{padding:42px 24px}.khm-partner-card{grid-template-columns:1fr;gap:24px}.khm-partner-mark{min-height:190px}.khm-partner h3{font-size:24px}.khm-partner-link{width:100%}}`}</style><div className="khm-partner-inner"><p className="khm-partner-kicker">RBA SPONSORS &amp; PARTNERS</p><h2 id="khm-partner-title">{locale==="ja"?"スポンサー・パートナーのご紹介":"Meet our sponsors & partners"}</h2>
-  <article className="khm-partner-card" style={{padding:"32px 20px",background:"#fffcf4",borderTop:"3px solid #927341",borderBottom:"2px solid #927341",borderRadius:"4px"}}>
-    <div className="khm-partner-mark" style={{background:"#122129",color:"#fff",padding:"20px",flexDirection:"column",gap:"9px",textAlign:"center",minHeight:"210px"}}>
-      <span style={{fontSize:"12px",fontWeight:800,letterSpacing:".17em",color:"#d8c5a0"}}>PRINCIPAL PARTNER</span>
-      <strong style={{fontSize:"clamp(22px,3.3vw,30px)",lineHeight:1.1,letterSpacing:".045em"}}>SPARTANS</strong>
-      <span style={{fontSize:"11px",letterSpacing:".12em",lineHeight:1.6}}>BASKETBALL ACADEMY<br/>TAIPEI · TAIWAN</span>
+  
+  <section className="partner-roster" aria-labelledby="partner-roster-title">
+   <style>{`
+    .partner-roster{--pr-ink:#192329;--pr-paper:#f5f3ee;--pr-stroke:#d6d6d1;--pr-mid:#626963;background:var(--pr-paper);color:var(--pr-ink);padding:76px clamp(20px,5.5vw,88px) 80px}
+    .partner-roster *{box-sizing:border-box}
+    .partner-roster-inner{max-width:1160px;margin:0 auto}
+    .partner-roster-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;padding-bottom:30px;border-bottom:1px solid #babdb7}
+    .partner-roster-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:#5d6b67;margin:0 0 14px}
+    .partner-roster-heading h2{font-size:clamp(27px,3.5vw,45px);letter-spacing:-.03em;font-weight:750;line-height:1.2;margin:0 0 12px;max-width:790px;text-wrap:balance}
+    .partner-roster-intro{font-size:14px;line-height:1.85;max-width:700px;color:#485354;margin:0}
+    .partner-roster-rba{display:flex;align-items:center;gap:12px;flex-shrink:0;font-size:10px;line-height:1.55;letter-spacing:.09em;font-weight:800;color:#334449;min-width:190px;border-left:1px solid #cccfc8;padding-left:20px}
+    .partner-roster-rba img{width:45px;height:64px;object-fit:contain;filter:grayscale(1)}
+    .partner-roster-list{display:flex;flex-direction:column;gap:17px;margin:27px 0 0}
+    .partner-roster-card{display:grid;grid-template-columns:minmax(180px,250px) minmax(0,1fr);gap:38px;align-items:center;background:#fff;border:1px solid var(--pr-stroke);padding:28px 32px}
+    .partner-roster-card--principal{border:1px solid #9daba6;border-left:5px solid #243e34;background:#fcfdfa;padding:34px 34px 34px 31px}
+    .partner-roster-logo{width:100%;max-width:240px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:24px;background:#f1f3f1}
+    .partner-roster-logo img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+    .partner-roster-logo--spartan{background:#17392f}
+    .partner-roster-logo--spartan img{width:100%;height:100%;max-height:100%;object-fit:contain}
+    .partner-roster-logo--empower{background:#ffe32b}
+    .partner-roster-logo--empower img{max-width:100%;max-height:100%}
+    .partner-roster-logo--khm{background:#e9e5db}
+    .partner-roster-khm-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}
+    .partner-roster-khm-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;max-height:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply;object-fit:fill}
+    .partner-roster-category{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 12px;color:#475950;font-size:10px;font-weight:800;letter-spacing:.115em;text-transform:uppercase}
+    .partner-roster-category i{display:inline-block;width:17px;height:1px;background:currentColor;flex-shrink:0}
+    .partner-roster-card h3{font-size:clamp(21px,2.3vw,30px);letter-spacing:-.018em;line-height:1.35;margin:0 0 13px}
+    .partner-roster-card p.partner-roster-description{font-size:14px;line-height:1.95;color:#475151;max-width:780px;margin:0 0 10px}
+    .partner-roster-notes{font-size:12px;letter-spacing:.03em;line-height:1.5;color:#6c746b;margin:13px 0 0}
+    .partner-roster-card a{font-size:13px;font-weight:750;display:inline-flex;gap:24px;align-items:center;border-bottom:1px solid #64786a;padding:10px 0 7px;text-decoration:none;color:#234436;margin:10px 0 0;min-height:44px}
+    .partner-roster-card a:focus-visible{outline:3px solid #4b775e;outline-offset:5px}
+    .partner-roster-card a:hover{color:#000;border-color:#000}
+    .partner-roster-footer{border-top:1px solid #babdb7;margin-top:30px;padding-top:18px;display:flex;align-items:baseline;gap:16px;color:#5b625e;line-height:1.8;font-size:12px}
+    .partner-roster-footer b{white-space:nowrap;letter-spacing:.1em;font-size:10px;color:#354b41}
+    @media(max-width:800px){.partner-roster-card{grid-template-columns:190px 1fr;gap:22px;padding:22px}.partner-roster-card--principal{padding:24px}.partner-roster-rba{min-width:unset}}
+    @media(max-width:640px){.partner-roster{padding:48px 20px 60px}.partner-roster-heading{display:block;padding-bottom:24px}.partner-roster-rba{margin-top:20px;padding:12px 0 0;border-left:0;border-top:1px solid #d8dad4}.partner-roster-rba img{width:34px;height:46px}.partner-roster-list{gap:12px;margin-top:22px}.partner-roster-card,.partner-roster-card--principal{grid-template-columns:1fr;gap:20px;padding:20px;border-left-width:1px}.partner-roster-card--principal{border-top:4px solid #243e34}.partner-roster-logo{width:100%;max-width:none;height:170px;aspect-ratio:auto;padding:14px}.partner-roster-logo img{height:100%;max-height:100%;width:auto}.partner-roster-category{font-size:10px;letter-spacing:.09em}.partner-roster-card h3{font-size:24px}.partner-roster-footer{display:block}.partner-roster-footer b{display:block;margin-bottom:8px}}
+   `}</style>
+   <div className="partner-roster-inner">
+    <header className="partner-roster-heading">
+     <div>
+      <p className="partner-roster-eyebrow">RBA / OFFICIAL PARTNERS</p>
+      <h2 id="partner-roster-title">{locale==="ja"?"国境を越えて、ともに育成を。":locale==="zh-tw"?"跨越國界，一起培育下一代。":locale==="ko"?"국경을 넘어 함께 성장하는 농구.":"Development built together, across borders."}</h2>
+      <p className="partner-roster-intro">{locale==="ja"?"RBAと活動をともにする正式なパートナーをご紹介します。国際育成交流と企業による活動支援、それぞれの役割を分けて掲載しています。":locale==="zh-tw"?"介紹與RBA共同推動活動的正式夥伴。清楚區分國際籃球培育交流及企業支持的不同角色。":locale==="ko"?"RBA의 공식 협력 기관을 소개합니다. 국제 육성 교류와 기업 지원의 역할을 구분해 안내합니다.":"Meet the organisations working alongside RBA. International development collaboration and corporate support are shown as distinct partnerships."}</p>
+     </div>
+     <div className="partner-roster-rba"><img src="/rba-logo-original.jpg" width="45" height="64" alt="Riot Basketball Academy official crest"/><span>RIOT<br/>BASKETBALL<br/>ACADEMY</span></div>
+    </header>
+    <div className="partner-roster-list">
+     <article className="partner-roster-card partner-roster-card--principal">
+      <div className="partner-roster-logo partner-roster-logo--spartan">
+       <img src="https://www.spartans.tw/lovable-uploads/4d8424e0-e76f-4947-8c1c-1923e67e3ca5.png" width="512" height="512" loading="eager" alt="SPARTANS Academy 公式ロゴ" />
+      </div>
+      <div>
+       <p className="partner-roster-category"><i/> {spartanPartnerCopy[locale].label}</p>
+       <h3>{spartanPartnerCopy[locale].title}</h3>
+       <p className="partner-roster-description">{spartanPartnerCopy[locale].description}</p>
+       <p className="partner-roster-description">{spartanPartnerCopy[locale].partnership}</p>
+       <p className="partner-roster-notes">{spartanPartnerCopy[locale].note}</p>
+       <a href="https://www.spartans.tw/" target="_blank" rel="noopener noreferrer">{spartanPartnerCopy[locale].link} <ArrowUpRight size={16} aria-hidden="true"/></a>
+      </div>
+     </article>
+     <article className="partner-roster-card">
+      <div className="partner-roster-logo partner-roster-logo--empower">
+       <img src="https://www.empower.com.tw/0composition/frontpage/210323/images/svg/empower-logo-b.svg" width="420" height="210" loading="lazy" alt="EMPOWER 引爆籃球訓練 公式ロゴ" />
+      </div>
+      <div>
+       <p className="partner-roster-category"><i/> {empowerCopy[locale].region}</p>
+       <h3>{empowerCopy[locale].title}</h3>
+       <p className="partner-roster-description">{empowerCopy[locale].description}</p>
+       <p className="partner-roster-description">{empowerCopy[locale].partnership}</p>
+       <a href="https://www.empower.com.tw/" target="_blank" rel="noopener noreferrer">{empowerCopy[locale].link} <ArrowUpRight size={16} aria-hidden="true"/></a>
+      </div>
+     </article>
+     <article className="partner-roster-card">
+      <div className="partner-roster-logo partner-roster-logo--khm">
+       <span className="partner-roster-khm-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="合同会社KHM écrin ブランドマーク" width="1152" height="1536" loading="lazy"/></span>
+      </div>
+      <div>
+       <p className="partner-roster-category"><i/> {locale==="ja"?"JAPAN / CORPORATE SUPPORT PARTNER":locale==="zh-tw"?"日本 / 企業支持夥伴":locale==="ko"?"일본 / 기업 지원 파트너":"JAPAN / CORPORATE SUPPORT PARTNER"}</p>
+       <h3>{locale==="zh-tw"?"KHM 合同公司":locale==="ko"?"KHM 합동회사":"合同会社KHM"}</h3>
+       <p className="partner-roster-description">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を展開しています。":locale==="zh-tw"?"KHM在日本經營écrin就業支持、餐飲與輕型貨物運送服務。":locale==="ko"?"KHM은 일본에서 écrin 취업 지원, 식음료 서비스 및 소형 화물 운송 사업을 운영합니다.":"KHM operates écrin employment support, a restaurant and a light freight delivery business in Japan."}</p>
+       <p className="partner-roster-notes">KOBE · JAPAN</p>
+       <a href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHM公式サイトを見る":locale==="zh-tw"?"前往KHM官方網站":locale==="ko"?"KHM 공식 사이트":"Visit KHM's official website"} <ArrowUpRight size={16} aria-hidden="true"/></a>
+      </div>
+     </article>
     </div>
-    <div>
-      <p className="khm-partner-location" style={{letterSpacing:".08em",fontWeight:800,color:"#7c6132"}}>{spartanPartnerCopy[locale].label}</p>
-      <h3>{spartanPartnerCopy[locale].title}</h3>
-      <p className="khm-partner-copy">{spartanPartnerCopy[locale].description}</p>
-      <p className="khm-partner-copy">{spartanPartnerCopy[locale].partnership}</p>
-      <p className="khm-partner-location">{spartanPartnerCopy[locale].note}</p>
-      <a className="khm-partner-link" href="https://www.spartans.com.tw/" target="_blank" rel="noopener noreferrer">{spartanPartnerCopy[locale].link}<span aria-hidden="true">↗</span></a>
-    </div>
-  </article>
-  <article className="khm-partner-card"><div className="khm-partner-mark"><span className="khm-partner-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="écrin：宝石箱を抱えるゴリラのロゴ" loading="lazy" width="1152" height="1536"/></span></div><div><h3>合同会社KHM</h3><p className="khm-partner-copy">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」合同会社KHMは、就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を運営しています。":"KHM operates écrin, a Type B continuous employment support service, écrin restaurant, and a light freight delivery business in Japan."}</p><p className="khm-partner-location">{locale==="ja"?"所在地：兵庫県神戸市垂水区舞子坂4-8-12-4":"Kobe, Hyogo, Japan"}</p><a className="khm-partner-link" href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHMの公式ホームページを見る":"Visit the KHM website (Japanese)"}<span aria-hidden="true">↗</span></a></div></article>
-  <article className="khm-partner-card" style={{marginTop:"32px"}}>
-   <div className="khm-partner-mark" style={{background:"#111827",color:"#ffffff",flexDirection:"column",gap:"10px",padding:"20px",textAlign:"center"}}>
-     <strong style={{fontSize:"clamp(24px,3vw,34px)",letterSpacing:".03em",lineHeight:1.15}}>EMPOWER</strong>
-     <span style={{fontSize:"11px",letterSpacing:".12em"}}>BASKETBALL TRAINING · TAIWAN</span>
+    <div className="partner-roster-footer"><b>OUR COMMITMENT</b><span>{locale==="ja"?"共同イベントや契約条件は、それぞれの団体との合意に基づいて決定し、確定後にお知らせします。":locale==="zh-tw"?"聯合活動與合作條件將依雙方確認後再正式公告。":locale==="ko"?"공동 프로그램과 세부 조건은 각 파트너와 합의한 후 확정 안내합니다.":"Joint programmes and commercial terms are announced only after they are mutually confirmed."}</span></div>
    </div>
-   <div>
-     <p className="khm-partner-location" style={{letterSpacing:".08em",fontWeight:600}}>{empowerCopy[locale].region}</p>
-     <h3>{empowerCopy[locale].title}</h3>
-     <p className="khm-partner-copy">{empowerCopy[locale].description}</p>
-     <p className="khm-partner-copy">{empowerCopy[locale].partnership}</p>
-     <a className="khm-partner-link" href="https://www.empower.com.tw/" target="_blank" rel="noopener noreferrer">{empowerCopy[locale].link}<span aria-hidden="true">↗</span></a>
-   </div>
-  </article></div></section>
+  </section>
   <section className="sponsor-metrics section-pad">{x.metrics.map(([v,l])=><article key={l}><strong>{v}</strong><span>{l}</span></article>)}</section>
   <section className="sponsor-why section-pad"><p className="section-index">{x.section}</p><h2>{x.sectionTitle}</h2><div className="sponsor-value-grid">{x.values.map(([tag,title,desc],i)=>{const Icon=icons[i];return <article key={tag}><Icon/><span>{tag}</span><h3>{title}</h3><p>{desc}</p></article>})}</div></section>
   <section className="sponsor-platform section-pad"><div><p className="section-index inverse">{x.platform}</p><h2>{x.platformTitle}</h2><p>{x.platformBody}</p><a href={prefix+"/my-homecourt"}>{x.secondary}<ArrowRight size={16}/></a></div><div className="sponsor-platform-flow"><span>GAME</span><b>→</b><span>PREP</span><b>→</b><span>PLAY</span><b>→</b><span>REFLECT</span><b>→</b><span>NEXT</span></div></section>
