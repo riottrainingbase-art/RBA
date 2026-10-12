@@ -56,6 +56,37 @@ const c={
  }
 } as const;
 
+const empowerCopy={
+ ja:{
+  region:"TAIWAN / INTERNATIONAL DEVELOPMENT PARTNER",
+  title:"EMPOWER 引爆籃球訓練",
+  description:"台湾各地で子どもから若者までのバスケットボール育成、クラブ活動、キャンプ、指導者の学びに取り組む団体です。",
+  partnership:"2026年10月、RBAとEMPOWERは育成分野でのパートナーシップに合意しました。日本と台湾の選手・指導者が学び合える関係を育てていきます。個別の共同企画・開催日程は、決まり次第お知らせします。",
+  link:"EMPOWER公式サイトを見る"
+ },
+ en:{
+  region:"TAIWAN / INTERNATIONAL DEVELOPMENT PARTNER",
+  title:"EMPOWER Basketball Training",
+  description:"A Taiwan-based basketball development organisation offering youth clubs, training programmes, camps and coach learning opportunities.",
+  partnership:"RBA and EMPOWER agreed to work together as development partners in October 2026. We aim to build opportunities for players and coaches in Japan and Taiwan to learn from each other. Joint programmes and dates will be announced only when confirmed.",
+  link:"Visit EMPOWER's official website"
+ },
+ "zh-tw":{
+  region:"台灣 / 國際籃球培育夥伴",
+  title:"EMPOWER 引爆籃球訓練",
+  description:"EMPOWER在台灣推動青少年籃球俱樂部、訓練課程、特色營隊與教練學習，致力於培育球員與個人成長。",
+  partnership:"2026年10月，RBA與EMPOWER確認建立籃球培育合作夥伴關係。希望逐步促進台日球員與教練的交流與學習；具體合作活動與日期將在確認後公告。",
+  link:"前往EMPOWER官方網站"
+ },
+ ko:{
+  region:"대만 / 국제 유소년 농구 육성 파트너",
+  title:"EMPOWER 농구 트레이닝",
+  description:"대만에서 청소년 농구 클럽, 트레이닝 프로그램, 캠프와 코치 교육을 운영하는 육성 단체입니다.",
+  partnership:"RBA와 EMPOWER는 2026년 10월 유소년 농구 육성 파트너십에 합의했습니다. 일본과 대만의 선수와 지도자가 서로 배우는 교류를 지향하며, 구체적인 공동 프로그램과 일정은 확정 후 공지합니다.",
+  link:"EMPOWER 공식 웹사이트"
+ }
+} as const;
+
 const icons=[Users2,HeartPulse,ShieldCheck,Globe2];
 
 export function SponsorPartnerPage({locale}:{locale:Locale}){
@@ -65,7 +96,20 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
  const mail="mailto:riot.training.base@gmail.com?subject="+subject+"&body="+body;
  return <main className="sponsor-page">
   <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={prefix+"/my-homecourt"}>{x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
-  <section className="khm-partner" aria-labelledby="khm-partner-title"><style>{`.khm-partner{background:#f3f0e8;color:#222;padding:64px clamp(24px,6vw,88px)}.khm-partner-inner{max-width:1180px;margin:auto}.khm-partner-kicker{font-size:11px;letter-spacing:.15em;color:#715e36}.khm-partner h2{font-size:clamp(24px,3vw,38px);line-height:1.5;margin:12px 0 30px}.khm-partner-card{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:center;border-top:1px solid #c9bfab;border-bottom:1px solid #c9bfab;padding:30px 0}.khm-partner-mark{display:flex;align-items:center;justify-content:center;background:#e9e2d4;min-height:210px}.khm-partner-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}.khm-partner-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply}.khm-partner h3{font-size:26px;line-height:1.5;margin:0 0 12px}.khm-partner-copy{font-size:14px;line-height:1.9;max-width:750px}.khm-partner-location{font-size:12px;color:#625e54;margin:15px 0}.khm-partner-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;padding:13px 0;border-bottom:1px solid #85734b;color:#222;min-height:48px;font-size:14px}.khm-partner-link:focus-visible{outline:3px solid #85734b;outline-offset:5px}.khm-partner-link:hover{color:#755b22}@media(max-width:640px){.khm-partner{padding:42px 24px}.khm-partner-card{grid-template-columns:1fr;gap:24px}.khm-partner-mark{min-height:190px}.khm-partner h3{font-size:24px}.khm-partner-link{width:100%}}`}</style><div className="khm-partner-inner"><p className="khm-partner-kicker">RBA SPONSORS &amp; PARTNERS</p><h2 id="khm-partner-title">{locale==="ja"?"スポンサー・パートナーのご紹介":"Meet our sponsors & partners"}</h2><article className="khm-partner-card"><div className="khm-partner-mark"><span className="khm-partner-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="écrin：宝石箱を抱えるゴリラのロゴ" loading="lazy" width="1152" height="1536"/></span></div><div><h3>合同会社KHM</h3><p className="khm-partner-copy">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」合同会社KHMは、就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を運営しています。":"KHM operates écrin, a Type B continuous employment support service, écrin restaurant, and a light freight delivery business in Japan."}</p><p className="khm-partner-location">{locale==="ja"?"所在地：兵庫県神戸市垂水区舞子坂4-8-12-4":"Kobe, Hyogo, Japan"}</p><a className="khm-partner-link" href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHMの公式ホームページを見る":"Visit the KHM website (Japanese)"}<span aria-hidden="true">↗</span></a></div></article></div></section>
+  <section className="khm-partner" aria-labelledby="khm-partner-title"><style>{`.khm-partner{background:#f3f0e8;color:#222;padding:64px clamp(24px,6vw,88px)}.khm-partner-inner{max-width:1180px;margin:auto}.khm-partner-kicker{font-size:11px;letter-spacing:.15em;color:#715e36}.khm-partner h2{font-size:clamp(24px,3vw,38px);line-height:1.5;margin:12px 0 30px}.khm-partner-card{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:center;border-top:1px solid #c9bfab;border-bottom:1px solid #c9bfab;padding:30px 0}.khm-partner-mark{display:flex;align-items:center;justify-content:center;background:#e9e2d4;min-height:210px}.khm-partner-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}.khm-partner-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply}.khm-partner h3{font-size:26px;line-height:1.5;margin:0 0 12px}.khm-partner-copy{font-size:14px;line-height:1.9;max-width:750px}.khm-partner-location{font-size:12px;color:#625e54;margin:15px 0}.khm-partner-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;padding:13px 0;border-bottom:1px solid #85734b;color:#222;min-height:48px;font-size:14px}.khm-partner-link:focus-visible{outline:3px solid #85734b;outline-offset:5px}.khm-partner-link:hover{color:#755b22}@media(max-width:640px){.khm-partner{padding:42px 24px}.khm-partner-card{grid-template-columns:1fr;gap:24px}.khm-partner-mark{min-height:190px}.khm-partner h3{font-size:24px}.khm-partner-link{width:100%}}`}</style><div className="khm-partner-inner"><p className="khm-partner-kicker">RBA SPONSORS &amp; PARTNERS</p><h2 id="khm-partner-title">{locale==="ja"?"スポンサー・パートナーのご紹介":"Meet our sponsors & partners"}</h2><article className="khm-partner-card"><div className="khm-partner-mark"><span className="khm-partner-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="écrin：宝石箱を抱えるゴリラのロゴ" loading="lazy" width="1152" height="1536"/></span></div><div><h3>合同会社KHM</h3><p className="khm-partner-copy">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」合同会社KHMは、就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を運営しています。":"KHM operates écrin, a Type B continuous employment support service, écrin restaurant, and a light freight delivery business in Japan."}</p><p className="khm-partner-location">{locale==="ja"?"所在地：兵庫県神戸市垂水区舞子坂4-8-12-4":"Kobe, Hyogo, Japan"}</p><a className="khm-partner-link" href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHMの公式ホームページを見る":"Visit the KHM website (Japanese)"}<span aria-hidden="true">↗</span></a></div></article>
+  <article className="khm-partner-card" style={{marginTop:"32px"}}>
+   <div className="khm-partner-mark" style={{background:"#111827",color:"#ffffff",flexDirection:"column",gap:"10px",padding:"20px",textAlign:"center"}}>
+     <strong style={{fontSize:"clamp(24px,3vw,34px)",letterSpacing:".03em",lineHeight:1.15}}>EMPOWER</strong>
+     <span style={{fontSize:"11px",letterSpacing:".12em"}}>BASKETBALL TRAINING · TAIWAN</span>
+   </div>
+   <div>
+     <p className="khm-partner-location" style={{letterSpacing:".08em",fontWeight:600}}>{empowerCopy[locale].region}</p>
+     <h3>{empowerCopy[locale].title}</h3>
+     <p className="khm-partner-copy">{empowerCopy[locale].description}</p>
+     <p className="khm-partner-copy">{empowerCopy[locale].partnership}</p>
+     <a className="khm-partner-link" href="https://www.empower.com.tw/" target="_blank" rel="noopener noreferrer">{empowerCopy[locale].link}<span aria-hidden="true">↗</span></a>
+   </div>
+  </article></div></section>
   <section className="sponsor-metrics section-pad">{x.metrics.map(([v,l])=><article key={l}><strong>{v}</strong><span>{l}</span></article>)}</section>
   <section className="sponsor-why section-pad"><p className="section-index">{x.section}</p><h2>{x.sectionTitle}</h2><div className="sponsor-value-grid">{x.values.map(([tag,title,desc],i)=>{const Icon=icons[i];return <article key={tag}><Icon/><span>{tag}</span><h3>{title}</h3><p>{desc}</p></article>})}</div></section>
   <section className="sponsor-platform section-pad"><div><p className="section-index inverse">{x.platform}</p><h2>{x.platformTitle}</h2><p>{x.platformBody}</p><a href={prefix+"/my-homecourt"}>{x.secondary}<ArrowRight size={16}/></a></div><div className="sponsor-platform-flow"><span>GAME</span><b>→</b><span>PREP</span><b>→</b><span>PLAY</span><b>→</b><span>REFLECT</span><b>→</b><span>NEXT</span></div></section>
