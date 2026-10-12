@@ -9,11 +9,11 @@ On 2026-10-12 the RBA representative explicitly confirmed that permission has be
 These are the **actual photos supplied by RBA**, not stock images, generated substitutes or photos from another event.
 
 - `public/taiwan/2026/spartans-clinic-action.jpg`
-  - SHA-256 `6b8e45e8f2517c788565d5fb14cf3644f8bca1f3cbd669e6a732bd78fad2558e`
+  - SHA-256 `c4c917c9b96cb6d2929ea098416f1df3e6f11dddd01f3b69392c60a8b10a0b04`
 - `public/taiwan/2026/spartans-clinic-circle.jpg`
-  - SHA-256 `90c5253bb0c3be269e0ca9670741a1ef426e31a92f52cbc6e00b0690e84109cf`
+  - SHA-256 `7517289ec525b21f738098a625ff71d918c203c1c10965363e41e8145b148008`
 
-Both compressed files are in the locally generated `RBA_TAIWAN_公式HP写真統合素材_20261012.zip` and ready for upload. The connector available for GitHub text edits cannot directly upload binary files from this working container. **Neither image has yet been committed to this PR.**
+Both compressed files are in the locally generated `RBA_TAIWAN_実写写真_公式サイト実装パック.zip` and ready for upload. The connector available for GitHub text edits cannot directly upload binary files from this working container. **Neither image has yet been committed to this PR.**
 
 ## Release procedure
 1. Upload the two original compressed JPEGs to the paths above and verify their checksums.
