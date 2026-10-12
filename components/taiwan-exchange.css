@@ -99,3 +99,15 @@
 .taiwan-real-gallery-main img{aspect-ratio:16/10}
 .taiwan-real-gallery figcaption{position:absolute;bottom:0;left:0;right:0;padding:24px 16px 13px;color:#fff;font-weight:800;letter-spacing:.14em;font-size:11px;background:linear-gradient(transparent,rgba(0,0,0,.8))}
 @media(max-width:750px){.taiwan-real-gallery{grid-template-columns:1fr}.taiwan-real-gallery figure{min-height:auto}.taiwan-real-gallery img,.taiwan-real-gallery-main img{aspect-ratio:4/3}}
+
+
+/* RBA Taiwan: one brand, three distinct pathways */
+.taiwan-pathways{background:#f6f5f1;color:#162636}
+.taiwan-pathways h2{max-width:950px}
+.taiwan-pathways-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:30px 0 22px}
+.taiwan-pathways-grid article{display:flex;flex-direction:column;align-items:flex-start;padding:28px;background:#fff;border:1px solid #dce2e5;border-top:4px solid #b85b3e}
+.taiwan-pathways-grid h3{font-size:clamp(1.1rem,2vw,1.55rem);margin:0 0 14px;letter-spacing:-.02em}
+.taiwan-pathways-grid article p{line-height:1.75;margin:0 0 12px}
+.taiwan-pathways-audience{color:#586674;font-size:.88rem}
+.taiwan-pathways-grid article a{margin-top:auto;padding-top:12px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:800px){.taiwan-pathways-grid{grid-template-columns:1fr}.taiwan-pathways-grid article{padding:23px}}
