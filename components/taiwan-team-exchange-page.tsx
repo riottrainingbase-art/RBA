@@ -59,7 +59,7 @@ const words:Record<Locale,{
 export function TaiwanTeamExchangePage({locale}:{locale:Locale}){
  const c=words[locale];
  const back=locale==="en"?"/taiwan":`/${locale}/taiwan`;
- return <SiteFrame locale={locale}>
+ return <SiteFrame locale={locale} languagePage="taiwan">
   <div className="taiwan-exchange">
    <section className="taiwan-hero section-pad taiwan-team-hero">
     <p className="section-index inverse">{c.eyebrow}</p>
