@@ -100,6 +100,12 @@ const coachResource:Record<Locale,{label:string;title:string;intro:string;prompt
  "zh-tw":{label:"免費教練資源 / 01",title:"給答案之前，先問三個問題。",intro:"在情境式練習中，試著減少中斷比賽，讓球員先表達自己的觀察。",prompts:["你剛才看到了什麼？","當時還有哪些選擇？","下一次你想怎麼調整？"],note:"歡迎台灣教練在練習中使用，也期待交流不同的帶領方式。"},
  ko:{label:"무료 코칭 자료 / 01",title:"답을 알려 주기 전에 세 가지 질문.",intro:"게임형 훈련에서 플레이를 지나치게 멈추지 않고 활용해 보세요.",prompts:["방금 무엇을 보았나요?","다른 선택지는 무엇이었나요?","다음에는 무엇을 바꿔 볼까요?"],note:"코치 간 대화를 위한 간단한 자료입니다."}
 };
+const teamExchangeCopy:Record<Locale,{label:string;title:string;lead:string;japan:string;taiwan:string;cta:string}>={
+ ja:{label:"TEAM EXCHANGE / ENQUIRY",title:"台湾遠征・日本遠征を企画したいチームへ。",lead:"交流試合、合同練習、育成キャンプをチームの目的に合わせて相談できます。開催日や費用は未確定です。",japan:"日本から台湾へ",taiwan:"台湾から日本へ",cta:"交流企画の相談ページを見る"},
+ en:{label:"TEAM EXCHANGE / ENQUIRY",title:"Planning a team exchange between Taiwan and Japan?",lead:"Discuss games, joint training and development camps. Dates and fees are not confirmed.",japan:"Japan to Taiwan",taiwan:"Taiwan to Japan",cta:"Explore team exchange enquiries"},
+ "zh-tw":{label:"台日球隊交流 / 合作洽詢",title:"想安排台灣赴日本，或日本赴台灣的籃球交流？",lead:"可洽談交流賽、共同訓練及青少年培育營。日期、費用與接待安排尚未確定。",japan:"日本球隊來台灣",taiwan:"台灣球隊赴日本",cta:"查看球隊交流洽詢"},
+ ko:{label:"팀 교류 / 문의",title:"대만과 일본의 팀 교류를 준비하고 계신가요?",lead:"교류 경기, 공동 훈련, 육성 캠프를 상담할 수 있습니다. 일정과 비용은 미확정입니다.",japan:"일본에서 대만으로",taiwan:"대만에서 일본으로",cta:"팀 교류 상담 보기"}
+};
 const faqHeading:Record<Locale,string>={ja:"よくあるご質問",en:"Frequently asked questions","zh-tw":"常見問題",ko:"자주 묻는 질문"};
 
 export function TaiwanExchangePage({locale}:{locale:Locale}){
@@ -115,6 +121,13 @@ export function TaiwanExchangePage({locale}:{locale:Locale}){
    </section>
    <section className="taiwan-story section-pad">
     <p className="section-index">2026 / FIELD RECORD</p><h2>{c.historyTitle}</h2><p className="taiwan-wide">{c.history}</p><p className="taiwan-footnote">{c.historyNote}</p>
+   </section>
+   <section className="taiwan-team-promo section-pad">
+    <p className="section-index">{teamExchangeCopy[locale].label}</p>
+    <h2>{teamExchangeCopy[locale].title}</h2>
+    <p className="taiwan-wide">{teamExchangeCopy[locale].lead}</p>
+    <div className="taiwan-team-promo-directions"><span>{teamExchangeCopy[locale].japan}</span><span>{teamExchangeCopy[locale].taiwan}</span></div>
+    <Link className="button button-dark" href={locale==="en"?"/taiwan/exchange":`/${locale}/taiwan/exchange`}>{teamExchangeCopy[locale].cta}<ArrowRight size={18}/></Link>
    </section>
    <section className="taiwan-programmes section-pad">
     <p className="section-index inverse">DEVELOPMENT BEFORE TOURISM</p><h2>{c.workTitle}</h2><p className="taiwan-wide">{c.workIntro}</p>
