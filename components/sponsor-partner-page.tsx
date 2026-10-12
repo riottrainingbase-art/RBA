@@ -56,6 +56,41 @@ const c={
  }
 } as const;
 
+const spartanPartnerCopy={
+ ja:{
+  label:"TAIWAN / PRINCIPAL STRATEGIC PARTNER",
+  title:"SPARTANS Academy（Spartan Academy）",
+  description:"台湾・台北を拠点に、育成年代の選手へバスケットボール指導と学びの機会を提供するアカデミーです。実際のゲームを通じた判断力やチームワークも大切にしています。",
+  partnership:"RBAが台湾における最重要戦略パートナーとして位置づける団体です。2026年9月に日台の国際育成交流パートナーシップを公表。沖縄での交流キャンプや台湾での選手交流を通じて協力してきました。今後も選手・指導者の継続的な交流と相互学習を進めていきます。",
+  link:"SPARTANS公式サイトを見る",
+  note:"育成交流・指導者交流・国際ネットワーク"
+ },
+ en:{
+  label:"TAIWAN / PRINCIPAL STRATEGIC PARTNER",
+  title:"SPARTANS Academy (Spartan Academy)",
+  description:"A Taipei-based youth basketball academy developing decision-making, teamwork and confidence through game-based training and learning.",
+  partnership:"RBA recognises SPARTANS as its principal strategic development partner in Taiwan. Our international development partnership was publicly announced in September 2026. After an exchange camp in Okinawa and player exchanges in Taiwan, we are building continued opportunities for players and coaches to learn from each other.",
+  link:"Visit the SPARTANS website",
+  note:"Youth exchange · Coach development · International network"
+ },
+ "zh-tw":{
+  label:"台灣 / 核心戰略合作夥伴",
+  title:"SPARTANS 美語籃球（Spartan Academy）",
+  description:"以台北為基地的青少年籃球學院，重視實際比賽情境中的判斷、團隊合作及自信的培養。",
+  partnership:"RBA將SPARTANS視為在台灣最重要的戰略培育合作夥伴。雙方於2026年9月公開宣布台日國際籃球培育交流合作，並透過沖繩交流營及台灣的球員交流持續合作。未來也希望持續推動球員與教練之間的互訪和相互學習。",
+  link:"前往SPARTANS官方網站",
+  note:"青少年交流・教練交流・國際合作網絡"
+ },
+ ko:{
+  label:"대만 / 핵심 전략 파트너",
+  title:"SPARTANS Academy (Spartan Academy)",
+  description:"타이베이를 기반으로 실제 경기 상황에서의 판단력, 팀워크와 자신감을 중시하는 유소년 농구 아카데미입니다.",
+  partnership:"RBA가 대만에서 가장 중요한 전략적 육성 파트너로 여기는 기관입니다. 양측은 2026년 9월 국제 육성 교류 파트너십을 발표했으며, 오키나와 교류 캠프와 대만 선수 교류를 통해 협력해 왔습니다. 앞으로 선수와 지도자의 지속적인 교류 및 상호 학습을 추진합니다.",
+  link:"SPARTANS 공식 웹사이트",
+  note:"유소년 교류 · 지도자 교류 · 국제 네트워크"
+ }
+} as const;
+
 const empowerCopy={
  ja:{
   region:"TAIWAN / INTERNATIONAL DEVELOPMENT PARTNER",
@@ -96,7 +131,23 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
  const mail="mailto:riot.training.base@gmail.com?subject="+subject+"&body="+body;
  return <main className="sponsor-page">
   <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={prefix+"/my-homecourt"}>{x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
-  <section className="khm-partner" aria-labelledby="khm-partner-title"><style>{`.khm-partner{background:#f3f0e8;color:#222;padding:64px clamp(24px,6vw,88px)}.khm-partner-inner{max-width:1180px;margin:auto}.khm-partner-kicker{font-size:11px;letter-spacing:.15em;color:#715e36}.khm-partner h2{font-size:clamp(24px,3vw,38px);line-height:1.5;margin:12px 0 30px}.khm-partner-card{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:center;border-top:1px solid #c9bfab;border-bottom:1px solid #c9bfab;padding:30px 0}.khm-partner-mark{display:flex;align-items:center;justify-content:center;background:#e9e2d4;min-height:210px}.khm-partner-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}.khm-partner-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply}.khm-partner h3{font-size:26px;line-height:1.5;margin:0 0 12px}.khm-partner-copy{font-size:14px;line-height:1.9;max-width:750px}.khm-partner-location{font-size:12px;color:#625e54;margin:15px 0}.khm-partner-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;padding:13px 0;border-bottom:1px solid #85734b;color:#222;min-height:48px;font-size:14px}.khm-partner-link:focus-visible{outline:3px solid #85734b;outline-offset:5px}.khm-partner-link:hover{color:#755b22}@media(max-width:640px){.khm-partner{padding:42px 24px}.khm-partner-card{grid-template-columns:1fr;gap:24px}.khm-partner-mark{min-height:190px}.khm-partner h3{font-size:24px}.khm-partner-link{width:100%}}`}</style><div className="khm-partner-inner"><p className="khm-partner-kicker">RBA SPONSORS &amp; PARTNERS</p><h2 id="khm-partner-title">{locale==="ja"?"スポンサー・パートナーのご紹介":"Meet our sponsors & partners"}</h2><article className="khm-partner-card"><div className="khm-partner-mark"><span className="khm-partner-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="écrin：宝石箱を抱えるゴリラのロゴ" loading="lazy" width="1152" height="1536"/></span></div><div><h3>合同会社KHM</h3><p className="khm-partner-copy">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」合同会社KHMは、就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を運営しています。":"KHM operates écrin, a Type B continuous employment support service, écrin restaurant, and a light freight delivery business in Japan."}</p><p className="khm-partner-location">{locale==="ja"?"所在地：兵庫県神戸市垂水区舞子坂4-8-12-4":"Kobe, Hyogo, Japan"}</p><a className="khm-partner-link" href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHMの公式ホームページを見る":"Visit the KHM website (Japanese)"}<span aria-hidden="true">↗</span></a></div></article>
+  <section className="khm-partner" aria-labelledby="khm-partner-title"><style>{`.khm-partner{background:#f3f0e8;color:#222;padding:64px clamp(24px,6vw,88px)}.khm-partner-inner{max-width:1180px;margin:auto}.khm-partner-kicker{font-size:11px;letter-spacing:.15em;color:#715e36}.khm-partner h2{font-size:clamp(24px,3vw,38px);line-height:1.5;margin:12px 0 30px}.khm-partner-card{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:center;border-top:1px solid #c9bfab;border-bottom:1px solid #c9bfab;padding:30px 0}.khm-partner-mark{display:flex;align-items:center;justify-content:center;background:#e9e2d4;min-height:210px}.khm-partner-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}.khm-partner-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply}.khm-partner h3{font-size:26px;line-height:1.5;margin:0 0 12px}.khm-partner-copy{font-size:14px;line-height:1.9;max-width:750px}.khm-partner-location{font-size:12px;color:#625e54;margin:15px 0}.khm-partner-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;padding:13px 0;border-bottom:1px solid #85734b;color:#222;min-height:48px;font-size:14px}.khm-partner-link:focus-visible{outline:3px solid #85734b;outline-offset:5px}.khm-partner-link:hover{color:#755b22}@media(max-width:640px){.khm-partner{padding:42px 24px}.khm-partner-card{grid-template-columns:1fr;gap:24px}.khm-partner-mark{min-height:190px}.khm-partner h3{font-size:24px}.khm-partner-link{width:100%}}`}</style><div className="khm-partner-inner"><p className="khm-partner-kicker">RBA SPONSORS &amp; PARTNERS</p><h2 id="khm-partner-title">{locale==="ja"?"スポンサー・パートナーのご紹介":"Meet our sponsors & partners"}</h2>
+  <article className="khm-partner-card" style={{padding:"32px 20px",background:"#fffcf4",borderTop:"3px solid #927341",borderBottom:"2px solid #927341",borderRadius:"4px"}}>
+    <div className="khm-partner-mark" style={{background:"#122129",color:"#fff",padding:"20px",flexDirection:"column",gap:"9px",textAlign:"center",minHeight:"210px"}}>
+      <span style={{fontSize:"12px",fontWeight:800,letterSpacing:".17em",color:"#d8c5a0"}}>PRINCIPAL PARTNER</span>
+      <strong style={{fontSize:"clamp(22px,3.3vw,30px)",lineHeight:1.1,letterSpacing:".045em"}}>SPARTANS</strong>
+      <span style={{fontSize:"11px",letterSpacing:".12em",lineHeight:1.6}}>BASKETBALL ACADEMY<br/>TAIPEI · TAIWAN</span>
+    </div>
+    <div>
+      <p className="khm-partner-location" style={{letterSpacing:".08em",fontWeight:800,color:"#7c6132"}}>{spartanPartnerCopy[locale].label}</p>
+      <h3>{spartanPartnerCopy[locale].title}</h3>
+      <p className="khm-partner-copy">{spartanPartnerCopy[locale].description}</p>
+      <p className="khm-partner-copy">{spartanPartnerCopy[locale].partnership}</p>
+      <p className="khm-partner-location">{spartanPartnerCopy[locale].note}</p>
+      <a className="khm-partner-link" href="https://www.spartans.com.tw/" target="_blank" rel="noopener noreferrer">{spartanPartnerCopy[locale].link}<span aria-hidden="true">↗</span></a>
+    </div>
+  </article>
+  <article className="khm-partner-card"><div className="khm-partner-mark"><span className="khm-partner-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="écrin：宝石箱を抱えるゴリラのロゴ" loading="lazy" width="1152" height="1536"/></span></div><div><h3>合同会社KHM</h3><p className="khm-partner-copy">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」合同会社KHMは、就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を運営しています。":"KHM operates écrin, a Type B continuous employment support service, écrin restaurant, and a light freight delivery business in Japan."}</p><p className="khm-partner-location">{locale==="ja"?"所在地：兵庫県神戸市垂水区舞子坂4-8-12-4":"Kobe, Hyogo, Japan"}</p><a className="khm-partner-link" href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHMの公式ホームページを見る":"Visit the KHM website (Japanese)"}<span aria-hidden="true">↗</span></a></div></article>
   <article className="khm-partner-card" style={{marginTop:"32px"}}>
    <div className="khm-partner-mark" style={{background:"#111827",color:"#ffffff",flexDirection:"column",gap:"10px",padding:"20px",textAlign:"center"}}>
      <strong style={{fontSize:"clamp(24px,3vw,34px)",letterSpacing:".03em",lineHeight:1.15}}>EMPOWER</strong>
