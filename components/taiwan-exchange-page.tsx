@@ -1,0 +1,161 @@
+import "./taiwan-exchange.css";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, ClipboardCheck, Globe2, ShieldCheck, Users } from "lucide-react";
+import { ContactForm } from "./contact-form";
+import { Locale, SiteFrame, localePath } from "./site-frame";
+
+type Text = { eyebrow:string;title:string;lead:string;notice:string;historyTitle:string;history:string;historyNote:string;workTitle:string;workIntro:string;programs:readonly [string,string][];whoTitle:string;whoText:string;howTitle:string;steps:readonly [string,string][];safetyTitle:string;safety:string;inquiryTitle:string;inquiryLead:string;statusLabel:string;contact:string;back:string; };
+const copy:Record<Locale,Text>={
+ ja:{
+  eyebrow:"RBA INTERNATIONAL / JAPAN × TAIWAN",
+  title:"台湾と日本のコートを、日常的につなぐ。",
+  lead:"一度きりの遠征で終わらせない。交流試合、選手の学び、指導者の対話を、両国の育成現場で続けるための窓口です。",
+  notice:"2027年以降の企画は協議・準備段階です。現在、募集・料金・開催日は確定していません。",
+  historyTitle:"交流を重ね、次の機会へ。",history:"2026年、沖縄での合同キャンプと台湾での女子ユース交流を通じて、現場同士の関係を深めてきました。",
+  historyNote:"過去の交流実績と、今後の共同事業に関する合意は別のものです。新企画の正式決定は今後の案内をご確認ください。",
+  workTitle:"交流の目的は、経験を増やすこと。",workIntro:"勝敗や選抜だけでなく、違う文化・言葉・プレースタイルの中で、自分で見て、考え、判断する経験を重視します。",
+  programs:[["FRIENDLY GAMES","年代・レベル・出場機会を事前にすり合わせた交流試合。"],["DEVELOPMENT CAMP","練習、ゲーム、振り返りを組み合わせた育成キャンプ。"],["COACH EXCHANGE","指導者同士の練習見学、対話、オンライン学習。"],["S&C EDUCATION","発育発達、負荷管理、回復と傷害リスク低減に関する教育。"]],
+  whoTitle:"クラブ・指導者・主催者の方へ",whoText:"日本または台湾での交流を検討している団体から、目的・対象年代・人数・希望時期をお聞きします。個別選手の移籍や引き抜きの窓口ではありません。",
+  howTitle:"実施までの4つの確認",steps:[["01","交流の目的、年代、参加人数を共有"],["02","対戦・会場・指導・引率の体制を確認"],["03","費用・責任・キャンセル条件を書面化"],["04","実施後に振り返り、継続の可否を判断"]],
+  safetyTitle:"子どもの安全と運営を最優先に。",safety:"引率・緊急時対応・保険・肖像利用・保護者同意を確認します。航空券や宿泊の手配を含む場合は、適法な旅行手配体制を別途整えます。現地での有料指導は必要な法令確認を行います。",
+  inquiryTitle:"次の交流を、一緒に考える。",inquiryLead:"団体名、担当者、対象年代、人数、希望時期、交流目的をお知らせください。お問い合わせは無料で、予約や支払いは発生しません。",
+  statusLabel:"PROGRAMME STATUS / PLANNING",contact:"団体として相談する",back:"国際交流の全体を見る"
+ },
+ en:{
+  eyebrow:"RBA INTERNATIONAL / JAPAN × TAIWAN",
+  title:"Keep Japan and Taiwan connected through basketball.",
+  lead:"Beyond one-off tours: purposeful games, player learning and coach dialogue that can continue across both countries.",
+  notice:"Future programmes are under discussion. No dates, fees or registrations have been confirmed.",
+  historyTitle:"Real exchanges, a longer-term vision.",history:"In 2026, a joint camp in Okinawa and a girls' youth exchange in Taiwan helped build working relationships between development environments.",
+  historyNote:"Past activities do not constitute a signed agreement for future commercial programmes.",
+  workTitle:"More experience. Better decisions.",workIntro:"Our priority is to give young players opportunities to observe, decide and learn in a different playing and cultural environment—not simply to select winners.",
+  programs:[["FRIENDLY GAMES","Age-appropriate games with expectations for level and participation agreed in advance."],["DEVELOPMENT CAMP","Training, game experience and reflection in one learning programme."],["COACH EXCHANGE","Observation, dialogue and online learning for coaches."],["S&C EDUCATION","Coach education on physical preparation, load, recovery and reducing injury risk."]],
+  whoTitle:"For academies, clubs and organisers",whoText:"Tell us your learning purpose, age groups, expected numbers and preferred dates. This is not a player transfer or recruitment service.",
+  howTitle:"Four steps before delivery",steps:[["01","Share purpose, ages and group size"],["02","Confirm games, venues, coaching and safeguarding"],["03","Document costs, roles and cancellation terms"],["04","Deliver, review and decide whether to continue"]],
+  safetyTitle:"Safeguarding comes first.",safety:"We clarify supervision, emergency response, insurance, image consent and parental permission. Travel booking and paid coaching are subject to the applicable legal and operational requirements.",
+  inquiryTitle:"Start a practical conversation.",inquiryLead:"Share your organisation, adult contact, age group, group size, timing and learning goals. An enquiry does not create a booking or charge.",
+  statusLabel:"PROGRAMME STATUS / PLANNING",contact:"Enquire as an organisation",back:"View international programmes"
+ },
+ "zh-tw":{
+  eyebrow:"RBA INTERNATIONAL / JAPAN × TAIWAN",
+  title:"讓日本與台灣的籃球交流持續發生。",
+  lead:"不只是一次性的海外交流。我們希望透過比賽、球員學習與教練對話，建立長期的培育連結。",
+  notice:"未來活動仍在洽談與規劃中。日期、費用及報名方式尚未確定。",
+  historyTitle:"從實際交流出發。",history:"2026年，透過沖繩共同訓練營及台灣女子青少年交流，雙方培育現場建立了實際的連結。",
+  historyNote:"過往活動不代表未來商業合作已簽約或確定。",
+  workTitle:"不只是比賽，更是學習。",workIntro:"重視孩子在不同文化、語言及球風中觀察、判斷、嘗試與反思的機會，而不只是勝負與選拔。",
+  programs:[["FRIENDLY GAMES","事先確認年齡、程度與上場機會的交流賽。"],["DEVELOPMENT CAMP","結合訓練、比賽與回顧的培育營。"],["COACH EXCHANGE","教練觀摩、交流對話及線上學習。"],["S&C EDUCATION","關於體能準備、負荷管理、恢復及降低運動傷害風險的教練教育。"]],
+  whoTitle:"歡迎球隊、Academy及主辦單位洽詢",whoText:"請提供交流目的、年齡、人數與希望日期。本服務不涉及個別球員轉隊招募。",
+  howTitle:"正式舉辦前的四個步驟",steps:[["01","確認目的、年齡與人數"],["02","確認比賽、場地、教練及照護安排"],["03","以書面確認費用、分工與取消條件"],["04","執行、檢討並評估後續合作"]],
+  safetyTitle:"兒少安全是第一優先。",safety:"事前確認隨隊照護、緊急應變、保險、肖像同意及家長許可。旅行安排與有償教學須符合相關法規。",
+  inquiryTitle:"一起討論下一次交流。",inquiryLead:"請提供單位、成年聯絡人、年齡、人數、希望時期及學習目標。洽詢不等於報名，也不會產生費用。",
+  statusLabel:"PROGRAMME STATUS / PLANNING",contact:"以團體名義洽詢",back:"查看國際交流"
+ },
+ ko:{
+  eyebrow:"RBA INTERNATIONAL / JAPAN × TAIWAN",
+  title:"일본과 대만의 코트를 지속적으로 연결합니다.",
+  lead:"일회성 원정을 넘어 경기, 선수 학습, 코치 간 대화를 지속 가능한 교류로 발전시키고자 합니다.",
+  notice:"향후 프로그램은 논의·준비 단계이며 일정, 비용 및 모집은 확정되지 않았습니다.",
+  historyTitle:"현장에서 시작한 교류.",history:"2026년 오키나와 공동 캠프와 대만 여자 유소년 교류를 통해 현장 간 관계를 쌓았습니다.",
+  historyNote:"과거 활동이 향후 상업적 공동사업 계약 체결을 의미하지는 않습니다.",
+  workTitle:"경기 결과를 넘어 경험으로.",workIntro:"다른 문화와 경기 환경에서 관찰하고 판단하며 배우는 기회를 중시합니다.",
+  programs:[["FRIENDLY GAMES","연령, 수준, 출전 기회를 사전에 협의한 교류 경기."],["DEVELOPMENT CAMP","훈련, 경기, 성찰을 결합한 육성 캠프."],["COACH EXCHANGE","코치 간 관찰, 대화, 온라인 학습."],["S&C EDUCATION","체력 준비, 부하 관리, 회복 및 부상 위험 감소에 관한 교육."]],
+  whoTitle:"아카데미·클럽·주최자에게",whoText:"목적, 연령, 인원 및 희망 시기를 알려 주세요. 선수 이적·영입을 위한 서비스는 아닙니다.",
+  howTitle:"진행 전 네 단계",steps:[["01","목적, 연령, 인원 확인"],["02","경기, 장소, 지도 및 안전 체계 확인"],["03","비용, 역할, 취소 조건 문서화"],["04","실행 후 검토 및 후속 협력 판단"]],
+  safetyTitle:"아동 안전을 최우선으로.",safety:"인솔, 긴급 대응, 보험, 초상권 동의 및 보호자 허가를 확인합니다. 여행 예약과 유상 지도는 관련 법적 요건을 확인합니다.",
+  inquiryTitle:"다음 교류를 함께 논의합니다.",inquiryLead:"단체명, 성인 담당자, 대상 연령, 인원, 시기, 학습 목적을 알려 주세요. 문의만으로 예약이나 결제는 발생하지 않습니다.",
+  statusLabel:"PROGRAMME STATUS / PLANNING",contact:"단체 문의",back:"국제 교류 보기"
+ }
+};
+
+const faq:Record<Locale,readonly [string,string][]>={
+ ja:[
+  ["次回の台湾クリニックはいつですか？","現時点で開催日・料金・募集開始日は確定していません。正式決定後、RBA公式サイトでご案内します。"],
+  ["台湾の学校やクラブから相談できますか？","はい。成人の団体担当者から、対象年代、参加人数、希望時期、目的をお知らせください。"],
+  ["指導者向けの講習もありますか？","対面・オンラインの交流を検討できます。内容や費用は個別に協議します。"],
+  ["問い合わせは有料ですか？","無料です。問い合わせだけで予約や支払いは発生しません。"]
+ ],
+ en:[
+  ["When is the next Taiwan clinic?","Dates, fees and registration are not confirmed. We will publish confirmed details on the official RBA site."],
+  ["Can a Taiwan school or academy enquire?","Yes. An adult representative can share age groups, estimated numbers, timing and learning goals."],
+  ["Do you offer coach development?","We can discuss in-person or online coach exchange. Scope and fees are agreed separately."],
+  ["Is an enquiry a booking?","No. Enquiries are free and do not create a booking or payment obligation."]
+ ],
+ "zh-tw":[
+  ["下一場台灣訓練營什麼時候舉辦？","目前尚未確定日期、費用及報名時間。確定後將透過RBA官方網站公告。"],
+  ["台灣的學校或籃球學院可以洽詢嗎？","可以。請由成年負責人提供年齡層、預估人數、希望時期與學習目標。"],
+  ["有教練研習或線上交流嗎？","可以洽談實體或線上教練交流。課程內容與費用須另行確認。"],
+  ["提交洽詢會產生費用嗎？","不會。洽詢免費，也不代表已完成報名或預約。"]
+ ],
+ ko:[
+  ["다음 대만 클리닉은 언제인가요?","일정, 비용, 모집은 아직 확정되지 않았습니다. 확정 후 RBA 공식 사이트에 공지합니다."],
+  ["대만 학교나 아카데미도 문의할 수 있나요?","네. 성인 담당자가 연령, 예상 인원, 시기 및 학습 목표를 알려 주세요."],
+  ["코치 교육도 진행하나요?","대면 및 온라인 교류를 협의할 수 있으며 내용과 비용은 별도 확정합니다."],
+  ["문의하면 비용이 발생하나요?","아니요. 문의는 무료이며 예약이나 결제 의무가 생기지 않습니다."]
+ ]
+};
+const coachResource:Record<Locale,{label:string;title:string;intro:string;prompts:readonly string[];note:string}>={
+ ja:{label:"FREE COACHING RESOURCE / 01",title:"答えを教える前に、3つの問いを。",intro:"次のゲーム形式練習で、プレーを止めすぎずに使える問いかけです。",prompts:["いま何が見えていた？","ほかにどんな選択肢があった？","次は何を変えてみる？"],note:"指導者同士の対話のきっかけとして自由にお使いください。"},
+ en:{label:"FREE COACHING RESOURCE / 01",title:"Three questions before giving the answer.",intro:"Try these during a game-based practice without stopping play too often.",prompts:["What did you notice?","What other options did you have?","What would you try differently next time?"],note:"A simple resource to spark dialogue between coaches."},
+ "zh-tw":{label:"免費教練資源 / 01",title:"給答案之前，先問三個問題。",intro:"在情境式練習中，試著減少中斷比賽，讓球員先表達自己的觀察。",prompts:["你剛才看到了什麼？","當時還有哪些選擇？","下一次你想怎麼調整？"],note:"歡迎台灣教練在練習中使用，也期待交流不同的帶領方式。"},
+ ko:{label:"무료 코칭 자료 / 01",title:"답을 알려 주기 전에 세 가지 질문.",intro:"게임형 훈련에서 플레이를 지나치게 멈추지 않고 활용해 보세요.",prompts:["방금 무엇을 보았나요?","다른 선택지는 무엇이었나요?","다음에는 무엇을 바꿔 볼까요?"],note:"코치 간 대화를 위한 간단한 자료입니다."}
+};
+const teamExchangeCopy:Record<Locale,{label:string;title:string;lead:string;japan:string;taiwan:string;cta:string}>={
+ ja:{label:"TEAM EXCHANGE / ENQUIRY",title:"台湾遠征・日本遠征を企画したいチームへ。",lead:"交流試合、合同練習、育成キャンプをチームの目的に合わせて相談できます。開催日や費用は未確定です。",japan:"日本から台湾へ",taiwan:"台湾から日本へ",cta:"交流企画の相談ページを見る"},
+ en:{label:"TEAM EXCHANGE / ENQUIRY",title:"Planning a team exchange between Taiwan and Japan?",lead:"Discuss games, joint training and development camps. Dates and fees are not confirmed.",japan:"Japan to Taiwan",taiwan:"Taiwan to Japan",cta:"Explore team exchange enquiries"},
+ "zh-tw":{label:"台日球隊交流 / 合作洽詢",title:"想安排台灣赴日本，或日本赴台灣的籃球交流？",lead:"可洽談交流賽、共同訓練及青少年培育營。日期、費用與接待安排尚未確定。",japan:"日本球隊來台灣",taiwan:"台灣球隊赴日本",cta:"查看球隊交流洽詢"},
+ ko:{label:"팀 교류 / 문의",title:"대만과 일본의 팀 교류를 준비하고 계신가요?",lead:"교류 경기, 공동 훈련, 육성 캠프를 상담할 수 있습니다. 일정과 비용은 미확정입니다.",japan:"일본에서 대만으로",taiwan:"대만에서 일본으로",cta:"팀 교류 상담 보기"}
+};
+const faqHeading:Record<Locale,string>={ja:"よくあるご質問",en:"Frequently asked questions","zh-tw":"常見問題",ko:"자주 묻는 질문"};
+
+export function TaiwanExchangePage({locale}:{locale:Locale}){
+ const c=copy[locale];
+ return <SiteFrame locale={locale} languagePage="taiwan">
+  <div className="taiwan-exchange">
+   <section className="taiwan-hero section-pad">
+    <p className="section-index inverse">{c.eyebrow}</p>
+    <h1>{c.title}</h1>
+    <p className="taiwan-lead">{c.lead}</p>
+    <div className="taiwan-status"><ClipboardCheck aria-hidden="true" size={20}/><span><strong>{c.statusLabel}</strong>{c.notice}</span></div>
+    <div className="taiwan-actions"><a className="button button-light" href="#taiwan-enquiry">{c.contact}<ArrowRight size={18}/></a><Link className="text-link light-link" href={localePath(locale,"international")}>{c.back}<ArrowUpRight size={16}/></Link></div>
+   </section>
+   <section className="taiwan-story section-pad">
+    <p className="section-index">2026 / FIELD RECORD</p><h2>{c.historyTitle}</h2><p className="taiwan-wide">{c.history}</p><p className="taiwan-footnote">{c.historyNote}</p>
+   </section>
+   <section className="taiwan-team-promo section-pad">
+    <p className="section-index">{teamExchangeCopy[locale].label}</p>
+    <h2>{teamExchangeCopy[locale].title}</h2>
+    <p className="taiwan-wide">{teamExchangeCopy[locale].lead}</p>
+    <div className="taiwan-team-promo-directions"><span>{teamExchangeCopy[locale].japan}</span><span>{teamExchangeCopy[locale].taiwan}</span></div>
+    <Link className="button button-dark" href={locale==="en"?"/taiwan/exchange":`/${locale}/taiwan/exchange`}>{teamExchangeCopy[locale].cta}<ArrowRight size={18}/></Link>
+   </section>
+   <section className="taiwan-programmes section-pad">
+    <p className="section-index inverse">DEVELOPMENT BEFORE TOURISM</p><h2>{c.workTitle}</h2><p className="taiwan-wide">{c.workIntro}</p>
+    <div className="taiwan-grid">{c.programs.map(([title,description],i)=><article key={title}><span>{String(i+1).padStart(2,"0")}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+   </section>
+   <section className="taiwan-operations section-pad">
+    <div><Users aria-hidden="true" size={30}/><h2>{c.whoTitle}</h2><p>{c.whoText}</p></div>
+    <div><Globe2 aria-hidden="true" size={30}/><h2>{c.howTitle}</h2><ol>{c.steps.map(([no,label])=><li key={no}><b>{no}</b><span>{label}</span></li>)}</ol></div>
+   </section>
+   <section className="taiwan-safety section-pad"><ShieldCheck aria-hidden="true" size={36}/><div><h2>{c.safetyTitle}</h2><p>{c.safety}</p></div></section>
+   <section className="taiwan-safety section-pad" aria-label="Japan Taiwan sponsorship"><Users aria-hidden="true" size={36}/><div>
+    <h2>{({ja:"2027年の日台交流を、企業と一緒につくる。",en:"Support meaningful Japan–Taiwan youth exchange.","zh-tw":"一起支持2027年日台青少年籃球交流。",ko:"2027년 일본·대만 유소년 교류를 함께 지원합니다."})[locale]}</h2>
+    <p>{({ja:"参加機会、指導者教育、安全管理を支える企業・団体の皆さまからの協賛相談を受け付けています。開催条件は準備中で、協賛内容は書面で確認します。",en:"We welcome corporate enquiries about supporting access, coach education and safe operations. Programme details remain under discussion; sponsorship terms are agreed in writing.","zh-tw":"歡迎企業與團體洽詢支持參與機會、教練教育及安全營運。活動仍在規劃中，合作條件將以書面確認。",ko:"참여 기회, 코치 교육, 안전 운영을 지원할 기업·단체의 협찬 문의를 받습니다. 세부 조건은 서면으로 협의합니다."})[locale]}</p>
+    <Link className="button button-dark" href={localePath(locale,"partners")}>{({ja:"企業協賛・パートナーのご案内",en:"Corporate partnerships","zh-tw":"企業合作與贊助","ko":"기업 후원·파트너십"})[locale]}<ArrowRight size={17}/></Link>
+    {locale==="ja"?<p><Link className="text-link" href="/ja/journal/japan-taiwan-2027-partner-sponsorship">JOURNAL｜2027年日台育成交流 協賛パートナー募集 <ArrowRight size={15}/></Link></p>:null}
+   </div></section>
+   <section className="taiwan-resource section-pad" aria-label={coachResource[locale].label}>
+    <p className="section-index">{coachResource[locale].label}</p>
+    <h2>{coachResource[locale].title}</h2>
+    <p className="taiwan-wide">{coachResource[locale].intro}</p>
+    <ol className="taiwan-resource-list">{coachResource[locale].prompts.map((prompt,i)=><li key={prompt}><span>{String(i+1).padStart(2,"0")}</span><strong>{prompt}</strong></li>)}</ol>
+    <p className="taiwan-footnote">{coachResource[locale].note}</p>
+   </section>
+   <section className="taiwan-faq section-pad" aria-label={faqHeading[locale]}>
+    <p className="section-index">QUESTIONS / ANSWERS</p><h2>{faqHeading[locale]}</h2>
+    <div className="taiwan-faq-list">{faq[locale].map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+   </section>
+   <section className="taiwan-enquiry section-pad" id="taiwan-enquiry"><p className="section-index">JAPAN × TAIWAN / CONTACT</p><h2>{c.inquiryTitle}</h2><p>{c.inquiryLead}</p><ContactForm locale={locale} campaign="taiwan_2026_launch"/></section>
+  </div>
+ </SiteFrame>;
+}
