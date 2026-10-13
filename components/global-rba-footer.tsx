@@ -8,7 +8,7 @@ const translations:Record<Lang,{brand:string;start:string;learn:string;host:stri
  ko:{brand:"RBA 활동 안내",start:"참가하기",learn:"배우기",host:"개최·협력",international:"해외 교류",member:"MY HOME COURT",about:"RBA 소개",policies:"약관·안전",contact:"문의하기",notice:"날짜, 참가비 및 신청 조건은 각 프로그램의 공식 안내를 확인해 주세요."}
 };
 export function GlobalRbaFooter({language}:{language:string}){
- const lang:Lang=language==="ja"||language==="ko"||(language==="zh-tw"||language==="zh-Hant-TW")?language==="zh-Hant-TW"?"zh-tw":"en";
+ const lang:Lang=language==="ja"?"ja":language==="ko"?"ko":language==="zh-tw"||language==="zh-Hant-TW"?"zh-tw":"en";
  const c=translations[lang],p=lang==="en"?"":"/"+lang;
  const links:[[string,string],[string,string],[string,string],[string,string]]=[
   [c.start,p+"/opportunities"],[c.learn,p+"/journal"],[c.host,p+"/organizer"],[c.international,p+"/international"]
