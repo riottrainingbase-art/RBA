@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import { execFileSync } from "node:child_process";
+
+// Vercel invokes Next directly, so enforce encoding QA here as well as via npm build.
+execFileSync(process.execPath, ["scripts/check-text-encoding.mjs"], { stdio:"inherit" });
 
 const nextConfig: NextConfig = {
   async headers() {

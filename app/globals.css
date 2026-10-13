@@ -5,7 +5,7 @@
 :root { --ink:#090a0b; --paper:#f4f1eb; --white:#fff; --orange:#2f3438; --line:#c9c6c0; --muted:#62686c; --silver:#b8bdc0; --concrete:#dedfdd; --signal:#d5d7d6; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; overflow-x:hidden; }
-body { margin:0; overflow-x:hidden; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:1.6; text-rendering:optimizeLegibility; }
+body { margin:0; overflow-x:hidden; background:var(--paper); color:var(--ink); font-family:Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo","Noto Sans JP",sans-serif; font-size:16px; line-height:1.6; text-rendering:optimizeLegibility; }
 a { color:inherit; text-decoration:none; }
 button, a { -webkit-tap-highlight-color:transparent; }
 ::selection { background:#202427; color:white; }
@@ -3477,3 +3477,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
 body:has(.site-shell) .rba-global-footer{display:none;}
 @media(max-width:680px){.rba-global-mainlinks{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px;}.rba-global-footer{padding:35px 20px 28px;}}
 @media print{.rba-global-footer{display:none!important;}}
+
+/* Japanese/Traditional Chinese/Korean: explicit platform font fallbacks for readable text. */
+html:lang(ja) body, [lang="ja"]{font-family:Arial,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;}
+html:lang(zh-Hant-TW) body, [lang="zh-Hant-TW"], [lang="zh-tw"]{font-family:Arial,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;}
+html:lang(ko) body, [lang="ko"]{font-family:Arial,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;}
+body:has(.definitive-shell) .rba-global-footer{display:none;}

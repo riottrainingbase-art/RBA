@@ -31,11 +31,11 @@ function sanitizeFragment(html: string) {
 }
 
 function StaticHeader({locale,page}:{locale:Locale;page:string}){
-  const secondary=locale==="ja"?["育成ガイド","/ja/development"] as const:[({en:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale as "en"|"zh-tw"|"ko"],localePath(locale,"journal")] as const;
+  const secondary=locale==="ja"?["学ぶ","/ja/journal"] as const:[({en:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale as "en"|"zh-tw"|"ko"],localePath(locale,"journal")] as const;
   const nav=[
-    [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
+    [({en:"Find",ja:"参加する","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
     secondary,
-    [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
+    [({en:"Teams / organisers",ja:"開催・相談","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
     [({en:"About",ja:"RBAについて","zh-tw":"關於RBA",ko:"RBA 소개"})[locale],localePath(locale,"about")] as const,
   ];

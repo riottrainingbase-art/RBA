@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://riotbasketballacademy.com"),
   manifest: "/rba-definitive/manifest.json",
-  title: { default: "Riot Basketball Academy | Youth Development from Japan to Asia", template: "%s | Riot Basketball Academy" },
+  title: { default: "Riot Basketball Academy | Youth Basketball Development in Japan", template: "%s | Riot Basketball Academy" },
   description: "Riot Basketball Academy is a Japan-based youth basketball development organisation connecting modern fundamentals, physical preparation, coach learning and meaningful exchange across Asia.",
   alternates: { canonical:"/", languages:{ en:"/", ja:"/ja", "zh-Hant-TW":"/zh-tw", ko:"/ko", "x-default":"/" } },
   keywords: ["Riot Basketball Academy", "RBA Japan", "youth basketball development", "basketball clinic Japan", "U12 basketball", "coach education", "Asia basketball exchange"],
