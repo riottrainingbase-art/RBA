@@ -49,8 +49,10 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
       <nav aria-label={ui(locale,"nav")}>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
       <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{primaryNav[0][0]}<ArrowRight size={16}/></a>
           {primaryNav.slice(1).map(([label,href])=><a key={href} href={href}>{label}</a>)}
+          <a href="/backbone">BACKBONE 3×3</a>
           <a href={localePath(locale,"my-homecourt")}>MY HOME COURT</a>
-          <a href={localePath(locale,"about")}>{c.about}</a>
+          <a href="/backbone">BACKBONE 3×3</a>
+        <a href={localePath(locale,"about")}>{c.about}</a>
           <a href={localePath(locale,"policies")}>{({en:"Policies & safety",ja:"規約・安全方針","zh-tw":"條款與安全",ko:"약관·안전"})[locale]}</a>
           <a href={localePath(locale,"contact")}>{c.contact}</a>
         </><div className="mobile-language-links" role="group" aria-label="Language / 言語 / 語言 / 언어">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
