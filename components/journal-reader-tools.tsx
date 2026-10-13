@@ -81,7 +81,7 @@ export function JournalReaderTools({title,locale,slug}:{title:string;locale:Loca
   return <>
     <div className="journal-reading-progress" aria-hidden="true"><span style={{transform:`scaleX(${progress})`}}/></div>
     <div className="journal-article-tools">
-      <small>{locale==="ja"?"読了位置を上部バーで確認できます。":"Reading progress"}</small>
+      <small>{locale==="ja"?"画面上部の線で、読み進めた位置が分かります。":"Reading progress"}</small>
       <div>
         <button type="button" onClick={toggleSave} disabled={saveBusy} aria-pressed={saved}>{saveBusy?<LoaderCircle className="spin" size={15}/>:saved?<Check size={15}/>:<Bookmark size={15}/>} {saveLabel}</button>
         <button type="button" onClick={share}>{copied?<Check size={15}/>:<Share2 size={15}/>} {shareLabel}</button>
