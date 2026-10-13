@@ -51,8 +51,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
           {primaryNav.slice(1).map(([label,href])=><a key={href} href={href}>{label}</a>)}
           <a href="/backbone">BACKBONE 3×3</a>
           <a href={localePath(locale,"my-homecourt")}>MY HOME COURT</a>
-          <a href="/backbone">BACKBONE 3×3</a>
-        <a href={localePath(locale,"about")}>{c.about}</a>
+          <a href={localePath(locale,"about")}>{c.about}</a>
           <a href={localePath(locale,"policies")}>{({en:"Policies & safety",ja:"規約・安全方針","zh-tw":"條款與安全",ko:"약관·안전"})[locale]}</a>
           <a href={localePath(locale,"contact")}>{c.contact}</a>
         </><div className="mobile-language-links" role="group" aria-label="Language / 言語 / 語言 / 언어">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
@@ -67,6 +66,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
       <div><p className="footer-label">{c.explore}</p>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}
+        <a href="/backbone">BACKBONE 3×3</a>
         <a href={localePath(locale,"about")}>{c.about}</a>
         <a href={localePath(locale,"policies")}>{({en:"Policies & safety",ja:"規約・安全方針","zh-tw":"條款與安全",ko:"약관·안전"})[locale]}</a><a href={localePath(locale,"contact")}>{c.contact}</a></div>
       <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.threads.com/@riot.basketball.academy" target="_blank" rel="noreferrer">Threads</a><a href="https://note.com/rba_official" target="_blank" rel="noreferrer">note</a><a href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">LINE</a><a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a></div>
