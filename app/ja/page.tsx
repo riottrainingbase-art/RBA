@@ -31,7 +31,7 @@ export default function Page() {
         <a href="/ja" aria-label="Riot Basketball Academy トップ" className="flex items-center gap-3" style={{color:"#171717"}}><Image src="/rba-logo-original.jpg" alt="RBA公式ロゴ" width={45} height={63} priority className="h-[59px] w-auto object-contain" /><span className="text-[10px] font-semibold leading-[1.6] tracking-[0.2em]">RIOT BASKETBALL<br/>ACADEMY</span></a>
         <nav aria-label="メインメニュー" className="flex items-center gap-5 text-[12px] font-semibold">
           <a href="/ja/opportunities" style={{color:"#171717"}}>活動を探す</a>
-          <a href="/ja/contact" style={{color:"#171717"}}>お問い合わせ ↗</a>
+          <a href="/ja/contact" style={{color:"#171717"}}>相談する ↗</a>
         </nav>
       </header>
       <section className="border-b border-[#c9c6c0] pb-20 pt-24 sm:pb-36 sm:pt-40">
@@ -53,7 +53,7 @@ export default function Page() {
         <p className="text-[11px] font-semibold tracking-[0.18em] text-[#666]">MY HOME COURT</p>
         <div className="mt-3 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div><h2 className="text-2xl font-bold">学びを、日々の成長へ。</h2><p className="mt-3 text-sm text-[#666]">RBAの育成資料と記録のための場所。</p></div>
-          <a href="/ja/my-homecourt" className="inline-flex min-h-11 items-center gap-3 border-b border-[#171717] text-sm font-bold" style={{color:"#171717"}}>詳しく見る ↗</a>
+          <div className="flex flex-wrap items-center gap-5"><a href="/ja/my-homecourt" className="inline-flex min-h-11 items-center gap-3 border-b border-[#171717] text-sm font-bold" style={{color:"#171717"}}>無料で始める ↗</a><a href="/ja/homecourt-plus" className="inline-flex min-h-11 items-center gap-3 border-b border-[#999] text-sm font-semibold" style={{color:"#171717"}}>PLUSについて ↗</a></div>
         </div>
       </section>
       <footer className="flex flex-wrap items-center justify-between gap-5 py-12 text-xs text-[#666]">
