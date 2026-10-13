@@ -7,7 +7,7 @@ import { PublicUpdateBanner } from "./public-update-banner";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support";
+export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "taiwan" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support";
 
 
 const labels = {
@@ -42,6 +42,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["BACKBONE 3×3","/backbone"] as const,
     [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
+    [({en:"Taiwan",ja:"台湾","zh-tw":"台灣",ko:"대만"})[locale],localePath(locale,"taiwan")] as const,
     [c.about,localePath(locale,"about")] as const,
     [({en:"Policies",ja:"参加規約・安全方針","zh-tw":"條款・安全",ko:"약관·안전"})[locale],localePath(locale,"policies")] as const,
   ];
@@ -50,6 +51,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
     [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
+    [({en:"Taiwan",ja:"台湾","zh-tw":"台灣",ko:"대만"})[locale],localePath(locale,"taiwan")] as const,
     [c.about,localePath(locale,"about")] as const,
   ];
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
