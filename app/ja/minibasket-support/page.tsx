@@ -5,11 +5,11 @@ import { SiteFrame } from "@/components/site-frame";
 const intakeUrl = "https://form.jotform.com/262698980384072";
 
 export const metadata: Metadata = {
-  title: "RBA MINI BASKETBALL DEVELOPMENT SUPPORT｜ミニバス・U12チーム育成支援",
+  title: "RBA｜ミニバス・U12チームの育成サポート",
   description: "今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、オンコート支援まで。RBAが外部の育成パートナーとしてミニバス・U12チームの育成環境づくりを支援します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/minibasket-support" },
   openGraph: {
-    title: "RBA MINI BASKETBALL DEVELOPMENT SUPPORT",
+    title: "RBA｜ミニバス・U12チームの育成サポート",
     description: "選手を集めるためではなく、今いるチームの育成環境を良くするための外部サポート。",
     url: "https://riotbasketballacademy.com/ja/minibasket-support",
     siteName: "Riot Basketball Academy",
@@ -67,7 +67,7 @@ export default function Page() {
   return <SiteFrame locale="ja">
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja/team">← RBA FOR TEAMS</a>
-      <p className="section-index">RBA MINI BASKETBALL DEVELOPMENT SUPPORT</p>
+      <p className="section-index">RBA｜ミニバス・U12チームの育成サポート</p>
       <h1>今いるチームを、<br/>より良い育成環境に。</h1>
       <p>RBAが目指すのは、選手を別のチームへ集めることではありません。ミニバス・U12の今いる環境を大切にしながら、外部の育成パートナーとして、練習設計、ゲームの見方、指導者の学び、選手の経験づくりを一緒に見直します。</p>
       <div className="closing-actions">
