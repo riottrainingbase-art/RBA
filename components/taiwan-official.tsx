@@ -73,7 +73,7 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
   const c=text[locale];
   const services=serviceCopy[locale];
   const options = [{key:"ja",label:"日本語"},{key:"zh-tw",label:"繁體中文"},{key:"en",label:"English"},{key:"ko",label:"한국어"}] as const;
-  return <SiteFrame locale={locale} languagePage="international">
+  return <SiteFrame locale={locale} languagePage="taiwan">
     <div className="rba-taiwan">
       <section className="rba-taiwan-hero">
         <div className="rba-taiwan-inner">
