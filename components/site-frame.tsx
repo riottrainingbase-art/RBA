@@ -55,6 +55,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["BACKBONE 3×3","/backbone"] as const,
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
+    [({en:"Taiwan",ja:"台湾","zh-tw":"台灣",ko:"대만"})[locale],localePath(locale,"taiwan")] as const,
     [c.about,localePath(locale,"about")] as const,
   ];
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
