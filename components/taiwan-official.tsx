@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SiteFrame, type Locale } from "./site-frame";
 import "./taiwan-official.css";
 
@@ -70,8 +71,8 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
     <div className="rba-taiwan">
       <section className="rba-taiwan-hero">
         <div className="rba-taiwan-inner">
-          <div className="rba-taiwan-top"><p>RBA INTERNATIONAL / JAPAN × TAIWAN</p><nav aria-label={c.language}>{options.map(x=><Link key={x.key} href={path(x.key)} aria-current={locale===x.key?"page":undefined}>{x.label}</Link>)}</nav></div>
-          <h1>{c.title}</h1><p className="rba-taiwan-lead">{c.lead}</p>
+          <div className="rba-taiwan-top"><p>RBA × SPARTANS / JAPAN × TAIWAN</p><nav aria-label={c.language}>{options.map(x=><Link key={x.key} href={path(x.key)} aria-current={locale===x.key?"page":undefined}>{x.label}</Link>)}</nav></div>
+          <div className="rba-taiwan-partner"><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy official logo" width={56} height={78} className="rba-taiwan-brand-mark"/><div className="rba-taiwan-partner-wordmark"><span>RIOT BASKETBALL ACADEMY</span><span className="rba-taiwan-times">×</span><span>SPARTANS</span></div></div><h1>{c.title}</h1><p className="rba-taiwan-lead">{c.lead}</p><p className="rba-taiwan-credit">IN COLLABORATION WITH ELTON & THE SPARTANS TEAM IN TAIWAN</p>
           <a className="rba-taiwan-btn" href="#taiwan-choose">{c.choose} ↓</a>
         </div>
       </section>
@@ -88,7 +89,7 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
         </div>
       </div></section>
       <section className="rba-taiwan-section"><div className="rba-taiwan-inner">
-        <p className="rba-taiwan-label">03 / FIELD RECORD · 2026</p><h2>{c.evidence}</h2><p className="rba-taiwan-intro">{c.evidenceBody}</p>
+        <p className="rba-taiwan-label">03 / SPARTANS × RBA · 2026</p><h2>{c.evidence}</h2><p className="rba-taiwan-intro">{c.evidenceBody}</p>
         <div className="rba-taiwan-links"><a href="https://www.spartans.tw/en/" target="_blank" rel="noopener noreferrer">SPARTANS OFFICIAL ↗</a><a href="https://www.instagram.com/p/DeW1uAEGI18/" target="_blank" rel="noopener noreferrer">RBA TAIWAN VIDEO ↗</a></div>
       </div></section>
       <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
