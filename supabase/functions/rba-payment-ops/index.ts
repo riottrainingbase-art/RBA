@@ -22,8 +22,17 @@ Deno.serve(async (req: Request) => {
   const {data:{user},error:userError} = await admin.auth.getUser(token);
   if (userError || !user) return json({error:"unauthorized"},401);
 
-  const {data:profile} = await admin.from("profiles").select("role").eq("id",user.id).maybeSingle();
-  if (profile?.role !== "admin") return json({error:"forbidden"},403);
+  const {data:entity,error:entityError}=await admin.from("platform_entities")
+    .select("id,created_by").eq("slug","riot-basketball-academy").maybeSingle();
+  if(entityError||!entity)return json({error:"forbidden"},403);
+  let authorized=entity.created_by===user.id;
+  if(!authorized){
+    const {data:membership}=await admin.from("entity_memberships")
+      .select("id").eq("entity_id",entity.id).eq("user_id",user.id).eq("status","active")
+      .in("member_role",["owner","admin","staff"]).limit(1);
+    authorized=Boolean(membership?.length);
+  }
+  if(!authorized)return json({error:"forbidden"},403);
 
   const {data:summary,error:summaryError} = await admin.schema("private").from("payment_ops_summary").select("*").single();
   if (summaryError) return json({error:"summary_unavailable"},500);

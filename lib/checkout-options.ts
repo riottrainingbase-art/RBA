@@ -1,5 +1,6 @@
 export const checkoutOffers: Readonly<Record<string,string>> = Object.freeze({
  "homecourt-monthly":"homecourt-monthly",
+ "dhub-coach-lab-monthly":"dhub-coach-lab-monthly","dhub-players-monthly":"dhub-players-monthly",
  "u12-fundamentals":"rba-coaching-guide-u12-fundamentals",
  "torsten-live":"torsten-live-vol2","torsten-ondemand":"torsten-ondemand-vol2",
  "saga-fukuoka-2day":"saga-fukuoka-2026","yamagata-1day":"yamagata-1day-2026","shizugawa-2day":"shizugawa-2026",

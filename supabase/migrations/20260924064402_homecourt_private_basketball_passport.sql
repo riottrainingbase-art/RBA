@@ -61,3 +61,4 @@ begin
   execute format('create policy owner_delete on public.%I for delete to authenticated using ((select auth.uid())=user_id)',t);
  end loop;
 end $policies$;
+

@@ -36,3 +36,4 @@ insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types) v
 create policy "passport files owner reads" on storage.objects for select to authenticated using(bucket_id='homecourt-private' and (storage.foldername(name))[1]=(select auth.uid())::text);
 create policy "passport files owner uploads" on storage.objects for insert to authenticated with check(bucket_id='homecourt-private' and (storage.foldername(name))[1]=(select auth.uid())::text and exists(select 1 from public.homecourt_media m where m.storage_path=name and m.user_id=(select auth.uid())));
 create policy "passport files owner deletes" on storage.objects for delete to authenticated using(bucket_id='homecourt-private' and (storage.foldername(name))[1]=(select auth.uid())::text);
+

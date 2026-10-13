@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const BAND_URL = "https://band.us/n/aaa2bdj9xcJ1o";
-const JOIN_FORM = "https://form.jotform.com/262498803883068";
+const JOIN_FORM = "/api/commerce/checkout/dhub-coach-lab-monthly?locale=ja";
 
 type Lesson = {
   id:string;
@@ -43,10 +43,10 @@ export default async function Page() {
             <LockKeyhole size={42}/>
             <p className="section-index">D-HUB / MEMBER ACCESS</p>
             <h1>このページは、D-HUBメンバー専用です。</h1>
-            <p>Squareの月額購読が確認できたメンバーは、RBA IDでログインすると利用できます。すでに決済済みなのに入れない場合は、申込時・Square決済時・RBA IDのメールアドレスが異なる可能性があります。</p>
+            <p>新規加入はRBA IDでログイン後、Stripeの月額決済が完了すると自動で利用できます。既存のSquare継続会員もそのまま利用できます。既存Square会員で入れない場合は、Square決済時とRBA IDのメールアドレスを照合してください。</p>
             <div className="dhub-member-actions">
-              <a className="button button-dark" href={JOIN_FORM} target="_blank" rel="noreferrer">D-HUBへ参加する <ExternalLink size={16}/></a>
-              <Link className="button button-light" href="/ja/d-hub/access-request?program=coach_lab">Square決済済みの方はこちら <ArrowRight size={16}/></Link>
+              <a className="button button-dark" href={JOIN_FORM}>D-HUBへ参加する <ArrowRight size={16}/></a>
+              <Link className="button button-light" href="/ja/d-hub/access-request?program=coach_lab">既存Square会員のアクセス確認 <ArrowRight size={16}/></Link>
             </div>
           </section>
         </main>
@@ -82,7 +82,7 @@ export default async function Page() {
           <div className="dhub-member-status">
             <span>MEMBERSHIP</span>
             <strong>{membership?.status === "grace" ? "GRACE" : "ACTIVE"}</strong>
-            <small>Square 月額3,300円</small>
+            <small>{membership?.provider==="stripe"?"Stripe 月額3,300円":"Legacy Square 月額3,300円"}</small>
           </div>
         </section>
 
