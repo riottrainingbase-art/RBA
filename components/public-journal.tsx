@@ -419,6 +419,18 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
         <article><strong>{coachPosts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク・延べ</span><small>原典・公式資料へ直接つなぐ</small></article>
         <article><strong>{coachPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>更新日を記事ごとに確認可能</small></article>
       </section>:null}
+      {locale==="ja"?<section className="coach-starter-section section-pad" aria-label="はじめて読む指導者向け3記事">
+        <div className="section-head"><div><p className="section-index">START HERE / 3 ARTICLES</p><h2>何から読めばいいか迷ったら、まずこの3本。</h2></div><p>すべて無料で読めます。気になる記事から始めてください。</p></div>
+        <div className="coach-starter-grid">
+          {[
+            {slug:"coach-one-theme-per-session",tag:"練習設計",title:"1回の練習に、テーマを詰め込みすぎない",desc:"目的を絞り、観察することを明確にする"},
+            {slug:"spacing-is-a-relationship",tag:"オフェンス",title:"スペーシングは「決められた場所に立つこと」ではない",desc:"ボール・守備・味方との関係から考える"},
+            {slug:"timeout-questions-not-orders",tag:"試合運営",title:"タイムアウト30秒を、コーチの独演会にしない",desc:"選手自身の気づきと判断を確かめる"}
+          ].map((item,index)=><Link key={item.slug} href={journalHref(locale,item.slug)} className="coach-starter-card">
+            <span className="coach-starter-number">0{index+1} / {item.tag}</span><h3>{item.title}</h3><p>{item.desc}</p><strong>無料で記事を読む <ArrowRight size={17}/></strong>
+          </Link>)}
+        </div>
+      </section>:null}
       {locale==="ja"?<CoachLearningVisuals/>:null}
       {recentCoachPosts.length?<section className="journal-cms-index journal-coach-latest section-pad">
         <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"最近の記事から読む":"Latest coach articles"}</h2></div><p>{locale==="ja"?"まずは気になるテーマを一つ。記事には、参考資料や現場で試すための視点を掲載しています。":"New articles appear here automatically."}</p></div>
