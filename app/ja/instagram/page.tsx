@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "RBA | 次の一歩へ",
@@ -15,10 +16,10 @@ const groups = [
 const destination = (path:string, item:string) => path + "?utm_source=instagram&utm_medium=bio&utm_campaign=rba_entry&utm_content=" + item;
 
 export default function Page() {
-  return <main className="min-h-screen bg-[#f8f8f6] text-[#111111]" style={{color:"#111111",backgroundColor:"#f8f8f6"}}>
+  return <main className="min-h-screen bg-[#f4f1eb] text-[#111111]" style={{color:"#111111",backgroundColor:"#f4f1eb"}}>
     <div className="mx-auto max-w-[620px] px-6 pb-20 pt-9 sm:px-10">
       <header className="flex items-center justify-between border-b border-[#d4d4d0] pb-6">
-        <a href="/ja" className="text-[13px] font-black tracking-[0.13em]" style={{color:"#111111"}}>RBA<span className="ml-2 text-[10px] font-medium tracking-[0.12em]">RIOT BASKETBALL ACADEMY</span></a>
+        <a href="/ja" aria-label="RBA公式サイト" className="flex items-center gap-3" style={{color:"#111111"}}><Image src="/rba-logo-original.jpg" alt="RBA公式ロゴ" width={39} height={55} priority className="h-[52px] w-auto object-contain"/><span className="text-[10px] font-semibold leading-5 tracking-[0.14em]">RIOT BASKETBALL<br/>ACADEMY</span></a>
         <span className="text-[10px] tracking-[0.12em] text-[#777]">JAPAN</span>
       </header>
       <section className="pb-12 pt-20 sm:pt-24">
