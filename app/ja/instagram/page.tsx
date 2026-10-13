@@ -16,7 +16,7 @@ export default function Page() {
         <p className="text-xs font-bold text-neutral-500">0{i+1}</p>
         <h2 className="mt-2 text-2xl font-black">{item.title}</h2>
         <p className="mt-2 text-sm leading-7">{item.detail}</p>
-        <nav className="mt-5 space-y-3">{item.links.map(([label,path],j)=><a key={label} className={j===0?"block rounded-md bg-black p-4 font-bold text-white":"block rounded-md border p-4 font-bold"} href={path+"?utm_source=instagram&utm_medium=bio&utm_campaign=rba_entry&utm_content="+encodeURIComponent(label)}>{label} ↗</a>)}</nav>
+        <nav className="mt-5 space-y-3">{item.links.map(([label,path],j)=><a key={label} className={j===0?"block rounded-md bg-[#111111] p-4 font-bold !text-white [color:#ffffff_!important] hover:bg-[#282828]":"block rounded-md border border-[#222222] bg-white p-4 font-bold !text-[#111111] [color:#111111_!important] hover:bg-neutral-100"} href={path+"?utm_source=instagram&utm_medium=bio&utm_campaign=rba_entry&utm_content="+encodeURIComponent(label)}>{label} ↗</a>)}</nav>
       </section>)}</div>
       <p className="mt-8 text-sm leading-7 text-neutral-600">料金・日程・受付状況は各公式ページでご確認ください。HOMECOURT PLUSの登録・決済は、現在の受付状況をご確認のうえお手続きください。</p>
     </div>
