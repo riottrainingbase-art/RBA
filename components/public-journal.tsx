@@ -248,13 +248,13 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
     {post.hero_image_url?<figure className="journal-field-hero section-pad"><img src={post.hero_image_url} alt={post.hero_image_alt||post.title}/><figcaption>{post.hero_image_alt||post.title}</figcaption></figure>:null}
     <JournalReaderTools title={post.title} locale={locale} slug={post.slug}/>
     {locale==="ja"?<section className="journal-quick-summary section-pad">
-      <div><span>30 SEC</span><strong>全部読まなくて大丈夫です。</strong></div>
-      <div><h2>この記事で伝えたいこと</h2><p>{post.aside_text||post.standfirst}</p><div><a href="#section-1">気になるところから読む <ArrowRight size={15}/></a><Link href="/ja/journal">別の記事を探す <ArrowRight size={15}/></Link></div></div>
+      <div><span>要点</span><strong>最初に、この記事の要点を紹介します。</strong></div>
+      <div><h2>この記事で伝えたいこと</h2><p>{post.aside_text||post.standfirst}</p><div>{post.sections.length>0?<a href="#section-1">本文を読む <ArrowRight size={15}/></a>:null}<Link href="/ja/journal">別の記事を探す <ArrowRight size={15}/></Link></div></div>
     </section>:null}
     {currentInfo?<section className="journal-current-notice section-pad"><span>CURRENT / 2026</span><div><strong>制度・ルールに関する記事です。</strong><p>{post.reviewed_at?`最終確認：${new Date(post.reviewed_at).toLocaleDateString("ja-JP")}。`:""} 大会要項・登録期限・競技規則は更新される場合があります。最新のJBA・都道府県協会・大会主管者の案内を優先してください。</p></div></section>:null}
     {safetyInfo?<section className="journal-safety-notice section-pad"><span>HEALTH / SAFETY</span><div><strong>健康・安全に関する一般情報です。</strong><p>診断や個別の復帰判断の代わりにはなりません。痛み・神経症状・頭部衝撃後の症状などがある場合は、医師・理学療法士等の適切な医療専門職へ相談してください。</p></div></section>:null}
     <section className="journal-reading-guide section-pad" aria-label={locale==="ja"?"この記事の読み方":"Article reading guide"}>
-      <div className="journal-reading-guide-copy"><p className="section-index">{locale==="ja"?"この記事の流れ":"IN THIS ARTICLE"}</p><h2>{locale==="ja"?"気になるところから読んでください。":"See the structure before you read."}</h2><p>{locale==="ja"?"気になる項目から読んでも、最初から順番に読んでも大丈夫です。見出しから該当箇所へ移動できます。":"Jump to the section you need, or read from the beginning."}</p></div>
+      <div className="journal-reading-guide-copy"><p className="section-index">{locale==="ja"?"この記事の流れ":"IN THIS ARTICLE"}</p><h2>{locale==="ja"?"見出しから読みたい項目を選べます。":"See the structure before you read."}</h2><p>{locale==="ja"?"必要な項目から読めます。最初から順番に読むこともできます。":"Jump to the section you need, or read from the beginning."}</p></div>
       <nav className="journal-reading-nav" aria-label={locale==="ja"?"記事内目次":"Article sections"}>{post.sections.map((section,index)=><a href={`#section-${index+1}`} key={section.heading}><span>{String(index+1).padStart(2,"0")}</span><strong>{section.heading}</strong></a>)}{post.coach_application?.length?<a href="#coach-application"><span>+</span><strong>{locale==="ja"?"現場での使い方":"Coach application"}</strong></a>:null}{post.source_references?.length?<a href="#sources"><span>↗</span><strong>{locale==="ja"?"参考文献":"Sources"}</strong></a>:null}</nav>
       <aside className="journal-reading-point"><span>{locale==="ja"?"まず、ここだけ":"KEY POINT"}</span><strong>{post.aside_title||c.kicker}</strong><p>{post.aside_text||post.standfirst}</p></aside>
     </section>
