@@ -3432,3 +3432,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   .saga-hub .journal-cms-grid>article{min-height:0;padding:22px}
   .saga-status-row{align-items:flex-start;flex-direction:column}
 }
+
+
+/* Coach Journal: accessible visual explanations and reading pathway */
+.coach-learning-visuals{background:#f4f5f3;color:#19262b}
+.coach-visual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:24px}
+.coach-visual-card{background:#fff;border:1px solid #d8dedc;border-radius:12px;padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:14px}
+.coach-visual-eyebrow{font-size:12px;font-weight:800;letter-spacing:.1em;color:#4b5c64}
+.coach-visual-card h3{font-size:clamp(20px,2vw,27px);line-height:1.45;margin:0;color:#17272e}
+.coach-visual-card p{margin:0;line-height:1.85;color:#394b52}
+.coach-visual-card p strong{color:#192b33}
+.coach-court-svg{width:100%;height:auto;max-width:600px;margin:10px auto;overflow:visible}
+.coach-visual-card .coach-visual-note{font-size:13px;color:#53636a;line-height:1.75}
+.coach-learning-steps{list-style:none;padding:0;margin:4px 0;display:grid;gap:10px;counter-reset:coach-step}
+.coach-learning-steps li{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;align-items:center;background:#f4f5f3;border-left:3px solid #285b72;border-radius:4px;padding:14px}
+.coach-learning-steps li strong{font-size:16px;color:#17272e}
+.coach-learning-steps li span{font-size:14px;line-height:1.65;color:#43545c}
+.coach-learning-reading{margin-top:22px;border:1px solid #d8dedc;background:#fff;border-radius:12px;padding:clamp(20px,3vw,32px)}
+.coach-learning-reading h3{font-size:clamp(18px,2vw,24px);line-height:1.5;margin:0 0 18px}
+.coach-learning-reading>div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.coach-learning-reading>div span{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;background:#f4f5f3;padding:12px;border-radius:7px;line-height:1.5}
+.coach-learning-reading>div b{display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:#285b72;color:#fff}
+.coach-learning-reading>p{margin:16px 0 0;color:#53636a;font-size:14px;line-height:1.8}
+@media(max-width:800px){.coach-visual-grid{grid-template-columns:1fr}.coach-learning-reading>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.coach-visual-card{padding:18px}.coach-learning-steps li{grid-template-columns:1fr;gap:4px}.coach-learning-reading>div{grid-template-columns:1fr}.coach-learning-reading>div span{min-height:48px}}
