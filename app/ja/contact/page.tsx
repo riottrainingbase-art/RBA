@@ -65,8 +65,9 @@ export default function Page() {
     <section className="inner-hero section-pad">
       <Link className="back-link" href="/ja">← RBA</Link>
       <p className="section-index">CONTACT RBA</p>
-      <h1>相談したい内容から、<br/>お選びください。</h1>
-      <p>活動への参加、チーム支援、海外交流など、相談内容ごとに専用ページがあります。該当する項目を選んでください。どれに当てはまるか分からない場合は、お問い合わせフォームからご連絡ください。</p>
+      <h1>ご相談は、こちらから。</h1>
+      <p>活動の参加・開催・協賛・海外交流。目的に合わせてご案内します。</p>
+      <a className="button button-dark" href="https://form.jotform.com/262590542634055" target="_blank" rel="noopener noreferrer">直接問い合わせる <ArrowRight size={17}/></a>
     </section>
 
     <section className="access-grid section-pad">
