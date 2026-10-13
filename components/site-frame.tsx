@@ -32,28 +32,6 @@ export function localePath(locale:Locale, page?:LanguagePage){
 
 export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage }) {
   const c=labels[locale];
-  const fullNav=[
-    [({en:"Find opportunities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
-    [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")] as const,
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const]:[]),
-    [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
-    [({en:"Coaches",ja:"指導者","zh-tw":"教練",ko:"지도자"})[locale],localePath(locale,"coaches")] as const,
-    ["RBA UNITED",localePath(locale,"united")] as const,
-    ["BACKBONE 3×3","/backbone"] as const,
-    [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
-    [({en:"Taiwan",ja:"台湾","zh-tw":"台灣",ko:"대만"})[locale],localePath(locale,"taiwan")] as const,
-    [c.about,localePath(locale,"about")] as const,
-    [({en:"Policies",ja:"参加規約・安全方針","zh-tw":"條款・安全",ko:"약관·안전"})[locale],localePath(locale,"policies")] as const,
-  ];
-  const nav=[
-    [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
-    [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
-    [({en:"Teams / organisers",ja:"チーム・団体","zh-tw":"團隊・主辦",ko:"팀・단체"})[locale],localePath(locale,"organizer")] as const,
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
-    [({en:"Taiwan",ja:"台湾","zh-tw":"台灣",ko:"대만"})[locale],localePath(locale,"taiwan")] as const,
-    [c.about,localePath(locale,"about")] as const,
-  ];
   const primaryNav=[
     [({en:"Programmes",ja:"参加する","zh-tw":"參加活動",ko:"참가하기"})[locale],localePath(locale,"opportunities")] as const,
     [({en:"Learn",ja:"学ぶ","zh-tw":"閱讀學習",ko:"배우기"})[locale],localePath(locale,"journal")] as const,
