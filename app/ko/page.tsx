@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { LocalizedHome } from "@/components/localized-home";
+import { RbaSimpleHome } from "@/components/rba-simple-home";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: { absolute: "Riot Basketball Academy | Youth Basketball Development Platform" },
-  description: "Riot Basketball Academy는 선수, 보호자, 코치, 팀, 지역과 해외 파트너를 연결하고 성장 기회, 세이프가딩, 성장 기록, 국제 교류를 하나로 잇는 유소년 농구 육성 플랫폼입니다.",
+  title: { absolute: "RBA｜유소년 농구 클리닉·코치 교육·일본 교류" },
+  description: "RBA는 일본 센다이를 기반으로 유소년 농구 클리닉, 캠프, 지도자 교육과 일본·아시아 교류를 진행합니다.",
   alternates: { canonical: "https://riotbasketballacademy.com/ko/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
   openGraph: {
-    title: "Riot Basketball Academy | Youth Basketball Development Platform",
-    description: "Riot Basketball Academy는 선수, 보호자, 코치, 팀, 지역과 해외 파트너를 연결하고 성장 기회, 세이프가딩, 성장 기록, 국제 교류를 하나로 잇는 유소년 농구 육성 플랫폼입니다.",
+    title: "RBA｜유소년 농구 클리닉·코치 교육·일본 교류",
+    description: "RBA는 일본 센다이를 기반으로 유소년 농구 클리닉, 캠프, 지도자 교육과 일본·아시아 교류를 진행합니다.",
     url: "https://riotbasketballacademy.com/ko/",
     siteName: "Riot Basketball Academy",
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
-  twitter: { card: "summary_large_image", title: "Riot Basketball Academy | Youth Basketball Development Platform", description: "Riot Basketball Academy는 선수, 보호자, 코치, 팀, 지역과 해외 파트너를 연결하고 성장 기회, 세이프가딩, 성장 기록, 국제 교류를 하나로 잇는 유소년 농구 육성 플랫폼입니다.", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
+  twitter: { card: "summary_large_image", title: "RBA｜유소년 농구 클리닉·코치 교육·일본 교류", description: "RBA는 일본 센다이를 기반으로 유소년 농구 클리닉, 캠프, 지도자 교육과 일본·아시아 교류를 진행합니다.", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
 export default function Page() {
-  return <LocalizedHome locale="ko" />;
+  return <RbaSimpleHome locale="ko" />;
 }
