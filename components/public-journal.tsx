@@ -353,15 +353,19 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       <section className="journal-cms-hero section-pad">
         <Link href={journalRoot(locale)} className="back-link">← RBA JOURNAL</Link>
         <p className="section-index">RBA JOURNAL / COACH</p>
-        <h1>{locale==="ja"?"練習メニューを増やす前に、何を育てたいかを考える。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
-        <p>{locale==="ja"?"ミニバスの基礎、練習設計、ゲームコーチング、S&C、安全。答えを集めるのではなく、目の前の選手をどう見るかまで考える指導者向けJOURNALです。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
+        <h1>{locale==="ja"?"指導の悩みから、次の練習を考える。":locale==="zh-tw"?"讓教練判斷不只依賴經驗。":locale==="ko"?"지도 판단을 경험에만 맡기지 않습니다.":"Coach with evidence, then test it on court."}</h1>
+        <p>{locale==="ja"?"試合での起用、練習の組み立て方、声かけ、けがの予防。現場で迷いやすいテーマを、根拠と具体例から整理します。気になる記事を一つ選び、次の練習で試してみてください。":"Evidence, coaching guidance and practical interpretation connected to practice design."}</p>
       </section>
+      {locale==="ja"?<section className="journal-exchange-cta section-pad" aria-label="RBA IDのご案内">
+        <div><p className="section-index inverse">FREE / RBA ID</p><h2>まずは無料のRBA IDから。</h2><p>記事は登録しなくても読めます。RBA IDを作ると、MY HOME COURTから自分に合う活動や学びの入口を探せます。有料のD-HUBや講習への申込は別途必要です。</p></div>
+        <div><Link className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる <ArrowRight size={16}/></Link><Link className="button button-dark" href="/ja/my-homecourt/coaches">指導者向けHOMEを見る <ArrowRight size={16}/></Link></div>
+      </section>:null}
       <nav className="journal-topic-nav section-pad" aria-label={locale==="ja"?"指導テーマ":"Coaching topics"}>
         <a href="#coach-u12"><span>01</span>{locale==="ja"?"U12 / 基礎":"U12 / Fundamentals"}</a>
         <a href="#coach-offense"><span>02</span>{locale==="ja"?"オフェンス / 判断":"Offense / Decisions"}</a>
         <a href="#coach-game"><span>03</span>{locale==="ja"?"試合運営":"Game coaching"}</a>
         <a href="#coach-practice"><span>04</span>{locale==="ja"?"練習設計":"Practice design"}</a>
-        <a href="#coach-reflection"><span>05</span>{locale==="ja"?"FB / 振り返り":"Feedback / Reflection"}</a>
+        <a href="#coach-reflection"><span>05</span>{locale==="ja"?"声かけ / 振り返り":"Feedback / Reflection"}</a>
         <a href="#coach-player"><span>06</span>{locale==="ja"?"選手育成":"Player development"}</a>
         <a href="#coach-physical"><span>07</span>{locale==="ja"?"S&C / 安全":"S&C / Safety"}</a>
         <strong>{locale==="ja"?`${coachPosts.length}本を公開中`:`${coachPosts.length} coach articles`}</strong>
@@ -373,7 +377,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
         <article><strong>{coachPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>更新日を記事ごとに確認可能</small></article>
       </section>:null}
       {recentCoachPosts.length?<section className="journal-cms-index journal-coach-latest section-pad">
-        <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"今の練習を、一度疑ってみる。":"Latest coach articles"}</h2></div><p>{locale==="ja"?"新しい記事はここに並びます。メニューを集めるより、なぜその練習をするのかから考えます。":"New articles appear here automatically."}</p></div>
+        <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"最近の記事から読む":"Latest coach articles"}</h2></div><p>{locale==="ja"?"まずは気になるテーマを一つ。記事には、参考資料や現場で試すための視点を掲載しています。":"New articles appear here automatically."}</p></div>
         <div className="journal-cms-grid">{recentCoachPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p>
           <div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>
@@ -384,14 +388,14 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
       <section className="homecourt-product-preview section-pad">
         <div className="section-head"><div><p className="section-index">COACHING LOOP</p><h2>READ → PLAN → COACH → REVIEW</h2></div><p>{locale==="ja"?"読むだけで終わらせず、次の練習で試せるところまで。":"Turn reading into the next practice."}</p></div>
         <div className="homecourt-preview-grid">
-          <article><BookOpen/><span>01 / READ</span><h3>{locale==="ja"?"根拠を確認する":"Read the evidence"}</h3><p>{locale==="ja"?"EVIDENCE・LIMITATIONS・SOURCESまで確認する。":"Check evidence, limitations and original sources."}</p></article>
-          <article><FileText/><span>02 / PLAN</span><h3>{locale==="ja"?"練習に落とし込む":"Plan"}</h3><p>{locale==="ja"?"COACH APPLICATIONから目的・制約・観察項目を決める。":"Turn the idea into purpose, constraints and observations."}</p></article>
+          <article><BookOpen/><span>01 / READ</span><h3>{locale==="ja"?"根拠を確認する":"Read the evidence"}</h3><p>{locale==="ja"?"研究や公式資料で分かることと、まだ分からないことを分けて読む。":"Check evidence, limitations and original sources."}</p></article>
+          <article><FileText/><span>02 / PLAN</span><h3>{locale==="ja"?"練習に落とし込む":"Plan"}</h3><p>{locale==="ja"?"記事の実践例を参考に、練習の目的と観察するポイントを決める。":"Turn the idea into purpose, constraints and observations."}</p></article>
           <article><Users/><span>03 / COACH</span><h3>{locale==="ja"?"選手を観察する":"Coach"}</h3><p>{locale==="ja"?"メニューの消化ではなく、選手が何を見て、どう判断し、どう行動したかを観察する。":"Observe player perception, decisions and actions."}</p></article>
           <article><HistoryIcon/><span>04 / REVIEW</span><h3>{locale==="ja"?"次を修正する":"Review"}</h3><p>{locale==="ja"?"何が起きたかを振り返り、次回の練習設計を一つ改善する。":"Record what happened and refine the next session."}</p></article>
         </div>
       </section>
       <section className="homecourt-role-section section-pad">
-        <div className="section-head"><div><p className="section-index">COACHING THEMES</p><h2>{locale==="ja"?"課題から、読む。":"Browse by coaching problem."}</h2></div><p>{locale==="ja"?"練習メニューではなく、現場で起きている問題から必要な記事へ進めます。":"Start from the problem you are trying to solve."}</p></div>
+        <div className="section-head"><div><p className="section-index">COACHING THEMES</p><h2>{locale==="ja"?"今、困っていることから探す":"Browse by coaching problem."}</h2></div><p>{locale==="ja"?"気になる項目を選ぶと、そのテーマの記事へ移動します。":"Start from the problem you are trying to solve."}</p></div>
         <div className="homecourt-role-grid">
           <article><span>GAME COACHING</span><h3>{locale==="ja"?"試合で何を学ばせるか":"Game coaching"}</h3><p>{locale==="ja"?"勝利と育成、出場機会、大差時の判断、B戦の設計。":"Winning, playing time, blowouts and game experience."}</p><a href="#coach-game">{locale==="ja"?"試合運営の記事を見る":"View game coaching"} <ArrowRight size={15}/></a></article>
           <article><span>PRACTICE DESIGN</span><h3>{locale==="ja"?"練習をどう設計するか":"Practice design"}</h3><p>{locale==="ja"?"3x3、少人数ゲーム、スクリーン、マンツーマン。制約と判断をどう作るか。":"Small-sided games, screens, man-to-man and constraints."}</p><a href="#coach-practice">{locale==="ja"?"練習設計の記事を見る":"View practice design"} <ArrowRight size={15}/></a></article>
@@ -400,14 +404,14 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
         </div>
       </section>
       {coachGroups.map(group=>{const grouped=group.slugs.map(slug=>coachPosts.find(post=>post.slug===slug)).filter(Boolean) as typeof coachPosts;return <section className="journal-cms-index section-pad" id={group.id} key={group.id}>
-        <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{group.label}</h2></div><p>{grouped.length} ARTICLES</p></div>
+        <div className="section-head"><div><p className="section-index">{group.label}</p><h2>{locale==="ja"?({"coach-u12":"U12の基礎をどう教える？","coach-offense":"判断できるオフェンスを育てる","coach-game":"試合での起用と声かけ","coach-practice":"目的から練習を組み立てる","coach-reflection":"伝え方と振り返りを見直す","coach-player":"選手が自分で考える環境づくり","coach-physical":"身体づくりとけがの予防"} as Record<string,string>)[group.id]:group.label}</h2></div><p>{locale==="ja"?`${grouped.length}本の記事`:`${grouped.length} ARTICLES`}</p></div>
         {grouped.length?<div className="journal-cms-grid">{grouped.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
           <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][post.category as keyof typeof categoryLabels.en]||post.category}</p><div className="journal-card-meta"><span>{post.reading}</span>{post.source_references?.length?<span>{locale==="ja"?`参考文献 ${post.source_references.length}`:`${post.source_references.length} SOURCES`}</span>:null}</div>{post.evidence_level?<small className="journal-evidence-chip">{post.evidence_level}</small>:null}<h3>{post.title}</h3><p>{post.standfirst}</p><strong>{post.coach_application?.length?(locale==="ja"?"実践ツール付き":"Includes coach tool"):(locale==="ja"?"記事を読む":"Read")} <ArrowRight size={16}/></strong>
         </Link>)}</div>:<p>{locale==="ja"?"このテーマの記事を準備しています。":"Articles for this theme are being prepared."}</p>}
       </section>})}
       <section className="journal-exchange-cta section-pad">
-        <div><p className="section-index inverse">CONTINUE LEARNING</p><h2>{locale==="ja"?"記事から、継続的な指導者教育へ。":"Continue beyond the article."}</h2><p>{locale==="ja"?"D-HUB、Torsten Loibl Online Clinic、MY HOME COURTをつなぎ、毎週の指導を更新します。":"Connect Journal, D-HUB and coach education."}</p></div>
-        <div><Link className="button button-light" href={`${prefix}/d-hub`}>D-HUB <ArrowRight size={16}/></Link><Link className="button button-dark" href={`${prefix}/my-homecourt/coaches`}>COACH HOME <ArrowRight size={16}/></Link></div>
+        <div><p className="section-index inverse">CONTINUE LEARNING</p><h2>{locale==="ja"?"読んだことを、次の練習につなげよう。":"Continue beyond the article."}</h2><p>{locale==="ja"?"RBA IDは無料で作成できます。指導者向けの情報を探す入口として、MY HOME COURTもご利用ください。D-HUBの有料コンテンツとは別のサービスです。":"Connect Journal, D-HUB and coach education."}</p></div>
+        <div>{locale==="ja"?<Link className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる <ArrowRight size={16}/></Link>:null}<Link className="button button-dark" href={`${prefix}/my-homecourt/coaches`}>{locale==="ja"?"指導者向けHOME":"Coach home"} <ArrowRight size={16}/></Link><Link className="button button-light" href={`${prefix}/d-hub`}>D-HUB <ArrowRight size={16}/></Link></div>
       </section>
     </div>
   </SiteFrame>;
