@@ -27,16 +27,16 @@ const text: Record<Locale, {
     current:"現在のRBA活動を見る",team:"日本との交流について相談する",safety:"開催が決まった活動については、保護者の同意、引率体制、保険、キャンセル時の対応などを事前にご案内します。",language:"言語"
   },
   en:{
-    title:"Connecting Japan and Taiwan through development.",lead:"More than a one-off tour. Meaningful experiences for players, learning for coaches and lasting connections.",
-    choose:"Find your pathway",subtitle:"One RBA philosophy, with clear next steps for families, coaches and organizations.",
+    title:"More ways to play and learn, in Taiwan and Japan.",lead:"We work with teams and coaches in Taiwan on practical training, and help explore opportunities to play and learn in Japan.",
+    choose:"Where would you like to start?",subtitle:"Whether you're a parent, coach or club organiser, here's how to get in touch or find out more.",
     parent:"Players & families",coach:"Coaches",club:"Clubs & schools",
-    parentBody:"Explore team exchange, youth camps and RBA UNITED opportunities.",coachBody:"Discuss decision-making, small-sided games, 3x3 and coach education.",clubBody:"Discuss jointly hosted camps, friendly games and coach development.",
-    evidence:"Documented activity in Taiwan",evidenceBody:"RBA and SPARTANS Academy conducted youth development exchange activities in 2026. Review the host's official information and RBA's on-court post.",
-    future:"Future programme status",futureBody:"Future dates, fees and registration are not confirmed. No bookings or payments are accepted on this page.",
-    roles:"GLOBAL, UNITED & CONNECT — the difference",global:"RBA GLOBAL",united:"RBA UNITED",connect:"RBA CONNECT",
-    globalBody:"Builds development programmes with international clubs and schools.",unitedBody:"Creates team-based tournament and travel experiences.",connectBody:"Keeps relationships and learning going after an exchange.",
-    form:"Enquire as an organization",formBody:"Share age groups, group size, timing and learning goals. Enquiries are free and do not create a booking or contract.",
-    current:"Explore RBA programmes",team:"Discuss team exchange",safety:"Safeguarding, guardian consent, supervision, insurance and cancellation terms are confirmed before delivery.",language:"Language"
+    parentBody:"Learn about camps, friendly games in Japan and RBA UNITED.",coachBody:"Ask about 3x3, decision-making in games and workshops for coaches.",clubBody:"Talk to us about hosting a clinic, friendly games or a coach workshop.",
+    evidence:"What we've done in Taiwan",evidenceBody:"RBA and SPARTANS Academy worked together on youth basketball activities in Taiwan in 2026. You can see more through the partners' official channels.",
+    future:"What's coming next",futureBody:"We haven't confirmed dates, fees or registration for the next event. We'll share details once they're ready. Bookings and payments are not open.",
+    roles:"How RBA's programmes work",global:"RBA GLOBAL",united:"RBA UNITED",connect:"RBA CONNECT",
+    globalBody:"We plan clinics and coach exchanges with clubs and schools overseas.",unitedBody:"Players take part in tournaments, camps and exchanges as a team.",connectBody:"We want players and coaches to stay in touch and keep learning after an exchange.",
+    form:"Talk to us about a programme",formBody:"Tell us the players' ages, group size, preferred dates and what you'd like to do. There's no charge to enquire, and sending the form does not confirm a booking.",
+    current:"Explore RBA programmes",team:"Ask about team exchanges",safety:"For confirmed events, we'll explain guardian consent, supervision, insurance and cancellation arrangements in advance.",language:"Language"
   },
   "zh-tw":{
     title:"讓台灣和日本的孩子，有更多一起打球的機會。",lead:"從球隊訓練、教練交流到赴日參訪，我們希望讓每一次交流都能帶回真正用得上的經驗。",
@@ -51,24 +51,24 @@ const text: Record<Locale, {
     current:"查看RBA近期活動",team:"詢問台日球隊交流",safety:"活動確定舉辦後，我們會事先說明家長同意、帶隊安排、保險及取消規定。",language:"語言"
   },
   ko:{
-    title:"일본과 대만을 육성으로 연결합니다.",lead:"일회성 원정을 넘어 선수의 경험, 코치의 배움, 지속적인 교류를 만듭니다.",
-    choose:"참여 방법 찾기",subtitle:"하나의 RBA 육성 철학 아래 선수, 보호자, 코치, 단체를 위한 명확한 안내.",
+    title:"대만과 일본에서 함께 농구를 배우고 즐길 기회를 넓힙니다.",lead:"대만의 팀과 지도자들이 함께 훈련하고, 일본에서 교류할 기회도 차근차근 만들어 가겠습니다.",
+    choose:"어떤 활동을 찾고 계신가요?",subtitle:"선수와 보호자, 지도자, 팀 관계자 모두 필요한 정보를 확인할 수 있습니다.",
     parent:"선수와 보호자",coach:"코치",club:"클럽과 학교",
-    parentBody:"교류 경기, 육성 캠프, RBA UNITED 팀 활동을 알아보세요.",coachBody:"의사결정, 3x3, 소규모 경기와 코치 교육을 상담하세요.",clubBody:"공동 캠프, 친선 경기, 코치 교육을 함께 논의합니다.",
-    evidence:"대만 활동 기록",evidenceBody:"2026년 RBA와 SPARTANS Academy는 유소년 교류 활동을 진행했습니다. 주최 측 공식 정보와 RBA 현장 영상을 확인할 수 있습니다.",
-    future:"향후 프로그램 안내",futureBody:"향후 일정, 비용, 모집은 미확정입니다. 이 페이지에서는 예약이나 결제를 받지 않습니다.",
-    roles:"GLOBAL · UNITED · CONNECT의 차이",global:"RBA GLOBAL",united:"RBA UNITED",connect:"RBA CONNECT",
-    globalBody:"해외 클럽 및 학교와 육성 프로그램을 만듭니다.",unitedBody:"선수에게 팀 단위의 대회 및 원정 경험을 제공합니다.",connectBody:"교류 후에도 관계와 배움을 이어 갑니다.",
-    form:"단체 문의",formBody:"연령, 인원, 시기, 학습 목표를 알려 주세요. 문의는 무료이며 예약이나 계약이 아닙니다.",
-    current:"RBA 활동 보기",team:"팀 교류 상담",safety:"아동 보호, 보호자 동의, 인솔, 보험 및 취소 조건을 행사 전에 확인합니다.",language:"언어"
+    parentBody:"일본 캠프, 교류 경기, RBA UNITED 활동을 소개합니다.",coachBody:"3x3, 경기 중 판단을 기르는 훈련, 지도자 강습에 대해 문의할 수 있습니다.",clubBody:"팀 클리닉, 친선 경기, 지도자 강습 개최를 상담해 주세요.",
+    evidence:"대만에서 진행한 활동",evidenceBody:"2026년 RBA는 SPARTANS Academy와 대만에서 유소년 농구 교류를 진행했습니다. 당시 활동은 양측 공식 채널에서 확인할 수 있습니다.",
+    future:"다음 활동 안내",futureBody:"다음 일정과 참가비는 아직 정해지지 않았습니다. 확정되면 안내하겠습니다. 현재는 신청이나 결제를 받지 않습니다.",
+    roles:"RBA에서는 어떤 활동을 하나요?",global:"RBA GLOBAL",united:"RBA UNITED",connect:"RBA CONNECT",
+    globalBody:"해외 팀 및 학교와 클리닉과 지도자 교류를 기획합니다.",unitedBody:"선수들이 팀을 이루어 대회와 캠프, 해외 교류에 참여합니다.",connectBody:"교류가 끝난 뒤에도 선수와 지도자가 소통하며 배울 수 있도록 돕고자 합니다.",
+    form:"프로그램에 대해 문의하기",formBody:"선수 연령, 인원, 희망 시기와 원하는 내용을 알려 주세요. 문의는 무료이며, 제출만으로 예약이 확정되지는 않습니다.",
+    current:"RBA 활동 보기",team:"팀 교류 문의",safety:"행사가 확정되면 보호자 동의, 인솔, 보험 및 취소 규정을 미리 안내합니다.",language:"언어"
   }
 };
 
 const serviceCopy: Record<Locale,{title:string;intro:string;items:[string,string,string][];button:string;note:string;memberTitle:string;memberBody:string;memberButton:string}> = {
   ja: {title:"台湾でのクリニックと指導者講習",intro:"まずはチームの年代や人数、普段の練習で困っていることを伺います。そのうえで、現場で試せる内容を一緒に考えます。",items:[["01","チーム向けクリニック","U12・U15を中心に、基本技術やスペーシング、3x3などを実際のプレーを通して練習します。"],["02","指導者ワークショップ","普段の練習の組み立て方、選手への声かけ、出場機会、練習量と休養について一緒に考えます。"],["03","継続育成サポート","チームの状況に合わせて、現場指導や練習計画の相談、実施後の振り返りを組み合わせます。"]],button:"開催について問い合わせる",note:"参加人数、指導時間、会場、移動、通訳の有無を確認してお見積もりします。お問い合わせの段階では、開催日や料金は確定しません。",memberTitle:"オンラインで学べる内容も準備しています",memberBody:"台湾の選手や指導者が使いやすい繁体字の教材を検討しています。内容・料金・開始日はまだ決まっていません。現在、会費の請求は行っていません。",memberButton:"興味がある方はこちら"},
   "zh-tw": {title:"台灣球隊訓練與教練研習",intro:"每支球隊的情況都不同。我們會先了解球員年齡、人數、平常遇到的問題，再一起討論適合的訓練內容。",items:[["01","球隊專屬訓練","以U12、U15為主，透過基本動作、3x3和實際攻防，練習觀察、判斷與空間運用。"],["02","教練研習","一起討論練習怎麼安排、如何觀察球員、怎麼提問，以及上場機會和休息時間。"],["03","球隊長期合作","如果希望持續合作，也可以安排定期討論、現場指導與訓練後的回顧。"]],button:"詢問訓練安排",note:"我們會依人數、課程時間、場地、交通和翻譯需求提供報價。送出表單不代表已預約，日期和費用都需要另外確認。",memberTitle:"線上學習內容準備中",memberBody:"我們正在整理適合台灣球員和教練使用的繁體中文教材。內容、收費方式和推出時間都還在討論，目前不會收取會員費。",memberButton:"有興趣可以先告訴我們"},
-  en: {title:"Taiwan team clinics & coach education",intro:"We begin with each team's actual needs: age group, group size, learning goals and timing. The goal is to leave useful practice methods behind, not just deliver a one-off session.",items:[["01","Team clinics","U12/U15 fundamentals, decision-making, spacing and 3x3 adapted to the group."],["02","Coach workshops","Practice design, observation, questioning, playing opportunities, load and recovery."],["03","Ongoing development","Optional needs assessment, on-court teaching, practice planning and review."]],button:"Enquire about a Taiwan clinic",note:"Fees are quoted after checking participants, hours, venue, travel and interpretation. An enquiry is free and is not a confirmed booking.",memberTitle:"Digital membership is in development",memberBody:"We are exploring practical Traditional Chinese resources and coach learning. Pricing, deliverables and launch date remain unconfirmed. No subscription payments are taken.",memberButton:"Register interest in membership"},
-  ko: {title:"대만 팀 클리닉과 코치 교육",intro:"팀의 연령, 인원, 과제와 희망 일정을 먼저 확인하고 현장에 남는 학습을 설계합니다.",items:[["01","팀 클리닉","U12/U15 기본기, 판단, 공간 활용, 3x3."],["02","코치 워크숍","훈련 설계, 관찰과 질문, 모든 선수의 학습 기회, 회복."],["03","지속적 육성 지원","현황 파악, 현장 지도, 훈련 계획과 회고를 필요에 따라 구성합니다."]],button:"대만 클리닉 문의",note:"참가 인원, 시간, 장소, 이동과 통역에 따라 개별 견적. 문의는 무료이며 예약 확정이 아닙니다.",memberTitle:"디지털 회원 서비스 준비 중",memberBody:"번체 중국어 자료와 코치 학습을 검토 중입니다. 요금과 제공 내용은 미확정이며 결제는 받지 않습니다.",memberButton:"회원 서비스 관심 등록"}
+  en: {title:"Clinics and coach workshops in Taiwan",intro:"Every team is different. We'll ask about your players, training schedule and the things you'd like to improve before suggesting a session.",items:[["01","Team clinics","For U12 and U15 teams: fundamentals, spacing, 3x3 and making decisions in live play."],["02","Coach workshops","Let's look at how you plan sessions, ask questions, give players opportunities and balance training with rest."],["03","Ongoing development","Depending on your needs, we can discuss on-court sessions, practice plans and follow-up reviews."]],button:"Ask about hosting a session",note:"We'll provide a quote after checking group size, session length, venue, travel and interpretation needs. An enquiry doesn't reserve a date.",memberTitle:"Online learning resources are in the works",memberBody:"We're working on Traditional Chinese resources for players and coaches. Content, pricing and timing are still being discussed. We're not charging membership fees.",memberButton:"Tell us if you're interested"},
+  ko: {title:"대만 팀 클리닉과 지도자 강습",intro:"팀마다 상황이 다릅니다. 선수들의 연령과 인원, 평소 훈련에서 어려운 점을 먼저 듣고 내용을 함께 정합니다.",items:[["01","팀 클리닉","U12·U15 선수들이 기본기, 공간 활용, 3x3과 실제 경기 상황에서의 판단을 연습합니다."],["02","코치 워크숍","훈련 구성, 선수 관찰과 질문, 출전 기회, 훈련량과 휴식을 함께 살펴봅니다."],["03","지속적 육성 지원","필요에 따라 현장 지도, 훈련 계획 상담, 수업 후 피드백을 함께 진행합니다."]],button:"클리닉 개최 문의",note:"참가 인원, 수업 시간, 장소, 이동과 통역 여부를 확인한 뒤 견적을 안내합니다. 문의만으로 날짜가 확정되지는 않습니다.",memberTitle:"온라인 학습 자료를 준비하고 있습니다",memberBody:"대만 선수와 지도자가 활용할 수 있는 번체 중국어 자료를 준비하고 있습니다. 내용, 요금, 시작일은 아직 정해지지 않았으며 회비를 받지 않습니다.",memberButton:"관심이 있다면 알려 주세요"}
 };
 export function TaiwanOfficial({locale}:{locale:Locale}) {
   const c=text[locale];
@@ -79,7 +79,7 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
       <section className="rba-taiwan-hero">
         <div className="rba-taiwan-inner">
           <div className="rba-taiwan-top"><p>RBA × SPARTANS / JAPAN × TAIWAN</p><nav aria-label={c.language}>{options.map(x=><Link key={x.key} href={path(x.key)} aria-current={locale===x.key?"page":undefined}>{x.label}</Link>)}</nav></div>
-          <div className="rba-taiwan-partner"><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy official logo" width={56} height={78} className="rba-taiwan-brand-mark"/><div className="rba-taiwan-partner-wordmark"><span>RIOT BASKETBALL ACADEMY</span><span className="rba-taiwan-times">×</span><span>SPARTANS</span></div></div><h1>{c.title}</h1><p className="rba-taiwan-lead">{c.lead}</p><p className="rba-taiwan-credit">IN COLLABORATION WITH ELTON & THE SPARTANS TEAM IN TAIWAN</p>
+          <div className="rba-taiwan-partner"><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy official logo" width={56} height={78} className="rba-taiwan-brand-mark"/><div className="rba-taiwan-partner-wordmark"><span>RIOT BASKETBALL ACADEMY</span><span className="rba-taiwan-times">×</span><span>SPARTANS</span></div></div><h1>{c.title}</h1><p className="rba-taiwan-lead">{c.lead}</p><p className="rba-taiwan-credit">WITH ELTON & SPARTANS ACADEMY, TAIWAN</p>
           <a className="rba-taiwan-btn" href="#taiwan-choose">{c.choose} ↓</a>
         </div>
       </section>
@@ -116,7 +116,7 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
       </div></section>
       <section className="rba-taiwan-section" id="taiwan-contact"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">05 / CONTACT</p><h2>{c.form}</h2><p className="rba-taiwan-intro">{c.formBody}</p>
-        <a className="rba-taiwan-btn" href={`${formUrl}?utm_source=rba_website&utm_medium=organic&utm_campaign=taiwan_2026_launch&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">JOTFORM ↗</a>
+        <a className="rba-taiwan-btn" href={`${formUrl}?utm_source=rba_website&utm_medium=organic&utm_campaign=taiwan_2026_launch&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{c.form} ↗</a>
         <p className="rba-taiwan-small"><Link href={locale==="en"?"/":`/${locale}`}>{c.current} ↗</Link></p>
       </div></section>
     </div>
