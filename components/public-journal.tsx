@@ -334,6 +334,49 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
   </article></SiteFrame>;
 }
 
+function CoachLearningVisuals(){
+  return <section className="coach-learning-visuals section-pad" aria-label="図で理解する指導の基本">
+    <div className="section-head"><div><p className="section-index">VISUAL LEARNING</p><h2>まずは図で、考え方をつかむ。</h2></div><p>図は考え方を整理するための一例です。実際の練習では選手の人数、守備、習熟度に合わせて調整してください。</p></div>
+    <div className="coach-visual-grid">
+      <article className="coach-visual-card">
+        <span className="coach-visual-eyebrow">01 / スペーシング</span>
+        <h3>「広がれ」ではなく、どこに立つと何が変わる？</h3>
+        <p>選手が集まると、パスやドライブの選択肢はどう変わるでしょうか。配置を比べながら考えます。</p>
+        <svg className="coach-court-svg" viewBox="0 0 600 260" role="img" aria-label="左は選手が中央に集まった例、右は選手がコートの幅と奥行きを使った例">
+          {[0,1].map((n)=><g key={n} transform={`translate(${n*304+8},10)`}>
+            <rect x="0" y="0" width="280" height="218" rx="8" fill="#f7f7f5" stroke="#858c91" strokeWidth="2"/>
+            <path d="M82 0 V72 Q140 126 198 72 V0 M111 0 V44 Q140 70 169 44 V0 M0 92 H280" stroke="#b7bec2" fill="none" strokeWidth="2"/>
+            <rect x="124" y="0" width="32" height="6" fill="#858c91"/>
+            {(n===0?[[118,83],[148,92],[136,122],[168,138]]:[[35,60],[245,60],[45,178],[235,178]]).map(([x,y],i)=><g key={i}><circle cx={x} cy={y} r="16" fill="#285b72" stroke="#fff" strokeWidth="2"/><text x={x} y={y+5} textAnchor="middle" fontSize="15" fontWeight="700" fill="white">{i+1}</text></g>)}
+            <circle cx={n===0?170:140} cy={n===0?175:116} r="16" fill="#b75c3d" stroke="#fff" strokeWidth="2"/>
+            <text x={n===0?170:140} y={n===0?180:121} textAnchor="middle" fontSize="14" fill="white">D</text>
+            <text x="140" y="245" textAnchor="middle" fontSize="17" fontWeight="700" fill="currentColor">{n===0?"選手が密集した例":"幅と奥行きを使う例"}</text>
+          </g>)}
+        </svg>
+        <p className="coach-visual-note">青＝攻撃側の配置例／茶＝守備側の位置例。人数や位置は説明用に簡略化しています。</p>
+        <p><strong>現場での問い：</strong> ボール保持者に、どんなパス・ドライブの選択肢が生まれるか？</p>
+      </article>
+      <article className="coach-visual-card">
+        <span className="coach-visual-eyebrow">02 / 練習設計</span>
+        <h3>メニューを決める前に、観察することを決める。</h3>
+        <p>記事の内容を次の練習で試すときは、この4つを順番に整理します。</p>
+        <ol className="coach-learning-steps">
+          <li><strong>目的</strong><span>選手に何を経験してほしい？</span></li>
+          <li><strong>設計</strong><span>どんな人数・ルールなら経験できる？</span></li>
+          <li><strong>観察</strong><span>選手は何を見て、どう判断した？</span></li>
+          <li><strong>修正</strong><span>次回は条件を一つどう変える？</span></li>
+        </ol>
+        <p className="coach-visual-note">例えば3x3では、得点数だけでなく、ボールを持たない選手の動きも観察します。</p>
+      </article>
+    </div>
+    <div className="coach-learning-reading">
+      <h3>記事はこの順番で読むと、実践につなげやすくなります。</h3>
+      <div><span><b>1</b> 現場の課題を選ぶ</span><span><b>2</b> 根拠と限界を読む</span><span><b>3</b> 練習で一つ試す</span><span><b>4</b> 次回の修正を考える</span></div>
+      <p>研究の結果とRBAの実践提案は区別して掲載しています。すべての選手に同じ方法が当てはまるわけではありません。</p>
+    </div>
+  </section>;
+}
+
 export async function PublicCoachJournalHub({locale}:{locale:Locale}){
   const posts=await getPublicJournalPosts(locale,500);
   const coachPosts=posts.filter(post=>post.audience==="coaches"||post.category==="coaching"||post.coach_application?.length);
@@ -376,6 +419,7 @@ export async function PublicCoachJournalHub({locale}:{locale:Locale}){
         <article><strong>{coachPosts.reduce((sum,post)=>sum+(post.source_references?.length||0),0)}</strong><span>参考資料リンク・延べ</span><small>原典・公式資料へ直接つなぐ</small></article>
         <article><strong>{coachPosts.filter(post=>post.reviewed_at).length}</strong><span>レビュー日付き</span><small>更新日を記事ごとに確認可能</small></article>
       </section>:null}
+      {locale==="ja"?<CoachLearningVisuals/>:null}
       {recentCoachPosts.length?<section className="journal-cms-index journal-coach-latest section-pad">
         <div className="section-head"><div><p className="section-index">{locale==="ja"?"LATEST COACH JOURNAL":"LATEST COACH JOURNAL"}</p><h2>{locale==="ja"?"最近の記事から読む":"Latest coach articles"}</h2></div><p>{locale==="ja"?"まずは気になるテーマを一つ。記事には、参考資料や現場で試すための視点を掲載しています。":"New articles appear here automatically."}</p></div>
         <div className="journal-cms-grid">{recentCoachPosts.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
