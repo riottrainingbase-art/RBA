@@ -5,7 +5,7 @@ import "./taiwan-official.css";
 const locales: Locale[] = ["ja","zh-tw","en","ko"];
 const path = (locale: Locale) => locale === "en" ? "/taiwan" : `/${locale}/taiwan`;
 const exchangePath = (locale: Locale) => locale === "en" ? "/taiwan/exchange" : `/${locale}/taiwan/exchange`;
-const formUrl = "https://form.jotform.com/262590542634055";
+const formUrl = "https://form.jotform.com/262853181713054";
 const text: Record<Locale, {
   title:string;lead:string;choose:string;subtitle:string;parent:string;coach:string;club:string;parentBody:string;coachBody:string;clubBody:string;
   evidence:string;evidenceBody:string;future:string;futureBody:string;roles:string;global:string;united:string;connect:string;
@@ -63,10 +63,17 @@ const text: Record<Locale, {
   }
 };
 
+const serviceCopy: Record<Locale,{title:string;intro:string;items:[string,string,string][];button:string;note:string;memberTitle:string;memberBody:string;memberButton:string}> = {
+  ja: {title:"台湾でのクリニック・指導者教育",intro:"現地チームからの相談を起点に、年代・人数・課題・日程を確認して個別に設計します。単発の指導で終わらず、練習に残る学びを大切にします。",items:[["01","チーム向けクリニック","U12・U15を中心に、判断、スペーシング、3x3、ファンダメンタルを現場で扱います。"],["02","指導者ワークショップ","練習設計、観察と問いかけ、全員の学習機会、負荷と回復をテーマにします。"],["03","継続育成サポート","現状のヒアリング、現場指導、練習計画、振り返りを必要に応じて組み合わせます。"]],button:"台湾での開催を相談する",note:"料金は人数、指導時間、会場、移動、通訳等を確認したうえで個別見積もり。お問い合わせは無料で、開催・予約・料金は確定しません。",memberTitle:"オンライン会員は準備中",memberBody:"繁体字で実践できる教材や指導者向け学習を検討中です。月額料金、提供内容、開始日は未確定で、現在は課金しません。",memberButton:"会員プログラムへの関心を伝える"},
+  "zh-tw": {title:"台灣球隊培訓與教練教育",intro:"從台灣球隊的實際需求出發，先確認年齡、人數、訓練課題與時間，再設計適合的內容。重點不只是完成一場活動，而是讓學習方法留在日常訓練。",items:[["01","球隊專屬培訓","以U12、U15為主，結合判斷、空間運用、3x3與基本技術。"],["02","教練研習","練習設計、觀察與提問、每位球員的學習機會，以及負荷與恢復。"],["03","長期培育合作","依需求安排現況訪談、現場培訓、練習計畫與後續回顧。"]],button:"免費洽詢台灣培訓",note:"依人數、時數、場地、交通及翻譯等項目個別報價。提交諮詢不代表預約成功，日期與費用須書面確認。",memberTitle:"數位會員計畫尚在準備",memberBody:"正在規劃繁體中文的實踐教材與教練學習內容。月費、交付內容與開放日期尚未確定，目前不收取訂閱費。",memberButton:"登記會員計畫興趣"},
+  en: {title:"Taiwan team clinics & coach education",intro:"We begin with each team's actual needs: age group, group size, learning goals and timing. The goal is to leave useful practice methods behind, not just deliver a one-off session.",items:[["01","Team clinics","U12/U15 fundamentals, decision-making, spacing and 3x3 adapted to the group."],["02","Coach workshops","Practice design, observation, questioning, playing opportunities, load and recovery."],["03","Ongoing development","Optional needs assessment, on-court teaching, practice planning and review."]],button:"Enquire about a Taiwan clinic",note:"Fees are quoted after checking participants, hours, venue, travel and interpretation. An enquiry is free and is not a confirmed booking.",memberTitle:"Digital membership is in development",memberBody:"We are exploring practical Traditional Chinese resources and coach learning. Pricing, deliverables and launch date remain unconfirmed. No subscription payments are taken.",memberButton:"Register interest in membership"},
+  ko: {title:"대만 팀 클리닉과 코치 교육",intro:"팀의 연령, 인원, 과제와 희망 일정을 먼저 확인하고 현장에 남는 학습을 설계합니다.",items:[["01","팀 클리닉","U12/U15 기본기, 판단, 공간 활용, 3x3."],["02","코치 워크숍","훈련 설계, 관찰과 질문, 모든 선수의 학습 기회, 회복."],["03","지속적 육성 지원","현황 파악, 현장 지도, 훈련 계획과 회고를 필요에 따라 구성합니다."]],button:"대만 클리닉 문의",note:"참가 인원, 시간, 장소, 이동과 통역에 따라 개별 견적. 문의는 무료이며 예약 확정이 아닙니다.",memberTitle:"디지털 회원 서비스 준비 중",memberBody:"번체 중국어 자료와 코치 학습을 검토 중입니다. 요금과 제공 내용은 미확정이며 결제는 받지 않습니다.",memberButton:"회원 서비스 관심 등록"}
+};
 export function TaiwanOfficial({locale}:{locale:Locale}) {
   const c=text[locale];
+  const services=serviceCopy[locale];
   const options = [{key:"ja",label:"日本語"},{key:"zh-tw",label:"繁體中文"},{key:"en",label:"English"},{key:"ko",label:"한국어"}] as const;
-  return <SiteFrame locale={locale} languagePage="international">
+  return <SiteFrame locale={locale} languagePage="taiwan">
     <div className="rba-taiwan">
       <section className="rba-taiwan-hero">
         <div className="rba-taiwan-inner">
@@ -80,6 +87,17 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
         <div className="rba-taiwan-cards">
           {([[c.parent,c.parentBody],[c.coach,c.coachBody],[c.club,c.clubBody]] as const).map(([heading,body],i)=><article key={heading}><span>0{i+1}</span><h3>{heading}</h3><p>{body}</p><a href={i===0?locale==="ja"?"/ja/united":locale==="en"?"/united":`/${locale}/united`:"#taiwan-contact"}>{i===0?c.current:c.form} ↗</a></article>)}
         </div>
+      </div></section>
+      <section className="rba-taiwan-section" id="taiwan-clinics"><div className="rba-taiwan-inner">
+        <p className="rba-taiwan-label">TAIWAN / TEAM & COACH SERVICES</p>
+        <h2>{services.title}</h2><p className="rba-taiwan-intro">{services.intro}</p>
+        <div className="rba-taiwan-cards">{services.items.map(([number,heading,body])=><article key={number}><span>{number}</span><h3>{heading}</h3><p>{body}</p><a href={`${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taiwan_clinic&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{services.button} ↗</a></article>)}</div>
+        <p className="rba-taiwan-small">{services.note}</p>
+      </div></section>
+      <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
+        <p className="rba-taiwan-label">DIGITAL LEARNING / STATUS</p>
+        <h2>{services.memberTitle}</h2><p className="rba-taiwan-intro">{services.memberBody}</p>
+        <a className="rba-taiwan-outline" href={`${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taiwan_membership_interest&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{services.memberButton} ↗</a>
       </div></section>
       <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">02 / RBA DEVELOPMENT</p><h2>{c.roles}</h2>
