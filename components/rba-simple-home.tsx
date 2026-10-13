@@ -10,7 +10,7 @@ const copy:Record<Locale,HomeCopy>={
   ja:{
     eyebrow:"RIOT BASKETBALL ACADEMY / SENDAI · JAPAN",
     title:"子どもたちに、もっとバスケットボールの経験を。",
-    intro:"RBAは仙台を拠点に、全国のクリニックやキャンプ、指導者の学び、海外との交流を行っています。今のチームに所属したまま参加できる活動もあります。",
+    intro:"RBAは仙台を拠点に、全国のクリニックやキャンプ、指導者の学び、海外との交流を行っています。所属チームを変えずに参加できる活動もあります。",
     primary:"募集中の活動を見る",secondary:"RBAについて",
     start:"何をお探しですか？",startIntro:"まずは、目的に合うページからご覧ください。",
     routes:[
@@ -19,7 +19,7 @@ const copy:Record<Locale,HomeCopy>={
       ["開催・相談する","チームでの指導、地域開催、協賛・連携","organizer"],
       ["海外とつながる","日本とアジアのキャンプ、チーム・指導者交流","international"],
     ],
-    programmeTitle:"RBAの主な活動",programmeIntro:"名前が違っても、すべてRBAの育成活動です。",
+    programmeTitle:"RBAの主な活動",programmeIntro:"クリニック、遠征、継続学習など、目的に合わせて活動を選べます。",
     programmeNames:[
       ["BACKBONE","クリニックと3x3を通じて学ぶ","/backbone"],
       ["RBA UNITED","大会や遠征に向けたチーム活動","/ja/united"],
