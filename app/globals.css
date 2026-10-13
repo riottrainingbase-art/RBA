@@ -3456,3 +3456,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
 .coach-learning-reading>p{margin:16px 0 0;color:#53636a;font-size:14px;line-height:1.8}
 @media(max-width:800px){.coach-visual-grid{grid-template-columns:1fr}.coach-learning-reading>div{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.coach-visual-card{padding:18px}.coach-learning-steps li{grid-template-columns:1fr;gap:4px}.coach-learning-reading>div{grid-template-columns:1fr}.coach-learning-reading>div span{min-height:48px}}
+
+
+/* Coach journal: short guided entry point */
+.coach-starter-section{background:#fff}
+.coach-starter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.coach-starter-card{display:flex;flex-direction:column;gap:12px;padding:26px;border:1px solid #d8deda;border-radius:10px;color:#192b31;text-decoration:none;background:#f8f9f7;min-height:255px;transition:border-color .2s,transform .2s}
+.coach-starter-card:hover{border-color:#315f6c;transform:translateY(-2px)}
+.coach-starter-card:focus-visible{outline:3px solid #315f6c;outline-offset:3px}
+.coach-starter-number{font-size:12px;letter-spacing:.06em;font-weight:800;color:#47636c}
+.coach-starter-card h3{font-size:clamp(19px,1.8vw,24px);line-height:1.5;margin:0}
+.coach-starter-card p{font-size:14px;line-height:1.8;color:#4c5e65;margin:0}
+.coach-starter-card strong{display:flex;align-items:center;gap:8px;margin-top:auto;font-size:14px;color:#214f60}
+@media(max-width:850px){.coach-starter-grid{grid-template-columns:1fr}.coach-starter-card{min-height:0;padding:22px}}
+@media(prefers-reduced-motion:reduce){.coach-starter-card{transition:none}.coach-starter-card:hover{transform:none}}
