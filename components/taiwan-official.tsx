@@ -114,6 +114,12 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
         <p className="rba-taiwan-label">04 / PROGRAMME STATUS</p><h2>{c.future}</h2><p className="rba-taiwan-intro">{c.futureBody}</p><p>{c.safety}</p>
         <Link className="rba-taiwan-outline" href={exchangePath(locale)}>{c.team} ↗</Link>
       </div></section>
+      <section className="rba-taiwan-section rba-taiwan-muted" id="taiwan-coach-interest"><div className="rba-taiwan-inner">
+        <p className="rba-taiwan-label">TAIPEI / COACH DEVELOPMENT</p>
+        <h2>{({ja:"台北で、バスケットボールの指導に興味がある方へ","zh-tw":"在台北，想學習籃球教學嗎？",en:"Interested in learning to coach basketball in Taipei?",ko:"타이베이에서 농구 지도에 관심이 있으신가요?"})[locale]}</h2>
+        <p className="rba-taiwan-intro">{({ja:"台北・新北で、将来のコーチ育成に向けた関心登録を受け付けています。日本人留学生、日本語で交流できる台湾の方、バスケットボール経験者などが対象です。現在は企画検討段階で、正式な求人・採用募集ではありません。","zh-tw":"RBA正在蒐集對台北、新北青少年籃球教練培育有興趣者的意向。歡迎年滿18歲的日本留學生、會說日文的台灣朋友及籃球愛好者登記。目前仍在規劃中，並非正式徵才。",en:"RBA is collecting expressions of interest from adults in Taipei and New Taipei who may want to learn youth basketball coaching. This is an early-stage idea, not a job offer or recruitment for a confirmed role.",ko:"RBA는 타이베이·신베이에서 유소년 농구 지도를 배우는 데 관심 있는 성인의 의견을 듣고 있습니다. 현재 기획 검토 단계이며 확정된 채용 공고가 아닙니다."})[locale]}</p>
+        <Link className="rba-taiwan-outline" href="/ja/taiwan/coach-interest">{({ja:"関心登録のご案内を見る", "zh-tw":"查看意向登記說明", en:"View the interest registration",ko:"관심 등록 안내 보기"})[locale]} ↗</Link>
+      </div></section>
       <section className="rba-taiwan-section" id="taiwan-contact"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">05 / CONTACT</p><h2>{c.form}</h2><p className="rba-taiwan-intro">{c.formBody}</p>
         <a className="rba-taiwan-btn" href={`${formUrl}?utm_source=rba_website&utm_medium=organic&utm_campaign=taiwan_2026_launch&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{c.form} ↗</a>
