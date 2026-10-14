@@ -1,6 +1,10 @@
 (() => {
   if (!window.EB_DATA) { document.querySelector('#brandIntro')?.remove(); return; }
   const D = structuredClone(window.EB_DATA);
+  // RIGORER Japan: direct visitors to the distributor requested by the partner.
+  for (const partner of D.partners || []) {
+    if (partner.name === 'RIGORER') partner.url = 'https://kondow-co.com/';
+  }
   const escapeText = s => s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
   for (const group of [D.programs,D.philosophy,D.results,D.news,D.gallery,D.partners,D.faq]) for(const row of group||[]) for(const key of Object.keys(row)) if(typeof row[key]==="string" && !["slug","label"].includes(key)) row[key]=escapeText(row[key]);
   if (!D) return;
