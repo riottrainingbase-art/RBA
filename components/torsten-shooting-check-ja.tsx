@@ -32,7 +32,7 @@ export function TorstenShootingCheckJa(){
   return suggestions[averages[0].key];
  },[answers]);
  return <div className="tc-check">
-  <main className="tc-check-wrap">
+  <div className="tc-check-wrap">
    <header className="tc-check-hero"><p className="tc-check-kicker">RBA COACH EDUCATION / FREE PRACTICE CHECK</p><p className="tc-check-meta">約2分・無料・個人情報入力不要</p><h1>あなたのシュート練習は、<br/><em>試合につながっているか。</em></h1><p>5つの問いで、明日の練習を見直すヒントを見つけよう。RBA独自の振り返りツールです。シュートフォームの正しさやコーチの能力を判定するものではありません。</p></header>
    {!result ? <section className="tc-check-card" aria-label="練習設計の振り返り">
     <div className="tc-check-progress"><span>回答 {count} / 5</span><div role="progressbar" aria-valuenow={count} aria-valuemin={0} aria-valuemax={5}><i style={{width:String(count*20)+"%"}}/></div></div>
@@ -48,6 +48,6 @@ export function TorstenShootingCheckJa(){
     <div className="tc-check-footerBtns"><button type="button" onClick={()=>{setAnswers(Array(5).fill(null));setResult(false);setCopied(false)}}><RotateCcw size={15}/>もう一度振り返る</button><button type="button" onClick={async()=>{const text="【指導者向け無料チェック】あなたのシュート練習は試合につながっているか。5つの問いから練習を見直すRBAの2分チェック。 https://riotbasketballacademy.com/ja/coach/shooting-check";try{if(navigator.share){await navigator.share({text})}else{await navigator.clipboard.writeText(text);setCopied(true)}}catch{}}}><Share2 size={15}/>{copied?"コピーしました":"同僚に共有する"}</button></div>
    </section>}
    <footer className="tc-check-siteFooter"><a href="/ja/coaches">← RBAの指導者向け活動</a><small>© Riot Basketball Academy</small></footer>
-  </main>
+  </div>
  </div>;
 }
