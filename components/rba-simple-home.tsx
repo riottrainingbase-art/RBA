@@ -107,6 +107,24 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
             <a href={localePath(locale,"about")} className="inline-flex min-h-12 items-center border-b border-[#999] text-sm font-semibold">{c.secondary} ↗</a>
           </div>
         </section>
+
+        {locale==="ja" ? <section className="border-b border-[#c9c6c0] py-12 sm:py-16" aria-labelledby="torsten-home-clinic">
+          <div className="relative overflow-hidden bg-[#161719] p-7 text-[#fff] sm:p-11">
+            <p className="text-[11px] font-bold tracking-[0.20em] text-[#e9a16b]">RBA COACH EDUCATION / 2026.11.25 WED</p>
+            <h2 id="torsten-home-clinic" className="mt-5 max-w-[800px] text-[clamp(30px,5vw,52px)] font-bold leading-tight tracking-[-0.05em]">
+              練習では入る。<br/><span className="text-[#f39a5c]">試合では打てない。</span>
+            </h2>
+            <p className="mt-5 max-w-[740px] text-sm leading-7 text-[#ddd]">シュートフォームだけでなく、打つ前の判断、スペーシング、練習設計まで。トーステン・ロイブル氏と考えるオンライン指導者講習。日本語逐次通訳付き。</p>
+            <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm font-bold">
+              <span>11/25（水）20:00〜21:30</span><span>LIVE 3,300円（税込）</span><span>録画30日 4,400円（税込）</span>
+            </div>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href="/ja/events/torsten-loibl-online-clinic" className="inline-flex min-h-12 items-center justify-center bg-[#e86925] px-6 text-sm font-bold text-[#151515] hover:bg-[#fa9651]">講習の内容・申込へ ↗</a>
+              <a href="/ja/coach/shooting-check" className="inline-flex min-h-12 items-center justify-center border border-[#b9b9b9] px-6 text-sm font-bold text-white hover:bg-[#303135]">まず無料・2分で練習を振り返る ↗</a>
+            </div>
+            <p className="mt-4 text-[11px] leading-5 text-[#aaa]">主催：Riot Basketball Academy。無料チェックはRBA独自制作・登録不要です。フォーム送信後、決済完了で受講確定となります。</p>
+          </div>
+        </section> : null}
         <section className="py-14 sm:py-20" aria-labelledby="home-start">
           <p className="text-[11px] font-semibold tracking-[0.18em] text-[#666]">START HERE</p>
           <h2 id="home-start" className="mt-3 text-3xl font-bold tracking-tight">{c.start}</h2>
