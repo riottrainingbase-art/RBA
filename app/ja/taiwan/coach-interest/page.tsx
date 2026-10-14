@@ -1,66 +1,114 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { SiteFrame } from "@/components/site-frame";
+import "@/components/taiwan-official.css";
 
-const FORM = "https://form.jotform.com/262859034372058";
-const CANONICAL = "https://riotbasketballacademy.com/ja/taiwan/coach-interest";
+const formUrl = "https://form.jotform.com/262859034372058";
+const pageUrl = "https://riotbasketballacademy.com/ja/taiwan/coach-interest";
 
 export const metadata: Metadata = {
-  title: "台北コーチ育成｜関心登録・意向登記 | RBA",
-  description: "台北・新北でバスケットボールのコーチングを学びたい18歳以上の日本人留学生、日本語を話せる台湾人学生、バスケ経験者向けの関心登録。正式な求人ではありません。",
-  alternates: { canonical: CANONICAL },
+  title: "台北・新北｜バスケットボールの指導に興味がある方へ | RBA",
+  description: "台湾でバスケットボールの指導を学ぶことに興味がある18歳以上の方へ。RBAが検討中のコーチ育成企画について、関心をお聞きしています。求人・採用募集ではありません。",
+  alternates: { canonical: pageUrl },
   openGraph: {
-    title: "RBA TAIPEI COACH DEVELOPMENT | 台北教練培育計畫",
-    description: "台北・新北で、次世代のバスケットボール指導を学ぶ仲間を探しています。まずは無料の関心登録から。",
-    url: CANONICAL, siteName: "Riot Basketball Academy", type: "website",
+    title: "台北で、バスケットボールの指導に関わってみませんか？ | RBA",
+    description: "日本人留学生、日本語を話せる台湾人学生、バスケ経験者の皆さまへ。まずは関心をお聞かせください。",
+    url: pageUrl,
+    siteName: "Riot Basketball Academy",
+    type: "website",
   },
   robots: { index: true, follow: true },
 };
 
-const panel: React.CSSProperties = {border:"1px solid #34383e",borderRadius:18,padding:"clamp(20px,4vw,36px)",background:"#141619"};
-const button: React.CSSProperties = {display:"inline-flex",justifyContent:"center",alignItems:"center",padding:"17px 28px",background:"#e6fa38",color:"#101114",fontWeight:900,textDecoration:"none",borderRadius:8,minHeight:54,letterSpacing:".03em"};
-const muted: React.CSSProperties = {color:"#b8bcc4",lineHeight:1.85};
-
 export default function TaipeiCoachInterestPage() {
-  return <main style={{background:"#0c0d0f",color:"#f7f7f4",minHeight:"100vh",fontFamily:"system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif"}}>
-    <div style={{maxWidth:1060,margin:"0 auto",padding:"28px 22px 88px"}}>
-      <header style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:16,flexWrap:"wrap",borderBottom:"1px solid #303238",paddingBottom:22}}>
-        <Link href="/ja/taiwan" style={{fontSize:14,color:"#f7f7f4",textDecoration:"none",fontWeight:900,letterSpacing:".08em"}}>RBA / JAPAN × TAIWAN</Link>
-        <a href="#zh" style={{color:"#e6fa38",fontSize:14,textDecoration:"none"}}>繁體中文 ↓</a>
-      </header>
-      <section style={{padding:"clamp(64px,10vw,120px) 0 64px"}}>
-        <p style={{color:"#e6fa38",fontSize:12,letterSpacing:".23em",fontWeight:800,marginBottom:24}}>RIOT BASKETBALL ACADEMY · TAIPEI</p>
-        <h1 style={{fontSize:"clamp(39px,7vw,82px)",fontWeight:950,lineHeight:1.13,letterSpacing:"-.055em",maxWidth:950,margin:"0 0 24px"}}>PLAY THE GAME.<br/><span style={{color:"#e6fa38"}}>TEACH THE NEXT.</span></h1>
-        <p style={{fontSize:"clamp(21px,3vw,31px)",lineHeight:1.5,fontWeight:800,maxWidth:790,margin:"0 0 24px"}}>台北で、次世代のバスケットボールを育てる仲間を探しています。</p>
-        <p style={{...muted,maxWidth:750,fontSize:16,marginBottom:32}}>台湾で暮らす日本人学生、日本語が話せる台湾人学生、バスケットボール経験のある社会人へ。子どもたちの指導を学ぶことに興味はありませんか？まずはあなたの関心を聞かせてください。</p>
-        <a href={FORM} target="_blank" rel="noopener noreferrer" style={button}>無料で関心登録する ↗</a>
-        <p style={{color:"#9ca1aa",fontSize:12,marginTop:16}}>18歳以上対象 / 応募・雇用を確約するものではありません</p>
+  return <SiteFrame locale="ja" languagePage="taiwan">
+    <div className="rba-taiwan">
+      <section className="rba-taiwan-hero">
+        <div className="rba-taiwan-inner">
+          <div className="rba-taiwan-top">
+            <p>RBA / JAPAN × TAIWAN</p>
+            <nav aria-label="ページ内の言語"><a href="#ja" aria-current="page">日本語</a><a href="#zh">繁體中文</a></nav>
+          </div>
+          <div className="rba-taiwan-partner">
+            <Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy ロゴ" width={56} height={78} className="rba-taiwan-brand-mark" />
+            <div className="rba-taiwan-partner-wordmark"><span>RIOT BASKETBALL ACADEMY</span><span className="rba-taiwan-times">×</span><span>TAIPEI COACH DEVELOPMENT</span></div>
+          </div>
+          <div id="ja">
+            <h1>台北で、バスケットボールの指導に関わってみませんか？</h1>
+            <p className="rba-taiwan-lead">子どもたちがバスケットボールを楽しみ、成長できる環境を、日本と台湾の仲間と一緒につくっていきたい。RBAでは、台北・新北でのコーチ育成に向けて、指導に興味のある方の声を集めています。</p>
+            <p className="rba-taiwan-credit">COACH DEVELOPMENT / EXPRESSION OF INTEREST · 企画検討中</p>
+            <a className="rba-taiwan-btn" href={formUrl} target="_blank" rel="noopener noreferrer">関心登録フォームへ ↗</a>
+            <p style={{fontSize:12,color:"#d0e2d9",lineHeight:1.8,marginTop:16}}>登録無料・18歳以上対象。正式な求人や採用募集ではありません。</p>
+          </div>
+        </div>
       </section>
-      <section style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(245px,1fr))",gap:14,marginBottom:64}}>
-        <div style={panel}><span style={{color:"#e6fa38",fontWeight:900,fontSize:12}}>01 / WHO</span><h2 style={{fontSize:21,margin:"14px 0"}}>こんな方へ</h2><p style={muted}>台北・新北にいる18歳以上の学生・社会人。日本語で交流できる方、バスケ経験者、指導未経験でも学ぶ意欲がある方。</p></div>
-        <div style={panel}><span style={{color:"#e6fa38",fontWeight:900,fontSize:12}}>02 / WHY</span><h2 style={{fontSize:21,margin:"14px 0"}}>目指していること</h2><p style={muted}>子どもの成長を支えるコーチを育て、日本と台湾の育成現場をつなぐこと。勝敗だけでなく、判断・基礎・楽しさを大切にします。</p></div>
-        <div style={panel}><span style={{color:"#e6fa38",fontWeight:900,fontSize:12}}>03 / STATUS</span><h2 style={{fontSize:21,margin:"14px 0"}}>現在は構想段階</h2><p style={muted}>現地アカデミー関係者と協議中。活動日程、場所、研修内容、報酬、採用人数は未定です。正式求人ではありません。</p></div>
+
+      <section className="rba-taiwan-section">
+        <div className="rba-taiwan-inner">
+          <p className="rba-taiwan-label">01 / WHO WE ARE LOOKING FOR</p>
+          <h2>こんな方と出会いたいと考えています。</h2>
+          <p className="rba-taiwan-intro">指導経験の有無だけで判断するのではなく、バスケットボールや子どもたちの成長に関心がある方とつながることを目的としています。</p>
+          <div className="rba-taiwan-cards">
+            <article><span>01</span><h3>台湾で学ぶ日本人学生</h3><p>台北・新北に住む大学生、交換留学生、語学留学生など。バスケットボールが好きで、指導にも興味がある方。</p></article>
+            <article><span>02</span><h3>日本語で交流できる台湾の方</h3><p>日本語を学んでいる学生や、日台の交流に関心がある方。バスケットボールの経験がある方も歓迎します。</p></article>
+            <article><span>03</span><h3>バスケットボール経験のある社会人</h3><p>競技経験を生かして、子どもたちの指導を学んでみたい方。コーチ経験は必須ではありません。</p></article>
+          </div>
+          <p className="rba-taiwan-small">対象は18歳以上の方です。台北・新北以外にお住まいの方も、関心があれば登録できます。</p>
+        </div>
       </section>
-      <section style={{...panel,marginBottom:60}}>
-        <p style={{color:"#e6fa38",fontWeight:900,letterSpacing:".12em",fontSize:12}}>HOW IT WORKS</p>
-        <h2 style={{fontSize:"clamp(25px,4vw,38px)",margin:"14px 0 20px"}}>登録から、未来の活動へ。</h2>
-        <ol style={{paddingLeft:22,lineHeight:2.2,color:"#e2e4e6"}}>
-          <li>無料の関心登録フォームに回答</li>
-          <li>RBAが希望や経験を確認（必要な場合のみ連絡）</li>
-          <li>現地での受け入れ条件・研修内容・法的要件が整った場合に個別案内</li>
-        </ol>
-        <p style={{...muted,fontSize:13}}>台湾での有償活動は、必要な就労許可・在留資格等を確認してから実施します。子どもの安全管理や保険も事前に整備します。登録によって参加や採用が保証されることはありません。</p>
+
+      <section className="rba-taiwan-section rba-taiwan-muted">
+        <div className="rba-taiwan-inner">
+          <p className="rba-taiwan-label">02 / OUR IDEA</p>
+          <h2>目指しているのは、コーチが学び続けられる環境です。</h2>
+          <p className="rba-taiwan-intro">シュートやドリブルを教えるだけではなく、選手自身が考え、判断し、挑戦できる練習をどうつくるか。台湾の育成現場と意見を交わしながら、将来的な指導者研修や子ども向けの活動を検討しています。</p>
+          <div className="rba-taiwan-roles">
+            <article><strong>指導を学ぶ</strong><p>子どもの発達や安全に配慮しながら、練習の組み立て方や声のかけ方を考えます。</p></article>
+            <article><strong>現場を知る</strong><p>実施条件が整った場合には、見学や研修などから関わる方法を検討します。</p></article>
+            <article><strong>日台をつなぐ</strong><p>日本語と中国語、それぞれの強みを生かした育成交流の可能性を探ります。</p></article>
+          </div>
+        </div>
       </section>
-      <section id="zh" lang="zh-Hant" style={{padding:"54px 0 70px",borderTop:"1px solid #33363a"}}>
-        <p style={{color:"#e6fa38",letterSpacing:".2em",fontSize:12,fontWeight:800}}>繁體中文 / TAIPEI COACH DEVELOPMENT</p>
-        <h2 style={{fontSize:"clamp(28px,5vw,48px)",lineHeight:1.3,margin:"18px 0 20px"}}>一起培育台北下一代的籃球教練。</h2>
-        <p style={{...muted,maxWidth:790,fontSize:17}}>我們正在尋找居住在台北或新北、年滿18歲，對青少年籃球教學有興趣的朋友。歡迎日本留學生、會說日文的台灣學生，以及有籃球經驗的社會人士登記意向。即使尚無教練經驗，也歡迎表達學習意願。</p>
-        <p style={{...muted,maxWidth:790}}>本計畫仍在與台灣在地籃球學院相關人士討論中，並非正式徵才。活動地點、時間、培訓、酬勞與名額均尚未確定。未來如涉及有薪工作，須先確認工作許可與居留資格，並完善兒少安全及保險安排。</p>
-        <a href={FORM} target="_blank" rel="noopener noreferrer" style={button}>免費填寫意向登記 ↗</a>
+
+      <section className="rba-taiwan-section">
+        <div className="rba-taiwan-inner">
+          <p className="rba-taiwan-label">03 / CURRENT STATUS</p>
+          <h2>現在は、関心のある方を探している段階です。</h2>
+          <p className="rba-taiwan-intro">このページは、今後のコーチ育成企画に興味がある方の声を聞くためのものです。現地の関係者と検討を進めていますが、研修の実施、採用、活動場所、日程、報酬、募集人数などは決まっていません。</p>
+          <p className="rba-taiwan-intro">今後、有償の活動を行う場合は、台湾で必要な就労許可・在留資格などを確認します。子どもたちと関わる活動についても、研修、監督体制、安全管理、保険などの条件を整えてからご案内します。</p>
+        </div>
       </section>
-      <footer style={{borderTop:"1px solid #33363a",paddingTop:28,display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:18}}>
-        <div><strong>RIOT BASKETBALL ACADEMY</strong><p style={{...muted,fontSize:13}}>お問い合わせ / 聯絡：<a style={{color:"#e6fa38"}} href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></p></div>
-        <div style={{maxWidth:460,color:"#9ca1aa",fontSize:12,lineHeight:1.7}}>登録情報はRBAが本プロジェクトの検討・連絡にのみ使用し、追加の同意なく現地パートナーを含む第三者へ共有しません。訂正・削除はメールでご連絡ください。 / 個人資料僅供本計畫評估與聯繫使用，未經同意不向第三方分享。</div>
-      </footer>
+
+      <section className="rba-taiwan-section rba-taiwan-muted">
+        <div className="rba-taiwan-inner">
+          <p className="rba-taiwan-label">04 / HOW TO JOIN THE INTEREST LIST</p>
+          <h2>まずは、興味があることを教えてください。</h2>
+          <p className="rba-taiwan-intro">登録フォームでは、居住地域、使用できる言語、バスケットボール経験、指導への関心などをお聞きします。内容を確認し、具体的な活動をご案内できる段階になった場合に、必要に応じてRBAからご連絡します。</p>
+          <a className="rba-taiwan-btn" href={formUrl} target="_blank" rel="noopener noreferrer">無料で関心を登録する ↗</a>
+          <p className="rba-taiwan-small">登録は参加や採用を保証するものではありません。パスポート、学生証、正確な生年月日などの提出は求めません。</p>
+        </div>
+      </section>
+
+      <section className="rba-taiwan-section" id="zh" lang="zh-Hant-TW">
+        <div className="rba-taiwan-inner">
+          <p className="rba-taiwan-label">05 / 繁體中文</p>
+          <h2>對青少年籃球教學有興趣嗎？歡迎先和我們聊聊。</h2>
+          <p className="rba-taiwan-intro">Riot Basketball Academy（RBA）正在了解台北與新北地區，有哪些朋友希望學習籃球教學，未來有機會參與青少年籃球活動。歡迎年滿18歲的日本留學生、會說日文的台灣學生，以及對籃球教學有興趣的社會人士填寫意向表單。沒有教練經驗也可以登記。</p>
+          <p className="rba-taiwan-intro">目前仍在與台灣在地相關人士討論規劃，尚未確定培訓、工作機會、活動地點、時間、名額或酬勞。這不是正式的徵才公告，也不保證錄取或參與。若未來涉及有酬工作，將先確認工作許可、居留資格與兒少安全相關安排。</p>
+          <a className="rba-taiwan-outline" href={formUrl} target="_blank" rel="noopener noreferrer">填寫免費意向登記表 ↗</a>
+          <p className="rba-taiwan-small">個人資料僅供RBA評估本計畫及必要聯繫使用，未經另行同意，不會提供給包括台灣合作夥伴在內的第三方。</p>
+        </div>
+      </section>
+
+      <section className="rba-taiwan-section rba-taiwan-muted">
+        <div className="rba-taiwan-inner">
+          <p className="rba-taiwan-label">06 / PRIVACY & CONTACT</p>
+          <h2>お問い合わせ・個人情報について</h2>
+          <p className="rba-taiwan-intro">登録いただいた情報は、RBAが本企画の検討と必要な連絡のために使用します。追加の同意なく、台湾の協力先を含む第三者へ提供することはありません。情報の確認・訂正・削除をご希望の場合は、<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a> までご連絡ください。</p>
+          <p className="rba-taiwan-small"><Link href="/ja/taiwan">RBA台湾の活動紹介へ戻る ↗</Link></p>
+        </div>
+      </section>
     </div>
-  </main>;
+  </SiteFrame>;
 }
