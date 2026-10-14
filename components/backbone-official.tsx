@@ -54,6 +54,28 @@ export function BackboneOfficial(){
     </div>
     <p className="bb-small" style={{marginTop:20}}>ほかの地域の開催予定は <Link href="/ja/opportunities" style={{textDecoration:"underline",textUnderlineOffset:4}}>RBAの活動一覧</Link> をご覧ください。参加費は開催ごとに異なります。</p>
    </div></section>
+   <section className="bb-section bb-paper" id="first-time"><div className="bb-wrap">
+    <p className="bb-eyebrow">FIRST TIME? YOU ARE WELCOME.</p>
+    <h2>一人で来ても、<br/>大丈夫。</h2>
+    <p className="bb-section-intro">「チームの仲間がいないと参加できない？」「3x3の経験がないと難しい？」そんな心配がある方へ。千葉開催は当日チームを編成します。普段は別のチームで活動している選手も、一人で参加できます。</p>
+    <div className="bb-steps">
+      <article className="bb-step"><b>FOR PLAYERS</b><h3>選手・保護者の方へ</h3><p>午前はクリニック、午後は3x3。小1〜中3が対象です。学年や経験に応じた進行を目指します。詳しい持ち物や参加条件は申込フォームと主催者の案内をご確認ください。</p><Link href="/backbone/chiba" className="bb-action" style={{marginTop:16}}>千葉の開催要項・申込 ↗</Link></article>
+      <article className="bb-step"><b>FOR COACHES</b><h3>指導者・地域の方へ</h3><p>子どもたちが何を見て、どう判断しているか。実際のプレーを通じて育成を考えるきっかけにしてください。見学や帯同の可否は主催者に事前にご確認ください。</p><a className="bb-action bb-action--outline" style={{marginTop:16,color:"#171717",borderColor:"#171717"}} href="#host">地域開催の相談を見る ↓</a></article>
+    </div>
+    <p style={{marginTop:18,fontSize:12,color:"#555"}}>※参加者の経験や試合時間について、全員一律の出場時間・習得成果を保証するものではありません。</p>
+   </div></section>
+   <section className="bb-section" id="faq"><div className="bb-wrap">
+     <p className="bb-eyebrow">GOOD TO KNOW</p><h2>参加前によくある質問。</h2>
+     <div className="bb-organizer-list">
+      <article><h3>一人でも参加できますか？</h3><p>千葉開催は一人での参加を歓迎しています。チームは当日編成します。</p></article>
+      <article><h3>所属チームを変える必要はありますか？</h3><p>ありません。普段のチームに所属したまま参加できる単発の育成プログラムです。</p></article>
+      <article><h3>3x3が初めてでも参加できますか？</h3><p>3x3の経験がなくても参加を検討できます。対象年代や詳しい参加条件は各開催要項をご確認ください。</p></article>
+      <article><h3>参加費はいくらですか？</h3><p>千葉10月25日開催は1名6,600円（税込）です。ほかの開催は料金が異なる場合があります。</p></article>
+      <article><h3>申込後はどうなりますか？</h3><p>申込フォームの案内に従ってください。受付・決済・当日の連絡は主催者の案内をご確認ください。</p></article>
+      <article><h3>募集はまだ受け付けていますか？</h3><p>募集状況は変わるため、このページでは空き枠を保証しません。千葉開催の申込フォームで最新状況をご確認ください。</p></article>
+     </div>
+     <Link className="bb-action" href="/backbone/chiba">10月25日 千葉の詳細を見る ↗</Link>
+   </div></section>
    <section className="bb-section" id="host"><div className="bb-wrap">
     <p className="bb-eyebrow">04 / BUILD A CHAPTER</p><h2>次は、あなたの街で。</h2>
     <p className="bb-section-intro">体育館や地域の運営を担う方と、BACKBONEの開催を相談しています。まずは開催したい地域や時期を教えてください。</p>
