@@ -29,7 +29,7 @@ export function TorstenCoachCampaignJa() {
           <h1>練習では入る。<br/><em>試合では打てない。</em></h1>
           <p className="tc-lead">その原因を、シュートフォームだけに求めていないか。</p>
           <p className="tc-hero-description">世界の育成・代表・プロの指導現場を経験したトーステン・ロイブル氏と考える90分。<strong>技術、判断、練習設計、スペーシングをつなぎ、試合で良いシュートを生み出す育成</strong>を学びます。</p>
-          <div className="tc-actions"><Apply>講習に申し込む</Apply><a className="tc-text-link" href="#learn">講習内容を見る ↓</a></div>
+          <div className="tc-actions"><Apply>講習に申し込む</Apply><a className="tc-text-link" href="/ja/coach/shooting-check">無料・2分のシュート練習チェック ↗</a><a className="tc-text-link" href="#learn">講習内容を見る ↓</a></div>
           <p className="tc-hero-note">主催：Riot Basketball Academy ／ 英語講義・日本語逐次通訳 ／ 指導者資格不要</p>
           <div className="tc-facts"><div><span>LIVE</span><strong>¥3,300</strong><small>税込・当日参加</small></div><div><span>ON-DEMAND</span><strong>¥4,400</strong><small>税込・30日間視聴</small></div><div><span>DATE</span><strong>11/25</strong><small>水曜 20:00–21:30</small></div></div>
         </div>
@@ -74,7 +74,7 @@ export function TorstenCoachCampaignJa() {
       </section>
 
       <section className="tc-section tc-resource">
-        <div className="tc-container tc-resource-grid"><div><p className="tc-eyebrow">FREE PRACTICE TOOL / BY RBA</p><h2>まず、10回の攻撃を<br/>観察してみる。</h2><p>シュートの成否だけでなく、打つ前の判断や準備を記録するA4の無料ワークシートです。申し込みや会員登録は不要です。</p><p className="tc-small">本資料はRBA独自制作であり、トーステン氏の監修資料や本講義の配布教材ではありません。</p></div><div className="tc-resource-action"><a className="tc-btn tc-btn--ghost" href={worksheetUrl}>無料ワークシートを入手する ↗</a></div></div>
+        <div className="tc-container tc-resource-grid"><div><p className="tc-eyebrow">FREE PRACTICE TOOL / BY RBA</p><h2>まず、2分で練習を見直す。<br/>次に、10回の攻撃を観察する。</h2><p>シュートの成否だけでなく、打つ前の判断や準備を記録するA4の無料ワークシートです。申し込みや会員登録は不要です。</p><p className="tc-small">本資料はRBA独自制作であり、トーステン氏の監修資料や本講義の配布教材ではありません。</p></div><div className="tc-resource-action"><a className="tc-btn" href="/ja/coach/shooting-check">無料・5問チェックを試す ↗</a><a className="tc-btn tc-btn--ghost" href={worksheetUrl}>観察ワークシートを入手する ↗</a></div></div>
       </section>
 
       <section className="tc-section tc-faq" aria-labelledby="tc-faq-title">
