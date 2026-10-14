@@ -72,3 +72,11 @@
 .bb-street .bb-paper .bb-action--outline{color:#171717!important;border-color:#171717;background:transparent}
 .bb-street .bb-paper .bb-action--outline:hover{background:#e5dfd2}
 .bb-street #faq .bb-organizer-list{margin-bottom:25px}
+
+/* Community sharing kit */
+.bb-street .bb-share-kit{display:grid;gap:16px;margin-top:24px}
+.bb-street .bb-share-card{background:#202224;border:1px solid #555;padding:26px}
+.bb-street .bb-share-card h2{font-size:19px;font-weight:900;margin:0 0 12px}
+.bb-street .bb-share-card p{font-size:13px;color:#e0ddd5;white-space:pre-wrap;overflow-wrap:anywhere}
+.bb-street .bb-share-card .bb-share-url{color:#f6ad78;font-size:12px;word-break:break-all}
+.bb-street .bb-share-card button{cursor:pointer;margin-top:8px}
