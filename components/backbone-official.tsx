@@ -84,8 +84,8 @@ export function BackboneOfficial(){
    </div></section>
    <section className="bb-section bb-social"><div className="bb-wrap">
     <p className="bb-eyebrow">ON THE COURT / BACKBONE</p><h2>THE NEXT PLAY<br/>STARTS HERE.</h2>
-    <p className="bb-section-intro">各地域の活動はBACKBONE公式Instagramでも紹介しています。実際の写真や映像は、掲載許可を確認できたものをご覧ください。</p>
-    <div className="bb-actions"><a className="bb-action" href="https://www.instagram.com/backbone3x3/" target="_blank" rel="noopener noreferrer">BACKBONE Instagram ↗</a><Link className="bb-action bb-action--outline" href="/ja">RBA公式サイト ↗</Link></div>
+    <p className="bb-section-intro">10月25日千葉開催を紹介してくださる方には、公式の共有用案内も用意しています。各地域の活動はBACKBONE公式Instagramでも紹介しています。実際の写真や映像は、掲載許可を確認できたものをご覧ください。</p>
+    <div className="bb-actions"><a className="bb-action" href="https://www.instagram.com/backbone3x3/" target="_blank" rel="noopener noreferrer">BACKBONE Instagram ↗</a><Link className="bb-action bb-action--outline" href="/backbone/share">千葉開催を紹介する ↗</Link><Link className="bb-action bb-action--outline" href="/ja">RBA公式サイト ↗</Link></div>
    </div></section>
   </div>
  </SiteFrame>;
