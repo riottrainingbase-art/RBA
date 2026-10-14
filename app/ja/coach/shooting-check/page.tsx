@@ -8,4 +8,4 @@ export const metadata:Metadata={
   alternates:{canonical:"/ja/coach/shooting-check"},
   openGraph:{title:"あなたのシュート練習は試合につながっているか？",description:"無料2分・5問の指導者向け練習振り返り。RBA COACH EDUCATION",url:"/ja/coach/shooting-check",type:"website",siteName:"Riot Basketball Academy"},
 };
-export default function Page(){return <SiteFrame locale="ja"><TorstenShootingCheckJa/></SiteFrame>;}
+export default function Page(){return <SiteFrame locale="ja" languagePage="coaches"><TorstenShootingCheckJa/></SiteFrame>;}
