@@ -44,7 +44,7 @@ export function TorstenShootingCheckJa(){
     <h3>さらに学びたい指導者の方へ</h3><p>11月25日、トーステン・ロイブル氏のオンライン講習「現代バスケットボールにおけるシューターの育成と活用」を開催。技術・練習設計・スペーシング・判断を一つの流れとして学びます。</p>
     <div className="tc-check-event"><span>2026.11.25 WED 20:00–21:30</span><strong>LIVE ¥3,300 / 30日録画 ¥4,400</strong><small>税込・日本語逐次通訳付き</small></div>
     <a className="tc-check-btn" href={torstenRegistrationUrl} target="_blank" rel="noopener noreferrer">講習に申し込む <ArrowRight size={18}/></a>
-    <a className="tc-check-link" href="/ja/events/torsten-loibl-online-clinic">講習の内容を先に確認する →</a>
+    <a className="tc-check-link" href="/ja/events/torsten-loibl-online-clinic">講習の内容を先に確認する →</a><a className="tc-check-link" href="https://form.jotform.com/262858264882068" target="_blank" rel="noopener noreferrer">今後の無料教材・指導者情報を希望する（任意） ↗</a><p className="tc-check-note">情報メールの登録は講習への申込・支払いとは別です。明示的に希望した方に限り案内します。</p>
     <div className="tc-check-footerBtns"><button type="button" onClick={()=>{setAnswers(Array(5).fill(null));setResult(false);setCopied(false)}}><RotateCcw size={15}/>もう一度振り返る</button><button type="button" onClick={async()=>{const text="【指導者向け無料チェック】あなたのシュート練習は試合につながっているか。5つの問いから練習を見直すRBAの2分チェック。 https://riotbasketballacademy.com/ja/coach/shooting-check";try{if(navigator.share){await navigator.share({text})}else{await navigator.clipboard.writeText(text);setCopied(true)}}catch{}}}><Share2 size={15}/>{copied?"コピーしました":"同僚に共有する"}</button></div>
    </section>}
    <footer className="tc-check-siteFooter"><a href="/ja/coaches">← RBAの指導者向け活動</a><small>© Riot Basketball Academy</small></footer>
