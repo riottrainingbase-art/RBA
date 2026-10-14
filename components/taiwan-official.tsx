@@ -224,6 +224,27 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
         <p className="rba-taiwan-intro">{({ja:"台北・新北を中心に、子どもたちへのバスケットボール指導に興味がある方を探しています。日本人留学生、日本語を話せる台湾の方、バスケ経験者の皆さんも歓迎します。まだ企画を検討している段階で、正式な求人ではありません。","zh-tw":"RBA正在蒐集對台北、新北青少年籃球教練培育有興趣者的意向。歡迎年滿18歲的日本留學生、會說日文的台灣朋友及籃球愛好者登記。目前仍在規劃中，並非正式徵才。",en:"RBA is collecting expressions of interest from adults in Taipei and New Taipei who may want to learn youth basketball coaching. This is an early-stage idea, not a job offer or recruitment for a confirmed role.",ko:"RBA는 타이베이·신베이에서 유소년 농구 지도를 배우는 데 관심 있는 성인의 의견을 듣고 있습니다. 현재 기획 검토 단계이며 확정된 채용 공고가 아닙니다."})[locale]}</p>
         <Link className="rba-taiwan-outline" href="/ja/taiwan/coach-interest">{({ja:"コーチ育成の企画を見る", "zh-tw":"查看意向登記說明", en:"View the interest registration",ko:"관심 등록 안내 보기"})[locale]} ↗</Link>
       </div></section>
+      <section className="rba-taiwan-section rba-taiwan-muted" id="taiwan-sponsors"><div className="rba-taiwan-inner">
+        <p className="rba-taiwan-label">SENDAI × TAIWAN / CORPORATE PARTNERSHIP</p>
+        <h2>{({
+          ja:"仙台から台湾へ。育成を支える企業パートナーを募集しています。",
+          "zh-tw":"從仙台到台灣，邀請企業一起支持青少年籃球。",
+          en:"From Sendai to Taiwan. Explore youth basketball partnerships.",
+          ko:"센다이에서 대만까지, 유소년 농구를 함께 지원할 기업을 찾습니다."
+        })[locale]}</h2>
+        <p className="rba-taiwan-intro">{({
+          ja:"子どもたちの参加機会、指導者の学び、日台交流を支える企業連携を検討しています。仙台・宮城の企業様も、台湾の企業様も歓迎します。まずは目的や可能な支援についてご相談ください。2027年の事業内容・日程・予算は現在調整中です。",
+          "zh-tw":"歡迎仙台、宮城與台灣企業，一起討論青少年參與機會、教練學習及台日交流的支持方式。2027年的日期、預算及合作內容仍在規劃中。",
+          en:"We invite companies in Miyagi, Taiwan and beyond to explore support for youth access, coach education and Japan–Taiwan exchange. Future programmes remain subject to confirmation.",
+          ko:"미야기와 대만의 기업이 청소년 참가 기회, 지도자 교육, 국제 교류를 지원할 수 있는 협력 방식을 함께 논의하고자 합니다."
+        })[locale]}</p>
+        <Link className="rba-taiwan-outline" href={locale==="en"?"/taiwan/sponsors":"/"+locale+"/taiwan/sponsors"}>{({
+          ja:"企業協賛・連携のご案内を見る",
+          "zh-tw":"了解企業贊助與合作",
+          en:"Explore corporate partnerships",
+          ko:"기업 협찬 안내 보기"
+        })[locale]} ↗</Link>
+      </div></section>
       <section className="rba-taiwan-section" id="taiwan-contact"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">05 / CONTACT</p><h2>{c.form}</h2><p className="rba-taiwan-intro">{c.formBody}</p>
         <a className="rba-taiwan-btn" href={`${formUrl}?utm_source=rba_website&utm_medium=organic&utm_campaign=taiwan_2026_launch&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{c.form} ↗</a>
