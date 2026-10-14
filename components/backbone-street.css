@@ -67,3 +67,8 @@
 .bb-street .bb-back{display:inline-flex;padding:12px 0;font-size:13px;font-weight:900;border-bottom:1px solid #888}
 @media(max-width:760px){.bb-street .bb-hero{min-height:0;padding:65px 0 70px}.bb-street .bb-title{font-size:clamp(65px,16vw,110px)}.bb-street .bb-principles,.bb-street .bb-steps,.bb-street .bb-chapter,.bb-street .bb-organizer-list,.bb-street .bb-detail-cards{grid-template-columns:1fr}.bb-street .bb-section{padding:60px 0}.bb-street .bb-step,.bb-street .bb-principles article,.bb-street .bb-chapter-main,.bb-street .bb-chapter-side{padding:23px}.bb-street .bb-chapter-name{font-size:clamp(65px,17vw,110px)}.bb-street .bb-schedule{grid-template-columns:110px 1fr}.bb-street .bb-actions .bb-action{width:100%}.bb-street .bb-ticker .bb-wrap{gap:6px}}
 @media(prefers-reduced-motion:reduce){.bb-street *{transition:none!important}}
+
+/* Dark CTA styling is overridden for the light paper panel. */
+.bb-street .bb-paper .bb-action--outline{color:#171717!important;border-color:#171717;background:transparent}
+.bb-street .bb-paper .bb-action--outline:hover{background:#e5dfd2}
+.bb-street #faq .bb-organizer-list{margin-bottom:25px}
