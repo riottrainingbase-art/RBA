@@ -39,3 +39,15 @@
 .rba-taiwan-small a{color:var(--tw-forest)!important}
 .rba-taiwan a:focus-visible{outline:2px solid #268b6c;outline-offset:4px}
 @media(max-width:800px){.rba-taiwan-inner{width:calc(100% - 40px)}.rba-taiwan-hero{padding:35px 0 75px}.rba-taiwan-partner{margin-top:52px;gap:15px}.rba-taiwan-partner-wordmark{font-size:10px;gap:8px}.rba-taiwan h1{margin-top:40px}.rba-taiwan-section{padding:58px 0}.rba-taiwan-cards,.rba-taiwan-roles{grid-template-columns:1fr;gap:14px}.rba-taiwan-cards article{padding:25px}.rba-taiwan-top nav{gap:12px}}
+
+
+/* Taiwan partner biography: uses the same forest / ivory system as the official Taiwan page. */
+.rba-taiwan-profile{display:grid;grid-template-columns:minmax(240px,0.84fr) minmax(0,1.6fr);gap:clamp(24px,4vw,56px);margin-top:48px;padding:clamp(26px,4.5vw,48px);border:1px solid var(--tw-line);border-top:4px solid var(--tw-emerald);background:#fffefa}
+.rba-taiwan-profile-heading h3{font-size:clamp(30px,3.2vw,46px);line-height:1.2;letter-spacing:-.035em;margin:16px 0 10px;color:var(--tw-ink)}
+.rba-taiwan-profile-role{font-size:14px;line-height:1.6;font-weight:700;color:var(--tw-forest);margin:0}
+.rba-taiwan-profile-career{border-top:1px solid var(--tw-line);padding-top:19px;margin-top:28px;font-size:12px;line-height:1.8;letter-spacing:.095em;font-weight:800;color:var(--tw-forest)}
+.rba-taiwan-profile-career span{color:var(--tw-muted);font-size:10px;font-weight:600}
+.rba-taiwan-profile-content{min-width:0}
+.rba-taiwan-profile-content > p:first-child{font-size:16px;line-height:2.1;margin:0;color:var(--tw-ink)}
+.rba-taiwan-profile-disclaimer{margin-top:22px;padding-top:18px;border-top:1px solid var(--tw-line);font-size:12px!important;line-height:1.8!important;color:var(--tw-muted)!important}
+@media(max-width:800px){.rba-taiwan-profile{grid-template-columns:1fr;gap:22px;margin-top:36px;padding:25px}.rba-taiwan-profile-heading h3{margin-top:12px}.rba-taiwan-profile-career{margin-top:20px}.rba-taiwan-profile-content > p:first-child{font-size:15px}}
