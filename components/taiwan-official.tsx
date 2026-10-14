@@ -89,6 +89,12 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
           {([[c.parent,c.parentBody],[c.coach,c.coachBody],[c.club,c.clubBody]] as const).map(([heading,body],i)=><article key={heading}><span>0{i+1}</span><h3>{heading}</h3><p>{body}</p><a href={i===0?locale==="ja"?"/ja/united":locale==="en"?"/united":`/${locale}/united`:"#taiwan-contact"}>{i===0?c.current:c.form} ↗</a></article>)}
         </div>
       </div></section>
+      <section className="rba-taiwan-section rba-taiwan-muted" id="taiwan-roadmap"><div className="rba-taiwan-inner">
+        <p className="rba-taiwan-label">TAIWAN / DEVELOPMENT ROADMAP</p>
+        <h2>{({ja:"台湾での育成を、これからどうつくっていくか。","zh-tw":"接下來，如何一起打造台灣的青少年籃球環境？",en:"Our approach to long-term basketball development in Taiwan",ko:"대만의 유소년 농구 환경을 함께 만들어가는 방법"})[locale]}</h2>
+        <p className="rba-taiwan-intro">{({ja:"子どもの主体性と参加機会を大切にしながら、現地の声を聴き、少しずつ実践を重ねる。RBA台湾の共通原則、事業計画、段階的な進め方、成果の確かめ方をまとめました。","zh-tw":"我們重視孩子的自主性與參與機會，先了解在地需求，再逐步試行與改善。這裡整理了共同原則、營運構想、推動階段及成果評估。",en:"Learn how we plan to listen to local communities, test small programmes, evaluate the results and build sustainable youth basketball opportunities.",ko:"현지의 목소리를 듣고 소규모 프로그램을 검증하며 지속 가능한 유소년 농구 환경을 조성하기 위한 공동 원칙과 단계별 계획을 정리했습니다."})[locale]}</p>
+        <Link className="rba-taiwan-outline" href={locale==="zh-tw"?"/zh-tw/taiwan/roadmap":"/ja/taiwan/roadmap"}>{({ja:"育成ロードマップ・事業計画を見る", "zh-tw":"查看培育路線圖與營運規劃",en:"View the development roadmap",ko:"육성 로드맵 보기"})[locale]} ↗</Link>
+      </div></section>
       <section className="rba-taiwan-section" id="taiwan-clinics"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">TAIWAN / TEAM & COACH SERVICES</p>
         <h2>{services.title}</h2><p className="rba-taiwan-intro">{services.intro}</p>
