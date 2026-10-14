@@ -80,6 +80,9 @@ importers:
       sonner:
         specifier: ^2.0.8
         version: 2.0.8(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      sharp:
+        specifier: 0.35.4
+        version: 0.35.4(@types/node@22.19.19)
       stripe:
         specifier: 22.4.0
         version: 22.4.0(@types/node@22.19.19)
