@@ -49,7 +49,7 @@ export function BackboneOfficial(){
     <p className="bb-eyebrow">03 / NEXT CHAPTER</p><h2>YOUR CITY.<br/>YOUR COURT.</h2>
     <p className="bb-section-intro">全国の地域と一緒に、子どもたちがプレーできる場をつくります。次の開催予定はこちら。</p>
     <div className="bb-chapter">
-     <article className="bb-chapter-main"><p className="bb-eyebrow">CHAPTER / ROUND 3</p><h3 className="bb-chapter-name">CHIBA.</h3><p>2026.10.25 SUN / 千葉県神崎町</p><div className="bb-chapter-meta"><span>09:00—16:00</span><span>U12—U15</span><span>¥6,600 / 1名・税込</span></div><p className="bb-small">午前：育成クリニック／午後：3x3ゲーム。個人参加歓迎。対象は小学1年生〜中学3年生です。</p></article>
+     <article className="bb-chapter-main"><p className="bb-eyebrow">CHAPTER / ROUND 3</p><h3 className="bb-chapter-name">CHIBA.</h3><p>2026.10.25 SUN / 千葉県神崎町</p><div className="bb-chapter-meta"><span>09:00—16:00</span><span>小1〜中3</span><span>¥6,600 / 1名・税込</span></div><p className="bb-small">午前：育成クリニック／午後：3x3ゲーム。個人参加歓迎。対象は小学1年生〜中学3年生です。</p></article>
      <aside className="bb-chapter-side"><div><p className="bb-eyebrow" style={{color:"#32251a"}}>NEXT UP / 2026</p><strong>OCT<br/>25.</strong><p>開催要項で会場・参加条件・募集状況をご確認ください。</p></div><Link className="bb-action" href="/backbone/chiba">CHIBA 詳細・申込 ↗</Link></aside>
     </div>
     <p className="bb-small" style={{marginTop:20}}>ほかの地域の開催予定は <Link href="/ja/opportunities" style={{textDecoration:"underline",textUnderlineOffset:4}}>RBAの活動一覧</Link> をご覧ください。参加費は開催ごとに異なります。</p>
