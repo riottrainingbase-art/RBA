@@ -67,10 +67,10 @@ const text: Record<Locale, {
 const eltonProfile: Record<Locale, { eyebrow:string; role:string; heading:string; description:string; note:string; }> = {
   ja: {
     eyebrow:"TAIWAN PARTNER / PROFILE",
-    role:"台湾での協働パートナー",
+    role:"台湾のパートナー",
     heading:"Elton Chen",
-    description:"Elton Chenは、RBAと台湾での育成活動や日台交流に取り組んでいるパートナーです。過去にNBA Taiwanで勤務した経験を持ち、台湾のバスケットボール現場で活動しています。子どもたちの学びの機会を広げ、指導者も成長できる環境を目指して、RBAと意見交換を重ねています。",
-    note:"NBA Taiwanでの勤務経歴は、NBAまたはNBA TaiwanによるRBAへの公認・協賛・後援を意味するものではありません。"
+    description:"Elton Chenは、台湾でRBAとともに育成年代のバスケットボール交流を進めているパートナーです。以前はNBA Taiwanに勤務していました。これまでの経験を次の世代につなげたいという思いのもと、子どもたちが学び、挑戦できる機会や、指導者同士が学び合える場を一緒につくろうとしています。",
+    note:"※ これはElton個人の経歴です。NBAやNBA TaiwanがRBAを公認・協賛しているという意味ではありません。"
   },
   "zh-tw": {
     eyebrow:"TAIWAN PARTNER / 人物介紹",
@@ -206,7 +206,7 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
             <p className="rba-taiwan-label">{eltonProfile[locale].eyebrow}</p>
             <h3 id="taiwan-elton-name">{eltonProfile[locale].heading}</h3>
             <p className="rba-taiwan-profile-role">{eltonProfile[locale].role}</p>
-            <p className="rba-taiwan-profile-career">NBA TAIWAN <span> / PREVIOUS EMPLOYMENT</span></p>
+            <p className="rba-taiwan-profile-career">{({ja:"NBA Taiwan｜勤務経験","zh-tw":"曾任職於 NBA Taiwan",en:"Previously employed by NBA Taiwan",ko:"NBA Taiwan 근무 경력"})[locale]}</p>
           </div>
           <div className="rba-taiwan-profile-content">
             <p>{eltonProfile[locale].description}</p>
