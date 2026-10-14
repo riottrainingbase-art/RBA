@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { TaiwanRoadmap } from "@/components/taiwan-roadmap";
+export const metadata: Metadata = {title:"RBA台灣｜培育路線圖・共同原則・營運規劃",description:"為台灣青少年籃球提供更多成長選擇：理念、階段計畫、營運模式、分工與成果評估。",alternates:{canonical:"https://riotbasketballacademy.com/zh-tw/taiwan/roadmap",languages:{"ja":"https://riotbasketballacademy.com/ja/taiwan/roadmap","zh-Hant-TW":"https://riotbasketballacademy.com/zh-tw/taiwan/roadmap"}},openGraph:{title:"RBA台灣｜培育路線圖・共同原則・營運規劃",description:"為台灣青少年籃球提供更多成長選擇：理念、階段計畫、營運模式、分工與成果評估。",url:"https://riotbasketballacademy.com/zh-tw/taiwan/roadmap",type:"website",siteName:"Riot Basketball Academy"},robots:{index:true,follow:true}};
+export default function Page(){return <TaiwanRoadmap locale="zh-tw" />;}
