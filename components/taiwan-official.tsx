@@ -64,6 +64,37 @@ const text: Record<Locale, {
   }
 };
 
+const eltonProfile: Record<Locale, { eyebrow:string; role:string; heading:string; description:string; note:string; }> = {
+  ja: {
+    eyebrow:"TAIWAN PARTNER / PROFILE",
+    role:"台湾での協働パートナー",
+    heading:"Elton Chen",
+    description:"Elton Chenは、RBAと台湾での育成活動や日台交流に取り組んでいるパートナーです。過去にNBA Taiwanで勤務した経験を持ち、台湾のバスケットボール現場で活動しています。子どもたちの学びの機会を広げ、指導者も成長できる環境を目指して、RBAと意見交換を重ねています。",
+    note:"NBA Taiwanでの勤務経歴は、NBAまたはNBA TaiwanによるRBAへの公認・協賛・後援を意味するものではありません。"
+  },
+  "zh-tw": {
+    eyebrow:"TAIWAN PARTNER / 人物介紹",
+    role:"台灣在地合作夥伴",
+    heading:"Elton Chen",
+    description:"Elton Chen 是 RBA 在台灣推動青少年籃球交流的合作夥伴。他曾任職於 NBA Taiwan，目前持續參與台灣籃球相關活動。我們希望一起創造更多孩子學習籃球、教練持續成長的機會。",
+    note:"曾任職於 NBA Taiwan 為個人工作經歷，不代表 NBA 或 NBA Taiwan 對 RBA 的認可、贊助或官方合作。"
+  },
+  en: {
+    eyebrow:"TAIWAN PARTNER / PROFILE",
+    role:"Taiwan-based collaboration partner",
+    heading:"Elton Chen",
+    description:"Elton Chen works with RBA on youth basketball exchange and development opportunities in Taiwan. He previously worked at NBA Taiwan and remains active in Taiwan's basketball community. Together, we are exploring ways for young players to learn and for coaches to keep developing.",
+    note:"Elton's previous employment at NBA Taiwan does not imply endorsement, sponsorship or an official affiliation between NBA or NBA Taiwan and RBA."
+  },
+  ko: {
+    eyebrow:"TAIWAN PARTNER / PROFILE",
+    role:"대만 현지 협력 파트너",
+    heading:"Elton Chen",
+    description:"Elton Chen은 대만에서 유소년 농구 교류와 육성 기회를 마련하기 위해 RBA와 협력하고 있습니다. 과거 NBA Taiwan에서 근무한 경력이 있으며 현재도 대만 농구 현장에서 활동하고 있습니다. 아이들의 배움과 지도자의 성장을 함께 지원하고자 합니다.",
+    note:"NBA Taiwan에서의 이전 근무 경력은 NBA 또는 NBA Taiwan이 RBA를 공식 후원하거나 승인한다는 뜻이 아닙니다."
+  }
+};
+
 const serviceCopy: Record<Locale,{title:string;intro:string;items:[string,string,string][];button:string;note:string;memberTitle:string;memberBody:string;memberButton:string}> = {
   ja: {title:"台湾でのクリニックと指導者講習",intro:"選手の年代や人数、普段の練習で感じている課題を伺い、チームに合った内容を一緒に考えます。",items:[["01","チーム向けクリニック","U12・U15を中心に、基本技術やスペーシング、3x3などを実際のプレーを通して練習します。"],["02","指導者ワークショップ","練習の組み立て方や選手への声かけ、出場機会のつくり方、練習量と休養のバランスについて一緒に考えます。"],["03","継続育成サポート","チームの状況に合わせて、現場指導や練習計画の相談、実施後の振り返りを組み合わせます。"]],button:"開催について問い合わせる",note:"参加人数、指導時間、会場、移動や通訳の必要性を確認したうえで、お見積もりをご案内します。お問い合わせの段階では、開催日や料金は確定しません。",memberTitle:"オンラインで学べる内容も準備しています",memberBody:"台湾の選手や指導者が使いやすい繁体字中国語の教材を検討しています。内容や料金、開始時期は未定です。現在、会費はいただいていません。",memberButton:"興味がある方はこちら"},
   "zh-tw": {title:"台灣球隊訓練與教練研習",intro:"每支球隊的情況都不同。我們會先了解球員年齡、人數、平常遇到的問題，再一起討論適合的訓練內容。",items:[["01","球隊專屬訓練","以U12、U15為主，透過基本動作、3x3和實際攻防，練習觀察、判斷與空間運用。"],["02","教練研習","一起討論練習怎麼安排、如何觀察球員、怎麼提問，以及上場機會和休息時間。"],["03","球隊長期合作","如果希望持續合作，也可以安排定期討論、現場指導與訓練後的回顧。"]],button:"詢問訓練安排",note:"我們會依人數、課程時間、場地、交通和翻譯需求提供報價。送出表單不代表已預約，日期和費用都需要另外確認。",memberTitle:"線上學習內容準備中",memberBody:"我們正在整理適合台灣球員和教練使用的繁體中文教材。內容、收費方式和推出時間都還在討論，目前不會收取會員費。",memberButton:"有興趣可以先告訴我們"},
@@ -170,6 +201,18 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
       <section className="rba-taiwan-section"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">03 / SPARTANS × RBA · 2026</p><h2>{c.evidence}</h2><p className="rba-taiwan-intro">{c.evidenceBody}</p>
         <div className="rba-taiwan-links"><a href="https://www.spartans.tw/en/" target="_blank" rel="noopener noreferrer">SPARTANS OFFICIAL ↗</a><a href="https://www.instagram.com/p/DeW1uAEGI18/" target="_blank" rel="noopener noreferrer">RBA TAIWAN VIDEO ↗</a></div>
+        <article className="rba-taiwan-profile" id="taiwan-partner-elton" aria-labelledby="taiwan-elton-name">
+          <div className="rba-taiwan-profile-heading">
+            <p className="rba-taiwan-label">{eltonProfile[locale].eyebrow}</p>
+            <h3 id="taiwan-elton-name">{eltonProfile[locale].heading}</h3>
+            <p className="rba-taiwan-profile-role">{eltonProfile[locale].role}</p>
+            <p className="rba-taiwan-profile-career">NBA TAIWAN <span> / PREVIOUS EMPLOYMENT</span></p>
+          </div>
+          <div className="rba-taiwan-profile-content">
+            <p>{eltonProfile[locale].description}</p>
+            <p className="rba-taiwan-profile-disclaimer">{eltonProfile[locale].note}</p>
+          </div>
+        </article>
       </div></section>
       <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">04 / PROGRAMME STATUS</p><h2>{c.future}</h2><p className="rba-taiwan-intro">{c.futureBody}</p><p>{c.safety}</p>
