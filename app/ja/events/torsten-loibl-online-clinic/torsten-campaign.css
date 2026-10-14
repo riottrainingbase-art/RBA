@@ -4,3 +4,6 @@
 @media(prefers-reduced-motion:reduce){.tc-landing a{transition:none}.tc-btn:hover{transform:none}}
 
 .tc-resource .tc-text-link{display:block;margin-top:18px;color:#9d451e!important}.tc-resource-action .tc-btn{margin-block:11px;max-width:360px}.tc-resource-action .tc-btn--ghost:hover{color:#111!important;background:#eee0d3}
+
+/* Staging QA: keep the Japanese headline entirely visible at 320–390px; decorative 02 never overlaps copy. */
+@media(max-width:550px){.tc-hero{overflow:hidden}.tc-hero:after{display:none}.tc-hero h1{font-size:clamp(29px,8vw,42px);line-height:1.21;overflow-wrap:anywhere;word-break:normal;letter-spacing:-.055em}.tc-lead{font-size:17px;line-height:1.6}.tc-container{width:calc(100% - 32px)}.tc-hero-description{font-size:14px;line-height:1.8}.tc-facts strong{font-size:clamp(19px,6vw,32px)}.tc-facts small{font-size:10px}}
