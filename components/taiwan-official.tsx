@@ -89,11 +89,66 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
           {([[c.parent,c.parentBody],[c.coach,c.coachBody],[c.club,c.clubBody]] as const).map(([heading,body],i)=><article key={heading}><span>0{i+1}</span><h3>{heading}</h3><p>{body}</p><a href={i===0?locale==="ja"?"/ja/united":locale==="en"?"/united":`/${locale}/united`:"#taiwan-contact"}>{i===0?c.current:c.form} ↗</a></article>)}
         </div>
       </div></section>
-      <section className="rba-taiwan-section rba-taiwan-muted" id="taiwan-roadmap"><div className="rba-taiwan-inner">
-        <p className="rba-taiwan-label">TAIWAN / DEVELOPMENT ROADMAP</p>
-        <h2>{({ja:"台湾での育成を、これからどうつくっていくか。","zh-tw":"接下來，如何一起打造台灣的青少年籃球環境？",en:"Our approach to long-term basketball development in Taiwan",ko:"대만의 유소년 농구 환경을 함께 만들어가는 방법"})[locale]}</h2>
-        <p className="rba-taiwan-intro">{({ja:"子どもの主体性と参加機会を大切にしながら、現地の声を聴き、少しずつ実践を重ねる。RBA台湾の共通原則、事業計画、段階的な進め方、成果の確かめ方をまとめました。","zh-tw":"我們重視孩子的自主性與參與機會，先了解在地需求，再逐步試行與改善。這裡整理了共同原則、營運構想、推動階段及成果評估。",en:"Learn how we plan to listen to local communities, test small programmes, evaluate the results and build sustainable youth basketball opportunities.",ko:"현지의 목소리를 듣고 소규모 프로그램을 검증하며 지속 가능한 유소년 농구 환경을 조성하기 위한 공동 원칙과 단계별 계획을 정리했습니다."})[locale]}</p>
-        <Link className="rba-taiwan-outline" href={locale==="zh-tw"?"/zh-tw/taiwan/roadmap":"/ja/taiwan/roadmap"}>{({ja:"育成ロードマップ・事業計画を見る", "zh-tw":"查看培育路線圖與營運規劃",en:"View the development roadmap",ko:"육성 로드맵 보기"})[locale]} ↗</Link>
+      <section className="rba-taiwan-section rba-taiwan-muted" id="taiwan-principles"><div className="rba-taiwan-inner">
+        <p className="rba-taiwan-label">RBA TAIWAN / OUR VISION</p>
+        <h2>{({
+          ja:"バスケットボールを通じて、子どもたちの可能性を広げる。",
+          "zh-tw":"讓每個孩子，都能透過籃球找到更多成長的可能。",
+          en:"More opportunities for every young player to learn and grow.",
+          ko:"모든 아이가 농구를 통해 배우고 성장할 기회를 넓힙니다."
+        })[locale]}</h2>
+        <p className="rba-taiwan-intro">{({
+          ja:"勝つことを目指しながら、一人ひとりが考え、挑戦し、成長できる環境も大切にしたい。RBAは台湾のチームや指導者の経験を尊重し、子どもたちの新しい学びの機会を一緒につくっていきます。",
+          "zh-tw":"追求勝利的同時，也希望每個孩子都能思考、嘗試並持續成長。RBA尊重台灣球隊與教練的經驗，期待一起創造更多學習與參與的機會。",
+          en:"Winning matters, but so does giving every child the chance to think, try and improve. RBA respects the work of local teams and coaches and hopes to create more learning opportunities together.",
+          ko:"승리를 추구하는 동시에 모든 선수가 스스로 생각하고 도전하며 성장할 기회를 소중히 여깁니다. RBA는 대만 현장의 경험을 존중하며 함께 배움의 기회를 만들고자 합니다."
+        })[locale]}</p>
+        <div className="rba-taiwan-cards">
+          {({
+            ja:[
+              ["自分で考える","指導者が答えを伝えるだけでなく、選手自身が見て、考えて、選ぶ時間を大切にします。"],
+              ["挑戦する機会を増やす","経験の差だけで可能性を決めつけず、試合や練習で挑戦できる場を広げます。"],
+              ["安心してプレーできる","子どもの安全と心身の成長に配慮し、失敗を恐れず取り組める環境を目指します。"],
+              ["コーチも学び続ける","選手への声かけや練習の組み立て方を振り返り、指導者同士でも学び合います。"],
+              ["台湾の現場を尊重する","学校やクラブが積み重ねてきた経験に学び、地域の実情に合う方法を一緒に考えます。"],
+              ["交流を次につなげる","単発のイベントで終わらず、選手や指導者が継続して交流できる関係を目指します。"]
+            ],
+            "zh-tw":[
+              ["自己觀察與判斷","不只是由教練給出答案，也讓球員有機會觀察、思考並做出選擇。"],
+              ["增加參與與嘗試的機會","不因目前程度就限制孩子的可能性，盡力創造更多練習與比賽經驗。"],
+              ["安心學習與挑戰","重視兒少安全與身心發展，讓孩子不怕犯錯，願意持續嘗試。"],
+              ["教練也持續成長","透過反思提問方式與課程設計，讓教練彼此學習、共同進步。"],
+              ["尊重台灣在地經驗","重視學校與俱樂部長期累積的做法，一起找出適合不同社群的方式。"],
+              ["讓交流持續下去","不讓交流停留在單次活動，讓球員與教練有機會保持聯繫與學習。"]
+            ],
+            en:[
+              ["Think and decide","Give players the time to observe, think and make choices instead of receiving every answer."],
+              ["A chance to take part","Create more meaningful playing and practice experiences, regardless of current level."],
+              ["A safe place to try","Respect each child's development and well-being, and make room to learn from mistakes."],
+              ["Coaches keep learning","Reflect on questions, feedback and session design together with other coaches."],
+              ["Respect local experience","Listen to Taiwanese schools and clubs and find approaches that suit local communities."],
+              ["Stay connected","Build relationships that continue beyond a one-off clinic or exchange."]
+            ],
+            ko:[
+              ["스스로 생각하고 선택하기","정답만 전달하기보다 선수가 관찰하고 판단할 기회를 만듭니다."],
+              ["참여와 도전 기회 늘리기","현재 실력만으로 가능성을 제한하지 않고 경험의 폭을 넓힙니다."],
+              ["안전하게 도전하기","발달 단계와 안전을 존중하고 실수에서 배울 수 있는 환경을 지향합니다."],
+              ["지도자도 계속 배우기","질문 방식과 훈련 설계를 서로 돌아보며 함께 성장합니다."],
+              ["현지의 경험 존중하기","대만 학교와 클럽의 경험에 귀 기울이고 지역에 맞는 방법을 모색합니다."],
+              ["한 번의 교류로 끝내지 않기","클리닉 이후에도 선수와 지도자가 배움을 이어 갈 관계를 만듭니다."]
+            ]
+          })[locale].map(([heading,body],i)=><article key={heading}><span>{String(i+1).padStart(2,"0")}</span><h3>{heading}</h3><p>{body}</p></article>)}
+        </div>
+        <p className="rba-taiwan-small">{({
+          ja:"育成の考え方は、すべてのチームに同じ指導法を求めるものではありません。現場の声を聞きながら、実践を通じて学んでいきます。",
+          "zh-tw":"這些理念不代表要求所有球隊採用同一種教法。我們會持續傾聽現場的聲音，從實踐中學習。",
+          en:"These principles are not a demand that every team uses the same methods. We aim to listen and learn through practice.",
+          ko:"모든 팀에 똑같은 지도법을 요구하는 것이 아니라 현장의 이야기를 듣고 실천하며 배우겠습니다."
+        })[locale]}</p>
+        <div className="rba-taiwan-links">
+          <a href="#taiwan-clinics">{({ja:"活動内容を見る","zh-tw":"了解活動內容",en:"Explore programmes",ko:"프로그램 보기"})[locale]} ↗</a>
+          <a href="#taiwan-contact">{({ja:"開催・協業について相談する","zh-tw":"洽詢合作",en:"Talk about working together",ko:"개최 및 협력 문의"})[locale]} ↗</a>
+        </div>
       </div></section>
       <section className="rba-taiwan-section" id="taiwan-clinics"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">TAIWAN / TEAM & COACH SERVICES</p>
