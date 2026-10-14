@@ -1,4 +1,7 @@
-import type { Metadata } from "next";
-import { TaiwanRoadmap } from "@/components/taiwan-roadmap";
-export const metadata: Metadata = {title:"RBA台湾｜育成ロードマップ・共通原則・事業計画",description:"台湾の育成年代に新しい選択肢を。RBAの育成原則、実行ロードマップ、事業モデル、役割分担と評価方法。",alternates:{canonical:"https://riotbasketballacademy.com/ja/taiwan/roadmap",languages:{"ja":"https://riotbasketballacademy.com/ja/taiwan/roadmap","zh-Hant-TW":"https://riotbasketballacademy.com/zh-tw/taiwan/roadmap"}},openGraph:{title:"RBA台湾｜育成ロードマップ・共通原則・事業計画",description:"台湾の育成年代に新しい選択肢を。RBAの育成原則、実行ロードマップ、事業モデル、役割分担と評価方法。",url:"https://riotbasketballacademy.com/ja/taiwan/roadmap",type:"website",siteName:"Riot Basketball Academy"},robots:{index:true,follow:true}};
-export default function Page(){return <TaiwanRoadmap locale="ja" />;}
+import { permanentRedirect } from "next/navigation";
+
+// The strategic roadmap is no longer offered as a public page.
+// Legacy URLs lead to the public vision and guiding principles only.
+export default function RetiredTaiwanRoadmap() {
+  permanentRedirect("/ja/taiwan#taiwan-principles");
+}
