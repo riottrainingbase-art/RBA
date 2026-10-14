@@ -72,6 +72,27 @@ export function TaiwanRoadmap({locale}:{locale:Language}){
   <section className="rba-taiwan-section"><div className="rba-taiwan-inner">
    <p className="rba-taiwan-label">01 / OUR STARTING POINT</p><h2>{t.premise}</h2><p className="rba-taiwan-intro">{t.caveat}</p>
   </div></section>
+  <section className="rba-taiwan-section"><div className="rba-taiwan-inner">
+   <p className="rba-taiwan-label">2026 / TAIWAN MARKET INTELLIGENCE</p>
+   <h2>{isJa?"台湾の育成市場を知る。競争よりも、違いと需要を理解する。":"先了解台灣的青少年籃球市場，再決定如何創造價值。"}</h2>
+   <p className="rba-taiwan-intro">{isJa?"公開されている2026年の料金・事業内容をもとに比較しました。台湾全体の市場規模やシェアを示すものではありません。料金は事業者・時期・会場で変わるため、参入価格の決定には別途検証が必要です。":"以下整理2026年公開的課程內容與價格，並非全台市場規模或市占率調查。價格依場地與方案而異，正式定價前仍須進一步驗證。"}</p>
+   <div className="rba-taiwan-cards">
+    <article><span>EMPOWER / CLUB</span><h3>{isJa?"継続型の育成クラブ":"長期培育俱樂部"}</h3><p>{isJa?"公開料金は月4回 NT$3,400〜5,000。女子向けクラブも展開しています。月謝型・女子育成はすでに競争と需要がある市場です。":"公開方案為每月四堂 NT$3,400–5,000，並設有女子俱樂部。固定課程與女子培育已有市場參與者。"}</p><a href="https://www.empower.com.tw/camp/empowerspark/" target="_blank" rel="noopener noreferrer">EMPOWER 2026 ↗</a></article>
+    <article><span>SPARTANS / SMALL GROUP</span><h3>{isJa?"判断力を重視する少人数指導":"重視決策的小班教學"}</h3><p>{isJa?"天母の公開プログラムは1回 NT$1,150、10回 NT$9,500。CLAと英語を使った指導を提供しています。主体性や国際性は差別化の独占領域ではありません。":"天母公開課程單堂 NT$1,150、十堂 NT$9,500，強調CLA與英語教學。自主性及國際視野並非無人提供的領域。"}</p><a href="https://spartans.tw/en/tianmu" target="_blank" rel="noopener noreferrer">SPARTANS PROGRAMME ↗</a></article>
+    <article><span>EMPOWER / CAMPS</span><h3>{isJa?"広域の短期キャンプ":"跨城市短期營隊"}</h3><p>{isJa?"2026年の夏季キャンプは台北・新北・新竹・台中・台南へ展開。RBAは規模だけを競うより、コーチ育成・指導品質の検証・日台交流を組み合わせた価値を目指します。":"2026夏令營涵蓋台北、新北、新竹、台中及台南。RBA將優先探索教練培育、品質評估與台日交流的整合價值。"}</p><a href="https://www.empower.com.tw/camp/2026-summer/" target="_blank" rel="noopener noreferrer">2026 CAMP ↗</a></article>
+   </div>
+   <p className="rba-taiwan-small">{isJa?"市場の最大手を名乗るための参加者数・加盟組織数・売上の比較データはまだありません。『台湾で最も広く学び合える育成ネットワークを目指す』ことを長期目標とし、実績は公開できる範囲で定期的に報告します。":"目前尚無可比較的學員、合作組織及營收資料，不能宣稱市場第一。長期願景是建立跨地域、持續互相學習的培育網絡，並定期揭露可核實的成果。"}</p>
+  </div></section>
+  <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
+   <p className="rba-taiwan-label">2026 / PRIORITY SEGMENTS & VALIDATION</p>
+   <h2>{isJa?"誰に、どんな価値を提供するか。":"優先服務誰？先驗證哪些需求？"}</h2>
+   <div className="rba-taiwan-roles">
+    <article><strong>{isJa?"国際コミュニティ・家庭":"國際社群與家庭"}</strong><p>{isJa?"日本語・英語・中国語で参加しやすい体験機会。需要は保護者ヒアリングと事前登録で確認し、学校との提携を既成事実にしません。":"透過家長訪談與意向登記確認多語言體驗課的需求；不預先宣稱已與學校合作。"}</p></article>
+    <article><strong>{isJa?"指導者・学生":"教練與學生"}</strong><p>{isJa?"現場観察、問いかけ、練習設計を学ぶ機会。18歳以上の関心登録から始め、実務配置前に研修・安全・就労資格を確認します。":"先收集成年人參與意願；正式任教前確認培訓、兒少安全及工作資格。"}</p></article>
+    <article><strong>{isJa?"学校・独立クラブ":"學校與獨立俱樂部"}</strong><p>{isJa?"既存の活動を尊重した共同研修や交流。導入の可否は担当者との協議と、選手・保護者の意見で判断します。":"尊重原有團隊運作，共同討論教練研習及交流；是否合作需取得相關單位同意。"}</p></article>
+   </div>
+   <p className="rba-taiwan-small">{isJa?"事業化の判断条件（計画案）：①関心登録とヒアリングでニーズ確認、②会場・指導者・保険・個人情報管理の確保、③1回の試行で安全・満足度・参加継続意向を確認、④損益分岐と双方の役割分担を文書化してから継続募集へ。":"啟動正式營運前，先確認需求、場地與人員、安全及資料管理；完成小規模試行並建立收支與合作分工紀錄後，再評估擴大。"}</p>
+  </div></section>
   <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
    <p className="rba-taiwan-label">02 / SHARED PRINCIPLES</p><h2>{t.principles}</h2>
    <div className="rba-taiwan-cards">{values.map(([h,b],i)=><article key={h}><span>{String(i+1).padStart(2,"0")}</span><h3>{h}</h3><p>{b}</p></article>)}</div>
