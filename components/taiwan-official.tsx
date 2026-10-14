@@ -13,18 +13,18 @@ const text: Record<Locale, {
   globalBody:string;unitedBody:string;connectBody:string;form:string;formBody:string;current:string;team:string; safety:string; language:string;
 }> = {
   ja:{
-    title:"日本と台湾で、子どもたちのバスケットボールをもっと面白く。",lead:"台湾のチームや指導者と一緒に、練習や試合の経験を広げていきます。日本での交流も、その一つです。",
-    choose:"まずは、ここから",subtitle:"選手・保護者の方も、指導者やチーム関係者の方も。知りたいことに合わせてご覧ください。",
+    title:"日本と台湾で、子どもたちのバスケットボールをもっと面白く。",lead:"台湾のチームや指導者と力を合わせ、子どもたちがさまざまな練習や試合を経験できる機会をつくります。日本での交流も、その一つです。",
+    choose:"まずは、ここから",subtitle:"選手・保護者の皆さまも、指導者やチーム関係者の皆さまも。目的に合わせてご覧ください。",
     parent:"選手・保護者",coach:"指導者",club:"クラブ・学校",
-    parentBody:"日本でのキャンプや交流試合、RBA UNITEDの活動をご案内します。",
-    coachBody:"3x3や判断を伴う練習、指導者向けの講習についてご相談いただけます。",
-    clubBody:"チームでのクリニック、交流試合、指導者講習の開催についてご相談ください。",
+    parentBody:"日本でのキャンプや交流試合、RBA UNITEDについてご紹介します。",
+    coachBody:"3x3や、選手の判断力を育てる練習、指導者講習についてご相談いただけます。",
+    clubBody:"チーム向けクリニックや交流試合、指導者講習の開催についてご相談いただけます。",
     evidence:"台湾で行った活動",evidenceBody:"2026年にSPARTANS Academyと台湾で交流活動を行いました。現地での様子は、SPARTANSの公式サイトとRBAの投稿からご覧いただけます。",
-    future:"次回の開催について",futureBody:"次回の日程や参加費は、まだ決まっていません。決まり次第お知らせします。現在、参加申込やお支払いは受け付けていません。",
+    future:"次回の開催について",futureBody:"次回の開催日程や参加費は未定です。詳細が決まり次第ご案内します。現在、参加申込やお支払いは受け付けていません。",
     roles:"RBAの活動について",global:"RBA GLOBAL",united:"RBA UNITED",connect:"RBA CONNECT",
-    globalBody:"海外のクラブや学校と、クリニックや育成プログラムを企画します。",unitedBody:"選手がチームとして大会や遠征に参加する活動です。",connectBody:"交流が終わった後も、選手や指導者が情報を共有できる場を目指しています。",
-    form:"台湾での活動について相談する",formBody:"チームの年代や人数、希望する時期、やってみたいことをお聞かせください。お問い合わせは無料です。送信だけで予約や契約が成立することはありません。",
-    current:"現在のRBA活動を見る",team:"日本との交流について相談する",safety:"開催が決まった活動については、保護者の同意、引率体制、保険、キャンセル時の対応などを事前にご案内します。",language:"言語"
+    globalBody:"海外のクラブや学校と協力し、クリニックや育成プログラムを企画します。",unitedBody:"選手がチームとして大会や遠征に参加する活動です。",connectBody:"交流が終わってからも、選手や指導者が学び合い、つながり続けられる場を目指しています。",
+    form:"台湾での活動について相談する",formBody:"対象となる選手の年代や人数、ご希望の時期、実施したい内容をお聞かせください。お問い合わせは無料です。フォームの送信だけで予約や契約が確定することはありません。",
+    current:"現在のRBA活動を見る",team:"日本との交流について相談する",safety:"開催が決まった活動については、保護者の同意、引率体制、保険、キャンセル時の対応などを事前にお知らせします。",language:"言語"
   },
   en:{
     title:"More ways to play and learn, in Taiwan and Japan.",lead:"We work with teams and coaches in Taiwan on practical training, and help explore opportunities to play and learn in Japan.",
@@ -65,7 +65,7 @@ const text: Record<Locale, {
 };
 
 const serviceCopy: Record<Locale,{title:string;intro:string;items:[string,string,string][];button:string;note:string;memberTitle:string;memberBody:string;memberButton:string}> = {
-  ja: {title:"台湾でのクリニックと指導者講習",intro:"まずはチームの年代や人数、普段の練習で困っていることを伺います。そのうえで、現場で試せる内容を一緒に考えます。",items:[["01","チーム向けクリニック","U12・U15を中心に、基本技術やスペーシング、3x3などを実際のプレーを通して練習します。"],["02","指導者ワークショップ","普段の練習の組み立て方、選手への声かけ、出場機会、練習量と休養について一緒に考えます。"],["03","継続育成サポート","チームの状況に合わせて、現場指導や練習計画の相談、実施後の振り返りを組み合わせます。"]],button:"開催について問い合わせる",note:"参加人数、指導時間、会場、移動、通訳の有無を確認してお見積もりします。お問い合わせの段階では、開催日や料金は確定しません。",memberTitle:"オンラインで学べる内容も準備しています",memberBody:"台湾の選手や指導者が使いやすい繁体字の教材を検討しています。内容・料金・開始日はまだ決まっていません。現在、会費の請求は行っていません。",memberButton:"興味がある方はこちら"},
+  ja: {title:"台湾でのクリニックと指導者講習",intro:"選手の年代や人数、普段の練習で感じている課題を伺い、チームに合った内容を一緒に考えます。",items:[["01","チーム向けクリニック","U12・U15を中心に、基本技術やスペーシング、3x3などを実際のプレーを通して練習します。"],["02","指導者ワークショップ","練習の組み立て方や選手への声かけ、出場機会のつくり方、練習量と休養のバランスについて一緒に考えます。"],["03","継続育成サポート","チームの状況に合わせて、現場指導や練習計画の相談、実施後の振り返りを組み合わせます。"]],button:"開催について問い合わせる",note:"参加人数、指導時間、会場、移動や通訳の必要性を確認したうえで、お見積もりをご案内します。お問い合わせの段階では、開催日や料金は確定しません。",memberTitle:"オンラインで学べる内容も準備しています",memberBody:"台湾の選手や指導者が使いやすい繁体字中国語の教材を検討しています。内容や料金、開始時期は未定です。現在、会費はいただいていません。",memberButton:"興味がある方はこちら"},
   "zh-tw": {title:"台灣球隊訓練與教練研習",intro:"每支球隊的情況都不同。我們會先了解球員年齡、人數、平常遇到的問題，再一起討論適合的訓練內容。",items:[["01","球隊專屬訓練","以U12、U15為主，透過基本動作、3x3和實際攻防，練習觀察、判斷與空間運用。"],["02","教練研習","一起討論練習怎麼安排、如何觀察球員、怎麼提問，以及上場機會和休息時間。"],["03","球隊長期合作","如果希望持續合作，也可以安排定期討論、現場指導與訓練後的回顧。"]],button:"詢問訓練安排",note:"我們會依人數、課程時間、場地、交通和翻譯需求提供報價。送出表單不代表已預約，日期和費用都需要另外確認。",memberTitle:"線上學習內容準備中",memberBody:"我們正在整理適合台灣球員和教練使用的繁體中文教材。內容、收費方式和推出時間都還在討論，目前不會收取會員費。",memberButton:"有興趣可以先告訴我們"},
   en: {title:"Clinics and coach workshops in Taiwan",intro:"Every team is different. We'll ask about your players, training schedule and the things you'd like to improve before suggesting a session.",items:[["01","Team clinics","For U12 and U15 teams: fundamentals, spacing, 3x3 and making decisions in live play."],["02","Coach workshops","Let's look at how you plan sessions, ask questions, give players opportunities and balance training with rest."],["03","Ongoing development","Depending on your needs, we can discuss on-court sessions, practice plans and follow-up reviews."]],button:"Ask about hosting a session",note:"We'll provide a quote after checking group size, session length, venue, travel and interpretation needs. An enquiry doesn't reserve a date.",memberTitle:"Online learning resources are in the works",memberBody:"We're working on Traditional Chinese resources for players and coaches. Content, pricing and timing are still being discussed. We're not charging membership fees.",memberButton:"Tell us if you're interested"},
   ko: {title:"대만 팀 클리닉과 지도자 강습",intro:"팀마다 상황이 다릅니다. 선수들의 연령과 인원, 평소 훈련에서 어려운 점을 먼저 듣고 내용을 함께 정합니다.",items:[["01","팀 클리닉","U12·U15 선수들이 기본기, 공간 활용, 3x3과 실제 경기 상황에서의 판단을 연습합니다."],["02","코치 워크숍","훈련 구성, 선수 관찰과 질문, 출전 기회, 훈련량과 휴식을 함께 살펴봅니다."],["03","지속적 육성 지원","필요에 따라 현장 지도, 훈련 계획 상담, 수업 후 피드백을 함께 진행합니다."]],button:"클리닉 개최 문의",note:"참가 인원, 수업 시간, 장소, 이동과 통역 여부를 확인한 뒤 견적을 안내합니다. 문의만으로 날짜가 확정되지는 않습니다.",memberTitle:"온라인 학습 자료를 준비하고 있습니다",memberBody:"대만 선수와 지도자가 활용할 수 있는 번체 중국어 자료를 준비하고 있습니다. 내용, 요금, 시작일은 아직 정해지지 않았으며 회비를 받지 않습니다.",memberButton:"관심이 있다면 알려 주세요"}
@@ -116,9 +116,9 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
       </div></section>
       <section className="rba-taiwan-section rba-taiwan-muted" id="taiwan-coach-interest"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">TAIPEI / COACH DEVELOPMENT</p>
-        <h2>{({ja:"台北で、バスケットボールの指導に興味がある方へ","zh-tw":"在台北，想學習籃球教學嗎？",en:"Interested in learning to coach basketball in Taipei?",ko:"타이베이에서 농구 지도에 관심이 있으신가요?"})[locale]}</h2>
-        <p className="rba-taiwan-intro">{({ja:"台北・新北で、将来のコーチ育成に向けた関心登録を受け付けています。日本人留学生、日本語で交流できる台湾の方、バスケットボール経験者などが対象です。現在は企画検討段階で、正式な求人・採用募集ではありません。","zh-tw":"RBA正在蒐集對台北、新北青少年籃球教練培育有興趣者的意向。歡迎年滿18歲的日本留學生、會說日文的台灣朋友及籃球愛好者登記。目前仍在規劃中，並非正式徵才。",en:"RBA is collecting expressions of interest from adults in Taipei and New Taipei who may want to learn youth basketball coaching. This is an early-stage idea, not a job offer or recruitment for a confirmed role.",ko:"RBA는 타이베이·신베이에서 유소년 농구 지도를 배우는 데 관심 있는 성인의 의견을 듣고 있습니다. 현재 기획 검토 단계이며 확정된 채용 공고가 아닙니다."})[locale]}</p>
-        <Link className="rba-taiwan-outline" href="/ja/taiwan/coach-interest">{({ja:"関心登録のご案内を見る", "zh-tw":"查看意向登記說明", en:"View the interest registration",ko:"관심 등록 안내 보기"})[locale]} ↗</Link>
+        <h2>{({ja:"台湾で、バスケットボールの指導に興味がある方へ","zh-tw":"在台北，想學習籃球教學嗎？",en:"Interested in learning to coach basketball in Taipei?",ko:"타이베이에서 농구 지도에 관심이 있으신가요?"})[locale]}</h2>
+        <p className="rba-taiwan-intro">{({ja:"台北・新北を中心に、子どもたちへのバスケットボール指導に興味がある方を探しています。日本人留学生、日本語を話せる台湾の方、バスケ経験者の皆さんも歓迎します。まだ企画を検討している段階で、正式な求人ではありません。","zh-tw":"RBA正在蒐集對台北、新北青少年籃球教練培育有興趣者的意向。歡迎年滿18歲的日本留學生、會說日文的台灣朋友及籃球愛好者登記。目前仍在規劃中，並非正式徵才。",en:"RBA is collecting expressions of interest from adults in Taipei and New Taipei who may want to learn youth basketball coaching. This is an early-stage idea, not a job offer or recruitment for a confirmed role.",ko:"RBA는 타이베이·신베이에서 유소년 농구 지도를 배우는 데 관심 있는 성인의 의견을 듣고 있습니다. 현재 기획 검토 단계이며 확정된 채용 공고가 아닙니다."})[locale]}</p>
+        <Link className="rba-taiwan-outline" href="/ja/taiwan/coach-interest">{({ja:"コーチ育成の企画を見る", "zh-tw":"查看意向登記說明", en:"View the interest registration",ko:"관심 등록 안내 보기"})[locale]} ↗</Link>
       </div></section>
       <section className="rba-taiwan-section" id="taiwan-contact"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">05 / CONTACT</p><h2>{c.form}</h2><p className="rba-taiwan-intro">{c.formBody}</p>
