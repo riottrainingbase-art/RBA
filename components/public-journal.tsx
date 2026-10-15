@@ -291,28 +291,28 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
       <div className="journal-coach-next"><BookOpen/><div><strong>{locale==="ja"?"READ → PLAN → COACH → REVIEW":locale==="zh-tw"?"READ → PLAN → COACH → REVIEW":locale==="ko"?"READ → PLAN → COACH → REVIEW":"READ → PLAN → COACH → REVIEW"}</strong><p>{locale==="ja"?"読むだけで終わらせず、練習設計に入れ、観察し、次の修正まで残す。":locale==="zh-tw"?"不只閱讀，而是放進訓練、觀察，再留下下一個修正。":locale==="ko"?"읽고 끝내지 않고 훈련에 넣고 관찰하고 다음 수정까지 남깁니다.":"Read it, plan it, coach it, observe it, then refine it."}</p></div></div>
     </section>:null}
     {post.source_references?.length?<section className="journal-sources section-pad rba-readable-sources" id="sources">
-      <div className="section-head"><div><p className="section-index">SOURCES / FURTHER READING</p><h2>{locale==="ja"?"参考文献と、その読み方":locale==="zh-tw"?"參考資料・原始來源":locale==="ko"?"참고 자료·1차 출처":"References and primary sources"}</h2></div><p>{locale==="ja"?"出典を確認し、研究で分かったことと指導への応用を区別して読みます。":locale==="zh-tw"?"外部資料直接連結原始來源，方便確認論據。":locale==="ko"?"외부 자료는 근거를 확인할 수 있도록 원문에 연결합니다.":"External references link to the original source where possible."}</p></div>
+      <div className="section-head"><div><p className="section-index">SOURCES / FURTHER READING</p><h2>{locale==="ja"?"参考文献をどう読み、指導に生かすか":locale==="zh-tw"?"參考資料・原始來源":locale==="ko"?"참고 자료·1차 출처":"References and primary sources"}</h2></div><p>{locale==="ja"?"研究で確かめられたことと、RBAとしての考え方を区別して紹介します。":locale==="zh-tw"?"外部資料直接連結原始來源，方便確認論據。":locale==="ko"?"외부 자료는 근거를 확인할 수 있도록 원문에 연결합니다.":"External references link to the original source where possible."}</p></div>
       {locale==="ja"?<div className="rba-reference-intro">
-        <h3>文献を確認するときの順番</h3>
-        <p><strong>① 何を調べた資料か</strong> → <strong>② 対象・方法</strong> → <strong>③ 実際の結果</strong> → <strong>④ 限界</strong>。そのうえで、自分の指導現場にどう生かせるかを考えます。リンク先が要旨のみの場合は、本文を確認できていない点にも注意が必要です。</p>
-        <a href="/ja/journal/okinawa-coaching-references#how-to-read">研究論文の読み方を詳しく見る <ArrowRight size={15}/></a>
+        <h3>参考文献を読むときの確認事項</h3>
+        <p><strong>① 何を明らかにしようとしたか</strong> → <strong>② 誰を対象に、どう調べたか</strong> → <strong>③ 何が分かったか</strong> → <strong>④ どこまで言えるか</strong>。そのうえで、目の前の選手の指導にどう役立つかを考えます。要旨だけでは研究方法や限界を十分に確認できない場合もあるため、可能な範囲で本文も確認してください。</p>
+        <a href="/ja/journal/okinawa-coaching-references#how-to-read">参考文献の読み方を詳しく確認する <ArrowRight size={15}/></a>
       </div>:null}
       <ol className="rba-reference-list">{post.source_references.map((ref,index)=>{
         const matches=linkedBySource[index]?.articles||[];
         return <li className="rba-reference-item" key={ref.url+index}>
           <div className="rba-reference-head"><span>{String(index+1).padStart(2,"0")}</span><div><strong>{ref.title}</strong><small>{ref.source}{ref.year?" · "+ref.year:""}</small></div></div>
           {ref.note?<p>{ref.note}</p>:null}
-          <div className="rba-reference-actions"><a href={ref.url} target="_blank" rel="noopener noreferrer">出典を確認 <ArrowUpRight size={15}/></a></div>
-          {locale==="ja" && matches.length?<div className="rba-reference-related"><span>この文献を参照している記事</span>{matches.map(item=><Link key={item.slug} href={journalHref(locale,item.slug)}>{item.title}<ArrowRight size={14}/></Link>)}</div>:null}
+          <div className="rba-reference-actions"><a href={ref.url} target="_blank" rel="noopener noreferrer">原典を開く <ArrowUpRight size={15}/></a></div>
+          {locale==="ja" && matches.length?<div className="rba-reference-related"><span>同じ文献を参考にしている記事</span>{matches.map(item=><Link key={item.slug} href={journalHref(locale,item.slug)}>{item.title}<ArrowRight size={14}/></Link>)}</div>:null}
         </li>;
       })}</ol>
     </section>:null}
     {sourceReadingPath?<section className="rba-journal-study-path section-pad" aria-label="関連する学習記事">
-      <div className="section-head"><div><p className="section-index">READING PATH</p><h2>育成の考え方を、記事を通して深める</h2></div><p>基礎から実践へ。必要な記事から読み進められます。</p></div>
+      <div className="section-head"><div><p className="section-index">READING PATH</p><h2>育成の考え方から、具体的な練習計画へ</h2></div><p>育成方針、研究の読み方、年間計画の順に紹介します。関心のある記事から読むこともできます。</p></div>
       <div className="rba-study-links">
-        <Link href="/ja/journal/youth-coaching-guidelines"><span>01 / 基本方針</span><strong>U8〜U15の育成・判断力・成長評価</strong><small>年代ごとの経験、練習の組み立て方、評価の視点</small><ArrowRight size={18}/></Link>
-        <Link href="/ja/journal/okinawa-coaching-references#how-to-read"><span>02 / 研究を読む</span><strong>参考文献の読み方と現場への応用</strong><small>要旨・方法・結果・限界をどう確認するか</small><ArrowRight size={18}/></Link>
-        <Link href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026"><span>03 / 計画の実例</span><strong>試合から逆算して考える年間育成計画</strong><small>実際の計画ではなく、条件付きの年間計画モデルとして読む</small><ArrowRight size={18}/></Link>
+        <Link href="/ja/journal/youth-coaching-guidelines"><span>01 / 育成方針</span><strong>U8〜U15の育成と成長の捉え方</strong><small>年代に応じた経験、練習の組み立て方、選手の変化を見る視点</small><ArrowRight size={18}/></Link>
+        <Link href="/ja/journal/okinawa-coaching-references#how-to-read"><span>02 / 参考文献</span><strong>研究を読み解き、練習に生かす</strong><small>研究の目的・方法・結果・限界をどう確認するか</small><ArrowRight size={18}/></Link>
+        <Link href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026"><span>03 / 計画の組み立て方</span><strong>試合から逆算して考える年間育成計画</strong><small>大会日程などを仮定した年間計画の一例。実測データに基づく計画ではありません</small><ArrowRight size={18}/></Link>
       </div>
     </section>:null}
 
