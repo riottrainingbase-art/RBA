@@ -88,7 +88,10 @@ for(const htmlFile of htmlFiles){
 
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const sitemapUrls=(sitemap.match(/<url>/g)||[]).length;
-if(sitemapUrls!==htmlFiles.length)failures.push("Sitemap contains "+sitemapUrls+" routes vs "+htmlFiles.length+" HTML pages");
+if(sitemap.includes("https://www.jpnentry.com/404</loc>"))failures.push("404 URL must not enter sitemap");
+if(!sitemap.includes("https://www.jpnentry.com/partners</loc>"))failures.push("Partnership page missing from sitemap");
+const indexablePages=htmlFiles.filter(f=>!f.endsWith("/404.html")).length;
+if(sitemapUrls!==indexablePages)failures.push("Sitemap contains "+sitemapUrls+" routes vs "+indexablePages+" indexable HTML pages");
 console.log("JPNentry quality gate — "+htmlFiles.length+" pages, "+sitemapUrls+" sitemap entries, "+broken+" broken local links.");
 if(warnings.length)console.log("Warnings ("+warnings.length+"):",warnings.slice(0,12));
 if(failures.length){console.error("FAILURES ("+failures.length+"):",failures.slice(0,45));process.exitCode=1}
