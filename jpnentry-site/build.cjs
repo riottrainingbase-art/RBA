@@ -12,13 +12,13 @@ function buildSite() {
   const mail = "jpnentry.sales@gmail.com";
   const write = (p,v)=>{const f=path.join(out,p);fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,v);};
   const nav = (ja=false)=>`<header class="site-header"><div class="wrap header-inner">
-   <a class="brand" href="${ja?"/ja":"/"}" aria-label="JPNentry home"><span class="brand-mark">J<span>.</span></span><span class="brand-type">JPN<span>entry</span><small>JAPAN SOURCING DESK</small></span></a>
-   <nav class="main-nav" aria-label="Main navigation"><a href="/automotive">${ja?"自動車部品":"AUTO PARTS"}</a><a href="/industrial">${ja?"産業部品":"INDUSTRIAL"}</a><a href="/vehicles">${ja?"車両調達":"VEHICLES"}</a><a href="/blog">${ja?"記事":"INSIGHTS"}</a><a href="/trust">${ja?"信頼・取引":"TRUST"}</a></nav>
-   <div class="header-actions"><a class="lang" href="${ja?"/":"/ja"}">${ja?"EN":"日本語"}</a><a class="btn btn-small" href="${rfq}" target="_blank" rel="noopener">SEND RFQ <span aria-hidden="true">↗</span></a></div>
+   <a class="brand" href="${ja?"/ja":"/"}" aria-label="JPNentry — home"><span class="brand-emblem" aria-hidden="true"><svg viewBox="0 0 48 48" role="img" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="8" fill="currentColor"/><path d="M31 12v20c0 6-4.6 10-11 10-3.6 0-6.6-1.2-9-3.7" fill="none" stroke="#F6F6F2" stroke-width="5.5" stroke-linecap="square"/><path d="M15 12h23" fill="none" stroke="#CF8068" stroke-width="4.5"/></svg></span><span class="brand-lockup"><strong>JPN<span>entry</span></strong><small>JAPAN SOURCING DESK</small></span></a>
+   <nav class="main-nav" aria-label="Main navigation"><a href="/automotive">${ja?"自動車部品":"AUTO PARTS"}</a><a href="/industrial">${ja?"産業部品":"INDUSTRIAL"}</a><a href="/vehicles">${ja?"車両調達":"VEHICLES"}</a><a href="/blog">${ja?"記事":"INSIGHTS"}</a><a href="/about">${ja?"会社概要":"ABOUT"}</a><a href="/contact">${ja?"問い合わせ":"CONTACT"}</a><a class="menu-rfq" href="${rfq}" target="_blank" rel="noopener">${ja?"見積依頼":"REQUEST A QUOTE"} ↗</a></nav>
+   <div class="header-actions"><a class="lang" href="${ja?"/":"/ja"}">${ja?"EN":"日本語"}</a><a class="btn btn-small" href="${rfq}" target="_blank" rel="noopener">REQUEST A QUOTE <span aria-hidden="true">↗</span></a></div>
    <button class="menu-toggle" aria-label="Toggle navigation" onclick="document.body.classList.toggle('menu-open')">☰</button>
    </div></header>`;
   const footer = `<footer class="footer"><div class="wrap">
-    <div class="footer-top"><div><a class="brand footer-brand" href="/"><span class="brand-mark">J<span>.</span></span><span class="brand-type">JPN<span>entry</span><small>JAPAN SOURCING DESK</small></span></a><p>Japan-side sourcing, verification and export coordination for exact buyer requirements.</p></div>
+    <div class="footer-top"><div><a class="brand footer-brand" href="/" aria-label="JPNentry — home"><span class="brand-emblem" aria-hidden="true"><svg viewBox="0 0 48 48" role="img" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="8" fill="currentColor"/><path d="M31 12v20c0 6-4.6 10-11 10-3.6 0-6.6-1.2-9-3.7" fill="none" stroke="#F6F6F2" stroke-width="5.5" stroke-linecap="square"/><path d="M15 12h23" fill="none" stroke="#CF8068" stroke-width="4.5"/></svg></span><span class="brand-lockup"><strong>JPN<span>entry</span></strong><small>JAPAN SOURCING DESK</small></span></a><p>Japan-side sourcing, verification and export coordination for exact buyer requirements.</p></div>
     <div><strong>EXPLORE</strong><a href="/automotive">Automotive parts</a><a href="/industrial">Industrial sourcing</a><a href="/vehicles">Vehicle sourcing</a><a href="/blog">Insights & buyer guides</a></div>
     <div><strong>WORK WITH US</strong><a href="${rfq}" target="_blank" rel="noopener">Submit an RFQ ↗</a><a href="mailto:${mail}">${mail}</a><a href="/legal">Privacy & service terms</a><a href="/trust">Trust & verification</a></div></div>
     <div class="footer-bottom"><span>© ${new Date().getFullYear()} JPNentry · Operated by Masato Nishio, Japan</span><span>Independent sourcing desk · Not an authorized distributor of named manufacturers.</span></div>
@@ -29,7 +29,7 @@ function buildSite() {
     <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
     <title>${h(title)} | JPNentry</title><meta name="description" content="${h(description)}">
     <link rel="canonical" href="${canonical}"><meta property="og:title" content="${h(title)} | JPNentry"><meta property="og:description" content="${h(description)}"><meta property="og:type" content="website">
-    <meta name="theme-color" content="#101b27"><link rel="stylesheet" href="/style.css">
+    <meta name="theme-color" content="#172326"><link rel="stylesheet" href="/style.css">
     <script defer src="/app.js"></script></head><body>${nav(lang==="ja")}${body}${footer}</body></html>`;
   };
   const cta=(title="One exact requirement is enough.",desc="Part number, vehicle specification or product link — send the details. We will check whether a legitimate Japan-side route exists.")=>
@@ -38,17 +38,11 @@ function buildSite() {
   const home = `<main>
   <section class="hero"><div class="wrap hero-grid"><div class="hero-copy">
     <div class="micro-pill"><span class="live-dot"></span> JAPAN-BASED · BUYER-LED SOURCING</div>
-    <h1>Find the exact.<br><em>Verify the route.</em><br>Move with clarity.</h1>
-    <p class="hero-desc">Japan-side sourcing and verification for genuine auto parts, industrial components and specialized vehicles. One exact requirement. An evidence-based quote — or a clear no-go.</p>
+    <h1>Source in Japan.<br><em>Decide with clarity.</em></h1>
+    <p class="hero-desc">Buyer-led sourcing for Japanese automotive parts, industrial components and specialized vehicles. One precise requirement. One commercially grounded answer.</p>
     <div class="hero-buttons"><a class="btn btn-primary" href="${rfq}" target="_blank" rel="noopener">SEND ONE REQUIREMENT <span>↗</span></a><a class="btn btn-outline" href="#services">EXPLORE WHAT WE SOURCE <span>↓</span></a></div>
-    <div class="hero-under"><span>INDEPENDENT SOURCING</span><span>NO INVENTORY CLAIMS WITHOUT VERIFICATION</span><span>GLOBAL B2B ENQUIRIES</span></div>
-  </div><div class="hero-graphic" aria-label="Illustration of a verified sourcing workflow">
-    <div class="graphic-top"><span>JPN / SOURCE CHECK</span><span>JP → GLOBAL</span></div>
-    <div class="scope-line"></div><div class="graphic-box box-a"><small>01 / BUYER REQUIREMENT</small><strong>EXACT MPN / VIN</strong><span>◈ &nbsp; SPECIFICATION RECEIVED</span></div>
-    <div class="graphic-arrow">↓</div><div class="graphic-box box-b"><small>02 / JAPAN VERIFICATION</small><strong>CHECK REAL SUPPLY</strong><span>◉ &nbsp; PRICE · CONDITION · ROUTE</span></div>
-    <div class="graphic-arrow">↓</div><div class="graphic-box box-c"><small>03 / COMMERCIAL DECISION</small><strong>QUOTE <i>OR</i> NO-GO</strong><span>✓ &nbsp; NO PROCUREMENT UNTIL APPROVED</span></div>
-    <div class="graphic-foot"><span>JP / 35°40′N</span><span>DOCUMENTED. NOT ASSUMED.</span></div>
-  </div></div></section>
+    <div class="hero-under"><span>INDEPENDENT SOURCING</span><span>REAL SOURCING CHECKS</span><span>GLOBAL B2B BUYERS</span></div>
+  </div><div class="hero-art" aria-hidden="true"><div class="hero-art-head"><span>JPN / THE JAPAN DESK</span><span>REFERENCE — 001</span></div><div class="art-canvas"><span class="art-overline">PRECISION IN PROCUREMENT</span><div class="art-orbit art-orbit-one"></div><div class="art-orbit art-orbit-two"></div><div class="art-axis art-axis-x"></div><div class="art-axis art-axis-y"></div><div class="art-center"><span>JP</span><i>+</i></div><div class="art-location">JAPAN<br>35°40′ N / 139°41′ E</div><span class="art-corner art-corner-tl">+</span><span class="art-corner art-corner-br">+</span></div><div class="art-process"><span><b>01</b> REQUIREMENT</span><span><b>02</b> VERIFICATION</span><span><b>03</b> DECISION</span></div></div></div></section>
   <div class="signal-strip"><div class="wrap"><span>ONE EXACT REQUIREMENT</span><b>✳</b><span>ONE JAPAN-SIDE DESK</span><b>✳</b><span>REALISTIC COMMERCIAL ANSWERS</span></div></div>
   <section class="section services" id="services"><div class="wrap">
     <div class="section-head"><div><p class="eyebrow">01 / CAPABILITIES</p><h2>Source what<br><em>matters.</em></h2></div><p>We are built for specific requirements, not an unverified catalogue. Tell us exactly what is missing or hard to buy.</p></div>
@@ -68,9 +62,9 @@ function buildSite() {
   ${cta()}</main>`;
   write("index.html",page("Japan Sourcing Desk | Genuine Parts, Industrial MPNs & Vehicles","Independent Japan sourcing and verification for genuine Japanese auto parts, industrial MPNs and specialized vehicles. Send an exact RFQ for a quote or no-go.",home,"/"));
   const jaHome=`<main><section class="hero"><div class="wrap hero-grid"><div class="hero-copy">
-  <div class="micro-pill"><span class="live-dot"></span> 日本拠点 · BtoB調達・確認窓口</div><h1>必要なものを、<br><em>日本で探す。</em><br>確かな条件で。</h1><p class="hero-desc">日本車の純正部品、産業機器の部品、特定仕様の車両まで。型番・数量・仕向地を伺い、日本側の実際の調達可否を確認したうえで、見積または対応不可の判断をご案内します。</p>
+  <div class="micro-pill"><span class="live-dot"></span> 日本拠点 · BtoB調達・確認窓口</div><h1>日本で探す。<br><em>確かめて、提案する。</em></h1><p class="hero-desc">日本車の純正部品、産業機器の部品、特定仕様の車両まで。型番・数量・仕向地を伺い、日本側の実際の調達可否を確認したうえで、見積または対応不可の判断をご案内します。</p>
   <div class="hero-buttons"><a class="btn btn-primary" href="${rfq}" target="_blank" rel="noopener">見積依頼を送る ↗</a><a class="btn btn-outline" href="#services">対応領域を見る ↓</a></div><div class="hero-under"><span>実際の在庫・条件を確認</span><span>見積依頼は非拘束</span><span>日本から海外へ</span></div>
-  </div><div class="hero-graphic"><div class="graphic-top"><span>JPN / SOURCE CHECK</span><span>JAPAN → GLOBAL</span></div><div class="scope-line"></div><div class="graphic-box box-a"><small>01 / 依頼内容</small><strong>型番 / 車両仕様</strong><span>◈ &nbsp;必要条件を確認</span></div><div class="graphic-arrow">↓</div><div class="graphic-box box-b"><small>02 / 日本側の確認</small><strong>調達経路を検証</strong><span>◉ &nbsp;価格・状態・納期</span></div><div class="graphic-arrow">↓</div><div class="graphic-box box-c"><small>03 / 商談判断</small><strong>見積 <i>または</i> 対応不可</strong><span>✓ &nbsp;承認前に仕入れません</span></div><div class="graphic-foot"><span>JAPAN SOURCING DESK</span><span>検証してから提示</span></div></div></div></section>
+  </div><div class="hero-art" aria-hidden="true"><div class="hero-art-head"><span>JPN / THE JAPAN DESK</span><span>REFERENCE — 001</span></div><div class="art-canvas"><span class="art-overline">PRECISION IN PROCUREMENT</span><div class="art-orbit art-orbit-one"></div><div class="art-orbit art-orbit-two"></div><div class="art-axis art-axis-x"></div><div class="art-axis art-axis-y"></div><div class="art-center"><span>JP</span><i>+</i></div><div class="art-location">JAPAN<br>35°40′ N / 139°41′ E</div><span class="art-corner art-corner-tl">+</span><span class="art-corner art-corner-br">+</span></div><div class="art-process"><span><b>01</b> REQUIREMENT</span><span><b>02</b> VERIFICATION</span><span><b>03</b> DECISION</span></div></div></div></section>
   <div class="signal-strip"><div class="wrap"><span>型番を一つ</span><b>✳</b><span>日本側で確認</span><b>✳</b><span>根拠のあるご提案</span></div></div>
   <section class="section services" id="services"><div class="wrap"><div class="section-head"><div><p class="eyebrow">01 / 対応領域</p><h2>調達先を探す<br><em>パートナーとして。</em></h2></div><p>幅広い在庫を保有しているという意味ではありません。個別の型番・仕様に対して、実際の日本国内の入手経路を調査します。</p></div><div class="service-grid">
   ${serviceCard("01","自動車部品","日本車の<br>純正部品","Toyota、Lexusなどの型番指定品、入手困難品、純正・OEM部品の調達可否を確認。","/automotive")}
