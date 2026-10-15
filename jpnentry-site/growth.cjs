@@ -221,9 +221,7 @@ module.exports = function growthUpgrade(ctx){
   }
   write(rel,html);
  }
- const files=[];
- walk(out); // allFiles already captured before file modifications, includes all new pages 
- const routes=allFiles.map(f=>"/"+path.relative(out,f).replace(/\\/g,"/").replace(/(^|\/)index\.html$/,"").replace(/\/$/,"")).map(x=>x==="/"?"/":x);
+  const routes=allFiles.map(f=>"/"+path.relative(out,f).replace(/\\/g,"/").replace(/(^|\/)index\.html$/,"").replace(/\/$/,"")).map(x=>x==="/"?"/":x);
  const sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+[...new Set(routes)].map(u=>`<url><loc>${origin}${u}</loc></url>`).join("")+"</urlset>";
  write("sitemap.xml",sitemap);
  fs.copyFileSync(path.join(__dirname,"growth.css"),path.join(out,"growth.css"));
