@@ -3,6 +3,7 @@ export const metadata: Metadata = {
  title:"RBA育成指導指針｜U8〜U15の育成と成長の捉え方 | RBA JOURNAL",
  description:"RBAが現場指導者へ共有する育成の基本方針。U8〜U15の年代ごとの指導の考え方、判断力を育てる練習、成長の捉え方、年間計画と4週間の練習計画の立て方を解説します。",
  alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/youth-coaching-guidelines"},
+ openGraph:{title:"RBA育成指導指針｜U8〜U15の育成と成長の捉え方",description:"発達・判断力・成長評価と練習設計を、研究と実践に分けて解説します。",url:"https://riotbasketballacademy.com/ja/journal/youth-coaching-guidelines",siteName:"Riot Basketball Academy",locale:"ja_JP",type:"article"},twitter:{card:"summary_large_image",title:"RBA育成指導指針｜U8〜U15",description:"育成年代の練習・判断・評価を考えるRBA公式指導資料。"},
 };
 const ageData=[
  {label:"U8",focus:"バスケットボールを好きになるための土台",experience:"走る、止まる、方向を変える、投げる、捕る、相手を避ける、空いている場所を見つける。遊びの中で多様な動きとボールに親しむ。",practice:"追いかけっこを伴うボール遊び、1対1の簡単な攻防、短いゲーム。説明より体験を多くする。",watch:"活動に参加できるか。相手や空間に気づいたか。失敗後にももう一度挑戦できたか。"},
