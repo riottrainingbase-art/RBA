@@ -12,7 +12,7 @@ const ageData=[
 ];
 const refs=[
  {author:"Bergeron et al. (2015)",title:"International Olympic Committee consensus statement on youth athletic development",url:"https://doi.org/10.1136/bjsports-2015-094962",note:"発達・成熟の個人差、健康、継続的な参加に配慮した育成の専門家声明。"},
- {author:"Renshaw et al. (2019)",title:"The Constraints-Led Approach: Principles for Sports Coaching and Practice Design",url:"https://www.routledge.com/The-Constraints-Led-Approach-Principles-for-Sports-Coaching-and-Practice/p/book/9781138104068",note:"個人・環境・課題の条件を調整する練習設計の考え方。"},
+ {author:"Renshaw et al. (2019)",title:"The Constraints-Led Approach: Principles for Sports Coaching and Practice Design",url:"https://doi.org/10.4324/9781315102351",note:"個人・環境・課題の条件を調整する練習設計の考え方。"},
  {author:"Oslin, Mitchell & Griffin (1998)",title:"The Game Performance Assessment Instrument (GPAI): Development and Preliminary Validation",url:"https://doi.org/10.1123/jtpe.17.2.231",note:"ゲーム中の判断、技能の実行、サポートなどを分けて観察する評価方法の原著。"},
  {author:"Clemente et al. (2021)",title:"Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players",url:"https://doi.org/10.3389/fpsyg.2021.667041",note:"少人数ゲームによる技術面への影響を扱うレビュー。戦術判断への効果を無条件に保証するものではない。"}
 ];
@@ -121,6 +121,7 @@ export default function Page(){return <main style={{maxWidth:910,margin:"0 auto"
  <S id="文献"><H>12　参考文献</H>
  <p>以下は基本方針を考えるために参照した資料です。研究で確認された知見と、RBAが提案する練習例は区別して読んでください。</p>
  {refs.map((r,i)=><div key={r.title} style={{padding:"14px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,color:"#666",marginBottom:2}}>参考文献 {i+1}　{r.author}</p><p style={{fontWeight:600,margin:"4px 0"}}>{r.title}</p><p style={{fontSize:14,margin:"4px 0 10px"}}>{r.note}</p><a style={{color:"#333",overflowWrap:"anywhere",fontSize:14}} target="_blank" rel="noopener noreferrer" href={r.url}>原典・出版社のページを開く ↗</a></div>)}
+ <p style={{marginTop:24}}><a href="/ja/journal/research" style={{color:"#333",textDecoration:"underline",fontWeight:700}}>参考文献シリーズ｜研究の内容・限界・練習への応用を読む →</a></p>
  <p style={{marginTop:22}}>論文の要旨・方法・結果・限界の読み方や、各文献の解説は、<a href="/ja/journal/okinawa-coaching-references#how-to-read" style={{color:"#333",textDecoration:"underline"}}>参考文献の読み方・現場への応用ガイド</a>で詳しく紹介しています。</p>
  <p>年間の指導方針を具体的な練習計画につなげたい方は、<a href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026" style={{color:"#333",textDecoration:"underline"}}>試合から逆算して考える年間育成計画</a>も参考になります。実際の選手の記録に基づく完成計画ではなく、大会日程などを仮定した年間計画の例としてご覧ください。</p>
  </S>
