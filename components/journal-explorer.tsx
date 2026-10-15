@@ -35,10 +35,10 @@ const copy = {
     kicker: "ALL ARTICLES",
     title: "知りたいことから探す。",
     lead: "カテゴリー、読む人、キーワードから記事を探せます。",
-    search: "例：試合に出られない、U15、スクリーン、捻挫…",
+    search: "キーワードで検索（例：出場時間、U15、スクリーン、膝の痛み）",
     category: "記事の種類",
     topic: "カテゴリー",
-    audience: "対象",
+    audience: "読む人",
     any: "すべて",
     allPeople: "すべての方",
     families: "保護者",
@@ -189,7 +189,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
         </label>
 
         {quickTerms.length ? <div className="journal-quick-search">
-          <span>よく読まれるテーマ</span>
+          <span>検索キーワードの例</span>
           <div>{quickTerms.map(term=><button type="button" key={term} onClick={() => { setQuery(term); setCategory("all"); setTopic("all"); setAudience("any"); setVisible(12); }}>{term}</button>)}</div>
         </div> : null}
 
@@ -203,7 +203,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
           </div>
         </div>:null}
 
-        {locale==="ja"?<details className="journal-extra-filters"><summary>記事の種類でさらに絞り込む</summary><div className="journal-filter-row">
+        {locale==="ja"?<details className="journal-extra-filters"><summary>記事の種類でさらに絞り込む{category!=="all"?`（${c.categories[category as keyof typeof c.categories]||category}を選択中）`:""}</summary><div className="journal-filter-row">
           <span>{c.category}</span>
           <div>
             <button className={category === "all" ? "is-active" : ""} onClick={() => { setCategory("all"); resetVisible(); }}>{c.any}</button>
