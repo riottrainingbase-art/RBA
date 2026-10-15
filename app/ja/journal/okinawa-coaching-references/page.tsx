@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = { title:"育成年代の指導に役立つ研究と実践 | RBA JOURNAL",description:"発達段階、プレー中の判断、選手の成長の捉え方について、研究の知見と練習への生かし方を整理しました。",alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/okinawa-coaching-references"}};
 const refs=[
 ["Bergeron et al. (2015)","International Olympic Committee consensus statement on youth athletic development","https://doi.org/10.1136/bjsports-2015-094962","子どもの発達や成熟の個人差に配慮し、健康と長期的な競技参加を大切にすることを提言しています。特定の練習メニューの効果を調べた研究ではありません。"],
-["Renshaw et al. (2019)","The Constraints-Led Approach: Principles for Sports Coaching and Practice Design","https://www.routledge.com/The-Constraints-Led-Approach-Principles-for-Sports-Coaching-and-Practice/p/book/9781138104068","選手自身の特徴、周囲の環境、練習のルールなどを調整することで、学びやすい状況をつくる考え方です。特定の2対1練習の効果を保証するものではありません。"],
+["Renshaw et al. (2019)","The Constraints-Led Approach: Principles for Sports Coaching and Practice Design","https://doi.org/10.4324/9781315102351","選手自身の特徴、周囲の環境、練習のルールなどを調整することで、学びやすい状況をつくる考え方です。特定の2対1練習の効果を保証するものではありません。"],
 ["Oslin, Mitchell & Griffin (1998)","The Game Performance Assessment Instrument (GPAI): Development and Preliminary Validation","https://doi.org/10.1123/jtpe.17.2.231","試合中の判断、技術の実行、ボールを持たないときの動きなどを分けて観察するための評価方法です。このページの記録例は、GPAIの正式な採点方法ではありません。"],
 ["Clemente et al. (2021)","Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players: A Systematic Review and Meta-Analysis","https://doi.org/10.3389/fpsyg.2021.667041","若年チームスポーツ選手を対象に、少人数ゲームを用いた介入研究6件を分析し、技術実行への改善効果を報告しています。ただし、採択された6件に戦術行動を評価した研究はありませんでした。バスケットボールの判断力への効果を直接示した研究として扱うことはできません。"]
 ];
@@ -100,7 +100,8 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 
 <section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>10　参考文献と原典</h2>{refs.map(([author,title,url,note],i)=><div key={title} style={{padding:"18px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,margin:0}}>文献 {String(i+1).padStart(2,"0")} / {author}</p><p style={{fontWeight:600}}>{title}</p><p>{note}</p><a href={url} target="_blank" rel="noopener noreferrer" style={{color:"#222",overflowWrap:"anywhere"}}>原典・出版社のページを開く ↗</a></div>)}</section>
 <p style={{fontSize:13,color:"#666",marginTop:50}}>RBA JOURNAL · 参考文献ガイド／更新日：2026年10月15日</p><nav aria-label="関連する記事" style={{marginTop:36,borderTop:"1px solid #aaa",paddingTop:20,display:"grid",gap:12}}>
-<strong>関連する記事</strong>
+<strong>関連する記事・参考文献シリーズ</strong>
+<a href="/ja/journal/research" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>参考文献シリーズ｜7つの研究を日本語で読み解く →</a>
 <a href="/ja/journal/youth-coaching-guidelines" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>育成の基本方針｜U8〜U15の指導と成長の捉え方 →</a>
 <a href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>年間計画の例｜試合日程を踏まえた育成計画の立て方 →</a>
 <a href="/ja/journal/coaches" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>指導者向けの記事一覧を見る →</a>
