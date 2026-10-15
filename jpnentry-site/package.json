@@ -1,0 +1,12 @@
+{
+  "name": "jpnentry-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Independent code-managed JPNentry company website",
+  "scripts": {
+    "build": "node build.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
