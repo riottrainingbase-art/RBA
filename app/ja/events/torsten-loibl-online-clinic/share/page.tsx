@@ -14,10 +14,20 @@ const shareText = [
   "詳細・申込：" + clinicUrl,
 ].join("\n\n");
 
+const shareTitle = "11月25日 トーステン・ロイブル氏オンライン講習｜公式紹介文";
+const shareDescription = "練習では入るのに試合で打てない。シューター育成・練習設計・スペーシングを学ぶ90分のオンライン講習。LIVE 3,300円、録画4,400円。日本語逐次通訳あり。";
+
 export const metadata: Metadata = {
-  title: "11月25日 トーステン・ロイブル氏オンライン講習｜公式紹介文・共有用",
-  description: "RBA主催オンライン指導者講習（11月25日）の紹介文と公式リンクをまとめた共有ページです。",
+  title: shareTitle,
+  description: shareDescription,
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/torsten-loibl-online-clinic/share" },
+  openGraph: {
+    title: shareTitle, description: shareDescription,
+    url: "https://riotbasketballacademy.com/ja/events/torsten-loibl-online-clinic/share",
+    locale: "ja_JP", type: "website", siteName: "Riot Basketball Academy",
+    images: [{ url: "/rba-court-hero.png", width: 1664, height: 935, alt: "Riot Basketball Academy：バスケットボールの育成と指導者向け講習" }],
+  },
+  twitter: { card: "summary_large_image", title: shareTitle, description: shareDescription, images: ["/rba-court-hero.png"] },
 };
 
 export default function TorstenSharePage() {
