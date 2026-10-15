@@ -4,7 +4,7 @@ const refs=[
 ["Bergeron et al. (2015)","International Olympic Committee consensus statement on youth athletic development","https://doi.org/10.1136/bjsports-2015-094962","子どもの発達や成熟の個人差に配慮し、健康と長期的な競技参加を大切にすることを提言しています。特定の練習メニューの効果を調べた研究ではありません。"],
 ["Renshaw et al. (2019)","The Constraints-Led Approach: Principles for Sports Coaching and Practice Design","https://www.routledge.com/The-Constraints-Led-Approach-Principles-for-Sports-Coaching-and-Practice/p/book/9781138104068","選手自身の特徴、周囲の環境、練習のルールなどを調整することで、学びやすい状況をつくる考え方です。特定の2対1練習の効果を保証するものではありません。"],
 ["Oslin, Mitchell & Griffin (1998)","The Game Performance Assessment Instrument (GPAI): Development and Preliminary Validation","https://doi.org/10.1123/jtpe.17.2.231","試合中の判断、技術の実行、ボールを持たないときの動きなどを分けて観察するための評価方法です。このページの記録例は、GPAIの正式な採点方法ではありません。"],
-["Clemente et al. (2021)","Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players: A Systematic Review and Meta-Analysis","https://doi.org/10.3389/fpsyg.2021.667041","少人数で行うゲーム形式の練習について、技術面での改善が報告されています。一方、このレビューに含まれた研究では戦術的な行動の変化を評価できておらず、判断力が必ず向上するとまでは言えません。"]
+["Clemente et al. (2021)","Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players: A Systematic Review and Meta-Analysis","https://doi.org/10.3389/fpsyg.2021.667041","若年チームスポーツ選手を対象に、少人数ゲームを用いた介入研究6件を分析し、技術実行への改善効果を報告しています。ただし、採択された6件に戦術行動を評価した研究はありませんでした。バスケットボールの判断力への効果を直接示した研究として扱うことはできません。"]
 ];
 const sections=[
 ["同じ学年でも、成長や経験には違いがある","同じU12の選手でも、身体の成長の度合い、競技経験、練習内容の理解度、疲れ方には違いがあります。年代ごとの目安は大切にしながらも、一人ひとりの様子を確かめ、練習の難しさや運動負荷を調整することが大切です。"],
@@ -56,7 +56,7 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 <p><strong>Bergeronら（2015）：</strong>「何歳なら何ができるべきか」という一覧表を探すのではなく、身体的な成熟や健康、継続して競技に参加できる環境をどう考えるかに注目します。これはIOCの合意声明です。</p>
 <p><strong>Renshawら（2019）：</strong>選手、課題、環境の条件を変えると、どのような判断や動きが必要になるのかを考えます。理論を紹介する書籍であり、特定メニューの効果を直接検証した原著論文ではありません。</p>
 <p><strong>Oslinら（1998）：</strong>ゲーム中の判断と技能の実行を分けて捉える発想を学びます。評価項目の定義と採点手順を確認し、RBAの簡易記録例を正式なGPAIと混同しないことが大切です。</p>
-<p><strong>Clementeら（2021）：</strong>レビューの結果だけでなく、採択された研究が何を測定していたかを確認します。技術面の変化と、戦術的な判断の変化を一つの成果として扱わないことが重要です。</p>
+<p><strong>Clementeら（2021）：</strong>採択された6研究が測定したのは技術実行で、戦術行動の評価は含まれていませんでした。少人数ゲームの研究結果を、そのままバスケットボールの判断力向上の証拠としないことが大切です。</p>
 <h3 style={{fontSize:19,marginTop:29}}>研究を練習計画に生かすときの順番</h3>
 <p><strong>① 課題を決める：</strong>例えば「2対1で、守備者を見ずに早くパスを出してしまう」。</p>
 <p><strong>② 研究を手がかりに練習を考える：</strong>相手の動きを見る必要が生まれるように、守備の開始位置やスペースを調整する。</p>
@@ -66,7 +66,39 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 <p style={{borderLeft:"2px solid #666",paddingLeft:17,marginTop:26}}>「研究で効果が示されているから、この練習だけで十分だ」と決めつけるのは避けたいところです。研究は指導を考えるための材料であり、選手一人ひとりの成長を保証する説明書ではありません。</p>
 <p style={{fontSize:13,color:"#666"}}>文献の内容を詳しく確かめる場合は、リンク先の原著論文や出版社の資料を確認してください。要旨のみで判断できない点は、全文や研究方法を確認する必要があります。</p>
 </section>
-<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>08　参考文献と原典</h2>{refs.map(([author,title,url,note],i)=><div key={title} style={{padding:"18px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,margin:0}}>文献 {String(i+1).padStart(2,"0")} / {author}</p><p style={{fontWeight:600}}>{title}</p><p>{note}</p><a href={url} target="_blank" rel="noopener noreferrer" style={{color:"#222",overflowWrap:"anywhere"}}>原典・出版社のページを開く ↗</a></div>)}</section>
+
+<section id="evidence-map" style={{borderTop:"1px solid #bbb",marginTop:55,paddingTop:24}}>
+<h2 style={{fontFamily:"serif",fontSize:27}}>08　研究で言えること・言えないこと</h2>
+<p>研究結果を紹介するときは、「その資料が直接扱ったこと」と「指導者が現場で応用するために考えたこと」を分けます。以下は本ページで扱う文献の位置づけです。</p>
+{[
+["IOC合意声明（2015）","発達・成熟の個人差や、健康で継続的なスポーツ参加を大切にする方針","U8からU15までの唯一の練習順序を証明したわけではない","一人ひとりの発達や負荷に合わせて課題を調整する"],
+["制約主導アプローチの理論書（2019）","選手・課題・環境の条件を調整する練習設計の考え方","特定の2対1練習の効果を直接証明したものではない","守備者の位置やスペースを変えて、判断の機会をつくる"],
+["GPAI原著（1998）","判断、技術の実行、サポートなどを区別してゲーム中の行動を捉える評価方法","このページの簡易観察表の妥当性を保証するものではない","観察項目を明確にし、判断と実行を分けて振り返る"],
+["少人数ゲームのレビュー（2021）","採択6研究で技術実行への改善が報告された","戦術行動の改善は採択研究で評価されていない","判断力の変化を確認したいなら、現場でも判断の行動を観察する"]
+].map(([source,support,limit,application])=><div key={source} style={{padding:"20px 0",borderBottom:"1px solid #ddd"}}>
+<strong style={{display:"block",fontSize:17,marginBottom:9}}>{source}</strong>
+<p><strong>資料から言えること：</strong>{support}</p>
+<p><strong>この資料だけでは言えないこと：</strong>{limit}</p>
+<p><strong>RBAの実践提案：</strong>{application}</p>
+</div>)}
+</section>
+<section id="terms" style={{borderTop:"1px solid #bbb",marginTop:55,paddingTop:24}}>
+<h2 style={{fontFamily:"serif",fontSize:27}}>09　よく出てくる研究用語</h2>
+<dl style={{display:"grid",gap:0}}>
+{[
+["系統的レビュー","事前に決めた方法で関連研究を探し、一定の基準に沿って選び、まとめる研究。"],
+["メタ分析","複数の研究結果を統計的に統合する方法。異なる条件の研究をまとめてよいかも確認が必要です。"],
+["効果量（Effect size）","結果の差や変化がどの程度かを示す指標。数字が大きいだけで実際の指導に重要とは限りません。"],
+["信頼区間（Confidence interval）","推定された効果の不確かさを示す範囲。幅が広い場合は、結果の解釈に慎重さが必要です。"],
+["妥当性（Validity）","その評価方法が、確かめたいことを適切に捉えているかという考え方。"],
+["信頼性（Reliability）","同じ条件で繰り返したときや、別の評価者が見たときに、結果がどの程度一致するかという考え方。"],
+["横断研究・縦断研究","ある時点で比較する研究と、同じ対象の変化を時間をかけて追う研究。"],
+["相関と因果","一緒に変化していることと、一方が他方の原因であることは同じではありません。"]
+].map(([term,definition])=><div key={term} style={{borderBottom:"1px solid #ddd",padding:"14px 0"}}><dt style={{fontWeight:700}}>{term}</dt><dd style={{margin:0}}>{definition}</dd></div>)}
+</dl>
+</section>
+
+<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>10　参考文献と原典</h2>{refs.map(([author,title,url,note],i)=><div key={title} style={{padding:"18px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,margin:0}}>文献 {String(i+1).padStart(2,"0")} / {author}</p><p style={{fontWeight:600}}>{title}</p><p>{note}</p><a href={url} target="_blank" rel="noopener noreferrer" style={{color:"#222",overflowWrap:"anywhere"}}>原典・出版社のページを開く ↗</a></div>)}</section>
 <p style={{fontSize:13,color:"#666",marginTop:50}}>RBA JOURNAL · 参考文献ガイド／更新日：2026年10月15日</p><nav aria-label="関連する記事" style={{marginTop:36,borderTop:"1px solid #aaa",paddingTop:20,display:"grid",gap:12}}>
 <strong>関連する記事</strong>
 <a href="/ja/journal/youth-coaching-guidelines" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>育成の基本方針｜U8〜U15の指導と成長の捉え方 →</a>
