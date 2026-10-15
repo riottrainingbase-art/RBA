@@ -213,6 +213,7 @@ module.exports = function growthUpgrade(ctx){
     html=html.replace('</head>',alternatives+`<link rel="alternate" hreflang="x-default" href="${origin}/${service}"></head>`);
   }
   if(!html.includes('href="/growth.css"'))html=html.replace('</head>','<link rel="stylesheet" href="/growth.css"></head>');
+  if(!html.includes('rel="preconnect" href="https://fonts.googleapis.com"'))html=html.replace('</head>','<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></head>');
   // English-language structured buyer-support pages were generated after the previous metadata pass
   if(isNew){
     const can=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1]||origin+"/"+pathId;
