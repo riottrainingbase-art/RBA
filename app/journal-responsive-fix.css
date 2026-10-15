@@ -1,0 +1,107 @@
+/* RBA JOURNAL: responsive long-form reading, 2026-10-15.
+   Override later desktop grid rules in globals.css at tablet widths. */
+.journal-cms-article .article-body,
+.journal-cms-article .article-body > div { min-width:0; }
+.journal-cms-article .article-body > div > section { min-width:0; }
+.journal-cms-article .article-body p,
+.journal-cms-article .article-body li,
+.journal-cms-article .article-body h2 { overflow-wrap:anywhere; }
+.journal-cms-article .article-body a { overflow-wrap:anywhere; word-break:break-word; }
+.journal-cms-article figure { max-width:100%; }
+.journal-cms-article img,
+.journal-cms-article svg { max-width:100%; height:auto; }
+@media(max-width:1200px) {
+  .journal-cms-article .article-body.section-pad {
+    display:block !important;
+    width:100%; max-width:100%; min-width:0;
+    padding-inline:clamp(18px,4vw,48px) !important;
+  }
+  .journal-cms-article .article-body > aside.article-side-note { display:none !important; }
+  .journal-cms-article .article-body > div {
+    display:block!important;
+    width:min(100%,760px)!important;
+    max-width:760px!important;
+    min-width:0!important;
+    margin-inline:auto!important;
+  }
+  .journal-cms-article .article-body > div > section {
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+  .journal-cms-article .article-body h2 {
+    max-width:100%!important;
+    line-height:1.4;
+    letter-spacing:0;
+    text-wrap:pretty;
+  }
+  .journal-cms-article .article-body section p,
+  .journal-cms-article .article-body section li {
+    max-width:100%!important;
+    word-break:normal;
+    overflow-wrap:anywhere;
+  }
+  .journal-cms-article .article-hero.section-pad,
+  .journal-cms-article .journal-reading-guide.section-pad {
+    min-width:0;max-width:100%;
+  }
+  .journal-cms-article .article-hero {
+    display:block!important;
+    padding-inline:clamp(18px,4vw,48px)!important;
+  }
+  .journal-cms-article .article-hero>* {
+    min-width:0!important;
+    max-width:min(100%,760px)!important;
+    margin-inline:auto!important;
+  }
+}
+@media(max-width:760px) {
+ .journal-cms-article .article-body.section-pad {
+    padding:32px 20px 110px!important;
+ }
+ .journal-cms-article .article-body h2 {
+    font-size:clamp(24px,7vw,32px)!important;
+ }
+ .journal-cms-article .article-body section p,
+ .journal-cms-article .article-body section li {
+    font-size:16px!important;line-height:1.95!important;
+ }
+ .journal-cms-article .article-hero.section-pad {
+    padding-inline:20px!important;
+ }
+ .journal-cms-article .journal-reading-guide {display:block!important;padding-inline:20px!important;}
+ .journal-cms-article .journal-reading-guide > * {width:100%!important;max-width:100%!important;min-width:0!important;}
+ .journal-cms-article .journal-reading-nav {max-width:100%!important;}
+ .journal-cms-article .journal-reading-guide aside{margin-top:20px;}
+ .journal-cms-article .journal-evidence-compact {padding-inline:16px!important;}
+ .journal-cms-article .journal-evidence-compact summary {gap:8px;min-width:0;}
+ .journal-cms-article .journal-evidence-compact summary>* {min-width:0;}
+ .journal-cms-article .journal-evidence-compact summary strong {overflow-wrap:anywhere;}
+ /* Fixed promotional docks must not hide long-form article text. */
+ body:has(.journal-cms-article) .member-dock,
+ body:has(.journal-cms-article) .whatsapp-dock,
+ body:has(.journal-cms-article) .opportunities-dock {display:none!important}
+}
+/* Narrow devices: periodisation graphics must preserve Japanese words. */
+@media(max-width:760px) {
+ .rba-gream-figures .rba-gream-phase-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;}
+ .rba-gream-figures .rba-gream-step-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;}
+ .rba-gream-figures .rba-gream-phase-grid > div,
+ .rba-gream-figures .rba-gream-step-grid > div {min-width:0;overflow-wrap:normal;word-break:keep-all;padding:12px!important;}
+ .rba-gream-figures .rba-gream-phase-grid strong,
+ .rba-gream-figures .rba-gream-step-grid strong {font-size:14px!important;line-height:1.55}
+ .rba-gream-figures .rba-gream-phase-grid b,
+ .rba-gream-figures .rba-gream-step-grid small {font-size:12px!important;line-height:1.5}
+ .rba-gream-figures figure {width:100%!important;max-width:100%!important;min-width:0!important;margin:16px 0!important;padding:14px!important;}
+ .rba-gream-figures .rba-gream-week-table-wrap {overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;}
+ .rba-gream-figures .rba-gream-month-cards {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .rba-gream-figures .rba-gream-desktop-table{display:none}
+}
+@media(max-width:420px) {
+ .rba-gream-figures .rba-gream-month-cards {grid-template-columns:minmax(0,1fr)}
+ .rba-gream-figures .rba-gream-phase-grid,
+ .rba-gream-figures .rba-gream-step-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(min-width:761px) {
+ .rba-gream-figures .rba-gream-month-cards{display:none!important}
+}
