@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Search, X } from "lucide-react";
+import { JOURNAL_TOPICS, getJournalTopic, getJournalTopicLabel, type TopicKey } from "@/lib/journal-topic-taxonomy";
 
 type Locale = "en" | "ja" | "zh-tw" | "ko";
 type JournalItem = {
@@ -33,9 +34,10 @@ const copy = {
   ja: {
     kicker: "ALL ARTICLES",
     title: "知りたいことから探す。",
-    lead: "気になる言葉を入れるか、テーマや対象から絞り込んでください。",
+    lead: "カテゴリー、読む人、キーワードから記事を探せます。",
     search: "例：試合に出られない、U15、スクリーン、捻挫…",
-    category: "テーマ",
+    category: "記事の種類",
+    topic: "カテゴリー",
     audience: "対象",
     any: "すべて",
     allPeople: "すべての方",
@@ -80,6 +82,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
   const quickTerms = locale === "ja" ? ["試合に出られない", "U15", "移籍", "練習量", "怪我", "スクリーン"] : [];
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
+  const [topic, setTopic] = useState("all");
   const [audience, setAudience] = useState("any");
   const [visible, setVisible] = useState(12);
   const [initialised, setInitialised] = useState(false);
@@ -88,13 +91,30 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
     const params=new URLSearchParams(window.location.search);
     const q=params.get("q");
     const cat=params.get("category");
+    const topicParam=params.get("topic");
     const aud=params.get("audience");
     if(q)setQuery(q);
     if(cat)setCategory(cat);
+    if(topicParam && JOURNAL_TOPICS.some(t=>t.key===topicParam))setTopic(topicParam);
     if(aud)setAudience(aud);
     setVisible(12);
     setInitialised(true);
   }, []);
+
+  const indexedItems=useMemo(()=>items.map(item=>({...item,topic:getJournalTopic(item)})),[items]);
+  const topicCounts=useMemo(()=>Object.fromEntries(JOURNAL_TOPICS.map(t=>[t.key,indexedItems.filter(item=>item.topic===t.key).length])) as Record<TopicKey,number>,[indexedItems]);
+
+  useEffect(()=>{
+    if(!initialised || typeof window==="undefined")return;
+    const url=new URL(window.location.href);
+    for(const key of ["q","topic","category","audience"])url.searchParams.delete(key);
+    if(query.trim())url.searchParams.set("q",query.trim());
+    if(locale==="ja" && topic!=="all")url.searchParams.set("topic",topic);
+    if(category!=="all")url.searchParams.set("category",category);
+    if(audience!=="any")url.searchParams.set("audience",audience);
+    const next=url.pathname+url.search+url.hash;
+    if(next!==window.location.pathname+window.location.search+window.location.hash)window.history.replaceState(null,"",next);
+  },[query,topic,category,audience,initialised,locale]);
 
   const availableAudiences = useMemo(() => {
     const values = new Set(items.map(item => item.audience));
@@ -105,16 +125,18 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
     const q = normalize(query.trim());
     const aliases=q?(searchAliases[q]||[]):[];
     const rawTerms=q.split(/\s+/).filter(Boolean);
-    return items
+    return indexedItems
       .map(item => {
+        if (locale==="ja" && topic!=="all" && item.topic!==topic) return null;
         if (category !== "all" && item.category !== category) return null;
         if (audience !== "any" && item.audience !== audience) return null;
         const categoryLabel=c.categories[item.category as keyof typeof c.categories]||item.category;
+        const topicLabel=locale==="ja"?getJournalTopicLabel(item.topic):"";
         const audienceLabel=item.audience==="families"?c.families:item.audience==="coaches"?c.coaches:item.audience==="players"?c.players:item.audience==="partners"?c.partners:c.allPeople;
         const title=normalize(item.title);
         const standfirst=normalize(item.standfirst);
         const evidence=normalize(item.evidence_level||"");
-        const haystack=normalize([item.title,item.standfirst,item.evidence_level||"",categoryLabel,audienceLabel].join(" "));
+        const haystack=normalize([item.title,item.standfirst,item.evidence_level||"",categoryLabel,topicLabel,audienceLabel].join(" "));
         if(!q)return {item,score:0};
         const direct=haystack.includes(q);
         const tokenMatch=rawTerms.length>1&&rawTerms.every(term=>haystack.includes(term));
@@ -130,15 +152,16 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
       .filter(Boolean)
       .sort((a,b)=>(b?.score||0)-(a?.score||0))
       .map(entry=>entry!.item);
-  }, [items, query, category, audience, c]);
+  }, [indexedItems, query, category, topic, audience, c, locale]);
 
   const shown = filtered.slice(0, visible);
-  const hasFilters = Boolean(query || category !== "all" || audience !== "any");
+  const hasFilters = Boolean(query || category !== "all" || topic !== "all" || audience !== "any");
 
   const resetVisible = () => setVisible(12);
   const clear = () => {
     setQuery("");
     setCategory("all");
+    setTopic("all");
     setAudience("any");
     setVisible(12);
   };
@@ -167,10 +190,20 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
 
         {quickTerms.length ? <div className="journal-quick-search">
           <span>よく読まれるテーマ</span>
-          <div>{quickTerms.map(term=><button type="button" key={term} onClick={() => { setQuery(term); setCategory("all"); setAudience("any"); setVisible(12); }}>{term}</button>)}</div>
+          <div>{quickTerms.map(term=><button type="button" key={term} onClick={() => { setQuery(term); setCategory("all"); setTopic("all"); setAudience("any"); setVisible(12); }}>{term}</button>)}</div>
         </div> : null}
 
-        <div className="journal-filter-row">
+        {locale==="ja"?<div className="journal-filter-row journal-topic-filter">
+          <span>{c.topic}</span>
+          <div>
+            <button type="button" aria-pressed={topic==="all"} className={topic==="all"?"is-active":""} onClick={()=>{setTopic("all");resetVisible();}}>すべて<small>{items.length}</small></button>
+            {JOURNAL_TOPICS.map(t=><button type="button" key={t.key} aria-pressed={topic===t.key} className={topic===t.key?"is-active":""} onClick={()=>{setTopic(t.key);resetVisible();}}>
+              {t.title}<small>{topicCounts[t.key]}</small>
+            </button>)}
+          </div>
+        </div>:null}
+
+        {locale==="ja"?<details className="journal-extra-filters"><summary>記事の種類でさらに絞り込む</summary><div className="journal-filter-row">
           <span>{c.category}</span>
           <div>
             <button className={category === "all" ? "is-active" : ""} onClick={() => { setCategory("all"); resetVisible(); }}>{c.any}</button>
@@ -181,7 +214,18 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
               </button>
             ))}
           </div>
-        </div>
+        </div></details>:<div className="journal-filter-row">
+          <span>{c.category}</span>
+          <div>
+            <button className={category === "all" ? "is-active" : ""} onClick={() => { setCategory("all"); resetVisible(); }}>{c.any}</button>
+            {categoryOrder.map(key => (
+              <button key={key} className={category === key ? "is-active" : ""} onClick={() => { setCategory(key); resetVisible(); }}>
+                {c.categories[key]}
+                <small>{items.filter(item => item.category === key).length}</small>
+              </button>
+            ))}
+          </div>
+        </div>}
 
         <div className="journal-filter-row">
           <span>{c.audience}</span>
@@ -206,7 +250,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
           {shown.map(item => (
             <Link href={hrefFor(locale, item.slug)} key={item.slug} className="journal-explorer-card">
               <div className="journal-explorer-meta">
-                <span>{c.categories[item.category as keyof typeof c.categories] || item.category}</span>
+                <span>{locale==="ja"?getJournalTopicLabel(item.topic):c.categories[item.category as keyof typeof c.categories] || item.category}</span>
                 <span>{item.reading}</span>
                 {item.source_count ? <span>{locale === "ja" ? `参考文献 ${item.source_count}` : `${item.source_count} sources`}</span> : null}
               </div>
