@@ -78,7 +78,7 @@ export default function Page(){return <main style={{maxWidth:910,margin:"0 auto"
  <S id="文献"><H>08　参考文献</H>
  <p>以下は基本方針を考えるために参照した資料です。論文で実際に示されたことと、RBAの練習例は同一ではありません。</p>
  {refs.map((r,i)=><div key={r.title} style={{padding:"14px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,color:"#666",marginBottom:2}}>参考文献 {i+1}　{r.author}</p><p style={{fontWeight:600,margin:"4px 0"}}>{r.title}</p><p style={{fontSize:14,margin:"4px 0 10px"}}>{r.note}</p><a style={{color:"#333",overflowWrap:"anywhere",fontSize:14}} target="_blank" rel="noopener noreferrer" href={r.url}>文献・出版社のページを確認 ↗</a></div>)}
- <p style={{marginTop:22}}>参考文献の日本語解説と現場への応用は、<a href="/ja/journal/okinawa-coaching-references" style={{color:"#333"}}>参考文献ガイド</a>もご覧ください。</p>
+ <p style={{marginTop:22}}>論文の要旨・方法・結果・限界の読み方や、各文献の解説は、<a href="/ja/journal/okinawa-coaching-references" style={{color:"#333"}}>参考文献の読み方・現場への応用ガイド</a>で詳しく紹介しています。</p>
  </S>
  <footer style={{borderTop:"1px solid #aaa",marginTop:70,paddingTop:25,fontSize:13,color:"#666"}}>RBA JOURNAL　|　2026年10月15日<br/><a href="/ja/journal" style={{color:"#444"}}>ジャーナル一覧に戻る</a></footer>
  </main>}
