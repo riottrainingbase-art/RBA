@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import Link from "next/link";
 import {researchEntries} from "@/lib/rba-research-series";
-export const metadata:Metadata={title:"参考文献を読み解く｜RBA JOURNAL 研究シリーズ",description:"発達・判断力・ゲーム評価・少人数ゲーム・S&C・負荷管理など、育成年代の指導に役立つ研究を原典とともに解説。",alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/research"}};
+export const metadata:Metadata={title:"参考文献を読み解く｜RBA JOURNAL 研究シリーズ",description:"発達・判断力・ゲーム評価・少人数ゲーム・S&C・負荷管理など、育成年代の指導に役立つ研究を原典とともに解説。",alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/research"},openGraph:{title:"参考文献を読み解く｜RBA JOURNAL",description:"育成年代の指導に役立つ研究を日本語で読み解く。研究結果・限界・実践提案を区別して解説します。",url:"https://riotbasketballacademy.com/ja/journal/research",siteName:"Riot Basketball Academy",locale:"ja_JP",type:"website"},twitter:{card:"summary_large_image",title:"参考文献を読み解く｜RBA JOURNAL",description:"原典・研究の限界・指導への応用を日本語で紹介する7編の研究シリーズ。"}};
 const categories=["すべて","発達・長期育成","S&C・成熟","判断・練習設計","成長評価","少人数ゲーム","負荷・傷害予防","遊び・競技経験"];
 export default function Page(){return <main className="rba-research-shell">
 <p className="rba-research-kicker">RBA JOURNAL / RESEARCH LIBRARY</p>
