@@ -6,7 +6,7 @@ function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const f=
 walk(root);
 const failures=[];
 const warnings=[];
-const expected="/style.css /extra.css /premium.css /growth.css /app.js /favicon.svg /robots.txt /sitemap.xml".split(" ");
+const expected="/theme.css /app.js /favicon.svg /robots.txt /sitemap.xml".split(" ");
 for(const asset of expected){if(!fs.existsSync(path.join(root,asset.slice(1))))failures.push("Missing "+asset)}
 let broken=0;
 const uniqueCanon=new Set();
@@ -20,8 +20,8 @@ for(const f of htmlFiles){
  if(!canon) failures.push(rel+": missing canonical");
  if(h1!==1) failures.push(rel+": expected one H1, found "+h1);
  if(!text.includes("jpnentry.sales@gmail.com")) failures.push(rel+": missing official email");
- if(!text.includes('href="/premium.css"')) failures.push(rel+": missing premium stylesheet");
- if(!text.includes('href="/growth.css"')) failures.push(rel+": missing growth stylesheet");
+ if(!text.includes('href="/theme.css"')) failures.push(rel+": missing unified stylesheet");
+ if(/href="\/(style|extra|premium|growth)\.css"/.test(text)) failures.push(rel+": legacy CSS references still present");
  if(!text.includes('class="brand-lockup"')) failures.push(rel+": missing aligned logo lockup");
  if(text.includes('class="brand-type"')||text.includes('class="hero-graphic"')) failures.push(rel+": legacy identity or hero still present");
  if(!text.includes('href="https://form.jotform.com/262542049350049"')) warnings.push(rel+": no RFQ URL");
@@ -71,9 +71,27 @@ for(const l of ["en","ja","ms","id","zh-Hans","zh-Hant","x-default"]){
  if(!requireHreflang.includes('hreflang="'+l+'"'))failures.push("Missing auto-parts hreflang: "+l);
 }
 
+
+const partnerPage=fs.readFileSync(path.join(root,"partners/index.html"),"utf8");
+const notFound=fs.readFileSync(path.join(root,"404.html"),"utf8");
+const siteHome=fs.readFileSync(path.join(root,"index.html"),"utf8");
+if(!siteHome.includes('class="partner-home"'))failures.push("Homepage has no buyer/supplier partner route");
+if(!siteHome.includes('href="/partners#suppliers"'))failures.push("Supplier flow lacks homepage entrance");
+if(!partnerPage.includes('id="buyers"')||!partnerPage.includes('id="suppliers"'))failures.push("Partners page does not distinguish buyers and suppliers");
+if(!partnerPage.includes('mailto:jpnentry.sales@gmail.com?subject=Japan%20Supplier'))failures.push("Missing direct verified supplier email CTA");
+if(!notFound.includes('content="noindex, follow"'))failures.push("404 must be noindex");
+if(!notFound.includes('href="/rfq"')||!notFound.includes('href="/"'))failures.push("404 page must route users to enquiry or homepage");
+for(const htmlFile of htmlFiles){
+ const text=fs.readFileSync(htmlFile,"utf8");
+ if(!text.includes('href="/partners"'))failures.push(path.relative(root,htmlFile)+": partner page not linked in footer");
+}
+
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const sitemapUrls=(sitemap.match(/<url>/g)||[]).length;
-if(sitemapUrls!==htmlFiles.length)failures.push("Sitemap contains "+sitemapUrls+" routes vs "+htmlFiles.length+" HTML pages");
+if(sitemap.includes("https://www.jpnentry.com/404</loc>"))failures.push("404 URL must not enter sitemap");
+if(!sitemap.includes("https://www.jpnentry.com/partners</loc>"))failures.push("Partnership page missing from sitemap");
+const indexablePages=htmlFiles.filter(f=>!f.endsWith("/404.html")).length;
+if(sitemapUrls!==indexablePages)failures.push("Sitemap contains "+sitemapUrls+" routes vs "+indexablePages+" indexable HTML pages");
 console.log("JPNentry quality gate — "+htmlFiles.length+" pages, "+sitemapUrls+" sitemap entries, "+broken+" broken local links.");
 if(warnings.length)console.log("Warnings ("+warnings.length+"):",warnings.slice(0,12));
 if(failures.length){console.error("FAILURES ("+failures.length+"):",failures.slice(0,45));process.exitCode=1}

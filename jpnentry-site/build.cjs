@@ -149,6 +149,7 @@ function buildSite() {
   fs.copyFileSync(path.join(root,"app.js"),path.join(out,"app.js"));
   require("./enhance.cjs")({out,posts,h,rfq,mail,write,page,cta});
   require("./growth.cjs")({out,posts,h,rfq,mail,write,page,cta});
+  require("./finalize.cjs")({out,posts,h,rfq,mail,write,page,cta});
   console.log("Built "+urls.length+" routes; preserved "+ids.size+" article URLs.");
 }
 buildSite();
