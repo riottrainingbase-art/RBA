@@ -253,7 +253,7 @@ module.exports = function enhanceSite(ctx) {
       const slug=articleSlugOf("/"+rel);
       const p=posts.find(x=>x.slug===slug);
       if(p){
-        html=html.replace(/<article class="prose article-body">[\s\S]*?<\/article>/, '<article class="prose article-body">'+plainToHtml(p.content||p.description)+'</article>');
+        html=html.replace(/<article class="prose article-body">[\s\S]*?<\/article>/, '<article class="prose article-body">'+plainToHtml(String(p.content||p.description).replace(/riot\.training\.base@gmail\.com/gi,mail))+'</article>');
         obj={"@context":"https://schema.org","@type":"Article","headline":p.title,"description":p.description,"datePublished":p.date,"author":{"@type":"Organization","name":"JPNentry"},"publisher":{"@type":"Organization","name":"JPNentry"},"mainEntityOfPage":canonical};
       }
     }
