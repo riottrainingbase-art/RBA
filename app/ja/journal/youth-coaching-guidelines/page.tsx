@@ -1,0 +1,82 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+ title:"RBA育成指導指針｜U8〜U15の育成・判断力・成長評価 | RBA JOURNAL",
+ description:"RBAが現場指導者へ共有する育成の基本方針。U8〜U15の年代別設計、判断力を養う練習、成長を観察する方法、年間・4週間計画の作り方を具体的に解説します。",
+ alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/youth-coaching-guidelines"},
+};
+const ageData=[
+ {label:"U8",focus:"バスケットボールを好きになるための土台",experience:"走る、止まる、方向を変える、投げる、捕る、相手を避ける、空いている場所を見つける。遊びの中で多様な動きとボールに親しむ。",practice:"追いかけっこを伴うボール遊び、1対1の簡単な攻防、短いゲーム。説明より体験を多くする。",watch:"活動に参加できるか。相手や空間に気づいたか。失敗後にももう一度挑戦できたか。"},
+ {label:"U10",focus:"相手を見て、自分で選び始める",experience:"1対1の攻防、基本的なパスとキャッチ、2対1で数的優位を使う経験。成功・失敗の理由を自分の言葉で確かめる。",practice:"守備者がいる1対1、2対1、少人数ゲーム。守備の開始位置やスペースを変える。",watch:"ボールだけでなく守備者を見られたか。パス・ドライブの選択理由を説明できるか。"},
+ {label:"U12",focus:"判断と技術を、ゲームの中で結びつける",experience:"2対1、2対2、3対3でのパス、ドライブ、シュート、スペースの利用。オフボールで仲間を助ける動き。",practice:"数的優位から同数のゲームへ進める。プレー後に短い問いかけを行い、すぐ再挑戦できる時間を確保する。",watch:"選択が状況に合っていたか。選択した技術を実行できたか。ボールを持たない時の動きはどうだったか。"},
+ {label:"U15",focus:"複数の選択肢から判断し、振り返って修正する",experience:"守備の変化や時間・点差に応じた選択。チームの原則を理解しながら、自分たちで状況に適応する経験。",practice:"3対3〜5対5、数的条件や時間制限のある課題。映像や簡易記録を用いた短い振り返り。",watch:"守備の変化への対応、オフボールの役割、プレー中の修正、次の行動を自分で決められるか。"}
+];
+const refs=[
+ {author:"Bergeron et al. (2015)",title:"International Olympic Committee consensus statement on youth athletic development",url:"https://doi.org/10.1136/bjsports-2015-094962",note:"発達・成熟の個人差、健康、継続的な参加に配慮した育成の専門家声明。"},
+ {author:"Renshaw et al. (2019)",title:"The Constraints-Led Approach: Principles for Sports Coaching and Practice Design",url:"https://www.routledge.com/The-Constraints-Led-Approach-Principles-for-Sports-Coaching-and-Practice/p/book/9781138104068",note:"個人・環境・課題の条件を調整する練習設計の考え方。"},
+ {author:"Oslin, Mitchell & Griffin (1998)",title:"The Game Performance Assessment Instrument (GPAI): Development and Preliminary Validation",url:"https://doi.org/10.1123/jtpe.17.2.231",note:"ゲーム中の判断、技能の実行、サポートなどを分けて観察する評価方法の原著。"},
+ {author:"Clemente et al. (2021)",title:"Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players",url:"https://doi.org/10.3389/fpsyg.2021.667041",note:"少人数ゲームによる技術面への影響を扱うレビュー。戦術判断への効果を無条件に保証するものではない。"}
+];
+const H=({children}:{children:React.ReactNode})=><h2 style={{fontFamily:"'Yu Mincho','Hiragino Mincho ProN',serif",fontSize:26,letterSpacing:".02em",lineHeight:1.6,fontWeight:600,margin:"0 0 20px"}}>{children}</h2>;
+const S=({children,id}:{children:React.ReactNode,id:string})=><section id={id} style={{borderTop:"1px solid #b8b8b3",paddingTop:30,marginTop:65}}>{children}</section>;
+export default function Page(){return <main style={{maxWidth:910,margin:"0 auto",padding:"48px 22px 110px",lineHeight:2,color:"#252525",fontFamily:"'Yu Gothic',Meiryo,sans-serif",fontSize:16}}>
+ <header style={{borderBottom:"1px solid #aaa",paddingBottom:17,fontSize:12,letterSpacing:1.2}}>RIOT BASKETBALL ACADEMY　/　JOURNAL</header>
+ <p style={{fontSize:12,marginTop:43,letterSpacing:2}}>COACHING GUIDELINES · 2026</p>
+ <h1 style={{fontFamily:"'Yu Mincho','Hiragino Mincho ProN',serif",fontSize:"clamp(29px,4.6vw,45px)",fontWeight:600,lineHeight:1.52,margin:"14px 0 28px"}}>RBA育成指導指針<br/>U8〜U15の育成・判断力・成長評価</h1>
+ <p style={{fontSize:19,lineHeight:1.85}}>私たちは、子どもたちに何を経験してほしいのか。その経験を、どのような練習で支え、何を見て成長を確かめるのか。</p>
+ <p>本指針は、RBAとして共有する育成の基本的な考え方を示したものです。GREAM OKINAWAを含む現場での年間計画、練習計画、振り返りに活用できるよう、年代別の課題例と観察方法まで整理しました。</p>
+ <p style={{borderLeft:"2px solid #555",paddingLeft:20,marginTop:28}}>大切なのは、すべての年代に同じ正解を当てはめることではありません。RBAが育成の方向性を示し、現場の指導者が選手の状況を観察して計画を作り、実践後に見直すことです。</p>
+ <nav aria-label="目次" style={{padding:"22px 0",marginTop:35,borderTop:"1px solid #ddd",borderBottom:"1px solid #ddd",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(245px,1fr))",gap:7,fontSize:14}}>
+ { [["方針","育成方針"],["発達","発達段階"],["年代","年代別指針"],["判断","判断力の育て方"],["評価","成長の評価"],["計画","年間・4週間計画"],["スタッフ","現場の役割"],["文献","参考文献"]].map(([id,title],i)=><a key={id} href={"#"+id} style={{color:"#333",textDecoration:"none"}}>{String(i+1).padStart(2,"0")}　{title}</a>)}
+ </nav>
+ <S id="方針"><H>01　RBAが大切にする育成の考え方</H>
+ <p>勝利を目指すことと、選手の成長を大切にすることは対立しません。ただし、試合の勝敗だけでは、練習で何を学び、どのような判断ができるようになったかは見えません。</p>
+ <p>指導者は、①安全に参加できること、②挑戦する機会があること、③自分で状況を見て選ぶ経験があること、④振り返りを次の練習につなげられることを、計画の中で確保します。出場機会も重要な学びの場です。出場時間だけで育成の質を測ることはできませんが、試合で挑戦する機会が極端に限られていないかは検討する必要があります。</p>
+ </S>
+ <S id="発達"><H>02　発達段階をどう捉えるか</H>
+ <p>U8やU12といった区分は、指導計画を考えるための目安です。同じ学年でも、身体の成長、競技歴、理解度、運動への自信は異なります。年齢ごとに「できなければならないこと」を一律に決めるのではなく、今できることと次に挑戦できそうなことを把握します。</p>
+ <p>身体的な成熟が早い選手を「才能がある」、遅い選手を「能力が低い」と短絡的に評価しないことも重要です。接触や運動負荷、休息については個人差と健康状態を考慮します。</p>
+ </S>
+ <S id="年代"><H>03　U8〜U15の育成指針</H>
+ <p style={{fontSize:13,color:"#646464"}}>下記はRBAの指導設計例です。研究によって唯一の順序や到達基準が証明されているわけではありません。</p>
+ {ageData.map(d=><article key={d.label} style={{borderBottom:"1px solid #deded9",padding:"18px 0 23px"}}>
+ <h3 style={{fontSize:21,fontWeight:650,margin:"0 0 8px"}}>{d.label}　{d.focus}</h3>
+ <p><strong>用意する経験：</strong>{d.experience}</p><p><strong>練習例：</strong>{d.practice}</p><p><strong>観察すること：</strong>{d.watch}</p>
+ </article>)}</S>
+ <S id="判断"><H>04　判断力を育てる練習をどうつくるか</H>
+ <p>判断力は、指導者から正解を聞いて覚えることだけで身につくものではありません。守備者、味方、スペース、時間といった情報を見ながら、何をするか選ぶ場面が必要です。</p>
+ <h3>U12・2対1の実践例</h3>
+ <p><strong>狙い：</strong>守備者の位置や動きを見て、パスを出すか自分で攻めるかを選ぶ。</p>
+ <p><strong>進め方：</strong>攻撃2人・守備1人で、最初は広めのスペースを設ける。慣れてきたら守備者の開始位置を変える。攻撃側が守備の反応によって選択を変えたか観察する。</p>
+ <p><strong>声かけ：</strong>「パスを選んだとき、守備者はどこにいた？」「次は何を先に見る？」など、短く具体的に問いかける。答えを聞いたら、もう一度プレーする時間を確保する。</p>
+ <p><strong>難易度調整：</strong>選択が難しすぎる場合はスペースを広げる。簡単すぎる場合は守備者の開始位置や制限時間を変更する。一度に多くの条件を変えない。</p>
+ <p>1対1や3対3も同じ考え方です。「何を身につけたいか」を先に決め、狙った判断が実際に必要になる状況を用意します。</p>
+ </S>
+ <S id="評価"><H>05　選手の成長を何によって確かめるか</H>
+ <p>得点、勝敗、シュート成功率は参考になります。ただし、指導者が見たいのは結果だけではありません。<strong>判断・技術の実行・ボールを持たないときの関わり</strong>を分けて観察します。</p>
+ <div style={{overflowX:"auto"}}><table style={{borderCollapse:"collapse",width:"100%",minWidth:620,fontSize:14}}><thead><tr>{["項目","何を見るか","記録例（架空）","次の練習"].map(x=><th key={x} style={{textAlign:"left",padding:12,borderBottom:"1px solid #777",borderTop:"1px solid #777"}}>{x}</th>)}</tr></thead><tbody>{[
+ ["判断","守備の動きを見て選べたか","6機会中4回","守備者の位置を変える"],
+ ["技術の実行","選んだパスやシュートを実行できたか","適切な選択4回中2回成功","パスの精度を補う"],
+ ["サポート","ボールを持たず味方を助けたか","5機会中2回","スペースの取り方を確認"]
+ ].map(row=><tr key={row[0]}>{row.map((x,i)=><td key={i} style={{padding:12,borderBottom:"1px solid #d1d1ce",verticalAlign:"top"}}>{x}</td>)}</tr>)}</tbody></table></div>
+ <p style={{fontSize:13,color:"#666"}}>この観察表はGPAIの考え方を参考にした簡易例であり、正式なGPAIの採点法ではありません。数回のプレーだけで能力を決めつけず、別の日や別の条件でも確認します。</p>
+ <p>評価は序列をつけることだけが目的ではありません。「判断はできているがパスが安定しない」なら技術練習を、「技術はあるが守備を見られていない」なら対人課題を増やすなど、次の練習の内容を決めるために使います。</p>
+ </S>
+ <S id="計画"><H>06　年間計画と直近4週間の計画</H>
+ <h3>年間計画の基本項目</h3><p>各年代の計画には、①今年経験させたいゲーム状況、②月ごとの重点課題、③練習で用いる主な課題、④何を観察して見直すかを記載します。試合や大会の予定も組み込みますが、日程表だけで終わらせません。</p>
+ <h3>直近4週間の進め方</h3>
+ <p><strong>第1週：</strong>試合形式の中で現状を観察する。<br/><strong>第2週：</strong>課題に合わせて人数・スペース・ルールのうち一つを変更する。<br/><strong>第3週：</strong>同じ観察項目で判断と実行を記録する。<br/><strong>第4週：</strong>できるだけ同じ条件で再確認し、次月の課題を決める。</p>
+ <p>練習後は「狙った状況が生まれたか」「選手は何を選んだか」「次は何を変えるか」を短く残します。計画どおり進まなかった場合も、その理由が次の改善材料になります。</p>
+ </S>
+ <S id="スタッフ"><H>07　RBAと現場スタッフの役割</H>
+ <p><strong>RBA：</strong>育成の基本方針、参考となる研究、指導の考え方、評価の視点を共有します。</p>
+ <p><strong>現場スタッフ：</strong>実際の選手の人数、経験、発達状況、練習時間、施設条件を把握し、年間・月間・週間の計画を作成・調整します。練習を行った後は、観察したことを次の計画に反映します。</p>
+ <p>この資料は考え方を共有するためのものであり、個別の業務委託契約や提出義務の成立を示すものではありません。運営体制に関する協議とも切り離して扱います。</p>
+ <p>まずは現在作成済みの計画や練習記録があれば共有し、不足している部分と作成可能な時期を相談する進め方が現実的です。</p>
+ </S>
+ <S id="文献"><H>08　参考文献</H>
+ <p>以下は基本方針を考えるために参照した資料です。論文で実際に示されたことと、RBAの練習例は同一ではありません。</p>
+ {refs.map((r,i)=><div key={r.title} style={{padding:"14px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,color:"#666",marginBottom:2}}>参考文献 {i+1}　{r.author}</p><p style={{fontWeight:600,margin:"4px 0"}}>{r.title}</p><p style={{fontSize:14,margin:"4px 0 10px"}}>{r.note}</p><a style={{color:"#333",overflowWrap:"anywhere",fontSize:14}} target="_blank" rel="noopener noreferrer" href={r.url}>文献・出版社のページを確認 ↗</a></div>)}
+ <p style={{marginTop:22}}>参考文献の日本語解説と現場への応用は、<a href="/ja/journal/okinawa-coaching-references" style={{color:"#333"}}>参考文献ガイド</a>もご覧ください。</p>
+ </S>
+ <footer style={{borderTop:"1px solid #aaa",marginTop:70,paddingTop:25,fontSize:13,color:"#666"}}>RBA JOURNAL　|　2026年10月15日<br/><a href="/ja/journal" style={{color:"#444"}}>ジャーナル一覧に戻る</a></footer>
+ </main>}
