@@ -105,3 +105,12 @@
 @media(min-width:761px) {
  .rba-gream-figures .rba-gream-month-cards{display:none!important}
 }
+
+/* Remove overlapping fixed CTAs for journal reading on phones and tablets. */
+@media(max-width:1200px){
+ body:has(.journal-cms-article) .member-dock,
+ body:has(.journal-cms-article) .whatsapp-dock,
+ body:has(.journal-cms-article) .opportunities-dock {
+   display:none!important;
+ }
+}
