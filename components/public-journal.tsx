@@ -7,6 +7,7 @@ import { JournalExplorer } from "@/components/journal-explorer";
 import { JournalReaderTools } from "@/components/journal-reader-tools";
 import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 import { GreamPeriodizationFigures } from "@/components/gream-periodization-figures";
+import { JOURNAL_TOPICS, getJournalTopic } from "@/lib/journal-topic-taxonomy";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -64,6 +65,15 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
     evidence_level:post.evidence_level,
     source_count:post.source_references?.length||0
   }));
+  const topicIndex=JOURNAL_TOPICS.map(topic=>{
+    const articles=posts.filter(post=>getJournalTopic(post)===topic.key);
+    const recommended=[...articles].sort((a,b)=>{
+      const as=(a.source_references?.length||0)*2+(a.sections?.length||0)+Math.min(6,(a.coach_application?.length||0)*2);
+      const bs=(b.source_references?.length||0)*2+(b.sections?.length||0)+Math.min(6,(b.coach_application?.length||0)*2);
+      return bs-as;
+    }).slice(0,2);
+    return {...topic,count:articles.length,recommended};
+  });
   const startHereSlugs=["winning-vs-developing","development-environment","parents-support-not-coach","who-is-playing"];
   const startHere=startHereSlugs.map(findPost).filter(Boolean) as typeof posts;
 
@@ -115,6 +125,22 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
         </div>
       </section>
+      {locale==="ja"?<section className="journal-topic-directory section-pad" id="journal-categories" aria-labelledby="journal-topics-heading">
+        <div className="section-head"><div><p className="section-index">JOURNAL / CATEGORIES</p><h2 id="journal-topics-heading">カテゴリーから記事を探す</h2></div><p>読みたい内容から選べます。各記事は主なテーマを一つ選んで分類しています。保護者向け・指導者向けなどの対象別検索は、記事一覧でも利用できます。</p></div>
+        <div className="journal-topic-directory-grid">
+          {topicIndex.map((topic,index)=><section className="journal-topic-entry" key={topic.key}>
+            <Link className="journal-topic-entry-heading" href={`/ja/journal?topic=${topic.key}#all-articles`}>
+              <span>{String(index+1).padStart(2,"0")} / {topic.count}本</span>
+              <h3>{topic.title}</h3><p>{topic.description}</p>
+            </Link>
+            {topic.recommended.length?<div className="journal-topic-recommended"><small>このカテゴリーの記事</small>
+              {topic.recommended.map(item=><Link key={item.slug} href={journalHref(locale,item.slug)}>{item.title}<ArrowRight size={14}/></Link>)}
+            </div>:null}
+            <Link className="journal-topic-entry-more" href={`/ja/journal?topic=${topic.key}#all-articles`}>一覧を見る <ArrowRight size={15}/></Link>
+          </section>)}
+        </div>
+        <p className="journal-topic-directory-note">分類は記事の主題に基づく目安です。複数のテーマにまたがる記事は、検索からも探せます。記事は公開後も更新することがあります。</p>
+      </section>:null}
       {locale==="ja"?<section className="rba-research-hub-link section-pad">
         <div><p className="section-index">RESEARCH SERIES / 研究を読む</p><h2>参考文献を、指導に生かす。</h2><p>発達・判断力・ゲーム評価・少人数ゲーム・身体づくり・負荷管理。原典と研究の限界を確認しながら、練習にどうつなげるかを7編で解説します。</p></div>
         <Link href="/ja/journal/research">参考文献シリーズ 全7編を見る <ArrowRight size={17}/></Link>
