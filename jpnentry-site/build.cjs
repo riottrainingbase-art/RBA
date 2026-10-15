@@ -153,6 +153,7 @@ function buildSite() {
   write("sitemap.xml",'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(u=>`<url><loc>https://www.jpnentry.com${u}</loc></url>`).join("")+'</urlset>');
   fs.copyFileSync(path.join(root,"style.css"),path.join(out,"style.css"));
   fs.copyFileSync(path.join(root,"app.js"),path.join(out,"app.js"));
+  require("./enhance.cjs")({out,posts,h,rfq,mail,write,page,cta});
   console.log("Built "+urls.length+" routes; preserved "+ids.size+" article URLs.");
 }
 buildSite();
