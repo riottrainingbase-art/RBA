@@ -115,6 +115,10 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
         </div>
       </section>
+      {locale==="ja"?<section className="rba-research-hub-link section-pad">
+        <div><p className="section-index">RESEARCH SERIES / 研究を読む</p><h2>参考文献を、指導に生かす。</h2><p>発達・判断力・ゲーム評価・少人数ゲーム・身体づくり・負荷管理。原典と研究の限界を確認しながら、練習にどうつなげるかを7編で解説します。</p></div>
+        <Link href="/ja/journal/research">参考文献シリーズ 全7編を見る <ArrowRight size={17}/></Link>
+      </section>:null}
       {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
         <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>RBAの考え方が分かる4本です。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
         <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
