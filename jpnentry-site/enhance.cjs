@@ -170,6 +170,49 @@ module.exports = function enhanceSite(ctx) {
   home=home.replace("</main>",insert+"</main>");
   write("index.html",home);
 
+
+  const topicGroups=[
+    ["ghost-stock","Ghost Stock / Hard-to-Find Parts",["discontinued","obsolete","hard-to-find","ghost stock","legacy"]],
+    ["trust-process","Trust, Verification & Policies",["trust","evidence","transparency","verify","verification","payment","contact preferences","faq","policy","commercial"]],
+    ["start-here","Getting Started with JPNentry",["how to","submit","faq","about","start","read a","checklist","sourcing"]],
+    ["vehicle-sourcing","Vehicle Procurement",["vehicle","car ","toyota","auction","fleet","automotive"]],
+    ["taiwan-oem-parts-sourcing","Taiwan Japanese OEM Parts",["taiwan","台灣","台北","繁體","oem"]],
+    ["industrial-automation","Industrial Automation",["industrial","automation","omron","mitsubishi","yaskawa","hioki","fanuc"]],
+    ["genuine-auto-parts","Genuine Japanese Auto Parts",["genuine","toyota","lexus","oem","auto parts","nissan","hino","isuzu"]],
+    ["ev-batteries","EV Battery Sourcing",["battery","ev ","leaf","hybrid","高壓"]],
+    ["live-rfq","Live RFQ Notes",["live rfq","live sourcing","wholesale rfq","rfq note"]]
+  ];
+  for(const [slug,title,terms] of topicGroups){
+    const selected=posts.filter(p=>terms.some(term=>(p.title+" "+p.description).toLowerCase().includes(term))).slice(0,42);
+    const cards=selected.map(p=>'<a class="blog-card" href="/post/'+encodeURI(p.slug)+'"><span class="eyebrow">JPNENTRY / SOURCING NOTE</span><h3>'+h(p.title)+'</h3><p>'+h(p.description)+'</p><span class="card-link">READ NOTE ↗</span></a>').join("");
+    const section='<main><section class="subhero"><div class="wrap"><p class="eyebrow">JPNENTRY / TOPIC INDEX</p><h1>'+h(title)+'</h1><p class="sublead">A curated index of published sourcing notes and guides. Live enquiries do not represent completed orders.</p></div></section><section class="section"><div class="wrap"><div class="blog-grid">'+cards+'</div><div class="endlink"><a class="text-link" href="/blog">← BROWSE ALL BUYER NOTES</a><a class="btn btn-primary" href="'+rfq+'" target="_blank" rel="noopener">SEND EXACT RFQ ↗</a></div></div></section></main>';
+    write("blog/categories/"+slug+"/index.html",page(title,"Buyer-facing notes and practical JPNentry sourcing guidance.",section,"/blog/categories/"+slug));
+  }
+  const jpPosts=posts.filter(p=>p.language==="ja"||/[\u3040-\u30ff]/.test(p.title)).slice(0,45);
+  const jpBlog='<main><section class="subhero"><div class="wrap"><p class="eyebrow">日本語 / 記事一覧</p><h1>日本から世界へ。<br><em>調達の記録と解説。</em></h1><p class="sublead">JPNentryの国内調達、海外営業、見積実務に関する公開記事をご覧いただけます。</p></div></section><section class="section"><div class="wrap"><div class="blog-grid">'+jpPosts.map(p=>'<a class="blog-card" href="/post/'+encodeURI(p.slug)+'"><span class="eyebrow">JPNENTRY NOTE</span><h3>'+h(p.title)+'</h3><p>'+h(p.description)+'</p><span class="card-link">記事を読む ↗</span></a>').join("")+'</div><p class="mini-annotation">英語を含む全記事は<a href="/blog">こちら</a>で確認できます。</p></div></section></main>';
+  write("ja/blog/index.html",page("JPNentry 日本語記事一覧","日本国内の調達と国際取引に関するJPNentryの記事一覧。",jpBlog,"/ja/blog","ja"));
+  const jpLegal='<main><section class="subhero"><div class="wrap"><p class="eyebrow">ご利用条件 / 個人情報</p><h1>取引の透明性を<br><em>大切にします。</em></h1><p class="sublead">JPNentryへの初回見積依頼は発注ではありません。正式な見積、取引条件、書面による承認、必要な入金確認を経て調達を開始します。</p></div></section><section class="section"><div class="wrap narrow prose"><h2>個人情報について</h2><p>お問い合わせ時にいただく氏名・メールアドレス・企業情報・製品情報は、依頼内容の確認とご連絡、合意した業務に必要な範囲で取り扱います。</p><h2>見積と決済について</h2><p>供給価格、手数料、納期、輸出条件は、個別見積でご提示します。初回問い合わせのみで課金や仕入れは行いません。カード情報をメールで送らないでください。</p><h2>正式なご利用条件</h2><p>こちらは日本語のご案内です。詳細は<a href="/legal">英語版のプライバシーポリシーと利用条件</a>をご確認ください。契約時は当該取引の書面条件を優先します。</p></div></section></main>';
+  write("ja/legal/index.html",page("JPNentry ご利用条件・個人情報保護","初回見積、商談条件、個人情報取扱いに関するJPNentryの日本語案内。",jpLegal,"/ja/legal","ja"));
+  const plainToHtml=(text)=>{
+    const lines=String(text||"").split(/\r?\n/).map(s=>s.trim());
+    let html=[],bullets=[];
+    const closeList=()=>{if(bullets.length){html.push("<ul>"+bullets.map(s=>"<li>"+h(s)+"</li>").join("")+"</ul>");bullets=[]}};
+    for(let i=0;i<lines.length;i++){
+      const line=lines[i];
+      if(!line){closeList();continue;}
+      const bullet=line.match(/^(?:[*•-]\s+|\d+[.)]\s+)(.*)/);
+      if(bullet){bullets.push(bullet[1]);continue;}
+      closeList();
+      const next=(lines.slice(i+1).find(s=>s)||"");
+      const looksLikeHeading=line.length<=90&&!/[.!?。！？;；]$/.test(line)&&
+        (i===0 || /^(?:what|why|how|status|scope|before|after|the |key |part |buyer|sourcing|verification|notes|next |重要|確認|取引|ご案内|料金|見積|輸出|調達|まとめ|注意|目的|背景)/i.test(line) ||
+         (/^[A-Z][^:]+:$/.test(line)) || next.startsWith("• ") || next.startsWith("* "));
+      html.push(looksLikeHeading?"<h2>"+h(line)+"</h2>":"<p>"+h(line)+"</p>");
+    }
+    closeList();
+    return html.join("\n");
+  };
+
   const supportedLocales=[["en","/","EN"],["ja","/ja","日本語"],["ms","/ms","Bahasa Melayu"],["id","/id","Bahasa Indonesia"],["zh-Hans","/zh-cn","简体中文"],["zh-Hant","/zh-tw","繁體中文"]];
   const switcher=(lang)=>`<details class="lang-menu"><summary aria-label="Choose language">${lang==="ja"?"日本語":lang==="ms"?"BM":lang==="id"?"ID":lang==="zh-Hans"?"中文":lang==="zh-Hant"?"繁中":"EN"} <span aria-hidden="true">⌄</span></summary><div class="lang-options">${supportedLocales.map(([l,u,label])=>`<a href="${u}" lang="${l}" ${l===lang?'aria-current="page"':''}>${label}</a>`).join("")}</div></details>`;
   const businessSchema={
@@ -210,6 +253,7 @@ module.exports = function enhanceSite(ctx) {
       const slug=articleSlugOf("/"+rel);
       const p=posts.find(x=>x.slug===slug);
       if(p){
+        html=html.replace(/<article class="prose article-body">[\s\S]*?<\/article>/, '<article class="prose article-body">'+plainToHtml(p.content||p.description)+'</article>');
         obj={"@context":"https://schema.org","@type":"Article","headline":p.title,"description":p.description,"datePublished":p.date,"author":{"@type":"Organization","name":"JPNentry"},"publisher":{"@type":"Organization","name":"JPNentry"},"mainEntityOfPage":canonical};
       }
     }
