@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-export const metadata: Metadata = { title:"育成年代の指導に役立つ研究と実践 | RBA JOURNAL",description:"発達段階、プレー中の判断、選手の成長の捉え方について、研究の知見と練習への生かし方を整理しました。",alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/okinawa-coaching-references"}};
+export const metadata: Metadata = { title:"育成年代の指導に役立つ研究と実践 | RBA JOURNAL",description:"発達段階、プレー中の判断、選手の成長の捉え方について、研究の知見と練習への生かし方を整理しました。",alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/okinawa-coaching-references"},openGraph:{title:"研究の読み方と生かし方｜RBA JOURNAL",description:"研究の目的・方法・結果・限界を確認し、育成年代の指導に役立てるための参考文献ガイド。",url:"https://riotbasketballacademy.com/ja/journal/okinawa-coaching-references",siteName:"Riot Basketball Academy",locale:"ja_JP",type:"article"},twitter:{card:"summary_large_image",title:"研究の読み方と生かし方｜RBA JOURNAL",description:"論文の読み方、研究の根拠と限界、現場への応用を解説します。"}};
 const refs=[
 ["Bergeron et al. (2015)","International Olympic Committee consensus statement on youth athletic development","https://doi.org/10.1136/bjsports-2015-094962","子どもの発達や成熟の個人差に配慮し、健康と長期的な競技参加を大切にすることを提言しています。特定の練習メニューの効果を調べた研究ではありません。"],
 ["Renshaw et al. (2019)","The Constraints-Led Approach: Principles for Sports Coaching and Practice Design","https://doi.org/10.4324/9781315102351","選手自身の特徴、周囲の環境、練習のルールなどを調整することで、学びやすい状況をつくる考え方です。特定の2対1練習の効果を保証するものではありません。"],
