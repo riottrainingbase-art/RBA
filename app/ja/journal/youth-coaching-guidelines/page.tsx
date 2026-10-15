@@ -19,6 +19,7 @@ const refs=[
 const H=({children}:{children:React.ReactNode})=><h2 style={{fontFamily:"'Yu Mincho','Hiragino Mincho ProN',serif",fontSize:26,letterSpacing:".02em",lineHeight:1.6,fontWeight:600,margin:"0 0 20px"}}>{children}</h2>;
 const S=({children,id}:{children:React.ReactNode,id:string})=><section id={id} style={{borderTop:"1px solid #b8b8b3",paddingTop:30,marginTop:65}}>{children}</section>;
 export default function Page(){return <main style={{maxWidth:910,margin:"0 auto",padding:"48px 22px 110px",lineHeight:2,color:"#252525",fontFamily:"'Yu Gothic',Meiryo,sans-serif",fontSize:16}}>
+ <style>{`@media(max-width:680px){table.rba-mobile-table{min-width:0!important;width:100%!important;display:block}table.rba-mobile-table thead{display:none}table.rba-mobile-table tbody,table.rba-mobile-table tr{display:block;width:100%}table.rba-mobile-table tr{border-top:1px solid #aaa;padding:10px 0 16px}table.rba-mobile-table td{display:grid;grid-template-columns:minmax(78px,29%) minmax(0,1fr);column-gap:10px;width:100%;padding:8px 0!important;border-bottom:1px solid #eee!important;white-space:normal;overflow-wrap:anywhere;line-height:1.75}table.rba-mobile-table td::before{content:attr(data-label);font-weight:700;color:#4a4a4a}}`}</style>
  <header style={{borderBottom:"1px solid #aaa",paddingBottom:17,fontSize:12,letterSpacing:1.2}}>RIOT BASKETBALL ACADEMY　/　JOURNAL</header>
  <p style={{fontSize:12,marginTop:43,letterSpacing:2}}>COACHING GUIDELINES · 2026</p>
  <h1 style={{fontFamily:"'Yu Mincho','Hiragino Mincho ProN',serif",fontSize:"clamp(29px,4.6vw,45px)",fontWeight:600,lineHeight:1.52,margin:"14px 0 28px"}}>RBA育成指導指針<br/>U8〜U15の育成・判断力・成長評価</h1>
@@ -53,11 +54,11 @@ export default function Page(){return <main style={{maxWidth:910,margin:"0 auto"
  </S>
  <S id="評価"><H>05　選手の成長を何によって確かめるか</H>
  <p>得点、勝敗、シュート成功率は参考になります。ただし、指導者が見たいのは結果だけではありません。<strong>状況に応じた判断・選んだプレーの実行・ボールを持たないときの動き</strong>を分けて観察します。</p>
- <div style={{overflowX:"auto"}}><table style={{borderCollapse:"collapse",width:"100%",minWidth:620,fontSize:14}}><thead><tr>{["項目","何を見るか","記録例（架空）","次の練習"].map(x=><th key={x} style={{textAlign:"left",padding:12,borderBottom:"1px solid #777",borderTop:"1px solid #777"}}>{x}</th>)}</tr></thead><tbody>{[
+ <div style={{overflowX:"auto",maxWidth:"100%"}}><table className="rba-mobile-table" style={{borderCollapse:"collapse",width:"100%",minWidth:620,fontSize:14}}><thead><tr>{["項目","何を見るか","記録例（架空）","次の練習"].map(x=><th key={x} style={{textAlign:"left",padding:12,borderBottom:"1px solid #777",borderTop:"1px solid #777"}}>{x}</th>)}</tr></thead><tbody>{[
  ["判断","守備の動きを見て選べたか","6機会中4回","守備者の位置を変える"],
  ["技術の実行","選んだパスやシュートを実行できたか","適切な選択4回中2回成功","パスの正確さを高める練習を加える"],
  ["サポート","ボールを持たず味方を助けたか","5機会中2回","スペースの取り方を確認"]
- ].map(row=><tr key={row[0]}>{row.map((x,i)=><td key={i} style={{padding:12,borderBottom:"1px solid #d1d1ce",verticalAlign:"top"}}>{x}</td>)}</tr>)}</tbody></table></div>
+ ].map(row=><tr key={row[0]}>{row.map((x,i)=><td key={i} data-label={["項目","観察内容","記録例","次の練習"][i]} style={{padding:12,borderBottom:"1px solid #d1d1ce",verticalAlign:"top"}}>{x}</td>)}</tr>)}</tbody></table></div>
  <p style={{fontSize:13,color:"#666"}}>この観察表はGPAIの考え方を参考にした簡易例であり、正式なGPAIの採点法ではありません。数回のプレーだけで能力を決めつけず、別の日や別の条件でも確認します。</p>
  <p>評価の目的は、選手に順位をつけることではありません。「判断はできているがパスが安定しない」なら技術練習を、「技術はあるが守備を見られていない」なら対人課題を増やすなど、次の練習の内容を決めるために使います。</p>
  </S>
