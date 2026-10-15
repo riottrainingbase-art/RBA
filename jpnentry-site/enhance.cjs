@@ -213,6 +213,12 @@ module.exports = function enhanceSite(ctx) {
     return html.join("\n");
   };
 
+
+  const jaContact='<main><section class="subhero"><div class="wrap"><p class="eyebrow">お問い合わせ / JPNENTRY</p><h1>型番や車両仕様から、<br><em>ご相談ください。</em></h1><p class="sublead">自動車部品・産業部品・車両の調達について、必要な情報をお送りください。初回の問い合わせは発注ではありません。</p></div></section><section class="section"><div class="wrap contact-grid"><div class="contact-panel"><p class="eyebrow">WEB RFQ</p><h2>見積依頼フォーム</h2><p>型番、数量、必要な状態、仕向国、希望価格と納期を送信してください。英語の入力フォームが開きます。</p><a class="btn btn-primary" href="'+rfq+'" target="_blank" rel="noopener">見積依頼を送る ↗</a></div><div class="contact-panel contact-secondary"><p class="eyebrow">EMAIL DESK</p><h2>メールで相談</h2><p>購買担当者や海外の取引先との連携も受け付けています。</p><a class="contact-email" href="mailto:'+mail+'">'+mail+'</a><p>カード番号や決済情報はメールで送らないでください。</p></div></div></section></main>';
+  write("ja/contact/index.html",page("JPNentry お問い合わせ","日本車純正部品、産業部品、車両調達の見積依頼・お問い合わせ。",jaContact,"/ja/contact","ja"));
+  const jaTrust='<main><section class="subhero"><div class="wrap"><p class="eyebrow">信頼・取引方針</p><h1>できることを確認し、<br><em>できないことも伝える。</em></h1><p class="sublead">JPNentryでは、問い合わせ段階の情報、検証済みの見積、完了した取引を区別して説明します。</p></div></section><section class="section"><div class="wrap narrow prose"><h2>JPNentryの取引姿勢</h2><p>JPNentryはMasato Nishio（西尾 優人）が個人事業として運営する日本の調達支援窓口です。メーカーの公認代理店であることを示すものではありません。</p><h2>見積依頼について</h2><p>最初のRFQは発注ではなく、仕入れや決済も発生しません。調達可能性・供給条件・輸出可否を確認し、見積内容に書面で同意いただいた場合に限り、合意した手順で進めます。</p><h2>車両の輸出について</h2><p>自動車の新車輸出は日本側の販売契約および輸入国の法令・許可に左右されます。トヨタなどの車両を、許可や販売権限が未確認のまま輸出できると約束することはありません。</p><div class="trust-row"><strong>公式連絡先</strong><a href="mailto:'+mail+'">'+mail+'</a></div><div class="trust-row"><strong>運営形態</strong><span>日本の個人事業（独立法人ではありません）</span></div><div class="trust-row"><strong>ご利用条件</strong><a href="/ja/legal">個人情報と利用条件</a></div></div></section></main>';
+  write("ja/trust/index.html",page("JPNentry 取引と検証の方針","初回RFQ、見積、発注承認、輸出法令についてのJPNentry公式説明。",jaTrust,"/ja/trust","ja"));
+
   const supportedLocales=[["en","/","EN"],["ja","/ja","日本語"],["ms","/ms","Bahasa Melayu"],["id","/id","Bahasa Indonesia"],["zh-Hans","/zh-cn","简体中文"],["zh-Hant","/zh-tw","繁體中文"]];
   const switcher=(lang)=>`<details class="lang-menu"><summary aria-label="Choose language">${lang==="ja"?"日本語":lang==="ms"?"BM":lang==="id"?"ID":lang==="zh-Hans"?"中文":lang==="zh-Hant"?"繁中":"EN"} <span aria-hidden="true">⌄</span></summary><div class="lang-options">${supportedLocales.map(([l,u,label])=>`<a href="${u}" lang="${l}" ${l===lang?'aria-current="page"':''}>${label}</a>`).join("")}</div></details>`;
   const businessSchema={
@@ -243,6 +249,29 @@ module.exports = function enhanceSite(ctx) {
     html=html.replace('<div class="footer-bottom">','<div class="footer-bottom">');
     const footAdd=`<a href="/about">About us</a><a href="/faq">FAQ</a><a href="/contact">Contact</a><a href="/malaysia">Malaysia desk</a>`;
     html=html.replace('<a href="/trust">Trust & verification</a>','<a href="/trust">Trust & verification</a>'+footAdd);
+
+    if(lang==="ja"){
+      html=html.replace(/(<nav id="primary-nav"[^>]*>)([\s\S]*?)(<\/nav>)/,(_all,a,b,c)=>{
+        const jaLinks={"/automotive":"/ja/automotive","/industrial":"/ja/industrial","/vehicles":"/ja/vehicles","/blog":"/ja/blog","/trust":"/ja/trust"};
+        for(const [from,to] of Object.entries(jaLinks))b=b.replace('href="'+from+'"','href="'+to+'"');
+        return a+b+c;
+      });
+      html=html.replace(/<footer class="footer">[\s\S]*?<\/footer>/,block=>{
+        const replacements=[
+          ["Japan-side sourcing, verification and export coordination for exact buyer requirements.","日本の調達先を確認し、海外の企業へ根拠のある見積・調達支援を提供します。"],
+          ["Automotive parts","自動車部品"],["Industrial sourcing","産業部品"],["Vehicle sourcing","車両調達"],["Insights & buyer guides","記事・解説"],
+          ["WORK WITH US","お問い合わせ"],["EXPLORE","サービス"],["Submit an RFQ ↗","見積依頼を送る ↗"],
+          ["Privacy & service terms","個人情報・利用条件"],["Trust & verification","取引と検証の方針"],
+          ["About us","運営者について"],["FAQ","よくある質問"],["Contact","お問い合わせ"],["Malaysia desk","マレーシア向け"],
+          ["Independent sourcing desk · Not an authorized distributor of named manufacturers.","独立した調達窓口です。記載メーカーの公認代理店ではありません。"]
+        ];
+        for(const [en,ja] of replacements)block=block.replace(en,ja);
+        return block;
+      });
+      html=html.replace(/<section class="cta-section">[\s\S]*?<\/section>/,block=>
+        block.replace("START WITH ONE REAL REQUIREMENT","見積依頼・ご相談").replace("SUBMIT AN RFQ ↗","見積依頼を送る ↗")
+      );
+    }
     if(lang==="ja"){
       html=html.replace(/<a class="btn btn-small" href="([^"]+)" target="_blank" rel="noopener">SEND RFQ/g,
         '<a class="btn btn-small" href="$1" target="_blank" rel="noopener">見積依頼');
