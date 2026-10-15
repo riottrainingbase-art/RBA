@@ -13,6 +13,7 @@ const sections=[
 ["年間の育成方針を、日々の練習につなげる","年間計画は、一度作ったら変更できない予定表ではありません。月ごとに重点を置く課題を決め、毎週の練習で選手の様子を観察します。その結果を振り返り、必要に応じて次の練習内容を見直します。"]
 ];
 export default function Page(){return <main style={{maxWidth:860,margin:"0 auto",padding:"54px 24px 100px",color:"#252525",fontFamily:"'Yu Gothic',Meiryo,sans-serif",lineHeight:1.95}}>
+<style>{`@media(max-width:680px){table.rba-mobile-table{min-width:0!important;width:100%!important;display:block}table.rba-mobile-table thead{display:none}table.rba-mobile-table tbody,table.rba-mobile-table tr{display:block;width:100%}table.rba-mobile-table tr{border-top:1px solid #aaa;padding:10px 0 16px}table.rba-mobile-table td{display:grid;grid-template-columns:minmax(85px,30%) minmax(0,1fr);column-gap:10px;width:100%;padding:8px 0!important;border-bottom:1px solid #eee!important;white-space:normal;overflow-wrap:anywhere;line-height:1.75}table.rba-mobile-table td::before{content:attr(data-label);font-weight:700;color:#4a4a4a}}`}</style>
 <p style={{fontSize:12,letterSpacing:2,borderBottom:"1px solid #aaa",paddingBottom:15}}>RIOT BASKETBALL ACADEMY / JOURNAL</p>
 <p style={{fontSize:12,letterSpacing:1,marginTop:38}}>COACHING REFERENCE GUIDE · OCTOBER 2026</p>
 <h1 style={{fontFamily:"serif",fontSize:"clamp(29px,5vw,43px)",lineHeight:1.5,fontWeight:600}}>育成を考えるための<br/>参考文献と現場への応用</h1>
@@ -35,7 +36,7 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 <li><strong>限界と適用範囲：</strong>研究者が挙げている限界に加え、対象人数や評価方法も確認します。そのうえで、自分の指導現場にどこまで応用できるかを考えます。</li>
 </ol>
 <h3 style={{fontSize:19,marginTop:29}}>論文のどこに何が書かれているか</h3>
-<div style={{overflowX:"auto"}}><table style={{borderCollapse:"collapse",width:"100%",minWidth:570,fontSize:14}}>
+<div style={{overflowX:"auto",maxWidth:"100%"}}><table className="rba-mobile-table" style={{borderCollapse:"collapse",width:"100%",minWidth:570,fontSize:14}}>
 <thead><tr><th style={{textAlign:"left",borderTop:"1px solid #777",borderBottom:"1px solid #aaa",padding:10}}>表記</th><th style={{textAlign:"left",borderTop:"1px solid #777",borderBottom:"1px solid #aaa",padding:10}}>確認すること</th></tr></thead>
 <tbody>{[
 ["Abstract（要旨）","研究の目的・方法・結果・結論の概要。まず全体をつかむ。"],
@@ -45,7 +46,7 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 ["Discussion（考察）","結果の解釈、先行研究との関係、考えられる理由。"],
 ["Limitations（限界）","結果を解釈する際の注意点や、その研究だけでは分からないこと。"],
 ["Conclusion（結論）","研究者による要約。方法と結果も合わせて確認する。"]
-].map(([a,b])=><tr key={a}><td style={{padding:10,borderBottom:"1px solid #ddd",verticalAlign:"top"}}><strong>{a}</strong></td><td style={{padding:10,borderBottom:"1px solid #ddd"}}>{b}</td></tr>)}</tbody></table></div>
+].map(([a,b])=><tr key={a}><td data-label="項目" style={{padding:10,borderBottom:"1px solid #ddd",verticalAlign:"top"}}><strong>{a}</strong></td><td data-label="確認すること" style={{padding:10,borderBottom:"1px solid #ddd"}}>{b}</td></tr>)}</tbody></table></div>
 <h3 style={{fontSize:19,marginTop:29}}>資料の種類によって、読み方は変わる</h3>
 <p><strong>原著論文：</strong>実際の測定方法と結果を確認できます。ただし、対象と条件が限定される場合があります。</p>
 <p><strong>系統的レビュー・メタ分析：</strong>複数の研究を整理します。まとめられた研究の質や対象によって、結果の受け止め方は変わります。</p>
