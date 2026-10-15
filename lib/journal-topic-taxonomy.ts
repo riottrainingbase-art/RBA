@@ -20,7 +20,7 @@ const patterns:Record<TopicKey,ReadonlyArray<{re:RegExp;weight:number}>>={
   {re:/成長|育成|将来|価値|文化|自信|関係性|選手の経験/,weight:2}
  ],
  skills:[
-  {re:/ドリブル|シュート|パス|キャッチ|ピボット|フィニッシュ|ディフェンス|リバウンド|1on1|1対1|スペーシング|ヘルプ|スクリーン|ハンドオフ|ボール操作|トランジション|状況判断|スキャン|フットワーク|ショット|攻撃|守備|間合い/,weight:9},
+  {re:/1人抜いた|抜いたあと|抜いた後|抜くところ|ドリブル|シュート|パス|キャッチ|ピボット|フィニッシュ|ディフェンス|リバウンド|1on1|1対1|スペーシング|ヘルプ|スクリーン|ハンドオフ|ボール操作|トランジション|状況判断|スキャン|フットワーク|ショット|攻撃|守備|間合い/,weight:9},
   {re:/見る|認知|技術|技能|判断|動作|動き|選択/,weight:3}
  ],
  practice:[
@@ -32,7 +32,7 @@ const patterns:Record<TopicKey,ReadonlyArray<{re:RegExp;weight:number}>>={
   {re:/試合|ゲーム|勝利|勝敗|プレータイム|競争|選抜|大会/,weight:5}
  ],
  physical:[
-  {re:/ACL|膝|腰|足首|オスグッド|脳震盪|怪我|けが|傷害|障害|痛み|筋力|筋トレ|S&C|ストレングス|オーバーユース|オーバートレーニング|バーンアウト|休養|回復|負荷管理|熱中症|熱中症|コンディショニング|睡眠|成長期の身体|身体づくり|ラダー/,weight:14},
+  {re:/ACL|膝|腰|足首|オスグッド|脳震盪|怪我|ケガ|けがをした|けがから|けがの|傷害|障害|痛み|筋力|筋トレ|S&C|ストレングス|オーバーユース|オーバートレーニング|バーンアウト|休養|回復|負荷管理|熱中症|熱中症|コンディショニング|睡眠|成長期の身体|身体づくり|ラダー/,weight:14},
   {re:/疲労|健康|体力|負荷|安全|ウェイト|運動|ウォームアップ|復帰/,weight:6}
  ],
  family:[
@@ -48,7 +48,7 @@ const patterns:Record<TopicKey,ReadonlyArray<{re:RegExp;weight:number}>>={
   {re:/海外交流|海外育成|国際交流|世界比較|国外/,weight:11}
  ],
  activities:[
-  {re:/クリニック|キャンプ|CAMP|イベント|開催予定|活動報告|遠征レポート|参加レポート|スクール|講習会|無料書式|共通書式|配布|募集|スポンサー|協賛|公式資料|申込|振り返りシート|日程案内|活動記録/,weight:12},
+  {re:/出版|書籍|新刊|クリニック|キャンプ|CAMP|イベント|開催予定|活動報告|遠征レポート|参加レポート|スクール|講習会|無料書式|共通書式|配布|募集|スポンサー|協賛|公式資料|申込|振り返りシート|日程案内|活動記録/,weight:12},
   {re:/企画|体験会|交流会|オンライン|チーム活動|RBA UNITED|トライアル|発信/,weight:4}
  ]
 };
@@ -67,7 +67,10 @@ export function getJournalTopic(article:TopicArticle):TopicKey{
   }
  }
  // Strong safety and direct family signals take precedence over generic phrasing.
- if(/ACL|脳震盪|オスグッド|オーバーユース|熱中症|膝の|怪我|けが|傷害|痛み|バーンアウト/.test(title))scores.physical+=15;
+ if(/ACL|脳震盪|オスグッド|オーバーユース|熱中症|膝の|怪我|ケガ|傷害|痛み|バーンアウト/.test(title))scores.physical+=15;
+ if(/JBA|FIBA|登録制度|競技規則|コーチライセンス|都道府県|ゾーンディフェンス|スポーツ少年団|登録規定/.test(title))scores.rules+=10;
+ if(/^(ドイツ|スペイン|フィンランド|フランス|ベルギー|カナダ|イングランド|スロベニア|ラトビア|ニュージーランド|アメリカ|世界)/.test(title))scores.world+=10;
+ if(/出版|書籍|新刊/.test(title))scores.activities+=13;
  if(/保護者|親子|移籍|退団|チーム選び|入会/.test(title))scores.family+=10;
  if(/出場時間|出場機会|プレータイム|ベンチ|スタメン|選手起用/.test(title))scores.games+=12;
  if(/(日本|世界|海外|他国).*(制度|ルール|育成)/.test(title))scores.world+=4;
