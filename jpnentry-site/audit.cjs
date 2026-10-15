@@ -6,7 +6,7 @@ function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const f=
 walk(root);
 const failures=[];
 const warnings=[];
-const expected="/style.css /extra.css /premium.css /app.js /favicon.svg /robots.txt /sitemap.xml".split(" ");
+const expected="/style.css /extra.css /premium.css /growth.css /app.js /favicon.svg /robots.txt /sitemap.xml".split(" ");
 for(const asset of expected){if(!fs.existsSync(path.join(root,asset.slice(1))))failures.push("Missing "+asset)}
 let broken=0;
 const uniqueCanon=new Set();
@@ -21,6 +21,7 @@ for(const f of htmlFiles){
  if(h1!==1) failures.push(rel+": expected one H1, found "+h1);
  if(!text.includes("jpnentry.sales@gmail.com")) failures.push(rel+": missing official email");
  if(!text.includes('href="/premium.css"')) failures.push(rel+": missing premium stylesheet");
+ if(!text.includes('href="/growth.css"')) failures.push(rel+": missing growth stylesheet");
  if(!text.includes('class="brand-lockup"')) failures.push(rel+": missing aligned logo lockup");
  if(text.includes('class="brand-type"')||text.includes('class="hero-graphic"')) failures.push(rel+": legacy identity or hero still present");
  if(!text.includes('href="https://form.jotform.com/262542049350049"')) warnings.push(rel+": no RFQ URL");
