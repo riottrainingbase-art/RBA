@@ -118,7 +118,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
 
   const availableAudiences = useMemo(() => {
     const values = new Set(items.map(item => item.audience));
-    return ["families", "coaches", "players", "partners", "all"].filter(value => values.has(value));
+    return ["families", "coaches", "players", "partners"].filter(value => values.has(value));
   }, [items]);
 
   const filtered = useMemo(() => {
@@ -194,7 +194,7 @@ export function JournalExplorer({ locale, items }: { locale: Locale; items: Jour
         </div> : null}
 
         {locale==="ja"?<div className="journal-filter-row journal-topic-filter">
-          <span>{c.topic}</span>
+          <span>カテゴリー</span>
           <div>
             <button type="button" aria-pressed={topic==="all"} className={topic==="all"?"is-active":""} onClick={()=>{setTopic("all");resetVisible();}}>すべて<small>{items.length}</small></button>
             {JOURNAL_TOPICS.map(t=><button type="button" key={t.key} aria-pressed={topic===t.key} className={topic===t.key?"is-active":""} onClick={()=>{setTopic(t.key);resetVisible();}}>
