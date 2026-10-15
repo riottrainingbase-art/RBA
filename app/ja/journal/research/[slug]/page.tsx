@@ -6,7 +6,7 @@ export function generateStaticParams(){return researchEntries.map(e=>({slug:e.sl
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{
  const {slug}=await params;const e=researchBySlug(slug);
  if(!e)return {title:"RBA JOURNAL"};
- return {title:e.title+"｜参考文献シリーズ｜RBA JOURNAL",description:e.question,alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/research/"+slug}};
+ return {title:e.title+"｜参考文献シリーズ｜RBA JOURNAL",description:e.question,alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/research/"+slug},openGraph:{title:e.title+"｜RBA JOURNAL",description:e.question,url:"https://riotbasketballacademy.com/ja/journal/research/"+slug,siteName:"Riot Basketball Academy",locale:"ja_JP",type:"article"},twitter:{card:"summary_large_image",title:e.title,description:e.question}};
 }
 export default async function Page({params}:{params:Promise<{slug:string}>}){
  const {slug}=await params;const e=researchBySlug(slug);if(!e)notFound();
