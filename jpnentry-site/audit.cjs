@@ -6,7 +6,7 @@ function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const f=
 walk(root);
 const failures=[];
 const warnings=[];
-const expected="/style.css /extra.css /premium.css /app.js /favicon.svg /robots.txt /sitemap.xml".split(" ");
+const expected="/style.css /extra.css /premium.css /growth.css /app.js /favicon.svg /robots.txt /sitemap.xml".split(" ");
 for(const asset of expected){if(!fs.existsSync(path.join(root,asset.slice(1))))failures.push("Missing "+asset)}
 let broken=0;
 const uniqueCanon=new Set();
@@ -21,6 +21,7 @@ for(const f of htmlFiles){
  if(h1!==1) failures.push(rel+": expected one H1, found "+h1);
  if(!text.includes("jpnentry.sales@gmail.com")) failures.push(rel+": missing official email");
  if(!text.includes('href="/premium.css"')) failures.push(rel+": missing premium stylesheet");
+ if(!text.includes('href="/growth.css"')) failures.push(rel+": missing growth stylesheet");
  if(!text.includes('class="brand-lockup"')) failures.push(rel+": missing aligned logo lockup");
  if(text.includes('class="brand-type"')||text.includes('class="hero-graphic"')) failures.push(rel+": legacy identity or hero still present");
  if(!text.includes('href="https://form.jotform.com/262542049350049"')) warnings.push(rel+": no RFQ URL");
@@ -39,6 +40,37 @@ for(const f of htmlFiles){
   }
  }
 }
+
+const growthRoutes=[
+  "rfq/index.html",
+  "ms/automotive/index.html","ms/industrial/index.html","ms/vehicles/index.html","ms/contact/index.html","ms/trust/index.html",
+  "id/automotive/index.html","id/industrial/index.html","id/vehicles/index.html","id/contact/index.html","id/trust/index.html",
+  "zh-cn/automotive/index.html","zh-cn/industrial/index.html","zh-cn/vehicles/index.html","zh-cn/contact/index.html","zh-cn/trust/index.html",
+  "zh-tw/automotive/index.html","zh-tw/industrial/index.html","zh-tw/vehicles/index.html","zh-tw/contact/index.html","zh-tw/trust/index.html"
+];
+for(const r of growthRoutes) if(!fs.existsSync(path.join(root,r)))failures.push("Missing conversion or locale route: "+r);
+const blogHtml=fs.readFileSync(path.join(root,"blog","index.html"),"utf8");
+for(const k of ['class="blog-refine"','id="load-more"','data-topic="automotive"','data-topic="industrial"','data-topics="']){
+ if(!blogHtml.includes(k))failures.push("Missing usable blog filter: "+k);
+}
+for(const area of ["automotive","industrial","vehicles","malaysia"]){
+ const f=fs.readFileSync(path.join(root,area,"index.html"),"utf8");
+ if(!f.includes('class="brief-section"'))failures.push(area+": missing RFQ buying checklist");
+ if(!f.includes('href="/rfq"'))failures.push(area+": missing RFQ guide link");
+}
+const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
+if(!home.includes('class="confidence-bar"'))failures.push("Homepage missing evidence-first commercial status bar");
+if(!home.includes('class="home-trust-section"'))failures.push("Homepage missing operator and trade scope");
+if(home.includes("35°40′ N / 139°41′ E"))failures.push("Unverified precise office location displayed");
+for(const locale of ["ms","id","zh-cn","zh-tw"]){
+ const html=fs.readFileSync(path.join(root,locale,"index.html"),"utf8");
+ if(!html.includes('href="/'+locale+'/automotive"'))failures.push(locale+": navigation switches to an unrelated language");
+}
+const requireHreflang=fs.readFileSync(path.join(root,"ms","automotive","index.html"),"utf8");
+for(const l of ["en","ja","ms","id","zh-Hans","zh-Hant","x-default"]){
+ if(!requireHreflang.includes('hreflang="'+l+'"'))failures.push("Missing auto-parts hreflang: "+l);
+}
+
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const sitemapUrls=(sitemap.match(/<url>/g)||[]).length;
 if(sitemapUrls!==htmlFiles.length)failures.push("Sitemap contains "+sitemapUrls+" routes vs "+htmlFiles.length+" HTML pages");
