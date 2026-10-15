@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 export const metadata: Metadata = {
- title:"RBA育成指導指針｜U8〜U15の育成・判断力・成長評価 | RBA JOURNAL",
- description:"RBAが現場指導者へ共有する育成の基本方針。U8〜U15の年代ごとの指導の考え方、判断力を育てる練習、成長の捉え方、年間・4週間計画の立て方を具体的に解説します。",
+ title:"RBA育成指導指針｜U8〜U15の育成と成長の捉え方 | RBA JOURNAL",
+ description:"RBAが現場指導者へ共有する育成の基本方針。U8〜U15の年代ごとの指導の考え方、判断力を育てる練習、成長の捉え方、年間計画と4週間の練習計画の立て方を解説します。",
  alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/youth-coaching-guidelines"},
 };
 const ageData=[
@@ -22,8 +22,8 @@ export default function Page(){return <main style={{maxWidth:910,margin:"0 auto"
  <style>{`@media(max-width:680px){table.rba-mobile-table{min-width:0!important;width:100%!important;display:block}table.rba-mobile-table thead{display:none}table.rba-mobile-table tbody,table.rba-mobile-table tr{display:block;width:100%}table.rba-mobile-table tr{border-top:1px solid #aaa;padding:10px 0 16px}table.rba-mobile-table td{display:grid;grid-template-columns:minmax(78px,29%) minmax(0,1fr);column-gap:10px;width:100%;padding:8px 0!important;border-bottom:1px solid #eee!important;white-space:normal;overflow-wrap:anywhere;line-height:1.75}table.rba-mobile-table td::before{content:attr(data-label);font-weight:700;color:#4a4a4a}}`}</style>
  <header style={{borderBottom:"1px solid #aaa",paddingBottom:17,fontSize:12,letterSpacing:1.2}}>RIOT BASKETBALL ACADEMY　/　JOURNAL</header>
  <p style={{fontSize:12,marginTop:43,letterSpacing:2}}>COACHING GUIDELINES · 2026</p>
- <h1 style={{fontFamily:"'Yu Mincho','Hiragino Mincho ProN',serif",fontSize:"clamp(29px,4.6vw,45px)",fontWeight:600,lineHeight:1.52,margin:"14px 0 28px"}}>RBA育成指導指針<br/>U8〜U15の育成・判断力・成長評価</h1>
- <p style={{fontSize:19,lineHeight:1.85}}>私たちは、子どもたちに何を経験してほしいのか。その経験を、どのような練習で支え、何を見て成長を確かめるのか。</p>
+ <h1 style={{fontFamily:"'Yu Mincho','Hiragino Mincho ProN',serif",fontSize:"clamp(29px,4.6vw,45px)",fontWeight:600,lineHeight:1.52,margin:"14px 0 28px"}}>RBA育成指導指針<br/>U8〜U15の育成と成長の捉え方</h1>
+ <p style={{fontSize:19,lineHeight:1.85}}>私たちは、子どもたちに何を経験してほしいのか。その経験を、どのような練習で支え、どのような変化を成長として捉えるのか。</p>
  <p>本稿では、育成年代の指導に共通する考え方を、年代別の課題例や練習中の観察方法とあわせて紹介します。指導者が目の前の選手に合わせて練習を組み立て、振り返る際の手がかりとなることを目指しています。</p>
  <p style={{borderLeft:"2px solid #555",paddingLeft:20,marginTop:28}}>大切なのは、すべての年代に同じ正解を当てはめることではありません。指導の目的を明確にしたうえで、選手の状況に合わせて計画を立て、実践を通じて見直し続けることです。</p>
  <nav aria-label="目次" style={{padding:"22px 0",marginTop:35,borderTop:"1px solid #ddd",borderBottom:"1px solid #ddd",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(245px,1fr))",gap:7,fontSize:14}}>
@@ -38,7 +38,7 @@ export default function Page(){return <main style={{maxWidth:910,margin:"0 auto"
  <p>身体の成長が早い選手を才能があると決めつけたり、成長が遅い選手の可能性を低く見積もったりしないことも重要です。接触や運動負荷、休息については個人差と健康状態を考慮します。</p>
  </S>
  <S id="年代"><H>03　U8〜U15の育成指針</H>
- <p style={{fontSize:13,color:"#646464"}}>下記はRBAの指導設計例です。どの年代でも同じ順序で学ぶべきだと、研究によって決まっているわけではありません。</p>
+ <p style={{fontSize:13,color:"#646464"}}>下記はRBAの指導設計例です。年代ごとの指導内容に、研究で確立された唯一の正解があるわけではありません。</p>
  {ageData.map(d=><article key={d.label} style={{borderBottom:"1px solid #deded9",padding:"18px 0 23px"}}>
  <h3 style={{fontSize:21,fontWeight:650,margin:"0 0 8px"}}>{d.label}　{d.focus}</h3>
  <p><strong>用意する経験：</strong>{d.experience}</p><p><strong>練習例：</strong>{d.practice}</p><p><strong>観察すること：</strong>{d.watch}</p>
@@ -66,7 +66,7 @@ export default function Page(){return <main style={{maxWidth:910,margin:"0 auto"
  <h3>年間計画の基本項目</h3><p>各年代の計画には、①今年経験させたいゲーム状況、②月ごとの重点課題、③練習で用いる主な課題、④何を観察して見直すかを記載します。試合や大会の予定も組み込みますが、日程表だけで終わらせません。</p>
  <h3>直近4週間の進め方</h3>
  <p><strong>第1週：</strong>試合形式の中で現状を観察する。<br/><strong>第2週：</strong>課題に合わせて人数・スペース・ルールのうち一つを変更する。<br/><strong>第3週：</strong>同じ観察項目で判断と実行を記録する。<br/><strong>第4週：</strong>できるだけ同じ条件で再確認し、次月の課題を決める。</p>
- <p>練習後は「狙った状況が生まれたか」「選手は何を選んだか」「次は何を変えるか」を短く残します。計画どおり進まなかった場合も、その理由が次の改善材料になります。</p>
+ <p>練習後は「意図した場面が生まれたか」「選手は何を見て選んだか」「次回は何を変えるか」を簡潔に記録します。計画どおり進まなかった場合も、その理由が次の改善材料になります。</p>
  </S>
  <S id="実践"><H>07　指導を振り返るための問い</H>
  <p>指導計画を振り返るときは、「選手が経験した場面」と「指導者が身につけてほしいと考えたこと」が一致していたかを確かめます。たとえば、判断力を育てるつもりの練習で守備者がほとんど動かず、選手がいつも同じプレーを選んでいるなら、課題の条件を見直す必要があります。</p>
@@ -77,10 +77,10 @@ export default function Page(){return <main style={{maxWidth:910,margin:"0 auto"
  <p>育成計画は、選手を予定どおりに動かすためのものではありません。選手の変化を見逃さず、必要な経験を継続して用意するためのものです。</p>
  </S>
  <S id="文献"><H>08　参考文献</H>
- <p>以下は基本方針を考えるために参照した資料です。論文で実際に示されたことと、RBAの練習例は同一ではありません。</p>
- {refs.map((r,i)=><div key={r.title} style={{padding:"14px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,color:"#666",marginBottom:2}}>参考文献 {i+1}　{r.author}</p><p style={{fontWeight:600,margin:"4px 0"}}>{r.title}</p><p style={{fontSize:14,margin:"4px 0 10px"}}>{r.note}</p><a style={{color:"#333",overflowWrap:"anywhere",fontSize:14}} target="_blank" rel="noopener noreferrer" href={r.url}>文献・出版社のページを確認 ↗</a></div>)}
+ <p>以下は基本方針を考えるために参照した資料です。研究で確認された知見と、RBAが提案する練習例は区別して読んでください。</p>
+ {refs.map((r,i)=><div key={r.title} style={{padding:"14px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,color:"#666",marginBottom:2}}>参考文献 {i+1}　{r.author}</p><p style={{fontWeight:600,margin:"4px 0"}}>{r.title}</p><p style={{fontSize:14,margin:"4px 0 10px"}}>{r.note}</p><a style={{color:"#333",overflowWrap:"anywhere",fontSize:14}} target="_blank" rel="noopener noreferrer" href={r.url}>原典・出版社のページを開く ↗</a></div>)}
  <p style={{marginTop:22}}>論文の要旨・方法・結果・限界の読み方や、各文献の解説は、<a href="/ja/journal/okinawa-coaching-references#how-to-read" style={{color:"#333",textDecoration:"underline"}}>参考文献の読み方・現場への応用ガイド</a>で詳しく紹介しています。</p>
- <p>年間の練習計画にどう落とし込むかを考えたい方は、<a href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026" style={{color:"#333",textDecoration:"underline"}}>試合から逆算して考える年間育成計画</a>も参考になります。実際の選手の記録に基づく完成計画ではなく、前提条件を置いた計画モデルとしてご覧ください。</p>
+ <p>年間の指導方針を具体的な練習計画につなげたい方は、<a href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026" style={{color:"#333",textDecoration:"underline"}}>試合から逆算して考える年間育成計画</a>も参考になります。実際の選手の記録に基づく完成計画ではなく、大会日程などを仮定した年間計画の例としてご覧ください。</p>
  </S>
  <footer style={{borderTop:"1px solid #aaa",marginTop:70,paddingTop:25,fontSize:13,color:"#666"}}>RBA JOURNAL　|　2026年10月15日<br/><a href="/ja/journal" style={{color:"#444"}}>ジャーナル一覧に戻る</a></footer>
  </main>}
