@@ -74,7 +74,7 @@ export function TorstenCoachCampaignJa() {
       </section>
 
       <section className="tc-section tc-resource">
-        <div className="tc-container tc-resource-grid"><div><p className="tc-eyebrow">FREE PRACTICE TOOL / BY RBA</p><h2>まず、2分で練習を見直す。<br/>次に、10回の攻撃を観察する。</h2><p>シュートの成否だけでなく、打つ前の判断や準備を記録するA4の無料ワークシートです。申し込みや会員登録は不要です。</p><p className="tc-small">本資料はRBA独自制作であり、トーステン氏の監修資料や本講義の配布教材ではありません。</p></div><div className="tc-resource-action"><a className="tc-btn" href="/ja/coach/shooting-check">無料・5問チェックを試す ↗</a><a className="tc-btn tc-btn--ghost" href={worksheetUrl}>観察ワークシートを入手する ↗</a><a className="tc-text-link" href="https://form.jotform.com/262858264882068" target="_blank" rel="noopener noreferrer">今後の無料教材の配信登録（任意） ↗</a></div></div>
+        <div className="tc-container tc-resource-grid"><div><p className="tc-eyebrow">FREE PRACTICE TOOL / BY RBA</p><h2>まず、2分で練習を見直す。<br/>次に、10回の攻撃を観察する。</h2><p>シュートの成否だけでなく、打つ前の判断や準備を記録するA4の無料ワークシートです。申し込みや会員登録は不要です。</p><p className="tc-small">本資料はRBA独自制作であり、トーステン氏の監修資料や本講義の配布教材ではありません。</p></div><div className="tc-resource-action"><a className="tc-btn" href="/ja/coach/shooting-check">無料・5問チェックを試す ↗</a><a className="tc-btn tc-btn--ghost" href={worksheetUrl}>観察ワークシートを入手する ↗</a><a className="tc-text-link" href="/api/torsten-poster" target="_blank" rel="noopener noreferrer">11/25講習の共有用告知画像を見る ↗</a><a className="tc-text-link" href="/ja/events/torsten-loibl-online-clinic/share">紹介用の公式案内文をコピーする ↗</a><a className="tc-text-link" href="https://form.jotform.com/262858264882068" target="_blank" rel="noopener noreferrer">今後の無料教材の配信登録（任意） ↗</a></div></div>
       </section>
 
       <section className="tc-section tc-faq" aria-labelledby="tc-faq-title">
