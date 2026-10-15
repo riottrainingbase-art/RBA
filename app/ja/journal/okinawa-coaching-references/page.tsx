@@ -7,17 +7,17 @@ const refs=[
 ["Clemente et al. (2021)","Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players: A Systematic Review and Meta-Analysis","https://doi.org/10.3389/fpsyg.2021.667041","少人数で行うゲーム形式の練習について、技術面での改善が報告されています。一方、このレビューに含まれた研究では戦術的な行動の変化を評価できておらず、判断力が必ず向上するとまでは言えません。"]
 ];
 const sections=[
-["同じ年代でも、発達のペースは一人ひとり異なる","同じU12の選手でも、身体の成長の度合い、競技経験、練習内容の理解度、疲れ方には違いがあります。年代ごとの目安は大切にしながらも、一人ひとりの様子を確かめ、練習の難しさや運動負荷を調整することが大切です。"],
+["同じ学年でも、成長や経験には違いがある","同じU12の選手でも、身体の成長の度合い、競技経験、練習内容の理解度、疲れ方には違いがあります。年代ごとの目安は大切にしながらも、一人ひとりの様子を確かめ、練習の難しさや運動負荷を調整することが大切です。"],
 ["選手が自分で判断する場面を、練習の中につくる","例えば2対1では、守備者の位置や動きを見て、パスを出すか、自分で攻めるかを判断します。最初は広めのスペースで行い、慣れてきたら守備者の開始位置を変えてみます。そのとき、選手が何を見て選択したのかを確認します。これはRBAが提案する練習例であり、特定の効果を保証するものではありません。"],
-["得点だけでは、選手の成長を十分に捉えられない","シュートが入ったかどうかだけでなく、打つべき場面だったか、選んだプレーを実行できたか、ボールを持っていないときに味方を助ける動きができたかも確認します。判断が適切でも、技術的なミスによって失敗することはあります。"],
+["プレーの結果だけで、選手の成長を判断しない","シュートが入ったかどうかだけでなく、打つべき場面だったか、選んだプレーを実行できたか、ボールを持っていないときに味方を助ける動きができたかも確認します。判断が適切でも、技術的なミスによって失敗することはあります。"],
 ["年間の育成方針を、日々の練習につなげる","年間計画は、一度作ったら変更できない予定表ではありません。月ごとに重点を置く課題を決め、毎週の練習で選手の様子を観察します。その結果を振り返り、必要に応じて次の練習内容を見直します。"]
 ];
 export default function Page(){return <main style={{maxWidth:860,margin:"0 auto",padding:"54px 24px 100px",color:"#252525",fontFamily:"'Yu Gothic',Meiryo,sans-serif",lineHeight:1.95}}>
 <style>{`@media(max-width:680px){table.rba-mobile-table{min-width:0!important;width:100%!important;display:block}table.rba-mobile-table thead{display:none}table.rba-mobile-table tbody,table.rba-mobile-table tr{display:block;width:100%}table.rba-mobile-table tr{border-top:1px solid #aaa;padding:10px 0 16px}table.rba-mobile-table td{display:grid;grid-template-columns:minmax(85px,30%) minmax(0,1fr);column-gap:10px;width:100%;padding:8px 0!important;border-bottom:1px solid #eee!important;white-space:normal;overflow-wrap:anywhere;line-height:1.75}table.rba-mobile-table td::before{content:attr(data-label);font-weight:700;color:#4a4a4a}}`}</style>
 <p style={{fontSize:12,letterSpacing:2,borderBottom:"1px solid #aaa",paddingBottom:15}}>RIOT BASKETBALL ACADEMY / JOURNAL</p>
 <p style={{fontSize:12,letterSpacing:1,marginTop:38}}>COACHING REFERENCE GUIDE · OCTOBER 2026</p>
-<h1 style={{fontFamily:"serif",fontSize:"clamp(29px,5vw,43px)",lineHeight:1.5,fontWeight:600}}>育成を考えるための<br/>参考文献と現場への応用</h1>
-<p style={{fontSize:18}}>子どもの成長には個人差があります。指導者は何を教え、どのような経験を用意し、選手の変化をどう確かめればよいのでしょうか。研究で示されている考え方を日々の練習と結びつけながら、参考文献を自分で読み解く方法も解説します。</p>
+<h1 style={{fontFamily:"serif",fontSize:"clamp(29px,5vw,43px)",lineHeight:1.5,fontWeight:600}}>育成年代の指導に役立つ<br/>研究の読み方と生かし方</h1>
+<p style={{fontSize:18}}>子どもの発達には個人差があります。何を経験してもらい、その変化をどう確かめるか。研究で分かっていることを整理しながら、日々の練習に生かすための読み方を紹介します。</p>
 <p style={{borderLeft:"2px solid #555",paddingLeft:18}}>このページは、指導者が育成計画や練習内容を考える際の参考資料です。研究で確かめられたことと、RBAが提案する指導方法を区別して紹介します。</p>
 {sections.map(([title,body],i)=><section key={title} style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>{String(i+1).padStart(2,"0")}　{title}</h2><p>{body}</p></section>)}
 <section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>05　U8〜U15の課題例</h2><p>以下は、研究によって各年代の正解が決められているわけではありません。RBAが指導計画を考える際の参考例です。</p>
@@ -35,7 +35,7 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 <li><strong>評価した項目：</strong>パス成功率を調べたのか、プレー中の判断を調べたのか、競技継続率を調べたのか。「測定されていない能力が伸びた」とは言えません。</li>
 <li><strong>限界と適用範囲：</strong>研究者が挙げている限界に加え、対象人数や評価方法も確認します。そのうえで、自分の指導現場にどこまで応用できるかを考えます。</li>
 </ol>
-<h3 style={{fontSize:19,marginTop:29}}>論文のどこに何が書かれているか</h3>
+<h3 style={{fontSize:19,marginTop:29}}>論文の各項目で確認すること</h3>
 <div style={{overflowX:"auto",maxWidth:"100%"}}><table className="rba-mobile-table" style={{borderCollapse:"collapse",width:"100%",minWidth:570,fontSize:14}}>
 <thead><tr><th style={{textAlign:"left",borderTop:"1px solid #777",borderBottom:"1px solid #aaa",padding:10}}>表記</th><th style={{textAlign:"left",borderTop:"1px solid #777",borderBottom:"1px solid #aaa",padding:10}}>確認すること</th></tr></thead>
 <tbody>{[
@@ -47,12 +47,12 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 ["Limitations（限界）","結果を解釈する際の注意点や、その研究だけでは分からないこと。"],
 ["Conclusion（結論）","研究者による要約。方法と結果も合わせて確認する。"]
 ].map(([a,b])=><tr key={a}><td data-label="項目" style={{padding:10,borderBottom:"1px solid #ddd",verticalAlign:"top"}}><strong>{a}</strong></td><td data-label="確認すること" style={{padding:10,borderBottom:"1px solid #ddd"}}>{b}</td></tr>)}</tbody></table></div>
-<h3 style={{fontSize:19,marginTop:29}}>資料の種類によって、読み方は変わる</h3>
+<h3 style={{fontSize:19,marginTop:29}}>資料の種類を区別して読む</h3>
 <p><strong>原著論文：</strong>実際の測定方法と結果を確認できます。ただし、対象と条件が限定される場合があります。</p>
 <p><strong>系統的レビュー・メタ分析：</strong>複数の研究を整理します。まとめられた研究の質や対象によって、結果の受け止め方は変わります。</p>
 <p><strong>合意声明：</strong>専門家が現時点の知見を踏まえて示した推奨です。特定の練習法の効果を実験で証明したという意味ではありません。</p>
 <p><strong>理論書：</strong>練習をどう設計するかについて考える土台になります。理論を支持する研究と、個々の練習法の効果検証は区別します。</p>
-<h3 style={{fontSize:19,marginTop:29}}>このページに掲載した4文献を、どう読むか</h3>
+<h3 style={{fontSize:19,marginTop:29}}>掲載した4つの文献をどう読むか</h3>
 <p><strong>Bergeronら（2015）：</strong>「何歳なら何ができるべきか」という一覧表を探すのではなく、身体的な成熟や健康、継続して競技に参加できる環境をどう考えるかに注目します。これはIOCの合意声明です。</p>
 <p><strong>Renshawら（2019）：</strong>選手、課題、環境の条件を変えると、どのような判断や動きが必要になるのかを考えます。理論を紹介する書籍であり、特定メニューの効果を直接検証した原著論文ではありません。</p>
 <p><strong>Oslinら（1998）：</strong>ゲーム中の判断と技能の実行を分けて捉える発想を学びます。評価項目の定義と採点手順を確認し、RBAの簡易記録例を正式なGPAIと混同しないことが大切です。</p>
@@ -66,10 +66,10 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 <p style={{borderLeft:"2px solid #666",paddingLeft:17,marginTop:26}}>「研究で効果が示されているから、この練習だけで十分だ」と決めつけるのは避けたいところです。研究は指導を考えるための材料であり、選手一人ひとりの成長を保証する説明書ではありません。</p>
 <p style={{fontSize:13,color:"#666"}}>文献の内容を詳しく確かめる場合は、リンク先の原著論文や出版社の資料を確認してください。要旨のみで判断できない点は、全文や研究方法を確認する必要があります。</p>
 </section>
-<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>08　参考文献・原典</h2>{refs.map(([author,title,url,note],i)=><div key={title} style={{padding:"18px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,margin:0}}>文献 {String(i+1).padStart(2,"0")} / {author}</p><p style={{fontWeight:600}}>{title}</p><p>{note}</p><a href={url} target="_blank" rel="noopener noreferrer" style={{color:"#222",overflowWrap:"anywhere"}}>原著・出版社ページを確認 ↗</a></div>)}</section>
-<p style={{fontSize:13,color:"#666",marginTop:50}}>RBA JOURNAL · 参考文献ガイド／最終更新：2026年10月15日</p><nav aria-label="関連する記事" style={{marginTop:36,borderTop:"1px solid #aaa",paddingTop:20,display:"grid",gap:12}}>
+<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>08　参考文献と原典</h2>{refs.map(([author,title,url,note],i)=><div key={title} style={{padding:"18px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,margin:0}}>文献 {String(i+1).padStart(2,"0")} / {author}</p><p style={{fontWeight:600}}>{title}</p><p>{note}</p><a href={url} target="_blank" rel="noopener noreferrer" style={{color:"#222",overflowWrap:"anywhere"}}>原典・出版社のページを開く ↗</a></div>)}</section>
+<p style={{fontSize:13,color:"#666",marginTop:50}}>RBA JOURNAL · 参考文献ガイド／更新日：2026年10月15日</p><nav aria-label="関連する記事" style={{marginTop:36,borderTop:"1px solid #aaa",paddingTop:20,display:"grid",gap:12}}>
 <strong>関連する記事</strong>
-<a href="/ja/journal/youth-coaching-guidelines" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>育成の基本方針を読む｜U8〜U15の指導と成長評価 →</a>
-<a href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>年間計画のモデルを読む｜試合から逆算して考える育成計画 →</a>
-<a href="/ja/journal/coaches" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>指導者向けジャーナルの記事を探す →</a>
+<a href="/ja/journal/youth-coaching-guidelines" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>育成の基本方針｜U8〜U15の指導と成長の捉え方 →</a>
+<a href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>年間計画の例｜試合日程を踏まえた育成計画の立て方 →</a>
+<a href="/ja/journal/coaches" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>指導者向けの記事一覧を見る →</a>
 </nav><a href="/ja/journal" style={{color:"#222"}}>← ジャーナル一覧へ戻る</a></main>}
