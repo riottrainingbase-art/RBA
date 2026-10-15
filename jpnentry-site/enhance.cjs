@@ -222,12 +222,13 @@ module.exports = function enhanceSite(ctx) {
     }
     html=html.replace('</head>',`<meta name="robots" content="index, follow">
     <meta name="twitter:card" content="summary"><meta property="og:url" content="${canonical}">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/extra.css">
     <script type="application/ld+json">${JSON.stringify(obj)}</script>${additional}</head>`);
     if(!html.includes(`mailto:${mail}`))throw Error("Contact email missing: "+rel);
     write(rel,html);
   }
 
+  fs.copyFileSync(path.join(__dirname,"extra.css"),path.join(out,"extra.css"));
   write("favicon.svg",`<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#111b25"/><path d="M35 14v30q0 8-9 8-7 0-12-5l5-7q3 3 6 3 2 0 2-3V14z" fill="#f6f5ef"/><circle cx="45" cy="45" r="5" fill="#e45d35"/></svg>`);
   write("robots.txt","User-agent: *\nAllow: /\nSitemap: https://www.jpnentry.com/sitemap.xml\n");
   const routes=filepaths.map(f=>{
