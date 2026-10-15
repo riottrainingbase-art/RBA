@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "description": "Independent code-managed JPNentry company website",
   "scripts": {
-    "build": "node build.cjs"
+    "build": "node build.cjs && node audit.cjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": "24.x"
   }
 }
