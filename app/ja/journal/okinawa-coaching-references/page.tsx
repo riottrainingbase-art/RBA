@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-export const metadata: Metadata = { title:"育成を考えるための参考文献と現場への応用 | RBA JOURNAL",description:"沖縄スタッフ向け。発達段階・判断力・成長評価を研究の知見と実践提案に分けて解説。",alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/okinawa-coaching-references"}};
+export const metadata: Metadata = { title:"育成年代の指導に役立つ研究と実践 | RBA JOURNAL",description:"発達段階、プレー中の判断、選手の成長の捉え方について、研究の知見と練習への生かし方を整理しました。",alternates:{canonical:"https://riotbasketballacademy.com/ja/journal/okinawa-coaching-references"}};
 const refs=[
-["Bergeron et al. (2015)","International Olympic Committee consensus statement on youth athletic development","https://doi.org/10.1136/bjsports-2015-094962","発達や成熟の個人差を尊重し、健康と長期的な参加を重視する専門家声明。年代別の特定メニューの効果を検証した実験ではありません。"],
-["Renshaw et al. (2019)","The Constraints-Led Approach: Principles for Sports Coaching and Practice Design","https://www.routledge.com/The-Constraints-Led-Approach-Principles-for-Sports-Coaching-and-Practice/p/book/9781138104068","個人・環境・課題の制約を調整して学習機会を設計する理論。2対1の特定ドリルの効果を保証するものではありません。"],
-["Oslin, Mitchell & Griffin (1998)","The Game Performance Assessment Instrument (GPAI): Development and Preliminary Validation","https://doi.org/10.1123/jtpe.17.2.231","意思決定・技能実行・サポート等を区別するゲーム評価の枠組み。下記の簡易観察例は正式なGPAI尺度ではありません。"],
-["Clemente et al. (2021)","Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players: A Systematic Review and Meta-Analysis","https://doi.org/10.3389/fpsyg.2021.667041","少人数ゲームによる技術実行の改善が示唆されました。ただし採択研究で戦術行動のアウトカムは確認されず、判断力向上を一律に実証したとは言えません。"]
+["Bergeron et al. (2015)","International Olympic Committee consensus statement on youth athletic development","https://doi.org/10.1136/bjsports-2015-094962","子どもの発達や成熟の個人差に配慮し、健康と長期的な競技参加を大切にすることを提言しています。特定の練習メニューの効果を調べた研究ではありません。"],
+["Renshaw et al. (2019)","The Constraints-Led Approach: Principles for Sports Coaching and Practice Design","https://www.routledge.com/The-Constraints-Led-Approach-Principles-for-Sports-Coaching-and-Practice/p/book/9781138104068","選手自身の特徴、周囲の環境、練習のルールなどを調整することで、学びやすい状況をつくる考え方です。特定の2対1練習の効果を保証するものではありません。"],
+["Oslin, Mitchell & Griffin (1998)","The Game Performance Assessment Instrument (GPAI): Development and Preliminary Validation","https://doi.org/10.1123/jtpe.17.2.231","試合中の判断、技術の実行、ボールを持たないときの動きなどを分けて観察するための評価方法です。このページの記録例は、GPAIの正式な採点方法ではありません。"],
+["Clemente et al. (2021)","Effects of Small-Sided Game Interventions on the Technical Execution and Tactical Behaviors of Young and Youth Team Sports Players: A Systematic Review and Meta-Analysis","https://doi.org/10.3389/fpsyg.2021.667041","少人数で行うゲーム形式の練習について、技術面での改善が報告されています。一方、このレビューに含まれた研究では戦術的な行動の変化を評価できておらず、判断力が必ず向上するとまでは言えません。"]
 ];
 const sections=[
-["発達段階は年齢だけでは決められない","同じU12でも、身体的成熟、競技経験、課題への理解、疲労への反応は異なります。年齢は目安として使い、実際の選手の様子を見て課題の難しさを調整します。"],
-["判断力は状況の中で育てる","例えば2対1では、守備者の位置を見てパスかドライブかを選ぶ必要があります。まず広いスペースで実施し、次に守備者の開始位置だけを変え、選択がどう変わるかを観察します。これらはRBAの実践提案であり、特定の成果を保証するものではありません。"],
-["得点と成長を同一視しない","シュートが入ったかだけでなく、適切なタイミングで選択したか、実行できたか、ボールを持たない時に味方を助けられたかを別々に観察します。選択は良くても実行に失敗することがあります。"],
-["年間計画から毎週の練習へ","年間計画は固定された予定表ではありません。月ごとの重点、週ごとの観察項目、練習後の振り返りをつなぎ、選手の反応に応じて変更します。"]
+["同じ年代でも、発達の状況は一人ひとり異なる","同じU12の選手でも、身体の成長、競技経験、練習内容の理解度、疲れやすさには違いがあります。年代ごとの目安は大切にしながらも、一人ひとりの様子を確かめ、練習の難易度や負荷を調整することが必要です。"],
+["選手が自分で判断する場面を、練習の中につくる","例えば2対1では、守備者の位置や動きを見て、パスを出すか、自分で攻めるかを判断します。最初は広めのスペースで行い、慣れてきたら守備者の開始位置を変えてみます。そのとき、選手が何を見て選択したのかを確認します。これはRBAが提案する練習例であり、特定の効果を保証するものではありません。"],
+["得点だけでは、選手の成長を十分に捉えられない","シュートが入ったかどうかだけでなく、打つべき場面だったか、選んだプレーを実行できたか、ボールを持っていないときに味方を助ける動きができたかも確認します。判断が適切でも、技術的なミスによって失敗することはあります。"],
+["年間の育成方針を、日々の練習につなげる","年間計画は、一度作ったら変更できない予定表ではありません。月ごとに重点を置く課題を決め、毎週の練習で選手の様子を観察します。その結果を振り返り、必要に応じて次の練習内容を見直します。"]
 ];
 export default function Page(){return <main style={{maxWidth:860,margin:"0 auto",padding:"54px 24px 100px",color:"#252525",fontFamily:"'Yu Gothic',Meiryo,sans-serif",lineHeight:1.95}}>
 <p style={{fontSize:12,letterSpacing:2,borderBottom:"1px solid #aaa",paddingBottom:15}}>RIOT BASKETBALL ACADEMY / JOURNAL</p>
 <p style={{fontSize:12,letterSpacing:1,marginTop:38}}>COACHING REFERENCE GUIDE · OCTOBER 2026</p>
 <h1 style={{fontFamily:"serif",fontSize:"clamp(29px,5vw,43px)",lineHeight:1.5,fontWeight:600}}>育成を考えるための<br/>参考文献と現場への応用</h1>
-<p style={{fontSize:18}}>発達段階、判断力、成長評価。沖縄の指導現場で育成計画を考えるために、研究が示すこととRBAの実践提案を区別して整理しました。</p>
-<p style={{borderLeft:"2px solid #555",paddingLeft:18}}>本資料は指導者の学習を支援するもので、特定の選手や指導者への評価、契約上の提出義務を示すものではありません。</p>
+<p style={{fontSize:18}}>子どもの成長には個人差があります。指導者は何を教え、どのような経験を用意し、選手の変化をどう確かめればよいのでしょうか。研究で示されている考え方を、日々の練習と結びつけて解説します。</p>
+<p style={{borderLeft:"2px solid #555",paddingLeft:18}}>このページは、指導者が育成計画や練習内容を考える際の参考資料です。研究で確かめられたことと、RBAが提案する指導方法を区別して紹介します。</p>
 {sections.map(([title,body],i)=><section key={title} style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>{String(i+1).padStart(2,"0")}　{title}</h2><p>{body}</p></section>)}
-<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>05　U8〜U15の課題例</h2><p>以下は研究から一意に決まる区分ではなく、RBAが現場で検証するための設計例です。</p>
-{[["U8","遊び・方向転換・ボール操作・相手と空間への気づき"],["U10","1対1・簡単な数的優位・味方との協力"],["U12","2対1・2対2・3対3・オフボールのサポート"],["U15","複数の戦術選択・状況変化への適応・振り返り"]].map(([age,txt])=><p key={age}><strong>{age}</strong>　{txt}</p>)}</section>
-<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>06　現場での4週間</h2><p>第1週：現状のプレーを観察する。第2週：課題条件を一つ変える。第3週：選択と実行を別々に記録する。第4週：同じ観察条件で比較し、次の課題を決める。</p><p>記録例：「適切な選択が6機会中4回、うち実行成功2回」。これは架空の例で、正式なGPAIの得点法ではありません。観察者間の一致を確認し、少数回の結果だけで選手の能力を断定しないでください。</p></section>
+<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>05　U8〜U15の課題例</h2><p>以下は、研究によって各年代の正解が決められているわけではありません。RBAが指導計画を考える際の参考例です。</p>
+{[["U8","遊びを通じた身体の動かし方、ボール操作、相手や空いている場所への気づき"],["U10","1対1、2対1などの簡単な場面での判断、味方と協力する経験"],["U12","2対1・2対2・3対3・オフボールのサポート"],["U15","複数の選択肢がある場面での判断、相手の変化への対応、プレーの振り返り"]].map(([age,txt])=><p key={age}><strong>{age}</strong>　{txt}</p>)}</section>
+<section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>06　4週間で取り組む観察と振り返りの例</h2><p>第1週は、普段のプレーを観察します。第2週は、スペースや人数などの条件を一つ変えてみます。第3週は、選手の判断と技術の実行を分けて記録します。第4週は、できるだけ同じ条件で再び観察し、次に取り組む課題を決めます。</p><p>例えば「判断する機会が6回あり、そのうち4回は状況に合った選択ができた。実際にプレーを成功させたのは2回」と記録します。数字は説明のための例であり、GPAIの正式な採点方法ではありません。指導者によって評価が大きく異ならないかも確かめ、数回のプレーだけで選手の能力を決めつけないようにします。</p></section>
 <section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>07　原著・参考文献</h2>{refs.map(([author,title,url,note],i)=><div key={title} style={{padding:"18px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,margin:0}}>文献 {String(i+1).padStart(2,"0")} / {author}</p><p style={{fontWeight:600}}>{title}</p><p>{note}</p><a href={url} target="_blank" rel="noopener noreferrer" style={{color:"#222",overflowWrap:"anywhere"}}>原著・出版社ページを確認 ↗</a></div>)}</section>
 <p style={{fontSize:13,color:"#666",marginTop:50}}>RBA JOURNAL · 参考文献ガイド／最終更新：2026年10月15日</p><a href="/ja/journal" style={{color:"#222"}}>← ジャーナル一覧へ戻る</a></main>}
