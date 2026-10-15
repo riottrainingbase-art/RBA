@@ -4,6 +4,7 @@ import Script from "next/script";
 import { GlobalRbaFooter } from "@/components/global-rba-footer";
 import "./globals.css";
 import "./platform-v9.css";
+import "./journal-responsive-fix.css";
 
 export const viewport: Viewport = {
   width: "device-width",
