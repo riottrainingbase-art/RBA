@@ -209,3 +209,9 @@
 .rba-research-next{grid-template-columns:1fr;gap:0}
 body:has(.rba-research-shell) .member-dock,body:has(.rba-research-shell) .whatsapp-dock,body:has(.rba-research-shell) .opportunities-dock{display:none!important}
 }
+
+.rba-research-hub-link{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:36px;align-items:end;background:#eceeeb;border-bottom:1px solid #ccd1cc}
+.rba-research-hub-link h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(28px,4vw,43px);font-weight:600;line-height:1.5;margin:12px 0}
+.rba-research-hub-link p:not(.section-index){max-width:690px;color:#414a4d;line-height:1.85}
+.rba-research-hub-link>a{display:inline-flex;align-items:center;gap:12px;min-height:46px;padding:0 0 5px;border-bottom:1px solid #333;font-size:14px;font-weight:700}
+@media(max-width:760px){.rba-research-hub-link{grid-template-columns:minmax(0,1fr);gap:14px}.rba-research-hub-link h2{font-size:28px}.rba-research-hub-link>a{justify-content:space-between}}
