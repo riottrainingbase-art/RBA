@@ -310,6 +310,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
     {sourceReadingPath?<section className="rba-journal-study-path section-pad" aria-label="関連する学習記事">
       <div className="section-head"><div><p className="section-index">READING PATH</p><h2>育成の考え方から、具体的な練習計画へ</h2></div><p>育成方針、研究の読み方、年間計画の順に紹介します。関心のある記事から読むこともできます。</p></div>
       <div className="rba-study-links">
+        <Link href="/ja/journal/research"><span>00 / 研究シリーズ</span><strong>参考文献を読み解く｜全7編</strong><small>発達・判断力・評価・少人数ゲーム・身体づくり・負荷管理</small><ArrowRight size={18}/></Link>
         <Link href="/ja/journal/youth-coaching-guidelines"><span>01 / 育成方針</span><strong>U8〜U15の育成と成長の捉え方</strong><small>年代に応じた経験、練習の組み立て方、選手の変化を見る視点</small><ArrowRight size={18}/></Link>
         <Link href="/ja/journal/okinawa-coaching-references#how-to-read"><span>02 / 参考文献</span><strong>研究を読み解き、練習に生かす</strong><small>研究の目的・方法・結果・限界をどう確認するか</small><ArrowRight size={18}/></Link>
         <Link href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026"><span>03 / 計画の組み立て方</span><strong>試合から逆算して考える年間育成計画</strong><small>大会日程などを仮定した年間計画の一例。実測データに基づく計画ではありません</small><ArrowRight size={18}/></Link>
