@@ -67,4 +67,9 @@ export default function Page(){return <main style={{maxWidth:860,margin:"0 auto"
 <p style={{fontSize:13,color:"#666"}}>文献の内容を詳しく確かめる場合は、リンク先の原著論文や出版社の資料を確認してください。要旨のみで判断できない点は、全文や研究方法を確認する必要があります。</p>
 </section>
 <section style={{borderTop:"1px solid #bbb",marginTop:45,paddingTop:20}}><h2 style={{fontFamily:"serif",fontSize:25}}>08　参考文献・原典</h2>{refs.map(([author,title,url,note],i)=><div key={title} style={{padding:"18px 0",borderBottom:"1px solid #ddd"}}><p style={{fontSize:13,margin:0}}>文献 {String(i+1).padStart(2,"0")} / {author}</p><p style={{fontWeight:600}}>{title}</p><p>{note}</p><a href={url} target="_blank" rel="noopener noreferrer" style={{color:"#222",overflowWrap:"anywhere"}}>原著・出版社ページを確認 ↗</a></div>)}</section>
-<p style={{fontSize:13,color:"#666",marginTop:50}}>RBA JOURNAL · 参考文献ガイド／最終更新：2026年10月15日</p><p style={{marginTop:28}}><a href="/ja/journal/youth-coaching-guidelines" style={{color:"#222",fontWeight:700}}>RBA育成指導指針｜U8〜U15の年代別設計・判断力・成長評価を読む →</a></p><a href="/ja/journal" style={{color:"#222"}}>← ジャーナル一覧へ戻る</a></main>}
+<p style={{fontSize:13,color:"#666",marginTop:50}}>RBA JOURNAL · 参考文献ガイド／最終更新：2026年10月15日</p><nav aria-label="関連する記事" style={{marginTop:36,borderTop:"1px solid #aaa",paddingTop:20,display:"grid",gap:12}}>
+<strong>関連する記事</strong>
+<a href="/ja/journal/youth-coaching-guidelines" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>育成の基本方針を読む｜U8〜U15の指導と成長評価 →</a>
+<a href="/ja/journal/gream-okinawa-u13-annual-development-programme-2026" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>年間計画のモデルを読む｜試合から逆算して考える育成計画 →</a>
+<a href="/ja/journal/coaches" style={{color:"#222",textDecoration:"underline",textUnderlineOffset:4}}>指導者向けジャーナルの記事を探す →</a>
+</nav><a href="/ja/journal" style={{color:"#222"}}>← ジャーナル一覧へ戻る</a></main>}
