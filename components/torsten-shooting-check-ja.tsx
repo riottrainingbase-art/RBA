@@ -33,7 +33,7 @@ export function TorstenShootingCheckJa(){
  },[answers]);
  return <div className="tc-check">
   <div className="tc-check-wrap">
-   <header className="tc-check-hero"><p className="tc-check-kicker">RBA COACH EDUCATION / FREE PRACTICE CHECK</p><p className="tc-check-meta">約2分・無料・個人情報入力不要</p><h1>あなたのシュート練習は、<br/><em>試合につながっているか。</em></h1><p>5つの問いで、明日の練習を見直すヒントを見つけよう。RBA独自の振り返りツールです。シュートフォームの正しさやコーチの能力を判定するものではありません。</p></header>
+   <header className="tc-check-hero"><p className="tc-check-kicker">RBA COACH EDUCATION / FREE PRACTICE CHECK</p><p className="tc-check-meta">約2分・無料・個人情報入力不要</p><h1>あなたのシュート練習は、<br/><em>試合につながっているか。</em></h1><p>5つの問いで、明日の練習を見直すヒントを見つけよう。RBA独自の振り返りツールです。シュートフォームの正しさやコーチの能力を判定するものではありません。</p><a className="tc-check-heroLink" href="/ja/events/torsten-loibl-online-clinic">11月25日の講習内容を先に確認する <ArrowRight size={15} aria-hidden="true"/></a></header>
    {!result ? <section className="tc-check-card" aria-label="練習設計の振り返り">
     <div className="tc-check-progress"><span>回答 {count} / 5</span><div role="progressbar" aria-valuenow={count} aria-valuemin={0} aria-valuemax={5}><i style={{width:String(count*20)+"%"}}/></div></div>
     {questions.map((q,i)=><fieldset key={q[0]} className="tc-check-question"><legend><span>Q{String(i+1).padStart(2,"0")}</span>{q[0]}</legend><p>{q[1]}</p><div className="tc-check-options">{options.map((opt,j)=><label key={opt} className={answers[i]===j?"tc-check-option is-selected":"tc-check-option"}><input type="radio" name={"question_"+i} checked={answers[i]===j} onChange={()=>setAnswers(a=>a.map((v,k)=>k===i?j:v))}/><span>{opt}</span>{answers[i]===j&&<CheckCircle2 size={18}/>}</label>)}</div></fieldset>)}
@@ -41,10 +41,17 @@ export function TorstenShootingCheckJa(){
     <p className="tc-check-note">回答はこの画面内で使われ、RBAには送信されません。科学的な診断や指導力評価ではありません。</p>
    </section> : <section className="tc-check-card" aria-live="polite">
     <p className="tc-check-kicker">YOUR NEXT PRACTICE</p><h2>{suggestion[0]}</h2><p>{suggestion[1]}</p><div className="tc-check-tip"><strong>次の練習でできること</strong><p>{suggestion[2]}</p></div>
-    <h3>さらに学びたい指導者の方へ</h3><p>11月25日、トーステン・ロイブル氏のオンライン講習「現代バスケットボールにおけるシューターの育成と活用」を開催。技術・練習設計・スペーシング・判断を一つの流れとして学びます。</p>
-    <div className="tc-check-event"><span>2026.11.25 WED 20:00–21:30</span><strong>LIVE ¥3,300 / 30日録画 ¥4,400</strong><small>税込・日本語逐次通訳付き</small></div>
-    <a className="tc-check-btn" href={torstenRegistrationUrl} target="_blank" rel="noopener noreferrer">講習に申し込む <ArrowRight size={18}/></a>
-    <a className="tc-check-link" href="/ja/events/torsten-loibl-online-clinic">講習の内容を先に確認する →</a><a className="tc-check-link" href="https://form.jotform.com/262858264882068" target="_blank" rel="noopener noreferrer">今後の無料教材・指導者情報を希望する（任意） ↗</a><p className="tc-check-note">情報メールの登録は講習への申込・支払いとは別です。明示的に希望した方に限り案内します。</p>
+    <div className="tc-check-nextstep" aria-labelledby="tc-check-nextstep-title">
+      <p className="tc-check-nextstep-kicker">LEARN MORE / OPTIONAL</p>
+      <h3 id="tc-check-nextstep-title">今日の気づきを、試合の中の判断へ。</h3>
+      <p>今回の振り返りで気になった点を、練習や試合でどう扱うか。11月25日のトーステン・ロイブル氏オンライン講習 Vol.2では、シュート技術、練習設計、スペーシング、ゲーム中の判断をつなげて考えます。</p>
+      <div className="tc-check-event"><span>2026.11.25 WED · 20:00–21:30 JST · ZOOM</span><strong>LIVE ¥3,300 / 30日録画 ¥4,400</strong><small>いずれも税込・英語講義／日本語逐次通訳</small></div>
+      <a className="tc-check-btn" href="/ja/events/torsten-loibl-online-clinic">講習の内容と参加形式を確認する <ArrowRight size={18} aria-hidden="true"/></a>
+      <p className="tc-check-stepNote">公式講習ページで内容と参加方法をご確認ください。この無料チェックの回答が講習申込に送信されることはありません。</p>
+      <a className="tc-check-btn tc-check-btn--outline" href={torstenRegistrationUrl} target="_blank" rel="noopener noreferrer">内容を確認済みの方：申込フォームへ <ArrowRight size={18} aria-hidden="true"/></a>
+      <p className="tc-check-stepNote">申込フォーム送信後、選択した参加形式のお支払いが必要です。フォーム送信だけでは決済完了・受講確定にはなりません。</p>
+    </div>
+    <a className="tc-check-link" href="https://form.jotform.com/262858264882068" target="_blank" rel="noopener noreferrer">今後の無料教材・指導者情報を希望する（任意） ↗</a><p className="tc-check-note">情報メールの登録は講習への申込・支払いとは別です。明示的に希望した方に限り案内します。本チェックはRBA独自制作であり、講師監修の診断ではありません。</p>
     <div className="tc-check-footerBtns"><button type="button" onClick={()=>{setAnswers(Array(5).fill(null));setResult(false);setCopied(false)}}><RotateCcw size={15}/>もう一度振り返る</button><button type="button" onClick={async()=>{const text="【指導者向け無料チェック】あなたのシュート練習は試合につながっているか。5つの問いから練習を見直すRBAの2分チェック。 https://riotbasketballacademy.com/ja/coach/shooting-check";try{if(navigator.share){await navigator.share({text})}else{await navigator.clipboard.writeText(text);setCopied(true)}}catch{}}}><Share2 size={15}/>{copied?"コピーしました":"同僚に共有する"}</button></div>
    </section>}
    <footer className="tc-check-siteFooter"><a href="/ja/coaches">← RBAの指導者向け活動</a><small>© Riot Basketball Academy</small></footer>
