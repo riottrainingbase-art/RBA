@@ -3,18 +3,18 @@ import { RbaSimpleHome } from "@/components/rba-simple-home";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: { absolute: "RBA｜青少年籃球訓練、教練學習與日本交流" },
-  description: "RBA以日本仙台為據點，舉辦青少年籃球訓練營、教練研習及日本與亞洲的球隊交流。",
+  title: { absolute: "RBA｜讓成長的機會，從地方走向世界。" },
+  description: "RBA透過籃球，為孩子創造成長與挑戰的機會。我們連結球員訓練、比賽、體能準備、教練教育及國際交流，提供超越原有球隊與所在地的學習經驗。",
   alternates: { canonical: "https://riotbasketballacademy.com/zh-tw/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
   openGraph: {
-    title: "RBA｜青少年籃球訓練、教練學習與日本交流",
-    description: "RBA以日本仙台為據點，舉辦青少年籃球訓練營、教練研習及日本與亞洲的球隊交流。",
+    title: "RBA｜讓成長的機會，從地方走向世界。",
+    description: "RBA透過籃球，為孩子創造成長與挑戰的機會。我們連結球員訓練、比賽、體能準備、教練教育及國際交流，提供超越原有球隊與所在地的學習經驗。",
     url: "https://riotbasketballacademy.com/zh-tw/",
     siteName: "Riot Basketball Academy",
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
-  twitter: { card: "summary_large_image", title: "RBA｜青少年籃球訓練、教練學習與日本交流", description: "RBA以日本仙台為據點，舉辦青少年籃球訓練營、教練研習及日本與亞洲的球隊交流。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
+  twitter: { card: "summary_large_image", title: "RBA｜讓成長的機會，從地方走向世界。", description: "RBA透過籃球，為孩子創造成長與挑戰的機會。我們連結球員訓練、比賽、體能準備、教練教育及國際交流，提供超越原有球隊與所在地的學習經驗。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
 export default function Page() {
