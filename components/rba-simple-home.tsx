@@ -1,3 +1,4 @@
+import { RbaDevelopmentOverview, rbaDefinition } from "./rba-development-overview";
 import { SiteFrame, type Locale, localePath } from "./site-frame";
 import { RbaFieldUpdates } from "./rba-field-updates";
 
@@ -10,8 +11,8 @@ type HomeCopy = {
 const copy:Record<Locale,HomeCopy>={
   ja:{
     eyebrow:"RIOT BASKETBALL ACADEMY / SENDAI · JAPAN",
-    title:"子どもたちに、もっとバスケットボールの経験を。",
-    intro:"RBAは仙台を拠点に、全国のクリニックやキャンプ、指導者の学び、海外との交流を行っています。所属チームを変えずに参加できる活動もあります。",
+    title:rbaDefinition["ja"].title,
+    intro:rbaDefinition["ja"].intro,
     primary:"募集中の活動を見る",secondary:"RBAについて",
     start:"何をお探しですか？",startIntro:"まずは、目的に合うページからご覧ください。",
     routes:[
@@ -31,8 +32,8 @@ const copy:Record<Locale,HomeCopy>={
   },
   en:{
     eyebrow:"RIOT BASKETBALL ACADEMY / SENDAI · JAPAN",
-    title:"More chances for young players to play, learn and grow.",
-    intro:"Based in Sendai, RBA runs clinics and camps across Japan, supports coach learning and builds basketball exchanges with partners overseas. Many activities are open to players who remain with their own teams.",
+    title:rbaDefinition["en"].title,
+    intro:rbaDefinition["en"].intro,
     primary:"See current programmes",secondary:"About RBA",
     start:"What are you looking for?",startIntro:"Choose the route that fits what you want to do.",
     routes:[
@@ -52,8 +53,8 @@ const copy:Record<Locale,HomeCopy>={
   },
   "zh-tw":{
     eyebrow:"RIOT BASKETBALL ACADEMY / SENDAI · JAPAN",
-    title:"讓孩子有更多打球、學習與成長的機會。",
-    intro:"RBA以日本仙台為據點，在日本各地舉辦籃球訓練營，也和海外球隊、教練交流。孩子不需要離開原本的球隊，也能參加許多活動。",
+    title:rbaDefinition["zh-tw"].title,
+    intro:rbaDefinition["zh-tw"].intro,
     primary:"查看近期活動",secondary:"認識RBA",
     start:"您想了解什麼？",startIntro:"依照您的需求，從這裡開始。",
     routes:[
@@ -73,8 +74,8 @@ const copy:Record<Locale,HomeCopy>={
   },
   ko:{
     eyebrow:"RIOT BASKETBALL ACADEMY / SENDAI · JAPAN",
-    title:"아이들이 농구를 배우고 경험할 기회를 더 넓힙니다.",
-    intro:"RBA는 일본 센다이를 기반으로 전국에서 클리닉과 캠프를 열고, 지도자 교육과 해외 교류를 이어갑니다. 소속 팀을 옮기지 않고도 참여할 수 있는 활동이 있습니다.",
+    title:rbaDefinition["ko"].title,
+    intro:rbaDefinition["ko"].intro,
     primary:"모집 중인 활동 보기",secondary:"RBA 소개",
     start:"무엇을 찾고 계신가요?",startIntro:"목적에 맞는 페이지에서 시작해 보세요.",
     routes:[
@@ -109,6 +110,7 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
           </div>
         </section>
 
+        <RbaDevelopmentOverview locale={locale}/>
         {locale==="ja" ? <section className="border-b border-[#c9c6c0] py-12 sm:py-16" aria-labelledby="torsten-home-clinic">
           <div className="relative overflow-hidden bg-[#161719] p-7 text-[#fff] sm:p-11">
             <p className="text-[11px] font-bold tracking-[0.20em] text-[#e9a16b]">RBA COACH EDUCATION / 2026.11.25 WED</p>

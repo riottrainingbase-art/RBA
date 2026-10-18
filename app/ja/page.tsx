@@ -3,18 +3,18 @@ import { RbaSimpleHome } from "@/components/rba-simple-home";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: { absolute: "RBA｜子どもたちに、もっとバスケットボールの経験を。" },
-  description: "RBAは仙台を拠点に全国で育成クリニックと指導者講習を開催。2026年10月の台湾・マレーシア現場報告、11月25日のオンライン講習をご案内します。",
+  title: { absolute: "RBA｜育つ機会を、地域から世界へ。" },
+  description: "RBAは、バスケットボールを通じて子どもたちの成長と挑戦の機会をつくる育成事業です。選手への指導、試合、身体づくり、指導者教育、国内外の交流をつなぎ、地域や所属先だけでは得られない学びを届けます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
   openGraph: {
-    title: "RBA｜子どもたちに、もっとバスケットボールの経験を。",
-    description: "クリニック、キャンプ、育成記事、チーム向け指導、国際交流。RBAの活動を目的別に探せます。",
+    title: "RBA｜育つ機会を、地域から世界へ。",
+    description: "RBAは、バスケットボールを通じて子どもたちの成長と挑戦の機会をつくる育成事業です。選手への指導、試合、身体づくり、指導者教育、国内外の交流をつなぎ、地域や所属先だけでは得られない学びを届けます。",
     url: "https://riotbasketballacademy.com/ja/",
     siteName: "Riot Basketball Academy",
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
-  twitter: { card: "summary_large_image", title: "RBA｜子どもたちに、もっとバスケットボールの経験を。", description: "子どもたちのバスケットボールの経験と学びを広げるRBA。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
+  twitter: { card: "summary_large_image", title: "RBA｜育つ機会を、地域から世界へ。", description: "RBAは、バスケットボールを通じて子どもたちの成長と挑戦の機会をつくる育成事業です。選手への指導、試合、身体づくり、指導者教育、国内外の交流をつなぎ、地域や所属先だけでは得られない学びを届けます。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
 export default function Page() { return <RbaSimpleHome locale="ja" />; }

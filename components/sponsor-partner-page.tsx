@@ -6,7 +6,7 @@ const c={
  ja:{
   kicker:"CORPORATE PARTNERSHIP / BASKETBALL",
   title:"子どもたちの「次の挑戦」を、企業と一緒につくる。",
-  lead:"RBAは、全国のバスケットボールクリニック、キャンプ、指導者教育、国際交流と、MY HOME COURTをつなぐ育成プラットフォームです。企業のご支援を、ロゴ掲出だけでなく、実際の育成機会へ変えていきます。",
+  lead:"RBAは、バスケットボールを通じて子どもたちの成長と挑戦の機会をつくる育成事業です。選手への指導、試合、身体づくり、指導者教育、国内外の交流をつなぎ、地域や所属先だけでは得られない学びを届けます。 企業・団体の皆様とは、指導費、会場、用具、移動、参加費支援など、対象と使途を決めて連携します。実施後に活動内容と支援の使途を報告します。",
   metrics:[["3,000+","2025年半ば以降の延べ参加者"],["25","国内活動地域"],["4","対応言語"]],
   section:"WHY RBA",sectionTitle:"広告枠ではなく、バスケットボールの育成環境を支える。",
   values:[["PLAY","プレーする機会","地域や所属だけで挑戦の機会が決まらないよう、外のコートへつなぎます。"],["LEARN","学ぶ機会","選手だけでなく、指導者・保護者にも現代バスケットボールの学びを届けます。"],["PREPARE","身体を準備する","S&C、回復、栄養、怪我予防まで含め、長く競技を続ける土台をつくります。"],["CONNECT","次のコートへ","日本各地とアジアをつなぎ、異なるプレースタイルや価値観に触れる機会をつくります。"]],
@@ -19,7 +19,7 @@ const c={
   cta:"育成環境を、一緒につくるパートナーへ。",ctaBody:"企業・地域が大切にしている価値と、RBAの育成活動が重なる場所から始めます。ロゴ掲出だけで終わらない連携をご相談ください。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
  },
  en:{
-  kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"Build the next opportunity for young players—together.",lead:"RBA connects youth basketball clinics, camps, coach education, international exchange and MY HOME COURT. Corporate support becomes real development opportunities, not just logo placement.",
+  kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"Build the next opportunity for young players—together.",lead:"RBA is a basketball development organisation creating opportunities for young people to grow and take on new challenges. We connect player coaching, games, physical preparation, coach education and international exchange, opening learning opportunities beyond a player’s home team or region. Corporate and community partners can support defined coaching costs, courts, equipment, travel or participation. We agree the purpose and report how support was used and what was delivered.",
   metrics:[["3,000+","participant visits"],["25","locations in Japan"],["4","languages"]],
   section:"WHY RBA",sectionTitle:"Support a basketball development environment—not an ad slot.",
   values:[["PLAY","Opportunities to play","Create access to new courts, opponents and experiences."],["LEARN","Opportunities to learn","Support players, coaches and parents with better learning."],["PREPARE","Prepare the body","Connect S&C, recovery, nutrition and injury prevention."],["CONNECT","Reach the next court","Link local Japanese basketball with wider Asian opportunities."]],
@@ -31,7 +31,7 @@ const c={
   cta:"We are looking for our next partner.",ctaBody:"Start with the value your organisation wants to support. We will shape one realistic basketball project around it.",primary:"Discuss partnership",secondary:"View MY HOME COURT"
  },
  "zh-tw":{
-  kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"一起為孩子創造下一次挑戰。",lead:"RBA連結日本各地的籃球訓練營、教練教育、國際交流與MY HOME COURT，讓企業支持轉化為真正的培育機會。",
+  kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"一起為孩子創造下一次挑戰。",lead:"RBA透過籃球，為孩子創造成長與挑戰的機會。我們連結球員訓練、比賽、體能準備、教練教育及國際交流，提供超越原有球隊與所在地的學習經驗。 企業與團體可支持明確的教學費、場地、器材、交通或參加費。我們事先確認用途，並於活動後報告執行內容與支援的使用情況。",
   metrics:[["3,000+","累計參與人次"],["25","日本活動地區"],["4","語言"]],
   section:"WHY RBA",sectionTitle:"支持籃球培育環境，而不只是廣告版位。",
   values:[["PLAY","比賽與挑戰","讓孩子接觸不同球場與對手。"],["LEARN","學習","支持球員、教練與家長的學習。"],["PREPARE","身體準備","連結體能、恢復、營養與傷害預防。"],["CONNECT","下一個球場","連結日本各地與亞洲交流。"]],
@@ -43,7 +43,7 @@ const c={
   cta:"我們正在尋找下一位合作夥伴。",ctaBody:"先從貴公司重視的價值開始，再共同設計一個可實行的籃球企劃。",primary:"洽談合作",secondary:"查看MY HOME COURT"
  },
  ko:{
-  kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"아이들의 다음 도전을 기업과 함께 만듭니다.",lead:"RBA는 전국 농구 클리닉, 캠프, 코치 교육, 국제 교류와 MY HOME COURT를 연결합니다. 기업 지원을 로고 노출이 아니라 실제 육성 기회로 바꿉니다.",
+  kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"아이들의 다음 도전을 기업과 함께 만듭니다.",lead:"RBA는 농구를 통해 아이들의 성장과 도전 기회를 만드는 육성 기관입니다. 선수 지도, 경기, 몸 준비, 지도자 교육과 국제 교류를 연결하여 소속 팀과 지역을 넘어 배울 기회를 제공합니다. 기업·단체와 지도비, 코트, 장비, 이동과 참가비 등 지원 목적을 정하고 협력합니다. 활동 후 실행 내용과 지원금 사용을 보고합니다.",
   metrics:[["3,000+","누적 참가"],["25","일본 활동 지역"],["4","언어"]],
   section:"WHY RBA",sectionTitle:"광고 공간이 아니라 농구 육성 환경을 지원합니다.",
   values:[["PLAY","플레이 기회","다른 코트와 상대를 경험할 기회를 만듭니다."],["LEARN","배움","선수·코치·보호자의 학습을 지원합니다."],["PREPARE","몸 준비","S&C, 회복, 영양, 부상 예방을 연결합니다."],["CONNECT","다음 코트","일본 지역과 아시아 교류를 연결합니다."]],
