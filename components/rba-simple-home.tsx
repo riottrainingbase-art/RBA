@@ -1,4 +1,5 @@
 import { SiteFrame, type Locale, localePath } from "./site-frame";
+import { RbaFieldUpdates } from "./rba-field-updates";
 
 type HomeCopy = {
   eyebrow:string; title:string; intro:string; primary:string; secondary:string;
@@ -149,6 +150,7 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
             </a>
           </div>
         </section> : null}
+        {locale!=="ja" ? <RbaFieldUpdates locale={locale} placement="home" /> : null}
         <section className="py-14 sm:py-20" aria-labelledby="home-start">
           <p className="text-[11px] font-semibold tracking-[0.18em] text-[#666]">START HERE</p>
           <h2 id="home-start" className="mt-3 text-3xl font-bold tracking-tight">{c.start}</h2>

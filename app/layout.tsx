@@ -57,7 +57,7 @@ export default async function RootLayout({
           url:"https://riotbasketballacademy.com", logo:"https://riotbasketballacademy.com/rba-logo-original.jpg",
           description:"Japan-based youth basketball development organisation connecting modern fundamentals, physical preparation, coach learning and meaningful exchange across Asia.",
           founder:{"@type":"Person",name:"Masato Nishio",alternateName:"西尾優人"}, address:{"@type":"PostalAddress",addressLocality:"Sendai",addressCountry:"JP"},
-          email:"riot.training.base@gmail.com", sameAs:["https://www.instagram.com/riot.basketball.academy/","https://www.threads.com/@riot.basketball.academy","https://note.com/rba_official","https://linktr.ee/riotbasketballacademy"]
+          email:"riot.training.base@gmail.com", sameAs:["https://www.instagram.com/riotbasketballacademy/","https://www.threads.com/@riotbasketballacademy","https://note.com/rba_official","https://linktr.ee/riotbasketballacademy"]
         }) }} />
         {children}
         <GlobalRbaFooter language={language} />

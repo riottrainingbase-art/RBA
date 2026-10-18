@@ -4,7 +4,7 @@ import { RbaSimpleHome } from "@/components/rba-simple-home";
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
   title: { absolute: "RBA｜子どもたちに、もっとバスケットボールの経験を。" },
-  description: "RBAは仙台を拠点に、全国のクリニック、キャンプ、指導者講習、国際交流を行うバスケットボール育成組織です。",
+  description: "RBAは仙台を拠点に全国で育成クリニックと指導者講習を開催。2026年10月の台湾・マレーシア現場報告、11月25日のオンライン講習をご案内します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
   openGraph: {
     title: "RBA｜子どもたちに、もっとバスケットボールの経験を。",
