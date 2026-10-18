@@ -38,7 +38,7 @@ const sections = [
 export default function OctoberUpdatesPage() {
   return <SiteFrame locale="ja">
     <div className="bg-[#f4f1eb] text-[#171717]">
-      <main className="mx-auto max-w-[980px] px-6 py-14 sm:px-10 sm:py-20">
+      <div className="mx-auto max-w-[980px] px-6 py-14 sm:px-10 sm:py-20">
         <p className="text-xs font-bold tracking-[0.16em] text-[#555]">RBA FIELD NOTES / 2026.10</p>
         <h1 className="mt-5 text-[clamp(34px,5vw,58px)] font-bold leading-[1.25] tracking-tight">日本とアジアの現場から。<br/>2026年10月の活動報告。</h1>
         <p className="mt-6 max-w-[780px] text-base leading-8 text-[#444]">Riot Basketball Academyは、全国の育成活動に加えて、台湾・マレーシアの指導者や選手との交流を続けています。実際に行ったことと、これから実現を目指すことを分けてお伝えします。</p>
@@ -57,7 +57,7 @@ export default function OctoberUpdatesPage() {
           <p className="mt-4 max-w-[800px] text-sm leading-8 text-[#444]">子どもたちの出場機会、主体的な判断、発達に応じた負荷と回復、指導者の学び。国内でも海外でも、活動の規模より、現場でどんな経験を残せるかを基準に取り組みます。</p>
           <div className="mt-6 flex flex-wrap gap-6 text-sm font-bold"><a href="/ja/opportunities" className="border-b border-[#222] pb-1">募集中の活動を見る ↗</a><a href="/ja/journal" className="border-b border-[#222] pb-1">育成記事を読む ↗</a><a href="/ja/partners" className="border-b border-[#222] pb-1">協賛・連携について ↗</a></div>
         </section>
-      </main>
+      </div>
     </div>
   </SiteFrame>;
 }
