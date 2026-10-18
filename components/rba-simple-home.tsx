@@ -148,7 +148,7 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
               <p className="mt-2 text-sm leading-6 text-[#555]">Zoom・日本語逐次通訳。LIVE税込3,300円／録画30日税込4,400円。</p>
             </a>
           </div>
-        </section>
+        </section> : null}
         <section className="py-14 sm:py-20" aria-labelledby="home-start">
           <p className="text-[11px] font-semibold tracking-[0.18em] text-[#666]">START HERE</p>
           <h2 id="home-start" className="mt-3 text-3xl font-bold tracking-tight">{c.start}</h2>
