@@ -1,3 +1,4 @@
+import { RbaJapanProof } from "./rba-japan-proof";
 import { RbaDevelopmentOverview, rbaDefinition } from "./rba-development-overview";
 import { SiteFrame, type Locale, localePath } from "./site-frame";
 import { RbaFieldUpdates } from "./rba-field-updates";
@@ -110,6 +111,7 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
           </div>
         </section>
 
+        <RbaJapanProof locale={locale}/>
         <RbaDevelopmentOverview locale={locale}/>
         {locale==="ja" ? <section className="border-b border-[#c9c6c0] py-12 sm:py-16" aria-labelledby="torsten-home-clinic">
           <div className="relative overflow-hidden bg-[#161719] p-7 text-[#fff] sm:p-11">

@@ -1,3 +1,4 @@
+import { RbaJapanProof } from "./rba-japan-proof";
 import { ArrowRight, Globe2, MessageCircle, Plane, ShieldCheck, Users } from "lucide-react";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 import { tr, worldPoints } from "./network-data";
@@ -14,6 +15,7 @@ export function InternationalPlatform({locale}:{locale:Locale}){
  const c=copy[locale];const message=encodeURIComponent(locale==="ja"?"RBAの海外連携について相談したいです。団体名、対象年代、希望時期、交流目的をお送りします。":"Hello RBA, I would like to discuss a Japan–Asia basketball programme.");
  return <SiteFrame locale={locale} languagePage="international"><div className="international-platform">
   <section className="international-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><Globe2/><p className="section-index inverse">RBA INTERNATIONAL / JAPAN × ASIA</p><h1>{c.title}</h1><p>{c.lead}</p><div><a className="button button-light" href="#international-contact">{c.contact}<ArrowRight/></a><a className="text-link light-link" href={localePath("en","international")}>ENGLISH PAGE<ArrowRight/></a></div></section>
+  <div className="rba-proof-international"><RbaJapanProof locale={locale}/></div>
   <RbaFieldUpdates locale={locale} placement="international"/>
   <section className="international-network section-pad"><div className="section-head"><div><p className="section-index">JAPAN × ASIA</p><h2>{c.status}</h2></div><p>{c.statusBody}</p></div><div className="international-network-grid">{worldPoints.map(point=><article key={point.id}><span>{point.status==="partner"?c.partner:tr(point.statusLabel||[c.discussion,c.discussion,c.discussion,c.discussion],locale)}</span><h3>{tr(point.name,locale)}</h3><p>{tr(point.detail,locale)}</p></article>)}</div><p style={{marginTop:28}}><a className="button button-dark" href={locale==="en"?"/taiwan":`/${locale}/taiwan`}>{({ja:"台湾専用ページ｜日台育成交流",en:"Taiwan / Japan–Taiwan development","zh-tw":"台灣專頁｜台日青少年培育",ko:"대만 전용 페이지｜일본·대만 육성 교류"})[locale]} →</a></p></section>
   <section className="international-programmes section-pad"><p className="section-index inverse">PROGRAMME DESIGN</p><h2>{c.ways}</h2><div>{c.cards.map(([title,body])=><article key={title}><Plane/><h3>{title}</h3><p>{body}</p></article>)}</div></section>
