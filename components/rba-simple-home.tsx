@@ -125,6 +125,30 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
             <p className="mt-4 text-[11px] leading-5 text-[#aaa]">主催：Riot Basketball Academy。無料チェックはRBA独自制作・登録不要です。フォーム送信後、決済完了で受講確定となります。</p>
           </div>
         </section> : null}
+        {locale==="ja" ? <section className="border-b border-[#c9c6c0] py-12 sm:py-16" aria-labelledby="home-latest-202610">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div><p className="text-[11px] font-bold tracking-[0.18em] text-[#666]">LATEST / OCTOBER 2026</p><h2 id="home-latest-202610" className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">最近のRBAの活動</h2></div>
+            <a href="/ja/updates/2026-october" className="border-b border-[#171717] pb-1 text-sm font-bold">活動報告を読む ↗</a>
+          </div>
+          <p className="mt-3 max-w-[760px] text-sm leading-7 text-[#555]">台湾・マレーシアでの現場の学びと、次の指導者講習。実施した活動と、これからの計画を区別してお知らせします。</p>
+          <div className="mt-7 grid gap-4 sm:grid-cols-3">
+            <a href="/ja/updates/2026-october#taiwan" className="group border-t border-[#aaa7a1] py-5 hover:bg-[#eae6de]">
+              <span className="text-[11px] font-semibold text-[#666]">2026.10 / 実施した活動</span>
+              <h3 className="mt-2 text-lg font-bold">台湾での育成交流 ↗</h3>
+              <p className="mt-2 text-sm leading-6 text-[#555]">現地の選手・指導者との交流。2027年の相互交流は準備・協議中です。</p>
+            </a>
+            <a href="/ja/updates/2026-october#malaysia" className="group border-t border-[#aaa7a1] py-5 hover:bg-[#eae6de]">
+              <span className="text-[11px] font-semibold text-[#666]">2026.10 / 実施した活動</span>
+              <h3 className="mt-2 text-lg font-bold">マレーシア・ペナン ↗</h3>
+              <p className="mt-2 text-sm leading-6 text-[#555]">現地の協力を得て指導者講習を実施。今後の開催は調整中です。</p>
+            </a>
+            <a href="/ja/events/torsten-loibl-online-clinic" className="group border-t border-[#aaa7a1] py-5 hover:bg-[#eae6de]">
+              <span className="text-[11px] font-semibold text-[#666]">2026.11.25 / 申込受付中</span>
+              <h3 className="mt-2 text-lg font-bold">Torsten Loibl Vol.2 ↗</h3>
+              <p className="mt-2 text-sm leading-6 text-[#555]">Zoom・日本語逐次通訳。LIVE税込3,300円／録画30日税込4,400円。</p>
+            </a>
+          </div>
+        </section> : null}
         <section className="py-14 sm:py-20" aria-labelledby="home-start">
           <p className="text-[11px] font-semibold tracking-[0.18em] text-[#666]">START HERE</p>
           <h2 id="home-start" className="mt-3 text-3xl font-bold tracking-tight">{c.start}</h2>
