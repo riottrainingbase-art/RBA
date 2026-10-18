@@ -1,4 +1,5 @@
 import { SiteFrame, type Locale, localePath } from "./site-frame";
+import { RbaFieldUpdates } from "./rba-field-updates";
 
 type HomeCopy = {
   eyebrow:string; title:string; intro:string; primary:string; secondary:string;
@@ -125,6 +126,7 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
             <p className="mt-4 text-[11px] leading-5 text-[#aaa]">主催：Riot Basketball Academy。無料チェックはRBA独自制作・登録不要です。フォーム送信後、決済完了で受講確定となります。</p>
           </div>
         </section> : null}
+        <RbaFieldUpdates locale={locale} placement="home" />
         <section className="py-14 sm:py-20" aria-labelledby="home-start">
           <p className="text-[11px] font-semibold tracking-[0.18em] text-[#666]">START HERE</p>
           <h2 id="home-start" className="mt-3 text-3xl font-bold tracking-tight">{c.start}</h2>
