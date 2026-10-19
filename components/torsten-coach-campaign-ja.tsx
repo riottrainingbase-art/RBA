@@ -15,6 +15,24 @@ const themes = [
   { n: "PRACTICE", title: "練習をどう設計するか", body: "シュートの技術練習を、判断と状況を伴う学習に結び付ける考え方。" },
   { n: "GAME", title: "良いシュートをどう生むか", body: "スペーシング、アドバンテージ、ボール・オフボールの動きとシュート機会の関係。" },
 ];
+const achievements = [
+  { number: "WORLD CHAMPION", label: "2019｜3x3女子U23世界選手権", detail: "日本代表の優勝にディレクターコーチとして貢献" },
+  { number: "ASIA RUNNER-UP", label: "2016｜男子U18アジア選手権", detail: "日本代表HCとして準優勝、U19世界大会の出場権獲得" },
+  { number: "DOMESTIC DOUBLE", label: "2006–07｜国内トップリーグ・天皇杯", detail: "リーグ・天皇杯の2冠、年間最優秀コーチ受賞" },
+  { number: "OLYMPIC EXPERIENCE", label: "東京2020｜3x3日本代表", detail: "女子5位・男子6位、男女代表の強化・指導を担当" },
+];
+const career = [
+  ["2006–07", "日本トップリーグ優勝・天皇杯優勝・年間最優秀コーチ"],
+  ["2010–11", "ドイツProA 年間最優秀コーチ"],
+  ["2012–15", "日本バスケットボール協会 スポーツディレクター"],
+  ["2015–19", "男子U16・U18・U19日本代表 ヘッドコーチ"],
+  ["2016", "男子U18日本代表 アジア選手権準優勝"],
+  ["2017", "男子U19日本代表 世界選手権10位"],
+  ["2018–21", "3x3男女日本代表 ディレクターコーチ兼ヘッドコーチ"],
+  ["2019", "3x3女子U23日本代表 世界選手権優勝に貢献"],
+  ["2022–25", "チェコのジュニア代表・男子U18代表・強化部門で指導"],
+];
+
 function Apply({ children, secondary = false }: { children: React.ReactNode; secondary?: boolean }) {
   return <a className={secondary ? "tc-btn tc-btn--ghost" : "tc-btn"} href={torstenRegistrationUrl} target="_blank" rel="noopener noreferrer">{children}<span aria-hidden="true">↗</span></a>;
 }
@@ -28,10 +46,20 @@ export function TorstenCoachCampaignJa() {
           <p className="tc-date">2026.11.25 WED · 20:00—21:30 JST · ZOOM</p>
           <h1>練習では入る。<br/><em>試合では打てない。</em></h1>
           <p className="tc-lead">その原因を、シュートフォームだけに求めていないか。</p>
-          <p className="tc-hero-description">世界の育成・代表・プロの指導現場を経験したトーステン・ロイブル氏と考える90分。<strong>技術、判断、練習設計、スペーシングをつなぎ、試合で良いシュートを生み出す育成</strong>を学びます。</p>
+          <p className="tc-hero-description"><strong>3x3女子U23日本代表の世界一に貢献。男子U18日本代表アジア準優勝、国内トップリーグと天皇杯の2冠。</strong>育成年代・代表・プロ・欧州の強化現場を経験したトーステン・ロイブル氏と、技術・判断・練習設計・スペーシングをつなぐ90分です。</p>
           <div className="tc-actions"><Apply>講習に申し込む</Apply><a className="tc-text-link" href="/ja/coach/shooting-check">無料・2分のシュート練習チェック ↗</a><a className="tc-text-link" href="#learn">講習内容を見る ↓</a></div>
           <p className="tc-hero-note">主催：Riot Basketball Academy ／ 英語講義・日本語逐次通訳 ／ 指導者資格不要</p>
           <div className="tc-facts"><div><span>LIVE</span><strong>¥3,300</strong><small>税込・当日参加</small></div><div><span>ON-DEMAND</span><strong>¥4,400</strong><small>税込・30日間視聴</small></div><div><span>DATE</span><strong>11/25</strong><small>水曜 20:00–21:30</small></div></div>
+        </div>
+      </section>
+
+      <section className="tc-proof" aria-labelledby="tc-proof-title">
+        <div className="tc-container">
+          <p className="tc-eyebrow">VERIFIED COACHING RECORD</p>
+          <h2 id="tc-proof-title">世界一の現場から、<br/>次の練習へ。</h2>
+          <p className="tc-proof-intro">世界大会での優勝への貢献、日本代表の育成、国内トップリーグでの結果。数字の背景にある指導の考え方を学ぶ機会です。</p>
+          <div className="tc-proof-grid">{achievements.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.label}</h3><p>{item.detail}</p></article>)}</div>
+          <div className="tc-proof-action"><Apply>11月25日の講習に申し込む</Apply><a className="tc-proof-link" href="#tc-career-title">経歴を詳しく見る ↓</a></div>
         </div>
       </section>
 
@@ -58,6 +86,18 @@ export function TorstenCoachCampaignJa() {
         <div className="tc-container tc-speaker-layout">
           <div><p className="tc-eyebrow">SPEAKER</p><h2 id="tc-speaker-title">TORSTEN<br/>LOIBL</h2><p className="tc-speaker-role">トーステン・ロイブル</p><p className="tc-speaker-role">日本の育成年代代表・3x3などで指導</p></div>
           <div><p>国内のプロクラブだけでなく、日本のU16・U18・U19世代、3x3日本代表に関わる指導経験を持つコーチです。2019年のFIBA 3x3 U23ワールドカップ女子日本代表優勝時にはディレクターコーチを務めました。</p><p>この機会を、単に有名なコーチの話を聞く場ではなく、<strong>次の練習を見直すための学び</strong>にしたいと考えています。</p><div className="tc-mini-links"><a href={reportUrl} target="_blank" rel="noopener noreferrer">前回の開催レポート ↗</a><a href={speakerUrl} target="_blank" rel="noopener noreferrer">講師紹介 ↗</a></div></div>
+        </div>
+      </section>
+
+      <section className="tc-section tc-career" aria-labelledby="tc-career-title">
+        <div className="tc-container">
+          <p className="tc-eyebrow">TORSTEN LOIBL / COACHING CAREER</p>
+          <h2 id="tc-career-title">育成年代から世界大会、<br/>そしてプロの現場へ。</h2>
+          <p className="tc-section-intro">結果だけを並べるのではなく、選手の育成から国際大会での競争力まで、一貫して携わってきた経験に注目してください。</p>
+          <div className="tc-career-list">{career.map(([year,detail])=><div key={year + detail}><span>{year}</span><p>{detail}</p></div>)}</div>
+          <p className="tc-career-sources">主な出典：<a href="https://www.japanbasketball.jp/wp-content/uploads/3x3_media-briefing_0918.pdf" target="_blank" rel="noopener noreferrer">日本バスケットボール協会（3x3強化方針）</a> ／ <a href="https://www.fiba.basketball/en/news/world-u19-2017-news-loibl-chooses-top-talent-over-star-less-team-chemistry-for-japan" target="_blank" rel="noopener noreferrer">FIBA（U19日本代表の育成）</a> ／ <a href="https://www.levanga.com/news/detail/id=22241" target="_blank" rel="noopener noreferrer">講師の公表経歴・受賞歴</a></p>
+          <p className="tc-career-disclaimer">実績は講師個人の指導経歴を示しています。Riot Basketball Academy主催の本講習は、過去・現在の所属団体による主催・後援・協賛を示すものではありません。2019年の世界選手権優勝は日本代表チームの成果です。</p>
+          <div className="tc-proof-action"><Apply>講師の実績を学びにつなげる</Apply><a className="tc-proof-link" href="#register">LIVE・録画の受講方法を見る ↓</a></div>
         </div>
       </section>
 
