@@ -3,7 +3,7 @@ import { Locale } from "./site-frame";
 export const contactFormUrl = "https://form.jotform.com/262590542634055";
 const copy = {
   en: ["Online enquiry", "Open the enquiry form", "Send your enquiry in your browser. Labels are provided in English, Japanese, Traditional Chinese and Korean. Submitting an enquiry does not confirm a booking or incur a charge."],
-  ja: ["オンラインお問い合わせ", "お問い合わせフォームを開く", "メールアプリを使わず、ブラウザから送信できます。入力項目は日本語・英語・繁体字中国語・韓国語でご案内しています。フォームを送信しただけで予約が確定したり、料金が発生したりすることはありません。"],
+  ja: ["オンラインお問い合わせ", "お問い合わせフォームを開く", "メールアプリを使わず、ブラウザから送信できます。日本語でお問い合わせいただけます。ご相談内容と返信先をご入力ください。フォームを送信しただけで予約が確定したり、料金が発生したりすることはありません。"],
   "zh-tw": ["線上查詢", "開啟查詢表單", "直接使用瀏覽器傳送查詢，無需電郵應用程式。欄位提供英語、日語、繁體中文與韓語。提交查詢不代表預約成立，也不會產生費用。"],
   ko: ["온라인 문의", "문의 양식 열기", "이메일 앱 없이 브라우저에서 문의할 수 있습니다. 항목은 영어, 일본어, 번체 중국어와 한국어로 안내합니다. 문의 제출만으로 예약이 확정되거나 비용이 발생하지 않습니다."],
 } as const;

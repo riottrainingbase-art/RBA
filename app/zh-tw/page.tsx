@@ -20,3 +20,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return <RbaSimpleHome locale="zh-tw" />;
 }
+
+
+// Refresh time-sensitive programme highlights without waiting for another release.
+export const revalidate = 3600;
