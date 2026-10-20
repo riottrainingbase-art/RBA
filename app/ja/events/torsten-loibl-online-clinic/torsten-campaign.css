@@ -7,3 +7,26 @@
 
 /* Staging QA: keep the Japanese headline entirely visible at 320–390px; decorative 02 never overlaps copy. */
 @media(max-width:550px){.tc-hero{overflow:hidden}.tc-hero:after{display:none}.tc-hero h1{font-size:clamp(29px,8vw,42px);line-height:1.21;overflow-wrap:anywhere;word-break:normal;letter-spacing:-.055em}.tc-lead{font-size:17px;line-height:1.6}.tc-container{width:calc(100% - 32px)}.tc-hero-description{font-size:14px;line-height:1.8}.tc-facts strong{font-size:clamp(19px,6vw,32px)}.tc-facts small{font-size:10px}}
+
+
+/* Torsten verified coaching proof and source-backed career */
+.tc-proof{padding:72px 0;background:#151617;color:#f9f7f1}
+.tc-proof h2{font-size:clamp(34px,5.3vw,65px);margin:14px 0 16px;line-height:1.17}
+.tc-proof-intro{max-width:700px;color:#d7d5ce;font-size:16px}
+.tc-proof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:30px 0 22px}
+.tc-proof-grid article{border:1px solid #595752;padding:23px 18px;background:#212224;min-width:0}
+.tc-proof-grid article span{display:block;color:#f5a374;font-size:11px;font-weight:850;letter-spacing:.1em;line-height:1.6}
+.tc-proof-grid article h3{font-size:clamp(17px,2.2vw,24px);margin:13px 0;line-height:1.45}
+.tc-proof-grid article p{font-size:13px;color:#d6d4cf;margin:0;line-height:1.75}
+.tc-proof-action{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:27px}
+.tc-proof-link{color:#f4a377!important;font-size:14px;font-weight:800;text-decoration:underline;text-underline-offset:5px}
+.tc-career{background:#f2f0e9}
+.tc-career-list{border-top:2px solid #171717}
+.tc-career-list>div{display:grid;grid-template-columns:145px 1fr;gap:22px;border-bottom:1px solid #c7c3ba;padding:15px 3px;align-items:start}
+.tc-career-list span{font-weight:900;color:#a94d27;font-size:14px}
+.tc-career-list p{font-size:15px;line-height:1.65;margin:0}
+.tc-career-sources,.tc-career-disclaimer{font-size:12px!important;line-height:1.85!important;color:#52514d;margin-top:22px}
+.tc-career-sources a{color:#98401b;text-decoration:underline;text-underline-offset:3px}
+.tc-career .tc-proof-link{color:#99431e!important}
+@media(max-width:850px){.tc-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.tc-proof{padding:55px 0}.tc-proof-grid{grid-template-columns:1fr;gap:10px}.tc-proof-grid article{padding:18px}.tc-proof-grid article h3{margin:7px 0;font-size:21px}.tc-career-list>div{grid-template-columns:1fr;gap:4px}.tc-proof-action .tc-btn{width:100%}.tc-proof h2{font-size:clamp(31px,8vw,43px)}}

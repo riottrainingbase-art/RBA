@@ -8,14 +8,15 @@ const checkUrl = "https://riotbasketballacademy.com/ja/coach/shooting-check";
 const shareText = [
   "【11/25（水）20:00〜21:30／オンライン】",
   "「練習では入る。試合では打てない。」その理由を、シュートフォームだけに求めていませんか？",
-  "Riot Basketball Academy主催・トーステン・ロイブル氏オンライン講習 Vol.2。",
+  "2019年3x3女子U23日本代表の世界一にディレクターコーチとして貢献。男子U18日本代表のアジア準優勝、国内リーグと天皇杯の2冠を経験したトーステン・ロイブル氏。",
+  "Riot Basketball Academy主催・オンライン講習 Vol.2。",
   "テーマは「現代バスケットボールにおけるシューターの育成と活用」。技術・判断・練習設計・スペーシングのつながりを考える90分です。",
   "Zoom開催／英語講義・日本語逐次通訳。LIVE 3,300円（税込）、開催後30日間のオンデマンド 4,400円（税込）。指導者資格は不要です。",
   "詳細・申込：" + clinicUrl,
 ].join("\n\n");
 
 const shareTitle = "11月25日 トーステン・ロイブル氏オンライン講習｜公式紹介文";
-const shareDescription = "練習では入るのに試合で打てない。シューター育成・練習設計・スペーシングを学ぶ90分のオンライン講習。LIVE 3,300円、録画4,400円。日本語逐次通訳あり。";
+const shareDescription = "3x3女子U23世界一に貢献し、日本代表の育成・国内2冠を経験したトーステン・ロイブル氏と学ぶ90分。11/25 Zoom、日本語逐次通訳。LIVE税込3,300円、録画30日税込4,400円。";
 
 export const metadata: Metadata = {
   title: shareTitle,
