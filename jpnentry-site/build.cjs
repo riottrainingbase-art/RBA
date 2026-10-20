@@ -3,6 +3,7 @@ function buildSite() {
   const path = require("node:path");
   const root = __dirname;
   const out = path.join(root,"dist");
+  fs.rmSync(out,{recursive:true,force:true});
   fs.mkdirSync(out,{recursive:true});
   const posts = fs.readdirSync(path.join(root,"data"))
     .filter(n => /^posts-\d+\.json$/.test(n)).sort()
@@ -150,6 +151,7 @@ function buildSite() {
   require("./enhance.cjs")({out,posts,h,rfq,mail,write,page,cta});
   require("./growth.cjs")({out,posts,h,rfq,mail,write,page,cta});
   require("./finalize.cjs")({out,posts,h,rfq,mail,write,page,cta});
+  require("./malaysia-vehicles.cjs")({out,posts,h,rfq,mail,write,page,cta});
   console.log("Built "+urls.length+" routes; preserved "+ids.size+" article URLs.");
 }
 buildSite();
