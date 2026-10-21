@@ -157,6 +157,16 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
           </div>
         </section> : null}
         {locale!=="ja" ? <RbaFieldUpdates locale={locale} placement="home" /> : null}
+        {locale==="ja" ? <section className="border-b border-[#c9c6c0] py-10 sm:py-14" aria-labelledby="home-rba-goods">
+          <div className="flex flex-col gap-5 border border-[#c2bfb8] bg-[#edeae4] p-6 sm:flex-row sm:items-end sm:justify-between sm:p-8">
+            <div>
+              <p className="text-[11px] font-bold tracking-[0.18em] text-[#555]">RBA GOODS / NEW PROJECT</p>
+              <h2 id="home-rba-goods" className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">在庫を持たない公式グッズ企画。</h2>
+              <p className="mt-3 max-w-[660px] text-sm leading-7 text-[#555]">RBAの育成理念を日常に。Tシャツ・BACKBONE・指導者向けグッズを企画中。現在は商品コンセプト公開段階で、注文や予約は受け付けていません。</p>
+            </div>
+            <a href="/ja/goods" className="inline-flex min-h-12 shrink-0 items-center justify-center border border-[#191919] bg-[#191919] px-5 text-sm font-bold text-white">RBA GOODSを見る ↗</a>
+          </div>
+        </section> : null}
         <section className="py-14 sm:py-20" aria-labelledby="home-start">
           <p className="text-[11px] font-semibold tracking-[0.18em] text-[#666]">START HERE</p>
           <h2 id="home-start" className="mt-3 text-3xl font-bold tracking-tight">{c.start}</h2>
