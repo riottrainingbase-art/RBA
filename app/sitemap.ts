@@ -13,6 +13,7 @@ const journalFamilyPages=["/ja/journal/families","/ja/journal/families/reference
 const productPages=["/ja/homecourt-plus","/ja/development"];
 const regionalPages=["/ja/gream-dsm","/ja/gream-dsm/support","/ja/regions","/ja/saga","/ja/okinawa-coach"];
 const secondaryJapanese=["/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support"] as const;
+const torstenSupportPages=["/ja/coach/shooting-check","/ja/coaches/shooting-game-transfer","/ja/events/torsten-loibl-online-clinic/share"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
   {prefix:"/ja",locale:"ja"},
@@ -37,6 +38,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
   const entries=[
     ...localized.map(path=>({path,lastModified:null as string|null})),
     ...secondaryJapanese.map(path=>({path,lastModified:null as string|null})),
+    ...torstenSupportPages.map(path=>({path,lastModified:"2026-10-21T00:00:00Z"})),
     ...taiwanPages.map(path=>({path,lastModified:"2026-10-13T00:00:00Z"})),
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),

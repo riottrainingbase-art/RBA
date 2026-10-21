@@ -30,3 +30,8 @@
 .tc-career .tc-proof-link{color:#99431e!important}
 @media(max-width:850px){.tc-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){.tc-proof{padding:55px 0}.tc-proof-grid{grid-template-columns:1fr;gap:10px}.tc-proof-grid article{padding:18px}.tc-proof-grid article h3{margin:7px 0;font-size:21px}.tc-career-list>div{grid-template-columns:1fr;gap:4px}.tc-proof-action .tc-btn{width:100%}.tc-proof h2{font-size:clamp(31px,8vw,43px)}}
+
+/* Registration: both plan buttons open the same official Google Form. */
+.tc-plan-note{margin:18px 0 10px;padding:15px 18px;border-left:4px solid #bd632e;background:#f7f2e9;color:#292621;font-size:14px;line-height:1.85}
+.tc-plan-note strong{font-weight:800}
+@media(max-width:550px){.tc-plan-note{margin:14px 0 8px;padding:14px 13px;font-size:13px}}
