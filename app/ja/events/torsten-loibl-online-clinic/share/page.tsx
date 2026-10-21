@@ -15,6 +15,42 @@ const shareText = [
   "詳細・申込：" + clinicUrl,
 ].join("\n\n");
 
+const coachShareKits = [
+  {
+    label: "U12／ミニバスの指導者へ",
+    summary: "フォームを教えることと、試合で自分で選べることをつなぎたい方へ",
+    text: [
+      "【RBA｜指導者向けオンライン講習 11/25（水）20:00–21:30 JST】",
+      "練習では入るのに、試合では打てない。U12ではシュート技術をいつ・どう扱い、打つ前の準備や判断とどう結び付けるのでしょうか。",
+      "日本男子U18代表のアジア準優勝を経験したTorsten Loibl氏と、シューター育成・練習設計・スペーシングを考える90分です。",
+      "Zoom／英語講義・日本語逐次通訳。LIVE税込3,300円、配信開始後30日間の録画視聴は税込4,400円。",
+      "詳細・申込：" + clinicUrl,
+    ].join("\n\n"),
+  },
+  {
+    label: "U15／U18の指導者へ",
+    summary: "シューティング練習を守備のあるゲームへ転移させたい方へ",
+    text: [
+      "【RBA｜11/25（水）20:00–21:30 JST・オンライン】",
+      "シュートの成功率だけでなく、守備を見た選択、オフボールの準備、スペーシングから良いシュート機会をどう生むか。",
+      "2016年男子U18日本代表アジア準優勝、2017年男子U19ワールドカップ10位の指導経験を持つTorsten Loibl氏と、技術・判断・練習設計を一体で考えます。",
+      "Zoom／英語講義・日本語逐次通訳。LIVE税込3,300円、配信開始後30日間の録画視聴は税込4,400円。",
+      "詳細・申込：" + clinicUrl,
+    ].join("\n\n"),
+  },
+  {
+    label: "女子バスケ／3x3の指導者へ",
+    summary: "限られた時間と空間で良いシュート機会をつくる指導を考えたい方へ",
+    text: [
+      "【RBA｜11/25（水）20:00–21:30 JST・オンライン】",
+      "「練習では入る。試合では打てない。」を出発点に、シュート技術、スペーシング、攻撃中の判断、練習設計を考えるオンライン講習です。",
+      "Torsten Loibl氏は2019年3x3女子U23日本代表の世界選手権優勝にディレクターコーチとして貢献。特定の練習ドリルを保証する講習ではなく、現代バスケットボールのシューター育成を学ぶ90分です。",
+      "Zoom／英語講義・日本語逐次通訳。LIVE税込3,300円、配信開始後30日間の録画視聴は税込4,400円。",
+      "詳細・申込：" + clinicUrl,
+    ].join("\n\n"),
+  },
+] as const;
+
 const shareTitle = "11月25日 トーステン・ロイブル氏オンライン講習｜公式紹介文";
 const shareDescription = "3x3女子U23世界一に貢献し、日本代表の育成・国内2冠を経験したトーステン・ロイブル氏と学ぶ90分。11/25 Zoom、日本語逐次通訳。LIVE税込3,300円、録画30日税込4,400円。";
 
@@ -49,6 +85,22 @@ export default function TorstenSharePage() {
             <p style={{ whiteSpace: "pre-wrap", fontSize: 15, lineHeight: 1.9, color: "#e7e9ee", marginBottom: 28 }}>{shareText}</p>
             <EventShareActions title="トーステン・ロイブル氏オンライン講習 11/25" text={shareText} copyLabel="紹介文をコピー" shareLabel="共有する" copiedLabel="コピーしました" />
             <p style={{ marginTop: 16, fontSize: 12, color: "#aeb5c2" }}>コピー操作だけでは相手に送信されません。</p>
+          </section>
+          <section aria-labelledby="coach-share-title" style={{ marginTop: 40 }}>
+            <h2 id="coach-share-title" style={{ fontSize: 24, fontWeight: 850, margin: "0 0 12px" }}>指導対象に合わせた紹介文</h2>
+            <p style={{ color: "#ccd1db", lineHeight: 1.85, marginBottom: 20 }}>
+              U12・U15／U18・女子バスケ／3x3の現場に合わせた短い案内文です。必要だと思う方に、ご自身の判断で共有してください。自動送信や一斉配信は行われません。
+            </p>
+            <div style={{ display: "grid", gap: 16 }}>
+              {coachShareKits.map((kit) => (
+                <article key={kit.label} style={{ border: "1px solid #424958", borderRadius: 14, padding: "22px 20px", background: "#171c25" }}>
+                  <h3 style={{ fontSize: 20, fontWeight: 800, margin: "0 0 8px" }}>{kit.label}</h3>
+                  <p style={{ color: "#c7cfdc", lineHeight: 1.75, margin: "0 0 18px" }}>{kit.summary}</p>
+                  <p style={{ whiteSpace: "pre-wrap", fontSize: 14, lineHeight: 1.85, color: "#e7e9ee", margin: "0 0 20px" }}>{kit.text}</p>
+                  <EventShareActions title={"RBA指導者講習｜" + kit.label} text={kit.text} copyLabel="この文章をコピー" shareLabel="この文章を共有" copiedLabel="コピーしました" />
+                </article>
+              ))}
+            </div>
           </section>
           <section style={{ marginTop: 36, display: "grid", gap: 12 }}>
             <Link href={clinicUrl} style={{ display: "block", padding: "17px 22px", borderRadius: 10, background: "#f6a648", color: "#141820", fontWeight: 900, textAlign: "center" }}>講習の詳細・申込を見る →</Link>
