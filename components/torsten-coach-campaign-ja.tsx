@@ -95,7 +95,7 @@ export function TorstenCoachCampaignJa() {
           <h2 id="tc-career-title">育成年代から世界大会、<br/>そしてプロの現場へ。</h2>
           <p className="tc-section-intro">結果だけを並べるのではなく、選手の育成から国際大会での競争力まで、一貫して携わってきた経験に注目してください。</p>
           <div className="tc-career-list">{career.map(([year,detail])=><div key={year + detail}><span>{year}</span><p>{detail}</p></div>)}</div>
-          <p className="tc-career-sources">主な出典：<a href="https://www.fiba.basketball/en/news/3x3u23wc-2019-news-russia-repeat-and-japan-avenge-heartbreak-at-fiba-3x3-u23-world-cup-2019" target="_blank" rel="noopener noreferrer">FIBA（2019年3x3女子U23世界選手権優勝）</a> ／ <a href="https://www.fiba.basketball/en/news/world-u19-2017-news-loibl-chooses-top-talent-over-star-less-team-chemistry-for-japan" target="_blank" rel="noopener noreferrer">FIBA（U19日本代表の育成）</a> ／ <a href="https://www.levanga.com/news/detail/id=22241" target="_blank" rel="noopener noreferrer">講師の公表経歴・受賞歴</a></p>
+          <p className="tc-career-sources">主な出典：<a href="https://www.fiba.basketball/en/news/3x3u23wc-2019-news-russia-repeat-and-japan-avenge-heartbreak-at-fiba-3x3-u23-world-cup-2019" target="_blank" rel="noopener noreferrer">FIBA（2019年3x3女子U23世界選手権優勝）</a> ／ <a href="https://www.fiba.basketball/en/news/world-u19-2017-news-loibl-chooses-top-talent-over-star-less-team-chemistry-for-japan" target="_blank" rel="noopener noreferrer">FIBA（U19日本代表の育成）</a></p>
           <p className="tc-career-disclaimer">実績は講師個人の指導経歴を示しています。Riot Basketball Academy主催の本講習は、過去・現在の所属団体による主催・後援・協賛を示すものではありません。2019年の世界選手権優勝は日本代表チームの成果です。</p>
           <div className="tc-proof-action"><Apply>講師の実績を学びにつなげる</Apply><a className="tc-proof-link" href="#register">LIVE・録画の受講方法を見る ↓</a></div>
         </div>
