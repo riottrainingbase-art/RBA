@@ -69,6 +69,10 @@ export function TorstenCoachCampaignJa() {
           <h2 id="tc-problem-title">指導現場の、<br/>具体的な疑問から始める。</h2>
           <p className="tc-section-intro">すでに届いた申込者の質問にも、試合でのシュート、練習設計、育成年代の指導についての悩みが表れています。</p>
           <div className="tc-grid">{concerns.map(v => <article className="tc-problem" key={v.n}><span>{v.n}</span><h3>{v.title}</h3><p>{v.body}</p></article>)}</div>
+          <div className="tc-proof-action" style={{marginTop: "24px", alignItems: "center", gap: "14px", flexWrap: "wrap"}}>
+            <a className="tc-proof-link" href="/ja/coaches/shooting-game-transfer">無料で読む：シュートを試合につなぐ45分×3回の練習設計と研究の注意点 ↗</a>
+            <span className="tc-small">RBA独自の解説です。講師本人の監修教材ではありません。</span>
+          </div>
         </div>
       </section>
 
