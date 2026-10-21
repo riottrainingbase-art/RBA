@@ -50,6 +50,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
       <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{primaryNav[0][0]}<ArrowRight size={16}/></a>
           {primaryNav.slice(1).map(([label,href])=><a key={href} href={href}>{label}</a>)}
           <a href="/backbone">BACKBONE 3×3</a>
+          {locale==="ja"?<a href="/ja/goods">RBA GOODS｜公式グッズ企画</a>:null}
           <a href={localePath(locale,"my-homecourt")}>MY HOME COURT</a>
           <a href={localePath(locale,"about")}>{c.about}</a><a href={(locale==="en"?"":`/${locale}`)+"/our-work"}>{({en:"Our work across Japan & Asia",ja:"日本・アジアの開催実績","zh-tw":"日本與亞洲活動實績",ko:"일본·아시아 활동 실적"})[locale]}</a>
           <a href={localePath(locale,"policies")}>{({en:"Policies & safety",ja:"規約・安全方針","zh-tw":"條款與安全",ko:"약관·안전"})[locale]}</a>
@@ -67,6 +68,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
       <div><p className="footer-label">{c.explore}</p>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}
         <a href="/backbone">BACKBONE 3×3</a>
+          {locale==="ja"?<a href="/ja/goods">RBA GOODS｜公式グッズ企画</a>:null}
         <a href={localePath(locale,"about")}>{c.about}</a><a href={(locale==="en"?"":`/${locale}`)+"/our-work"}>{({en:"Our work across Japan & Asia",ja:"日本・アジアの開催実績","zh-tw":"日本與亞洲活動實績",ko:"일본·아시아 활동 실적"})[locale]}</a>
         <a href={localePath(locale,"policies")}>{({en:"Policies & safety",ja:"規約・安全方針","zh-tw":"條款與安全",ko:"약관·안전"})[locale]}</a><a href={localePath(locale,"contact")}>{c.contact}</a></div>
       <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a><a href="https://www.instagram.com/riotbasketballacademy/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.threads.com/@riotbasketballacademy" target="_blank" rel="noreferrer">Threads</a><a href="https://note.com/rba_official" target="_blank" rel="noreferrer">note</a><a href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">LINE</a><a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a></div>
