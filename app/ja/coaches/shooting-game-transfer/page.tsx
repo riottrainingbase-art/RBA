@@ -91,6 +91,27 @@ export default function ShootingGameTransferPage() {
           <p className="sgt-note">基準は「毎回シュートを打つ」ではありません。良い判断には、打たずに次の選択へ進む場面も含まれます。</p>
         </section>
 
+        <section className="sgt-section" aria-labelledby="sgt-research-title">
+          <p className="sgt-eyebrow">WHAT CURRENT RESEARCH CAN — AND CANNOT — TELL US</p>
+          <h2 id="sgt-research-title">守備が入れば、同じシュートではなくなる。</h2>
+          <p>練習のシュート成功率だけでは、試合中の判断や動作を十分に捉えられません。ただし「対人練習にすれば必ず試合に転移する」とも断定できません。研究で示されたことと、まだ分かっていないことを区別します。</p>
+          <div className="sgt-grid">
+            <article>
+              <span>2025 / 守備とシュート</span>
+              <h3>守備者は動作と精度を変える</h3>
+              <p>熟練女子選手を対象とした研究では、ディフェンダーを置いたシュート課題で、無守備時とは成功率や時間的特徴が異なりました。守備状況を練習に取り入れる根拠になりますが、すべての育成年代・試合への効果を証明したものではありません。</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/39986586/" target="_blank" rel="noopener noreferrer">研究原著の要旨を確認する ↗</a>
+            </article>
+            <article>
+              <span>2026 / 育成年代のレビュー</span>
+              <h3>意思決定の転移はまだ検証が必要</h3>
+              <p>バスケットボールの知覚・認知トレーニングをまとめたレビューでは、課題に近い能力の改善はみられる一方、実際の試合での判断や長期的な学習への一般化について一貫した結論は出ていません。ドリルが上手くなったことと、試合でできたことは分けて確かめる必要があります。</p>
+              <a href="https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2026.1972276/full" target="_blank" rel="noopener noreferrer">レビューの結論を確認する ↗</a>
+            </article>
+          </div>
+          <p className="sgt-note">RBAとしての提案：無守備での技術確認を否定せず、守備や味方を入れた状況での「準備・選択・結果」を別に観察します。下の45分×3回は研究で検証された処方箋ではなく、現場用の設計例です。</p>
+        </section>
+
         <section className="sgt-section sgt-sessions" id="sessions" aria-labelledby="sgt-sessions-title">
           <p className="sgt-eyebrow">THREE PRACTICES / 45 MINUTES EACH</p>
           <h2 id="sgt-sessions-title">45分×3回の練習設計例</h2>
@@ -137,6 +158,8 @@ export default function ShootingGameTransferPage() {
           <h2>学習の参考資料</h2>
           <p>このガイドの練習時間・配分・例はRBAによる提案で、以下の資料の転載や各団体の公式推奨プログラムではありません。</p>
           <ul>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/39986586/" target="_blank" rel="noopener noreferrer">Court Goldほか (2025), Psychology of Sport and Exercise, 78, 102828</a> — 熟練女子選手の守備あり／なしシュート比較。年代や競技水準への一般化には注意。</li>
+            <li><a href="https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2026.1972276/full" target="_blank" rel="noopener noreferrer">Liほか (2026), Frontiers in Pediatrics, 14</a> — 育成年代の知覚・認知トレーニングと試合転移に関するシステマティックレビュー。</li>
             <li><a href="https://jr.nba.com/jr-nba-instructional-curriculum/" target="_blank" rel="noopener noreferrer">Jr. NBA / Jr. WNBA Instructional Curriculum</a> — 少人数ゲームや意思決定を含む年代別カリキュラム</li>
             <li><a href="https://about.fiba.basketball/en/wabc-documents" target="_blank" rel="noopener noreferrer">FIBA / WABC Coaching Documents</a> — コーチ向け資料・年代別指導資料</li>
             <li><a href="https://www.usab.com/coaching/coaching-resources" target="_blank" rel="noopener noreferrer">USA Basketball Coaching Resources</a> — 育成年代のコーチ向け資料</li>
