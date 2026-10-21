@@ -1,3 +1,4 @@
+import { MvpUnitedRecruitment } from "./mvp-united-recruitment";
 import { CurrentProgrammeHighlights } from "./current-programme-highlights";
 import { RbaJapanProof } from "./rba-japan-proof";
 import { RbaDevelopmentOverview, rbaDefinition } from "./rba-development-overview";
@@ -112,7 +113,7 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
           </div>
         </section>
 
-        <CurrentProgrammeHighlights locale={locale}/>
+        {locale==="ja"?<MvpUnitedRecruitment compact/>:null}<CurrentProgrammeHighlights locale={locale}/>
         <RbaJapanProof locale={locale}/>
         <RbaDevelopmentOverview locale={locale}/>
         {locale==="ja" ? <section className="border-b border-[#c9c6c0] py-12 sm:py-16" aria-labelledby="torsten-home-clinic">

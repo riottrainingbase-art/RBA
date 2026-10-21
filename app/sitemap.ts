@@ -10,7 +10,7 @@ const core=["","/our-work","/players","/families","/coaches","/home-court","/my-
 const taiwanPages=locales.flatMap(locale=>[`${locale}/taiwan`,`${locale}/taiwan/exchange`]);
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
-const productPages=["/ja/homecourt-plus","/ja/development"];
+const productPages=["/ja/united/malaysia-2026","/ja/homecourt-plus","/ja/development"];
 const regionalPages=["/ja/gream-dsm","/ja/gream-dsm/support","/ja/regions","/ja/saga","/ja/okinawa-coach"];
 const secondaryJapanese=["/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support"] as const;
 const torstenSupportPages=["/ja/coach/shooting-check","/ja/coaches/shooting-game-transfer","/ja/events/torsten-loibl-online-clinic/share"] as const;
