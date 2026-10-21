@@ -5,6 +5,9 @@ import { EventShareActions } from "@/components/event-share-actions";
 
 const clinicUrl = "https://riotbasketballacademy.com/ja/events/torsten-loibl-online-clinic";
 const checkUrl = "https://riotbasketballacademy.com/ja/coach/shooting-check";
+const shareTrackedUrl = (segment: "general" | "u12" | "u15u18" | "women3x3") =>
+  clinicUrl + "?utm_source=rba_share_kit&utm_medium=voluntary_share&utm_campaign=torsten_vol2_20261125&utm_content=" + segment;
+
 const shareText = [
   "【11/25（水）20:00〜21:30／オンライン】",
   "「練習では入る。試合では打てない。」その理由を、シュートフォームだけに求めていませんか？",
@@ -12,7 +15,7 @@ const shareText = [
   "Riot Basketball Academy主催・オンライン講習 Vol.2。",
   "テーマは「現代バスケットボールにおけるシューターの育成と活用」。技術・判断・練習設計・スペーシングのつながりを考える90分です。",
   "Zoom開催／英語講義・日本語逐次通訳。LIVE 3,300円（税込）、開催後30日間のオンデマンド 4,400円（税込）。指導者資格は不要です。",
-  "詳細・申込：" + clinicUrl,
+  "詳細・申込：" + shareTrackedUrl("general"),
 ].join("\n\n");
 
 const coachShareKits = [
@@ -24,7 +27,7 @@ const coachShareKits = [
       "練習では入るのに、試合では打てない。U12ではシュート技術をいつ・どう扱い、打つ前の準備や判断とどう結び付けるのでしょうか。",
       "日本男子U18代表のアジア準優勝を経験したTorsten Loibl氏と、シューター育成・練習設計・スペーシングを考える90分です。",
       "Zoom／英語講義・日本語逐次通訳。LIVE税込3,300円、配信開始後30日間の録画視聴は税込4,400円。",
-      "詳細・申込：" + clinicUrl,
+      "詳細・申込：" + shareTrackedUrl("u12"),
     ].join("\n\n"),
   },
   {
@@ -35,7 +38,7 @@ const coachShareKits = [
       "シュートの成功率だけでなく、守備を見た選択、オフボールの準備、スペーシングから良いシュート機会をどう生むか。",
       "2016年男子U18日本代表アジア準優勝、2017年男子U19ワールドカップ10位の指導経験を持つTorsten Loibl氏と、技術・判断・練習設計を一体で考えます。",
       "Zoom／英語講義・日本語逐次通訳。LIVE税込3,300円、配信開始後30日間の録画視聴は税込4,400円。",
-      "詳細・申込：" + clinicUrl,
+      "詳細・申込：" + shareTrackedUrl("u15u18"),
     ].join("\n\n"),
   },
   {
@@ -46,7 +49,7 @@ const coachShareKits = [
       "「練習では入る。試合では打てない。」を出発点に、シュート技術、スペーシング、攻撃中の判断、練習設計を考えるオンライン講習です。",
       "Torsten Loibl氏は2019年3x3女子U23日本代表の世界選手権優勝にディレクターコーチとして貢献。特定の練習ドリルを保証する講習ではなく、現代バスケットボールのシューター育成を学ぶ90分です。",
       "Zoom／英語講義・日本語逐次通訳。LIVE税込3,300円、配信開始後30日間の録画視聴は税込4,400円。",
-      "詳細・申込：" + clinicUrl,
+      "詳細・申込：" + shareTrackedUrl("women3x3"),
     ].join("\n\n"),
   },
 ] as const;
@@ -90,6 +93,7 @@ export default function TorstenSharePage() {
             <h2 id="coach-share-title" style={{ fontSize: 24, fontWeight: 850, margin: "0 0 12px" }}>指導対象に合わせた紹介文</h2>
             <p style={{ color: "#ccd1db", lineHeight: 1.85, marginBottom: 20 }}>
               U12・U15／U18・女子バスケ／3x3の現場に合わせた短い案内文です。必要だと思う方に、ご自身の判断で共有してください。自動送信や一斉配信は行われません。
+            文末のURLには、どの紹介文から閲覧されたかを区別するためのパラメータを付けています。氏名・メールアドレスなどは含まず、このURLだけでは申込・決済人数は分かりません。
             </p>
             <div style={{ display: "grid", gap: 16 }}>
               {coachShareKits.map((kit) => (
