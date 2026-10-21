@@ -16,7 +16,8 @@
     "audit:deploy-policy": "node scripts/check-deployment-policy.mjs",
     "audit:site-ja": "node audit/site-japanese/check.mjs",
     "audit:encoding": "node scripts/check-text-encoding.mjs",
-    "audit:navigation": "node scripts/check-navigation-contract.mjs"
+    "audit:navigation": "node scripts/check-navigation-contract.mjs",
+    "audit:torsten-rights-safe": "node audit/torsten-rights-safe/check.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
