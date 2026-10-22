@@ -205,6 +205,8 @@ export function MemberApp({locale,section,userId,email,learningCount}:{locale:Lo
   const appHref=(part:string)=>`${prefix}/my-homecourt/app${part==="home"?"":`/${part}`}`;
   return <div className="member-app"><header><a href={appHref("home")}><strong>RBA</strong><span>MY HOME COURT</span></a><div><span>{data.profile.display_name||email}</span>{data.platformNotifications.length?<a className="member-header-notifications" href={appHref("notifications")} aria-label={`${data.platformNotifications.length}件の未読のお知らせ`}><Bell/><i>{Math.min(data.platformNotifications.length,9)}</i></a>:null}<a className="member-header-account" href={appHref("my")} aria-label={c.account}><UserRound/></a></div></header><main>
     {active==="home"&&locale==="ja"?<IPhoneHomeScreenCard compact/>:null}
+    {active==="home"&&locale==="en"&&isCoach?<section className="member-section"><p>FREE COACH LIBRARY</p><h2>Find one idea for your next practice.</h2><p>English resources, coaching references and simple practice prompts.</p><a href="/my-homecourt/app/coach-library">Open coach library →</a></section>:null}
+    {active==="admin"&&data.profile.role==="admin"?<section className="member-section"><a href="/my-homecourt/app/coach-library/insights">マレーシア指導者：関心テーマ・資料アクセスを見る →</a></section>:null}
     {message?<div className="member-alert" role="alert">{message}<button onClick={()=>setMessage("")}>×</button></div>:null}
     {active==="calendar"&&isCoach&&selectedTeam?<div className="member-import-wrap"><CalendarImport locale={locale} teamId={selectedTeam.id} timezone={selectedTeam.timezone} userId={userId} onImported={load}/></div>:null}
     {active==="home"?<><section className="member-summary">
