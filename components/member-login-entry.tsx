@@ -15,10 +15,11 @@ const copy = {
 
 // Enable only after the SMTP sender, delivery and callback have been verified.
 // This gate does not change Supabase authentication or existing member sessions.
-export async function MemberLoginEntry({ locale, authError, next, source }: {
+export async function MemberLoginEntry({ locale, authError, next, source, initialRole }: {
   locale: Locale;
   next?: string;
   source?: string;
+  initialRole?: "coach";
   authError?: boolean | "browser" | "expired";
 }) {
   // Returning members should never be asked to sign in again while their session is still valid.
@@ -34,7 +35,7 @@ export async function MemberLoginEntry({ locale, authError, next, source }: {
   if(hasSession) redirect(destination);
 
   if (process.env.RBA_AUTH_EMAIL_READY === "true") {
-    return <MemberLogin locale={locale} authError={authError} next={next} source={source} />;
+    return <MemberLogin locale={locale} authError={authError} next={next} source={source} initialRole={initialRole} />;
   }
   const c = copy[locale];
   const paymentOption=destination.startsWith("/api/commerce/checkout/")?destination.split("/").pop()?.split("?")[0]:null;
