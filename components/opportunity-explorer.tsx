@@ -1,5 +1,6 @@
 "use client";
 
+import { RegionalSchoolCallout } from "./regional-school-callout";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, ArrowUpRight, Bookmark, CalendarDays, CircleDollarSign, MapPin, Search, SlidersHorizontal, Users } from "lucide-react";
 import { isProgrammeActive, programmes } from "./programme-data";
@@ -89,6 +90,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
       <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U15","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
       <label>{c.kind}<select value={kind} onChange={e=>{const v=e.target.value as Kind;setKind(v);update({kind:v})}}><option value="all">{c.all}</option>{["TRAIN","PLAY","TRAVEL","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
     </div></section>
+    {locale==="ja"?<div className="section-pad"><RegionalSchoolCallout/></div>:null}
     {locale==="ja"?<section className="registration-flow section-pad"><div><p className="section-index inverse">HOW TO JOIN</p><h2>参加までの流れを、分かりやすく。</h2></div><div><ol><li><span>01</span><div><strong>活動を探す</strong><p>年代・地域・目的から、自分に合う企画を絞り込みます。</p></div></li><li><span>02</span><div><strong>条件と費用を確認</strong><p>対象、会場、参加費、持ち物、宿泊の有無などを確認します。</p></div></li><li><span>03</span><div><strong>公式フォームから申し込む</strong><p>各カードの「このコートに挑戦する」から、RBAの公式申込フォームへ進みます。</p></div></li><li><span>04</span><div><strong>決済して受付を完了する</strong><p>フォーム送信後の案内に沿って決済し、RBAからの受付完了案内をご確認ください。</p></div></li></ol><p className="registration-note">普段所属しているチームがあっても、各企画の参加条件を満たせば申し込めます。大会・遠征など一部企画では個別条件がありますので、各申込ページを優先してください。</p></div></section>:null}
     {locale==="ja"?<section className="section-pad" style={{background:"linear-gradient(110deg,#212a37,#10141b)",borderTop:"4px solid #e9dc35",color:"#fff"}}>
       <p style={{fontSize:12,fontWeight:900,letterSpacing:".14em",color:"#e9dc35"}}>BACKBONE 3×3 / CHIBA CHAPTER ROUND 3</p>
