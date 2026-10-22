@@ -1,15 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PartnerHeader } from "@/components/mvp/partner-header";
-import { mvpLoginPath, mvpPillars } from "@/lib/mvp-partner";
+import { mvpLoginPath } from "@/lib/mvp-partner";
 import styles from "@/components/mvp/partner.module.css";
-export const metadata: Metadata = { title: "RBA × MVP | Partner Coaches", description: "A dedicated learning and exchange space for MVP Basketball Academy coaches and Riot Basketball Academy.", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "MVP Coaches’ Room | RBA × MVP", description: "Read coaching resources, ask RBA questions and share practice ideas with MVP coaches. Sign in with your free RBA ID.", robots: { index: false, follow: false } };
 export default function Page() {
   return <main className={styles.shell}><div className={styles.wrap}><PartnerHeader />
-    <section className={styles.hero}><p className={styles.eyebrow}>JAPAN × MALAYSIA · PARTNER COACHES</p><h1>Two academies.<br />One commitment<br /><em>to better coaching.</em></h1><p className={styles.lead}>Welcome, MVP coaches. Our partnership continues beyond the clinic. This is your dedicated place to learn with RBA, share what happens in practice and build the next step together.</p><Link className={styles.primary} href={mvpLoginPath}>Enter the MVP coach room →</Link><p className={styles.muted}>Use your own free RBA ID. Already registered? Use the same email.</p><div className={styles.signature}><strong>MVP Basketball Academy</strong><span>Kuala Lumpur, Malaysia</span><strong>Riot Basketball Academy</strong><span>Masato Nishio · Japan</span></div></section>
-    <section className={styles.section}><p className={styles.eyebrow}>A PARTNERSHIP PUT INTO PRACTICE</p><h2>A place for your coaching team.</h2><div className={styles.grid}>{mvpPillars.map((item,i)=><article className={styles.card} key={item.title}><span className={styles.number}>0{i+1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></section>
-    <section className={styles.split}><div><p className={styles.eyebrow}>INSIDE YOUR COACH ROOM</p><h2>Read. Ask.<br />Try. Reflect.</h2><p>English learning resources and original RBA practice prompts sit alongside a private discussion board. Ask a specific question, respond to another coach or share one useful observation from your team.</p></div><ol className={styles.steps}><li><strong>Sign in with your RBA ID</strong><p>Choose COACH and open the latest sign-in email in your usual browser. You return directly to the MVP page.</p></li><li><strong>Join the MVP coaching team</strong><p>Enter the name your colleagues know. MVP or RBA reviews new access requests before private discussions become visible.</p></li><li><strong>Start with a real coaching challenge</strong><p>Tell us the age group, what you tried and what happened. Coaches can reply on the page and return to the same conversation.</p></li></ol></section>
-    <section className={styles.callout}><p className={styles.eyebrow}>FOR THE PEOPLE ON COURT</p><h2>Your experience belongs in the conversation.</h2><p>The best next step starts with what your players and coaches need. Bring a question, an observation or a practice idea.</p><Link className={styles.primary} href={mvpLoginPath}>Join your partner coach room →</Link></section>
-    <footer className={styles.footer}><p>RBA × MVP · Coach Development Partnership</p><p>This learning space is provided without a subscription charge. Workshops, visits and other projects are arranged separately by both academies.</p><p><Link href="/policies">Terms & privacy</Link> · <a href="mailto:riot.training.base@gmail.com?subject=MVP%20coach%20access">Need access help?</a></p></footer>
+    <section className={styles.hero}><p className={styles.eyebrow}>RBA × MVP · EXCLUSIVELY FOR OUR PARTNER COACHES</p><h1>MVP Coaches’ Room</h1><p className={styles.lead}>Read coaching resources. Ask RBA a question.<br />Share practice ideas with your MVP coaching team.</p><Link className={styles.primary} href={mvpLoginPath}>Sign in / Create your free RBA ID →</Link><p className={styles.muted}>New and existing members use the same button. No password or payment needed.</p></section>
+    <section className={styles.section} aria-labelledby="inside-title"><h2 id="inside-title">What can I do here?</h2><div className={styles.benefits}>
+      <article className={styles.card}><span className={styles.number}>01</span><h3>Read & learn</h3><p>Find English coaching resources and simple practice ideas for your next session.</p></article>
+      <article className={styles.card}><span className={styles.number}>02</span><h3>Ask & reply</h3><p>Post a coaching question. RBA and approved MVP coaches can reply on the same page.</p></article>
+      <article className={styles.card}><span className={styles.number}>03</span><h3>Share & improve</h3><p>Tell the team what you tried, what happened and what you would change next time.</p></article>
+    </div></section>
+    <section className={styles.section} aria-labelledby="start-title"><h2 id="start-title">First time? Follow these 3 steps.</h2><ol className={styles.joinSteps}>
+      <li><strong>Sign in by email</strong><p>Use the button above, enter your own email and open the latest RBA sign-in email. COACH is already selected.</p></li>
+      <li><strong>Request MVP access</strong><p>You return to the MVP room. Enter your name and submit your request. Wong or Masato will review it.</p></li>
+      <li><strong>Come back after approval</strong><p>Open this page again and sign in. Choose <strong>Ask & discuss</strong> to post, or <strong>Read & learn</strong> for resources.</p></li>
+    </ol><p className={styles.muted}>Already approved? Sign in to go straight to your coach room.</p></section>
+    <section className={styles.help} aria-labelledby="help-title"><h2 id="help-title">Need help?</h2>
+      <details><summary>I cannot find the sign-in email.</summary><p>Check spam or junk. If you request another link, use the newest email. Open the link in Safari or Chrome rather than inside WhatsApp.</p></details>
+      <details><summary>My page says “Waiting for approval”.</summary><p>Your RBA ID is ready, but MVP access has not been approved yet. Ask Wong or Masato to check your request, then press “Check approval” in the room.</p></details>
+      <details><summary>Who can see my questions?</summary><p>Only approved MVP and RBA coaches can read the discussion board. Your coaching name and posts are visible to this group. Keep player details anonymous.</p></details>
+      <p><a href="mailto:riot.training.base@gmail.com?subject=MVP%20coach%20access">Email Masato for help ↗</a></p>
+    </section>
+    <footer className={styles.footer}><p><strong>MVP Basketball Academy · Malaysia × Riot Basketball Academy · Japan</strong></p><p>Working together on player development, coach education, practice planning and Japan–Malaysia exchange.</p><p>This coach room is free. Workshops, visits and other projects are agreed separately.</p><Link href="/policies">Terms & privacy</Link></footer>
   </div></main>;
 }
