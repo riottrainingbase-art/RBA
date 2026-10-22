@@ -4,8 +4,9 @@
   "buildCommand": "node node_modules/next/dist/bin/next build",
   "git": {
     "deploymentEnabled": {
-      "**": false
+      "**": false,
+      "preview-rba": true
     }
   },
-  "ignoreCommand": "node -e \"process.exit(1)\""
+  "ignoreCommand": "node scripts/vercel-ignore-build.mjs"
 }
