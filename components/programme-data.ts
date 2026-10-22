@@ -2,6 +2,7 @@ import type { Text4 } from "./network-data";
 
 
 export type ProgrammeId =
+  | "okinawa-nov14"
   | "yaima"
   | "kawasaki"
   | "saga-fukuoka"
@@ -39,6 +40,17 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+  {
+    id:"okinawa-nov14",startDate:"2026-11-14",
+    date:["14 NOV 2026 · 16:00–19:00","2026.11.14（土）16:00〜19:00","2026.11.14 · 16:00–19:00","2026.11.14 · 16:00–19:00"],
+    datePrimary:["14 NOV","11月14日","11月14日","11월 14일"],dateSecondary:["16:00–19:00","16:00〜19:00","16:00–19:00","16:00–19:00"],
+    title:["RBA Okinawa Clinic","RBA 沖縄クリニック","RBA 沖繩訓練營","RBA 오키나와 클리닉"],
+    place:["Okinawa · venue shared with applicants","沖縄県内・会場は申込者へ個別案内","沖繩・場地個別通知","오키나와 · 신청자에게 장소 개별 안내"],
+    price:["¥3,300 incl. tax / player","参加費3,300円（税込）／1名","每人¥3,300（含稅）","1인 ¥3,300（세금 포함）"],
+    audience:["Japan grades 4–9 · capacity 50","小学4年〜中学3年生・定員50名","日本小學4年級至國中3年級・限50名","일본 초4~중3 · 정원 50명"],
+    payment:["Register online; payment opens after venue confirmation.","公式ページで申込・決済。会場予約確定後に決済受付を開始します。","官方頁面報名，場地確定後開放付款。","공식 페이지 신청 · 장소 확정 후 결제 시작"],
+    applicationUrl:"/ja/events/okinawa-clinic-2026-11-14",region:"okinawa",category:"TRAIN",pathway:"clinic",ageGroups:["U10","U12","U15"],
+  },
   {
     id: "sendai-u15",
     startDate: "2026-10-01",

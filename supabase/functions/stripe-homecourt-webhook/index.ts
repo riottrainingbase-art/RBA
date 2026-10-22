@@ -2,7 +2,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import Stripe from "npm:stripe@22.4.0";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const stripe = new Stripe("sk_webhook_verification_only", { apiVersion: "2026-08-26.preview" as never });
+const stripe = new Stripe("webhook_verification_only", { apiVersion: "2026-08-26.preview" as never });
 const HOMECOURT_PRICE_ID = "price_1UHNz5RXDnnSs6XNPrBsJvEq";
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const EVENT_SLUGS: Record<string,string> = {
@@ -134,15 +134,191 @@ async function resolveCommerceContext(supabase:any,session:any,subjectId:string|
   }
   return {route,offer,event,application};
 }
+function dhubMembershipStatus(stripeStatus:string){
+  if(["active","trialing"].includes(stripeStatus))return "active";
+  if(["past_due","unpaid"].includes(stripeStatus))return "grace";
+  if(stripeStatus==="canceled")return "cancelled";
+  return "inactive";
+}
+function dhubProgramFromPlan(planKey:string){
+  if(planKey==="dhub_coach_lab_monthly")return "coach_lab";
+  if(planKey==="dhub_players_monthly")return "players";
+  return null;
+}
+async function checkoutEmail(supabase:any,session:any,userId:string){
+  const direct=String(session.customer_details?.email||session.customer_email||"").trim().toLowerCase();
+  if(direct)return direct;
+  const {data}=await supabase.auth.admin.getUserById(userId);
+  return String(data?.user?.email||"").trim().toLowerCase();
+}
+function essentialCustomField(session:any,key:string){
+  const row=(session.custom_fields||[]).find((f:any)=>f.key===key);
+  if(!row)return null;
+  return row.text?.value ?? row.dropdown?.value ?? row.numeric?.value ?? null;
+}
+function essentialTierCycle(metadata:any){
+  const tier=String(metadata?.tier||"");
+  const cycle=String(metadata?.cycle||"");
+  return {
+    tier:["supporter","supporter_plus","patron"].includes(tier)?tier:null,
+    cycle:["monthly","annual"].includes(cycle)?cycle:null,
+  };
+}
+async function processEssentialCheckout(supabase:any,event:any,session:any){
+  const metadata=session.metadata||{};
+  if(String(metadata.program||"")!=="essential_supporters")return false;
+  const isPaid=session.payment_status==="paid" || event.type==="checkout.session.async_payment_succeeded";
+  if(!isPaid)return true;
+  const email=String(session.customer_details?.email||session.customer_email||"").trim().toLowerCase();
+  const customerName=String(session.customer_details?.name||"").trim()||null;
+  const subscriptionId=sid(session.subscription);
+  const customerId=sid(session.customer);
+  const tc=essentialTierCycle(metadata);
+  if(!email||!subscriptionId||!tc.tier||!tc.cycle)throw new Error("essential_supporter_checkout_missing_required_fields");
+  const wallPreference=essentialCustomField(session,"wallpref");
+  const wallName=essentialCustomField(session,"wallname");
+  const termsAccepted=essentialCustomField(session,"termsok");
+  if(termsAccepted!=="accepted")throw new Error("essential_supporter_terms_not_accepted");
+  const {data,error}=await supabase.rpc("upsert_essential_supporter_checkout",{
+    p_checkout_session_id:session.id,p_email:email,p_customer_name:customerName,
+    p_stripe_customer_id:customerId,p_stripe_subscription_id:subscriptionId,
+    p_tier:tc.tier,p_cycle:tc.cycle,p_wall_preference:wallPreference,p_wall_name:wallName,
+    p_amount_minor:session.amount_total??null,p_currency:(session.currency||"jpy").toUpperCase(),
+    p_metadata:{payment_link:sid(session.payment_link),checkout_locale:session.locale||null,collection_entity:metadata.collection_entity||"rba",settlement_model:metadata.settlement_model||"net_after_stripe_fees_85_15"}
+  });
+  if(error)throw error;
+  const member=Array.isArray(data)?data[0]:data;
+  const {error:paymentError}=await supabase.rpc("record_essential_supporter_payment",{p_event_id:event.id,p_object_id:session.id,p_subscription_id:subscriptionId,p_event_type:"checkout.initial_payment",p_status:"paid",p_amount_minor:session.amount_total??0,p_currency:(session.currency||"jpy").toUpperCase(),p_metadata:{payment_link:sid(session.payment_link),source:"checkout",original_event_type:event.type,invoice_id:sid(session.invoice),payment_intent_id:sid(session.payment_intent)}}); if(paymentError)throw paymentError; const invoiceId=sid(session.invoice),paymentIntentId=sid(session.payment_intent); if(invoiceId){const {error:linkInvoiceError}=await supabase.rpc("link_essential_charge_by_invoice",{p_invoice_id:invoiceId,p_subscription_id:subscriptionId});if(linkInvoiceError)throw linkInvoiceError;} if(paymentIntentId){const {error:linkPiError}=await supabase.rpc("link_essential_charge_by_payment_intent",{p_payment_intent_id:paymentIntentId,p_subscription_id:subscriptionId});if(linkPiError)throw linkPiError;}
+  await logAction(supabase,"essential_supporter_joined",session.id,null,null,{stripe_subscription_id:subscriptionId,member_id:member?.member_id||null,founding_number:member?.founding_number||null,public_code:member?.public_code||null,tier:tc.tier,cycle:tc.cycle},event.id+":essential_supporter_joined");
+  return true;
+}
+async function processEssentialSubscription(supabase:any,event:any,s:any){
+  const program=String(s.metadata?.program||"");
+  const {data:existing,error:lookupError}=await supabase.from("essential_supporter_members").select("id,tier,cycle").eq("stripe_subscription_id",s.id).maybeSingle();
+  if(lookupError)throw lookupError;
+  if(program!=="essential_supporters"&&!existing?.id)return false;
+  if(program==="essential_supporters"&&!existing?.id)return true;
+  if(!existing?.id)return false;
+  const tc=essentialTierCycle(s.metadata||{});
+  const {error}=await supabase.rpc("set_essential_supporter_subscription_state",{p_subscription_id:s.id,p_status:s.status,p_customer_id:sid(s.customer),p_current_period_end:currentPeriodEnd(s),p_cancel_at_period_end:!!s.cancel_at_period_end,p_tier:tc.tier||existing.tier||null,p_cycle:tc.cycle||existing.cycle||null});
+  if(error)throw error;
+  await logAction(supabase,"essential_supporter_subscription_updated",s.id,null,null,{status:s.status,cancel_at_period_end:!!s.cancel_at_period_end},event.id+":essential_supporter_subscription_updated");
+  return true;
+}
+async function processEssentialInvoice(supabase:any,event:any,invoice:any,paid:boolean){
+  const subscriptionId=sid(invoice.subscription) || sid(invoice.parent?.subscription_details?.subscription);
+  if(!subscriptionId)return false;
+  const {data:member,error:lookupError}=await supabase.from("essential_supporter_members").select("id").eq("stripe_subscription_id",subscriptionId).maybeSingle();
+  if(lookupError)throw lookupError;
+  const invoiceProgram=String(invoice.metadata?.program||invoice.parent?.subscription_details?.metadata?.program||invoice.subscription_details?.metadata?.program||"");
+  if(!member?.id){
+    if(paid && invoiceProgram==="essential_supporters")throw new Error("essential_supporter_invoice_owner_not_ready");
+    return false;
+  }
+  const amount=paid ? (invoice.amount_paid??invoice.amount_due??0) : (invoice.amount_due??0);
+  const {error}=await supabase.rpc("record_essential_supporter_payment",{p_event_id:event.id,p_object_id:invoice.id,p_subscription_id:subscriptionId,p_event_type:event.type,p_status:paid?"paid":"failed",p_amount_minor:amount,p_currency:(invoice.currency||"jpy").toUpperCase(),p_metadata:{billing_reason:invoice.billing_reason||null}});
+  if(error)throw error;
+  await supabase.rpc("link_essential_charge_by_invoice",{p_invoice_id:invoice.id,p_subscription_id:subscriptionId});
+  return true;
+}
+async function processEssentialCharge(supabase:any,event:any,charge:any){
+  const invoiceId=sid(charge.invoice);
+  if(!invoiceId)return false;
+  const {data,error}=await supabase.rpc("record_essential_supporter_charge",{p_charge_id:charge.id,p_invoice_id:invoiceId,p_payment_intent_id:sid(charge.payment_intent),p_amount_minor:charge.amount??null,p_currency:(charge.currency||"jpy").toUpperCase(),p_status:charge.status||"succeeded"});
+  if(error)throw error;
+  return true;
+}
+async function processEssentialRefund(supabase:any,event:any,refund:any){
+  const chargeId=sid(refund.charge);
+  if(!chargeId)return false;
+  const status=refund.status||"pending";
+  const {data,error}=await supabase.rpc("record_essential_supporter_adjustment",{p_event_id:event.id,p_object_id:refund.id,p_charge_id:chargeId,p_event_type:event.type,p_status:status,p_amount_minor:refund.amount??0,p_currency:(refund.currency||"jpy").toUpperCase(),p_metadata:{reason:refund.reason||null,payment_intent:sid(refund.payment_intent)}});
+  if(error)throw error;
+  return !!data;
+}
+async function processEssentialDispute(supabase:any,event:any,dispute:any){
+  const chargeId=sid(dispute.charge);
+  if(!chargeId)return false;
+  const {data,error}=await supabase.rpc("record_essential_supporter_adjustment",{p_event_id:event.id,p_object_id:dispute.id,p_charge_id:chargeId,p_event_type:event.type,p_status:dispute.status||"unknown",p_amount_minor:dispute.amount??0,p_currency:(dispute.currency||"jpy").toUpperCase(),p_metadata:{reason:dispute.reason||null,is_charge_refundable:dispute.is_charge_refundable??null}});
+  if(error)throw error;
+  return !!data;
+}
+
+async function processOkinawaClinicCheckout(supabase:any,event:any,session:any) {
+  if(session.metadata?.event!=="okinawa_clinic_20261114")return false;
+  if(sid(session.payment_link)!=="plink_1UTNHzRXDnnSs6XNfJQf3ohX" || session.amount_total!==3300 || session.currency!=="jpy" || session.livemode!==true){
+    await storeUnmatched(supabase,event,session,"okinawa_payment_mismatch");return true;
+  }
+  const ref=session.client_reference_id;
+  if(!ref || !UUID_RE.test(ref)){await storeUnmatched(supabase,event,session,"okinawa_registration_reference_missing");return true;}
+  const {data:registration,error:registrationError}=await supabase.from("clinic_registrations").select("id,guardian_user_id,event_slug,status,checkout_session_id").eq("id",ref).eq("event_slug","okinawa-clinic-2026-11-14").maybeSingle();
+  if(registrationError)throw registrationError;
+  if(!registration || !["submitted","paid"].includes(registration.status)){
+    await storeUnmatched(supabase,event,session,"okinawa_registration_not_eligible");return true;
+  }
+  if(registration.checkout_session_id && registration.checkout_session_id!==session.id){
+    await storeUnmatched(supabase,event,session,"okinawa_duplicate_payment_requires_refund");return true;
+  }
+  const paid=session.payment_status==="paid";
+  const {data:offer,error:offerError}=await supabase.from("service_offers").select("id").eq("slug",registration.event_slug).single();
+  const {data:clinicEvent,error:clinicEventError}=await supabase.from("events").select("id").eq("slug",registration.event_slug).single();
+  if(offerError||clinicEventError)throw offerError||clinicEventError;
+  const {data:order,error:orderError}=await supabase.from("platform_orders").upsert({
+    user_id:registration.guardian_user_id,subject_user_id:registration.guardian_user_id,
+    event_id:clinicEvent.id,service_offer_id:offer.id,order_type:"event",status:paid?"paid":"awaiting_payment",
+    amount_subtotal:session.amount_subtotal??3300,amount_total:3300,currency:"JPY",locale:"ja",provider:"stripe",
+    provider_checkout_id:session.id,confirmed_at:paid?new Date().toISOString():null,
+    metadata:{...session.metadata,clinic_registration_id:registration.id,payment_intent_id:sid(session.payment_intent)},
+    updated_at:new Date().toISOString()
+  },{onConflict:"provider_checkout_id"}).select("id").single();
+  if(orderError)throw orderError;
+  if(paid){
+    const {error:ledgerError}=await supabase.from("transaction_ledger").upsert({
+      order_id:order.id,user_id:registration.guardian_user_id,transaction_type:"charge",status:"succeeded",
+      amount:3300,currency:"JPY",provider:"stripe",provider_transaction_id:session.id,occurred_at:new Date().toISOString(),
+      metadata:{checkout_session_id:session.id,payment_intent_id:sid(session.payment_intent),clinic_registration_id:registration.id,event:"okinawa_clinic_20261114"}
+    },{onConflict:"provider,provider_transaction_id"});
+    if(ledgerError)throw ledgerError;
+    const {error:registrationUpdateError}=await supabase.from("clinic_registrations").update({status:"paid",paid_at:new Date().toISOString(),checkout_session_id:session.id}).eq("id",registration.id);
+    if(registrationUpdateError)throw registrationUpdateError;
+    const {error:noticeError}=await supabase.from("platform_notifications").upsert({
+      user_id:registration.guardian_user_id,notification_type:"payment_confirmed",title:"沖縄クリニック：参加が確定しました",
+      body:"11月14日16:00〜19:00の参加費3,300円のお支払いを確認しました。会場はRBAから個別にご案内します。",
+      action_url:"/ja/events/okinawa-clinic-2026-11-14#entry",dedupe_key:session.id+":okinawa-paid"
+    },{onConflict:"dedupe_key",ignoreDuplicates:true});
+    if(noticeError)throw noticeError;
+  }else{
+    const {error:pendingError}=await supabase.from("clinic_registrations").update({checkout_session_id:session.id}).eq("id",registration.id).is("checkout_session_id",null);
+    if(pendingError)throw pendingError;
+  }
+  await logAction(supabase,"payment_matched",session.id,registration.guardian_user_id,order.id,{clinic_registration_id:registration.id,paid},event.id+":okinawa-payment");
+  return true;
+}
+
+
+async function processOkinawaClinicFailure(supabase:any,event:any,session:any){
+  if(session.metadata?.event!=="okinawa_clinic_20261114")return false;
+  if(sid(session.payment_link)!=="plink_1UTNHzRXDnnSs6XNfJQf3ohX")return true;
+  const {data:r,error}=await supabase.from("clinic_registrations").select("id,guardian_user_id,status,checkout_session_id").eq("id",session.client_reference_id).maybeSingle();
+  if(error)throw error;
+  if(r && r.status!=="paid" && r.checkout_session_id===session.id){
+    const {error:orderError}=await supabase.from("platform_orders").update({status:"failed",updated_at:new Date().toISOString()}).eq("provider_checkout_id",session.id).eq("user_id",r.guardian_user_id);
+    if(orderError)throw orderError;
+    const {error:rowError}=await supabase.from("clinic_registrations").update({checkout_session_id:null}).eq("id",r.id).eq("checkout_session_id",session.id);
+    if(rowError)throw rowError;
+  }
+  return true;
+}
+
 async function processCheckout(supabase:any,event:any,session:any) {
+  if(await processOkinawaClinicCheckout(supabase,event,session))return;
   const subjectFromRef=await resolveByClientRef(supabase,session);
   const emailUser=await resolveByEmail(supabase,session);
   const subjectId=subjectFromRef || emailUser;
   const payerId=emailUser || subjectId;
   const metadata=session.metadata||{};
-  const program=metadata.program||"";
+  const rawProgram=metadata.program||"";
   const eventKey=metadata.event||"";
-  const isHomecourt=program==="rba_homecourt";
   const isPaid=session.payment_status==="paid" || event.type==="checkout.session.async_payment_succeeded";
   const customerId=sid(session.customer), subscriptionId=sid(session.subscription);
 
@@ -152,6 +328,15 @@ async function processCheckout(supabase:any,event:any,session:any) {
   }
 
   const commerce=await resolveCommerceContext(supabase,session,subjectId,payerId);
+  const resolvedProgram=String(commerce.offer?.metadata?.program||rawProgram||"");
+  const dhubProgramType=String(commerce.offer?.metadata?.dhub_program_type||"")||null;
+  const isHomecourt=resolvedProgram==="rba_homecourt";
+  const planKey=String(
+    commerce.offer?.metadata?.subscription_plan_key
+    || (isHomecourt?"homecourt_monthly":"")
+  );
+  const isManagedSubscription=Boolean(subscriptionId)&&(isHomecourt||Boolean(dhubProgramType&&planKey));
+
   const resolvedEventSlug=commerce.event?.slug || EVENT_SLUGS[eventKey] || null;
   let rbaEvent=commerce.event;
   if(!rbaEvent && resolvedEventSlug){
@@ -165,7 +350,7 @@ async function processCheckout(supabase:any,event:any,session:any) {
     application_id:commerce.application?.id||null,
     event_id:rbaEvent?.id||null,
     service_offer_id:commerce.offer?.id||null,
-    order_type:isHomecourt?"subscription":"event",
+    order_type:isManagedSubscription?"subscription":"event",
     status:isPaid?"paid":"awaiting_payment",
     amount_subtotal:session.amount_subtotal??null,
     amount_total:session.amount_total??null,
@@ -177,6 +362,7 @@ async function processCheckout(supabase:any,event:any,session:any) {
     confirmed_at:isPaid?new Date().toISOString():null,
     metadata:{
       ...metadata,
+      program:resolvedProgram||null,
       offer_slug:commerce.offer?.slug||null,
       stripe_payment_link:sid(session.payment_link),
       stripe_customer_id:customerId,
@@ -195,20 +381,46 @@ async function processCheckout(supabase:any,event:any,session:any) {
       provider:"stripe",provider_transaction_id:session.id,occurred_at:new Date().toISOString(),
       metadata:{
         checkout_session_id:session.id,payment_intent_id:sid(session.payment_intent),
-        event:eventKey||null,program:program||null,plan:metadata.plan||null,
+        event:eventKey||null,program:resolvedProgram||null,plan:planKey||metadata.plan||null,
         subject_user_id:subjectId,offer_slug:commerce.offer?.slug||null
       },
     },{onConflict:"provider,provider_transaction_id"});
     if(error) throw error;
   }
 
-  if(isHomecourt && subscriptionId) {
+  if(isManagedSubscription && subscriptionId) {
     const {error}=await supabase.from("subscriptions").upsert({
       user_id:subjectId,provider:"stripe",provider_customer_id:customerId,
       provider_subscription_id:subscriptionId,status:isPaid?"active":"inactive",
-      plan_key:"homecourt_monthly",updated_at:new Date().toISOString(),
+      plan_key:planKey,updated_at:new Date().toISOString(),
     },{onConflict:"provider_subscription_id"});
     if(error) throw error;
+
+    if(dhubProgramType){
+      const email=await checkoutEmail(supabase,session,subjectId);
+      if(!email)throw new Error("dhub_subscription_email_required");
+      const now=new Date().toISOString();
+      const {error:dhubError}=await supabase.from("dhub_memberships").upsert({
+        email_normalized:email,
+        linked_user_id:subjectId,
+        provider:"stripe",
+        plan_key:planKey,
+        program_type:dhubProgramType,
+        status:isPaid?"active":"grace",
+        amount_jpy:session.amount_total??3300,
+        last_payment_at:isPaid?now:null,
+        access_until:null,
+        source_reference:subscriptionId,
+        notes:"Stripe governed membership",
+        metadata:{
+          stripe_customer_id:customerId,
+          service_offer_slug:commerce.offer?.slug||null,
+          migrated_from_square:false
+        },
+        updated_at:now
+      },{onConflict:"email_normalized,program_type"});
+      if(dhubError)throw dhubError;
+    }
   }
 
   if(isPaid && commerce.application?.id){
@@ -237,16 +449,19 @@ async function processCheckout(supabase:any,event:any,session:any) {
     const noteBody=commerce.offer?.title
       ? `${commerce.offer.title} のお支払いが完了しました。`
       : "RBAのお支払いが完了しました。";
+    const actionUrl=dhubProgramType
+      ? (dhubProgramType==="coach_lab"?"/ja/d-hub/coaches/member":"/ja/d-hub/players/member")
+      : "/ja/my-homecourt";
     const {error:paymentNoticeError}=await supabase.from("platform_notifications").upsert({
       user_id:payerId,notification_type:"payment_confirmed",title:noteTitle,body:noteBody,
-      action_url:"/ja/my-homecourt",dedupe_key:`${session.id}:payment_confirmed:${payerId}`
+      action_url:actionUrl,dedupe_key:`${session.id}:payment_confirmed:${payerId}`
     },{onConflict:"dedupe_key",ignoreDuplicates:true});
     if(paymentNoticeError) throw paymentNoticeError;
     if(subjectId!==payerId){
       const {error:participantNoticeError}=await supabase.from("platform_notifications").upsert({
         user_id:subjectId,notification_type:"participation_confirmed",title:"参加が確定しました",
         body:commerce.offer?.title ? `${commerce.offer.title} の参加が確定しました。` : "RBAプログラムの参加が確定しました。",
-        action_url:"/ja/my-homecourt",dedupe_key:`${session.id}:participation_confirmed:${subjectId}`
+        action_url:actionUrl,dedupe_key:`${session.id}:participation_confirmed:${subjectId}`
       },{onConflict:"dedupe_key",ignoreDuplicates:true});
       if(participantNoticeError) throw participantNoticeError;
     }
@@ -254,25 +469,46 @@ async function processCheckout(supabase:any,event:any,session:any) {
 
   await logAction(supabase,"payment_matched",session.id,payerId,order?.id||null,{
     subject_user_id:subjectId,
-    event:eventKey||null,program:program||null,plan:metadata.plan||null,
+    event:eventKey||null,program:resolvedProgram||null,plan:planKey||metadata.plan||null,
     offer_slug:commerce.offer?.slug||null,paid:isPaid
   },`${event.id}:payment_matched`);
 }
 async function processSubscription(supabase:any,event:any,s:any) {
-  const isHomecourt=s.metadata?.program==="rba_homecourt" || (s.items?.data||[]).some((i:any)=>i.price?.id===HOMECOURT_PRICE_ID);
-  if(!isHomecourt) return false;
-  const {data,error}=await supabase.from("subscriptions").update({
-    status:subStatus(s.status),current_period_end:currentPeriodEnd(s),
+  const {data:owned,error:ownedError}=await supabase.from("subscriptions")
+    .select("user_id,plan_key").eq("provider_subscription_id",s.id).maybeSingle();
+  if(ownedError)throw ownedError;
+
+  const managedByMetadata=["rba_homecourt","rba_dhub"].includes(String(s.metadata?.program||""))
+    || (s.items?.data||[]).some((i:any)=>i.price?.id===HOMECOURT_PRICE_ID);
+  if(!owned?.user_id){
+    if(managedByMetadata)throw new Error("subscription_owner_not_ready");
+    return false;
+  }
+
+  const status=subStatus(s.status);
+  const periodEnd=currentPeriodEnd(s);
+  const {error}=await supabase.from("subscriptions").update({
+    status,current_period_end:periodEnd,
     cancel_at_period_end:!!s.cancel_at_period_end,provider_customer_id:sid(s.customer),
     updated_at:new Date().toISOString(),
-  }).eq("provider_subscription_id",s.id).select("user_id").maybeSingle();
+  }).eq("provider_subscription_id",s.id);
   if(error) throw error;
-  // Stripe can deliver subscription.created before checkout.session.completed.
-  // Failing here asks Stripe to retry after checkout has created the owned row,
-  // instead of permanently recording a successful no-op.
-  if(!data?.user_id) throw new Error("subscription_owner_not_ready");
-  if(data?.user_id) await logAction(supabase,"subscription_updated",s.id,data.user_id,null,{
-    status:s.status,cancel_at_period_end:!!s.cancel_at_period_end
+
+  const dhubProgramType=dhubProgramFromPlan(String(owned.plan_key||""));
+  if(dhubProgramType){
+    const {error:dhubError}=await supabase.from("dhub_memberships").update({
+      status:dhubMembershipStatus(s.status),
+      access_until:periodEnd,
+      source_reference:s.id,
+      updated_at:new Date().toISOString()
+    }).eq("linked_user_id",owned.user_id)
+      .eq("program_type",dhubProgramType)
+      .eq("provider","stripe");
+    if(dhubError)throw dhubError;
+  }
+
+  await logAction(supabase,"subscription_updated",s.id,owned.user_id,null,{
+    plan_key:owned.plan_key,status:s.status,cancel_at_period_end:!!s.cancel_at_period_end
   },`${event.id}:subscription_updated`);
   return true;
 }
@@ -280,14 +516,35 @@ async function processInvoice(supabase:any,invoice:any,paid:boolean) {
   const subscriptionId=sid(invoice.subscription) || sid(invoice.parent?.subscription_details?.subscription);
   if(!subscriptionId) return false;
   const {data:owned,error:ownedError}=await supabase.from("subscriptions")
-    .select("user_id").eq("provider_subscription_id",subscriptionId).maybeSingle();
+    .select("user_id,plan_key").eq("provider_subscription_id",subscriptionId).maybeSingle();
   if(ownedError) throw ownedError;
-  if(!owned?.user_id) throw new Error("invoice_subscription_owner_not_ready");
-  const {error}=await supabase.rpc("set_homecourt_invoice_state",{
-    p_subscription_id:subscriptionId,p_paid:paid,p_invoice_id:invoice.id
-  });
-  if(error) throw error;
-  return true;
+  if(!owned?.user_id) return false;
+
+  if(owned.plan_key==="homecourt_monthly"){
+    const {error}=await supabase.rpc("set_homecourt_invoice_state",{
+      p_subscription_id:subscriptionId,p_paid:paid,p_invoice_id:invoice.id
+    });
+    if(error) throw error;
+    return true;
+  }
+
+  const dhubProgramType=dhubProgramFromPlan(String(owned.plan_key||""));
+  if(dhubProgramType){
+    const now=new Date().toISOString();
+    const {error:subError}=await supabase.from("subscriptions").update({
+      status:paid?"active":"past_due",updated_at:now
+    }).eq("provider_subscription_id",subscriptionId);
+    if(subError)throw subError;
+    const patch:any={status:paid?"active":"grace",updated_at:now};
+    if(paid)patch.last_payment_at=now;
+    const {error:dhubError}=await supabase.from("dhub_memberships").update(patch)
+      .eq("linked_user_id",owned.user_id)
+      .eq("program_type",dhubProgramType)
+      .eq("provider","stripe");
+    if(dhubError)throw dhubError;
+    return true;
+  }
+  return false;
 }
 async function processRefund(supabase:any,refund:any) {
   const paymentIntentId=sid(refund.payment_intent);
@@ -328,9 +585,10 @@ Deno.serve(async (request:Request)=>{
     let handled=false;
 
     if(["checkout.session.completed","checkout.session.async_payment_succeeded"].includes(event.type)) {
-      await processCheckout(supabase,event,event.data.object); handled=true;
+      const session=event.data.object; handled=await processEssentialCheckout(supabase,event,session); if(!handled){ await processCheckout(supabase,event,session); handled=true; }
     } else if(event.type==="checkout.session.async_payment_failed") {
       const session=event.data.object;
+      if(await processOkinawaClinicFailure(supabase,event,session)){ handled=true; } else if(String(session.metadata?.program||"")==="essential_supporters"){ await logAction(supabase,"essential_supporter_payment_failed",session.id,null,null,{program:"essential_supporters"},event.id+":essential_supporter_payment_failed"); handled=true; } else {
       const subjectId=await resolveByClientRef(supabase,session);
       const payerId=(await resolveByEmail(supabase,session))||subjectId;
       if(payerId) {
@@ -339,14 +597,19 @@ Deno.serve(async (request:Request)=>{
         await logAction(supabase,"payment_failed",session.id,payerId,null,{subject_user_id:subjectId},`${event.id}:payment_failed`);
       } else await storeUnmatched(supabase,event,session,"async_payment_failed_unresolved");
       handled=true;
+      }
     } else if(event.type.startsWith("customer.subscription.")) {
-      handled=await processSubscription(supabase,event,event.data.object);
+      handled=await processEssentialSubscription(supabase,event,event.data.object); if(!handled) handled=await processSubscription(supabase,event,event.data.object);
     } else if(event.type==="invoice.paid") {
-      handled=await processInvoice(supabase,event.data.object,true);
+      handled=await processEssentialInvoice(supabase,event,event.data.object,true); if(!handled) handled=await processInvoice(supabase,event.data.object,true);
     } else if(event.type==="invoice.payment_failed") {
-      handled=await processInvoice(supabase,event.data.object,false);
+      handled=await processEssentialInvoice(supabase,event,event.data.object,false); if(!handled) handled=await processInvoice(supabase,event.data.object,false);
+    } else if(event.type==="charge.succeeded") {
+      handled=await processEssentialCharge(supabase,event,event.data.object);
     } else if(["refund.created","refund.updated","refund.failed"].includes(event.type)) {
-      handled=await processRefund(supabase,event.data.object);
+      handled=await processEssentialRefund(supabase,event,event.data.object); if(!handled) handled=await processRefund(supabase,event.data.object);
+    } else if(["charge.dispute.created","charge.dispute.updated","charge.dispute.closed","charge.dispute.funds_withdrawn","charge.dispute.funds_reinstated"].includes(event.type)) {
+      handled=await processEssentialDispute(supabase,event,event.data.object);
     }
 
     await setWebhookState(supabase,event,claimToken,handled?"processed":"ignored");
