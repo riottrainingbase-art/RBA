@@ -39,6 +39,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
     [({en:"D-HUB",ja:"D-HUB","zh-tw":"D-HUB",ko:"D-HUB"})[locale],localePath(locale,"d-hub")],
     [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
     ["RBA UNITED",localePath(locale,"united")],
+    ...(locale==="ja"?[["公式ウェア（発売準備中）","/ja/store"] as const]:[]),
     ["BACKBONE 3×3","/backbone"],
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")],
     ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["地域スクール","/ja/regional-program"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),

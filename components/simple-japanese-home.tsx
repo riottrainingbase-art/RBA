@@ -8,6 +8,7 @@ const learning = [
   ["MY HOME COURT", "RBA IDは無料。活動と学びを自分のページに。", "/ja/my-homecourt"],
   ["S&C・身体づくり", "成長期のトレーニング、負荷と回復を学ぶ。", "/ja/development"],
   ["海外交流", "日本とアジアのキャンプ・チーム交流を相談。", "/ja/international"],
+  ["RBA公式ウェア", "コートへ、その先へ。スポーツTシャツを発売準備中。", "/ja/store"],
 ] as const;
 
 export function SimpleJapaneseHome() {
