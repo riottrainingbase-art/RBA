@@ -7,7 +7,7 @@ import { PublicUpdateBanner } from "./public-update-banner";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "taiwan" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support";
+export type LanguagePage = "regional-program" | "about" | "approach" | "schedule" | "opportunities" | "international" | "taiwan" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support";
 
 
 const labels = {
@@ -66,7 +66,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <main id="main-content">{children}</main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
-      <div><p className="footer-label">{c.explore}</p>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}
+      <div><p className="footer-label">{c.explore}</p>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"regional-program")}>{({en:"Local programmes in Japan",ja:"地域スクールの希望登録","zh-tw":"日本在地課程意願登記",ko:"일본 지역 프로그램 희망 등록"})[locale]}</a>
         <a href="/backbone">BACKBONE 3×3</a>
           {locale==="ja"?<a href="/ja/goods">RBA GOODS｜公式グッズ企画</a>:null}
         <a href={localePath(locale,"about")}>{c.about}</a><a href={(locale==="en"?"":`/${locale}`)+"/our-work"}>{({en:"Our work across Japan & Asia",ja:"日本・アジアの開催実績","zh-tw":"日本與亞洲活動實績",ko:"일본·아시아 활동 실적"})[locale]}</a>
