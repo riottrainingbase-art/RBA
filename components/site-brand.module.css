@@ -1,0 +1,16 @@
+/* Shared RBA palette. Status colours and partner logos retain their meaning. */
+.theme{--ink:#10233f;--paper:#fff;--orange:#10233f;--signal:#edf1f6;--line:#d8dfe7;--muted:#536174;background:#fff;color:#10233f}
+.theme :global(.site-header){background:#fff;border-color:#d8dfe7;backdrop-filter:none}
+.theme :global(.header-member),.theme :global(.button-member){background:#edf1f6;color:#10233f;border-color:#c7d0dc}
+.theme :global(.language-links a),.theme :global(.mobile-site-menu summary){background:#fff;color:#10233f;border-color:#c7d0dc}
+.theme :global(.language-links a[aria-current="true"]),.theme :global(.button-dark),.theme :global(.button-orange),.theme :global(.programme-link),.theme :global(.header-whatsapp),.theme :global(.whatsapp-dock){background:#10233f;color:#fff;border-color:#10233f}
+.theme :global(.button-light){background:#fff;color:#10233f;border-color:#c7d0dc}
+.theme :global(.site-update-strip){background:#f3f5f8;color:#10233f;border-color:#d8dfe7}
+.theme :global(.site-footer){background:#10233f;color:#fff}
+.theme :global(.footer-brand p),.theme :global(.footer-label),.theme :global(.footer-legal){color:#dbe3ed}
+.theme :global(.paid-programmes){background:#fff;color:#10233f}
+.theme :global(.paid-programme-grid article){background:#fff;border-color:#d8dfe7}
+.theme :global(.programme-price){color:#10233f}
+.theme a:focus-visible,.theme button:focus-visible,.theme summary:focus-visible{outline:3px solid #6484ae;outline-offset:4px}
+
+.theme :global(.hero-grid),.theme :global(.opportunity-hero),.theme :global(.international-hero),.theme :global(.torsten-feature),.theme :global(.asia-desk-home),.theme :global(.field-footprint){background-color:#10233f;color:#fff}
