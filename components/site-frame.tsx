@@ -6,7 +6,7 @@ import { PublicUpdateBanner } from "./public-update-banner";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "about" | "approach" | "schedule" | "opportunities" | "international" | "taiwan" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support";
+export type LanguagePage = "regional-program" | "about" | "approach" | "schedule" | "opportunities" | "international" | "taiwan" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support";
 
 
 const labels = {
@@ -39,7 +39,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["RBA UNITED",localePath(locale,"united")],
     ["BACKBONE 3×3","/backbone"],
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")],
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
+    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["地域スクールの希望登録","/ja/regional-program"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
     [({en:"Taiwan",ja:"台湾プロジェクト","zh-tw":"台灣專案",ko:"대만 프로젝트"})[locale],localePath(locale,"taiwan")],
     [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
