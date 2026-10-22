@@ -1,0 +1,5 @@
+/* The legacy platform stylesheet hides both navigation choices at mid widths.
+   Keep the menu available whenever the desktop navigation is hidden. */
+@media (max-width: 1600px) {
+  .header :global(.mobile-site-menu) { display: block !important; }
+}

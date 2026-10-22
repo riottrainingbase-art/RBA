@@ -3,6 +3,7 @@ import { ui } from "./ui-copy";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, House, MessageCircle } from "lucide-react";
 import { PublicUpdateBanner } from "./public-update-banner";
+import navigationStyles from "./site-navigation.module.css";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
@@ -65,7 +66,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   const memberHref=authReady?`${locale==="en"?"":`/${locale}`}/my-homecourt/app`:localePath(locale,"my-homecourt");
   return <div className={`site-shell locale-${locale}`} lang={locale==="zh-tw"?"zh-Hant-TW":locale}><DocumentLanguage language={locale==="zh-tw"?"zh-Hant-TW":locale}/>
     <a className="skip-link" href="#main-content">{({en:"Skip to content",ja:"本文へ移動","zh-tw":"跳至內容",ko:"본문으로 이동"})[locale]}</a>
-    <header className="site-header">
+    <header className={`site-header ${navigationStyles.header}`}>
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
       <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{fullNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={memberHref}>MY HOME COURT / RBA ID</a><a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
