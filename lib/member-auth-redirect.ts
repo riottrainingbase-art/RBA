@@ -3,6 +3,7 @@ import { checkoutOffers } from "./checkout-options";
 export function memberAuthDestination(value: string | null): string {
  const fallback="/ja/my-homecourt/app";
  if(!value)return fallback;
+ if(value==="/my-homecourt/app/mvp")return value;
  if(/^\/my-homecourt\/app\/coach-library(?:\?group=(penang|kuala-lumpur|malaysia))?$/.test(value))return value;
  if(/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/(?:calendar|team|notifications|my|admin|start|plus|report|learn(?:\/[a-z0-9-]+)?))?$/.test(value))return value;
  if(/^\/(?:(?:ja|ko|zh-tw)\/)?opportunities(?:\?[a-zA-Z0-9=&_-]+)?$/.test(value))return value;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { coachGroup, coachLoginPath, coachTopics } from "@/lib/coach-learning";
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
 };
 export default async function Page({ searchParams }: { searchParams: Promise<{ group?: string }> }) {
   const group = coachGroup((await searchParams).group);
-  const place = group === "penang" ? "Penang" : group === "kuala-lumpur" ? "Kuala Lumpur" : "Penang & Kuala Lumpur";
+  if (group === "kuala-lumpur") redirect("/partners/mvp");
+  const place = group === "penang" ? "Penang" : "Penang & Kuala Lumpur";
   return <main className={styles.shell}><div className={styles.wrap}>
     <header className={styles.top}><Link className={styles.brand} href="/"><Image src="/rba-logo-original.jpg" alt="RBA" width={35} height={49} /><span>RIOT BASKETBALL<br />ACADEMY</span></Link><Link href="/coaches">For coaches ↗</Link></header>
     <section className={styles.hero}><p className={styles.eyebrow}>MALAYSIA / COACH LEARNING / {place}</p><h1>Keep learning.<br />Bring it to your next practice.</h1><p className={styles.lead}>Thank you to the coaches who joined our work in Malaysia. This is your direct route to English coaching resources, practical ideas and the original references behind them.</p><a className={styles.cta} href={coachLoginPath(group)}>Create your free RBA ID / Sign in →</a><p className={styles.subtle}>Free access to this starter collection. No payment or team invite code is required. Existing members use the same email address.</p></section>
