@@ -4,6 +4,7 @@ import { RbaJapanProof } from "./rba-japan-proof";
 import { RbaDevelopmentOverview, rbaDefinition } from "./rba-development-overview";
 import { SiteFrame, type Locale, localePath } from "./site-frame";
 import { RbaFieldUpdates } from "./rba-field-updates";
+import { RegionalSchoolCallout } from "./regional-school-callout";
 
 type HomeCopy = {
   eyebrow:string; title:string; intro:string; primary:string; secondary:string;
@@ -113,6 +114,7 @@ export function RbaSimpleHome({locale}:{locale:Locale}){
           </div>
         </section>
 
+        {locale==="ja"?<RegionalSchoolCallout/>:null}
         {locale==="ja"?<MvpUnitedRecruitment compact/>:null}<CurrentProgrammeHighlights locale={locale}/>
         <RbaJapanProof locale={locale}/>
         <RbaDevelopmentOverview locale={locale}/>

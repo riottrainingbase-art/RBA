@@ -34,6 +34,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   const c=labels[locale];
   const primaryNav=[
     [({en:"Programmes",ja:"参加する","zh-tw":"參加活動",ko:"참가하기"})[locale],localePath(locale,"opportunities")] as const,
+    ...(locale === "ja" ? [["地域スクール", "/ja/regional-program"] as const] : []),
     [({en:"Learn",ja:"学ぶ","zh-tw":"閱讀學習",ko:"배우기"})[locale],localePath(locale,"journal")] as const,
     [({en:"Host / partner",ja:"開催・相談","zh-tw":"邀請合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")] as const,
     [({en:"International",ja:"海外交流","zh-tw":"日本交流",ko:"해외 교류"})[locale],localePath(locale,"international")] as const,
@@ -66,7 +67,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <main id="main-content">{children}</main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
-      <div><p className="footer-label">{c.explore}</p>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"regional-program")}>{({en:"Local programmes in Japan",ja:"地域スクールについて","zh-tw":"日本在地課程意願登記",ko:"일본 지역 프로그램 희망 등록"})[locale]}</a>
+      <div><p className="footer-label">{c.explore}</p>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}{locale!=="ja"?<a href={localePath(locale,"regional-program")}>{({en:"Local programmes in Japan",ja:"地域スクールについて","zh-tw":"日本在地課程意願登記",ko:"일본 지역 프로그램 희망 등록"})[locale]}</a>:null}
         <a href="/backbone">BACKBONE 3×3</a>
           {locale==="ja"?<a href="/ja/goods">RBA GOODS｜公式グッズ企画</a>:null}
         <a href={localePath(locale,"about")}>{c.about}</a><a href={(locale==="en"?"":`/${locale}`)+"/our-work"}>{({en:"Our work across Japan & Asia",ja:"日本・アジアの開催実績","zh-tw":"日本與亞洲活動實績",ko:"일본·아시아 활동 실적"})[locale]}</a>
