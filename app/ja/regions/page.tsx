@@ -188,7 +188,7 @@ export default function RegionsPage() {
           </div>
         </section>
 
-        <section className="access-promise section-pad"><p className="section-index">LOCAL DEVELOPMENT</p><div><h2>近くで参加したい。地域で指導に関わりたい。</h2><p>全国の開催希望と地域協力者の相談を受け付けています。会場・曜日・指導体制を確認し、条件が整った地域から継続開催を検討します。</p><Link className="button button-dark" href="/ja/regional-program">地域スクールの希望登録・協力相談へ</Link></div></section><section className="network-release section-pad">
+        <section className="access-promise section-pad"><p className="section-index">LOCAL DEVELOPMENT</p><div><h2>近くで参加したい。地域で指導に関わりたい。</h2><p>お近くで参加したい方や、指導・運営に協力したい方のご希望を伺っています。会場や指導者の準備が整った地域から、体験会と継続開催を検討します。</p><Link className="button button-dark" href="/ja/regional-program">地域スクールについて相談する</Link></div></section><section className="network-release section-pad">
           <MapPinned />
           <div>
             <p className="section-index">BUILD A REGIONAL HUB</p>
