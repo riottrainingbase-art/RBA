@@ -9,8 +9,8 @@ export const regionalForms = {
 
 const copy = {
   ja: {
-    title: "あなたの街に、RBAのスクールを。",
-    intro: "全国でのクリニックに加え、日頃から通えるスクールを各地につくりたいと考えています。地域のコーチや皆さんと協力し、子どもたちが継続して学べる環境を整えていきます。",
+    title: "この街から、世界につながるバスケを。",
+    intro: "全国、そしてアジアでの出会いを、子どもたちの日常の成長へ。RBAは地域のコーチや皆さんと、今のチームの活動と両立して通えるスクールづくりを進めています。",
     status: "参加したい方・指導や運営に協力したい方を全国で募集中",
     family: "近くで参加したい", partner: "指導や運営に協力したい",
     note: "お住まいの地域や、ご希望をお聞かせください。会場・曜日・対象・料金が決まりましたら、ご案内します。フォームの送信は無料で、入会や予約のお申し込みにはなりません。",
@@ -64,6 +64,8 @@ export function regionalMetadata(locale: Locale): Metadata {
   const prefix = locale === "en" ? "" : `/${locale}`;
   return {
     title: { absolute: `${c.title} | RBA` }, description: c.intro,
+    openGraph: { title: c.title, description: c.intro, url: `https://riotbasketballacademy.com${prefix}/regional-program`, siteName: "Riot Basketball Academy", type: "website", images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }] },
+    twitter: { card: "summary_large_image", title: c.title, description: c.intro, images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
     alternates: { canonical: `https://riotbasketballacademy.com${prefix}/regional-program`, languages: { en: "https://riotbasketballacademy.com/regional-program", ja: "https://riotbasketballacademy.com/ja/regional-program", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/regional-program", ko: "https://riotbasketballacademy.com/ko/regional-program" } },
   };
 }
@@ -71,17 +73,49 @@ export function regionalMetadata(locale: Locale): Metadata {
 export function RegionalProgram({ locale }: { locale: Locale }) {
   const c = copy[locale];
   const formLink = (kind: keyof typeof regionalForms) => `${regionalForms[kind]}?utm_source=rba_site&utm_medium=regional_program&utm_campaign=japan_regional_202610&entry_locale=${locale}`;
-  return <SiteFrame locale={locale} languagePage="regional-program"><div className={styles.page}>
+  return <SiteFrame locale={locale} languagePage="regional-program"><div className={`${styles.page} ${locale === "ja" ? styles.navyPage : ""}`}>
     <section className={styles.hero}>
-      <p className={styles.eyebrow}>RBA / LOCAL DEVELOPMENT</p><p className={styles.status}>{c.status}</p>
+      {locale === "ja" ? <a className={styles.backLink} href="/ja">← RBA トップページ</a> : null}
+      <p className={styles.eyebrow}>{locale === "ja" ? "RBA 地域スクール構想" : "RBA / LOCAL DEVELOPMENT"}</p><p className={styles.status}>{c.status}</p>
       <h1>{c.title}</h1><p className={styles.lead}>{c.intro}</p>
-      <div className={styles.actions}><a className={styles.primary} href={formLink("family")} target="_blank" rel="noopener noreferrer">{c.family} ↗</a><a className={styles.secondary} href={formLink("partner")} target="_blank" rel="noopener noreferrer">{c.partner} ↗</a></div>
+      <div className={styles.actions}><a className={styles.primary} href={locale === "ja" ? "#families" : formLink("family")} target={locale === "ja" ? undefined : "_blank"} rel="noopener noreferrer">{c.family} {locale === "ja" ? "↓" : "↗"}</a><a className={styles.secondary} href={locale === "ja" ? "#partners" : formLink("partner")} target={locale === "ja" ? undefined : "_blank"} rel="noopener noreferrer">{c.partner} {locale === "ja" ? "↓" : "↗"}</a></div>
       <p className={styles.note}>{c.note}</p><p className={styles.note}>{c.formsNote}</p>
+      {locale === "ja" ? <nav className={styles.pageNav} aria-label="このページの案内"><a href="#approach">育成方針</a><a href="#opening-steps">開催までの流れ</a><a href="#questions">よくあるご質問</a></nav> : null}
     </section>
-    <section className={styles.section}><h2>{c.heading}</h2><div className={styles.grid}>{c.paths.map(([title, body], i) => <article key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section>
-    <section className={styles.section}><h2>{c.learnHeading}</h2><div className={styles.learning}>{c.learning.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></section>
-    <section className={styles.section}><h2>{c.processHeading}</h2><ol className={styles.steps}>{c.process.map(x => <li key={x}>{x}</li>)}</ol><p className={styles.note}>{c.availability}</p></section>
-    <section className={styles.section}><h2>{c.faqHeading}</h2>{c.faq.map(([q, a]) => <details className={styles.faq} key={q}><summary>{q}</summary><p>{a}</p></details>)}</section>
+    {locale === "ja" ? <>
+      <section className={styles.section} aria-labelledby="choose-role">
+        <p className={styles.eyebrow}>まずは、あなたに合う入口から</p>
+        <h2 id="choose-role">「参加したい」も、「一緒につくりたい」も。</h2>
+        <div className={styles.choiceGrid}>
+          <article id="families" className={styles.choiceCard}>
+            <p className={styles.eyebrow}>保護者の方へ</p><h3>近くで参加したい</h3>
+            <p>「この地域で開かれたら参加してみたい」というご希望をお聞かせください。今のチームを続けながら、新しい学びを得られるスクールを考えています。</p>
+            <ul><li>お住まいの都道府県・市区町村</li><li>お子さまの学年・現在の活動</li><li>通いやすい曜日・時間帯、ご希望</li></ul>
+            <a className={styles.primary} href={formLink("family")} target="_blank" rel="noopener noreferrer">参加の希望を送る ↗</a>
+            <p className={styles.smallPrint}>保護者など18歳以上の方がご入力ください。無料で、入会・予約のお申し込みにはなりません。</p>
+          </article>
+          <article id="partners" className={styles.choiceCard}>
+            <p className={styles.eyebrow}>指導者・地域の皆さん・企業の方へ</p><h3>指導や運営に協力したい</h3>
+            <p>コーチとして指導する。地域で運営を支える。体育館を紹介する。協賛で応援する。経験やご都合に合う関わり方をご相談ください。</p>
+            <ul><li>指導・アシスタント・身体づくりのサポート</li><li>運営・会場の確保・地域での連絡や調整</li><li>企業・団体としての協賛や連携</li></ul>
+            <a className={styles.primary} href={formLink("partner")} target="_blank" rel="noopener noreferrer">協力について相談する ↗</a>
+            <p className={styles.smallPrint}>まずはご相談から。役割や報酬・交通費などは、活動を始める前に個別に話し合います。</p>
+          </article>
+        </div>
+        <div className={styles.currentStatus}><strong>現在は、ご希望や相談を伺う段階です。</strong><p>開催地域・開始時期・対象・料金は、まだ決まっていません。条件が整った地域から体験会を検討し、決まった内容をお知らせします。</p></div>
+      </section>
+      <section className={`${styles.section} ${styles.vision}`} aria-labelledby="school-vision">
+        <p className={styles.eyebrow}>地域で学ぶ。その先へつながる。</p><h2 id="school-vision">いつもの体育館の先に、<br/>まだ知らないバスケがある。</h2>
+        <p className={styles.lead}>クリニックで得た気づきを、普段の練習で試す。地域のコーチが学び続け、子どもたちの変化を見守る。その積み重ねを、全国の仲間や国内外の交流へつなげていくことがRBAのビジョンです。</p>
+        <div className={styles.visionGrid}><article><span>日常の学び</span><h3>一度の刺激を、日々の成長へ。</h3><p>単発のクリニックに加え、課題に取り組み、振り返りながら学べる場所を目指します。</p></article><article><span>コーチの学び</span><h3>いい指導が、地域で続くように。</h3><p>地域のコーチを中心に、本部が教材・研修・指導の振り返りを支える体制を整えます。</p></article><article><span>地域から国内外へ</span><h3>新しい仲間と、違うバスケに出会う。</h3><p>全国クリニックやBACKBONE、海外交流など、RBAの活動を通じて視野を広げる機会をつくります。</p></article></div>
+        <div className={styles.actions}><a className={styles.secondary} href="/ja/our-work">全国・アジアでの開催実績を見る →</a><a className={styles.secondary} href="/ja/international">海外との活動を知る →</a></div>
+        <p className={styles.note}>大会・遠征・海外交流は別の企画として募集します。スクールへの希望送信によって参加が決まるものではありません。</p>
+      </section>
+    </> : null}
+    {locale !== "ja" ? <section className={styles.section}><h2>{c.heading}</h2><div className={styles.grid}>{c.paths.map(([title, body], i) => <article key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section> : null}
+    <section id="approach" className={styles.section}><h2>{c.learnHeading}</h2><div className={styles.learning}>{c.learning.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></section>
+    <section id="opening-steps" className={styles.section}><h2>{c.processHeading}</h2><ol className={styles.steps}>{c.process.map(x => <li key={x}>{x}</li>)}</ol><p className={styles.note}>{c.availability}</p></section>
+    <section id="questions" className={styles.section}><h2>{c.faqHeading}</h2>{c.faq.map(([q, a]) => <details className={styles.faq} key={q}><summary>{q}</summary><p>{a}</p></details>)}</section>
     <section className={styles.section}><h2>{c.linksHeading}</h2><div className={styles.actions}>{[localePath(locale,"opportunities"), "/ja/regions", localePath(locale,"my-homecourt"), localePath(locale,"policies")].map((href, i) => <a className={styles.secondary} href={href} key={href}>{c.links[i]} →</a>)}</div><div className={styles.actions}><a className={styles.primary} href={formLink("family")} target="_blank" rel="noopener noreferrer">{c.family} ↗</a><a className={styles.secondary} href={formLink("partner")} target="_blank" rel="noopener noreferrer">{c.partner} ↗</a></div></section>
   </div></SiteFrame>;
 }

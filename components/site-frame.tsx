@@ -39,7 +39,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["RBA UNITED",localePath(locale,"united")],
     ["BACKBONE 3×3","/backbone"],
     [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")],
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["地域スクールの希望登録","/ja/regional-program"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
+    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["地域スクール","/ja/regional-program"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
     [({en:"Taiwan",ja:"台湾プロジェクト","zh-tw":"台灣專案",ko:"대만 프로젝트"})[locale],localePath(locale,"taiwan")],
     [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
@@ -49,6 +49,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   ] as const;
   const nav=[
     [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
+    ...(locale==="ja"?[["地域スクール","/ja/regional-program"] as const]:[]),
     [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
     ...(locale==="ja"?[["育成ガイド","/ja/development"] as const]:[]),
     [({en:"D-HUB",ja:"D-HUB","zh-tw":"D-HUB",ko:"D-HUB"})[locale],localePath(locale,"d-hub")] as const,
