@@ -73,6 +73,9 @@ jobs:
       - name: Email registration and safe-return audit
         run: node audit/email-registration/check.mjs
 
+      - name: MVP partner signup and route access audit
+        run: node audit/mvp-partner-room/check.mjs
+
       - name: Member learning access audit
         run: node audit/member-learning/check.mjs
 

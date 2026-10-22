@@ -1,0 +1,2 @@
+alter table public.mvp_coach_threads drop constraint mvp_coach_threads_user_id_fkey, add constraint mvp_coach_threads_user_id_fkey foreign key(user_id) references public.mvp_coach_members(user_id) on delete cascade;
+alter table public.mvp_coach_replies drop constraint mvp_coach_replies_user_id_fkey, add constraint mvp_coach_replies_user_id_fkey foreign key(user_id) references public.mvp_coach_members(user_id) on delete cascade;
