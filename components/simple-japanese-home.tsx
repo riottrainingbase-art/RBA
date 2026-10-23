@@ -12,7 +12,7 @@ const learning = [
 ] as const;
 
 export function SimpleJapaneseHome() {
-  const active = programmes.filter(p => isProgrammeActive(p)).sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate));
+  const active = programmes.filter(p => isProgrammeActive(p)).sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate)).slice(0,6);
   return <div className={styles.page} lang="ja"><SiteFrame locale="ja" compact>
     <div className={styles.container}>
       <section className={styles.hero} aria-labelledby="rba-home-title">
@@ -20,7 +20,7 @@ export function SimpleJapaneseHome() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、所属を変えずに学びと挑戦を広げる場所です。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">参加する →</a><a className={styles.secondary} href="#home-learning">学ぶ →</a><a className={styles.secondary} href="/ja/contact">相談する →</a></nav>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">活動を探す →</a><a className={styles.secondary} href="/ja/my-homecourt">MY HOME COURT →</a><a className={styles.secondary} href="/ja/about">RBAを知る →</a></nav>
         </div>
       </section>
 
