@@ -217,6 +217,9 @@ function japanDateKey(now: Date){
 
 export function isProgrammeActive(programme: Programme, now=new Date()){
   if(programme.registrationClosed)return false;
+  const today=japanDateKey(now);
+  // Vol.2の新規販促は開催当日（11/25 JST）から停止する。
+  if(programme.id==="torsten" && today>="2026-11-25")return false;
   if(programme.ongoing)return true;
-  return (programme.endDate||programme.startDate)>=japanDateKey(now);
+  return (programme.endDate||programme.startDate)>=today;
 }
