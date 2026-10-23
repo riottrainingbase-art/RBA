@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, Globe2, House, Users } from "lucide-react";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -68,16 +69,21 @@ const entries = [
   },
 ] as const;
 
+// Resolve time in a server utility; avoid sampling a clock in React render code.
+function shouldShowTorstenPromotion() {
+  return Date.now() < Date.parse("2026-11-25T00:00:00+09:00");
+}
+
 export default function InstagramEntryPage() {
   // 11/25 (JST)以降は新規販促カードを表示しない。200名達成時は別途早期停止。
-  const showTorsten = Date.now() < Date.parse("2026-11-25T00:00:00+09:00");
+  const showTorsten = shouldShowTorstenPromotion();
 
   return (
     <main className="min-h-screen bg-[#f4f4f1] text-[#151719]">
       <div className="mx-auto max-w-[860px]">
         <header className="flex items-center justify-between border-b border-neutral-300 px-5 py-4 sm:px-9">
           <a href="/ja" className="flex items-center gap-3" aria-label="RBA公式サイトのトップへ">
-            <img
+            <Image
               src="/rba-logo-original.jpg"
               alt="RBA公式ロゴ"
               width={39}
