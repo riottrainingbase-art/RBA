@@ -2,6 +2,7 @@ import type { Text4 } from "./network-data";
 
 
 export type ProgrammeId =
+  | "okinawa-december-camp"
   | "okinawa-nov14"
   | "yaima"
   | "kawasaki"
@@ -40,6 +41,17 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+  {
+    id:"okinawa-december-camp",startDate:"2026-12-22",endDate:"2026-12-24",
+    date:["22–24 DEC 2026 · ends by noon Dec 24","2026.12.22〜24・24日正午退所予定","2026.12.22–24・24日中午前離營","2026.12.22–24 · 24일 정오 퇴소 예정"],
+    datePrimary:["22–24 DEC","12月22〜24日","12月22–24日","12월 22–24일"],dateSecondary:["2 nights planned","2泊3日予定","暫定三天兩夜","2박 3일 예정"],
+    title:["Okinawa International Youth Basketball Camp","沖縄国際ユースバスケットボールキャンプ","沖繩國際青少年籃球營","오키나와 국제 유소년 농구 캠프"],
+    place:["Itoman Youth Center · final allocation pending","糸満青少年の家（最終調整中）","糸滿青少年之家（最終確認中）","이토만 청소년의 집 · 최종 조율 중"],
+    price:["Published: USD 450 with housing / USD 300 without; discounts available","掲載料金：宿泊・食事付き450米ドル／宿泊なし300米ドル・割引あり","公布費用：含住宿450美元／不含住宿300美元・另有優惠","게시 요금: 숙박 포함 USD 450 / 숙박 제외 USD 300 · 할인 있음"],
+    audience:["Players aged 7–18","7〜18歳の選手","7–18歲球員","만 7–18세 선수"],
+    payment:["Contact us before payment or booking travel. Venue, transfers, staff and final inclusions are being confirmed; external timings are being revised.","会場・送迎・スタッフ・料金に含まれる内容は最終調整中。詳細サイトの時刻表も修正中のため、支払い・航空券購入前にお問い合わせください。","場地、接駁、工作人員及費用包含項目仍在確認，外部時程正修訂。付款、訂機票前請先聯絡。","장소·교통·스태프·포함 항목 조율 중. 외부 일정 수정 중이므로 결제·항공권 구매 전 문의해 주세요."],
+    applicationUrl:"https://japancamp.lovable.app/",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
+  },
   {
     id:"okinawa-nov14",startDate:"2026-11-14",
     date:["14 NOV 2026 · 16:00–19:00","2026.11.14（土）16:00〜19:00","2026.11.14 · 16:00–19:00","2026.11.14 · 16:00–19:00"],

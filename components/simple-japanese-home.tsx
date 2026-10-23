@@ -1,3 +1,4 @@
+import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
 import { SiteFrame, localePath } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
@@ -36,6 +37,8 @@ export function SimpleJapaneseHome() {
         </article>)}</div>
         {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
       </section>
+
+      <OkinawaDecemberCampCallout locale="ja" />
 
       <section className={styles.regional} aria-labelledby="regional-school-invitation">
         <div><p className={styles.label}>地域スクール</p><h2 id="regional-school-invitation">あなたの街にも、RBAを。</h2><p>参加希望・指導・運営・会場・協賛の相談を受け付けています。開催地域・日程・料金は未定。希望の送信・相談は無料です。</p></div>
