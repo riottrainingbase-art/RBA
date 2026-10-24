@@ -11,7 +11,6 @@ import {
   MapPinned,
   Repeat2,
   ShieldCheck,
-  Users,
 } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 
