@@ -18,6 +18,7 @@ export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
     <h2 id={`okinawa-december-${locale}`}>{c.title}</h2>
     <p>{c.body}</p>
     <OkinawaCampPartnerNotice locale={locale}/>
+    {locale === "ja" && <p><strong>沖縄県民割引のご案内</strong><br/>料金・適用条件はRBAから個別にご案内します。<a href="/ja/events/okinawa-international-camp-2026#okinawa-resident-discount">県民割引について相談する →</a></p>}
     <p className={styles.price}>{c.price}</p>
     <p>{c.discount}</p>
     <p className={styles.note}>{c.note}</p>

@@ -2,6 +2,7 @@ export const EARLY_BIRD_END = "2026-10-31T23:59:59.999+08:00";
 // Online payment stops when the published first-day reception begins.
 export const ONLINE_PAYMENT_END = "2026-12-22T09:00:00+09:00";
 export const CAMP_CONTACT = "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026%20-%20local%20rate%20or%20group%20inquiry";
+export const CAMP_OKINAWA_CONTACT = "mailto:riot.training.base@gmail.com?subject=" + encodeURIComponent("沖縄キャンプ2026｜沖縄県民割引の問い合わせ") + "&body=" + encodeURIComponent("沖縄県民割引についての問い合わせ\n参加者氏名：\n学年・年齢：\n性別：\n連絡先：\nお住まいの市町村：\n参加人数：\n宿泊希望：\nご質問：\n");
 export const CAMP_JAPAN_CONTACT = "mailto:riot.training.base@gmail.com?subject=Okinawa%20Camp%202026%20-%20Japan%20entry&body=" + encodeURIComponent("沖縄キャンプ国内参加の問い合わせ\n参加者氏名：\n学年・年齢：\n性別：\n連絡先：\nお住まいの都道府県：\n参加人数：\n宿泊希望：\n送迎希望：\nご質問：\n");
 export type CampChoice = { housing: boolean; players: 1 | 2 | 3; residence: "japan" | "okinawa" | "other" };
 const payments = {

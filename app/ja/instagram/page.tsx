@@ -115,8 +115,8 @@ export default function InstagramEntryPage() {
               style={{ color: "#fff" }} data-cta="okinawa_camp_details">沖縄キャンプの詳細・参加案内 <ArrowUpRight size={20} className="shrink-0" aria-hidden="true" /></a>
             <a className="mt-3 flex min-h-12 items-center justify-between gap-3 border border-[#151719] bg-white px-4 py-3 text-sm font-black transition-colors hover:bg-[#fff5eb] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719]"
               href={track("/ja/events/okinawa-international-camp-2026/apply", "featured_okinawa_japan", "okinawa_camp_20261222")}
-              data-cta="okinawa_camp_japan">日本国内からの参加・料金相談 <ArrowUpRight size={18} className="shrink-0" aria-hidden="true" /></a>
-            <p className="mt-3 text-xs font-medium leading-5">国内参加はRBAが窓口です。国内料金・現地割引は個別にご案内します。</p>
+              data-cta="okinawa_camp_japan">国内参加・沖縄県民割引の相談 <ArrowUpRight size={18} className="shrink-0" aria-hidden="true" /></a>
+            <p className="mt-3 text-xs font-medium leading-5">国内参加はRBAが窓口です。沖縄県民割引の料金・適用条件も個別にご案内します。</p>
           </section>
         )}
 
