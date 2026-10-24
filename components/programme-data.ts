@@ -4,6 +4,7 @@ import type { Text4 } from "./network-data";
 export type ProgrammeId =
   | "okinawa-december-camp"
   | "okinawa-nov14"
+  | "kagoshima-nov29"
   | "yaima"
   | "kawasaki"
   | "saga-fukuoka"
@@ -34,13 +35,25 @@ export type Programme = {
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
   pathway?: "development-camp" | "united" | "clinic" | "coach";
-  ageGroups: readonly ("U8" | "U10" | "U12" | "U15" | "COACH")[];
+  ageGroups: readonly ("U8" | "U10" | "U12" | "U15" | "U18" | "COACH")[];
 };
 
 
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+  {
+    id:"kagoshima-nov29",startDate:"2026-11-29",
+    date:["29 NOV 2026 · 09:30–12:00 / 13:00–15:30","2026.11.29（日）午前9:30〜12:00／午後13:00〜15:30","2026.11.29 · 09:30–12:00／13:00–15:30","2026.11.29 · 09:30–12:00 / 13:00–15:30"],
+    datePrimary:["29 NOV","11月29日","11月29日","11월 29일"],dateSecondary:["Sunday · AM / PM","日曜日・午前／午後","星期日・上午／下午","일요일 · 오전 / 오후"],
+    title:["BASTET × RBA Kagoshima Clinic","BASTET × RBA 鹿児島クリニック","BASTET × RBA 鹿兒島訓練營","BASTET × RBA 가고시마 클리닉"],
+    place:["Kinkowan High School gym · Kagoshima","錦江湾高校体育館（鹿児島市）","錦江灣高中體育館・鹿兒島市","긴코완 고등학교 체육관 · 가고시마"],
+    price:["Both sessions ¥4,000 / one session ¥3,000","午前・午後通し4,000円／1部のみ3,000円","全日¥4,000／單節¥3,000","종일 ¥4,000 / 한 세션 ¥3,000"],
+    audience:["Elementary, junior high and high school students · all genders","小・中・高校生（男女）","小學、國中、高中生（男女）","초·중·고등학생（남녀）"],
+    payment:["Apply by email or Instagram DM; payment details follow.","メール・InstagramのDMで受付。支払方法などの詳細は受付後にご案内します。","電郵或Instagram私訊報名，付款方式於受理後通知。","이메일·Instagram DM 신청. 결제 방법은 접수 후 안내합니다."],
+    applicationUrl:"/ja/events/kagoshima-clinic-2026-11-29",region:"kyushu",category:"TRAIN",pathway:"clinic",ageGroups:["U8","U10","U12","U15","U18"],
+  },
+
   {
     id:"okinawa-december-camp",startDate:"2026-12-22",endDate:"2026-12-24",
     date:["22–24 DEC 2026 · ends by noon Dec 24","2026.12.22〜24・24日正午退所予定","2026.12.22–24・24日中午前離營","2026.12.22–24 · 24일 정오 퇴소 예정"],
@@ -49,8 +62,8 @@ export const programmes: readonly Programme[] = [
     place:["Itoman Youth Center · final allocation pending","糸満青少年の家（最終調整中）","糸滿青少年之家（最終確認中）","이토만 청소년의 집 · 최종 조율 중"],
     price:["Published: USD 450 with housing / USD 300 without; discounts available","掲載料金：宿泊・食事付き450米ドル／宿泊なし300米ドル・割引あり","公布費用：含住宿450美元／不含住宿300美元・另有優惠","게시 요금: 숙박 포함 USD 450 / 숙박 제외 USD 300 · 할인 있음"],
     audience:["Players aged 7–18","7〜18歳の選手","7–18歲球員","만 7–18세 선수"],
-    payment:["Contact us before payment or booking travel. Venue, transfers, staff and final inclusions are being confirmed; external timings are being revised.","会場・送迎・スタッフ・料金に含まれる内容は最終調整中。詳細サイトの時刻表も修正中のため、支払い・航空券購入前にお問い合わせください。","場地、接駁、工作人員及費用包含項目仍在確認，外部時程正修訂。付款、訂機票前請先聯絡。","장소·교통·스태프·포함 항목 조율 중. 외부 일정 수정 중이므로 결제·항공권 구매 전 문의해 주세요."],
-    applicationUrl:"https://japancamp.lovable.app/",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
+    payment:["Contact us before payment or booking travel. Venue, transfers, staff and final inclusions are being confirmed; please confirm final arrangements.","会場・送迎・スタッフ・料金に含まれる内容は最終調整中。支払い・航空券購入前に詳細をお問い合わせください。","場地、接駁、工作人員及費用包含項目仍在確認，付款、訂機票前請先聯絡。","장소·교통·스태프·포함 항목 조율 중.  결제·항공권 구매 전 문의해 주세요."],
+    applicationUrl:"https://okinawa.camp/",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
   },
   {
     id:"okinawa-nov14",startDate:"2026-11-14",

@@ -10,7 +10,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
 type Region="all"|"tohoku"|"kanto"|"kansai"|"kyushu"|"okinawa"|"online";
-type Age="all"|"U8"|"U10"|"U12"|"U15"|"COACH";
+type Age="all"|"U8"|"U10"|"U12"|"U15"|"U18"|"COACH";
 type Kind="all"|"TRAIN"|"PLAY"|"TRAVEL"|"COACH";
 
 const copy={
@@ -42,7 +42,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
       const q=new URLSearchParams(location.search);
       const r=q.get("region") as Region|null; const a=q.get("age") as Age|null; const k=q.get("kind") as Kind|null;
       if(r&&["tohoku","kanto","kansai","kyushu","okinawa","online"].includes(r))setRegion(r);
-      if(a&&["U8","U10","U12","U15","COACH"].includes(a))setAge(a);
+      if(a&&["U8","U10","U12","U15","U18","COACH"].includes(a))setAge(a);
       if(k&&["TRAIN","PLAY","TRAVEL","COACH"].includes(k))setKind(k);
       void db.auth.getUser().then(async({data})=>{
         const id=data.user?.id||null;setUserId(id);
@@ -87,7 +87,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
     <section className="homecourt-plan-separation section-pad"><div className="homecourt-plan-intro"><p className="section-index">CHOOSE THE RIGHT PATH</p><h2>{({ja:"Development CampとRBA UNITEDは、別のプログラムです。",en:"Development Camp and RBA UNITED are different programmes.","zh-tw":"Development Camp 與 RBA UNITED 是不同的方案。",ko:"Development Camp와 RBA UNITED는 서로 다른 프로그램입니다."})[locale]}</h2><p>{({ja:"目的から選んでください。育成を深めるならDevelopment Camp。大会・遠征・国際交流へ期間限定チームで挑戦するならRBA UNITEDです。",en:"Choose by purpose: Development Camp is for learning and growth; RBA UNITED is for a time-limited team challenge in a tournament, trip or exchange.","zh-tw":"請依目的選擇：Development Camp著重培育與學習；RBA UNITED則以期間限定團隊挑戰大會、遠征或國際交流。",ko:"목적에 따라 선택하세요. Development Camp는 성장과 학습, RBA UNITED는 기간 한정 팀으로 대회·원정·국제교류에 도전하는 경로입니다."})[locale]}</p></div><div className="homecourt-plan-grid"><article className="homecourt-plan-card"><span>DEVELOPMENT</span><h3>Development Camp</h3><p>{({ja:"練習・ゲーム・身体づくり・振り返りを通して、普段の環境へ持ち帰る成長課題をつくる。",en:"Train, play, prepare physically and reflect—then take a clear development theme back home.","zh-tw":"透過訓練、比賽、身體準備與反思，把清楚的成長課題帶回日常。",ko:"훈련·게임·신체 준비·회고를 통해 일상으로 가져갈 성장 과제를 만듭니다."})[locale]}</p><a className="button button-light" href={localePath(locale,"camp")}>Development Camp<ArrowRight/></a></article><article className="homecourt-plan-card"><span>CHALLENGE</span><h3>RBA UNITED</h3><p>{({ja:"個人で集まり、大会・遠征・国際交流など特定の挑戦のために期間限定チームを組む。",en:"Individual players form a time-limited team for a specific tournament, trip or exchange challenge.","zh-tw":"個人球員為特定大會、遠征或國際交流挑戰組成期間限定團隊。",ko:"개인 선수가 특정 대회·원정·국제교류 도전을 위해 기간 한정 팀을 구성합니다."})[locale]}</p><a className="button button-dark" href={localePath(locale,"united")}>RBA UNITED<ArrowRight/></a></article></div></section>
     <section className="opportunity-controls section-pad" aria-label={c.filter}><div className="opportunity-filter-head"><SlidersHorizontal/><div><p className="section-index">FILTER</p><h2>{c.filter}</h2></div><strong>{visible.length}{c.results}</strong></div><div className="opportunity-filters">
       <label>{c.region}<select value={region} onChange={e=>{const v=e.target.value as Region;setRegion(v);update({region:v})}}><option value="all">{c.all}</option>{Object.entries(c.regions).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label>
-      <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U15","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
+      <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U15","U18","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
       <label>{c.kind}<select value={kind} onChange={e=>{const v=e.target.value as Kind;setKind(v);update({kind:v})}}><option value="all">{c.all}</option>{["TRAIN","PLAY","TRAVEL","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
     </div></section>
     {locale==="ja"?<div className="section-pad"><RegionalSchoolCallout/></div>:null}
