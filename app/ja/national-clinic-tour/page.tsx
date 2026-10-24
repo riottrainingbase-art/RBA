@@ -101,7 +101,7 @@ const frequentlyAsked = [
 export default function NationalClinicTourPage() {
   return (
     <SiteFrame locale="ja">
-      <main className="bg-[#f6f5f2] text-[#151719]">
+      <div className="bg-[#f6f5f2] text-[#151719]">
         <section className="relative overflow-hidden bg-[#111214] text-white" aria-labelledby="tour-headline">
           <div className="absolute inset-y-0 right-0 hidden w-[49%] lg:block">
             <Image src="/rba-court-hero.png" alt="" fill priority sizes="(min-width: 1024px) 49vw, 100vw" className="object-cover opacity-40" />
@@ -282,7 +282,7 @@ export default function NationalClinicTourPage() {
             </a>
           </div>
         </section>
-      </main>
+      </div>
     </SiteFrame>
   );
 }
