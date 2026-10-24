@@ -1,3 +1,4 @@
+import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { OkinawaResidentPrices } from "@/components/okinawa-resident-prices";
 import { OkinawaCampPartner } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return <SiteFrame locale="ja"><div className={styles.page}>
+    <OkinawaEarlyBird/>
     <section className={styles.hero}>
       <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#entry-desk">参加窓口・申込方法を見る ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>会場候補：沖縄県糸満市。体育館・宿泊・食事を同じ施設で行う計画です。施設の利用枠・体育館の時間は最終調整中です。</p><p><strong>12月24日は正午までの退所を予定。</strong></p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
