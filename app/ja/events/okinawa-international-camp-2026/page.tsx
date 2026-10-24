@@ -1,3 +1,4 @@
+import { OkinawaCampPartner } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
@@ -19,6 +20,7 @@ export default function Page() {
       <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#entry-desk">参加窓口・申込方法を見る ↓</a></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>会場候補：沖縄県糸満市。体育館・宿泊・食事を同じ施設で行う計画です。施設の利用枠・体育館の時間は最終調整中です。</p><p><strong>12月24日は正午までの退所を予定。</strong></p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
+    <OkinawaCampPartner locale="ja"/>
     <section className={styles.section} aria-labelledby="entry-desk"><p className={styles.label}>REGISTRATION / 参加窓口</p><h2 id="entry-desk">日本国内からの参加は、RBAへ。</h2><p>沖縄県内・県外を問わず、日本国内の参加者はRBAが窓口です。氏名・学年（年齢）・性別・連絡先・参加人数・宿泊希望を添えてお問い合わせください。国内料金・現地割引の条件と申込方法を、確認後に個別にご案内します。現在は参加希望のお問い合わせ受付で、送信だけで申込・参加が確定するものではありません。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ国内参加を問い合わせる ↗</a><p className={styles.email}>riot.training.base@gmail.com</p><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合：RBA公式InstagramからDMで相談 ↗</a></p><p className={styles.small}>海外参加者向けサイト「okinawa.camp」と掲載の米ドル料金は、海外から参加される方の案内です。日本国内の方は、海外向けフォームでの申込・決済前にRBAへご相談ください。</p></section>
     <section className={styles.section}><p className={styles.label}>CONNECT · LEARN · CHALLENGE</p><h2>バスケットボールの先にある経験を。</h2><div className={styles.columns}>
       <article className={styles.card}><h3>見て、判断して、プレーする</h3><p>西尾優人が指導し、基本技術、チームの攻防、ゲームを通じて学びます。技を覚えるだけでなく、状況を見て、判断し、自分で考えて挑戦することを大切にします。年齢や技術・経験に応じたグループ分けを予定しています。</p></article>
