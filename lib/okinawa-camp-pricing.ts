@@ -2,7 +2,8 @@ export const EARLY_BIRD_END = "2026-10-31T23:59:59.999+08:00";
 // Online payment stops when the published first-day reception begins.
 export const ONLINE_PAYMENT_END = "2026-12-22T09:00:00+09:00";
 export const CAMP_CONTACT = "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026%20-%20local%20rate%20or%20group%20inquiry";
-export type CampChoice = { housing: boolean; players: 1 | 2 | 3; residence: "okinawa" | "other" };
+export const CAMP_JAPAN_CONTACT = "mailto:riot.training.base@gmail.com?subject=Okinawa%20Camp%202026%20-%20Japan%20entry&body=" + encodeURIComponent("沖縄キャンプ国内参加の問い合わせ\n参加者氏名：\n学年・年齢：\n性別：\n連絡先：\nお住まいの都道府県：\n参加人数：\n宿泊希望：\n送迎希望：\nご質問：\n");
+export type CampChoice = { housing: boolean; players: 1 | 2 | 3; residence: "japan" | "okinawa" | "other" };
 const payments = {
   housing: {
     standard: [450, "https://book.stripe.com/28EeVfgOPaDG3UxeAL7EQ0Z"],
@@ -21,13 +22,13 @@ const payments = {
 export function parseCampChoice(input: unknown): CampChoice | null {
   if (!input || typeof input !== "object" || Array.isArray(input)) return null;
   const b = input as Record<string, unknown>;
-  if (typeof b.housing !== "boolean" || ![1, 2, 3].includes(b.players as number) || !["okinawa", "other"].includes(String(b.residence))) return null;
+  if (typeof b.housing !== "boolean" || ![1, 2, 3].includes(b.players as number) || !["japan", "okinawa", "other"].includes(String(b.residence))) return null;
   return { housing: b.housing, players: b.players as 1 | 2 | 3, residence: b.residence as CampChoice["residence"] };
 }
 
 export function campQuote(choice: CampChoice, now = new Date()) {
   const early = now.getTime() <= Date.parse(EARLY_BIRD_END);
-  const state = now.getTime() >= Date.parse(ONLINE_PAYMENT_END) ? "closed" : choice.residence === "okinawa" ? "local_review" : choice.players === 3 ? "group_review" : "payable";
+  const state = now.getTime() >= Date.parse(ONLINE_PAYMENT_END) ? "closed" : choice.residence !== "other" ? "local_review" : choice.players === 3 ? "group_review" : "payable";
   const rate = early ? choice.players === 2 ? "early_group" : "early" : choice.players === 2 ? "group" : "standard";
   const [unit, checkoutUrl] = payments[choice.housing ? "housing" : "day"][rate];
   const registration = new URL("https://okinawa.camp/register");

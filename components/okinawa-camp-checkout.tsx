@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { CampChoice, campQuote } from "@/lib/okinawa-camp-pricing";
-import { CAMP_CONTACT } from "@/lib/okinawa-camp-pricing";
+import { CAMP_CONTACT, CAMP_JAPAN_CONTACT } from "@/lib/okinawa-camp-pricing";
 import styles from "./okinawa-camp-checkout.module.css";
 
 type Quote = Omit<ReturnType<typeof campQuote>, "checkoutUrl">;
@@ -63,23 +63,23 @@ export function OkinawaCampCheckout() {
   return <div className={styles.flow}>
     <section className={styles.step} aria-labelledby="choose-plan"><p className={styles.stepNumber}>01 / 料金を選ぶ</p><h2 id="choose-plan">参加方法を選んでください</h2>
       <div className={styles.fields}>
-        <label>料金区分<select value={residence} onChange={e => { resetQuote(Boolean(e.target.value)); setResidence(e.target.value as CampChoice["residence"] | ""); }}><option value="">選択してください</option><option value="other">一般料金で参加（現地割引を申請しない）</option><option value="okinawa">現地割引の対象・料金を相談したい</option></select></label>
+        <label>参加窓口<select value={residence} onChange={e => { resetQuote(Boolean(e.target.value)); setResidence(e.target.value as CampChoice["residence"] | ""); }}><option value="">選択してください</option><option value="japan">日本国内から参加（RBA受付）</option><option value="other">海外から参加（海外参加者向け料金）</option></select></label>
         <label>宿泊<select value={String(housing)} onChange={e => { resetQuote(Boolean(residence)); setHousing(e.target.value === "true"); }}><option value="true">宿泊・食事付き（2泊）</option><option value="false">宿泊なし（通い）</option></select></label>
         <label>参加人数<select value={players} onChange={e => { resetQuote(Boolean(residence)); setPlayers(Number(e.target.value) as 1 | 2 | 3); }}><option value="1">1名</option><option value="2">2名</option><option value="3">3名以上</option></select></label>
       </div>
       <div aria-live="polite" aria-atomic="true">
         {loading && <p role="status">現在の料金を確認しています…</p>}
         {quote?.state === "payable" && <div className={styles.quote}><p>{housing ? "宿泊・食事付き" : "宿泊なし"} · {players}名 · {quote.early ? "早割20％" : "通常期間"}{players === 2 ? " ＋ 2名割10％" : ""}</p><p className={styles.total}>合計 <strong>{quote.total}</strong> 米ドル</p><p>1名あたり {quote.perPlayer}米ドル × {players}名。日本円換算額はカード会社の為替・手数料により異なります。</p>{quote.early && <p>早割は10月31日23:59（台湾時間）まで。日本時間は11月1日0:59までです。割引は20％引き後に10％引きを適用します。</p>}</div>}
-        {quote?.state === "local_review" && <div className={styles.notice}><h3>現地割引は、料金を確認してからお支払いください</h3><p>対象者・宿泊区分・金額・他の割引との併用条件を確認しています。一般向けの通い料金や216米ドルを、確定した現地料金としてご案内していません。</p><p>参加人数・学年・宿泊希望を添えてお問い合わせください。確認後、該当する申込・決済方法をご案内します。</p><a className={styles.primary} href={CAMP_CONTACT}>現地料金をメールで相談する ↗</a></div>}
+        {quote?.state === "local_review" && <div className={styles.notice}><h3>日本国内の参加はRBAで受け付けます</h3><p>氏名・学年（年齢）・性別・連絡先・参加人数・宿泊希望を添えて、RBAへお問い合わせください。沖縄県内の参加・現地割引のご相談もこちらで承ります。</p><p>国内参加の料金・割引条件・申込方法は、確認後に個別にご案内します。海外参加者向けの米ドル料金でお支払いになる前にご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ国内参加を問い合わせる ↗</a><p className={styles.note}>riot.training.base@gmail.com<br/>このメールは参加希望のお問い合わせです。送信だけで申込・参加が確定するものではありません。</p></div>}
         {quote?.state === "group_review" && <div className={styles.notice}><h3>3名以上はグループでご相談ください</h3><p>公式フォームは1回2名までです。参加者全員の申込と料金をまとめて確認します。1名用のリンクで人数分をお支払いになる前にお問い合わせください。</p><a className={styles.primary} href={CAMP_CONTACT}>グループ参加を相談する ↗</a></div>}
         {quote?.state === "closed" && <div className={styles.notice}><h3>オンライン決済の受付は終了しました</h3><p>開催開始後の参加・料金のご相談は、主催者へお問い合わせください。</p><a href={CAMP_CONTACT}>メールで問い合わせる ↗</a></div>}
       </div>
     </section>
 
     {quote?.state === "payable" && <>
-      <section className={styles.step} aria-labelledby="register-first"><p className={styles.stepNumber}>02 / 公式フォームで申し込む</p><h2 id="register-first">保護者・選手情報を登録する</h2><p>選択した宿泊区分・人数で公式フォームを開きます。登録後、このページへ戻ってください。すでに同じ内容で申し込んだ方は、重複登録せず次へ進めます。</p>
+      <section className={styles.step} aria-labelledby="register-first"><p className={styles.stepNumber}>02 / 海外参加者向けフォームで申し込む</p><h2 id="register-first">保護者・選手情報を登録する</h2><p>選択した宿泊区分・人数で公式フォームを開きます。登録後、このページへ戻ってください。すでに同じ内容で申し込んだ方は、重複登録せず次へ進めます。</p>
         <a className={styles.primary} href={quote.registrationUrl || undefined} target="_blank" rel="noopener noreferrer">公式申込フォームを別タブで開く ↗</a>
-        <p className={styles.note}>公式フォームはSPARTANS側のサイトです。この画面から申込完了を自動確認する機能はありません。宿泊・人数を変更したときは、申込内容も一致しているかご確認ください。</p>
+        <p className={styles.note}>公式フォームは海外参加者向けのSPARTANS側サイトです。日本国内の参加者は「日本国内から参加（RBA受付）」を選んでください。この画面から申込完了を自動確認する機能はありません。宿泊・人数を変更したときは、申込内容も一致しているかご確認ください。</p>
       </section>
       <section className={styles.step} aria-labelledby="pay-next"><p className={styles.stepNumber}>03 / 内容を確認して決済</p><h2 id="pay-next">合計 {quote.total}米ドルのお支払いへ</h2>
         <ul><li>宿泊付きは2泊・食事付き。航空券は別途です。</li><li>宿泊なしの食事、送迎の時間・条件・費用は、支払い前にお問い合わせください。</li><li>会場・追加スタッフ等は最終調整中です。お支払いは仮予約で、参加の最終確定ではありません。</li><li>RBA都合による中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は、既存の仮予約条件に従い全額返金します。</li></ul>
@@ -91,6 +91,6 @@ export function OkinawaCampCheckout() {
       <section className={styles.step}><h2>お支払い後について</h2><p>決済画面の受付表示だけで、参加確定とはなりません。主催者からの案内をお待ちください。カードの利用履歴やStripeの通知がある場合は、再度決済せず、申込メールと参加者名を添えてお問い合わせください。</p><a href={CAMP_CONTACT}>支払い・申込について問い合わせる ↗</a></section>
     </>}
     {error && <div className={styles.error} role="alert"><p>{error}</p>{!quote && <button type="button" onClick={() => { resetQuote(Boolean(residence)); setRetry(n => n + 1); }}>料金を再読み込みする</button>}<a href={CAMP_CONTACT}>メールで問い合わせる ↗</a></div>}
-    <noscript><p>料金選択にはJavaScriptが必要です。<a href="https://okinawa.camp/register">公式フォーム</a>または<a href={CAMP_CONTACT}>メール</a>でご相談ください。</p></noscript>
+    <noscript><p>日本国内からの参加は<a href={CAMP_JAPAN_CONTACT}>RBAへお問い合わせください</a>。海外からの参加は<a href="https://okinawa.camp/register">海外参加者向けフォーム</a>をご利用ください。</p></noscript>
   </div>;
 }

@@ -35,3 +35,20 @@ test("payment closes when the published camp reception begins", () => {
 test("choice parser rejects coercion and unsupported values", () => {
   for (const invalid of [null, [], {}, { housing: true, players: "2", residence: "other" }, { housing: "false", players: 1, residence: "other" }, { housing: false, players: 9, residence: "other" }, { housing: true, players: 1, residence: "anything" }]) assert.equal(parseCampChoice(invalid), null);
 });
+
+test("all domestic participants use RBA consultation and receive no overseas payment or registration URL", () => {
+  for (const residence of ["japan", "okinawa"]) {
+    for (const housing of [true, false]) {
+      for (const players of [1, 2, 3]) {
+        const parsed = parseCampChoice({ housing, players, residence });
+        assert.ok(parsed);
+        const q = campQuote(parsed, early);
+        assert.equal(q.state, "local_review");
+        assert.equal(q.perPlayer, null);
+        assert.equal(q.total, null);
+        assert.equal(q.checkoutUrl, null);
+        assert.equal(q.registrationUrl, null);
+      }
+    }
+  }
+});
