@@ -1,3 +1,4 @@
+import { OkinawaCampPartnerNotice } from "./okinawa-camp-partner";
 import type { Locale } from "./site-frame";
 import styles from "./okinawa-december-camp-callout.module.css";
 
@@ -16,6 +17,7 @@ export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
     <p className={styles.date}>{c.date}</p>
     <h2 id={`okinawa-december-${locale}`}>{c.title}</h2>
     <p>{c.body}</p>
+    <OkinawaCampPartnerNotice locale={locale}/>
     <p className={styles.price}>{c.price}</p>
     <p>{c.discount}</p>
     <p className={styles.note}>{c.note}</p>
