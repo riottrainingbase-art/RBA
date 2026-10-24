@@ -19,6 +19,6 @@ export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
     <p className={styles.price}>{c.price}</p>
     <p>{c.discount}</p>
     <p className={styles.note}>{c.note}</p>
-    <div className={styles.actions}><a href={href} target="_blank" rel="noopener noreferrer">{c.link} ↗</a><a href="mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026">{c.ask} →</a></div>
+    <div className={styles.actions}><a href={href} target="_blank" rel="noopener noreferrer">{c.link} ↗</a><a href="mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026">{c.ask} →</a>{locale === "ja" && <a href="/ja/events/okinawa-international-camp-2026/apply">料金選択・申込・決済へ →</a>}</div>
   </section>;
 }
