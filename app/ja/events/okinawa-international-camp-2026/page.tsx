@@ -4,7 +4,7 @@ import { SiteFrame } from "@/components/site-frame";
 import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
 const official = "https://okinawa.camp/";
-const registration = "https://okinawa.camp/register?housing=true&people=1";
+const registration = "/ja/events/okinawa-international-camp-2026/apply";
 const email = "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
   title: "沖縄国際ユースバスケットボールキャンプ｜2026年12月22〜24日・7〜18歳",
@@ -33,7 +33,7 @@ export default function Page() {
       <div><dt>早割期限</dt><dd>公式サイト案内：10月31日まで。適用条件・最終金額は申込画面でご確認ください。</dd></div>
       <div><dt>別途・要確認</dt><dd>航空券は別途手配。空港送迎の時間・条件・費用、宿泊なしプランの食事の扱いは、お支払い前にご確認ください。</dd></div>
     </dl><p>追加10％は早割後の金額に適用する計算です（450 × 0.8 × 0.9 = 324米ドル）。日本円の定額料金ではありません。</p>
-    <div className={styles.columns}><article className={styles.card}><h3>正式フォームで申し込む</h3><p>保護者情報と選手情報を入力します。1回の申込は2名まで。3名以上のグループはメールでご相談ください。下のリンクは宿泊あり・1名の初期設定です。希望のプランと人数をご確認ください。</p><a className={styles.primary} href={registration} target="_blank" rel="noopener noreferrer">公式申込フォームを開く ↗</a><p className={styles.small}>フォーム送信・決済条件、キャンセル規定、最終金額は公式申込画面と主催者の案内でご確認ください。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日の午前練習に間に合う便や、最終日の空港への移動など、不明点は予約前にご相談ください。</p><a className={styles.primary} href={email}>メールで問い合わせる ↗</a><p className={styles.email}>hi@spartans.com.tw<br/>RBA：riot.training.base@gmail.com</p></article></div></section>
+    <div className={styles.columns}><article className={styles.card}><h3>料金を選んで申し込む</h3><p>宿泊・人数から現在の料金を確認し、公式フォームで申込後、該当する決済へ進めます。1回の申込は2名まで。現地割引と3名以上の参加は、金額を確認してからの個別案内です。</p><a className={styles.primary} href={registration}>料金選択・申込・決済へ →</a><p className={styles.small}>申込情報と入金は主催者が照合します。支払い完了は参加の最終確定ではありません。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日の午前練習に間に合う便や、最終日の空港への移動など、不明点は予約前にご相談ください。</p><a className={styles.primary} href={email}>メールで問い合わせる ↗</a><p className={styles.email}>hi@spartans.com.tw<br/>RBA：riot.training.base@gmail.com</p></article></div></section>
     <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>空港・市内からの送迎は調整中です。便の到着・出発時刻と参加人数を確認したうえで案内されます。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>指導責任者はRBAの西尾優人。追加の指導・引率スタッフは手配中で、確定後に案内予定です。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">最新情報：okinawa.camp ↗</a></p></section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかの開催予定を見る</a></p>
   </div></SiteFrame>;

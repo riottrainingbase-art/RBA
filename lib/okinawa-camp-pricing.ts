@@ -1,0 +1,45 @@
+export const EARLY_BIRD_END = "2026-10-31T23:59:59.999+08:00";
+// Online payment stops when the published first-day reception begins.
+export const ONLINE_PAYMENT_END = "2026-12-22T09:00:00+09:00";
+export const CAMP_CONTACT = "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026%20-%20local%20rate%20or%20group%20inquiry";
+export type CampChoice = { housing: boolean; players: 1 | 2 | 3; residence: "okinawa" | "other" };
+const payments = {
+  housing: {
+    standard: [450, "https://book.stripe.com/28EeVfgOPaDG3UxeAL7EQ0Z"],
+    early: [360, "https://book.stripe.com/7sY00ldCD9zC3Ux64f7EQ10"],
+    group: [405, "https://book.stripe.com/4gM8wR6abaDGgHj64f7EQ11"],
+    early_group: [324, "https://book.stripe.com/bJe3cxbuvh2462Fboz7EQ12"],
+  },
+  day: {
+    standard: [300, "https://book.stripe.com/28E5kFdCDh24cr378j7EQ13"],
+    early: [240, "https://book.stripe.com/28E00l4237ru76J0JV7EQ14"],
+    group: [270, "https://book.stripe.com/dRm14p1TVbHKfDfeAL7EQ15"],
+    early_group: [216, "https://book.stripe.com/aFa6oJdCD8vydv7eAL7EQ16"],
+  },
+} as const;
+
+export function parseCampChoice(input: unknown): CampChoice | null {
+  if (!input || typeof input !== "object" || Array.isArray(input)) return null;
+  const b = input as Record<string, unknown>;
+  if (typeof b.housing !== "boolean" || ![1, 2, 3].includes(b.players as number) || !["okinawa", "other"].includes(String(b.residence))) return null;
+  return { housing: b.housing, players: b.players as 1 | 2 | 3, residence: b.residence as CampChoice["residence"] };
+}
+
+export function campQuote(choice: CampChoice, now = new Date()) {
+  const early = now.getTime() <= Date.parse(EARLY_BIRD_END);
+  const state = now.getTime() >= Date.parse(ONLINE_PAYMENT_END) ? "closed" : choice.residence === "okinawa" ? "local_review" : choice.players === 3 ? "group_review" : "payable";
+  const rate = early ? choice.players === 2 ? "early_group" : "early" : choice.players === 2 ? "group" : "standard";
+  const [unit, checkoutUrl] = payments[choice.housing ? "housing" : "day"][rate];
+  const registration = new URL("https://okinawa.camp/register");
+  registration.searchParams.set("housing", String(choice.housing));
+  registration.searchParams.set("people", String(Math.min(choice.players, 2)));
+  return {
+    state, early, rateKey: `${choice.housing ? "housing" : "day"}_${rate}`,
+    perPlayer: state === "payable" ? unit : null,
+    total: state === "payable" ? unit * choice.players : null,
+    currency: "USD", players: choice.players,
+    registrationUrl: state === "payable" ? registration.href : null,
+    checkoutUrl: state === "payable" ? checkoutUrl : null,
+    earlyBirdEnd: EARLY_BIRD_END,
+  };
+}

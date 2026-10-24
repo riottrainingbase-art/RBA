@@ -1,0 +1,37 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { campQuote, parseCampChoice, EARLY_BIRD_END, ONLINE_PAYMENT_END } from "../lib/okinawa-camp-pricing.ts";
+
+const early = new Date("2026-10-24T00:00:00Z");
+const normal = new Date("2026-11-01T00:00:00Z");
+for (const [housing, amounts] of [[true, [450, 360, 405, 324]], [false, [300, 240, 270, 216]]]) {
+  for (const [index, players, now] of [[0, 1, normal], [1, 1, early], [2, 2, normal], [3, 2, early]]) {
+    test(`${housing ? "housing" : "day"}: ${players} players, ${now === early ? "early" : "normal"}`, () => {
+      const q = campQuote({ housing, players, residence: "other" }, now);
+      assert.equal(q.perPlayer, amounts[index]);
+      assert.equal(q.total, amounts[index] * players);
+      assert.equal(new URL(q.checkoutUrl).origin, "https://book.stripe.com");
+      const form = new URL(q.registrationUrl);
+      assert.equal(form.searchParams.get("housing"), String(housing));
+      assert.equal(form.searchParams.get("people"), String(players));
+    });
+  }
+}
+test("Taiwan deadline is enforced at the exact millisecond boundary", () => {
+  const choice = { housing: false, players: 2, residence: "other" };
+  assert.equal(campQuote(choice, new Date(EARLY_BIRD_END)).total, 432);
+  assert.equal(campQuote(choice, new Date(Date.parse(EARLY_BIRD_END) + 1)).total, 540);
+});
+test("local-rate requests and 3+ groups never receive a price or checkout link", () => {
+  for (const choice of [{ housing: false, players: 1, residence: "okinawa" }, { housing: true, players: 3, residence: "other" }]) {
+    const q = campQuote(choice, early);
+    assert.equal(q.total, null); assert.equal(q.checkoutUrl, null); assert.equal(q.registrationUrl, null);
+  }
+});
+test("payment closes when the published camp reception begins", () => {
+  const q = campQuote({ housing: true, players: 1, residence: "other" }, new Date(ONLINE_PAYMENT_END));
+  assert.equal(q.state, "closed"); assert.equal(q.checkoutUrl, null);
+});
+test("choice parser rejects coercion and unsupported values", () => {
+  for (const invalid of [null, [], {}, { housing: true, players: "2", residence: "other" }, { housing: "false", players: 1, residence: "other" }, { housing: false, players: 9, residence: "other" }, { housing: true, players: 1, residence: "anything" }]) assert.equal(parseCampChoice(invalid), null);
+});
