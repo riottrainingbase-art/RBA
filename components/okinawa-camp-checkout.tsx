@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { CampChoice, campQuote } from "@/lib/okinawa-camp-pricing";
-import { CAMP_CONTACT, CAMP_JAPAN_CONTACT } from "@/lib/okinawa-camp-pricing";
+import { CAMP_CONTACT, CAMP_JAPAN_CONTACT, CAMP_OKINAWA_CONTACT, OKINAWA_RESIDENT_PRICES } from "@/lib/okinawa-camp-pricing";
 import styles from "./okinawa-camp-checkout.module.css";
 
 type Quote = Omit<ReturnType<typeof campQuote>, "checkoutUrl">;
@@ -31,7 +31,7 @@ export function OkinawaCampCheckout() {
     return () => { clearTimeout(timer); controller.abort(); };
   }, [housing, players, residence, retry]);
 
-  const contact = residence === "other" ? CAMP_CONTACT : CAMP_JAPAN_CONTACT;
+  const contact = residence === "okinawa" ? CAMP_OKINAWA_CONTACT : residence === "other" ? CAMP_CONTACT : CAMP_JAPAN_CONTACT;
 
   function resetQuote(willLoad: boolean) {
     setQuote(null); setLoading(willLoad); setRegistrationCompleted(false); setConditionsAccepted(false); setError("");
@@ -65,14 +65,15 @@ export function OkinawaCampCheckout() {
   return <div className={styles.flow}>
     <section className={styles.step} aria-labelledby="choose-plan"><p className={styles.stepNumber}>01 / 参加窓口・プランを選ぶ</p><h2 id="choose-plan">参加方法を選んでください</h2>
       <div className={styles.fields}>
-        <label>参加窓口<select value={residence} onChange={e => { resetQuote(Boolean(e.target.value)); setResidence(e.target.value as CampChoice["residence"] | ""); }}><option value="">選択してください</option><option value="japan">日本国内から参加（RBA受付）</option><option value="other">海外から参加（海外参加者向け料金）</option></select></label>
+        <label>参加窓口<select value={residence} onChange={e => { resetQuote(Boolean(e.target.value)); setResidence(e.target.value as CampChoice["residence"] | ""); }}><option value="">選択してください</option><option value="okinawa">沖縄県民割引（日本円・RBA受付）</option><option value="japan">沖縄県外から国内参加（RBA受付）</option><option value="other">海外から参加（海外参加者向け料金）</option></select></label>
         <label>宿泊<select value={String(housing)} onChange={e => { resetQuote(Boolean(residence)); setHousing(e.target.value === "true"); }}><option value="true">宿泊・食事付き（2泊）</option><option value="false">宿泊なし（通い）</option></select></label>
         <label>参加人数<select value={players} onChange={e => { resetQuote(Boolean(residence)); setPlayers(Number(e.target.value) as 1 | 2 | 3); }}><option value="1">1名</option><option value="2">2名</option><option value="3">3名以上</option></select></label>
       </div>
       <div aria-live="polite" aria-atomic="true">
         {loading && <p role="status">現在の料金を確認しています…</p>}
         {quote?.state === "payable" && <div className={styles.quote}><p>{housing ? "宿泊・食事付き" : "宿泊なし"} · {players}名 · {quote.early ? "早割20％" : "通常期間"}{players === 2 ? " ＋ 2名割10％" : ""}</p><p className={styles.total}>合計 <strong>{quote.total}</strong> 米ドル</p><p>1名あたり {quote.perPlayer}米ドル × {players}名。日本円換算額はカード会社の為替・手数料により異なります。</p>{quote.early && <p>早割は10月31日23:59（台湾時間）まで。日本時間は11月1日0:59までです。割引は20％引き後に10％引きを適用します。</p>}</div>}
-        {quote?.state === "local_review" && <div className={styles.notice}><h3>日本国内の参加はRBAで受け付けます</h3><p>氏名・学年（年齢）・性別・連絡先・参加人数・宿泊希望を添えて、RBAへお問い合わせください。沖縄県民割引のご相談もこちらで承ります。料金・適用条件は個別にご案内します。</p><p>国内参加の料金・割引条件・申込方法は、確認後に個別にご案内します。海外参加者向けの米ドル料金でお支払いになる前にご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ国内参加を問い合わせる ↗</a><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合はRBA公式InstagramからDM ↗</a></p><p className={styles.note}>riot.training.base@gmail.com<br/>このメールは参加希望のお問い合わせです。送信だけで申込・参加が確定するものではありません。</p></div>}
+        {quote?.state === "local_review" && residence === "okinawa" && <div className={styles.notice}><h3>沖縄県民割引 / 日本円固定料金</h3><p>{housing ? "宿泊2泊3日" : "通い3日間"}：1名 <strong>{(quote.perPlayer ?? OKINAWA_RESIDENT_PRICES[housing ? "housing" : "day"]).toLocaleString("ja-JP")}円（税込）</strong></p>{quote.total !== null ? <p className={styles.total}>{players}名の合計 <strong>{quote.total.toLocaleString("ja-JP")}</strong> 円（税込）</p> : <p>3名以上は正確な人数をお知らせください。1名あたりの県民料金は変わりません。</p>}<p>{housing ? "宿泊・所定の食事・リネン・保険・宿泊中の見守りを含みます。" : "指導・交流プログラム・保険を含みます。食事・宿泊は含みません。"}交通費・送迎は別途です。海外向け早割・複数名割引との併用はありません。</p><p>氏名・学年（年齢）・性別・連絡先・お住まいの市町村・正確な参加人数・希望プランをお知らせください。受入状況・最終条件を確認し、RBAから申込・日本円での支払い方法をご案内します。</p><a className={styles.primary} href={CAMP_OKINAWA_CONTACT}>県民割引で参加を相談する ↗</a><p><a href="/ja/events/okinawa-international-camp-2026#okinawa-resident-discount">料金に含む内容・適用条件を見る →</a></p><p className={styles.note}>会場利用枠・追加スタッフは最終調整中です。問い合わせのみで参加は確定しません。海外向け米ドル決済は使用しないでください。</p></div>}
+        {quote?.state === "local_review" && residence !== "okinawa" && <div className={styles.notice}><h3>日本国内の参加はRBAで受け付けます</h3><p>氏名・学年（年齢）・性別・連絡先・参加人数・宿泊希望を添えて、RBAへお問い合わせください。沖縄県内在住の方は、参加窓口で「沖縄県民割引」を選んでください。</p><p>国内参加の料金・割引条件・申込方法は、確認後に個別にご案内します。海外参加者向けの米ドル料金でお支払いになる前にご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ国内参加を問い合わせる ↗</a><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合はRBA公式InstagramからDM ↗</a></p><p className={styles.note}>riot.training.base@gmail.com<br/>このメールは参加希望のお問い合わせです。送信だけで申込・参加が確定するものではありません。</p></div>}
         {quote?.state === "group_review" && <div className={styles.notice}><h3>3名以上はグループでご相談ください</h3><p>公式フォームは1回2名までです。参加者全員の申込と料金をまとめて確認します。1名用のリンクで人数分をお支払いになる前にお問い合わせください。</p><a className={styles.primary} href={contact}>グループ参加を相談する ↗</a></div>}
         {quote?.state === "closed" && <div className={styles.notice}><h3>オンライン決済の受付は終了しました</h3><p>開催開始後の参加・料金のご相談は、主催者へお問い合わせください。</p><a href={contact}>メールで問い合わせる ↗</a></div>}
       </div>

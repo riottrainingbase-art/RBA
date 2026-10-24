@@ -2,7 +2,8 @@ export const EARLY_BIRD_END = "2026-10-31T23:59:59.999+08:00";
 // Online payment stops when the published first-day reception begins.
 export const ONLINE_PAYMENT_END = "2026-12-22T09:00:00+09:00";
 export const CAMP_CONTACT = "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026%20-%20local%20rate%20or%20group%20inquiry";
-export const CAMP_OKINAWA_CONTACT = "mailto:riot.training.base@gmail.com?subject=" + encodeURIComponent("沖縄キャンプ2026｜沖縄県民割引の問い合わせ") + "&body=" + encodeURIComponent("沖縄県民割引についての問い合わせ\n参加者氏名：\n学年・年齢：\n性別：\n連絡先：\nお住まいの市町村：\n参加人数：\n宿泊希望：\nご質問：\n");
+export const OKINAWA_RESIDENT_PRICES = { day: 27500, housing: 39600 } as const;
+export const CAMP_OKINAWA_CONTACT = "mailto:riot.training.base@gmail.com?subject=" + encodeURIComponent("沖縄キャンプ2026｜沖縄県民割引の参加相談") + "&body=" + encodeURIComponent("沖縄県民割引の参加相談\n希望プラン（通い27,500円／宿泊39,600円・各1名税込）：\n参加者氏名：\n学年・年齢：\n性別：\n連絡先：\nお住まいの市町村：\n参加人数：\n宿泊希望：\nご質問：\n");
 export const CAMP_JAPAN_CONTACT = "mailto:riot.training.base@gmail.com?subject=Okinawa%20Camp%202026%20-%20Japan%20entry&body=" + encodeURIComponent("沖縄キャンプ国内参加の問い合わせ\n参加者氏名：\n学年・年齢：\n性別：\n連絡先：\nお住まいの都道府県：\n参加人数：\n宿泊希望：\n送迎希望：\nご質問：\n");
 export type CampChoice = { housing: boolean; players: 1 | 2 | 3; residence: "japan" | "okinawa" | "other" };
 const payments = {
@@ -35,11 +36,13 @@ export function campQuote(choice: CampChoice, now = new Date()) {
   const registration = new URL("https://okinawa.camp/register");
   registration.searchParams.set("housing", String(choice.housing));
   registration.searchParams.set("people", String(Math.min(choice.players, 2)));
+  const resident = choice.residence === "okinawa" && state !== "closed";
+  const residentUnit = OKINAWA_RESIDENT_PRICES[choice.housing ? "housing" : "day"];
   return {
-    state, early, rateKey: `${choice.housing ? "housing" : "day"}_${rate}`,
-    perPlayer: state === "payable" ? unit : null,
-    total: state === "payable" ? unit * choice.players : null,
-    currency: "USD", players: choice.players,
+    state, early: resident ? false : early, rateKey: resident ? `${choice.housing ? "housing" : "day"}_okinawa` : `${choice.housing ? "housing" : "day"}_${rate}`,
+    perPlayer: resident ? residentUnit : state === "payable" ? unit : null,
+    total: resident && choice.players < 3 ? residentUnit * choice.players : state === "payable" ? unit * choice.players : null,
+    currency: resident ? "JPY" : "USD", players: choice.players,
     registrationUrl: state === "payable" ? registration.href : null,
     checkoutUrl: state === "payable" ? checkoutUrl : null,
     earlyBirdEnd: EARLY_BIRD_END,

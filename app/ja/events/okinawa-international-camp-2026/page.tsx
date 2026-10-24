@@ -1,8 +1,9 @@
+import { OkinawaResidentPrices } from "@/components/okinawa-resident-prices";
 import { OkinawaCampPartner } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
-import { CAMP_JAPAN_CONTACT, CAMP_OKINAWA_CONTACT } from "@/lib/okinawa-camp-pricing";
+import { CAMP_JAPAN_CONTACT } from "@/lib/okinawa-camp-pricing";
 import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
 const official = "https://okinawa.camp/";
@@ -10,7 +11,7 @@ const registration = "/ja/events/okinawa-international-camp-2026/apply";
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
   title: "沖縄国際ユースバスケットボールキャンプ｜2026年12月22〜24日・7〜18歳",
-  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。2泊3日、12月24日正午までの退所予定。沖縄県民割引のご相談、料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
+  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。2泊3日、12月24日正午までの退所予定。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026" },
 };
 
@@ -20,9 +21,9 @@ export default function Page() {
       <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#entry-desk">参加窓口・申込方法を見る ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>会場候補：沖縄県糸満市。体育館・宿泊・食事を同じ施設で行う計画です。施設の利用枠・体育館の時間は最終調整中です。</p><p><strong>12月24日は正午までの退所を予定。</strong></p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
-    <section className={styles.section} aria-labelledby="okinawa-resident-discount"><p className={styles.label}>OKINAWA RESIDENTS / 沖縄県内にお住まいの方へ</p><div className={styles.card}><h2 id="okinawa-resident-discount">沖縄県民割引のご案内</h2><p>沖縄県内にお住まいで参加を検討されている方は、県民割引についてRBAへお問い合わせください。割引後の料金・適用条件・参加方法は、確認後に個別にご案内します。</p><p>参加者の氏名・学年（年齢）・性別・連絡先・お住まいの市町村・参加人数・宿泊希望をお知らせください。</p><a className={styles.primary} href={CAMP_OKINAWA_CONTACT}>沖縄県民割引について問い合わせる ↗</a><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">InstagramのDMでも受付：「沖縄県民割引」とお送りください ↗</a></p><p className={styles.small}>県民割引の金額・割引率、早割や複数名割引との併用条件は、現在このページでは公表していません。海外参加者向けの米ドル料金で決済する前に、RBAへご相談ください。お問い合わせのみで申込・参加が確定するものではありません。</p></div></section>
+    <OkinawaResidentPrices/>
     <OkinawaCampPartner locale="ja"/>
-    <section className={styles.section} aria-labelledby="entry-desk"><p className={styles.label}>REGISTRATION / 参加窓口</p><h2 id="entry-desk">日本国内からの参加は、RBAへ。</h2><p>沖縄県内・県外を問わず、日本国内の参加者はRBAが窓口です。氏名・学年（年齢）・性別・連絡先・参加人数・宿泊希望を添えてお問い合わせください。国内料金・沖縄県民割引の条件と申込方法を、確認後に個別にご案内します。現在は参加希望のお問い合わせ受付で、送信だけで申込・参加が確定するものではありません。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ国内参加を問い合わせる ↗</a><p className={styles.email}>riot.training.base@gmail.com</p><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合：RBA公式InstagramからDMで相談 ↗</a></p><p className={styles.small}>海外参加者向けサイト「okinawa.camp」と掲載の米ドル料金は、海外から参加される方の案内です。日本国内の方は、海外向けフォームでの申込・決済前にRBAへご相談ください。</p></section>
+    <section className={styles.section} aria-labelledby="entry-desk"><p className={styles.label}>REGISTRATION / 参加窓口</p><h2 id="entry-desk">日本国内からの参加は、RBAへ。</h2><p>沖縄県内・県外を問わず、日本国内の参加者はRBAが窓口です。氏名・学年（年齢）・性別・連絡先・参加人数・宿泊希望を添えてお問い合わせください。県民割引は通い27,500円・宿泊39,600円（税込）です。県外からの国内参加料金・申込方法は個別にご案内します。現在は参加希望のお問い合わせ受付で、送信だけで申込・参加が確定するものではありません。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ国内参加を問い合わせる ↗</a><p className={styles.email}>riot.training.base@gmail.com</p><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合：RBA公式InstagramからDMで相談 ↗</a></p><p className={styles.small}>海外参加者向けサイト「okinawa.camp」と掲載の米ドル料金は、海外から参加される方の案内です。日本国内の方は、海外向けフォームでの申込・決済前にRBAへご相談ください。</p></section>
     <section className={styles.section}><p className={styles.label}>CONNECT · LEARN · CHALLENGE</p><h2>バスケットボールの先にある経験を。</h2><div className={styles.columns}>
       <article className={styles.card}><h3>見て、判断して、プレーする</h3><p>西尾優人が指導し、基本技術、チームの攻防、ゲームを通じて学びます。技を覚えるだけでなく、状況を見て、判断し、自分で考えて挑戦することを大切にします。年齢や技術・経験に応じたグループ分けを予定しています。</p></article>
       <article className={styles.card}><h3>国や言葉を越えてつながる</h3><p>日本と海外の選手が、同じコートで練習し、ゲームで挑戦します。宿泊参加者は食事や共同生活も通じて、国や言葉を越えた交流を深めます。参加国・人数・組分けは申込状況に応じて調整します。</p></article>

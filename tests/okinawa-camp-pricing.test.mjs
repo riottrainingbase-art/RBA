@@ -22,8 +22,8 @@ test("Taiwan deadline is enforced at the exact millisecond boundary", () => {
   assert.equal(campQuote(choice, new Date(EARLY_BIRD_END)).total, 432);
   assert.equal(campQuote(choice, new Date(Date.parse(EARLY_BIRD_END) + 1)).total, 540);
 });
-test("local-rate requests and 3+ groups never receive a price or checkout link", () => {
-  for (const choice of [{ housing: false, players: 1, residence: "okinawa" }, { housing: true, players: 3, residence: "other" }]) {
+test("unpriced domestic requests and overseas 3+ groups never receive a price or checkout link", () => {
+  for (const choice of [{ housing: false, players: 1, residence: "japan" }, { housing: true, players: 3, residence: "other" }]) {
     const q = campQuote(choice, early);
     assert.equal(q.total, null); assert.equal(q.checkoutUrl, null); assert.equal(q.registrationUrl, null);
   }
@@ -44,11 +44,24 @@ test("all domestic participants use RBA consultation and receive no overseas pay
         assert.ok(parsed);
         const q = campQuote(parsed, early);
         assert.equal(q.state, "local_review");
-        assert.equal(q.perPlayer, null);
-        assert.equal(q.total, null);
+        assert.equal(q.perPlayer, residence === "okinawa" ? housing ? 39600 : 27500 : null);
+        assert.equal(q.total, residence === "okinawa" && players < 3 ? (housing ? 39600 : 27500) * players : null);
         assert.equal(q.checkoutUrl, null);
         assert.equal(q.registrationUrl, null);
       }
     }
   }
+});
+
+test("resident yen prices do not stack overseas discounts or expire at the early-bird deadline", () => {
+  for (const housing of [true, false]) for (const now of [early, normal]) {
+    const q = campQuote({housing, players: 2, residence: "okinawa"}, now);
+    assert.equal(q.currency, "JPY"); assert.equal(q.early, false);
+    assert.equal(q.total, (housing ? 39600 : 27500) * 2);
+    assert.equal(q.checkoutUrl, null); assert.equal(q.registrationUrl, null);
+  }
+});
+test("resident prices close with the camp rather than showing a payable local quote", () => {
+  const q = campQuote({housing: true, players: 1, residence: "okinawa"}, new Date(ONLINE_PAYMENT_END));
+  assert.equal(q.state, "closed"); assert.equal(q.perPlayer, null); assert.equal(q.checkoutUrl, null);
 });
