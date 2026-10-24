@@ -110,7 +110,7 @@ export default function InstagramEntryPage() {
             <p className="mt-4 text-sm leading-6">海外の選手と練習・ゲーム・交流。<br />お友達と一緒の参加も、ご相談ください。</p>
             <a className="mt-5 flex min-h-14 items-center justify-between gap-3 bg-[#151719] px-5 py-4 text-sm font-black text-white transition-colors hover:bg-[#333] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719] sm:text-base"
               href={track("/ja/events/okinawa-international-camp-2026", "featured_okinawa_details", "okinawa_camp_20261222")}
-              data-cta="okinawa_camp_details">沖縄キャンプの詳細・参加案内 <ArrowUpRight size={20} className="shrink-0" aria-hidden="true" /></a>
+              style={{ color: "#fff" }} data-cta="okinawa_camp_details">沖縄キャンプの詳細・参加案内 <ArrowUpRight size={20} className="shrink-0" aria-hidden="true" /></a>
             <a className="mt-3 flex min-h-12 items-center justify-between gap-3 border border-[#151719] bg-white px-4 py-3 text-sm font-black transition-colors hover:bg-[#fff5eb] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719]"
               href={track("/ja/events/okinawa-international-camp-2026/apply", "featured_okinawa_japan", "okinawa_camp_20261222")}
               data-cta="okinawa_camp_japan">日本国内からの参加・料金相談 <ArrowUpRight size={18} className="shrink-0" aria-hidden="true" /></a>
