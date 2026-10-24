@@ -52,7 +52,36 @@ export function ClinicRequest({locale}:{locale:Locale}){
     <section className="hosting-ready section-pad"><div><p className="section-index">{c.readyLabel}</p><h2>{c.readyTitle}</h2></div><ul>{c.ready.map((item,i)=><li key={item}><span>{String(i+1).padStart(2,"0")}</span><strong>{item}</strong><CheckCircle2 aria-hidden="true"/></li>)}</ul></section>
     <section className="hosting-roles section-pad"><div className="section-head"><div><p className="section-index inverse">{c.rolesLabel}</p><h2>{c.rolesTitle}</h2></div></div><div className="role-grid"><article><MapPin aria-hidden="true"/><h3>{c.organiser}</h3><ul>{c.organiserItems.map(x=><li key={x}>{x}</li>)}</ul></article><article><Users aria-hidden="true"/><h3>{c.rba}</h3><ul>{c.rbaItems.map(x=><li key={x}>{x}</li>)}</ul></article></div></section>
     <section className="hosting-contact section-pad"><div><p className="section-index">{c.contactLabel}</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p></div><a className="button button-orange" href="#request-form">{c.formCta}<ArrowDown size={17}/></a></section>
-    <ContactForm locale={locale}/>
+    {locale === "ja" && (
+      <section className="section-pad bg-[#f5f4f0] text-[#151719]">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-black tracking-[.16em] text-neutral-600">RBA NATIONAL CLINIC NETWORK</p>
+          <h2 className="mt-3 text-[clamp(29px,4vw,45px)] font-black leading-tight tracking-[-.05em]">
+            1回で終わらせず、<br />地域に学びを残す。
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-8 text-neutral-700">
+            全国の地域ホストやクラブと協力し、チーム訪問、合同公開クリニック、3回の継続シリーズを開催条件に合わせて設計します。
+            初回の学びを普段の練習で試し、希望があれば次回に変化を確かめる仕組みです。継続開催は自動契約ではありません。
+          </p>
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            {[
+              ["TEAM VISIT", "今いるチームの体育館へ訪問"],
+              ["REGIONAL CLINIC", "地域の複数チームで合同開催"],
+              ["DEVELOPMENT SERIES", "3〜6か月で3回の継続を相談"],
+            ].map(([name,detail])=>(
+              <div className="border border-neutral-300 bg-white p-5" key={name}>
+                <p className="text-[11px] font-black tracking-[.13em]">{name}</p>
+                <p className="mt-2 text-sm font-medium text-neutral-700">{detail}</p>
+              </div>
+            ))}
+          </div>
+          <a href="/ja/national-clinic-tour" className="mt-6 inline-flex items-center gap-2 text-sm font-black underline underline-offset-4">
+            全国クリニックの開催モデルを見る <ArrowRight size={18} aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+    )}
+    <ContactForm locale={locale} formPurpose={locale==="ja" ? "clinic-host" : "general"}/>
     <section className="request-fallback section-pad"><p className="section-index">{c.direct}</p><div><a href={"mailto:riot.training.base@gmail.com?subject="+encodeURIComponent(subject)}><Mail size={19}/>riot.training.base@gmail.com</a><a href="https://wa.me/818032483703" target="_blank" rel="noreferrer"><MessageCircle size={19}/>{c.whatsapp}</a></div></section>
   </SiteFrame></div>;
 }

@@ -208,6 +208,21 @@ export default function InstagramEntryPage() {
           </p>
         </section>
 
+        <section className="mx-5 mb-9 border border-[#313336] bg-[#191b1d] px-5 py-7 text-white sm:mx-9 sm:px-7" aria-labelledby="national-host-heading">
+          <p className="text-[11px] font-black tracking-[.16em] text-[#ffa66b]">FOR TEAMS & LOCAL ORGANISERS</p>
+          <h2 id="national-host-heading" className="mt-3 text-[25px] font-black leading-tight tracking-[-.04em]">
+            あなたの地域に、RBAを。
+          </h2>
+          <p className="mt-3 text-sm leading-7 text-neutral-300">
+            チーム訪問・地域合同・3回の継続開催。全国から地域ホスト・クラブの開催相談を受け付けています。
+          </p>
+          <a href={track("/ja/national-clinic-tour", "national_host_feature")} data-cta="instagram-national-tour"
+             className="mt-5 flex min-h-12 items-center justify-between gap-3 bg-white px-4 py-3 text-sm font-black text-[#191b1d] hover:bg-neutral-200">
+            開催の仕組み・無料相談を見る <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+          <p className="mt-3 text-[11px] leading-5 text-neutral-400">開催確約・料金発生はありません。会場・内容・費用は事前に確認します。</p>
+        </section>
+
         <section className="border-y border-neutral-300 bg-white px-5 py-10 sm:px-9" aria-labelledby="first-time-heading">
           <p className="text-[11px] font-bold tracking-[.18em] text-neutral-500">FIRST TIME HERE?</p>
           <h2 id="first-time-heading" className="mt-2 text-[25px] font-black tracking-[-.03em]">はじめてRBAを知った方へ。</h2>
@@ -221,7 +236,7 @@ export default function InstagramEntryPage() {
           </div>
           <div className="mt-6 flex flex-wrap gap-5 text-[13px] font-bold">
             <a className="inline-flex items-center gap-2 underline underline-offset-4" href={track("/ja/journal", "free_journal")}><BookOpen size={17} aria-hidden="true" /> 無料JOURNALで学ぶ</a>
-            <a className="inline-flex items-center gap-2 underline underline-offset-4" href={track("/ja/clinic-request", "team_inquiry")}><Users size={17} aria-hidden="true" /> チーム開催を相談する</a>
+            <a className="inline-flex items-center gap-2 underline underline-offset-4" href={track("/ja/national-clinic-tour", "national_clinic_host_inquiry")}><Users size={17} aria-hidden="true" /> チーム開催を相談する</a>
           </div>
         </section>
 

@@ -67,6 +67,9 @@ jobs:
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
 
+      - name: National clinic hosting and payment gate audit
+        run: node audit/national-clinic-funnel/check.mjs
+
       - name: Member onboarding audit
         run: node audit/member-experience/onboarding-check.mjs
 

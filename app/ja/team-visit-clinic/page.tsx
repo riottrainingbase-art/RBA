@@ -56,7 +56,7 @@ export default function Page(){
       <h1>いつもの練習を、<br/>一度RBAに任せてください。</h1>
       <p>TEAM TAKEOVERは、単発の「技術クリニック」ではありません。RBAが普段の体育館へ伺い、90〜120分の通常練習を一度丸ごと担当します。事前にチームの課題を確認し、当日の選手の反応を見ながら内容を調整。終了後は、希望に応じて指導者へ次の練習につながるフィードバックまで行います。</p>
       <div className="closing-actions">
-        <a className="button button-orange" href="https://book.stripe.com/fZu14p2XZ7ru2QtdwH7EQ0x">TEAM TAKEOVERを予約する<ArrowRight size={17}/></a>
+        <a className="button button-orange" href="/ja/clinic-request#request-form">まず無料で開催相談する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="#programme">内容を見る<ArrowRight size={17}/></a>
       </div>
     </section>
@@ -136,20 +136,23 @@ export default function Page(){
 
     <section className="hosting-price section-pad">
       <div className="hosting-price-head">
-        <p className="section-index inverse">TEAM TAKEOVER / RESERVATION</p>
-        <h2>まずは予約金33,000円で、開催調整をスタートできます。</h2>
-        <p>予約金は最終料金の一部に充当します。90〜120分のチーム練習、事前ヒアリング、当日のオンコート指導、希望に応じた指導者フィードバックを基本に、開催地域・交通費・宿泊の有無・追加サポートを確認して残額をご案内します。</p>
-        <div className="free-estimate"><span>TEAM TAKEOVER 予約金</span><strong>¥33,000（税込）</strong></div>
+        <p className="section-index inverse">TEAM TAKEOVER / FREE ENQUIRY FIRST</p>
+        <h2>料金も日程も、まず相談してから決めます。</h2>
+        <p>
+          チーム訪問の料金は、開催地域、指導時間、コーチ数、交通・宿泊、施設の利用条件から個別にお見積りします。
+          最初から決済する必要はありません。開催条件と総額を事前に書面で確認し、双方が合意してから進めます。
+        </p>
+        <div className="free-estimate"><span>開催相談・初回見積</span><strong>¥0</strong></div>
       </div>
       <div className="price-formula">
-        <div className="price-total"><ShieldCheck/><span>決済後に専用フォームへ移動</span></div>
-        <div className="price-item"><span className="price-plus">1</span><Users/><div><strong>予約金を決済</strong><p>Stripeで33,000円をお支払いください。</p></div></div>
-        <div className="price-item"><span className="price-plus">2</span><ClipboardList/><div><strong>チーム情報を送信</strong><p>決済後の専用フォームで、希望日・地域・年代・現在の課題を共有してください。</p></div></div>
-        <div className="price-item"><span className="price-plus">3</span><MessageSquare/><div><strong>日程・内容・残額を確定</strong><p>RBAで確認後、実施内容と費用を整理してご連絡します。</p></div></div>
-        <p className="price-note">交通費・宿泊費等が必要な場合は別途見積となります。日程はフォーム送信後に確定します。通常の開催相談・見積りから始めたい場合は、従来どおり相談フォームも利用できます。</p>
+        <div className="price-total"><ShieldCheck/><span>ご相談 → 見積・条件合意 → 必要な決済</span></div>
+        <div className="price-item"><span className="price-plus">1</span><ClipboardList/><div><strong>成人の主催者から開催相談</strong><p>開催地域・対象年代・人数・希望日・現在のチーム課題を伺います。</p></div></div>
+        <div className="price-item"><span className="price-plus">2</span><MessageSquare/><div><strong>内容と正式見積をご案内</strong><p>指導内容、交通・宿泊、施設費、集金主体、キャンセル・返金条件まで書面で整理します。</p></div></div>
+        <div className="price-item"><span className="price-plus">3</span><Users/><div><strong>条件に合意して開催を確定</strong><p>主催責任者・会場・日程・必要な支払いを確認してから募集・実施します。</p></div></div>
+        <p className="price-note">予約金などが必要な案件では、開催条件を書面で確定した後に個別の決済案内を行います。公開ページの送信だけでは予約や支払いは発生しません。</p>
         <div className="closing-actions">
-          <a className="button button-orange" href="https://book.stripe.com/fZu14p2XZ7ru2QtdwH7EQ0x">予約金33,000円で申し込む<ArrowRight size={17}/></a>
-          <a className="button button-dark" href="/ja/clinic-request">まず相談する<ArrowRight size={17}/></a>
+          <a className="button button-orange" href="/ja/clinic-request#request-form">無料でチーム訪問を相談する<ArrowRight size={17}/></a>
+          <a className="button button-dark" href="/ja/national-clinic-tour">全国の開催モデルを見る<ArrowRight size={17}/></a>
         </div>
       </div>
     </section>
@@ -157,7 +160,7 @@ export default function Page(){
     <section className="closing-cta section-pad">
       <p className="eyebrow">RBA TEAM TAKEOVER / VISIT TRAINING</p>
       <h2>クリニックではなく、<br/>チームの“いつもの練習”を変える。</h2>
-      <p>一度の派手なイベントではなく、普段の練習で何を見るか、どう判断させるか、どんなゲームを使うかまで一緒に扱います。すぐ日程調整へ進みたい場合は予約金から、まず話を聞きたい場合は相談から選べます。</p>
+      <p>一度の派手なイベントではなく、普段の練習で何を見るか、どう判断させるか、どんなゲームを使うかまで一緒に扱います。まず開催地域とチームの課題を伺い、内容と費用を整理します。初回開催が合えば、3か月後の再訪問や継続シリーズもご相談できます。</p>
       <div className="closing-actions">
         <a className="button button-orange" href="/ja/clinic-request">訪問トレーニングを相談する<ArrowRight size={17}/></a>
         <a className="button button-dark" href="mailto:riot.training.base@gmail.com?subject=RBA%20TEAM%20VISIT%20CLINIC%E7%9B%B8%E8%AB%87">メールで相談する<ArrowRight size={17}/></a>
