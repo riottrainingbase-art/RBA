@@ -1,3 +1,4 @@
+import { processOkinawaCampCheckout, processOkinawaCampRefund } from "./okinawa-camp.ts";
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import Stripe from "npm:stripe@22.4.0";
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -311,6 +312,7 @@ async function processOkinawaClinicFailure(supabase:any,event:any,session:any){
 }
 
 async function processCheckout(supabase:any,event:any,session:any) {
+  if(await processOkinawaCampCheckout(supabase,event,session))return;
   if(await processOkinawaClinicCheckout(supabase,event,session))return;
   const subjectFromRef=await resolveByClientRef(supabase,session);
   const emailUser=await resolveByEmail(supabase,session);
@@ -547,6 +549,7 @@ async function processInvoice(supabase:any,invoice:any,paid:boolean) {
   return false;
 }
 async function processRefund(supabase:any,refund:any) {
+  if(await processOkinawaCampRefund(supabase,refund))return true;
   const paymentIntentId=sid(refund.payment_intent);
   if(!paymentIntentId) return false;
   const {error}=await supabase.rpc("record_stripe_refund",{
@@ -588,7 +591,7 @@ Deno.serve(async (request:Request)=>{
       const session=event.data.object; handled=await processEssentialCheckout(supabase,event,session); if(!handled){ await processCheckout(supabase,event,session); handled=true; }
     } else if(event.type==="checkout.session.async_payment_failed") {
       const session=event.data.object;
-      if(await processOkinawaClinicFailure(supabase,event,session)){ handled=true; } else if(String(session.metadata?.program||"")==="essential_supporters"){ await logAction(supabase,"essential_supporter_payment_failed",session.id,null,null,{program:"essential_supporters"},event.id+":essential_supporter_payment_failed"); handled=true; } else {
+      if(await processOkinawaCampCheckout(supabase,event,session)){ handled=true; } else if(await processOkinawaClinicFailure(supabase,event,session)){ handled=true; } else if(String(session.metadata?.program||"")==="essential_supporters"){ await logAction(supabase,"essential_supporter_payment_failed",session.id,null,null,{program:"essential_supporters"},event.id+":essential_supporter_payment_failed"); handled=true; } else {
       const subjectId=await resolveByClientRef(supabase,session);
       const payerId=(await resolveByEmail(supabase,session))||subjectId;
       if(payerId) {
@@ -620,3 +623,4 @@ Deno.serve(async (request:Request)=>{
     return new Response("Webhook processing failed",{status:500});
   }
 });
+
