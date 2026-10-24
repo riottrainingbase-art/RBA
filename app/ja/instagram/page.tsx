@@ -5,9 +5,9 @@ import Image from "next/image";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Instagramから参加する・学ぶ | Riot Basketball Academy",
+  title: "Instagramから参加する・学ぶ",
   description:
-    "RBAの全国クリニック、オンライン指導者講習、国際交流、D-HUB、MY HOME COURTへ。選手・保護者・指導者のための公式入口。",
+    "沖縄国際キャンプ（12月22〜24日・7〜18歳）、全国クリニック、オンライン指導者講習、D-HUB、MY HOME COURTへ。選手・保護者・指導者のための公式入口。",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://riotbasketballacademy.com/ja/instagram" },
   openGraph: {
@@ -70,13 +70,17 @@ const entries = [
 ] as const;
 
 // Resolve time in a server utility; avoid sampling a clock in React render code.
-function shouldShowTorstenPromotion() {
-  return Date.now() < Date.parse("2026-11-25T00:00:00+09:00");
+function currentPromotions() {
+  const now = Date.now();
+  return {
+    torsten: now < Date.parse("2026-11-25T00:00:00+09:00"),
+    okinawa: now < Date.parse("2026-12-24T12:00:00+09:00"),
+  };
 }
 
 export default function InstagramEntryPage() {
   // 11/25 (JST)以降は新規販促カードを表示しない。200名達成時は別途早期停止。
-  const showTorsten = shouldShowTorstenPromotion();
+  const { torsten: showTorsten, okinawa: showOkinawa } = currentPromotions();
 
   return (
     <main className="min-h-screen bg-[#f4f4f1] text-[#151719]">
@@ -96,6 +100,23 @@ export default function InstagramEntryPage() {
           </a>
           <span className="text-[10px] font-bold tracking-[.12em] text-neutral-600">OFFICIAL / JAPAN</span>
         </header>
+
+        {showOkinawa && (
+          <section className="mx-5 mt-5 border border-[#d95100] bg-[#ff761b] p-5 text-[#151719] sm:mx-9 sm:mt-7 sm:p-7" aria-labelledby="okinawa-feature-title">
+            <p className="text-[11px] font-black tracking-[.12em]">PICK UP / OKINAWA INTERNATIONAL CAMP</p>
+            <h2 id="okinawa-feature-title" className="mt-3 text-[32px] font-black leading-[1.2] tracking-[-.04em] sm:text-[44px]">沖縄で、<br />世界の仲間とバスケ。</h2>
+            <p className="mt-4 text-[18px] font-black leading-7 sm:text-xl">2026年12月22日（火）〜24日（木）</p>
+            <p className="mt-1 text-sm font-bold">7〜18歳対象 · 国際ユースキャンプ · 2泊3日</p>
+            <p className="mt-4 text-sm leading-6">海外の選手と練習・ゲーム・交流。<br />お友達と一緒の参加も、ご相談ください。</p>
+            <a className="mt-5 flex min-h-14 items-center justify-between gap-3 bg-[#151719] px-5 py-4 text-sm font-black text-white transition-colors hover:bg-[#333] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719] sm:text-base"
+              href={track("/ja/events/okinawa-international-camp-2026", "featured_okinawa_details", "okinawa_camp_20261222")}
+              style={{ color: "#fff" }} data-cta="okinawa_camp_details">沖縄キャンプの詳細・参加案内 <ArrowUpRight size={20} className="shrink-0" aria-hidden="true" /></a>
+            <a className="mt-3 flex min-h-12 items-center justify-between gap-3 border border-[#151719] bg-white px-4 py-3 text-sm font-black transition-colors hover:bg-[#fff5eb] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719]"
+              href={track("/ja/events/okinawa-international-camp-2026/apply", "featured_okinawa_japan", "okinawa_camp_20261222")}
+              data-cta="okinawa_camp_japan">日本国内からの参加・料金相談 <ArrowUpRight size={18} className="shrink-0" aria-hidden="true" /></a>
+            <p className="mt-3 text-xs font-medium leading-5">国内参加はRBAが窓口です。国内料金・現地割引は個別にご案内します。</p>
+          </section>
+        )}
 
         <section className="px-5 pb-7 pt-10 sm:px-9 sm:pt-14" aria-labelledby="instagram-title">
           <p className="text-[11px] font-bold tracking-[.2em] text-neutral-600">FROM INSTAGRAM</p>
