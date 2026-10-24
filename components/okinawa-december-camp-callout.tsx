@@ -1,3 +1,4 @@
+import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { CAMP_JAPAN_CONTACT } from "@/lib/okinawa-camp-pricing";
 import { OkinawaCampPartnerNotice } from "./okinawa-camp-partner";
 import type { Locale } from "./site-frame";
@@ -18,6 +19,7 @@ export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
     <p className={styles.date}>{c.date}</p>
     <h2 id={`okinawa-december-${locale}`}>{c.title}</h2>
     <p>{c.body}</p>
+    {locale === "ja" && <OkinawaEarlyBird compact/>}
     <OkinawaCampPartnerNotice locale={locale}/>
     {locale === "ja" && <p><strong>沖縄県民割引のご案内</strong><br/>通い3日間27,500円／宿泊2泊3日39,600円（税込・1名）。<a href="/ja/events/okinawa-international-camp-2026#okinawa-resident-discount">県民割引の内容・参加案内 →</a></p>}
     <p className={styles.price}>{c.price}</p>

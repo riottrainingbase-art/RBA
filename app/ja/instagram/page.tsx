@@ -1,3 +1,4 @@
+import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { OkinawaCampPartnerNotice } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
 import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, Globe2, House, Users } from "lucide-react";
@@ -109,6 +110,7 @@ export default function InstagramEntryPage() {
             <p className="mt-4 text-[18px] font-black leading-7 sm:text-xl">2026年12月22日（火）〜24日（木）</p>
             <p className="mt-1 text-sm font-bold">7〜18歳対象 · 国際ユースキャンプ · 2泊3日</p>
             <p className="mt-4 text-sm leading-6">海外の選手と練習・ゲーム・交流。<br />お友達と一緒の参加も、ご相談ください。</p>
+            <OkinawaEarlyBird compact/>
             <OkinawaCampPartnerNotice locale="ja"/>
             <a className="mt-5 flex min-h-14 items-center justify-between gap-3 bg-[#151719] px-5 py-4 text-sm font-black text-white transition-colors hover:bg-[#333] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719] sm:text-base"
               href={track("/ja/events/okinawa-international-camp-2026", "featured_okinawa_details", "okinawa_camp_20261222")}
