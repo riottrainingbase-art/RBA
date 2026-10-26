@@ -93,7 +93,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
     {locale==="ja"?<section className="section-pad" style={{background:"#edf1f6",color:"#10233f",borderTop:"1px solid #d8dfe7"}}>
       <p className="section-index">SENDAI U12 / MONIWADAI</p>
       <h2 style={{fontSize:"clamp(24px,3vw,36px)",margin:"10px 0 12px"}}>仙台U12スクール｜茂庭台小学校</h2>
-      <p style={{lineHeight:1.9,maxWidth:780}}>仙台市太白区・茂庭台小学校で開催を準備中。小学5年生を含むU12年代を対象に、技術と判断をゲームで育てます。日程・料金・体験条件は調整中のため、募集確定前のご相談を受け付けています。</p>
+      <p style={{lineHeight:1.9,maxWidth:780}}>仙台市太白区・茂庭台小学校。原則金曜日18:00〜19:30（月3回を基本）。U12年代の技術と判断をゲームで育てます。入会金10,000円・月額7,700円。具体的な開催日と体験条件は調整中のため、ご相談を受け付けています。</p>
       <a href="/ja/u12-school" className="button button-dark">開催情報・体験相談を見る <ArrowRight size={16}/></a>
     </section>:null}
     {locale==="ja"?<div className="section-pad"><RegionalSchoolCallout/></div>:null}
