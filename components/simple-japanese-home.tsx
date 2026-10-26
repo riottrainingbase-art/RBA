@@ -42,12 +42,13 @@ export function SimpleJapaneseHome() {
 
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
         <div className={styles.heading}><div><p className={styles.label}>参加する</p><h2 id="home-programme-title">募集中の活動</h2></div><a className={styles.textLink} href="/ja/opportunities">すべての活動を見る →</a></div>
-        <div className={styles.programmes}>{active.map(p => <article key={p.id}>
+        <div className={styles.programmes}>{active.map(p => {const href=p.japaneseInfoPath || (p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl);const external=/^https?:\/\//.test(href);return <article key={p.id}>
           <p className={styles.date}>{tr(p.date, "ja")}</p><h3>{tr(p.title, "ja")}</h3>
           <p className={styles.place}>{tr(p.place, "ja")}</p>
           <dl><div><dt>対象</dt><dd>{tr(p.audience, "ja")}</dd></div><div><dt>費用</dt><dd>{tr(p.price, "ja")}</dd></div></dl>
-          <a data-growth-id={`home-programme-${p.id}`} href={p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl} target={p.detailPath ? undefined : "_blank"} rel={p.detailPath ? undefined : "noopener noreferrer"}>内容・申し込みを確認 →</a>
-        </article>)}</div>
+          <p className={styles.entryNote}>{tr(p.payment,"ja")}</p>
+          <a data-growth-id={`home-programme-${p.id}`} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>内容・参加条件を確認 →</a>
+        </article>})}</div>
         {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
       </section>
 

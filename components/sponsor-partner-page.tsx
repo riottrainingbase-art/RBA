@@ -18,7 +18,7 @@ const c={
   pilot:"FIRST PARTNER PILOT",pilotTitle:"まずは90日・5万円から。",pilotBody:"最初から年間契約をお願いしません。1つのバスケットボール企画を一緒に動かし、支援の使途と成果を確認したうえで、継続を双方で判断します。",
   included:["公式サイトのパートナー掲載","対象企画での社名・ロゴ掲出または連携","SNS・JOURNAL等での活動紹介","実施後の簡易インパクトレポート"],
   safety:"RBAが守ること",safetyItems:["未成年者への直接営業は行いません","健康・体調などの個人データをスポンサーへ提供しません","広告と育成コンテンツを明確に分けます","肖像・コメントの利用は同意を前提とします"],
-  cta:"最初の一社を探しています。",ctaBody:"企業が大切にしている価値と、RBAの育成活動が重なる場所を先に決めます。まず一つの企画からご相談ください。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
+  cta:"次の育成機会を、一緒につくる。",ctaBody:"企業が大切にしている価値と、RBAの育成活動が重なる場所を先に決めます。まず一つの企画からご相談ください。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
  },
  en:{
   kicker:"CORPORATE PARTNERSHIP / BASKETBALL",title:"Build the next opportunity for young players—together.",lead:"RBA connects youth basketball clinics, camps, coach education, international exchange and MY HOME COURT. Corporate support becomes real development opportunities, not just logo placement.",
@@ -76,6 +76,6 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
   <section className="sponsor-categories section-pad"><p className="section-index">PARTNERSHIP FIT</p><h2>BASKETBALL × BUSINESS</h2><div>{x.categories.map(([tag,desc])=><article key={tag}><span>{tag}</span><p>{desc}</p></article>)}</div></section>
   <section className="sponsor-pilot section-pad"><div className="sponsor-pilot-main"><p className="section-index inverse">{x.pilot}</p><h2>{x.pilotTitle}</h2><p>{x.pilotBody}</p><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a></div><div className="sponsor-pilot-list">{x.included.map(item=><p key={item}><CheckCircle2/>{item}</p>)}</div></section>
   <section className="sponsor-safety section-pad"><ShieldCheck/><div><p className="section-index">{x.safety}</p>{x.safetyItems.map(item=><p key={item}>{item}</p>)}</div></section>
-  <section className="sponsor-final section-pad"><p className="section-index">PARTNER WITH RBA</p><h2>{x.cta}</h2><p>{x.ctaBody}</p><div><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={localePath(locale,"contact")}>CONTACT RBA<ArrowUpRight size={17}/></a></div></section>
+  <section className="sponsor-final section-pad"><p className="section-index">PARTNER WITH RBA</p><h2>{x.cta}</h2><p>{x.ctaBody}</p><div><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a>{locale==="ja"&&<a className="button button-dark" href="/ja/family-basketball">企業・団体の親子企画を見る<ArrowRight size={17}/></a>}<a className="button button-dark" href={localePath(locale,"contact")}>CONTACT RBA<ArrowUpRight size={17}/></a></div></section>
  </main>;
 }
