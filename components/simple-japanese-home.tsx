@@ -1,3 +1,4 @@
+import { GrowthClickTracking } from "./growth-click-tracking";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
 import { SiteFrame, localePath } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
@@ -16,16 +17,28 @@ export function SimpleJapaneseHome() {
   const active = programmes.filter(p => isProgrammeActive(p)).sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate)).slice(0,6);
   return <div className={styles.page} lang="ja"><SiteFrame locale="ja" compact>
     <div className={styles.container}>
+      <GrowthClickTracking />
       <section className={styles.hero} aria-labelledby="rba-home-title">
         <div>
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、所属を変えずに学びと挑戦を広げる場所です。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">活動を探す →</a><a className={styles.secondary} href="/ja/my-homecourt">MY HOME COURT →</a><a className={styles.secondary} href="/ja/about">RBAを知る →</a></nav>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">活動を探す →</a><a className={styles.secondary} href="/ja/after-clinic" data-growth-id="home-return">参加した方へ →</a><a className={styles.secondary} href="/ja/about">RBAを知る →</a></nav>
         </div>
       </section>
 
 
+
+      <section className={styles.section} aria-labelledby="home-purpose-title">
+        <div className={styles.heading}><div><p className={styles.label}>あなたの目的から</p><h2 id="home-purpose-title">参加する。チームに呼ぶ。地域でつくる。</h2></div></div>
+        <div className={styles.purposeGrid}>{[
+          ["選手・保護者", "近くで参加したい", "募集中の活動を確認。近くに開催がなければ、希望地域を登録できます。", "/ja/opportunities", "日程・対象・費用を見る", "family"],
+          ["チームの指導者", "普段の練習につなげたい", "チームの課題に合わせた訪問指導と、指導者への引き継ぎを相談できます。", "/ja/team-development", "チーム支援を見る", "team"],
+          ["地域の主催者", "地元で開催したい", "チーム訪問・地域合同・継続開催。会場候補や時期から一緒に整理します。", "/ja/clinic-request", "開催の流れ・費用を見る", "host"],
+          ["企業・協賛担当者", "子どもの挑戦を支えたい", "地域の育成機会への協賛や、企業・団体の親子企画を相談できます。", "/ja/partners", "連携・協賛の方法を見る", "partner"],
+        ].map(([label,title,body,href,cta,id]) => <article key={id}><p className={styles.label}>{label}</p><h3>{title}</h3><p>{body}</p><a href={href} data-growth-id={`home-${id}`}>{cta} →</a></article>)}</div>
+        <p className={styles.note}>お近くに開催がない方は、<a href="/ja/clinic-interest" data-growth-id="home-interest">無料の開催希望登録</a>へ。日程・会場・参加費をご案内してから、参加を決められます。</p>
+      </section>
 
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
         <div className={styles.heading}><div><p className={styles.label}>参加する</p><h2 id="home-programme-title">募集中の活動</h2></div><a className={styles.textLink} href="/ja/opportunities">すべての活動を見る →</a></div>
@@ -33,7 +46,7 @@ export function SimpleJapaneseHome() {
           <p className={styles.date}>{tr(p.date, "ja")}</p><h3>{tr(p.title, "ja")}</h3>
           <p className={styles.place}>{tr(p.place, "ja")}</p>
           <dl><div><dt>対象</dt><dd>{tr(p.audience, "ja")}</dd></div><div><dt>費用</dt><dd>{tr(p.price, "ja")}</dd></div></dl>
-          <a href={p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl} target={p.detailPath ? undefined : "_blank"} rel={p.detailPath ? undefined : "noopener noreferrer"}>内容・申し込みを確認 →</a>
+          <a data-growth-id={`home-programme-${p.id}`} href={p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl} target={p.detailPath ? undefined : "_blank"} rel={p.detailPath ? undefined : "noopener noreferrer"}>内容・申し込みを確認 →</a>
         </article>)}</div>
         {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
       </section>
@@ -53,6 +66,11 @@ export function SimpleJapaneseHome() {
       <section className={styles.regional} aria-labelledby="regional-school-invitation">
         <div><p className={styles.label}>地域スクール</p><h2 id="regional-school-invitation">あなたの街にも、RBAを。</h2><p>参加希望・指導・運営・会場・協賛の相談を受け付けています。開催地域・日程・料金は未定。希望の送信・相談は無料です。</p></div>
         <div className={styles.regionalActions}><a href="/ja/regional-program#families">近くで参加したい →</a><a href="/ja/regional-program#partners">指導・運営に協力したい →</a></div>
+      </section>
+
+      <section className={styles.regional} aria-labelledby="home-continue-title">
+        <div><p className={styles.label}>参加した日の学びを、次の練習へ</p><h2 id="home-continue-title">一つ試す。振り返る。また挑戦する。</h2><p>クリニックで気づいたことから、次の練習で試すことを一つ。保護者の声かけ例と振り返りメモを、登録なしで使えます。</p></div>
+        <div className={styles.regionalActions}><a href="/ja/after-clinic" data-growth-id="home-followup">参加後の振り返り・次回の探し方 →</a></div>
       </section>
 
       <section className={styles.section} id="home-learning" aria-labelledby="home-learning-title">

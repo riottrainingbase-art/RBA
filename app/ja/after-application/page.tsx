@@ -42,6 +42,7 @@ export default function Page(){
       </div>
     </section>
 
+    <section className="section-pad"><h2 className="text-2xl font-bold">参加が終わった方へ</h2><p className="my-4 leading-8">気づいたこと、次の練習で試すことを整理する振り返りメモと、保護者の声かけ例を公開しています。登録なしで使えます。</p><a className="text-link" href="/ja/after-clinic">参加後の振り返り・次の機会を探す →</a></section>
     <section className="statement section-pad">
       <p className="section-index">WHY HOME COURT</p>
       <div>
