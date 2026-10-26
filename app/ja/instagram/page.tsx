@@ -75,6 +75,7 @@ const entries = [
 function currentPromotions() {
   const now = Date.now();
   return {
+    kobe: now < Date.parse("2026-11-23T16:00:00+09:00"),
     torsten: now < Date.parse("2026-11-25T00:00:00+09:00"),
     okinawa: now < Date.parse("2026-12-24T12:00:00+09:00"),
   };
@@ -82,7 +83,7 @@ function currentPromotions() {
 
 export default function InstagramEntryPage() {
   // 11/25 (JST)以降は新規販促カードを表示しない。200名達成時は別途早期停止。
-  const { torsten: showTorsten, okinawa: showOkinawa } = currentPromotions();
+  const { torsten: showTorsten, okinawa: showOkinawa, kobe: showKobe } = currentPromotions();
 
   return (
     <main className="min-h-screen bg-[#f4f4f1] text-[#151719]">
@@ -103,6 +104,13 @@ export default function InstagramEntryPage() {
           <span className="text-[10px] font-bold tracking-[.12em] text-neutral-600">OFFICIAL / JAPAN</span>
         </header>
 
+        {showKobe && <section className="mx-5 mt-5 border-2 border-black bg-[#ff7900] p-5 sm:mx-9 sm:p-7" aria-labelledby="kobe-feature-title">
+          <p className="text-xs font-black tracking-widest">11.21–23 / 兵庫・たつの</p>
+          <h2 id="kobe-feature-title" className="mt-3 text-3xl font-black leading-tight">練習した技術を、<br/>試合で使える力へ。</h2>
+          <p className="mt-4 text-sm font-bold leading-7">小5〜中3。半日6,600円・日帰り11,000円。<br/>宿泊せずに通える育成キャンプです。</p>
+          <a href={track("/ja/events/kobe-development-camp-2026","kobe_feature","kobe_20261121")} data-cta="kobe-camp-details" className="mt-5 flex min-h-14 items-center justify-between bg-black px-4 py-3 text-sm font-black text-white" style={{color:"#fff"}}>内容・参加プランを相談する <ArrowUpRight size={18}/></a>
+          <p className="mt-3 text-xs leading-6">会場・宿泊条件は最終調整中。決済前にご相談ください。</p>
+        </section>}
         {showOkinawa && (
           <section className="mx-5 mt-5 border border-[#d95100] bg-[#ff761b] p-5 text-[#151719] sm:mx-9 sm:mt-7 sm:p-7" aria-labelledby="okinawa-feature-title">
             <p className="text-[11px] font-black tracking-[.12em]">PICK UP / OKINAWA INTERNATIONAL CAMP</p>
@@ -253,3 +261,4 @@ export default function InstagramEntryPage() {
     </main>
   );
 }
+
