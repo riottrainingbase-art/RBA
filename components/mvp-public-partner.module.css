@@ -1,0 +1,18 @@
+.section{background:#fff;color:#161616;padding:64px clamp(24px,6vw,88px);scroll-margin-top:100px}
+.inner{max-width:1180px;margin:0 auto}
+.kicker{font-size:12px;letter-spacing:.14em;font-weight:700;color:#994000}
+.section h2{font-size:clamp(26px,3.2vw,42px);line-height:1.35;margin:16px 0 32px;text-wrap:balance}
+.content{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;border-top:2px solid #ff7900;padding-top:32px;align-items:start}
+.brand{text-align:center;padding:24px 8px}
+.brand img{display:block;width:160px;height:auto;margin:0 auto 20px}
+.brand p{font-weight:800;font-size:17px;line-height:1.5;margin:0 0 8px}
+.brand span{font-size:14px;color:#595959}
+.copy{font-size:16px;line-height:1.9;max-width:760px}
+.copy p{margin:0 0 18px}
+.copy .role{font-size:13px;font-weight:700;color:#994000}
+.copy h3{font-size:19px;margin:24px 0 10px}
+.copy .note{font-size:14px;color:#595959}
+.copy a{display:inline-flex;gap:24px;align-items:center;min-height:48px;border-bottom:2px solid #b84b00;color:#222;text-decoration:none;font-weight:700}
+.copy a:hover{color:#994000}
+.copy a:focus-visible{outline:3px solid #994000;outline-offset:5px}
+@media(max-width:640px){.section{padding:42px 24px}.content{grid-template-columns:1fr;gap:12px}.brand{padding:8px 0 20px}.section h2{font-size:28px}.copy{font-size:16px}}
