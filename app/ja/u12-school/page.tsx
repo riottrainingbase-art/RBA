@@ -6,11 +6,11 @@ const inquiry = "mailto:riot.training.base@gmail.com?subject=RBA%20%E4%BB%99%E5%
 
 export const metadata: Metadata = {
   title: "仙台U12バスケットボールスクール｜茂庭台小学校｜RBA",
-  description: "Riot Basketball Academyが仙台市太白区・茂庭台小学校で準備するU12バスケットボールスクール。小学生向け。開催日・月謝・体験条件は調整中。お問い合わせ受付。",
+  description: "Riot Basketball Academyが仙台市太白区・茂庭台小学校で準備するU12バスケットボールスクール。小学生向け。原則金曜日18:00〜19:30、月3回を基本とします。入会金10,000円・月会費7,700円。具体的な開催日と体験条件は調整中です。",
   alternates: { canonical: url },
   openGraph: {
     title: "RBA 仙台U12スクール｜茂庭台小学校",
-    description: "仙台市太白区・茂庭台小学校でのU12スクールを準備中。日程・料金・体験条件は確定後にご案内します。",
+    description: "仙台市太白区・茂庭台小学校。原則金曜18:00〜19:30（月3回）。入会金10,000円、月額7,700円。体験日・開始時期は個別にご案内します。",
     url,
     siteName: "Riot Basketball Academy",
     type: "website",
@@ -41,11 +41,12 @@ export default function SendaiU12SchoolPage() {
           {[
             ["会場","茂庭台小学校（宮城県仙台市太白区）"],
             ["対象","U12年代の小学生（小学5年生も対象）"],
-            ["開催状況","開催準備・調整中"],
-            ["曜日・時間・料金","確定後にご案内"],
+            ["基本スケジュール","原則金曜日 18:00〜19:30（月3回を基本）"],
+            ["会費","入会金10,000円（初回）／月額7,700円。事務手数料の別途設定なし"],
+            ["開催状況","具体的な開催日・体験受付の条件は調整中"],
           ].map(([label,value])=><article key={label} style={{padding:24,background:"#fff",border:"1px solid #d8dfe7"}}><p style={{fontSize:12,color:"#526278",fontWeight:800,margin:"0 0 12px"}}>{label}</p><p style={{fontSize:17,fontWeight:700,lineHeight:1.65,margin:0}}>{value}</p></article>)}
         </div>
-        <p style={{lineHeight:1.85,color:"#536174",marginTop:24}}>現在、体育館の利用日程や指導・体験の受け入れ条件を確認しています。会場の利用確定、体験枠、募集開始、参加費は未発表です。申込み・決済をお願いする段階ではありません。</p>
+        <p style={{lineHeight:1.85,color:"#536174",marginTop:24}}>基本の活動枠は金曜日18:00〜19:30です。学校行事や体育館の利用条件によって変更する場合があります。具体的な開催日・体験受入れ・開始時期は確認中です。入会金10,000円と月額7,700円は既存のRBA決済設定に基づきますが、受入れ確定前の申込み・決済はお控えください。</p>
       </div>
     </section>
     <section style={{padding:"clamp(44px,7vw,84px) 6vw",background:"#fff",color:"#10233f"}}>
