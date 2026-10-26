@@ -1,0 +1,30 @@
+name: Clinic Draft QA
+on:
+  pull_request:
+    paths:
+      - 'scripts/create-clinic-draft.mjs'
+      - 'components/clinic-auto-generated.ts'
+      - 'components/clinic-pages-data.ts'
+      - '.github/workflows/clinic-draft-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate input safety cases
+        run: node scripts/create-clinic-draft.mjs --self-test
+      - name: Validate generator dry run without changing repository
+        run: |
+          export CLINIC_EVENT_JSON='{"slug":"clinic-dryrun-2027-02-20","area":"IWATE","title":"検証用クリニック","eventDate":"2027-02-20","date":"2027年2月20日","venue":"検証用体育館","audience":"U12","intro":"テストデータ","venueConfirmed":true,"venueEvidenceUrl":"https://example.org/verified"}'
+          node scripts/create-clinic-draft.mjs
+          grep -q '"slug": "clinic-dryrun-2027-02-20"' components/clinic-auto-generated.ts
+          grep -q '"status": "planning"' components/clinic-auto-generated.ts
+          grep -q '"fee": "未確定"' components/clinic-auto-generated.ts
+          if grep -Eq 'paymentUrl|checkoutUrl|registrationUrl' components/clinic-auto-generated.ts; then exit 1; fi
+          git diff -- components/clinic-auto-generated.ts
