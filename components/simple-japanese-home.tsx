@@ -38,6 +38,11 @@ export function SimpleJapaneseHome() {
         {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
       </section>
 
+      <section className={styles.regional} aria-labelledby="sendai-u12-moniwadai">
+        <div><p className={styles.label}>仙台 U12 / 茂庭台小学校</p><h2 id="sendai-u12-moniwadai">小学生の学びを、茂庭台から。</h2><p>仙台市太白区・茂庭台小学校でのU12スクールを準備中。小学5年生も対象です。曜日・料金・体験条件は確定後にご案内します。</p></div>
+        <div className={styles.regionalActions}><a href="/ja/u12-school">スクールの詳細・体験相談 →</a></div>
+      </section>
+
       <section className={styles.regional} aria-labelledby="kagoshima-clinic-home">
         <div><p className={styles.label}>BASTET × RBA / 2026.11.29（日）</p><h2 id="kagoshima-clinic-home">鹿児島で、一緒にバスケ。</h2><p>錦江湾高校体育館。小・中・高校生（男女）対象。午前9:30〜12:00／午後13:00〜15:30。通し4,000円・1部のみ3,000円。</p></div>
         <div className={styles.regionalActions}><a href="/ja/events/kagoshima-clinic-2026-11-29">詳細・メール／DMで申し込む →</a></div>
