@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
 import styles from "./page.module.css";
 
@@ -33,7 +32,6 @@ export default function Page() {
         <p>BASTETとRBAが、鹿児島でクリニックを開催します。小学生から高校生まで、男女ともに参加できます。錦江湾高校のコートで、一緒にバスケットボールを楽しみましょう。</p>
         <a className={styles.primary} href="#entry">参加する時間を選んで申し込む ↓</a>
       </div>
-      <Image className={styles.poster} src="/events/kagoshima-20261129/01.png" alt="RBA公式ロゴ入り BASTET × RBA 鹿児島クリニック開催案内" width={1254} height={1254} sizes="(max-width: 760px) 92vw, 480px" priority/>
     </section>
 
     <div className={styles.localBand}>
@@ -76,8 +74,6 @@ export default function Page() {
       <div className={styles.checklist}><h3>キャンセル・変更について</h3><ul><li>11月21日まで：参加費の100％を返金</li><li>11月22日〜25日：参加費の50％を返金</li><li>11月26日〜当日：原則返金なし</li></ul><p className={styles.small}>RBAがキャンセルのご連絡を受け取った日（日本時間）を基準に返金額を計算します。決済事業者から返還されない手数料や、すでに発生した返金できない実費を差し引く場合があります。RBAの都合で中止する場合は、参加費を全額返金します。詳細は<a href="/ja/policies">参加規約・キャンセル方針</a>をご確認ください。</p><p>変更・キャンセル、お支払いについてのお問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>。参加者のお名前と、午前・午後・両方のいずれに申し込んだかをお知らせください。お支払いが完了したか分からない場合は、再度お支払いをせずにお問い合わせください。</p></div>
       <details className={styles.checklist}><summary>メール・DMでのお申し込み・ご相談</summary><p>オンラインでのお手続きが難しい場合は、主催者のメールアドレス、またはRBA公式InstagramのDMへご連絡ください。すでにお申し込み済みの場合は、その旨をお伝えください。</p><div className={styles.actions}><a href={applicationEmail("午前／午後／通し（選択してください）")}>主催者へメール ↗</a><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">RBA公式Instagram ↗</a></div><p className={styles.email}>主催者メール：wakuuzu@gmail.com</p></details>
     </section>
-
-    <section className={styles.section} aria-labelledby="posters"><p className={styles.label}>BASTET × RBA</p><h2 id="posters">開催案内</h2><p className={styles.small}>下の画像ではメール・DMでのお申し込みをご案内していますが、現在はこちらのページからも、お申し込みとお支払いができます。</p><div className={styles.gallery}>{["開催概要", "鹿児島で直接指導", "午前・午後の開催時間", "参加費", "メール・DMの申込方法"].map((alt, index) => <a key={alt} href={`/events/kagoshima-20261129/0${index + 1}.png`} target="_blank" rel="noopener noreferrer" aria-label={`${alt}の画像を開く`}><Image src={`/events/kagoshima-20261129/0${index + 1}.png`} alt={`RBA公式ロゴ入り：${alt}`} width={1254} height={1254} sizes="(max-width: 760px) 44vw, 220px"/></a>)}</div></section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかのクリニック・イベントを見る</a></p>
   </div></SiteFrame>;
 }
