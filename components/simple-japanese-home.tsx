@@ -39,7 +39,7 @@ export function SimpleJapaneseHome() {
       </section>
 
       <section className={styles.regional} aria-labelledby="sendai-u12-moniwadai">
-        <div><p className={styles.label}>仙台 U12 / 茂庭台小学校</p><h2 id="sendai-u12-moniwadai">小学生の学びを、茂庭台から。</h2><p>仙台市太白区・茂庭台小学校でのU12スクールを準備中。小学5年生も対象です。曜日・料金・体験条件は確定後にご案内します。</p></div>
+        <div><p className={styles.label}>仙台 U12 / 茂庭台小学校</p><h2 id="sendai-u12-moniwadai">小学生の学びを、茂庭台から。</h2><p>仙台市太白区・茂庭台小学校でのU12スクール。小学5年生も対象です。原則金曜18:00〜19:30（月3回を基本）。入会金10,000円・月額7,700円。具体的な開催日・体験条件は確認中です。</p></div>
         <div className={styles.regionalActions}><a href="/ja/u12-school">スクールの詳細・体験相談 →</a></div>
       </section>
 
