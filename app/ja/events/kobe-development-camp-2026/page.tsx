@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 const form = "https://form.jotform.com/262591727805061?utm_source=rba_site&utm_medium=event_page&utm_campaign=kobe_20261121";
-const inquiry = `mailto:riot.training.base@gmail.com?subject=${encodeURIComponent("たつの育成キャンプ｜参加相談")}&body=${encodeURIComponent("参加者の学年：\n参加希望日：\n希望プラン（半日・日帰り・通い・宿泊）：\n相談したいこと：\n")}`;
+const inquiry = "https://form.jotform.com/262983880762068?utm_source=rba_site&utm_medium=camp_inquiry&utm_campaign=kobe_20261121";
 export const metadata: Metadata = {
   title: "兵庫・たつの 育成キャンプ｜11月21〜23日・小5〜中3｜RBA",
   description: "練習した技術を、試合で使える力へ。RBAの兵庫・たつの育成キャンプ。半日6,600円・日帰り11,000円・3日通い27,500円。会場・宿泊条件を最終確認中のため、決済前にご相談ください。",
@@ -27,7 +27,7 @@ export default function KobeDevelopmentCamp() {
         <p className="mt-6 max-w-2xl text-base font-semibold leading-8">ドリブルも、パスも、シュートも。<br/>「何を見て、いつ使うか」まで学ぶRBAの育成キャンプ。</p>
         <div className="mt-8 border-y-2 border-black py-5"><p className="text-[clamp(29px,6vw,60px)] font-black tracking-tight">2026.11.21–23</p><p className="mt-1 font-bold sm:text-xl">兵庫県たつの市 ／ 小学5年生〜中学3年生</p></div>
         <p className="mt-6 text-xl font-black">半日・日帰り・通いでも参加できます。</p>
-        <a href={inquiry} data-cta="kobe-hero-inquiry" className="mt-6 inline-flex min-h-14 items-center justify-center bg-black px-6 py-4 text-base font-black text-white" style={{color:"#fff"}}>参加できる日・プランを相談する ↗</a>
+        <a href={inquiry} data-cta="kobe-hero-inquiry" className="mt-6 inline-flex min-h-14 items-center justify-center bg-black px-6 py-4 text-base font-black text-white" style={{color:"#fff"}}>参加できる日・プランを無料で相談する ↗</a><p className="mt-3 text-xs font-semibold leading-6">相談フォームは無料です。送信しても予約・申込・決済は確定しません。</p>
       </div>
     </section>
     <section aria-labelledby="planning-note" className="mx-auto max-w-5xl px-5 py-7 sm:px-9">
@@ -42,10 +42,10 @@ export default function KobeDevelopmentCamp() {
       <h2 className="text-3xl font-black sm:text-4xl">泊まらなくても、参加できる。</h2><p className="mt-4 leading-8 text-neutral-700">すべての日程に参加できなくても大丈夫。ご家庭の予定に合うプランをご相談ください。</p>
       <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{plans.map(([title,price,note])=><article key={title} className="border border-neutral-300 bg-white p-5"><h3 className="font-black">{title}</h3><p className="mt-4 text-3xl font-black">{price}<span className="ml-2 text-xs font-medium">税込／1名</span></p><p className="mt-3 text-sm text-neutral-600">{note}</p></article>)}</div>
       <p className="mt-5 text-sm leading-7">前夜クリニック：11/20（金）18:00〜20:30／3,300円（税込・1名）。宿泊・食事は含みません。本キャンプと併用する場合は別途お申し込みください。</p>
-      <a href={inquiry} data-cta="kobe-plan-inquiry" className="mt-6 inline-flex min-h-14 items-center bg-black px-6 py-4 font-black text-white" style={{color:"#fff"}}>希望日・参加方法を相談する ↗</a>
+      <a href={inquiry} data-cta="kobe-plan-inquiry" className="mt-6 inline-flex min-h-14 items-center bg-black px-6 py-4 font-black text-white" style={{color:"#fff"}}>希望日・参加方法を無料で相談する ↗</a>
     </section>
     <section className="mx-auto max-w-5xl px-5 pb-12 sm:px-9"><h2 className="text-3xl font-black">よくあるご質問</h2><div className="mt-6 divide-y divide-neutral-300 border-y border-neutral-300">{faq.map(([q,a])=><details key={q} className="py-5"><summary className="cursor-pointer pr-4 font-black">{q}</summary><p className="mt-4 max-w-3xl text-sm leading-8 text-neutral-700">{a}</p></details>)}</div></section>
     <section className="mx-auto max-w-5xl px-5 pb-12 sm:px-9"><h2 className="text-xl font-black">お申し込み前に</h2><p className="mt-4 text-sm leading-7 text-neutral-700">参加者1名ずつお申し込みください。保護者の参加同意・健康上の注意事項・緊急連絡先を確認します。参加日・会場・宿泊条件を確認後、申込時と同じメールアドレスで決済してください。送迎・昼食・宿泊の詳細はプランごとにご確認ください。</p><p className="mt-4 text-sm leading-7 text-neutral-700">キャンセル：最初の参加日の14日前までは返金不可の決済手数料を除き返金、13〜7日前は参加費の50%、6日前以降は100%。宿泊プランは発生済みの返金不可の宿泊費が差し引かれる場合があります。詳しい条件は公式フォームをご確認ください。</p><a href={form} target="_blank" rel="noreferrer" data-cta="kobe-form" className="mt-5 inline-block border-b border-black pb-1 text-sm font-black">公式フォーム・申込条件を確認する ↗</a></section>
-    <footer className="bg-[#ff7900] px-5 py-10 text-center"><p className="text-xs font-black tracking-widest">RIOT BASKETBALL ACADEMY</p><p className="mt-4 text-3xl font-black">次の一歩を、たつので。</p><a href={inquiry} className="mt-6 inline-block bg-black px-6 py-4 font-black text-white" style={{color:"#fff"}}>まずは参加相談 ↗</a><p className="mt-4 text-sm">riot.training.base@gmail.com</p></footer>
+    <footer className="bg-[#ff7900] px-5 py-10 text-center"><p className="text-xs font-black tracking-widest">RIOT BASKETBALL ACADEMY</p><p className="mt-4 text-3xl font-black">次の一歩を、たつので。</p><a href={inquiry} className="mt-6 inline-block bg-black px-6 py-4 font-black text-white" style={{color:"#fff"}}>無料の参加相談フォームへ ↗</a><p className="mt-4 text-sm">メールでもご相談いただけます：<a href="mailto:riot.training.base@gmail.com" className="underline">riot.training.base@gmail.com</a></p></footer>
   </main>;
 }
