@@ -31,6 +31,8 @@ export type Programme = {
   audience: Text4;
   payment: Text4;
   applicationUrl: string;
+  /** Japanese information page to read before applying or paying. */
+  japaneseInfoPath?: string;
   detailPath?: "events/torsten-loibl-online-clinic" | "camp/saga-fukuoka-2026";
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
@@ -60,9 +62,10 @@ export const programmes: readonly Programme[] = [
     datePrimary:["22–24 DEC","12月22〜24日","12月22–24日","12월 22–24일"],dateSecondary:["2 nights planned","2泊3日予定","暫定三天兩夜","2박 3일 예정"],
     title:["Okinawa International Youth Basketball Camp","沖縄国際ユースバスケットボールキャンプ","沖繩國際青少年籃球營","오키나와 국제 유소년 농구 캠프"],
     place:["Itoman Youth Center · final allocation pending","糸満青少年の家（最終調整中）","糸滿青少年之家（最終確認中）","이토만 청소년의 집 · 최종 조율 중"],
-    price:["Published: USD 450 with housing / USD 300 without; discounts available","掲載料金：宿泊・食事付き450米ドル／宿泊なし300米ドル・割引あり","公布費用：含住宿450美元／不含住宿300美元・另有優惠","게시 요금: 숙박 포함 USD 450 / 숙박 제외 USD 300 · 할인 있음"],
+    price:["Published: USD 450 with housing / USD 300 without; discounts available","沖縄県民：通い27,500円／宿泊39,600円（税込）・県外参加は要相談","公布費用：含住宿450美元／不含住宿300美元・另有優惠","게시 요금: 숙박 포함 USD 450 / 숙박 제외 USD 300 · 할인 있음"],
     audience:["Players aged 7–18","7〜18歳の選手","7–18歲球員","만 7–18세 선수"],
     payment:["Contact us before payment or booking travel. Venue, transfers, staff and final inclusions are being confirmed; please confirm final arrangements.","会場・送迎・スタッフ・料金に含まれる内容は最終調整中。支払い・航空券購入前に詳細をお問い合わせください。","場地、接駁、工作人員及費用包含項目仍在確認，付款、訂機票前請先聯絡。","장소·교통·스태프·포함 항목 조율 중.  결제·항공권 구매 전 문의해 주세요."],
+    japaneseInfoPath:"/ja/events/okinawa-international-camp-2026",
     applicationUrl:"https://okinawa.camp/",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
   },
   {
@@ -188,14 +191,15 @@ export const programmes: readonly Programme[] = [
     id: "kobe",
     startDate: "2026-11-20",
     endDate: "2026-11-23",
-    date: ["20–23 NOV 2026", "2026.11.20–23", "2026.11.20–23", "2026.11.20–23"],
-    datePrimary: ["20–23", "20〜23日", "20至23日", "20~23일"],
+    date: ["21–23 NOV 2026 · optional evening clinic 20 NOV", "2026.11.21〜23／11.20は別料金の前夜クリニック", "2026.11.21–23／11.20晚間訓練另計", "2026.11.21–23 / 11.20 전야 클리닉 별도"],
+    datePrimary: ["21–23", "21〜23日", "21至23日", "21~23일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
     title: ["KOBE Development Camp 2026", "KOBE Development Camp 2026", "KOBE培育營2026", "KOBE Development Camp 2026"],
     place: ["Tatsuno, Hyogo", "兵庫・たつの", "兵庫・龍野", "효고・다쓰노"],
     price: ["From ¥6,600 / full camp with stay ¥52,800", "半日 6,600円〜／全日程・宿泊食事付 52,800円", "半日 ¥6,600起／全程含住宿餐食 ¥52,800", "반일 ¥6,600부터 / 전 일정 숙박·식사 포함 ¥52,800"],
     audience:["Grades 5–9", "小学5年〜中学3年", "小學5年級至國中3年級", "초등 5학년~중학 3학년"],
-    payment:["Select a plan, submit and complete the corresponding payment.", "プランを選んでフォームを送信し、選択したプランのお支払いを完了してください", "選擇方案並提交後完成對應付款", "플랜 선택·제출 후 해당 결제 완료"],
+    payment:["Confirm attendance dates, venue and accommodation conditions with RBA before payment.", "会場・宿泊条件を最終確認中。決済前に参加希望日・プランをご相談ください。", "場地與住宿條件仍在確認，付款前請先洽詢參加日期與方案。", "장소·숙박 조건 확인 중. 결제 전 참가일과 플랜을 상담해 주세요."],
+    japaneseInfoPath:"/ja/events/kobe-development-camp-2026",
     applicationUrl: "https://form.jotform.com/262591727805061",
     region:"kansai", category:"TRAVEL", pathway:"development-camp", ageGroups:["U12","U15"],
   },
