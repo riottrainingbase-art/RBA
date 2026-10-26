@@ -1,4 +1,5 @@
 import {programmes} from "./programme-data";
+import {generatedClinicPages} from "./clinic-auto-generated";
 export type Event={slug:string;area:string;title:string;date:string;venue:string;audience:string;fee:string;status:"planning"|"open"|"past";intro:string;focus:string[];note:string;url?:string};
 export const events:Event[]=[
 {slug:"iwate-kitakami-2026",area:"IWATE",title:"岩手・北上クリニック",date:"2026年12月19日・20日を中心に調整中",venue:"北上市周辺／未確定",audience:"U12・U15男女（予定）",fee:"未確定",status:"planning",intro:"練習でできることを、試合で使えるように。岩手県全域の選手に向けた地域クリニックを準備しています。",focus:["技術を実戦へ","相手を見て判断","1対1・2対2・3対3"],note:"日程・会場・料金・定員は未確定です。正式募集・決済は開始していません。"},
@@ -16,5 +17,5 @@ const programmePages:Event[]=programmes.filter(p=>p.id!=="torsten" && p.id!=="ok
  note:"開催内容・募集状況・会場・料金・取消条件は、必ず既存の公式案内と照合してください。申込と決済、参加確定は別の段階です。",
  url:p.japaneseInfoPath||p.applicationUrl
 }));
-export const allClinicPages=[...events,...programmePages];
+export const allClinicPages=[...events,...programmePages,...generatedClinicPages];
 export const findEvent=(slug:string)=>allClinicPages.find(e=>e.slug===slug);
