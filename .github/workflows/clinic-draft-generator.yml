@@ -1,0 +1,37 @@
+name: Clinic Draft Generator
+on:
+  workflow_dispatch:
+    inputs:
+      event_json:
+        description: 'JSON with slug, area, title, eventDate, date, venue, audience, intro, venueConfirmed=true, venueEvidenceUrl'
+        required: true
+        type: string
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate generator
+        run: node scripts/create-clinic-draft.mjs --self-test
+      - name: Create draft record (no payment or publication)
+        env:
+          CLINIC_EVENT_JSON: ${{ inputs.event_json }}
+        run: node scripts/create-clinic-draft.mjs
+      - name: Create review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "rba-clinic-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="clinic-draft-${GITHUB_RUN_ID}"
+          git checkout -b "$BRANCH"
+          git add components/clinic-auto-generated.ts
+          git commit -m "Add verified venue clinic draft"
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --draft --title "Review clinic draft ${GITHUB_RUN_ID}" --body "Draft-only clinic LP data. Review venue evidence, date, fee, safety, rights and approval before merging. No payment link, no SNS, no automatic publishing."
