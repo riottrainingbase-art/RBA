@@ -5,7 +5,7 @@ import { OkinawaCampCheckout } from "@/components/okinawa-camp-checkout";
 
 export const metadata: Metadata = {
   title: "沖縄国際キャンプ｜料金選択・お申し込み・お支払い",
-  description: "2026年12月22〜24日・7〜18歳。沖縄県民割引は通い27,500円・宿泊39,600円（税込）。日本国内の参加はRBAが受付。海外参加者は宿泊・人数から海外向け料金と申込・決済方法を確認できます。",
+  description: "2026年12月22〜24日・7〜18歳。糸満青少年の家での宿泊先確保済み。沖縄県民割引は通い27,500円・宿泊39,600円（税込）。日本国内の参加はRBAが受付。海外参加者は宿泊・人数から海外向け料金と申込・決済方法を確認できます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026/apply" },
 };
 

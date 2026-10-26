@@ -1,3 +1,4 @@
+import { OKINAWA_CAMP_LOGISTICS, OKINAWA_CAMP_LOGISTICS_COPY } from "@/lib/okinawa-camp-logistics";
 import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { OkinawaResidentPrices } from "@/components/okinawa-resident-prices";
 import { OkinawaCampPartner } from "@/components/okinawa-camp-partner";
@@ -12,7 +13,7 @@ const registration = "/ja/events/okinawa-international-camp-2026/apply";
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
   title: "沖縄国際ユースバスケットボールキャンプ｜2026年12月22〜24日・7〜18歳",
-  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。2泊3日、12月24日正午までの退所予定。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
+  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。糸満青少年の家での宿泊先確保済み・2泊3日。体育館の利用時間と集合・解散時刻は調整中。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026" },
 };
 
@@ -21,7 +22,7 @@ export default function Page() {
     <OkinawaEarlyBird/>
     <section className={styles.hero}>
       <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#entry-desk">参加窓口・申込方法を見る ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p></div>
-      <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>会場候補：沖縄県糸満市。体育館・宿泊・食事を同じ施設で行う計画です。施設の利用枠・体育館の時間は最終調整中です。</p><p><strong>12月24日は正午までの退所を予定。</strong></p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
+      <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p><strong>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</strong><br/>{OKINAWA_CAMP_LOGISTICS.address}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
     <OkinawaResidentPrices/>
     <OkinawaCampPartner locale="ja"/>
@@ -31,17 +32,17 @@ export default function Page() {
       <article className={styles.card}><h3>国や言葉を越えてつながる</h3><p>日本と海外の選手が、同じコートで練習し、ゲームで挑戦します。宿泊参加者は食事や共同生活も通じて、国や言葉を越えた交流を深めます。参加国・人数・組分けは申込状況に応じて調整します。</p></article>
     </div><h3>RBA 1対1チャンピオンシップ</h3><p>初日の予選、2日目の順位リーグ・決勝を予定。同じくらいのレベルの選手と対戦する機会をつくり、3日目の閉会時に表彰する計画です。進行は人数・施設利用時間に合わせて調整します。</p></section>
     <section className={styles.section}><p className={styles.label}>3-DAY PLAN</p><h2>3日間の予定</h2><dl className={styles.facts}>
-      <div><dt>12/22（火）</dt><dd><strong>CONNECT｜出会い、基礎をつくる</strong><br/>9:00〜11:00 受付<br/>11:00〜12:00 オリエンテーション<br/>12:00以降は従来の予定どおり。基本練習、1対1予選、チーム活動、振り返り。</dd></div>
-      <div><dt>12/23（水）</dt><dd><strong>CHALLENGE｜判断し、仲間と挑む</strong><br/>練習、1対1順位リーグ・決勝、3対3、映像や対話による振り返り。BBQは施設へ相談中です。</dd></div>
-      <div><dt>12/24（木）</dt><dd><strong>PERFORM｜成長を試し、持ち帰る</strong><br/>最終ゲーム、表彰・閉会、片付け。正午までの退所予定。</dd></div>
-    </dl><p className={styles.small}>2026年10月24日更新。初日午前は主催者Eltonからの最新案内を反映しています。時刻はすべて日本時間です。体育館の利用時間・研修室・活動内容は調整中です。集合・解散の最終案内をご確認ください。</p></section>
+      <div><dt>12/22（火）</dt><dd><strong>CONNECT｜出会い、基礎をつくる</strong><br/>受付・オリエンテーションの時刻は調整中。体育館は14:00〜18:00の利用を希望しています（未確定）。基本練習、1対1予選、チーム活動、振り返りを予定。</dd></div>
+      <div><dt>12/23（水）</dt><dd><strong>CHALLENGE｜判断し、仲間と挑む</strong><br/>体育館は9:00〜17:00の利用を希望しています（未確定）。練習、1対1順位リーグ・決勝、3対3、映像や対話による振り返りを予定。BBQは施設へ相談中です。</dd></div>
+      <div><dt>12/24（木）</dt><dd><strong>PERFORM｜成長を試し、持ち帰る</strong><br/>体育館は9:00〜15:00の利用を希望しています（未確定）。最終ゲーム、表彰・閉会、片付けを予定。宿泊室の退室後の活動と荷物保管は施設に相談中です。</dd></div>
+    </dl><p className={styles.small}>2026年10月27日更新。宿泊先は確保済みです。記載の体育館利用時間は施設への希望枠で、確定時刻ではありません（準備・片付けを含む日本時間）。集合・解散、食事、研修室、荷物保管は最終案内をご確認ください。</p></section>
     <section className={styles.section} id="entry"><p className={styles.label}>PRICING / USD</p><h2>海外参加者向け料金とお申し込み</h2><p>以下は海外からの参加者向け料金です。日本国内の参加者には、RBAから国内料金・申込方法を個別にご案内します。</p><dl className={styles.facts}>
       <div><dt>宿泊・食事付き</dt><dd>通常 <strong>450米ドル／1名</strong><br/>早割20％：360米ドル<br/>早割＋2名以上の追加10％併用：<strong>324米ドル／1名</strong></dd></div>
       <div><dt>宿泊なし</dt><dd>通常 <strong>300米ドル／1名</strong><br/>早割20％：240米ドル<br/>早割＋2名以上の追加10％併用：<strong>216米ドル／1名</strong></dd></div>
       <div><dt>早割期限</dt><dd>10月31日23:59（台湾時間）まで。日本時間では11月1日0:59まで。適用条件・最終金額は申込画面でご確認ください。</dd></div>
       <div><dt>別途・要確認</dt><dd>航空券は別途手配。空港送迎の時間・条件・費用、宿泊なしプランの食事の扱いは、お支払い前にご確認ください。</dd></div>
     </dl><p>追加10％は早割後の金額に適用する計算です（450 × 0.8 × 0.9 = 324米ドル）。日本円の定額料金ではありません。</p>
-    <div className={styles.columns}><article className={styles.card}><h3>参加窓口を選ぶ</h3><p>日本国内の参加はRBAへの問い合わせをご案内します。海外参加者は宿泊・人数から海外向け料金を確認し、申込・決済へ進めます。海外フォームは1回2名まで。3名以上は個別相談です。</p><a className={styles.primary} href={registration}>国内参加の問い合わせ・海外申込へ →</a><p className={styles.small}>申込情報と入金は主催者が照合します。支払い完了は参加の最終確定ではありません。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日朝に到着する便から受付・オリエンテーションへの移動や、最終日の空港への移動など、不明点は予約前にご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ参加・送迎を相談する ↗</a><p className={styles.email}>RBA：riot.training.base@gmail.com</p><p><a href={overseasEmail}>海外参加者の窓口：SPARTANS ↗</a></p></article></div></section>
+    <div className={styles.columns}><article className={styles.card}><h3>参加窓口を選ぶ</h3><p>日本国内の参加はRBAへの問い合わせをご案内します。海外参加者は宿泊・人数から海外向け料金を確認し、申込・決済へ進めます。海外フォームは1回2名まで。3名以上は個別相談です。</p><a className={styles.primary} href={registration}>国内参加の問い合わせ・海外申込へ →</a><p className={styles.small}>申込情報と入金は主催者が照合します。支払い完了は参加の最終確定ではありません。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日の受付時刻と最終日の解散時刻は調整中です。到着便から会場への移動や空港への帰路は、確定した集合・解散案内をご確認のうえご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ参加・送迎を相談する ↗</a><p className={styles.email}>RBA：riot.training.base@gmail.com</p><p><a href={overseasEmail}>海外参加者の窓口：SPARTANS ↗</a></p></article></div></section>
     <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>那覇空港または指定場所からの送迎を希望する方は、事前にご相談ください。会場へ直接お越しいただく方法もあります。12月21日・22日それぞれの到着人数と便の情報を確認し、バス・バンの手配と費用を調整します。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>指導責任者はRBAの西尾優人。追加の指導・引率スタッフは手配中で、確定後に案内予定です。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">海外参加者向け特設サイト：okinawa.camp ↗</a></p></section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかの開催予定を見る</a></p>
   </div></SiteFrame>;
