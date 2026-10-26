@@ -1,3 +1,4 @@
+import { DomesticGrowthLinks } from "./domestic-growth";
 import { ContactForm } from "./contact-form";
 import { ArrowDown, ArrowRight, Building2, CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Mail, MapPin, MessageCircle, MessageSquare, Search, ShieldCheck, TrainFront, Trophy, Users, WalletCards } from "lucide-react";
 import { Locale, SiteFrame } from "@/components/site-frame";
@@ -81,6 +82,7 @@ export function ClinicRequest({locale}:{locale:Locale}){
         </div>
       </section>
     )}
+    {locale === "ja" && <DomesticGrowthLinks/>}
     <ContactForm locale={locale} formPurpose={locale==="ja" ? "clinic-host" : "general"}/>
     <section className="request-fallback section-pad"><p className="section-index">{c.direct}</p><div><a href={"mailto:riot.training.base@gmail.com?subject="+encodeURIComponent(subject)}><Mail size={19}/>riot.training.base@gmail.com</a><a href="https://wa.me/818032483703" target="_blank" rel="noreferrer"><MessageCircle size={19}/>{c.whatsapp}</a></div></section>
   </SiteFrame></div>;
