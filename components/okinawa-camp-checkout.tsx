@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { OKINAWA_CAMP_LOGISTICS_COPY } from "@/lib/okinawa-camp-logistics";
 import type { CampChoice, campQuote } from "@/lib/okinawa-camp-pricing";
 import { CAMP_CONTACT, CAMP_JAPAN_CONTACT, CAMP_OKINAWA_CONTACT, OKINAWA_RESIDENT_PRICES } from "@/lib/okinawa-camp-pricing";
 import styles from "./okinawa-camp-checkout.module.css";
@@ -62,7 +63,7 @@ export function OkinawaCampCheckout() {
     } finally { clearTimeout(timer); setBusy(false); }
   }
 
-  return <div className={styles.flow}>
+  return <div className={styles.flow}><section className={styles.step}><h2>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p></section>
     <section className={styles.step} aria-labelledby="choose-plan"><p className={styles.stepNumber}>01 / 参加窓口・プランを選ぶ</p><h2 id="choose-plan">参加方法を選んでください</h2>
       <div className={styles.fields}>
         <label>参加窓口<select value={residence} onChange={e => { resetQuote(Boolean(e.target.value)); setResidence(e.target.value as CampChoice["residence"] | ""); }}><option value="">選択してください</option><option value="okinawa">沖縄県民割引（日本円・RBA受付）</option><option value="japan">沖縄県外から国内参加（RBA受付）</option><option value="other">海外から参加（海外参加者向け料金）</option></select></label>
@@ -72,7 +73,7 @@ export function OkinawaCampCheckout() {
       <div aria-live="polite" aria-atomic="true">
         {loading && <p role="status">現在の料金を確認しています…</p>}
         {quote?.state === "payable" && <div className={styles.quote}><p>{housing ? "宿泊・食事付き" : "宿泊なし"} · {players}名 · {quote.early ? "早割20％" : "通常期間"}{players === 2 ? " ＋ 2名割10％" : ""}</p><p className={styles.total}>合計 <strong>{quote.total}</strong> 米ドル</p><p>1名あたり {quote.perPlayer}米ドル × {players}名。日本円換算額はカード会社の為替・手数料により異なります。</p>{quote.early && <p>早割は10月31日23:59（台湾時間）まで。日本時間は11月1日0:59までです。割引は20％引き後に10％引きを適用します。</p>}</div>}
-        {quote?.state === "local_review" && residence === "okinawa" && <div className={styles.notice}><h3>沖縄県民割引 / 日本円固定料金</h3><p>{housing ? "宿泊2泊3日" : "通い3日間"}：1名 <strong>{(quote.perPlayer ?? OKINAWA_RESIDENT_PRICES[housing ? "housing" : "day"]).toLocaleString("ja-JP")}円（税込）</strong></p>{quote.total !== null ? <p className={styles.total}>{players}名の合計 <strong>{quote.total.toLocaleString("ja-JP")}</strong> 円（税込）</p> : <p>3名以上は正確な人数をお知らせください。1名あたりの県民料金は変わりません。</p>}<p>{housing ? "宿泊・所定の食事・リネン・保険・宿泊中の見守りを含みます。" : "指導・交流プログラム・保険を含みます。食事・宿泊は含みません。"}交通費・送迎は別途です。海外向け早割・複数名割引との併用はありません。</p><p>氏名・学年（年齢）・性別・連絡先・お住まいの市町村・正確な参加人数・希望プランをお知らせください。受入状況・最終条件を確認し、RBAから申込・日本円での支払い方法をご案内します。</p><a className={styles.primary} href={CAMP_OKINAWA_CONTACT}>県民割引で参加を相談する ↗</a><p><a href="/ja/events/okinawa-international-camp-2026#okinawa-resident-discount">料金に含む内容・適用条件を見る →</a></p><p className={styles.note}>会場利用枠・追加スタッフは最終調整中です。問い合わせのみで参加は確定しません。海外向け米ドル決済は使用しないでください。</p></div>}
+        {quote?.state === "local_review" && residence === "okinawa" && <div className={styles.notice}><h3>沖縄県民割引 / 日本円固定料金</h3><p>{housing ? "宿泊2泊3日" : "通い3日間"}：1名 <strong>{(quote.perPlayer ?? OKINAWA_RESIDENT_PRICES[housing ? "housing" : "day"]).toLocaleString("ja-JP")}円（税込）</strong></p>{quote.total !== null ? <p className={styles.total}>{players}名の合計 <strong>{quote.total.toLocaleString("ja-JP")}</strong> 円（税込）</p> : <p>3名以上は正確な人数をお知らせください。1名あたりの県民料金は変わりません。</p>}<p>{housing ? "宿泊・所定の食事・リネン・保険・宿泊中の見守りを含みます。" : "指導・交流プログラム・保険を含みます。食事・宿泊は含みません。"}交通費・送迎は別途です。海外向け早割・複数名割引との併用はありません。</p><p>氏名・学年（年齢）・性別・連絡先・お住まいの市町村・正確な参加人数・希望プランをお知らせください。受入状況・最終条件を確認し、RBAから申込・日本円での支払い方法をご案内します。</p><a className={styles.primary} href={CAMP_OKINAWA_CONTACT}>県民割引で参加を相談する ↗</a><p><a href="/ja/events/okinawa-international-camp-2026#okinawa-resident-discount">料金に含む内容・適用条件を見る →</a></p><p className={styles.note}>宿泊先は確保済みです。体育館の利用時間・追加スタッフは調整中です。問い合わせのみで参加は確定しません。海外向け米ドル決済は使用しないでください。</p></div>}
         {quote?.state === "local_review" && residence !== "okinawa" && <div className={styles.notice}><h3>日本国内の参加はRBAで受け付けます</h3><p>氏名・学年（年齢）・性別・連絡先・参加人数・宿泊希望を添えて、RBAへお問い合わせください。沖縄県内在住の方は、参加窓口で「沖縄県民割引」を選んでください。</p><p>国内参加の料金・割引条件・申込方法は、確認後に個別にご案内します。海外参加者向けの米ドル料金でお支払いになる前にご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ国内参加を問い合わせる ↗</a><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合はRBA公式InstagramからDM ↗</a></p><p className={styles.note}>riot.training.base@gmail.com<br/>このメールは参加希望のお問い合わせです。送信だけで申込・参加が確定するものではありません。</p></div>}
         {quote?.state === "group_review" && <div className={styles.notice}><h3>3名以上はグループでご相談ください</h3><p>公式フォームは1回2名までです。参加者全員の申込と料金をまとめて確認します。1名用のリンクで人数分をお支払いになる前にお問い合わせください。</p><a className={styles.primary} href={contact}>グループ参加を相談する ↗</a></div>}
         {quote?.state === "closed" && <div className={styles.notice}><h3>オンライン決済の受付は終了しました</h3><p>開催開始後の参加・料金のご相談は、主催者へお問い合わせください。</p><a href={contact}>メールで問い合わせる ↗</a></div>}
@@ -85,7 +86,7 @@ export function OkinawaCampCheckout() {
         <p className={styles.note}>公式フォームは海外参加者向けのSPARTANS側サイトです。日本国内の参加者は「日本国内から参加（RBA受付）」を選んでください。この画面から申込完了を自動確認する機能はありません。宿泊・人数を変更したときは、申込内容も一致しているかご確認ください。</p>
       </section>
       <section className={styles.step} aria-labelledby="pay-next"><p className={styles.stepNumber}>03 / 内容を確認して決済</p><h2 id="pay-next">合計 {quote.total}米ドルのお支払いへ</h2>
-        <ul><li>宿泊付きは2泊・食事付き。航空券は別途です。</li><li>宿泊なしの食事、送迎の時間・条件・費用は、支払い前にお問い合わせください。</li><li>会場・追加スタッフ等は最終調整中です。お支払いは仮予約で、参加の最終確定ではありません。</li><li>RBA都合による中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は、既存の仮予約条件に従い全額返金します。</li></ul>
+        <ul><li>宿泊付きは2泊・食事付き。航空券は別途です。</li><li>宿泊なしの食事、送迎の時間・条件・費用は、支払い前にお問い合わせください。</li><li>糸満青少年の家での宿泊先は確保済みです。体育館の利用時間・集合解散・追加スタッフ等は調整中です。お支払いは仮予約で、参加の最終確定ではありません。</li><li>RBA都合による中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は、既存の仮予約条件に従い全額返金します。</li></ul>
         <label className={styles.check}><input type="checkbox" checked={registrationCompleted} onChange={e => setRegistrationCompleted(e.target.checked)}/>公式フォームで、同じ宿泊区分・人数・参加者の申込を済ませました。</label>
         <label className={styles.check}><input type="checkbox" checked={conditionsAccepted} onChange={e => setConditionsAccepted(e.target.checked)}/>金額・含まれる内容・調整中の事項・仮予約と返金条件を確認しました。</label>
         <button className={styles.primary} type="button" disabled={busy || !registrationCompleted || !conditionsAccepted} onClick={checkout}>{busy ? "決済画面を開いています…" : `${quote.total}米ドルの決済画面へ進む →`}</button>
