@@ -1,3 +1,4 @@
+import { DomesticGrowthLinks } from "./domestic-growth";
 import { ContactForm } from "./contact-form";
 import { ArrowDown, ArrowRight, Building2, CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Mail, MapPin, MessageCircle, MessageSquare, Search, ShieldCheck, TrainFront, Trophy, Users, WalletCards } from "lucide-react";
 import { Locale, SiteFrame } from "@/components/site-frame";
@@ -52,6 +53,7 @@ export function ClinicRequest({locale}:{locale:Locale}){
     <section className="hosting-ready section-pad"><div><p className="section-index">{c.readyLabel}</p><h2>{c.readyTitle}</h2></div><ul>{c.ready.map((item,i)=><li key={item}><span>{String(i+1).padStart(2,"0")}</span><strong>{item}</strong><CheckCircle2 aria-hidden="true"/></li>)}</ul></section>
     <section className="hosting-roles section-pad"><div className="section-head"><div><p className="section-index inverse">{c.rolesLabel}</p><h2>{c.rolesTitle}</h2></div></div><div className="role-grid"><article><MapPin aria-hidden="true"/><h3>{c.organiser}</h3><ul>{c.organiserItems.map(x=><li key={x}>{x}</li>)}</ul></article><article><Users aria-hidden="true"/><h3>{c.rba}</h3><ul>{c.rbaItems.map(x=><li key={x}>{x}</li>)}</ul></article></div></section>
     <section className="hosting-contact section-pad"><div><p className="section-index">{c.contactLabel}</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p></div><a className="button button-orange" href="#request-form">{c.formCta}<ArrowDown size={17}/></a></section>
+    {locale === "ja" && <DomesticGrowthLinks/>}
     <ContactForm locale={locale}/>
     <section className="request-fallback section-pad"><p className="section-index">{c.direct}</p><div><a href={"mailto:riot.training.base@gmail.com?subject="+encodeURIComponent(subject)}><Mail size={19}/>riot.training.base@gmail.com</a><a href="https://wa.me/818032483703" target="_blank" rel="noreferrer"><MessageCircle size={19}/>{c.whatsapp}</a></div></section>
   </SiteFrame></div>;
