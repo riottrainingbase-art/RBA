@@ -13,7 +13,8 @@ export type ProgrammeId =
   | "kobe"
   | "torsten"
   | "sendai-u15"
-  | "backbone-chiba";
+  | "backbone-chiba"
+  | "miyako";
 
 
 export type Programme = {
@@ -44,6 +45,20 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+  {
+    id:"miyako",startDate:"2026-10-31",endDate:"2026-10-31",
+    date:["31 OCT 2026 · 10:00–17:00","2026.10.31（土）10:00〜17:00","2026.10.31 · 10:00–17:00","2026.10.31 · 10:00–17:00"],
+    datePrimary:["31 OCT","10月31日","10月31日","10월 31일"],
+    dateSecondary:["Saturday · 10:00–17:00","土曜日・10:00〜17:00","星期六・10:00–17:00","토요일 · 10:00–17:00"],
+    title:["RBA 1DAY CLINIC in Miyako","宮古 RBA 1DAY CLINIC","宮古 RBA 一日籃球訓練","미야코 RBA 1DAY CLINIC"],
+    place:["Sentoku District Gymnasium · Miyako, Iwate","岩手県宮古市・千徳地区体育館","岩手縣宮古市・千德地區體育館","이와테현 미야코시 · 센토쿠 체육관"],
+    price:["Check the organiser's official form","参加費は現地主催者の公式フォームで確認","費用請參閱主辦單位官方表單","참가비는 주최자 공식 신청서 확인"],
+    audience:["Grades 5–9 · capacity 30","小学5年〜中学3年・定員30名","小學5年級至國中3年級・限30名","초등 5학년~중학 3학년 · 정원 30명"],
+    payment:["Apply through the organiser's existing Google Form.","現地主催者指定の公式Googleフォームから申込。支払条件はフォーム記載を優先。","透過主辦單位官方表單報名。","주최자 공식 Google 양식으로 신청."],
+    applicationUrl:"https://docs.google.com/forms/d/e/1FAIpQLScQ8EtCsB7itDZkWebebPLcIRbWtgt4cXioL5DCj3v8RLdr5w/viewform",
+    japaneseInfoPath:"/events/miyako-20261031",
+    region:"tohoku",category:"TRAIN",pathway:"clinic",ageGroups:["U12","U15"],
+  },
   {
     id:"kagoshima-nov29",startDate:"2026-11-29",
     date:["29 NOV 2026 · 09:30–12:00 / 13:00–15:30","2026.11.29（日）午前9:30〜12:00／午後13:00〜15:30","2026.11.29 · 09:30–12:00／13:00–15:30","2026.11.29 · 09:30–12:00 / 13:00–15:30"],
