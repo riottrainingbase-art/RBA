@@ -20,8 +20,12 @@ const themes = [
   { n: "03", en: "NOTICE → CHOOSE → PLAY", title: "速く走るだけでなく、\n速く気づく。", body: "毎回、同じ正解があるわけではありません。目の前の状況を見て選び、試し、振り返る。練習した技術を、次のプレーにつなげます。" },
 ];
 
+function registrationClosed() {
+  return Date.now() >= Date.parse("2026-11-07T09:00:00+09:00");
+}
+
 export default function Page() {
-  const closed = Date.now() >= Date.parse("2026-11-07T09:00:00+09:00");
+  const closed = registrationClosed();
   return <SiteFrame locale="ja"><div className={styles.page}>
     <section className={styles.hero}>
       <a className={styles.back} href="/ja/schedule">← 開催日程へ</a>
