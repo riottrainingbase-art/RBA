@@ -40,6 +40,17 @@ export function SimpleJapaneseHome() {
         <p className={styles.note}>お近くに開催がない方は、<a href="/ja/clinic-interest" data-growth-id="home-interest">無料の開催希望登録</a>へ。日程・会場・参加費をご案内してから、参加を決められます。</p>
       </section>
 
+      <section className={styles.regional} aria-labelledby="miyako-oct31-feature">
+        <div>
+          <p className={styles.label}>10月31日（土）｜岩手・宮古｜RBA × BiiLDact</p>
+          <h2 id="miyako-oct31-feature">宮古で、バスケが変わる。</h2>
+          <p>千徳地区体育館 10:00〜17:00（受付9:30）。小学5年〜中学3年・定員30名。技術を試合の判断につなげる1DAY CLINIC。参加費・条件は現地主催者の公式フォームをご確認ください。</p>
+        </div>
+        <div className={styles.regionalActions}>
+          <a href="/events/miyako-20261031" data-growth-id="home-miyako-20261031">開催詳細・公式申込フォームへ →</a>
+        </div>
+      </section>
+
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
         <div className={styles.heading}><div><p className={styles.label}>参加する</p><h2 id="home-programme-title">募集中の活動</h2></div><a className={styles.textLink} href="/ja/opportunities">すべての活動を見る →</a></div>
         <div className={styles.programmes}>{active.map(p => {const href=p.japaneseInfoPath || (p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl);const external=/^https?:\/\//.test(href);return <article key={p.id}>
