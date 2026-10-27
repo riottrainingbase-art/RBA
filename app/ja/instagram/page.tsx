@@ -108,7 +108,7 @@ export default function InstagramEntryPage() {
         {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
           <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
           <h2 id="shizugawa-feature-title" className="mt-3 text-3xl font-black leading-tight">海と森の志津川で、<br/>次のプレーへ。</h2>
-          <p className="mt-4 text-sm leading-7">攻守が変わった瞬間に、見て、選んで、動き出す。<br/>小4〜中3｜宿泊25,000円・日帰り1日6,600円。</p>
+          <p className="mt-4 text-sm leading-7">攻守が変わった瞬間に、見て、選んで、動き出す。<br/>小4〜中3｜宿泊25,000円・日帰り1日6,600円（食事代別）。</p>
           <a href={track("/ja/events/shizugawa-development-camp-2026", "shizugawa_feature", "shizugawa_20261107")} className="mt-5 flex min-h-14 items-center justify-between bg-[#0b3542] px-4 py-3 text-sm font-black" style={{color:"#fff"}}>志津川キャンプの詳細・お申し込み <ArrowUpRight size={18}/></a>
           <p className="mt-3 text-xs leading-6">ホームページからお申し込みいただけます。参加条件は受付後にRBAからご案内します。</p>
         </section>}
