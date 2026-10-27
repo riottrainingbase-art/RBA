@@ -184,6 +184,7 @@ export const programmes: readonly Programme[] = [
     price: ["Participation: ¥25,000", "参加費 25,000円", "參加費 ¥25,000", "참가비 ¥25,000"],
     audience:["Grades 3–9", "小学3年〜中学3年", "小學3年級至國中3年級", "초등 3학년~중학 3학년"],
     payment:["RBA sends payment instructions after review.", "内容を確認した後、RBAからお支払い方法を個別にご案内します", "確認內容後由RBA另行通知付款方式", "내용 확인 후 RBA가 결제 방법 안내"],
+    japaneseInfoPath: "/ja/events/shizugawa-development-camp-2026",
     applicationUrl: "https://form.jotform.com/262498430063054",
     region:"tohoku", category:"TRAVEL", pathway:"development-camp", ageGroups:["U10","U12","U15"],
   },

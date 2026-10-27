@@ -75,6 +75,7 @@ const entries = [
 function currentPromotions() {
   const now = Date.now();
   return {
+    shizugawa: now < Date.parse("2026-11-07T09:00:00+09:00"),
     kobe: now < Date.parse("2026-11-23T16:00:00+09:00"),
     torsten: now < Date.parse("2026-11-25T00:00:00+09:00"),
     okinawa: now < Date.parse("2026-12-24T12:00:00+09:00"),
@@ -83,7 +84,7 @@ function currentPromotions() {
 
 export default function InstagramEntryPage() {
   // 11/25 (JST)以降は新規販促カードを表示しない。200名達成時は別途早期停止。
-  const { torsten: showTorsten, okinawa: showOkinawa, kobe: showKobe } = currentPromotions();
+  const { torsten: showTorsten, okinawa: showOkinawa, kobe: showKobe, shizugawa: showShizugawa } = currentPromotions();
 
   return (
     <main className="min-h-screen bg-[#f4f4f1] text-[#151719]">
@@ -104,6 +105,13 @@ export default function InstagramEntryPage() {
           <span className="text-[10px] font-bold tracking-[.12em] text-neutral-600">OFFICIAL / JAPAN</span>
         </header>
 
+        {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
+          <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
+          <h2 id="shizugawa-feature-title" className="mt-3 text-3xl font-black leading-tight">海と森の志津川で、<br/>次のプレーへ。</h2>
+          <p className="mt-4 text-sm leading-7">攻守が変わった瞬間に、見て、選んで、動き出す。<br/>小3〜中3・1泊2日・参加費25,000円。</p>
+          <a href={track("/ja/events/shizugawa-development-camp-2026", "shizugawa_feature", "shizugawa_20261107")} className="mt-5 flex min-h-14 items-center justify-between bg-[#0b3542] px-4 py-3 text-sm font-black" style={{color:"#fff"}}>志津川キャンプの内容・参加方法 <ArrowUpRight size={18}/></a>
+          <p className="mt-3 text-xs leading-6">外部参加は、追加受入枠・宿泊条件を確認してご案内します。</p>
+        </section>}
         {showKobe && <section className="mx-5 mt-5 border-2 border-black bg-[#ff7900] p-5 sm:mx-9 sm:p-7" aria-labelledby="kobe-feature-title">
           <p className="text-xs font-black tracking-widest">11.21–23 / 兵庫・たつの</p>
           <h2 id="kobe-feature-title" className="mt-3 text-3xl font-black leading-tight">練習した技術を、<br/>試合で使える力へ。</h2>
