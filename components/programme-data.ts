@@ -181,7 +181,7 @@ export const programmes: readonly Programme[] = [
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
     title: ["Shizugawa Development Camp 2026", "志津川 Development Camp 2026", "志津川培育營2026", "시즈가와 Development Camp 2026"],
     place: ["Minamisanriku, Miyagi", "宮城・南三陸（志津川）", "宮城・南三陸（志津川）", "미야기・미나미산리쿠（시즈가와）"],
-    price: ["Overnight ¥25,000 / day ¥6,600", "宿泊25,000円／日帰り1日6,600円", "住宿 ¥25,000／單日 ¥6,600", "숙박 ¥25,000 / 당일 ¥6,600"],
+    price: ["Overnight ¥25,000 / day ¥6,600 (meals extra)", "宿泊25,000円／日帰り1日6,600円（食事代別）", "住宿 ¥25,000／單日 ¥6,600（餐費另計）", "숙박 ¥25,000 / 당일 ¥6,600 (식비 별도)"],
     audience:["Grades 4–9", "小学4年〜中学3年", "小學4年級至國中3年級", "초등 4학년~중학 3학년"],
     payment:["RBA sends payment instructions after review.", "内容を確認した後、RBAからお支払い方法を個別にご案内します", "確認內容後由RBA另行通知付款方式", "내용 확인 후 RBA가 결제 방법 안내"],
     japaneseInfoPath: "/ja/events/shizugawa-development-camp-2026",
