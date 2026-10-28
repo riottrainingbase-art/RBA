@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//RBA//Torsten Loibl Clinic//EN
+BEGIN:VEVENT
+UID:torsten-clinic-20261125@riotbasketballacademy.com
+DTSTAMP:20261028T040000Z
+DTSTART:20261125T110000Z
+DTEND:20261125T123000Z
+SUMMARY:Torsten Loibl Online Clinic Vol.2
+DESCRIPTION:English lecture with Japanese consecutive interpretation. Registration required. Live admission US$39. Recording sold separately.
+LOCATION:Zoom - access emailed to registered participants
+URL:https://riotbasketballacademy.com/events/torsten-loibl-online-clinic
+END:VEVENT
+END:VCALENDAR
