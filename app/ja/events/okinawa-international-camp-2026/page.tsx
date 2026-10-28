@@ -22,10 +22,34 @@ export default function Page() {
   return <SiteFrame locale="ja"><div className={styles.page}>
     <OkinawaEarlyBird/>
     <section className={styles.hero}>
-      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#okinawa-resident-discount">プランを選んで申込・決済へ ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p><p><a href="#okinawa-domestic-prices"><strong>県外からの参加プラン ↓</strong></a></p></div>
+      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#okinawa-resident-discount">プランを選んで申込・決済へ ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p><p><a href="#okinawa-domestic-prices"><strong>県外からの参加プラン ↓</strong></a></p><p><a href="#camp-coaches">キャンプコーチを紹介 ↓</a></p></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p><strong>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</strong><br/>{OKINAWA_CAMP_LOGISTICS.address}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
     <OkinawaResidentPrices/><OkinawaResidentPrices residence="japan"/>
+    <section className={styles.section} aria-labelledby="camp-coaches">
+      <p className={styles.label}>CAMP COACHES / JAPAN × TAIWAN</p>
+      <h2 id="camp-coaches">キャンプコーチの紹介</h2>
+      <p>日本と台湾で育成年代の交流を重ねてきた、西尾優人とElton。子どもたちが一緒にプレーし、新しい仲間や考え方に出会う3日間をつくります。</p>
+      <div className={styles.columns}>
+        <article className={styles.card} aria-labelledby="coach-nishio">
+          <p className={styles.label}>RIOT BASKETBALL ACADEMY / JAPAN</p>
+          <h3 id="coach-nishio">西尾 優人 <span className={styles.small}>Masato Nishio</span></h3>
+          <p><strong>Riot Basketball Academy 代表・ヘッドコーチ</strong></p>
+          <p>ドイツのBVケムニッツ99での活動を経験し、現在は日本各地で育成年代の指導や指導者の学びを支えています。これまでに全国で4,000名以上の選手を指導。台湾のSPARTANSとも連携し、選手同士の交流やクリニックに取り組んでいます。</p>
+          <p>大切にしているのは、状況を見て、自分で判断し、プレーすること。基本技術をゲームの中で使える力につなげ、年齢や経験に合った課題を通じて、一人ひとりの挑戦を支えます。</p>
+          <p className={styles.small}><a href="https://rbaofficialnm2.wixsite.com/riot-rba/about-9" target="_blank" rel="noopener noreferrer">経歴・育成方針を見る ↗</a></p>
+        </article>
+        <article className={styles.card} aria-labelledby="coach-elton">
+          <p className={styles.label}>SPARTANS / TAIWAN</p>
+          <h3 id="coach-elton">Elton Chen <span className={styles.small}>エルトン・チェン</span></h3>
+          <p><strong>SPARTANS（台湾）／日台バスケットボール交流</strong></p>
+          <p>NBA Taiwanでの勤務経験を持ち、台湾のSPARTANSを通じて育成年代のバスケットボールと国際交流に携わっています。RBAとは2026年8月の沖縄での交流、同年10月の台湾での練習・親善試合・クリニックなどで連携してきました。</p>
+          <p>海外の選手や指導者と出会う機会を、より多くの子どもたちに届けることを目指しています。バスケットボールを共通の言葉に、国や言葉の違いを越えて学び合う機会づくりに取り組んでいます。</p>
+          <p className={styles.small}><a href="https://note.com/rba_official/n/nd7e845a1453c" target="_blank" rel="noopener noreferrer">RBAとEltonの日台交流の活動を読む ↗</a></p>
+        </article>
+      </div>
+      <p><a href={registration}>料金を選んで、申込・決済へ →</a></p>
+    </section>
     <OkinawaCampPartner locale="ja"/>
     <section className={styles.section} aria-labelledby="entry-desk"><p className={styles.label}>REGISTRATION / 参加窓口</p><h2 id="entry-desk">国内参加は、そのまま申込・決済へ。</h2><p>通い27,500円・宿泊39,600円（税込）。上のプランボタンから、選手情報・保護者の連絡先の入力とお支払いをまとめて行えます。事前のメール申込は不要です。県外からの国内参加は、通い30,250円・宿泊43,560円（税込）です。県外向けプランからも、そのまま申込・決済へ進めます。</p><a className={styles.primary} href="#okinawa-resident-discount">プランを選んで申込・決済へ ↑</a><p><a href="#okinawa-domestic-prices">県外からの国内参加プランはこちら</a></p><p>すでにお申し込み・お支払い済みの方は、重複して手続きせずRBAへご連絡ください。メールが開かない場合は、riot.training.base@gmail.comへ直接お送りいただくか、Instagramからご連絡ください。</p><p className={styles.email}>riot.training.base@gmail.com</p><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合：RBA公式InstagramからDMで相談 ↗</a></p><p className={styles.small}>海外参加者向けサイト「okinawa.camp」と掲載の米ドル料金は、海外から参加される方の案内です。日本国内の方は、上の国内向け日本円プランをご利用ください。</p></section>
     <section className={styles.section}><p className={styles.label}>CONNECT · LEARN · CHALLENGE</p><h2>バスケットボールの先にある経験を。</h2><div className={styles.columns}>
@@ -56,7 +80,7 @@ export default function Page() {
       <div><dt>別途・要確認</dt><dd>航空券は別途手配。空港送迎の時間・条件・費用、宿泊なしプランの食事の扱いは、お支払い前にご確認ください。</dd></div>
     </dl><p>追加10％は早割後の金額に適用する計算です（450 × 0.8 × 0.9 = 324米ドル）。日本円の定額料金ではありません。</p>
     <div className={styles.columns}><article className={styles.card}><h3>参加窓口を選ぶ</h3><p>沖縄県民の方はプランを選ぶと申込・決済へ進めます。県外からの国内参加も、日本円で申込・決済へ進めます。海外参加者は宿泊・人数から海外向け料金を確認し、申込・決済へ進めます。海外フォームは1回2名まで。3名以上は個別相談です。</p><a className={styles.primary} href={registration}>国内・海外のお申し込みへ →</a><p className={styles.small}>申込情報と入金は主催者が照合します。支払い完了は参加の最終確定ではありません。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日の受付時刻と最終日の解散時刻は調整中です。到着便から会場への移動や空港への帰路は、確定した集合・解散案内をご確認のうえご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ参加・送迎を相談する ↗</a><p className={styles.email}>RBA：riot.training.base@gmail.com</p><p><a href={overseasEmail}>海外参加者の窓口：SPARTANS ↗</a></p></article></div></section>
-    <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>那覇空港または指定場所からの送迎を希望する方は、事前にご相談ください。会場へ直接お越しいただく方法もあります。12月21日・22日それぞれの到着人数と便の情報を確認し、バス・バンの手配と費用を調整します。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>指導責任者はRBAの西尾優人。追加の指導・引率スタッフは手配中で、確定後に案内予定です。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">海外参加者向け特設サイト：okinawa.camp ↗</a></p></section>
+    <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>那覇空港または指定場所からの送迎を希望する方は、事前にご相談ください。会場へ直接お越しいただく方法もあります。12月21日・22日それぞれの到着人数と便の情報を確認し、バス・バンの手配と費用を調整します。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>キャンプコーチは西尾優人とElton Chen。指導責任者はRBAの西尾優人です。追加の指導・引率スタッフや宿泊中の見守り体制は調整中で、確定後にご案内します。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">海外参加者向け特設サイト：okinawa.camp ↗</a></p></section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかの開催予定を見る</a></p>
   </div></SiteFrame>;
 }
