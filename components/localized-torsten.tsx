@@ -23,7 +23,7 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
   const memberRegistrationUrl=homecourtFreeRegistrationUrl(locale);
   return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale} languagePage="events/torsten-loibl-online-clinic">
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"Event",name:c.title.join(" "),description:c.intro,startDate:"2026-11-25T20:00:00+09:00",endDate:"2026-11-25T21:30:00+09:00",eventAttendanceMode:"https://schema.org/OnlineEventAttendanceMode",eventStatus:"https://schema.org/EventScheduled",location:{"@type":"VirtualLocation",url:torstenRegistrationUrl},organizer:{"@type":"SportsOrganization",name:"Riot Basketball Academy",url:"https://riotbasketballacademy.com"},performer:{"@type":"Person",name:"Torsten Loibl"},offers:[{"@type":"Offer",name:"Live",price:"3300",priceCurrency:"JPY",url:torstenRegistrationUrl,availability:"https://schema.org/InStock"},{"@type":"Offer",name:"30-day on-demand",price:"4400",priceCurrency:"JPY",url:torstenRegistrationUrl,availability:"https://schema.org/InStock"}]})}}/>
-    <section className="inner-hero torsten-page-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{ui(locale,"clinic")}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p>{locale==="ja"?<p className="eyebrow">11/25（水）20:00〜21:30・日本時間<br/>LIVE ¥3,300 ｜ 30日オンデマンド ¥4,400（税込）<br/>Zoom・日本語逐次通訳付き</p>:null}<div className="torsten-hero-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href={locale==="ja"?"#participation":"#audience"}>{locale==="ja"?"ライブと録画の参加方法を見る":c.audienceLabel}<ArrowDown size={16}/></a></div></section>
+    <section className="inner-hero torsten-page-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{ui(locale,"clinic")}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p>{locale==="ja"?<p className="eyebrow">11/25（水）20:00〜21:30・日本時間<br/>LIVE ¥3,300 ｜ 30日オンデマンド ¥4,400（税込）<br/>Zoom・日本語逐次通訳付き</p>:null}<div className="torsten-hero-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"ライブ・録画をフォームで選ぶ":c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href={locale==="ja"?"#participation":"#audience"}>{locale==="ja"?"30日録画と申込手順を見る":c.audienceLabel}<ArrowDown size={16}/></a></div>{locale==="ja"?<p style={{fontSize:"14px",lineHeight:1.8,marginTop:"16px"}}>申込フォーム送信後、表示される既存の決済リンクでお支払いください。フォーム送信だけでは参加確定になりません。</p>:null}</section>
 
     {locale==="ja"?<section className="torsten-conversion section-pad">
       <div className="torsten-conversion-head">
@@ -38,7 +38,7 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
       </div>
       <div className="torsten-conversion-cta">
         <div><strong>11.25 WED / 20:00–21:30</strong><span>Zoom・日本語逐次通訳付き</span></div>
-        <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">ライブ参加 ¥3,300で申し込む<ArrowUpRight size={17}/></a>
+        <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">ライブ・録画をフォームで選ぶ<ArrowUpRight size={17}/></a>
       </div>
     </section>:null}
     {locale==="ja"?<section className="torsten-demand section-pad">
@@ -50,7 +50,7 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
         <div className="torsten-demand-note">
           <strong>当日予定があっても参加できます。</strong>
           <p>オンデマンドは30日間。仕事や練習と重なっても、自分のタイミングで繰り返し視聴できます。</p>
-          <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">30日オンデマンド ¥4,400で申し込む<ArrowUpRight size={17}/></a>
+          <a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">録画視聴をフォームで選ぶ（¥4,400）<ArrowUpRight size={17}/></a>
         </div>
       </div>
       <div className="torsten-question-grid">
