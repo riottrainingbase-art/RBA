@@ -1,11 +1,11 @@
 "use client";
 
-import { OKINAWA_DOMESTIC_APPLICATION_URL, OKINAWA_RESIDENT_CHECKOUT_URLS } from "@/lib/okinawa-camp-registration";
+import { OKINAWA_RESIDENT_CHECKOUT_URLS, OKINAWA_DOMESTIC_CHECKOUT_URLS } from "@/lib/okinawa-camp-registration";
 
 import { useEffect, useState } from "react";
 import { OKINAWA_CAMP_LOGISTICS_COPY } from "@/lib/okinawa-camp-logistics";
 import type { CampChoice, campQuote } from "@/lib/okinawa-camp-pricing";
-import { CAMP_CONTACT, CAMP_JAPAN_CONTACT, CAMP_OKINAWA_CONTACT, OKINAWA_RESIDENT_PRICES } from "@/lib/okinawa-camp-pricing";
+import { CAMP_CONTACT, CAMP_JAPAN_CONTACT, CAMP_OKINAWA_CONTACT, OKINAWA_RESIDENT_PRICES, OKINAWA_DOMESTIC_PRICES } from "@/lib/okinawa-camp-pricing";
 import styles from "./okinawa-camp-checkout.module.css";
 
 type Quote = Omit<ReturnType<typeof campQuote>, "checkoutUrl">;
@@ -34,6 +34,8 @@ export function OkinawaCampCheckout() {
     return () => { clearTimeout(timer); controller.abort(); };
   }, [housing, players, residence, retry]);
 
+  const domesticPrices = residence === "okinawa" ? OKINAWA_RESIDENT_PRICES : OKINAWA_DOMESTIC_PRICES;
+  const domesticCheckout = residence === "okinawa" ? OKINAWA_RESIDENT_CHECKOUT_URLS : OKINAWA_DOMESTIC_CHECKOUT_URLS;
   const contact = residence === "okinawa" ? CAMP_OKINAWA_CONTACT : residence === "other" ? CAMP_CONTACT : CAMP_JAPAN_CONTACT;
 
   function resetQuote(willLoad: boolean) {
@@ -68,15 +70,15 @@ export function OkinawaCampCheckout() {
   return <div className={styles.flow}><section className={styles.step}><h2>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p></section>
     <section className={styles.step} aria-labelledby="choose-plan"><p className={styles.stepNumber}>01 / 参加窓口・プランを選ぶ</p><h2 id="choose-plan">参加方法を選んでください</h2>
       <div className={styles.fields}>
-        <label>参加窓口<select value={residence} onChange={e => { resetQuote(Boolean(e.target.value)); if (e.target.value === "okinawa") setPlayers(1); setResidence(e.target.value as CampChoice["residence"] | ""); }}><option value="">選択してください</option><option value="okinawa">沖縄県民割引（日本円・RBA受付）</option><option value="japan">沖縄県外から国内参加（RBA受付）</option><option value="other">海外から参加（海外参加者向け料金）</option></select></label>
+        <label>参加窓口<select value={residence} onChange={e => { resetQuote(Boolean(e.target.value)); if (e.target.value !== "other") setPlayers(1); setResidence(e.target.value as CampChoice["residence"] | ""); }}><option value="">選択してください</option><option value="okinawa">沖縄県民割引（日本円・RBA受付）</option><option value="japan">沖縄県外から国内参加（RBA受付）</option><option value="other">海外から参加（海外参加者向け料金）</option></select></label>
         <label>宿泊<select value={String(housing)} onChange={e => { resetQuote(Boolean(residence)); setHousing(e.target.value === "true"); }}><option value="true">宿泊・食事付き（2泊）</option><option value="false">宿泊なし（通い）</option></select></label>
-        {residence !== "okinawa" && <label>参加人数<select value={players} onChange={e => { resetQuote(Boolean(residence)); setPlayers(Number(e.target.value) as 1 | 2 | 3); }}><option value="1">1名</option><option value="2">2名</option><option value="3">3名以上</option></select></label>}
+        {residence === "other" && <label>参加人数<select value={players} onChange={e => { resetQuote(Boolean(residence)); setPlayers(Number(e.target.value) as 1 | 2 | 3); }}><option value="1">1名</option><option value="2">2名</option><option value="3">3名以上</option></select></label>}
       </div>
       <div aria-live="polite" aria-atomic="true">
         {loading && <p role="status">現在の料金を確認しています…</p>}
         {quote?.state === "payable" && <div className={styles.quote}><p>{housing ? "宿泊・食事付き" : "宿泊なし"} · {players}名 · {quote.early ? "早割20％" : "通常期間"}{players === 2 ? " ＋ 2名割10％" : ""}</p><p className={styles.total}>合計 <strong>{quote.total}</strong> 米ドル</p><p>1名あたり {quote.perPlayer}米ドル × {players}名。日本円換算額はカード会社の為替・手数料により異なります。</p>{quote.early && <p>早割は10月31日23:59（台湾時間）まで。日本時間は11月1日0:59までです。割引は20％引き後に10％引きを適用します。</p>}</div>}
-        {quote?.state === "local_review" && residence === "okinawa" && <div className={styles.notice}><h3>沖縄県民割引 / 日本円固定料金</h3><p>{housing ? "宿泊2泊3日" : "通い3日間"}：1名 <strong>{(quote.perPlayer ?? OKINAWA_RESIDENT_PRICES[housing ? "housing" : "day"]).toLocaleString("ja-JP")}円（税込）</strong></p><p>{housing ? "宿泊・所定の食事・リネン・保険・宿泊中の見守りを含みます。" : "指導・交流プログラム・保険を含みます。食事・宿泊は含みません。"}交通費・送迎は別途です。海外向け早割・複数名割引との併用はありません。</p><p>選手情報・保護者の連絡先の入力とお支払いを、決済画面でまとめて行えます。事前メールは不要です。1回につき選手1名のお申し込みとなります。</p><a className={styles.primary} href={OKINAWA_RESIDENT_CHECKOUT_URLS[housing ? "housing" : "day"]}>{OKINAWA_RESIDENT_PRICES[housing ? "housing" : "day"].toLocaleString("ja-JP")}円で申込・決済へ →</a><p><a href="/ja/events/okinawa-international-camp-2026#okinawa-resident-discount">料金に含む内容・適用条件を見る →</a></p><p className={styles.note}>宿泊先は確保済みです。体育館の利用時間・追加スタッフは調整中です。お支払いは仮予約です。主催者都合の中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は全額返金します。</p></div>}
-        {quote?.state === "local_review" && residence !== "okinawa" && <div className={styles.notice}><h3>日本国内の参加はRBAで受け付けます</h3><p>申込メールに、選手・保護者の情報と希望プランをご記入ください。沖縄県内在住の方は、参加窓口で「沖縄県民割引」を選んでください。</p><p>県外から参加する方の料金・割引条件は、申込内容を確認したうえで個別にご案内します。海外参加者向けの米ドル料金でお支払いになる前にご相談ください。</p><a className={styles.primary} href={OKINAWA_DOMESTIC_APPLICATION_URL}>メールで申し込む ↗</a><p><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">メールが開かない場合はRBA公式InstagramからDM ↗</a></p><p className={styles.note}>riot.training.base@gmail.com<br/>申込メールの送信だけで参加確定・お支払いとはなりません。すでに申込・支払い済みの方は、重複せずRBAへご連絡ください。</p></div>}
+        {quote?.state === "local_review" && residence !== "other" && <div className={styles.notice}><h3>{residence === "okinawa" ? "沖縄県民割引" : "県外からの国内参加"} / 日本円固定料金</h3><p>{housing ? "宿泊2泊3日" : "通い3日間"}：1名 <strong>{(quote.perPlayer ?? domesticPrices[housing ? "housing" : "day"]).toLocaleString("ja-JP")}円（税込）</strong></p><p>{housing ? "宿泊・所定の食事・リネン・保険・宿泊中の見守りを含みます。" : "指導・交流プログラム・保険を含みます。食事・宿泊は含みません。"}交通費・送迎は別途です。海外向け早割・複数名割引との併用はありません。</p><p>選手情報・保護者の連絡先の入力とお支払いを、決済画面でまとめて行えます。事前メールは不要です。1回につき選手1名のお申し込みとなります。</p><a className={styles.primary} href={domesticCheckout[housing ? "housing" : "day"]}>{domesticPrices[housing ? "housing" : "day"].toLocaleString("ja-JP")}円で申込・決済へ →</a><p><a href={residence === "okinawa" ? "/ja/events/okinawa-international-camp-2026#okinawa-resident-discount" : "/ja/events/okinawa-international-camp-2026#okinawa-domestic-prices"}>料金に含む内容・適用条件を見る →</a></p><p className={styles.note}>宿泊先は確保済みです。体育館の利用時間・追加スタッフは調整中です。お支払いは仮予約です。主催者都合の中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は全額返金します。</p></div>}
+
         {quote?.state === "group_review" && <div className={styles.notice}><h3>3名以上はグループでご相談ください</h3><p>公式フォームは1回2名までです。参加者全員の申込と料金をまとめて確認します。1名用のリンクで人数分をお支払いになる前にお問い合わせください。</p><a className={styles.primary} href={contact}>グループ参加を相談する ↗</a></div>}
         {quote?.state === "closed" && <div className={styles.notice}><h3>オンライン決済の受付は終了しました</h3><p>開催開始後の参加・料金のご相談は、主催者へお問い合わせください。</p><a href={contact}>メールで問い合わせる ↗</a></div>}
       </div>

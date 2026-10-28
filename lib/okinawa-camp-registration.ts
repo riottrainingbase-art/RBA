@@ -6,3 +6,9 @@ export const OKINAWA_RESIDENT_CHECKOUT_URLS = {
   day: "https://book.stripe.com/14A28t2XZcLO0IlcsD7EQ17",
   housing: "https://book.stripe.com/8x27sNbuv5jmezb64f7EQ18",
 } as const;
+
+// Domestic non-resident plans: fixed JPY, one player per checkout.
+export const OKINAWA_DOMESTIC_CHECKOUT_URLS = {
+  day: "https://book.stripe.com/28EeVf5679zCdv71NZ7EQ1n",
+  housing: "https://book.stripe.com/5kQ7sNgOPcLO8aN1NZ7EQ1o",
+} as const;
