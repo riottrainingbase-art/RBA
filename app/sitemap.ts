@@ -42,6 +42,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
     ...productPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...regionalPages.map(path=>({path,lastModified:path==="/ja/okinawa-coach"?"2026-10-05T00:00:00Z":"2026-10-04T00:00:00Z"})),
+    {path:"/ja/events/torsten-loibl-online-clinic/share",lastModified:"2026-10-28T00:00:00Z"},
     ...journalPosts,
   ];
 
