@@ -22,8 +22,8 @@ test("Taiwan deadline is enforced at the exact millisecond boundary", () => {
   assert.equal(campQuote(choice, new Date(EARLY_BIRD_END)).total, 432);
   assert.equal(campQuote(choice, new Date(Date.parse(EARLY_BIRD_END) + 1)).total, 540);
 });
-test("unpriced domestic requests and overseas 3+ groups never receive a price or checkout link", () => {
-  for (const choice of [{ housing: false, players: 1, residence: "japan" }, { housing: true, players: 3, residence: "other" }]) {
+test("overseas 3+ groups never receive a price or checkout link", () => {
+  for (const choice of [{ housing: true, players: 3, residence: "other" }]) {
     const q = campQuote(choice, early);
     assert.equal(q.total, null); assert.equal(q.checkoutUrl, null); assert.equal(q.registrationUrl, null);
   }
@@ -36,7 +36,7 @@ test("choice parser rejects coercion and unsupported values", () => {
   for (const invalid of [null, [], {}, { housing: true, players: "2", residence: "other" }, { housing: "false", players: 1, residence: "other" }, { housing: false, players: 9, residence: "other" }, { housing: true, players: 1, residence: "anything" }]) assert.equal(parseCampChoice(invalid), null);
 });
 
-test("all domestic participants use RBA consultation and receive no overseas payment or registration URL", () => {
+test("domestic participants receive correct yen prices and no overseas checkout or registration URL", () => {
   for (const residence of ["japan", "okinawa"]) {
     for (const housing of [true, false]) {
       for (const players of [1, 2, 3]) {
@@ -44,8 +44,8 @@ test("all domestic participants use RBA consultation and receive no overseas pay
         assert.ok(parsed);
         const q = campQuote(parsed, early);
         assert.equal(q.state, "local_review");
-        assert.equal(q.perPlayer, residence === "okinawa" ? housing ? 39600 : 27500 : null);
-        assert.equal(q.total, residence === "okinawa" && players < 3 ? (housing ? 39600 : 27500) * players : null);
+        assert.equal(q.perPlayer, residence === "okinawa" ? housing ? 39600 : 27500 : housing ? 43560 : 30250);
+        assert.equal(q.total, players < 3 ? (residence === "okinawa" ? housing ? 39600 : 27500 : housing ? 43560 : 30250) * players : null);
         assert.equal(q.checkoutUrl, null);
         assert.equal(q.registrationUrl, null);
       }
@@ -53,11 +53,11 @@ test("all domestic participants use RBA consultation and receive no overseas pay
   }
 });
 
-test("resident yen prices do not stack overseas discounts or expire at the early-bird deadline", () => {
-  for (const housing of [true, false]) for (const now of [early, normal]) {
-    const q = campQuote({housing, players: 2, residence: "okinawa"}, now);
+test("domestic yen prices do not stack overseas discounts or expire at the early-bird deadline", () => {
+  for (const residence of ["okinawa", "japan"]) for (const housing of [true, false]) for (const now of [early, normal]) {
+    const q = campQuote({housing, players: 2, residence}, now);
     assert.equal(q.currency, "JPY"); assert.equal(q.early, false);
-    assert.equal(q.total, (housing ? 39600 : 27500) * 2);
+    assert.equal(q.total, (residence === "okinawa" ? housing ? 39600 : 27500 : housing ? 43560 : 30250) * 2);
     assert.equal(q.checkoutUrl, null); assert.equal(q.registrationUrl, null);
   }
 });
