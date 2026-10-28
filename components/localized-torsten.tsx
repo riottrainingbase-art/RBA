@@ -1,3 +1,4 @@
+import { TorstenRegistrationGuide } from "./torsten-registration-guide";
 import { CoachEducationLoop } from "./coach-education-loop";
 import { ui } from "./ui-copy";
 import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, GraduationCap, House, Sparkles, Users } from "lucide-react";
@@ -22,7 +23,7 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
   const memberRegistrationUrl=homecourtFreeRegistrationUrl(locale);
   return <div lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale} languagePage="events/torsten-loibl-online-clinic">
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"Event",name:c.title.join(" "),description:c.intro,startDate:"2026-11-25T20:00:00+09:00",endDate:"2026-11-25T21:30:00+09:00",eventAttendanceMode:"https://schema.org/OnlineEventAttendanceMode",eventStatus:"https://schema.org/EventScheduled",location:{"@type":"VirtualLocation",url:torstenRegistrationUrl},organizer:{"@type":"SportsOrganization",name:"Riot Basketball Academy",url:"https://riotbasketballacademy.com"},performer:{"@type":"Person",name:"Torsten Loibl"},offers:[{"@type":"Offer",name:"Live",price:"3300",priceCurrency:"JPY",url:torstenRegistrationUrl,availability:"https://schema.org/InStock"},{"@type":"Offer",name:"30-day on-demand",price:"4400",priceCurrency:"JPY",url:torstenRegistrationUrl,availability:"https://schema.org/InStock"}]})}}/>
-    <section className="inner-hero torsten-page-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{ui(locale,"clinic")}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p>{locale==="ja"?<p className="eyebrow">LIVE ¥3,300 ｜ 30日オンデマンド ¥4,400 ｜ 当日参加できなくてもOK</p>:null}<div className="torsten-hero-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href="#audience">{c.audienceLabel}<ArrowDown size={16}/></a></div></section>
+    <section className="inner-hero torsten-page-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index">{ui(locale,"clinic")}</p><h1>{c.title[0]}<br/>{c.title[1]}</h1><p>{c.intro}</p>{locale==="ja"?<p className="eyebrow">11/25（水）20:00〜21:30・日本時間<br/>LIVE ¥3,300 ｜ 30日オンデマンド ¥4,400（税込）<br/>Zoom・日本語逐次通訳付き</p>:null}<div className="torsten-hero-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href={locale==="ja"?"#participation":"#audience"}>{locale==="ja"?"ライブと録画の参加方法を見る":c.audienceLabel}<ArrowDown size={16}/></a></div></section>
 
     {locale==="ja"?<section className="torsten-conversion section-pad">
       <div className="torsten-conversion-head">
@@ -44,7 +45,7 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
       <div className="torsten-demand-head">
         <div>
           <p className="section-index">REAL QUESTIONS FROM COACHES</p>
-          <h2>すでに届いている質問から、<br/>90分の中身をつくります。</h2>
+          <h2>現場から届いた問いを、<br/>学びの出発点に。</h2>
         </div>
         <div className="torsten-demand-note">
           <strong>当日予定があっても参加できます。</strong>
@@ -62,20 +63,9 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
           "答えを与えすぎず、選手自身の判断をどう引き出すか？"
         ].map((question,index)=><article key={question}><span>Q{String(index+1).padStart(2,"0")}</span><h3>{question}</h3></article>)}
       </div>
-      <p className="torsten-demand-foot">申込フォームに寄せられた実際の関心テーマをもとに、技術・練習設計・ゲーム理解を一つの流れとして扱います。</p>
+      <p className="torsten-demand-foot">申込フォームに寄せられた関心テーマの例です。講習では技術・練習設計・ゲームでの活用を扱います。すべての質問への個別回答を保証するものではありません。</p>
     </section>:null}
-    {locale==="ja"?<section className="torsten-demand section-pad" id="participation">
-      <p className="section-index">LIVE / ON-DEMAND</p>
-      <h2>練習のある水曜でも、<br/>自分の時間で学べます。</h2>
-      <p>当日のライブ参加と、開催後の30日間オンデマンド視聴から選べます。どちらも英語の講義に日本語逐次通訳が付きます。</p>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(220px, 1fr))",gap:"24px",margin:"28px 0"}}>
-        <article style={{border:"1px solid #d7d7d7",padding:"24px"}}><p className="section-index">LIVE</p><h3>当日オンラインで参加</h3><p><strong>3,300円（税込）</strong><br/>11月25日（水）20:00〜21:30（日本時間）<br/>Zoomで講義を受講します。</p><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">ライブを選んで申し込む<ArrowUpRight size={17}/></a></article>
-        <article style={{border:"1px solid #d7d7d7",padding:"24px"}}><p className="section-index">30 DAYS / ON-DEMAND</p><h3>開催後、自分の時間に視聴</h3><p><strong>4,400円（税込）</strong><br/>30日間、繰り返し視聴できます。<br/>仕事・練習と重なる方にも。</p><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">録画視聴を選んで申し込む<ArrowUpRight size={17}/></a></article>
-      </div>
-      <h3>お申し込みは、フォーム送信とお支払いの2段階です。</h3>
-      <ol style={{lineHeight:1.9,paddingLeft:"1.5em"}}><li>フォームで参加形式を選び、氏名・メールなどを入力して送信します。</li><li>送信後の確認画面にある、選んだプランの決済リンクへ進みます。</li><li>お支払いの完了で申込が確定します。フォーム送信だけでは完了しません。</li></ol>
-      <p>カードでのお支払いが難しい方は、フォーム送信後に<a className="text-link" href="mailto:riot.training.base@gmail.com?subject=11%2F25%E8%AC%9B%E7%BF%92%E3%81%AE%E6%8C%AF%E8%BE%BC%E7%9B%B8%E8%AB%87">RBAへ銀行振込をご相談ください</a>。ライブ参加後の録画視聴など、参加条件で迷う場合もお問い合わせください。</p>
-    </section>:null}
+    {locale==="ja"?<TorstenRegistrationGuide/>:null}
     {locale==="ja"?<section className="torsten-conversion section-pad" id="free-coach-work">
       <p className="section-index">FREE COACH WORKSHEET</p>
       <h2>まず、次の練習で<br/>10回の攻撃を見てみる。</h2>
@@ -88,13 +78,13 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
     <section className="event-record section-pad"><aside><p className="section-index">LIVE / ZOOM</p><strong>{({en:"25 NOV 2026",ja:"2026年11月25日","zh-tw":"2026年11月25日",ko:"2026년 11월 25일"})[locale]}</strong><span>{ui(locale,"time")}<br/>{ui(locale,"interpretation")}</span></aside><div><p className="eyebrow">{ui(locale,"theme")}</p><h2>{c.shift[0]}<br/>{c.shift[1]}</h2><p>{c.body}</p><p>{c.price}</p><p>{ui(locale,"external")}</p><div className="closing-actions"><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a><a className="text-link" href={announcementUrl} target="_blank" rel="noreferrer">{c.article}<BookOpen size={17}/></a></div></div></section>
     <section className="event-principles section-pad"><p className="section-index inverse">{c.learn}</p><div><h2>{c.learnTitle[0]}<br/>{c.learnTitle[1]}</h2><ul>{c.points.map((point,index)=><li key={point}>{String(index+1).padStart(2,"0")}｜{point}</li>)}</ul></div></section>
     <section className="event-record section-pad"><aside><p className="section-index">{c.speaker}</p><strong>TORSTEN<br/>LOIBL</strong><span>{({en:"Youth & national-team coaching",ja:"育成年代・代表チームの指導経験","zh-tw":"青少年與代表隊執教經驗",ko:"유소년·국가대표 지도 경력"})[locale]}</span></aside><div><p className="eyebrow">{ui(locale,"experience")}</p><h2>{c.speakerTitle[0]}<br/>{c.speakerTitle[1]}</h2><p>{c.speakerBody}</p><div className="closing-actions"><a className="button button-dark" href={previousReportUrl} target="_blank" rel="noreferrer">{c.report}<ArrowUpRight size={17}/></a><a className="text-link" href={profileUrl} target="_blank" rel="noreferrer">{c.profile}<ArrowUpRight size={16}/></a></div></div></section>
-    <section className="event-share section-pad"><div><p className="section-index inverse">{c.shareLabel}</p><h2>{c.shareTitle}</h2></div><div><p>{c.shareBody}</p><blockquote>{c.shareText}</blockquote><EventShareActions title={c.title.join(" ")} text={c.shareText} copyLabel={c.copy} shareLabel={c.share} copiedLabel={c.copied}/></div></section>
+    <section className="event-share section-pad"><div><p className="section-index inverse">{c.shareLabel}</p><h2>{c.shareTitle}</h2></div><div><p>{c.shareBody}</p><blockquote>{c.shareText}</blockquote><EventShareActions title={c.title.join(" ")} text={c.shareText} copyLabel={c.copy} shareLabel={c.share} copiedLabel={c.copied}/>{locale==="ja"?<p><a className="text-link" href="/ja/events/torsten-loibl-online-clinic/share">対象別の紹介文を選ぶ<ArrowRight size={17}/></a></p>:null}</div></section>
     {locale!=="ja"?<><section className="event-member-bridge section-pad"><div className="event-member-number" aria-hidden="true"><span>RBA</span><strong>NEXT</strong><small>OPPORTUNITY</small></div><div><p className="section-index">{c.memberLabel}</p><h2>{c.memberTitle}</h2><p>{c.memberBody}</p><div className="event-member-roles">{c.memberRoles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><p className="event-member-note">{c.memberNote}</p><div className="closing-actions"><a className="button button-member" href={memberRegistrationUrl}><Sparkles size={17}/>{c.memberJoin}<ArrowRight size={17}/></a><a className="button button-dark" href={localePath(locale,"my-homecourt")}><House size={17}/>{c.memberOpen}<ArrowRight size={17}/></a></div></div></section><CoachEducationLoop locale={locale}/></>:null}
     <section className="event-final section-pad"><p className="eyebrow">TORSTEN LOIBL ONLINE CLINIC VOL.2</p><h2>{c.finalTitle}</h2><p>{c.finalBody}</p><a className="button button-orange" href={torstenRegistrationUrl} target="_blank" rel="noreferrer">{c.apply}<ArrowUpRight size={17}/></a></section>
 
     {locale==="ja"?<div className="torsten-mobile-sticky" role="region" aria-label="オンライン講習申込">
       <div><strong>11/25 20:00</strong><span>LIVE ¥3,300 / 録画30日 ¥4,400</span></div>
-      <a href={torstenRegistrationUrl} target="_blank" rel="noreferrer">申込 <ArrowUpRight size={15}/></a>
+      <a href="#participation">参加方法を選ぶ <ArrowDown size={15}/></a>
     </div>:null}
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale,"schedule")}>{c.back}<ArrowRight size={24}/></a></section>
   </SiteFrame></div>;
