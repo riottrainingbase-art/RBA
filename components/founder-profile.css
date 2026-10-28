@@ -1,0 +1,26 @@
+/* Founder editorial: warm paper, restrained gold, the court at its heart. */
+.founder-profile{--founder-paper:#f1ede4;--founder-ink:#232820;--founder-gold:#78643e;background:var(--founder-paper);color:var(--founder-ink);padding:clamp(62px,8vw,120px) clamp(24px,6vw,96px);scroll-margin-top:100px}
+.founder-intro{max-width:1400px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(35px,6vw,100px);align-items:center}
+.founder-portrait{margin:0;position:relative;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.founder-portrait img{width:100%;height:auto;aspect-ratio:874/860;object-fit:cover;display:block}
+.founder-portrait figcaption{font-size:10px;letter-spacing:.16em;padding-top:17px;color:var(--founder-gold)}
+.founder-eyebrow{font-size:10px!important;font-weight:600;line-height:1.8!important;letter-spacing:.16em;color:var(--founder-gold)!important;margin:0 0 22px!important}
+.founder-copy h1,.founder-copy h2{font-family:Georgia,"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;font-weight:400;letter-spacing:-.045em;line-height:1.1;font-size:clamp(42px,5.3vw,80px);margin:0 0 14px}
+.founder-native{font-size:11px!important;letter-spacing:.2em;margin:0 0 15px!important;color:var(--founder-gold)!important}
+.founder-role{font-size:12px!important;letter-spacing:.045em;border-bottom:1px solid #c8beaa;padding-bottom:25px;margin-bottom:27px!important}
+.founder-belief{white-space:pre-line;font-family:Georgia,"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(24px,2.6vw,38px);font-weight:400;line-height:1.5;letter-spacing:-.025em;margin:0 0 24px}
+.founder-copy>p:not(.founder-eyebrow):not(.founder-native):not(.founder-role){font-size:15px;line-height:1.95;color:#52574c;max-width:630px}
+.founder-actions{display:flex;align-items:flex-start;flex-direction:column;gap:20px;margin-top:30px}
+.founder-contact{display:inline-flex;gap:12px;align-items:center;justify-content:center;min-height:52px;padding:15px 22px;background:#28382f;color:#fff;font-size:12px;line-height:1.5;font-weight:600;transition:background .2s}
+.founder-contact:hover{background:#405a49}.founder-contact svg{flex-shrink:0}
+.founder-more{display:inline-flex;align-items:center;gap:12px;font-size:12px;border-bottom:1px solid #a99b7f;padding-bottom:5px}
+.founder-principles{max-width:1400px;margin:clamp(60px,7vw,100px) auto 0;border-top:1px solid #c8beaa;display:grid;grid-template-columns:1fr 1fr}
+.founder-principles article{padding:44px 50px 0 0}.founder-principles article+article{border-left:1px solid #c8beaa;padding:44px 0 0 50px}
+.founder-principles h3{font-family:Georgia,"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;font-weight:400;white-space:pre-line;line-height:1.35;letter-spacing:-.025em;font-size:clamp(28px,3.2vw,46px);margin:0 0 23px}
+.founder-principles article>p:last-child{max-width:540px;font-size:15px;line-height:1.95;color:#52574c;margin:0}
+.founder-invitation{max-width:1400px;margin:80px auto 0;padding-top:65px;border-top:1px solid #c8beaa;text-align:center}
+.founder-invitation h2{font-family:Georgia,"Times New Roman","Yu Mincho",serif;font-size:clamp(28px,3.5vw,48px);font-weight:400;line-height:1.4;letter-spacing:-.025em;margin:0 0 22px}
+.founder-invitation>p:not(.founder-eyebrow){max-width:650px;margin:0 auto 30px;color:#52574c;line-height:1.9}
+.founder-invitation small{display:block;margin-top:17px;font-size:11px;color:#65685f}.founder-email{display:block;width:max-content;max-width:100%;overflow-wrap:anywhere;margin:24px auto 0;font-size:12px;border-bottom:1px solid #a99b7f}
+.founder-profile a:focus-visible{outline:3px solid #8c713f;outline-offset:5px}
+@media(max-width:760px){.founder-intro{grid-template-columns:1fr;gap:35px}.founder-portrait{max-width:540px;width:100%;margin:auto}.founder-copy h1,.founder-copy h2{font-size:clamp(40px,10vw,65px)}.founder-principles{grid-template-columns:1fr;margin-top:50px}.founder-principles article{padding:35px 0}.founder-principles article+article{border-left:0;border-top:1px solid #c8beaa;padding:35px 0 0}.founder-invitation{margin-top:50px;padding-top:40px}.founder-contact{font-size:12px;padding:15px 18px}.founder-profile-full .founder-copy{order:-1}.founder-profile-full .founder-portrait{margin-top:5px}}
