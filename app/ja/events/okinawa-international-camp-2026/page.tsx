@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
 import { CAMP_JAPAN_CONTACT } from "@/lib/okinawa-camp-pricing";
+import scheduleStyles from "./schedule.module.css";
 import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
 const official = "https://okinawa.camp/";
@@ -31,11 +32,23 @@ export default function Page() {
       <article className={styles.card}><h3>見て、判断して、プレーする</h3><p>西尾優人が指導し、基本技術、チームの攻防、ゲームを通じて学びます。技を覚えるだけでなく、状況を見て、判断し、自分で考えて挑戦することを大切にします。年齢や技術・経験に応じたグループ分けを予定しています。</p></article>
       <article className={styles.card}><h3>国や言葉を越えてつながる</h3><p>日本と海外の選手が、同じコートで練習し、ゲームで挑戦します。宿泊参加者は食事や共同生活も通じて、国や言葉を越えた交流を深めます。参加国・人数・組分けは申込状況に応じて調整します。</p></article>
     </div><h3>RBA 1対1チャンピオンシップ</h3><p>初日の予選、2日目の順位リーグ・決勝を予定。同じくらいのレベルの選手と対戦する機会をつくり、3日目の閉会時に表彰する計画です。進行は人数・施設利用時間に合わせて調整します。</p></section>
-    <section className={styles.section}><p className={styles.label}>3-DAY PLAN</p><h2>3日間の予定</h2><dl className={styles.facts}>
-      <div><dt>12/22（火）</dt><dd><strong>CONNECT｜出会い、基礎をつくる</strong><br/>受付・オリエンテーションの時刻は調整中。体育館は14:00〜18:00の利用を希望しています（未確定）。基本練習、1対1予選、チーム活動、振り返りを予定。</dd></div>
-      <div><dt>12/23（水）</dt><dd><strong>CHALLENGE｜判断し、仲間と挑む</strong><br/>体育館は9:00〜17:00の利用を希望しています（未確定）。練習、1対1順位リーグ・決勝、3対3、映像や対話による振り返りを予定。BBQは施設へ相談中です。</dd></div>
-      <div><dt>12/24（木）</dt><dd><strong>PERFORM｜成長を試し、持ち帰る</strong><br/>体育館は9:00〜15:00の利用を希望しています（未確定）。最終ゲーム、表彰・閉会、片付けを予定。宿泊室の退室後の活動と荷物保管は施設に相談中です。</dd></div>
-    </dl><p className={styles.small}>2026年10月27日更新。宿泊先は確保済みです。記載の体育館利用時間は施設への希望枠で、確定時刻ではありません（準備・片付けを含む日本時間）。集合・解散、食事、研修室、荷物保管は最終案内をご確認ください。</p></section>
+    <section className={styles.section} id="schedule" aria-labelledby="schedule-heading">
+      <p className={styles.label}>3-DAY SCHEDULE / 日本時間</p><h2 id="schedule-heading">3日間の詳細スケジュール（予定）</h2>
+      <div className={scheduleStyles.notice}><strong>施設・共同主催者と調整中の予定表です。</strong><p>体育館の利用枠、集合・解散、食事の時刻は確定後にご案内します。特に12月24日の午後利用・昼食・荷物保管と15:30退所は、施設および共同主催者Eltonへ確認中です。この予定表だけで航空券や送迎を変更せず、最終案内をご確認ください。</p></div>
+      {[
+        { date: "12月22日（火）", theme: "CONNECT｜出会い、基礎をつくる", note: "午前の受付・説明は主催者案。体育館は14:00〜18:00を希望しています。", rows: [
+          ["9:00〜11:00", "受付・健康確認（予定）"], ["11:00〜12:00", "オリエンテーション・仲間との顔合わせ"], ["12:00〜14:00", "昼食・休憩・活動準備（食事の手配・時刻は調整中）"], ["14:00〜15:15", "動きづくり・ボールコントロール・フィニッシュ"], ["15:15〜15:30", "休憩・給水"], ["15:30〜16:30", "1対1の練習・チャンピオンシップ予選"], ["16:30〜17:30", "チーム活動・少人数ゲーム"], ["17:30〜18:00", "振り返り・片付け・通い参加者のお迎え（予定）"], ["活動終了後", "宿泊参加者：夕食・入浴・交流・就寝準備（施設指定の時程に合わせて調整）"]
+        ] },
+        { date: "12月23日（水）", theme: "CHALLENGE｜判断し、仲間と挑む", note: "体育館は9:00〜17:00を希望しています。", rows: [
+          ["朝", "宿泊参加者：起床・健康確認・朝食"], ["8:30〜9:00", "通い参加者の受付・健康確認（予定）"], ["9:00〜10:15", "パス・スペーシング・相手を見て判断する練習"], ["10:15〜10:30", "休憩・給水"], ["10:30〜11:45", "2対2・3対3で判断を試す"], ["11:45〜13:00", "午前の片付け・昼食・休憩"], ["13:00〜14:15", "1対1チャンピオンシップ順位リーグ・決勝"], ["14:15〜14:45", "休憩・交流"], ["14:45〜16:15", "混合チームでの交流ゲーム"], ["16:15〜17:00", "振り返り・片付け・通い参加者のお迎え（予定）"], ["活動終了後", "宿泊参加者：夕食・入浴・対話による振り返り・就寝準備"]
+        ] },
+        { date: "12月24日（木）", theme: "PERFORM｜成長を試し、持ち帰る", note: "午後まで活動する希望案です。15:00活動終了・15:30退所を相談中で、未確定です。", rows: [
+          ["朝", "朝食・荷物整理・清掃・宿泊室退室（施設指定時刻に実施）"], ["8:30〜9:00", "通い参加者の受付・健康確認（予定）"], ["9:00〜10:15", "2日間の課題を振り返る練習"], ["10:15〜10:30", "休憩・給水"], ["10:30〜11:45", "チーム練習・交流ゲーム"], ["11:45〜13:00", "片付け・昼食・休憩（午後利用・昼食とも確認中）"], ["13:00〜14:15", "ファイナルゲーム（午後利用承認後に実施）"], ["14:15〜14:30", "休憩"], ["14:30〜15:00", "振り返り・次の目標づくり・表彰・閉会（午後利用承認後に実施）"], ["15:00〜15:30", "片付け・お迎え・退所（希望時刻／確認中）"]
+        ] }
+      ].map(day => <article key={day.date} className={scheduleStyles.day}><h3>{day.date}</h3><p><strong>{day.theme}</strong></p><p className={styles.small}>{day.note}</p><table className={scheduleStyles.table}><caption className={scheduleStyles.caption}>{day.date}の活動予定</caption><thead><tr><th scope="col">時間</th><th scope="col">内容</th></tr></thead><tbody>{day.rows.map(([time, activity]) => <tr key={time}><th scope="row">{time}</th><td>{activity}</td></tr>)}</tbody></table></article>)}
+      <p className={styles.small}>2026年10月28日更新。年齢・経験に応じてグループを分け、活動中も適宜休憩・給水を設けます。時刻・内容は人数、体調、施設利用条件により変更する場合があります。通い参加者の食事・送迎は別途確認が必要です。午後利用が認められない場合は、24日の活動と表彰を午前中にまとめる案へ変更します。BBQは施設へ相談中で、実施確定ではありません。</p>
+      <aside className={scheduleStyles.prizes}><p className={styles.label}>PARTNER SUPPORT</p><h3>スポンサーからの景品提供を調整中</h3><p>キャンプでの挑戦を応援する景品について、スポンサーと準備を進めています。提供内容・数量・贈呈方法は、確定後にご案内します。全員への配布をお約束するものではありません。</p></aside>
+    </section>
     <section className={styles.section} id="entry"><p className={styles.label}>PRICING / USD</p><h2>海外参加者向け料金とお申し込み</h2><p>以下は海外からの参加者向け料金です。日本国内の参加者には、RBAから国内料金・申込方法を個別にご案内します。</p><dl className={styles.facts}>
       <div><dt>宿泊・食事付き</dt><dd>通常 <strong>450米ドル／1名</strong><br/>早割20％：360米ドル<br/>早割＋2名以上の追加10％併用：<strong>324米ドル／1名</strong></dd></div>
       <div><dt>宿泊なし</dt><dd>通常 <strong>300米ドル／1名</strong><br/>早割20％：240米ドル<br/>早割＋2名以上の追加10％併用：<strong>216米ドル／1名</strong></dd></div>
