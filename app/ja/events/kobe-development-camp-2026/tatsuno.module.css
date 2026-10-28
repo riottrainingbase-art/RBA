@@ -1,0 +1,7 @@
+.page { color-scheme: light; }
+.page a { text-underline-offset: .22em; }
+.page a:focus-visible, .page summary:focus-visible { outline: 3px solid #b57947; outline-offset: 5px; }
+.hero { position: relative; overflow: hidden; isolation: isolate; }
+.hero::before { content: ""; position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 100% 0%, #38666a 0%, transparent 65%); }
+.hero::after { content: ""; position: absolute; z-index: -1; width: 620px; height: 620px; right: -390px; top: 19%; border: 1px solid #e8ca9540; border-radius: 46% 54% 38% 62%; box-shadow: 0 0 0 30px #e8ca9509, 0 0 0 60px #e8ca9512, 0 0 0 90px #e8ca9509, 0 0 0 120px #e8ca9512; transform: rotate(-24deg); }
+@media (prefers-reduced-motion: no-preference) { .page a { transition: filter .16s ease, outline-offset .16s ease; } .page a:hover { filter: brightness(1.08); } }
