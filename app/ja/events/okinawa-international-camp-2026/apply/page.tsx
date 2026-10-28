@@ -1,3 +1,4 @@
+import { OkinawaResidentPrices } from "@/components/okinawa-resident-prices";
 import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
@@ -10,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <SiteFrame locale="ja"><div style={{ background: "#faf8f4" }}><header style={{ maxWidth: 900, margin: "auto", padding: "40px 24px 28px" }}><a href="/ja/events/okinawa-international-camp-2026" style={{ textDecoration: "underline" }}>← キャンプの開催概要へ</a><p style={{ fontSize: 12, fontWeight: 800, letterSpacing: ".12em", marginTop: 24 }}>RBA / OKINAWA INTERNATIONAL CAMP</p><h1 style={{ fontSize: "clamp(30px, 5vw, 46px)", lineHeight: 1.4, fontWeight: 900, margin: "12px 0" }}>参加方法を選んで、<br/>沖縄キャンプへ。</h1><p>2026年12月22日〜24日 · 7〜18歳 · 2泊3日</p><p>国内参加のお申し込みを受け付けています。RBAが内容を確認し、参加条件とお支払い方法をご案内します。沖縄県内にお住まいの方は「沖縄県民割引」を選ぶと、日本円の料金とメールでの申込方法をご案内します。海外参加者は、海外向けの公式フォームと米ドル決済へ進めます。</p></header><div style={{ maxWidth: 900, margin: "auto", padding: "0 24px" }}><OkinawaEarlyBird compact href="#choose-plan"/></div><OkinawaCampCheckout/></div></SiteFrame>;
+  return <SiteFrame locale="ja"><div style={{ background: "#faf8f4" }}><header style={{ maxWidth: 900, margin: "auto", padding: "40px 24px 28px" }}><a href="/ja/events/okinawa-international-camp-2026" style={{ textDecoration: "underline" }}>← キャンプの開催概要へ</a><p style={{ fontSize: 12, fontWeight: 800, letterSpacing: ".12em", marginTop: 24 }}>RBA / OKINAWA INTERNATIONAL CAMP</p><h1 style={{ fontSize: "clamp(30px, 5vw, 46px)", lineHeight: 1.4, fontWeight: 900, margin: "12px 0" }}>参加方法を選んで、<br/>沖縄キャンプへ。</h1><p>2026年12月22日〜24日 · 7〜18歳 · 2泊3日</p><p>沖縄県内にお住まいの方は、下のプランからそのまま申込・決済へ進めます。事前メールは不要です。県外からの国内参加は、RBAへご相談ください。海外参加者は、海外向けの公式フォームと米ドル決済へ進めます。</p></header><OkinawaResidentPrices/><div style={{ maxWidth: 900, margin: "auto", padding: "0 24px" }}><OkinawaEarlyBird compact href="#choose-plan"/></div><OkinawaCampCheckout/></div></SiteFrame>;
 }
