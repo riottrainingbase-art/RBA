@@ -1,2 +1,8 @@
 const applicationBody = "沖縄国際ユースバスケットボールキャンプ2026 国内参加申込\n日程：2026年12月22日〜24日\n\n保護者氏名：\n保護者メール：\n当日連絡可能な電話：\n参加選手氏名・ふりがな：\n年齢・学年：\n性別：\n居住都道府県・市町村：\n希望プラン（通い／宿泊／相談）：\n保護者同行・宿泊希望：\n送迎希望：\n24日の参加可能時間：\n申込・支払い済みの場合はその旨：\n質問：\n\n以下をご確認のうえ、各項目に「確認しました」とご記入ください。\n・保護者として本人と相談し、申し込みます：\n・24日の午後活動、集合解散・送迎等は調整中です：\n・メール送信のみで参加確定・支払い義務はなく、参加条件・料金・取消返金条件の案内を確認してから支払います：\n・RBAが入力情報を申込受付・連絡・受入調整に利用することに同意します：\n";
 export const OKINAWA_DOMESTIC_APPLICATION_URL = "mailto:riot.training.base@gmail.com?subject=" + encodeURIComponent("沖縄キャンプ2026｜国内参加申込") + "&body=" + encodeURIComponent(applicationBody);
+
+// Existing live JPY links: one Okinawa resident player per checkout.
+export const OKINAWA_RESIDENT_CHECKOUT_URLS = {
+  day: "https://book.stripe.com/14A28t2XZcLO0IlcsD7EQ17",
+  housing: "https://book.stripe.com/8x27sNbuv5jmezb64f7EQ18",
+} as const;
