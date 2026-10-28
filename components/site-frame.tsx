@@ -30,38 +30,13 @@ export function localePath(locale:Locale, page?:LanguagePage){
 
 export function SiteFrame({ children, locale="en", languagePage, compact=false }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage; compact?:boolean }) {
   const c=labels[locale];
-  const fullNav=[
-    [({en:"Find opportunities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
-    [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
-    [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
-    [({en:"Coaches",ja:"コーチ・指導者","zh-tw":"教練",ko:"코치·지도자"})[locale],localePath(locale,"coaches")],
-    [({en:"Journal",ja:"育成記事 / JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")],
-    [({en:"D-HUB",ja:"D-HUB","zh-tw":"D-HUB",ko:"D-HUB"})[locale],localePath(locale,"d-hub")],
-    [({en:"Development Camp",ja:"Development Camp","zh-tw":"Development Camp",ko:"Development Camp"})[locale],localePath(locale,"camp")],
-    ["RBA UNITED",localePath(locale,"united")],
-    ...(locale==="ja"?[["仙台U12スクール｜茂庭台小学校","/ja/u12-school"] as const,["公式ウェア（発売準備中）","/ja/store"] as const]:[]),
-    ["BACKBONE 3×3","/backbone"],
-    [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")],
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const,["全国の活動拠点","/ja/regions"] as const,["地域スクール","/ja/regional-program"] as const,["HOMECOURT PLUS","/ja/homecourt-plus"] as const]:[]),
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
-    [({en:"Taiwan",ja:"台湾プロジェクト","zh-tw":"台灣專案",ko:"대만 프로젝트"})[locale],localePath(locale,"taiwan")],
-    [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
-    ...(locale==="ja"?[["コーチ向け教材","/ja/materials"] as const,["TEAM TRAINING","/ja/team-training"] as const,["仙台U15スクール","/ja/u15-skill-up"] as const,["ミニバス育成支援","/ja/minibasket-support"] as const]:[]),
-    [c.about,localePath(locale,"about")],
-    [({en:"Policies",ja:"参加規約・安全方針","zh-tw":"條款・安全",ko:"약관·안전"})[locale],localePath(locale,"policies")] as const,
-  ] as const;
   const nav=[
-    [({en:"Find",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")] as const,
-    ...(locale==="ja"?[["地域スクール","/ja/regional-program"] as const]:[]),
-    [({en:"Journal",ja:"JOURNAL","zh-tw":"JOURNAL",ko:"JOURNAL"})[locale],localePath(locale,"journal")] as const,
-    ...(locale==="ja"?[["育成ガイド","/ja/development"] as const]:[]),
-    [({en:"D-HUB",ja:"D-HUB","zh-tw":"D-HUB",ko:"D-HUB"})[locale],localePath(locale,"d-hub")] as const,
-    ["BACKBONE 3×3","/backbone"] as const,
-    [({en:"MY HOME COURT",ja:"MY HOME COURT","zh-tw":"MY HOME COURT",ko:"MY HOME COURT"})[locale],localePath(locale,"my-homecourt")] as const,
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")] as const,
-    [({en:"Taiwan",ja:"台湾","zh-tw":"台灣",ko:"대만"})[locale],localePath(locale,"taiwan")] as const,
-    [c.about,localePath(locale,"about")] as const,
-  ];
+    [({en:"Activities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
+    [({en:"Learning",ja:"育成を学ぶ","zh-tw":"培育學習",ko:"육성 배우기"})[locale],localePath(locale,"journal")],
+    [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
+    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
+    [c.about,localePath(locale,"about")],
+  ] as const;
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   // Always enter through the member app when auth is live. Existing sessions open immediately; signed-out users are redirected to login and returned to the app afterwards.
@@ -71,7 +46,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
     <header className={`site-header ${navigationStyles.header}`}>
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{fullNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={memberHref}>MY HOME COURT / RBA ID</a><a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{nav.slice(1).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
       <div className="header-actions">
         <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"RBA ID",ja:"RBA ID","zh-tw":"RBA ID","ko":"RBA ID"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>
@@ -83,8 +58,8 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
     <main id="main-content">{children}</main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
-      <div><p className="footer-label">{c.explore}</p>{(compact ? fullNav.filter(([,href])=>["opportunities","journal","my-homecourt","regional-program","international","about","policies"].some(page=>href===localePath(locale,page as LanguagePage))) : fullNav).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div>
-      <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.threads.com/@riot.basketball.academy" target="_blank" rel="noreferrer">Threads</a><a href="https://note.com/rba_official" target="_blank" rel="noreferrer">note</a><a href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">LINE</a><a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a></div>
+      <div><p className="footer-label">{c.explore}</p>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div>
+      <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a><a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a></div>
       <div className="footer-legal"><p>{ui(locale,"city")}</p><p>{ui(locale,"representative")}</p><p>© 2026 Riot Basketball Academy</p><p>{c.safeguard}</p><a href={localePath(locale,"policies")}>{({en:"Privacy · Terms · Safety · Cancellation",ja:"プライバシー・参加規約・安全・キャンセル","zh-tw":"隱私・條款・安全・取消政策",ko:"개인정보・약관・안전・취소 정책"})[locale]}</a></div>
     </footer>
     {!compact ? <a className="member-dock" href={memberHref}><House size={20}/><span>MY HOME COURT</span><ArrowRight size={16}/></a> : null}
