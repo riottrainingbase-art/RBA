@@ -1,3 +1,4 @@
+import { FounderProfile } from "./founder-profile";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
 import { SiteFrame, localePath } from "./site-frame";
@@ -29,6 +30,7 @@ export function SimpleJapaneseHome() {
 
 
 
+      <FounderProfile locale="ja"/>
       <section className={styles.section} aria-labelledby="home-purpose-title">
         <div className={styles.heading}><div><p className={styles.label}>あなたの目的から</p><h2 id="home-purpose-title">参加する。チームに呼ぶ。地域でつくる。</h2></div></div>
         <div className={styles.purposeGrid}>{[

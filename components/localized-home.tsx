@@ -1,3 +1,4 @@
+import { FounderProfile } from "./founder-profile";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
 import homeStyles from "./home-balance.module.css";
 import { RegionalSchoolCallout } from "./regional-school-callout";
@@ -110,6 +111,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
     </section>:null}
 
 
+    <FounderProfile locale={locale}/>
     <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
 
     {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>所属を変えなくても、違う指導者や仲間から学べます。今いる環境を大切にしながら、外の経験を足していくための活動です。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
