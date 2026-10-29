@@ -35,7 +35,7 @@ export default function Page() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY / JAPAN</p>
           <h3 id="coach-nishio">西尾 優人 <span className={styles.small}>Masato Nishio</span></h3>
           <p><strong>Riot Basketball Academy 代表・ヘッドコーチ</strong></p>
-          <p>ドイツのBVケムニッツ99での活動を経験し、現在は日本各地で育成年代の指導や指導者の学びを支えています。これまでに全国で4,000名以上の選手を指導。台湾のSPARTANSとも連携し、選手同士の交流やクリニックに取り組んでいます。</p>
+          <p>ドイツのBVケムニッツ99での活動を経験し、現在は日本各地で育成年代の指導や指導者の学びを支えています。 MVPアカデミーおよびSPARTANSアカデミーのテクニカルアドバイザーを務めています。これまでに全国で4,000名以上の選手を指導。台湾のSPARTANSとも連携し、選手同士の交流やクリニックに取り組んでいます。</p>
           <p>大切にしているのは、状況を見て、自分で判断し、プレーすること。基本技術をゲームの中で使える力につなげ、年齢や経験に合った課題を通じて、一人ひとりの挑戦を支えます。</p>
           <p className={styles.small}><a href="https://rbaofficialnm2.wixsite.com/riot-rba/about-9" target="_blank" rel="noopener noreferrer">経歴・育成方針を見る ↗</a></p>
         </article>
