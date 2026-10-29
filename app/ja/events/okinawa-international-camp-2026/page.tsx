@@ -16,6 +16,20 @@ export const metadata: Metadata = {
   title: "沖縄国際ユースバスケットボールキャンプ｜2026年12月22〜24日・7〜18歳",
   description: "沖縄で世界の仲間と練習・ゲーム・共同生活。糸満青少年の家での宿泊先確保済み・2泊3日。体育館の利用時間と集合・解散時刻は調整中。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026" },
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    title: "沖縄国際ユースキャンプ 2026｜12/22〜24・県民割引あり",
+    description: "7〜18歳対象。沖縄県民：通い27,500円・宿泊39,600円（税込）。個人参加歓迎。糸満青少年の家での国際交流・育成キャンプ。宿泊確保済み、体育館・送迎等は調整中。",
+    url: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026",
+    images: [{ url: "https://riotbasketballacademy.com/rba-court-hero.png", width: 1664, height: 935, alt: "RBAのバスケットボールコート" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "沖縄国際ユースキャンプ 2026｜12/22〜24",
+    description: "7〜18歳・個人参加歓迎。県民割引：通い27,500円／宿泊39,600円（税込）。",
+    images: ["https://riotbasketballacademy.com/rba-court-hero.png"],
+  },
 };
 
 export default function Page() {
@@ -72,6 +86,20 @@ export default function Page() {
       ].map(day => <article key={day.date} className={scheduleStyles.day}><h3>{day.date}</h3><p><strong>{day.theme}</strong></p><p className={styles.small}>{day.note}</p><table className={scheduleStyles.table}><caption className={scheduleStyles.caption}>{day.date}の活動予定</caption><thead><tr><th scope="col">時間</th><th scope="col">内容</th></tr></thead><tbody>{day.rows.map(([time, activity]) => <tr key={time}><th scope="row">{time}</th><td>{activity}</td></tr>)}</tbody></table></article>)}
       <p className={styles.small}>2026年10月28日更新。年齢や経験に合わせてグループを分け、こまめに休憩や水分補給の時間を取ります。参加人数や子どもたちの体調、施設の利用状況により、時間や内容が変わる場合があります。通いで参加する方の食事・送迎は個別にご案内します。24日に午後の利用ができない場合は、ゲームや表彰を午前中に行う日程に変更します。BBQについても施設と相談中です。</p>
       <aside className={scheduleStyles.prizes}><p className={styles.label}>PARTNER SUPPORT</p><h3>スポンサーの皆さまからの景品も準備中です</h3><p>子どもたちの挑戦を応援してくださるスポンサーの皆さまと、景品の準備を進めています。どんな景品が届くか、誰にどのようにお渡しするかなど、詳しい内容は決まり次第、このページでお知らせします。</p></aside>
+    </section>
+    <section className={styles.section} id="family-faq" aria-labelledby="family-faq-heading">
+      <p className={styles.label}>FOR FAMILIES / 参加前のご相談</p>
+      <h2 id="family-faq-heading">初めての参加でも、安心して判断できるように。</h2>
+      <div className={styles.columns}>
+        <article className={styles.card}><h3>一人で参加しても大丈夫？</h3><p>チーム単位ではなく、個人での参加も想定しています。初日の顔合わせや、年齢・経験に応じたグループ分けを予定しています。お子さまが不安を感じている場合は、申込前にご相談ください。</p></article>
+        <article className={styles.card}><h3>宿泊が初めてでも参加できますか？</h3><p>2泊3日の宿泊プランがあります。ただし、部屋割り、夜間の見守り、追加スタッフの配置は調整中です。低学年や個別の配慮が必要な方は、確定条件を確認してからご判断ください。</p></article>
+        <article className={styles.card}><h3>学校の授業日と重なったら？</h3><p>開催日は12月22日〜24日です。学校によって冬休みの開始日が異なります。授業や学校行事との重複を必ずご確認ください。途中参加・欠席時の扱いは事前にお問い合わせください。</p></article>
+        <article className={styles.card}><h3>県民割引は誰が対象？</h3><p>沖縄県内に居住する選手が対象です。県外在住の方には別の国内料金があります。個別に特別料金の案内を受けた方は、二重決済せず、適用条件をRBAにご確認ください。</p></article>
+        <article className={styles.card}><h3>送迎や食事は含まれる？</h3><p>県民通いプランに食事・送迎は含まれません。宿泊プランには所定の食事が含まれますが、回数・時間は最終案内でお知らせします。送迎の可否・費用は調整中です。</p></article>
+        <article className={styles.card}><h3>支払い後に条件が変わったら？</h3><p>国内向けの支払いは仮予約です。主催者都合の中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は、公式ページに記載の条件で全額返金します。詳細は決済前にご確認ください。</p></article>
+      </div>
+      <p><a className={styles.primary} href="#okinawa-resident-discount">県民料金・申込方法を見る →</a></p>
+      <p><a href="#okinawa-domestic-prices">県外からの国内参加はこちら →</a></p>
     </section>
     <section className={styles.section} id="entry"><p className={styles.label}>PRICING / USD</p><h2>海外参加者向け料金とお申し込み</h2><p>以下は海外からの参加者向け料金です。日本国内の参加者は、上の日本円プランから申込・決済へお進みください。</p><dl className={styles.facts}>
       <div><dt>宿泊・食事付き</dt><dd>通常 <strong>450米ドル／1名</strong><br/>早割20％：360米ドル<br/>早割＋2名以上の追加10％併用：<strong>324米ドル／1名</strong></dd></div>
