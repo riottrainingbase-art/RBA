@@ -1,4 +1,6 @@
 import Image from "next/image";
+import {getSupportPhotos} from "@/lib/support-photos";
+export const dynamic="force-dynamic";
 import type { Metadata } from 'next';
 import { SiteFrame } from '@/components/site-frame';
 import styles from './support.module.css';
@@ -10,17 +12,16 @@ const plans = [
  { name:'企業パートナー',price:'10,000',who:'企業・店舗の方',items:['企業サポーターの内容','許諾を得たロゴの掲載','四半期ごとに紹介文案を作成・企業確認'],key:'business-10000',url:'https://buy.stripe.com/dRm5kF9mn4ficr32S37EQ1q?locale=ja'},
 ];
 function contact(name:string){return `mailto:riot.training.base@gmail.com?subject=${encodeURIComponent('RBA継続応援の相談｜'+name)}&body=${encodeURIComponent('西尾様\nRBAの継続応援について案内を希望します。\n\n希望プラン：'+name+'\nお名前／法人名：\n活動地域：\n確認したいこと：\n\n※このメールでは申込・決済は成立しません。')}`;}
-export default function Support(){return <SiteFrame locale="ja"><div className={styles.page}>
+export default async function Support(){const photos=await getSupportPhotos();const hero=photos[0];return <SiteFrame locale="ja"><div className={styles.page}>
  <section id="apply" className={styles.quickSignup} aria-labelledby="quick-signup-title"><div className={styles.quickHeading}><p className={styles.eyebrow}>RBAを応援する</p><h2 id="quick-signup-title">その応援が、次のコートになる。</h2><p>月500円から。プランを選んで、そのまま申し込めます。</p></div><div className={styles.quickGrid}>{plans.map(p=><a key={p.key} href={p.url} className={styles.quickPlan}><span>{p.key.startsWith('business')?'企業・店舗':'個人'}</span><strong>月{p.price}円<small>（税込）</small></strong><span>{p.key.startsWith('business')?'企業として応援する':'noteで仲間になる'} ↗</span></a>)}</div><p className={styles.quickNote}>毎月自動更新・解約可能。個人はnoteへのログインが必要です。<a href="#plans">特典・更新条件を見る ↓</a></p></section>
  <section className={styles.hero}>
   <div className={styles.heroCopy}><p className={styles.eyebrow}>RBA SUPPORTERS / KEEP THE GAME GOING</p><h1>この笑顔を、<br/><em>一度きりに<br/>しない。</em></h1><p className={styles.lead}>チームを辞めても、<br/>バスケを辞めなくていい未来を。</p><p>「またバスケがしたい」「もっと挑戦したい」。<br/>その気持ちに、次の場所を届けたい。<br/>子どもたちの未来を、一緒につくる仲間を募集しています。</p><div className={styles.actions}><a href="https://note.com/rba_official/membership/join" className={styles.primary}>月500円から、仲間になる ↗</a><a href="https://buy.stripe.com/6oUaEZ6abfY0dv764f7EQ1p?locale=ja" className={styles.heroMore}>企業は月5,000円から応援する ↗</a></div><span className={styles.tag}>個人はnote・企業はStripeで、そのまま申込・決済。</span></div>
-  <figure className={styles.heroPhoto}><Image src="/media/support/clinic-players.jpg" alt="クリニックに集まった選手と指導者たちの集合写真" width={1536} height={1152} fetchPriority="high"/><figcaption>この一日の先に、もう一度挑戦できる場所を。</figcaption><span className={styles.photoLabel}>THE NEXT CHANCE STARTS HERE.</span></figure>
+  {hero?<figure className={styles.heroPhoto}><Image src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} unoptimized fetchPriority="high"/><figcaption>{hero.caption}</figcaption><span className={styles.photoLabel}>THE NEXT CHANCE STARTS HERE.</span></figure>:null}
  </section>
  <div className={styles.ribbon}><span>子どもたちの挑戦。</span><span>大人が学ぶ機会。</span><span>地域をつなぐコート。</span></div>
  <section className={styles.section}><p className={styles.eyebrow}>WHY YOUR SUPPORT MATTERS</p><h2>上手くなりたい。<br/>その気持ちが、続く環境を。</h2><p className={styles.statement}>一日のクリニックを、<br/>次の挑戦につながるきっかけに。</p><p>子どもが自分で見て、考えて、試せること。保護者が安心して見守れること。指導者も学び続けられること。RBAが育てたいのは、そのすべてがつながる環境です。</p><p>会場を探し、地域の人とつながり、コートへ向かう。その積み重ねを続けるために、月500円からの応援メンバーを募集しています。</p></section>
  <section className={`${styles.section} ${styles.records}`}><p className={styles.eyebrow}>REAL PEOPLE. REAL COURTS.</p><h2>想いだけで終わらせず、<br/>現場をつくってきた。</h2><p>地域のクリニック、BACKBONE 3×3、海外との交流。子どもたちや指導者、支えてくださる方々と、コートで重ねてきた活動の記録です。</p>
-  <figure className={styles.widePhoto}><Image src="/media/support/backbone-chiba.jpg" alt="BACKBONE 3×3 千葉チャプターRound 3で集まった選手・保護者・関係者" width={1170} height={1560} loading="lazy"/><figcaption><strong>BACKBONE 3×3｜千葉チャプター Round 3</strong><span>プレーする子どもたちと、場を支える大人たち。一緒につくった一日。</span><a href="/field-notes">活動の記録を見る ↗</a></figcaption></figure>
-  <div className={styles.photoPair}><figure><Image src="/media/support/players-and-coaches.jpg" alt="コートに集まった選手と指導者たち" width={1536} height={1152} loading="lazy"/><figcaption>選手と指導者が、同じコートで学び合う。</figcaption></figure><figure><Image src="/media/support/court-community.jpg" alt="バスケットボールを通じて集まった選手と大人たちの集合写真" width={1536} height={1152} loading="lazy"/><figcaption>出会った人と、また次の機会をつくる。</figcaption></figure></div>
+  <div className={styles.photoPair}>{photos.map(photo=><figure key={photo.id}><Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} unoptimized loading="lazy"/><figcaption>{photo.caption}</figcaption></figure>)}</div>
   <div className={styles.evidence}><article><span>LOCAL / JAPAN</span><h3>各地でのクリニックと育成活動</h3><p>地域の方々と協力しながら、クリニックやキャンプ、3×3などの育成活動を重ねています。</p><a href="/ja/impact">RBAの活動紹介を見る →</a></article><article><span>EXCHANGE / TAIWAN</span><h3>台湾での交流、その先へ</h3><p>台湾遠征後の振り返りも公開しています。一度の遠征で終わらせず、次の学びにつながる関係を育てていきます。</p><a href="https://note.com/rba_official/n/nd7e845a1453c">台湾遠征の振り返りを読む ↗</a></article><article><span>GAME / BACKBONE</span><h3>千葉で重ねた、Round 3</h3><p>BACKBONE 3×3 千葉チャプター Round 3の集合写真。選手・保護者・関係者と一緒につくった活動の一場面です。</p><a href="/field-notes">活動の記録を見る →</a></article></div>
   <p className={styles.small}>写真は活動の記録です。これからの支援金の使途や実施成果は、月次の活動報告でお伝えします。</p>
  </section>

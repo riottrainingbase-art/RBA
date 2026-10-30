@@ -1,4 +1,5 @@
 import Image from "next/image";
+import {getSupportPhotos} from "@/lib/support-photos";
 import { FounderProfile } from "./founder-profile";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
@@ -15,7 +16,8 @@ const learning = [
   ["RBA公式ウェア", "コートへ、その先へ。スポーツTシャツを発売準備中。", "/ja/store"],
 ] as const;
 
-export function SimpleJapaneseHome() {
+export async function SimpleJapaneseHome() {
+  const supportHero=(await getSupportPhotos())[0];
   const active = programmes.filter(p => isProgrammeActive(p)).sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate)).slice(0,6);
   return <div className={styles.page} lang="ja"><SiteFrame locale="ja" compact>
     <div className={styles.container}>
@@ -32,7 +34,7 @@ export function SimpleJapaneseHome() {
 
 
       <section className={styles.support} aria-labelledby="home-support-title">
-        <Image src="/media/support/clinic-players.jpg" alt="クリニックに集まった選手と指導者" width={1536} height={1152} loading="lazy"/>
+        {supportHero?<Image src={supportHero.src} alt={supportHero.alt} width={supportHero.width} height={supportHero.height} unoptimized loading="lazy"/>:null}
         <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">活動写真・応援プランを見る →</a><a className={styles.secondary} href="https://note.com/rba_official/membership/join">月500円から仲間になる ↗</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業は月5,000円・10,000円の継続応援をご用意しています。</p></div>
       </section>
       <FounderProfile locale="ja"/>
