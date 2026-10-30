@@ -1,3 +1,4 @@
+import { KyushuContact } from "@/components/kyushu-contact";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -327,6 +328,7 @@ export default function SagaPage() {
           </div>
         </section>
 
+        <KyushuContact region="佐賀" />
         <nav className="saga-section-nav" aria-label="RBA佐賀 ページ内メニュー">
           <a href="#concept">RBA佐賀とは</a>
           <a href="#history">これまで</a>

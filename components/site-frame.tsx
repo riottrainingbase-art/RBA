@@ -60,7 +60,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
     <main id="main-content">{children}<DevelopmentJourneyLink/></main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
-      <div><p className="footer-label">{c.explore}</p>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div>
+      <div><p className="footer-label">{c.explore}</p>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a>{locale==="ja" && <><a href="/ja/fukuoka">RBA福岡</a><a href="/ja/saga">RBA佐賀</a></>}</div>
       <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a><a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a></div>
       <div className="footer-legal"><p>{ui(locale,"city")}</p><p>{ui(locale,"representative")}</p><p>© 2026 Riot Basketball Academy</p><p>{c.safeguard}</p><a href={localePath(locale,"policies")}>{({en:"Privacy · Terms · Safety · Cancellation",ja:"プライバシー・参加規約・安全・キャンセル","zh-tw":"隱私・條款・安全・取消政策",ko:"개인정보・약관・안전・취소 정책"})[locale]}</a></div>
     </footer>

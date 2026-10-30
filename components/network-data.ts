@@ -49,7 +49,7 @@ export const japanLocationProfiles:Record<string,JapanLocationProfile>={
   kobe:{region:"kansai",prefecture:["Hyogo","兵庫県","兵庫縣","효고현"],municipality:["Kobe","神戸市","神戶市","고베시"],coordinateLevel:"city"},
   "tatsuno-planned":{region:"kansai",prefecture:["Hyogo","兵庫県","兵庫縣","효고현"],municipality:["Tatsuno","たつの市","龍野市","다쓰노시"],coordinateLevel:"city"},
   saga:{region:"kyushu",prefecture:["Saga","佐賀県","佐賀縣","사가현"],municipality:["Saga","佐賀市周辺","佐賀市周邊","사가시 일대"],coordinateLevel:"area",page:{ja:"/ja/saga"}},
-  okawa:{region:"kyushu",prefecture:["Fukuoka","福岡県","福岡縣","후쿠오카현"],municipality:["Okawa","大川市","大川市","오카와시"],coordinateLevel:"city"},
+  okawa:{region:"kyushu",prefecture:["Fukuoka","福岡県","福岡縣","후쿠오카현"],municipality:["Okawa","大川市","大川市","오카와시"],coordinateLevel:"city",page:{ja:"/ja/fukuoka"}},
   okinawa:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Okinawa City","沖縄市","沖繩市","오키나와시"],coordinateLevel:"city"},
   tomigusuku:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Tomigusuku","豊見城市","豐見城市","도미구스쿠시"],coordinateLevel:"city"},
   itoman:{region:"okinawa",prefecture:["Okinawa","沖縄県","沖繩縣","오키나와현"],municipality:["Itoman","糸満市","糸滿市","이토만시"],coordinateLevel:"city"},

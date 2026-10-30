@@ -120,6 +120,7 @@ export default function RegionsPage() {
           </div>
         </section>
 
+        <section className="section-pad"><h2>福岡・佐賀で、育成の次の一歩を。</h2><p>福岡をアジアとの育成・交流の重点地域へ。継続的な活動と、地域で協力する仲間づくりを進めます。</p><div className="homecourt-launch-actions"><Link className="button button-dark" href="/ja/fukuoka">RBA福岡・協力の相談 →</Link><Link className="button button-light" href="/ja/saga">RBA佐賀・参加と開催の相談 →</Link></div></section>
         <NetworkMaps locale="ja" japanOnly />
 
         <section className="journal-evidence-standard section-pad">
