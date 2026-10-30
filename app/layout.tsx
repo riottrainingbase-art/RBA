@@ -1,3 +1,4 @@
+import {CancellationNotice} from '@/components/cancellation-notice';
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import Script from "next/script";
@@ -57,6 +58,7 @@ export default async function RootLayout({
           founder:{"@type":"Person",name:"Yuto Nishio",alternateName:"西尾優人"}, address:{"@type":"PostalAddress",addressLocality:"Sendai",addressCountry:"JP"},
           email:"riot.training.base@gmail.com", sameAs:["https://www.instagram.com/riot.basketball.academy/","https://www.threads.com/@riot.basketball.academy","https://note.com/rba_official","https://linktr.ee/riotbasketballacademy"]
         }) }} />
+        <CancellationNotice/>
         {children}
       </body>
     </html>
