@@ -152,6 +152,7 @@ function buildSite() {
   require("./growth.cjs")({out,posts,h,rfq,mail,write,page,cta});
   require("./finalize.cjs")({out,posts,h,rfq,mail,write,page,cta});
   require("./malaysia-vehicles.cjs")({out,posts,h,rfq,mail,write,page,cta});
+  require("./execution-marketing.cjs")({out,posts,h,rfq,mail,write,page,cta});
   console.log("Built "+urls.length+" routes; preserved "+ids.size+" article URLs.");
 }
 buildSite();
