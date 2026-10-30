@@ -9,7 +9,7 @@ const plans = [
  { name:'RBA応援メンバー',price:'500',who:'個人の方',items:['月1回の活動・使途レポート','活動を継続して見守る入口'],key:'individual-500',url:'https://note.com/rba_official/membership/join'},
  { name:'RBA育成を学ぶメンバー',price:'1,000',who:'保護者・指導者の方',items:['月1回の活動・使途レポート','月2本の育成・見守り方の記事'],key:'learning-1000',url:'https://note.com/rba_official/membership/join'},
  { name:'企業サポーター',price:'5,000',who:'企業・店舗の方',items:['共通の活動レポート','希望企業の社名を応援ページに掲載'],key:'business-5000',url:'https://buy.stripe.com/6oUaEZ6abfY0dv764f7EQ1p?locale=ja'},
- { name:'企業パートナー',price:'10,000',who:'企業・店舗の方',items:['企業サポーターの内容','許諾を得たロゴの掲載','四半期ごとに紹介文案を作成・企業確認'],key:'business-10000',url:'https://buy.stripe.com/dRm5kF9mn4ficr32S37EQ1q?locale=ja'},
+ { name:'企業パートナー',price:'10,000',who:'企業・店舗の方',items:['企業サポーターの内容','許諾を得たロゴの掲載','企業紹介文を作成・掲載／年1回見直し'],key:'business-10000',url:'https://buy.stripe.com/dRm5kF9mn4ficr32S37EQ1q?locale=ja'},
 ];
 function contact(name:string){return `mailto:riot.training.base@gmail.com?subject=${encodeURIComponent('RBA継続応援の相談｜'+name)}&body=${encodeURIComponent('西尾様\nRBAの継続応援について案内を希望します。\n\n希望プラン：'+name+'\nお名前／法人名：\n活動地域：\n確認したいこと：\n\n※このメールでは申込・決済は成立しません。')}`;}
 export default async function Support(){const photos=await getSupportPhotos();const hero=photos[0];return <SiteFrame locale="ja"><div className={styles.page}>
