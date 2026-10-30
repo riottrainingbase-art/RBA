@@ -31,6 +31,7 @@ export function localePath(locale:Locale, page?:LanguagePage){
 export function SiteFrame({ children, locale="en", languagePage, compact=false }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage; compact?:boolean }) {
   const c=labels[locale];
   const fullNav=[
+    ...(locale==="ja"?[["RBAを応援する｜月500円から","/ja/support"] as const]:[]),
     [({en:"Find opportunities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
     [({en:"Players",ja:"選手","zh-tw":"球員",ko:"선수"})[locale],localePath(locale,"players")],
     [({en:"Families",ja:"保護者","zh-tw":"家長",ko:"보호자"})[locale],localePath(locale,"families")],
@@ -83,7 +84,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
     <main id="main-content">{children}</main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
-      <div><p className="footer-label">{c.explore}</p>{(compact ? fullNav.filter(([,href])=>["opportunities","journal","my-homecourt","regional-program","international","about","policies"].some(page=>href===localePath(locale,page as LanguagePage))) : fullNav).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div>
+      <div><p className="footer-label">{c.explore}</p>{locale==="ja"?<a href="/ja/support">RBAを応援する｜月500円から</a>:null}{(compact ? fullNav.filter(([,href])=>["opportunities","journal","my-homecourt","regional-program","international","about","policies"].some(page=>href===localePath(locale,page as LanguagePage))) : fullNav).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div>
       <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.threads.com/@riot.basketball.academy" target="_blank" rel="noreferrer">Threads</a><a href="https://note.com/rba_official" target="_blank" rel="noreferrer">note</a><a href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">LINE</a><a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a></div>
       <div className="footer-legal"><p>{ui(locale,"city")}</p><p>{ui(locale,"representative")}</p><p>© 2026 Riot Basketball Academy</p><p>{c.safeguard}</p><a href={localePath(locale,"policies")}>{({en:"Privacy · Terms · Safety · Cancellation",ja:"プライバシー・参加規約・安全・キャンセル","zh-tw":"隱私・條款・安全・取消政策",ko:"개인정보・약관・안전・취소 정책"})[locale]}</a></div>
     </footer>
