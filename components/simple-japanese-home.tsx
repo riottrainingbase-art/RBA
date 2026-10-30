@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FounderProfile } from "./founder-profile";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
@@ -30,6 +31,10 @@ export function SimpleJapaneseHome() {
 
 
 
+      <section className={styles.support} aria-labelledby="home-support-title">
+        <Image src="/media/support/clinic-players.jpg" alt="クリニックに集まった選手と指導者" width={1536} height={1152} loading="lazy"/>
+        <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">活動写真・応援プランを見る →</a><a className={styles.secondary} href="https://note.com/rba_official/membership/join">月500円から仲間になる ↗</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業は月5,000円・10,000円の継続応援をご用意しています。</p></div>
+      </section>
       <FounderProfile locale="ja"/>
       <section className={styles.section} aria-labelledby="home-purpose-title">
         <div className={styles.heading}><div><p className={styles.label}>あなたの目的から</p><h2 id="home-purpose-title">参加する。チームに呼ぶ。地域でつくる。</h2></div></div>

@@ -31,6 +31,7 @@ export function localePath(locale:Locale, page?:LanguagePage){
 export function SiteFrame({ children, locale="en", languagePage, compact=false }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage; compact?:boolean }) {
   const c=labels[locale];
   const nav=[
+    ...(locale==="ja"?[["RBAを応援する","/ja/support"] as const]:[]),
     [({en:"Activities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
     [({en:"Learning",ja:"育成を学ぶ","zh-tw":"培育學習",ko:"육성 배우기"})[locale],localePath(locale,"journal")],
     [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
@@ -46,7 +47,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
     <header className={`site-header ${navigationStyles.header}`}>
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{nav.slice(1).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{nav.filter(([,href])=>href!==localePath(locale,"opportunities")).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div></details>
       <div className="header-actions">
         <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"RBA ID",ja:"RBA ID","zh-tw":"RBA ID","ko":"RBA ID"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>
