@@ -73,6 +73,11 @@ export async function SimpleJapaneseHome() {
         {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
       </section>
 
+      <section className={styles.regional} aria-labelledby="sendai-school-trial">
+        <div><p className={styles.label}>RBA SENDAI / 体験相談</p><h2 id="sendai-school-trial">チームはそのまま。仙台で、判断力を育てる。</h2><p>徳洲会看護専門学校体育館を基本会場に、育成年代向けのスクール体験を相談受付中。実施日・料金・対象は個別に確認してご案内します。地域企業・団体の育成協賛も募集しています。</p></div>
+        <div className={styles.regionalActions}><a href="/ja/sendai-school" data-growth-id="home-sendai-school-trial">体験・協賛の相談へ →</a></div>
+      </section>
+
       <section className={styles.regional} aria-labelledby="sendai-u12-moniwadai">
         <div><p className={styles.label}>仙台 U12 / 茂庭台小学校</p><h2 id="sendai-u12-moniwadai">小学生の学びを、茂庭台から。</h2><p>仙台市太白区・茂庭台小学校でのU12スクール。小学5年生も対象です。原則金曜18:00〜19:30（月3回を基本）。入会金10,000円・月額7,700円。具体的な開催日・体験条件は確認中です。</p></div>
         <div className={styles.regionalActions}><a href="/ja/u12-school">スクールの詳細・体験相談 →</a></div>
