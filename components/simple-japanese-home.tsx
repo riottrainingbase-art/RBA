@@ -26,8 +26,8 @@ export async function SimpleJapaneseHome() {
         <div>
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-          <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、所属を変えずに学びと挑戦を広げる場所です。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">活動を探す →</a><a className={styles.secondary} href="/ja/after-clinic" data-growth-id="home-return">参加した方へ →</a><a className={styles.secondary} href="/ja/about">RBAを知る →</a></nav>
+          <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">活動を探す →</a><a className={styles.secondary} href="/ja/after-clinic" data-growth-id="home-return">参加した方へ →</a><a className={styles.secondary} href="/ja/development-projects" data-growth-id="home-development-project">次の挑戦を一緒につくる →</a></nav>
         </div>
       </section>
 
@@ -35,7 +35,7 @@ export async function SimpleJapaneseHome() {
 
       <section className={styles.support} aria-labelledby="home-support-title">
         {supportHero?<Image src={supportHero.src} alt={supportHero.alt} width={supportHero.width} height={supportHero.height} unoptimized loading="lazy"/>:null}
-        <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">活動写真・応援プランを見る →</a><a className={styles.secondary} href="https://note.com/rba_official/membership/join">月500円から仲間になる ↗</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業は月5,000円・10,000円の継続応援をご用意しています。</p></div>
+        <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">活動写真・応援プランを見る →</a><a className={styles.secondary} href="https://note.com/rba_official/membership/join">月500円から仲間になる ↗</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業広告は月1万円＋税から、口数を選んでお申し込みいただけます。</p></div>
       </section>
       <FounderProfile locale="ja"/>
       <section className={styles.section} aria-labelledby="home-purpose-title">

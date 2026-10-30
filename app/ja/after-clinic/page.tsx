@@ -16,6 +16,7 @@ export default function Page() {
     <div className="mx-auto max-w-5xl px-5 py-10 text-[#10233f] md:px-8">
       <a href="/ja" className="text-sm underline underline-offset-4">← RBAトップ</a>
       <header className="my-8"><p className="text-xs font-bold tracking-widest">AFTER THE CLINIC</p><h1 className="mt-4 text-3xl font-bold leading-relaxed md:text-5xl">参加した日の学びを、<br/>次の練習へ。</h1><p className="mt-5 max-w-3xl leading-8">楽しかったこと、難しかったこと、もう一度試したいこと。全部を一度に直そうとせず、選手自身が次に取り組みたいことを一つ選びましょう。初めて参加した方も、久しぶりの方も、登録なしで使えます。</p></header>
+      <section className="my-6 border border-slate-300 bg-slate-50 p-6"><h2 className="text-xl font-bold">ここから、保護者・指導者と一緒に。</h2><p className="my-3 leading-8">下の振り返りから、次に試すこと・周りの役割・振り返る日を一枚の計画にできます。地域で続ける方法から、キャンプや海外交流まで、目的に合わせて相談できます。</p><a href="/ja/development-projects#plan" className="inline-flex min-h-12 items-center font-bold underline" data-growth-id="reflection-development-project">次の一歩を一緒に考える →</a></section>
       <ClinicReflection />
       <section className="py-10" aria-labelledby="parent-guide"><h2 id="parent-guide" className="text-2xl font-bold">保護者の方へ。まずは、本人の言葉を聞く。</h2><div className="mt-6 grid gap-5 md:grid-cols-3">{[
         ["帰り道は、感想から", "「どんなことが楽しかった？」「もう一度やってみたいことは？」。その場で答えが出なくても、急いで結論を出す必要はありません。"],

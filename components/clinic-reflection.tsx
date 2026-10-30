@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import {useRouter} from "next/navigation";
 import styles from "./clinic-reflection.module.css";
 
 const prompts = [
@@ -10,6 +11,7 @@ const prompts = [
 ] as const;
 
 export function ClinicReflection() {
+  const router=useRouter();
   const [notes, setNotes] = useState(["", "", ""]);
   const [message, setMessage] = useState("");
   async function copy() {
@@ -18,11 +20,12 @@ export function ClinicReflection() {
       setMessage("コピーしました。ご自身のメモなどに貼り付けて保管できます。");
     } catch { setMessage("コピーできませんでした。入力欄の文章を選択してコピーするか、印刷をご利用ください。"); }
   }
+  function continuePlan(){try{sessionStorage.setItem("rba-development-handoff",JSON.stringify({goal:notes[0].slice(0,180),practice:notes[1].slice(0,180),next:notes[2].slice(0,180)}));router.push("/ja/development-projects?from=reflection#plan");}catch{setMessage("このブラウザではメモを引き継げません。コピーして、育成計画のページに貼り付けてください。");}}
   return <section className={styles.card} aria-labelledby="reflection-title">
     <h2 id="reflection-title">今日の学びを、三つのメモに。</h2>
-    <p>入力は任意です。このメモはRBAへ送信・保存されません。ページを閉じたり再読み込みしたりすると消えます。残したい場合はコピーまたは印刷してください。</p>
+    <p>入力は任意です。このメモはRBAへ送信・保存されません。ページを閉じたり再読み込みしたりすると消えます。残したい場合はコピーまたは印刷してください。育成計画への引き継ぎは、このブラウザ内で行います。</p>
     {prompts.map(([label, placeholder], index) => <label className={styles.field} key={label} htmlFor={`reflection-${index}`}><strong>{index + 1}. {label}</strong><textarea id={`reflection-${index}`} rows={3} maxLength={1000} placeholder={placeholder} value={notes[index]} onChange={event => { setNotes(notes.map((note, i) => i === index ? event.target.value : note)); setMessage(""); }} /><span className={styles.printNote}>{notes[index] || "（未記入）"}</span></label>)}
-    <div className={styles.actions}><button type="button" onClick={() => void copy()}>メモをコピー</button><button type="button" onClick={() => window.print()}>印刷・PDFに保存</button></div>
+    <div className={styles.actions}><button type="button" onClick={continuePlan}>このメモから育成計画を考える →</button><button type="button" onClick={() => void copy()}>メモをコピー</button><button type="button" onClick={() => window.print()}>印刷・PDFに保存</button></div>
     <p role="status" aria-live="polite">{message}</p>
   </section>;
 }

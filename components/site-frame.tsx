@@ -1,3 +1,4 @@
+import { DevelopmentJourneyLink } from "./development-journey-link";
 import { DocumentLanguage } from "./document-language";
 import { ui } from "./ui-copy";
 import Image from "next/image";
@@ -81,7 +82,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
       </div>
     </header>
     <PublicUpdateBanner locale={locale}/>
-    <main id="main-content">{children}</main>
+    <main id="main-content">{children}<DevelopmentJourneyLink/></main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
       <div><p className="footer-label">{c.explore}</p>{locale==="ja"?<a href="/ja/support">RBAを応援する｜月500円から</a>:null}{(compact ? fullNav.filter(([,href])=>["opportunities","journal","my-homecourt","regional-program","international","about","policies"].some(page=>href===localePath(locale,page as LanguagePage))) : fullNav).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a></div>
