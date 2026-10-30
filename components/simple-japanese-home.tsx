@@ -33,6 +33,7 @@ export async function SimpleJapaneseHome() {
 
 
 
+      <section className={styles.regional} aria-labelledby="fukuoka-launch-title"><div><p className={styles.label}>RBA FUKUOKA / 福岡・佐賀</p><h2 id="fukuoka-launch-title">福岡、始動。アジアとつながる育成の入口へ。</h2><p>国際ユースキャンプ、国際試合、継続する育成を海外のオーガナイザーと企画。福岡・佐賀で一緒に活動する仲間を募集しています。</p></div><div className={styles.regionalActions}><a href="/ja/fukuoka">RBA福岡・協力の相談 →</a><a href="/ja/saga">RBA佐賀の活動 →</a></div></section>
       <section className={styles.support} aria-labelledby="home-support-title">
         {supportHero?<Image src={supportHero.src} alt={supportHero.alt} width={supportHero.width} height={supportHero.height} unoptimized loading="lazy"/>:null}
         <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">活動写真・応援プランを見る →</a><a className={styles.secondary} href="https://note.com/rba_official/membership/join">月500円から仲間になる ↗</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業広告は月額1口・1万円＋税で受け付けています。</p></div>
