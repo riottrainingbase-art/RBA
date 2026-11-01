@@ -28,3 +28,5 @@
 .theme :global(.mobile-menu-languages){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:12px 4px 4px;border-top:1px solid #ded8cc;margin-top:8px}
 .theme :global(.mobile-menu-languages a){min-height:42px;justify-content:center;text-align:center;border:1px solid #ded8cc;padding:8px 2px;font-size:11px}
 .theme :global(.mobile-menu-languages a[aria-current="true"]){background:#10233f;color:#fff;border-color:#10233f}
+
+/* Visual audit checkpoint: homepage, journal, about, international and mobile menu. */
