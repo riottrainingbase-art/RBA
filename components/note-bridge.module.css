@@ -27,3 +27,5 @@
   .card { padding: 16px; }
   .all { white-space: normal; }
 }
+
+/* Note links are maintained here so the homepage and journal share one responsive pattern. */
