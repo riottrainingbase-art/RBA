@@ -84,7 +84,7 @@ export async function SimpleJapaneseHome() {
 
       <section className={styles.regional} aria-labelledby="kagoshima-clinic-home">
         <div><p className={styles.label}>BASTET × RBA / 2026.11.29（日）</p><h2 id="kagoshima-clinic-home">鹿児島で、一緒にバスケ。</h2><p>錦江湾高校体育館。小・中・高校生（男女）対象。午前9:30〜12:00／午後13:00〜15:30。通し4,000円・1部のみ3,000円。</p></div>
-        <div className={styles.regionalActions}><a href="/ja/events/kagoshima-clinic-2026-11-29">詳細・メール／DMで申し込む →</a></div>
+        <div className={styles.regionalActions}><a href="/ja/events/kagoshima-clinic-2026-11-29">詳細・オンライン申込へ →</a></div>
       </section>
 
       <OkinawaDecemberCampCallout locale="ja" />
