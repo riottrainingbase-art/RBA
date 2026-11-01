@@ -109,12 +109,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <p className="section-index">{c.kicker}</p>
         <h1>{c.title}</h1>
         <p>{c.lead}</p>
-        <div className="journal-cms-languages">
-          <Link href="/journal" aria-current={locale==="en"?"page":undefined}>EN</Link>
-          <Link href="/ja/journal" aria-current={locale==="ja"?"page":undefined}>日本語</Link>
-          <Link href="/zh-tw/journal" aria-current={locale==="zh-tw"?"page":undefined}>繁中</Link>
-          <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
-        </div>
+
       </section>
       {locale==="ja"?<div className="section-pad"><NoteBridge variant="journal" /></div>:null}
       {locale==="ja"?<JournalPracticeGuides posts={posts}/>:null}

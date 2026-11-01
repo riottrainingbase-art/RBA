@@ -29,3 +29,9 @@
 }
 
 /* Note links are maintained here so the homepage and journal share one responsive pattern. */
+
+/* Match the founder and site editorial palette. */
+.section{background:#f3f0ea;border-color:#ded8cc}
+.card{border-color:#ded8cc}
+.card:hover{background:#fcfaf6;border-color:#a48a61}
+.label{color:#705c3f}

@@ -12,7 +12,7 @@ const copy={
 export function InternationalPlatform({locale}:{locale:Locale}){
  const c=copy[locale];const message=encodeURIComponent(locale==="ja"?"RBAの海外連携について相談したいです。団体名、対象年代、希望時期、交流目的をお送りします。":"Hello RBA, I would like to discuss a Japan–Asia basketball programme.");
  return <SiteFrame locale={locale} languagePage="international"><div className="international-platform">
-  <section className="international-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><Globe2/><p className="section-index inverse">RBA INTERNATIONAL / JAPAN × ASIA</p><h1>{c.title}</h1><p>{c.lead}</p><div><a className="button button-light" href="#international-contact">{c.contact}<ArrowRight/></a><a className="text-link light-link" href={localePath("en","international")}>ENGLISH PAGE<ArrowRight/></a></div></section>
+  <section className="international-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><Globe2/><p className="section-index inverse">RBA INTERNATIONAL / JAPAN × ASIA</p><h1>{c.title}</h1><p>{c.lead}</p><div><a className="button button-light" href="#international-contact">{c.contact}<ArrowRight/></a></div></section>
   <section className="section-pad" aria-labelledby="japan-visit-start" style={{background:"#fff",color:"#10233f"}}>
     <div style={{maxWidth:1080,margin:"0 auto"}}>
       <p className="section-index">JAPAN BASKETBALL VISITS / START HERE</p>
