@@ -7,13 +7,13 @@ import { SiteFrame, localePath } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
+import { NoteBridge } from "./note-bridge";
 
 const learning = [
-  ["育成記事", "チーム選び、出場機会、練習の悩みから。", "/ja/journal"],
-  ["MY HOME COURT", "RBA IDは無料。活動と学びを自分のページに。", "/ja/my-homecourt"],
-  ["S&C・身体づくり", "成長期のトレーニング、負荷と回復を学ぶ。", "/ja/development"],
-  ["海外交流", "日本とアジアのキャンプ・チーム交流を相談。", "/ja/international"],
-  ["RBA公式ウェア", "コートへ、その先へ。スポーツTシャツを発売準備中。", "/ja/store"],
+  ["育成記事を探す", "RBA JOURNAL｜テーマから無料の記事を探せます。", "/ja/journal"],
+  ["指導者の学び", "D-HUB｜日々の指導と練習設計を深める。", "/ja/d-hub"],
+  ["MY HOME COURT", "RBA IDで活動と学びをひとつに。", "/ja/my-homecourt"],
+  ["身体づくり", "成長期のトレーニングと回復を学ぶ。", "/ja/development"],
 ] as const;
 
 export async function SimpleJapaneseHome() {
@@ -27,7 +27,7 @@ export async function SimpleJapaneseHome() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">活動を探す →</a><a className={styles.secondary} href="/ja/after-clinic" data-growth-id="home-return">参加した方へ →</a><a className={styles.secondary} href="/ja/development-projects" data-growth-id="home-development-project">次の挑戦を一緒につくる →</a></nav>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">参加する →</a><a className={styles.secondary} href="#home-learning">学ぶ・読む →</a><a className={styles.secondary} href="/ja/clinic-request">開催・相談する →</a></nav>
         </div>
       </section>
 
@@ -48,17 +48,6 @@ export async function SimpleJapaneseHome() {
           ["企業・協賛担当者", "子どもの挑戦を支えたい", "地域の育成機会への協賛や、企業・団体の親子企画を相談できます。", "/ja/partners", "連携・協賛の方法を見る", "partner"],
         ].map(([label,title,body,href,cta,id]) => <article key={id}><p className={styles.label}>{label}</p><h3>{title}</h3><p>{body}</p><a href={href} data-growth-id={`home-${id}`}>{cta} →</a></article>)}</div>
         <p className={styles.note}>お近くに開催がない方は、<a href="/ja/clinic-interest" data-growth-id="home-interest">無料の開催希望登録</a>へ。日程・会場・参加費をご案内してから、参加を決められます。</p>
-      </section>
-
-      <section className={styles.regional} aria-labelledby="miyako-oct31-feature">
-        <div>
-          <p className={styles.label}>10月31日（土）｜岩手・宮古｜RBA × BiiLDact</p>
-          <h2 id="miyako-oct31-feature">宮古で、バスケが変わる。</h2>
-          <p>千徳地区体育館 10:00〜17:00（受付9:30）。小学5年〜中学3年・定員30名。技術を試合の判断につなげる1DAY CLINIC。参加費・条件は現地主催者の公式フォームをご確認ください。</p>
-        </div>
-        <div className={styles.regionalActions}>
-          <a href="/events/miyako-20261031" data-growth-id="home-miyako-20261031">開催詳細・公式申込フォームへ →</a>
-        </div>
       </section>
 
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
@@ -96,7 +85,8 @@ export async function SimpleJapaneseHome() {
       </section>
 
       <section className={styles.section} id="home-learning" aria-labelledby="home-learning-title">
-        <div className={styles.heading}><div><p className={styles.label}>学ぶ・つながる</p><h2 id="home-learning-title">学びと交流</h2></div></div>
+        <div className={styles.heading}><div><p className={styles.label}>学ぶ・読む</p><h2 id="home-learning-title">育成を学ぶ</h2></div></div>
+        <NoteBridge variant="home" />
         <div className={styles.learning}>{learning.map(([title, body, href]) => <a href={href} key={href}><h3>{title}<span aria-hidden="true">↗</span></h3><p>{body}</p></a>)}</div>
       </section>
 
