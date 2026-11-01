@@ -1,0 +1,29 @@
+.section {
+  background: #f2f5f9;
+  color: #10233f;
+  border: 1px solid #d8dfe7;
+  padding: 25px;
+}
+.home { margin: 28px 0 12px; }
+.journal { margin: 0 0 28px; }
+.header { display: flex; align-items: flex-end; justify-content: space-between; gap: 22px; margin-bottom: 18px; }
+.kicker { font-size: 11px; letter-spacing: .1em; font-weight: 800; color: #536174; margin: 0 0 7px; }
+.header h2 { font-size: clamp(21px, 2.5vw, 27px); letter-spacing: -.025em; line-height: 1.45; margin: 0 0 7px; }
+.lead { font-size: 13px; color: #465872; line-height: 1.9; max-width: 650px; margin: 0; }
+.all { font-size: 13px; color: #10233f; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.card { color: #10233f; display: flex; flex-direction: column; gap: 9px; padding: 18px; min-width: 0; background: #fff; border: 1px solid #d8dfe7; text-decoration: none; transition: border-color .15s, background-color .15s; }
+.card:hover { background: #fbfcfe; border-color: #71849d; }
+.card:focus-visible, .all:focus-visible { outline: 3px solid #6484ae; outline-offset: 3px; }
+.label { font-size: 11px; font-weight: 800; letter-spacing: .03em; color: #536174; line-height: 1.6; }
+.card strong { font-size: 16px; line-height: 1.6; overflow-wrap: anywhere; }
+.description { font-size: 13px; line-height: 1.8; color: #536174; flex: 1; }
+.action { font-size: 13px; font-weight: 800; line-height: 1.6; margin-top: 4px; text-decoration: underline; text-underline-offset: 4px; }
+.note { font-size: 11px; line-height: 1.8; color: #536174; margin: 12px 0 0; }
+@media (max-width: 780px) {
+  .section { padding: 20px; }
+  .header { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .cards { grid-template-columns: 1fr; }
+  .card { padding: 16px; }
+  .all { white-space: normal; }
+}
