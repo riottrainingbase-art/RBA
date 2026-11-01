@@ -7,6 +7,8 @@ const eventUrl = "https://riotbasketballacademy.com/events/torsten-loibl-online-
 const achievements = [
   ["WABC", "Executive Committee", "Member of the World Association of Basketball Coaches Executive Committee"],
   ["FIBA WABC · 2026", "Level 3 Coach Instructor Status", "Granted on 22 October 2026 through Recognition of Prior Learning (RPL), confirmed in a signed letter from the WABC President to Torsten Loibl"],
+  ["FIBA WABC · 2026", "Instructor for Coach Instructors", "Instructor for Coach Instructors status granted under the same 22 October 2026 recognition letter"],
+  ["FIBA WABC · 2026", "FRIP Courses Status", "Basketball Knowledge Module FRIP Courses Status granted under the same recognition letter"],
   ["B.LEAGUE PREMIER", "Levanga Hokkaido · Head Coach", "Head Coach for the 2026–27 season, as confirmed by the club. This is a biographical reference, not a club endorsement."],
   ["CHAMPIONSHIPS", "Japan · 2006–07 & 2007", "Japan's top-league title and national cup championship"],
   ["COACH OF THE YEAR", "Japan 2007 · Germany 2010", "Individual annual coaching awards in Japan's top league and the German ProA"],
