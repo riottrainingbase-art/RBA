@@ -13,6 +13,25 @@ export function InternationalPlatform({locale}:{locale:Locale}){
  const c=copy[locale];const message=encodeURIComponent(locale==="ja"?"RBAの海外連携について相談したいです。団体名、対象年代、希望時期、交流目的をお送りします。":"Hello RBA, I would like to discuss a Japan–Asia basketball programme.");
  return <SiteFrame locale={locale} languagePage="international"><div className="international-platform">
   <section className="international-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><Globe2/><p className="section-index inverse">RBA INTERNATIONAL / JAPAN × ASIA</p><h1>{c.title}</h1><p>{c.lead}</p><div><a className="button button-light" href="#international-contact">{c.contact}<ArrowRight/></a><a className="text-link light-link" href={localePath("en","international")}>ENGLISH PAGE<ArrowRight/></a></div></section>
+  <section className="section-pad" aria-labelledby="japan-visit-start" style={{background:"#fff",color:"#10233f"}}>
+    <div style={{maxWidth:1080,margin:"0 auto"}}>
+      <p className="section-index">JAPAN BASKETBALL VISITS / START HERE</p>
+      <h2 id="japan-visit-start" style={{fontSize:"clamp(26px,4vw,40px)",lineHeight:1.3,margin:"0 0 12px"}}>{({ja:"日本に来たい。その気持ちから相談できます。",en:"Your basketball visit to Japan starts with a conversation.","zh-tw":"想來日本打籃球？從聊聊你的想法開始。",ko:"일본에서 농구하고 싶다면, 먼저 이야기해 주세요."})[locale]}</h2>
+      <p style={{maxWidth:760,lineHeight:1.9}}>{({ja:"交流試合、育成キャンプ、指導者研修、学校・文化交流。まだ日程や予算が決まっていなくても大丈夫です。実現できる内容を一緒に整理します。",en:"Friendly games, development camps, coach learning, school and cultural exchange. You don't need confirmed dates or a budget to ask. We'll explore realistic options together.","zh-tw":"交流賽、培訓營、教練研習、學校與文化交流。日期或預算還沒決定也可以先洽詢。","ko":"친선 경기, 육성 캠프, 코치 교육, 학교·문화 교류. 일정과 예산이 미정이어도 먼저 상담할 수 있습니다."})[locale]}</p>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(210px,1fr))",gap:12,margin:"24px 0"}}>
+        {[
+          ["01",({ja:"希望を伝える",en:"Tell us your idea","zh-tw":"分享想法",ko:"희망 사항 공유"})[locale]],
+          ["02",({ja:"一緒に企画する",en:"Plan together","zh-tw":"一起規劃",ko:"함께 기획"})[locale]],
+          ["03",({ja:"条件と費用を確認",en:"Confirm scope and costs","zh-tw":"確認條件與費用",ko:"조건·비용 확인"})[locale]]
+        ].map(([number,title])=><div key={number} style={{border:"1px solid #d8dfe7",padding:18}}><strong style={{display:"block",fontSize:12,marginBottom:7}}>{number}</strong><span style={{fontWeight:700}}>{title}</span></div>)}
+      </div>
+      <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+        <a className="button button-dark" href={`https://wa.me/818032483703?text=${encodeURIComponent(({ja:"日本でのバスケットボール交流を相談したいです。団体名・国／地域：　希望内容：　希望時期：　人数：",en:"Hello RBA! We would like to explore a basketball visit to Japan. Organisation / country:  Interested activities:  Preferred timing:  Approximate group size: ", "zh-tw":"您好！我們想詢問赴日籃球交流。單位／國家：　希望活動：　時間：　人數：",ko:"안녕하세요. 일본 농구 교류를 상담하고 싶습니다. 단체/국가:  희망 활동:  시기:  인원: "})[locale])}`} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{({ja:"WhatsAppで無料相談",en:"Ask on WhatsApp — free","zh-tw":"WhatsApp 免費洽詢",ko:"WhatsApp 무료 상담"})[locale]}</a>
+        <a className="button button-light" href={localePath(locale,"contact")}>{({ja:"メールで相談",en:"Contact by email","zh-tw":"電子郵件洽詢",ko:"이메일 문의"})[locale]} <ArrowRight size={16}/></a>
+      </div>
+      <p style={{fontSize:12,marginTop:16,color:"#536174",lineHeight:1.8}}>{({ja:"相談は無料です。対戦相手、会場、宿泊、移動、通訳などは確約ではなく、条件を確認したうえで個別にご提案します。",en:"Enquiries are free. Opponents, venues, accommodation, transport and interpreters are subject to availability and written confirmation.","zh-tw":"洽詢免費。比賽對手、場地、住宿與交通等均須確認後才能安排。",ko:"상담은 무료입니다. 상대 팀, 시설, 숙박, 이동 등은 확인 후 제안합니다."})[locale]}</p>
+    </div>
+  </section>
   <section className="international-network section-pad"><div className="section-head"><div><p className="section-index">JAPAN × ASIA</p><h2>{c.status}</h2></div><p>{c.statusBody}</p></div><div className="international-network-grid">{worldPoints.map(point=><article key={point.id}><span>{point.status==="partner"?c.partner:tr(point.statusLabel||[c.discussion,c.discussion,c.discussion,c.discussion],locale)}</span><h3>{tr(point.name,locale)}</h3><p>{tr(point.detail,locale)}</p></article>)}</div><p style={{marginTop:28}}><a className="button button-dark" href={locale==="en"?"/taiwan":`/${locale}/taiwan`}>{({ja:"台湾専用ページ｜日台育成交流",en:"Taiwan / Japan–Taiwan development","zh-tw":"台灣專頁｜台日青少年培育",ko:"대만 전용 페이지｜일본·대만 육성 교류"})[locale]} →</a></p></section>
   <section className="international-programmes section-pad"><p className="section-index inverse">PROGRAMME DESIGN</p><h2>{c.ways}</h2><div>{c.cards.map(([title,body])=><article key={title}><Plane/><h3>{title}</h3><p>{body}</p></article>)}</div></section>
   <section className="international-process section-pad"><div><p className="section-index">SAFE / CLEAR / PURPOSEFUL</p><h2>{c.process}</h2><ShieldCheck/></div><ol>{c.steps.map(([no,title,body])=><li key={no}><span>{no}</span><div><strong>{title}</strong><p>{body}</p></div></li>)}</ol></section>
