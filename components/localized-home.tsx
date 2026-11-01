@@ -111,6 +111,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
     </section>:null}
 
 
+    {locale==="ja"&&<section className="section-pad" style={{background:"#e5ecd9"}}><p className="eyebrow">RBA NEXT COURT TOUR 2027 / 企画・協賛相談を開始</p><h2>学びを届ける。その地域に、次の一歩を残す。</h2><p>選手のクリニック、地域指導者との学び、4週間のフォローをつなぐ育成企画。初年度目標・使途・協賛案をご覧いただけます。</p><a className="button button-dark" href="/ja/national-tour">全国ツアーの企画・企業協賛を見る →</a></section>}
     <FounderProfile locale={locale}/>
     <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
 
