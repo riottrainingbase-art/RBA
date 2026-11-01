@@ -24,3 +24,7 @@
 .theme :global(.button-member){background:var(--rba-paper);border-color:var(--rba-line)}
 .theme :global(.site-footer){border-top:3px solid var(--rba-brass)}
 @media (prefers-reduced-motion:reduce){.theme :global(a),.theme :global(button){transition:none!important}}
+
+.theme :global(.mobile-menu-languages){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:12px 4px 4px;border-top:1px solid #ded8cc;margin-top:8px}
+.theme :global(.mobile-menu-languages a){min-height:42px;justify-content:center;text-align:center;border:1px solid #ded8cc;padding:8px 2px;font-size:11px}
+.theme :global(.mobile-menu-languages a[aria-current="true"]){background:#10233f;color:#fff;border-color:#10233f}
