@@ -38,6 +38,7 @@ export async function SimpleJapaneseHome() {
         {supportHero?<Image src={supportHero.src} alt={supportHero.alt} width={supportHero.width} height={supportHero.height} unoptimized loading="lazy"/>:null}
         <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">活動写真・応援プランを見る →</a><a className={styles.secondary} href="https://note.com/rba_official/membership/join">月500円から仲間になる ↗</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業広告は月額1口・1万円＋税で受け付けています。</p></div>
       </section>
+      <section className={styles.regional} aria-labelledby="next-court-tour-title"><div><p className={styles.label}>RBA NEXT COURT TOUR 2027 / 企業・地域パートナー募集</p><h2 id="next-court-tour-title">学びを届ける。その地域に、次の一歩を残す。</h2><p>選手のクリニック、地域指導者との学び、4週間のフォローをつなぐ全国育成企画。初年度目標、必要な費用、企業の応援方法を公開しています。</p></div><div className={styles.regionalActions}><a href="/ja/national-tour" data-growth-id="home-national-tour">全国ツアーの企画・企業協賛を見る →</a><a href="/downloads/RBA_NEXT_COURT_TOUR_2027_Proposal.pdf">企業向け提案書（PDF） ↗</a></div></section>
       <FounderProfile locale="ja"/>
       <section className={styles.section} aria-labelledby="home-purpose-title">
         <div className={styles.heading}><div><p className={styles.label}>あなたの目的から</p><h2 id="home-purpose-title">参加する。チームに呼ぶ。地域でつくる。</h2></div></div>

@@ -4,7 +4,7 @@ import { contactFormUrl } from '@/components/contact-form';
 import d from '@/lib/national-tour-data.json';
 import styles from './tour.module.css';
 
-export const metadata: Metadata = {title:'RBA NEXT COURT TOUR 2027｜地域に育成の機会を。企業協賛・開催相談',description:'住む場所や家庭の経済事情にかかわらず、学び、挑戦できる環境を。選手のクリニック、地域指導者との学び、4週間のフォローをつなぐRBAの全国育成企画。初年度目標・使途・協賛案を公開。',alternates:{canonical:'https://riotbasketballacademy.com/ja/national-tour'}};
+export const metadata: Metadata = {title:'RBA NEXT COURT TOUR 2027｜地域に育成の機会を。企業協賛・開催相談',description:'住む場所や家庭の経済事情にかかわらず、学び、挑戦できる環境を。選手のクリニック、地域指導者との学び、4週間のフォローをつなぐRBAの全国育成企画。初年度目標・使途・協賛案を公開。',alternates:{canonical:'https://riotbasketballacademy.com/ja/national-tour'},openGraph:{title:'RBA NEXT COURT TOUR 2027｜地域に育成の機会を',description:'選手の学び、地域指導者との対話、4週間のフォロー。初年度目標・協賛案・使途を公開。',url:'https://riotbasketballacademy.com/ja/national-tour',locale:'ja_JP',images:[{url:'https://riotbasketballacademy.com/media/support/clinic-players.jpg',width:1536,height:1152,alt:'RBAの過去の育成活動'}]},twitter:{card:'summary_large_image',title:'RBA NEXT COURT TOUR 2027',description:'学びを届ける。その地域に、次の一歩を残す。',images:['https://riotbasketballacademy.com/media/support/clinic-players.jpg']}};
 const money=(n:number)=>n.toLocaleString('ja-JP')+'円';
 const pdf='/downloads/RBA_NEXT_COURT_TOUR_2027_Proposal.pdf';
 function mail(plan:string){return `mailto:${d.email}?subject=${encodeURIComponent('全国育成ツアー2027｜'+plan)}&body=${encodeURIComponent('RBA 西尾様\n全国育成ツアーについて相談を希望します。\n\n会社・団体名：\n成人の担当者名：\n希望する支援・開催地域：\n関心のあるプラン：'+plan+'\n想定予算（任意）：\n相談したい内容：\n\n※この連絡だけで契約・予約・費用は発生しません。')}`;}
