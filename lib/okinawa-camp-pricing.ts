@@ -1,6 +1,6 @@
 // Online payment stops when the published first-day reception begins.
 export const ONLINE_PAYMENT_END = "2026-12-22T09:00:00+09:00";
-// Early-bird promotion extended on 2026-11-01; no new public promotional deadline has been set.
+// Early-bird promotion extended; no new public promotional deadline has been set.
 // Cap the offer at the pre-existing online-payment closing time until a new end date is approved.
 export const EARLY_BIRD_END = ONLINE_PAYMENT_END;
 export const CAMP_CONTACT = "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026%20-%20local%20rate%20or%20group%20inquiry";

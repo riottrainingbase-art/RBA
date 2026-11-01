@@ -33,6 +33,18 @@ export async function SimpleJapaneseHome() {
 
 
 
+
+      <section className={styles.parentCommunity} aria-labelledby="home-parent-community-title">
+        <Image src="/images/parents-openchat-banner.webp" alt="" width={1672} height={941} loading="lazy" />
+        <div className={styles.parentCommunityBody}>
+          <p className={styles.parentCommunityLabel}>保護者向け LINEオープンチャット</p>
+          <h2 id="home-parent-community-title">子どものバスケ、<br/>ひとりで悩まなくていい。</h2>
+          <p>声のかけ方、見守り方、育つ環境の選び方。全国の保護者と一緒に考えませんか？</p>
+          <a href="https://line.me/ti/g2/8GsWD4iOnyOuoNj60_s24ljg_--cQ7IFMjfDLw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener noreferrer" data-growth-id="home-parent-openchat">保護者の部屋に参加する ↗</a>
+          <p className={styles.parentCommunityNote}>「育成を考える保護者の部屋」のLINE参加画面が開きます。</p>
+        </div>
+      </section>
+
       <section className={styles.regional} aria-labelledby="fukuoka-launch-title"><div><p className={styles.label}>RBA FUKUOKA / 福岡・佐賀</p><h2 id="fukuoka-launch-title">福岡、始動。アジアとつながる育成の入口へ。</h2><p>国際ユースキャンプ、国際試合、継続する育成を海外のオーガナイザーと企画。福岡・佐賀で一緒に活動する仲間を募集しています。</p></div><div className={styles.regionalActions}><a href="/ja/fukuoka">RBA福岡・協力の相談 →</a><a href="/ja/saga">RBA佐賀の活動 →</a></div></section>
       <section className={styles.support} aria-labelledby="home-support-title">
         {supportHero?<Image src={supportHero.src} alt={supportHero.alt} width={supportHero.width} height={supportHero.height} unoptimized loading="lazy"/>:null}
@@ -63,9 +75,9 @@ export async function SimpleJapaneseHome() {
         {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
       </section>
 
-      <section className={styles.regional} aria-labelledby="sendai-u12-moniwadai">
-        <div><p className={styles.label}>仙台 U12 / 茂庭台小学校</p><h2 id="sendai-u12-moniwadai">小学生の学びを、茂庭台から。</h2><p>仙台市太白区・茂庭台小学校でのU12スクール。小学5年生も対象です。原則金曜18:00〜19:30（月3回を基本）。入会金10,000円・月額7,700円。具体的な開催日・体験条件は確認中です。</p></div>
-        <div className={styles.regionalActions}><a href="/ja/u12-school">スクールの詳細・体験相談 →</a></div>
+      <section className={styles.regional} aria-labelledby="sendai-school-trial">
+        <div><p className={styles.label}>仙台スクール</p><h2 id="sendai-school-trial">チームはそのまま。もっと、上手くなる。</h2><p>技術と判断を磨く育成スクール。体験相談を受け付けています。</p></div>
+        <div className={styles.regionalActions}><a href="/ja/sendai-school" data-growth-id="home-sendai-school-trial">体験のご案内 →</a></div>
       </section>
 
       <section className={styles.regional} aria-labelledby="kagoshima-clinic-home">

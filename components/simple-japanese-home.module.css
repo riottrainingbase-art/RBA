@@ -33,3 +33,14 @@
  .section{padding:38px 0}
  .programmes article:hover,.purposeGrid article:hover{transform:none}
 }
+
+.parentCommunity{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;overflow:hidden;margin:28px 0;background:#062744;color:#fff;border-radius:16px}
+.parentCommunity>img{display:block;width:100%;height:auto}
+.parentCommunityBody{min-width:0;padding:28px}
+.parentCommunityLabel{margin:0 0 10px;font-size:12px;font-weight:700;color:#d6e5f3}
+.parentCommunityBody h2{font-size:clamp(23px,2.5vw,31px);line-height:1.5;margin:0 0 12px;letter-spacing:-.03em}
+.parentCommunityBody>p:not(.parentCommunityLabel):not(.parentCommunityNote){font-size:14px;line-height:1.9;margin:0 0 18px}
+.parentCommunityBody>a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:12px 16px;background:#fff;color:#062744;font-size:14px;font-weight:700;text-align:center;text-decoration:none;border-radius:6px}
+.parentCommunityBody>a:hover{background:#e7eef6}
+.parentCommunityNote{font-size:11px;line-height:1.8;color:#d6e5f3;margin:10px 0 0}
+@media(max-width:700px){.parentCommunity{grid-template-columns:minmax(0,1fr);margin:22px 0}.parentCommunityBody{padding:22px}.parentCommunityBody h2{font-size:26px}.parentCommunity>img{display:none}}
