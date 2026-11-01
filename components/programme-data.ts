@@ -67,7 +67,7 @@ export const programmes: readonly Programme[] = [
     place:["Kinkowan High School gym · Kagoshima","錦江湾高校体育館（鹿児島市）","錦江灣高中體育館・鹿兒島市","긴코완 고등학교 체육관 · 가고시마"],
     price:["Both sessions ¥4,000 / one session ¥3,000","午前・午後通し4,000円／1部のみ3,000円","全日¥4,000／單節¥3,000","종일 ¥4,000 / 한 세션 ¥3,000"],
     audience:["Elementary, junior high and high school students · all genders","小・中・高校生（男女）","小學、國中、高中生（男女）","초·중·고등학생（남녀）"],
-    payment:["Apply by email or Instagram DM; payment details follow.","メール・InstagramのDMで受付。支払方法などの詳細は受付後にご案内します。","電郵或Instagram私訊報名，付款方式於受理後通知。","이메일·Instagram DM 신청. 결제 방법은 접수 후 안내합니다."],
+    payment:["Choose a session, enter participant details and pay online. Payment completes registration.","参加する時間を選び、参加者情報を入力してオンライン決済。お支払い完了で申込確定です。","選擇時段、填寫參加者資料並線上付款，完成付款即確認報名。","참가 시간을 선택하고 참가자 정보 입력 후 온라인 결제. 결제 완료로 신청이 확정됩니다."],
     applicationUrl:"/ja/events/kagoshima-clinic-2026-11-29",region:"kyushu",category:"TRAIN",pathway:"clinic",ageGroups:["U8","U10","U12","U15","U18"],
   },
 

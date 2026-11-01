@@ -27,12 +27,24 @@ export async function SimpleJapaneseHome() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">参加する →</a><a className={styles.secondary} href="#home-learning">学ぶ・読む →</a><a className={styles.secondary} href="/ja/clinic-request">開催・相談する →</a></nav>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">クリニック・キャンプに参加する →</a><a className={styles.secondary} href="#home-learning">学ぶ・読む →</a><a className={styles.secondary} href="/ja/clinic-request">開催・相談する →</a></nav>
         </div>
       </section>
 
 
 
+
+      <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
+        <div className={styles.heading}><div><p className={styles.label}>参加する</p><h2 id="home-programme-title">募集中のクリニック・キャンプ</h2></div><a className={styles.textLink} href="/ja/opportunities">日程・地域から探す →</a></div>
+        <div className={styles.programmes}>{active.map(p => {const href=p.japaneseInfoPath || (p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl);const external=/^https?:\/\//.test(href);return <article key={p.id}>
+          <p className={styles.date}>{tr(p.date, "ja")}</p><h3>{tr(p.title, "ja")}</h3>
+          <p className={styles.place}>{tr(p.place, "ja")}</p>
+          <dl><div><dt>対象</dt><dd>{tr(p.audience, "ja")}</dd></div><div><dt>費用</dt><dd>{tr(p.price, "ja")}</dd></div></dl>
+          <p className={styles.entryNote}>{tr(p.payment,"ja")}</p>
+          <a data-growth-id={`home-programme-${p.id}`} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>詳細・申込へ →</a>
+        </article>})}</div>
+        {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
+      </section>
 
       <section className={styles.parentCommunity} aria-labelledby="home-parent-community-title">
         <Image src="/images/parents-openchat-banner.webp" alt="" width={1672} height={941} loading="lazy" />
@@ -63,17 +75,7 @@ export async function SimpleJapaneseHome() {
         <p className={styles.note}>お近くに開催がない方は、<a href="/ja/clinic-interest" data-growth-id="home-interest">無料の開催希望登録</a>へ。日程・会場・参加費をご案内してから、参加を決められます。</p>
       </section>
 
-      <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
-        <div className={styles.heading}><div><p className={styles.label}>参加する</p><h2 id="home-programme-title">募集中の活動</h2></div><a className={styles.textLink} href="/ja/opportunities">すべての活動を見る →</a></div>
-        <div className={styles.programmes}>{active.map(p => {const href=p.japaneseInfoPath || (p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl);const external=/^https?:\/\//.test(href);return <article key={p.id}>
-          <p className={styles.date}>{tr(p.date, "ja")}</p><h3>{tr(p.title, "ja")}</h3>
-          <p className={styles.place}>{tr(p.place, "ja")}</p>
-          <dl><div><dt>対象</dt><dd>{tr(p.audience, "ja")}</dd></div><div><dt>費用</dt><dd>{tr(p.price, "ja")}</dd></div></dl>
-          <p className={styles.entryNote}>{tr(p.payment,"ja")}</p>
-          <a data-growth-id={`home-programme-${p.id}`} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>内容・参加条件を確認 →</a>
-        </article>})}</div>
-        {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
-      </section>
+
 
       <section className={styles.regional} aria-labelledby="sendai-school-trial">
         <div><p className={styles.label}>仙台スクール</p><h2 id="sendai-school-trial">チームはそのまま。もっと、上手くなる。</h2><p>技術と判断を磨く育成スクール。体験相談を受け付けています。</p></div>
@@ -82,7 +84,7 @@ export async function SimpleJapaneseHome() {
 
       <section className={styles.regional} aria-labelledby="kagoshima-clinic-home">
         <div><p className={styles.label}>BASTET × RBA / 2026.11.29（日）</p><h2 id="kagoshima-clinic-home">鹿児島で、一緒にバスケ。</h2><p>錦江湾高校体育館。小・中・高校生（男女）対象。午前9:30〜12:00／午後13:00〜15:30。通し4,000円・1部のみ3,000円。</p></div>
-        <div className={styles.regionalActions}><a href="/ja/events/kagoshima-clinic-2026-11-29">詳細・メール／DMで申し込む →</a></div>
+        <div className={styles.regionalActions}><a href="/ja/events/kagoshima-clinic-2026-11-29">詳細・オンライン申込へ →</a></div>
       </section>
 
       <OkinawaDecemberCampCallout locale="ja" />
