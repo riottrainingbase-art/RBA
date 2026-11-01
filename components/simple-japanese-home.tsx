@@ -7,13 +7,13 @@ import { SiteFrame, localePath } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
+import { NoteBridge } from "./note-bridge";
 
 const learning = [
-  ["育成記事", "チーム選び、出場機会、練習の悩みから。", "/ja/journal"],
-  ["MY HOME COURT", "RBA IDは無料。活動と学びを自分のページに。", "/ja/my-homecourt"],
-  ["S&C・身体づくり", "成長期のトレーニング、負荷と回復を学ぶ。", "/ja/development"],
-  ["海外交流", "日本とアジアのキャンプ・チーム交流を相談。", "/ja/international"],
-  ["RBA公式ウェア", "コートへ、その先へ。スポーツTシャツを発売準備中。", "/ja/store"],
+  ["育成記事を探す", "RBA JOURNAL｜テーマから無料の記事を探せます。", "/ja/journal"],
+  ["指導者の学び", "D-HUB｜日々の指導と練習設計を深める。", "/ja/d-hub"],
+  ["MY HOME COURT", "RBA IDで活動と学びをひとつに。", "/ja/my-homecourt"],
+  ["身体づくり", "成長期のトレーニングと回復を学ぶ。", "/ja/development"],
 ] as const;
 
 export async function SimpleJapaneseHome() {
@@ -27,17 +27,30 @@ export async function SimpleJapaneseHome() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">活動を探す →</a><a className={styles.secondary} href="/ja/after-clinic" data-growth-id="home-return">参加した方へ →</a><a className={styles.secondary} href="/ja/development-projects" data-growth-id="home-development-project">次の挑戦を一緒につくる →</a></nav>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">参加する →</a><a className={styles.secondary} href="#home-learning">学ぶ・読む →</a><a className={styles.secondary} href="/ja/clinic-request">開催・相談する →</a></nav>
         </div>
       </section>
 
 
 
+
+      <section className={styles.parentCommunity} aria-labelledby="home-parent-community-title">
+        <Image src="/images/parents-openchat-banner.webp" alt="" width={1672} height={941} loading="lazy" />
+        <div className={styles.parentCommunityBody}>
+          <p className={styles.parentCommunityLabel}>保護者向け LINEオープンチャット</p>
+          <h2 id="home-parent-community-title">子どものバスケ、<br/>ひとりで悩まなくていい。</h2>
+          <p>声のかけ方、見守り方、育つ環境の選び方。全国の保護者と一緒に考えませんか？</p>
+          <a href="https://line.me/ti/g2/8GsWD4iOnyOuoNj60_s24ljg_--cQ7IFMjfDLw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener noreferrer" data-growth-id="home-parent-openchat">保護者の部屋に参加する ↗</a>
+          <p className={styles.parentCommunityNote}>「育成を考える保護者の部屋」のLINE参加画面が開きます。</p>
+        </div>
+      </section>
+
       <section className={styles.regional} aria-labelledby="fukuoka-launch-title"><div><p className={styles.label}>RBA FUKUOKA / 福岡・佐賀</p><h2 id="fukuoka-launch-title">福岡、始動。アジアとつながる育成の入口へ。</h2><p>国際ユースキャンプ、国際試合、継続する育成を海外のオーガナイザーと企画。福岡・佐賀で一緒に活動する仲間を募集しています。</p></div><div className={styles.regionalActions}><a href="/ja/fukuoka">RBA福岡・協力の相談 →</a><a href="/ja/saga">RBA佐賀の活動 →</a></div></section>
       <section className={styles.support} aria-labelledby="home-support-title">
         {supportHero?<Image src={supportHero.src} alt={supportHero.alt} width={supportHero.width} height={supportHero.height} unoptimized loading="lazy"/>:null}
-        <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">活動写真・応援プランを見る →</a><a className={styles.secondary} href="https://note.com/rba_official/membership/join">月500円から仲間になる ↗</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業広告は月額1口・1万円＋税で受け付けています。</p></div>
+        <div><p className={styles.label}>RBA SUPPORTERS｜月500円から</p><h2 id="home-support-title">この笑顔を、<br/>一度きりにしない。</h2><p>チームを辞めても、バスケを辞めなくていい未来を。子どもたちの挑戦と、学び続ける環境を一緒に支えてください。</p><div className={styles.actions}><a className={styles.primary} href="/ja/support">応援の方法を見る →</a></div><p className={styles.note}>個人はnoteで月500円・1,000円。企業広告は月額1口・1万円＋税で受け付けています。</p></div>
       </section>
+      <section className={styles.regional} aria-labelledby="next-court-tour-title"><div><p className={styles.label}>RBA NEXT COURT TOUR 2027 / 企業・地域パートナー募集</p><h2 id="next-court-tour-title">学びを届ける。その地域に、次の一歩を残す。</h2><p>選手のクリニック、地域指導者との学び、4週間のフォローをつなぐ全国育成企画。初年度目標、必要な費用、企業の応援方法を公開しています。</p></div><div className={styles.regionalActions}><a href="/ja/national-tour" data-growth-id="home-national-tour">全国ツアーの企画・企業協賛を見る →</a><a href="/downloads/RBA_NEXT_COURT_TOUR_2027_Proposal.pdf">企業向け提案書（PDF） ↗</a></div></section>
       <FounderProfile locale="ja"/>
       <section className={styles.section} aria-labelledby="home-purpose-title">
         <div className={styles.heading}><div><p className={styles.label}>あなたの目的から</p><h2 id="home-purpose-title">参加する。チームに呼ぶ。地域でつくる。</h2></div></div>
@@ -48,17 +61,6 @@ export async function SimpleJapaneseHome() {
           ["企業・協賛担当者", "子どもの挑戦を支えたい", "地域の育成機会への協賛や、企業・団体の親子企画を相談できます。", "/ja/partners", "連携・協賛の方法を見る", "partner"],
         ].map(([label,title,body,href,cta,id]) => <article key={id}><p className={styles.label}>{label}</p><h3>{title}</h3><p>{body}</p><a href={href} data-growth-id={`home-${id}`}>{cta} →</a></article>)}</div>
         <p className={styles.note}>お近くに開催がない方は、<a href="/ja/clinic-interest" data-growth-id="home-interest">無料の開催希望登録</a>へ。日程・会場・参加費をご案内してから、参加を決められます。</p>
-      </section>
-
-      <section className={styles.regional} aria-labelledby="miyako-oct31-feature">
-        <div>
-          <p className={styles.label}>10月31日（土）｜岩手・宮古｜RBA × BiiLDact</p>
-          <h2 id="miyako-oct31-feature">宮古で、バスケが変わる。</h2>
-          <p>千徳地区体育館 10:00〜17:00（受付9:30）。小学5年〜中学3年・定員30名。技術を試合の判断につなげる1DAY CLINIC。参加費・条件は現地主催者の公式フォームをご確認ください。</p>
-        </div>
-        <div className={styles.regionalActions}>
-          <a href="/events/miyako-20261031" data-growth-id="home-miyako-20261031">開催詳細・公式申込フォームへ →</a>
-        </div>
       </section>
 
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
@@ -96,7 +98,8 @@ export async function SimpleJapaneseHome() {
       </section>
 
       <section className={styles.section} id="home-learning" aria-labelledby="home-learning-title">
-        <div className={styles.heading}><div><p className={styles.label}>学ぶ・つながる</p><h2 id="home-learning-title">学びと交流</h2></div></div>
+        <div className={styles.heading}><div><p className={styles.label}>学ぶ・読む</p><h2 id="home-learning-title">育成を学ぶ</h2></div></div>
+        <NoteBridge variant="home" />
         <div className={styles.learning}>{learning.map(([title, body, href]) => <a href={href} key={href}><h3>{title}<span aria-hidden="true">↗</span></h3><p>{body}</p></a>)}</div>
       </section>
 

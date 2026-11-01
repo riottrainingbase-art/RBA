@@ -14,3 +14,19 @@
 .theme a:focus-visible,.theme button:focus-visible,.theme summary:focus-visible{outline:3px solid #6484ae;outline-offset:4px}
 
 .theme :global(.hero-grid),.theme :global(.opportunity-hero),.theme :global(.international-hero),.theme :global(.torsten-feature),.theme :global(.asia-desk-home),.theme :global(.field-footprint){background-color:#10233f;color:#fff}
+
+/* Premium RBA visual system: quiet surfaces, strong hierarchy and restrained brass. */
+.theme{--rba-ink:#10233f;--rba-paper:#fcfaf6;--rba-brass:#826b49;--rba-line:#ded8cc}
+.theme :global(.site-header){border-bottom:1px solid var(--rba-line);box-shadow:0 1px 0 rgba(16,35,63,.025)}
+.theme :global(.site-header nav a){letter-spacing:.01em}
+.theme :global(.site-header nav a:hover),.theme :global(.site-footer a:hover){text-decoration:underline;text-underline-offset:5px}
+.theme :global(.site-update-strip){background:var(--rba-paper);border-color:var(--rba-line)}
+.theme :global(.button-member){background:var(--rba-paper);border-color:var(--rba-line)}
+.theme :global(.site-footer){border-top:3px solid var(--rba-brass)}
+@media (prefers-reduced-motion:reduce){.theme :global(a),.theme :global(button){transition:none!important}}
+
+.theme :global(.mobile-menu-languages){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:12px 4px 4px;border-top:1px solid #ded8cc;margin-top:8px}
+.theme :global(.mobile-menu-languages a){min-height:42px;justify-content:center;text-align:center;border:1px solid #ded8cc;padding:8px 2px;font-size:11px}
+.theme :global(.mobile-menu-languages a[aria-current="true"]){background:#10233f;color:#fff;border-color:#10233f}
+
+/* Visual audit checkpoint: homepage, journal, about, international and mobile menu. */

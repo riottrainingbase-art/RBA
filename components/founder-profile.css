@@ -24,3 +24,9 @@
 .founder-invitation small{display:block;margin-top:17px;font-size:11px;color:#65685f}.founder-email{display:block;width:max-content;max-width:100%;overflow-wrap:anywhere;margin:24px auto 0;font-size:12px;border-bottom:1px solid #a99b7f}
 .founder-profile a:focus-visible{outline:3px solid #8c713f;outline-offset:5px}
 @media(max-width:760px){.founder-intro{grid-template-columns:1fr;gap:35px}.founder-portrait{max-width:540px;width:100%;margin:auto}.founder-copy h1,.founder-copy h2{font-size:clamp(40px,10vw,65px)}.founder-principles{grid-template-columns:1fr;margin-top:50px}.founder-principles article{padding:35px 0}.founder-principles article+article{border-left:0;border-top:1px solid #c8beaa;padding:35px 0 0}.founder-invitation{margin-top:50px;padding-top:40px}.founder-contact{font-size:12px;padding:15px 18px}.founder-profile-full .founder-copy{order:-1}.founder-profile-full .founder-portrait{margin-top:5px}}
+
+/* Bring the founder editorial feature into the shared RBA navy/ivory palette. */
+.founder-profile{--founder-paper:#f4f0e8;--founder-ink:#10233f;--founder-gold:#705b3d}
+.founder-contact{background:#10233f}
+.founder-contact:hover{background:#233e62}
+.founder-principles,.founder-principles article+article,.founder-invitation{border-color:#d6cbb9}

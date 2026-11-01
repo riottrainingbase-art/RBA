@@ -7,6 +7,7 @@ import { JournalExplorer } from "@/components/journal-explorer";
 import { JournalReaderTools } from "@/components/journal-reader-tools";
 import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 import { JournalPracticeGuides } from "@/components/journal-practice-guides";
+import { NoteBridge } from "@/components/note-bridge";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -108,13 +109,9 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <p className="section-index">{c.kicker}</p>
         <h1>{c.title}</h1>
         <p>{c.lead}</p>
-        <div className="journal-cms-languages">
-          <Link href="/journal" aria-current={locale==="en"?"page":undefined}>EN</Link>
-          <Link href="/ja/journal" aria-current={locale==="ja"?"page":undefined}>日本語</Link>
-          <Link href="/zh-tw/journal" aria-current={locale==="zh-tw"?"page":undefined}>繁中</Link>
-          <Link href="/ko/journal" aria-current={locale==="ko"?"page":undefined}>한국어</Link>
-        </div>
+
       </section>
+      {locale==="ja"?<div className="section-pad"><NoteBridge variant="journal" /></div>:null}
       {locale==="ja"?<JournalPracticeGuides posts={posts}/>:null}
       <JournalExplorer locale={locale} items={explorerItems}/>
       {locale==="ja"?<section className="homecourt-product-preview section-pad">
