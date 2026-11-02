@@ -266,6 +266,12 @@ export default function StartPage() {
           <div className={styles.sectionHead}><div><p className={styles.kicker}>04 / PARTNERSHIP</p><h2 id="start-partners">企業・地域・海外の連携</h2><p>法人相談、協賛、国際交流。事業ごとに受付・契約・決済を分けています。</p></div></div>
           <EntryCards items={partners} section="partners" />
         </section>
+        <section className={styles.help} aria-labelledby="start-share-help">
+          <p className={styles.kicker}>SHARE THE OPPORTUNITY</p>
+          <h2 id="start-share-help">紹介できる人がいる方へ。</h2>
+          <p>保護者LINE・チームの指導者・SNS向けの案内文を無料で用意しています。未確定事項は明記し、希望者が公式ページから内容と費用を確認できます。</p>
+          <div className={styles.helpActions}><a data-growth-id="start-promotion-share" href="/ja/share">活動別の紹介文を選ぶ →</a></div>
+        </section>
         <section className={styles.help} aria-labelledby="start-help">
           <p className={styles.kicker}>NOT SURE WHERE TO START?</p>
           <h2 id="start-help">迷ったら、開催地と目的から。</h2>
