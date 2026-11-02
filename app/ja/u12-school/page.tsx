@@ -30,7 +30,7 @@ export default function SendaiU12SchoolPage() {
         <p style={{fontSize:12,fontWeight:800,letterSpacing:3,color:"#ffb473"}}>RIOT BASKETBALL ACADEMY / SENDAI U12</p>
         <h1 style={{fontSize:"clamp(32px,5vw,62px)",lineHeight:1.24,margin:"16px 0 20px"}}>仙台U12スクール<br/>会場は、茂庭台小学校へ。</h1>
         <p style={{fontSize:"clamp(16px,2vw,20px)",lineHeight:1.9,maxWidth:800}}>仙台市太白区の茂庭台小学校で、U12年代の子どもたちが学べるスクールの開催を準備しています。所属チームを変えることを前提とせず、技術と判断をゲームの中で育てます。</p>
-        <a href={inquiry} style={{display:"inline-block",background:"#fff",color:"#10233f",padding:"15px 24px",marginTop:20,fontWeight:800,textDecoration:"none"}}>体験・開催情報をメールで問い合わせる →</a>
+        <a href="https://form.jotform.com/263053122067044" target="_blank" rel="noopener noreferrer" data-growth-id="sendai-u12-free-consult" style={{display:"inline-block",background:"#fff",color:"#10233f",padding:"15px 24px",marginTop:20,fontWeight:800,textDecoration:"none"}}>体験・参加を無料相談する →</a>
       </div>
     </section>
     <section style={{padding:"clamp(40px,6vw,76px) 6vw",background:"#f3f5f8",color:"#10233f"}}>
@@ -62,7 +62,8 @@ export default function SendaiU12SchoolPage() {
       <div style={{maxWidth:1060,margin:"0 auto"}}>
         <h2 style={{fontSize:"clamp(25px,3vw,36px)",margin:"0 0 14px"}}>茂庭台スクールへの参加・体験をご検討の方へ。</h2>
         <p style={{lineHeight:1.85}}>学年、現在のバスケットボール経験、体験参加のご希望をメールでお知らせください。正式な開催条件が整い次第、RBAからご案内します。</p>
-        <a href={inquiry} style={{display:"inline-block",background:"#10233f",color:"#fff",padding:"16px 24px",textDecoration:"none",fontWeight:800,marginTop:12}}>RBAにメールで相談する →</a>
+        <a href="https://form.jotform.com/263053122067044" target="_blank" rel="noopener noreferrer" data-growth-id="sendai-u12-final-free-consult" style={{display:"inline-block",background:"#10233f",color:"#fff",padding:"16px 24px",textDecoration:"none",fontWeight:800,marginTop:12}}>希望曜日・体験について無料相談 →</a>
+        <p style={{fontSize:13,marginTop:14}}>メールでのご相談は <a href={inquiry}>こちら</a> からも受け付けています。</p>
         <p style={{fontSize:13,color:"#536174",lineHeight:1.7,marginTop:16}}>問い合わせは無料です。お問い合わせだけで入会や予約が確定することはありません。</p>
       </div>
     </section>
