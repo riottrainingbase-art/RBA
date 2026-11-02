@@ -117,12 +117,21 @@ export function CampaignShareKit(){
   const visible=campaigns.filter(x=>!x.until||x.until>=today);
   const chosen=visible.find(c=>c.id===id)||visible[0];
   const currentAudience=chosen?.messages[audience]?audience:"parents";
-  const message=useMemo(()=>chosen ? `${chosen.messages[currentAudience]}\n\n公式案内・申込・相談：\n${chosen.link}`:"", [chosen,currentAudience]);
+  const message=useMemo(()=>{
+    if(!chosen)return "";
+    const link=new URL(chosen.link);
+    // Attribution is campaign/audience only; no contact details, names or IDs.
+    link.searchParams.set("utm_source","rba_share_kit");
+    link.searchParams.set("utm_medium","organic_referral");
+    link.searchParams.set("utm_campaign",chosen.id);
+    link.searchParams.set("utm_content",currentAudience);
+    return `${chosen.messages[currentAudience]}\n\n公式案内・申込・相談：\n${link.toString()}`;
+  },[chosen,currentAudience]);
   if(!chosen)return <p>現在、共有できる募集企画はありません。<a href="/ja/opportunities">活動一覧をご確認ください。</a></p>;
   function choose(next:string){setId(next);setAudience("parents");setStatus("");setFallback(false);}
   async function copyText(){
     try{if(!navigator.clipboard?.writeText)throw new Error("unavailable");
-      await navigator.clipboard.writeText(message);setFallback(false);setStatus("案内文をコピーしました。送信先に貼り付けてください。");
+      await navigator.clipboard.writeText(message);setFallback(false);setStatus("案内文をコピーしました。内容を確認し、希望する相手へ貼り付けてください。");
     }catch{setFallback(true);setStatus("自動コピーが使えませんでした。下の文面を選択してコピーしてください。");}
   }
   async function shareText(){
