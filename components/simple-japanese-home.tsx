@@ -27,12 +27,26 @@ export async function SimpleJapaneseHome() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} href="#home-programmes">クリニック・キャンプに参加する →</a><a className={styles.secondary} href="#home-learning">学ぶ・読む →</a><a className={styles.secondary} href="/ja/clinic-request">開催・相談する →</a></nav>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} data-growth-id="home-start-hub" href="/ja/start">参加・体験・相談から選ぶ →</a><a className={styles.secondary} href="#home-programmes">募集中の活動を見る →</a><a className={styles.secondary} href="/ja/clinic-request">地域での開催相談 →</a></nav>
         </div>
       </section>
 
 
 
+
+      <section className={styles.nextStep} aria-labelledby="home-next-step">
+        <div className={styles.nextStepIntro}>
+          <p className={styles.label}>FIND YOUR NEXT STEP</p>
+          <h2 id="home-next-step">あなたに合う入口から。</h2>
+          <p>参加する・見学する・指導を呼ぶ・一緒に企画する。料金や条件を確認し、公式の申込先へ進めます。</p>
+        </div>
+        <nav className={styles.nextStepLinks} aria-label="目的別の申込・相談窓口">
+          <a data-growth-id="home-next-events" href="#home-programmes"><span>01</span>クリニック・キャンプ<span aria-hidden="true">→</span></a>
+          <a data-growth-id="home-next-school" href="/ja/start#regular"><span>02</span>仙台スクール・RTB体験<span aria-hidden="true">→</span></a>
+          <a data-growth-id="home-next-coach" href="/ja/start#coaches"><span>03</span>指導者・チームの学び<span aria-hidden="true">→</span></a>
+          <a data-growth-id="home-next-business" href="/ja/start#partners"><span>04</span>地域開催・企業・海外<span aria-hidden="true">→</span></a>
+        </nav>
+      </section>
 
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
         <div className={styles.heading}><div><p className={styles.label}>参加する</p><h2 id="home-programme-title">募集中のクリニック・キャンプ</h2></div><a className={styles.textLink} href="/ja/opportunities">日程・地域から探す →</a></div>
