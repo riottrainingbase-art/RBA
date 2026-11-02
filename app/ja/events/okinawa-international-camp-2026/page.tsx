@@ -14,7 +14,7 @@ const registration = "/ja/events/okinawa-international-camp-2026/apply";
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
   title: "沖縄国際ユースバスケットボールキャンプ｜2026年12月22〜24日・7〜18歳",
-  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。糸満青少年の家での宿泊は仮受付・最終承認待ち。体育館の利用時間と集合・解散時刻も調整中。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
+  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。糸満青少年の家での開催は施設側の了承を得ています（RBA確認）。宿泊手続き・体育館の時間・集合解散時刻は調整中。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026" },
 };
 

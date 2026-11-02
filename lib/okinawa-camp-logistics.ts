@@ -1,4 +1,4 @@
-// Facility recorded a provisional booking, but written acceptance for paid overnight camp is not verified as of 2026-11-02.
+// RBA organiser reported obtaining the facility's agreement on 2026-11-02. Written scope and operational details remain to be reconciled.
 // Gym slots and reception/departure times remain requests, not confirmed bookings.
 export const OKINAWA_CAMP_LOGISTICS = {
   updatedOn: "2026-11-02",
@@ -18,23 +18,23 @@ export const OKINAWA_CAMP_LOGISTICS = {
 
 export const OKINAWA_CAMP_LOGISTICS_COPY = {
   ja: {
-    status: "宿泊仮受付・最終承認待ち｜糸満青少年の家",
-    summary: "12月22〜24日の2泊3日について糸満青少年の家で仮受付中です。有料宿泊研修としての正式受入・体育館利用時間・集合解散時刻・食事・送迎・追加スタッフは最終確認待ちです。",
+    status: "施設側から開催の了承を得ています（RBA確認）",
+    summary: "RBAは12月22〜24日の開催について施設側から了承を得たことを確認しています。宿泊利用の正式手続き、体育館利用時間、安全な受入人数、集合解散時刻、食事・送迎・追加スタッフは調整中です。",
     departure: "最終日の午後までの活動を施設に相談しています。集合・解散時刻は確定後にご案内します。",
   },
   en: {
-    status: "Provisional booking | final approval pending",
-    summary: "The December 22–24 overnight program is provisionally held at Itoman Youth Center. Final written approval for the paid overnight program, gym slots, timing, meals, transfers and staffing remains pending.",
+    status: "Venue agreement reported by RBA | details being finalized",
+    summary: "RBA confirms it has received the facility's agreement to proceed with the December 22–24 event. Formal overnight-use paperwork, gym slots, safe capacity, arrival/departure times, meals, transfers and staffing are still being finalized.",
     departure: "Activities into the final afternoon have been requested. Confirmed arrival and departure times will follow.",
   },
   "zh-tw": {
-    status: "住宿暫時受理｜等待最終核准",
-    summary: "12月22–24日於糸滿青少年之家的三天兩夜住宿目前僅為暫時受理；付費住宿活動的最終書面許可、體育館時段、集合與解散時間、餐食、接駁及工作人員安排仍待確認。",
+    status: "主辦方確認已獲場地方同意｜細節協調中",
+    summary: "RBA主辦方確認已取得場地方對12月22–24日活動的同意。住宿正式手續、體育館時段、安全接待人數、集合與解散時間、餐食、接駁與工作人員仍在協調中。",
     departure: "已向設施申請最後一天下午的活動時段，集合與解散時間確定後另行通知。",
   },
   ko: {
-    status: "숙박 가접수 | 최종 승인 대기",
-    summary: "12월 22–24일 2박 3일 이토만 청소년의 집 이용은 현재 가접수 상태입니다. 유료 숙박 연수에 대한 최종 서면 승인, 체육관 시간, 집합·해산 시각, 식사·교통편·추가 스태프는 확인 중입니다.",
+    status: "주최 측 시설 동의 확인 | 세부 조건 조율 중",
+    summary: "RBA 주최 측은 12월 22–24일 행사 개최에 대해 시설 측 동의를 받았다고 확인했습니다. 숙박 이용 서류, 체육관 시간, 안전 수용 인원, 집합·해산 시각, 식사·교통편 및 추가 스태프는 조율 중입니다.",
     departure: "마지막 날 오후 활동 시간을 시설에 요청했습니다. 집합·해산 시각은 확정 후 안내합니다.",
   },
 } as const;
