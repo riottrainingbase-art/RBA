@@ -1,50 +1,93 @@
-import type { Metadata } from "next";
-import { SiteFrame } from "@/components/site-frame";
+import type {Metadata} from "next";
+import {SiteFrame} from "@/components/site-frame";
 
-export const metadata: Metadata = {
-  title: "仙台バスケットボールスクール｜体験相談｜RBA",
-  description: "所属チームを続けながら、技術と判断を磨くRBA仙台スクール。徳洲会看護専門学校体育館を基本会場に、体験相談を受付中。",
-  alternates: { canonical: "https://riotbasketballacademy.com/ja/sendai-school" },
+export const metadata:Metadata={
+  title:"仙台U12・U15バスケットボールスクール｜体験・参加相談｜RBA",
+  description:"仙台市太白区のRBAスクール。U12は茂庭台小学校を会場候補に金曜夕方、U15は木曜18:00〜19:30・月3回。所属チームを変えずに学べます。無料の体験相談フォームから学年・希望曜日を登録できます。実際の体験日、会場、体験費用は個別案内。",
+  alternates:{canonical:"https://riotbasketballacademy.com/ja/sendai-school"},
+  openGraph:{title:"チームはそのまま。もっと、上手くなる。｜RBA仙台スクール",description:"小学生・中学生のための育成スクール。U12・U15の学年・希望曜日から、無料で体験・参加相談ができます。",url:"https://riotbasketballacademy.com/ja/sendai-school",type:"website"}
 };
+const intake="https://form.jotform.com/263053122067044";
+const u15="https://form.jotform.com/262678369675074";
+const navy="#10233f";
+const muted="#52627a";
+const basicButton={display:"inline-flex",alignItems:"center",justifyContent:"center",minHeight:52,padding:"13px 20px",background:navy,color:"#fff",fontSize:15,fontWeight:800,textDecoration:"none",borderRadius:4} as const;
+const secondary={...basicButton,background:"#fff",border:"1px solid #bbc7d3",color:navy} as const;
 
-const inquiry = "mailto:riot.training.base@gmail.com?subject=" +
-  encodeURIComponent("【RBA仙台スクール】体験相談") +
-  "&body=" + encodeURIComponent("保護者のお名前：\n選手の学年：\n希望する曜日：\nご質問：\n");
-const navy = "#10233f";
+const pillars=[
+  ["SEE","味方・相手・スペースを観る"],
+  ["DECIDE","状況に応じて次のプレーを選ぶ"],
+  ["ACT","実際のゲームで技術を試す"],
+] as const;
 
-export default function SendaiSchoolPage() {
+export default function SendaiSchoolPage(){
   return <SiteFrame locale="ja">
-    <main lang="ja" style={{background:"#fff",color:navy}}>
-      <section style={{maxWidth:820,margin:"0 auto",padding:"clamp(64px,9vw,112px) 24px 56px"}}>
-        <p style={{fontSize:12,fontWeight:700,letterSpacing:2,color:"#65758b"}}>RBA SENDAI SCHOOL</p>
-        <h1 style={{fontSize:"clamp(36px,6vw,64px)",lineHeight:1.2,letterSpacing:"-.025em",margin:"20px 0 24px"}}>
-          チームはそのまま。<br/>もっと、上手くなる。
-        </h1>
-        <p style={{fontSize:"clamp(16px,2vw,19px)",lineHeight:1.9,maxWidth:630,margin:"0 0 32px"}}>
-          技術を磨き、試合での判断につなげる。<br/>
-          所属チームを続けながら通える、仙台のバスケットボールスクールです。
-        </p>
-        <a href={inquiry} style={{display:"inline-block",background:navy,color:"#fff",fontWeight:700,padding:"16px 28px",borderRadius:6,textDecoration:"none"}}>
-          体験を相談する →
-        </a>
+    <main lang="ja" style={{background:"#fcfbf8",color:navy}}>
+      <section style={{maxWidth:1080,margin:"0 auto",padding:"clamp(46px,7vw,92px) 22px 45px"}}>
+        <p style={{fontSize:12,letterSpacing:2.3,fontWeight:800,color:"#9f754d",margin:"0 0 18px"}}>RBA SENDAI SCHOOL / U12 & U15</p>
+        <h1 style={{fontSize:"clamp(34px,5.3vw,64px)",letterSpacing:"-.045em",lineHeight:1.21,margin:"0 0 22px"}}>チームはそのまま。<br/>もっと、上手くなる。</h1>
+        <p style={{fontSize:"clamp(16px,1.9vw,19px)",lineHeight:1.9,maxWidth:745,color:"#344a62",margin:"0 0 28px"}}>覚えた技術を試合で使えるように。<br/>相手を見る、判断する、実行する。所属チームを続けながら、個人の成長に向き合う仙台のバスケットボールスクールです。</p>
+        <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+          <a href={intake} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-hero-interest" style={basicButton}>体験・参加を無料相談する →</a>
+          <a href="#classes" style={secondary}>U12・U15を比較する ↓</a>
+        </div>
+        <p style={{fontSize:12,color:muted,lineHeight:1.85,marginTop:16}}>相談は無料です。体験日・会場・体験費用・入会条件は確認後にご案内します。送信だけで体験予約・入会・決済は成立しません。</p>
       </section>
-      <section style={{background:"#f5f7fa",padding:"48px 24px 60px"}}>
-        <div style={{maxWidth:820,margin:"0 auto"}}>
-          <h2 style={{fontSize:"clamp(24px,3vw,32px)",margin:"0 0 24px"}}>スクール案内</h2>
-          <dl style={{margin:0,display:"grid",gridTemplateColumns:"90px minmax(0,1fr)",gap:"16px 20px",fontSize:16,lineHeight:1.8}}>
-            <dt style={{fontWeight:700}}>会場</dt><dd style={{margin:0}}>徳洲会看護専門学校 体育館（基本会場）</dd>
-            <dt style={{fontWeight:700}}>内容</dt><dd style={{margin:0}}>技術・判断・ゲーム形式の練習</dd>
-            <dt style={{fontWeight:700}}>対象</dt><dd style={{margin:0}}>育成年代の選手（学年は個別確認）</dd>
-            <dt style={{fontWeight:700}}>日時・料金</dt><dd style={{margin:0}}>体験日と条件はお問い合わせ後にご案内</dd>
-          </dl>
-          <p style={{fontSize:13,color:"#596779",lineHeight:1.8,margin:"28px 0 0"}}>学校の利用条件により日時が変わる場合があります。問い合わせのみで予約・入会・決済は確定しません。</p>
+
+      <section id="classes" style={{background:"#f2f4f6",padding:"54px 22px 60px"}}>
+        <div style={{maxWidth:1080,margin:"0 auto"}}>
+          <p style={{fontSize:12,letterSpacing:2,color:"#8d6946",fontWeight:800}}>CHOOSE YOUR CLASS</p>
+          <h2 style={{fontSize:"clamp(26px,3.5vw,39px)",letterSpacing:"-.035em",margin:"8px 0 22px"}}>学年と通える曜日から選ぶ。</h2>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(270px,1fr))",gap:14}}>
+            <article style={{background:"#fff",border:"1px solid #d9e0e6",padding:"clamp(22px,2.9vw,32px)"}}>
+              <p style={{fontSize:12,letterSpacing:2,fontWeight:800,color:"#8e6945"}}>ELEMENTARY / U12</p>
+              <h3 style={{fontSize:30,margin:"4px 0 12px"}}>U12 スクール</h3>
+              <p style={{lineHeight:1.85,color:"#344a62",fontSize:15}}>小学生向け。技術と判断を少人数ゲームで結びつける学びの場として準備しています。</p>
+              <dl style={{fontSize:15,lineHeight:1.8,display:"grid",gridTemplateColumns:"84px 1fr",gap:"9px 13px",margin:"20px 0 25px"}}>
+                <dt style={{fontWeight:800}}>予定会場</dt><dd style={{margin:0}}>茂庭台小学校（太白区）</dd>
+                <dt style={{fontWeight:800}}>基本曜日</dt><dd style={{margin:0}}>金曜18:00〜19:30／月3回を基本</dd>
+                <dt style={{fontWeight:800}}>料金</dt><dd style={{margin:0}}>入会金10,000円／月7,700円（税込・現行新規案内）。12月以降の新規料金は別途案内。</dd>
+                <dt style={{fontWeight:800}}>受付状況</dt><dd style={{margin:0}}>定期開催日・体験受入条件を調整中</dd>
+              </dl>
+              <a href={intake} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-u12-interest" style={basicButton}>U12の体験を相談 →</a>
+              <p style={{fontSize:13,margin:"17px 0 0"}}><a href="/ja/u12-school" style={{color:navy}}>U12の詳細を見る →</a></p>
+            </article>
+            <article style={{background:"#fff",border:"1px solid #d9e0e6",padding:"clamp(22px,2.9vw,32px)"}}>
+              <p style={{fontSize:12,letterSpacing:2,fontWeight:800,color:"#8e6945"}}>GRADE 6–U15</p>
+              <h3 style={{fontSize:30,margin:"4px 0 12px"}}>U15 SKILL UP</h3>
+              <p style={{lineHeight:1.85,color:"#344a62",fontSize:15}}>小学6年生から中学生まで。1on1、判断、オフボール、ゲームで使えるFundamentalsを年間でつなぎます。</p>
+              <dl style={{fontSize:15,lineHeight:1.8,display:"grid",gridTemplateColumns:"84px 1fr",gap:"9px 13px",margin:"20px 0 25px"}}>
+                <dt style={{fontWeight:800}}>対象</dt><dd style={{margin:0}}>小6・中学生、定員25名</dd>
+                <dt style={{fontWeight:800}}>基本曜日</dt><dd style={{margin:0}}>木曜18:00〜19:30／原則月3回</dd>
+                <dt style={{fontWeight:800}}>開催地域</dt><dd style={{margin:0}}>仙台市太白区。参加日の体育館は個別案内</dd>
+                <dt style={{fontWeight:800}}>料金</dt><dd style={{margin:0}}>入会金5,500円／月7,700円（税込）</dd>
+              </dl>
+              <a href={intake} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-u15-interest" style={basicButton}>U15の体験を相談 →</a>
+              <p style={{fontSize:13,margin:"17px 0 0"}}><a href="/ja/u15-skill-up" style={{color:navy}}>U15の育成内容を見る →</a></p>
+            </article>
+          </div>
+          <p style={{fontSize:13,color:muted,lineHeight:1.9,margin:"20px 0 0"}}>どちらのクラスも、チームや学校部活動への所属変更は不要です。金曜日が難しい方も、土日など参加しやすい曜日の希望を相談フォームからお知らせください。ただし、土日の定期開催は現時点で確定していません。</p>
         </div>
       </section>
-      <section style={{maxWidth:820,margin:"0 auto",padding:"48px 24px 80px"}}>
-        <h2 style={{fontSize:"clamp(24px,3vw,32px)",margin:"0 0 12px"}}>まずは体験から。</h2>
-        <p style={{lineHeight:1.9,margin:"0 0 24px"}}>学年と希望曜日をお知らせください。参加可能な日程をご案内します。</p>
-        <a href={inquiry} style={{display:"inline-block",background:navy,color:"#fff",fontWeight:700,padding:"16px 28px",borderRadius:6,textDecoration:"none"}}>体験を相談する →</a>
-        <p style={{fontSize:14,color:"#596779",marginTop:28}}>企業・団体の方は <a href="/ja/partners">協賛・連携のご案内</a> へ。</p>
+
+      <section style={{maxWidth:1080,margin:"0 auto",padding:"60px 22px 54px"}}>
+        <p style={{fontSize:12,letterSpacing:2,color:"#8d6946",fontWeight:800}}>SEE · DECIDE · ACT</p>
+        <h2 style={{fontSize:"clamp(26px,3.5vw,39px)",margin:"10px 0 22px"}}>技術だけで終わらない。</h2>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(215px,1fr))",gap:16}}>
+          {pillars.map(([title,description],i)=><article key={title} style={{borderTop:"3px solid #10233f",padding:"15px 3px"}}><p style={{fontSize:13,color:"#9f754d",fontWeight:800}}>0{i+1}</p><h3 style={{fontSize:25,margin:"8px 0"}}>{title}</h3><p style={{lineHeight:1.85,margin:0,color:"#465a70"}}>{description}</p></article>)}
+        </div>
+      </section>
+
+      <section style={{background:navy,color:"#fff",padding:"50px 22px 68px"}}>
+        <div style={{maxWidth:1080,margin:"0 auto"}}>
+          <h2 style={{fontSize:"clamp(26px,3.5vw,38px)",lineHeight:1.35,margin:"0 0 13px"}}>まずは、通えるか相談する。</h2>
+          <p style={{fontSize:15,color:"#d7e1eb",lineHeight:1.9,maxWidth:755}}>学年、希望する曜日、お住まいのおおよそのエリアを入力すれば十分です。保護者のメールアドレスへ開催条件をご案内します。今すぐ入会や決済をする必要はありません。</p>
+          <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:23}}>
+            <a href={intake} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-final-interest" style={{...basicButton,background:"#fff",color:navy}}>体験・参加相談フォーム →</a>
+            <a href={u15} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-u15-form" style={{...secondary,background:"transparent",color:"#fff",borderColor:"#9cacc0"}}>U15の正式申込について確認する →</a>
+          </div>
+          <p style={{fontSize:12,color:"#c4cfdb",lineHeight:1.8,marginTop:18}}>体験の受入日・会場と参加条件をご確認いただく前に、月額決済を繰り返す必要はありません。決済でお困りの場合は <a style={{color:"#fff"}} href="mailto:riot.training.base@gmail.com">RBAへお問い合わせ</a>ください。</p>
+        </div>
       </section>
     </main>
   </SiteFrame>;
