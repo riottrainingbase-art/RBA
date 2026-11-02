@@ -60,6 +60,11 @@ export async function SimpleJapaneseHome() {
         {active.length === 0 ? <p className={styles.note}>次回の募集は活動一覧でお知らせします。</p> : <p className={styles.note}>会場・持ち物・支払い方法・申込確定の条件は、各活動の公式案内をご確認ください。</p>}
       </section>
 
+      <section className={styles.regional} aria-labelledby="home-share-kit">
+        <div><p className={styles.label}>保護者・指導者の皆さまへ</p><h2 id="home-share-kit">この機会を、必要な人に。</h2><p>沖縄・たつの・鹿児島・Torsten講習など。ご家庭やチームで使える紹介文を、活動別・相手別に選んでコピーできます。共有は任意です。</p></div>
+        <div className={styles.regionalActions}><a data-growth-id="home-promotion-share" href="/ja/share">紹介文を選んで共有する →</a></div>
+      </section>
+
       <section className={styles.parentCommunity} aria-labelledby="home-parent-community-title">
         <Image src="/images/parents-openchat-banner.webp" alt="" width={1672} height={941} loading="lazy" />
         <div className={styles.parentCommunityBody}>
