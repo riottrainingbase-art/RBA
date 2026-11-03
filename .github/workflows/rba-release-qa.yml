@@ -67,6 +67,9 @@ jobs:
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
 
+      - name: Torsten Japan signup conversion regression audit
+        run: node audit/torsten-japan-landing/check.mjs
+
       - name: National clinic hosting and payment gate audit
         run: node audit/national-clinic-funnel/check.mjs
 
