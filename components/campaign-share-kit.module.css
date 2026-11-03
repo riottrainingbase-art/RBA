@@ -1,0 +1,20 @@
+.kit{background:#fff;border:1px solid #ddd5c8;border-radius:8px;padding:clamp(20px,3.4vw,34px)}
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.selectLabel,.textLabel{display:block;font-size:13px;font-weight:700;color:#31465c;line-height:1.8}
+.selectLabel select{display:block;width:100%;min-height:48px;margin-top:7px;padding:10px 12px;border:1px solid #b9c3ce;border-radius:4px;background:white;font-size:14px;color:#14283c}
+.details{margin:25px 0 20px;background:#f7f5f0;border-left:4px solid #ae8c5d;padding:18px}
+.when{font-size:12px;font-weight:800;color:#735637;margin:0 0 5px}
+.details h2{font-size:clamp(19px,2.2vw,25px);line-height:1.4;margin:0 0 8px;color:#132b45}
+.details>p:not(.when){font-size:13px;color:#43566b;line-height:1.8;margin:0 0 7px}
+.details .notice{color:#765728;font-size:12px;margin:8px 0 0}
+.textLabel{margin-bottom:8px}
+.kit textarea{display:block;width:100%;min-height:235px;resize:vertical;padding:15px;font-family:inherit;font-size:14px;line-height:1.9;background:#fbfaf7;color:#152b42;border:1px solid #c7ced5;border-radius:4px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+.actions button,.actions a{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:47px;padding:11px 16px;border:1px solid #172c44;background:#172c44;color:#fff;font-size:13px;font-weight:750;text-decoration:none;border-radius:4px;cursor:pointer}
+.actions button:nth-child(2){background:#fff;color:#172c44}
+.actions a{background:#e7d5b8;border-color:#d1bd9c;color:#172c44}
+.actions button:hover{opacity:.9}.actions a:hover{background:#ebdfcd}
+.status{font-size:12px;color:#315a65;line-height:1.8;min-height:24px}
+.footerNote{font-size:12px;color:#687588;line-height:1.8;border-top:1px solid #eee6da;padding-top:15px;margin-bottom:0}
+.kit :is(button,a,textarea,select):focus-visible{outline:3px solid #af8d5a;outline-offset:3px}
+@media(max-width:680px){.formGrid{grid-template-columns:1fr}.actions{display:grid;grid-template-columns:1fr}.kit textarea{font-size:13px}}

@@ -79,10 +79,12 @@ export default function Page(){
         <p style={{fontSize:"clamp(20px,2.4vw,30px)",fontWeight:800,margin:"0 0 14px"}}>現代バスケットボールを学ぶ90分。</p>
         <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-          <a href="#apply" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>STEP 1｜参加申込</a>
-          <a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>STEP 2｜初回決済（入会金込） ↗</a>
+          <a href="https://form.jotform.com/263053122067044" target="_blank" rel="noopener noreferrer" data-growth-id="sendai-u15-trial-interest" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>体験・参加を無料相談する →</a>
+          <a href="#apply" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>既に参加条件を確認した方の正式申込 ↓</a>
         </div>
       </section>
+
+      <div style={{background:"#f6eee4",borderTop:"1px solid #e8dac6",borderBottom:"1px solid #e8dac6",padding:"15px 6vw",fontSize:14,lineHeight:1.9,color:"#5d4c37"}}>初めての方は、まず無料の体験・参加相談から。ご希望の曜日・学年と開催可能日を確認してから、正式申込・月額決済をご案内します。体験の費用・会場・受入日程は個別確認です。相談のみでは参加や決済は成立しません。</div>
 
       <section style={{padding:"48px 6vw",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:1,background:"#cfcfc9"}}>
         {[

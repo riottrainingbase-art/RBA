@@ -73,13 +73,13 @@ export const programmes: readonly Programme[] = [
 
   {
     id:"okinawa-december-camp",startDate:"2026-12-22",endDate:"2026-12-24",
-    date:["22–24 DEC 2026 · accommodation secured","2026.12.22〜24・宿泊先確保済み","2026.12.22–24・住宿已安排","2026.12.22–24 · 숙소 확보 완료"],
+    date:["22–24 DEC 2026 · facility agreement received","2026.12.22〜24・施設から受入可能との回答あり","2026.12.22–24・已收到場地方同意回覆","2026.12.22–24 · 시설 이용 동의 회신 확인"],
     datePrimary:["22–24 DEC","12月22〜24日","12月22–24日","12월 22–24일"],dateSecondary:["2 nights","2泊3日","三天兩夜","2박 3일"],
     title:["Okinawa International Youth Basketball Camp","沖縄国際ユースバスケットボールキャンプ","沖繩國際青少年籃球營","오키나와 국제 유소년 농구 캠프"],
-    place:["Itoman Youth Center · accommodation secured","糸満青少年の家（宿泊先確保済み）","糸滿青少年之家（住宿已安排）","이토만 청소년의 집 · 숙소 확보 완료"],
+    place:["Itoman Youth Center · operational details pending","糸満青少年の家（利用条件は最終調整中）","糸滿青少年之家（使用細節協調中）","이토만 청소년의 집 · 운영 조건 조율 중"],
     price:["Published: USD 450 with housing / USD 300 without; discounts available","沖縄県民：通い27,500円／宿泊39,600円（税込）・県外参加は要相談","公布費用：含住宿450美元／不含住宿300美元・另有優惠","게시 요금: 숙박 포함 USD 450 / 숙박 제외 USD 300 · 할인 있음"],
     audience:["Players aged 7–18","7〜18歳の選手","7–18歲球員","만 7–18세 선수"],
-    payment:["Contact us before payment or booking travel. Accommodation is secured; gym slots, arrival/departure times, transfers, staff and final inclusions are being confirmed; please confirm final arrangements.","宿泊先は確保済み。体育館の時間・集合解散・送迎・スタッフ・料金に含まれる内容は調整中。支払い・航空券購入前に詳細をお問い合わせください。","住宿已安排，體育館時段、集合解散、接駁、工作人員及費用包含項目仍在確認，付款、訂機票前請先聯絡。","숙소 확보 완료. 체육관 시간·집합해산·교통·스태프·포함 항목 조율 중.  결제·항공권 구매 전 문의해 주세요."],
+    payment:["Facility has agreed to host the programme. Two-night paperwork, the responsible supervising adult, gym slots, transfers and inclusions are being finalized; confirm terms before booking non-refundable travel.","施設から利用可能との回答を受領。2泊3日の日数確認・引率責任者・体育館時間・送迎・料金内訳は最終調整中です。返金不可の交通手配の前に詳細をご確認ください。","場地方已回覆可受理，兩晚住宿手續、帶隊成人、體育館時段與接駁仍在協調中。預訂不可退款機票前請先確認條件。","시설 이용 가능 회신을 받았습니다. 2박 숙박 서류, 성인 인솔 책임자, 체육관 시간과 교통편은 최종 조율 중입니다. 환불 불가 항공권 예약 전 조건을 확인하세요."],
     japaneseInfoPath:"/ja/events/okinawa-international-camp-2026",
     applicationUrl:"https://okinawa.camp/",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
   },

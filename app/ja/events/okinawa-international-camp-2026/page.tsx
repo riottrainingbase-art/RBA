@@ -14,7 +14,7 @@ const registration = "/ja/events/okinawa-international-camp-2026/apply";
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
   title: "沖縄国際ユースバスケットボールキャンプ｜2026年12月22〜24日・7〜18歳",
-  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。糸満青少年の家での宿泊先確保済み・2泊3日。体育館の利用時間と集合・解散時刻は調整中。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
+  description: "沖縄で世界の仲間と練習・ゲーム・共同生活。糸満青少年の家での開催は施設側の了承を得ています（RBA確認）。宿泊手続き・体育館の時間・集合解散時刻は調整中。沖縄県民割引：通い27,500円・宿泊39,600円（税込）。料金・早割・日程・申込方法と、送迎やスタッフの調整状況をご案内します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026" },
 };
 
@@ -25,6 +25,7 @@ export default function Page() {
       <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#okinawa-resident-discount">プランを選んで申込・決済へ ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p><p><a href="#okinawa-domestic-prices"><strong>県外からの参加プラン ↓</strong></a></p><p><a href="#camp-coaches">キャンプコーチを紹介 ↓</a></p></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p><strong>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</strong><br/>{OKINAWA_CAMP_LOGISTICS.address}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
+    <section className={styles.section} id="family-guide"><p className={styles.label}>FOR FAMILIES / 日本語・ENGLISH・繁體中文・한국어</p><h2>宿泊・食事・送迎。参加前の疑問を、一つのガイドに。</h2><p>糸満青少年の家から受入れ可能との回答を得ています。兄弟の部屋、保護者の同行、言語のサポート、アレルギー、空港からの移動など、ご家族が参加を考えるときに知りたいことをまとめました。</p><a className={styles.primary} href="/okinawa-family-guide-2026.html">保護者ガイドを読む / Family guide →</a><p><a href="/okinawa-international-guide-2026.html">海外から参加するご家族へ / English・繁體中文・한국어 →</a></p><p className={styles.small}>ご相談だけでも歓迎します。最初は選手の年齢・人数、出発地、宿泊希望、同行保護者の人数をお知らせください。</p></section>
     <section className={styles.section} id="cancellation"><h2>キャンセル・中止・返金について</h2><p>申込直後から一律20％を差し引く規定や、20日前以降は一律返金しない規定は設けていません。主催者都合・不可抗力による開催前の中止は参加費を全額返金します。開始後の一部中止は未提供分を返金します。参加者都合の取消条件・返金方法は、下記をご確認ください。</p><a className={styles.primary} href="/ja/cancellation">キャンセル・返金規定を読む →</a><p>スタッフ配置と保険の詳細は確認後にご案内します。施設の賠償責任保険と、選手のけがに備える傷害保険は補償内容が異なります。</p></section>
     <OkinawaResidentPrices/><OkinawaResidentPrices residence="japan"/>
     <section className={styles.section} aria-labelledby="camp-coaches">
@@ -59,7 +60,7 @@ export default function Page() {
     </div><h3>RBA 1対1チャンピオンシップ</h3><p>初日の予選、2日目の順位リーグ・決勝を予定。同じくらいのレベルの選手と対戦する機会をつくり、3日目の閉会時に表彰する計画です。進行は人数・施設利用時間に合わせて調整します。</p></section>
     <section className={styles.section} id="schedule" aria-labelledby="schedule-heading">
       <p className={styles.label}>3-DAY SCHEDULE / 日本時間</p><h2 id="schedule-heading">3日間の詳細スケジュール（予定）</h2>
-      <div className={scheduleStyles.notice}><strong>現在調整中のスケジュールです。</strong><p>体育館を利用できる時間に合わせて、集合・解散や食事の時間を調整しています。最終日は15:00まで活動し、15:30に解散する予定で施設・共同主催者と相談中です。午後の活動や昼食、退室後の荷物の保管については、決まり次第お知らせします。航空券や送迎の手配・変更は、集合・解散時間の確定後にお願いいたします。</p></div>
+      <div className={scheduleStyles.notice}><strong>現在調整中のスケジュールです。</strong><p>体育館を利用できる時間に合わせて、集合・解散や食事の時間を調整しています。最終日は15:00まで活動し、15:30に解散する予定で施設・共同主催者と相談中です。午後の活動や昼食、退室後の荷物の保管については、決まり次第お知らせします。航空券や送迎の手配・変更は、集合・解散時間と施設の正式受入条件の確定後にお願いいたします。返金不可の航空券を先に予約しないでください。</p></div>
       {[
         { date: "12月22日（火）", theme: "CONNECT｜出会い、基礎をつくる", note: "午前中に受付とオリエンテーションを行い、午後からコートでの活動を始める予定です。体育館の利用時間は14:00〜18:00で調整しています。", rows: [
           ["9:00〜11:00", "受付・健康確認（予定）"], ["11:00〜12:00", "オリエンテーション・仲間との顔合わせ"], ["12:00〜14:00", "昼食・休憩・練習の準備（食事の時間・手配は調整中）"], ["14:00〜15:15", "体の動かし方・ボールの扱い方・ゴール近くでのシュート練習"], ["15:15〜15:30", "休憩・給水"], ["15:30〜16:30", "1対1の練習・チャンピオンシップ予選"], ["16:30〜17:30", "チームに分かれて、少人数でのゲーム"], ["17:30〜18:00", "振り返り・片付け・通いで参加する選手のお迎え（予定）"], ["活動終了後", "宿泊参加者：夕食・入浴・交流・就寝準備（施設の生活時間に合わせて調整）"]
@@ -81,7 +82,7 @@ export default function Page() {
       <div><dt>別途・要確認</dt><dd>航空券は別途手配。空港送迎の時間・条件・費用、宿泊なしプランの食事の扱いは、お支払い前にご確認ください。</dd></div>
     </dl><p>追加10％は早割後の金額に適用する計算です（450 × 0.8 × 0.9 = 324米ドル）。日本円の定額料金ではありません。</p>
     <div className={styles.columns}><article className={styles.card}><h3>参加窓口を選ぶ</h3><p>沖縄県民の方はプランを選ぶと申込・決済へ進めます。県外からの国内参加も、日本円で申込・決済へ進めます。海外参加者は宿泊・人数から海外向け料金を確認し、申込・決済へ進めます。海外フォームは1回2名まで。3名以上は個別相談です。</p><a className={styles.primary} href={registration}>国内・海外のお申し込みへ →</a><p className={styles.small}>申込情報と入金は主催者が照合します。支払い完了は参加の最終確定ではありません。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日の受付時刻と最終日の解散時刻は調整中です。到着便から会場への移動や空港への帰路は、確定した集合・解散案内をご確認のうえご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ参加・送迎を相談する ↗</a><p className={styles.email}>RBA：riot.training.base@gmail.com</p><p><a href={overseasEmail}>海外参加者の窓口：SPARTANS ↗</a></p></article></div></section>
-    <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>那覇空港または指定場所からの送迎を希望する方は、事前にご相談ください。会場へ直接お越しいただく方法もあります。12月21日・22日それぞれの到着人数と便の情報を確認し、バス・バンの手配と費用を調整します。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>キャンプコーチは西尾優人とElton Chen。指導責任者はRBAの西尾優人です。追加の指導・引率スタッフや宿泊中の見守り体制は調整中で、確定後にご案内します。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">海外参加者向け特設サイト：okinawa.camp ↗</a></p></section>
+    <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>那覇空港または指定場所からの送迎を希望する方は、事前にご相談ください。会場へ直接お越しいただく方法もあります。12月21日・22日それぞれの到着人数と便の情報を確認し、バス・バンの手配と費用を調整します。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>キャンプコーチは西尾優人とElton Chen。指導責任者および宿泊期間中の現地責任者は、RBA代表の西尾優人です。期間中は団体とともに滞在し、施設との連絡・調整を担います。追加の指導・引率スタッフや宿泊中の見守り体制は調整中で、確定後にご案内します。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">海外参加者向け特設サイト：okinawa.camp ↗</a></p></section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかの開催予定を見る</a></p>
   </div></SiteFrame>;
 }
