@@ -42,7 +42,7 @@ export function TorstenJapanLanding() {
   };
 
   return <SiteFrame locale="ja" languagePage="events/torsten-loibl-online-clinic">
-    <main className={styles.page} lang="ja">
+    <div className={styles.page} lang="ja">
       <GrowthClickTracking />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <div className={styles.shell}>
@@ -118,6 +118,6 @@ export function TorstenJapanLanding() {
         </footer>
       </div>
       <div className={styles.mobileBar}><span><b>11/25（水）20:00</b><small>LIVE 3,300円／録画 4,400円</small></span><RegisterLink label="申し込む" id="torsten-simple-mobile" className={styles.mobileButton}/></div>
-    </main>
+    </div>
   </SiteFrame>;
 }
