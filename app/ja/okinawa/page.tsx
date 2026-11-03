@@ -52,8 +52,9 @@ export default function OkinawaPage() {
           <div className="homecourt-preview-grid">
             <article>
               <span>PLAY / LEARN</span><h3>クリニック・キャンプに参加する</h3>
-              <p>現在ご案内している活動を一覧から探せます。募集状況と申込条件を確認してからお手続きください。</p>
-              <Link className="text-link" href="/ja/opportunities">活動・募集情報を見る →</Link>
+              <p>沖縄でのクリニックや国際キャンプの案内をご覧いただけます。募集状況と申込条件は、各ページでご確認ください。</p>
+              <p><Link className="text-link" href="/ja/events/okinawa-clinic-2026-11-14">沖縄クリニックの案内 →</Link></p>
+              <p><Link className="text-link" href="/ja/events/okinawa-international-camp-2026">沖縄国際ユースキャンプの案内 →</Link></p>
             </article>
             <article>
               <span>COACH / SUPPORT</span><h3>沖縄で指導に関わる</h3>
