@@ -2,6 +2,7 @@ import Image from "next/image";
 import {getSupportPhotos} from "@/lib/support-photos";
 import { FounderProfile } from "./founder-profile";
 import { GrowthClickTracking } from "./growth-click-tracking";
+import { NovemberCampaign } from "./november-campaign";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
 import { SiteFrame, localePath } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
@@ -33,6 +34,8 @@ export async function SimpleJapaneseHome() {
 
 
 
+
+      <NovemberCampaign />
 
       <section className={styles.nextStep} aria-labelledby="home-next-step">
         <div className={styles.nextStepIntro}>
