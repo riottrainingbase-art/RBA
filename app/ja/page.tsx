@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SimpleJapaneseHome } from "@/components/simple-japanese-home";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
   title: { absolute: "RBA｜子どもの未来から育成を考えるバスケットボール・プラットフォーム" },

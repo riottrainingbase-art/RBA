@@ -1,3 +1,4 @@
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { OkinawaCampPartnerNotice } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
@@ -77,7 +78,7 @@ function currentPromotions() {
   return {
     shizugawa: now < Date.parse("2026-11-07T09:00:00+09:00"),
     kobe: now < Date.parse("2026-11-23T16:00:00+09:00"),
-    torsten: now < Date.parse("2026-11-25T00:00:00+09:00"),
+    torsten: now < Date.parse("2026-11-25T20:00:00+09:00"),
     okinawa: now < Date.parse("2026-12-24T12:00:00+09:00"),
   };
 }
@@ -88,6 +89,7 @@ export default function InstagramEntryPage() {
 
   return (
     <main className="min-h-screen bg-[#f4f4f1] text-[#151719]">
+      <GrowthClickTracking />
       <div className="mx-auto max-w-[860px]">
         <header className="flex items-center justify-between border-b border-neutral-300 px-5 py-4 sm:px-9">
           <a href="/ja" className="flex items-center gap-3" aria-label="RBA公式サイトのトップへ">
@@ -104,39 +106,6 @@ export default function InstagramEntryPage() {
           </a>
           <span className="text-[10px] font-bold tracking-[.12em] text-neutral-600">OFFICIAL / JAPAN</span>
         </header>
-
-        {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
-          <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
-          <h2 id="shizugawa-feature-title" className="mt-3 text-3xl font-black leading-tight">海と森の志津川で、<br/>次のプレーへ。</h2>
-          <p className="mt-4 text-sm leading-7">攻守が変わった瞬間に、見て、選んで、動き出す。<br/>小4〜中3｜宿泊25,000円・日帰り1日6,600円（食事代別）。</p>
-          <a href={track("/ja/events/shizugawa-development-camp-2026", "shizugawa_feature", "shizugawa_20261107")} className="mt-5 flex min-h-14 items-center justify-between bg-[#0b3542] px-4 py-3 text-sm font-black" style={{color:"#fff"}}>志津川キャンプの詳細・お申し込み <ArrowUpRight size={18}/></a>
-          <p className="mt-3 text-xs leading-6">ホームページからお申し込みいただけます。参加条件は受付後にRBAからご案内します。</p>
-        </section>}
-        {showKobe && <section className="mx-5 mt-5 border-2 border-black bg-[#ff7900] p-5 sm:mx-9 sm:p-7" aria-labelledby="kobe-feature-title">
-          <p className="text-xs font-black tracking-widest">11.21–23 / 兵庫・たつの</p>
-          <h2 id="kobe-feature-title" className="mt-3 text-3xl font-black leading-tight">練習した技術を、<br/>試合で使える力へ。</h2>
-          <p className="mt-4 text-sm font-bold leading-7">小5〜中3。半日6,600円・日帰り11,000円。<br/>宿泊せずに通える育成キャンプです。</p>
-          <a href={track("/ja/events/kobe-development-camp-2026","kobe_feature","kobe_20261121")} data-cta="kobe-camp-details" className="mt-5 flex min-h-14 items-center justify-between bg-black px-4 py-3 text-sm font-black text-white" style={{color:"#fff"}}>内容・参加プランを相談する <ArrowUpRight size={18}/></a>
-          <p className="mt-3 text-xs leading-6">会場・宿泊条件は最終調整中。決済前にご相談ください。</p>
-        </section>}
-        {showOkinawa && (
-          <section className="mx-5 mt-5 border border-[#d95100] bg-[#ff761b] p-5 text-[#151719] sm:mx-9 sm:mt-7 sm:p-7" aria-labelledby="okinawa-feature-title">
-            <p className="text-[11px] font-black tracking-[.12em]">PICK UP / OKINAWA INTERNATIONAL CAMP</p>
-            <h2 id="okinawa-feature-title" className="mt-3 text-[32px] font-black leading-[1.2] tracking-[-.04em] sm:text-[44px]">沖縄で、<br />世界の仲間とバスケ。</h2>
-            <p className="mt-4 text-[18px] font-black leading-7 sm:text-xl">2026年12月22日（火）〜24日（木）</p>
-            <p className="mt-1 text-sm font-bold">7〜18歳対象 · 国際ユースキャンプ · 2泊3日</p>
-            <p className="mt-4 text-sm leading-6">海外の選手と練習・ゲーム・交流。<br />お友達と一緒の参加も、ご相談ください。</p>
-            <OkinawaEarlyBird compact/>
-            <OkinawaCampPartnerNotice locale="ja"/>
-            <a className="mt-5 flex min-h-14 items-center justify-between gap-3 bg-[#151719] px-5 py-4 text-sm font-black text-white transition-colors hover:bg-[#333] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719] sm:text-base"
-              href={track("/ja/events/okinawa-international-camp-2026", "featured_okinawa_details", "okinawa_camp_20261222")}
-              style={{ color: "#fff" }} data-cta="okinawa_camp_details">沖縄キャンプの詳細・参加案内 <ArrowUpRight size={20} className="shrink-0" aria-hidden="true" /></a>
-            <a className="mt-3 flex min-h-12 items-center justify-between gap-3 border border-[#151719] bg-white px-4 py-3 text-sm font-black transition-colors hover:bg-[#fff5eb] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719]"
-              href={track("/ja/events/okinawa-international-camp-2026/apply", "featured_okinawa_japan", "okinawa_camp_20261222")}
-              data-cta="okinawa_camp_japan">国内参加・沖縄県民割引の相談 <ArrowUpRight size={18} className="shrink-0" aria-hidden="true" /></a>
-            <p className="mt-3 text-xs font-medium leading-5">国内参加はRBAが窓口です。沖縄県民割引：通い27,500円／宿泊39,600円（税込・1名）。詳細ページで適用条件をご確認ください。</p>
-          </section>
-        )}
 
         <section className="px-5 pb-7 pt-10 sm:px-9 sm:pt-14" aria-labelledby="instagram-title">
           <p className="text-[11px] font-bold tracking-[.2em] text-neutral-600">FROM INSTAGRAM</p>
@@ -178,12 +147,45 @@ export default function InstagramEntryPage() {
               <a
                 className="mt-6 flex min-h-14 items-center justify-between gap-3 bg-white px-5 py-3 font-black text-[#17191b] transition-colors hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 href={track("/ja/events/torsten-loibl-online-clinic", "featured_torsten", "torsten_vol2_20261125")}
-                data-cta="torsten_vol2"
+                data-cta="torsten_vol2" data-growth-id="instagram-featured-torsten"
               >
                 講習の内容・申込方法を見る <ArrowUpRight size={20} aria-hidden="true" />
               </a>
               <p className="mt-3 text-[11px] leading-5 text-neutral-400">公式案内 → 専用Googleフォーム → フォーム送信後、選択プランの決済へ。</p>
             </div>
+          </section>
+        )}
+
+        {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
+          <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
+          <h2 id="shizugawa-feature-title" className="mt-3 text-3xl font-black leading-tight">海と森の志津川で、<br/>次のプレーへ。</h2>
+          <p className="mt-4 text-sm leading-7">攻守が変わった瞬間に、見て、選んで、動き出す。<br/>小4〜中3｜宿泊25,000円・日帰り1日6,600円（食事代別）。</p>
+          <a data-growth-id="instagram-shizugawa-details" href={track("/ja/events/shizugawa-development-camp-2026", "shizugawa_feature", "shizugawa_20261107")} className="mt-5 flex min-h-14 items-center justify-between bg-[#0b3542] px-4 py-3 text-sm font-black" style={{color:"#fff"}}>志津川キャンプの詳細・お申し込み <ArrowUpRight size={18}/></a>
+          <p className="mt-3 text-xs leading-6">ホームページからお申し込みいただけます。参加条件は受付後にRBAからご案内します。</p>
+        </section>}
+        {showKobe && <section className="mx-5 mt-5 border-2 border-black bg-[#ff7900] p-5 sm:mx-9 sm:p-7" aria-labelledby="kobe-feature-title">
+          <p className="text-xs font-black tracking-widest">11.21–23 / 兵庫・たつの</p>
+          <h2 id="kobe-feature-title" className="mt-3 text-3xl font-black leading-tight">練習した技術を、<br/>試合で使える力へ。</h2>
+          <p className="mt-4 text-sm font-bold leading-7">小5〜中3。半日6,600円・日帰り11,000円。<br/>宿泊せずに通える育成キャンプです。</p>
+          <a href={track("/ja/events/kobe-development-camp-2026","kobe_feature","kobe_20261121")} data-cta="kobe-camp-details" data-growth-id="instagram-kobe-details" className="mt-5 flex min-h-14 items-center justify-between bg-black px-4 py-3 text-sm font-black text-white" style={{color:"#fff"}}>内容・参加プランを相談する <ArrowUpRight size={18}/></a>
+          <p className="mt-3 text-xs leading-6">会場・宿泊条件は最終調整中。決済前にご相談ください。</p>
+        </section>}
+        {showOkinawa && (
+          <section className="mx-5 mt-5 border border-[#d95100] bg-[#ff761b] p-5 text-[#151719] sm:mx-9 sm:mt-7 sm:p-7" aria-labelledby="okinawa-feature-title">
+            <p className="text-[11px] font-black tracking-[.12em]">PICK UP / OKINAWA INTERNATIONAL CAMP</p>
+            <h2 id="okinawa-feature-title" className="mt-3 text-[32px] font-black leading-[1.2] tracking-[-.04em] sm:text-[44px]">沖縄で、<br />世界の仲間とバスケ。</h2>
+            <p className="mt-4 text-[18px] font-black leading-7 sm:text-xl">2026年12月22日（火）〜24日（木）</p>
+            <p className="mt-1 text-sm font-bold">7〜18歳対象 · 国際ユースキャンプ · 2泊3日</p>
+            <p className="mt-4 text-sm leading-6">海外の選手と練習・ゲーム・交流。<br />お友達と一緒の参加も、ご相談ください。</p>
+            <OkinawaEarlyBird compact/>
+            <OkinawaCampPartnerNotice locale="ja"/>
+            <a className="mt-5 flex min-h-14 items-center justify-between gap-3 bg-[#151719] px-5 py-4 text-sm font-black text-white transition-colors hover:bg-[#333] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719] sm:text-base"
+              href={track("/ja/events/okinawa-international-camp-2026", "featured_okinawa_details", "okinawa_camp_20261222")}
+              style={{ color: "#fff" }} data-cta="okinawa_camp_details" data-growth-id="instagram-okinawa-details">沖縄キャンプの詳細・参加案内 <ArrowUpRight size={20} className="shrink-0" aria-hidden="true" /></a>
+            <a className="mt-3 flex min-h-12 items-center justify-between gap-3 border border-[#151719] bg-white px-4 py-3 text-sm font-black transition-colors hover:bg-[#fff5eb] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#151719]"
+              href={track("/ja/events/okinawa-international-camp-2026/apply", "featured_okinawa_japan", "okinawa_camp_20261222")}
+              data-cta="okinawa_camp_japan" data-growth-id="instagram-okinawa-japan">国内参加プランと料金を確認 <ArrowUpRight size={18} className="shrink-0" aria-hidden="true" /></a>
+            <p className="mt-3 text-xs font-medium leading-5">国内参加はRBAが窓口です。沖縄県民割引：通い27,500円／宿泊39,600円（税込・1名）。詳細ページで適用条件をご確認ください。</p>
           </section>
         )}
 
@@ -202,7 +204,7 @@ export default function InstagramEntryPage() {
                 <a
                   key={entry.number}
                   href={entry.href}
-                  data-cta={entry.number}
+                  data-cta={entry.number} data-growth-id={`instagram-route-${entry.number}`}
                   className="group flex h-full flex-col border border-neutral-300 bg-white px-5 py-6 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:px-6"
                 >
                   <div className="flex items-center justify-between">
@@ -232,7 +234,7 @@ export default function InstagramEntryPage() {
           <p className="mt-3 text-sm leading-7 text-neutral-300">
             チーム訪問・地域合同・3回の継続開催。全国から地域ホスト・クラブの開催相談を受け付けています。
           </p>
-          <a href={track("/ja/national-clinic-tour", "national_host_feature")} data-cta="instagram-national-tour"
+          <a href={track("/ja/national-clinic-tour", "national_host_feature")} data-cta="instagram-national-tour" data-growth-id="instagram-national-tour"
              className="mt-5 flex min-h-12 items-center justify-between gap-3 bg-white px-4 py-3 text-sm font-black text-[#191b1d] hover:bg-neutral-200">
             開催の仕組み・無料相談を見る <ArrowUpRight size={18} aria-hidden="true" />
           </a>
