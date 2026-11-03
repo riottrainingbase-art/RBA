@@ -96,7 +96,7 @@ export function TorstenJapanLanding() {
           <div className={styles.bookingHead}>
             <p className={styles.sectionKicker}>REGISTRATION / お申し込み</p>
             <h2 id="torsten-booking">参加方法は2つ。申込先は1つ。</h2>
-            <p>LIVEも録画も同じ申込フォームから選べます。</p>
+            <p>LIVEも録画も、同じGoogleフォームで参加形式を選べます。</p>
           </div>
           <div className={styles.choices}>
             <div><span>11月25日・Zoom</span><h3>LIVE参加</h3><strong>3,300円</strong></div>
