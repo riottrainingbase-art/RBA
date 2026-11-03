@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
+import styles from "./page.module.css";
 
 const email = "riot.training.base@gmail.com";
 const memberEmail = `mailto:${email}?subject=${encodeURIComponent("沖縄の活動・会員相談")}`;
@@ -44,12 +45,12 @@ export default function OkinawaPage() {
           </div>
         </section>
 
-        <section id="activities" className="homecourt-product-preview section-pad">
+        <section id="activities" className={`homecourt-product-preview section-pad ${styles.activities}`}>
           <div className="section-head">
             <div><p className="section-index">FIND YOUR NEXT COURT</p><h2>参加・協力の目的から選ぶ。</h2></div>
             <p>対象年代、費用、会場、申込条件は、それぞれの活動ページでご確認ください。</p>
           </div>
-          <div className="homecourt-preview-grid">
+          <div className={`homecourt-preview-grid ${styles.cards}`}>
             <article>
               <span>PLAY / LEARN</span><h3>クリニック・キャンプに参加する</h3>
               <p>沖縄でのクリニックや国際キャンプの案内をご覧いただけます。募集状況と申込条件は、各ページでご確認ください。</p>

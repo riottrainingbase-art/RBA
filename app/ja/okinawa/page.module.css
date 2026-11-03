@@ -1,0 +1,21 @@
+.activities.activities {
+  background: #f3f3f0;
+}
+
+.cards.cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cards > article {
+  min-width: 0;
+}
+
+.cards a {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .cards.cards {
+    grid-template-columns: 1fr;
+  }
+}
