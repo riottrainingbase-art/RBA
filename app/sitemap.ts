@@ -11,7 +11,7 @@ const taiwanPages=locales.flatMap(locale=>[`${locale}/taiwan`,`${locale}/taiwan/
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
 const productPages=["/ja/national-tour","/ja/development-projects","/ja/support","/ja/support/terms","/ja/support/downloads","/ja/after-clinic","/ja/bring-rba","/ja/clinic-interest","/ja/family-basketball","/ja/team-development","/ja/homecourt-plus","/ja/development","/ja/store"];
-const regionalPages=["/ja/events/shizugawa-development-camp-2026","/ja/events/kobe-development-camp-2026","/ja/u12-school","/ja/events/okinawa-international-camp-2026","/ja/events/kagoshima-clinic-2026-11-29","/ja/regions","/ja/fukuoka","/ja/saga","/ja/okinawa-coach","/ja/events/okinawa-clinic-2026-11-14"];
+const regionalPages=["/ja/okinawa","/ja/events/shizugawa-development-camp-2026","/ja/events/kobe-development-camp-2026","/ja/u12-school","/ja/events/okinawa-international-camp-2026","/ja/events/kagoshima-clinic-2026-11-29","/ja/regions","/ja/fukuoka","/ja/saga","/ja/okinawa-coach","/ja/events/okinawa-clinic-2026-11-14"];
 const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support","/radio","/links","/sponsors"] as const;
 const localeMap:{prefix:string;locale:ContentLocale}[]=[
   {prefix:"",locale:"en"},
@@ -41,7 +41,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
     ...productPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
-    ...regionalPages.map(path=>({path,lastModified:path==="/ja/okinawa-coach"?"2026-10-05T00:00:00Z":"2026-10-04T00:00:00Z"})),
+    ...regionalPages.map(path=>({path,lastModified:path==="/ja/okinawa"?"2026-11-03T00:00:00Z":path==="/ja/okinawa-coach"?"2026-10-05T00:00:00Z":"2026-10-04T00:00:00Z"})),
     {path:"/ja/events/torsten-loibl-online-clinic/share",lastModified:"2026-10-28T00:00:00Z"},
     ...journalPosts,
   ];
@@ -54,4 +54,5 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     priority:entry.path===""?1:entry.path.includes("my-homecourt")||entry.path.includes("torsten")?0.95:entry.path.includes("schedule")||entry.path.includes("opportunities")||entry.path.includes("journal")||entry.path.includes("asia")||(entry.path.includes("/saga")||entry.path.includes("/okinawa-coach"))?0.9:0.8,
   }));
 }
+
 
