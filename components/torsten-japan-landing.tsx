@@ -50,6 +50,7 @@ export function TorstenJapanLanding() {
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>NOV 25, 2026 · RBA ONLINE CLINIC VOL.2</p>
             <h1 id="torsten-title"><span className={styles.heroLabel}>世界の現場で指導してきたコーチに学ぶ。</span><span className={styles.name}>TORSTEN<br />LOIBL</span></h1>
+            <p className={styles.heroProof}>B.PREMIER HC <span>FIBA WABC LEVEL 3</span> <span>2019 WORLD CHAMPION</span></p>
             <p className={styles.subheading}>シュートを「打つ技術」から、<br/>「試合で生み出す力」へ。</p>
             <p className={styles.lead}>育成年代の日本代表からプロまで。シュート技術・練習設計・スペーシング・判断をつなぐ90分。</p>
             <RegisterLink label="LIVE・録画を選んで申し込む" id="torsten-simple-hero" />
