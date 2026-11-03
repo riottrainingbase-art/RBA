@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, Clock3, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
 import { GrowthClickTracking } from "./growth-click-tracking";
