@@ -16,7 +16,7 @@ const faqs = [
   ["英語が分からなくても参加できますか？", "はい。英語講義に日本語の逐次通訳が付きます。"],
   ["当日参加できない場合は？", "録画視聴（4,400円）を選択できます。開催後の配信開始から30日間ご覧いただけます。"],
   ["LIVEに録画は含まれますか？", "LIVEと録画は別の申込プランです。両方をご希望の場合は事前にRBAへお問い合わせください。"],
-  ["フォームを送れば申込完了ですか？", "いいえ。フォーム送信後の確認画面に表示されるリンクから決済を完了すると申込確定です。"],
+  ["フォームを送れば申込完了ですか？", "いいえ。国内申込はフォーム送信後の確認画面に表示されるSquare決済の案内に従ってお支払いください。決済完了後に申込確定となります。"],
 ] as const;
 
 function RegisterLink({ label, id, className }: { label: string; id: string; className?: string }) {
@@ -54,7 +54,7 @@ export function TorstenJapanLanding() {
             <p className={styles.subheading}>シュートを「打つ技術」から、<br/>「試合で生み出す力」へ。</p>
             <p className={styles.lead}>育成年代の日本代表からプロまで。シュート技術・練習設計・スペーシング・判断をつなぐ90分。</p>
             <RegisterLink label="LIVE・録画を選んで申し込む" id="torsten-simple-hero" />
-            <p className={styles.micro}>同じフォームで参加形式を選択。フォーム送信後、お支払いで申込確定。</p>
+            <p className={styles.micro}>国内申込はGoogleフォームで参加形式を選択。送信後の確認画面にあるSquare決済の案内からお支払いください。</p>
           </div>
           <aside className={styles.info} aria-label="開催日時と参加料金">
             <p className={styles.infoLabel}>LIVE / ZOOM</p>
@@ -103,8 +103,8 @@ export function TorstenJapanLanding() {
             <div><span>開催後・視聴30日間</span><h3>録画視聴</h3><strong>4,400円</strong></div>
           </div>
           <RegisterLink label="申込フォームを開く" id="torsten-simple-book" />
-          <p className={styles.bookingNote}><CheckCircle2 size={18} aria-hidden="true" />フォーム入力 → 送信後の確認画面から決済 → お支払い完了で申込確定</p>
-          <p className={styles.help}>日本国内の円建て申込です。<a href="/events/torsten-loibl-online-clinic#register">海外向けUSD申込はこちら</a>。支払方法でお困りの方は<a href={clinicHelpUrl("申込・お支払い手続きの相談")}>RBAにご相談ください</a>。</p>
+          <p className={styles.bookingNote}><CheckCircle2 size={18} aria-hidden="true" />Googleフォーム入力 → 送信後の確認画面でSquare決済 → お支払い完了で申込確定</p>
+          <p className={styles.help}>日本国内は税込円建て・Square決済でのお支払いです。<a href="/events/torsten-loibl-online-clinic#register">海外向けUSD申込はこちら</a>。支払方法でお困りの方は<a href={clinicHelpUrl("申込・お支払い手続きの相談")}>RBAにご相談ください</a>。</p>
         </section>
 
         <section className={styles.faq} aria-labelledby="torsten-faq">
