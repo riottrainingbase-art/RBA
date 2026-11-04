@@ -7,7 +7,7 @@ const japanesePage = "/ja/events/okinawa-clinic-2026-11-14";
 
 export const metadata: Metadata = {
   title: "Okinawa Youth Basketball Clinic | November 14, 2026 | RBA",
-  description: "English information and no-payment pre-registration for RBA's independent youth basketball clinic in southern Okinawa on Nov 14, 2026. JPY 3,300 per player; venue and payment details to follow final approval.",
+  description: "English information and no-payment pre-registration for RBA&apos;s independent youth basketball clinic in southern Okinawa on Nov 14, 2026. JPY 3,300 per player; venue and payment details to follow final approval.",
   alternates: {
     canonical: "https://riotbasketballacademy.com/events/okinawa-clinic-2026-11-14",
     languages: { en: "https://riotbasketballacademy.com/events/okinawa-clinic-2026-11-14", ja: "https://riotbasketballacademy.com/ja/events/okinawa-clinic-2026-11-14" }
@@ -52,9 +52,9 @@ export default function OkinawaClinicEnglishPage() {
     <section className={styles.section} id="english-enquiry">
       <h2>English pre-registration in three simple steps</h2>
       <div className={styles.grid}>
-        <article className={styles.card}><span className={styles.number}>STEP 1</span><h3>Send an enquiry</h3><p>A parent or legal guardian enters the enquiry in English. No credit card, military ID or child's full date of birth is needed.</p></article>
+        <article className={styles.card}><span className={styles.number}>STEP 1</span><h3>Send an enquiry</h3><p>A parent or legal guardian enters the enquiry in English. No credit card, military ID or child&apos;s full date of birth is needed.</p></article>
         <article className={styles.card}><span className={styles.number}>STEP 2</span><h3>Receive the confirmed arrangements</h3><p>RBA contacts the guardian after the gym, participation conditions and payment procedure have been finalized. An enquiry alone does not secure a seat.</p></article>
-        <article className={styles.card}><span className={styles.number}>STEP 3</span><h3>Confirm your place</h3><p>Follow RBA's final instructions and any applicable payment and consent steps. Do not pay or make non-refundable travel plans based only on preliminary information.</p></article>
+        <article className={styles.card}><span className={styles.number}>STEP 3</span><h3>Confirm your place</h3><p>Follow RBA&apos;s final instructions and any applicable payment and consent steps. Do not pay or make non-refundable travel plans based only on preliminary information.</p></article>
       </div>
       <div className={styles.form} style={{marginTop:24}}>
         <h3>English enquiry form</h3>
@@ -69,7 +69,7 @@ export default function OkinawaClinicEnglishPage() {
       <details className={styles.details} open><summary>Where exactly is the clinic?</summary><p>The clinic is planned for southern Okinawa. The exact gym address, drop-off arrangements and parking details will be sent privately after the final venue booking is confirmed. Please do not assume any location mentioned elsewhere is the final venue.</p></details>
       <details className={styles.details}><summary>Does the enquiry reserve a place or charge me?</summary><p>No. The English form records your interest and contact details. It does not collect money or issue a confirmed reservation. RBA will contact you with the final participation and payment instructions after venue confirmation.</p></details>
       <details className={styles.details}><summary>What do I bring?</summary><p>Plan for indoor basketball shoes, sports clothing, water and a towel. Final arrival and drop-off details, and whether to bring a basketball, will be provided by RBA.</p></details>
-      <details className={styles.details}><summary>Cancellation, refunds, photos and privacy</summary><p>Review <a href={japanesePage}>the currently published event conditions</a> and <a href="/policies">RBA's policies</a> before payment. Ask RBA for an English explanation of any terms you do not understand. Media consent is optional. Do not include medical records or military identification in the enquiry form.</p></details>
+      <details className={styles.details}><summary>Cancellation, refunds, photos and privacy</summary><p>Review <a href={japanesePage}>the currently published event conditions</a> and <a href="/policies">RBA&apos;s policies</a> before payment. Ask RBA for an English explanation of any terms you do not understand. Media consent is optional. Do not include medical records or military identification in the enquiry form.</p></details>
       <p>Questions: <a href="mailto:riot.training.base@gmail.com?subject=Nov%2014%20Okinawa%20Clinic%20English%20Enquiry">riot.training.base@gmail.com</a></p>
       <p className={styles.fine}>Organizer: Riot Basketball Academy (RBA), Japan.</p>
     </section>
