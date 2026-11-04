@@ -91,7 +91,7 @@ export const programmes: readonly Programme[] = [
     place:["Southern Okinawa · venue shared with applicants","沖縄県南部・会場は申込者へ個別案内","沖繩南部・場地個別通知","오키나와 남부 · 신청자에게 장소 개별 안내"],
     price:["¥3,300 incl. tax / player","参加費3,300円（税込）／1名","每人¥3,300（含稅）","1인 ¥3,300（세금 포함）"],
     audience:["Japan grades 4–9 · capacity 50","小学4年〜中学3年生・定員50名","日本小學4年級至國中3年級・限50名","일본 초4~중3 · 정원 50명"],
-    payment:["Register online; payment opens after venue confirmation.","公式ページで申込・決済。会場予約確定後に決済受付を開始します。","官方頁面報名，場地確定後開放付款。","공식 페이지 신청 · 장소 확정 후 결제 시작"],
+    payment:["Register online; venue secured and shared privately. Payment opens when RBA confirms registration readiness.","会場確保済み・詳細は申込者へ個別案内。決済はRBAの受付開始後に可能です。","場地已確定，詳細地點僅個別通知報名者；付款將於RBA開放後開始。","장소 확보 완료 · 상세 장소는 신청자에게 개별 안내 · 결제는 RBA 접수 개시 후 가능"],
     applicationUrl:"/ja/events/okinawa-clinic-2026-11-14",region:"okinawa",category:"TRAIN",pathway:"clinic",ageGroups:["U10","U12","U15"],
   },
   {
