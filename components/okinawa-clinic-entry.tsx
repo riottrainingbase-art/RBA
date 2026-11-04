@@ -26,7 +26,7 @@ export function OkinawaClinicEntry(){
       const response=await fetch(clinic.api,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"submit",participant_name:fields.get("participant_name"),school_grade:fields.get("school_grade"),guardian_name:fields.get("guardian_name"),emergency_phone:fields.get("emergency_phone"),guardian_consent:fields.get("guardian_consent")==="on",terms_consent:fields.get("terms_consent")==="on",media_consent:fields.get("media_consent")==="on"})});
       const result=await response.json() as {ok?:boolean;status:string;open:boolean};if(!response.ok||!result.ok)throw new Error();
       form.reset();await load();
-      setMessage(result.status==="waitlisted"?"キャンセル待ちで受け付けました。空きが出た場合にRBAからご連絡します。現時点でのお支払いはありません。":result.status==="paid"?"この選手のお支払いは確認済みです。重ねてお支払いいただく必要はありません。":result.open?"申込を受け付けました。下の選手名を確認し、お支払いへお進みください。":"先行受付が完了しました。会場の予約確定後、このページからお支払いに進めます。現時点では参加確定ではありません。");
+      setMessage(result.status==="waitlisted"?"キャンセル待ちで受け付けました。空きが出た場合にRBAからご連絡します。現時点でのお支払いはありません。":result.status==="paid"?"この選手のお支払いは確認済みです。重ねてお支払いいただく必要はありません。":result.open?"申込を受け付けました。下の選手名を確認し、お支払いへお進みください。":"先行受付が完了しました。会場は確保済みですが、決済受付の開始後にこのページからお支払いへ進めます。現時点では参加確定ではありません。");
     }catch{setError("受付を完了できませんでした。通信状況をご確認のうえ、再度お試しください。同じ選手名・学年での再送による重複申込は作成しません。");}
     finally{inFlight.current=false;setBusy(false);}
   }
@@ -50,7 +50,7 @@ export function OkinawaClinicEntry(){
     {!loading&&!login?<button type="button" onClick={()=>{setLoading(true);void load();}} disabled={busy} className={styles.button}>受付・支払状況を再読み込み</button>:null}
     {data?<>
       <p className={styles.fine}>連絡先メール：{data.email}（RBA IDのメールアドレス）</p>
-      <p className={styles.notice}>{data.closed?"現在、申込受付を終了しています。":data.open?"正式受付中です。申込後、参加費のお支払いに進めます。支払確認後に参加確定となります。":"現在は先行受付中です。会場の予約確定後に決済受付を開始します。申込情報は保存されますが、この時点で料金は発生しません。"}</p>
+      <p className={styles.notice}>{data.closed?"現在、申込受付を終了しています。":data.open?"正式受付中です。申込後、参加費のお支払いに進めます。支払確認後に参加確定となります。":"現在は先行受付中です。会場は確保済みで詳細は申込者へ個別案内します。決済受付開始前は料金が発生せず、申込情報のみ保存されます。"}</p>
       {data.registrations.length?<div aria-label="申込済みの選手"><h3>あなたの申込</h3>{data.registrations.map(r=><div className={styles.registration} key={r.id}><div><strong>{r.participant_name}さん</strong><small>{r.school_grade} ／ {r.payment_status==="refunded"?"返金済み":r.payment_status==="partially_refunded"?"一部返金あり・RBAへご確認ください":r.status==="paid"?"支払確認済み・参加確定":r.payment_status==="awaiting_payment"?"決済処理中・再度支払わず反映をお待ちください":r.status==="waitlisted"?"キャンセル待ち":r.status==="withdrawn"?"申込取り下げ":"申込受付済み・支払前"}</small><small>受付番号：{r.id.slice(0,8).toUpperCase()}</small></div>{data.open&&r.status==="submitted"&&r.payment_status!=="awaiting_payment"?<button className={styles.button} disabled={busy} onClick={()=>void checkout(r.id)}>この選手の3,300円を支払う →</button>:null}</div>)}</div>:null}
       {!data.closed?<form onSubmit={submit} style={{marginTop:28}}>
         <div className={styles.fields}>
