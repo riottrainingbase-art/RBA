@@ -210,7 +210,7 @@ export const programmes: readonly Programme[] = [
     date: ["21–23 NOV 2026 · optional evening clinic 20 NOV", "2026.11.21〜23／11.20は別料金の前夜クリニック", "2026.11.21–23／11.20晚間訓練另計", "2026.11.21–23 / 11.20 전야 클리닉 별도"],
     datePrimary: ["21–23", "21〜23日", "21至23日", "21~23일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
-    title: ["KOBE Development Camp 2026", "KOBE Development Camp 2026", "KOBE培育營2026", "KOBE Development Camp 2026"],
+    title: ["Hyogo / Tatsuno Development Camp 2026", "兵庫・たつの Development Camp 2026", "兵庫・龍野 Development Camp 2026", "효고・다쓰노 Development Camp 2026"],
     place: ["Tatsuno, Hyogo", "兵庫・たつの", "兵庫・龍野", "효고・다쓰노"],
     price: ["From ¥6,600 / full camp with stay ¥52,800", "半日 6,600円〜／全日程・宿泊食事付 52,800円", "半日 ¥6,600起／全程含住宿餐食 ¥52,800", "반일 ¥6,600부터 / 전 일정 숙박·식사 포함 ¥52,800"],
     audience:["Grades 5–9", "小学5年〜中学3年", "小學5年級至國中3年級", "초등 5학년~중학 3학년"],
