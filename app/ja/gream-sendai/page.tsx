@@ -52,12 +52,14 @@ const coaches = [
 ] as const;
 
 const faqs = [
-  ["どんなクラブですか？", "宮城県仙台市を拠点とするU15男子クラブです。通常練習だけでなく、試合・評価・修正を継続してつなげます。RBA U15 SKILL UP SCHOOLとは別のチーム活動です。"],
-  ["練習日はいつですか？", "2026年11月のスタッフ計画は週3回・各90分を想定しています。確定した曜日・時刻・会場は参加相談後にRBAからご案内します。未確定の日程を予約済みとして表示していません。"],
+  ["どんなクラブですか？", "2026年に発足した仙台市太白区中心のU15男子クラブです。仲間とバスケを楽しみ、練習・試合・振り返りを積み重ねます。毎週木曜日のRBA U15 SKILL UP SCHOOLとは別の活動です。"],
+  ["練習日はいつですか？", "スタッフ用の練習案は週3回・各90分ですが、曜日・体育館・時間はまだ正式決定していません。太白区を中心に調整し、入団前に日程と会場を個別にご案内します。"],
   ["小学6年生でも相談できますか？", "はい、相談は可能です。ただし実際の活動参加・登録資格は学年やチームの受け入れ状況を確認してからご案内します。"],
   ["体験や入団相談は有料ですか？", "このフォームからの参加相談・入団希望の提出は無料で、送信だけで会費の請求や入団確定は生じません。体験実施日・体験費用・正式手続きは個別にご案内します。"],
-  ["月会費のほかに費用がかかりますか？", "公式年間計画の通常活動費は月額8,800円です。国内遠征・合宿・大会参加・特別活動・海外交流は別途費用の対象で、内容と金額を事前にご案内します。入会金・登録費など未確認の条件は、正式申込前に個別確認します。"],
-  ["選手名簿は見られますか？", "未成年選手の氏名・学校・身体情報を許可なく公開しません。チームの活動や指導体制については、公開可能な範囲でご案内します。"]
+  ["月会費のほかに費用がかかりますか？", "現在の通常活動月会費は8,800円（税込）です。入会金などの初期費用は正式手続き前に内訳をご案内します。遠征・合宿・大会・特別活動は別途参加費が発生する場合があり、事前に金額を確認できます。"],
+  ["2027年度の月会費は値上がりしますか？", "月額9,900円への改定は検討案であり、正式決定ではありません。開始時期・既存会員への適用・初期費用等は確定後に事前案内します。現在の8,800円の料金や契約を無断で変更しません。"],
+  ["中学2・3年生や未経験でも相談できますか？", "はい。2026年発足のチームで、現在中学2・3年生は在籍していませんが、学年・経験を問わず入団相談は受け付けています。実際の参加可否は受入体制と登録条件を確認してお知らせします。"],
+  ["選手名簿は見られますか？", "個々の未成年選手の氏名や学校・身体情報は募集ページに掲載しません。写真・動画は公開許可を得ていますが、配信素材の準備が完了するまで公開しません。"]
 ] as const;
 
 const button = { display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 54, padding: "14px 24px", color: "#fff", background: ink, textDecoration: "none", fontWeight: 850, fontSize: 16, borderRadius: 3 } as const;
@@ -70,12 +72,12 @@ export default function GreamSendaiPage() {
           <p style={{ margin: "0 0 18px", fontSize: 12, fontWeight: 800, letterSpacing: 3, color: "#c5cacf" }}>RIOT BASKETBALL ACADEMY / SENDAI / U15 BOYS CLUB</p>
           <h1 style={{ fontSize: "clamp(45px,9vw,122px)", fontWeight: 950, lineHeight: .88, letterSpacing: "-.075em", margin: "0 0 24px" }}>GREAM<br/>SENDAI <span style={{ color: "#b6bec3" }}>U15.</span></h1>
           <h2 style={{ fontSize: "clamp(24px,3.6vw,47px)", lineHeight: 1.25, fontWeight: 900, margin: "0 0 20px" }}>2026年、ここから一緒に。<br/>バスケを楽しみ、成長する。</h2>
-          <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>今年2026年にスタートした新しいU15男子クラブです。今の仲間には中学2・3年生はいません。年上の選手がいないからこそ、一人ひとりがチームづくりの主役。仙台市太白区を中心に、みんなでバスケを楽しみながら、練習・実戦・振り返りを通じて成長します。</p>
+          <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>今年2026年に発足した、仙台市太白区を中心に活動するU15男子クラブです。現在は中学2・3年生がいない新しいチーム。学年や経験にかかわらず、バスケットボールを楽しみ、声をかけ合いながら一緒に成長する仲間を募集しています。</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
             <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-hero-intake" style={{ ...button, background: "#fff", color: ink }}>新規メンバーの参加相談をする ↗</a>
             <a href="#programme" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>活動内容を詳しく見る ↓</a>
           </div>
-          <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>2026年発足・初年度｜中学2・3年生の在籍なし｜参加相談・入団希望を受付中。フォーム送信は正式入団・日程確約・決済を意味しません。</p>
+          <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>まずは保護者の方から無料で参加相談。練習日・会場・会費を確認してから、正式な入団を判断できます。相談だけで入団や請求は確定しません。</p>
         </div>
       </section>
 
@@ -84,8 +86,8 @@ export default function GreamSendaiPage() {
           {[
             ["カテゴリー", "U15男子クラブ"],
             ["主な活動地域", "仙台市太白区（宮城県仙台市）"],
-            ["通常活動費", "月額8,800円（税込）"],
-            ["通常練習の想定", "週3回・各90分 ※曜日と会場は調整中"]
+            ["現在の月会費", "8,800円（税込）※2027年度の改定は未決定"],
+            ["練習回数（計画）", "週3回・各90分を想定／確定日程は個別案内"]
           ].map(([label,value])=><div key={label}><p style={{ fontSize: 12, letterSpacing: 2, color: muted, fontWeight: 800, margin: "0 0 8px" }}>{label}</p><strong style={{ fontSize: "clamp(18px,2.2vw,25px)", lineHeight: 1.4 }}>{value}</strong></div>)}
         </div>
       </section>
@@ -143,7 +145,7 @@ export default function GreamSendaiPage() {
             </article>)}
           </div>
           <div style={{ marginTop: 20, borderLeft: "4px solid "+ink, background: "#f2f3f2", padding: 20, lineHeight: 1.85, color: muted }}>
-            選手メンバー：2026年に発足した新しいチームで、現時点では中学2年生・3年生は在籍していません。2026年9月大会登録の13名は当時の記録で、現在の在籍数・募集枠とは異なる場合があります。掲載許可のある写真・動画を使い、選手の氏名・学校・身体情報はここでは公開しません。
+            選手メンバー：2026年に発足した新しいチームで、現時点では中学2年生・3年生は在籍していません。2026年9月大会登録の13名は当時の記録で、現在の在籍数・募集枠とは異なる場合があります。掲載許可を得た活動写真・動画は公開準備中です。選手の氏名・学校・身体情報は募集ページに掲載しません。
           </div>
         </div>
       </section>
@@ -170,20 +172,30 @@ export default function GreamSendaiPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 14 }}>
             <article style={{ background: panel, border: "1px solid "+border, padding: "28px 25px" }}>
               <h3 style={{ fontSize: 25, margin: "0 0 16px" }}>通常練習について</h3>
-              <p style={{ lineHeight: 1.85, color: muted }}>2026年11月のスタッフ計画は<strong>週3回・各90分</strong>を想定。曜日、開始・終了時刻、体育館、担当スタッフは調整中です。確定内容をRBAから個別にご案内します。</p>
+              <p style={{ lineHeight: 1.85, color: muted }}>2026年11月のスタッフ計画では<strong>週3回・各90分</strong>を想定しています。ただし、これは確定済みの定期開催日ではありません。実際の曜日・開始時刻・体育館・担当スタッフは、参加相談後にご確認いただきます。</p>
               <p style={{ lineHeight: 1.8, fontWeight: 800 }}>活動拠点：宮城県仙台市太白区を中心に活動（会場は調整・個別案内）</p>
               <p style={{ color: muted, fontSize: 14, lineHeight: 1.8 }}>※木曜18:00〜19:30の「RBA U15 SKILL UP SCHOOL」は別事業です。クラブの確定練習枠ではありません。</p>
             </article>
             <article style={{ background: panel, border: "1px solid "+border, padding: "28px 25px" }}>
               <h3 style={{ fontSize: 25, margin: "0 0 16px" }}>活動費について</h3>
               <p style={{ fontSize: 39, fontWeight: 900, margin: "0 0 8px" }}>8,800円 <span style={{ fontSize: 15 }}>／月（税込）</span></p>
-              <p style={{ lineHeight: 1.85, color: muted }}>2026–2027年度の公式年間計画に記載された通常活動費です。遠征、合宿、大会参加、特別活動、海外交流は別途費用を事前案内します。入会金・初回費用・振替等の条件は、正式申込前にご確認いただきます。</p>
+              <p style={{ lineHeight: 1.85, color: muted }}>2026–2027年度の年間計画に基づく<strong>現行の通常月会費</strong>です。遠征・合宿・大会・特別活動などは、実施する場合に別途参加費をご案内します。入会金・初月費用・保険・登録等は正式入団前に内訳を確認いただけます。</p>
             </article>
             <article style={{ background: panel, border: "1px solid "+border, padding: "28px 25px" }}>
               <h3 style={{ fontSize: 25, margin: "0 0 16px" }}>参加対象と受付</h3>
-              <p style={{ lineHeight: 1.85, color: muted }}>基本対象はU15年代の男子選手です。現在、チームに中学2・3年生はいませんが、入団希望の相談は学年を問わず受け付け、実際の受入条件を個別にご案内します。小学6年生もご相談ください。今の実力だけで可能性を決めず、楽しく挑戦できる環境づくりを目指します。</p>
+              <p style={{ lineHeight: 1.85, color: muted }}>基本対象はU15年代の男子選手です。現在中学2・3年生の在籍はありません。中学2・3年生の入団希望も含めて相談を受け付け、実際の受入条件は個別に確認します。小学6年生の参加もご相談ください。チーム経験や今の実力だけで可能性を決めません。</p>
               <p style={{ fontSize: 14, color: muted, lineHeight: 1.8 }}>相談フォームでは費用の決済は発生しません。正式な入団・継続課金は、条件と規約をご案内した後の別手続きです。</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="2027-fees" aria-labelledby="gream-fee-review-heading" style={{ padding: "55px max(20px,6vw)", background: "#f0f1ef", borderTop: "1px solid #d8dcdd", borderBottom: "1px solid #d8dcdd" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 22, alignItems: "start" }}>
+          <div><p style={{ fontWeight: 900, fontSize: 12, letterSpacing: 2, color: muted, margin: "0 0 8px" }}>FEES / 2027 REVIEW</p><h2 id="gream-fee-review-heading" style={{ fontSize: "clamp(27px,4vw,43px)", margin: "0 0 15px" }}>会費は、決定したものだけをご案内します。</h2><p style={{ fontSize: 16, lineHeight: 1.85, color: muted, margin: 0 }}>家計の負担と、指導・会場・安全管理を継続するための費用の両方を大切にしています。費用の最終条件を確認してから入団を判断できます。</p></div>
+          <div style={{ padding: "25px 24px", background: "#fff", border: "1px solid #d8dcdd", display: "grid", gap: 16 }}>
+            <div><p style={{ fontSize: 12, color: muted, margin: "0 0 5px", fontWeight: 800 }}>現在の通常活動費（確定している案内）</p><strong style={{ fontSize: 28 }}>8,800円／月 <span style={{ fontSize: 13 }}>税込</span></strong></div>
+            <div style={{ borderTop: "1px solid #d8dcdd", paddingTop: 15 }}><p style={{ fontSize: 12, color: muted, margin: "0 0 5px", fontWeight: 800 }}>2027年度の改定について</p><strong style={{ fontSize: 19 }}>9,900円／月は検討中</strong><p style={{ fontSize: 14, lineHeight: 1.8, color: muted, margin: "7px 0 0" }}>正式決定・適用開始時期・既存会員の扱いは未確定です。今後の改定を既に決定した料金として請求・表示することはありません。</p></div>
           </div>
         </div>
       </section>
@@ -195,7 +207,7 @@ export default function GreamSendaiPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 14 }}>
             <article style={{ border: "1px solid #6c747b", padding: 26 }}>
               <h3 style={{ fontSize: 26, margin: "0 0 10px" }}>GREAM SENDAI U15</h3>
-              <p style={{ color: "#d5dbde", lineHeight: 1.85 }}>U15男子のクラブチーム。年間を通じてチームとして練習、試合、評価、交流を積み重ねます。通常月額8,800円。練習枠は調整中。</p>
+              <p style={{ color: "#d5dbde", lineHeight: 1.85 }}>U15男子のクラブチーム。仲間と練習や対外試合・交流に取り組み、チームとして成長します。現在の月会費は8,800円（税込）。練習枠は調整中。</p>
             </article>
             <article style={{ border: "1px solid #6c747b", padding: 26 }}>
               <h3 style={{ fontSize: 26, margin: "0 0 10px" }}>RBA U15 SKILL UP SCHOOL</h3>
@@ -203,6 +215,21 @@ export default function GreamSendaiPage() {
               <a href="/ja/u15-skill-up" style={{ color: "#fff", fontWeight: 800 }}>スキルアップスクールを見る →</a>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section id="join-steps" aria-labelledby="gream-join-title" style={{ padding: "70px max(20px,6vw)", background: "#fff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <p style={{ fontSize: 12, fontWeight: 900, letterSpacing: 3, color: muted }}>HOW TO JOIN</p>
+          <h2 id="gream-join-title" style={{ fontSize: "clamp(30px,5vw,55px)", margin: "12px 0 22px", lineHeight: 1.15 }}>入団までの流れは、3ステップ。</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 12 }}>
+            {[
+              ["01", "無料で相談する", "保護者の方がフォームで学年・希望曜日・相談内容を送信します。ここでは決済はありません。"],
+              ["02", "練習条件と費用を確認", "RBAから活動日時・会場・受入条件・初期費用・規約をご案内。必要に応じ体験日を調整します。"],
+              ["03", "納得して正式に入団", "保護者の同意と所定の登録・支払手続きを経て受付確定。フォーム送信だけでは入団になりません。"]
+            ].map(([n,t,d])=><article key={n} style={{ padding: "25px 22px", background: "#f4f5f3", border: "1px solid #d8dcdd" }}><p style={{ fontSize: 12, fontWeight: 900, letterSpacing: 2, color: muted, margin: "0 0 13px" }}>{n} / ENTRY</p><h3 style={{ fontSize: 23, margin: "0 0 12px" }}>{t}</h3><p style={{ lineHeight: 1.85, color: muted, margin: 0 }}>{d}</p></article>)}
+          </div>
+          <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-steps-intake" style={{ ...button, marginTop: 24 }}>無料の参加相談フォームを開く ↗</a>
         </div>
       </section>
 
