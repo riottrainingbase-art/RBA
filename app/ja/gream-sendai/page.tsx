@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
+import { GreamSendaiMedia } from "@/components/gream-sendai-media";
 
 const formUrl = "https://form.jotform.com/263082418714053";
 const pageUrl = "https://riotbasketballacademy.com/ja/gream-sendai";
@@ -89,6 +90,8 @@ export default function GreamSendaiPage() {
           ].map(([label,value])=><div key={label}><p style={{ fontSize: 12, letterSpacing: 2, color: muted, fontWeight: 800, margin: "0 0 8px" }}>{label}</p><strong style={{ fontSize: "clamp(18px,2.2vw,25px)", lineHeight: 1.4 }}>{value}</strong></div>)}
         </div>
       </section>
+
+      <GreamSendaiMedia />
 
       <section id="programme" style={{ padding: "76px max(20px,6vw)", background: "#fff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
