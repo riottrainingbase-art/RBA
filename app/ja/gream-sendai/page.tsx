@@ -10,11 +10,11 @@ const panel = "#f4f5f3";
 
 export const metadata: Metadata = {
   title: "GREAM SENDAI U15男子クラブ｜新規メンバー募集・参加相談｜RBA",
-  description: "GREAM仙台 U15男子クラブ。勝敗だけではなく、見る・判断する・実行する力を育てる年間活動。コーチ紹介、年間育成計画、月額8,800円、練習計画、体験・入団相談をご案内。",
+  description: "2026年に誕生した仙台市太白区中心のGREAM仙台U15男子クラブ。現在中学2・3年生は在籍していません。みんなでバスケットボールを楽しみ、成長する。練習計画・コーチ・月会費8,800円・入団相談をご案内。",
   alternates: { canonical: pageUrl },
   openGraph: {
-    title: "GREAM SENDAI U15｜1年後の成長を考えるクラブ",
-    description: "仙台のU15男子クラブ。育成理念・指導陣・年間活動・費用・参加相談をご案内。日時と会場は最終調整中。",
+    title: "GREAM SENDAI U15｜2026年発足・太白区の新しいバスケ仲間",
+    description: "2026年発足。仙台市太白区を中心に、仲間とバスケを楽しみながら成長するU15男子クラブ。現在中学2・3年生は在籍していません。練習日時と会場は調整中。",
     url: pageUrl,
     type: "website",
     siteName: "Riot Basketball Academy",
@@ -69,13 +69,13 @@ export default function GreamSendaiPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p style={{ margin: "0 0 18px", fontSize: 12, fontWeight: 800, letterSpacing: 3, color: "#c5cacf" }}>RIOT BASKETBALL ACADEMY / SENDAI / U15 BOYS CLUB</p>
           <h1 style={{ fontSize: "clamp(45px,9vw,122px)", fontWeight: 950, lineHeight: .88, letterSpacing: "-.075em", margin: "0 0 24px" }}>GREAM<br/>SENDAI <span style={{ color: "#b6bec3" }}>U15.</span></h1>
-          <h2 style={{ fontSize: "clamp(24px,3.6vw,47px)", lineHeight: 1.25, fontWeight: 900, margin: "0 0 20px" }}>1年後に、どれだけ良い選手になっているか。</h2>
-          <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>目の前の勝利だけでなく、次のカテゴリーにつながる成長を。技術・判断・ゲーム理解・身体づくり・チームでの経験を一つの育成サイクルとして設計する、仙台のU15男子クラブチームです。</p>
+          <h2 style={{ fontSize: "clamp(24px,3.6vw,47px)", lineHeight: 1.25, fontWeight: 900, margin: "0 0 20px" }}>2026年、ここから一緒に。<br/>バスケを楽しみ、成長する。</h2>
+          <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>今年2026年にスタートした新しいU15男子クラブです。今の仲間には中学2・3年生はいません。年上の選手がいないからこそ、一人ひとりがチームづくりの主役。仙台市太白区を中心に、みんなでバスケを楽しみながら、練習・実戦・振り返りを通じて成長します。</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
             <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-hero-intake" style={{ ...button, background: "#fff", color: ink }}>新規メンバーの参加相談をする ↗</a>
             <a href="#programme" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>活動内容を詳しく見る ↓</a>
           </div>
-          <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>2026–2027年度｜男子U15｜参加相談・入団希望の受付を開始。フォーム送信は正式入団・日程確約・決済を意味しません。</p>
+          <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>2026年発足・初年度｜中学2・3年生の在籍なし｜参加相談・入団希望を受付中。フォーム送信は正式入団・日程確約・決済を意味しません。</p>
         </div>
       </section>
 
@@ -83,18 +83,28 @@ export default function GreamSendaiPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 22 }}>
           {[
             ["カテゴリー", "U15男子クラブ"],
-            ["活動拠点", "宮城県仙台市"],
+            ["主な活動地域", "仙台市太白区（宮城県仙台市）"],
             ["通常活動費", "月額8,800円（税込）"],
             ["通常練習の想定", "週3回・各90分 ※曜日と会場は調整中"]
           ].map(([label,value])=><div key={label}><p style={{ fontSize: 12, letterSpacing: 2, color: muted, fontWeight: 800, margin: "0 0 8px" }}>{label}</p><strong style={{ fontSize: "clamp(18px,2.2vw,25px)", lineHeight: 1.4 }}>{value}</strong></div>)}
         </div>
       </section>
 
+      <section style={{ padding: "36px max(20px,6vw)", background: "#f5f5f3", borderBottom: "1px solid #d8dcdd" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: 18, alignItems: "center" }}>
+          <div><p style={{ letterSpacing: 3, fontSize: 12, fontWeight: 900, color: muted }}>2026 FIRST SEASON</p><h2 style={{ fontSize: "clamp(28px,4vw,44px)", lineHeight: 1.15, margin: "6px 0 14px" }}>まだ、始まったばかり。<br/>だから、一緒につくれる。</h2></div>
+          <div style={{ fontSize: 16, lineHeight: 1.9, color: muted }}>
+            <p style={{ marginTop: 0 }}>今年2026年に発足したU15男子クラブ。現在のメンバーに中学2・3年生はいません。学年や経験の違いを認め合い、仲間とバスケを楽しむところからチームを育てていきます。</p>
+            <p style={{ marginBottom: 0 }}><strong>活動の中心は仙台市太白区。</strong> 練習の具体的な曜日・体育館は確定次第ご案内します。</p>
+          </div>
+        </div>
+      </section>
+
       <section id="programme" style={{ padding: "76px max(20px,6vw)", background: "#fff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p style={{ letterSpacing: 3, fontSize: 12, fontWeight: 900, color: muted }}>OUR DEVELOPMENT PHILOSOPHY</p>
-          <h2 style={{ fontSize: "clamp(33px,5vw,64px)", lineHeight: 1.04, letterSpacing: "-.04em", margin: "12px 0 20px" }}>勝つことと、育つこと。<br/>どちらも真剣に考える。</h2>
-          <p style={{ fontSize: 18, lineHeight: 1.95, color: muted, maxWidth: 850, margin: "0 0 34px" }}>選手の成長を、出場時間や得点だけで測らない。状況を見て判断し、仲間と協力し、ミスから修正できる選手を育てます。試合も大切な学びの場として扱い、練習と実戦を切り離しません。</p>
+          <h2 style={{ fontSize: "clamp(33px,5vw,64px)", lineHeight: 1.04, letterSpacing: "-.04em", margin: "12px 0 20px" }}>まず、バスケを楽しむ。<br/>その先に、成長と挑戦がある。</h2>
+          <p style={{ fontSize: 18, lineHeight: 1.95, color: muted, maxWidth: 850, margin: "0 0 34px" }}>2026年に立ち上がったばかりのチームだから、選手もコーチも一緒に文化をつくります。「バスケットボールが楽しい」「また練習したい」と思えることを大切にしながら、仲間への声かけ、挑戦、失敗からの学びを積み重ねます。勝敗だけで評価せず、試合も成長の機会として考えます。</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 1, background: "#bec4c4" }}>
             {pillars.map(p=><article key={p.num} style={{ background: panel, padding: "28px 24px" }}>
               <span style={{ fontSize: 12, fontWeight: 800, color: muted }}>{p.num} / {p.en}</span>
@@ -133,7 +143,7 @@ export default function GreamSendaiPage() {
             </article>)}
           </div>
           <div style={{ marginTop: 20, borderLeft: "4px solid "+ink, background: "#f2f3f2", padding: 20, lineHeight: 1.85, color: muted }}>
-            選手メンバー：2026年9月大会の登録資料では13名。現在の在籍数・募集枠とは異なる場合があります。未成年選手の氏名、学校、身体情報、写真は公開同意の確認なしに掲載しません。
+            選手メンバー：2026年に発足した新しいチームで、現時点では中学2年生・3年生は在籍していません。2026年9月大会登録の13名は当時の記録で、現在の在籍数・募集枠とは異なる場合があります。掲載許可のある写真・動画を使い、選手の氏名・学校・身体情報はここでは公開しません。
           </div>
         </div>
       </section>
@@ -161,7 +171,7 @@ export default function GreamSendaiPage() {
             <article style={{ background: panel, border: "1px solid "+border, padding: "28px 25px" }}>
               <h3 style={{ fontSize: 25, margin: "0 0 16px" }}>通常練習について</h3>
               <p style={{ lineHeight: 1.85, color: muted }}>2026年11月のスタッフ計画は<strong>週3回・各90分</strong>を想定。曜日、開始・終了時刻、体育館、担当スタッフは調整中です。確定内容をRBAから個別にご案内します。</p>
-              <p style={{ lineHeight: 1.8, fontWeight: 800 }}>活動拠点：宮城県仙台市</p>
+              <p style={{ lineHeight: 1.8, fontWeight: 800 }}>活動拠点：宮城県仙台市太白区を中心に活動（会場は調整・個別案内）</p>
               <p style={{ color: muted, fontSize: 14, lineHeight: 1.8 }}>※木曜18:00〜19:30の「RBA U15 SKILL UP SCHOOL」は別事業です。クラブの確定練習枠ではありません。</p>
             </article>
             <article style={{ background: panel, border: "1px solid "+border, padding: "28px 25px" }}>
@@ -171,7 +181,7 @@ export default function GreamSendaiPage() {
             </article>
             <article style={{ background: panel, border: "1px solid "+border, padding: "28px 25px" }}>
               <h3 style={{ fontSize: 25, margin: "0 0 16px" }}>参加対象と受付</h3>
-              <p style={{ lineHeight: 1.85, color: muted }}>基本対象はU15年代の男子選手。小学生からの参加希望も個別にご相談ください。現在の入団枠・活動参加条件を確認し、体験・面談の可否と次の手順をご案内します。</p>
+              <p style={{ lineHeight: 1.85, color: muted }}>基本対象はU15年代の男子選手です。現在、チームに中学2・3年生はいませんが、入団希望の相談は学年を問わず受け付け、実際の受入条件を個別にご案内します。小学6年生もご相談ください。今の実力だけで可能性を決めず、楽しく挑戦できる環境づくりを目指します。</p>
               <p style={{ fontSize: 14, color: muted, lineHeight: 1.8 }}>相談フォームでは費用の決済は発生しません。正式な入団・継続課金は、条件と規約をご案内した後の別手続きです。</p>
             </article>
           </div>
@@ -211,8 +221,8 @@ export default function GreamSendaiPage() {
       <section id="apply" style={{ padding: "80px max(20px,6vw) 100px", background: "#fff" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
           <p style={{ fontSize: 12, letterSpacing: 3, fontWeight: 850, color: muted }}>JOIN GREAM SENDAI U15</p>
-          <h2 style={{ fontSize: "clamp(34px,6vw,74px)", letterSpacing: "-.055em", lineHeight: 1.04, margin: "15px 0 24px" }}>一緒に、次の1年を。</h2>
-          <p style={{ fontSize: 18, color: muted, lineHeight: 1.9, margin: "0 auto 32px", maxWidth: 760 }}>まずは保護者の方から、参加相談または入団希望をお寄せください。学年・希望する曜日を確認したうえで、練習場所・参加条件・費用をご案内します。</p>
+          <h2 style={{ fontSize: "clamp(34px,6vw,74px)", letterSpacing: "-.055em", lineHeight: 1.04, margin: "15px 0 24px" }}>一緒に、バスケを楽しもう。</h2>
+          <p style={{ fontSize: 18, color: muted, lineHeight: 1.9, margin: "0 auto 32px", maxWidth: 760 }}>2026年に始まったばかりのチームです。太白区を中心に活動できる仲間を募集しています。まずは保護者の方から参加相談・入団希望をお寄せください。学年・希望曜日を確認し、練習場所・参加条件・費用をご案内します。</p>
           <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-final-intake" style={button}>GREAM仙台 U15 参加相談・入団希望フォーム ↗</a>
           <p style={{ color: muted, fontSize: 13, lineHeight: 1.85, margin: "22px auto 12px", maxWidth: 700 }}>申込フォームへの入力は無料。送信のみで入団や参加枠は確定せず、決済も発生しません。未成年者は保護者が入力してください。</p>
           <p style={{ fontSize: 14, lineHeight: 1.85 }}>お問い合わせ：<a href="mailto:riot.training.base@gmail.com" style={{ color: ink, fontWeight: 800 }}>riot.training.base@gmail.com</a>　｜　<a href="/ja/policies" style={{ color: ink, fontWeight: 800 }}>参加・安全・個人情報の方針</a></p>
