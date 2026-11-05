@@ -104,6 +104,22 @@ export async function SimpleJapaneseHome() {
         <div className={styles.regionalActions}><a href="/ja/gream-sendai" data-growth-id="home-gream-sendai-u15-intake">GREAM仙台の募集を見る →</a></div>
       </section>
 
+      <section className={styles.regional} aria-labelledby="gream-okinawa-public">
+        <div>
+          <p className={styles.label}>GREAM OKINAWA / DEVELOPMENT & LOCAL PARTNERS</p>
+          <h2 id="gream-okinawa-public">沖縄に、学びが続くコートを。</h2>
+          <p>
+            現在の会員・保護者の皆さまには活動ごとの連絡先をご案内しています。
+            RBAは、今後の育成活動に向けて現地コーチ・会場・安全管理の体制を整備中です。
+            新しい定期活動は条件を確認できた段階でご案内します。指導者・S&amp;C・施設協力の相談は受付中です。
+          </p>
+        </div>
+        <div className={styles.regionalActions}>
+          <a href="/ja/okinawa" data-growth-id="home-gream-okinawa-programme">沖縄の活動・会員案内を見る →</a>
+          <a href="/ja/okinawa-coach" data-growth-id="home-gream-okinawa-coaches">沖縄のコーチ・協力者募集 →</a>
+        </div>
+      </section>
+
       <section className={styles.regional} aria-labelledby="sendai-school-trial">
         <div><p className={styles.label}>仙台スクール</p><h2 id="sendai-school-trial">チームはそのまま。もっと、上手くなる。</h2><p>技術と判断を磨く育成スクール。体験相談を受け付けています。</p></div>
         <div className={styles.regionalActions}><a href="/ja/sendai-school" data-growth-id="home-sendai-school-trial">体験のご案内 →</a></div>
