@@ -12,6 +12,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 
 const APPLY_URL = "https://form.jotform.com/262765305419057";
 
@@ -101,7 +102,7 @@ const supportCards = [
     tag: "OPERATIONS",
     title: "運営はRBA本部が支える",
     body:
-      "募集、申込、決済、会員管理、料金設定などの運営面は本部が担当します。現地コーチが、できるだけ指導と選手に向き合う時間へ集中できる形にします。",
+      "新しい運営体制では、募集、申込、決済、会員管理や料金の決裁をRBA本部で担う方針です。現場の役割と権限は本人の同意・契約条件を確認したうえで定めます。",
   },
   {
     icon: GraduationCap,
@@ -187,7 +188,8 @@ export default function OkinawaCoachPage() {
 
 
   return (
-    <SiteFrame locale="ja">
+    <SiteFrame locale="ja" languagePage="okinawa">
+      <GrowthClickTracking />
       <div className="saga-hub">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
         <script
@@ -219,10 +221,10 @@ export default function OkinawaCoachPage() {
             月2〜4回程度からの関わりを想定しています。曜日・会場・契約条件は調整中です。
           </p>
           <div className="closing-actions">
-            <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer">
+            <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer" data-growth-id="okinawa-coach-hero-form">
               応募・相談フォーム（約3分） <ArrowRight size={17} />
             </a>
-            <a className="button button-dark" href="#details">
+            <a className="button button-dark" href="#details" data-growth-id="okinawa-coach-details">
               募集内容を見る <ArrowRight size={17} />
             </a>
           </div>
@@ -450,7 +452,7 @@ export default function OkinawaCoachPage() {
                 「正式に応募するかは決めていない」「どんな活動になるのか聞きたい」という段階でも構いません。
                 フォームで「まず話を聞きたい」を選んでください。
               </p>
-              <a className="text-link" href={APPLY_URL} target="_blank" rel="noreferrer">
+              <a className="text-link" href={APPLY_URL} target="_blank" rel="noreferrer" data-growth-id="okinawa-coach-middle-form">
                 応募・相談フォームを開く <ArrowRight size={16} />
               </a>
             </article>
@@ -484,8 +486,8 @@ export default function OkinawaCoachPage() {
           <div>
             <h2>現場と運営の役割は、始める前に確認します。</h2>
             <p>
-              募集・申込・決済・会員管理などの運営はRBA本部が担当します。
-              現地コーチには、合意した範囲で指導と現場対応をお願いします。
+              新しい体制では、募集・申込・決済・会員管理などの運営をRBA本部が担う方針です。
+              現地コーチには、本人の同意と契約上の合意がある範囲で指導と現場対応をお願いします。
               報酬、交通費、活動頻度、担当範囲、連絡方法などは、実際の役割に合わせて開始前に確認します。
             </p>
           </div>
@@ -521,7 +523,7 @@ export default function OkinawaCoachPage() {
             まずは一度話して、お互いに合う形を探しましょう。
           </p>
           <div className="closing-actions">
-            <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer">
+            <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer" data-growth-id="okinawa-coach-footer-form">
               応募・相談フォーム <ArrowRight size={17} />
             </a>
             <a className="button button-dark" href="/ja/coaches">
