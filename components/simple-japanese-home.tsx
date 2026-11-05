@@ -99,6 +99,11 @@ export async function SimpleJapaneseHome() {
 
 
 
+      <section className={styles.regional} aria-labelledby="gream-sendai-u15-recruit">
+        <div><p className={styles.label}>GREAM SENDAI / U15 BOYS CLUB</p><h2 id="gream-sendai-u15-recruit">1年後に、どれだけ良い選手になっているか。</h2><p>GREAM仙台 U15男子クラブ、新規メンバーの参加相談・入団希望を受付中。年間育成計画、コーチ陣、月会費、練習条件を確認できます。通常練習の曜日・会場は調整中です。</p></div>
+        <div className={styles.regionalActions}><a href="/ja/gream-sendai" data-growth-id="home-gream-sendai-u15-intake">GREAM仙台の募集を見る →</a></div>
+      </section>
+
       <section className={styles.regional} aria-labelledby="sendai-school-trial">
         <div><p className={styles.label}>仙台スクール</p><h2 id="sendai-school-trial">チームはそのまま。もっと、上手くなる。</h2><p>技術と判断を磨く育成スクール。体験相談を受け付けています。</p></div>
         <div className={styles.regionalActions}><a href="/ja/sendai-school" data-growth-id="home-sendai-school-trial">体験のご案内 →</a></div>

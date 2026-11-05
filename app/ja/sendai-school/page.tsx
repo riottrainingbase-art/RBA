@@ -78,6 +78,15 @@ export default function SendaiSchoolPage(){
         </div>
       </section>
 
+      <section style={{padding:"45px 22px",background:"#e6e7e5",borderTop:"1px solid #d2d8dc"}}>
+        <div style={{maxWidth:1080,margin:"0 auto"}}>
+          <p style={{fontSize:12,letterSpacing:2,color:"#52627a",fontWeight:800}}>CLUB TEAM / DIFFERENT PROGRAMME</p>
+          <h2 style={{fontSize:"clamp(26px,3.8vw,40px)",margin:"8px 0 12px",color:navy}}>U15男子クラブチームを探している方へ。</h2>
+          <p style={{lineHeight:1.9,maxWidth:850,color:"#344a62"}}>GREAM仙台は、練習・対外試合・振り返りを年間でつなぐU15男子クラブチームです。このページの「U15 SKILL UP SCHOOL」とは別事業です。クラブの練習日時・会場は個別確認となります。</p>
+          <a href="/ja/gream-sendai" data-growth-id="sendai-school-to-gream-club" style={basicButton}>GREAM仙台クラブの募集を見る →</a>
+        </div>
+      </section>
+
       <section style={{background:navy,color:"#fff",padding:"50px 22px 68px"}}>
         <div style={{maxWidth:1080,margin:"0 auto"}}>
           <h2 style={{fontSize:"clamp(26px,3.5vw,38px)",lineHeight:1.35,margin:"0 0 13px"}}>まずは、通えるか相談する。</h2>
