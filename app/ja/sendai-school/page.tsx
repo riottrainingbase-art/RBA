@@ -82,8 +82,8 @@ export default function SendaiSchoolPage(){
         <div style={{maxWidth:1080,margin:"0 auto"}}>
           <p style={{fontSize:12,letterSpacing:2,color:"#52627a",fontWeight:800}}>CLUB TEAM / DIFFERENT PROGRAMME</p>
           <h2 style={{fontSize:"clamp(26px,3.8vw,40px)",margin:"8px 0 12px",color:navy}}>U15男子クラブチームを探している方へ。</h2>
-          <p style={{lineHeight:1.9,maxWidth:850,color:"#344a62"}}>GREAM仙台は、練習・対外試合・振り返りを年間でつなぐU15男子クラブチームです。このページの「U15 SKILL UP SCHOOL」とは別事業です。クラブの練習日時・会場は個別確認となります。</p>
-          <a href="/ja/gream-sendai" data-growth-id="sendai-school-to-gream-club" style={basicButton}>GREAM仙台クラブの募集を見る →</a>
+          <p style={{lineHeight:1.9,maxWidth:850,color:"#344a62"}}>GREAM仙台は2026年に発足したU15男子クラブで、仙台市太白区を中心に活動します。皆でバスケを楽しみながら練習・試合・交流に取り組むチームです。こちらのU15 SKILL UP SCHOOLとは料金・申込先・練習枠が別です。クラブの曜日と会場は参加相談後にご案内します。</p>
+          <a href="/ja/gream-sendai" data-growth-id="sendai-school-to-gream-club" style={basicButton}>GREAM仙台U15クラブの詳細・参加相談 →</a>
         </div>
       </section>
 
