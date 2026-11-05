@@ -67,6 +67,13 @@ export function LocalizedTorsten({locale}:{locale:Locale}){
       </div>
       <p className="torsten-demand-foot">申込フォームに寄せられた関心テーマの例です。講習では技術・練習設計・ゲームでの活用を扱います。すべての質問への個別回答を保証するものではありません。</p>
     </section>:null}
+    {locale==="ja"?<section className="torsten-conversion section-pad" aria-labelledby="torsten-media-title">
+      <p className="section-index">MEDIA COVERAGE</p>
+      <h2 id="torsten-media-title">指導者の学びを、より多くの現場へ。</h2>
+      <p>バスケットボール専門メディア「610 — sixten JOURNAL」が、11月25日のオンライン講習について紹介記事を公開しています。練習でのシュート技術と、試合で良いシュートを生み出す判断をどうつなぐか、開催内容を知るための参考記事です。</p>
+      <div className="closing-actions"><a className="text-link" href="https://sixten.jp/journal/815-torsten-loibl-online-clinic.html" target="_blank" rel="noopener noreferrer">11月4日公開の紹介記事を読む<ArrowUpRight size={17}/></a><a className="button button-dark" href="#participation">LIVE・30日録画の参加方法へ<ArrowRight size={17}/></a></div>
+      <p style={{fontSize:"14px",lineHeight:1.8,marginTop:"18px"}}>外部メディアによる記事掲載は、本講習への後援・推薦や資格認定を意味しません。最新の内容・参加条件・お支払い方法はRBA公式案内をご確認ください。</p>
+    </section>:null}
     {locale==="ja"?<TorstenRegistrationGuide/>:null}
     {locale==="ja"?<section className="torsten-conversion section-pad" id="free-coach-work">
       <p className="section-index">FREE COACH WORKSHEET</p>
