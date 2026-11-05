@@ -82,7 +82,7 @@ export default function SendaiSchoolPage(){
         <div style={{maxWidth:1080,margin:"0 auto"}}>
           <p style={{fontSize:12,letterSpacing:2,color:"#52627a",fontWeight:800}}>CLUB TEAM / DIFFERENT PROGRAMME</p>
           <h2 style={{fontSize:"clamp(26px,3.8vw,40px)",margin:"8px 0 12px",color:navy}}>U15男子クラブチームを探している方へ。</h2>
-          <p style={{lineHeight:1.9,maxWidth:850,color:"#344a62"}}>GREAM仙台は2026年に発足したU15男子クラブで、仙台市太白区を中心に活動します。皆でバスケを楽しみながら練習・試合・交流に取り組むチームです。こちらのU15 SKILL UP SCHOOLとは料金・申込先・練習枠が別です。クラブの曜日と会場は参加相談後にご案内します。</p>
+          <p style={{lineHeight:1.9,maxWidth:850,color:"#344a62"}}>GREAM仙台は、2026年に発足した男子U15クラブです。仙台市太白区に練習会場を確保しています。2027年度の月会費は9,900円（税込）に決定しました。クラブとこちらのスキルアップスクールは、活動内容・料金・申込窓口が異なります。練習日時や会場の詳細はクラブへの参加相談時にご案内します。</p>
           <a href="/ja/gream-sendai" data-growth-id="sendai-school-to-gream-club" style={basicButton}>GREAM仙台U15クラブの詳細・参加相談 →</a>
         </div>
       </section>

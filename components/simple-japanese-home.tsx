@@ -38,8 +38,8 @@ export async function SimpleJapaneseHome() {
       <NovemberCampaign />
 
       <section className={styles.regional} aria-labelledby="gream-sendai-u15-recruit">
-        <div><p className={styles.label}>GREAM SENDAI / U15 BOYS CLUB</p><h2 id="gream-sendai-u15-recruit">仙台・太白区で、一緒にバスケを楽しもう。</h2><p>2026年にスタートしたU15男子クラブ。現在は中学2・3年生の在籍なし。経験を問わず一緒に楽しみ、成長する仲間を募集中です。練習会場・曜日は確認後にご案内。無料の参加相談から始められます。</p></div>
-        <div className={styles.regionalActions}><a href="/ja/gream-sendai" data-growth-id="home-gream-sendai-u15-intake">GREAM仙台の活動・料金・入団相談 →</a></div>
+        <div><p className={styles.label}>GREAM SENDAI / U15 BOYS CLUB</p><h2 id="gream-sendai-u15-recruit">太白区で、仲間とバスケットボールを楽しもう。</h2><p>2026年に発足した男子U15クラブです。練習会場は仙台市太白区に確保済み。2027年度の月会費は9,900円（税込）に決定しました。男子選手・指導者を募集しています。2027年からの女子指導も準備中です。</p></div>
+        <div className={styles.regionalActions}><a href="/ja/gream-sendai" data-growth-id="home-gream-sendai-u15-intake">男子U15の募集内容を見る →</a><a href="/ja/gream-sendai#girls-2027" data-growth-id="home-gream-sendai-girls">女子U15の今後の活動 →</a><a href="/ja/gream-sendai#coaches-2027" data-growth-id="home-gream-sendai-coaches">指導者・スタッフ募集 →</a></div>
       </section>
 
 
