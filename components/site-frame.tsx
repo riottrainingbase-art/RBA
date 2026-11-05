@@ -9,7 +9,7 @@ import navigationStyles from "./site-navigation.module.css";
 
 
 export type Locale = "en" | "ja" | "zh-tw" | "ko";
-export type LanguagePage = "regional-program" | "about" | "approach" | "schedule" | "opportunities" | "international" | "taiwan" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support";
+export type LanguagePage = "regional-program" | "about" | "approach" | "schedule" | "opportunities" | "international" | "taiwan" | "payments" | "payment-complete" | "clinic-request" | "asia" | "partners" | "social" | "contact" | "policies" | "events/torsten-loibl-online-clinic" | "players" | "families" | "coaches" | "home-court" | "my-homecourt" | "community" | "impact" | "d-hub" | "united" | "connect" | "organizer" | "platform" | "journal" | "camp" | "camp/saga-fukuoka-2026" | "work-with-rba" | "minibasket-support" | "okinawa";
 
 
 const labels = {
