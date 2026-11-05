@@ -138,7 +138,7 @@ const welcome = [
 const flow = [
   ["01", "フォームから連絡", "正式応募だけでなく「まず話を聞きたい」でも大丈夫です。2〜3分程度のフォームから送ってください。"],
   ["02", "オンラインで話す", "これまでの経験、現在の活動、沖縄でどんな関わり方ができそうかをお互いに確認します。"],
-  ["03", "必要に応じて現場で確認", "指導経験がある方は、必要に応じて実際のオンコートでの関わり方も確認します。派手な技術より、観察・対話・安全への配慮を見ます。"],
+  ["03", "必要に応じて現場で確認", "現場での観察や指導をお願いする場合は、本人の同意と安全管理、必要な報酬・条件を確認したうえで実施します。観察・対話・安全への配慮を大切にします。"],
   ["04", "条件を確認してスタート", "役割、頻度、報酬、交通費、契約条件などを確認し、双方が納得したうえで始めます。"],
 ];
 
@@ -149,11 +149,11 @@ const faq = [
   ],
   [
     "報酬はありますか？",
-    "はい。経験、担当内容、活動時間、頻度などを確認したうえで事前にお伝えします。交通費や追加業務がある場合も、開始前に確認します。",
+    "実際に指導・補助の業務をお願いする場合は、有償を前提に、担当内容、報酬、支払日、交通費、追加業務の条件を開始前に示して合意します。応募・相談フォームの送信だけで契約は成立しません。",
   ],
   [
     "指導ライセンスは必要ですか？",
-    "必須ではありません。JBA公認コーチライセンスや指導経験は歓迎しますが、肩書きだけでなく、育成への考え方や人柄を重視します。",
+    "必要な資格は担当する活動・役割で異なります。大会登録や単独指導で求められる資格・経験は個別に確認します。未経験の方は指導補助からの相談も可能です。",
   ],
   [
     "今、自分のチームを指導していても応募できますか？",
@@ -184,40 +184,12 @@ export default function OkinawaCoachPage() {
     })),
   };
 
-  const jobJson = {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    title: "育成年代バスケットボール コーチ（沖縄）",
-    description:
-      "沖縄で育成年代の選手に継続して学べる環境をつくるRiot Basketball Academyの現地コーチ募集です。まずは月2〜4回程度から相談できます。",
-    datePosted: "2026-10-05",
-    directApply: true,
-    hiringOrganization: {
-      "@type": "Organization",
-      name: "Riot Basketball Academy",
-      sameAs: "https://riotbasketballacademy.com",
-      logo: "https://riotbasketballacademy.com/rba-logo-original.jpg",
-    },
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressRegion: "沖縄県",
-        addressCountry: "JP",
-      },
-    },
-    qualifications:
-      "JBA公認コーチライセンスや育成年代での指導経験は歓迎しますが、必須ではありません。",
-    responsibilities:
-      "育成年代のトレーニング、選手との対話、保護者との現場コミュニケーション、RBA本部との活動共有。",
-    url: "https://riotbasketballacademy.com/ja/okinawa-coach",
-  };
+
 
   return (
     <SiteFrame locale="ja">
       <div className="saga-hub">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jobJson) }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -244,7 +216,7 @@ export default function OkinawaCoachPage() {
           <p>
             Riot Basketball Academyでは、沖縄で継続的な育成活動をつくっていくため、
             現地で指導に関わっていただけるコーチを探しています。
-            まずは月2〜4回程度から。現在のお仕事やチームでの活動と両立しながら関わることも可能です。
+            月2〜4回程度からの関わりを想定しています。曜日・会場・契約条件は調整中です。
           </p>
           <div className="closing-actions">
             <a className="button button-orange" href={APPLY_URL} target="_blank" rel="noreferrer">
@@ -255,6 +227,24 @@ export default function OkinawaCoachPage() {
             </a>
           </div>
           <p>正式応募でなくても、「まず話を聞きたい」という段階で大丈夫です。</p>
+        </section>
+
+        <section className="access-promise section-pad">
+          <p className="section-index">CURRENT STATUS / BEFORE APPLYING</p>
+          <div>
+            <h2>まずは相談から。採用や活動開始は、条件が整ってから。</h2>
+            <p>
+              現在、沖縄の継続的な育成環境づくりに関心のある指導者・S&amp;C・運営補助の方との相談を受け付けています。
+              新しい定期活動の曜日・会場、担当体制、報酬額、開始日はまだ確定していません。
+              相談フォームの送信で雇用・業務委託契約や採用が成立することはありません。
+            </p>
+            <p>
+              ヘッドコーチ、指導補助、S&amp;Cでは求める役割と資格・経験が異なります。
+              未成年者の安全管理を未経験者だけに任せることはありません。
+              業務を依頼する前に、報酬、支払日、交通費、保険、責任範囲などの条件を双方で確認します。
+            </p>
+            <a className="text-link" href="/ja/okinawa">参加中の活動・会員・保護者向け案内はこちら <ArrowRight size={16} /></a>
+          </div>
         </section>
 
         <section className="access-promise section-pad">
@@ -340,13 +330,12 @@ export default function OkinawaCoachPage() {
         </section>
 
         <section className="access-promise section-pad">
-          <p className="section-index">NOT A NEW CLUB TEAM</p>
+          <p className="section-index">RESPECT LOCAL TEAMS & INDIVIDUAL PATHS</p>
           <div>
-            <h2>所属チームを変えてもらうための活動ではありません。</h2>
+            <h2>今あるチームや地域の活動を尊重する。</h2>
             <p>
-              RBA沖縄は、新しいクラブチームをつくって選手を囲い込むことを目的にしていません。
-              子どもたちが今いるチームや学校での活動を大切にしながら、
-              もう一つ学べる場所を地域につくることを目指します。
+              RBA沖縄には、チームとしての活動と、所属を問わず参加できるクリニックや育成の機会があります。
+              参加・登録条件は活動ごとに異なります。既存の学校・クラブでの活動を尊重し、必要な登録・移籍・大会資格は事前に確認します。
             </p>
           </div>
         </section>
@@ -368,7 +357,7 @@ export default function OkinawaCoachPage() {
             <CalendarDays size={28} />
             <span>FREQUENCY</span>
             <h2>活動頻度</h2>
-            <p>月2〜4回程度から相談。現在の仕事やチーム活動との両立も可能です。</p>
+            <p>月2〜4回・1回90〜120分程度を想定。曜日と会場は調整中で、仕事・学業との両立も含め相談します。</p>
           </article>
           <article>
             <MapPin size={28} />
@@ -380,13 +369,13 @@ export default function OkinawaCoachPage() {
             <HeartHandshake size={28} />
             <span>COMPENSATION</span>
             <h2>報酬</h2>
-            <p>経験、担当内容、活動時間、頻度を確認し、活動開始前に条件をお伝えします。</p>
+            <p>有償での業務を前提に、報酬・支払日・交通費・担当範囲を開始前に個別に確認し合意します。</p>
           </article>
           <article>
             <BadgeCheck size={28} />
             <span>LICENSE</span>
             <h2>資格</h2>
-            <p>JBA公認コーチライセンス歓迎。必須ではありません。経験だけでなく、育成への姿勢を重視します。</p>
+            <p>担当内容・大会参加の有無で必要資格は異なります。JBA資格や指導経験を確認し、経験の浅い方は補助から相談できます。</p>
           </article>
           <article>
             <UsersRound size={28} />
