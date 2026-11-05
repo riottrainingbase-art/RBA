@@ -75,7 +75,7 @@ export default function Page(){
     <main style={{background:"#f5f5f2",color:"#111"}}>
       <section style={{padding:"72px 6vw 56px",borderBottom:"1px solid #d6d6d0",background:"#fff"}}>
         <p style={{fontSize:13,letterSpacing:3,fontWeight:700,margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY · SENDAI · START OCT 2026</p>
-        <p style={{fontSize:14,lineHeight:1.75,background:"#e7e9e6",borderLeft:"4px solid #111",padding:"12px 16px",maxWidth:820,margin:"0 0 24px"}}>このページは<strong>所属チームを変えずに参加するスキルアップスクール</strong>です。2026年発足の男子U15クラブ「GREAM仙台」は別プログラムです。<a href="/ja/gream-sendai" style={{color:"#111",fontWeight:850,textDecoration:"underline"}}>GREAM仙台クラブの募集を見る →</a></p>
+        <p style={{fontSize:14,lineHeight:1.75,background:"#e7e9e6",borderLeft:"4px solid #111",padding:"12px 16px",maxWidth:820,margin:"0 0 24px"}}>こちらは、<strong>所属チームを変えずに通えるU15スキルアップスクール</strong>のご案内です。GREAM仙台の男子U15クラブ（2027年度月会費9,900円・太白区に会場確保済み）とは別の活動です。<a href="/ja/gream-sendai" style={{color:"#111",fontWeight:850,textDecoration:"underline"}}>GREAM仙台クラブの募集を見る →</a></p>
         <h1 style={{fontSize:"clamp(38px,6vw,72px)",lineHeight:.92,letterSpacing:-3,margin:"0 0 24px",fontWeight:900}}>RBA U15<br/>SKILL UP SCHOOL</h1>
         <p style={{fontSize:"clamp(20px,2.4vw,30px)",fontWeight:800,margin:"0 0 14px"}}>現代バスケットボールを学ぶ90分。</p>
         <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
