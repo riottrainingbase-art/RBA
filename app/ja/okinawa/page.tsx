@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import styles from "./page.module.css";
 
 const FORM_URL = "https://form.jotform.com/262765305419057";
 const EMAIL = "riot.training.base@gmail.com";
 const FAMILY_EMAIL = "mailto:riot.training.base@gmail.com?subject=RBA%E6%B2%96%E7%B8%84%EF%BD%9C%E4%BC%9A%E5%93%A1%E3%83%BB%E4%BF%9D%E8%AD%B7%E8%80%85%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87";
+const FUTURE_EMAIL = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("GREAM OKINAWA｜新規参加・体験のご相談");
 const PARTNER_EMAIL = "mailto:riot.training.base@gmail.com?subject=RBA%E6%B2%96%E7%B8%84%EF%BD%9C%E6%8C%87%E5%B0%8E%E3%83%BB%E4%BC%9A%E5%A0%B4%E3%83%BB%E5%9C%B0%E5%9F%9F%E5%8D%94%E5%8A%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87";
 
 export const metadata: Metadata = {
   title: { absolute: "GREAM OKINAWA｜育成活動・会員案内・コーチ募集｜RBA" },
   description:
     "GREAM OKINAWAの育成方針、現在の活動の確認方法、今後の活動準備、コーチ・S&C・会場協力の相談窓口。新しい定期活動は会場・指導体制・参加条件が整ってからご案内します。",
-  alternates: { canonical: "https://riotbasketballacademy.com/ja/okinawa" },
+  alternates: {
+    canonical: "https://riotbasketballacademy.com/ja/okinawa",
+    languages: {
+      ja: "https://riotbasketballacademy.com/ja/okinawa",
+      en: "https://riotbasketballacademy.com/okinawa",
+      "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/okinawa",
+      ko: "https://riotbasketballacademy.com/ko/okinawa",
+    },
+  },
+  robots: { index: true, follow: true },
   openGraph: {
     title: "GREAM OKINAWA｜沖縄に、学びが続くコートを。",
     description: "現在参加中のご家庭、これから参加を考える方、指導者・地域の協力者へ。活動ごとの確定条件と公式の相談先を案内します。",
@@ -113,8 +124,17 @@ const questions = [
 
 export default function OkinawaPage() {
   return (
-    <SiteFrame locale="ja">
+    <SiteFrame locale="ja" languagePage="okinawa">
+      <GrowthClickTracking />
       <main className={styles.page} id="main-content">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Riot Basketball Academy", item: "https://riotbasketballacademy.com/ja/" },
+            { "@type": "ListItem", position: 2, name: "GREAM OKINAWA", item: "https://riotbasketballacademy.com/ja/okinawa" },
+          ],
+        }) }} />
         <section className={styles.hero}>
           <div className={styles.inner}>
             <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / GREAM OKINAWA</p>
@@ -124,9 +144,9 @@ export default function OkinawaPage() {
               RBAは沖縄での育成活動を大切にしながら、指導者・会場・安全管理の体制を整えています。
             </p>
             <div className={styles.heroActions}>
-              <Link className={styles.primary} href="#members">参加中のご家庭へ <span aria-hidden="true">→</span></Link>
-              <Link className={styles.secondary} href="#future">これから参加したい方へ <span aria-hidden="true">→</span></Link>
-              <Link className={styles.secondary} href="#join">指導・会場で協力する <span aria-hidden="true">→</span></Link>
+              <Link className={styles.primary} href="#members" data-growth-id="okinawa-ja-current-family">参加中のご家庭へ <span aria-hidden="true">→</span></Link>
+              <Link className={styles.secondary} href="#future" data-growth-id="okinawa-ja-future-family">これから参加したい方へ <span aria-hidden="true">→</span></Link>
+              <Link className={styles.secondary} href="#join" data-growth-id="okinawa-ja-partner">指導・会場で協力する <span aria-hidden="true">→</span></Link>
             </div>
             <p className={styles.heroFoot}>既存の活動に関する個別の案内と、新しい定期活動の準備は区別してお知らせします。</p>
           </div>
@@ -164,7 +184,7 @@ export default function OkinawaPage() {
               <div className={styles.darkPanel}>
                 <h3>RBA本部への個別相談</h3>
                 <p>会費、申込、実施状況、連絡内容の確認は本部で受け付けます。活動名・対象月・開催日・ご相談の要点をお知らせください。</p>
-                <a className={styles.lightButton} href={FAMILY_EMAIL}>会員・保護者の相談メール <span aria-hidden="true">→</span></a>
+                <a className={styles.lightButton} href={FAMILY_EMAIL} data-growth-id="okinawa-ja-member-email">会員・保護者の相談メール <span aria-hidden="true">→</span></a>
                 <p className={styles.email}>{EMAIL}</p>
                 <p className={styles.small}>初回のご相談に、子どもの病歴、口座・カード情報、身分証やグループの会話画像を添付する必要はありません。</p>
               </div>
@@ -209,6 +229,10 @@ export default function OkinawaPage() {
                 </li>
               ))}
             </ol>
+            <div className={styles.futureActions}>
+              <a className={styles.darkButton} href={FUTURE_EMAIL} data-growth-id="okinawa-ja-future-email">新しい活動の参加希望を相談する（無料） <span aria-hidden="true">→</span></a>
+              <p>希望する地域や対象学年を教えていただければ、確認できた活動の案内方法をご説明します。新しい定期活動への申込や体験・入団を確約するものではありません。</p>
+            </div>
             <p className={styles.disclaimer}>現在の会員の活動が一律に休止しているという案内ではありません。新規・継続の各活動の確定情報は、活動ごとの公式連絡先でご確認ください。</p>
           </div>
         </section>
@@ -225,13 +249,13 @@ export default function OkinawaPage() {
                 <p className={styles.mini}>NOVEMBER 2026</p>
                 <h3>沖縄バスケットボールクリニック</h3>
                 <p>11月14日予定。対象・会場の案内方法・参加費・申込条件を個別ページでご確認ください。</p>
-                <Link href="/ja/events/okinawa-clinic-2026-11-14" className={styles.textLink}>クリニックの詳細 <span aria-hidden="true">→</span></Link>
+                <Link href="/ja/events/okinawa-clinic-2026-11-14" className={styles.textLink} data-growth-id="okinawa-ja-clinic-detail">クリニックの詳細 <span aria-hidden="true">→</span></Link>
               </article>
               <article>
                 <p className={styles.mini}>DECEMBER 2026</p>
                 <h3>沖縄国際ユースキャンプ</h3>
                 <p>12月22〜24日予定。宿泊・参加形態や費用・参加条件はキャンプの公式ページでご案内します。</p>
-                <Link href="/ja/events/okinawa-international-camp-2026" className={styles.textLink}>国際キャンプの詳細 <span aria-hidden="true">→</span></Link>
+                <Link href="/ja/events/okinawa-international-camp-2026" className={styles.textLink} data-growth-id="okinawa-ja-camp-detail">国際キャンプの詳細 <span aria-hidden="true">→</span></Link>
               </article>
             </div>
           </div>
@@ -249,8 +273,8 @@ export default function OkinawaPage() {
                 <p className={styles.mini}>COACH / ASSISTANT</p>
                 <h3>現地コーチ・指導補助</h3>
                 <p>U12・U15年代を中心に、育成年代の指導やアシスタントとして関わる方を探しています。定期活動の頻度・場所は調整中です。</p>
-                <Link href="/ja/okinawa-coach" className={styles.textLink}>募集内容・条件を見る <span aria-hidden="true">→</span></Link>
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className={styles.mutedLink}>応募・相談フォーム（無料） ↗</a>
+                <Link href="/ja/okinawa-coach" className={styles.textLink} data-growth-id="okinawa-ja-coach-details">募集内容・条件を見る <span aria-hidden="true">→</span></Link>
+                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className={styles.mutedLink} data-growth-id="okinawa-ja-coach-form">応募・相談フォーム（無料） ↗</a>
               </article>
               <article>
                 <p className={styles.mini}>S&C / SAFETY SUPPORT</p>
@@ -262,7 +286,7 @@ export default function OkinawaPage() {
                 <p className={styles.mini}>VENUE / LOCAL PARTNER</p>
                 <h3>体育館・地域連携・企業協力</h3>
                 <p>糸満・豊見城・八重瀬周辺などの会場、地域での開催・安全な運営環境づくりについて相談を受け付けています。</p>
-                <a className={styles.textLink} href={PARTNER_EMAIL}>協力内容をメールで相談 <span aria-hidden="true">→</span></a>
+                <a className={styles.textLink} href={PARTNER_EMAIL} data-growth-id="okinawa-ja-venue-email">協力内容をメールで相談 <span aria-hidden="true">→</span></a>
               </article>
             </div>
             <p className={styles.disclaimer}>フォームやメールでの相談は、採用・契約・参加・施設予約を意味しません。業務をお願いする場合は、内容・報酬・支払日・交通費・安全条件を事前に示し、合意のうえ進めます。</p>
@@ -290,7 +314,7 @@ export default function OkinawaPage() {
             <h2>大切なのは、<br />活動を続けるための土台。</h2>
             <p>今の活動の確認も、これからの参加や協力の相談も。分からないことがあれば、まず本部へお問い合わせください。</p>
             <div className={styles.heroActions}>
-              <a className={styles.primary} href={FAMILY_EMAIL}>RBA沖縄の相談窓口 <span aria-hidden="true">→</span></a>
+              <a className={styles.primary} href={FAMILY_EMAIL} data-growth-id="okinawa-ja-footer-email">RBA沖縄の相談窓口 <span aria-hidden="true">→</span></a>
               <Link className={styles.secondary} href="/ja/policies">参加規約・安全方針 <span aria-hidden="true">→</span></Link>
             </div>
           </div>
