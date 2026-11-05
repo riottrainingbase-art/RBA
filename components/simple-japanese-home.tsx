@@ -37,6 +37,12 @@ export async function SimpleJapaneseHome() {
 
       <NovemberCampaign />
 
+      <section className={styles.regional} aria-labelledby="gream-sendai-u15-recruit">
+        <div><p className={styles.label}>GREAM SENDAI / U15 BOYS CLUB</p><h2 id="gream-sendai-u15-recruit">仙台・太白区で、一緒にバスケを楽しもう。</h2><p>2026年にスタートしたU15男子クラブ。現在は中学2・3年生の在籍なし。経験を問わず一緒に楽しみ、成長する仲間を募集中です。練習会場・曜日は確認後にご案内。無料の参加相談から始められます。</p></div>
+        <div className={styles.regionalActions}><a href="/ja/gream-sendai" data-growth-id="home-gream-sendai-u15-intake">GREAM仙台の活動・料金・入団相談 →</a></div>
+      </section>
+
+
       <section className={styles.nextStep} aria-labelledby="home-next-step">
         <div className={styles.nextStepIntro}>
           <p className={styles.label}>FIND YOUR NEXT STEP</p>
@@ -98,11 +104,6 @@ export async function SimpleJapaneseHome() {
       </section>
 
 
-
-      <section className={styles.regional} aria-labelledby="gream-sendai-u15-recruit">
-        <div><p className={styles.label}>GREAM SENDAI / U15 BOYS CLUB</p><h2 id="gream-sendai-u15-recruit">仙台・太白区で、一緒にバスケを楽しもう。</h2><p>2026年にスタートしたU15男子クラブ。現在は中学2・3年生の在籍なし。経験を問わず一緒に楽しみ、成長する仲間を募集中です。練習会場・曜日は確認後にご案内。無料の参加相談から始められます。</p></div>
-        <div className={styles.regionalActions}><a href="/ja/gream-sendai" data-growth-id="home-gream-sendai-u15-intake">GREAM仙台の活動・料金・入団相談 →</a></div>
-      </section>
 
       <section className={styles.regional} aria-labelledby="gream-okinawa-public">
         <div>
