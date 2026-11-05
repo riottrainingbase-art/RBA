@@ -100,7 +100,7 @@ export async function SimpleJapaneseHome() {
 
 
       <section className={styles.regional} aria-labelledby="gream-sendai-u15-recruit">
-        <div><p className={styles.label}>GREAM SENDAI / U15 BOYS CLUB</p><h2 id="gream-sendai-u15-recruit">1年後に、どれだけ良い選手になっているか。</h2><p>GREAM仙台 U15男子クラブ、新規メンバーの参加相談・入団希望を受付中。年間育成計画、コーチ陣、月会費、練習条件を確認できます。通常練習の曜日・会場は調整中です。</p></div>
+        <div><p className={styles.label}>GREAM SENDAI / U15 BOYS CLUB</p><h2 id="gream-sendai-u15-recruit">1年後に、どれだけ良い選手になっているか。</h2><p>2026年に誕生した仙台市太白区中心のU15男子クラブ。現在は中学2・3年生の在籍なし。みんなでバスケを楽しみながら成長する仲間を募集中。練習曜日・会場は確認後ご案内します。</p></div>
         <div className={styles.regionalActions}><a href="/ja/gream-sendai" data-growth-id="home-gream-sendai-u15-intake">GREAM仙台の募集を見る →</a></div>
       </section>
 
