@@ -13,6 +13,17 @@ export function InternationalPlatform({locale}:{locale:Locale}){
  const c=copy[locale];const message=encodeURIComponent(locale==="ja"?"RBAの海外連携について相談したいです。団体名、対象年代、希望時期、交流目的をお送りします。":"Hello RBA, I would like to discuss a Japan–Asia basketball programme.");
  return <SiteFrame locale={locale} languagePage="international"><div className="international-platform">
   <section className="international-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><Globe2/><p className="section-index inverse">RBA INTERNATIONAL / JAPAN × ASIA</p><h1>{c.title}</h1><p>{c.lead}</p><div><a className="button button-light" href="#international-contact">{c.contact}<ArrowRight/></a></div></section>
+  <section className="section-pad" style={{background:"#111518",color:"#f9f9f9",borderTop:"1px solid #3f474c"}} aria-labelledby="japan-experience-hub">
+    <div style={{maxWidth:1110,margin:"0 auto"}}>
+      <p className="section-index inverse">RBA JAPAN EXPERIENCE / NEW</p>
+      <h2 id="japan-experience-hub" style={{fontSize:"clamp(32px,5vw,58px)",lineHeight:1.1,maxWidth:800,margin:"16px 0"}}>{({ja:"世界から、日本のバスケットボールへ。",en:"Bring your basketball team to Japan.","zh-tw":"帶著球隊，一起來日本。",ko:"일본으로 팀의 농구 여행을 시작해 보세요."})[locale]}</h2>
+      <p style={{maxWidth:810,color:"#cdd4d7",fontSize:16,lineHeight:1.8}}>{({ja:"短期キャンプ、交流試合、指導者研修、日本文化・教育交流。海外からの団体と、旅行・宿泊・交通・企業協賛のパートナーに分けた相談窓口をご用意しました。",en:"Basketball camps, friendly games, coach learning, culture and education. Separate enquiry paths for visiting teams and qualified service or sponsor partners.","zh-tw":"籃球營、交流賽、教練研習與文化體驗。赴日團體與企業合作使用不同的洽詢管道。",ko:"농구 캠프, 교류 경기, 코치 교육, 문화·교육 체험을 목적에 맞게 기획합니다."})[locale]}</p>
+      <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:24}}>
+        <a className="button button-light" href={locale==="ja"?"/ja/international/japan-experience":locale==="zh-tw"?"/zh-tw/international/japan-experience":"/international/japan-experience"}>{({ja:"訪日プログラム・無料相談",en:"Plan a Japan team visit","zh-tw":"赴日球隊諮詢",ko:"팀 방문 상담"})[locale]} <ArrowRight size={18}/></a>
+        <a className="button button-dark" style={{border:"1px solid #aeb6ba"}} href={locale==="ja"?"/ja/international/partner-with-us":locale==="zh-tw"?"/zh-tw/international/partner-with-us":"/international/partner-with-us"}>{({ja:"旅行会社・企業協賛の方",en:"Travel suppliers & sponsors","zh-tw":"旅行業者與企業贊助",ko:"여행업체 및 후원사"})[locale]} <ArrowRight size={18}/></a>
+      </div>
+    </div>
+  </section>
   <section className="section-pad" aria-labelledby="japan-visit-start" style={{background:"#fff",color:"#10233f"}}>
     <div style={{maxWidth:1080,margin:"0 auto"}}>
       <p className="section-index">JAPAN BASKETBALL VISITS / START HERE</p>
