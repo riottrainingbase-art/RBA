@@ -3,7 +3,7 @@ import { SiteFrame } from "@/components/site-frame";
 
 const formUrl = "https://form.jotform.com/263082418714053";
 const girlsUrl = "https://form.jotform.com/263083176331050";
-const coachEmail = "mailto:riot.training.base@gmail.com?subject=" + encodeURIComponent("GREAM仙台 指導者応募・相談");
+const coachUrl = "https://form.jotform.com/263083569407060";
 const pageUrl = "https://riotbasketballacademy.com/ja/gream-sendai";
 const ink = "#131619";
 const muted = "#515b60";
@@ -254,7 +254,7 @@ export default function GreamSendaiPage() {
               <li>活動運営、練習・交流試合のサポート</li>
             </ul>
             <p style={{ color: "#c6ced2", lineHeight: 1.8, fontSize: 14 }}>活動場所の中心は仙台市太白区です。担当日・役割・報酬・契約条件は、相談と面談を通じて決めます。応募の時点で採用や報酬を確約するものではありません。</p>
-            <a href={coachEmail} data-growth-id="gream-sendai-coach-interest" style={{ ...button, color: ink, background: "#fff" }}>指導者・スタッフの応募相談をする ↗</a>
+            <a href={coachUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-coach-interest" style={{ ...button, color: ink, background: "#fff" }}>指導者・スタッフの応募相談をする ↗</a>
             <p style={{ color: "#c6ced2", lineHeight: 1.75, fontSize: 13, margin: "17px 0 0" }}>メールにはお名前、希望する役割、指導経験、活動できる曜日、連絡先をご記載ください。未成年者の個人情報は送らないでください。</p>
           </div>
         </div>
