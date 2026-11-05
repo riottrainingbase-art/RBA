@@ -7,6 +7,7 @@ export const revalidate=300;
 const base="https://riotbasketballacademy.com";
 const locales=["","/ja","/zh-tw","/ko"] as const;
 const core=["/regional-program","","/players","/families","/coaches","/home-court","/my-homecourt","/my-homecourt/players","/my-homecourt/families","/my-homecourt/coaches","/community","/impact","/d-hub","/united","/connect","/organizer","/about","/approach","/schedule","/payments","/clinic-request","/events/torsten-loibl-online-clinic","/asia","/partners","/contact","/social","/policies","/camp","/faq","/international","/network","/opportunities","/platform","/regional-host","/sponsor","/team","/verified","/journal","/journal/coaches","/after-application"] as const;
+const japanExperiencePages=["","/ja","/zh-tw"].flatMap(locale=>[`${locale}/international/japan-experience`,`${locale}/international/partner-with-us`]);
 const taiwanPages=locales.flatMap(locale=>[`${locale}/taiwan`,`${locale}/taiwan/exchange`]);
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
@@ -37,6 +38,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
   const entries=[
     ...localized.map(path=>({path,lastModified:null as string|null})),
     ...legacy.map(path=>({path,lastModified:null as string|null})),
+    ...japanExperiencePages.map(path=>({path,lastModified:"2026-11-06T00:00:00Z"})),
     ...taiwanPages.map(path=>({path,lastModified:"2026-10-13T00:00:00Z"})),
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
