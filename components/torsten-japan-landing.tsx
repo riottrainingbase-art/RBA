@@ -92,6 +92,18 @@ export function TorstenJapanLanding() {
           </ol>
         </section>
 
+        <section className={styles.about} aria-labelledby="torsten-editorial-coverage">
+          <div>
+            <p className={styles.sectionKicker}>MEDIA / 掲載記事</p>
+            <h2 id="torsten-editorial-coverage">講習が専門メディアで紹介されました。</h2>
+          </div>
+          <div>
+            <p>バスケットボール専門メディア「610 — sixten JOURNAL」が、11月25日開催のRBAオンライン講習について紹介記事を公開しています。技術・練習設計・試合での判断をつなぐ学びを知る、もう一つの参考情報としてご覧いただけます。</p>
+            <a className={styles.footerLink} href="https://sixten.jp/journal/815-torsten-loibl-online-clinic.html" target="_blank" rel="noopener noreferrer">11月4日公開の紹介記事を読む <ArrowUpRight size={16} aria-hidden="true" /></a>
+            <p className={styles.help}>編集記事としての掲載であり、媒体による講習の後援・推薦や資格認定を意味しません。参加条件と申込はRBA公式の案内をご確認ください。</p>
+          </div>
+        </section>
+
         <section className={styles.booking} aria-labelledby="torsten-booking">
           <div className={styles.bookingHead}>
             <p className={styles.sectionKicker}>REGISTRATION / お申し込み</p>
