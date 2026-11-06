@@ -9,6 +9,9 @@ import { CAMP_CONTACT, CAMP_JAPAN_CONTACT, CAMP_OKINAWA_CONTACT, OKINAWA_RESIDEN
 import styles from "./okinawa-camp-checkout.module.css";
 
 type Quote = Omit<ReturnType<typeof campQuote>, "checkoutUrl">;
+// Pause new overseas checkout from the RBA site while third-party refund text and Stripe early-bird deadlines conflict with published terms.
+// Once all external registration/checkout content is verified, set to true in a reviewed release; existing payment links stay unchanged.
+const OVERSEAS_CHECKOUT_READY = false;
 export function OkinawaCampCheckout() {
   const [housing, setHousing] = useState(true);
   const [players, setPlayers] = useState<1 | 2 | 3>(1);
@@ -43,7 +46,7 @@ export function OkinawaCampCheckout() {
   }
 
   async function checkout() {
-    if (busy || !quote || quote.state !== "payable" || !registrationCompleted || !conditionsAccepted) return;
+    if (busy || !OVERSEAS_CHECKOUT_READY || !quote || quote.state !== "payable" || !registrationCompleted || !conditionsAccepted) return;
     setBusy(true); setError("");
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 15000);
@@ -84,7 +87,16 @@ export function OkinawaCampCheckout() {
       </div>
     </section>
 
-    {quote?.state === "payable" && <>
+    {quote?.state === "payable" && !OVERSEAS_CHECKOUT_READY && <section className={styles.step} aria-labelledby="review-overseas-terms">
+      <p className={styles.stepNumber}>02 / 海外参加・ご確認</p><h2 id="review-overseas-terms">海外参加の決済条件を照合しています</h2>
+      <p>海外向け早割は継続中ですが、協力サイトのキャンセル・返金表記と一部Stripeリンクの旧早割期限表示を、RBA公式条件と照合・修正中です。</p>
+      <p>料金は上記のとおりご案内していますが、新規の海外参加者向け決済画面への直接案内は、表示条件を統一するまで一時的に控えています。すでにお申し込み・決済済みの方は二重にお支払いしないでください。</p>
+      <p><a href="/ja/cancellation">RBA公式キャンセル・返金規定を確認する →</a></p>
+      <p><a href="/okinawa-international-guide-2026.html#korean">韓国語の保護者ガイドを見る →</a></p>
+      <a className={styles.primary} href={CAMP_CONTACT}>料金と申込条件を問い合わせる ↗</a>
+      <p className={styles.note}>参加申込・決済を再開する際は、本ページで確認済みの手順をお知らせします。主催者都合の中止・最終条件に同意できない場合の取扱いはRBAの公式規定をご確認ください。</p>
+    </section>}
+    {quote?.state === "payable" && OVERSEAS_CHECKOUT_READY && <>
       <section className={styles.step} aria-labelledby="register-first"><p className={styles.stepNumber}>02 / 海外参加者向けフォームで申し込む</p><h2 id="register-first">保護者・選手情報を登録する</h2><p>選択した宿泊区分・人数で公式フォームを開きます。登録後、このページへ戻ってください。すでに同じ内容で申し込んだ方は、重複登録せず次へ進めます。</p>
         <a className={styles.primary} href={quote.registrationUrl || undefined} target="_blank" rel="noopener noreferrer">公式申込フォームを別タブで開く ↗</a>
         <p className={styles.note}>公式フォームは海外参加者向けのSPARTANS側サイトです。日本国内の参加者は「日本国内から参加（RBA受付）」を選んでください。この画面から申込完了を自動確認する機能はありません。宿泊・人数を変更したときは、申込内容も一致しているかご確認ください。</p>
