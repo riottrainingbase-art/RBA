@@ -83,6 +83,18 @@ export default function GreamSendaiPage() {
         </div>
       </section>
 
+      <section aria-labelledby="u12-pathway-cta" style={{background:"#fff",borderBottom:"1px solid #d8dcdd",padding:"40px max(20px,6vw)"}}>
+        <div style={{maxWidth:1200,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",alignItems:"center",gap:"20px 40px"}}>
+          <div>
+            <p style={{fontSize:12,letterSpacing:2.7,fontWeight:900,color:muted,margin:"0 0 10px"}}>2027 / U12 → U15 PATHWAY</p>
+            <h2 id="u12-pathway-cta" style={{fontSize:"clamp(26px,3.6vw,42px)",letterSpacing:"-.035em",lineHeight:1.23,margin:"0 0 14px"}}>小学6年生と保護者の皆さまへ。</h2>
+            <p style={{fontSize:16,lineHeight:1.85,color:muted,margin:0}}>卒団後もバスケを続けたい。中学校の部活動とクラブ、どちらを選ぼう。今すぐ決めなくて大丈夫です。練習、会費、体験、登録のことを分かりやすくまとめました。</p>
+          </div>
+          <div style={{display:"flex",justifyContent:"flex-start"}}>
+            <a href="/ja/gream-sendai/u12-pathway" data-growth-id="gream-sendai-u12-pathway" style={{...button,minWidth:250}}>小6・保護者向け進路ガイドを見る →</a>
+          </div>
+        </div>
+      </section>
       <section style={{ background: "#e9ebea", borderBottom: "1px solid "+border, padding: "25px max(20px,6vw)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 22 }}>
           {[
