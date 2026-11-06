@@ -88,6 +88,9 @@ jobs:
       - name: Member experience route/render audit
         run: node audit/member-experience/check.mjs
 
+      - name: Brand support publishing approval gate
+        run: node --test tests/361-homepage-partner-approval.test.mjs
+
       - name: ESLint changed files
         if: github.event_name == 'pull_request'
         env:
