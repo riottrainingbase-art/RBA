@@ -88,7 +88,7 @@ export default function GreamSendaiPage() {
           <div>
             <p style={{fontSize:12,letterSpacing:2.5,color:muted,fontWeight:900,margin:"0 0 9px"}}>MONTHLY THURSDAY TRIAL / PLANNING</p>
             <h2 id="monthly-trial-cta" style={{fontSize:"clamp(27px,3.6vw,43px)",lineHeight:1.2,margin:"0 0 12px"}}>木曜日の体験希望を受け付けています。</h2>
-            <p style={{fontSize:15,lineHeight:1.9,color:muted,margin:0}}>毎月第3木曜日・18:00〜19:30を基本候補に計画中。開催日時・体育館・体験条件は調整中です。まずは保護者から無料の希望登録をお願いします。</p>
+            <p style={{fontSize:15,lineHeight:1.9,color:muted,margin:0}}>毎月第3木曜日・18:00〜19:30を基本候補に計画中。体験会場は仙台市太白区内に確保済みで、施設名は保護者へ個別案内します。開催日時・体験条件は調整中です。まずは保護者から無料の希望登録をお願いします。</p>
           </div>
           <div><a href="/ja/gream-sendai/monthly-trial" data-growth-id="gream-monthly-trial-intake" style={button}>毎月木曜日の体験希望を登録する →</a></div>
         </div>
