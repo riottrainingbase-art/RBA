@@ -13,7 +13,7 @@ const card = "#f2f4f2";
 
 export const metadata: Metadata = {
   title: "GREAM仙台U15｜毎月木曜日の体験希望受付（開催候補）｜RBA",
-  description: "仙台市太白区を中心に活動するGREAM仙台男子U15クラブ。毎月第3木曜18:00〜19:30を基本候補に体験練習会を計画中。会場・開催日時・体験費用・担当は未確定です。保護者からの無料事前相談受付中。",
+  description: "仙台市太白区を中心に活動するGREAM仙台男子U15クラブ。毎月第3木曜18:00〜19:30を基本候補に体験練習会を計画中。会場は確保済みで詳細は保護者へ個別案内。開催日時・体験費用・担当は調整中です。保護者からの無料事前相談受付中。",
   alternates: { canonical: pageUrl },
 };
 
@@ -38,19 +38,19 @@ export default function MonthlyTrialPage() {
           <a href={trialForm} target="_blank" rel="noopener noreferrer" style={button}>無料で体験希望を登録する ↗</a>
           <a href={pathway} style={{...button,background:"transparent",color:"#fff",borderColor:"#79838a"}}>小6・保護者向け進路ガイド →</a>
         </div>
-        <p style={{fontSize:13,lineHeight:1.8,color:"#bbc5c9",margin:"22px 0 0"}}>重要：開催日・時間・会場・指導者・体験費用・定員は最終調整中です。フォームは無課金の希望調査で、参加枠の確約・契約・決済は発生しません。</p>
+        <p style={{fontSize:13,lineHeight:1.8,color:"#bbc5c9",margin:"22px 0 0"}}>重要：会場は仙台市太白区内で確保済みです。施設名・入館方法は保護者に個別案内します。開催日・時間・指導者・体験費用・定員は最終調整中です。フォームは無課金の希望調査で、参加枠の確約・契約・決済は発生しません。</p>
       </div>
     </section>
     <section style={{padding:"34px max(20px,6vw)",background:"#e8ebe9",borderBottom:"1px solid #d7dcdd"}}>
       <div style={{maxWidth:1100,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:18}}>
-        {[["開催方針","月1回・第3木曜日を基本候補"],["時間帯","18:00〜19:30（候補）"],["対象","U15男子・小学6年生も相談可能"],["活動地域","仙台市太白区中心／今回の会場は未定"]].map(([k,v])=><div key={k}><p style={{color:muted,fontWeight:850,fontSize:12,margin:"0 0 6px"}}>{k}</p><strong style={{fontSize:18,lineHeight:1.55}}>{v}</strong></div>)}
+        {[["開催方針","月1回・第3木曜日を基本候補"],["時間帯","18:00〜19:30（候補）"],["対象","U15男子・小学6年生も相談可能"],["活動地域","仙台市太白区／体験会場は確保済み・詳細個別案内"]].map(([k,v])=><div key={k}><p style={{color:muted,fontWeight:850,fontSize:12,margin:"0 0 6px"}}>{k}</p><strong style={{fontSize:18,lineHeight:1.55}}>{v}</strong></div>)}
       </div>
     </section>
     <section style={{padding:"60px max(20px,6vw)"}}>
       <div style={{maxWidth:1100,margin:"auto"}}>
         <p style={{fontSize:12,letterSpacing:2.8,color:muted,fontWeight:900}}>PLANNED DATES / NOT YET CONFIRMED</p>
         <h2 style={{fontSize:"clamp(29px,4vw,46px)",margin:"10px 0 13px"}}>毎月の開催候補日</h2>
-        <p style={{fontSize:16,lineHeight:1.85,color:muted,maxWidth:900}}>第3木曜日の18:00〜19:30を軸に、会場・指導者・既存練習との調整を行います。下の日付は予約済み・開催確約を意味しません。参加希望のある月をフォームから選んでください。</p>
+        <p style={{fontSize:16,lineHeight:1.85,color:muted,maxWidth:900}}>第3木曜日の18:00〜19:30を軸に、開催日・指導者・既存練習との調整を行います。下の日付は正式開催の確約を意味しません。参加希望のある月をフォームから選んでください。</p>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(170px,1fr))",gap:11,margin:"25px 0 0"}}>
           {candidateDates.map(([year,date,day])=><div key={year+date} style={{background:card,border:"1px solid #d7dddd",padding:"22px 20px"}}>
             <p style={{margin:0,fontSize:13,color:muted,fontWeight:800}}>{year}年・候補</p>
@@ -82,7 +82,7 @@ export default function MonthlyTrialPage() {
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))",gap:13,marginTop:25}}>
           {[
             ["STEP 1","保護者から希望登録","希望月・参加可能な時間帯・学年をお知らせください。"],
-            ["STEP 2","開催条件が整えばご案内","施設利用・指導者・安全管理・体験費用等を決め、RBAから連絡します。"],
+            ["STEP 2","開催条件が整えばご案内","施設の利用条件・指導者・安全管理・体験費用等を確認し、RBAから連絡します。"],
             ["STEP 3","内容に納得して参加","正式な参加条件を確認し、同意のうえ体験。入団はさらに別手続きです。"]
           ].map(([n,t,d])=><article key={n} style={{background:"#fff",padding:25,border:"1px solid #dde0e0"}}><strong style={{fontSize:12,color:muted,letterSpacing:2}}>{n}</strong><h3 style={{fontSize:20,margin:"14px 0 10px"}}>{t}</h3><p style={{color:muted,lineHeight:1.85,margin:0}}>{d}</p></article>)}
         </div>
