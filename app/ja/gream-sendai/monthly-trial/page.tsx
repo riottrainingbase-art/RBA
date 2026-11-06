@@ -1,3 +1,4 @@
+// [preview] venue secured correction checkpoint for GREAM monthly trial on 2026-11-06.
 // [preview] GREAM SENDAI monthly trial interest page release checkpoint 2026-11-06.
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
