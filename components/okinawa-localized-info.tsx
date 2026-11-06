@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
+import { OkinawaLandscape } from "@/components/okinawa-landscape";
 import styles from "@/app/ja/okinawa/page.module.css";
 
 type OkinawaLocale = "en" | "zh-tw" | "ko";
@@ -229,21 +230,32 @@ export function OkinawaLocalizedInfo({ locale }: { locale: OkinawaLocale }) {
   return (
     <SiteFrame locale={locale} languagePage="okinawa">
       <GrowthClickTracking />
-      <main className={styles.page} id="main-content">
+      <div className={styles.page}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
-        <section className={styles.hero}>
-          <div className={styles.inner}>
-            <p className={styles.eyebrow}>{t.eyebrow}</p>
-            <h1>{t.heroTitle}<br /><span>{t.heroAccent}</span></h1>
-            <p className={styles.heroLead}>{t.lead}</p>
-            <div className={styles.heroActions}>
-              <Link className={styles.primary} href="#members" data-growth-id={"okinawa-" + locale + "-member"}>{t.familyAction} <span aria-hidden="true">→</span></Link>
-              <Link className={styles.secondary} href="#future" data-growth-id={"okinawa-" + locale + "-future"}>{t.futureAction} <span aria-hidden="true">→</span></Link>
-              <Link className={styles.secondary} href="#join" data-growth-id={"okinawa-" + locale + "-support"}>{t.supportAction} <span aria-hidden="true">→</span></Link>
+        <section className={[styles.hero, styles.islandHero].join(" ")}>
+          <div className={[styles.inner, styles.islandHeroInner].join(" ")}>
+            <div className={styles.islandHeroCopy}>
+              <p className={styles.islandHeroKicker}>OKINAWA / ISLAND ROOTS <span aria-hidden="true">✳</span></p>
+              <p className={styles.eyebrow}>{t.eyebrow}</p>
+              <h1>{t.heroTitle}<br /><span>{t.heroAccent}</span></h1>
+              <p className={styles.heroLead}>{t.lead}</p>
+              <div className={styles.heroActions}>
+                <Link className={styles.primary} href="#members" data-growth-id={"okinawa-" + locale + "-member"}>{t.familyAction} <span aria-hidden="true">→</span></Link>
+                <Link className={styles.secondary} href="#future" data-growth-id={"okinawa-" + locale + "-future"}>{t.futureAction} <span aria-hidden="true">→</span></Link>
+                <Link className={styles.secondary} href="#join" data-growth-id={"okinawa-" + locale + "-support"}>{t.supportAction} <span aria-hidden="true">→</span></Link>
+              </div>
+              <div className={styles.islandHeroFlags} aria-label="Okinawa and Japan–Asia exchange">
+                <span>OKINAWA</span><span>ISHIGAKI ISLAND</span><span>JAPAN × ASIA</span>
+              </div>
+              <p className={styles.heroFoot}>{t.heroNote}</p>
+              <p className={styles.heroFoot}><Link href="/ja/okinawa" hrefLang="ja">{t.backJapanese}</Link></p>
             </div>
-            <p className={styles.heroFoot}>{t.heroNote}</p>
-            <p className={styles.heroFoot}><Link href="/ja/okinawa" hrefLang="ja">{t.backJapanese}</Link></p>
+            <figure className={styles.islandHeroFigure}>
+              <div className={styles.islandArtShell}><OkinawaLandscape /><span className={styles.islandArtStamp}>PLAY<br />THINK<br />GROW.</span></div>
+              <figcaption>{locale === "en" ? "Original Okinawa-inspired illustration, not a photo of a real activity venue." : locale === "ko" ? "오키나와를 모티브로 한 창작 일러스트입니다. 실제 활동 장소의 사진이 아닙니다." : "以沖繩為靈感的原創插畫，非實際活動場地照片。"}</figcaption>
+            </figure>
           </div>
+          <div className={styles.islandHeroWatermark} aria-hidden="true">O K I N A W A</div>
         </section>
 
         <section className={styles.section}>
@@ -348,7 +360,7 @@ export function OkinawaLocalizedInfo({ locale }: { locale: OkinawaLocale }) {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </SiteFrame>
   );
 }
