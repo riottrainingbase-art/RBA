@@ -5,6 +5,7 @@ import { FounderProfile } from "./founder-profile";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { NovemberCampaign } from "./november-campaign";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
+import { OkinawaCampGrowthPanel } from "./okinawa-camp-growth-panel";
 import { SiteFrame, localePath } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
@@ -26,6 +27,7 @@ export async function SimpleJapaneseHome() {
     <div className={styles.container}>
       <GrowthClickTracking />
       <CorporateSupportStrip locale="ja" />
+      <OkinawaCampGrowthPanel placement="home" />
       <section className={styles.hero} aria-labelledby="rba-home-title">
         <div>
           <p className={styles.label}>RIOT BASKETBALL ACADEMY / 仙台・太白区</p>
