@@ -49,12 +49,12 @@ export function TorstenJapanLanding() {
         <section className={styles.hero} aria-labelledby="torsten-title">
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>NOV 25, 2026 · RBA ONLINE CLINIC VOL.2</p>
-            <h1 id="torsten-title"><span className={styles.heroLabel}>世界の現場で指導してきたコーチに学ぶ。</span><span className={styles.name}>TORSTEN<br />LOIBL</span></h1>
+            <h1 id="torsten-title"><span className={styles.heroLabel}>B.PREMIER現役ヘッドコーチから学ぶ。</span><span className={styles.name}>TORSTEN<br />LOIBL</span></h1>
             <p className={styles.heroProof}>B.PREMIER HC <span>FIBA WABC LEVEL 3</span> <span>2019 WORLD CHAMPION</span></p>
             <p className={styles.subheading}>シュートを「打つ技術」から、<br/>「試合で生み出す力」へ。</p>
-            <p className={styles.lead}>育成年代の日本代表からプロまで。シュート技術・練習設計・スペーシング・判断をつなぐ90分。</p>
+            <p className={styles.lead}>2026-27 B.PREMIER・レバンガ北海道を率いる現役HC。世代別日本代表の指導経験も踏まえ、シュート技術・スペーシング・判断・練習設計を考える90分。</p>
             <RegisterLink label="LIVE・録画を選んで申し込む" id="torsten-simple-hero" />
-            <p className={styles.micro}>国内申込はGoogleフォームで参加形式を選択。送信後の確認画面にあるSquare決済の案内からお支払いください。</p>
+            <p className={styles.micro}>国内申込はGoogleフォームで参加形式を選択。送信後の確認画面にあるSquare決済の案内からお支払いください。 本講習はRBA独立主催です。Bリーグ・レバンガ北海道・JBAによる主催、公認、後援ではありません。</p>
           </div>
           <aside className={styles.info} aria-label="開催日時と参加料金">
             <p className={styles.infoLabel}>LIVE / ZOOM</p>
