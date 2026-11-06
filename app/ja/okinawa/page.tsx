@@ -9,7 +9,6 @@ const FORM_URL = "https://form.jotform.com/262765305419057";
 const TRIAL_FORM_URL = "https://form.jotform.com/263092580756060";
 const EMAIL = "riot.training.base@gmail.com";
 const FAMILY_EMAIL = "mailto:riot.training.base@gmail.com?subject=RBA%E6%B2%96%E7%B8%84%EF%BD%9C%E4%BC%9A%E5%93%A1%E3%83%BB%E4%BF%9D%E8%AD%B7%E8%80%85%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87";
-const FUTURE_EMAIL = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("GREAM OKINAWA｜新規参加・体験のご相談");
 const PARTNER_EMAIL = "mailto:riot.training.base@gmail.com?subject=RBA%E6%B2%96%E7%B8%84%EF%BD%9C%E6%8C%87%E5%B0%8E%E3%83%BB%E4%BC%9A%E5%A0%B4%E3%83%BB%E5%9C%B0%E5%9F%9F%E5%8D%94%E5%8A%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87";
 
 export const metadata: Metadata = {
