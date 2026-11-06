@@ -49,3 +49,21 @@
 .torsten-global .tg-updates .tg-button{background:var(--tg-navy);color:#fff;margin-top:16px}
 .torsten-global .tg-updates .tg-button:hover{background:#24476d}
 .torsten-global .tg-updates .tg-fine{margin-top:22px}
+
+/* 2026 Asia conversion rebuild — factual Manila link and voluntary adult-coach sharing */
+.torsten-global .tg-bp-tag{display:inline-block;padding:9px 12px;margin:0 0 6px;border:1px solid rgba(255,255,255,.5);font-size:12px;font-weight:900;line-height:1.55;letter-spacing:.07em;color:#fff}
+.torsten-global .tg-manila{background:#fff;border-top:1px solid #d1dbe4}
+.torsten-global .tg-manila>p:not(.tg-kicker){max-width:900px}
+.torsten-global .tg-asia-share{background:#e6edf4}
+.torsten-global .tg-asia-share>p{max-width:900px}
+.torsten-global .tg-sharekit{max-width:1080px;margin:32px 0 0;padding:clamp(20px,4vw,34px);border:1px solid #bbc9d7;background:white}
+.torsten-global .tg-share-controls{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 25px}
+.torsten-global .tg-share-controls button{min-height:44px;padding:10px 13px;border:1px solid #aabccf;background:#fff;color:var(--tg-ink);font-size:13px;font-weight:700;cursor:pointer}
+.torsten-global .tg-share-controls button[aria-pressed="true"]{background:var(--tg-navy);color:white;border-color:var(--tg-navy)}
+.torsten-global .tg-sharekit label{display:block;font-size:14px;font-weight:800;line-height:1.6;margin:0 0 10px}
+.torsten-global .tg-sharekit textarea{display:block;width:100%;min-height:215px;resize:vertical;padding:15px;border:1px solid #99b0c5;background:#f9fcff;color:var(--tg-ink);font-size:14px;line-height:1.65;font-family:inherit}
+.torsten-global .tg-sharekit .tg-share-action{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:17px}
+.torsten-global .tg-sharekit .tg-share-action .tg-button{background:var(--tg-navy);color:white;border:0;cursor:pointer}
+.torsten-global .tg-sharekit .tg-share-action p{font-size:13px;margin:0;max-width:460px}
+.torsten-global .tg-sharekit>.tg-fine{margin-top:20px}
+@media(max-width:700px){.torsten-global .tg-sharekit{margin-top:22px}.torsten-global .tg-share-controls button{flex:1 1 145px}.torsten-global .tg-sharekit textarea{font-size:13px}.torsten-global .tg-sharekit .tg-share-action .tg-button{width:100%}}
