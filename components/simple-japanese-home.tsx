@@ -1,3 +1,4 @@
+import { SendaiCommunity } from "./sendai-community";
 import Image from "next/image";
 import {getSupportPhotos} from "@/lib/support-photos";
 import { FounderProfile } from "./founder-profile";
@@ -27,9 +28,9 @@ export async function SimpleJapaneseHome() {
       <CorporateSupportStrip locale="ja" />
       <section className={styles.hero} aria-labelledby="rba-home-title">
         <div>
-          <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
+          <p className={styles.label}>RIOT BASKETBALL ACADEMY / 仙台・太白区</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-          <p className={styles.intro}>全国のクリニック、指導者の学び、海外との交流。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
+          <p className={styles.intro}>仙台市太白区から、全国・アジアへ。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
           <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} data-growth-id="home-start-hub" href="/ja/start">参加・体験・相談から選ぶ →</a><a className={styles.secondary} href="#home-programmes">募集中の活動を見る →</a><a className={styles.secondary} href="/ja/clinic-request">地域での開催相談 →</a></nav>
         </div>
       </section>
@@ -37,6 +38,7 @@ export async function SimpleJapaneseHome() {
 
 
 
+      <SendaiCommunity />
       <NovemberCampaign />
 
       <section className={styles.regional} aria-labelledby="gream-sendai-u15-recruit">
