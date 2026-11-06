@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
+import { OkinawaLandscape } from "@/components/okinawa-landscape";
 import styles from "./page.module.css";
 
 const FORM_URL = "https://form.jotform.com/262765305419057";
@@ -135,21 +136,37 @@ export default function OkinawaPage() {
             { "@type": "ListItem", position: 2, name: "GREAM OKINAWA", item: "https://riotbasketballacademy.com/ja/okinawa" },
           ],
         }) }} />
-        <section className={styles.hero}>
-          <div className={styles.inner}>
-            <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / GREAM OKINAWA</p>
-            <h1>沖縄に、<br /><span>学びが続くコートを。</span></h1>
-            <p className={styles.heroLead}>
-              子どもたちの毎日に、安心して挑戦できるバスケットボールの場所を。
-              RBAは沖縄での育成活動を大切にしながら、指導者・会場・安全管理の体制を整えています。
-            </p>
-            <div className={styles.heroActions}>
-              <Link className={styles.primary} href="#members" data-growth-id="okinawa-ja-current-family">参加中のご家庭へ <span aria-hidden="true">→</span></Link>
-              <Link className={styles.secondary} href="#future" data-growth-id="okinawa-ja-future-family">これから参加したい方へ <span aria-hidden="true">→</span></Link>
-              <Link className={styles.secondary} href="#join" data-growth-id="okinawa-ja-partner">指導・会場で協力する <span aria-hidden="true">→</span></Link>
+        <section className={[styles.hero, styles.islandHero].join(" ")}>
+          <div className={[styles.inner, styles.islandHeroInner].join(" ")}>
+            <div className={styles.islandHeroCopy}>
+              <p className={styles.islandHeroKicker}>THE ISLAND IS OUR STARTING POINT <span aria-hidden="true">✳</span></p>
+              <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / GREAM OKINAWA</p>
+              <h1>この島から、<br /><span>もっと自由に。</span></h1>
+              <p className={styles.heroLead}>
+                青い海と、島の風に囲まれた沖縄から。子どもたちが自分で見て、判断し、挑戦できるバスケットボールの環境を育てます。
+                日々の学びを、県外・海外へつながる経験に。
+              </p>
+              <div className={styles.heroActions}>
+                <Link className={styles.primary} href="#members" data-growth-id="okinawa-ja-current-family">参加中のご家庭へ <span aria-hidden="true">→</span></Link>
+                <Link className={styles.secondary} href="#future" data-growth-id="okinawa-ja-future-family">これから参加したい方へ <span aria-hidden="true">→</span></Link>
+                <Link className={styles.secondary} href="#join" data-growth-id="okinawa-ja-partner">指導・会場で協力する <span aria-hidden="true">→</span></Link>
+              </div>
+              <div className={styles.islandHeroFlags} aria-label="活動の舞台">
+                <span>OKINAWA MAIN ISLAND</span>
+                <span>ISHIGAKI ISLAND</span>
+                <span>JAPAN × ASIA</span>
+              </div>
+              <p className={styles.heroFoot}>現在の活動の連絡と、新しい定期活動の準備状況は区別してご案内します。</p>
             </div>
-            <p className={styles.heroFoot}>既存の活動に関する個別の案内と、新しい定期活動の準備は区別してお知らせします。</p>
+            <figure className={styles.islandHeroFigure}>
+              <div className={styles.islandArtShell}>
+                <OkinawaLandscape />
+                <span className={styles.islandArtStamp}>PLAY<br />THINK<br />GROW.</span>
+              </div>
+              <figcaption>沖縄の海・赤瓦・ハイビスカスを描いたオリジナルイラスト。実際の活動会場の写真ではありません。</figcaption>
+            </figure>
           </div>
+          <div className={styles.islandHeroWatermark} aria-hidden="true">O K I N A W A</div>
         </section>
 
 
@@ -164,7 +181,7 @@ export default function OkinawaPage() {
 
         <section className={styles.teamIntro} id="our-team" aria-labelledby="team-intro-heading">
           <div className={styles.inner}>
-            <p className={styles.eyebrow}>GREAM OKINAWA / OUR PURPOSE</p>
+            <p className={styles.eyebrow}>GREAM OKINAWA / BLUE WATER, BIG IDEAS</p>
             <div className={styles.teamIntroGrid}>
               <div>
                 <h2 id="team-intro-heading">その日の勝敗だけで、<br />子どもの未来を決めない。</h2>
