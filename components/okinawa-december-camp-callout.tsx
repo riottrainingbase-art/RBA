@@ -14,7 +14,7 @@ const copy = {
 
 export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
   const c = copy[locale];
-  const href = locale === "ja" ? "/ja/events/okinawa-international-camp-2026" : locale === "zh-tw" ? "https://okinawa.camp/?lang=zh-TW" : "https://okinawa.camp/";
+  const href = locale === "ja" ? "/ja/events/okinawa-international-camp-2026" : locale === "ko" ? "/ko/events/okinawa-international-camp-2026" : locale === "zh-tw" ? "https://okinawa.camp/?lang=zh-TW" : "https://okinawa.camp/";
   return <section className={styles.card} aria-labelledby={`okinawa-december-${locale}`}>
     <p className={styles.label}>RBA · INTERNATIONAL YOUTH BASKETBALL CAMP</p>
     <p className={styles.date}>{c.date}</p>
@@ -26,6 +26,6 @@ export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
     <p className={styles.price}>{c.price}</p>
     <p>{c.discount}</p>
     <p><strong>{OKINAWA_CAMP_LOGISTICS_COPY[locale].status}</strong></p><p className={styles.note}>{c.note} {OKINAWA_CAMP_LOGISTICS_COPY[locale].departure}</p>
-    <div className={styles.actions}><a href={href} target="_blank" rel="noopener noreferrer">{c.link} ↗</a><a href={locale === "ja" ? CAMP_JAPAN_CONTACT : "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026"}>{c.ask} →</a>{locale === "ja" && <a href="/ja/events/okinawa-international-camp-2026/apply">料金選択・申込・決済へ →</a>}</div>
+    <div className={styles.actions}><a href={href} target="_blank" rel="noopener noreferrer">{c.link} ↗</a><a href={locale === "ja" ? CAMP_JAPAN_CONTACT : locale === "ko" ? "mailto:riot.training.base@gmail.com?subject=Korean%20family%20Okinawa%20Camp%202026" : "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026"}>{c.ask} →</a>{locale === "ja" && <a href="/ja/events/okinawa-international-camp-2026/apply">料金選択・申込・決済へ →</a>}</div>
   </section>;
 }
