@@ -1,3 +1,4 @@
+// GREAM SENDAI U12-to-U15 family guide release checkpoint: 2026-11-06.
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
 

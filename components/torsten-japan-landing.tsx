@@ -119,18 +119,6 @@ export function TorstenJapanLanding() {
           <p className={styles.help}>日本国内は税込円建て・Square決済でのお支払いです。<a href="/events/torsten-loibl-online-clinic#register">海外向けUSD申込はこちら</a>。支払方法でお困りの方は<a href={clinicHelpUrl("申込・お支払い手続きの相談")}>RBAにご相談ください</a>。</p>
         </section>
 
-        <section className={styles.about} aria-labelledby="torsten-voluntary-share">
-          <div>
-            <p className={styles.sectionKicker}>SHARE / 指導者仲間に紹介</p>
-            <h2 id="torsten-voluntary-share">同じ課題を感じている指導者にも。</h2>
-          </div>
-          <div>
-            <p>ミニバス・U12、U15・中高・大学、保護者向けに、講習の日時・料金・参加方法を正確に伝えられる紹介文をご用意しています。必要だと思う方へ、ご自身の判断で共有できます。</p>
-            <a href={clinicSharePath} className={styles.footerLink}>対象に合わせた紹介文を選ぶ <ArrowRight size={16} aria-hidden="true" /></a>
-            <p className={styles.help}>紹介文の確認やコピーだけでは投稿・一斉送信されません。講習参加はお一人ずつお申し込みください。受講用Zoom・録画URLの共有はできません。</p>
-          </div>
-        </section>
-
         <section className={styles.faq} aria-labelledby="torsten-faq">
           <h2 id="torsten-faq">よくある質問</h2>
           {faqs.map(([question, answer])=><details key={question}><summary>{question}<ChevronDown size={17} aria-hidden="true" /></summary><p>{answer}</p></details>)}
