@@ -1,3 +1,4 @@
+import { SendaiCommunity } from "./sendai-community";
 import { FounderProfile } from "./founder-profile";
 import { OkinawaDecemberCampCallout } from "./okinawa-december-camp-callout";
 import homeStyles from "./home-balance.module.css";
@@ -79,6 +80,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
   return <div className={locale === "ja" ? homeStyles.home : undefined} lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale}>
     <CorporateSupportStrip locale={locale} />
     <section className="hero-grid"><div className="hero-copy"><p className="eyebrow">RIOT BASKETBALL ACADEMY · JAPAN</p><h1><span>{c.title[0]}</span><span>{c.title[1]}</span></h1><p className="hero-lede">{c.lede}</p><PlatformQuickFinder locale={locale}/>{locale==="ja"&&<a className="hero-clinic-alert" href={localePath(locale,"events/torsten-loibl-online-clinic")}><span>NOW OPEN</span><strong>{c.clinicHero}</strong><ArrowRight size={18}/></a>}<div className="hero-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.primary}<ArrowRight size={17}/></a><a className="button button-member" href={localePath(locale,"my-homecourt")}><House size={17}/>{locale==="ja"?"MY HOME COURTを見る":hc.open}<ArrowRight size={17}/></a></div><div className="hero-proof">{c.proof.map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></div><div className="hero-image" role="img" aria-label={c.image}><div className="image-note">{c.image}</div><MoveDown className="scroll-mark" size={19}/></div></section>
+    <SendaiCommunity locale={locale} />
     <OkinawaDecemberCampCallout locale={locale} />
     {locale==="ko"?<section className="section-pad" style={{background:"#171717",color:"#fff",paddingBlock:"36px"}}><p className="section-index inverse">KOREA × JAPAN / RBA</p><h2 style={{fontSize:"clamp(24px,3vw,38px)",fontWeight:900,margin:"12px 0"}}>한국 클럽과 코치를 위한 협력 창구</h2><p style={{maxWidth:740,lineHeight:1.85}}>지도자 교육, 유소년 캠프, 친선경기와 2027년 한일 교류를 한곳에서 살펴보세요. 참가나 계약은 조건을 함께 확인한 뒤 결정합니다.</p><a className="button button-light" href="/ko/korea">한국과 일본의 교류 프로그램 보기 <ArrowRight size={17}/></a></section>:null}
     {locale==="ja"?<div className={homeStyles.regional}><RegionalSchoolCallout compact/></div>:null}
