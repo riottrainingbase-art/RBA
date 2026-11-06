@@ -126,7 +126,7 @@ export default function OkinawaPage() {
   return (
     <SiteFrame locale="ja" languagePage="okinawa">
       <GrowthClickTracking />
-      <main className={styles.page} id="main-content">
+      <div className={styles.page}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -400,7 +400,7 @@ export default function OkinawaPage() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </SiteFrame>
   );
 }
