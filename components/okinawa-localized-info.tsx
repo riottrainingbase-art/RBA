@@ -43,6 +43,8 @@ const translations = {
       ["04", "Formal announcement", "Open registration only for activities whose arrangements are confirmed."]
     ],
     futureCta: "Ask about future participation (free enquiry)",
+    trialAction: "Early trial-session interest form (Japanese)",
+    trialNote: "Free, parent-only interest registration. Trial dates, venue, coaches, fees and availability are not confirmed. This is not a booking.",
     futureEmailSubject: "GREAM OKINAWA | Future participation enquiry",
     futureNote: "An enquiry is not a booking, a free trial confirmation, an obligation to pay or a guarantee that a new programme will open. Existing activities are not automatically cancelled by this notice.",
     eventsLabel: "SEPARATE EVENTS",
@@ -109,6 +111,8 @@ const translations = {
       ["04", "正式公告", "僅在所有必要條件確認後，開放該活動報名。"]
     ],
     futureCta: "洽詢未來參與方式（免費諮詢）",
+    trialAction: "體驗活動優先通知登記（日文表單）",
+    trialNote: "家長可免費留下參加意願；日期、場地、教練、費用與名額尚未確定，並非正式預約。",
     futureEmailSubject: "GREAM OKINAWA | 未來參與諮詢",
     futureNote: "提出詢問不代表預約、免費體驗確定、付款義務或活動保證。此公告也不代表既有活動全部取消。",
     eventsLabel: "獨立活動",
@@ -175,6 +179,8 @@ const translations = {
       ["04", "공식 모집", "준비 조건이 확인된 활동에 한해 모집과 체험 정보를 공개합니다."]
     ],
     futureCta: "향후 참가 문의하기(문의 무료)",
+    trialAction: "체험회 사전 안내 신청(일본어 양식)",
+    trialNote: "보호자 대상 무료 사전 접수입니다. 개최일·장소·코치·비용·참가 인원은 미확정이며 예약이 아닙니다.",
     futureEmailSubject: "GREAM OKINAWA | 향후 참가 상담",
     futureNote: "문의는 예약, 무료 체험 확정, 결제 의무 또는 새 프로그램 개설 보장을 의미하지 않습니다. 기존 활동이 일괄 취소된다는 뜻도 아닙니다.",
     eventsLabel: "별도 행사",
@@ -241,7 +247,7 @@ export function OkinawaLocalizedInfo({ locale }: { locale: OkinawaLocale }) {
               <p className={styles.heroLead}>{t.lead}</p>
               <div className={styles.heroActions}>
                 <Link className={styles.primary} href="#members" data-growth-id={"okinawa-" + locale + "-member"}>{t.familyAction} <span aria-hidden="true">→</span></Link>
-                <Link className={styles.secondary} href="#future" data-growth-id={"okinawa-" + locale + "-future"}>{t.futureAction} <span aria-hidden="true">→</span></Link>
+                <Link className={styles.secondary} href="/ja/okinawa/trial" hrefLang="ja" data-growth-id={"okinawa-" + locale + "-trial-hero"}>{t.trialAction} <span aria-hidden="true">→</span></Link>
                 <Link className={styles.secondary} href="#join" data-growth-id={"okinawa-" + locale + "-support"}>{t.supportAction} <span aria-hidden="true">→</span></Link>
               </div>
               <div className={styles.islandHeroFlags} aria-label="Okinawa and Japan–Asia exchange">
@@ -302,9 +308,10 @@ export function OkinawaLocalizedInfo({ locale }: { locale: OkinawaLocale }) {
               ))}
             </ol>
             <div className={styles.futureActions}>
-              <a className={styles.darkButton} href={inquiry(t.futureEmailSubject)} data-growth-id={"okinawa-" + locale + "-future-email"}>{t.futureCta} <span aria-hidden="true">→</span></a>
+              <Link className={styles.darkButton} href="/ja/okinawa/trial" hrefLang="ja" data-growth-id={"okinawa-" + locale + "-trial-info"}>{t.trialAction} <span aria-hidden="true">→</span></Link>
+              <a className={styles.textLink} href={inquiry(t.futureEmailSubject)} data-growth-id={"okinawa-" + locale + "-future-email"}>{t.futureCta} <span aria-hidden="true">→</span></a>
             </div>
-            <p className={styles.disclaimer}>{t.futureNote}</p>
+            <p className={styles.disclaimer}>{t.trialNote} {t.futureNote}</p>
           </div>
         </section>
 
@@ -355,7 +362,7 @@ export function OkinawaLocalizedInfo({ locale }: { locale: OkinawaLocale }) {
             <h2>{t.footerTitle}</h2>
             <p>{t.footerText}</p>
             <div className={styles.heroActions}>
-              <a href={inquiry(t.futureEmailSubject)} className={styles.primary} data-growth-id={"okinawa-" + locale + "-footer-email"}>{t.futureCta} <span aria-hidden="true">→</span></a>
+              <Link href="/ja/okinawa/trial" hrefLang="ja" className={styles.primary} data-growth-id={"okinawa-" + locale + "-trial-footer"}>{t.trialAction} <span aria-hidden="true">→</span></Link>
               <Link href={locale === "en" ? "/policies" : "/" + locale + "/policies"} className={styles.secondary}>{t.policy} <span aria-hidden="true">→</span></Link>
             </div>
           </div>
