@@ -1,3 +1,4 @@
+// [preview] corporate support permanent homepage release checkpoint 2026-11-06.
 import type { Locale } from "./site-frame";
 import styles from "./corporate-support-strip.module.css";
 
