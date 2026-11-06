@@ -5,7 +5,6 @@ import styles from "../page.module.css";
 
 const EMAIL = "riot.training.base@gmail.com";
 const MEMBER_EMAIL = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("GREAM OKINAWA｜参加中の活動・会費のご相談");
-const JOIN_EMAIL = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("GREAM OKINAWA｜新規参加のご相談");
 
 export const metadata: Metadata = {
   title: { absolute: "保護者の皆さまへ｜GREAM OKINAWA｜RBA" },
