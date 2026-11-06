@@ -51,6 +51,13 @@ const sponsorChecks=[
   ["components/sponsor-partner-page.tsx","sponsor-options","partner-page-sponsor-programmes"],
   ["components/sponsor-partner-page.tsx","263089038431054","partner-page-free-enquiry-link"],
   ["components/corporate-support-strip.tsx","2026年 協賛実績","historical-sponsor-label"],
+  ["components/sponsor-programme-clarity.tsx","月額11,000円の企業広告","sponsor-monthly-vs-top-faq"],
+  ["components/sponsor-programme-clarity.tsx","トップページへの掲載","separate-homepage-sponsorship-rights"],
+  ["components/sponsor-programme-clarity.tsx","未成年者の名簿","minor-privacy-sponsor"],
+  ["app/ja/support/page.tsx","トップページ上部","monthly-advertising-disclaimer"],
+  ["components/sponsor-partner-page.tsx","<SponsorProgrammeClarity />","sponsor-clarity-integrated"],
+  ["components/sponsor-programme-clarity.tsx","/ja/partners/brief","sponsor-printable-deck-link"],
+  ["app/ja/partners/brief/page.tsx","トップページ上部への企業ロゴ掲出","corporate-brief-placement-clarity"],
 ];
 for(const [file,needle,rule] of sponsorChecks){
   if(!fs.existsSync(file)||!fs.readFileSync(file,"utf8").includes(needle)){
