@@ -81,7 +81,7 @@ export const programmes: readonly Programme[] = [
     audience:["Players aged 7–18","7〜18歳の選手","7–18歲球員","만 7–18세 선수"],
     payment:["Facility has agreed to host the programme. Two-night paperwork, the responsible supervising adult, gym slots, transfers and inclusions are being finalized; confirm terms before booking non-refundable travel.","施設から利用可能との回答を受領。2泊3日の日数確認・引率責任者・体育館時間・送迎・料金内訳は最終調整中です。返金不可の交通手配の前に詳細をご確認ください。","場地方已回覆可受理，兩晚住宿手續、帶隊成人、體育館時段與接駁仍在協調中。預訂不可退款機票前請先確認條件。","시설 이용 가능 회신을 받았습니다. 2박 숙박 서류, 성인 인솔 책임자, 체육관 시간과 교통편은 최종 조율 중입니다. 환불 불가 항공권 예약 전 조건을 확인하세요."],
     japaneseInfoPath:"/ja/events/okinawa-international-camp-2026",
-    applicationUrl:"https://okinawa.camp/",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
+    applicationUrl:"/okinawa-international-guide-2026.html",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
   },
   {
     id:"okinawa-nov14",startDate:"2026-11-14",
