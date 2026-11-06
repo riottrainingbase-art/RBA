@@ -1,6 +1,7 @@
 import { OkinawaCampPartner } from "./okinawa-camp-partner";
 import {ArrowRight,ArrowUpRight,CheckCircle2,Globe2,HeartPulse,ShieldCheck,Users2} from "lucide-react";
 import type {Locale} from "./site-frame";
+import sponsorOfferStyles from "./sponsor-recruitment-offers.module.css";
 import { MvpPublicPartner } from "./mvp-public-partner";
 import {localePath} from "./site-frame";
 
@@ -65,8 +66,43 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
  const subject=encodeURIComponent("RBA Corporate Partnership");
  const body=encodeURIComponent(locale==="ja"?"RBAの協賛・パートナーシップについて相談したいです。":"I would like to discuss an RBA partnership.");
  const mail="mailto:riot.training.base@gmail.com?subject="+subject+"&body="+body;
+ const sponsorEnquiry = locale === "ja" ? "https://form.jotform.com/263089038431054" : mail;
+ const externalEnquiry = locale === "ja" ? {target:"_blank" as const,rel:"noopener noreferrer"} : {};
  return <main className="sponsor-page">
-  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={prefix+"/my-homecourt"}>{x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
+  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={prefix+"/my-homecourt"}>{x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
+  {locale === "ja" && <section className={sponsorOfferStyles.section} id="sponsor-options" aria-labelledby="sponsor-options-title">
+    <div className={sponsorOfferStyles.inner}>
+      <div className={sponsorOfferStyles.heading}>
+        <p className={sponsorOfferStyles.eyebrow}>RBA / CORPORATE SPONSORS WANTED</p>
+        <h2 id="sponsor-options-title">企業スポンサー・協賛パートナーを募集しています。</h2>
+        <p>毎月の広告掲載から、地域クリニック・キャンプ、指導者教育、全国・海外での育成交流まで。企業のご希望に沿う支援方法を一緒に考えます。契約・掲載条件や活動実績の報告は、方法ごとに整理してご案内します。</p>
+      </div>
+      <div className={sponsorOfferStyles.grid}>
+        <article className={sponsorOfferStyles.card + " " + sponsorOfferStyles.cardPrimary}>
+          <span className={sponsorOfferStyles.plan}>01 / MONTHLY ADVERTISING</span>
+          <h3>企業広告パートナー</h3>
+          <p className={sponsorOfferStyles.price}>月額10,000円＋税</p>
+          <p>1社1口、税込11,000円／月。公式サイトの企業紹介・許諾済みロゴ・リンク、活動レポートへの掲載を基本とする定型プランです。掲載開始・更新・解約条件は専用ページをご確認ください。</p>
+          <a className={sponsorOfferStyles.link} href="/ja/support#apply" data-growth-id="sponsor-monthly-plan">企業広告の詳細・申込を見る →</a>
+        </article>
+        <article className={sponsorOfferStyles.card}>
+          <span className={sponsorOfferStyles.plan}>02 / PROJECT PARTNERSHIP</span>
+          <h3>クリニック・キャンプ協賛</h3>
+          <p className={sponsorOfferStyles.price}>企画ごとにご相談</p>
+          <p>会場、備品、指導者、移動、参加費補助など、具体的な活動への協力です。90日パイロット案も含め、金額・期間・企業名掲出・成果報告の条件は個別に協議します。</p>
+          <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" data-growth-id="sponsor-project-enquiry">無料で協賛相談をする ↗</a>
+        </article>
+        <article className={sponsorOfferStyles.card}>
+          <span className={sponsorOfferStyles.plan}>03 / DEVELOPMENT PARTNERSHIP</span>
+          <h3>全国育成・海外交流連携</h3>
+          <p className={sponsorOfferStyles.price}>年間・共同企画</p>
+          <p>全国育成ツアー、指導者教育、アジアの育成年代との交流、物品・専門的な知識の提供など。目的・使途・実施報告・費用は個別に設計します。</p>
+          <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href="/ja/national-tour" data-growth-id="sponsor-national-tour">全国育成ツアーの協賛企画 →</a>
+        </article>
+      </div>
+      <p className={sponsorOfferStyles.disclosure}>無料の相談フォーム送信だけでは契約・掲載・請求は確定しません。企業名・ロゴは許諾や掲載条件の確認後に公開します。未成年者の名簿や健康情報はスポンサーへ提供しません。広告効果や税務上の取扱いを保証するものではありません。<a href="/ja/support#accounting">掲載内容・経理資料・利用条件</a>をご確認ください。</p>
+    </div>
+  </section>}
   <section className="khm-partner" aria-labelledby="khm-partner-title"><style>{`.khm-partner{background:#f3f0e8;color:#222;padding:64px clamp(24px,6vw,88px)}.khm-partner-inner{max-width:1180px;margin:auto}.khm-partner-kicker{font-size:11px;letter-spacing:.15em;color:#715e36}.khm-partner h2{font-size:clamp(24px,3vw,38px);line-height:1.5;margin:12px 0 30px}.khm-partner-card{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:center;border-top:1px solid #c9bfab;border-bottom:1px solid #c9bfab;padding:30px 0}.khm-partner-mark{display:flex;align-items:center;justify-content:center;background:#e9e2d4;min-height:210px}.khm-partner-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}.khm-partner-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply}.khm-partner h3{font-size:26px;line-height:1.5;margin:0 0 12px}.khm-partner-copy{font-size:14px;line-height:1.9;max-width:750px}.khm-partner-location{font-size:12px;color:#625e54;margin:15px 0}.khm-partner-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;padding:13px 0;border-bottom:1px solid #85734b;color:#222;min-height:48px;font-size:14px}.khm-partner-link:focus-visible{outline:3px solid #85734b;outline-offset:5px}.khm-partner-link:hover{color:#755b22}@media(max-width:640px){.khm-partner{padding:42px 24px}.khm-partner-card{grid-template-columns:1fr;gap:24px}.khm-partner-mark{min-height:190px}.khm-partner h3{font-size:24px}.khm-partner-link{width:100%}}`}</style><div className="khm-partner-inner"><p className="khm-partner-kicker">RBA SPONSORS &amp; PARTNERS</p><h2 id="khm-partner-title">{locale==="ja"?"スポンサー・パートナーのご紹介":"Meet our sponsors & partners"}</h2><article className="khm-partner-card"><div className="khm-partner-mark"><span className="khm-partner-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="écrin：宝石箱を抱えるゴリラのロゴ" loading="lazy" width="1152" height="1536"/></span></div><div><h3>合同会社KHM</h3><p className="khm-partner-copy">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」合同会社KHMは、就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を運営しています。":"KHM operates écrin, a Type B continuous employment support service, écrin restaurant, and a light freight delivery business in Japan."}</p><p className="khm-partner-location">{locale==="ja"?"所在地：兵庫県神戸市垂水区舞子坂4-8-12-4":"Kobe, Hyogo, Japan"}</p><a className="khm-partner-link" href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHMの公式ホームページを見る":"Visit the KHM website (Japanese)"}<span aria-hidden="true">↗</span></a></div></article></div></section>
   <MvpPublicPartner locale={locale}/>
   <OkinawaCampPartner locale={locale}/>
@@ -74,8 +110,8 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
   <section className="sponsor-why section-pad"><p className="section-index">{x.section}</p><h2>{x.sectionTitle}</h2><div className="sponsor-value-grid">{x.values.map(([tag,title,desc],i)=>{const Icon=icons[i];return <article key={tag}><Icon/><span>{tag}</span><h3>{title}</h3><p>{desc}</p></article>})}</div></section>
   <section className="sponsor-platform section-pad"><div><p className="section-index inverse">{x.platform}</p><h2>{x.platformTitle}</h2><p>{x.platformBody}</p><a href={prefix+"/my-homecourt"}>{x.secondary}<ArrowRight size={16}/></a></div><div className="sponsor-platform-flow"><span>GAME</span><b>→</b><span>PREP</span><b>→</b><span>PLAY</span><b>→</b><span>REFLECT</span><b>→</b><span>NEXT</span></div></section>
   <section className="sponsor-categories section-pad"><p className="section-index">PARTNERSHIP FIT</p><h2>BASKETBALL × BUSINESS</h2><div>{x.categories.map(([tag,desc])=><article key={tag}><span>{tag}</span><p>{desc}</p></article>)}</div></section>
-  <section className="sponsor-pilot section-pad"><div className="sponsor-pilot-main"><p className="section-index inverse">{x.pilot}</p><h2>{x.pilotTitle}</h2><p>{x.pilotBody}</p><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a></div><div className="sponsor-pilot-list">{x.included.map(item=><p key={item}><CheckCircle2/>{item}</p>)}</div></section>
+  <section className="sponsor-pilot section-pad"><div className="sponsor-pilot-main"><p className="section-index inverse">{x.pilot}</p><h2>{x.pilotTitle}</h2><p>{x.pilotBody}</p><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a></div><div className="sponsor-pilot-list">{x.included.map(item=><p key={item}><CheckCircle2/>{item}</p>)}</div></section>
   <section className="sponsor-safety section-pad"><ShieldCheck/><div><p className="section-index">{x.safety}</p>{x.safetyItems.map(item=><p key={item}>{item}</p>)}</div></section>
-  <section className="sponsor-final section-pad"><p className="section-index">PARTNER WITH RBA</p><h2>{x.cta}</h2><p>{x.ctaBody}</p><div><a className="button button-orange" href={mail}>{x.primary}<ArrowRight size={17}/></a>{locale==="ja"&&<a className="button button-dark" href="/ja/family-basketball">企業・団体の親子企画を見る<ArrowRight size={17}/></a>}<a className="button button-dark" href={localePath(locale,"contact")}>CONTACT RBA<ArrowUpRight size={17}/></a></div></section>
+  <section className="sponsor-final section-pad"><p className="section-index">PARTNER WITH RBA</p><h2>{x.cta}</h2><p>{x.ctaBody}</p><div><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a>{locale==="ja"&&<a className="button button-dark" href="/ja/family-basketball">企業・団体の親子企画を見る<ArrowRight size={17}/></a>}<a className="button button-dark" href={localePath(locale,"contact")}>CONTACT RBA<ArrowUpRight size={17}/></a></div></section>
  </main>;
 }
