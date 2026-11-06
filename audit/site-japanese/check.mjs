@@ -39,6 +39,25 @@ for(const file of files){
   }
 }
 
+// Corporate sponsorship visibility is a permanent product requirement.
+// Keep this guard in CI so future home redesigns cannot silently hide recruitment.
+const sponsorChecks=[
+  ["components/simple-japanese-home.tsx","<CorporateSupportStrip locale=\"ja\" />","ja-home-sponsor-visibility"],
+  ["components/localized-home.tsx","<CorporateSupportStrip locale={locale} />","multilingual-home-sponsor-visibility"],
+  ["app/ja/gream-sendai/page.tsx","<CorporateSupportStrip locale=\"ja\" />","gream-home-sponsor-visibility"],
+  ["components/corporate-support-strip.tsx","data-corporate-support=\"persistent-home\"","persistent-support-marker"],
+  ["components/corporate-support-strip.tsx","home-corporate-sponsor-enquiry","corporate-sponsor-enquiry-cta"],
+  ["components/corporate-support-strip.tsx","/ja/support#apply","monthly-corporate-ad-cta"],
+  ["components/sponsor-partner-page.tsx","sponsor-options","partner-page-sponsor-programmes"],
+  ["components/sponsor-partner-page.tsx","263089038431054","partner-page-free-enquiry-link"],
+  ["components/corporate-support-strip.tsx","2026年 協賛実績","historical-sponsor-label"],
+];
+for(const [file,needle,rule] of sponsorChecks){
+  if(!fs.existsSync(file)||!fs.readFileSync(file,"utf8").includes(needle)){
+    failures.push({file,rule,sample:"missing required sponsor recognition or recruitment route"});
+  }
+}
+
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);
