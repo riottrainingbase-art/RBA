@@ -88,6 +88,9 @@ jobs:
       - name: Member experience route/render audit
         run: node audit/member-experience/check.mjs
 
+      - name: Okinawa camp pricing, refunds and international family-route tests
+        run: node --test tests/okinawa-camp-pricing.test.mjs tests/okinawa-camp-public-content.test.mjs
+
       - name: ESLint changed files
         if: github.event_name == 'pull_request'
         env:
