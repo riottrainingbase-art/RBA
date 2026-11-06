@@ -14,7 +14,7 @@ export function OkinawaCampPartnerNotice({ locale }: { locale: Locale }) {
 
 export function OkinawaCampPartner({ locale = "ja" }: { locale?: Locale }) {
   const c = copy[locale];
-  const href = locale === "ja" ? "/ja/events/okinawa-international-camp-2026#entry-desk" : locale === "zh-tw" ? "https://okinawa.camp/?lang=zh-TW" : "https://okinawa.camp/";
+  const href = locale === "ja" ? "/ja/events/okinawa-international-camp-2026#entry-desk" : locale === "ko" ? "/ko/events/okinawa-international-camp-2026" : locale === "zh-tw" ? "https://okinawa.camp/?lang=zh-TW" : "https://okinawa.camp/";
   return <section className={styles.section} aria-labelledby={`camp-partner-${locale}`}>
     <div className={styles.inner}>
       <p className={styles.kicker}>OKINAWA CAMP 2026 / OFFICIAL TIMEKEEPER</p>
