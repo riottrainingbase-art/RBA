@@ -14,7 +14,7 @@ const copy = {
 
 export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
   const c = copy[locale];
-  const href = locale === "ja" ? "/ja/events/okinawa-international-camp-2026" : locale === "ko" ? "/ko/events/okinawa-international-camp-2026" : locale === "zh-tw" ? "https://okinawa.camp/?lang=zh-TW" : "https://okinawa.camp/";
+  const href = locale === "ja" ? "/ja/events/okinawa-international-camp-2026" : locale === "ko" ? "/ko/events/okinawa-international-camp-2026" : locale === "zh-tw" ? "/okinawa-international-guide-2026.html#traditional-chinese" : "/okinawa-international-guide-2026.html#english";
   return <section className={styles.card} aria-labelledby={`okinawa-december-${locale}`}>
     <p className={styles.label}>RBA · INTERNATIONAL YOUTH BASKETBALL CAMP</p>
     <p className={styles.date}>{c.date}</p>
@@ -26,6 +26,7 @@ export function OkinawaDecemberCampCallout({ locale }: { locale: Locale }) {
     <p className={styles.price}>{c.price}</p>
     <p>{c.discount}</p>
     <p><strong>{OKINAWA_CAMP_LOGISTICS_COPY[locale].status}</strong></p><p className={styles.note}>{c.note} {OKINAWA_CAMP_LOGISTICS_COPY[locale].departure}</p>
-    <div className={styles.actions}><a href={href} target="_blank" rel="noopener noreferrer">{c.link} ↗</a><a href={locale === "ja" ? CAMP_JAPAN_CONTACT : locale === "ko" ? "mailto:riot.training.base@gmail.com?subject=Korean%20family%20Okinawa%20Camp%202026" : "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026"}>{c.ask} →</a>{locale === "ja" && <a href="/ja/events/okinawa-international-camp-2026/apply">料金選択・申込・決済へ →</a>}</div>
+    {locale !== "ja" && <p className={styles.note}>{({en:"Overseas registration terms and checkout wording are being reconciled with the RBA cancellation policy. Please confirm final terms with RBA before paying.",ko:"해외 신청 페이지의 환불·결제 안내를 RBA 공식 규정과 대조하고 있습니다. 결제 전에 RBA에 적용 조건을 확인해 주세요.","zh-tw":"海外報名的退費與結帳說明仍在與 RBA 官方規定核對；付款前請先向 RBA 確認條件。",ja:""})[locale]}</p>}
+    <div className={styles.actions}><a href={href}>{c.link} ↗</a><a href={locale === "ja" ? CAMP_JAPAN_CONTACT : locale === "ko" ? "mailto:riot.training.base@gmail.com?subject=Korean%20family%20Okinawa%20Camp%202026" : "mailto:hi@spartans.com.tw?cc=riot.training.base%40gmail.com&subject=Okinawa%20Camp%202026"}>{c.ask} →</a>{locale === "ja" && <a href="/ja/events/okinawa-international-camp-2026/apply">料金選択・申込・決済へ →</a>}</div>
   </section>;
 }
