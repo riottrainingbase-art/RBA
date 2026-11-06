@@ -1,0 +1,13 @@
+.panel{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(240px,.72fr);gap:28px;background:#10233f;color:#fff;border:1px solid #1d3350;padding:clamp(24px,3.6vw,44px);margin:20px 0 32px;box-sizing:border-box}
+.copy{min-width:0}.eyebrow{display:block;font-size:11px;letter-spacing:.15em;font-weight:750;color:#cbb58f;margin-bottom:14px}
+.copy h2{font-weight:850;font-size:clamp(27px,3.5vw,42px);line-height:1.35;letter-spacing:-.04em;margin:0 0 18px}
+.copy>p:not(.conditions){font-size:15px;line-height:1.85;color:#e6eaf2;max-width:740px}
+.prices{display:flex;flex-direction:column;gap:4px;border-top:1px solid #3a5069;border-bottom:1px solid #3a5069;padding:16px 0}
+.prices strong{font-size:16px;color:#fff}.prices span{font-size:13px;color:#e4e8ed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:21px 0 12px}.actions a{min-height:49px;padding:12px 16px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:13px;font-weight:800;text-decoration:none;line-height:1.45}
+.primary{background:#fff;color:#10233f}.secondary{border:1px solid #e2e6ed;color:#fff}
+.conditions{font-size:11px;line-height:1.75;color:#c6d0de;max-width:720px;margin:12px 0 0}
+.side{display:flex;flex-direction:column;gap:16px;min-width:0}.mark{display:flex;align-items:center;gap:15px;padding:15px;border:1px solid #5b7088;background:#fff;color:#10233f;min-height:100px}.mark img{width:60px;height:auto;max-height:94px;object-fit:contain}.mark span{font-size:12px;line-height:1.55;font-weight:850;letter-spacing:.07em}
+.live{background:#eae5db;color:#10233f;display:flex;flex-direction:column;gap:7px;padding:19px}.liveLabel{color:#74542f;font-size:10px;font-weight:850;letter-spacing:.14em}.live strong{font-size:20px;line-height:1.35}.live span:not(.liveLabel){font-size:12px;line-height:1.7}.live a{color:#10233f;font-weight:850;font-size:13px;padding:8px 0;text-underline-offset:4px}
+.smallLink{align-self:flex-start;color:#e5e9ef;font-size:12px;line-height:1.5;text-underline-offset:4px}.panel a:focus-visible{outline:3px solid #fbde93;outline-offset:4px}
+@media(max-width:780px){.panel{grid-template-columns:1fr;gap:24px;padding:23px 19px}.actions{display:grid}.actions a{width:100%}.mark img{width:54px}.copy h2{font-size:29px}.prices strong{font-size:14px}.prices span{font-size:12px}}
