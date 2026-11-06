@@ -2,7 +2,6 @@ import { SendaiSponsorFilm } from "@/components/sendai-sponsor-film";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
-import { SendaiCommunity } from "@/components/sendai-community";
 import { sendaiPlans, sendaiUniformOptions } from "@/lib/gream-sendai-partners";
 import styles from "./partners.module.css";
 
@@ -31,7 +30,6 @@ export default function SendaiPartnersPage() {
       <div className={styles.actions}><a href="#plans">協賛メニューを見る ↓</a><a href={enquiry} data-growth-id="sendai-partner-enquiry">広告協賛を相談する →</a><a href="/downloads/gream-sendai/partnership-proposal.pdf">提案書PDFを開く ↓</a></div>
     </div></section>
     <SendaiSponsorFilm />
-    <SendaiCommunity partnersOnly />
     <section className={styles.section} id="plans"><h2>地域のお店も、企業も。<br />続けられる形から。</h2>
       <p>下記は新規広告協賛の募集価格です。金額は税込。12か月契約を基本とし、開始日・媒体・提供回数を確認書で合意してから開始します。月額表示は12か月分割払いの場合です。自動更新はしません。</p>
       <div className={styles.grid}>{sendaiPlans.map(p => <article key={p.name} className={styles.card}><h3>{p.name}</h3><p className={styles.price}>月 {p.monthly}</p><p>年額 {p.annual}</p><p>{p.description}</p><p className={styles.small}>共通：日本語トップページ上部の地域パートナー欄、GREAM仙台の企業・店舗紹介、月次の共同紹介、四半期の実績報告。ロゴ等の公開許諾確認後に掲載します。</p></article>)}</div>
