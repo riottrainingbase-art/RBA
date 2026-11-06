@@ -445,3 +445,121 @@
   .futureActions { flex-direction: column; }
   .darkButton { width: 100%; }
 }
+
+
+
+/* GREAM OKINAWA team website — youth-first editorial system */
+.detailHero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(72px, 8vw, 124px) 0 76px;
+  background: #151b20;
+  color: #f8fafb;
+  isolation: isolate;
+}
+.detailHero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 42% 85% at 95% 20%, rgba(194,205,211,.12), transparent 70%), linear-gradient(116deg, transparent 50%, rgba(255,255,255,.03) 50.2%, transparent 51%);
+  pointer-events: none;
+}
+.detailHero .eyebrow { color: #abb9bf; margin-top: 30px; }
+.detailHero h1 {
+  max-width: 1080px;
+  margin: 0 0 28px;
+  font-size: clamp(40px, 6.8vw, 88px);
+  line-height: 1.16;
+  letter-spacing: -.065em;
+  font-weight: 900;
+}
+.detailHero h1 span { color: #b9c4c9; }
+.detailLead { max-width: 780px; font-size: clamp(16px, 1.85vw, 20px); line-height: 1.95; margin: 0 0 30px; color: #e1e8eb; }
+.detailBack { display: inline-flex; color: #d8e2e7; text-underline-offset: 5px; font-size: 13px; font-weight: 750; }
+.detailBack:hover { color: #fff; }
+.detailActions { display: flex; flex-wrap: wrap; gap: 11px; }
+.detailHint { max-width: 820px; margin: 24px 0 0; font-size: 12px; line-height: 1.85; color: #b6c4ca; }
+.teamSubnav { background: #e9edef; border-bottom: 1px solid #cdd5d9; }
+.teamSubnav .inner { display: flex; align-items: center; gap: 26px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.teamSubnav a { display: inline-flex; align-items: center; min-height: 56px; flex: 0 0 auto; color: #2c383e; text-decoration: none; font-size: 13px; font-weight: 800; border-bottom: 2px solid transparent; }
+.teamSubnav a:hover, .teamSubnav a:focus-visible { border-color: #243038; }
+.methodGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.methodCard { min-width: 0; padding: 29px 25px 32px; border: 1px solid #dce2e5; background: #fafbf9; }
+.methodNumber { display: block; font-size: 40px; line-height: 1; letter-spacing: -.08em; font-weight: 900; color: #adb9bf; margin-bottom: 30px; }
+.methodCard h3 { margin: 0 0 12px; font-size: 23px; letter-spacing: -.04em; }
+.methodCard p:not(.mini) { margin: 0; font-size: 14px; line-height: 1.95; color: #59666d; }
+.ageStageGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+.ageStage { min-width: 0; padding: 30px; background: #fff; border: 1px solid #d5dddf; border-top: 4px solid #242e34; }
+.ageStage h3 { margin: 0 0 15px; font-size: 27px; letter-spacing: -.045em; line-height: 1.45; }
+.ageStage > p:not(.mini) { color: #56666c; line-height: 1.9; font-size: 14px; }
+.ageStage ul { margin: 22px 0 0; padding: 20px 0 0 18px; border-top: 1px solid #dce2e5; }
+.ageStage li { padding: 4px 0; font-size: 13px; line-height: 1.75; }
+.sessionList { border-top: 2px solid #263138; }
+.sessionRow { display: grid; grid-template-columns: 48px 110px minmax(0, 1fr); gap: 20px; align-items: start; padding: 23px 8px; border-bottom: 1px solid #dbe0e2; }
+.sessionIndex { font-size: 12px; letter-spacing: .06em; color: #73818a; padding-top: 3px; font-weight: 900; }
+.sessionRow > strong { font-size: 24px; letter-spacing: -.035em; }
+.sessionRow h3 { margin: 0 0 6px; font-size: 19px; }
+.sessionRow p { margin: 0; font-size: 14px; line-height: 1.8; color: #5b6971; }
+.darkSection .heading > p { color: #d2dde1; }
+.commitmentGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.commitmentGrid article { border: 1px solid #4b595f; padding: 27px; background: rgba(255,255,255,.045); }
+.commitmentGrid article > span { color: #9db0ba; font-weight: 800; letter-spacing: .14em; font-size: 11px; }
+.commitmentGrid h3 { margin: 14px 0 11px; color: #fff; line-height: 1.45; font-size: 20px; }
+.commitmentGrid p { margin: 0; color: #d0dbe0; font-size: 14px; line-height: 1.9; }
+.detailClosing { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .7fr); align-items: center; gap: clamp(28px, 6vw, 80px); }
+.detailClosing h2 { margin: 0 0 18px; font-size: clamp(30px, 4.2vw, 50px); letter-spacing: -.05em; line-height: 1.28; }
+.detailClosing p { color: #5d686d; line-height: 1.9; margin: 0 0 16px; }
+.detailClosingActions { display: grid; gap: 12px; }
+.detailClosingActions .darkButton { width: 100%; }
+.accordionList { border-top: 2px solid #1e2c33; }
+.accordionItem { border-bottom: 1px solid #d5dcdf; padding: 0; }
+.accordionItem summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 22px; padding: 22px 6px; cursor: pointer; font-size: 17px; line-height: 1.65; font-weight: 800; }
+.accordionItem summary::-webkit-details-marker { display: none; }
+.accordionItem summary span { display: inline-flex; min-width: 28px; min-height: 28px; align-items: center; justify-content: center; color: #51636d; font-size: 22px; font-weight: 400; }
+.accordionItem[open] summary span { transform: rotate(45deg); }
+.accordionItem p { margin: -4px 0 23px; padding: 0 55px 0 6px; font-size: 14px; line-height: 2; color: #52616a; }
+.accordionItem summary:focus-visible { outline: 3px solid #8ca5b4; outline-offset: -3px; }
+.teamIntro { padding: clamp(52px, 6vw, 83px) 0; background: #f3f5f4; }
+.teamIntroGrid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .65fr); gap: 45px; align-items: end; }
+.teamIntro h2 { max-width: 740px; margin: 0 0 22px; font-size: clamp(30px, 4.5vw, 53px); font-weight: 900; line-height: 1.26; letter-spacing: -.05em; }
+.teamIntro p:not(.eyebrow) { font-size: 15px; line-height: 2; color: #53636b; }
+.teamIntroHighlight { border-left: 4px solid #243139; padding: 13px 0 13px 22px; font-size: 16px; line-height: 1.9; font-weight: 750; color: #27333a; }
+.teamPathGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+.teamPath { display: flex; flex-direction: column; gap: 13px; padding: clamp(25px, 3vw, 37px); border: 1px solid #d2dbdf; background: #fff; min-width: 0; }
+.teamPath h3 { font-size: clamp(25px, 3vw, 35px); line-height: 1.3; margin: 0; letter-spacing: -.045em; }
+.teamPath p:not(.mini) { margin: 0; font-size: 14px; line-height: 1.95; color: #56636b; }
+.teamPath .textLink { margin-top: auto; }
+.timelineGrid { border-top: 2px solid #253138; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+.timelineEntry { border-right: 1px solid #d6dddf; border-bottom: 1px solid #d6dddf; padding: 24px 22px 24px 0; }
+.timelineEntry:not(:first-child) { padding-left: 22px; }
+.timelineEntry:last-child { border-right: 0; }
+.timelineEntry strong { display: block; font-size: 13px; letter-spacing: .05em; margin-bottom: 13px; }
+.timelineEntry h3 { font-size: 19px; line-height: 1.5; margin: 0 0 9px; }
+.timelineEntry p { font-size: 13px; line-height: 1.85; color: #586770; margin: 0; }
+.page :is(a,summary):focus-visible { outline: 3px solid #8ca5b4; outline-offset: 3px; }
+
+@media (max-width: 1000px) {
+  .methodGrid, .timelineGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ageStageGrid, .commitmentGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .timelineEntry:nth-child(even) { border-right: 0; }
+  .timelineEntry:nth-child(3) { padding-left: 0; }
+}
+@media (max-width: 720px) {
+  .detailHero { padding: 65px 0 58px; }
+  .detailHero h1 { font-size: clamp(38px, 10vw, 56px); }
+  .detailActions { flex-direction: column; }
+  .detailActions > a { width: 100%; }
+  .teamSubnav .inner { gap: 22px; }
+  .methodGrid, .ageStageGrid, .commitmentGrid, .teamPathGrid, .timelineGrid, .teamIntroGrid, .detailClosing { grid-template-columns: 1fr; }
+  .teamIntroGrid, .detailClosing { gap: 22px; }
+  .timelineEntry, .timelineEntry:not(:first-child), .timelineEntry:nth-child(3) { padding: 22px 0; border-right: 0; }
+  .methodCard, .ageStage, .commitmentGrid article { padding: 23px; }
+  .methodNumber { margin-bottom: 18px; }
+  .sessionRow { grid-template-columns: 28px 78px minmax(0, 1fr); gap: 12px; padding: 21px 0; }
+  .sessionRow > strong { font-size: 19px; }
+  .sessionRow h3 { font-size: 16px; }
+  .sessionRow p { font-size: 12px; }
+  .accordionItem summary { font-size: 15px; }
+  .accordionItem p { padding-right: 15px; }
+}
