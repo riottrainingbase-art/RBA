@@ -1,0 +1,37 @@
+.strip {
+  width: 100%; box-sizing: border-box; background: #f6f7f6; color: #161a1d;
+  border-top: 1px solid #d5dadc; border-bottom: 1px solid #cbd2d3;
+}
+.content {
+  max-width: 1320px; margin-inline: auto; padding: 17px 30px; display: flex;
+  align-items: center; justify-content: space-between; gap: 20px 26px; flex-wrap: wrap;
+}
+.heading { display: grid; gap: 3px; min-width: 200px; flex: 1 1 230px; }
+.eyebrow { font-size: 10px; font-weight: 850; letter-spacing: .14em; color: #536168; line-height: 1.6; }
+.heading strong { font-size: 15px; line-height: 1.55; font-weight: 850; }
+.category { font-size: 12px; line-height: 1.5; color: #56636b; }
+.records { flex: 1 1 300px; display: flex; flex-wrap: wrap; gap: 10px; min-width: 0; }
+.company {
+  display: flex; flex-direction: column; justify-content: center; padding: 12px 20px;
+  min-height: 72px; min-width: min(100%, 265px); border: 1px solid #bac4c5;
+  background: #fff; text-decoration: none; color: #171b1d; box-sizing: border-box;
+  transition: border-color .15s, background-color .15s;
+}
+.company:hover, .company:focus-visible { border-color: #182b2f; background: #fdfefd; }
+.wordmark { font-size: 15px; font-weight: 950; letter-spacing: .09em; line-height: 1.25; }
+.legalName { margin-top: 3px; font-size: 13px; font-weight: 750; line-height: 1.5; }
+.period { margin-top: 3px; color: #5b646a; font-size: 11px; line-height: 1.5; }
+.cta {
+  display: inline-flex; min-height: 44px; align-items: center;
+  border-bottom: 1px solid currentColor; text-decoration: none; color: #18292f;
+  font-weight: 750; font-size: 12px; line-height: 1.5; white-space: nowrap;
+}
+.cta:focus-visible { outline: 2px solid #18292f; outline-offset: 3px; }
+@media (max-width: 720px) {
+  .content { padding: 14px 18px; gap: 12px; }
+  .heading { flex-basis: 100%; gap: 2px; }
+  .heading strong { font-size: 14px; }
+  .records { flex-basis: 100%; }
+  .company { width: 100%; min-width: 0; padding: 10px 14px; }
+  .cta { font-size: 12px; margin-top: 1px; }
+}
