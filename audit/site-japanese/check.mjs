@@ -53,7 +53,7 @@ const sponsorChecks=[
   ["components/corporate-support-strip.tsx","2026年 協賛実績","historical-sponsor-label"],
   ["components/sponsor-programme-clarity.tsx","月額11,000円の企業広告","sponsor-monthly-vs-top-faq"],
   ["components/sponsor-programme-clarity.tsx","トップページへの掲載","separate-homepage-sponsorship-rights"],
-  ["components/sponsor-programme-clarity.tsx","未成年者の名簿","minor-privacy-sponsor"],
+  ["components/sponsor-programme-clarity.tsx","選手・保護者の名簿","minor-privacy-sponsor"],
   ["app/ja/support/page.tsx","トップページ上部","monthly-advertising-disclaimer"],
   ["components/sponsor-partner-page.tsx","<SponsorProgrammeClarity />","sponsor-clarity-integrated"],
   ["components/sponsor-programme-clarity.tsx","/ja/partners/brief","sponsor-printable-deck-link"],
