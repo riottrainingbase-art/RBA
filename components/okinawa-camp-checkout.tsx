@@ -93,7 +93,7 @@ export function OkinawaCampCheckout() {
       <p>料金は上記のとおりご案内していますが、新規の海外参加者向け決済画面への直接案内は、表示条件を統一するまで一時的に控えています。すでにお申し込み・決済済みの方は二重にお支払いしないでください。</p>
       <p><a href="/ja/cancellation">RBA公式キャンセル・返金規定を確認する →</a></p>
       <p><a href="/okinawa-international-guide-2026.html#korean">韓国語の保護者ガイドを見る →</a></p>
-      <a className={styles.primary} href={CAMP_CONTACT}>料金と申込条件を問い合わせる ↗</a>
+      <a className={styles.primary} href={"mailto:riot.training.base@gmail.com?subject=" + encodeURIComponent("Okinawa 2026 overseas camp — price and cancellation terms")}>RBAへ料金と申込条件を問い合わせる ↗</a>
       <p className={styles.note}>参加申込・決済を再開する際は、本ページで確認済みの手順をお知らせします。主催者都合の中止・最終条件に同意できない場合の取扱いはRBAの公式規定をご確認ください。</p>
     </section>}
     {quote?.state === "payable" && OVERSEAS_CHECKOUT_READY && <>
