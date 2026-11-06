@@ -42,3 +42,10 @@
   .torsten-global .tg-credentials-visual{min-height:315px;padding:30px}
   .torsten-global .tg-credentials-visual>strong{font-size:clamp(30px,9vw,42px)}
 }
+
+/* Optional adult-only education updates: clearly distinct from paid clinic registration. */
+.torsten-global .tg-updates{background:#e9eff4;border-top:1px solid #cbd5df}
+.torsten-global .tg-updates>p:not(.tg-kicker){max-width:790px}
+.torsten-global .tg-updates .tg-button{background:var(--tg-navy);color:#fff;margin-top:16px}
+.torsten-global .tg-updates .tg-button:hover{background:#24476d}
+.torsten-global .tg-updates .tg-fine{margin-top:22px}
