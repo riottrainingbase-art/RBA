@@ -105,3 +105,36 @@
   .primaryCta, .secondaryCta { flex: 1 1 100%; min-width: 0; }
   .details { text-align: left; }
 }
+
+/* 361° optional product-support placement. Brand/logo approval is enforced in lib/brand-partner-361.ts. */
+.productSupport {
+  display: grid;
+  grid-template-columns: minmax(118px, 150px) minmax(165px, 1fr);
+  align-items: center;
+  gap: 18px;
+  flex: 1 1 360px;
+  min-height: 100px;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  border: 1px solid #c5ccd1;
+  background: #ffffff;
+  color: #14253c;
+  text-decoration: none;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+.productSupport:hover,
+.productSupport:focus-visible { border-color: #8d7955; box-shadow: 0 4px 14px rgba(16,35,63,.08); }
+.productSupport:focus-visible { outline: 3px solid #768da5; outline-offset: 3px; }
+.productLogoPlate {
+  display:flex; align-items:center; justify-content:center;
+  min-height:64px;
+  background:#fff;
+}
+.productLogoPlate img { max-width:100%; width:auto; height:auto; max-height:64px; object-fit:contain; }
+.productText { display:grid; gap:6px; min-width:0; }
+.productText strong { font-size:14px; line-height:1.45; letter-spacing:.015em; font-weight:800; }
+.productText small { font-size:11px; line-height:1.65; color:#56616e; }
+@media(max-width:720px){
+  .productSupport { width:100%; grid-template-columns:116px minmax(0,1fr); gap:14px; padding:12px; min-height:88px; }
+  .productText strong{font-size:13px}.productText small{font-size:10px}
+}
