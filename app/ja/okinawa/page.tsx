@@ -6,6 +6,7 @@ import { OkinawaLandscape } from "@/components/okinawa-landscape";
 import styles from "./page.module.css";
 
 const FORM_URL = "https://form.jotform.com/262765305419057";
+const TRIAL_FORM_URL = "https://form.jotform.com/263092580756060";
 const EMAIL = "riot.training.base@gmail.com";
 const FAMILY_EMAIL = "mailto:riot.training.base@gmail.com?subject=RBA%E6%B2%96%E7%B8%84%EF%BD%9C%E4%BC%9A%E5%93%A1%E3%83%BB%E4%BF%9D%E8%AD%B7%E8%80%85%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87";
 const FUTURE_EMAIL = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("GREAM OKINAWA｜新規参加・体験のご相談");
@@ -14,7 +15,7 @@ const PARTNER_EMAIL = "mailto:riot.training.base@gmail.com?subject=RBA%E6%B2%96%
 export const metadata: Metadata = {
   title: { absolute: "GREAM OKINAWA｜育成活動・会員案内・コーチ募集｜RBA" },
   description:
-    "GREAM OKINAWAの育成方針、現在の活動の確認方法、今後の活動準備、コーチ・S&C・会場協力の相談窓口。新しい定期活動は会場・指導体制・参加条件が整ってからご案内します。",
+    "GREAM OKINAWAのチーム情報・育成方針・保護者向けガイド。沖縄での新規体験会の先行案内希望を無料受付中。開催日時・会場・指導者・参加条件は確認後に正式案内します。",
   alternates: {
     canonical: "https://riotbasketballacademy.com/ja/okinawa",
     languages: {
@@ -121,6 +122,10 @@ const questions = [
     "体育館や地域の活動に協力できますか？",
     "ぜひご相談ください。希望地域、使用可能な曜日・時間、施設規約、協力できる内容をお聞かせください。利用許可や費用を確認するまで開催を確約しません。",
   ],
+  [
+    "体験会の先行申込フォームはありますか？",
+    "保護者向けの無料先行申込フォームがあります。新しい体験会の開催日は未確定です。送信だけで予約・入団は確定せず、条件が整った場合に改めて正式案内します。詳しくは体験会の先行申込ページをご確認ください。",
+  ],
 ] as const;
 
 export default function OkinawaPage() {
@@ -147,7 +152,8 @@ export default function OkinawaPage() {
                 日々の学びを、県外・海外へつながる経験に。
               </p>
               <div className={styles.heroActions}>
-                <Link className={styles.primary} href="#members" data-growth-id="okinawa-ja-current-family">参加中のご家庭へ <span aria-hidden="true">→</span></Link>
+                <Link className={styles.primary} href="/ja/okinawa/trial" data-growth-id="okinawa-ja-trial-hero">体験会の先行申込（無料） <span aria-hidden="true">→</span></Link>
+                <Link className={styles.secondary} href="#members" data-growth-id="okinawa-ja-current-family">参加中のご家庭へ <span aria-hidden="true">→</span></Link>
                 <Link className={styles.secondary} href="#future" data-growth-id="okinawa-ja-future-family">これから参加したい方へ <span aria-hidden="true">→</span></Link>
                 <Link className={styles.secondary} href="#join" data-growth-id="okinawa-ja-partner">指導・会場で協力する <span aria-hidden="true">→</span></Link>
               </div>
@@ -174,7 +180,7 @@ export default function OkinawaPage() {
           <div className={styles.inner}>
             <a href="#our-team">チームについて</a><a href="#status-heading">活動の状況</a>
             <a href="#principles-heading">育成方針</a><a href="#history">活動の歩み</a>
-            <a href="#future">参加希望</a><a href="#join">コーチ・地域連携</a>
+            <a href="#trial-enquiry">体験会先行受付</a><a href="#future">参加希望</a><a href="#join">コーチ・地域連携</a>
             <a href="#faq-heading">よくある質問</a>
           </div>
         </nav>
@@ -282,6 +288,25 @@ export default function OkinawaPage() {
           </div>
         </section>
 
+
+        <section className={styles.trialPromo} id="trial-enquiry" aria-labelledby="trial-promo-heading">
+          <div className={styles.inner}>
+            <div className={styles.trialPromoGrid}>
+              <div>
+                <p className={styles.eyebrow}>OPEN FOR EARLY ENQUIRIES / GREAM OKINAWA</p>
+                <h2 id="trial-promo-heading">沖縄で、次の一歩を。<br /><span>体験会の先行申込、受付中。</span></h2>
+                <p>初めての選手も、もっと学びたい選手も。新しい体験会や継続活動の情報を希望する保護者の方から、無料で先行申込を受け付けます。</p>
+                <p className={styles.trialPromoDisclaimer}>新しい体験会の開催日・会場・担当・参加費・人数枠は未確定です。先行申込は体験参加・入団・予約枠の確定ではありません。条件が整った活動について改めてご案内します。</p>
+              </div>
+              <div className={styles.trialPromoActions}>
+                <Link className={styles.trialPromoButton} href="/ja/okinawa/trial" data-growth-id="okinawa-ja-trial-landing">体験会の先行申込へ <span aria-hidden="true">→</span></Link>
+                <a href={TRIAL_FORM_URL} target="_blank" rel="noopener noreferrer" className={styles.trialPromoSecondary}>Jotformを直接開く（無料） ↗</a>
+                <p>18歳以上の保護者・法定代理人の方からの申込をお願いします。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.softSection} id="future" aria-labelledby="future-heading">
           <div className={styles.inner}>
             <p className={styles.eyebrow}>FOR FUTURE PLAYERS & FAMILIES</p>
@@ -299,8 +324,8 @@ export default function OkinawaPage() {
               ))}
             </ol>
             <div className={styles.futureActions}>
-              <a className={styles.darkButton} href={FUTURE_EMAIL} data-growth-id="okinawa-ja-future-email">新しい活動の参加希望を相談する（無料） <span aria-hidden="true">→</span></a>
-              <p>希望する地域や対象学年を教えていただければ、確認できた活動の案内方法をご説明します。新しい定期活動への申込や体験・入団を確約するものではありません。</p>
+              <Link className={styles.darkButton} href="/ja/okinawa/trial" data-growth-id="okinawa-ja-future-trial">体験会・新規参加の先行申込（無料） <span aria-hidden="true">→</span></Link>
+              <p>保護者専用フォームで希望する地域や年代をお知らせください。開催条件が決まった活動についてご連絡します。先行申込は体験・入団を確約するものではありません。</p>
             </div>
             <p className={styles.disclaimer}>現在の会員の活動が一律に休止しているという案内ではありません。新規・継続の各活動の確定情報は、活動ごとの公式連絡先でご確認ください。</p>
           </div>
@@ -412,7 +437,8 @@ export default function OkinawaPage() {
             <h2>大切なのは、<br />活動を続けるための土台。</h2>
             <p>今の活動の確認も、これからの参加や協力の相談も。分からないことがあれば、まず本部へお問い合わせください。</p>
             <div className={styles.heroActions}>
-              <a className={styles.primary} href={FAMILY_EMAIL} data-growth-id="okinawa-ja-footer-email">RBA沖縄の相談窓口 <span aria-hidden="true">→</span></a>
+              <Link className={styles.primary} href="/ja/okinawa/trial" data-growth-id="okinawa-ja-footer-trial">体験会の先行申込 <span aria-hidden="true">→</span></Link>
+              <a className={styles.secondary} href={FAMILY_EMAIL} data-growth-id="okinawa-ja-footer-email">会員・保護者の相談 <span aria-hidden="true">→</span></a>
               <Link className={styles.secondary} href="/ja/policies">参加規約・安全方針 <span aria-hidden="true">→</span></Link>
             </div>
           </div>
