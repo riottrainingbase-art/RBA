@@ -2,6 +2,7 @@ import { OkinawaCampPartner } from "./okinawa-camp-partner";
 import {ArrowRight,ArrowUpRight,CheckCircle2,Globe2,HeartPulse,ShieldCheck,Users2} from "lucide-react";
 import type {Locale} from "./site-frame";
 import sponsorOfferStyles from "./sponsor-recruitment-offers.module.css";
+import { SponsorProgrammeClarity } from "./sponsor-programme-clarity";
 import { MvpPublicPartner } from "./mvp-public-partner";
 import {localePath} from "./site-frame";
 
@@ -16,7 +17,7 @@ const c={
   platform:"MY HOME COURT",platformTitle:"イベントで終わらせず、日常の成長へ。",
   platformBody:"練習・試合・大会の予定、カウントダウン、大会準備、参加履歴、Basketball Passport、次の育成機会を一つのHOMEへ。スポンサー企業は個人データにアクセスするのではなく、この育成環境を支えるパートナーとして関わります。",
   categories:[["SPORTS / APPAREL","ボール・ウェア・用具・大会準備"],["HEALTH / MEDICAL","怪我予防・安全・コンディショニング"],["FOOD / NUTRITION","補食・栄養教育・キャンプ"],["TRAVEL / MOBILITY","遠征・移動安全・国内外交流"],["IT / DIGITAL","MY HOME COURT・運営基盤"],["LOCAL BUSINESS","地域クリニック・参加機会"]],
-  pilot:"FIRST PARTNER PILOT",pilotTitle:"まずは90日・5万円から。",pilotBody:"最初から年間契約をお願いしません。1つのバスケットボール企画を一緒に動かし、支援の使途と成果を確認したうえで、継続を双方で判断します。",
+  pilot:"FIRST PARTNER PILOT",pilotTitle:"まずは90日・5万円からの企画提案。",pilotBody:"企画協賛の参考案です。無条件の提供価格や活動実施を確約するものではありません。対象企画、必要費用、企業名・ロゴの掲出媒体と期間、実施後の報告内容を見積・契約で決め、継続は双方で判断します。月額企業広告とは別の制度です。",
   included:["公式サイトのパートナー掲載","対象企画での社名・ロゴ掲出または連携","SNS・JOURNAL等での活動紹介","実施後の簡易インパクトレポート"],
   safety:"RBAが守ること",safetyItems:["未成年者への直接営業は行いません","健康・体調などの個人データをスポンサーへ提供しません","広告と育成コンテンツを明確に分けます","肖像・コメントの利用は同意を前提とします"],
   cta:"次の育成機会を、一緒につくる。",ctaBody:"企業が大切にしている価値と、RBAの育成活動が重なる場所を先に決めます。まず一つの企画からご相談ください。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
@@ -82,7 +83,7 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
           <span className={sponsorOfferStyles.plan}>01 / MONTHLY ADVERTISING</span>
           <h3>企業広告パートナー</h3>
           <p className={sponsorOfferStyles.price}>月額10,000円＋税</p>
-          <p>1社1口、税込11,000円／月。公式サイトの企業紹介・許諾済みロゴ・リンク、活動レポートへの掲載を基本とする定型プランです。掲載開始・更新・解約条件は専用ページをご確認ください。</p>
+          <p>1社1口、税込11,000円／月。公式サイト内の応援ページでの企業紹介・許諾済みロゴ・リンク、活動レポートへの掲載を基本とする定型プランです。トップページ掲出は個別契約の対象です。掲載開始・更新・解約条件は専用ページをご確認ください。</p>
           <a className={sponsorOfferStyles.link} href="/ja/support#apply" data-growth-id="sponsor-monthly-plan">企業広告の詳細・申込を見る →</a>
         </article>
         <article className={sponsorOfferStyles.card}>
@@ -103,6 +104,7 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
       <p className={sponsorOfferStyles.disclosure}>無料の相談フォーム送信だけでは契約・掲載・請求は確定しません。企業名・ロゴは許諾や掲載条件の確認後に公開します。未成年者の名簿や健康情報はスポンサーへ提供しません。広告効果や税務上の取扱いを保証するものではありません。<a href="/ja/support#accounting">掲載内容・経理資料・利用条件</a>をご確認ください。</p>
     </div>
   </section>}
+  {locale === "ja" && <SponsorProgrammeClarity />}
   <section className="khm-partner" aria-labelledby="khm-partner-title"><style>{`.khm-partner{background:#f3f0e8;color:#222;padding:64px clamp(24px,6vw,88px)}.khm-partner-inner{max-width:1180px;margin:auto}.khm-partner-kicker{font-size:11px;letter-spacing:.15em;color:#715e36}.khm-partner h2{font-size:clamp(24px,3vw,38px);line-height:1.5;margin:12px 0 30px}.khm-partner-card{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:center;border-top:1px solid #c9bfab;border-bottom:1px solid #c9bfab;padding:30px 0}.khm-partner-mark{display:flex;align-items:center;justify-content:center;background:#e9e2d4;min-height:210px}.khm-partner-crop{display:block;width:130px;height:156px;overflow:hidden;position:relative;mix-blend-mode:multiply}.khm-partner-crop img{position:absolute;width:499.2px!important;height:665.6px!important;max-width:none!important;left:-58.5px;top:-210.17px;mix-blend-mode:multiply}.khm-partner h3{font-size:26px;line-height:1.5;margin:0 0 12px}.khm-partner-copy{font-size:14px;line-height:1.9;max-width:750px}.khm-partner-location{font-size:12px;color:#625e54;margin:15px 0}.khm-partner-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;padding:13px 0;border-bottom:1px solid #85734b;color:#222;min-height:48px;font-size:14px}.khm-partner-link:focus-visible{outline:3px solid #85734b;outline-offset:5px}.khm-partner-link:hover{color:#755b22}@media(max-width:640px){.khm-partner{padding:42px 24px}.khm-partner-card{grid-template-columns:1fr;gap:24px}.khm-partner-mark{min-height:190px}.khm-partner h3{font-size:24px}.khm-partner-link{width:100%}}`}</style><div className="khm-partner-inner"><p className="khm-partner-kicker">RBA SPONSORS &amp; PARTNERS</p><h2 id="khm-partner-title">{locale==="ja"?"スポンサー・パートナーのご紹介":"Meet our sponsors & partners"}</h2><article className="khm-partner-card"><div className="khm-partner-mark"><span className="khm-partner-crop"><img src="https://khm-ecrin.com/assets/khm-brand-source.jpeg" alt="écrin：宝石箱を抱えるゴリラのロゴ" loading="lazy" width="1152" height="1536"/></span></div><div><h3>合同会社KHM</h3><p className="khm-partner-copy">{locale==="ja"?"「想いをつなぎ、未来を運ぶ。」合同会社KHMは、就労継続支援B型事業所écrin、お食事処écrin、軽貨物運送事業を運営しています。":"KHM operates écrin, a Type B continuous employment support service, écrin restaurant, and a light freight delivery business in Japan."}</p><p className="khm-partner-location">{locale==="ja"?"所在地：兵庫県神戸市垂水区舞子坂4-8-12-4":"Kobe, Hyogo, Japan"}</p><a className="khm-partner-link" href="https://khm-ecrin.com/" target="_blank" rel="noopener noreferrer">{locale==="ja"?"KHMの公式ホームページを見る":"Visit the KHM website (Japanese)"}<span aria-hidden="true">↗</span></a></div></article></div></section>
   <MvpPublicPartner locale={locale}/>
   <OkinawaCampPartner locale={locale}/>
