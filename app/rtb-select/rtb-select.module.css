@@ -1,0 +1,116 @@
+
+.page{
+  min-height:100vh;
+  background:#f3f1eb;
+  color:#0b0c0d;
+  font-family:Arial,Helvetica,sans-serif;
+  letter-spacing:-0.01em;
+}
+.shell{width:min(1180px,calc(100% - 40px));margin:0 auto;}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  min-height:84px;border-bottom:1px solid rgba(11,12,13,.18);
+}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+.brandMark{
+  width:36px;height:36px;border:2px solid #0b0c0d;border-radius:50%;
+  display:grid;place-items:center;font-weight:900;font-size:13px;letter-spacing:.06em;
+}
+.brandText strong{display:block;font-size:14px;letter-spacing:.09em;}
+.brandText span{display:block;margin-top:3px;font-size:11px;letter-spacing:.08em;color:#5c5f61;}
+.toplinks{display:flex;gap:18px;align-items:center;}
+.toplinks a{color:inherit;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr);
+  gap:56px;padding:88px 0 72px;align-items:end;
+}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin:0 0 18px;}
+.hero h1{
+  margin:0;font-size:clamp(54px,8.2vw,126px);line-height:.88;
+  letter-spacing:-.075em;font-weight:950;max-width:900px;
+}
+.hero h1 span{display:block;}
+.heroLead{font-size:clamp(18px,2.1vw,28px);line-height:1.45;margin:28px 0 0;max-width:720px;font-weight:600;}
+.heroAside{border-left:1px solid rgba(11,12,13,.22);padding-left:28px;}
+.heroAside p{margin:0 0 18px;font-size:14px;line-height:1.65;color:#3e4143;}
+.primary,.secondary{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+  padding:0 18px;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:.03em;
+}
+.primary{background:#0b0c0d;color:#fff;}
+.secondary{border:1px solid #0b0c0d;color:#0b0c0d;background:transparent;}
+.note{font-size:11px!important;color:#717477!important;margin-top:14px!important;}
+.band{
+  background:#0b0c0d;color:#fff;padding:26px 0;
+}
+.bandInner{display:flex;justify-content:space-between;gap:24px;align-items:center;}
+.band strong{font-size:14px;letter-spacing:.08em;}
+.band span{font-size:12px;color:#b8b9ba;}
+.section{padding:84px 0;border-bottom:1px solid rgba(11,12,13,.16);}
+.sectionHead{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:42px;}
+.sectionIndex{font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;margin:0 0 12px;color:#707275;}
+.section h2{font-size:clamp(34px,5vw,70px);line-height:.98;letter-spacing:-.045em;margin:0;font-weight:900;max-width:760px;}
+.sectionHead>p{margin:0;font-size:16px;line-height:1.75;color:#46494b;max-width:560px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(11,12,13,.18);}
+.card{background:#f3f1eb;padding:34px;min-height:280px;display:flex;flex-direction:column;}
+.cardNum{font-size:11px;font-weight:900;letter-spacing:.15em;color:#777a7c;}
+.card h3{font-size:28px;margin:34px 0 12px;letter-spacing:-.035em;}
+.card p{margin:0;font-size:14px;line-height:1.7;color:#4e5153;}
+.card strong{margin-top:auto;padding-top:34px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.step{padding-top:20px;border-top:3px solid #0b0c0d;}
+.step span{font-size:11px;font-weight:900;letter-spacing:.12em;color:#727476;}
+.step h3{font-size:21px;margin:24px 0 9px;}
+.step p{font-size:13px;line-height:1.65;color:#535658;margin:0;}
+.drop{
+  background:#e86b2a;color:#101112;
+}
+.drop .sectionIndex{color:#47291a;}
+.drop .sectionHead>p{color:#311f16;}
+.dropActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px;}
+.drop .primary{background:#101112;color:#fff;}
+.drop .secondary{border-color:#101112;color:#101112;}
+.brandSection{background:#171819;color:#f6f4ee;}
+.brandSection .sectionIndex{color:#9fa1a3;}
+.brandSection .sectionHead>p{color:#c7c8c8;}
+.partnerGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;}
+.partnerList{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#424446;}
+.partnerList div{background:#171819;padding:24px;}
+.partnerList strong{display:block;font-size:13px;letter-spacing:.06em;margin-bottom:8px;}
+.partnerList p{margin:0;color:#c9caca;font-size:13px;line-height:1.6;}
+.partnerCta{border:1px solid #4b4d4f;padding:32px;align-self:start;}
+.partnerCta h3{margin:0 0 12px;font-size:27px;letter-spacing:-.03em;}
+.partnerCta p{margin:0 0 22px;color:#c9caca;font-size:14px;line-height:1.7;}
+.brandSection .primary{background:#f6f4ee;color:#171819;}
+.brandSection .secondary{border-color:#777a7c;color:#fff;}
+.footer{padding:34px 0 44px;background:#171819;color:#fff;}
+.footerInner{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;}
+.footer strong{font-size:13px;letter-spacing:.08em;}
+.footer p{font-size:11px;color:#a9abad;margin:6px 0 0;}
+.footer a{color:#fff;font-size:12px;text-decoration:none;border-bottom:1px solid #727476;}
+@media(max-width:820px){
+  .shell{width:min(100% - 28px,1180px);}
+  .topbar{min-height:70px;}
+  .toplinks a:first-child{display:none;}
+  .hero{grid-template-columns:1fr;gap:38px;padding:58px 0 52px;}
+  .hero h1{font-size:clamp(52px,18vw,88px);}
+  .heroAside{border-left:0;border-top:1px solid rgba(11,12,13,.22);padding:24px 0 0;}
+  .bandInner{align-items:flex-start;flex-direction:column;gap:6px;}
+  .section{padding:62px 0;}
+  .sectionHead{grid-template-columns:1fr;gap:22px;margin-bottom:30px;}
+  .grid3{grid-template-columns:1fr;}
+  .card{min-height:220px;}
+  .steps{grid-template-columns:1fr 1fr;}
+  .partnerGrid{grid-template-columns:1fr;}
+  .partnerList{grid-template-columns:1fr;}
+  .footerInner{align-items:flex-start;flex-direction:column;}
+}
+@media(max-width:480px){
+  .brandText span{display:none;}
+  .toplinks{gap:10px;}
+  .toplinks a{font-size:10px;}
+  .heroLead{font-size:17px;}
+  .steps{grid-template-columns:1fr;}
+  .dropActions{display:grid;grid-template-columns:1fr;}
+  .primary,.secondary{width:100%;}
+}
