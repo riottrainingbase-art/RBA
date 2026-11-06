@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
+import { CorporateSupportStrip } from "@/components/corporate-support-strip";
 
 const formUrl = "https://form.jotform.com/263082418714053";
 const girlsUrl = "https://form.jotform.com/263083176331050";
@@ -69,6 +70,7 @@ const button = { display: "inline-flex", alignItems: "center", justifyContent: "
 export default function GreamSendaiPage() {
   return <SiteFrame locale="ja">
     <main id="main-content" lang="ja" style={{ background: "#fff", color: ink }}>
+      <CorporateSupportStrip locale="ja" />
       <section style={{ padding: "clamp(62px,8vw,112px) max(20px,6vw) 64px", background: ink, color: "#fff", borderBottom: "6px solid #d6dadd" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p style={{ margin: "0 0 18px", fontSize: 12, fontWeight: 800, letterSpacing: 3, color: "#c5cacf" }}>RIOT BASKETBALL ACADEMY / SENDAI / U15 BOYS CLUB</p>
