@@ -9,6 +9,7 @@ import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
 import { NoteBridge } from "./note-bridge";
+import { CorporateSupportStrip } from "./corporate-support-strip";
 
 const learning = [
   ["育成記事を探す", "RBA JOURNAL｜テーマから無料の記事を探せます。", "/ja/journal"],
@@ -23,6 +24,7 @@ export async function SimpleJapaneseHome() {
   return <div className={styles.page} lang="ja"><SiteFrame locale="ja" compact>
     <div className={styles.container}>
       <GrowthClickTracking />
+      <CorporateSupportStrip locale="ja" />
       <section className={styles.hero} aria-labelledby="rba-home-title">
         <div>
           <p className={styles.label}>RIOT BASKETBALL ACADEMY</p>
