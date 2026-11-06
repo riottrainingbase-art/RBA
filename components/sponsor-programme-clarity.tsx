@@ -35,6 +35,7 @@ export function SponsorProgrammeClarity() {
       </div>
       <div className={styles.actions}>
         <a className={styles.action} href="https://form.jotform.com/263089038431054" rel="noopener noreferrer" target="_blank" data-growth-id="sponsors-process-free-enquiry">企業スポンサーの無料相談 ↗</a>
+        <a className={styles.action+" "+styles.actionAlt} href="/ja/partners/brief">企業向け提案資料を読む →</a>
         <a className={styles.action+" "+styles.actionAlt} href="/ja/support/terms">月額企業広告の利用条件 →</a>
       </div>
       <p className={styles.footnote}>ご相談内容に応じ、必要な範囲で契約書・見積書・掲載確認資料・活動報告の形式を定めます。過去の協賛企業については、契約時期と掲出権限を確認のうえ、現行スポンサーと区別して表示します。</p>
