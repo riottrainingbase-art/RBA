@@ -86,7 +86,7 @@ export default function KoreaPartnerHub() {
           <article><span>DAY CAMP / 숙박 없음 · 해외 기본 요금</span><strong>US$300</strong><p>항공료·교통편·동반 보호자 숙박은 별도입니다.</p></article>
           <article><span>RESIDENTIAL / 선수 2박 · 해외 기본 요금</span><strong>US$450</strong><p>프로그램 지정 숙박·식사를 포함합니다. 최종 제공 범위는 참가 전 안내합니다.</p></article>
         </div>
-        <p className={styles.note}>조기 신청 및 2명 이상 할인은 공식 참가 안내에서 적용 기한·조건을 확인해 주세요. 보호자 숙박, 공항 송영, 체육관 방문, 최종 시간표와 시설 운영 세부 조건은 아직 확정되지 않았습니다. 예약 변경이 불가능한 항공권은 최종 안내 전 구입하지 않는 편이 안전합니다.</p>
+        <p className={styles.note}>해외 참가자 조기 신청 20% 할인은 계속 적용 중이며, 새로운 마감일은 발표되지 않았습니다. 1인 숙박형 US$360·통학형 US$240이며, 대상 2명 신청은 1인당 US$324·US$216입니다. 동반 보호자의 숙박·항공권·이동비는 별도입니다.</p><p className={styles.warning}>셔틀·최종 시간표·숙박 운영과 보험 세부 사항은 조율 중입니다. RBA 외부 협력 사이트와 일부 Stripe 결제 화면의 환불 안내·기존 조기 신청 마감일은 공식 규정과 대조 중입니다. 신청 전 RBA에 직접 확인해 주세요. RBA는 일률적인 20% 환불 불가 조항이나 20일 전부터 전액 환불 불가 조항을 적용하지 않습니다. <a href="/ja/cancellation">RBA 취소·환불 공식 규정 ↗</a></p>
         <div className={styles.actions}><a className={styles.primary} href={camp}>한국 참가자·학부모 안내 보기 ↗</a></div>
       </section>
       <section className={styles.section}>
