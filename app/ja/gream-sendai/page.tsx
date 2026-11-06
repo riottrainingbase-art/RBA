@@ -1,3 +1,4 @@
+import { SendaiSponsorFilm } from "@/components/sendai-sponsor-film";
 import { SendaiCommunity } from "@/components/sendai-community";
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
@@ -96,6 +97,7 @@ export default function GreamSendaiPage() {
           <div><a href="/ja/gream-sendai/monthly-trial" data-growth-id="gream-monthly-trial-intake" style={button}>毎月木曜日の体験希望を登録する →</a></div>
         </div>
       </section>
+      <SendaiSponsorFilm />
       <SendaiCommunity />
       <section aria-labelledby="u12-pathway-cta" style={{background:"#fff",borderBottom:"1px solid #d8dcdd",padding:"40px max(20px,6vw)"}}>
         <div style={{maxWidth:1200,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",alignItems:"center",gap:"20px 40px"}}>
