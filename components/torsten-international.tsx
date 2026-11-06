@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Check, Globe, Play, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
 import { GrowthClickTracking } from "./growth-click-tracking";
+import { TorstenAsiaShareKit } from "./torsten-asia-share-kit";
 import Link from "next/link";
 import "./torsten-international.css";
 import { torstenUsdLive, torstenUsdRecording } from "./torsten-usd-data";
@@ -30,7 +31,7 @@ export function TorstenInternational() {
     <GrowthClickTracking />
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/>
     <section className="tg-hero tg-section">
-      <div className="tg-hero-copy"><Link className="tg-back" href="/">← RIOT BASKETBALL ACADEMY</Link><p className="tg-kicker">ONLINE CLINIC VOL.2 · 25 NOVEMBER 2026</p>
+      <div className="tg-hero-copy"><Link className="tg-back" href="/">← RIOT BASKETBALL ACADEMY</Link><p className="tg-kicker">ONLINE CLINIC VOL.2 · 25 NOVEMBER 2026</p><p className="tg-bp-tag">CURRENT B.LEAGUE PREMIER HEAD COACH · LEVANGA HOKKAIDO</p>
         <h1>Develop shooters.<br/><em>Change the game.</em></h1>
         <p className="tg-lead">Your players can make shots in practice. Can they find and take the right shot in a game?</p>
         <p>Learn with <strong>Torsten Loibl</strong> — <strong>Levanga Hokkaido Head Coach</strong> in Japan’s B.LEAGUE PREMIER, recipient of <strong>FIBA WABC Level 3 Coach Instructor Status</strong> through RPL recognition (22 October 2026), former Japan youth national-team Head Coach, and WABC Executive Committee member. Hosted independently by RBA.</p>
@@ -38,7 +39,7 @@ export function TorstenInternational() {
         <div className="tg-actions"><a className="tg-button" href="#register">Choose live or recording <ArrowRight size={19}/></a><a className="tg-text-link" href="#speaker">Meet your coach ↓</a></div>
         <p className="tg-fine">25 November · 20:00–21:30 JST / 11:00–12:30 UTC<br/>English lecture with Japanese consecutive interpretation within the 90-minute session.</p>
       </div>
-      <figure className="tg-hero-photo"><div className="tg-credentials-visual"><span>FIBA WABC / LEVEL 3 RECOGNITION · 2026</span><strong>LEVEL 3<br/>COACH INSTRUCTOR.<br/>PROVEN<br/>EXPERIENCE.</strong><p>LEVANGA HOKKAIDO · WABC · JAPAN</p></div><figcaption>TORSTEN LOIBL <span>International experience. Practical questions.</span></figcaption></figure>
+      <figure className="tg-hero-photo"><div className="tg-credentials-visual"><span>JAPAN · B.LEAGUE PREMIER 2026–27</span><strong>LEVANGA HOKKAIDO.<br/>HEAD COACH.<br/>GAME-READY<br/>THINKING.</strong><p>LEVANGA HOKKAIDO · WABC · JAPAN</p></div><figcaption>TORSTEN LOIBL <span>International experience. Practical questions.</span></figcaption></figure>
     </section>
 
     <section id="speaker" className="tg-section tg-speaker"><div className="tg-section-heading"><p className="tg-kicker">THE COACH BEHIND THE CLINIC</p><h2>Development experience.<br/>On an international stage.</h2><p>From youth national teams to the professional game, Loibl has worked across player development, team performance and federation leadership.</p></div>
@@ -46,11 +47,25 @@ export function TorstenInternational() {
       <p className="tg-fine tg-source">Verified sources: <a href="https://about.fiba.basketball/en/organization/recognized-organizations/world-association-of-basketball-coaches/executive-committee" target="_blank" rel="noreferrer">FIBA WABC Executive Committee register</a> · <a href="https://www.levanga.com/news/detail/id=22241" target="_blank" rel="noreferrer">Official professional-coaching biography</a> · <a href="https://japanbasketball.jp/3x3japan/52423" target="_blank" rel="noreferrer">Japan national-team historical record</a> · speaker-provided CV dated 27 April 2025 and signed WABC President recognition letter dated 22 October 2026 confirming Level 3 Coach Instructor Status via RPL. These credentials and club roles are biographical; this independently organised RBA clinic is not endorsed, certified or sponsored by FIBA, WABC, B.LEAGUE, Levanga Hokkaido or a national federation.</p>
     </section>
 
+    <section className="tg-section tg-manila" aria-labelledby="torsten-philippines">
+      <p className="tg-kicker">PHILIPPINES · B.LEAGUE MANILA GAMES 2026</p>
+      <h2 id="torsten-philippines">You watched them in Manila.<br/>Now learn from their coach.</h2>
+      <p>Levanga Hokkaido played against Gunma Crane Thunders at the B.LEAGUE MANILA GAMES on 9–10 September 2026. The two games drew a combined 7,219 spectators, according to the league. Torsten Loibl is Levanga Hokkaido's current Head Coach. This 25 November online coach-education clinic is <strong>organised separately by Riot Basketball Academy</strong> — it is not an official Manila Games event and is not endorsed by B.LEAGUE or the clubs.</p>
+      <p className="tg-fine">Official source: <a href="https://www.bleague.jp/basketlive_news_detail/id=620913" target="_blank" rel="noopener noreferrer">B.LEAGUE Manila Games results and attendance</a> · <a href="https://www.levanga.com/news/detail/id=22241" target="_blank" rel="noopener noreferrer">Levanga Hokkaido Head Coach announcement</a>. Local Philippine LIVE time: 25 November, 7:00–8:30 PM PHT. Recording is available as a separate purchase.</p>
+    </section>
+
     <section className="tg-section tg-learning"><p className="tg-kicker">THE MODERN BASKETBALL GAME OF SHOOTERS</p><h2>Not just how to shoot.<br/>How to create the shot.</h2><p className="tg-lead">Three connected themes for coaches who want to bring technical work into the game.</p><div className="tg-three">{questions.map(([label,title,body],i)=><article key={label}><span className="tg-number">0{i+1}</span><p className="tg-kicker">{label}</p><h3>{title}</h3><p>{body}</p></article>)}</div><p className="tg-fine">These are the announced themes and RBA’s framing of the learning opportunity. Individual questions and specific drills are not guaranteed.</p></section>
 
     <section className="tg-section tg-for"><div><p className="tg-kicker">WHO IS IT FOR?</p><h2>Coaches who keep learning.<br/>Adults who support players.</h2></div><ul><li><Check/>Club, school and academy coaches looking at practice design.</li><li><Check/>Team staff and performance coaches connecting training to the game.</li><li><Check/>Parents and players who want to understand the purpose of practice.</li></ul><p className="tg-fine">No coaching licence required. One registration per participant. The lecture is in English, with Japanese consecutive interpretation; this is not a separate English-only session.</p></section>
 
     <section className="tg-section tg-time"><p className="tg-kicker">JOIN FROM YOUR TIME ZONE</p><h2>Wednesday, 25 November 2026.</h2><div className="tg-time-grid"><article><strong>20:00–21:30</strong><span>Japan / Korea · JST / KST</span></article><article><strong>19:00–20:30</strong><span>Singapore / Malaysia / Taiwan / Philippines / Hong Kong</span></article><article><strong>18:00–19:30</strong><span>Thailand / Vietnam / Jakarta · UTC+7</span></article><article><strong>16:30–18:00</strong><span>India / Sri Lanka · IST / SLST</span></article><article><strong>15:00–16:30</strong><span>United Arab Emirates · GST</span></article><article><strong>14:00–15:30</strong><span>Saudi Arabia / Qatar · AST</span></article><article><strong>12:00–13:30</strong><span>Central Europe · CET</span></article><article><strong>11:00–12:30</strong><span>UTC / London · GMT</span></article><article><strong>06:00–07:30</strong><span>New York · EST</span></article></div><p>For coaches in South Asia or the Gulf, the live clinic may fall during work or training. The separately purchased recording offers 30 days of personal viewing from its release after the event. RBA emails access instructions after payment verification and release; there is no live admission with a recording purchase.</p><a className="tg-text-link" href="/media/torsten-clinic/clinic.ics" download>Add the live clinic to your calendar ↗</a></section>
+
+    <section className="tg-section tg-asia-share" id="share">
+      <p className="tg-kicker">SHARE THE OPPORTUNITY · ADULT COACHES ONLY</p>
+      <h2>One clinic.<br/>Local-time details for Asia.</h2>
+      <p>Share an accurate event notice with another adult coach who welcomes information about professional development. Choose a region to see the local LIVE time and the correct international USD purchase route. This tool never sends messages on its own.</p>
+      <TorstenAsiaShareKit />
+    </section>
 
     <section className="tg-section tg-registration" id="register"><p className="tg-kicker">CHOOSE YOUR FORMAT</p><h2>Your learning. Your schedule.</h2><p>International registration in US dollars. Both options include the English lecture with Japanese consecutive interpretation.</p><div className="tg-price-grid">
       <article><div className="tg-price-label"><Video size={22}/><span>LIVE ON ZOOM</span></div><p className="tg-price">US$29<small>per participant</small></p><h3>Be there on 25 November.</h3><ul><li>20:00–21:30 JST / 11:00–12:30 UTC</li><li>90-minute online session</li><li>Recording access is not included</li></ul><a className="tg-button" href={torstenUsdLive} target="_blank" rel="noreferrer" data-growth-id="torsten-intl-live-checkout">Register live · US$29 <ArrowUpRight size={18}/></a></article>
