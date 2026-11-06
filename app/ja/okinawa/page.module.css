@@ -563,3 +563,5 @@
   .accordionItem summary { font-size: 15px; }
   .accordionItem p { padding-right: 15px; }
 }
+
+.lightLead { color: #d2dde1; font-size: 15px; line-height: 1.95; }
