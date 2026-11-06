@@ -50,7 +50,7 @@ export function TorstenInternational() {
     <section className="tg-section tg-manila" aria-labelledby="torsten-philippines">
       <p className="tg-kicker">PHILIPPINES · B.LEAGUE MANILA GAMES 2026</p>
       <h2 id="torsten-philippines">You watched them in Manila.<br/>Now learn from their coach.</h2>
-      <p>Levanga Hokkaido played against Gunma Crane Thunders at the B.LEAGUE MANILA GAMES on 9–10 September 2026. The two games drew a combined 7,219 spectators, according to the league. Torsten Loibl is Levanga Hokkaido's current Head Coach. This 25 November online coach-education clinic is <strong>organised separately by Riot Basketball Academy</strong> — it is not an official Manila Games event and is not endorsed by B.LEAGUE or the clubs.</p>
+      <p>Levanga Hokkaido played against Gunma Crane Thunders at the B.LEAGUE MANILA GAMES on 9–10 September 2026. The two games drew a combined 7,219 spectators, according to the league. Torsten Loibl is Levanga Hokkaido&apos;s current Head Coach. This 25 November online coach-education clinic is <strong>organised separately by Riot Basketball Academy</strong> — it is not an official Manila Games event and is not endorsed by B.LEAGUE or the clubs.</p>
       <p className="tg-fine">Official source: <a href="https://www.bleague.jp/basketlive_news_detail/id=620913" target="_blank" rel="noopener noreferrer">B.LEAGUE Manila Games results and attendance</a> · <a href="https://www.levanga.com/news/detail/id=22241" target="_blank" rel="noopener noreferrer">Levanga Hokkaido Head Coach announcement</a>. Local Philippine LIVE time: 25 November, 7:00–8:30 PM PHT. Recording is available as a separate purchase.</p>
     </section>
 
