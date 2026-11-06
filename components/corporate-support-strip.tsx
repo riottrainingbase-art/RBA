@@ -1,3 +1,4 @@
+// [preview] corporate support permanent homepage release checkpoint 2026-11-06.
 import type { Locale } from "./site-frame";
 import styles from "./corporate-support-strip.module.css";
 
@@ -22,33 +23,33 @@ const corporateSupport = [
 const words = {
   ja: {
     kicker: "CORPORATE SUPPORT / 企業協賛",
-    headline: "育成活動を支えてくださった企業",
+    headline: "企業スポンサー募集中。育成の未来を、ともに。",
     history: "2026年 協賛実績",
-    partner: "企業協賛・連携について",
+    partner: "協賛メニューと掲載条件を見る",
     companyPrefix: "協賛実績：",
     companySuffix: "（2026年3〜8月）",
   },
   en: {
     kicker: "CORPORATE SUPPORT",
-    headline: "Companies that have supported our development work",
+    headline: "Corporate partners welcome — support youth basketball.",
     history: "2026 sponsorship record",
-    partner: "Corporate sponsorship & partnerships",
+    partner: "Explore sponsorship options",
     companyPrefix: "Previous sponsor: ",
     companySuffix: " (Mar–Aug 2026)",
   },
   "zh-tw": {
     kicker: "CORPORATE SUPPORT / 企業支持",
-    headline: "曾支持青少年培育活動的企業",
+    headline: "誠邀企業共同支持青少年籃球",
     history: "2026 年贊助紀錄",
-    partner: "企業合作與贊助",
+    partner: "了解贊助及合作方式",
     companyPrefix: "過往贊助：",
     companySuffix: "（2026 年 3–8 月）",
   },
   ko: {
     kicker: "CORPORATE SUPPORT / 기업 후원",
-    headline: "육성 활동을 지원해 주신 기업",
+    headline: "유소년 농구를 함께 지원할 기업 후원사 모집",
     history: "2026년 후원 실적",
-    partner: "기업 후원 및 협력",
+    partner: "후원 및 협력 안내",
     companyPrefix: "이전 후원사: ",
     companySuffix: " (2026년 3–8월)",
   },
@@ -58,6 +59,7 @@ const words = {
 export function CorporateSupportStrip({ locale }: { locale: Locale }) {
   const t = words[locale];
   const partnerPath = locale === "en" ? "/partners" : locale === "ja" ? "/ja/partners" : "/" + locale + "/partners";
+  const isJapanese = locale === "ja";
   return (
     <section className={styles.strip} aria-label={t.kicker} data-corporate-support="persistent-home">
       <div className={styles.content}>
@@ -82,9 +84,27 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
             </a>
           ))}
         </div>
-        <a className={styles.cta} href={partnerPath}>
-          {t.partner}<span aria-hidden="true"> ↗</span>
-        </a>
+        <div className={styles.actions}>
+          {isJapanese ? (
+            <>
+              <a className={styles.primaryCta} href="/ja/support#apply" data-growth-id="home-corporate-advertising">
+                企業広告 月額11,000円（税込）<span aria-hidden="true"> ↗</span>
+              </a>
+              <a className={styles.secondaryCta} href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" data-growth-id="home-corporate-sponsor-enquiry">
+                企画協賛を無料相談<span aria-hidden="true"> ↗</span>
+              </a>
+            </>
+          ) : (
+            <a className={styles.primaryCta} href={partnerPath}>
+              {t.partner}<span aria-hidden="true"> ↗</span>
+            </a>
+          )}
+          {isJapanese && (
+            <a className={styles.details} href={partnerPath}>
+              協賛メニュー・掲載条件を見る<span aria-hidden="true"> →</span>
+            </a>
+          )}
+        </div>
       </div>
     </section>
   );

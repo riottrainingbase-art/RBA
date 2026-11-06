@@ -1,0 +1,28 @@
+.section {
+  background: #f5f6f5;
+  border-top: 1px solid #d9dfdf;
+  border-bottom: 1px solid #d9dfdf;
+  color: #151b1d;
+  padding: clamp(44px, 6vw, 78px) max(22px, 5vw);
+}
+.inner { max-width: 1220px; margin-inline: auto; }
+.heading { max-width: 850px; margin-bottom: 30px; }
+.eyebrow { color: #4d6267; font-size: 12px; letter-spacing: .16em; font-weight: 850; }
+.heading h2 { font-size: clamp(29px, 4.8vw, 49px); margin: 13px 0 15px; letter-spacing: -.035em; line-height: 1.2; }
+.heading p { font-size: 16px; line-height: 1.95; color: #46535a; margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.card { background: #fff; padding: 26px 24px; border: 1px solid #cdd6d7; min-width: 0; display:flex; flex-direction:column; }
+.cardPrimary { border-top: 5px solid #172b30; }
+.plan { font-size: 11px; font-weight: 850; letter-spacing: .14em; color: #536369; }
+.card h3 { font-size: clamp(20px, 2.8vw, 26px); line-height: 1.35; margin: 13px 0 13px; }
+.price { font-size: 23px; font-weight: 950; letter-spacing: -.02em; line-height: 1.3; margin: 0 0 12px; }
+.card p:not(.price) { font-size: 14px; color: #4b575b; line-height: 1.85; margin: 0 0 19px; }
+.link { display: flex; justify-content: center; align-items: center; min-height: 48px; border: 1px solid #172b30; background: #172b30; color: white; font-size: 14px; font-weight: 850; line-height: 1.5; text-decoration: none; margin-top: auto; padding: 10px 13px; text-align: center; }
+.link:hover { background: #293f43; }
+.linkAlt { background: #fff; color: #172b30; }
+.linkAlt:hover { background: #e8eeee; }
+.disclosure { color: #4b575b; font-size: 13px; line-height: 1.9; margin: 24px 0 0; max-width: 1050px; }
+.disclosure a { color: #1a343d; font-weight: 800; text-underline-offset: 3px; }
+.link:focus-visible { outline: 3px solid #172b30; outline-offset: 3px; }
+@media (max-width: 920px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .section {padding: 38px 20px;} .grid {grid-template-columns: 1fr;} .card {padding: 23px 20px;} }
