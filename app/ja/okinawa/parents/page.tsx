@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const familyRoutes = [
   { code: "01", label: "ALREADY PARTICIPATING", title: "現在参加中のご家庭", body: "予定されている練習・大会の日時、会場、担当者の変更は、既にご案内している公式連絡経路で確認してください。分からない場合は、活動名と日付を本部までお知らせください。", action: "会員・保護者の相談", href: MEMBER_EMAIL },
-  { code: "02", label: "FUTURE PARTICIPATION", title: "これから参加したいご家庭", body: "新しい定期活動は指導者、会場、安全体制、日時、対象、参加費などを確認後に正式案内します。現時点で参加相談は可能ですが、入会・体験日時は確定しません。", action: "無料で参加相談", href: JOIN_EMAIL },
+  { code: "02", label: "FUTURE PARTICIPATION", title: "これから参加したいご家庭", body: "体験会の先行案内を希望する保護者の方から、無料で先行申込を受け付けています。開催日・会場・担当・料金・参加枠は未確定で、送信は正式予約や入団ではありません。", action: "体験会の先行申込（無料）", href: "/ja/okinawa/trial", internal: true },
   { code: "03", label: "SEPARATE EVENTS", title: "クリニック・キャンプ参加", body: "単発イベントは定期チームと別の参加条件です。会場、年齢、費用、宿泊、決済、キャンセル条件は各イベントの公式ページでご確認ください。", action: "活動一覧へ", href: "/ja/schedule", internal: true },
 ] as const;
 
@@ -49,6 +49,7 @@ const faq = [
   ["学校や現在のチームに所属したまま参加できますか？", "活動により登録資格・掛け持ちの条件が異なります。所属先の規則や大会登録条件を確認のうえご相談ください。"],
   ["選手の写真や動画が公開されますか？", "肖像・映像の掲載には、対象者と施設など必要な許諾を確認し、利用目的を限定します。公開に関する個別の不安は本部までご相談ください。"],
   ["相談メールには何を書けばよいですか？", "活動名、対象月・日付、確認したい事項を簡潔にお知らせください。最初から診断書、口座番号、クレジットカード情報、身分証などを添付する必要はありません。"],
+  ["体験会の先行申込はどこからできますか？", "保護者専用の体験会先行申込ページから無料で申し込めます。開催条件の確認中のため、現時点では体験枠の予約や入団、費用の発生を意味しません。"],
 ] as const;
 
 export default function OkinawaParentGuide() {
@@ -63,7 +64,7 @@ export default function OkinawaParentGuide() {
             <p className={styles.detailLead}>今通っている活動の連絡と、これからの新しい活動の案内は別です。安心して判断できるよう、確定したこと・準備中のこと・相談先を分けてご案内します。</p>
             <div className={styles.detailActions}>
               <a className={styles.primary} href={MEMBER_EMAIL}>現在の活動について相談する →</a>
-              <a className={styles.secondary} href={JOIN_EMAIL}>これからの参加を相談する →</a>
+              <Link className={styles.secondary} href="/ja/okinawa/trial">体験会の先行申込（無料） →</Link>
             </div>
             <p className={styles.detailHint}>本ページで会場・担当者・日時・会費の変更や、新しい入会・予約を確定することはありません。</p>
           </div>
@@ -131,7 +132,7 @@ export default function OkinawaParentGuide() {
               </div>
               <div className={styles.detailClosingActions}>
                 <a className={styles.darkButton} href={MEMBER_EMAIL}>今の活動・会費について問い合わせる →</a>
-                <a className={styles.textLink} href={JOIN_EMAIL}>新しい活動への参加希望を相談 →</a>
+                <Link className={styles.textLink} href="/ja/okinawa/trial">体験会・新規参加の先行申込 →</Link>
                 <Link className={styles.textLink} href="/ja/policies">参加規約・安全・プライバシーについて →</Link>
                 <Link className={styles.textLink} href="/ja/okinawa/development">育成方針と練習の考え方を見る →</Link>
               </div>
