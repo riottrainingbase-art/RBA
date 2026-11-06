@@ -152,6 +152,33 @@ export default function OkinawaPage() {
           </div>
         </section>
 
+
+        <nav className={styles.teamSubnav} aria-label="GREAM沖縄のページ案内">
+          <div className={styles.inner}>
+            <a href="#our-team">チームについて</a><a href="#status-heading">活動の状況</a>
+            <a href="#principles-heading">育成方針</a><a href="#history">活動の歩み</a>
+            <a href="#future">参加希望</a><a href="#join">コーチ・地域連携</a>
+            <a href="#faq-heading">よくある質問</a>
+          </div>
+        </nav>
+
+        <section className={styles.teamIntro} id="our-team" aria-labelledby="team-intro-heading">
+          <div className={styles.inner}>
+            <p className={styles.eyebrow}>GREAM OKINAWA / OUR PURPOSE</p>
+            <div className={styles.teamIntroGrid}>
+              <div>
+                <h2 id="team-intro-heading">その日の勝敗だけで、<br />子どもの未来を決めない。</h2>
+                <p>GREAM OKINAWAは、Riot Basketball Academyが沖縄で取り組む育成年代のバスケットボール活動です。技術を教えるだけでなく、選手が自分で見て、判断し、挑戦する経験を大切にします。</p>
+                <p>地域での日常的な学びと、県外・海外につながる刺激。どちらか一つではなく、子どもたちが長く成長できる選択肢をつくることを目指しています。</p>
+              </div>
+              <div className={styles.teamIntroHighlight}>
+                2026年1月から沖縄で体験・募集活動を開始。沖縄本島と石垣島でのクリニック、3x3、キャンプ、交流などを通して、育成の機会を広げてきました。
+                <p>新しい定期活動については、現地の指導者・会場・安全・料金が整った段階で正式案内します。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.section} aria-labelledby="status-heading">
           <div className={styles.inner}>
             <p className={styles.eyebrow}>HOW TO FIND THE RIGHT INFORMATION</p>
@@ -213,6 +240,31 @@ export default function OkinawaPage() {
           </div>
         </section>
 
+
+        <section className={styles.section} aria-labelledby="team-learn-heading">
+          <div className={styles.inner}>
+            <p className={styles.eyebrow}>EXPLORE GREAM OKINAWA</p>
+            <div className={styles.heading}>
+              <h2 id="team-learn-heading">何を教えるか。どう守るか。</h2>
+              <p>チームを選ぶときに必要な情報を、育成方針と保護者向け案内に分けて公開します。まだ決まっていないことも正確に伝えます。</p>
+            </div>
+            <div className={styles.teamPathGrid}>
+              <article className={styles.teamPath}>
+                <p className={styles.mini}>01 / DEVELOPMENT PRINCIPLES</p>
+                <h3>選手が、自分で選べるように。</h3>
+                <p>「見る・判断する・実行する・振り返る」。U8・U10・U12・U15の年代別の視点、90分練習モデル、挑戦と出場機会への考え方を紹介します。</p>
+                <Link className={styles.textLink} href="/ja/okinawa/development">育成方針を詳しく見る <span aria-hidden="true">→</span></Link>
+              </article>
+              <article className={styles.teamPath}>
+                <p className={styles.mini}>02 / FOR FAMILIES</p>
+                <h3>保護者が、納得して選べるように。</h3>
+                <p>現在の活動の確認方法、新規参加の相談、会費・振替・返金、体調と安全、写真・映像の取扱い、よくある質問を一つのガイドに整理しました。</p>
+                <Link className={styles.textLink} href="/ja/okinawa/parents">保護者向けガイドを読む <span aria-hidden="true">→</span></Link>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.softSection} id="future" aria-labelledby="future-heading">
           <div className={styles.inner}>
             <p className={styles.eyebrow}>FOR FUTURE PLAYERS & FAMILIES</p>
@@ -234,6 +286,35 @@ export default function OkinawaPage() {
               <p>希望する地域や対象学年を教えていただければ、確認できた活動の案内方法をご説明します。新しい定期活動への申込や体験・入団を確約するものではありません。</p>
             </div>
             <p className={styles.disclaimer}>現在の会員の活動が一律に休止しているという案内ではありません。新規・継続の各活動の確定情報は、活動ごとの公式連絡先でご確認ください。</p>
+          </div>
+        </section>
+
+
+        <section className={styles.section} id="history" aria-labelledby="history-heading">
+          <div className={styles.inner}>
+            <p className={styles.eyebrow}>OUR FOOTPRINT / OKINAWA 2026</p>
+            <div className={styles.heading}>
+              <h2 id="history-heading">一度きりではない、沖縄での活動。</h2>
+              <p>2026年9月にサンシャインゆいま～る事務局へ提出した活動実績資料をもとに、主な活動を紹介します。参加人数や現在の運営体制を示すものではありません。</p>
+            </div>
+            <div className={styles.timelineGrid}>
+              <article className={styles.timelineEntry}>
+                <strong>JAN–MAR / 2026</strong><h3>沖縄での体験活動を開始</h3>
+                <p>1月に体験会の募集、2月に説明会・体験会の参加記録、3月に石垣島クリニックの申込運用など。</p>
+              </article>
+              <article className={styles.timelineEntry}>
+                <strong>JUNE–JULY / 2026</strong><h3>地域で学ぶ機会を拡大</h3>
+                <p>南城市・豊見城でのクリニック、与那原でのBACKBONE 3x3プログラム。</p>
+              </article>
+              <article className={styles.timelineEntry}>
+                <strong>AUG / 2026</strong><h3>キャンプと海外交流</h3>
+                <p>糸満青少年の家での3日間のキャンプ、台湾のチームとの沖縄での育成交流。</p>
+              </article>
+              <article className={styles.timelineEntry}>
+                <strong>LOOKING AHEAD</strong><h3>続けられる環境をつくる</h3>
+                <p>現地の指導者、会場、安全管理、会員対応の条件を整え、次の活動につなぐ準備を進めます。</p>
+              </article>
+            </div>
           </div>
         </section>
 
