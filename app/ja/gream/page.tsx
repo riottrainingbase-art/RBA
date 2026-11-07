@@ -1,4 +1,106 @@
 import type { Metadata } from "next";
-import { CategoryPage } from "@/components/development-category-page";
-export const metadata:Metadata={title:"GREAM｜U15育成チーム｜仙台・沖縄・秋田",description:"GREAMはRiot Basketball AcademyのU15育成チームプロジェクト。仙台・沖縄・秋田の地域ページを案内します。",alternates:{canonical:"https://riotbasketballacademy.com/ja/gream"}};
-export default function Page(){return <CategoryPage eyebrow="GREAM / U15 DEVELOPMENT TEAM PROJECT" title="GREAM｜U15育成チーム" lead="GREAMは、U15年代の選手が継続的に成長するための育成チームプロジェクトです。仙台・沖縄・秋田、それぞれの地域で活動と運営体制を整えます。地域によって募集・活動状況は異なります。" cards={[{eyebrow:"MIYAGI / SENDAI",title:"GREAM SENDAI",body:"仙台市太白区を拠点とするU15男子クラブ。既存の詳細ページで、育成方針、メンバー募集、体験相談、地域スポンサー情報をご案内します。",href:"/ja/gream-sendai",cta:"仙台チームの詳細"},{eyebrow:"OKINAWA",title:"GREAM OKINAWA",body:"沖縄のU15育成チームプロジェクト。現在の活動案内と、今後の指導・運営体制づくりを分けてお知らせします。",href:"/ja/gream-okinawa",cta:"沖縄チームの詳細"},{eyebrow:"AKITA",title:"GREAM AKITA",body:"秋田のDSMとのU15育成連携。地域の活動内容・受入条件・募集状況は確認できた情報から更新します。",href:"/ja/gream-akita",cta:"秋田の連携・活動案内"}]} note="各地域の活動・募集・会費は共通とは限りません。確定していない条件は推測して表示しません。"/>}
+import { SiteFrame } from "@/components/site-frame";
+import styles from "./gream.module.css";
+
+const canonical = "https://riotbasketballacademy.com/ja/gream";
+
+export const metadata: Metadata = {
+  title: "GREAM U15｜秋田・仙台・沖縄の育成チーム｜RBA",
+  description: "GREAMはRiot Basketball AcademyのU15育成チームプロジェクト。秋田・仙台・沖縄の活動、体験相談、地域と全国の企業協賛をひとつの入口からご案内します。",
+  alternates: { canonical },
+  openGraph: {
+    title: "GREAM U15｜地域で育つ。その挑戦を、一緒に。",
+    description: "勝敗だけでなく、見る・判断する・実行する・振り返る。GREAMの地域別の活動と支援の入口。",
+    url: canonical, siteName: "Riot Basketball Academy", type: "website",
+    images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
+  },
+};
+
+const regions = [
+  {
+    label: "01 / AKITA", name: "DSM GREAM", place: "秋田｜大仙・仙北・美郷", stage: "男子U15・育成連携",
+    copy: "高橋雄作HCを中心とした秋田のU15育成プロジェクト。RBA代表がアドバイザーとして関わり、活動条件は確認できたものからご案内します。",
+    href: "/ja/gream-akita", cta: "秋田のチームを見る",
+  },
+  {
+    label: "02 / SENDAI", name: "GREAM SENDAI", place: "宮城｜仙台市太白区", stage: "男子U15・活動案内と参加相談",
+    copy: "仙台市太白区を中心に2026年から活動する男子U15クラブ。体験・入団に関する相談と、地域企業の広告協賛をご案内しています。",
+    href: "/ja/gream-sendai", cta: "仙台のチームを見る",
+  },
+  {
+    label: "03 / OKINAWA", name: "GREAM OKINAWA", place: "沖縄｜運営体制を整備中", stage: "新体制・会場・コーチを調整中",
+    copy: "育成を続けるための現地指導・運営体制を整えています。新しい定期活動が確定したという案内ではありません。",
+    href: "/ja/gream-okinawa", cta: "沖縄の案内を見る",
+  },
+] as const;
+
+const steps = [
+  { number: "01", title: "見る", text: "相手、仲間、スペースを認知する。" },
+  { number: "02", title: "選ぶ", text: "自分の状況から判断する。" },
+  { number: "03", title: "試す", text: "技術を実際のゲームにつなげる。" },
+  { number: "04", title: "振り返る", text: "次の挑戦へ学びを残す。" },
+] as const;
+
+export default function GreamPage() {
+  return <SiteFrame locale="ja">
+    <div className={styles.shell}>
+      <section className={styles.hero} aria-labelledby="gream-heading">
+        <div className={styles.wrap}>
+          <div className={styles.heroInner}>
+            <div>
+              <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / U15 DEVELOPMENT</p>
+              <h1 id="gream-heading" className={styles.heroTitle}>GREAM<small>DEVELOPMENT PROJECT</small></h1>
+              <h2 className={styles.heroSub}>育つ場所は、<br/>一つじゃない。</h2>
+              <p className={styles.heroCopy}>秋田・仙台・沖縄。GREAMは、U15年代の選手が自分で考え、試し、成長を続けるためのRBA育成チームプロジェクトです。所属や地域を越えて、次の挑戦につながる環境をつくります。</p>
+              <div className={styles.actions}>
+                <a className={styles.cta} href="#regions" data-growth-id="gream-region-entry">地域のチームを見る →</a>
+                <a className={styles.ghost} href="/ja/gream/support" data-growth-id="gream-support-hero">GREAMを応援する →</a>
+              </div>
+            </div>
+            <aside className={styles.heroAside} aria-label="GREAMの育成理念">
+              <p className={styles.eyebrow}>NOT ONLY RESULTS</p>
+              <strong>THE NEXT<br/>STEP MATTERS.</strong>
+              <p>練習の目的を知る。試合で自分で選ぶ。失敗から学ぶ。その積み重ねを、地域のコーチや企業とともに支えます。</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <div className={styles.accentLine} aria-hidden="true" />
+      <section className={styles.section} id="regions" aria-labelledby="gream-regions-title">
+        <div className={styles.wrap}>
+          <div className={styles.sectionHeader}>
+            <div><p className={styles.sectionTag}>THREE LOCAL CHAPTERS</p><h2 id="gream-regions-title">地域から、次の成長へ。</h2>
+            <p>チームごとに運営形態や募集状況は異なります。確認できた内容を地域別にご案内します。</p></div>
+          </div>
+          <div className={styles.regionGrid}>
+            {regions.map(region => <article className={styles.regionCard} key={region.name}>
+              <p className={styles.regionLabel}>{region.label}</p>
+              <h3>{region.name}</h3>
+              <p className={styles.place}>{region.place}</p>
+              <span className={styles.cardStatus}>{region.stage}</span>
+              <p>{region.copy}</p>
+              <a href={region.href} data-growth-id={`gream-region-${region.label.slice(5).toLowerCase()}`}>{region.cta} →</a>
+            </article>)}
+          </div>
+        </div>
+      </section>
+      <section className={styles.section} aria-labelledby="gream-identity">
+        <div className={styles.wrap}>
+          <p className={styles.sectionTag}>OUR DEVELOPMENT PRINCIPLES</p>
+          <h2 id="gream-identity">勝敗の先に、育成を。</h2>
+          <p className={styles.sectionLead}>GREAMが届けたいのは、試合の結果だけではなく、次のプレーを自分で選べるようになる経験です。チーム運営の状況にかかわらず、育成の考え方を共有します。</p>
+          <div className={styles.pillars} style={{marginTop:28}}>
+            {steps.map(step => <div className={styles.pillar} key={step.number}><span>{step.number}</span><h3>{step.title}</h3><p>{step.text}</p></div>)}
+          </div>
+        </div>
+      </section>
+      <section className={styles.banner} aria-labelledby="gream-partner-call">
+        <div className={`${styles.wrap} ${styles.bannerLayout}`}>
+          <div><p className={styles.eyebrow}>GREAM / COMMUNITY PARTNERS</p><h2 id="gream-partner-call">その挑戦を、地域の力で。</h2>
+          <p>お店・企業・個人の支援が、練習環境や学ぶ機会につながる仕組みをつくります。まずは希望する地域と支援方法をお選びください。契約や掲載は条件を確認してから進めます。</p></div>
+          <a className={styles.cta} href="/ja/gream/support" data-growth-id="gream-support-bottom">GREAMの支援方法を見る →</a>
+        </div>
+      </section>
+    </div>
+  </SiteFrame>;
+}
