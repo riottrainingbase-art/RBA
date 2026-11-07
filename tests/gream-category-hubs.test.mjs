@@ -52,6 +52,6 @@ test("Sendai remains a separate full club site and CTAs stay unchanged",()=>{
   const sendai=read("app/ja/gream-sendai/page.tsx");
   assert.match(sendai,/GREAM/);
   assert.match(sendai,/gream-sendai-club-hero-intake/);
-  assert.match(sendai,/gream-sendai\\/partners/);
+  assert.match(sendai,/gream-sendai\/partners/);
   assert.match(sendai,/gream-sendai\/monthly-trial/);
 });
