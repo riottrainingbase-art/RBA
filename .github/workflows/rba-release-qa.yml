@@ -94,6 +94,9 @@ jobs:
       - name: Brand support publishing approval gate
         run: node --test tests/361-homepage-partner-approval.test.mjs
 
+      - name: Corporate partner link, accessibility, and historical status checks
+        run: node --test tests/corporate-support-link-targets.test.mjs
+
       - name: Okinawa camp live funnel and pricing CTA regression
         run: node --test tests/okinawa-camp-conversion.test.mjs
 

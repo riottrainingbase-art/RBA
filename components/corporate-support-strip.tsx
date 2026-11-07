@@ -31,6 +31,9 @@ const words = {
     partner: "協賛メニューと掲載条件を見る",
     companyPrefix: "協賛実績：",
     companySuffix: "（2026年3〜8月）",
+    websiteLabel: "中神工務店 公式サイト",
+    instagramLabel: "OURPLACE 公式Instagram",
+    linkGroupLabel: "中神工務店・OURPLACE へのリンク",
     productSupport: "育成活動の商品サポート",
     productNote: "用品提供による活動協力。金銭協賛・独占スポンサーを意味しません。",
   },
@@ -41,6 +44,9 @@ const words = {
     partner: "Explore sponsorship options",
     companyPrefix: "Previous sponsor: ",
     companySuffix: " (Mar–Aug 2026)",
+    websiteLabel: "Nakagami official website",
+    instagramLabel: "OURPLACE official Instagram",
+    linkGroupLabel: "Nakagami and OURPLACE links",
     productSupport: "Product support for youth development",
     productNote: "Product collaboration; not a financial or exclusive sponsorship.",
   },
@@ -51,6 +57,9 @@ const words = {
     partner: "了解贊助及合作方式",
     companyPrefix: "過往贊助：",
     companySuffix: "（2026 年 3–8 月）",
+    websiteLabel: "中神工務店官方網站",
+    instagramLabel: "OURPLACE 官方 Instagram",
+    linkGroupLabel: "中神工務店與 OURPLACE 連結",
     productSupport: "青少年培育用品支持",
     productNote: "用品合作，不代表金錢贊助或獨家合作。",
   },
@@ -61,6 +70,9 @@ const words = {
     partner: "후원 및 협력 안내",
     companyPrefix: "이전 후원사: ",
     companySuffix: " (2026년 3–8월)",
+    websiteLabel: "나카가미 공식 웹사이트",
+    instagramLabel: "OURPLACE 공식 Instagram",
+    linkGroupLabel: "나카가미 및 OURPLACE 링크",
     productSupport: "유소년 육성 용품 지원",
     productNote: "물품 협력이며 금전·독점 후원을 의미하지 않습니다.",
   },
@@ -100,28 +112,38 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
             </a>
           )}
           {corporateSupport.map((company) => (
-            <div key={company.key} className={styles.companyRecord}>
-              <a
-                className={styles.company}
-                href={company.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={t.companyPrefix + company.name + t.companySuffix + " — official website"}
-              >
+            <article
+              key={company.key}
+              className={styles.companyRecord}
+              data-sponsor-key={company.key}
+              data-sponsor-status={company.status}
+            >
+              <div className={styles.companyBrand}>
                 <span className={styles.wordmark}>{company.englishName}</span>
-                <span className={styles.legalName}>{company.name}</span>
+                <strong className={styles.legalName}>{company.name}</strong>
                 <span className={styles.period}>{company.period} / {t.history}</span>
-              </a>
-              <a
-                className={styles.relatedLink}
-                href={company.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="OURPLACE — official Instagram"
-              >
-                OURPLACE Instagram <span aria-hidden="true">↗</span>
-              </a>
-            </div>
+              </div>
+              <nav className={styles.companyLinks} aria-label={t.linkGroupLabel}>
+                <a
+                  href={company.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t.websiteLabel}
+                  data-growth-id="home-nakagami-official-site"
+                >
+                  <span>{t.websiteLabel}</span><span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  href={company.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t.instagramLabel}
+                  data-growth-id="home-ourplace-instagram"
+                >
+                  <span>{t.instagramLabel}</span><span aria-hidden="true">↗</span>
+                </a>
+              </nav>
+            </article>
           ))}
         </div>
         <div className={styles.actions}>
