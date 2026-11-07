@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Instagramから参加する・学ぶ",
   description:
-    "沖縄国際キャンプ（12月22〜24日・7〜18歳）、全国クリニック、オンライン指導者講習、D-HUB、MY HOME COURTへ。選手・保護者・指導者のための公式入口。",
+    "全国クリニック、U15育成、オンライン指導者教育、国際交流、企業協賛・広告パートナーの相談。選手・保護者・指導者・企業のためのRBA公式入口。",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://riotbasketballacademy.com/ja/instagram" },
   openGraph: {
@@ -122,7 +122,39 @@ export default function InstagramEntryPage() {
             <span className="border border-neutral-300 bg-white px-3 py-2">保護者</span>
             <span className="border border-neutral-300 bg-white px-3 py-2">指導者</span>
             <span className="border border-neutral-300 bg-white px-3 py-2">チーム・地域</span>
+            <span className="border border-neutral-300 bg-white px-3 py-2">企業・協賛担当者</span>
           </div>
+        </section>
+
+        <section className="mx-5 mb-7 border-2 border-[#151719] bg-white px-5 py-6 sm:mx-9 sm:px-7" aria-labelledby="instagram-sponsor-title">
+          <p className="text-[11px] font-bold tracking-[.16em] text-neutral-600">CORPORATE PARTNERS / 企業・地域スポンサー</p>
+          <h2 id="instagram-sponsor-title" className="mt-3 text-[26px] font-black leading-tight tracking-[-.04em] sm:text-[32px]">
+            育成の可能性を、<br />一緒に広げませんか。
+          </h2>
+          <p className="mt-3 text-sm leading-7 text-neutral-700">
+            RBAは、子どもの挑戦や地域開催を支える企業・地域パートナーを募集しています。広告掲載と個別の企画協賛では、内容と条件が異なります。
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <a
+              href={track("/ja/support", "monthly_corporate_ad", "rba_sponsor_202611")}
+              data-cta="instagram-monthly-business-ad" data-growth-id="instagram-corporate-monthly"
+              className="flex min-h-28 flex-col justify-between gap-3 border border-[#151719] bg-[#151719] px-4 py-4 text-white transition-colors hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            >
+              <span className="flex items-center justify-between gap-2 text-sm font-black">企業広告 月額11,000円（税込） <ArrowUpRight size={18} aria-hidden="true" /></span>
+              <span className="text-[12px] leading-5 text-neutral-300">応援ページ・月次活動レポートへの広告掲載</span>
+            </a>
+            <a
+              href={track("/ja/sponsor", "custom_sponsorship_inquiry", "rba_sponsor_202611")}
+              data-cta="instagram-sponsorship-inquiry" data-growth-id="instagram-corporate-custom"
+              className="flex min-h-28 flex-col justify-between gap-3 border border-neutral-300 bg-neutral-100 px-4 py-4 transition-colors hover:border-neutral-900 hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            >
+              <span className="flex items-center justify-between gap-2 text-sm font-black">トップ掲載・企画協賛を相談 <ArrowUpRight size={18} aria-hidden="true" /></span>
+              <span className="text-[12px] leading-5 text-neutral-600">地域・イベント・公式掲出など、媒体と条件を個別協議</span>
+            </a>
+          </div>
+          <p className="mt-4 text-[11px] leading-5 text-neutral-600">
+            月額企業広告には、トップページ上部・ユニフォーム等の公式スポンサー掲出は含まれません。掲載条件や契約内容をご確認のうえお申し込みください。
+          </p>
         </section>
 
         {showTorsten && (
