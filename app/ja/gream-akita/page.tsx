@@ -5,7 +5,7 @@ import styles from "./trial.module.css";
 const pageUrl = "https://riotbasketballacademy.com/ja/gream-akita";
 const formUrl = "https://form.jotform.com/263100516738049";
 const title = "DSM GREAM 秋田｜男子U15 練習体験募集｜RBA";
-const description = "大仙市・仙北市・美郷町を中心に活動する男子U15バスケットボールクラブ、DSM GREAM。ヘッドコーチは高橋優作、アドバイザーはRBA代表の西尾優人。保護者用フォームで練習体験を受付中。";
+const description = "大仙市・仙北市・美郷町を中心に活動する男子U15バスケットボールクラブ、DSM GREAM。ヘッドコーチは高橋雄作、アドバイザーはRBA代表の西尾優人。保護者用フォームで練習体験を受付中。";
 
 export const metadata: Metadata = {
   title,
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const coaches = [
-  { role: "ヘッドコーチ", name: "高橋 優作", bio: "JBA公認A級コーチ・JBA公認ジュニアエキスパート" },
+  { role: "ヘッドコーチ", name: "高橋 雄作", bio: "JBA公認A級コーチ・JBA公認ジュニアエキスパート" },
   { role: "アドバイザー", name: "西尾 優人", bio: "Riot Basketball Academy 代表。育成面をサポートします。" },
 ];
 
