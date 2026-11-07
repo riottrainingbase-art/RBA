@@ -40,6 +40,7 @@ export async function SimpleJapaneseHome() {
 
 
 
+      <section className={styles.regional} aria-labelledby="home-age-categories"><div><p className={styles.label}>CHOOSE YOUR AGE / DEVELOPMENT PATHWAY</p><h2 id="home-age-categories">U12とU15。育成の入口を、分かりやすく。</h2><p>U12は小学生年代のスクール・クリニック。U15は中学生年代の育成。GREAMは仙台・沖縄・秋田で展開するU15育成チームプロジェクトです。所属を変えずに学べるスクールとは区別してご案内します。</p></div><div className={styles.regionalActions}><a href="/ja/u12" data-growth-id="home-u12-category">U12｜小学生の育成 →</a><a href="/ja/u15" data-growth-id="home-u15-category">U15｜中学生年代の育成 →</a><a href="/ja/gream" data-growth-id="home-gream-regions">GREAM｜仙台・沖縄・秋田 →</a></div></section>
       <SendaiCommunity />
       <NovemberCampaign />
 

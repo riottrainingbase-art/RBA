@@ -33,6 +33,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
   const c=labels[locale];
   const nav=[
     [({en:"Activities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
+    ...(locale==="ja"?[["U12","/ja/u12"],["U15","/ja/u15"],["GREAM","/ja/gream"]] as [string,string][]:[]),
     [({en:"Learning",ja:"育成を学ぶ","zh-tw":"培育學習",ko:"육성 배우기"})[locale],localePath(locale,"journal")],
     [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
     [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],

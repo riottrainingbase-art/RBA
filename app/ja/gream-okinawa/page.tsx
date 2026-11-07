@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { CategoryPage } from "@/components/development-category-page";
+export const metadata:Metadata={title:"GREAM沖縄｜U15育成チーム｜RBA",description:"GREAM沖縄U15育成チーム。運営体制の整備状況、既存会員の案内、指導者・会場協力を確認。",alternates:{canonical:"https://riotbasketballacademy.com/ja/gream-okinawa"}};
+export default function Page(){return <CategoryPage eyebrow="GREAM / OKINAWA / U15" title="GREAM OKINAWA" lead="沖縄のU15育成チームプロジェクト。RBAは指導者・会場・安全管理を含む運営体制を整備しています。新しい定期活動の日時、会場、費用、募集開始は確定後にご案内します。" cards={[{eyebrow:"MEMBERS / CURRENT INFORMATION",title:"現在の活動・会員案内",body:"既存の沖縄向け案内ページで、現在公開されている活動・会員向け情報をご確認ください。",href:"/ja/okinawa",cta:"沖縄の案内を見る"},{eyebrow:"COACHES / PARTNERS",title:"指導者・会場協力",body:"U15育成に関わるコーチ、S&C、会場や地域協力についての相談窓口です。",href:"/ja/okinawa-coach",cta:"協力のご相談"},{eyebrow:"ALL GREAM TEAMS",title:"GREAMの3地域",body:"仙台・秋田を含むU15育成チームプロジェクトの全体像をご覧いただけます。",href:"/ja/gream",cta:"GREAM一覧に戻る"}]} note="このページは新体制の確定や募集開始を意味しません。参加・支払確定は個別の正式案内に従ってください。"/>}
