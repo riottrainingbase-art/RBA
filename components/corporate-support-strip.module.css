@@ -11,6 +11,17 @@
 .heading strong { font-size: 15px; line-height: 1.55; font-weight: 850; }
 .category { font-size: 12px; line-height: 1.5; color: #56636b; }
 .records { flex: 1 1 300px; display: flex; flex-wrap: wrap; gap: 10px; min-width: 0; }
+.companyRecord { flex: 0 1 290px; min-width: min(100%, 265px); display: flex; flex-direction: column; }
+.companyRecord .company { min-width: 0; width: 100%; }
+.relatedLink {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 9px 14px; min-height: 40px;
+  border: 1px solid #bac4c5; border-top: 0; background: #fff;
+  color: #2b414b; text-decoration: underline; text-underline-offset: 3px;
+  font-size: 12px; line-height: 1.5; font-weight: 750;
+}
+.relatedLink:hover { background: #f0f4f3; }
+.relatedLink:focus-visible { outline: 2px solid #14272d; outline-offset: 3px; }
 .company {
   display: flex; flex-direction: column; justify-content: center; padding: 12px 20px;
   min-height: 72px; min-width: min(100%, 265px); border: 1px solid #bac4c5;
@@ -32,6 +43,7 @@
   .heading { flex-basis: 100%; gap: 2px; }
   .heading strong { font-size: 14px; }
   .records { flex-basis: 100%; }
+  .companyRecord { width: 100%; min-width: 0; flex-basis: 100%; }
   .company { width: 100%; min-width: 0; padding: 10px 14px; }
   .cta { font-size: 12px; margin-top: 1px; }
 }
