@@ -67,6 +67,9 @@ jobs:
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
 
+      - name: U12 U15 GREAM navigation and regional hubs
+        run: node --test tests/gream-category-hubs.test.mjs
+
       - name: Torsten Japan signup conversion regression audit
         run: node audit/torsten-japan-landing/check.mjs
 
