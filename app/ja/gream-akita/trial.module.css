@@ -1,0 +1,173 @@
+.page {
+  --ink: #14100d;
+  --paper: #fff8ee;
+  --orange: #ff680b;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.hero,
+.dark {
+  padding: clamp(2.75rem, 7vw, 6.25rem) max(1.25rem, 5vw);
+}
+
+.hero {
+  background: var(--orange);
+}
+
+.inner,
+.section {
+  width: min(100%, 68rem);
+  margin-inline: auto;
+}
+
+.section {
+  width: min(calc(100% - 2.5rem), 68rem);
+  padding-block: clamp(2.5rem, 6vw, 4.75rem);
+}
+
+.back,
+.policy {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 1.7rem;
+}
+
+.kicker {
+  margin: 0 0 .6rem;
+  font-size: .85rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.45rem, 4.7vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.18;
+}
+
+.hero h1 span {
+  display: block;
+  margin-bottom: .25em;
+  font-size: clamp(2.65rem, 10vw, 7.5rem);
+  font-weight: 950;
+  line-height: .94;
+  letter-spacing: -.055em;
+}
+
+.lead,
+.development {
+  max-width: 43rem;
+  margin: 1.2rem 0;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  min-height: 3.25rem;
+  padding: .75rem 1rem;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 1rem;
+  font-weight: 850;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.cta:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.cta:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: -6px;
+}
+
+.micro {
+  margin: .75rem 0 0;
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+.page h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.7rem, 4.6vw, 2.8rem);
+  line-height: 1.2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: .75rem;
+}
+
+.card {
+  padding: 1.25rem;
+  border: 2px solid var(--ink);
+}
+
+.card h3 {
+  margin: 0 0 .55rem;
+  font-size: 1.65rem;
+}
+
+.card p:last-child {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.dark .cta {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.dark .cta:hover {
+  background: var(--paper);
+}
+
+.steps {
+  margin: 0 0 1.4rem;
+  padding-inline-start: 1.55rem;
+  line-height: 1.7;
+}
+
+.steps li + li {
+  margin-top: .55rem;
+}
+
+.faq {
+  padding-block: .95rem;
+  border-top: 1px solid #a99c90;
+  line-height: 1.7;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.faq p {
+  margin: .5rem 0 0;
+}
+
+.policy {
+  display: inline-block;
+  margin-top: .7rem;
+}
