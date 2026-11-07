@@ -56,3 +56,20 @@
 .nextStepLinks a span:last-child{margin-left:auto;color:#6b7786}
 @media(max-width:800px){.nextStep{grid-template-columns:1fr;gap:16px}}
 @media(max-width:530px){.nextStep{padding:24px 0 12px}.nextStepLinks{grid-template-columns:1fr}.nextStepLinks a{min-height:52px}}
+
+/* Distinguish age-based programmes from the GREAM U15 team project. */
+.ageHub{padding:44px 0 42px;border-bottom:1px solid #d8dfe7}
+.ageHub h2{font-size:clamp(26px,3.8vw,40px);line-height:1.25;letter-spacing:-.045em;margin:0 0 13px;font-weight:850}
+.ageIntro{font-size:15px;line-height:1.9;color:#536174;max-width:740px;margin:0}
+.ageGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:26px}
+.ageCard{display:flex;flex-direction:column;align-items:flex-start;min-height:250px;padding:26px 23px;background:#10233f;color:#fff;border:1px solid #10233f;text-decoration:none;transition:transform .18s ease,background .18s ease}
+.ageCard:nth-child(2){background:#29394f;border-color:#29394f}
+.ageCard:nth-child(3){background:#e9edf2;color:#10233f;border-color:#d6dfe8}
+.ageCard:hover{transform:translateY(-3px);background:#1e3b61}
+.ageCard:nth-child(3):hover{background:#dae5ef}
+.ageEyebrow{font-size:11px;font-weight:800;letter-spacing:.13em;opacity:.82}
+.ageCard strong{font-size:clamp(34px,4.2vw,53px);letter-spacing:-.05em;line-height:1.1;margin:22px 0 14px}
+.ageDescription{font-size:14px;line-height:1.7;flex:1}
+.ageAction{border-top:1px solid currentColor;width:100%;padding-top:15px;margin-top:25px;font-size:13px;font-weight:800}
+@media(max-width:850px){.ageGrid{grid-template-columns:1fr}.ageCard{min-height:185px}.ageHub{padding:34px 0}.ageCard strong{margin:15px 0 10px}.ageAction{margin-top:14px}}
+@media(prefers-reduced-motion:reduce){.ageCard{transition:none}.ageCard:hover{transform:none}}

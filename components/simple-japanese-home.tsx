@@ -40,7 +40,31 @@ export async function SimpleJapaneseHome() {
 
 
 
-      <section className={styles.regional} aria-labelledby="home-age-categories"><div><p className={styles.label}>CHOOSE YOUR AGE / DEVELOPMENT PATHWAY</p><h2 id="home-age-categories">U12とU15。育成の入口を、分かりやすく。</h2><p>U12は小学生年代のスクール・クリニック。U15は中学生年代の育成。GREAMは仙台・沖縄・秋田で展開するU15育成チームプロジェクトです。所属を変えずに学べるスクールとは区別してご案内します。</p></div><div className={styles.regionalActions}><a href="/ja/u12" data-growth-id="home-u12-category">U12｜小学生の育成 →</a><a href="/ja/u15" data-growth-id="home-u15-category">U15｜中学生年代の育成 →</a><a href="/ja/gream" data-growth-id="home-gream-regions">GREAM｜仙台・沖縄・秋田 →</a></div></section>
+      <section className={styles.ageHub} aria-labelledby="home-age-categories">
+        <p className={styles.label}>AGE GROUPS / DEVELOPMENT PATHWAY</p>
+        <h2 id="home-age-categories">U12・U15・GREAMを、目的で選ぶ。</h2>
+        <p className={styles.ageIntro}>小学生の学び、中学生年代の学び、継続して活動するU15チーム。目的と所属形態が違うプログラムを、混同せずにご案内します。</p>
+        <nav className={styles.ageGrid} aria-label="年代・U15育成チームから選ぶ">
+          <a className={styles.ageCard} href="/ja/u12" data-growth-id="home-u12-category">
+            <span className={styles.ageEyebrow}>01 / ELEMENTARY</span>
+            <strong>U12</strong>
+            <span className={styles.ageDescription}>小学生向けスクール・クリニック・キャンプ</span>
+            <span className={styles.ageAction}>U12の活動を見る →</span>
+          </a>
+          <a className={styles.ageCard} href="/ja/u15" data-growth-id="home-u15-category">
+            <span className={styles.ageEyebrow}>02 / JUNIOR HIGH</span>
+            <strong>U15</strong>
+            <span className={styles.ageDescription}>育成チームと、所属を変えずに学ぶスクール</span>
+            <span className={styles.ageAction}>U15の活動を見る →</span>
+          </a>
+          <a className={styles.ageCard} href="/ja/gream" data-growth-id="home-gream-regions">
+            <span className={styles.ageEyebrow}>03 / U15 TEAM PROJECT</span>
+            <strong>GREAM</strong>
+            <span className={styles.ageDescription}>仙台・沖縄・秋田のU15育成チーム・地域連携</span>
+            <span className={styles.ageAction}>各地域のチームを見る →</span>
+          </a>
+        </nav>
+      </section>
       <SendaiCommunity />
       <NovemberCampaign />
 
