@@ -16,7 +16,8 @@ const corporateSupport = [
     key: "nakagami-2026",
     name: "有限会社 中神工務店",
     englishName: "NAKAGAMI & CO.",
-    website: "https://www.nakagami-co.com/",
+    website: "https://nakagamiandco.com/",
+    instagram: "https://www.instagram.com/ourplace_official/",
     period: "2026.03–08",
     status: "past" as const,
   },
@@ -99,18 +100,28 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
             </a>
           )}
           {corporateSupport.map((company) => (
-            <a
-              key={company.key}
-              className={styles.company}
-              href={company.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t.companyPrefix + company.name + t.companySuffix}
-            >
-              <span className={styles.wordmark}>{company.englishName}</span>
-              <span className={styles.legalName}>{company.name}</span>
-              <span className={styles.period}>{company.period} / {t.history}</span>
-            </a>
+            <div key={company.key} className={styles.companyRecord}>
+              <a
+                className={styles.company}
+                href={company.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t.companyPrefix + company.name + t.companySuffix + " — official website"}
+              >
+                <span className={styles.wordmark}>{company.englishName}</span>
+                <span className={styles.legalName}>{company.name}</span>
+                <span className={styles.period}>{company.period} / {t.history}</span>
+              </a>
+              <a
+                className={styles.relatedLink}
+                href={company.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="OURPLACE — official Instagram"
+              >
+                OURPLACE Instagram <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           ))}
         </div>
         <div className={styles.actions}>
