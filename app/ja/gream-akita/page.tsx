@@ -1,37 +1,87 @@
 import type { Metadata } from "next";
-import { GreamRegionalPage } from "@/components/gream-regional-page";
-const pageUrl="https://riotbasketballacademy.com/ja/gream-akita";
-export const metadata:Metadata={
- title:"GREAM秋田 U15｜秋田の育成連携・活動案内｜RBA",
- description:"GREAM秋田のU15育成連携を紹介。DSMとの地域協力や育成方針、活動・募集条件の確認状況を整理しています。",
- alternates:{canonical:pageUrl},
- openGraph:{title:"GREAM AKITA U15｜地域育成連携",description:"秋田のU15育成連携。活動条件と募集状況は確認できた内容をもとにご案内します。",url:pageUrl,siteName:"Riot Basketball Academy",type:"website"}
+import { SiteFrame } from "@/components/site-frame";
+import styles from "./trial.module.css";
+
+const pageUrl = "https://riotbasketballacademy.com/ja/gream-akita";
+const formUrl = "https://form.jotform.com/263100516738049";
+const title = "DSM GREAM 秋田｜男子U15 練習体験募集｜RBA";
+const description = "大仙市・仙北市・美郷町を中心に活動する男子U15バスケットボールクラブ、DSM GREAM。ヘッドコーチは高橋雄作、アドバイザーはRBA代表の西尾優人。保護者用フォームで練習体験を受付中。";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: pageUrl },
+  openGraph: { title, description, url: pageUrl, siteName: "Riot Basketball Academy", type: "website" },
 };
-export default function Page(){return <GreamRegionalPage
- location="AKITA" japanese="GREAM秋田" subtitle="秋田から、次のカテゴリーへ。"
- introduction="GREAM秋田は、DSMとのU15育成連携を紹介する地域ページです。仙台のGREAMと同じ料金・運営・申込条件を自動的に適用するものではありません。正式な運営主体・登録・活動条件は、地域側の確認を踏まえて更新します。"
- stage="活動・募集条件を確認中"
- stageExplanation="このページは秋田地域のU15育成連携の案内です。具体的な募集開始・練習曜日・会場・月会費・定員は確認できていないため、ここでは確定表示しません。"
- facts={[
-  {label:"カテゴリー",value:"U15年代"},
-  {label:"地域・協力",value:"秋田／DSMとの育成連携"},
-  {label:"練習会場・曜日",value:"要確認"},
-  {label:"募集・料金・登録条件",value:"要確認"}
- ]}
- actions={[{label:"秋田での活動状況を問い合わせる",href:"/ja/contact",primary:true},{label:"RBAの育成方針",href:"/ja/approach"}]}
- focuses={[
-  {en:"FUNDAMENTALS",ja:"基礎をつくる",description:"ゲームにつながる身体操作・ボール技術を育てる。"},
-  {en:"PERCEPTION",ja:"状況を読む",description:"攻守の情報に気づく習慣を身につける。"},
-  {en:"DECISION",ja:"自分で選ぶ",description:"1対1から少人数ゲームの判断力を伸ばす。"},
-  {en:"DEVELOPMENT",ja:"次へつなぐ",description:"U15年代の成長とその先の競技環境を考える。"}
- ]}
- faqs={[
-  {question:"GREAM秋田はRBA直営のチームですか？",answer:"このページはDSMとの地域育成連携を紹介するものです。正式な運営・登録主体や契約関係は確認前のため、RBA直営や一律の運営形態を断定しません。"},
-  {question:"どこで、いつ練習しますか？",answer:"正式な会場・曜日・時間は要確認です。現地の確定情報が整ってから公開します。"},
-  {question:"月会費はいくらですか？",answer:"秋田の会費は未確認です。仙台の会費を秋田に当てはめず、決定した金額と支払手順を別途ご案内します。"},
-  {question:"体験・入団の申し込みはできますか？",answer:"相談はお問い合わせフォームから可能です。送信だけで体験枠・入団資格・支払いが確定することはありません。"},
-  {question:"チーム登録や大会参加は決まっていますか？",answer:"正式なチーム登録や大会予定について、現時点では確認済み情報を掲載できません。確定後に案内します。"}
- ]}
- note="チーム登録・運営主体・練習施設・参加費・募集開始について未確認の事項は保証していません。正式条件を知りたい方は個別にお問い合わせください。"
- otherRegionHref="/ja/gream-sendai"
- />;}
+
+const coaches = [
+  { role: "ヘッドコーチ", name: "高橋 雄作", bio: "JBA公認A級コーチ・JBA公認ジュニアエキスパート" },
+  { role: "アドバイザー", name: "西尾 優人", bio: "Riot Basketball Academy 代表。育成面をサポートします。" },
+];
+
+const steps = [
+  "保護者の方が体験申込フォームを送信",
+  "運営からのメールで日時・会場・参加費の有無・持ち物を確認",
+  "案内された日時・会場で練習を体験",
+];
+
+const faqs = [
+  { question: "対象は誰ですか？", answer: "中学年代の男子を対象とした練習体験です。対象学年に当てはまるか迷う場合は、フォームからご相談ください。" },
+  { question: "日時・会場・体験の参加費は？", answer: "開催日時と会場、参加費の有無、持ち物を、受付後に運営からメールでご案内します。" },
+  { question: "送信したら参加や入団は確定しますか？", answer: "体験の参加枠は運営からの案内で確定します。入団・チーム登録に関する条件は要確認です。希望する方は体験時にご相談ください。" },
+];
+
+export default function Page() {
+  return (
+    <SiteFrame locale="ja">
+      <div className={styles.page}>
+        <section className={styles.hero}>
+          <div className={styles.inner}>
+            <a className={styles.back} href="/ja/gream">← GREAMの地域一覧</a>
+            <p className={styles.kicker}>AKITA / BOYS U15 / BASKETBALL</p>
+            <h1><span>DSM GREAM</span>男子U15 練習体験募集</h1>
+            <p className={styles.lead}>秋田で、仲間と強くなる。大仙市・仙北市・美郷町を中心に活動する男子U15クラブです。</p>
+            <a className={styles.cta} href={formUrl}>保護者用フォームで体験を申し込む <span aria-hidden="true">→</span></a>
+            <p className={styles.micro}>日時・会場・参加費の有無は、受付後にメールでご案内します。</p>
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="coaches">
+          <p className={styles.kicker}>COACHING STAFF</p>
+          <h2 id="coaches">指導体制</h2>
+          <div className={styles.grid}>
+            {coaches.map(({ role, name, bio }) => (
+              <article className={styles.card} key={role}>
+                <p className={styles.kicker}>{role}</p>
+                <h3>{name}</h3>
+                <p>{bio}</p>
+              </article>
+            ))}
+          </div>
+          <p className={styles.development}>相手の位置や味方の動きを見て、どこを攻めるかを自分で選ぶ。DSM GREAMは、試合で使える技術と判断力を育てます。体験では、仲間の声かけやコーチの伝え方もぜひ見てください。</p>
+        </section>
+
+        <section className={styles.dark} aria-labelledby="trial-flow">
+          <div className={styles.inner}>
+            <p className={styles.kicker}>HOW TO APPLY</p>
+            <h2 id="trial-flow">申込から体験まで</h2>
+            <ol className={styles.steps}>{steps.map(step => <li key={step}>{step}</li>)}</ol>
+            <a className={styles.cta} href={formUrl}>体験を申し込む <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="trial-faq">
+          <p className={styles.kicker}>FOR PARENTS</p>
+          <h2 id="trial-faq">保護者の方へ</h2>
+          {faqs.map(({ question, answer }) => (
+            <details className={styles.faq} key={question}>
+              <summary>{question}</summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+          <a className={styles.policy} href="/ja/policies">プライバシー・参加規約・安全方針 →</a>
+        </section>
+      </div>
+    </SiteFrame>
+  );
+}
