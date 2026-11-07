@@ -64,6 +64,7 @@ export async function SimpleJapaneseHome() {
             <span className={styles.ageAction}>各地域のチームを見る →</span>
           </a>
         </nav>
+        <p className={styles.note}>企業・お店・個人の皆さまへ：<a href="/ja/gream/support" data-growth-id="home-gream-support">GREAMの育成を応援する →</a></p>
       </section>
       <SendaiCommunity />
       <NovemberCampaign />
