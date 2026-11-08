@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GreamAnnualPlan } from "@/components/gream-annual-plan";
 import { ShizugawaCampReport } from "@/components/shizugawa-camp-report";
 import { SiteFrame } from "@/components/site-frame";
 import { CorporateSupportStrip } from "@/components/corporate-support-strip";
@@ -80,12 +81,14 @@ export default function GreamSendaiPage() {
           <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>GREAM仙台は、2026年に生まれたU15男子のバスケットボールクラブです。活動の中心は仙台市太白区。現在は中学2・3年生がいない、まだ新しいチームです。まずは仲間とバスケを楽しむこと。そこから一緒に、できることを増やしていきましょう。</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
             <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-hero-intake" style={{ ...button, background: "#fff", color: ink }}>新規メンバーの参加相談をする ↗</a>
+            <a href="#annual-plan-2027" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>年間計画・遠征費を見る ↓</a>
             <a href="#programme" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>活動内容を詳しく見る ↓</a>
           </div>
           <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>参加相談は無料です。練習会場は確保しており、練習日や集合場所などの詳細は個別にご案内します。相談だけで入団や支払いは発生しません。</p>
         </div>
       </section>
 
+      <GreamAnnualPlan team="sendai" />
       <ShizugawaCampReport team="sendai" />
 
       <section aria-labelledby="monthly-trial-cta" style={{background:"#f1f3f2",borderBottom:"1px solid #d8dcdd",padding:"38px max(20px,6vw)"}}>
