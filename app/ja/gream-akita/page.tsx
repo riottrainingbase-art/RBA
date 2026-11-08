@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GreamAnnualPlan } from "@/components/gream-annual-plan";
 import { ShizugawaCampReport } from "@/components/shizugawa-camp-report";
 import { GreamRegionalPage } from "@/components/gream-regional-page";
 const pageUrl="https://riotbasketballacademy.com/ja/gream-akita";
@@ -30,7 +31,7 @@ export default function Page(){return <GreamRegionalPage
   {label:"練習会場・曜日",value:"要確認"},
   {label:"募集・料金・登録条件",value:"正式案内時に確認"}
  ]}
- actions={[{label:"秋田の練習体験を申し込む",href:trialFormUrl,primary:true},{label:"活動について問い合わせる",href:"/ja/contact"},{label:"企業・お店としてDSM GREAMを支える",href:"/ja/gream/support"},{label:"GREAM全国のチームを見る",href:"/ja/gream"}]}
+ actions={[{label:"秋田の練習体験を申し込む",href:trialFormUrl,primary:true},{label:"年間計画・遠征費を見る",href:"#annual-plan-2027"},{label:"活動について問い合わせる",href:"/ja/contact"},{label:"企業・お店としてDSM GREAMを支える",href:"/ja/gream/support"},{label:"GREAM全国のチームを見る",href:"/ja/gream"}]}
  focuses={[
   {en:"FUNDAMENTALS",ja:"基礎をつくる",description:"ゲームにつながる身体操作・ボール技術を育てる。"},
   {en:"PERCEPTION",ja:"状況を読む",description:"攻守の情報に気づく習慣を身につける。"},
@@ -42,7 +43,7 @@ export default function Page(){return <GreamRegionalPage
   {question:"どこで、いつ練習しますか？",answer:"正式な会場・曜日・時間は要確認です。現地の確定情報が整ってから公開します。"},
   {question:"月会費はいくらですか？",answer:"秋田の会費は未確認です。仙台の会費を秋田に当てはめず、決定した金額と支払手順を別途ご案内します。"},
   {question:"体験・入団の申し込みはできますか？",answer:"練習体験は、保護者の方から秋田専用フォームでお申し込みいただけます。送信後に日程や参加条件をご案内します。"},
-  {question:"チーム登録や大会参加は決まっていますか？",answer:"2026年度の秋田県U15選手権大会の結果は、このページの大会結果をご覧ください。今後の大会予定は確定後にご案内します。"}
+  {question:"チーム登録や大会参加は決まっていますか？",answer:"2026年度の秋田県U15選手権大会の結果は、このページの大会結果をご覧ください。2027年度の参加候補は年間活動計画でご覧いただけます。"}
  ]}
  note="チーム登録・運営主体・練習施設・参加費等の条件は、現地側と確認してから正式案内します。企業協賛も相談段階では料金・契約・決済は発生しません。"
  otherRegionHref="/ja/gream-sendai"
@@ -83,6 +84,17 @@ export default function Page(){return <GreamRegionalPage
       <p style={{ margin: "18px 0 0" }}>
         <a href={officialResultsUrl} style={{ fontWeight: 800, textDecoration: "underline", textUnderlineOffset: 4 }}>秋田県バスケットボール協会の公式結果を見る →</a>
       </p>
+    </div>
+  </section>
+  <GreamAnnualPlan team="akita" />
+  <section id="akita-u15-results-2025" aria-labelledby="akita-u15-results-2025-heading" style={{ background: "#fff", borderBottom: "1px solid #dce2e4", padding: "clamp(38px,5vw,62px) max(20px,6vw)" }}>
+    <div style={{ maxWidth: 1120, margin: "0 auto" }}>
+      <p style={{ color: "#526169", fontSize: 12, fontWeight: 900, letterSpacing: 2, margin: "0 0 10px" }}>2025 SEASON / RESULTS ARCHIVE</p>
+      <h2 id="akita-u15-results-2025-heading" style={{ fontSize: "clamp(26px,4vw,43px)", margin: "0 0 14px" }}>2025年度 男子の試合結果</h2>
+      <p style={{ lineHeight: 1.85 }}>第6回秋田県U15バスケットボール選手権大会（Jr.ウインターカップ2025-26秋田県予選）。公式記録の出場名は「D.S.Mユースバスケットボールクラブ」です。</p>
+      <p style={{ lineHeight: 1.85 }}><time dateTime="2025-11-02">11月2日</time>・ナイスアリーナ｜男子1回戦 <strong>D.S.M 56–66 Limitless Possibility Club</strong></p>
+      <p style={{ lineHeight: 1.85 }}>2025年度の県U14・U15リーグについて、県協会の公開案内では個別のスコアを確認できていません。招待大会・交流戦も含め、記録を確認できた試合から追記します。</p>
+      <p style={{ lineHeight: 1.85 }}><a href="https://akita.pba-japanbasketball.jp/wp-content/uploads/2025/11/2025u15_result_boys_day1.pdf" style={{ textDecoration: "underline", fontWeight: 750 }}>県選手権の公式試合記録（PDF）↗</a>　<a href="https://akita.pba-japanbasketball.jp/u15/news/7682/" style={{ textDecoration: "underline", fontWeight: 750 }}>2025年度県リーグ公式案内 ↗</a></p>
     </div>
   </section>
   <ShizugawaCampReport team="akita" />
