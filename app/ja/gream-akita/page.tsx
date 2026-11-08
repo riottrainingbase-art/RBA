@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ShizugawaCampReport } from "@/components/shizugawa-camp-report";
 import { GreamRegionalPage } from "@/components/gream-regional-page";
 const pageUrl="https://riotbasketballacademy.com/ja/gream-akita";
 export const metadata:Metadata={
@@ -36,4 +37,6 @@ export default function Page(){return <GreamRegionalPage
  ]}
  note="チーム登録・運営主体・練習施設・参加費等の条件は、現地側と確認してから正式案内します。企業協賛も相談段階では料金・契約・決済は発生しません。"
  otherRegionHref="/ja/gream-sendai"
- />;}
+ >
+  <ShizugawaCampReport team="akita" />
+ </GreamRegionalPage>;}
