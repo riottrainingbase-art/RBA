@@ -41,17 +41,56 @@ export function ShizugawaCampReport({ team }: { team: keyof typeof teams }) {
         </div>
         <figure style={{ margin: 0 }}>
           <Image
-            src="/media/shizugawa-2026/court.webp"
-            alt="志津川育成キャンプで両チームの選手がコートに立つ様子"
-            width={720}
-            height={502}
+            src="/media/shizugawa-2026/team.webp"
+            alt="志津川の体育館で並んだGREAM SENDAIとDSM GREAMの選手とコーチ"
+            width={1280}
+            height={960}
             sizes="(max-width: 880px) 88vw, 540px"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
           <figcaption style={{ marginTop: 9, color: "#515b60", fontSize: 13 }}>
-            志津川の体育館で行われたゲームのひとコマ
+            GREAM SENDAIとDSM GREAMの集合写真
           </figcaption>
         </figure>
+      </div>
+      <div style={{ maxWidth: 1120, margin: "36px auto 0", borderTop: "1px solid #d8dcdd", paddingTop: 28 }}>
+        <h3 style={{ fontSize: "clamp(23px,3vw,34px)", margin: "0 0 18px" }}>コートのひとコマ</h3>
+        <div style={{
+          display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))",
+          gap: 24, alignItems: "start",
+        }}>
+          <figure style={{ margin: 0 }}>
+            <Image
+              src="/media/shizugawa-2026/court.webp"
+              alt="志津川の体育館で両チームが一緒にプレーする様子"
+              width={720}
+              height={502}
+              sizes="(max-width: 780px) 88vw, 540px"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+            <figcaption style={{ marginTop: 9, color: "#515b60", fontSize: 13 }}>
+              志津川の体育館で行われたゲーム
+            </figcaption>
+          </figure>
+          <figure style={{ margin: 0 }}>
+            <video
+              controls
+              playsInline
+              preload="none"
+              width={360}
+              height={640}
+              poster="/media/shizugawa-2026/highlights-poster.webp"
+              aria-label="志津川育成キャンプのプレー映像"
+              style={{ width: "100%", maxWidth: 270, height: "auto", aspectRatio: "9 / 16", display: "block", background: "#131619" }}
+            >
+              <source src="/media/shizugawa-2026/highlights.mp4" type="video/mp4" />
+              <a href="/media/shizugawa-2026/highlights.mp4">ハイライト動画を開く</a>
+            </video>
+            <figcaption style={{ marginTop: 9, color: "#515b60", fontSize: 13 }}>
+              キャンプのハイライト（21秒・音声なし）
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   );
