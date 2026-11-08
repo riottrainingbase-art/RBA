@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GreamAnnualPlan } from "@/components/gream-annual-plan";
 import { ShizugawaCampReport } from "@/components/shizugawa-camp-report";
 import { SiteFrame } from "@/components/site-frame";
 import { CorporateSupportStrip } from "@/components/corporate-support-strip";
@@ -80,12 +81,14 @@ export default function GreamSendaiPage() {
           <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>GREAM仙台は、2026年に生まれたU15男子のバスケットボールクラブです。活動の中心は仙台市太白区。現在は中学2・3年生がいない、まだ新しいチームです。まずは仲間とバスケを楽しむこと。そこから一緒に、できることを増やしていきましょう。</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
             <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-hero-intake" style={{ ...button, background: "#fff", color: ink }}>新規メンバーの参加相談をする ↗</a>
+            <a href="#annual-plan-2027" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>年間計画・遠征費を見る ↓</a>
             <a href="#programme" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>活動内容を詳しく見る ↓</a>
           </div>
           <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>参加相談は無料です。練習会場は確保しており、練習日や集合場所などの詳細は個別にご案内します。相談だけで入団や支払いは発生しません。</p>
         </div>
       </section>
 
+      <GreamAnnualPlan team="sendai" />
       <ShizugawaCampReport team="sendai" />
 
       <section aria-labelledby="monthly-trial-cta" style={{background:"#f1f3f2",borderBottom:"1px solid #d8dcdd",padding:"38px max(20px,6vw)"}}>
@@ -252,15 +255,14 @@ export default function GreamSendaiPage() {
           <div>
             <p style={{ letterSpacing: 3, fontWeight: 900, fontSize: 12, color: muted }}>GREAM SENDAI / GIRLS U15 / 2027</p>
             <h2 style={{ fontSize: "clamp(30px,4.6vw,55px)", lineHeight: 1.13, margin: "12px 0 22px" }}>2027年は、女子選手にも<br/>学びの場を広げたい。</h2>
-            <p style={{ lineHeight: 1.92, fontSize: 17, color: muted }}>これまでの女子クリニックで培った育成経験と、着地・減速・方向転換などの身体づくりを組み合わせ、2027年の女子U15育成活動を準備します。競技の判断力と傷害リスク低減を目指す運動習慣を、一体として考えます。</p>
+            <p style={{ lineHeight: 1.92, fontSize: 17, color: muted }}>男子チームで大切にしている「バスケを楽しみながら成長する」という考え方を、女子の育成にも広げていきたいと考えています。2027年から女子選手への指導を始め、将来的には女子U15チームの活動につなげることが目標です。</p>
             <p style={{ lineHeight: 1.82, fontSize: 15, color: muted }}>練習日・担当コーチ・参加費・チーム登録などはこれから決めていきます。いまは入団の確定募集ではなく、ご関心のあるご家庭からの相談を受け付けています。</p>
           </div>
           <div style={{ background: "#fff", padding: "26px", border: "1px solid "+border }}>
             <p style={{ color: muted, fontSize: 13, fontWeight: 900, letterSpacing: 1.8 }}>2027年女子U15・事前相談</p>
             <h3 style={{ fontSize: 25, margin: "14px 0" }}>まずは、興味があることを教えてください。</h3>
             <p style={{ lineHeight: 1.8, color: muted }}>練習に参加してみたい、どんなチームになるか知りたい、というご相談を歓迎します。相談は無料です。</p>
-            <a href="/ja/gream-sendai/girls" data-growth-id="gream-sendai-girls-interest" style={button}>女子U15専用ページを見る →</a>
-            <p style={{fontSize:14,lineHeight:1.75,marginTop:16}}><a href={girlsUrl} target="_blank" rel="noopener noreferrer" style={{color:ink,fontWeight:800,textUnderlineOffset:3}}>無料の事前相談フォームへ直接進む ↗</a></p>
+            <a href={girlsUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-girls-interest" style={button}>女子U15の事前相談をする ↗</a>
             <p style={{ fontSize: 13, lineHeight: 1.7, color: muted, marginTop: 18 }}>現時点ではチーム設立・活動日・月会費・参加枠を確約していません。男子チームの会費9,900円が女子に適用されるという意味ではありません。</p>
           </div>
         </div>
