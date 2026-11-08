@@ -126,34 +126,44 @@ export default function InstagramEntryPage() {
           </div>
         </section>
 
-        <section className="mx-5 mb-7 border-2 border-[#151719] bg-white px-5 py-6 sm:mx-9 sm:px-7" aria-labelledby="instagram-sponsor-title">
-          <p className="text-[11px] font-bold tracking-[.16em] text-neutral-600">CORPORATE PARTNERS / 企業・地域スポンサー</p>
-          <h2 id="instagram-sponsor-title" className="mt-3 text-[26px] font-black leading-tight tracking-[-.04em] sm:text-[32px]">
-            育成の可能性を、<br />一緒に広げませんか。
+        <section className="mx-5 mb-6 border border-[#151719] bg-white px-4 py-5 sm:mx-9 sm:px-7 sm:py-7" aria-labelledby="instagram-sponsor-title">
+          <p className="text-[11px] font-black tracking-[.13em] text-neutral-600">CORPORATE SUPPORT / 企業協賛</p>
+          <h2 id="instagram-sponsor-title" className="mt-2 text-[24px] font-black leading-[1.3] tracking-[-.04em] sm:text-[30px]">
+            企業協賛・広告パートナー募集中。
           </h2>
-          <p className="mt-3 text-sm leading-7 text-neutral-700">
-            RBAは、子どもの挑戦や地域開催を支える企業・地域パートナーを募集しています。広告掲載と個別の企画協賛では、内容と条件が異なります。
+          <p className="mt-2 text-[13px] leading-6 text-neutral-700">
+            子どもたちの挑戦を、企業・地域の皆さまと。ご希望に合わせて2つの入口をご用意しています。
           </p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <nav className="mt-4 grid gap-2 sm:grid-cols-2" aria-label="企業広告・協賛のご案内">
             <a
               href={track("/ja/support", "monthly_corporate_ad", "rba_sponsor_202611")}
               data-cta="instagram-monthly-business-ad" data-growth-id="instagram-corporate-monthly"
-              className="flex min-h-28 flex-col justify-between gap-3 border border-[#151719] bg-[#151719] px-4 py-4 text-white transition-colors hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              style={{ color: "#151719", backgroundColor: "#ffffff" }}
+              className="group flex min-h-[84px] items-center justify-between gap-3 border-2 border-[#151719] px-4 py-3 transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
-              <span className="flex items-center justify-between gap-2 text-sm font-black">企業広告 月額11,000円（税込） <ArrowUpRight size={18} aria-hidden="true" /></span>
-              <span className="text-[12px] leading-5 text-neutral-300">応援ページ・月次活動レポートへの広告掲載</span>
+              <span className="min-w-0">
+                <span className="block text-[10px] font-bold tracking-wide text-neutral-600">01 / 月額企業広告</span>
+                <strong className="mt-1 block text-[16px] font-black leading-[1.4] sm:text-[17px]">月額11,000円（税込）</strong>
+                <span className="mt-1 block text-[11px] leading-5 text-neutral-600">応援ページ・月次活動レポートに掲載</span>
+              </span>
+              <ArrowUpRight size={21} className="shrink-0" aria-hidden="true" />
             </a>
             <a
               href={track("/ja/sponsor", "custom_sponsorship_inquiry", "rba_sponsor_202611")}
               data-cta="instagram-sponsorship-inquiry" data-growth-id="instagram-corporate-custom"
-              className="flex min-h-28 flex-col justify-between gap-3 border border-neutral-300 bg-neutral-100 px-4 py-4 transition-colors hover:border-neutral-900 hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              style={{ color: "#151719", backgroundColor: "#f3f3f3" }}
+              className="group flex min-h-[84px] items-center justify-between gap-3 border border-neutral-400 px-4 py-3 transition-colors hover:border-neutral-900 hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
-              <span className="flex items-center justify-between gap-2 text-sm font-black">トップ掲載・企画協賛を相談 <ArrowUpRight size={18} aria-hidden="true" /></span>
-              <span className="text-[12px] leading-5 text-neutral-600">地域・イベント・公式掲出など、媒体と条件を個別協議</span>
+              <span className="min-w-0">
+                <span className="block text-[10px] font-bold tracking-wide text-neutral-600">02 / 個別企画協賛</span>
+                <strong className="mt-1 block text-[16px] font-black leading-[1.4] sm:text-[17px]">トップ掲載・企画協賛を相談</strong>
+                <span className="mt-1 block text-[11px] leading-5 text-neutral-600">掲出先・期間・費用を個別に相談</span>
+              </span>
+              <ArrowUpRight size={21} className="shrink-0" aria-hidden="true" />
             </a>
-          </div>
-          <p className="mt-4 text-[11px] leading-5 text-neutral-600">
-            月額企業広告には、トップページ上部・ユニフォーム等の公式スポンサー掲出は含まれません。掲載条件や契約内容をご確認のうえお申し込みください。
+          </nav>
+          <p className="mt-3 text-[11px] leading-5 text-neutral-600">
+            ※月額企業広告にトップページ上部・ユニフォーム等への掲出は含まれません。個別企画協賛は別途契約となります。
           </p>
         </section>
 
