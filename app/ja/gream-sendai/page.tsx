@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ShizugawaCampReport } from "@/components/shizugawa-camp-report";
 import { SiteFrame } from "@/components/site-frame";
 import { CorporateSupportStrip } from "@/components/corporate-support-strip";
 
@@ -62,7 +63,7 @@ const faqs = [
   ["月会費のほかに費用がかかりますか？", "2027年度の月会費は9,900円（税込）に決定しました。2026年度の現行会費は8,800円（税込）です。入会金などの初期費用は事前にご案内します。大会や合宿、遠征などは別途参加費がかかる場合があります。"],
   ["2027年度の月会費はいくらですか？", "男子U15クラブは月額9,900円（税込）に決定しました。具体的な適用日や既存会員の取り扱いは個別にお知らせします。女子U15の活動費はまだ決まっていません。"],
   ["中学2・3年生や未経験でも相談できますか？", "はい。2026年発足のチームで、現在中学2・3年生は在籍していませんが、学年・経験を問わず入団相談は受け付けています。実際の参加可否は受入体制と登録条件を確認してお知らせします。"],
-  ["チームの写真や動画はありますか？", "撮影された写真・動画について掲載許可をいただいています。現在は公開準備中で、素材の配信準備ができ次第ホームページで紹介します。"]
+  ["チームの写真や動画はありますか？", "志津川育成キャンプの様子を、このページの開催レポートでご覧いただけます。"]
 ] as const;
 
 const button = { display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 54, padding: "14px 24px", color: "#fff", background: ink, textDecoration: "none", fontWeight: 850, fontSize: 16, borderRadius: 3 } as const;
@@ -84,6 +85,8 @@ export default function GreamSendaiPage() {
           <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>参加相談は無料です。練習会場は確保しており、練習日や集合場所などの詳細は個別にご案内します。相談だけで入団や支払いは発生しません。</p>
         </div>
       </section>
+
+      <ShizugawaCampReport team="sendai" />
 
       <section aria-labelledby="monthly-trial-cta" style={{background:"#f1f3f2",borderBottom:"1px solid #d8dcdd",padding:"38px max(20px,6vw)"}}>
         <div style={{maxWidth:1200,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:"18px 34px",alignItems:"center"}}>
@@ -171,7 +174,7 @@ export default function GreamSendaiPage() {
             </article>)}
           </div>
           <div style={{ marginTop: 20, borderLeft: "4px solid "+ink, background: "#f2f3f2", padding: 20, lineHeight: 1.85, color: muted }}>
-            2026年にスタートしたチームで、現在は中学2・3年生が在籍していません。これから加わる仲間も歓迎します。選手の氏名や学校などの個人情報は掲載していません。許可を得た写真・動画は、配信準備が整い次第ご紹介します。
+            2026年にスタートしたチームで、現在は中学2・3年生が在籍していません。これから加わる仲間も歓迎します。選手の氏名や学校などの個人情報は掲載していません。志津川育成キャンプの様子は、このページの開催レポートで紹介しています。
           </div>
         </div>
       </section>
