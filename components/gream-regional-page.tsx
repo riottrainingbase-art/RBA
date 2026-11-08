@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { GreamBrandHeading } from "@/components/gream-brand-heading";
 import { SiteFrame } from "@/components/site-frame";
 
 export type RegionAction = { label:string; href:string; primary?:boolean };
@@ -20,7 +21,9 @@ export function GreamRegionalPage({location,japanese,subtitle,introduction,stage
       <section style={{background:location==="OKINAWA"?"linear-gradient(138deg,#0c202c,#142832 55%,#1b4950)":"linear-gradient(138deg,#111719,#292e31 65%,#373f43)",color:"#fff",padding:"clamp(66px,8vw,124px) max(20px,6vw)"}}>
         <div style={{maxWidth:1120,margin:"auto"}}>
           <p style={{fontSize:12,fontWeight:900,letterSpacing:3,color:"#b5c6cf",margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY / GREAM / U15 DEVELOPMENT TEAM</p>
-          <h1 style={{fontSize:"clamp(49px,9vw,112px)",letterSpacing:"-.075em",lineHeight:.93,fontWeight:950,margin:"0 0 22px",overflowWrap:"anywhere"}}>GREAM<br/><span style={{color:"#c3d5de"}}>{location}</span><span style={{fontSize:".38em",verticalAlign:"top",marginLeft:14,letterSpacing:0}}>U15</span></h1>
+          {location === "AKITA" ? <GreamBrandHeading team="DSM GREAM AKITA" /> : (
+            <h1 style={{fontSize:"clamp(49px,9vw,112px)",letterSpacing:"-.075em",lineHeight:.93,fontWeight:950,margin:"0 0 22px",overflowWrap:"anywhere"}}>GREAM<br/><span style={{color:"#c3d5de"}}>{location}</span><span style={{fontSize:".38em",verticalAlign:"top",marginLeft:14,letterSpacing:0}}>U15</span></h1>
+          )}
           <h2 style={{fontSize:"clamp(24px,4vw,44px)",letterSpacing:"-.04em",lineHeight:1.35,maxWidth:840,margin:"0 0 22px"}}>{subtitle}</h2>
           <p style={{fontSize:"clamp(16px,1.8vw,19px)",color:"#dce5ea",lineHeight:1.9,maxWidth:850,margin:"0 0 29px"}}>{introduction}</p>
           <div style={{display:"flex",flexWrap:"wrap",gap:12}}>{actions.map(a=><a key={a.href} href={a.href} style={button(!!a.primary)}>{a.label} →</a>)}</div>

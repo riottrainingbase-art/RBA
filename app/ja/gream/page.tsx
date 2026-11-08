@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GreamBrandHeading } from "@/components/gream-brand-heading";
 import { SiteFrame } from "@/components/site-frame";
 import styles from "./gream.module.css";
 
@@ -49,7 +50,7 @@ export default function GreamPage() {
           <div className={styles.heroInner}>
             <div>
               <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / U15 DEVELOPMENT</p>
-              <h1 id="gream-heading" className={styles.heroTitle}>GREAM<small>DEVELOPMENT PROJECT</small></h1>
+              <GreamBrandHeading id="gream-heading" />
               <h2 className={styles.heroSub}>育つ場所は、<br/>一つじゃない。</h2>
               <p className={styles.heroCopy}>秋田・仙台・沖縄。GREAMは、U15年代の選手が自分で考え、試し、成長を続けるためのRBA育成チームプロジェクトです。所属や地域を越えて、次の挑戦につながる環境をつくります。</p>
               <div className={styles.actions}>
