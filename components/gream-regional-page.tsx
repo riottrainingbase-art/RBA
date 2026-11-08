@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { SiteFrame } from "@/components/site-frame";
 
 export type RegionAction = { label:string; href:string; primary?:boolean };
@@ -8,12 +9,12 @@ export type RegionProps = {
   location:"OKINAWA"|"AKITA"; japanese:string; subtitle:string; introduction:string;
   stage:string; stageExplanation:string; actions:RegionAction[];
   facts:RegionFact[]; focuses:RegionFocus[]; faqs:RegionFaq[];
-  note:string; otherRegionHref?:string;
+  note:string; otherRegionHref?:string; children?:ReactNode;
 };
 const ink="#111719",grey="#526169",line="#dce2e4";
 const button=(primary:boolean)=>({display:"inline-flex",alignItems:"center",justifyContent:"center",minHeight:50,padding:"12px 21px",borderRadius:4,textDecoration:"none",fontSize:14,fontWeight:850,background:primary?"#fff":"transparent",border:"1px solid #bbc4c9",color:primary?ink:"#fff"} as const);
 
-export function GreamRegionalPage({location,japanese,subtitle,introduction,stage,stageExplanation,actions,facts,focuses,faqs,note,otherRegionHref}:RegionProps){
+export function GreamRegionalPage({location,japanese,subtitle,introduction,stage,stageExplanation,actions,facts,focuses,faqs,note,otherRegionHref,children}:RegionProps){
   return <SiteFrame locale="ja">
     <div lang="ja" style={{color:ink,background:"#fff"}}>
       <section style={{background:location==="OKINAWA"?"linear-gradient(138deg,#0c202c,#142832 55%,#1b4950)":"linear-gradient(138deg,#111719,#292e31 65%,#373f43)",color:"#fff",padding:"clamp(66px,8vw,124px) max(20px,6vw)"}}>
@@ -25,6 +26,7 @@ export function GreamRegionalPage({location,japanese,subtitle,introduction,stage
           <div style={{display:"flex",flexWrap:"wrap",gap:12}}>{actions.map(a=><a key={a.href} href={a.href} style={button(!!a.primary)}>{a.label} →</a>)}</div>
         </div>
       </section>
+      {children}
       <section aria-label="活動状況" style={{background:"#e8edf0",padding:"36px max(20px,6vw)",borderBottom:"1px solid "+line}}>
         <div style={{maxWidth:1120,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,290px),1fr))",gap:28,alignItems:"start"}}>
           <div><p style={{margin:"0 0 7px",fontSize:12,fontWeight:900,letterSpacing:2}}>CURRENT STATUS / {japanese}</p><strong style={{fontSize:"clamp(22px,3.2vw,34px)",lineHeight:1.3}}>{stage}</strong></div>
