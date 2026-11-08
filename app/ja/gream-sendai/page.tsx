@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GreamAnnualPlan } from "@/components/gream-annual-plan";
 import { ShizugawaCampReport } from "@/components/shizugawa-camp-report";
+import { GreamBrandHeading } from "@/components/gream-brand-heading";
 import { SiteFrame } from "@/components/site-frame";
 import { CorporateSupportStrip } from "@/components/corporate-support-strip";
 
@@ -76,7 +77,7 @@ export default function GreamSendaiPage() {
       <section style={{ padding: "clamp(62px,8vw,112px) max(20px,6vw) 64px", background: ink, color: "#fff", borderBottom: "6px solid #d6dadd" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p style={{ margin: "0 0 18px", fontSize: 12, fontWeight: 800, letterSpacing: 3, color: "#c5cacf" }}>RIOT BASKETBALL ACADEMY / SENDAI · TAIHAKU / U15 BOYS CLUB</p>
-          <h1 style={{ fontSize: "clamp(45px,9vw,122px)", fontWeight: 950, lineHeight: .88, letterSpacing: "-.075em", margin: "0 0 24px" }}>GREAM<br/>SENDAI <span style={{ color: "#b6bec3" }}>U15.</span></h1>
+          <GreamBrandHeading team="GREAM SENDAI" />
           <h2 style={{ fontSize: "clamp(24px,3.6vw,47px)", lineHeight: 1.25, fontWeight: 900, margin: "0 0 20px" }}>仙台・太白区で、<br/>一緒にバスケを楽しもう。</h2>
           <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>GREAM仙台は、2026年に生まれたU15男子のバスケットボールクラブです。活動の中心は仙台市太白区。現在は中学2・3年生がいない、まだ新しいチームです。まずは仲間とバスケを楽しむこと。そこから一緒に、できることを増やしていきましょう。</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>

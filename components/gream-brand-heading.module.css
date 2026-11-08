@@ -1,0 +1,32 @@
+.heading {
+  margin: 0 0 28px;
+  min-width: 0;
+}
+
+.wordmark {
+  display: block;
+  width: min(100%, clamp(245px, 44vw, 464px));
+  height: auto;
+  background: #fafafa;
+}
+
+.label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 16px;
+  color: #f2f3f3;
+  font-size: clamp(17px, 3.2vw, 35px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: .055em;
+}
+
+.label small {
+  padding: .35em .6em;
+  border: 1px solid #818a91;
+  color: #e2e7e9;
+  font-size: .52em;
+  letter-spacing: .14em;
+}
