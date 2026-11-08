@@ -97,7 +97,7 @@ export default function MonthlyTrialPage() {
         <a href={trialForm} target="_blank" rel="noopener noreferrer" style={{...button,background:ink,color:"#fff",borderColor:ink}}>GREAM U15 木曜体験・事前登録 ↗</a>
         <div style={{marginTop:33,padding:23,background:card,textAlign:"left",border:"1px solid #d8dddd"}}>
           <h3 style={{fontSize:19,margin:"0 0 11px"}}>募集に関するご案内</h3>
-          <p style={{lineHeight:1.8,color:muted,margin:"0 0 12px"}}>男子U15クラブの2027年度月会費は9,900円（税込）と決定しています。体験会の料金は未定です。女子U15は2027年の指導開始へ向けて準備中で、正式な入団募集ではありません。</p>
+          <p style={{lineHeight:1.8,color:muted,margin:"0 0 12px"}}>男子U15クラブの2027年度月会費は9,900円（税込）と決定しています。体験会の料金は未定です。女子U15も2027年度の月会費は9,900円（税込）と決定しましたが、チームは設立準備中で、正式な入団募集ではありません。</p>
           <p style={{margin:0,lineHeight:1.8}}><a href={mainPage} style={{color:ink,fontWeight:750}}>男子クラブの詳しい案内 →</a>　／　<a href={girlsForm} style={{color:ink,fontWeight:750}}>女子U15の事前相談 →</a></p>
         </div>
         <p style={{fontSize:14,color:muted,lineHeight:1.9,marginTop:26}}>問い合わせ：<a style={{color:ink}} href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>　／　<a style={{color:ink}} href="/ja/policies">参加規約・個人情報について</a></p>

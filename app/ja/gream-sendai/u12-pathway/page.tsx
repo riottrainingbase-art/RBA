@@ -32,7 +32,7 @@ const faqs = [
   ["練習はいつ、どこでありますか？", "活動の中心は仙台市太白区です。練習会場は確保しています。週3回・各90分を基本に計画していますが、確定した曜日、時間、場所、送迎条件は参加相談後にご説明します。"],
   ["体験練習会はいつですか？", "現在、指導スタッフと開催枠を調整しています。日時は未決定です。参加相談フォームから希望曜日・時間帯をお知らせください。相談自体は無料で、体験実施時の条件は事前にご案内します。"],
   ["費用はいくらですか？", "2027年度の男子U15クラブ月会費は9,900円（税込）です。初期費用や合宿・遠征など別途生じる可能性のある費用は、正式入団を決める前に個別にご案内します。相談フォームの送信だけで料金は発生しません。"],
-  ["女子も参加できますか？", "2027年から女子選手への指導を始める準備をしています。現段階では正式な女子チーム募集ではありません。女子専用の無料事前相談フォームをご利用ください。活動日・会費・設立時期などは未決定です。"],
+  ["女子も参加できますか？", "2027年から女子選手への指導を始める準備をしています。現段階では正式な女子チーム募集ではありません。女子専用の無料事前相談フォームをご利用ください。2027年度女子月会費は9,900円（税込）に決定しています。活動日・正式設立時期・その他費用は未決定です。"],
   ["茂庭台ミニバスの関係者しか相談できませんか？", "いいえ。太白区を中心に、仙台市内および近隣にお住まいの方から広く相談を受け付けています。特定チームへの所属や紹介は不要です。"],
 ] as const;
 
@@ -52,7 +52,7 @@ export default function U12PathwayPage() {
     </section>
     <section style={{padding:"25px max(20px,6vw)",background:"#e8ebe9",borderBottom:"1px solid #d4dada"}}>
       <div style={{maxWidth:1120,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(210px,1fr))",gap:22}}>
-        {[["対象","小学6年生の進路相談・中学生の参加相談"],["活動の中心","仙台市太白区／会場確保済み"],["2027年度 男子U15","月会費 9,900円（税込）"],["女子U15","2027年からの指導を準備中"]].map(([k,v])=><div key={k}><p style={{fontSize:12,fontWeight:800,color:muted,margin:"0 0 7px"}}>{k}</p><strong style={{fontSize:19,lineHeight:1.55}}>{v}</strong></div>)}
+        {[["対象","小学6年生の進路相談・中学生の参加相談"],["活動の中心","仙台市太白区／会場確保済み"],["2027年度 男子U15","月会費 9,900円（税込）"],["女子U15","2027年準備中／月額9,900円（税込）"]].map(([k,v])=><div key={k}><p style={{fontSize:12,fontWeight:800,color:muted,margin:"0 0 7px"}}>{k}</p><strong style={{fontSize:19,lineHeight:1.55}}>{v}</strong></div>)}
       </div>
     </section>
     <section style={{padding:"65px max(20px,6vw)"}}>
@@ -84,7 +84,7 @@ export default function U12PathwayPage() {
     </section>
     <section id="girls" style={{padding:"70px max(20px,6vw)",background:ink,color:"#fff"}}>
       <div style={{maxWidth:1120,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:35,alignItems:"center"}}>
-        <div><p style={{letterSpacing:3,color:"#bfc8cc",fontSize:12,fontWeight:900}}>GIRLS U15 / 2027</p><h2 style={{fontSize:"clamp(31px,4.4vw,50px)",lineHeight:1.18,margin:"10px 0 19px"}}>女子の育成も、<br/>2027年から準備を進めます。</h2><p style={{color:"#cbd3d8",lineHeight:1.9}}>女子選手からの関心・参加希望を伺っています。正式なチーム設立、練習日、担当、会費、定員はまだ決まっていません。男子クラブへの申込とは別の受付です。</p></div>
+        <div><p style={{letterSpacing:3,color:"#bfc8cc",fontSize:12,fontWeight:900}}>GIRLS U15 / 2027</p><h2 style={{fontSize:"clamp(31px,4.4vw,50px)",lineHeight:1.18,margin:"10px 0 19px"}}>女子の育成も、<br/>2027年から準備を進めます。</h2><p style={{color:"#cbd3d8",lineHeight:1.9}}>女子選手からの関心・参加希望を伺っています。2027年度女子月会費は9,900円（税込）に決定しています。正式なチーム設立、練習日、担当、定員、初期費用等はまだ決まっていません。男子クラブへの申込とは別の受付です。</p></div>
         <div style={{border:"1px solid #758083",padding:27}}><h3 style={{fontSize:24,margin:"0 0 12px"}}>女子U15 事前相談</h3><p style={{lineHeight:1.85,color:"#d8dddf"}}>まずは保護者の方から、ご希望や活動可能な時間帯をお知らせください。無料でご相談いただけます。</p><a href={girlsForm} target="_blank" rel="noopener noreferrer" style={{...btn,background:"#fff",color:ink,borderColor:"#fff"}}>女子U15の無料事前相談 ↗</a></div>
       </div>
     </section>
