@@ -252,14 +252,15 @@ export default function GreamSendaiPage() {
           <div>
             <p style={{ letterSpacing: 3, fontWeight: 900, fontSize: 12, color: muted }}>GREAM SENDAI / GIRLS U15 / 2027</p>
             <h2 style={{ fontSize: "clamp(30px,4.6vw,55px)", lineHeight: 1.13, margin: "12px 0 22px" }}>2027年は、女子選手にも<br/>学びの場を広げたい。</h2>
-            <p style={{ lineHeight: 1.92, fontSize: 17, color: muted }}>男子チームで大切にしている「バスケを楽しみながら成長する」という考え方を、女子の育成にも広げていきたいと考えています。2027年から女子選手への指導を始め、将来的には女子U15チームの活動につなげることが目標です。</p>
+            <p style={{ lineHeight: 1.92, fontSize: 17, color: muted }}>これまでの女子クリニックで培った育成経験と、着地・減速・方向転換などの身体づくりを組み合わせ、2027年の女子U15育成活動を準備します。競技の判断力と傷害リスク低減を目指す運動習慣を、一体として考えます。</p>
             <p style={{ lineHeight: 1.82, fontSize: 15, color: muted }}>練習日・担当コーチ・参加費・チーム登録などはこれから決めていきます。いまは入団の確定募集ではなく、ご関心のあるご家庭からの相談を受け付けています。</p>
           </div>
           <div style={{ background: "#fff", padding: "26px", border: "1px solid "+border }}>
             <p style={{ color: muted, fontSize: 13, fontWeight: 900, letterSpacing: 1.8 }}>2027年女子U15・事前相談</p>
             <h3 style={{ fontSize: 25, margin: "14px 0" }}>まずは、興味があることを教えてください。</h3>
             <p style={{ lineHeight: 1.8, color: muted }}>練習に参加してみたい、どんなチームになるか知りたい、というご相談を歓迎します。相談は無料です。</p>
-            <a href={girlsUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-girls-interest" style={button}>女子U15の事前相談をする ↗</a>
+            <a href="/ja/gream-sendai/girls" data-growth-id="gream-sendai-girls-interest" style={button}>女子U15専用ページを見る →</a>
+            <p style={{fontSize:14,lineHeight:1.75,marginTop:16}}><a href={girlsUrl} target="_blank" rel="noopener noreferrer" style={{color:ink,fontWeight:800,textUnderlineOffset:3}}>無料の事前相談フォームへ直接進む ↗</a></p>
             <p style={{ fontSize: 13, lineHeight: 1.7, color: muted, marginTop: 18 }}>現時点ではチーム設立・活動日・月会費・参加枠を確約していません。男子チームの会費9,900円が女子に適用されるという意味ではありません。</p>
           </div>
         </div>
