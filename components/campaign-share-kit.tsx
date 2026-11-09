@@ -12,10 +12,21 @@ type Campaign = {
 };
 const campaigns: readonly Campaign[] = [
   {
+    id:"sendai-school",title:"仙台 U12・U15 スクール｜体験相談",date:"通年の体験・参加相談",
+    link:"https://riotbasketballacademy.com/ja/sendai-school",
+    summary:"仙台市太白区｜U12金曜／U15 SKILL UP木曜・月3回／所属チームはそのまま",
+    condition:"相談フォームの送信は無料です。実際の体験日・体験費用・受入条件は未確定のものがあり、RBAから個別に案内します。U15クラブGREAMとは別の活動です。",
+    messages:{
+      parents:"仙台・太白区で、小学生・中学生が通えるバスケットボールスクールを探しているご家庭へ。RBAは、所属チームを変えずに『見る・判断する・実行する』力を伸ばすU12・U15スクールの体験相談を受け付けています。U12は金曜、U15 SKILL UPは木曜18:00〜19:30を基本に活動します。相談は無料で、体験費用や受入日程は個別案内です。",
+      coaches:"仙台市太白区のRBA U12・U15スクールでは、所属先を変えることなく、技術を試合の判断につなげる練習を提供しています。U12は金曜の枠を調整中、U15 SKILL UPは木曜18:00〜19:30・月3回が基本です。体験希望の保護者が自ら内容を確認できる公式ページをご案内します。共有は任意で、名簿提供等はお願いしません。",
+      social:"チームはそのまま。もっと、上手くなる。仙台・太白区のRBA U12・U15バスケットボールスクール。シュート・ドライブだけでなく、見る・判断する・ゲームで使う力を伸ばそう。U12金曜／U15木曜（基本）。まずは保護者から無料の体験相談。開催日・体験費用・受入条件は公式ページで確認してください。"
+    }
+  },
+  {
     id:"okinawa-1114",title:"11/14 沖縄クリニック",date:"2026年11月14日（土）16:00〜19:00",
     until:"2026-11-14",link:"https://riotbasketballacademy.com/ja/events/okinawa-clinic-2026-11-14",
     summary:"身体操作・シュート・対人ゲーム／小4〜中3・3,300円（税込）",
-    condition:"会場の詳細は申込者に個別案内。施設の予約確定前は先行受付のみで、決済は開始されません。",
+    condition:"会場は伊良波小学校。参加可否、対象学年の例外対応、当日の詳細及び支払方法はRBAからの最新案内を優先してください。",
     messages:{
       parents:"沖縄でバスケットボールを頑張るお子さんをお持ちの方へ。\nRBAが11/14（土）16:00〜19:00に小4〜中3対象のクリニックを予定しています。止まる・切り返す・シュートと、ゲームの中での判断を学ぶ3時間です。参加費は1名3,300円（税込）。現在は先行受付で、会場の詳細は申込者への個別案内です。ご興味のある方は内容と受付条件をご確認ください。",
       coaches:"11月14日（土）16:00〜19:00、RBAが沖縄県南部で小4〜中3対象の個人技術・身体操作クリニックを予定しています。内容は切り返し、シュート、少人数ゲームでの判断です。参加費3,300円（税込）。会場予約は最終確認中につき先行受付段階です。活動予定に支障がなければ、関心のあるご家庭に任意で情報を共有いただけますと幸いです。",
@@ -109,7 +120,7 @@ function jstDay(){
   return `${part("year")}-${part("month")}-${part("day")}`;
 }
 export function CampaignShareKit(){
-  const [id,setId]=useState("torsten");
+  const [id,setId]=useState("sendai-school");
   const [audience,setAudience]=useState<Audience>("parents");
   const [status,setStatus]=useState("");
   const [fallback,setFallback]=useState(false);
