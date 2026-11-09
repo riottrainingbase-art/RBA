@@ -1,7 +1,7 @@
 "use client";
 
-import {useMemo, useState} from "react";
-import {Check, Copy, Share2, ArrowUpRight} from "lucide-react";
+import {useState} from "react";
+import {Copy, Share2, ArrowUpRight} from "lucide-react";
 import styles from "./campaign-share-kit.module.css";
 
 type Audience = "parents"|"coaches"|"social"|"english";
@@ -12,14 +12,25 @@ type Campaign = {
 };
 const campaigns: readonly Campaign[] = [
   {
+    id:"sendai-school",title:"仙台 U12・U15 スクール｜体験相談",date:"通年の体験・参加相談",
+    link:"https://riotbasketballacademy.com/ja/sendai-school",
+    summary:"仙台市太白区｜U12金曜／U15 SKILL UP木曜・月3回／所属チームはそのまま",
+    condition:"相談フォームの送信は無料です。実際の体験日・体験費用・受入条件は未確定のものがあり、RBAから個別に案内します。U15クラブGREAMとは別の活動です。",
+    messages:{
+      parents:"仙台・太白区で、小学生・中学生が通えるバスケットボールスクールを探しているご家庭へ。RBAは、所属チームを変えずに『見る・判断する・実行する』力を伸ばすU12・U15スクールの体験相談を受け付けています。U12は金曜、U15 SKILL UPは木曜18:00〜19:30を基本に活動します。相談は無料で、体験費用や受入日程は個別案内です。",
+      coaches:"仙台市太白区のRBA U12・U15スクールでは、所属先を変えることなく、技術を試合の判断につなげる練習を提供しています。U12は金曜の枠を調整中、U15 SKILL UPは木曜18:00〜19:30・月3回が基本です。体験希望の保護者が自ら内容を確認できる公式ページをご案内します。共有は任意で、名簿提供等はお願いしません。",
+      social:"チームはそのまま。もっと、上手くなる。仙台・太白区のRBA U12・U15バスケットボールスクール。シュート・ドライブだけでなく、見る・判断する・ゲームで使う力を伸ばそう。U12金曜／U15木曜（基本）。まずは保護者から無料の体験相談。開催日・体験費用・受入条件は公式ページで確認してください。"
+    }
+  },
+  {
     id:"okinawa-1114",title:"11/14 沖縄クリニック",date:"2026年11月14日（土）16:00〜19:00",
     until:"2026-11-14",link:"https://riotbasketballacademy.com/ja/events/okinawa-clinic-2026-11-14",
     summary:"身体操作・シュート・対人ゲーム／小4〜中3・3,300円（税込）",
-    condition:"会場の詳細は申込者に個別案内。施設の予約確定前は先行受付のみで、決済は開始されません。",
+    condition:"会場は伊良波小学校。参加可否、対象学年の例外対応、当日の詳細及び支払方法はRBAからの最新案内を優先してください。",
     messages:{
-      parents:"沖縄でバスケットボールを頑張るお子さんをお持ちの方へ。\nRBAが11/14（土）16:00〜19:00に小4〜中3対象のクリニックを予定しています。止まる・切り返す・シュートと、ゲームの中での判断を学ぶ3時間です。参加費は1名3,300円（税込）。現在は先行受付で、会場の詳細は申込者への個別案内です。ご興味のある方は内容と受付条件をご確認ください。",
-      coaches:"11月14日（土）16:00〜19:00、RBAが沖縄県南部で小4〜中3対象の個人技術・身体操作クリニックを予定しています。内容は切り返し、シュート、少人数ゲームでの判断です。参加費3,300円（税込）。会場予約は最終確認中につき先行受付段階です。活動予定に支障がなければ、関心のあるご家庭に任意で情報を共有いただけますと幸いです。",
-      social:"沖縄の育成世代へ。\n上手くなるのは、技術を覚えることだけじゃない。止まる・見る・選ぶ・次のプレーへつなぐ。11/14（土）16:00〜19:00、小4〜中3対象。3,300円（税込）。会場詳細は申込者に個別案内。現在は先行受付です。"
+      parents:"沖縄でバスケットボールを頑張るお子さんをお持ちの方へ。\nRBAが11/14（土）16:00〜19:00に小4〜中3対象のクリニックを予定しています。止まる・切り返す・シュートと、ゲームの中での判断を学ぶ3時間です。参加費は1名3,300円（税込）。会場は伊良波小学校です。参加枠・決済・集合案内はRBAからの正式連絡をご確認ください。",
+      coaches:"11月14日（土）16:00〜19:00、RBAが沖縄県南部で小4〜中3対象の個人技術・身体操作クリニックを予定しています。内容は切り返し、シュート、少人数ゲームでの判断です。参加費3,300円（税込）。会場は伊良波小学校です。参加対象・枠・支払方法はRBAの最新案内を優先し、活動に支障がなければ関心のあるご家庭へ任意で情報共有いただけますと幸いです。",
+      social:"沖縄の育成世代へ。\n上手くなるのは、技術を覚えることだけじゃない。止まる・見る・選ぶ・次のプレーへつなぐ。11/14（土）16:00〜19:00、小4〜中3対象。3,300円（税込）。伊良波小学校で開催予定。参加可否と正式な決済・集合案内はRBAからお知らせします。"
     }
   },
   {
@@ -109,7 +120,7 @@ function jstDay(){
   return `${part("year")}-${part("month")}-${part("day")}`;
 }
 export function CampaignShareKit(){
-  const [id,setId]=useState("torsten");
+  const [id,setId]=useState("sendai-school");
   const [audience,setAudience]=useState<Audience>("parents");
   const [status,setStatus]=useState("");
   const [fallback,setFallback]=useState(false);
@@ -117,7 +128,8 @@ export function CampaignShareKit(){
   const visible=campaigns.filter(x=>!x.until||x.until>=today);
   const chosen=visible.find(c=>c.id===id)||visible[0];
   const currentAudience=chosen?.messages[audience]?audience:"parents";
-  const message=useMemo(()=>{
+  // Short static copy: compute directly to avoid unstable manual memoization.
+  const message=(()=>{
     if(!chosen)return "";
     const link=new URL(chosen.link);
     // Attribution is campaign/audience only; no contact details, names or IDs.
@@ -126,7 +138,7 @@ export function CampaignShareKit(){
     link.searchParams.set("utm_campaign",chosen.id);
     link.searchParams.set("utm_content",currentAudience);
     return `${chosen.messages[currentAudience]}\n\n公式案内・申込・相談：\n${link.toString()}`;
-  },[chosen,currentAudience]);
+  })();
   if(!chosen)return <p>現在、共有できる募集企画はありません。<a href="/ja/opportunities">活動一覧をご確認ください。</a></p>;
   function choose(next:string){setId(next);setAudience("parents");setStatus("");setFallback(false);}
   async function copyText(){
