@@ -1,0 +1,27 @@
+.page{min-height:100dvh;background:linear-gradient(160deg,#10233f 0,#203f62 330px,#f5f7f9 331px,#f5f7f9 100%);color:#10233f;padding:0 16px 40px;}
+.container{width:100%;max-width:620px;margin:0 auto;}
+.hero{text-align:center;color:#fff;padding:33px 0 29px;}
+.logo{height:auto;max-height:88px;object-fit:contain;border-radius:5px;}
+.brand{font-size:12px;letter-spacing:.17em;font-weight:850;line-height:1.5;margin:12px 0 14px;color:#d9e4ed;}
+.hero h1{font-size:clamp(28px,6.3vw,39px);line-height:1.22;letter-spacing:-.045em;margin:0 0 14px;font-weight:850;}
+.lead{font-size:14px;line-height:1.9;color:#e3ecf3;margin:0 0 13px;}
+.region{font-size:12px;font-weight:800;letter-spacing:.08em;color:#e3ecf3;}
+.links{display:grid;gap:12px;margin-top:12px;}
+.card,.featured{display:flex;flex-direction:column;gap:9px;text-decoration:none;color:#10233f;background:#fff;border:1px solid #d9e0e7;border-radius:11px;padding:20px 21px;box-shadow:0 2px 8px rgba(9,25,46,.05);}
+.featured{background:#fff9ee;border-color:#e6ad65;border-width:2px;padding:21px 20px;box-shadow:0 6px 18px rgba(10,26,46,.12);}
+.eyebrow{font-size:11px;letter-spacing:.11em;font-weight:850;color:#66778a;}
+.featured .eyebrow{color:#9f571d;}
+.card strong,.featured strong{font-size:clamp(19px,4vw,23px);line-height:1.4;letter-spacing:-.035em;}
+.description{font-size:14px;line-height:1.8;color:#526477;}
+.action{font-size:14px;font-weight:850;color:#10233f;line-height:1.5;margin-top:5px;}
+.action span{float:right;font-size:18px;line-height:1;}
+.card:hover,.featured:hover{border-color:#45759d;transform:translateY(-1px);}
+.more{border-top:1px solid #d4dde5;margin:21px 0 0;display:grid;gap:0;}
+.more a{display:flex;justify-content:space-between;align-items:center;gap:15px;min-height:53px;padding:13px 10px;border-bottom:1px solid #d4dde5;text-decoration:none;font-size:14px;font-weight:800;color:#10233f;}
+.more a:hover{background:#e8eef4;}
+.notice{font-size:12px;color:#526477;line-height:1.85;margin:23px 4px 0;}
+.page footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #dae0e5;padding-top:18px;margin:21px 4px 0;font-size:11px;color:#64778c;}
+.page footer a{color:#10233f;}
+.page a:focus-visible{outline:3px solid #c88835;outline-offset:3px;}
+@media(max-width:420px){.hero{padding-top:26px}.card,.featured{padding:18px 16px}.page{padding-left:12px;padding-right:12px;}}
+@media(prefers-reduced-motion:reduce){.card:hover,.featured:hover{transform:none;}}
