@@ -94,22 +94,13 @@ const events: Entry[] = [
 
 const ongoing: Entry[] = [
   {
-    id: "sendai-u15",
-    title: "仙台 U15 SKILL UP SCHOOL",
-    audience: "小学6年生・U15年代",
-    price: "月3回 7,700円 / 入会金 5,500円",
-    detail: "木曜18:00〜19:30。所属チームを続けながら、見る・判断する・実行する力を磨きます。",
-    href: "/ja/u15-skill-up",
-    cta: "スクール内容・入会方法",
-    note: "申込・入金・初回参加は別々に確認します。",
-  },
-  {
-    id: "sendai-u12",
-    title: "仙台 U12 スクール",
-    audience: "小学生・保護者",
-    detail: "金曜を基本に実施。体験日・会場・料金は、最新の公式案内を確認してから参加を検討できます。",
-    href: "/ja/u12-school",
-    cta: "U12スクールの案内",
+    id: "sendai-school",
+    title: "仙台 U12・U15 スクール｜体験相談",
+    audience: "小学生・小学6年生・中学生の保護者",
+    detail: "U12は金曜、U15 SKILL UPは木曜を基本に活動。所属チームを変えずに参加できるスクールの料金・学年・体験条件を比較できます。",
+    href: "/ja/sendai-school",
+    cta: "2つのクラスを比較し、無料で体験相談",
+    note: "フォーム送信は無料。実際の体験日・費用・受入可否は個別にご案内します。",
   },
   {
     id: "rtb-intro",
@@ -244,7 +235,7 @@ export default function StartPage() {
           <p className={styles.lead}>参加する。体験する。指導者として学ぶ。チームや地域に呼ぶ。あなたの目的から、正しい公式申込・相談先へ進めます。</p>
           <nav className={styles.chips} aria-label="目的から探す">
             <a href="#events">直近のイベント</a>
-            <a href="#regular">スクール・RTB体験</a>
+            <a href="/ja/sendai-school" data-growth-id="start-school-hero">仙台スクールの無料体験相談</a>
             <a href="#coaches">指導者・開催相談</a>
             <a href="#partners">企業・国際交流</a>
           </nav>
@@ -255,7 +246,7 @@ export default function StartPage() {
           {currentEvents.length ? <EntryCards items={currentEvents} section="event" /> : <p>現在、この一覧で案内できる直近イベントはありません。<a href="/ja/opportunities">活動一覧をご覧ください。</a></p>}
         </section>
         <section className={styles.section} id="regular" aria-labelledby="start-regular">
-          <div className={styles.sectionHead}><div><p className={styles.kicker}>02 / CONTINUE</p><h2 id="start-regular">継続スクール・身体づくり</h2><p>一日限りの参加ではなく、日常の練習や身体づくりを続けたい方へ。</p></div></div>
+          <div className={styles.sectionHead}><div><p className={styles.kicker}>02 / CONTINUE</p><h2 id="start-regular">仙台スクール・身体づくり</h2><p>一日限りの参加ではなく、日常の練習や身体づくりを続けたい方へ。</p></div></div>
           <EntryCards items={ongoing} section="regular" />
         </section>
         <section className={styles.section} id="coaches" aria-labelledby="start-coaches">
