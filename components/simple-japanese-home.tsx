@@ -1,3 +1,4 @@
+import { OkinawaCampGrowthPanel } from "./okinawa-camp-growth-panel";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { SiteFrame, localePath } from "./site-frame";
@@ -171,6 +172,10 @@ export function SimpleJapaneseHome() {
               </div>
             ) : <p className={styles.empty}>新しい募集は活動一覧でお知らせします。</p>}
             <p className={styles.smallNote}>開催・会場・支払条件は各活動の詳細ページを優先してください。問い合わせだけで参加は確定しません。</p>
+            <details className={styles.optionalCamp}>
+              <summary>沖縄国際キャンプの参加・宿泊について相談する <span aria-hidden="true">＋</span></summary>
+              <OkinawaCampGrowthPanel placement="home" />
+            </details>
           </section>
 
           <section className={styles.section} id="gream" aria-labelledby="home-gream-title">
