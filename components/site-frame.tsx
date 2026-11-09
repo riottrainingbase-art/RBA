@@ -31,14 +31,22 @@ export function localePath(locale:Locale, page?:LanguagePage){
 
 export function SiteFrame({ children, locale="en", languagePage, compact=false }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage; compact?:boolean }) {
   const c=labels[locale];
-  const nav=[
-    [({en:"Activities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
-    ...(locale==="ja"?[["U12","/ja/u12"],["U15","/ja/u15"],["GREAM","/ja/gream"]] as [string,string][]:[]),
-    [({en:"Learning",ja:"育成を学ぶ","zh-tw":"培育學習",ko:"육성 배우기"})[locale],localePath(locale,"journal")],
-    [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
-    [c.about,localePath(locale,"about")],
-  ] as const;
+  const nav=locale==="ja"
+    ? ([
+        ["活動・申込", "/ja/opportunities"],
+        ["GREAM U15", "/ja/gream"],
+        ["指導者講習", "/ja/events/torsten-loibl-online-clinic"],
+        ["育成を学ぶ", "/ja/journal"],
+        ["協賛・開催", "/ja/partners"],
+        ["RBAについて", "/ja/about"],
+      ] as const)
+    : ([
+        [({en:"Activities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
+        [({en:"Learning",ja:"育成を学ぶ","zh-tw":"培育學習",ko:"육성 배우기"})[locale],localePath(locale,"journal")],
+        [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
+        [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
+        [c.about,localePath(locale,"about")],
+      ] as const);
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   // Always enter through the member app when auth is live. Existing sessions open immediately; signed-out users are redirected to login and returned to the app afterwards.
