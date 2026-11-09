@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 
 const url = "https://riotbasketballacademy.com/ja/u12-school";
 const inquiry = "mailto:riot.training.base@gmail.com?subject=RBA%20%E4%BB%99%E5%8F%B0U12%20%E8%8C%82%E5%BA%AD%E5%8F%B0%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%AB%E4%BD%93%E9%A8%93%E7%9B%B8%E8%AB%87";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: url },
   openGraph: {
     title: "RBA 仙台U12スクール｜茂庭台小学校",
-    description: "仙台市太白区・茂庭台小学校。原則金曜18:00〜19:30（月3回）。入会金10,000円、月額7,700円。体験日・開始時期は個別にご案内します。",
+    description: "仙台市太白区・茂庭台小学校を候補に調整中。金曜18:00〜19:30（月3回）を基本に計画。入会金10,000円、月額7,700円。体験日・開始時期は個別にご案内します。",
     url,
     siteName: "Riot Basketball Academy",
     type: "website",
@@ -24,12 +25,12 @@ const points = [
 ] as const;
 
 export default function SendaiU12SchoolPage() {
-  return <SiteFrame locale="ja">
+  return <SiteFrame locale="ja"><GrowthClickTracking />
     <section style={{background:"#10233f",color:"#fff",padding:"clamp(48px,7vw,96px) 6vw"}}>
       <div style={{maxWidth:1060,margin:"0 auto"}}>
         <p style={{fontSize:12,fontWeight:800,letterSpacing:3,color:"#ffb473"}}>RIOT BASKETBALL ACADEMY / SENDAI U12</p>
-        <h1 style={{fontSize:"clamp(32px,5vw,62px)",lineHeight:1.24,margin:"16px 0 20px"}}>仙台U12スクール<br/>会場は、茂庭台小学校へ。</h1>
-        <p style={{fontSize:"clamp(16px,2vw,20px)",lineHeight:1.9,maxWidth:800}}>仙台市太白区の茂庭台小学校で、U12年代の子どもたちが学べるスクールの開催を準備しています。所属チームを変えることを前提とせず、技術と判断をゲームの中で育てます。</p>
+        <h1 style={{fontSize:"clamp(32px,5vw,62px)",lineHeight:1.24,margin:"16px 0 20px"}}>仙台U12スクール<br/>茂庭台での開講を準備中。</h1>
+        <p style={{fontSize:"clamp(16px,2vw,20px)",lineHeight:1.9,maxWidth:800}}>仙台市太白区の茂庭台小学校を会場候補として、U12年代の子どもたちが学べるスクールの開催条件を確認しています。学校・施設による利用許可、具体的な開催日、受入条件は未確定です。所属チームを変えることを前提とせず、技術と判断をゲームの中で育てます。</p>
         <a href="https://form.jotform.com/263053122067044" target="_blank" rel="noopener noreferrer" data-growth-id="sendai-u12-free-consult" style={{display:"inline-block",background:"#fff",color:"#10233f",padding:"15px 24px",marginTop:20,fontWeight:800,textDecoration:"none"}}>体験・参加を無料相談する →</a>
       </div>
     </section>
@@ -39,14 +40,14 @@ export default function SendaiU12SchoolPage() {
         <h2 style={{fontSize:"clamp(27px,3vw,38px)",margin:"12px 0 26px"}}>仙台U12スクールのご案内</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:12}}>
           {[
-            ["会場","茂庭台小学校（宮城県仙台市太白区）"],
+            ["会場候補","茂庭台小学校（宮城県仙台市太白区）／利用条件を確認中"],
             ["対象","U12年代の小学生（小学5年生も対象）"],
             ["基本スケジュール","原則金曜日 18:00〜19:30（月3回を基本）"],
             ["会費","2026年11月30日までの新規受付：入会金10,000円／月額7,700円。2026年12月1日以降の新規入会：入会金11,500円／月額8,900円（税込）。既存会員は契約に従い別途案内"],
             ["開催状況","具体的な開催日・体験受付の条件は調整中"],
           ].map(([label,value])=><article key={label} style={{padding:24,background:"#fff",border:"1px solid #d8dfe7"}}><p style={{fontSize:12,color:"#526278",fontWeight:800,margin:"0 0 12px"}}>{label}</p><p style={{fontSize:17,fontWeight:700,lineHeight:1.65,margin:0}}>{value}</p></article>)}
         </div>
-        <p style={{lineHeight:1.85,color:"#536174",marginTop:24}}>基本の活動枠は金曜日18:00〜19:30です。学校行事や体育館の利用条件によって変更する場合があります。具体的な開催日・体験受入れ・開始時期は確認中です。2026年12月1日以降の新規入会料金は入会金11,500円・月額8,900円（税込）を予定しています。既存会員の月会費を自動的に変更するものではありません。決済システムに新料金が反映されるまでは新規の決済を行わず、受入れ確定後に案内する正式な料金と契約条件をご確認ください。</p>
+        <p style={{lineHeight:1.85,color:"#536174",marginTop:24}}>基本の活動枠は金曜日18:00〜19:30を計画しています。会場の利用許可や学校行事・体育館の条件により変更・見送りとなる可能性があります。具体的な開催日・体験受入れ・開始時期は確認中です。2026年12月1日以降の新規入会料金は入会金11,500円・月額8,900円（税込）を予定しています。既存会員の月会費を自動的に変更するものではありません。決済システムに新料金が反映されるまでは新規の決済を行わず、受入れ確定後に案内する正式な料金と契約条件をご確認ください。</p>
       </div>
     </section>
     <section style={{padding:"clamp(44px,7vw,84px) 6vw",background:"#fff",color:"#10233f"}}>
