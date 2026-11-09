@@ -89,7 +89,7 @@ export default function GreamPage() {
         <div className={styles.wrap}>
           <p className={styles.sectionTag}>RBA PARTNER CLUB / CHIBA</p>
           <h2 id="gream-partner-clubs">千葉の地域クラブとも、育成でつながる。</h2>
-          <p className={styles.sectionLead}>HBC WOLVESは千葉県神崎町で活動する小学生・中学生のバスケットボールクラブ。RBAと接点のある交流・イベントに取り組む独立した地域クラブとしてご紹介します。GREAMの3チームとは運営主体が異なります。</p>
+          <p className={styles.sectionLead}>HBC WOLVESは千葉県神崎町で2018年から活動するU12・U15バスケットボールクラブ。周浦智美コーチが代表を務め、RBA代表・西尾優人が育成アドバイザーとして参画します。独立した運営を尊重しながら練習・体験・交流をサポートします。GREAMの3チームとは別組織です。</p>
           <div className={styles.actions} style={{marginTop:24}}>
             <a className={styles.linkButton} href="/ja/u15/hbc-wolves" data-growth-id="gream-partner-hbc">HBC WOLVESのチーム・体験案内 →</a>
             <a className={styles.linkButton} href="https://www.instagram.com/hbcwolves/" target="_blank" rel="noopener noreferrer" data-growth-id="gream-partner-hbc-instagram">HBCに体験・見学を相談 ↗</a>
