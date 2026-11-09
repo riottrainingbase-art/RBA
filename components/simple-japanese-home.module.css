@@ -73,3 +73,16 @@
 .ageAction{border-top:1px solid currentColor;width:100%;padding-top:15px;margin-top:25px;font-size:13px;font-weight:800}
 @media(max-width:850px){.ageGrid{grid-template-columns:1fr}.ageCard{min-height:185px}.ageHub{padding:34px 0}.ageCard strong{margin:15px 0 10px}.ageAction{margin-top:14px}}
 @media(prefers-reduced-motion:reduce){.ageCard{transition:none}.ageCard:hover{transform:none}}
+
+/* Sendai school conversion strip: follows existing corporate support and hero. */
+.schoolSpotlight{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,310px);gap:26px;align-items:center;padding:30px 32px;margin:22px 0 20px;border:1px solid #c9d7e5;border-left:5px solid #234b77;background:#f3f7fb;color:#10233f}
+.schoolSpotlight h2{font-size:clamp(22px,3vw,29px);line-height:1.4;letter-spacing:-.03em;margin:0 0 10px;font-weight:800}
+.schoolSpotlight p:not(.label){font-size:14px;line-height:1.85;color:#374f69;margin:0 0 14px}
+.schoolFacts{display:flex;flex-wrap:wrap;gap:8px 13px;margin:0 0 12px}
+.schoolFacts span{font-size:13px;font-weight:800;color:#24446a}
+.schoolSpotlight small{font-size:12px;line-height:1.65;color:#52657c}
+.schoolSpotlightActions{display:grid;gap:10px}
+.schoolSpotlightActions a{display:flex;align-items:center;justify-content:center;min-height:50px;padding:12px 14px;background:#10233f;color:#fff;text-decoration:none;font-size:13px;line-height:1.5;text-align:center;font-weight:800}
+.schoolSpotlightActions a + a{background:#fff;color:#10233f;border:1px solid #a6b8c9}
+.schoolSpotlightActions a:focus-visible{outline:3px solid #b97b31;outline-offset:3px}
+@media(max-width:760px){.schoolSpotlight{grid-template-columns:1fr;padding:22px 19px;gap:19px;margin:18px 0}.schoolSpotlightActions a{width:100%}}
