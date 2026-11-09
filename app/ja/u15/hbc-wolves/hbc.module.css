@@ -28,6 +28,7 @@
 .logoCaption{display:flex;gap:10px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;color:#182c3c;padding:17px 6px 2px}
 .logoCaption strong{font-size:19px;font-weight:950;letter-spacing:-.035em}
 .logoCaption span{font-size:9px;font-weight:800;letter-spacing:.15em}
+.logoCredit{font-size:10px;line-height:1.75;color:#506275;margin:7px 6px 0;letter-spacing:.02em}
 .heroNote{color:#b8c9d6;font-size:11px;line-height:1.9;max-width:920px;margin:36px 0 0}
 .accentLine{height:6px;background:linear-gradient(90deg,#9fc9d1, #d6b884 52%, #f3f3ee)}
 .intro,.trainingSection,.vision,.peopleSection,.activities,.related{padding:clamp(52px,7.5vw,92px) 0}
