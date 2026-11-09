@@ -1,3 +1,4 @@
+export const revalidate = 3600;
 import type { Metadata } from "next";
 import { LocalizedHome } from "@/components/localized-home";
 
