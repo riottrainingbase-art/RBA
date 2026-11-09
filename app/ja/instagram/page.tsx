@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Instagramから参加する・学ぶ",
   description:
-    "全国クリニック、U15育成、オンライン指導者教育、国際交流、企業協賛・広告パートナーの相談。選手・保護者・指導者・企業のためのRBA公式入口。",
+    "仙台U12・U15スクールの無料体験相談、GREAMクラブ、全国クリニック、指導者教育、国際交流、企業協賛。選手・保護者・指導者・企業のためのRBA公式入口。",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://riotbasketballacademy.com/ja/instagram" },
   openGraph: {
@@ -124,6 +124,16 @@ export default function InstagramEntryPage() {
             <span className="border border-neutral-300 bg-white px-3 py-2">チーム・地域</span>
             <span className="border border-neutral-300 bg-white px-3 py-2">企業・協賛担当者</span>
           </div>
+        </section>
+
+        <section className="mx-5 mb-6 border-2 border-[#10233f] bg-white px-5 py-6 text-[#10233f] sm:mx-9 sm:px-7" aria-labelledby="instagram-sendai-school-title">
+          <p className="text-[11px] font-black tracking-[.12em] text-[#735c48]">SENDAI / TAIHAKU · SCHOOL TRIAL</p>
+          <h2 id="instagram-sendai-school-title" className="mt-3 text-[27px] font-black leading-[1.3] tracking-[-.04em] sm:text-[34px]">仙台の小学生・中学生へ。<br />チームはそのまま、もっと学ぼう。</h2>
+          <p className="mt-3 text-[14px] leading-7 text-[#42556d]">U12は金曜、U15 SKILL UPは木曜が基本。所属チームを変えずに、技術・判断・少人数ゲームを学ぶスクールです。会場・体験日・費用は受付後に個別に確認できます。</p>
+          <a href={track("/ja/sendai-school","sendai_school_trial","sendai_school_202611")} data-growth-id="instagram-sendai-school-trial" className="mt-5 flex min-h-[54px] items-center justify-between gap-3 bg-[#10233f] px-5 py-4 text-[14px] font-black text-white" style={{color:"#fff"}}>
+            U12・U15の体験を無料相談する <ArrowUpRight size={19} aria-hidden="true" />
+          </a>
+          <p className="mt-3 text-[11px] leading-5 text-[#52627a]">※相談送信は無料。体験参加・入会・決済は自動で確定しません。GREAM U15クラブへの入団とは別です。</p>
         </section>
 
         <section className="mx-5 mb-6 border border-[#151719] bg-white px-4 py-5 sm:mx-9 sm:px-7 sm:py-7" aria-labelledby="instagram-sponsor-title">
