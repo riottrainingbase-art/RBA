@@ -85,6 +85,17 @@ export default function GreamPage() {
           </div>
         </div>
       </section>
+      <section className={styles.section} aria-labelledby="gream-partner-clubs" style={{background:"#eef2f3"}}>
+        <div className={styles.wrap}>
+          <p className={styles.sectionTag}>RBA PARTNER CLUB / CHIBA</p>
+          <h2 id="gream-partner-clubs">千葉の地域クラブとも、育成でつながる。</h2>
+          <p className={styles.sectionLead}>HBC WOLVESは千葉県神崎町で活動する小学生・中学生のバスケットボールクラブ。RBAと接点のある交流・イベントに取り組む独立した地域クラブとしてご紹介します。GREAMの3チームとは運営主体が異なります。</p>
+          <div className={styles.actions} style={{marginTop:24}}>
+            <a className={styles.linkButton} href="/ja/u15/hbc-wolves" data-growth-id="gream-partner-hbc">HBC WOLVESのチーム・体験案内 →</a>
+            <a className={styles.linkButton} href="https://www.instagram.com/hbcwolves/" target="_blank" rel="noopener noreferrer" data-growth-id="gream-partner-hbc-instagram">HBCに体験・見学を相談 ↗</a>
+          </div>
+        </div>
+      </section>
       <section className={styles.section} aria-labelledby="gream-identity">
         <div className={styles.wrap}>
           <p className={styles.sectionTag}>OUR DEVELOPMENT PRINCIPLES</p>
