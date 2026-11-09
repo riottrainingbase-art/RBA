@@ -34,7 +34,7 @@ export default function HbcWolvesPage() {
           <p className={styles.overline}>INDEPENDENT PARTNER CLUB</p>
           <h1 id="hbc-title">HBC <span>WOLVES</span></h1>
           <p className={styles.heroTitle}>千葉・神崎から、<br/>次の挑戦へ。</p>
-          <p className={styles.lead}>小学生・中学生の「もっとやってみたい」を、地域のコートから。Riot Basketball Academyは、千葉県神崎町で活動するHBC WOLVESの取り組みを紹介し、体験・見学の入口を応援します。</p>
+          <p className={styles.lead}>小学生・中学生の「もっとやってみたい」を、地域のコートから。Riot Basketball Academyは、千葉県神崎町でHBCが主体となって続ける育成活動を尊重し、体験・見学の入口を応援します。</p>
           <div className={styles.actions}>
             <a href={instagram} target="_blank" rel="noopener noreferrer" className={styles.primary} data-growth-id="hbc-wolves-trial-instagram">体験・見学をDMで相談 ↗</a>
             <a href={website} target="_blank" rel="noopener noreferrer" className={styles.secondary} data-growth-id="hbc-wolves-official-site">HBC公式サイトを見る ↗</a>
