@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
@@ -71,7 +72,7 @@ const structuredData = {
 };
 
 export default function Page(){
-  return <SiteFrame locale="ja" languagePage="opportunities"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData)}}/>
+  return <SiteFrame locale="ja" languagePage="opportunities"><GrowthClickTracking /><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData)}}/>
     <main style={{background:"#f5f5f2",color:"#111"}}>
       <section style={{padding:"72px 6vw 56px",borderBottom:"1px solid #d6d6d0",background:"#fff"}}>
         <p style={{fontSize:13,letterSpacing:3,fontWeight:700,margin:"0 0 20px"}}>RIOT BASKETBALL ACADEMY · SENDAI · START OCT 2026</p>
@@ -81,11 +82,11 @@ export default function Page(){
         <p style={{maxWidth:760,fontSize:17,lineHeight:1.8,margin:"0 0 30px",color:"#3f3f3a"}}>技術を覚えるだけで終わらせない。見る、判断する、実行する。1on1、スペーシング、フィニッシュ、オフボール、ディフェンス、スモールサイドゲームを年間でつなぎ、ゲームで使えるFundamentalsを育てます。</p>
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
           <a href="https://form.jotform.com/263053122067044" target="_blank" rel="noopener noreferrer" data-growth-id="sendai-u15-trial-interest" style={{display:"inline-block",background:"#111",color:"#fff",padding:"15px 22px",fontWeight:800,textDecoration:"none"}}>体験・参加を無料相談する →</a>
-          <a href="#apply" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>既に参加条件を確認した方の正式申込 ↓</a>
+          <a href="#apply" style={{display:"inline-block",border:"1px solid #111",color:"#111",padding:"14px 22px",fontWeight:800,textDecoration:"none",background:"#fff"}}>体験相談の進め方を確認 ↓</a>
         </div>
       </section>
 
-      <div style={{background:"#f6eee4",borderTop:"1px solid #e8dac6",borderBottom:"1px solid #e8dac6",padding:"15px 6vw",fontSize:14,lineHeight:1.9,color:"#5d4c37"}}>初めての方は、まず無料の体験・参加相談から。ご希望の曜日・学年と開催可能日を確認してから、正式申込・月額決済をご案内します。体験の費用・会場・受入日程は個別確認です。相談のみでは参加や決済は成立しません。</div>
+      <div style={{background:"#f6eee4",borderTop:"1px solid #e8dac6",borderBottom:"1px solid #e8dac6",padding:"15px 6vw",fontSize:14,lineHeight:1.9,color:"#5d4c37"}}>新規参加をご希望の方は、まず保護者から無料相談をお願いします。RBAの有料スクールとしての会場利用条件と体験日の確認を進めています。正式な日時・受入条件・費用のご案内前に、新規の月額決済をお願いすることはありません。相談のみでは参加予約や入会は成立しません。</div>
 
       <section style={{padding:"48px 6vw",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:1,background:"#cfcfc9"}}>
         {[
@@ -164,22 +165,22 @@ export default function Page(){
 
       <section style={{padding:"64px 6vw",background:"#111",color:"#fff"}}>
         <p style={{fontSize:12,letterSpacing:3,color:"#aaa",fontWeight:700}}>REGISTRATION FLOW</p>
-        <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 26px"}}>申込 → 月額登録 → MY HOME COURT</h2>
+        <h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"10px 0 26px"}}>無料相談 → 条件確認 → 体験・入会</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:12}}>
-          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>01</strong><h3>申込フォーム</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>選手・保護者情報、現在の課題、安全上の共有事項を入力します。</p></div>
-          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>02</strong><h3>入会金＋月額登録</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>初回は入会金5,500円＋初月会費7,700円＝13,200円（税込）。翌月以降は月額7,700円（税込）です。Stripeの安全な決済画面から登録します。</p><a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}>月額登録へ →</a></div>
-          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>03</strong><h3>RBAから確認メール</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>フォームと決済を確認後、受付確定と会場詳細をメールでご案内します。</p></div>
-          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>04</strong><h3>MY HOME COURT</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>参加予定、成長記録、次の育成機会を一つの場所につなげます。</p><a href="/ja/my-homecourt" style={{color:"#fff",fontWeight:800}}>MY HOME COURTを見る →</a></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>01</strong><h3>保護者の無料相談</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>希望する学年・曜日・通学エリアを相談フォームからお知らせください。送信のみで費用は発生しません。</p><a href="https://form.jotform.com/263053122067044" data-growth-id="u15-free-intake-step" target="_blank" rel="noopener noreferrer" style={{color:"#fff",fontWeight:800}}>無料相談へ →</a></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>02</strong><h3>会場・体験条件の確認</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>RBAが有料スクールとしての施設利用許可、体験日時、参加可能人数と安全管理を確認してからご案内します。</p></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>03</strong><h3>体験・入会の判断</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>本人と保護者が指導内容・料金・契約条件を確認します。受入れ確定後に、正式申込・決済方法を個別にご案内します。</p></div>
+          <div style={{border:"1px solid #444",padding:24}}><strong style={{fontSize:26}}>04</strong><h3>MY HOME COURT</h3><p style={{color:"#d8d8d3",lineHeight:1.7}}>希望する方は、参加予定や練習の振り返りをRBA IDでまとめられます。RBA IDは無料です。</p><a href="/ja/my-homecourt" style={{color:"#fff",fontWeight:800}}>MY HOME COURTを見る →</a></div>
         </div>
-        <p style={{margin:"24px 0 0",color:"#bbb",lineHeight:1.7}}>登録後の支払い方法変更・解約手続きはStripeの会員ページから行えます。<a href="https://billing.stripe.com/p/login/8x2dRb2XZ4fi1MpeAL7EQ00" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}> 月額登録を管理する ↗</a></p>
+        <p style={{margin:"24px 0 0",color:"#bbb",lineHeight:1.7}}>既存の有料会員の方の決済方法変更・解約手続きはこちらからご確認いただけます。<a href="https://billing.stripe.com/p/login/8x2dRb2XZ4fi1MpeAL7EQ00" target="_blank" rel="noreferrer" style={{color:"#fff",fontWeight:800}}> 既存の月額登録を管理する ↗</a></p>
       </section>
 
       <section style={{padding:"54px 6vw",background:"#ecece7"}}>
         <h2 style={{fontSize:"clamp(28px,4vw,44px)",margin:"0 0 18px"}}>お申込み前に</h2>
         <ul style={{lineHeight:1.9,fontSize:16,paddingLeft:22,margin:0,maxWidth:900}}>
           <li>対象はU15年代です。小学6年生も参加できます。</li><li>定員は25名です。定員到達後は受付停止またはキャンセル待ちとなります。</li>
-          <li>フォーム送信と初回決済（入会金5,500円＋初月会費7,700円）の両方を確認後、RBAからの申込確認メールをもって受付確定となります。</li>
-          <li>会場詳細は、申込確認メール内でご案内します。</li>
+          <li>無料相談後に、施設利用条件・会場・体験日・参加可能人数・費用・規約を個別にご案内します。内容確認前の入会金や月会費の支払いは不要です。</li>
+          <li>施設側の書面承諾が必要な場合は、承諾と利用条件を確認してから開催日時を確定します。</li>
           <li>未成年者のため、保護者の方が内容をご確認のうえお申込みください。</li>
           <li>痛みや体調不良がある場合は無理に参加せず、事前にご相談ください。</li><li>欠席・解約・返金等は<a href="/ja/policies#cancellation" style={{fontWeight:800,color:"#111"}}>RBAのキャンセル・返金方針</a>をご確認ください。</li>
         </ul>
@@ -194,7 +195,7 @@ export default function Page(){
             ["今のチームを辞める必要はありますか？","ありません。所属チームでの活動を大切にしながら、個人として学ぶための追加環境として参加できます。"],
             ["ポジションは固定されますか？","固定しません。運ぶ・攻める・パスする・守るなど、複数の役割を経験しながらゲーム理解を広げます。"],
             ["経験年数やレベル差があっても大丈夫ですか？","申込時の経験や課題を確認し、少人数グループやSmall-Sided Gamesを使って安全面と学習負荷を調整します。"],
-            ["会場はどこですか？","仙台市太白区です。詳細は申込フォームと月額登録を確認後、RBAからの受付確認メールでご案内します。"],
+            ["会場はどこですか？","仙台市太白区での開催を計画していますが、RBAの有料スクールとしての利用条件が整った会場・体験日を確認してからご案内します。新規の月額決済はその前にお願いしません。"],
             ["欠席した場合はどうなりますか？","月3回の定期受講です。欠席・振替・キャンセルの扱いはRBAの案内および規定に沿ってご案内します。"],
             ["月額登録の変更や解約はできますか？","Stripeの会員ページから支払い方法の変更や解約手続きができます。解約時期などはRBAの規定をご確認ください。"],
             ["MY HOME COURTは何に使いますか？","参加記録、Basketball Passport、振り返り、次の育成機会の確認など、スクール外の成長管理に使えます。RBA IDは無料です。"],
@@ -212,27 +213,21 @@ export default function Page(){
         <h2 style={{fontSize:"clamp(34px,5vw,58px)",lineHeight:1.08,margin:"12px auto 18px",maxWidth:900}}>チームの外にも、成長できる場所を。</h2>
         <p style={{maxWidth:760,margin:"0 auto 26px",lineHeight:1.8,color:"#d8d8d3"}}>毎週木曜日・原則月3回。技術と判断を、ゲームの中で育てる90分です。</p>
         <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
-          <a href="#apply" style={{display:"inline-block",background:"#fff",color:"#111",padding:"15px 22px",fontWeight:900,textDecoration:"none"}}>申込フォームへ ↓</a>
-          <a href="https://buy.stripe.com/aFa3cx6abaDG8aNboz7EQ0u" target="_blank" rel="noreferrer" style={{display:"inline-block",border:"1px solid #777",color:"#fff",padding:"14px 22px",fontWeight:800,textDecoration:"none"}}>月額登録へ ↗</a>
+          <a href="#apply" style={{display:"inline-block",background:"#fff",color:"#111",padding:"15px 22px",fontWeight:900,textDecoration:"none"}}>保護者の無料相談へ ↓</a>
+          <a href="/ja/sendai-school" data-growth-id="u15-final-class-compare" style={{display:"inline-block",border:"1px solid #777",color:"#fff",padding:"14px 22px",fontWeight:800,textDecoration:"none"}}>U12・U15の違いを見る ↗</a>
         </div>
       </section>
 
-      <section id="apply" style={{padding:"72px 4vw 88px",background:"#fff"}}>
-        <div style={{maxWidth:980,margin:"0 auto"}}>
-          <p style={{fontSize:12,letterSpacing:3,fontWeight:700}}>APPLICATION</p>
-          <h2 style={{fontSize:"clamp(34px,5vw,56px)",margin:"10px 0 12px"}}>申込フォーム</h2>
-          <p style={{lineHeight:1.8,color:"#555",margin:"0 0 28px"}}>入力内容を確認後、RBAより申込確認メールをお送りします。会場詳細も確認メールでご案内します。</p>
-          <div style={{border:"1px solid #d6d6d0",background:"#fafafa",minHeight:1180}}>
-            <iframe
-              title="RBA U15 SKILL UP SCHOOL 申込フォーム"
-              src="https://form.jotform.com/262678369675074"
-              width="100%"
-              height="1180"
-              style={{border:0,display:"block"}}
-              loading="lazy"
-            />
+      <section id="apply" style={{padding:"68px 4vw 88px",background:"#fff"}}>
+        <div style={{maxWidth:960,margin:"0 auto",display:"grid",gap:17}}>
+          <p style={{fontSize:12,letterSpacing:3,fontWeight:800,margin:0}}>SENDAI / FREE CONSULTATION</p>
+          <h2 style={{fontSize:"clamp(32px,4vw,52px)",margin:"0 0 5px"}}>まずは無料で体験・参加を相談する。</h2>
+          <p style={{fontSize:16,lineHeight:1.9,color:"#455269",maxWidth:840,margin:0}}>最初に必要なのは保護者のメールアドレス、お子さまの学年、参加しやすい曜日などです。会場と利用許可・体験可能日・参加条件が確定した後に、正式申込と決済方法をご案内します。</p>
+          <div style={{padding:"24px",border:"1px solid #d1d8e0",background:"#f5f7fa",display:"flex",gap:18,alignItems:"center",flexWrap:"wrap",justifyContent:"space-between"}}>
+            <div><strong style={{display:"block",fontSize:18}}>RBA仙台 U12・U15共通の体験相談</strong><span style={{display:"block",fontSize:13,lineHeight:1.75,marginTop:5,color:"#53647a"}}>送信は無料／体験参加費・日時・会場は確認後に個別案内</span></div>
+            <a href="https://form.jotform.com/263053122067044" data-growth-id="u15-free-intake-final" target="_blank" rel="noopener noreferrer" style={{display:"inline-flex",alignItems:"center",justifyContent:"center",minHeight:54,padding:"13px 24px",background:"#111",color:"#fff",fontWeight:900,textDecoration:"none"}}>保護者の無料相談フォーム ↗</a>
           </div>
-          <p style={{fontSize:13,color:"#777",marginTop:14}}>フォームが表示されない場合は <a href="https://form.jotform.com/262678369675074" target="_blank" rel="noreferrer" style={{color:"#111",fontWeight:700}}>こちらから直接開いてください ↗</a></p>
+          <p style={{fontSize:13,lineHeight:1.85,color:"#637182"}}>既に正式な参加条件の案内を受けた方の登録・月額決済は、そのメールに記載された正規の手順で進めてください。ここから新規の請求を行うものではありません。</p>
         </div>
       </section>
     </main>
