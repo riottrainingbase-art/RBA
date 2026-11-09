@@ -33,12 +33,13 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
   const c=labels[locale];
   const nav: readonly (readonly [string,string])[] = locale==="ja" ? [
     ["スクール・体験","/ja/sendai-school"],
-    ["U15クラブ GREAM","/ja/gream"],
-    ["クリニック・キャンプ","/ja/opportunities"],
+    ["U12","/ja/u12"],
+    ["U15","/ja/u15"],
+    ["GREAM","/ja/gream"],
+    ["クリニック","/ja/opportunities"],
     ["指導者の学び","/ja/journal"],
     ["海外交流","/ja/international"],
     ["開催・協賛","/ja/organizer"],
-    [c.about,"/ja/about"],
   ] : [
     [({en:"Activities","zh-tw":"尋找活動",ko:"활동 찾기",ja:"活動を探す"})[locale],localePath(locale,"opportunities")],
     [({en:"Learning","zh-tw":"培育學習",ko:"육성 배우기",ja:"育成を学ぶ"})[locale],localePath(locale,"journal")],
