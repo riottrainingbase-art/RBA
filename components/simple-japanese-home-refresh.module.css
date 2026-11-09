@@ -192,3 +192,11 @@
   .quickAges { gap: 8px 14px; margin-top: 17px; }
   .quickAges > span { flex-basis: 100%; }
 }
+
+
+.optionalCamp { margin-top: 20px; border: 1px solid var(--line); border-radius: 9px; background: #f8fafb; overflow: hidden; }
+.optionalCamp summary { display: flex; justify-content: space-between; gap: 12px; align-items: center; min-height: 52px; padding: 12px 18px; cursor: pointer; color: var(--navy); font-size: 14px; font-weight: 800; }
+.optionalCamp[open] summary { border-bottom: 1px solid var(--line); }
+.optionalCamp summary span { font-size: 19px; font-weight: 500; }
+.optionalCamp[open] summary span { transform: rotate(45deg); }
+.optionalCamp summary:focus-visible { outline: 3px solid #e19b58; outline-offset: -4px; }
