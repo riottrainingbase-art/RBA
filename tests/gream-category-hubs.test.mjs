@@ -29,22 +29,30 @@ test("regional pages do not invent registration or payment conditions",()=>{
   assert.doesNotMatch(akita,/決済はこちら|今すぐ入団/);
 });
 
-test("navigation, homepage and sitemap all expose clear paths",()=>{
+test("navigation, simplified homepage and sitemap provide clear routes",()=>{
   const nav=read("components/site-frame.tsx");
   const home=read("components/simple-japanese-home.tsx");
-  const css=read("components/simple-japanese-home.module.css");
+  const css=read("components/simple-japanese-home-refresh.module.css");
   const sitemap=read("app/sitemap.ts");
   for(const route of ["/ja/u12","/ja/u15","/ja/gream"]){
-    assert.ok(nav.includes(route),"nav missing "+route);
     assert.ok(home.includes(route),"home missing "+route);
     assert.ok(sitemap.includes(route),"sitemap missing "+route);
   }
+  for(const route of ["/ja/opportunities","/ja/gream","/ja/events/torsten-loibl-online-clinic"]){
+    assert.ok(nav.includes(route),"nav missing "+route);
+  }
   for(const route of ["/ja/gream-okinawa","/ja/gream-akita"]){
     assert.ok(sitemap.includes(route),"sitemap missing "+route);
+    assert.ok(home.includes(route),"home missing team "+route);
   }
-  assert.ok(home.indexOf("home-age-categories")<home.indexOf("<SendaiCommunity />"));
-  for(const klass of ["ageHub","ageGrid","ageCard"]){
-    assert.ok(css.includes("."+klass));
+  for(const marker of ["home-clear-activities","home-clear-torsten-details","home-clear-u12","home-clear-u15","home-clear-gream-overview"]){
+    assert.ok(home.includes(marker),"missing primary conversion marker "+marker);
+  }
+  assert.ok(home.includes("<CorporateSupportStrip locale=\"ja\" />"),"home must keep permanent sponsor placement");
+  assert.ok(home.includes("Googleフォーム → Square決済"),"home must clarify domestic Torsten checkout");
+  assert.ok(home.includes("programme.id !== \"torsten\""),"featured clinic must not duplicate in events grid");
+  for(const klass of ["entryGrid","entryCard","quickAges","featured","activityGrid","regionGrid"]){
+    assert.ok(css.includes("."+klass),"missing responsive style "+klass);
   }
 });
 
