@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { InternationalPlatform } from "@/components/international-platform";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
   title: "RBA INTERNATIONAL｜日本とアジアをつなぐ育成交流",
