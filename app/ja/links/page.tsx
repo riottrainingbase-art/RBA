@@ -22,7 +22,7 @@ const featured = [
     id: "school",
     label: "01 / SENDAI SCHOOL",
     title: "仙台 U12・U15 スクール",
-    description: "チームはそのまま。小学生・中学生の保護者向け無料体験相談。U12金曜・U15木曜を基本にご案内。",
+    description: "チームはそのまま。小学生・中学生の保護者向け無料体験相談。U12金曜・U15木曜を基本候補に調整中。会場許可後に体験日を案内。",
     href: "/ja/sendai-school",
     action: "スクール内容・体験相談へ",
     style: "primary",
