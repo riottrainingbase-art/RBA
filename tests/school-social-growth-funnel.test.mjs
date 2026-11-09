@@ -19,7 +19,7 @@ test("all social hub links resolve to real application routes",()=>{
   const css=read("app/ja/links/links.module.css");
   const destinations=["/ja/sendai-school","/ja/gream","/ja/opportunities","/ja/d-hub","/ja/clinic-request","/ja/partners","/ja"];
   for(const dest of destinations){
-    assert.ok(page.includes(`href: "${dest}"`),dest);
+    assert.match(page,new RegExp(`href:\\s*"${dest}"`),dest);
     assert.ok(existsSync(dest==="/ja"?"app/ja/page.tsx":`app${dest}/page.tsx`),dest);
   }
   assert.match(page,/index:\s*false/);
