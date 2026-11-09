@@ -9,7 +9,7 @@ const teamPage = "https://kozaki-hbc.jimdosite.com/チーム/";
 const membershipPage = "https://kozaki-hbc.jimdosite.com/入会案内/";
 // HBC WOLVESの公開公式サイトに掲載された狼・バスケットゴールのエンブレム。
 // 第三者の類似WOLVESロゴを使用しない。画像は公式公開元から読み込む。
-const logo = "https://storage.e.jimdo.com/cdn-cgi/image/quality=85%2Cfit=scale-down%2Cformat=auto%2Cwidth=566%2Cheight=800/image/552008710/9be4ed92-02fb-4c7b-884e-2c7c43b3437b.png";
+const logo = "/images/hbc/hbc-wolf-only.svg";
 
 export const metadata: Metadata = {
   title: "HBC WOLVES｜千葉県神崎町 U12・U15｜育成アドバイザー西尾優人｜RBA",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: canonical,
     siteName: "Riot Basketball Academy",
     type: "website",
-    images: [{ url: logo, alt: "HBC WOLVES公式サイト掲載の狼とバスケットゴールのエンブレム" }],
+    images: [{ url: logo, alt: "HBC WOLVESの狼だけを大きく表示したエンブレム" }],
   },
 };
 
@@ -59,11 +59,11 @@ export default function HbcWolvesPage() {
             </div>
             <div className={styles.logoPanel}>
               <div className={styles.logoFrame}>
-                {/* 画像はHBC公式サイトの公開エンブレムを参照。ロゴの再制作や改変はしていない。 */}
-                <img src={logo} alt="HBC WOLVES公式サイト掲載の狼とバスケットゴールのチームエンブレム" width="566" height="800" className={styles.teamLogo} />
+                {/* 掲載用加工版の狼エンブレム。ゴールは含めない。 */}
+                <img src={logo} alt="HBC WOLVES公式サイト掲載の狼とバスケットゴールのチームエンブレム" width="462" height="633" className={styles.teamLogo} />
               </div>
               <div className={styles.logoCaption}><strong>HBC WOLVES</strong><span>KOZAKI · CHIBA · EST. 2018</span></div>
-              <p className={styles.logoCredit}>エンブレム：HBC WOLVES公式ホームページ掲載画像</p>
+              <p className={styles.logoCredit}>HBC WOLVES エンブレム（掲載用にゴール部分を除去）</p>
             </div>
           </div>
           <p className={styles.heroNote}>HBCは独立した地域クラブです。チーム運営・入会受付・料金管理はHBCが行い、RBAは育成アドバイスと情報発信を通じて支えます。</p>
