@@ -34,12 +34,26 @@ export async function SimpleJapaneseHome() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY / 仙台・太白区</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>仙台市太白区から、全国・アジアへ。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
-          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} data-growth-id="home-start-hub" href="/ja/start">参加・体験・相談から選ぶ →</a><a className={styles.secondary} href="#home-programmes">募集中の活動を見る →</a><a className={styles.secondary} href="/ja/clinic-request">地域での開催相談 →</a></nav>
+          <nav className={styles.actions} aria-label="目的から選ぶ"><a className={styles.primary} data-growth-id="home-hero-school-trial" href="/ja/sendai-school">仙台スクールの無料体験相談 →</a><a className={styles.secondary} data-growth-id="home-hero-gream" href="/ja/gream">U15クラブチームを見る →</a><a className={styles.secondary} data-growth-id="home-hero-events" href="#home-programmes">全国のクリニックを見る →</a></nav>
         </div>
       </section>
 
 
 
+
+      <section className={styles.schoolSpotlight} aria-labelledby="home-sendai-school">
+        <div className={styles.schoolSpotlightIntro}>
+          <p className={styles.label}>RBA SENDAI SCHOOL / U12 &amp; U15</p>
+          <h2 id="home-sendai-school">チームはそのまま、試合で使える力を。</h2>
+          <p>仙台市太白区のU12・U15バスケットボールスクール。小学生から中学生まで、見る・判断する・実行する力を少人数のゲームで育てます。所属チームを変える必要はありません。</p>
+          <div className={styles.schoolFacts}><span>U12｜金曜18:00〜19:30（調整中）</span><span>U15｜木曜18:00〜19:30（月3回）</span></div>
+          <small>相談は無料。体験日・実際の体験費用・受入可否はRBAからご案内します。</small>
+        </div>
+        <div className={styles.schoolSpotlightActions}>
+          <a href="/ja/sendai-school" data-growth-id="home-school-spotlight">スクール内容・無料相談を見る →</a>
+          <a href="/ja/gream-sendai" data-growth-id="home-school-to-club">U15クラブへの入団相談はこちら →</a>
+        </div>
+      </section>
 
       <section className={styles.ageHub} aria-labelledby="home-age-categories">
         <p className={styles.label}>AGE GROUPS / DEVELOPMENT PATHWAY</p>
@@ -84,7 +98,7 @@ export async function SimpleJapaneseHome() {
         </div>
         <nav className={styles.nextStepLinks} aria-label="目的別の申込・相談窓口">
           <a data-growth-id="home-next-events" href="#home-programmes"><span>01</span>クリニック・キャンプ<span aria-hidden="true">→</span></a>
-          <a data-growth-id="home-next-school" href="/ja/start#regular"><span>02</span>仙台スクール・RTB体験<span aria-hidden="true">→</span></a>
+          <a data-growth-id="home-next-school" href="/ja/sendai-school"><span>02</span>仙台U12・U15スクール<span aria-hidden="true">→</span></a>
           <a data-growth-id="home-next-coach" href="/ja/start#coaches"><span>03</span>指導者・チームの学び<span aria-hidden="true">→</span></a>
           <a data-growth-id="home-next-business" href="/ja/start#partners"><span>04</span>地域開催・企業・海外<span aria-hidden="true">→</span></a>
         </nav>
