@@ -54,6 +54,7 @@ export default function SendaiSchoolPage(){
         <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
           <a href={intake} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-hero-interest" style={basicButton}>体験・参加を無料相談する →</a>
           <a href="#classes" style={secondary}>U12・U15を比較する ↓</a>
+          <a href="/ja/sendai" data-growth-id="sendai-school-more-programmes" style={{...secondary,borderColor:"#315d86"}}>GREAM・女子U15も比較する →</a>
         </div>
         <p style={{fontSize:12,color:muted,lineHeight:1.85,marginTop:16}}>相談は無料です。体験日・会場・体験費用・入会条件は確認後にご案内します。送信だけで体験予約・入会・決済は成立しません。</p>
         <p className={styles.localSearch}>仙台市太白区｜茂庭台・長町・八木山・富沢などから通える活動をお探しのご家庭へ。希望曜日が合わない場合もまずはご相談ください。</p>
