@@ -25,7 +25,7 @@ const questions = [
   ["今のチームを辞める必要がありますか？", "ありません。U12・U15 SKILL UPは所属チームを続けながら学ぶスクールです。対外試合やチーム登録を前提とするGREAM仙台U15クラブとは別の活動です。"],
   ["小学6年生はどこへ相談すればいいですか？", "U12とU15 SKILL UPのどちらが適しているか、学年・経験・通える曜日からご相談ください。クラブチームへの入団を検討する場合はGREAM仙台の別窓口をご案内します。"],
   ["体験は無料ですか？", "このページの相談フォームの送信は無料です。実際の体験参加費、体験日、受入可否はRBAからご案内するまで未確定です。"],
-  ["いつ、どこで活動していますか？", "U12は茂庭台小学校を基本会場とし、原則金曜18:00〜19:30・月3回を基本に調整中です。U15 SKILL UPは木曜18:00〜19:30・原則月3回で、参加日の会場を個別にご案内します。"],
+  ["いつ、どこで活動していますか？", "U12は茂庭台小学校を会場候補とし、金曜18:00〜19:30・月3回を基本に調整中です。U15 SKILL UPは木曜18:00〜19:30・月3回を基本に計画しています。いずれもRBAの活動として利用できる会場と正式な体験日を確認した後にご案内します。"],
   ["月謝と入会金はどこで確認できますか？", "U12は11月30日までの新規入会で入会金10,000円・月7,700円、12月1日以降の新規入会で入会金11,500円・月8,900円（税込）の案内です。U15 SKILL UPは入会金5,500円・月7,700円（税込）。受入条件と正式な適用額を体験後に書面でご案内します。"],
   ["経験が浅くても大丈夫ですか？", "ご相談いただけます。学年だけでなく、経験や運動状況、所属チームの練習負担を確認し、無理のない参加方法を一緒に検討します。"],
   ["子ども本人だけで申し込めますか？", "安全管理と連絡のため、フォームは保護者など成人の方からお送りください。選手本人の詳しい健康情報を最初の相談フォームへ記載する必要はありません。"],
@@ -56,7 +56,7 @@ export default function SendaiSchoolPage(){
           <a href="#classes" style={secondary}>U12・U15を比較する ↓</a>
           <a href="/ja/sendai" data-growth-id="sendai-school-more-programmes" style={{...secondary,borderColor:"#315d86"}}>GREAM・女子U15も比較する →</a>
         </div>
-        <p style={{fontSize:12,color:muted,lineHeight:1.85,marginTop:16}}>相談は無料です。体験日・会場・体験費用・入会条件は確認後にご案内します。送信だけで体験予約・入会・決済は成立しません。</p>
+        <p style={{fontSize:12,color:muted,lineHeight:1.85,marginTop:16}}>相談は無料です。現在、会場の利用許可と体験受入日を確認しています。日時・会場・体験費用・入会条件は確認後にご案内し、それまでは新規の月額決済をお願いしません。相談送信だけで予約・入会は成立しません。</p>
         <p className={styles.localSearch}>仙台市太白区｜茂庭台・長町・八木山・富沢などから通える活動をお探しのご家庭へ。希望曜日が合わない場合もまずはご相談ください。</p>
       </section>
 
@@ -97,14 +97,15 @@ export default function SendaiSchoolPage(){
               <dl style={{fontSize:15,lineHeight:1.8,display:"grid",gridTemplateColumns:"84px 1fr",gap:"9px 13px",margin:"20px 0 25px"}}>
                 <dt style={{fontWeight:800}}>対象</dt><dd style={{margin:0}}>小6・中学生、定員25名</dd>
                 <dt style={{fontWeight:800}}>基本曜日</dt><dd style={{margin:0}}>木曜18:00〜19:30／原則月3回</dd>
-                <dt style={{fontWeight:800}}>開催地域</dt><dd style={{margin:0}}>仙台市太白区。参加日の体育館は個別案内</dd>
-                <dt style={{fontWeight:800}}>料金</dt><dd style={{margin:0}}>入会金5,500円／月7,700円（税込）</dd>
+                <dt style={{fontWeight:800}}>開催地域</dt><dd style={{margin:0}}>仙台市太白区を予定。会場利用許可と日程は確認中</dd>
+                <dt style={{fontWeight:800}}>料金</dt><dd style={{margin:0}}>入会金5,500円／月7,700円（税込）。参加条件確認後に正式案内</dd>
+                <dt style={{fontWeight:800}}>受付状況</dt><dd style={{margin:0}}>無料相談受付中／体験日時・利用許可は最終確認中</dd>
               </dl>
               <a href={intake} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-u15-interest" style={basicButton}>U15の体験を相談 →</a>
               <p style={{fontSize:13,margin:"17px 0 0"}}><a href="/ja/u15-skill-up" style={{color:navy}}>U15の育成内容を見る →</a></p>
             </article>
           </div>
-          <p style={{fontSize:13,color:muted,lineHeight:1.9,margin:"20px 0 0"}}>どちらのクラスも、チームや学校部活動への所属変更は不要です。金曜日が難しい方も、土日など参加しやすい曜日の希望を相談フォームからお知らせください。ただし、土日の定期開催は現時点で確定していません。</p>
+          <p style={{fontSize:13,color:muted,lineHeight:1.9,margin:"20px 0 0"}}>どちらのクラスも、所属チームを変えずに相談できます。希望する曜日をフォームでお知らせください。ただし、実際の開講や体験日時は施設の利用許可・安全な受入体制を確認できた場合に限ります。土日の定期開催も確定していません。</p>
           <p style={{fontSize:13,color:muted,lineHeight:1.9,margin:"10px 0 0"}}>※新しい曜日・学年別の枠は、会場、指導者、安全管理、定員を確認してから募集します。お問い合わせ数だけで開講や参加を確約しません。</p>
         </div>
       </section>
