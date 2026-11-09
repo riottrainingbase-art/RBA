@@ -108,6 +108,12 @@ export function SimpleJapaneseHome() {
                 </a>
               ))}
             </nav>
+            <nav className={styles.quickAges} aria-label="年代から探す">
+              <span>年代から探す</span>
+              <a href="/ja/u12" data-growth-id="home-clear-u12">小学生（U12） →</a>
+              <a href="/ja/u15" data-growth-id="home-clear-u15">中学生（U15） →</a>
+              <a href="/ja/gream" data-growth-id="home-clear-gream-all">GREAM U15チーム →</a>
+            </nav>
           </section>
 
           <section className={styles.featured} id="coach-learning" aria-labelledby="home-torsten-title">
