@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { OkinawaCampGrowthPanel } from "./okinawa-camp-growth-panel";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { GrowthClickTracking } from "./growth-click-tracking";
@@ -213,7 +214,7 @@ export function SimpleJapaneseHome() {
           </section>
 
           <section className={styles.more} aria-label="RBAの学びとその他の案内">
-            <a href="/ja/journal" data-growth-id="home-clear-journal"><strong>育成記事を読む</strong><span>RBA JOURNALで無料の育成記事を探す →</span></a>
+            <Link href="/ja/journal" data-growth-id="home-clear-journal"><strong>育成記事を読む</strong><span>RBA JOURNALで無料の育成記事を探す →</span></Link>
             <a href="/ja/d-hub" data-growth-id="home-clear-dhub"><strong>指導者として学び続ける</strong><span>D-HUBの学習コンテンツを見る →</span></a>
             <a href="/ja/international" data-growth-id="home-clear-international"><strong>海外交流を相談する</strong><span>Japan × Asiaのチーム・指導者交流へ →</span></a>
             <a href="/ja/about" data-growth-id="home-clear-about"><strong>RBAについて知る</strong><span>育成方針・活動内容を確認 →</span></a>
