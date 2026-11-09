@@ -29,7 +29,7 @@ export function localePath(locale:Locale, page?:LanguagePage){
 }
 
 
-export function SiteFrame({ children, locale="en", languagePage, compact=false }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage; compact?:boolean }) {
+export function SiteFrame({ children, locale="en", languagePage }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage; compact?:boolean }) {
   const c=labels[locale];
   const nav: readonly (readonly [string,string])[] = locale==="ja" ? [
     ["スクール・体験","/ja/sendai-school"],
