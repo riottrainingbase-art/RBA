@@ -1,7 +1,7 @@
 "use client";
 
-import {useMemo, useState} from "react";
-import {Check, Copy, Share2, ArrowUpRight} from "lucide-react";
+import {useState} from "react";
+import {Copy, Share2, ArrowUpRight} from "lucide-react";
 import styles from "./campaign-share-kit.module.css";
 
 type Audience = "parents"|"coaches"|"social"|"english";
@@ -128,7 +128,8 @@ export function CampaignShareKit(){
   const visible=campaigns.filter(x=>!x.until||x.until>=today);
   const chosen=visible.find(c=>c.id===id)||visible[0];
   const currentAudience=chosen?.messages[audience]?audience:"parents";
-  const message=useMemo(()=>{
+  // Short static copy: compute directly to avoid unstable manual memoization.
+  const message=(()=>{
     if(!chosen)return "";
     const link=new URL(chosen.link);
     // Attribution is campaign/audience only; no contact details, names or IDs.
@@ -137,7 +138,7 @@ export function CampaignShareKit(){
     link.searchParams.set("utm_campaign",chosen.id);
     link.searchParams.set("utm_content",currentAudience);
     return `${chosen.messages[currentAudience]}\n\n公式案内・申込・相談：\n${link.toString()}`;
-  },[chosen,currentAudience]);
+  })();
   if(!chosen)return <p>現在、共有できる募集企画はありません。<a href="/ja/opportunities">活動一覧をご確認ください。</a></p>;
   function choose(next:string){setId(next);setAudience("parents");setStatus("");setFallback(false);}
   async function copyText(){
