@@ -31,14 +31,21 @@ export function localePath(locale:Locale, page?:LanguagePage){
 
 export function SiteFrame({ children, locale="en", languagePage, compact=false }: { children:React.ReactNode; locale?:Locale; languagePage?:LanguagePage; compact?:boolean }) {
   const c=labels[locale];
-  const nav=[
-    [({en:"Activities",ja:"活動を探す","zh-tw":"尋找活動",ko:"활동 찾기"})[locale],localePath(locale,"opportunities")],
-    ...(locale==="ja"?[["U12","/ja/u12"],["U15","/ja/u15"],["GREAM","/ja/gream"]] as [string,string][]:[]),
-    [({en:"Learning",ja:"育成を学ぶ","zh-tw":"培育學習",ko:"육성 배우기"})[locale],localePath(locale,"journal")],
-    [({en:"Host / partner",ja:"開催・連携","zh-tw":"主辦・合作",ko:"개최·협력"})[locale],localePath(locale,"organizer")],
-    [({en:"International",ja:"海外交流","zh-tw":"國際交流",ko:"국제 교류"})[locale],localePath(locale,"international")],
+  const nav: readonly (readonly [string,string])[] = locale==="ja" ? [
+    ["スクール・体験","/ja/sendai-school"],
+    ["U15クラブ GREAM","/ja/gream"],
+    ["クリニック・キャンプ","/ja/opportunities"],
+    ["指導者の学び","/ja/journal"],
+    ["海外交流","/ja/international"],
+    ["開催・協賛","/ja/organizer"],
+    [c.about,"/ja/about"],
+  ] : [
+    [({en:"Activities","zh-tw":"尋找活動",ko:"활동 찾기",ja:"活動を探す"})[locale],localePath(locale,"opportunities")],
+    [({en:"Learning","zh-tw":"培育學習",ko:"육성 배우기",ja:"育成を学ぶ"})[locale],localePath(locale,"journal")],
+    [({en:"Host / partner","zh-tw":"主辦・合作",ko:"개최·협력",ja:"開催・連携"})[locale],localePath(locale,"organizer")],
+    [({en:"International","zh-tw":"國際交流",ko:"국제 교류",ja:"海外交流"})[locale],localePath(locale,"international")],
     [c.about,localePath(locale,"about")],
-  ] as const;
+  ];
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   // Always enter through the member app when auth is live. Existing sessions open immediately; signed-out users are redirected to login and returned to the app afterwards.
@@ -48,7 +55,7 @@ export function SiteFrame({ children, locale="en", languagePage, compact=false }
     <header className={`site-header ${navigationStyles.header}`}>
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"育成機会を探す","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{nav.filter(([,href])=>href!==localePath(locale,"opportunities")).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a><div className="mobile-menu-languages" role="group" aria-label="Language / 言語">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={locale==="ja"?"/ja/sendai-school":localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"スクール・体験を相談","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{nav.filter(([,href])=>href!==(locale==="ja"?"/ja/sendai-school":localePath(locale,"opportunities"))).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a><div className="mobile-menu-languages" role="group" aria-label="Language / 言語">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
       <div className="header-actions">
         <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"RBA ID",ja:"RBA ID","zh-tw":"RBA ID","ko":"RBA ID"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>
