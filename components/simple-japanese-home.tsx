@@ -50,7 +50,8 @@ export async function SimpleJapaneseHome() {
           <small>相談は無料。体験日・実際の体験費用・受入可否はRBAからご案内します。</small>
         </div>
         <div className={styles.schoolSpotlightActions}>
-          <a href="/ja/sendai-school" data-growth-id="home-school-spotlight">スクール内容・無料相談を見る →</a>
+          <a href="/ja/sendai" data-growth-id="home-school-sendai-hub">仙台の4つの活動を比較する →</a>
+          <a href="/ja/sendai-school" data-growth-id="home-school-spotlight">U12・U15スクールの無料相談 →</a>
           <a href="/ja/gream-sendai" data-growth-id="home-school-to-club">U15クラブへの入団相談はこちら →</a>
         </div>
       </section>
