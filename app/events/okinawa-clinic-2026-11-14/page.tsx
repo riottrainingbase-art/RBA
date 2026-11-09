@@ -7,7 +7,7 @@ const japanesePage = "/ja/events/okinawa-clinic-2026-11-14";
 
 export const metadata: Metadata = {
   title: "Okinawa Youth Basketball Clinic | November 14, 2026 | RBA",
-  description: "English information and no-payment pre-registration for RBA&apos;s independent youth basketball clinic in southern Okinawa on Nov 14, 2026. JPY 3,300 per player; venue secured; exact location shared privately with applicants; no payment via English enquiry.",
+  description: "English information and no-payment pre-registration for RBA&apos;s independent youth basketball clinic in southern Okinawa on Nov 14, 2026. JPY 3,300 per player; venue approved at Irabu Elementary School in Tomigusuku City; arrival and parking details shared privately; no payment via English enquiry.",
   alternates: {
     canonical: "https://riotbasketballacademy.com/events/okinawa-clinic-2026-11-14",
     languages: { en: "https://riotbasketballacademy.com/events/okinawa-clinic-2026-11-14", ja: "https://riotbasketballacademy.com/ja/events/okinawa-clinic-2026-11-14" }
@@ -31,11 +31,11 @@ export default function OkinawaClinicEnglishPage() {
           <dt>Eligible</dt><dd>Japanese elementary Grade 4 through junior high Grade 3<br/><small>Roughly U.S. school grades 4–9; RBA confirms eligibility individually</small></dd>
           <dt>Players</dt><dd>Boys and girls</dd>
           <dt>Capacity</dt><dd>50 announced; current availability not confirmed</dd>
-          <dt>Area</dt><dd>Southern Okinawa<br/><small>Exact gym details shared privately with applicants</small></dd>
+          <dt>Venue</dt><dd>Irabu Elementary School, Tomigusuku City<br/><small>Arrival, drop-off and parking instructions are provided privately</small></dd>
           <dt>When</dt><dd>November 14 (Sat)<br/>4:00–7:00 PM Japan time</dd>
         </dl>
         <div className={styles.price}>¥3,300 <small>per player, tax included</small></div>
-        <p className={styles.fine}>This is the advertised participation fee, not a payment request. The venue is secured and its details are shared privately. Payment is not collected through this enquiry.</p>
+        <p className={styles.fine}>This is the advertised participation fee, not a payment request. The venue has been approved for use. Arrival and parking instructions are shared privately. Payment is not collected through this enquiry.</p>
       </aside>
     </section>
 
@@ -66,7 +66,7 @@ export default function OkinawaClinicEnglishPage() {
 
     <section className={styles.section}>
       <h2>For families</h2>
-      <details className={styles.details} open><summary>Where exactly is the clinic?</summary><p>The venue has been secured in southern Okinawa. The exact gym name, address, drop-off arrangements and parking details are provided privately to applicants after RBA's confirmation; they are not published on this public page.</p></details>
+      <details className={styles.details} open><summary>Where exactly is the clinic?</summary><p>The clinic will take place at Irabu Elementary School in Tomigusuku City, Okinawa. RBA has confirmed formal permission to use the venue. Exact arrival location, building access, drop-off arrangements and parking rules are shared privately with participating families; do not assume parking is available until instructions are provided.</p></details>
       <details className={styles.details}><summary>Does the enquiry reserve a place or charge me?</summary><p>No. The English form records your interest and contact details. It does not collect money or issue a confirmed reservation. RBA will contact you with the private venue arrangements and final participation and payment instructions.</p></details>
       <details className={styles.details}><summary>What do I bring?</summary><p>Plan for indoor basketball shoes, sports clothing, water and a towel. Final arrival and drop-off details, and whether to bring a basketball, will be provided by RBA.</p></details>
       <details className={styles.details}><summary>Cancellation, refunds, photos and privacy</summary><p>Review <a href={japanesePage}>the currently published event conditions</a> and <a href="/policies">RBA&apos;s policies</a> before payment. Ask RBA for an English explanation of any terms you do not understand. Media consent is optional. Do not include medical records or military identification in the enquiry form.</p></details>
