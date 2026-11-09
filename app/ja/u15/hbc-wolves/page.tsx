@@ -63,6 +63,7 @@ export default function HbcWolvesPage() {
                 <img src={logo} alt="HBC WOLVES公式サイト掲載の狼とバスケットゴールのチームエンブレム" width="566" height="800" className={styles.teamLogo} />
               </div>
               <div className={styles.logoCaption}><strong>HBC WOLVES</strong><span>KOZAKI · CHIBA · EST. 2018</span></div>
+              <p className={styles.logoCredit}>エンブレム：HBC WOLVES公式ホームページ掲載画像</p>
             </div>
           </div>
           <p className={styles.heroNote}>HBCは独立した地域クラブです。チーム運営・入会受付・料金管理はHBCが行い、RBAは育成アドバイスと情報発信を通じて支えます。</p>
