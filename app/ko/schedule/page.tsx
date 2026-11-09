@@ -1,3 +1,4 @@
+export const revalidate = 3600;
 import { pageMetadata } from "@/components/page-metadata";
 export const metadata = pageMetadata("ko","schedule");
 import { LocalizedSchedule } from "@/components/localized-schedule";
