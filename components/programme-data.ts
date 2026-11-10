@@ -88,10 +88,10 @@ export const programmes: readonly Programme[] = [
     date:["14 NOV 2026 · 16:00–19:00","2026.11.14（土）16:00〜19:00","2026.11.14 · 16:00–19:00","2026.11.14 · 16:00–19:00"],
     datePrimary:["14 NOV","11月14日","11月14日","11월 14일"],dateSecondary:["16:00–19:00","16:00〜19:00","16:00–19:00","16:00–19:00"],
     title:["RBA Okinawa Clinic","RBA 沖縄クリニック","RBA 沖繩訓練營","RBA 오키나와 클리닉"],
-    place:["Southern Okinawa · venue shared with applicants","沖縄県南部・会場は申込者へ個別案内","沖繩南部・場地個別通知","오키나와 남부 · 신청자에게 장소 개별 안내"],
+    place:["Iraha Elementary School · Tomigusuku, Okinawa","伊良波小学校（沖縄県豊見城市）","沖繩縣豐見城市・伊良波小學校","오키나와 도미구스쿠시 이라하 초등학교"],
     price:["¥3,300 incl. tax / player","参加費3,300円（税込）／1名","每人¥3,300（含稅）","1인 ¥3,300（세금 포함）"],
     audience:["Japan grades 4–9 · capacity 50","小学4年〜中学3年生・定員50名","日本小學4年級至國中3年級・限50名","일본 초4~중3 · 정원 50명"],
-    payment:["Register online; venue secured and shared privately. Payment opens when RBA confirms registration readiness.","会場確保済み・詳細は申込者へ個別案内。決済はRBAの受付開始後に可能です。","場地已確定，詳細地點僅個別通知報名者；付款將於RBA開放後開始。","장소 확보 완료 · 상세 장소는 신청자에게 개별 안내 · 결제는 RBA 접수 개시 후 가능"],
+    payment:["Venue approved; registration and payment are open on the official RBA page. Register each player individually; follow the organizer’s entry and parking instructions.","会場の正式利用承認済み・決済受付中。選手1名ずつ公式ページから申込・決済。正門利用・駐車場の詳細は参加者へご案内します。","場地已獲正式使用許可，現可從RBA官方頁面報名及付款。請逐位球員登記，並遵守主辦方的入場與停車指引。","학교 사용 승인 완료, RBA 공식 페이지에서 신청 및 결제 접수 중입니다. 선수별로 등록하고 주최 측의 출입·주차 안내를 확인하세요."],
     applicationUrl:"/ja/events/okinawa-clinic-2026-11-14",region:"okinawa",category:"TRAIN",pathway:"clinic",ageGroups:["U10","U12","U15"],
   },
   {
