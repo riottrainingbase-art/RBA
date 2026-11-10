@@ -17,7 +17,7 @@ const messages = [
   {
     "code": "pt",
     "label": "Português · Brasil",
-    "text": "A Riot Basketball Academy (Japão) organiza a clínica online independente Torsten Loibl Vol.2 em 25 de novembro de 2026, das 8h às 9h30 (horário de Brasília). Temas: técnica de arremesso, espaçamento, ações sem a bola e tomada de decisão em jogo. Aula em inglês com interpretação consecutiva para japonês; NÃO há interpretação em português. Inscrição internacional: LIVE US$29 ou, separadamente, gravação por 30 dias US$29. Não concede créditos FIBA/JBA nem representa endosso de clubes. Informações e pagamento em USD: https://riotbasketballacademy.com/events/torsten-loibl-online-clinic"
+    "text": "A Riot Basketball Academy (Japão) organiza a clínica online independente Torsten Loibl Vol.2 em 25 de novembro de 2026, das 8h às 9h30 (horário de Brasília). Temas: técnica de arremesso, espaçamento, ações sem a bola e tomada de decisão em jogo. Aula em inglês com interpretação consecutiva para japonês; Não haverá interpretação em português. Inscrição internacional: LIVE US$29 ou, separadamente, gravação por 30 dias US$29. Não concede créditos FIBA/JBA nem representa endosso de clubes. Informações e pagamento em USD: https://riotbasketballacademy.com/events/torsten-loibl-online-clinic"
   },
   {
     "code": "fr",
