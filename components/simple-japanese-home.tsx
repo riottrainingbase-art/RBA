@@ -82,6 +82,17 @@ export async function SimpleJapaneseHome() {
         </nav>
         <p className={styles.note}>企業・お店・個人の皆さまへ：<a href="/ja/gream/support" data-growth-id="home-gream-support">GREAMの育成を応援する →</a></p>
       </section>
+      <section className={styles.regional} aria-labelledby="home-biildact-miyako">
+        <div>
+          <p className={styles.label}>RBA LOCAL SPOTLIGHT / 岩手・宮古</p>
+          <h2 id="home-biildact-miyako">宮古で、バスケを学び続ける。BiiLDact Basketball Academy</h2>
+          <p>身体の使い方からスキル・試合での判断まで。一人ひとりの課題に向き合う、岩手県宮古市の地域アカデミーをご紹介します。2026年10月にはRBAと共同で宮古クリニックを開催しました。</p>
+          <p className={styles.note}>BiiLDactは独立運営の地域スクールです。体験申込・クラス・料金はスクール公式案内へ。</p>
+        </div>
+        <div className={styles.regionalActions}>
+          <a href="/ja/network/biildact" data-growth-id="home-biildact-miyako">宮古スクールの紹介・無料体験案内 →</a>
+        </div>
+      </section>
       <SendaiCommunity />
       <NovemberCampaign />
 
