@@ -31,7 +31,7 @@ export default function OkinawaClinicEnglishPage() {
           <dt>Eligible</dt><dd>Japanese elementary Grade 4 through junior high Grade 3<br/><small>Roughly U.S. school grades 4–9; RBA confirms eligibility individually</small></dd>
           <dt>Players</dt><dd>Boys and girls</dd>
           <dt>Capacity</dt><dd>50 announced; current availability not confirmed</dd>
-          <dt>Venue</dt><dd>Irabu Elementary School, Tomigusuku City<br/><small>Arrival, drop-off and parking instructions are provided privately</small></dd>
+          <dt>Venue</dt><dd>Irabu Elementary School, Tomigusuku City<br/><small>300 Irabu, Tomigusuku, Okinawa 901-0232 / use the main gate</small><br/><small>Parking and arrival details are provided privately</small></dd>
           <dt>When</dt><dd>November 14 (Sat)<br/>4:00–7:00 PM Japan time</dd>
         </dl>
         <div className={styles.price}>¥3,300 <small>per player, tax included</small></div>
@@ -66,7 +66,7 @@ export default function OkinawaClinicEnglishPage() {
 
     <section className={styles.section}>
       <h2>For families</h2>
-      <details className={styles.details} open><summary>Where exactly is the clinic?</summary><p>The clinic will take place at Irabu Elementary School in Tomigusuku City, Okinawa. RBA has confirmed formal permission to use the venue. Exact arrival location, building access, drop-off arrangements and parking rules are shared privately with participating families; do not assume parking is available until instructions are provided.</p></details>
+      <details className={styles.details} open><summary>Where exactly is the clinic?</summary><p>The clinic will take place at Irabu Elementary School (300 Irabu, Tomigusuku City, Okinawa 901-0232). RBA has confirmed formal permission to use the venue. According to the city sports-facility notice, ordinary entry and exit must use the main gate. The rear gate is reserved for moving large equipment and must not be used for ordinary arrivals. Please do not park on surrounding streets. Specific approved parking areas, drop-off and arrival details will be sent privately; do not assume on-site parking is available until those instructions are provided.</p></details>
       <details className={styles.details}><summary>Does the enquiry reserve a place or charge me?</summary><p>No. The English form records your interest and contact details. It does not collect money or issue a confirmed reservation. RBA will contact you with the private venue arrangements and final participation and payment instructions.</p></details>
       <details className={styles.details}><summary>What do I bring?</summary><p>Plan for indoor basketball shoes, sports clothing, water and a towel. Final arrival and drop-off details, and whether to bring a basketball, will be provided by RBA.</p></details>
       <details className={styles.details}><summary>Cancellation, refunds, photos and privacy</summary><p>Review <a href={japanesePage}>the currently published event conditions</a> and <a href="/policies">RBA&apos;s policies</a> before payment. Ask RBA for an English explanation of any terms you do not understand. Media consent is optional. Do not include medical records or military identification in the enquiry form.</p></details>
