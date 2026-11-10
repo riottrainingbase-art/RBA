@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { SendaiCommunity } from "./sendai-community";
 import Image from "next/image";
 import {getSupportPhotos} from "@/lib/support-photos";
@@ -81,6 +82,18 @@ export async function SimpleJapaneseHome() {
           </a>
         </nav>
         <p className={styles.note}>企業・お店・個人の皆さまへ：<a href="/ja/gream/support" data-growth-id="home-gream-support">GREAMの育成を応援する →</a></p>
+      </section>
+      <section className={styles.regional} aria-labelledby="home-biildact-miyako">
+        <div>
+          <img src="https://biildact.com/wp-content/themes/biildact/brand/bd-h-black.png" width={250} height={95} alt="BiiLDact Basketball Academy公式ロゴ" loading="lazy" style={{display:"block",width:"min(220px,100%)",height:"auto",marginBottom:14}} />
+          <p className={styles.label}>RBA LOCAL SPOTLIGHT / 岩手・宮古</p>
+          <h2 id="home-biildact-miyako">宮古で、バスケを学び続ける。BiiLDact Basketball Academy</h2>
+          <p>「練習でできるのに試合でできない」を変える。見る・判断する・動くをつなげて学ぶ、岩手県宮古市のBiiLDact。2026年10月にはRBAと共同で宮古クリニックを開催しました。</p>
+          <p className={styles.note}>BiiLDactは独立運営の地域スクールです。公式サイトはbiildact.comへ移転済み。体験無料・最新のクラスと料金はBiilDact公式案内で確認できます。</p>
+        </div>
+        <div className={styles.regionalActions}>
+          <a href="/ja/network/biildact" data-growth-id="home-biildact-miyako">宮古スクールの紹介・無料体験案内 →</a><a href="https://biildact.com/" target="_blank" rel="noopener noreferrer" data-growth-id="home-biildact-official">BiilDact公式サイト ↗</a>
+        </div>
       </section>
       <SendaiCommunity />
       <NovemberCampaign />
