@@ -74,9 +74,9 @@ export default function GlobalTorstenSharePage() {
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <p style={{ fontSize: 13, fontWeight: 800, letterSpacing: ".12em" }}>SHARE ONLY WHERE WELCOME</p>
           <h2 style={{ fontSize: "clamp(28px, 4vw, 44px)", marginBottom: 18 }}>One message, seven languages.</h2>
-          <p style={{ lineHeight: 1.75, marginBottom: 24 }}>Coaches, editors and partner organisations may voluntarily share these factual descriptions. Please respect each community's editorial rules and opt-in choices. No automated messages, bulk mailing or data collection are performed here.</p>
+          <p style={{ lineHeight: 1.75, marginBottom: 24 }}>Coaches, editors and partner organisations may voluntarily share these factual descriptions. Please respect each community&apos;s editorial rules and opt-in choices. No automated messages, bulk mailing or data collection are performed here.</p>
           <TorstenGlobalShareKit />
-          <p style={{ marginTop: 28, paddingTop: 22, borderTop: "1px solid #ccc", lineHeight: 1.75 }}>This share kit is prepared by RBA, not by the speaker's professional club, FIBA, WABC or a federation. A shared message is not a booking or a payment. Official registration and the only international USD checkout are on <a href={eventPath} style={{ textDecoration: "underline" }}>the clinic page</a>. Japan-based applicants can use <a href="/ja/events/torsten-loibl-online-clinic" style={{ textDecoration: "underline" }}>the separate JPY/Square registration page</a>.</p>
+          <p style={{ marginTop: 28, paddingTop: 22, borderTop: "1px solid #ccc", lineHeight: 1.75 }}>This share kit is prepared by RBA, not by the speaker&apos;s professional club, FIBA, WABC or a federation. A shared message is not a booking or a payment. Official registration and the only international USD checkout are on <a href={eventPath} style={{ textDecoration: "underline" }}>the clinic page</a>. Japan-based applicants can use <a href="/ja/events/torsten-loibl-online-clinic" style={{ textDecoration: "underline" }}>the separate JPY/Square registration page</a>.</p>
         </div>
       </section>
     </main>
