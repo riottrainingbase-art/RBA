@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, Clock3, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
+import { TorstenCoachQuestions } from "./torsten-coach-qa";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { torstenRegistrationUrl } from "./programme-data";
 import { clinicHelpUrl, clinicSharePath } from "@/lib/torsten-clinic";
@@ -102,6 +103,11 @@ export function TorstenJapanLanding() {
             <a className={styles.footerLink} href="https://sixten.jp/journal/815-torsten-loibl-online-clinic.html" target="_blank" rel="noopener noreferrer">11月4日公開の紹介記事を読む <ArrowUpRight size={16} aria-hidden="true" /></a>
             <p className={styles.help}>編集記事としての掲載であり、媒体による講習の後援・推薦や資格認定を意味しません。参加条件と申込はRBA公式の案内をご確認ください。</p>
           </div>
+        </section>
+
+        <section className={styles.faq} id="coach-qa" aria-labelledby="torsten-coach-qa-heading">
+          <h2 id="torsten-coach-qa-heading">講師とシュート育成のQ&A</h2>
+          <TorstenCoachQuestions locale="ja" />
         </section>
 
         <section className={styles.booking} aria-labelledby="torsten-booking">

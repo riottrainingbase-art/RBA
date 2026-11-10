@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, Check, Globe, Play, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
+import { TorstenCoachQuestions } from "./torsten-coach-qa";
 import Link from "next/link";
 import "./torsten-international.css";
 import { torstenUsdLive, torstenUsdRecording } from "./torsten-usd-data";
@@ -45,6 +46,12 @@ export function TorstenInternational() {
     </section>
 
     <section className="tg-section tg-learning"><p className="tg-kicker">THE MODERN BASKETBALL GAME OF SHOOTERS</p><h2>Not just how to shoot.<br/>How to create the shot.</h2><p className="tg-lead">Three connected themes for coaches who want to bring technical work into the game.</p><div className="tg-three">{questions.map(([label,title,body],i)=><article key={label}><span className="tg-number">0{i+1}</span><p className="tg-kicker">{label}</p><h3>{title}</h3><p>{body}</p></article>)}</div><p className="tg-fine">These are the announced themes and RBA’s framing of the learning opportunity. Individual questions and specific drills are not guaranteed.</p></section>
+
+    <section className="tg-section tg-faq" id="coach-qa" aria-labelledby="torsten-coach-qa-heading">
+      <p className="tg-kicker">COACH &amp; TEAM Q&amp;A</p>
+      <h2 id="torsten-coach-qa-heading">Loibl’s coaching record and Levanga’s shooting</h2>
+      <TorstenCoachQuestions locale="en" />
+    </section>
 
     <section className="tg-section tg-for"><div><p className="tg-kicker">WHO IS IT FOR?</p><h2>Coaches who keep learning.<br/>Adults who support players.</h2></div><ul><li><Check/>Club, school and academy coaches looking at practice design.</li><li><Check/>Team staff and performance coaches connecting training to the game.</li><li><Check/>Parents and players who want to understand the purpose of practice.</li></ul><p className="tg-fine">No coaching licence required. One registration per participant. The lecture is in English, with Japanese consecutive interpretation; this is not a separate English-only session.</p></section>
 
