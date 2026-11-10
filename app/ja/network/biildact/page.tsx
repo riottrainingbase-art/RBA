@@ -1,9 +1,17 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, MapPin, Users, Activity, CalendarDays } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 
-const biildactWebsite = "https://biildact.hp.peraichi.com/basketball.academy/";
+const biildactWebsite = "https://biildact.com/";
+const biildactInstagram = "https://www.instagram.com/biildact.basketball.miyako/";
+const photos = {
+  logo: "https://biildact.com/wp-content/themes/biildact/brand/bd-h-black.png",
+  boys: "https://biildact.com/wp-content/themes/biildact/photo/cls-boys2.jpg",
+  girls: "https://biildact.com/wp-content/themes/biildact/photo/cls-girls1.jpg",
+  coach: "https://biildact.com/wp-content/themes/biildact/photo/coach.jpg",
+} as const;
 const biildactLine = "https://lin.ee/wNiUTQJ";
 
 export const metadata: Metadata = {
@@ -58,10 +66,10 @@ export default function BiildactMiyakoPage() {
             </div>
             <aside className="border-l-4 border-[#9c7c51] bg-[#ebe8e0] p-6 sm:p-8">
               <p className="text-[10px] font-extrabold tracking-[.2em] text-[#655338]">ABOUT THE ACADEMY</p>
-              <p className="mt-6 text-[34px] font-black leading-tight tracking-[-.05em]">BiiLDact</p>
+              <img src={photos.logo} width={440} height={200} alt="BiiLDact Basketball Academy公式ロゴ" loading="eager" className="mt-6 h-auto w-full max-w-[260px] object-contain" />
               <p className="mt-2 text-sm font-bold text-[#455467]">Basketball Academy / MIYAKO</p>
               <p className="mt-7 flex items-center gap-2 text-sm font-semibold"><MapPin size={17} aria-hidden="true" /> 岩手県宮古市</p>
-              <p className="mt-3 text-sm leading-7 text-[#536174]">小学生〜高校生を中心に、初心者の相談も受け付けています。最新の開催日時・会場・料金はスクール公式案内をご確認ください。</p>
+              <p className="mt-3 text-sm leading-7 text-[#536174]">小学生〜高校生を中心に、初心者の相談も受け付けています。最新のクラス・会場・料金は、新公式サイトbiildact.comをご確認ください。</p>
             </aside>
           </section>
 
@@ -77,18 +85,35 @@ export default function BiildactMiyakoPage() {
             </div>
           </section>
 
+          <section aria-label="BiiLDactの練習とコーチの写真" className="grid gap-4 pb-14 sm:grid-cols-3">
+            {[
+              { src: photos.boys, alt: "BiiLDact公式サイト掲載のクラス練習風景", label: "ACADEMY / PRACTICE" },
+              { src: photos.girls, alt: "BiiLDact公式サイト掲載のクラス練習風景（女子）", label: "GIRLS / PRACTICE" },
+              { src: photos.coach, alt: "山根弘之コーチの公式紹介写真", label: "COACH / HIROYUKI YAMANE" },
+            ].map(photo => <figure key={photo.src} className="overflow-hidden border border-[#ddd9d1] bg-white">
+              <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+              <figcaption className="px-4 py-3 text-[11px] font-extrabold tracking-[.09em] text-[#54657a]">{photo.label}</figcaption>
+            </figure>)}
+          </section>
+
           <section className="border-y border-[#d8d8d1] py-12" aria-labelledby="biildact-local">
             <p className="text-xs font-extrabold tracking-[.17em] text-[#827056]">LOCAL CLASS / MIYAKO</p>
             <h2 id="biildact-local" className="mt-3 text-3xl font-black">宮古で、日常的に学べる場所。</h2>
             <p className="mt-5 max-w-3xl text-[15px] leading-8 text-[#516074]">
-              男子・女子の練習と高校生向けの機会を設けています。活動場所にはシーアリーナや地域の体育館などが案内されています。
-              曜日・会場は変更される場合があるため、参加前に必ずスクール公式サイト・公式LINEでご確認ください。
+              現在の新公式サイトでは、小・中学生（男女一緒）は週1〜3回、土日を基本として夜19:00〜21:00の練習を案内しています。
+              高校生には月1回程度の不定期クラスもあります。曜日・会場・料金は変更されるため、体験前に公式LINEでご確認ください。
             </p>
             <div className="mt-6 flex flex-wrap gap-2 text-xs font-bold text-[#354b63]">
-              <span className="border border-[#b9c6d0] bg-white px-4 py-2">小学生・中学生・高校生</span>
-              <span className="border border-[#b9c6d0] bg-white px-4 py-2">他チームとの併用相談可</span>
-              <span className="border border-[#b9c6d0] bg-white px-4 py-2">初回無料体験の案内あり</span>
+              <span className="border border-[#b9c6d0] bg-white px-4 py-2">小・中学生／高校生</span>
+              <span className="border border-[#b9c6d0] bg-white px-4 py-2">部活・所属クラブと両立可</span>
+              <span className="border border-[#b9c6d0] bg-white px-4 py-2">無料体験・入会金／年会費なし</span>
             </div>
+          </section>
+
+          <section className="py-14" aria-labelledby="biildact-coach">
+            <p className="text-xs font-extrabold tracking-[.17em] text-[#827056]">MEET THE COACH</p>
+            <h2 id="biildact-coach" className="mt-3 text-3xl font-black">宮古から、指導と学びを続ける。</h2>
+            <p className="mt-5 max-w-3xl text-[15px] leading-8 text-[#516074]">代表・山根弘之コーチ。身体の使い方を専門的に学び、選手が「見る・判断する・動く」をつなげる育成に取り組んでいます。JBAコーチライセンスC級などの指導・身体づくりの学習歴も公式サイトで紹介されています。</p>
           </section>
 
           <section className="grid gap-8 py-14 md:grid-cols-[1fr_1fr] md:items-center" aria-labelledby="biildact-history">
@@ -120,13 +145,14 @@ export default function BiildactMiyakoPage() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href={biildactLine} target="_blank" rel="noopener noreferrer" data-growth-id="biildact-line-footer" className="inline-flex min-h-12 items-center gap-2 bg-white px-6 py-3 text-sm font-extrabold text-[#122b4a]">無料体験を公式LINEで相談 <ArrowUpRight size={17} aria-hidden="true" /></a>
-              <a href={biildactWebsite} target="_blank" rel="noopener noreferrer" data-growth-id="biildact-site-footer" className="inline-flex min-h-12 items-center gap-2 border border-white/60 px-6 py-3 text-sm font-extrabold text-white" style={{ color: "#fff" }}>料金・クラスの公式案内 <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a href={biildactWebsite} target="_blank" rel="noopener noreferrer" data-growth-id="biildact-site-footer" className="inline-flex min-h-12 items-center gap-2 border border-white/60 px-6 py-3 text-sm font-extrabold text-white" style={{ color: "#fff" }}>新公式サイトでクラスを確認 <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a href={biildactInstagram} target="_blank" rel="noopener noreferrer" data-growth-id="biildact-instagram" className="inline-flex min-h-12 items-center gap-2 border border-white/60 px-6 py-3 text-sm font-extrabold text-white" style={{ color: "#fff" }}>Instagramで練習を見る <ArrowUpRight size={17} aria-hidden="true" /></a>
             </div>
           </section>
           <p className="mt-6 text-xs leading-6 text-[#617084]">
             ※BiiLDact Basketball Academyは独立して運営されている地域スクールです。RBAの直営校・フランチャイズ・加盟校としての案内ではありません。
             本ページは過去の共同企画に基づく活動紹介です。掲載内容の変更や最新の受入状況はBiiLDact公式案内を優先します。
-            公式ロゴ・選手写真は利用許諾の確認前のため転載していません。
+            公式ロゴ・写真は、BiilDact側の掲載許諾をRBAが得たうえで、BiilDact公式サイトの画像を参照して表示しています。
           </p>
         </div>
       </main>
