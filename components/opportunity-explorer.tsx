@@ -79,6 +79,13 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
 
   return <SiteFrame locale={locale} languagePage="opportunities"><div className={`opportunity-page ${styles.page}`}>
     <section className="opportunity-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index inverse"><Search size={15}/> RBA OPPORTUNITIES</p><h1>{c.title}</h1><p>{c.lead}</p>{locale==="ja"?<><p className={styles.steps}>日程を選ぶ → 内容・費用を確認 → 申し込む</p><a className={styles.heroLink} href="#opportunity-list">募集中の活動を見る <ArrowRight size={18}/></a></>:null}</section>
+    {locale === "ja" && (
+      <section className="section-pad" aria-labelledby="opportunity-supporter-title">
+        <h2 id="opportunity-supporter-title">クリニックに合わせた会員交流会</h2>
+        <p>各回の日時・会場・参加方法は決まり次第ご案内します。</p>
+        <a className="button button-dark" data-growth-id="opportunity-supporter-guide" href="/ja/supporters#clinic-meetups">月500円の応援メンバー・交流会の案内 →</a>
+      </section>
+    )}
     <section className="opportunity-controls section-pad" aria-label={c.filter}><div className="opportunity-filter-head"><SlidersHorizontal/><div><p className="section-index">FILTER</p><h2>{c.filter}</h2></div><strong>{visible.length}{c.results}</strong></div><div className="opportunity-filters">
       <label>{c.region}<select value={region} onChange={e=>{const v=e.target.value as Region;setRegion(v);update({region:v})}}><option value="all">{c.all}</option>{Object.entries(c.regions).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label>
       <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U15","U18","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
