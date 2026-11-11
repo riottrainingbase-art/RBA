@@ -1,3 +1,17 @@
+# UPDATE 2026-11-12 — Commercial launch integration (not yet live)
+
+- Owner affirmed that RBA Performance Tee WILL be sold. Do not interpret prior preparation pages as canceling this product.
+- Connected Shopify store readback: `hqg7dh-wp.myshopify.com`, currency USD, plan **trial**, requires owner to choose a paid selling plan before customer checkout.
+- Existing product `gid://shopify/Product/9709290946817` remains DRAFT, 0 inventory, 7 placeholder variants XS–3XL at internal USD69; these are **not confirmed retail variants or approved prices**.
+- Product description **updated directly in Shopify** to clear official performance-wear intent, candidate SOL'S 11939 manufacturer specifications, provisional sizing, customer disclosures and free launch survey. No order capture activated.
+- Public page `/ja/store` redesigned as mobile-first official product landing; `/ja/links` and JP homepage other-official-links navigation added.
+- `lib/performance-tee-launch.ts` is **fail-closed**. A real Shopify purchase CTA is rendered only when all readiness evidence checks pass, a nonzero price and real sizes are confirmed, `phase='live'`, and the *actual* verified Shopify product URL on the canonical RBA store is explicitly entered. No guessed product handle or unrelated Stripe link.
+- Candidate manufacturer product page: https://www.printful.com/custom/collections/sportswear/unisex-sports-jersey-sols-11939 . Printed sample not yet ordered or verified. Supplied logo image is insufficient for production printing at commercial quality.
+- Free existing survey: https://form.jotform.com/262947168647069 . This is neither a preorder nor an expression of guaranteed availability; do not treat anonymous interest as a paying customer.
+- Before public checkout: owner activates Shopify plan and payments, selects approved retail currency/prices, configures supplier and mapping, uploads genuine print-ready logo, orders and verifies sample, ensures variants match real supplier inventory, configures taxes/shipping/returns/required seller legal disclosures, runs paid/unpaid/canceled end-to-end manufacturing tests, and records exact published Shopify product URL.
+- **DO NOT** set Shopify status ACTIVE or change `phase` to live until these are complete. App connector does not provide merchant authorization for the paid plan nor the Printful installation/billing method. A new Stripe link should not bypass supplier readiness.
+
+---
 # RBA Performance Tee — release record
 
 Status: preparation only, 2026-10-23 JST. No live checkout or supplier connection.
