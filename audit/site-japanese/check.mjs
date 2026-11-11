@@ -65,6 +65,29 @@ for(const [file,needle,rule] of sponsorChecks){
   }
 }
 
+// Guard the mobile-first contact route against blank/white-on-white buttons and
+// accidental removal of the accessible first-visit links.
+const homeConversionGuards = [
+  ["components/simple-japanese-home.tsx", "FOR TEAMS &amp; LOCAL ORGANISERS", "host-dark-section"],
+  ["components/simple-japanese-home.tsx", "無料で開催相談する", "host-primary-label"],
+  ["components/simple-japanese-home.tsx", "href=\"/ja/clinic-request\"", "host-official-contact-route"],
+  ["components/simple-japanese-home.tsx", "FIRST TIME HERE?", "first-visit-identifier"],
+  ["components/simple-japanese-home.tsx", "はじめてRBAを知った方へ。", "first-visit-japanese-heading"],
+  ["components/simple-japanese-home.tsx", "選手・保護者の方", "first-visit-family"],
+  ["components/simple-japanese-home.tsx", "スクールを探す方", "first-visit-school"],
+  ["components/simple-japanese-home.tsx", "指導者・チームの方", "first-visit-coach"],
+  ["components/simple-japanese-home.tsx", "地域の主催者の方", "first-visit-host"],
+  ["components/simple-japanese-home.module.css", ".hostPrimary,.hostPrimary:visited", "host-visited-link-contrast"],
+  ["components/simple-japanese-home.module.css", "color:#191b1d !important;", "host-legible-text-colour"],
+  ["components/simple-japanese-home.module.css", "background-color:#fff;", "host-white-button-background"],
+  ["components/simple-japanese-home.module.css", ".hostFormats li{", "nonbroken-format-labels"],
+  ["components/simple-japanese-home.module.css", "@media (max-width:530px)", "mobile-390-breakpoint"],
+];
+for (const [file,fragment,rule] of homeConversionGuards) {
+  if (!fs.existsSync(file) || !fs.readFileSync(file,"utf8").includes(fragment))
+    failures.push({ file, rule, sample:"mobile conversion / accessibility guard missing" });
+}
+
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);

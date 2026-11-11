@@ -86,3 +86,117 @@
 .schoolSpotlightActions a + a{background:#fff;color:#10233f;border:1px solid #a6b8c9}
 .schoolSpotlightActions a:focus-visible{outline:3px solid #b97b31;outline-offset:3px}
 @media(max-width:760px){.schoolSpotlight{grid-template-columns:1fr;padding:22px 19px;gap:19px;margin:18px 0}.schoolSpotlightActions a{width:100%}}
+
+/* Mobile conversion audit 2026-11-11: high-contrast, readable, non-overflowing host enquiry. */
+.hostCallout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(235px,.55fr);
+  align-items:center;
+  gap:clamp(24px,4vw,48px);
+  margin:32px 0 0;
+  padding:clamp(24px,4vw,48px);
+  background:#191b1d;
+  color:#fff;
+  border:1px solid #2d3033;
+}
+.hostContent,.hostActions{min-width:0}
+.hostKicker{
+  margin:0 0 16px;
+  font-size:clamp(10px,1vw,12px);
+  line-height:1.6;
+  font-weight:800;
+  letter-spacing:.17em;
+  color:#f0a878;
+}
+.hostCallout h2{
+  color:#fff;
+  margin:0;
+  font-size:clamp(27px,3.4vw,44px);
+  line-height:1.32;
+  letter-spacing:-.035em;
+  font-weight:850;
+  text-wrap:balance;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.hostCallout h2 span{white-space:nowrap}
+.hostDescription{
+  margin:18px 0 0;
+  color:#e2e2e2;
+  font-size:clamp(14px,1.3vw,16px);
+  line-height:1.75;
+  text-wrap:pretty;
+  overflow-wrap:break-word;
+}
+.hostFormats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  list-style:none;
+  margin:20px 0 0;
+  padding:0;
+}
+.hostFormats li{
+  display:inline-flex;
+  align-items:center;
+  padding:7px 10px;
+  border:1px solid #62666a;
+  color:#f1f1f1;
+  font-size:12px;
+  line-height:1.45;
+  font-weight:700;
+  white-space:nowrap;
+}
+.hostActions{display:flex;flex-direction:column;gap:14px}
+.hostPrimary,.hostPrimary:visited{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  width:100%;
+  min-height:58px;
+  padding:15px 20px;
+  border:2px solid #fff;
+  background-color:#fff;
+  color:#191b1d !important;
+  font-size:16px;
+  font-weight:850;
+  line-height:1.5;
+  text-decoration:none;
+}
+.hostPrimary span:first-child{min-width:0}
+.hostPrimary span:last-child{font-size:21px;line-height:1;flex-shrink:0}
+.hostPrimary:hover{background:#eee9e3;border-color:#eee9e3;color:#191b1d !important}
+.hostPrimary:focus-visible{
+  outline:3px solid #f0a878;
+  outline-offset:4px;
+  color:#191b1d !important;
+}
+.hostActions p{
+  margin:0;
+  color:#c7c9cb;
+  font-size:12px;
+  line-height:1.75;
+  text-wrap:pretty;
+}
+.nextStepLinks a{min-width:0;overflow-wrap:normal}
+.nextStepLinks a strong{flex:1;min-width:0;font:inherit;line-height:1.5}
+.nextStepLinks a:focus-visible{outline:3px solid #826b49;outline-offset:3px}
+.nextStepIntro h2{text-wrap:balance;overflow-wrap:normal}
+.nextStepIntro p:not(.label){text-wrap:pretty}
+@media (max-width:800px){
+  .hostCallout{grid-template-columns:minmax(0,1fr);gap:22px}
+}
+@media (max-width:530px){
+  .hostCallout{margin:18px 0 0;padding:24px 20px;gap:20px}
+  .hostCallout h2{font-size:clamp(27px,7vw,34px);line-height:1.3}
+  .hostKicker{font-size:10px;letter-spacing:.13em}
+  .hostDescription{margin-top:14px;font-size:14px;line-height:1.7}
+  .hostFormats{gap:6px;margin-top:16px}
+  .hostFormats li{font-size:11px;padding:7px 9px}
+  .hostPrimary,.hostPrimary:visited{font-size:15px;min-height:54px;padding:13px 16px}
+  .nextStepLinks a{min-height:56px;padding:12px 14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hostPrimary{transition:none}
+}

@@ -102,17 +102,34 @@ export async function SimpleJapaneseHome() {
       </section>
 
 
+      <section className={styles.hostCallout} aria-labelledby="home-host-cta-title">
+        <div className={styles.hostContent}>
+          <p className={styles.hostKicker}>FOR TEAMS &amp; LOCAL ORGANISERS</p>
+          <h2 id="home-host-cta-title">あなたの地域に、<span>RBAを。</span></h2>
+          <p className={styles.hostDescription}>地域のチーム・指導者・主催者と、子どもたちが学べる機会をつくります。</p>
+          <ul className={styles.hostFormats} aria-label="開催モデル">
+            <li>チーム訪問</li>
+            <li>地域合同クリニック</li>
+            <li>3回の継続開催</li>
+          </ul>
+        </div>
+        <div className={styles.hostActions}>
+          <a className={styles.hostPrimary} data-growth-id="home-regional-host-cta" href="/ja/clinic-request"><span>無料で開催相談する</span><span aria-hidden="true">↗</span></a>
+          <p>ご相談と初回見積もりは無料。会場・内容・費用は事前に確認し、双方の合意後に正式決定します。</p>
+        </div>
+      </section>
+
       <section className={styles.nextStep} aria-labelledby="home-next-step">
         <div className={styles.nextStepIntro}>
-          <p className={styles.label}>FIND YOUR NEXT STEP</p>
-          <h2 id="home-next-step">あなたに合う入口から。</h2>
-          <p>参加する・見学する・指導を呼ぶ・一緒に企画する。料金や条件を確認し、公式の申込先へ進めます。</p>
+          <p className={styles.label}>FIRST TIME HERE?</p>
+          <h2 id="home-next-step">はじめてRBAを知った方へ。</h2>
+          <p>RBAは全国の育成クリニック、指導者教育、国際交流を行っています。まずは目的に合った入口をお選びください。</p>
         </div>
-        <nav className={styles.nextStepLinks} aria-label="目的別の申込・相談窓口">
-          <a data-growth-id="home-next-events" href="#home-programmes"><span>01</span>クリニック・キャンプ<span aria-hidden="true">→</span></a>
-          <a data-growth-id="home-next-school" href="/ja/sendai-school"><span>02</span>仙台U12・U15スクール<span aria-hidden="true">→</span></a>
-          <a data-growth-id="home-next-coach" href="/ja/start#coaches"><span>03</span>指導者・チームの学び<span aria-hidden="true">→</span></a>
-          <a data-growth-id="home-next-business" href="/ja/start#partners"><span>04</span>地域開催・企業・海外<span aria-hidden="true">→</span></a>
+        <nav className={styles.nextStepLinks} aria-label="はじめての方の目的別案内">
+          <a data-growth-id="home-next-events" href="#home-programmes"><span aria-hidden="true">01</span><strong>選手・保護者の方</strong><span aria-hidden="true">↗</span></a>
+          <a data-growth-id="home-next-school" href="/ja/sendai-school"><span aria-hidden="true">02</span><strong>スクールを探す方</strong><span aria-hidden="true">↗</span></a>
+          <a data-growth-id="home-next-coach" href="/ja/team-development"><span aria-hidden="true">03</span><strong>指導者・チームの方</strong><span aria-hidden="true">↗</span></a>
+          <a data-growth-id="home-next-business" href="/ja/clinic-request"><span aria-hidden="true">04</span><strong>地域の主催者の方</strong><span aria-hidden="true">↗</span></a>
         </nav>
       </section>
 
@@ -197,11 +214,6 @@ export async function SimpleJapaneseHome() {
       </section>
 
       <OkinawaDecemberCampCallout locale="ja" />
-
-      <section className={styles.regional} aria-labelledby="regional-school-invitation">
-        <div><p className={styles.label}>地域スクール</p><h2 id="regional-school-invitation">あなたの街にも、RBAを。</h2><p>参加希望・指導・運営・会場・協賛の相談を受け付けています。開催地域・日程・料金は未定。希望の送信・相談は無料です。</p></div>
-        <div className={styles.regionalActions}><a href="/ja/regional-program#families">近くで参加したい →</a><a href="/ja/regional-program#partners">指導・運営に協力したい →</a></div>
-      </section>
 
       <section className={styles.regional} aria-labelledby="home-continue-title">
         <div><p className={styles.label}>参加した日の学びを、次の練習へ</p><h2 id="home-continue-title">一つ試す。振り返る。また挑戦する。</h2><p>クリニックで気づいたことから、次の練習で試すことを一つ。保護者の声かけ例と振り返りメモを、登録なしで使えます。</p></div>
