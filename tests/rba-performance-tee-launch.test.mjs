@@ -44,7 +44,8 @@ test("waiting users see only the real non-binding survey and clear caveats",()=>
   assert.match(store,/実際の商品写真ではありません/);
   assert.match(store,/XS・3XLを含む登録内容は旧案の仮設定/);
   assert.match(store,/国・地域のみで販売/);
-  assert.match(store,/返品・サイズ交換の条件/);
+  assert.match(store,/キャンセル・サイズ交換の条件/);
+  assert.match(store,/受注生産なら返品できませんか/);
   assert.match(store,/Riot Basketball Academy公式/);
 });
 
