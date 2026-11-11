@@ -12,10 +12,10 @@ export default function Page(){return <SiteFrame locale="ja"><div className={sty
     <h2 id="okinawa-supporter-heading">地域の皆さまとのつながり</h2>
     <article className={styles.card} style={{maxWidth:820}}>
       <p className={styles.eyebrow}>LOCAL COMMUNITY SUPPORT / OKINAWA</p>
-      <h3>株式会社サン食品 様</h3>
+      <div style={{display:"flex",alignItems:"center",gap:18,flexWrap:"wrap",marginBottom:16}}><img src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width="80" height="80" style={{objectFit:"contain",borderRadius:8}}/><h3 style={{margin:0}}>株式会社サン食品 様</h3></div>
       <p>沖縄そばの麺50食分とお出汁について、物品協賛のお申し出をいただいています。子どもたちの育成活動に関心を寄せていただき、心より感謝申し上げます。</p>
       <p><a href="https://sun-foods.net/" target="_blank" rel="noopener noreferrer" style={{fontWeight:800,textDecoration:"underline"}}>株式会社サン食品 公式サイト</a></p>
-      <p className={styles.fine}>※協賛品の受取・保管・当日の提供方法は調整中です。参加者への食品提供を確約するものではありません。企業ロゴは正式な掲載許可・原本確認後に追加します。</p>
+      <p className={styles.fine}>※協賛品の受取・保管・当日の提供方法は調整中です。参加者への食品提供を確約するものではありません。サン食品様のロゴ原本については確認後に追加します。</p>
     </article>
   </section>
   <section className={styles.section}><h2>申込から当日まで、3つのステップ。</h2><div className={styles.grid}>{[["01","選手情報を登録","保護者のRBA IDでログインし、選手1名ずつ氏名・学年・緊急連絡先を登録します。"],["02","決済受付開始後にお支払い","RBAが決済受付を開始すると、このページに決済ボタンが表示されます。参加費は1名3,300円（税込）。お支払いの確認後に参加確定です。"],["03","会場案内を確認して参加","会場は伊良波小学校です。集合時間・入館方法・駐車場の案内は申込時のメールアドレスとMY HOME COURTのお知らせをご確認ください。"]].map(([n,t,b])=><article className={styles.card} key={n}><span className={styles.number}>STEP {n}</span><h3>{t}</h3><p>{b}</p></article>)}</div></section>
