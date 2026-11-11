@@ -19,6 +19,15 @@ export const metadata: Metadata = {
 
 const featured = [
   {
+    id: "supporter-note-join",
+    label: "RBA応援会員",
+    title: "月500円でRBAを応援",
+    description: "子どもたちがバスケットボールに挑戦できる場を、一緒に支えてください。",
+    href: "https://note.com/rba_official/membership/join",
+    action: "公式noteで月500円のプランを見る",
+    style: "primary",
+  },
+  {
     id: "school",
     label: "01 / SENDAI SCHOOL",
     title: "仙台 U12・U15 スクール",
