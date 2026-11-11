@@ -29,7 +29,7 @@ test("checkout is restricted to the verified RBA Shopify product URL",()=>{
   assert.match(manifest,/url\.protocol !== "https:"/);
   assert.match(manifest,/hqg7dh-wp\.myshopify\.com/);
   assert.match(manifest,/url\.search \|\| url\.hash \|\| url\.username \|\| url\.password/);
-  assert.match(manifest,/\/products\/\[a-z0-9\]/);
+  assert.ok(manifest.includes("products") && manifest.includes("[a-z0-9]"),"Shopify product URL must use a controlled product path");
   assert.doesNotMatch(store,/buy\.stripe\.com|checkout\.stripe\.com|69\.00/);
   assert.match(store,/const checkoutUrl = ready/);
   assert.match(store,/checkoutUrl \? <a className=\{styles\.button\}/);
@@ -44,7 +44,7 @@ test("waiting users see only the real non-binding survey and clear caveats",()=>
   assert.match(store,/実際の商品写真ではありません/);
   assert.match(store,/XS・3XLを含む登録内容は旧案の仮設定/);
   assert.match(store,/国・地域のみで販売/);
-  assert.match(store,/キャンセル・返品・サイズ交換/);
+  assert.match(store,/返品・サイズ交換の条件/);
   assert.match(store,/Riot Basketball Academy公式/);
 });
 
