@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, CheckCircle2, CircleAlert, ExternalLink, LockKeyhole, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, CircleAlert, ExternalLink, LockKeyhole, ShieldCheck } from "lucide-react";
 import {
   computeTeeEconomics, defaultTeeEconomics,
   type TeeEconomicsInput
