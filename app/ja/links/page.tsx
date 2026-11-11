@@ -4,13 +4,13 @@ import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import styles from "./links.module.css";
 
 export const metadata: Metadata = {
-  title: "RBA公式リンク集｜スクール体験・GREAM・クリニック",
-  description: "Riot Basketball Academy公式。仙台U12・U15スクール、GREAMクラブ、全国の育成クリニック、指導者の学びへ。保護者が迷わず公式ページへ進めるリンク集です。",
+  title: "RBA公式リンク集｜保護者・指導者・参加できる活動",
+  description: "Riot Basketball Academy公式。保護者・選手、指導者、クリニック参加の3つの入口から、必要な情報に迷わず進める公式リンク集です。",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://riotbasketballacademy.com/ja/links" },
   openGraph: {
-    title: "RBA｜スクール体験・U15クラブ・全国の育成機会",
-    description: "体験したい。チームを探したい。育成を学びたい。目的別に公式の窓口を選べます。",
+    title: "RBA｜保護者・指導者・育成の機会",
+    description: "保護者・指導者・参加希望の方へ。最初に選ぶ入口を3つに整理しました。",
     url: "https://riotbasketballacademy.com/ja/links",
     type: "website",
     images: [{url:"https://riotbasketballacademy.com/rba-logo-original.jpg"}],
@@ -19,46 +19,39 @@ export const metadata: Metadata = {
 
 const featured = [
   {
-    id: "school",
-    label: "01 / SENDAI SCHOOL",
-    title: "仙台 U12・U15 スクール",
-    description: "チームはそのまま。小学生・中学生の保護者向け無料体験相談。U12金曜・U15木曜を基本候補に調整中。会場許可後に体験日を案内。",
-    href: "/ja/sendai-school",
-    action: "スクール内容・体験相談へ",
+    id: "families",
+    label: "01 / FOR PARENTS",
+    title: "保護者・選手の方",
+    description: "チーム選びや出場機会、育成の記事と参加できる活動へ。",
+    href: "/ja/families",
+    action: "保護者向けの入口へ",
     style: "primary",
   },
   {
-    id: "gream",
-    label: "02 / U15 CLUB",
-    title: "GREAM｜U15育成チーム",
-    description: "仙台・秋田・沖縄。スクールとは異なるクラブの活動・料金・募集状況をご案内。",
-    href: "/ja/gream",
-    action: "地域のチームを選ぶ",
+    id: "coaches",
+    label: "02 / FOR COACHES",
+    title: "指導者・チームの方",
+    description: "練習設計・育成記事・オンライン講習を探す。",
+    href: "/ja/coaches",
+    action: "指導者の学びへ",
     style: "standard",
   },
   {
     id: "events",
-    label: "03 / CLINICS & CAMPS",
-    title: "全国のクリニック・キャンプ",
-    description: "募集日程・対象年代・費用を確認。参加可能な活動からお選びください。",
+    label: "03 / JOIN RBA",
+    title: "クリニック・キャンプを探す",
+    description: "募集日程・対象・費用を公式ページで確認できます。",
     href: "/ja/opportunities",
-    action: "開催中の募集を確認",
-    style: "standard",
-  },
-  {
-    id: "learn",
-    label: "04 / COACH EDUCATION",
-    title: "指導者の学び・D-HUB",
-    description: "練習設計、選手育成、オンライン講習、育成記事を探す入口です。",
-    href: "/ja/d-hub",
-    action: "学びの内容を見る",
+    action: "参加できる活動を見る",
     style: "standard",
   },
 ] as const;
 
 const more = [
-  {title: "RBAを地域に呼ぶ",href:"/ja/clinic-request",id:"host"},
-  {title: "企業・地域の協賛",href:"/ja/partners",id:"partners"},
+  {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
+  {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
+  {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
+  {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
   {title: "RBA公式サイト",href:"/ja",id:"home"},
 ] as const;
 
@@ -72,7 +65,7 @@ export default function RbaLinkInBioPage() {
         </a>
         <p className={styles.brand}>RIOT BASKETBALL ACADEMY</p>
         <h1>バスケットボールの<br/>次の一歩を。</h1>
-        <p className={styles.lead}>体験・チーム・クリニック・指導者の学び。<br/>目的に合う公式窓口を選べます。</p>
+        <p className={styles.lead}>保護者、指導者、活動に参加したい方へ。<br/>まずは目的をひとつお選びください。</p>
         <span className={styles.region}>仙台から、全国・アジアへ。</span>
       </header>
       <nav aria-label="RBAの公式案内リンク" className={styles.links}>
