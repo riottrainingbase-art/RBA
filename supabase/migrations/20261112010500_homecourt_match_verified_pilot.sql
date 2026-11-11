@@ -122,6 +122,18 @@ returns trigger language plpgsql security invoker set search_path = '' as $$
 declare
   post_owner uuid;
 begin
+  if tg_op = 'INSERT' then
+    if new.status <> 'requested'
+       or not (private.is_approved_coach() or private.is_rba_operator() or private.is_global_admin())
+       or not exists (
+         select 1 from public.platform_entities e
+         where e.id = new.responding_entity_id
+           and e.status='active' and e.verification_status='verified'
+       ) then
+      raise exception 'Only verified club representatives can request a match';
+    end if;
+  end if;
+
   if tg_op = 'UPDATE' then
     if new.post_id is distinct from old.post_id
        or new.responding_entity_id is distinct from old.responding_entity_id
@@ -152,6 +164,9 @@ begin
   end if;
   if length(coalesce(new.note,'')) > 300 then
     raise exception 'Match request message exceeds the limit';
+  end if;
+  if coalesce(new.note,'') ~* '(https?://|www\.|[[:alnum:]._%+-]+@[[:alnum:].-]+\.[[:alpha:]]{2,}|0[0-9]{9,10}|@[-_[:alnum:]]+)' then
+    raise exception 'Use team-level requests only, without contact details';
   end if;
   return new;
 end;
