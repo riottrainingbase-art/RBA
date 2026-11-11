@@ -52,7 +52,7 @@ export async function SimpleJapaneseHome() {
       <section className={styles.nextStep} aria-labelledby="home-next-step">
         <div className={styles.nextStepIntro}>
           <p className={styles.label}>FIRST TIME HERE?</p>
-          <h2 id="home-next-step">はじめてRBAをご覧になる方へ。</h2>
+          <h2 id="home-next-step">はじめてRBAを知った方へ。</h2>
           <p>RBAは全国の育成クリニック、指導者教育、国際交流を行っています。まずは目的に合った入口をお選びください。</p>
         </div>
         <nav className={styles.nextStepLinks} aria-label="はじめての方の目的別案内">
@@ -89,7 +89,7 @@ export async function SimpleJapaneseHome() {
         </nav>
         <p className={styles.note}>企業・お店・個人の皆さまへ：<a href="/ja/gream/support" data-growth-id="home-gream-support">GREAMの育成を応援する →</a></p>
       </section>
-      <SendaiCommunity partnersOnly />
+      <SendaiCommunity />
 
       <section className={styles.schoolSpotlight} aria-labelledby="home-sendai-school">
         <div className={styles.schoolSpotlightIntro}>
