@@ -70,7 +70,7 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
  const sponsorEnquiry = locale === "ja" ? "https://form.jotform.com/263089038431054" : mail;
  const externalEnquiry = locale === "ja" ? {target:"_blank" as const,rel:"noopener noreferrer"} : {};
  return <main className="sponsor-page">
-  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={prefix+"/my-homecourt"}>{x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
+  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={locale==="ja"?"/ja/work-with-rba":prefix+"/my-homecourt"} data-growth-id={locale==="ja"?"partner-network-business":"partner-homecourt"}>{locale==="ja"?"地域・アジアの共同事業":x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
   {locale === "ja" && <section className={sponsorOfferStyles.section} id="sponsor-options" aria-labelledby="sponsor-options-title">
     <div className={sponsorOfferStyles.inner}>
       <div className={sponsorOfferStyles.heading}>
