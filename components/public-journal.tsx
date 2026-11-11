@@ -7,6 +7,8 @@ import { JournalExplorer } from "@/components/journal-explorer";
 import { JournalReaderTools } from "@/components/journal-reader-tools";
 import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 import { JournalPracticeGuides } from "@/components/journal-practice-guides";
+import { worldYouthJournalPath } from "@/lib/world-youth-journal";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import { NoteBridge } from "@/components/note-bridge";
 
 const copy={
@@ -105,10 +107,16 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
   ];
   return <SiteFrame locale={locale} languagePage="journal">
     <div className="journal-hub journal-cms">
+      {locale==="ja"?<GrowthClickTracking/>:null}
       <section className="journal-cms-hero section-pad">
         <p className="section-index">{c.kicker}</p>
         <h1>{c.title}</h1>
         <p>{c.lead}</p>
+        {locale==="ja"?<div className="homecourt-launch-actions">
+          <Link className="button button-light" href={worldYouthJournalPath} data-growth-id="journal-world-youth">
+            世界のユースバスケ・コーチングコラム <ArrowRight size={17}/>
+          </Link>
+        </div>:null}
 
       </section>
       {locale==="ja"?<div className="section-pad"><NoteBridge variant="journal" /></div>:null}
