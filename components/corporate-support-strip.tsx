@@ -25,7 +25,7 @@ const corporateSupport = [
 
 const words = {
   ja: {
-    kicker: "CORPORATE SUPPORT / 企業協賛",
+    kicker: "PARTNERS / 協賛・パートナー",
     headline: "企業スポンサー募集中。育成の未来を、ともに。",
     history: "2026年 協賛実績",
     partner: "協賛メニューと掲載条件を見る",

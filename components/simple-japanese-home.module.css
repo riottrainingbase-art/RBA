@@ -200,3 +200,45 @@
 @media (prefers-reduced-motion:reduce){
   .hostPrimary{transition:none}
 }
+
+/* Homepage information hierarchy — clinics first, partner enquiries second. */
+.sponsorAnchor{
+  scroll-margin-top:104px;
+  margin:clamp(18px,3vw,32px) 0 clamp(28px,4vw,42px);
+}
+.page .programmes{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.page .programmes article{
+  padding:clamp(18px,2vw,24px);
+  min-height:240px;
+}
+.page .programmes h3{
+  font-size:clamp(17px,1.7vw,21px);
+  line-height:1.45;
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+.page .programmes article>a{
+  font-size:14px;
+  min-height:48px;
+}
+.page .heading .label{display:block}
+.page .hero .actions{align-items:stretch}
+.page .hero .actions a{
+  min-height:50px;
+  line-height:1.45;
+  text-align:center;
+}
+.page .schoolSpotlight{margin:30px 0}
+.page .nextStep{margin-top:clamp(16px,3vw,32px)}
+.page .hostCallout{margin-top:clamp(24px,4vw,40px)}
+@media(max-width:650px){
+  .page .programmes{grid-template-columns:minmax(0,1fr);gap:12px}
+  .page .programmes article{min-height:0}
+  .page .hero .actions{grid-template-columns:minmax(0,1fr);gap:9px}
+  .page .hero .actions a{grid-column:auto;min-height:48px;padding:12px 14px}
+  .page .heading h2{font-size:24px;line-height:1.4}
+  .sponsorAnchor{margin-top:20px}
+}
