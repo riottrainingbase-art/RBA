@@ -92,6 +92,19 @@ export function TorstenJapanLanding() {
           </ol>
         </section>
 
+        <section className={styles.about} aria-labelledby="torsten-u12-coaching">
+          <div>
+            <p className={styles.sectionKicker}>U12 / COACHING OBSERVATION</p>
+            <h2 id="torsten-u12-coaching">ミニバスの練習で、<br/>何を見ていますか？</h2>
+            <p className={styles.help}>RBAが普段の育成現場を考えるための3つの問いです。講師の発言や本講習の配布教材を引用したものではありません。</p>
+          </div>
+          <ol className={styles.learning}>
+            <li><strong>01</strong><span>ボールを受ける前に、守備者や味方の位置を見ているか。</span></li>
+            <li><strong>02</strong><span>相手が寄ったとき、打つ・パスする・動き直す判断を選べるか。</span></li>
+            <li><strong>03</strong><span>シュートドリルのあと、小さなゲームでも状況に応じて使えるか。</span></li>
+          </ol>
+        </section>
+
         <section className={styles.about} aria-labelledby="torsten-editorial-coverage">
           <div>
             <p className={styles.sectionKicker}>MEDIA / 掲載記事</p>
