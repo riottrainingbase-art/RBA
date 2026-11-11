@@ -1,4 +1,6 @@
 import { GrowthClickTracking } from "./growth-click-tracking";
+import { CorporateSupportStrip } from "./corporate-support-strip";
+import { SendaiCommunity } from "./sendai-community";
 import { SiteFrame, localePath } from "./site-frame";
 import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
@@ -123,6 +125,46 @@ export async function SimpleJapaneseHome() {
             <p className={styles.note}>申込受付・定員・会場・決済方法・キャンセル条件は、各活動の公式ページにある最新情報をご確認ください。</p>
           </section>
 
+
+          <div id="home-partners" className={styles.sponsorAnchor} aria-label="RBA協賛・パートナー">
+            <CorporateSupportStrip locale="ja" />
+          </div>
+
+          <section className={styles.nextStep} id="home-next-step" aria-labelledby="home-next-step-title">
+            <div className={styles.nextStepIntro}>
+              <p className={styles.label}>FIRST TIME HERE?</p>
+              <h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2>
+              <p>活動内容が決まっていない方も、必要な情報だけを選べます。</p>
+            </div>
+            <nav className={styles.nextStepLinks} aria-label="はじめての方向けの案内">
+              <a href="/ja/families" data-growth-id="home-first-family"><span>01</span><strong>選手・保護者の方</strong><span aria-hidden="true">↗</span></a>
+              <a href="/ja/sendai-school" data-growth-id="home-first-school"><span>02</span><strong>スクールを探す方</strong><span aria-hidden="true">↗</span></a>
+              <a href="/ja/coaches" data-growth-id="home-first-coaches"><span>03</span><strong>指導者・チームの方</strong><span aria-hidden="true">↗</span></a>
+              <a href="/ja/clinic-request" data-growth-id="home-first-hosts"><span>04</span><strong>地域の主催者の方</strong><span aria-hidden="true">↗</span></a>
+            </nav>
+          </section>
+
+          <section className={styles.ageHub} aria-labelledby="home-age-categories" id="home-age-categories">
+            <p className={styles.label}>PROGRAMMES / 年代と活動形態</p>
+            <h2>年齢・活動から探す。</h2>
+            <p className={styles.ageIntro}>スクール・クリニック・U15クラブは別の活動です。対象や参加条件を確認してお選びください。</p>
+            <nav className={styles.ageGrid} aria-label="年代とU15チームの案内">
+              <a href="/ja/u12" className={styles.ageCard} data-growth-id="home-age-u12">
+                <span className={styles.ageEyebrow}>ELEMENTARY</span><strong>U12</strong>
+                <span className={styles.ageDescription}>小学生向け活動</span><span className={styles.ageAction}>U12を見る →</span>
+              </a>
+              <a href="/ja/u15" className={styles.ageCard} data-growth-id="home-age-u15">
+                <span className={styles.ageEyebrow}>JUNIOR HIGH</span><strong>U15</strong>
+                <span className={styles.ageDescription}>中学生年代の育成</span><span className={styles.ageAction}>U15を見る →</span>
+              </a>
+              <a href="/ja/gream" className={styles.ageCard} data-growth-id="home-age-gream">
+                <span className={styles.ageEyebrow}>U15 TEAM</span><strong>GREAM</strong>
+                <span className={styles.ageDescription}>地域の育成クラブ</span><span className={styles.ageAction}>GREAMを見る →</span>
+              </a>
+            </nav>
+          </section>
+          <SendaiCommunity />
+
           <section className={styles.schoolSpotlight} aria-labelledby="home-sendai-school">
             <div className={styles.schoolSpotlightIntro}>
               <p className={styles.label}>SENDAI / 太白区</p>
@@ -132,7 +174,7 @@ export async function SimpleJapaneseHome() {
               <small>体験日・費用・受け入れ状況は各公式案内を優先してください。</small>
             </div>
             <div className={styles.schoolSpotlightActions}>
-              <a href="/ja/sendai-school" data-growth-id="home-sendai-school-trial">スクール体験を相談する →</a>
+              <a href="/ja/sendai-school" data-growth-id="home-school-consultation">スクール体験を相談する →</a>
               <a href="/ja/gream-sendai" data-growth-id="home-sendai-gream">GREAM仙台 U15を見る →</a>
             </div>
           </section>
@@ -155,15 +197,15 @@ export async function SimpleJapaneseHome() {
             <p className={styles.note}>指導者向けの学びは <a href="/ja/d-hub" data-growth-id="home-coach-dhub">D-HUB</a>、継続サポートは <a href="/ja/home-court" data-growth-id="home-homecourt">HOMECOURT</a> から確認できます。無料登録と有料プランは別です。</p>
           </section>
 
-          <section className={styles.hostCallout} id="home-partners" aria-labelledby="home-host-cta-title">
+          <section className={styles.hostCallout} id="home-host" aria-labelledby="home-host-cta-title">
             <div className={styles.hostContent}>
-              <p className={styles.hostKicker}>BRING RBA TO YOUR COMMUNITY</p>
+              <p className={styles.hostKicker}>FOR TEAMS &amp; LOCAL ORGANISERS</p>
               <h2 id="home-host-cta-title">あなたの地域に、<span>RBAを。</span></h2>
               <p className={styles.hostDescription}>チーム訪問・地域合同クリニック・指導者研修。企業・学校・自治体との協働もご相談ください。</p>
               <ul className={styles.hostFormats} aria-label="連携の例"><li>クリニック開催</li><li>指導者研修</li><li>企業協賛</li></ul>
             </div>
             <div className={styles.hostActions}>
-              <a className={styles.hostPrimary} data-growth-id="home-host-request" href="/ja/clinic-request"><span>地域での開催を相談する</span><span aria-hidden="true">↗</span></a>
+              <a className={styles.hostPrimary} data-growth-id="home-host-request" href="/ja/clinic-request"><span>無料で開催相談する</span><span aria-hidden="true">↗</span></a>
               <a className={styles.hostSecondary} data-growth-id="home-partner-details" href="/ja/partners">協賛・法人連携について →</a>
               <p>相談・見積もりは無料。正式な開催・協賛内容は双方の合意後に確定します。</p>
             </div>
