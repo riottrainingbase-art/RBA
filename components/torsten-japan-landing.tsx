@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, Clock3, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
+import { TorstenCoachQuestions } from "./torsten-coach-qa";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { torstenRegistrationUrl } from "./programme-data";
 import { clinicHelpUrl, clinicSharePath } from "@/lib/torsten-clinic";
@@ -48,17 +49,17 @@ export function TorstenJapanLanding() {
       <div className={styles.shell}>
         <section className={styles.hero} aria-labelledby="torsten-title">
           <div className={styles.heroText}>
-            <p className={styles.eyebrow}>NOV 25, 2026 · RBA ONLINE CLINIC VOL.2</p>
-            <h1 id="torsten-title"><span className={styles.heroLabel}>世界の現場で指導してきたコーチに学ぶ。</span><span className={styles.name}>TORSTEN<br />LOIBL</span></h1>
-            <p className={styles.heroProof}>B.PREMIER HC <span>FIBA WABC LEVEL 3</span> <span>2019 WORLD CHAMPION</span></p>
-            <p className={styles.subheading}>シュートを「打つ技術」から、<br/>「試合で生み出す力」へ。</p>
-            <p className={styles.lead}>育成年代の日本代表からプロまで。シュート技術・練習設計・スペーシング・判断をつなぐ90分。</p>
+            <p className={styles.eyebrow}>RBA ONLINE CLINIC / VOL.02</p>
+            <h1 id="torsten-title"><span className={styles.name}>TORSTEN LOIBL</span></h1>
+            <p className={styles.heroProof}>トーステン・ロイブル <span>レバンガ北海道 HC</span></p>
+            <p className={styles.subheading}>試合で生きるシュートを育てる。</p>
+            <p className={styles.lead}>シュート技術・練習設計・スペーシング・判断をつなぐ、指導者のための90分。</p>
             <RegisterLink label="LIVE・録画を選んで申し込む" id="torsten-simple-hero" />
-            <p className={styles.micro}>国内申込はGoogleフォームで参加形式を選択。送信後の確認画面にあるSquare決済の案内からお支払いください。</p>
+            <p className={styles.micro}>Googleフォームで参加形式を選択し、Squareでお支払いください。</p>
           </div>
           <aside className={styles.info} aria-label="開催日時と参加料金">
             <p className={styles.infoLabel}>LIVE / ZOOM</p>
-            <div className={styles.bigDate}>11.25 <span>WED</span></div>
+            <div className={styles.bigDate}>11.25 <span>2026 / WED</span></div>
             <p className={styles.time}><Clock3 size={18} aria-hidden="true" />20:00–21:30（日本時間）</p>
             <p className={styles.time}><Video size={18} aria-hidden="true" />Zoom・英語講義＋日本語逐次通訳</p>
             <div className={styles.prices}>
@@ -69,21 +70,16 @@ export function TorstenJapanLanding() {
           </aside>
         </section>
 
-        <section className={styles.achievements} aria-labelledby="torsten-career">
-          <p className={styles.sectionKicker}>THE COACH / 実績</p>
-          <h2 id="torsten-career">現役プロHC。日本代表。世界一。</h2>
-          <div className={styles.credentialGrid}>
-            {credentials.map(item=><article key={item.big}>
-              <span>{item.big}</span><h3>{item.title}</h3><p>{item.detail}</p>
-            </article>)}
-          </div>
-          <p className={styles.shortCareer}>男子U16・U18・U19日本代表ヘッドコーチ、東京2020の3x3日本代表ディレクターコーチ、日独の年間最優秀コーチ賞などの経歴も持ちます。</p>
-        </section>
+        <nav className={styles.sectionNav} aria-label="講習ページ内の案内">
+          <a href="#torsten-learn">講習内容</a>
+          <a href="#torsten-booking">参加・料金</a>
+          <a href="#coach-qa">講師Q&amp;A</a>
+        </nav>
 
         <section className={styles.about} aria-labelledby="torsten-learn">
           <div>
             <p className={styles.sectionKicker}>90 MINUTES / 講習内容</p>
-            <h2 id="torsten-learn">この90分で学ぶこと。</h2>
+            <h2 id="torsten-learn">この90分で学ぶこと</h2>
           </div>
           <ol className={styles.learning}>
             <li><strong>01</strong><span>現代のシューターに必要な技術</span></li>
@@ -92,22 +88,21 @@ export function TorstenJapanLanding() {
           </ol>
         </section>
 
-        <section className={styles.about} aria-labelledby="torsten-editorial-coverage">
-          <div>
-            <p className={styles.sectionKicker}>MEDIA / 掲載記事</p>
-            <h2 id="torsten-editorial-coverage">講習が専門メディアで紹介されました。</h2>
+        <section className={styles.achievements} aria-labelledby="torsten-career">
+          <p className={styles.sectionKicker}>THE COACH / 実績</p>
+          <h2 id="torsten-career">講師の主な実績</h2>
+          <div className={styles.credentialGrid}>
+            {credentials.map(item=><article key={item.big}>
+              <span>{item.big}</span><h3>{item.title}</h3><p>{item.detail}</p>
+            </article>)}
           </div>
-          <div>
-            <p>バスケットボール専門メディア「610 — sixten JOURNAL」が、11月25日開催のRBAオンライン講習について紹介記事を公開しています。技術・練習設計・試合での判断をつなぐ学びを知る、もう一つの参考情報としてご覧いただけます。</p>
-            <a className={styles.footerLink} href="https://sixten.jp/journal/815-torsten-loibl-online-clinic.html" target="_blank" rel="noopener noreferrer">11月4日公開の紹介記事を読む <ArrowUpRight size={16} aria-hidden="true" /></a>
-            <p className={styles.help}>編集記事としての掲載であり、媒体による講習の後援・推薦や資格認定を意味しません。参加条件と申込はRBA公式の案内をご確認ください。</p>
-          </div>
+          <p className={styles.shortCareer}>男子U16・U18・U19日本代表ヘッドコーチ、東京2020の3x3日本代表ディレクターコーチ、日独の年間最優秀コーチ賞などの経歴も持ちます。</p>
         </section>
 
         <section className={styles.booking} aria-labelledby="torsten-booking">
           <div className={styles.bookingHead}>
             <p className={styles.sectionKicker}>REGISTRATION / お申し込み</p>
-            <h2 id="torsten-booking">参加方法は2つ。申込先は1つ。</h2>
+            <h2 id="torsten-booking">参加形式と料金</h2>
             <p>同じGoogleフォームで、LIVE・録画のどちらか1つを選べます。</p>
           </div>
           <div className={styles.choices}>
@@ -119,10 +114,27 @@ export function TorstenJapanLanding() {
           <p className={styles.help}>日本国内は税込円建て・Square決済でのお支払いです。<a href="/events/torsten-loibl-online-clinic#register">海外向けUSD申込はこちら</a>。支払方法でお困りの方は<a href={clinicHelpUrl("申込・お支払い手続きの相談")}>RBAにご相談ください</a>。</p>
         </section>
 
+        <section className={styles.faq} id="coach-qa" aria-labelledby="torsten-coach-qa-heading">
+          <h2 id="torsten-coach-qa-heading">講師とシュート育成のQ&A</h2>
+          <TorstenCoachQuestions locale="ja" />
+        </section>
+
         <section className={styles.faq} aria-labelledby="torsten-faq">
           <h2 id="torsten-faq">よくある質問</h2>
           {faqs.map(([question, answer])=><details key={question}><summary>{question}<ChevronDown size={17} aria-hidden="true" /></summary><p>{answer}</p></details>)}
         </section>
+        <section className={styles.about} aria-labelledby="torsten-editorial-coverage">
+          <div>
+            <p className={styles.sectionKicker}>MEDIA / 掲載記事</p>
+            <h2 id="torsten-editorial-coverage">メディア掲載</h2>
+          </div>
+          <div>
+            <p>バスケットボール専門メディア「610 — sixten JOURNAL」が、11月25日開催のRBAオンライン講習について紹介記事を公開しています。技術・練習設計・試合での判断をつなぐ学びを知る、もう一つの参考情報としてご覧いただけます。</p>
+            <a className={styles.footerLink} href="https://sixten.jp/journal/815-torsten-loibl-online-clinic.html" target="_blank" rel="noopener noreferrer">11月4日公開の紹介記事を読む <ArrowUpRight size={16} aria-hidden="true" /></a>
+            <p className={styles.help}>編集記事としての掲載であり、媒体による講習の後援・推薦や資格認定を意味しません。参加条件と申込はRBA公式の案内をご確認ください。</p>
+          </div>
+        </section>
+
         <footer className={styles.bottom}>
           <p>本講習はRiot Basketball Academyの独立主催です。講師の所属・認定・過去の実績は経歴情報であり、FIBA、WABC、所属クラブ等が本講習を公認・後援するものではありません。</p>
           <p>経歴の参考：<a href="https://www.levanga.com/news/detail/id=22241" target="_blank" rel="noopener noreferrer">レバンガ北海道公式</a> ／ <a href="https://about.fiba.basketball/en/organization/recognized-organizations/world-association-of-basketball-coaches/executive-committee" target="_blank" rel="noopener noreferrer">FIBA WABC委員名簿</a>。Level 3 Coach Instructor Statusは2026年10月22日付のWABC会長書簡によるRPL認定。</p>
