@@ -67,6 +67,9 @@ jobs:
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
 
+      - name: MY HOME COURT growth privacy and trend regression
+        run: node --test tests/homecourt-growth-visualization.test.mjs
+
       - name: U12 U15 GREAM navigation and regional hubs
         run: node --test tests/gream-category-hubs.test.mjs
 
