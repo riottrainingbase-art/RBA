@@ -70,7 +70,7 @@ export function MemberEntryDesk({userId}:{userId:string}){
       x.intake,x.paidClinic,x.applications,x.paidOrders,x.checkedIn,x.withdrawn,"要別途確認"
     ].map(csvEscape).join(","))];
     const url=URL.createObjectURL(new Blob(["\ufeff"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"}));
-    try{const a=document.createElement("a");a.href=url;a.download="rba-entry-audit.csv";document.body.append(a);a.click();a.remove()}finally{window.setTimeout(()=>URL.revokeObjectURL(url),1000)}
+    try{const a=document.createElement("a");a.href=url;a.download="rba-entry-audit.csv";document.body.appendChild(a);a.click();a.remove()}finally{window.setTimeout(()=>URL.revokeObjectURL(url),1000)}
   };
   return <section className={styles.desk} aria-labelledby="entry-desk-title">
     <div className={styles.hero}>
