@@ -45,7 +45,8 @@ test("ENTRY separates intake, payments, check-ins and does not read youth PII",(
   assert.match(entry,/checked_in_at/);
   assert.match(entry,/別々に表示しています/);
   assert.match(entry,/自動残枠：算出しません/);
-  assert.doesNotMatch(entry,/select\\("[^"]*(?:participant_name|contact_email|emergency_phone|guardian_name|media_consent)/);
+  for(const restricted of ["participant_name","contact_email","emergency_phone","guardian_name","media_consent"])
+    assert.ok(!entry.includes(restricted),"ENTRY must not fetch "+restricted);
   assert.match(entry,/csvEscape/);
   assert.doesNotMatch(entry,/service_role|SUPABASE_SECRET|NEXT_PUBLIC_SERVICE_ROLE/);
 });
