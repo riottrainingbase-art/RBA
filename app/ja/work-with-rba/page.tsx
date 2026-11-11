@@ -1,154 +1,127 @@
 import type { Metadata } from "next";
-import { ArrowRight, Building2, Globe2, Handshake, MapPinned, Trophy, Users } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, MapPin, Handshake, Globe2, ShieldCheck } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
+import styles from "./work-with-rba.module.css";
 
 export const metadata: Metadata = {
-  title: "RBAと一緒に活動をつくる｜開催・地域連携・協賛",
-  description: "クリニック、Development Camp、RBA UNITED、地域開催、海外交流、協賛・連携。RBAと一緒に実際の育成機会をつくりたいチーム・主催者・企業向けの案内です。",
+  title: "RBA NETWORK｜地域開催・企業協賛・国際交流の共同事業",
+  description: "地域の指導者・企業・海外アカデミーと実際の育成機会をつくるRBAの共同事業。連携モデル・役割分担・相談窓口をまとめました。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/work-with-rba" },
-  openGraph: {
-    title: "RBAと一緒に活動をつくる",
-    description: "情報を売るのではなく、実際のコート、活動、交流、育成機会を一緒につくる。",
-    url: "https://riotbasketballacademy.com/ja/work-with-rba",
-    siteName: "Riot Basketball Academy",
-    locale: "ja_JP",
-    type: "website",
-    images: ["/rba-court-hero.png"],
-  },
 };
 
-const routes = [
+const models = [
   {
-    icon: Users,
-    tag: "MINIBASKET SUPPORT",
-    title: "ミニバスの育成環境を一緒に整える",
-    body: "今いるチームを大切にしながら、練習設計、映像レビュー、指導者相談、オンコート支援まで。どのサービスが必要か決まっていなくても、チーム育成診断から始められます。",
-    href: "/ja/minibasket-support",
-    cta: "ミニバス育成支援を見る",
+    id: "local", number: "01", label: "REGIONAL HOST", title: "地域で育成の機会をつくる", icon: MapPin,
+    lead: "地域のクラブ・指導者・会場と協力し、単発開催から継続できる活動へ。",
+    partner: "会場の確保、現地集客、当日の運営、保護者との連絡",
+    rba: "企画の共同設計、公式案内、指導者との連携、活動後の振り返り",
+    note: "RBA代表が毎回現地で指導することは前提にしません。指導者・保険・安全体制は案件ごとに確認します。",
+    href: "/ja/clinic-request", action: "地域開催を相談する",
   },
   {
-    icon: Users,
-    tag: "TEAM TRAINING",
-    title: "普段のチーム練習を設計する",
-    body: "テーマ、認知・判断、Small-Sided Game、振り返りまでを一つの流れで整理します。HOMECOURTのTEAM HOMEを使い、練習をチームの学習履歴として積み上げられます。",
-    href: "/ja/team-training",
-    cta: "TEAM TRAININGを見る",
+    id: "corporate", number: "02", label: "CORPORATE PARTNERS", title: "企業と育成環境を支える", icon: Handshake,
+    lead: "協賛金・広告・備品・移動など、企業の支援を具体的な活動へ。",
+    partner: "支援の目的と範囲、掲載素材の提供、掲載内容の確認",
+    rba: "活動との接続、合意した媒体での企業紹介、実施結果の事実報告",
+    note: "月額企業広告と企画協賛は別契約。媒体・期間・対価・実施条件は書面で決めます。",
+    href: "/ja/partners", action: "企業協賛について見る",
   },
   {
-    icon: Trophy,
-    tag: "VISIT TRAINING",
-    title: "普段の練習に、RBAを呼ぶ",
-    body: "RBAがチームの体育館へ伺い、普段の練習を観察しながら、必要なテーマを一緒に実装します。オンコート指導、ゲーム観察、指導者フィードバック、継続訪問まで目的に合わせて組み立てます。",
-    href: "/ja/team-visit-clinic",
-    cta: "VISIT TRAININGを見る",
+    id: "global", number: "03", label: "JAPAN × ASIA", title: "日本とアジアの交流をつくる", icon: Globe2,
+    lead: "海外のアカデミーや主催者と、クリニック・指導者交流・交流試合を共同企画。",
+    partner: "現地会場、参加者対応、現地スタッフ、安全管理",
+    rba: "日本側との企画調整、育成テーマの設計、指導者・クラブとの接続",
+    note: "旅行・宿泊等の手配は別途適法な運営体制で対応。未確定の移動や開催は約束しません。",
+    href: "/ja/contact", action: "海外共同企画を相談する",
   },
-  {
-    icon: Users,
-    tag: "DEVELOPMENT CAMP",
-    title: "育成を深めるキャンプをつくる",
-    body: "練習、ゲーム、身体づくり、振り返りを組み合わせ、参加した選手が日常へ持ち帰れる課題をつくります。単発のイベントで終わらせない設計です。",
-    href: "/ja/camp",
-    cta: "Development Campを見る",
-  },
-  {
-    icon: MapPinned,
-    tag: "REGIONAL HOST",
-    title: "地域に継続的な開催拠点をつくる",
-    body: "地域の指導者、チーム、会場と連携し、その土地に合った形でRBAの活動を継続開催します。支店やフランチャイズを増やすのではなく、地域ごとの強みを生かします。",
-    href: "/ja/regional-host",
-    cta: "地域開催について見る",
-  },
-  {
-    icon: Users,
-    tag: "RBA OKINAWA / COACH",
-    title: "沖縄で、子どもたちの育成に関わる",
-    body: "沖縄で継続的な育成活動を一緒につくる現地コーチを募集しています。まずは月2〜4回程度から。現在の仕事やチームでの活動と両立しながら関わることもできます。",
-    href: "/ja/okinawa-coach",
-    cta: "沖縄コーチ募集を見る",
-  },
-  {
-    icon: Globe2,
-    tag: "JAPAN × ASIA",
-    title: "国内外の交流機会をつくる",
-    body: "交流試合、キャンプ、指導者交流などを、年代と目的に合わせて組み立てます。参加条件や実施体制を確認できたものだけを具体的な企画として扱います。",
-    href: "/ja/international",
-    cta: "海外連携を相談する",
-  },
-  {
-    icon: Handshake,
-    tag: "PARTNERSHIP",
-    title: "企業・地域パートナーとして支える",
-    body: "広告枠を売るだけではなく、地域開催、参加機会、育成環境、海外交流など、支援がどこに使われるかを明確にした連携をつくります。",
-    href: "/ja/partners",
-    cta: "協賛・連携について見る",
-  },
-  {
-    icon: Building2,
-    tag: "ORGANIZER",
-    title: "大会・イベント運営を一緒につくる",
-    body: "募集、参加者管理、決済、会場運営、安全管理など、実際の開催に必要な業務を整理します。提供できる機能から段階的に運用します。",
-    href: "/ja/organizer",
-    cta: "主催者向け案内を見る",
-  },
-];
+] as const;
 
-export default function Page() {
+const steps = [
+  ["01", "相談", "地域・対象年代・目的・担当者を共有"],
+  ["02", "役割分担", "会場・集客・指導・保険・決済を整理"],
+  ["03", "書面合意", "費用・権利・中止条件・責任者を確定"],
+  ["04", "小さく実施", "1企画で検証し、継続は双方で判断"],
+] as const;
+
+export default function WorkWithRbaPage() {
   return <SiteFrame locale="ja">
-    <section className="inner-hero section-pad">
-      <a className="back-link" href="/ja">← RBA</a>
-      <p className="section-index">WORK WITH RBA</p>
-      <h1>情報を売るのではなく、<br/>実際の育成機会をつくる。</h1>
-      <p>RBAが一緒につくりたいのは、教材を買って終わる関係ではありません。子どもが実際にプレーできる場、指導者が学びを現場で試せる場、地域や海外とつながる機会を増やしていきます。</p>
-      <div className="closing-actions">
-        <a className="button button-orange" href="/ja/clinic-request">RBAを地域に呼ぶ<ArrowRight size={17}/></a>
-        <a className="button button-dark" href="/ja/contact">まず相談する<ArrowRight size={17}/></a>
-      </div>
-    </section>
+    <GrowthClickTracking/>
+    <div className={styles.page}>
+      <section className={styles.hero} aria-labelledby="network-title">
+        <div className={styles.wrap}>
+          <Link href="/ja" className={styles.back}>← RBAトップ</Link>
+          <p className={styles.kicker}>RBA NETWORK / REAL COURTS. REAL CONNECTIONS.</p>
+          <h1 id="network-title">ひとつの地域から、<br/>次のコートへ。</h1>
+          <p className={styles.lead}>RBAが増やしたいのは、教材や加盟店ではありません。地域の指導者・企業・海外アカデミーとともに、子どもたちが実際に学び、挑戦できる機会です。</p>
+          <nav className={styles.heroLinks} aria-label="連携モデルとお問い合わせ">
+            <a href="#network-models" className={styles.primary} data-growth-id="network-show-models">連携モデルを見る <ArrowUpRight size={16}/></a>
+            <Link href="/ja/contact" className={styles.secondary} data-growth-id="network-contact-top">まず相談する</Link>
+          </nav>
+        </div>
+      </section>
 
-    <section className="homecourt-product-preview section-pad">
-      <div className="section-head">
-        <div><p className="section-index">REAL PROGRAMMES / REAL PLACES</p><h2>売るのは情報ではなく、実際に動く仕組み。</h2></div>
-        <p>参加費、開催費、協賛、地域連携など、実際の活動に価値が生まれる形を中心に事業を組み立てます。</p>
-      </div>
-      <div className="homecourt-preview-grid">
-        <article><Users/><span>01</span><h3>参加する</h3><p>クリニック、キャンプ、大会、交流など、実際にコートへ出る機会をつくる。</p></article>
-        <article><Trophy/><span>02</span><h3>開催する</h3><p>クラブや地域がRBAを呼び、必要な育成テーマに合わせてプログラムを実施する。</p></article>
-        <article><MapPinned/><span>03</span><h3>地域で続ける</h3><p>一度の開催で終わらず、地域の指導者や会場と継続できる形にする。</p></article>
-        <article><Handshake/><span>04</span><h3>支える</h3><p>企業や地域の支援を、参加機会や安全な育成環境へ具体的に還元する。</p></article>
-      </div>
-    </section>
+      <section className={styles.section} id="network-models" aria-labelledby="network-model-title">
+        <div className={styles.wrap}>
+          <p className={styles.kicker}>THREE WAYS TO WORK TOGETHER</p>
+          <h2 id="network-model-title">連携の形は、3つだけ。</h2>
+          <p className={styles.sectionIntro}>地域の仕事をRBAがすべて引き受けるのではなく、それぞれが得意な役割を担います。</p>
+          <div className={styles.grid}>
+            {models.map(({id,number,label,title,icon:Icon,lead,partner,rba,note,href,action})=>
+              <article className={styles.card} id={"network-"+id} key={id}>
+                <div className={styles.cardTop}><span>{number} / {label}</span><Icon size={24} aria-hidden="true"/></div>
+                <h3>{title}</h3><p>{lead}</p>
+                <dl className={styles.roles}>
+                  <div><dt>現地・企業側</dt><dd>{partner}</dd></div>
+                  <div><dt>RBA側</dt><dd>{rba}</dd></div>
+                </dl>
+                <p className={styles.note}>{note}</p>
+                <Link href={href} className={styles.cardLink} data-growth-id={"network-"+id+"-enquiry"}>{action} <ArrowUpRight size={16}/></Link>
+              </article>
+            )}
+          </div>
+          <p className={styles.disclaimer}>掲載は相談可能な共同事業モデルです。加盟・開催・収益配分・スポンサー契約が成立したことを意味しません。費用と責任範囲は案件ごとに事前合意します。</p>
+        </div>
+      </section>
 
-    <section className="access-promise section-pad">
-      <p className="section-index">CHOOSE A ROUTE</p>
-      <div><h2>目的に合わせて、RBAとの関わり方を選べます。</h2><p>まだ企画が固まっていなくても構いません。地域、対象年代、人数、やりたいことが分かる範囲から整理します。</p></div>
-    </section>
-    <section className="access-grid section-pad">
-      {routes.map(({icon:Icon,tag,title,body,href,cta}) => <article key={tag}>
-        <Icon size={28}/>
-        <span>{tag}</span>
-        <h2>{title}</h2>
-        <p>{body}</p>
-        <a className="text-link" href={href}>{cta}<ArrowRight size={16}/></a>
-      </article>)}
-    </section>
+      <section className={styles.stepsSection} aria-labelledby="network-steps-title">
+        <div className={styles.wrap}>
+          <p className={styles.kicker}>SMALL FIRST, THEN SCALE</p>
+          <h2 id="network-steps-title">最初は、1企画から。</h2>
+          <ol className={styles.steps}>{steps.map(([number,title,description])=>
+            <li key={number}><span>{number}</span><strong>{title}</strong><p>{description}</p></li>
+          )}</ol>
+        </div>
+      </section>
 
-    <section className="statement section-pad">
-      <p className="section-index">BUSINESS PRINCIPLE</p>
-      <div>
-        <h2>RBAの事業は、<br/>コートに戻ってくる。</h2>
-        <p>収益をつくることと、育成を良くすることを分けません。参加者が増える、地域開催が増える、指導者が学ぶ、企業支援で新しい機会が生まれる。その循環自体をRBAの事業にしていきます。</p>
-        <a className="text-link" href="/ja/impact">RBA IMPACTを見る<ArrowRight size={16}/></a>
-      </div>
-    </section>
+      <section className={styles.section} aria-labelledby="network-safety-title">
+        <div className={styles.wrap}>
+          <div className={styles.safety}>
+            <div><p className={styles.kicker}>NON-NEGOTIABLE</p><h2 id="network-safety-title">広げる前に、守ること。</h2><p>ブランドだけを貸して、子どもの安全や現地の運営を任せきりにはしません。</p></div>
+            <ul>
+              <li><ShieldCheck size={20} aria-hidden="true"/>指導者の適格性・安全体制・緊急対応を事前確認</li>
+              <li><ShieldCheck size={20} aria-hidden="true"/>会場条件・保険・費用・中止と返金のルールを文書化</li>
+              <li><ShieldCheck size={20} aria-hidden="true"/>子どもの写真・健康情報・個人情報を必要以上に共有しない</li>
+              <li><ShieldCheck size={20} aria-hidden="true"/>広告と協賛を明示し、育成の判断から切り離す</li>
+              <li><ShieldCheck size={20} aria-hidden="true"/>競技団体の規程・現地法令・施設条件に従う</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-    <section className="closing-cta section-pad">
-      <p className="eyebrow">START A REAL PROJECT</p>
-      <h2>まず、地域と対象年代、<br/>やりたいことを教えてください。</h2>
-      <p>クリニック、キャンプ、地域開催、海外交流、協賛・連携まで。実現できる形を一緒に整理します。</p>
-      <div className="closing-actions">
-        <a className="button button-orange" href="/ja/clinic-request">開催相談を始める<ArrowRight size={17}/></a>
-        <a className="button button-dark" href="/ja/contact">その他の連携を相談する<ArrowRight size={17}/></a>
-      </div>
-    </section>
+      <section className={styles.bottom} aria-labelledby="network-final-title">
+        <div className={styles.wrap}>
+          <p className={styles.kicker}>BUILD THE NEXT OPPORTUNITY</p>
+          <h2 id="network-final-title">子どもたちの次の機会を、<br/>一緒につくる。</h2>
+          <p>地域の主催者・企業・海外アカデミーの方へ。目的に合った既存の公式窓口からご相談ください。</p>
+          <nav className={styles.bottomLinks} aria-label="共同事業別の相談窓口">
+            <Link href="/ja/clinic-request" data-growth-id="network-bottom-local">地域開催を相談 <ArrowUpRight size={16}/></Link>
+            <Link href="/ja/partners" data-growth-id="network-bottom-corporate">企業協賛を相談 <ArrowUpRight size={16}/></Link>
+            <Link href="/ja/contact" data-growth-id="network-bottom-global">海外連携を相談 <ArrowUpRight size={16}/></Link>
+          </nav>
+        </div>
+      </section>
+    </div>
   </SiteFrame>;
 }
