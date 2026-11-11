@@ -39,7 +39,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["クリニック","/ja/opportunities"],
     ["指導者の学び","/ja/journal"],
     ["海外交流","/ja/international"],
-    ["開催・協賛","/ja/organizer"],
+    ["パートナー","/ja/partners"],
   ] : [
     [({en:"Activities","zh-tw":"尋找活動",ko:"활동 찾기",ja:"活動を探す"})[locale],localePath(locale,"opportunities")],
     [({en:"Learning","zh-tw":"培育學習",ko:"육성 배우기",ja:"育成を学ぶ"})[locale],localePath(locale,"journal")],
