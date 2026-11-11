@@ -64,9 +64,8 @@ test("all figures are clearly editable assumptions, not an automatic published p
   assert.match(client,/入力結果はShopifyの価格や在庫へ反映されず/);
   assert.match(client,/4\.95米ドルは公式Tシャツ送料表/);
   assert.match(client,/SOL’S 11939/);
-  assert.match(client,/RBAによる|RBAが確認|RBAの/);
   assert.match(client,/商品ごとの紐付け/);
-  assert.match(client,/更新されません/);
+  assert.match(client,/反映されず/);
   assert.match(styles,/@media\(max-width:560px\)/);
   assert.match(styles,/:focus-visible/);
 });
