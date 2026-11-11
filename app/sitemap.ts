@@ -48,6 +48,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...regionalPages.map(path=>({path,lastModified:path==="/ja/sendai-school"?"2026-11-09T00:00:00Z":path==="/ja/okinawa"?"2026-11-03T00:00:00Z":path==="/ja/okinawa-coach"?"2026-10-05T00:00:00Z":"2026-10-04T00:00:00Z"})),
     {path:"/ja/events/torsten-loibl-online-clinic/share",lastModified:"2026-10-28T00:00:00Z"},
     ...[worldYouthJournalPath,...worldYouthFeatures.map(({slug})=>`${worldYouthJournalPath}/${slug}`)].map(path=>({path,lastModified:"2026-11-11T00:00:00Z"})),
+    {path:"/zh-tw/journal/world-youth-basketball",lastModified:"2026-11-12T00:00:00+09:00"},
     ...journalPosts,
   ];
 

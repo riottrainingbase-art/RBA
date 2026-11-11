@@ -118,6 +118,11 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
           </Link>
         </div>:null}
 
+        {locale==="zh-tw"?<div className="homecourt-launch-actions">
+          <Link className="button button-light" href="/zh-tw/journal/world-youth-basketball">
+            世界青少年籃球・台灣教練專欄 <ArrowRight size={17}/>
+          </Link>
+        </div>:null}
       </section>
       {locale==="ja"?<div className="section-pad"><NoteBridge variant="journal" /></div>:null}
       {locale==="ja"?<JournalPracticeGuides posts={posts}/>:null}
