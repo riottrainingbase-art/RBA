@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 
 const featured = [
   {
-    id: "supporter-note-join",
+    id: "supporter-guide",
     label: "RBA応援会員",
     title: "月500円でRBAを応援",
-    description: "子どもたちがバスケットボールに挑戦できる場を、一緒に支えてください。",
-    href: "https://note.com/rba_official/membership/join",
-    action: "公式noteで月500円のプランを見る",
+    description: "全クリニックに合わせた会員交流会。西尾優人と育成や練習について直接話せます。",
+    href: "/ja/supporters",
+    action: "会員交流会・入会方法を見る",
     style: "primary",
   },
   {
