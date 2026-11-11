@@ -60,3 +60,17 @@ test("new sections are reachable by logged-in users while protected by role",()=
   assert.match(matchStyles,/@media\(max-width:720px\)/);
   assert.match(entryStyles,/@media\(max-width:820px\)/);
 });
+
+
+test("ORGANIZER and STORE reuse existing products without false checkout promises",()=>{
+  const organizer=readFileSync("definitive-content/ja/organizer.html","utf8");
+  const store=readFileSync("app/ja/store/page.tsx","utf8");
+  assert.match(organizer,/MY HOMECOURT \/ MATCH/);
+  assert.match(organizer,/RBA主催イベントでは申込・決済・参加管理を運用/);
+  assert.match(organizer,/href="\/ja\/my-homecourt\/app\/match"/);
+  assert.match(organizer,/他団体への受付・決済システム提供は試験運用前/);
+  assert.match(store,/現在、注文・予約・お支払いは受け付けていません/);
+  assert.match(store,/https:\/\/form.jotform.com\/262947168647069/);
+  assert.match(store,/ご回答は無料・購入予約ではありません/);
+  assert.doesNotMatch(store,/buy\.stripe\.com|checkout\.shopify\.com/);
+});
