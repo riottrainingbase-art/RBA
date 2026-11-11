@@ -76,6 +76,9 @@ jobs:
       - name: RBA network partnerships and safety gates
         run: node --test tests/rba-network-partners.test.mjs
 
+      - name: HOMECOURT MATCH and ENTRY verification and privacy gates
+        run: node --test tests/homecourt-match-entry.test.mjs
+
       - name: Torsten Japan signup conversion regression audit
         run: node audit/torsten-japan-landing/check.mjs
 
