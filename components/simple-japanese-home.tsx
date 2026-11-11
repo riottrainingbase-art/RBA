@@ -29,7 +29,19 @@ export async function SimpleJapaneseHome() {
           <p className={styles.label}>RIOT BASKETBALL ACADEMY / 仙台・太白区</p>
           <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
           <p className={styles.intro}>仙台市太白区から、全国・アジアへ。<br/>RBAは、選手・保護者・指導者と、継続する学びと挑戦をつくる育成プラットフォームです。</p>
-          <nav className={styles.actions} aria-label="最優先の案内"><a className={styles.primary} data-growth-id="home-hero-events" href="#home-programmes">クリニック・キャンプの開催案内 →</a><a className={styles.secondary} data-growth-id="home-hero-partners" href="#home-partners">協賛・パートナー募集 →</a><a className={styles.secondary} data-growth-id="home-hero-school-trial" href="/ja/sendai-school">仙台スクールの体験相談 →</a></nav>
+          <nav className={styles.actions} aria-label="最優先の案内"><a className={styles.primary} data-growth-id="home-hero-events" href="#home-programmes">クリニック・キャンプの開催案内 →</a><a className={styles.secondary} data-growth-id="home-hero-supporter" href="#home-supporter">月500円でRBAを応援 →</a><a className={styles.secondary} data-growth-id="home-hero-school-trial" href="/ja/sendai-school">仙台スクールの体験相談 →</a></nav>
+        </div>
+      </section>
+
+      <section className={styles.nextStep} id="home-supporter" aria-labelledby="home-supporter-title">
+        <div className={styles.nextStepIntro}>
+          <p className={styles.label}>RBA応援会員</p>
+          <h2 id="home-supporter-title">月500円で、子どもたちのバスケットボールを応援。</h2>
+          <p>日々の練習、全国のクリニック、地域を越えた交流。子どもたちが挑戦できる場を、一緒に支えてください。</p>
+        </div>
+        <div>
+          <a className={styles.primary} data-growth-id="home-supporter-note-join" href="https://note.com/rba_official/membership/join">月500円のプランを見る →</a>
+          <p className={styles.note}>RBA公式noteで会員プランを確認し、お申し込みいただけます。</p>
         </div>
       </section>
 
