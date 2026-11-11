@@ -41,8 +41,9 @@ export async function SimpleJapaneseHome() {
         </div>
         <div>
           <a className={styles.primary} data-growth-id="home-supporter-note-join" href="https://note.com/rba_official/membership/join">月500円のプランを見る →</a>
-          <p className={styles.note}>RBA公式noteで会員プランを確認し、お申し込みいただけます。</p>
+          <p className={styles.note}>公式noteのプラン一覧で「応援メンバー（月500円）」をお選びください。</p>
         </div>
+        <p className={styles.note}>育成記事を読みたい方には、同じ公式noteで「育成記事プラン（月1,000円）」もご案内しています。</p>
       </section>
 
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
