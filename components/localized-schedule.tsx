@@ -62,6 +62,18 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
         </article>
       </section>
     )}
+    {locale === "ja" && (
+      <section className="calendar-notice section-pad" aria-labelledby="host-clinic-title">
+        <div>
+          <h2 id="host-clinic-title">地元でRBAクリニックを開催したい方へ</h2>
+          <p>全国のチーム・スクール・地域の指導者から、U12・U15クリニックの開催相談を受け付けています。</p>
+          <p>お問い合わせに「クリニック開催相談」と記載し、市区町村・対象学年・参加見込み人数をお知らせください。候補日や体育館があれば、あわせてお送りください。</p>
+        </div>
+        <a className="button button-light" href={localePath(locale, "contact")}>
+          地元開催を相談する<ArrowUpRight size={17} aria-hidden="true"/>
+        </a>
+      </section>
+    )}
     <section className="calendar-notice section-pad"><div><h2>{c.notice}</h2><p>{c.noticeCopy}</p></div><a className="button button-light" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">{c.line}<ArrowUpRight size={17}/></a></section>
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale)}>{c.back}<span>→</span></a></section>
   </SiteFrame></div>;
