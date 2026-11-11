@@ -14,7 +14,7 @@ type Org={id:string;name:string;created_by:string;entity_type:string;status:stri
 type Post={id:string;entity_id:string;created_by:string;title:string;age_group:string;gender:string;city_from:string|null;country_from:string;mode:string;starts_on:string|null;status:string;venue_available:boolean;created_at:string};
 type Interest={id:string;post_id:string;responding_entity_id:string;created_by:string;status:string;note:string|null;created_at:string};
 
-const initialData:{orgs:Org[];feed:Post[];requests:Interest[];pending:Org[]}={orgs:[],feed:[],requests:[],pending:[]};
+const initialData:{orgs:Org[];feed:Post[];ownPosts:Post[];requests:Interest[];pending:Org[]}={orgs:[],feed:[],ownPosts:[],requests:[],pending:[]};
 const genderLabel=(v:string)=>MATCH_GENDER_LABELS[v as keyof typeof MATCH_GENDER_LABELS]||v;
 const modeLabel=(v:string)=>MATCH_MODE_LABELS[v as keyof typeof MATCH_MODE_LABELS]||v;
 const statusLabel=(v:string)=>MATCH_PILOT_STATUSES[v as keyof typeof MATCH_PILOT_STATUSES]||v;
@@ -48,7 +48,10 @@ export function MemberMatchBoard({userId,isAdmin}:{userId:string;isAdmin:boolean
       if(extra.error)throw new Error("所属組織を読み込めませんでした。");
       orgs=[...orgs,...(extra.data||[]) as Org[]];
     }
-    setData({orgs,feed:(posts.data||[]) as Post[],requests:(requests.data||[]) as Interest[],pending:(pending.data||[]) as Org[]});
+    const ownedIds=orgs.map(x=>x.id);
+    const ownedPosts=ownedIds.length?await db.from("homecourt_exchange_posts").select("id,entity_id,created_by,title,age_group,gender,city_from,country_from,mode,starts_on,status,venue_available,created_at").in("entity_id",ownedIds).order("created_at",{ascending:false}).limit(100):{data:[],error:null};
+    if(ownedPosts.error)throw new Error("自団体の募集履歴を読み込めませんでした。");
+    setData({orgs,feed:(posts.data||[]) as Post[],ownPosts:(ownedPosts.data||[]) as Post[],requests:(requests.data||[]) as Interest[],pending:(pending.data||[]) as Org[]});
     setOrganization(current=>orgs.some(o=>o.id===current)?current:(orgs.find(matchEligibleEntity)?.id||orgs[0]?.id||""));
   },[db,userId,isAdmin]);
   useEffect(()=>{
@@ -60,9 +63,9 @@ export function MemberMatchBoard({userId,isAdmin}:{userId:string;isAdmin:boolean
   const myOrgIds=new Set(data.orgs.map(o=>o.id));
   const matchedOrg=data.orgs.find(o=>o.id===organization);
   const eligibleOrgs=data.orgs.filter(matchEligibleEntity);
-  const ownPosts=data.feed.filter(p=>myOrgIds.has(p.entity_id));
+  const ownPosts=data.ownPosts;
   const results=data.feed.filter(p=>(!region||p.city_from?.includes(region))&&(!age||p.age_group===age));
-  const orgNames=new Map(data.orgs.map(org=>[org.id,org.name]));
+
   const requestsForMine=data.requests.filter(r=>ownPosts.some(p=>p.id===r.post_id));
   const ownRequests=data.requests.filter(r=>myOrgIds.has(r.responding_entity_id));
   const submit=async(task:string, fn:()=>Promise<boolean>,success:string)=>{
