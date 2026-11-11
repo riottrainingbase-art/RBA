@@ -242,3 +242,29 @@
   .page .heading h2{font-size:24px;line-height:1.4}
   .sponsorAnchor{margin-top:20px}
 }
+
+
+/* 2026-11 audience-first homepage refresh: one choice per visitor, less noise. */
+.journeyGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.journeyCard{display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:225px;padding:26px 24px;border:1px solid #d8dfe7;background:#fff;color:#10233f;text-decoration:none;transition:border-color .18s ease,transform .18s ease}
+.journeyCard:hover{border-color:#586d85;transform:translateY(-2px)}
+.journeyNumber,.pathLabel{color:#627188;letter-spacing:.1em;font-size:11px;font-weight:800;line-height:1.6}
+.journeyCard strong{font-size:clamp(20px,2.2vw,26px);letter-spacing:-.025em;line-height:1.4;margin:16px 0 12px}
+.journeyDescription{font-size:14px;line-height:1.8;color:#526477;flex:1}
+.journeyAction{width:100%;padding-top:16px;margin-top:20px;border-top:1px solid #dae0e7;font-size:13px;font-weight:800}
+.pathGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pathCard{display:flex;flex-direction:column;min-width:0;min-height:218px;padding:24px;background:#f1f4f7;border:1px solid #dde3e9}
+.pathCard h3{font-size:clamp(17px,2vw,22px);line-height:1.5;margin:15px 0 8px;color:#10233f}
+.pathCard p{font-size:13px;line-height:1.85;color:#526477;margin:0;flex:1}
+.pathCard a{display:inline-flex;align-items:center;min-height:40px;font-size:13px;font-weight:800;text-decoration:underline;text-underline-offset:4px;margin-top:14px}
+.hostSecondary{display:flex;align-items:center;justify-content:center;min-height:46px;padding:10px 14px;color:#fff;border:1px solid #c7c9cb;text-align:center;font-size:14px;font-weight:800;text-decoration:none}
+.hostSecondary:hover{background:#343739}
+.page .hero .actions{max-width:650px}
+.page .hero .actions a{flex:1}
+@media(max-width:780px){
+ .journeyGrid,.pathGrid{grid-template-columns:1fr}
+ .journeyCard,.pathCard{min-height:0;padding:22px}
+ .journeyCard strong{margin:10px 0}
+ .journeyAction{margin-top:14px}
+}
+@media(prefers-reduced-motion:reduce){.journeyCard{transition:none}.journeyCard:hover{transform:none}}
