@@ -4,6 +4,7 @@ import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "re
 import { createClient } from "@/lib/supabase/client";
 import styles from "./basketball-passport.module.css";
 import { PassportMedia } from "./passport-media";
+import { HomecourtGrowthDashboard } from "./homecourt-growth-dashboard";
 
 type Person = { id:string; name:string; relationship:"self"|"child"; age_group:string; region:string };
 type Entry = { id:string; person_id:string; title?:string; occurred_on?:string; date_precision?:string; venue?:string; takeaway?:string; next_action?:string; checked_on?:string; strengths?:string; challenge?:string; horizon?:string; action?:string; success?:string; target_on?:string; status?:string };
@@ -30,7 +31,7 @@ export function BasketballPassport({userId}:{userId:string}){
  const [people,setPeople]=useState<Person[]>([]),[personId,setPersonId]=useState("");
  const [history,setHistory]=useState<Entry[]>([]),[checkins,setCheckins]=useState<Entry[]>([]),[goals,setGoals]=useState<Entry[]>([]),[official,setOfficial]=useState<Official[]>([]);
  const [loading,setLoading]=useState(true),[failed,setFailed]=useState(false),[busy,setBusy]=useState(false),[message,setMessage]=useState("");
- const [view,setView]=useState<"overview"|"history"|"checkin"|"goal"|"media">("overview");
+ const [view,setView]=useState<"overview"|"growth"|"history"|"checkin"|"goal"|"media">("overview");
  const [form,setForm]=useState<{kind:Kind;entry?:Entry|Person}|null>(null),[removing,setRemoving]=useState<{kind:Kind;id:string}|null>(null);
  const [limit,setLimit]=useState(10),[truncated,setTruncated]=useState(false);
  const person=people.find(p=>p.id===personId);
@@ -92,11 +93,13 @@ export function BasketballPassport({userId}:{userId:string}){
    {!person&&<div className={styles.empty}><h3>以前クリニックに参加した方へ</h3><p>まず、記録する人を登録しましょう。参加した日付や会場、覚えていることから始められます。チームへの所属は必要ありません。</p></div>}
    {person&&<>
     <p className={styles.privacy}>{person.relationship==="child"?"保護者のアカウントで管理する記録です。子ども本人のアカウントとは自動連携されません。":"自分のための非公開の記録です。"} 記録はこのアカウントに保存され、他の会員には公開されません。</p>
-    <nav className={styles.tabs} aria-label="成長記録">{([["overview","全体を見る"],["history","参加履歴"],["checkin","振り返り"],["goal","これから"],["media","写真・動画"]] as const).map(([key,label])=><button key={key} aria-pressed={view===key} disabled={!!form||mediaLocked} onClick={()=>{setView(key);setLimit(10);setRemoving(null);}}>{label}</button>)}</nav>
+    <nav className={styles.tabs} aria-label="成長記録">{([["overview","全体を見る"],["growth","成長グラフ"],["history","参加履歴"],["checkin","振り返り"],["goal","これから"],["media","写真・動画"]] as const).map(([key,label])=><button key={key} aria-pressed={view===key} disabled={!!form||mediaLocked} onClick={()=>{setView(key);setLimit(10);setRemoving(null);}}>{label}</button>)}</nav>
     {truncated&&<p>各項目の最大1,000件を表示しています。全件の確認はRBAへお問い合わせください。</p>}
+    {view==="growth"&&<HomecourtGrowthDashboard key={personId} userId={userId} personId={personId} personName={person.name} relationship={person.relationship} history={history} checkins={checkins} goals={goals} onAddCheckin={()=>open("checkin")} onAddGoal={()=>open("goal")} />}
     {view==="media"&&<PassportMedia key={personId} userId={userId} personId={personId} history={history} goals={goals} onLock={setMediaLocked} onGoal={action=>{setDraftAction(action);setView("goal");setForm({kind:"goal"});}}/>}
     {view==="overview"&&<>
      <article className={styles.panel}><h3>記録を残して、自分の変化を見つける。</h3><p>写真や動画を以前の自分と見比べ、気づいたことを次の練習につなげます。</p><button onClick={()=>setView("media")}>写真・動画の成長ノートを開く</button></article>
+     <article className={styles.panel}><span>MY GROWTH / PERSONAL DEVELOPMENT</span><h3>成長の変化を、グラフで見てみよう。</h3><p>振り返りを重ねた週、6つの観察テーマ、次に試したいことを、以前の自分の記録と比較できます。能力の順位や自動採点ではありません。</p><button type="button" onClick={()=>setView("growth")}>成長ダッシュボードを見る →</button></article>
      <div className={styles.metrics}><article><span>自分で残した参加履歴</span><strong>{history.length}<small>件</small></strong></article><article><span>自分の振り返り</span><strong>{checkins.length}<small>回</small></strong></article><article><span>達成した目標</span><strong>{goals.filter(g=>g.status==="achieved").length}<small>件</small></strong></article></div>
      <div className={styles.steps}>{([['history','01','参加した経験を残す','参加した活動と、そこで学んだことを記録。'],['checkin','02','今の自分を知る','できたこと、課題、次の一歩を整理。'],['goal','03','次の目標を決める','今週取り組むことから、将来の目標まで。']] as const).map(([kind,num,title,body])=><button key={kind} onClick={()=>open(kind)}><span>{num}</span><strong>{title}</strong><p>{body}</p></button>)}</div>
      <div className={styles.columns}><article className={styles.panel}><span>振り返り · {latest?dateLabel(latest.checked_on):"まだ記録がありません"}</span><h3>今の自分</h3>{latest?<><h4>できるようになったこと</h4><p>{latest.strengths}</p><h4>取り組みたい課題</h4><p>{latest.challenge}</p><h4>次の練習で試すこと</h4><p>{latest.next_action}</p></>:<p>他の人との比較ではなく、自分の変化を言葉にしてみましょう。</p>}<button onClick={()=>open("checkin")}>今の自分を記録する</button></article><article className={styles.panel}><span>これから</span><h3>次に挑戦すること</h3>{activeGoals.length?activeGoals.slice(0,3).map(g=><div className={styles.goalSummary} key={g.id}><small>{horizons[g.horizon||""]} · {dateLabel(g.target_on)}</small><h4>{g.title}</h4><p>{g.action}</p></div>):<p>大きな夢でも、小さな一歩でも。自分で目標を決めてみましょう。</p>}<button onClick={()=>open("goal")}>目標を追加</button></article></div>
