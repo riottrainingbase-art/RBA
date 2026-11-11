@@ -33,6 +33,21 @@ export default function Page() {
             </li>
           </ul>
         </section>
+        <section aria-labelledby="faq" className="space-y-3">
+          <h2 id="faq" className="text-2xl font-bold">よくある質問</h2>
+          <details className="rounded-xl border p-4">
+            <summary className="cursor-pointer font-bold">チームに所属していなくても参加できますか？</summary>
+            <p className="mt-3">チームへの所属を問わず、個人で参加できるクリニックとして準備しています。</p>
+          </details>
+          <details className="rounded-xl border p-4">
+            <summary className="cursor-pointer font-bold">日程・会場・参加費はいつ分かりますか？</summary>
+            <p className="mt-3">体育館の利用枠と地域の大会日程を確認後、学年別の時間、参加費、持ち物とあわせてご案内します。</p>
+          </details>
+          <details className="rounded-xl border p-4">
+            <summary className="cursor-pointer font-bold">開催案内を希望すると参加が確定しますか？</summary>
+            <p className="mt-3">開催案内の希望を受け付けます。参加枠は、開催確定後の正式な申込手続きで確保できます。</p>
+          </details>
+        </section>
         <section aria-labelledby="interest" className="space-y-3">
           <h2 id="interest" className="text-2xl font-bold">開催案内を希望する方へ</h2>
           <p>お問い合わせに「八戸クリニック・開催案内希望」と、お子さまの学年を添えてください。正式な参加申込は日程確定後にご案内します。</p>
