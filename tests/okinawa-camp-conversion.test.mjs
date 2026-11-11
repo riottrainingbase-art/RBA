@@ -3,10 +3,18 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 const root = (p) => readFileSync(new URL("../" + p, import.meta.url), "utf8");
 
-test("event page and Japanese homepage both show a parent-first camp enquiry", () => {
+test("compact homepage keeps official camp discovery while the event page retains the parent-first enquiry", () => {
   const home = root("components/simple-japanese-home.tsx");
+  const catalogue = root("components/programme-data.ts");
+  const explorer = root("components/opportunity-explorer.tsx");
   const event = root("app/ja/events/okinawa-international-camp-2026/page.tsx");
-  assert.match(home, /<OkinawaCampGrowthPanel placement="home"/);
+  assert.match(home, /id="home-programmes"/);
+  assert.match(home, /href="\/ja\/opportunities"/);
+  assert.match(home, /programmes\s*\.filter\(p => isProgrammeActive\(p\)\)/);
+  assert.match(catalogue, /japaneseInfoPath:"\/ja\/events\/okinawa-international-camp-2026"/);
+  assert.match(explorer, /programmes/);
+  assert.doesNotMatch(home, /<OkinawaCampGrowthPanel placement="home"/);
+  assert.doesNotMatch(home, /<OkinawaDecemberCampCallout/);
   assert.match(event, /<OkinawaCampGrowthPanel placement="event"/);
 });
 test("camp conversion panel uses RBA official logo and verified domestic prices", () => {

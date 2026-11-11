@@ -88,6 +88,47 @@ for (const [file,fragment,rule] of homeConversionGuards) {
     failures.push({ file, rule, sample:"mobile conversion / accessibility guard missing" });
 }
 
+// Prevent a homepage regression to repeated campaign panels or buried signup paths.
+const organizedHome = fs.readFileSync("components/simple-japanese-home.tsx","utf8");
+const homePositions = [
+  "<section className={styles.hero}",
+  'id="home-programmes"',
+  'id="home-partners"',
+  'id="home-next-step"',
+  "home-age-categories",
+  "<SendaiCommunity />",
+];
+for (let i=0;i<homePositions.length;i++) {
+  const position=organizedHome.indexOf(homePositions[i]);
+  const preceding=i===0 ? -1 : organizedHome.indexOf(homePositions[i-1]);
+  if(position<0 || position<=preceding) {
+    failures.push({file:"components/simple-japanese-home.tsx",rule:"home-priority-order",sample:homePositions[i]});
+  }
+}
+for (const removed of [
+  "<OkinawaCampGrowthPanel",
+  "<OkinawaDecemberCampCallout",
+  "<NovemberCampaign",
+  "styles.purposeGrid",
+  "gream-sendai-u15-recruit",
+  "sendai-school-trial",
+  "kagoshima-clinic-home",
+  "home-share-kit",
+]) {
+  if(organizedHome.includes(removed))
+    failures.push({file:"components/simple-japanese-home.tsx",rule:"duplicate-home-promotion",sample:removed});
+}
+if((organizedHome.match(/<CorporateSupportStrip locale="ja" \/>/g)||[]).length !== 1)
+  failures.push({file:"components/simple-japanese-home.tsx",rule:"one-corporate-record-block",sample:"expected one sponsor component"});
+if((organizedHome.match(/id="home-programmes"/g)||[]).length !== 1)
+  failures.push({file:"components/simple-japanese-home.tsx",rule:"one-event-index",sample:"expected one event index"});
+const partnerNav=fs.readFileSync("components/site-frame.tsx","utf8");
+if(!partnerNav.includes('["パートナー","/ja/partners"]'))
+  failures.push({file:"components/site-frame.tsx",rule:"partner-top-navigation",sample:"partner nav missing"});
+const partnerStrip=fs.readFileSync("components/corporate-support-strip.tsx","utf8");
+if(!partnerStrip.includes("PARTNERS / 協賛・パートナー"))
+  failures.push({file:"components/corporate-support-strip.tsx",rule:"partner-label",sample:"partner label missing"});
+
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);
