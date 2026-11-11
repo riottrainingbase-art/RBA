@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
+import { TaiwanShareActions } from "@/components/taiwan-share-actions";
 import { SiteFrame } from "@/components/site-frame";
 
 const path = "/zh-tw/journal/world-youth-basketball";
@@ -10,7 +11,11 @@ const clinic = "/zh-tw/events/torsten-loibl-online-clinic#taiwan-registration";
 export const metadata: Metadata = {
   title: "世界青少年籃球｜台灣教練專欄 | RBA JOURNAL",
   description: "從台灣 HBL 看球員的角色與決策，並把觀察帶回球隊訓練。查看台灣時間與 Torsten Loibl 教練講座的國際報名方式。",
-  alternates: { canonical: `https://riotbasketballacademy.com${path}` },
+  alternates: {
+    canonical: path,
+    languages: { ja: "/ja/journal/world-youth-basketball/taiwan-hbl", "zh-Hant-TW": path },
+  },
+  openGraph: { title: "看 HBL，別只看誰得分｜RBA JOURNAL", description: "兩場比賽、三次後場推進，以及一個能帶回球隊的 4 對 4 練習。", locale: "zh_TW", type: "article", url: path },
 };
 
 export default function TaiwanCoachingJournal() {
@@ -20,6 +25,7 @@ export default function TaiwanCoachingJournal() {
       <article className="journal-article journal-cms-article">
         <header className="article-hero section-pad">
           <Link className="back-link" href="/zh-tw/journal">← RBA JOURNAL</Link>
+          <Link className="back-link" href="/ja/journal/world-youth-basketball/taiwan-hbl" hrefLang="ja" lang="ja">日本語で読む</Link>
           <p className="section-index">世界青少年籃球｜台灣教練專欄</p>
           <h1>看 HBL，別只看誰得分</h1>
           <div className="article-hero-summary">
@@ -46,6 +52,14 @@ export default function TaiwanCoachingJournal() {
             <section id="practice">
               <h2>4 對 4，輪換第一接球者</h2>
               <p>從底線發球開始，每回合指定不同球員接第一傳。遇到壓迫，觀察另外三人能不能移動到傳球路線上。每組打三個回合，暫停時只問一件事：「持球者被堵住時，你在哪裡可以接球？」下一組再看看球員能不能自己找到新的位置。</p>
+            </section>
+            <section aria-labelledby="taiwan-journal-share">
+              <h2 id="taiwan-journal-share">分享給教練和家長</h2>
+              <TaiwanShareActions
+                path={path}
+                message="看 HBL，別只看誰得分。RBA 整理了三個後場推進觀察重點，以及一個讓球員輪流接應、推進的 4 對 4 練習。"
+                trackingId="journal-taiwan-hbl-line-share"
+              />
             </section>
             <section id="clinic">
               <h2>下一步，從推進練到創造出手機會</h2>

@@ -6,6 +6,8 @@ import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import { SiteFrame } from "@/components/site-frame";
 import { worldYouthFeatures, worldYouthJournalPath } from "@/lib/world-youth-journal";
 
+const taiwanArticlePath = "/zh-tw/journal/world-youth-basketball";
+
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
@@ -23,7 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${feature.title} | RBA JOURNAL`,
     description: feature.description,
-    alternates: { canonical: url },
+    alternates: slug === "taiwan-hbl"
+      ? { canonical: url, languages: { ja: url, "zh-Hant-TW": taiwanArticlePath } }
+      : { canonical: url },
     openGraph: { title: feature.title, description: feature.description, url, type: "article", locale: "ja_JP" },
   };
 }
@@ -39,6 +43,11 @@ export default async function WorldYouthArticlePage({ params }: Props) {
       <article className="journal-article journal-cms-article">
         <header className="article-hero section-pad">
           <Link className="back-link" href={worldYouthJournalPath}>← 世界のユースバスケ</Link>
+          {slug === "taiwan-hbl" && (
+            <Link className="back-link" href={taiwanArticlePath} hrefLang="zh-TW" lang="zh-Hant-TW" data-growth-id="journal-hbl-traditional-chinese">
+              繁體中文版・分享給台灣教練
+            </Link>
+          )}
           <p className="section-index">{feature.topic}</p>
           <h1>{feature.title}</h1>
           <div className="article-hero-summary"><p>{feature.description}</p></div>
