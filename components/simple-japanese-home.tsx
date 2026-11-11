@@ -37,13 +37,13 @@ export async function SimpleJapaneseHome() {
         <div className={styles.nextStepIntro}>
           <p className={styles.label}>RBA応援会員</p>
           <h2 id="home-supporter-title">月500円で、子どもたちのバスケットボールを応援。</h2>
-          <p>日々の練習、全国のクリニック、地域を越えた交流。子どもたちが挑戦できる場を、一緒に支えてください。</p>
+          <p>RBAの全クリニックに合わせて会員交流会を開きます。当日の練習や子どもたちの育成について、西尾優人と直接話せる時間です。</p>
         </div>
         <div>
           <a className={styles.primary} data-growth-id="home-supporter-note-join" href="https://note.com/rba_official/membership/join">月500円のプランを見る →</a>
           <p className={styles.note}>公式noteのプラン一覧で「応援メンバー（月500円）」をお選びください。</p>
         </div>
-        <p className={styles.note}>育成記事を読みたい方には、同じ公式noteで「育成記事プラン（月1,000円）」もご案内しています。</p>
+        <a className={styles.textLink} data-growth-id="home-supporter-details" href="/ja/supporters">会員交流会・特典を見る →</a>
       </section>
 
       <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
