@@ -48,6 +48,18 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
           <div><p className="note-tag">青森県八戸市</p><h3>八戸ミニバスクリニック</h3></div>
           <div><p><strong>対象予定：</strong>小学生の男女</p><p>会場の利用枠と大会日程を確認しています。</p></div>
         </article>
+        <article>
+          <div><p className="note-tag">山形県</p><h3>山形クリニック</h3></div>
+          <div><p>U12・U15の開催に向けて、会場と募集枠を調整しています。</p></div>
+        </article>
+        <article>
+          <div><p className="note-tag">岩手県宮古市</p><h3>宮古クリニック</h3></div>
+          <div><p>次回開催に向けて日程を検討しています。</p></div>
+        </article>
+        <article>
+          <div><p className="note-tag">岩手県北上市</p><h3>北上クリニック</h3></div>
+          <div><p>開催に向けて会場と日程を検討しています。</p></div>
+        </article>
       </section>
     )}
     <section className="calendar-notice section-pad"><div><h2>{c.notice}</h2><p>{c.noticeCopy}</p></div><a className="button button-light" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">{c.line}<ArrowUpRight size={17}/></a></section>
