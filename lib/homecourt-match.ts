@@ -48,6 +48,8 @@ export function matchEligibleEntity(record:{status:string;verification_status:st
 }
 
 export function csvEscape(value:string|number|null|undefined):string {
-  const s=String(value??"").replace(/\r?\n/g," ");
-  return '"'+s.replace(/"/g,'""')+'"';
+  const original=String(value??"").replace(/[\r\n\t]/g," ");
+  // Spreadsheet viewers may execute formulas even when CSV fields are quoted.
+  const safe=/^\s*[=+\-@]/.test(original)?"'"+original:original;
+  return '"'+safe.replace(/"/g,'""')+'"';
 }
