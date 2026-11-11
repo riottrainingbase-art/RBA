@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import { SiteFrame } from "@/components/site-frame";
 import styles from "./supporters.module.css";
@@ -24,7 +25,7 @@ export default function SupportersPage() {
       <div className={styles.page}>
         <section className={styles.hero} aria-labelledby="supporters-title">
           <div className={styles.container}>
-            <a className={styles.back} href="/ja">← RBAトップへ</a>
+            <Link className={styles.back} href="/ja">← RBAトップへ</Link>
             <p className={styles.kicker}>RIOT BASKETBALL ACADEMY / SUPPORTERS</p>
             <h1 id="supporters-title">育つチャンスを、<br />一緒につくる。</h1>
             <p className={styles.intro}>
@@ -47,7 +48,7 @@ export default function SupportersPage() {
                 <span className={styles.planLabel}>01 / 無料</span>
                 <h3>RBAの育成記事を読む</h3>
                 <p>子どもの成長、出場機会、練習の考え方。まずは無料のRBA JOURNALから知ってください。</p>
-                <a href="/ja/journal" data-growth-id="supporters-free-journal">無料記事を見る →</a>
+                <Link href="/ja/journal" data-growth-id="supporters-free-journal">無料記事を見る →</Link>
               </article>
               <article className={styles.plan}>
                 <span className={styles.planLabel}>02 / 応援メンバー</span>
@@ -100,7 +101,7 @@ export default function SupportersPage() {
             </div>
             <div className={styles.bottomActions}>
               <a className={styles.primary} href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-final-note">公式noteでプランを確認 <span aria-hidden="true">↗</span></a>
-              <a className={styles.outline} href="/ja/opportunities" data-growth-id="supporters-programmes">募集中の活動を見る →</a>
+              <Link className={styles.outline} href="/ja/opportunities" data-growth-id="supporters-programmes">募集中の活動を見る →</Link>
             </div>
           </div>
         </section>
