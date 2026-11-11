@@ -28,3 +28,15 @@
 .rba-taiwan-outline{display:inline-block;border:1px solid #52616d;padding:12px 20px;margin-top:20px;font-weight:800}
 .rba-taiwan-small{margin-top:24px;font-size:14px;text-decoration:underline}
 @media(max-width:800px){.rba-taiwan-inner{width:calc(100% - 36px)}.rba-taiwan-hero{padding:48px 0 65px}.rba-taiwan-section{padding:52px 0}.rba-taiwan-cards,.rba-taiwan-roles{grid-template-columns:1fr}.rba-taiwan-cards article{padding:23px}.rba-taiwan-top nav{gap:10px}}
+
+.rba-taiwan-hero-status{margin:12px 0 0;color:#fff;font-size:16px;line-height:1.55}
+.rba-taiwan-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.rba-taiwan-hero-actions a{display:flex;align-items:center;justify-content:center;min-height:50px;margin:0;text-align:center}
+.rba-taiwan-hero-actions .rba-taiwan-outline{border-color:#ccd8de;color:#fff}
+.rba-taiwan #taipei-clinic-december-2026{scroll-margin-top:90px}
+.rba-taiwan-section summary{font-weight:800;cursor:pointer}
+@media(max-width:800px){
+  .rba-taiwan-hero{padding:32px 0 38px}
+  .rba-taiwan h1{margin:18px 0 10px}
+  .rba-taiwan-hero-actions{display:grid;grid-template-columns:minmax(0,1fr)}
+}

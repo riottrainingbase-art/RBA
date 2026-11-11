@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { TaiwanOfficial } from "@/components/taiwan-official";
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
  title: "RBA Taiwan | Japan–Taiwan Basketball Development",
  description: "Riot Basketball Academy Japan–Taiwan youth basketball development, coach learning, and team exchange. Confirmed activities and planning clearly distinguished.",

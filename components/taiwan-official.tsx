@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiteFrame, type Locale } from "./site-frame";
 import "./taiwan-official.css";
-import { taipeiClinicCopy, taipeiClinicSessions } from "./taipei-clinic-data";
+import { isTaipeiClinicUpcoming, taipeiClinicCopy, taipeiClinicPartner, taipeiClinicSessions } from "./taipei-clinic-data";
 
 const path = (locale: Locale) => locale === "en" ? "/taiwan" : `/${locale}/taiwan`;
 const exchangePath = (locale: Locale) => `${path(locale)}/exchange`;
@@ -69,19 +69,29 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
   const c=text[locale];
   const clinic=taipeiClinicCopy[locale];
   const services=serviceCopy[locale];
+  const upcoming = isTaipeiClinicUpcoming();
+  const clinicEnquiry = `${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taipei_clinic_december_2026&utm_content=${locale}`;
+  const taiwanEnquiry = `${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taiwan_clinic&utm_content=${locale}`;
   const options = [{key:"ja",label:"日本語"},{key:"zh-tw",label:"繁體中文"},{key:"en",label:"English"},{key:"ko",label:"한국어"}] as const;
   return <SiteFrame locale={locale} languagePage="taiwan">
     <div className="rba-taiwan">
       <section className="rba-taiwan-hero">
         <div className="rba-taiwan-inner">
           <div className="rba-taiwan-top"><p>RBA INTERNATIONAL / JAPAN × TAIWAN</p><nav aria-label={c.language}>{options.map(x=><Link key={x.key} href={path(x.key)} aria-current={locale===x.key?"page":undefined}>{x.label}</Link>)}</nav></div>
-          <h1>{c.title}</h1><p className="rba-taiwan-lead">{c.lead}</p>
-          <a className="rba-taiwan-btn" href="#taipei-clinic-december-2026">{clinic.details} ↓</a>
+          <h1>{upcoming ? clinic.title : c.title}</h1>
+          {upcoming ? <>
+            <p className="rba-taiwan-lead">{taipeiClinicPartner}</p>
+            <p className="rba-taiwan-hero-status"><strong>{clinic.dates}</strong> · {clinic.status}</p>
+          </> : <p className="rba-taiwan-lead">{c.lead}</p>}
+          <div className="rba-taiwan-hero-actions">
+            {upcoming && <a className="rba-taiwan-btn" href="#taipei-clinic-december-2026">{clinic.details} ↓</a>}
+            <a className="rba-taiwan-outline" href={upcoming ? clinicEnquiry : taiwanEnquiry} target="_blank" rel="noopener noreferrer">{upcoming ? clinic.teamCta : services.button} ↗</a>
+          </div>
         </div>
       </section>
       <section className="rba-taiwan-section rba-taiwan-muted" id="taipei-clinic-december-2026" aria-labelledby="taipei-clinic-title">
         <div className="rba-taiwan-inner">
-          <p className="rba-taiwan-label">RBA × SPARTANS Academy</p>
+          <p className="rba-taiwan-label">{taipeiClinicPartner}</p>
           <h2 id="taipei-clinic-title">{clinic.title}</h2>
           <p className="rba-taiwan-intro">{clinic.dates} · {clinic.zone}</p>
           <div className="rba-taiwan-cards">
@@ -90,10 +100,12 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
               <p><time dateTime={`${date}T${start}:00+08:00`}>{start}</time>–<time dateTime={`${date}T${end}:00+08:00`}>{end}</time></p>
             </article>)}
           </div>
-          <p className="rba-taiwan-intro">{clinic.pending}</p>
-          <p className="rba-taiwan-intro">{clinic.team}</p>
-          <a className="rba-taiwan-outline" href={`${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taipei_clinic_december_2026&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{clinic.teamCta} ↗</a>
-          <p className="rba-taiwan-intro">{c.safety}</p>
+          {upcoming ? <>
+            <p className="rba-taiwan-intro">{clinic.pending}</p>
+            <p className="rba-taiwan-intro">{clinic.team}</p>
+            <a className="rba-taiwan-outline" href={clinicEnquiry} target="_blank" rel="noopener noreferrer">{clinic.teamCta} ↗</a>
+            <p className="rba-taiwan-intro">{c.safety}</p>
+          </> : <p className="rba-taiwan-intro">{clinic.ended}</p>}
         </div>
       </section>
       <section className="rba-taiwan-section" id="taiwan-choose"><div className="rba-taiwan-inner">
@@ -105,7 +117,8 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
       <section className="rba-taiwan-section" id="taiwan-clinics"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">TAIWAN / TEAM & COACH SERVICES</p>
         <h2>{services.title}</h2><p className="rba-taiwan-intro">{services.intro}</p>
-        <div className="rba-taiwan-cards">{services.items.map(([number,heading,body])=><article key={number}><span>{number}</span><h3>{heading}</h3><p>{body}</p><a href={`${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taiwan_clinic&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{services.button} ↗</a></article>)}</div>
+        <div className="rba-taiwan-cards">{services.items.map(([number,heading,body])=><article key={number}><span>{number}</span><h3>{heading}</h3><p>{body}</p></article>)}</div>
+        <a className="rba-taiwan-outline" href={taiwanEnquiry} target="_blank" rel="noopener noreferrer">{services.button} ↗</a>
         <p className="rba-taiwan-small">{services.note}</p>
       </div></section>
       <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
@@ -113,20 +126,22 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
         <h2>{services.memberTitle}</h2><p className="rba-taiwan-intro">{services.memberBody}</p>
         <a className="rba-taiwan-outline" href={`${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taiwan_membership_interest&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{services.memberButton} ↗</a>
       </div></section>
-      <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
-        <p className="rba-taiwan-label">02 / RBA DEVELOPMENT</p><h2>{c.roles}</h2>
-        <div className="rba-taiwan-roles">
-          {([[c.global,c.globalBody],[c.united,c.unitedBody],[c.connect,c.connectBody]] as const).map(([heading,body])=><article key={heading}><strong>{heading}</strong><p>{body}</p></article>)}
-        </div>
-      </div></section>
+
       <section className="rba-taiwan-section"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">03 / FIELD RECORD · 2026</p><h2>{c.evidence}</h2><p className="rba-taiwan-intro">{c.evidenceBody}</p>
         <div className="rba-taiwan-links"><a href="https://www.spartans.tw/en/" target="_blank" rel="noopener noreferrer">SPARTANS OFFICIAL ↗</a><a href="https://www.instagram.com/p/DeW1uAEGI18/" target="_blank" rel="noopener noreferrer">RBA TAIWAN VIDEO ↗</a><Link href={exchangePath(locale)}>{c.team} ↗</Link></div>
       </div></section>
       <section className="rba-taiwan-section" id="taiwan-contact"><div className="rba-taiwan-inner">
         <p className="rba-taiwan-label">04 / CONTACT</p><h2>{c.form}</h2><p className="rba-taiwan-intro">{c.formBody}</p>
-        <a className="rba-taiwan-btn" href={`${formUrl}?utm_source=rba_website&utm_medium=organic&utm_campaign=taiwan_2026_launch&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">JOTFORM ↗</a>
+        <a className="rba-taiwan-btn" href={`${formUrl}?utm_source=rba_website&utm_medium=organic&utm_campaign=taiwan_2026_launch&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{c.form} ↗</a>
         <p className="rba-taiwan-small"><Link href={locale==="en"?"/":`/${locale}`}>{c.current} ↗</Link></p>
+      </div></section>
+      <section className="rba-taiwan-section rba-taiwan-muted"><div className="rba-taiwan-inner">
+        <details><summary>{c.roles}</summary>
+        <div className="rba-taiwan-roles">
+          {([[c.global,c.globalBody],[c.united,c.unitedBody],[c.connect,c.connectBody]] as const).map(([heading,body])=><article key={heading}><strong>{heading}</strong><p>{body}</p></article>)}
+        </div>
+        </details>
       </div></section>
     </div>
   </SiteFrame>;
