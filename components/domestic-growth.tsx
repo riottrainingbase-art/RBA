@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
 
 export type GrowthMode = "hub" | "interest" | "family" | "team";
@@ -28,6 +29,7 @@ export function DomesticGrowth({mode}:{mode:GrowthMode}) {
     <div className="dg-wrap">
       {mode==="hub"&&<section id="choose" className="dg-section"><h2>あなたの目的から、選べます。</h2><div className="dg-grid">{choices.map(x=><article className="dg-card" key={x.n}><span className="dg-number">{x.n}</span><h3>{x.title}</h3><p>{x.body}</p><a href={x.href} data-cta={`domestic-hub-${x.n}`}>{x.cta} →</a></article>)}</div><p>すでに地域・日程・会場候補がある主催者の方は、<a href="/ja/clinic-request">通常の開催相談</a>へ。すでに募集している開催への参加は、<a href="/ja/opportunities">活動一覧</a>からお選びください。</p></section>}
       {mode==="interest"&&<>
+        <section className="dg-section" aria-labelledby="tokyo-clinic-interest-entry"><p className="dg-kicker">TOKYO / 2027 SPRING</p><h2 id="tokyo-clinic-interest-entry">東京 U12・U15の先行案内を受付中。</h2><p>2027年4月上旬に東京都内でのクリニックを計画しています。候補日は4月3日・4日・11日ですが、正式な開催日・会場・参加費は未確定です。無料の先行案内希望を受け付けています。</p><Link href="/ja/tokyo-clinic" className="dg-button" data-cta="tokyo-clinic-interest-bridge">東京の開催候補と無料先行案内を見る →</Link><p className="dg-small">参加確約・予約・支払ではありません。</p></section>
         <section className="dg-section"><h2>開催がなくても、声を届けられる。</h2><StepCards items={[["希望を登録する","都道府県・市区町村、年代、時期をお知らせください。同じ家庭からは1回答で大丈夫です。"],["地域の条件を整理する","希望のある地域・年代を整理し、会場や成人の主催窓口、移動・運営条件を確認します。"],["条件を確認して申し込む","開催を計画できる場合は日程・会場・対象・参加費をご案内します。参加はその内容を見てから決められます。"]]}/></section>
         <section className="dg-section"><h2>練習の意味が分かる。<br/>ゲームで試せる。</h2><p>相手や仲間を見てプレーを選ぶこと、止まる・方向を変えること。年代と経験に合わせてテーマを絞り、練習とゲームを行き来します。開催内容は対象と会場に合わせてご案内します。</p><div className="dg-note">「体育館の候補がある」「地域の窓口になれる」という方も歓迎です。会場の確保や募集を保護者の方へ一律にお願いする受付ではありません。</div><p>地域のお仲間へ共有する場合は、このページのURLをお伝えください。他の家庭の名簿や連絡先を集めて送る必要はありません。</p></section>
         <section className="dg-section"><h2>開催希望について</h2><details><summary>登録したら必ず参加しないといけませんか？</summary><p>いいえ。参加義務はありません。正式な内容を確認してから判断できます。開催希望の変更・取消はRBAへメールでお知らせください。</p></details><details><summary>希望が集まれば必ず開催されますか？</summary><p>会場、日程、年代別の人数、指導体制、費用等がそろう必要があります。開催や一定期間内の実施を保証する受付ではありません。</p></details><details><summary>チームを辞める必要はありますか？</summary><p>所属チームを続けながらの参加を想定しています。所属先の予定や参加ルールがある場合は、ご家庭で確認してご相談ください。</p></details></section>
