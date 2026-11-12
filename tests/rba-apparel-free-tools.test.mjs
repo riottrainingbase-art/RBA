@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
+import {computeApparelEconomics,scenarios} from "../lib/apparel-business-economics.ts";
 
 const store=readFileSync("app/ja/store/page.tsx","utf8");
 const lineup=readFileSync("components/apparel-interest-path.tsx","utf8");
@@ -56,4 +57,24 @@ test("Free additions are mobile-friendly and accessible",()=>{
   assert.match(css,/:focus-visible/);
   assert.match(adminCss,/@media\(max-width:620px\)/);
   assert.match(desk,/htmlFor="apparel-scenario"/);
+});
+
+test("Apparel unit economics includes per-order cost, payment fee and zero incremental subscription",()=>{
+  const input=scenarios.tee.values;
+  const actual=computeApparelEconomics(input);
+  assert.equal(actual.revenue,4950);
+  assert.equal(actual.monthlyContribution,actual.contribution*20);
+  assert.equal(actual.breakEvenUnits,0);
+  assert.ok(Math.abs(actual.contribution-(actual.revenue-actual.procurement-actual.fee))<0.000001);
+  assert.ok(actual.suggestedRetailJpy>=0);
+});
+
+test("Apparel loss/invalid assumptions never appear profitable",()=>{
+  const i=scenarios.shorts.values;
+  const bad=computeApparelEconomics({...i,supplierJpy:100000});
+  assert.ok(bad.contribution<0);
+  assert.equal(bad.breakEvenUnits,null);
+  assert.throws(()=>computeApparelEconomics({...i,processingPercent:100}));
+  assert.throws(()=>computeApparelEconomics({...i,monthlyUnits:0.5}));
+  assert.throws(()=>computeApparelEconomics({...i,importJpy:-1}));
 });
