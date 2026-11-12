@@ -82,6 +82,9 @@ jobs:
       - name: RBA Performance Tee profit calculator and seller-only access
         run: node --test tests/performance-tee-economics.test.mjs
 
+      - name: RBA free apparel business and checkout safety audit
+        run: node --test tests/rba-apparel-free-tools.test.mjs
+
       - name: Torsten Japan signup conversion regression audit
         run: node audit/torsten-japan-landing/check.mjs
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { TeeEconomicsDesk } from "@/components/tee-economics-desk";
+import { ApparelBusinessDesk } from "@/components/apparel-business-desk";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={
@@ -15,5 +16,5 @@ export default async function PerformanceTeeManagePage(){
   if(error||!user)notFound();
   const profile=await db.from("profiles").select("role").eq("id",user.id).maybeSingle();
   if(profile.error||profile.data?.role!=="admin")notFound();
-  return <TeeEconomicsDesk/>;
+  return <><TeeEconomicsDesk/><ApparelBusinessDesk/></>;
 }
