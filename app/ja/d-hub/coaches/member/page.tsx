@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 const BAND_URL = "https://band.us/n/aaa2bdj9xcJ1o";
 const JOIN_FORM = "https://form.jotform.com/262498803883068";
+const TOPIC_FORM_URL = "https://form.jotform.com/263157940043051";
 
 type Lesson = {
   id:string;
@@ -84,6 +85,22 @@ export default async function Page() {
             <strong>{membership?.status === "grace" ? "GRACE" : "ACTIVE"}</strong>
             <small>Square 月額3,300円</small>
           </div>
+        </section>
+
+        <section className="dhub-member-section section-pad">
+          <div className="section-head">
+            <div>
+              <p className="section-index">MEMBER VOICE / NEXT TOPICS</p>
+              <h2>次に学びたいテーマを、教えてください。</h2>
+            </div>
+            <p>普段の指導で困っていることを、次の記事や勉強会に生かします。ご意見の採用・個別返信を保証するものではありません。</p>
+          </div>
+          <div className="dhub-member-actions">
+            <a className="button button-dark" href={TOPIC_FORM_URL} target="_blank" rel="noopener noreferrer">
+              希望テーマを送る <ExternalLink size={16}/>
+            </a>
+          </div>
+          <p>匿名で回答できます。選手の氏名や健康情報など、個人情報は入力しないでください。</p>
         </section>
 
         <section className="dhub-progress-strip section-pad">
