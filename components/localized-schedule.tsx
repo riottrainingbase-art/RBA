@@ -34,6 +34,46 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
       <div><p className="note-tag">{clinic.place} · RBA × SPARTANS Academy</p><h3>{clinic.title}</h3><p>{clinic.pending}</p></div>
       <div className="event-actions"><a href={taipeiClinicPath(locale)}>{clinic.details}<ArrowUpRight size={17}/></a></div>
     </article>}{programmes.filter(event=>isProgrammeActive(event)).map((event)=><article key={event.id}><time dateTime={event.startDate}><strong>{tr(event.datePrimary,locale)}</strong><span>{tr(event.dateSecondary,locale)}</span></time><div><p className="note-tag">{tr(event.place,locale)}</p><h3>{tr(event.title,locale)}</h3><p><strong>{c.target}：</strong>{tr(event.audience,locale)}</p><p className="event-price">{tr(event.price,locale)}</p><p className="event-payment"><strong>{c.payment}：</strong>{tr(event.payment,locale)}</p></div><div className="event-actions"><a href={locale!=="ja"&&event.id==="torsten"?"/events/torsten-loibl-online-clinic#register":locale==="ko"&&event.id==="okinawa-december-camp"?"/ko/events/okinawa-international-camp-2026":event.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"このコートに参加する":c.apply}<ArrowUpRight size={17}/></a><a href={event.id==="okinawa-december-camp"?(locale==="ja"?"/ja/events/okinawa-international-camp-2026/apply":locale==="ko"?"/ko/events/okinawa-international-camp-2026#details":"/ja/events/okinawa-international-camp-2026#entry"):event.id==="kagoshima-nov29"?`${event.applicationUrl}#entry`:`${localePath(locale,"payments")}#${event.id}`}>{event.id==="okinawa-december-camp"?({ja:"参加前の確認・申し込み",en:"Details & registration","zh-tw":"詳情與報名",ko:"안내 및 신청"})[locale]:event.id==="kagoshima-nov29"?({ja:"メール・DMで申し込む",en:"Apply by email / DM","zh-tw":"電郵／私訊報名",ko:"이메일·DM 신청"})[locale]:c.pay}<ArrowUpRight size={17}/></a></div></article>)}</section>
+    {locale === "ja" && (
+      <section className="event-list section-pad" aria-labelledby="planning-title">
+        <div className="section-head">
+          <h2 id="planning-title">開催に向けて調整中</h2>
+          <p>日程と会場が決まり次第、公式LINEで募集開始をお知らせします。</p>
+        </div>
+        <article>
+          <div><p className="note-tag">東京都</p><h3>東京バスケットボールクリニック</h3></div>
+          <div><p><strong>対象予定：</strong>小学生（U12）・中学生（U15）</p><p>地域の大会日程を確認しながら、会場と開催日を調整しています。</p></div>
+        </article>
+        <article>
+          <div><p className="note-tag">青森県八戸市</p><h3>八戸ミニバスクリニック</h3></div>
+          <div><p><strong>対象予定：</strong>小学生の男女</p><p>会場の利用枠と大会日程を確認しています。</p></div>
+        </article>
+        <article>
+          <div><p className="note-tag">山形県</p><h3>山形クリニック</h3></div>
+          <div><p>U12・U15の開催に向けて、会場と募集枠を調整しています。</p></div>
+        </article>
+        <article>
+          <div><p className="note-tag">岩手県宮古市</p><h3>宮古クリニック</h3></div>
+          <div><p>次回開催に向けて日程を検討しています。</p></div>
+        </article>
+        <article>
+          <div><p className="note-tag">岩手県北上市</p><h3>北上クリニック</h3></div>
+          <div><p>開催に向けて会場と日程を検討しています。</p></div>
+        </article>
+      </section>
+    )}
+    {locale === "ja" && (
+      <section className="calendar-notice section-pad" aria-labelledby="host-clinic-title">
+        <div>
+          <h2 id="host-clinic-title">地元でRBAクリニックを開催したい方へ</h2>
+          <p>全国のチーム・スクール・地域の指導者から、U12・U15クリニックの開催相談を受け付けています。</p>
+          <p>お問い合わせに「クリニック開催相談」と記載し、市区町村・対象学年・参加見込み人数をお知らせください。候補日や体育館があれば、あわせてお送りください。</p>
+        </div>
+        <a className="button button-light" href={localePath(locale, "contact")}>
+          地元開催を相談する<ArrowUpRight size={17} aria-hidden="true"/>
+        </a>
+      </section>
+    )}
     <section className="calendar-notice section-pad"><div><h2>{c.notice}</h2><p>{c.noticeCopy}</p></div><a className="button button-light" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">{c.line}<ArrowUpRight size={17}/></a></section>
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale)}>{c.back}<span>→</span></a></section>
   </SiteFrame></div>;
