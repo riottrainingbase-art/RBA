@@ -23,7 +23,7 @@ export default function OkinawaClinicEnglishPage() {
         <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / OKINAWA / EVENT ARCHIVE</p>
         <h1>Thank you, Okinawa.<br />The clinic has concluded.</h1>
         <p className={styles.date}>Saturday, 14 November 2026<br />4:00–7:00 PM Japan time</p>
-        <p className={styles.lead}>Our 14 November 2026 youth basketball clinic has taken place. Thank you to the players, families and local community. Registration for this event is now closed. We hope the experiences from the court will continue to support each player's learning.</p>
+        <p className={styles.lead}>Our 14 November 2026 youth basketball clinic has taken place. Thank you to the players, families and local community. Registration for this event is now closed. We hope the experiences from the court will continue to support each player&apos;s learning.</p>
         <a className={styles.button} href="/opportunities">Explore future programmes →</a>
         <p style={{ fontSize: 14, marginTop: 18 }}><a href={japanesePage} style={{ color: "inherit", textDecoration: "underline" }}>Japanese event archive →</a></p>
       </div>
@@ -46,7 +46,7 @@ export default function OkinawaClinicEnglishPage() {
         <article className={styles.card}><span className={styles.number}>02 / SHOOTING</span><h3>Finishing in context</h3><p>Connecting shooting and finishing to defenders, teammates and available space.</p></article>
         <article className={styles.card}><span className={styles.number}>03 / DECISIONS</span><h3>See, choose, play</h3><p>Testing choices through small-sided basketball and reflecting on what to try next.</p></article>
       </div>
-      <p className={styles.fine}>These are the event's announced learning themes, not a claim that every activity was completed exactly as described.</p>
+      <p className={styles.fine}>These are the event&apos;s announced learning themes, not a claim that every activity was completed exactly as described.</p>
       <p><a href="/ja/after-clinic">Post-clinic reflection resource (Japanese) →</a></p>
     </section>
 
