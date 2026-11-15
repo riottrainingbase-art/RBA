@@ -43,6 +43,14 @@ export function InternationalPlatform({locale}:{locale:Locale}){
       <p style={{fontSize:12,marginTop:16,color:"#536174",lineHeight:1.8}}>{({ja:"相談は無料です。対戦相手、会場、宿泊、移動、通訳などは確約ではなく、条件を確認したうえで個別にご提案します。",en:"Enquiries are free. Opponents, venues, accommodation, transport and interpreters are subject to availability and written confirmation.","zh-tw":"洽詢免費。比賽對手、場地、住宿與交通等均須確認後才能安排。",ko:"상담은 무료입니다. 상대 팀, 시설, 숙박, 이동 등은 확인 후 제안합니다."})[locale]}</p>
     </div>
   </section>
+  {(locale==="ja"||locale==="en")?<section className="section-pad" style={{background:"#f0f2f4",color:"#182330"}} aria-labelledby="school-partnership-entry">
+    <div style={{maxWidth:1100,margin:"0 auto"}}>
+      <p className="section-index">FOR INTERNATIONAL SCHOOLS IN JAPAN</p>
+      <h2 id="school-partnership-entry" style={{fontSize:"clamp(25px,3vw,37px)",fontWeight:800,margin:"12px 0"}}>{locale==="ja"?"インターナショナルスクールと、継続する育成環境をつくる。":"Build lasting basketball learning with international schools in Japan."}</h2>
+      <p style={{maxWidth:830,lineHeight:1.8}}>{locale==="ja"?"学校のPE・放課後バスケ・指導者研修・3x3交流を、学校の先生と共同設計する長期業務提携を募集しています。児童の安全と学校の承認が前提です。":"We support school PE, after-school basketball, staff learning and approved 3x3 exchange. School staffing, safeguarding and written agreement come first."}</p>
+      <a className="button button-dark" href={locale==="ja"?"/ja/international-schools":"/international-schools"} style={{display:"inline-flex",marginTop:18}}>{locale==="ja"?"学校向け提携について見る":"Explore school partnerships"}<ArrowRight size={16}/></a>
+    </div>
+  </section>:null}
   <section className="international-network section-pad"><div className="section-head"><div><p className="section-index">JAPAN × ASIA</p><h2>{c.status}</h2></div><p>{c.statusBody}</p></div><div className="international-network-grid">{worldPoints.map(point=><article key={point.id}><span>{point.status==="partner"?c.partner:tr(point.statusLabel||[c.discussion,c.discussion,c.discussion,c.discussion],locale)}</span><h3>{tr(point.name,locale)}</h3><p>{tr(point.detail,locale)}</p></article>)}</div><p style={{marginTop:28}}><a className="button button-dark" href={locale==="en"?"/taiwan":`/${locale}/taiwan`}>{({ja:"台湾専用ページ｜日台育成交流",en:"Taiwan / Japan–Taiwan development","zh-tw":"台灣專頁｜台日青少年培育",ko:"대만 전용 페이지｜일본·대만 육성 교류"})[locale]} →</a></p></section>
   <section className="international-programmes section-pad"><p className="section-index inverse">PROGRAMME DESIGN</p><h2>{c.ways}</h2><div>{c.cards.map(([title,body])=><article key={title}><Plane/><h3>{title}</h3><p>{body}</p></article>)}</div></section>
   <section className="international-process section-pad"><div><p className="section-index">SAFE / CLEAR / PURPOSEFUL</p><h2>{c.process}</h2><ShieldCheck/></div><ol>{c.steps.map(([no,title,body])=><li key={no}><span>{no}</span><div><strong>{title}</strong><p>{body}</p></div></li>)}</ol></section>
