@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 };
 
 const eventPage = "/ja/events/okinawa-international-camp-2026";
+const plannedPriceJpy = 4400;
+const registrationCutoff = Date.parse("2026-12-22T16:15:00+09:00");
 
 type HostedLink = {
   active?: boolean;
@@ -33,14 +35,12 @@ type HostedLink = {
 
 async function approvedCheckout(): Promise<{ href: string; price: number } | null> {
   if (process.env.OKINAWA_AFTER_SCHOOL_OPEN !== "true") return null;
-  if (Date.now() >= Date.parse("2026-12-22T16:15:00+09:00")) return null;
+  if (Date.now() >= registrationCutoff) return null;
 
   const linkId = process.env.OKINAWA_AFTER_SCHOOL_STRIPE_LINK_ID;
-  const priceText = process.env.OKINAWA_AFTER_SCHOOL_PRICE_JPY;
   const capacityText = process.env.OKINAWA_AFTER_SCHOOL_CAPACITY;
   const stripeKey = process.env.OKINAWA_AFTER_SCHOOL_STRIPE_READ_KEY;
   if (!linkId || !/^plink_[A-Za-z0-9]+$/.test(linkId) ||
-      !priceText || !/^[1-9][0-9]{0,5}$/.test(priceText) ||
       !capacityText || !/^[1-9][0-9]{0,2}$/.test(capacityText) || !stripeKey) return null;
 
   try {
@@ -55,7 +55,7 @@ async function approvedCheckout(): Promise<{ href: string; price: number } | nul
     const link: HostedLink = await response.json();
     const items = link.line_items;
     const item = items?.data?.[0];
-    const price = Number(priceText);
+    const price = plannedPriceJpy;
     const requiredFields = ["player_name", "player_age_grade", "guardian_name"];
     if (!link.active || link.livemode !== true ||
         link.metadata?.rba_program !== "okinawa-after-school-2026-12-22" ||
@@ -89,7 +89,7 @@ export default async function Page() {
       <div className={styles.columns}>
         <article className={styles.card}>
           <h2>当日の予定</h2>
-          <p>12月22日（火）・糸満青少年の家</p>
+          <p>第一候補：12月22日（火）・糸満青少年の家（調整中）</p>
           <ul>
             <li>16:15ごろ　受付・健康確認</li>
             <li>16:30〜17:30　少人数ゲーム・国際交流</li>
@@ -99,11 +99,11 @@ export default async function Page() {
         </article>
         <article className={styles.card}>
           <h2>参加申込とお支払い</h2>
-          {Date.now() < Date.parse("2026-12-22T16:15:00+09:00") && <>
+          {Date.now() < registrationCutoff && <>
             <h3>1. 選手1名ずつ参加申込を提出</h3>
             <p>保護者または18歳の選手本人が、連絡先と希望日を入力してください。RBAが開催条件と空きを確認し、ご案内します。</p>
             <a className={styles.primary} href="https://form.jotform.com/263181825891061">放課後・1日参加を申し込む →</a>
-            <p className={styles.small}>送信時に料金は発生しません。日程・定員・参加費のご案内後に参加が確定します。</p>
+            <p className={styles.small}>有料の参加枠です。申込を提出すると、RBAが空きを確認します。参加は、案内に沿ったお支払いとRBAの入金確認後に確定します。</p>
           </>}
           <h3>2. 開催条件のご案内後にお支払い</h3>
           {checkout ? <>
@@ -111,7 +111,7 @@ export default async function Page() {
             <p>RBAから案内を受け取った方は、申込時と同じ連絡先メールアドレスをStripeに入力してください。入金を照合し、当日の詳細をご案内します。</p>
             <p><a href="/ja/cancellation">キャンセル・返金規定</a></p>
             <a href={checkout.href}>案内を受け取った方のStripe決済へ →</a>
-          </> : <p>決済受付前です。開催条件と参加費が決まり次第、RBAからご案内します。</p>}
+          </> : <p>参加費は選手1名 {plannedPriceJpy.toLocaleString("ja-JP")}円（税込）の予定です。実施日時と受入枠が決まり次第、金額と支払期限を申込者へご案内します。</p>}
         </article>
       </div>
       <p>お問い合わせ <a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></p>
