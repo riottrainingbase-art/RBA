@@ -15,11 +15,12 @@ const scan = (dir,match,out=[]) => {
 };
 const pages=scan("app",file=>/\/page\.(?:tsx|jsx|js|ts)$/.test(file));
 const toRoute=file=>{
-  const route=file.replace(/^app\//,"").replace(/\/page\.(?:tsx|jsx|js|ts)$/,"");
+  const route=file.replace(/^app\//,"").replace(/(?:^|\/)page\.(?:tsx|jsx|js|ts)$/,"");
   const segments=route.split("/").filter(x=>!(/^\([^)]*\)$/.test(x))&&!x.startsWith("@"));
   return "/"+segments.join("/");
 };
 const routes=new Set(pages.map(toRoute));
+const routeEndpoints=new Set(scan("app",file=>/\/route\.(?:ts|js)$/.test(file)).map(file=>"/"+file.replace(/^app\//,"").replace(/\/route\.(?:ts|js)$/,"")));
 const issues=[];
 const ensure=(when,kind,message)=>{if(!when)issues.push({kind,message});};
 ensure(pages.length>=300,"route-coverage","Expected at least 300 route pages; inventory seems incomplete.");
@@ -47,7 +48,7 @@ ensure(sitemapMissing.length===0,"sitemap-404","Missing public routes: "+sitemap
 
 const hasAppRoute=url=>{
   const normalized=url.replace(/\/+$/,"")||"/";
-  if(routes.has(normalized))return true;
+  if(routes.has(normalized)||routeEndpoints.has(normalized))return true;
   return [...routes].some(route=>{
     const a=route.split("/").filter(Boolean),b=normalized.split("/").filter(Boolean);
     const catchall=a.findIndex(seg=>/^\[\[?\.\.\./.test(seg));
@@ -75,7 +76,7 @@ for(const file of sourceFiles) {
     let to=hit[1].replace(/\/+$/,"")||"/";
     try{to=decodeURIComponent(to);}catch{}
     if(/^(?:\/api\/|\/_next\/|\/_vercel\/|\/\.well-known\/)/.test(to))continue;
-    if(/\.(?:svg|png|jpg|jpeg|webp|ico|woff2?|mp4|webm|pdf|xml|txt|json|css|js)$/.test(to)){
+    if(/\.(?:svg|png|jpg|jpeg|webp|ico|woff2?|mp4|webm|pdf|xml|txt|json|css|js|html|ics)$/.test(to)){
       if(exists("public"+to))continue;
       if(to==="/sitemap.xml"||to==="/robots.txt")continue;
     }
@@ -101,6 +102,8 @@ ensure(torsten.includes("Square")&&torsten.includes("Googleフォーム"),"jp-pa
 const jpLanding=read("components/torsten-japan-landing.tsx");
 ensure(jpLanding.includes("Square")&&jpLanding.includes("Googleフォーム"),"jp-registration","Japanese Torsten page must use Google Form then Square.");
 ensure(!jpLanding.includes("Stripe"),"jp-stripe-confusion","Japanese Torsten page should not mention Stripe.");
+
+ensure(missingLinks.length===0,"literal-link-404","Unresolved literal internal link(s): "+missingLinks.map(x=>x.to).join(", "));
 
 const report={
   status:issues.length?"failed":"passed",
