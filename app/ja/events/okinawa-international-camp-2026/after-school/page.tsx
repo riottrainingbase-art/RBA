@@ -108,7 +108,7 @@ export default async function Page() {
             <a className={styles.primary} href={checkout.href}>Stripeで申込・決済へ →</a>
           </> : <>
             <p><strong>正式受付前です。</strong> 上記は候補日程です。開催条件と参加費の確定後、このページから申込・決済に進めるようになります。</p>
-            <a className={styles.primary} href={eventPage + "#after-school"}>参加希望の相談へ →</a>
+            <a className={styles.primary} href="https://form.jotform.com/263182267951059">無料で参加希望を登録する →</a><p className={styles.small}>希望登録で席や支払いは確定しません。</p>
           </>}
         </article>
       </div>
