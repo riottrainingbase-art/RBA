@@ -23,7 +23,7 @@ const steps = [
   ["確認・表彰", "RBAが参加履歴と内容を確認し、選考結果を保護者へ個別に案内する。"],
 ] as const;
 const options = [
-  { title: "GROWTH SUPPORTER", unit: "現物協賛", price: "必要な分だけ", body: "ノート、ペン、タオル、ボトル等、子どもが日常で使える品や製作・配送支援。" },
+  { title: "GROWTH SUPPORTER", unit: "現物協賛", price: "必要な分だけ", body: "5号球・6号球・7号球、ボールバッグ、ソックス、マーカー・コーン等の現物協賛。" },
   { title: "COMMUNITY PARTNER", unit: "企画協賛", price: "3万円〜（提案目安）", body: "表彰状・教材制作、参加機会の補助など、合意した用途の支援。" },
   { title: "PROGRAMME PARTNER", unit: "プログラム協賛", price: "10万円〜（提案目安）", body: "複数回の育成活動・表彰・活動報告を一体で支える協賛。" },
   { title: "IMPACT PARTNER", unit: "継続協賛", price: "30万円〜（提案目安）", body: "年度を通じた育成機会の創出や、成長・活動実績の集計を支える協賛。" },
@@ -72,7 +72,7 @@ export default function GrowthAwardsPage() {
         <section id="partners" aria-labelledby="awards-partners" className="scroll-mt-24 border-t-2 border-neutral-900 py-14">
           <p className="text-xs font-bold tracking-[.2em]">PARTNERSHIP / SUPPORT</p>
           <h2 id="awards-partners" className="mt-3 text-3xl font-black leading-normal">企業の支援を、<br/>子どもの挑戦へ。</h2>
-          <p className="mt-5 max-w-4xl text-base leading-9">商品の配布が目的ではありません。日々の練習で使える道具、振り返りの教材、参加しやすい環境を企業とつくります。物品協賛・印刷/配送協力・育成プログラム協賛など、実際の使い道が見える形でご提案します。</p>
+          <p className="mt-5 max-w-4xl text-base leading-9">商品の宣伝ではなく、子どもが次の練習で実際に使えるバスケットボール用品を届けます。5号球・6号球・7号球、ボールバッグ、バスケットボール用ソックス、練習用マーカー・コーン等を優先し、学年・使用環境・サイズを確認します。現物協賛・配送協力・育成プログラム協賛を募集しています。</p>
           <div className="mt-7 grid gap-4 md:grid-cols-2">{options.map(item=><article key={item.title} className="border border-neutral-300 p-6"><p className="text-xs font-black tracking-widest">{item.title}</p><h3 className="mt-3 text-xl font-black">{item.unit}</h3><p className="mt-2 font-bold">{item.price}</p><p className="mt-4 text-sm leading-8">{item.body}</p></article>)}</div>
           <p className="mt-5 text-sm leading-7 text-neutral-600">金額は相談用の目安です。協賛・広告の税務、提供物品、掲載範囲、期間、レポート提出は契約で個別に決定。公式サイトの固定広告プランや全国ツアー協賛とは別案件として扱います。</p>
           <div className="mt-6 flex flex-wrap gap-4"><a href={sponsorUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-neutral-900 px-6 py-3 font-bold text-white">協賛を無料で相談 ↗</a><a href="/ja/partners/brief" className="inline-flex min-h-12 items-center items-center font-bold underline underline-offset-4">RBA全体の協賛ご案内を見る →</a></div>
