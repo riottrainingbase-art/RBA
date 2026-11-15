@@ -10,18 +10,75 @@ export const metadata: Metadata = {
 
 const eventPage = "/ja/events/okinawa-international-camp-2026";
 
-function approvedCheckout(): { href: string; price: number } | null {
+type HostedLink = {
+  active?: boolean;
+  livemode?: boolean;
+  url?: string;
+  metadata?: Record<string, string>;
+  custom_fields?: Array<{ key?: string; optional?: boolean }>;
+  phone_number_collection?: { enabled?: boolean };
+  consent_collection?: { terms_of_service?: string };
+  restrictions?: { completed_sessions?: { limit?: number } };
+  allow_promotion_codes?: boolean;
+  automatic_tax?: { enabled?: boolean };
+  line_items?: {
+    has_more?: boolean;
+    data?: Array<{
+      quantity?: number;
+      adjustable_quantity?: { enabled?: boolean };
+      price?: { currency?: string; unit_amount?: number; type?: string };
+    }>;
+  };
+};
+
+async function approvedCheckout(): Promise<{ href: string; price: number } | null> {
   if (process.env.OKINAWA_AFTER_SCHOOL_OPEN !== "true") return null;
-  const href = process.env.OKINAWA_AFTER_SCHOOL_STRIPE_LINK;
-  const priceText = process.env.OKINAWA_AFTER_SCHOOL_PRICE_JPY;
-  if (!href || !/^https:\/\/book\.stripe\.com\/[A-Za-z0-9]+$/.test(href) ||
-      !priceText || !/^[1-9][0-9]{0,5}$/.test(priceText)) return null;
   if (Date.now() >= Date.parse("2026-12-22T16:15:00+09:00")) return null;
-  return { href, price: Number(priceText) };
+
+  const linkId = process.env.OKINAWA_AFTER_SCHOOL_STRIPE_LINK_ID;
+  const priceText = process.env.OKINAWA_AFTER_SCHOOL_PRICE_JPY;
+  const capacityText = process.env.OKINAWA_AFTER_SCHOOL_CAPACITY;
+  const stripeKey = process.env.OKINAWA_AFTER_SCHOOL_STRIPE_READ_KEY;
+  if (!linkId || !/^plink_[A-Za-z0-9]+$/.test(linkId) ||
+      !priceText || !/^[1-9][0-9]{0,5}$/.test(priceText) ||
+      !capacityText || !/^[1-9][0-9]{0,2}$/.test(capacityText) || !stripeKey) return null;
+
+  try {
+    const url = new URL("https://api.stripe.com/v1/payment_links/" + linkId);
+    url.searchParams.append("expand[]", "line_items");
+    const response = await fetch(url, {
+      headers: { Authorization: "Bearer " + stripeKey },
+      cache: "no-store",
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok) return null;
+    const link: HostedLink = await response.json();
+    const items = link.line_items;
+    const item = items?.data?.[0];
+    const price = Number(priceText);
+    const requiredFields = ["player_name", "player_age_grade", "guardian_name"];
+    if (!link.active || link.livemode !== true ||
+        link.metadata?.rba_program !== "okinawa-after-school-2026-12-22" ||
+        !link.url || !/^https:\/\/book\.stripe\.com\/[A-Za-z0-9]+$/.test(link.url) ||
+        !link.phone_number_collection?.enabled ||
+        link.consent_collection?.terms_of_service !== "required" ||
+        !requiredFields.every(key => link.custom_fields?.some(field =>
+          field.key === key && field.optional === false)) ||
+        link.restrictions?.completed_sessions?.limit !== Number(capacityText) ||
+        link.allow_promotion_codes !== false || link.automatic_tax?.enabled !== false ||
+        items?.has_more || items?.data?.length !== 1 || item?.quantity !== 1 ||
+        item.adjustable_quantity?.enabled ||
+        item.price?.currency !== "jpy" || item.price.type !== "one_time" ||
+        item.price.unit_amount !== price) return null;
+
+    return { href: link.url, price };
+  } catch {
+    return null;
+  }
 }
 
-export default function Page() {
-  const checkout = approvedCheckout();
+export default async function Page() {
+  const checkout = await approvedCheckout();
 
   return <SiteFrame locale="ja"><div className={styles.page}>
     <section className={styles.section} aria-labelledby="after-school-application">
