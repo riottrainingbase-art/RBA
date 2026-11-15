@@ -268,3 +268,234 @@
  .journeyAction{margin-top:14px}
 }
 @media(prefers-reduced-motion:reduce){.journeyCard{transition:none}.journeyCard:hover{transform:none}}
+
+
+/* RBA / EDITORIAL 2026 — one visual language, clear hierarchy, no decorative noise. */
+.page{
+  --editorial-ink:#171817;
+  --editorial-muted:#5d625f;
+  --editorial-line:#d9dbd6;
+  --editorial-paper:#f7f7f4;
+  background:var(--editorial-paper);
+  color:var(--editorial-ink);
+}
+.container{max-width:1380px;padding-inline:clamp(18px,4.5vw,68px)}
+.page .hero{
+  position:relative; isolation:isolate; overflow:hidden;
+  margin:clamp(12px,2.3vw,30px) 0 0;
+  padding:clamp(24px,3vw,42px) clamp(24px,5.5vw,78px);
+  min-height:clamp(540px,64vw,720px);
+  display:flex; flex-direction:column; justify-content:space-between;
+  border:1px solid #202220; background:#171817; color:#fff;
+}
+.page .hero::before{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(108deg,rgba(23,24,23,.15) 18%,rgba(23,24,23,.95) 90%),
+    radial-gradient(circle at 80% 45%,rgba(255,255,255,.075),transparent 40%);
+}
+.page .hero::after{
+  content:""; position:absolute; z-index:-1; width:clamp(420px,64vw,840px);
+  aspect-ratio:1; right:clamp(-440px,-25vw,-130px); top:50%; transform:translateY(-50%);
+  border:1px solid rgba(255,255,255,.16); border-radius:50%;
+  box-shadow:0 0 0 92px rgba(255,255,255,.016),0 0 0 93px rgba(255,255,255,.10),
+    0 0 0 182px rgba(255,255,255,.012),0 0 0 183px rgba(255,255,255,.065);
+  pointer-events:none;
+}
+.heroTopline,.heroBaseline{display:flex;justify-content:space-between;align-items:center;gap:20px;position:relative;z-index:1}
+.heroTopline{padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.22)}
+.page .hero .label{color:#d0d1cc;margin:0;font-size:10px;letter-spacing:.17em;font-weight:800}
+.page .hero .label span{color:#80847f;padding:0 7px}
+.heroIssue,.heroBaseline{color:#a9ada9;font-size:10px;font-weight:750;letter-spacing:.17em}
+.heroBody{position:relative;z-index:1;max-width:930px;padding:clamp(52px,7vw,106px) 0}
+.heroEyebrow{color:#d2d6d2;margin:0 0 24px;font-size:clamp(13px,1.45vw,16px);font-weight:700;letter-spacing:.07em}
+.page .hero h1{
+  max-width:970px;margin:0; font-weight:900;
+  font-size:clamp(43px,6.1vw,90px);line-height:1.14;
+  letter-spacing:-.075em;text-wrap:balance;overflow-wrap:normal;
+}
+.page .hero h1 span{display:block}
+.page .hero .intro{
+  color:#d5d8d4;max-width:630px;
+  font-size:clamp(15px,1.4vw,18px);line-height:1.9;margin:clamp(24px,3vw,38px) 0 0;
+}
+.page .hero .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin-top:32px;max-width:none}
+.page .hero .actions a{
+  display:inline-flex;flex:0 1 auto;gap:30px;min-height:56px;min-width:206px;
+  padding:14px 20px;align-items:center;justify-content:space-between;
+  font-size:14px;line-height:1.5;font-weight:850;grid-column:auto;
+  border:1px solid #fff;transition:background .18s ease,color .18s ease;
+}
+.page .hero .primary{background:#fff;color:#171817}
+.page .hero .secondary{background:transparent;color:#fff}
+.page .hero .primary:hover{background:#e1e3dd;color:#171817}
+.page .hero .secondary:hover{background:#fff;color:#171817}
+.heroBaseline{padding-top:20px;border-top:1px solid rgba(255,255,255,.22)}
+.sectionNavigator{
+  display:flex;gap:0;flex-wrap:wrap;align-items:stretch;
+  border-bottom:1px solid var(--editorial-line);background:var(--editorial-paper);
+}
+.indexLabel{display:flex;align-items:center;flex:0 0 95px;font-size:11px;font-weight:900;letter-spacing:.2em;color:#626662}
+.sectionNavigator a{
+  min-height:64px;display:inline-flex;align-items:center;justify-content:center;
+  flex:1 1 170px;padding:12px 16px;color:#3b3f3c;
+  border-left:1px solid var(--editorial-line);font-size:12px;font-weight:850;line-height:1.4;
+  transition:background .18s ease;
+}
+.sectionNavigator a:hover,.sectionNavigator a:focus-visible{background:#e8e9e5}
+.page .section{padding:clamp(60px,7vw,104px) 0;scroll-margin-top:98px}
+.page .heading{margin-bottom:clamp(24px,3vw,40px);align-items:end}
+.page .heading .label,.page .label{font-size:11px;letter-spacing:.16em;color:#666b66;font-weight:850}
+.page .heading h2{
+  color:var(--editorial-ink);max-width:960px;
+  font-size:clamp(34px,4.1vw,58px);line-height:1.16;letter-spacing:-.065em;font-weight:900;
+  text-wrap:balance;
+}
+.headingEmphasis{color:#686c69}
+.page .textLink{min-height:44px;font-size:13px;font-weight:800;text-decoration-thickness:1px;text-underline-offset:7px}
+.page .note{color:#5d625e;line-height:1.85;font-size:12px}
+.page .journeyGrid{gap:1px;background:var(--editorial-line);border:1px solid var(--editorial-line)}
+.page .journeyCard{
+  min-height:330px;padding:clamp(22px,3vw,38px);
+  background:#fff;border:0;color:var(--editorial-ink);
+  transition:background .18s ease,transform .18s ease;
+}
+.page .journeyCard:hover{background:#eeefec;transform:none}
+.page .journeyNumber,.page .pathLabel{
+  color:#747973;font-size:11px;letter-spacing:.17em;font-weight:800;
+}
+.page .journeyCard strong{
+  font-size:clamp(23px,2.9vw,37px);line-height:1.25;
+  letter-spacing:-.05em;margin:clamp(36px,5vw,66px) 0 16px;font-weight:900;
+}
+.page .journeyDescription{font-size:14px;color:#5c625e;line-height:1.85;max-width:320px}
+.page .journeyAction{border-color:#d9dbd7;font-size:13px;padding-top:20px;font-weight:850}
+.page .programmes{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  background:#d9dbd7;border:1px solid #d9dbd7;
+}
+.page .programmes article{
+  background:#fff;border:0;min-width:0;min-height:390px;
+  padding:clamp(24px,2.7vw,34px);transition:background .18s ease;
+}
+.page .programmes article:hover{background:#f1f2ee;transform:none;border:0}
+.programmeMeta{display:flex;align-items:start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.page .date{font-size:11px;letter-spacing:.08em;color:#4d514e;font-weight:850}
+.programmeCategory{font-size:10px;font-weight:850;color:#838883;letter-spacing:.09em;white-space:nowrap}
+.page .programmes h3{
+  font-size:clamp(24px,2.5vw,33px);font-weight:900;letter-spacing:-.045em;
+  line-height:1.33;margin:clamp(35px,4vw,60px) 0 13px;
+}
+.page .place{font-size:13px;color:#5c625d}
+.page .programmes dl{margin:18px 0 24px;font-size:12px;line-height:1.65}
+.page .programmes dl>div{grid-template-columns:38px minmax(0,1fr);gap:12px}
+.page .programmes dt{color:#777d77}
+.page .programmes article>a{
+  min-height:52px;padding:13px 17px;justify-content:space-between;
+  background:#1c1e1c;color:#fff;border:1px solid #1c1e1c;
+  font-size:13px;font-weight:850;
+}
+.page .programmes article>a:hover{background:#383c38}
+.sponsorAnchor{scroll-margin-top:110px}
+.page .nextStep{padding:clamp(44px,5vw,70px) 0;border-color:var(--editorial-line)}
+.nextStepIntro h2{font-size:clamp(28px,3vw,42px);line-height:1.3;font-weight:900;letter-spacing:-.05em}
+.nextStepIntro p:not(.label){color:#646a65;line-height:1.8}
+.page .nextStepLinks{gap:0;border-top:1px solid var(--editorial-line)}
+.page .nextStepLinks a{
+  border:0;border-bottom:1px solid var(--editorial-line);
+  min-height:70px;background:transparent;padding:14px 10px;
+  color:#242724;font-weight:800;font-size:13px;
+}
+.page .nextStepLinks a:hover{background:#ebede8;border-color:var(--editorial-line)}
+.page .nextStepLinks a span:first-child{color:#707570}
+.page .ageHub{padding:clamp(58px,7vw,100px) 0;border-color:var(--editorial-line)}
+.page .ageHub h2{font-size:clamp(34px,4.2vw,58px);letter-spacing:-.06em}
+.page .ageIntro{color:#5f6560;max-width:660px}
+.page .ageGrid{gap:1px;background:#d0d2ce;border:1px solid #d0d2ce}
+.page .ageCard{min-height:270px;background:#191b19;border:0;padding:clamp(24px,3vw,35px);transition:background .18s ease}
+.page .ageCard:nth-child(2){background:#2b2e2b;border:0}
+.page .ageCard:nth-child(3){background:#eceee9;border:0;color:#171917}
+.page .ageCard:hover{background:#343834;transform:none}
+.page .ageCard:nth-child(3):hover{background:#e2e5de}
+.page .ageCard strong{font-size:clamp(48px,6vw,85px);letter-spacing:-.08em;margin:34px 0 14px;font-weight:900}
+.page .ageDescription{font-size:14px;color:inherit}
+.page .schoolSpotlight{
+  margin:clamp(38px,5vw,70px) 0;
+  padding:clamp(24px,4vw,48px);
+  background:#e9ebe6;border:0;border-left:5px solid #171817;color:#171817;
+  gap:clamp(20px,4vw,50px);
+}
+.page .schoolSpotlight h2{font-size:clamp(29px,3.4vw,45px);font-weight:900;line-height:1.25;letter-spacing:-.055em}
+.page .schoolSpotlight p:not(.label){color:#474c48}
+.page .schoolFacts span{color:#3b403c}
+.page .schoolSpotlightActions a{background:#171817;color:#fff;min-height:55px}
+.page .schoolSpotlightActions a + a{background:transparent;color:#171817;border:1px solid #171817}
+.page .pathGrid{gap:1px;background:var(--editorial-line);border:1px solid var(--editorial-line)}
+.page .pathCard{background:#fff;border:0;padding:clamp(24px,2.7vw,34px);min-height:270px}
+.page .pathCard h3{font-size:clamp(23px,2.4vw,31px);line-height:1.3;font-weight:900;letter-spacing:-.04em}
+.page .pathCard p{color:#5e645e}
+.page .pathCard a{margin-top:28px;text-decoration:underline;text-underline-offset:6px}
+.page .hostCallout{
+  background:#171817;border:0;padding:clamp(32px,5vw,72px);
+  min-height:360px;scroll-margin-top:110px;align-items:center;
+}
+.page .hostKicker{color:#c5c9c4}
+.page .hostCallout h2{font-size:clamp(39px,5.2vw,70px);line-height:1.15;letter-spacing:-.07em}
+.page .hostDescription{color:#d0d4ce}
+.page .hostFormats li{border-color:#5d615e;color:#dedfda}
+.page .hostPrimary,.page .hostPrimary:visited{
+  border:1px solid #fff;background:#fff;color:#171817!important;min-height:61px;
+}
+.page .hostPrimary:hover{background:#e3e5e0;border-color:#e3e5e0}
+.page .hostSecondary{border-color:#989f97;color:#fff}
+.page .hostActions p{color:#c5c9c4}
+.page .aboutLinks{gap:16px 27px;padding:38px 0 50px;border-color:var(--editorial-line)}
+.page a:focus-visible{outline:3px solid #6c726b;outline-offset:4px}
+
+@media(max-width:980px){
+ .page .journeyGrid,.page .programmes{grid-template-columns:1fr}
+ .page .journeyCard{min-height:0}
+ .page .journeyCard strong{margin:28px 0 13px}
+ .page .programmes article{min-height:0}
+ .page .programmes h3{margin:22px 0 13px}
+ .page .nextStepLinks{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+ .page .hero{min-height:0;padding:20px 22px 22px;margin-top:10px}
+ .heroTopline{align-items:start;padding-bottom:13px}
+ .heroTopline .heroIssue{display:none}
+ .page .hero .label{font-size:9px;letter-spacing:.08em}
+ .heroBody{padding:clamp(70px,18vw,115px) 0 70px}
+ .page .hero h1{font-size:clamp(34px,8.5vw,57px);letter-spacing:-.075em;line-height:1.17}
+ .heroEyebrow{font-size:12px;margin-bottom:18px}
+ .page .hero .intro{font-size:14px;margin-top:24px;line-height:1.8}
+ .page .hero .intro br{display:none}
+ .page .hero .actions{display:flex;flex-direction:column;gap:8px;margin-top:28px}
+ .page .hero .actions a{width:100%;min-height:52px;padding:12px 16px;min-width:0}
+ .heroBaseline{font-size:9px;letter-spacing:.09em;gap:12px}
+ .heroBaseline span:last-child{white-space:nowrap}
+ .sectionNavigator{display:grid;grid-template-columns:1fr 1fr;padding:12px 0}
+ .indexLabel{grid-column:1/-1;min-height:29px}
+ .sectionNavigator a{min-height:48px;justify-content:flex-start;padding:8px 10px;border-left:0;font-size:11px}
+ .page .section{padding:55px 0}
+ .page .heading h2{font-size:clamp(30px,8vw,42px)}
+ .page .heading{gap:12px}
+ .page .journeyGrid,.page .programmes,.page .ageGrid,.page .pathGrid{grid-template-columns:minmax(0,1fr)}
+ .page .journeyCard{padding:24px;min-height:0}
+ .page .journeyCard strong{font-size:27px;margin:20px 0 12px}
+ .page .programmes article{padding:25px}
+ .page .programmes h3{font-size:27px}
+ .page .nextStep{grid-template-columns:1fr;padding:44px 0}
+ .page .nextStepLinks{grid-template-columns:1fr}
+ .page .nextStepLinks a{min-height:58px}
+ .page .ageHub{padding:58px 0}
+ .page .ageCard{min-height:190px;padding:26px}
+ .page .ageCard strong{margin:18px 0 14px;font-size:57px}
+ .page .schoolSpotlight{padding:26px 23px;grid-template-columns:1fr}
+ .page .pathCard{min-height:0}
+ .page .hostCallout{padding:36px 24px}
+ .page .hostCallout h2{font-size:clamp(37px,9vw,50px)}
+ .page .aboutLinks{gap:8px 22px}
+}
+@media(prefers-reduced-motion:reduce){
+ .page .journeyCard,.page .programmes article,.page .ageCard,.sectionNavigator a{transition:none}
+}
