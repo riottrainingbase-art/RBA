@@ -108,7 +108,7 @@ export function RegionalProgram({ locale }: { locale: Locale }) {
         <p className={styles.eyebrow}>地域で学ぶ。その先へつながる。</p><h2 id="school-vision">いつもの体育館の先に、<br/>まだ知らないバスケがある。</h2>
         <p className={styles.lead}>クリニックで得た気づきを、普段の練習で試す。地域のコーチが学び続け、子どもたちの変化を見守る。その積み重ねを、全国の仲間や国内外の交流へつなげていくことがRBAのビジョンです。</p>
         <div className={styles.visionGrid}><article><span>日常の学び</span><h3>一度の刺激を、日々の成長へ。</h3><p>単発のクリニックに加え、課題に取り組み、振り返りながら学べる場所を目指します。</p></article><article><span>コーチの学び</span><h3>いい指導が、地域で続くように。</h3><p>地域のコーチを中心に、本部が教材・研修・指導の振り返りを支える体制を整えます。</p></article><article><span>地域から国内外へ</span><h3>新しい仲間と、違うバスケに出会う。</h3><p>全国クリニックやBACKBONE、海外交流など、RBAの活動を通じて視野を広げる機会をつくります。</p></article></div>
-        <div className={styles.actions}><a className={styles.secondary} href="/ja/our-work">全国・アジアでの開催実績を見る →</a><a className={styles.secondary} href="/ja/international">海外との活動を知る →</a></div>
+        <div className={styles.actions}><a className={styles.secondary} href="/ja/impact">全国・アジアでの開催実績を見る →</a><a className={styles.secondary} href="/ja/international">海外との活動を知る →</a></div>
         <p className={styles.note}>大会・遠征・海外交流は別の企画として募集します。スクールへの希望送信によって参加が決まるものではありません。</p>
       </section>
     </> : null}
