@@ -27,6 +27,12 @@ export default function Page() {
         </div>
         <p className="mt-4 text-sm leading-7 text-slate-300">メールアドレスを入力して、届いたログインリンクを開くだけ。お子さまの利用は保護者の方と一緒に進めてください。有料のHOMECOURT PLUSは任意です。下の振り返りメモは自動でアカウントに保存されないため、必要に応じてコピーしてください。</p>
       </section>
+      <section className="my-10 border-2 border-neutral-900 bg-neutral-50 p-6 md:p-8" aria-labelledby="growth-awards-after-clinic">
+        <p className="text-xs font-black tracking-[.2em]">RBA GROWTH AWARDS</p>
+        <h2 id="growth-awards-after-clinic" className="mt-3 text-2xl font-black">参加した日の学びを、次の挑戦へ。</h2>
+        <p className="mt-4 leading-8">クリニックの後に挑戦したことを、保護者から無料で報告できる成長表彰プログラムです。得点や勝敗で比べず、本人の気づきと行動を大切にします。</p>
+        <a href="/ja/growth-awards" data-growth-id="after-clinic-growth-awards" className="mt-5 inline-flex min-h-12 items-center bg-neutral-900 px-6 py-3 font-bold text-white">GROWTH AWARDS・申請方法を見る →</a>
+      </section>
       <ClinicReflection />
       <section className="py-10" aria-labelledby="parent-guide"><h2 id="parent-guide" className="text-2xl font-bold">保護者の方へ。まずは、本人の言葉を聞く。</h2><div className="mt-6 grid gap-5 md:grid-cols-3">{[
         ["帰り道は、感想から", "「どんなことが楽しかった？」「もう一度やってみたいことは？」。その場で答えが出なくても、急いで結論を出す必要はありません。"],
