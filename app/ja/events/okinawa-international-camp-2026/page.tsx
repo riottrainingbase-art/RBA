@@ -100,6 +100,7 @@ export default function Page() {
     </div><h3>RBA 1対1チャンピオンシップ</h3><p>初日の予選、2日目の順位リーグ・決勝を予定。同じくらいのレベルの選手と対戦する機会をつくり、3日目の閉会時に表彰する計画です。進行は人数・施設利用時間に合わせて調整します。</p></section>
     <section className={styles.section} id="schedule" aria-labelledby="schedule-heading">
       <p className={styles.label}>3-DAY SCHEDULE / 日本時間</p><h2 id="schedule-heading">3日間の詳細スケジュール（予定）</h2>
+      <p><strong>放課後・1日参加の第一候補は12月22日（火）です。</strong> 16:15ごろ受付、16:30〜17:30交流、17:45ごろお迎え（調整中）。12月23日・24日は追加希望日として受け付けます。 <a href="/ja/events/okinawa-international-camp-2026/after-school">日帰り参加の詳細・申込 →</a></p>
       <div className={scheduleStyles.notice}><strong>現在調整中のスケジュールです。</strong><p>体育館を利用できる時間に合わせて、集合・解散や食事の時間を調整しています。最終日は15:00まで活動し、15:30に解散する予定で施設・共同主催者と相談中です。午後の活動や昼食、退室後の荷物の保管については、決まり次第お知らせします。航空券や送迎の手配・変更は、集合・解散時間と施設の正式受入条件の確定後にお願いいたします。返金不可の航空券を先に予約しないでください。</p></div>
       {[
         { date: "12月22日（火）", theme: "CONNECT｜出会い、基礎をつくる", note: "午前中に受付とオリエンテーションを行い、午後からコートでの活動を始める予定です。体育館の利用時間は14:00〜18:00で調整しています。", rows: [
