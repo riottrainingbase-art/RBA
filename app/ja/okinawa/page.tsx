@@ -224,8 +224,8 @@ export default function OkinawaPage() {
               <article>
                 <p className={styles.mini}>NOVEMBER 2026</p>
                 <h3>沖縄バスケットボールクリニック</h3>
-                <p>11月14日予定。対象・会場の案内方法・参加費・申込条件を個別ページでご確認ください。</p>
-                <Link href="/ja/events/okinawa-clinic-2026-11-14" className={styles.textLink}>クリニックの詳細 <span aria-hidden="true">→</span></Link>
+                <p>2026年11月14日に開催済みです。ご参加ありがとうございました。参加後の振り返りと次回の活動情報をご確認ください。</p>
+                <Link href="/ja/after-clinic" className={styles.textLink}>参加後の振り返り <span aria-hidden="true">→</span></Link>
               </article>
               <article>
                 <p className={styles.mini}>DECEMBER 2026</p>
@@ -234,6 +234,27 @@ export default function OkinawaPage() {
                 <Link href="/ja/events/okinawa-international-camp-2026" className={styles.textLink}>国際キャンプの詳細 <span aria-hidden="true">→</span></Link>
               </article>
             </div>
+          </div>
+        </section>
+
+        <section className={styles.section} id="local-places" aria-labelledby="local-places-title">
+          <div className={styles.inner}>
+            <p className={styles.eyebrow}>OKINAWA / LOCAL CONNECTIONS</p>
+            <div className={styles.heading}>
+              <h2 id="local-places-title">沖縄のご縁から、地域のお店をご紹介。</h2>
+              <p>コートの外にも、地域の暮らしや文化に触れる場所があります。沖縄でのご縁を通じて知った店舗の公式情報をご案内します。</p>
+            </div>
+            <div className={styles.eventGrid}>
+              <article>
+                <p className={styles.mini}>SENAGAJIMA / TOMIGUSUKU</p>
+                <h3>親父のまぐろ 瀬長島ウミカジテラス店</h3>
+                <p>沖縄近海で獲れた天然の生まぐろにこだわる、豊見城市・瀬長島ウミカジテラスのまぐろ料理店です。</p>
+                <p>〒901-0233 沖縄県豊見城市字瀬長174-6 ウミカジテラス内14</p>
+                <p>営業時間：11:00〜21:00（ラストオーダー20:30）。営業時間や営業日は訪問前に店舗の公式案内をご確認ください。</p>
+                <a className={styles.textLink} href="https://oyajinomaguro.com/" target="_blank" rel="noopener noreferrer">お店の公式サイトを見る <span aria-hidden="true">↗</span></a>
+              </article>
+            </div>
+            <p className={styles.disclaimer}>この欄は地域の店舗情報の紹介であり、RBAに対する協賛・提携・後援や、当該店舗によるRBAの活動の保証を意味しません。</p>
           </div>
         </section>
 
