@@ -15,7 +15,7 @@ const copy = {
 export function HomecourtPage({locale}:{locale:Locale}) {
   const c=copy[locale];
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
-  const registrationUrl=authReady?homecourtFreeRegistrationUrl(locale):"https://lin.ee/5l1YG8N";
+  const registrationUrl=authReady?`${homecourtFreeRegistrationUrl(locale)}?source=homecourt-landing`:"https://lin.ee/5l1YG8N";
   const prefix=locale==="en"?"":`/${locale}`;
   const roleLabels=locale==="ja"?homecourtRoles:{
     players:{...homecourtRoles.players,label:locale==="en"?"For players":locale==="zh-tw"?"給球員":"선수"},
@@ -27,9 +27,17 @@ export function HomecourtPage({locale}:{locale:Locale}) {
       <a className="back-link" href={localePath(locale)}>← RBA</a>
       <p className="section-index inverse">RBA / MY HOME COURT</p>
       <h1>{c.title}</h1><p>{c.lead}</p>
-      <div className="homecourt-launch-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={18}/>{locale==="ja"&&!authReady?"登録再開のお知らせを受け取る":c.free}<ArrowRight size={17}/></a><a className="button button-light" href={`${prefix}/my-homecourt`}><House size={18}/>{c.start}<ArrowRight size={17}/></a></div>{locale==="ja"&&authReady?<p className="registration-note"><strong>登録無料・約1分。</strong> メールアドレスからRBA IDを作成し、PLAYER／PARENT／COACHから自分の入口を選べます。</p>:null}{locale==="ja"&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開のお知らせは公式LINEでご案内します。</p>:null}
+      <div className="homecourt-launch-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={18}/>{locale==="ja"&&!authReady?"登録再開のお知らせを受け取る":c.free}<ArrowRight size={17}/></a><a className="button button-light" href={`${prefix}/my-homecourt`}><House size={18}/>{c.start}<ArrowRight size={17}/></a></div>{locale==="ja"&&authReady?<p className="registration-note"><strong>RBA IDは無料・月額料金なし。</strong> メールアドレスを入力し、届いたリンクを開いて開始します。保護者・選手・指導者から自分の立場を選べます。有料プランへの申込は不要です。</p>:null}{locale==="ja"&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開のお知らせは公式LINEでご案内します。</p>:null}
       {locale!=="ja"?<div className="homecourt-price"><span>{c.price}</span><strong>¥{HOMECOURT_PRICE_JPY.toLocaleString("ja-JP")}</strong><small>{c.note}</small></div>:null}
     </section>
+    {locale==="ja"&&authReady?<section className="homecourt-start section-pad" aria-labelledby="homecourt-clinic-first-step">
+      <div><p className="section-index inverse">AFTER YOUR CLINIC</p><h2 id="homecourt-clinic-first-step">クリニックの学びを、次の練習に残そう。</h2></div>
+      <div>
+        <p>初めてRBAの活動に参加した方も、以前参加した方も、無料のRBA IDで参加経験や次の目標を整理できます。登録は任意で、参加費や出場機会には影響しません。</p>
+        <p><a className="button button-light" href="/ja/my-homecourt/login?source=after-clinic">参加後の無料登録へ<ArrowRight size={16}/></a></p>
+        <p><a className="text-link" href="/ja/after-clinic">登録せずに無料の振り返りを使う<ArrowRight size={16}/></a></p>
+      </div>
+    </section>:null}
     <section className="homecourt-role-section section-pad"><div className="section-head"><div><p className="section-index">PLAYER / PARENT / COACH</p><h2>{c.included}</h2></div><p>{c.includedBody}</p></div><div className="homecourt-role-grid">{Object.entries(roleLabels).map(([role,data])=><article key={role}><span>{data.shortLabel}</span><Users size={28}/><h3>{data.label}</h3>{locale==="ja"?<p>{data.description}</p>:null}<ul>{data.items.map(item=><li key={item}><Check size={15}/>{item}</li>)}</ul><a href={`${prefix}/my-homecourt/${role}`}>{data.label}<ArrowRight size={16}/></a></article>)}</div></section>
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
