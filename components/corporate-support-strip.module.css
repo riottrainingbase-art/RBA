@@ -182,3 +182,58 @@
   .productSupport { width:100%; grid-template-columns:116px minmax(0,1fr); gap:14px; padding:12px; min-height:88px; }
   .productText strong{font-size:13px}.productText small{font-size:10px}
 }
+
+
+/* Sponsor recognition is factual; the visual presentation should be as quiet as the rest of RBA. */
+.strip{background:#edeeea;color:#1a1d1a;border:0;border-top:1px solid #d7dad3;border-bottom:1px solid #d7dad3}
+.content{
+  display:grid;grid-template-columns:minmax(180px,.7fr) minmax(260px,1.2fr) minmax(240px,1fr);
+  align-items:stretch;gap:clamp(20px,3vw,40px);
+  max-width:1380px;margin-inline:auto;padding:clamp(32px,4vw,52px) clamp(18px,4.5vw,68px);
+}
+.heading{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+.eyebrow{font-size:10px;letter-spacing:.17em;font-weight:850;color:#686e68}
+.heading strong{font-size:clamp(22px,2.1vw,30px);font-weight:900;letter-spacing:-.04em;line-height:1.35}
+.category{font-size:12px;color:#606660}
+.records{display:flex;align-items:stretch;gap:12px;flex-wrap:wrap;min-width:0}
+.companyRecord{
+  flex:1 1 260px;min-width:0;max-width:none;background:#fff;
+  border:1px solid #d5d9d2;border-radius:0;box-shadow:none;
+}
+.companyBrand{background:#fff;padding:22px 24px;min-height:100px}
+.wordmark{font-size:clamp(20px,2vw,29px);font-weight:900;letter-spacing:.025em}
+.legalName{font-weight:800;color:#333733}
+.period{color:#6b716b}
+.companyLinks{border-top:1px solid #e1e4de}
+.companyLinks a{color:#2b302b;background:#fff;font-weight:800}
+.companyLinks a:hover{background:#f0f2ee}
+.actions{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:9px;min-width:0}
+.primaryCta,.secondaryCta{
+  min-height:52px;display:flex;justify-content:space-between;align-items:center;
+  padding:13px 18px;font-size:13px;font-weight:850;
+}
+.primaryCta{background:#1c1f1c;color:#fff;border:1px solid #1c1f1c}
+.primaryCta:hover,.primaryCta:focus-visible{background:#373c37}
+.secondaryCta{background:transparent;color:#1c1f1c;border:1px solid #747d75}
+.secondaryCta:hover,.secondaryCta:focus-visible{background:#e1e5de}
+.details{text-align:left;font-size:12px;color:#4c544d}
+.productSupport{
+  flex:1 1 320px;min-width:0;padding:16px;
+  background:#fff;color:#1c1f1c;border:1px solid #d5d9d2;box-shadow:none;
+}
+.productSupport:hover{border-color:#848d84;box-shadow:none}
+@media(max-width:1160px){
+ .content{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
+ .heading{grid-column:1}
+ .records{grid-column:2}
+ .actions{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;justify-content:flex-start}
+ .details{width:auto;align-self:center}
+}
+@media(max-width:720px){
+ .content{display:flex;flex-direction:column;gap:20px;padding:30px 20px}
+ .records{width:100%}
+ .companyRecord{max-width:none}
+ .actions{display:grid;grid-template-columns:1fr;gap:9px}
+ .primaryCta,.secondaryCta{width:100%;min-width:0}
+ .productSupport{flex-basis:auto;grid-template-columns:110px minmax(0,1fr)}
+}
