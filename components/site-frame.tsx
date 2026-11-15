@@ -47,6 +47,10 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"International","zh-tw":"國際交流",ko:"국제 교류",ja:"海外交流"})[locale],localePath(locale,"international")],
     [c.about,localePath(locale,"about")],
   ];
+  // Display only four first-level routes in the desktop header. The full index remains in the menu and footer.
+  const primaryNav: readonly (readonly [string,string])[] = locale==="ja"
+    ? [["開催予定","/ja/opportunities"],["育成記事","/ja/journal"],["海外交流","/ja/international"],["協賛・連携","/ja/partners"]]
+    : nav.slice(0,4);
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   // Always enter through the member app when auth is live. Existing sessions open immediately; signed-out users are redirected to login and returned to the app afterwards.
@@ -55,8 +59,8 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <a className="skip-link" href="#main-content">{({en:"Skip to content",ja:"本文へ移動","zh-tw":"跳至內容",ko:"본문으로 이동"})[locale]}</a>
     <header className={`site-header ${navigationStyles.header}`}>
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
-      <nav aria-label={ui(locale,"nav")}>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={locale==="ja"?"/ja/sendai-school":localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"スクール・体験を相談","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a>{nav.filter(([,href])=>href!==(locale==="ja"?"/ja/sendai-school":localePath(locale,"opportunities"))).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a><div className="mobile-menu-languages" role="group" aria-label="Language / 言語">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
+      <nav aria-label={ui(locale,"nav")}>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={locale==="ja"?"/ja/opportunities":localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"スクール・体験を相談","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a><a className="mobile-menu-member" href={memberHref}><House size={16} aria-hidden="true"/>{({en:"MY HOMECOURT / RBA ID",ja:"MY HOMECOURT・RBA ID","zh-tw":"MY HOMECOURT / RBA ID",ko:"MY HOMECOURT / RBA ID"})[locale]}<ArrowRight size={16} aria-hidden="true"/></a>{nav.filter(([,href])=>href!==(locale==="ja"?"/ja/opportunities":localePath(locale,"opportunities"))).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a><div className="mobile-menu-languages" role="group" aria-label="Language / 言語">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
       <div className="header-actions">
         <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"RBA ID",ja:"RBA ID","zh-tw":"RBA ID","ko":"RBA ID"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>
