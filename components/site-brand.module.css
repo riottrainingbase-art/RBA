@@ -30,3 +30,75 @@
 .theme :global(.mobile-menu-languages a[aria-current="true"]){background:#10233f;color:#fff;border-color:#10233f}
 
 /* Visual audit checkpoint: homepage, journal, about, international and mobile menu. */
+
+
+/* Editorial monochrome foundation shared by all RBA public pages. */
+.theme{
+  --ink:#171917;
+  --paper:#f8f8f5;
+  --orange:#242824;
+  --signal:#edeeea;
+  --line:#dbddd8;
+  --muted:#626862;
+  --rba-ink:#171917;
+  --rba-paper:#f8f8f5;
+  --rba-brass:#6a6d68;
+  --rba-line:#d9dcd5;
+  color:#171917;
+  background:#f8f8f5;
+}
+.theme :global(.site-header){
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid #daddd7;
+  backdrop-filter:blur(15px);
+  box-shadow:none;
+}
+.theme :global(.brand-logo){
+  border:0;background:transparent;padding:0;
+  width:40px;height:54px;object-fit:contain;
+}
+.theme :global(.site-update-strip){
+  display:flex;align-items:center;gap:14px;
+  min-height:44px;padding:9px clamp(18px,4vw,60px);
+  border-top:0;border-bottom:1px solid #e0e2dd;
+  background:#f1f2ef;color:#292d29;
+  font-size:12px;font-weight:700;
+}
+.theme :global(.site-update-strip > span:first-of-type){
+  letter-spacing:.09em;font-weight:850;font-size:10px;
+}
+.theme :global(.site-update-strip strong){font-size:12px;line-height:1.5}
+.theme :global(.site-update-cta){margin-left:auto;font-weight:850;white-space:nowrap}
+.theme :global(.site-footer){
+  background:#161816;color:#f8f9f5;
+  border-top:0;padding-top:clamp(48px,6vw,80px);
+}
+.theme :global(.site-footer a){color:#e9ebe6;text-decoration-thickness:1px}
+.theme :global(.site-footer a:hover){color:#fff;text-underline-offset:6px}
+.theme :global(.footer-brand p),.theme :global(.footer-label),.theme :global(.footer-legal){
+  color:#c7ccc7;
+}
+.theme :global(.footer-label){color:#8f9890;letter-spacing:.18em;font-size:11px}
+.theme :global(.button-dark),.theme :global(.button-orange),.theme :global(.programme-link){
+  color:#fff;background:#202320;border-color:#202320;
+}
+.theme :global(.button-dark:hover),.theme :global(.button-orange:hover){background:#3c413c}
+.theme :global(.button-light){color:#1a1c1a;background:#fff;border-color:#c9cdc7}
+.theme :global(.button-member){background:#edeeeb;color:#1c201c;border-color:#c7ccc6}
+.theme :global(.hero-grid),.theme :global(.opportunity-hero),.theme :global(.international-hero),.theme :global(.torsten-feature),.theme :global(.asia-desk-home),.theme :global(.field-footprint){
+  background-color:#191b19;color:#fff;
+}
+.theme :global(.paid-programmes){background:#f8f8f5;color:#191b19}
+.theme :global(.paid-programme-grid article){background:#fff;border-color:#d9ddd7}
+.theme :global(.programme-price){color:#191b19}
+.theme a:focus-visible,.theme button:focus-visible,.theme summary:focus-visible{
+  outline:3px solid #868f86;outline-offset:4px;
+}
+@media(max-width:650px){
+ .theme :global(.site-update-strip){gap:9px;padding:8px 16px;flex-wrap:wrap}
+ .theme :global(.site-update-strip strong){font-size:11px;flex:1 1 200px}
+ .theme :global(.site-update-cta){margin-left:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .theme :global(a),.theme :global(button){transition:none!important}
+}
