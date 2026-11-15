@@ -98,18 +98,20 @@ export default async function Page() {
           <p>体育館シューズ、運動着、飲み物をご持参ください。食事・送迎・宿泊は含まれません。</p>
         </article>
         <article className={styles.card}>
-          <h2>参加情報の入力とお支払い</h2>
+          <h2>参加申込とお支払い</h2>
+          {Date.now() < Date.parse("2026-12-22T16:15:00+09:00") && <>
+            <h3>1. 選手1名ずつ参加申込を提出</h3>
+            <p>保護者または18歳の選手本人が、連絡先と希望日を入力してください。RBAが開催条件と空きを確認し、ご案内します。</p>
+            <a className={styles.primary} href="https://form.jotform.com/263181825891061">放課後・1日参加を申し込む →</a>
+            <p className={styles.small}>送信時に料金は発生しません。日程・定員・参加費のご案内後に参加が確定します。</p>
+          </>}
+          <h3>2. 開催条件のご案内後にお支払い</h3>
           {checkout ? <>
             <p><strong>{checkout.price.toLocaleString("ja-JP")}円（税込・選手1名）</strong></p>
-            <p>Stripeの申込画面で、選手氏名、年齢・学年、保護者氏名、保護者のメールアドレスと電話番号を入力し、参加条件をご確認のうえお支払いください。</p>
-            <p>きょうだいで参加する場合は、選手1名ずつお手続きください。お支払い済みの場合は、重複手続きの前にRBAへお問い合わせください。</p>
-            <p>Stripeの支払い控えをご確認ください。RBAが入金と申込内容を照合し、保護者のメールアドレスへ当日の詳細をご案内します。</p>
+            <p>RBAから案内を受け取った方は、申込時と同じ連絡先メールアドレスをStripeに入力してください。入金を照合し、当日の詳細をご案内します。</p>
             <p><a href="/ja/cancellation">キャンセル・返金規定</a></p>
-            <a className={styles.primary} href={checkout.href}>Stripeで申込・決済へ →</a>
-          </> : <>
-            <p><strong>正式受付前です。</strong> 上記は候補日程です。開催条件と参加費の確定後、このページから申込・決済に進めるようになります。</p>
-            <a className={styles.primary} href="https://form.jotform.com/263182267951059">無料で参加希望を登録する →</a><p className={styles.small}>希望登録で席や支払いは確定しません。</p>
-          </>}
+            <a href={checkout.href}>案内を受け取った方のStripe決済へ →</a>
+          </> : <p>決済受付前です。開催条件と参加費が決まり次第、RBAからご案内します。</p>}
         </article>
       </div>
       <p>お問い合わせ <a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></p>
