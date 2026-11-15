@@ -35,7 +35,7 @@ export default function Page() {
   return <SiteFrame locale="ja"><div className={styles.page}>
     <OkinawaEarlyBird/>
     <section className={styles.hero}>
-      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#okinawa-resident-discount">プランを選んで申込・決済へ ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p><p><a href="#okinawa-domestic-prices"><strong>県外からの参加プラン ↓</strong></a></p><p><a href="#after-school"><strong>放課後・1日参加の相談へ ↓</strong></a></p><p><a href="#camp-coaches">キャンプコーチを紹介 ↓</a></p></div>
+      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#after-school">放課後・1日参加プランを見る ↓</a><p><a href={registration}><strong>3日間の通い・宿泊プランを見る →</strong></a></p><p><a href="#camp-coaches">キャンプコーチを紹介 ↓</a></p></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p><strong>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</strong><br/>{OKINAWA_CAMP_LOGISTICS.address}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
     <OkinawaCampGrowthPanel placement="event" />
@@ -44,13 +44,20 @@ export default function Page() {
     <section className={styles.section} id="after-school" aria-labelledby="after-school-heading">
       <p className={styles.label}>LOCAL / AFTER SCHOOL</p>
       <h2 id="after-school-heading">学校が終わってから、1日だけでも。</h2>
-      <p>学校がある時期に合わせ、12月22日（火）〜24日（木）のうち、放課後に1回だけ参加できる短時間の交流枠を調整しています。沖縄県内の7〜18歳を対象に、海外の選手と少人数ゲームや交流試合に取り組む内容を予定しています。</p>
+      <p>海外の同世代と同じコートで、放課後に1回だけ。沖縄県内の7〜18歳を対象に、宿泊なし・現地集合と解散で参加できる短時間の交流枠を準備しています。</p>
       <div className={styles.columns}>
         <article className={styles.card}>
           <h3>放課後・1日参加（調整中）</h3>
-          <p>現地集合・現地解散の日帰り枠です。放課後に到着できる日と時刻をお知らせください。実施日・集合解散時刻・参加費は、体育館の利用時間と受入体制を確認してからご案内します。</p>
+          <p><strong>第一候補は12月22日（火）・糸満青少年の家です。</strong></p>
+          <ul>
+            <li>16:15ごろ　受付・健康確認</li>
+            <li>16:30〜17:30　少人数ゲーム・海外選手との交流</li>
+            <li>17:30〜17:45ごろ　振り返り・お迎え</li>
+          </ul>
+          <p>時間は候補です。22日に間に合わない場合は23日・24日も希望をお知らせください。追加枠は体育館の利用時間とスタッフ配置に応じて判断します。</p>
+          <p>体育館シューズ、運動着、飲み物をご用意ください。現地集合・現地解散で、食事・送迎・宿泊は含まれません。</p>
           <a className={styles.primary} href={afterSchoolContact}>放課後・1日参加をメールで相談する ↗</a>
-          <p className={styles.small}>相談は無料です。メールの送信後、開催条件が確定した段階で申込方法をご案内します。</p>
+          <p className={styles.small}>参加希望の相談は無料です。メール送信で参加枠は確定しません。実施日、集合・解散時刻、参加費が決まり次第、正式な申込方法をご案内します。</p>
         </article>
         <article className={styles.card}>
           <h3>3日間の通い・宿泊をご希望の方</h3>
