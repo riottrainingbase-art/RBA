@@ -17,6 +17,16 @@ export default function Page() {
       <a href="/ja" className="text-sm underline underline-offset-4">← RBAトップ</a>
       <header className="my-8"><p className="text-xs font-bold tracking-widest">AFTER THE CLINIC</p><h1 className="mt-4 text-3xl font-bold leading-relaxed md:text-5xl">参加した日の学びを、<br/>次の練習へ。</h1><p className="mt-5 max-w-3xl leading-8">楽しかったこと、難しかったこと、もう一度試したいこと。全部を一度に直そうとせず、選手自身が次に取り組みたいことを一つ選びましょう。初めて参加した方も、久しぶりの方も、登録なしで使えます。</p></header>
       <section className="my-6 border border-slate-300 bg-slate-50 p-6"><h2 className="text-xl font-bold">ここから、保護者・指導者と一緒に。</h2><p className="my-3 leading-8">下の振り返りから、次に試すこと・周りの役割・振り返る日を一枚の計画にできます。地域で続ける方法から、キャンプや海外交流まで、目的に合わせて相談できます。</p><a href="/ja/development-projects#plan" className="inline-flex min-h-12 items-center font-bold underline" data-growth-id="reflection-development-project">次の一歩を一緒に考える →</a></section>
+      <section className="my-8 rounded-xl border border-[#10233f] bg-[#10233f] p-6 text-white md:p-8" aria-labelledby="clinic-rba-id">
+        <p className="text-xs font-bold tracking-widest text-slate-300">BASKETBALL PASSPORT / 無料RBA ID</p>
+        <h2 id="clinic-rba-id" className="mt-3 text-2xl font-bold leading-relaxed md:text-3xl">その日の経験を、次の挑戦につなげる。</h2>
+        <p className="mt-4 max-w-3xl leading-8">RBAのクリニックに参加した方へ。無料のRBA IDを作ると、MY HOME COURTからお子さまの参加経験や次の目標を記録し、次回の育成機会を探せます。現在の所属チームはそのまま。入会金や月額料金は必要ありません。</p>
+        <div className="mt-6 flex flex-wrap items-center gap-4">
+          <a href="/ja/my-homecourt/login?source=after-clinic" data-growth-id="after-clinic-free-rba-id" className="inline-flex min-h-12 items-center justify-center rounded-md bg-white px-5 py-3 text-center font-bold text-[#10233f]">保護者が無料でRBA IDを作る →</a>
+          <a href="/ja/home-court" data-growth-id="after-clinic-free-details" className="inline-flex min-h-12 items-center underline underline-offset-4">無料と有料の違いを見る</a>
+        </div>
+        <p className="mt-4 text-sm leading-7 text-slate-300">メールアドレスを入力して、届いたログインリンクを開くだけ。お子さまの利用は保護者の方と一緒に進めてください。有料のHOMECOURT PLUSは任意です。下の振り返りメモは自動でアカウントに保存されないため、必要に応じてコピーしてください。</p>
+      </section>
       <ClinicReflection />
       <section className="py-10" aria-labelledby="parent-guide"><h2 id="parent-guide" className="text-2xl font-bold">保護者の方へ。まずは、本人の言葉を聞く。</h2><div className="mt-6 grid gap-5 md:grid-cols-3">{[
         ["帰り道は、感想から", "「どんなことが楽しかった？」「もう一度やってみたいことは？」。その場で答えが出なくても、急いで結論を出す必要はありません。"],
@@ -28,7 +38,7 @@ export default function Page() {
         ["自分の地域でも開催してほしい", "次回の日程が出ていない地域は、無料で開催希望を登録できます。", "/ja/clinic-interest", "開催希望を登録する", "return-interest"],
         ["チームのみんなと学びたい", "訪問指導や継続支援の内容を確認し、成人の担当者から相談できます。", "/ja/team-development", "チーム開催・継続支援を見る", "return-team"],
         ["学びや経験を残したい", "RBA IDを使う活動記録は、MY HOME COURTから。利用方法を確認できます。", "/ja/my-homecourt", "MY HOME COURTを見る", "return-record"],
-      ].map(([title,body,href,cta,id]) => <article key={id} className="flex flex-col border border-slate-300 p-6"><h3 className="text-lg font-bold">{title}</h3><p className="my-3 text-sm leading-7">{body}</p><a className="mt-auto inline-flex min-h-12 items-center font-bold underline underline-offset-4" href={href} data-growth-id={id}>{cta} →</a></article>)}</div><p className="mt-5 text-sm leading-7">開催希望登録は、参加申込ではありません。開催を計画できる場合に条件をご案内します。海外との交流に関心がある方は、<a className="underline underline-offset-4" href="/ja/international" data-growth-id="return-international">交流の考え方と相談窓口</a>をご覧ください。</p></section>
+      ].map(([title,body,href,cta,id]) => <article key={id} className="flex flex-col border border-slate-300 p-6"><h3 className="text-lg font-bold">{title}</h3><p className="my-3 text-sm leading-7">{body}</p><a className="mt-auto inline-flex min-h-12 items-center font-bold underline underline-offset-4" href={id==="return-record"?"/ja/my-homecourt/login?source=after-clinic":href} data-growth-id={id}>{cta} →</a></article>)}</div><p className="mt-5 text-sm leading-7">開催希望登録は、参加申込ではありません。開催を計画できる場合に条件をご案内します。海外との交流に関心がある方は、<a className="underline underline-offset-4" href="/ja/international" data-growth-id="return-international">交流の考え方と相談窓口</a>をご覧ください。</p></section>
       <section className="border-t border-slate-300 py-8"><h2 className="text-xl font-bold">チームを離れても、続け方は考えられる。</h2><p className="mt-4 leading-8">今の環境が合わない時は、休むことも含めて本人の気持ちを聞き、一緒に次の機会を探しましょう。スクールやクリニックの参加条件と、公式大会の選手登録・移籍条件はそれぞれ確認が必要です。</p><a className="mt-4 inline-flex min-h-12 items-center font-bold underline underline-offset-4" href="/ja/contact" data-growth-id="return-consult">参加について相談する →</a></section>
     </div>
   </SiteFrame></div>;
