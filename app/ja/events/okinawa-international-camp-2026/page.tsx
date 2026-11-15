@@ -56,7 +56,8 @@ export default function Page() {
           </ul>
           <p>時間は候補です。22日に間に合わない場合は23日・24日も希望をお知らせください。追加枠は体育館の利用時間とスタッフ配置に応じて判断します。</p>
           <p>体育館シューズ、運動着、飲み物をご用意ください。現地集合・現地解散で、食事・送迎・宿泊は含まれません。</p>
-          <a className={styles.primary} href={afterSchoolContact}>放課後・1日参加をメールで相談する ↗</a>
+          <a className={styles.primary} href="/ja/events/okinawa-international-camp-2026/after-school">放課後・1日参加の受付状況を見る →</a>
+          <p><a href={afterSchoolContact}>希望日・到着時刻をメールで相談する ↗</a></p>
           <p className={styles.small}>参加希望の相談は無料です。メール送信で参加枠は確定しません。実施日、集合・解散時刻、参加費が決まり次第、正式な申込方法をご案内します。</p>
         </article>
         <article className={styles.card}>
