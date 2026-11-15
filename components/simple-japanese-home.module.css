@@ -307,7 +307,7 @@
 .page .hero .label span{color:#80847f;padding:0 7px}
 .heroIssue,.heroBaseline{color:#a9ada9;font-size:10px;font-weight:750;letter-spacing:.17em}
 .heroBody{position:relative;z-index:1;max-width:930px;padding:clamp(52px,7vw,106px) 0}
-.heroEyebrow{color:#d2d6d2;margin:0 0:24px;font-size:clamp(13px,1.45vw,16px);font-weight:700;letter-spacing:.07em}
+.heroEyebrow{color:#d2d6d2;margin:0 0 24px;font-size:clamp(13px,1.45vw,16px);font-weight:700;letter-spacing:.07em}
 .page .hero h1{
   max-width:970px;margin:0; font-weight:900;
   font-size:clamp(43px,6.1vw,90px);line-height:1.14;
