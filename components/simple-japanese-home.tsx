@@ -10,24 +10,24 @@ const entryPoints = [
   {
     id: "family",
     number: "01 / PARENTS",
-    title: "保護者・選手の方",
-    description: "出場機会、チーム選び、練習量。子どもの成長を考える記事と、参加できる活動を探せます。",
+    title: "選手・保護者",
+    description: "練習、出場機会、チーム選び。成長につながる選択肢を探す。",
     href: "/ja/families",
     action: "保護者向けの入口へ",
   },
   {
     id: "coach",
     number: "02 / COACHES",
-    title: "指導者・チームの方",
-    description: "練習設計や状況判断を学ぶ。育成記事、オンライン講習、現場での交流につなげます。",
+    title: "指導者・チーム",
+    description: "技術を試合へつなぐ。練習設計、講習、育成記事を学ぶ。",
     href: "/ja/coaches",
     action: "指導者の学びへ",
   },
   {
     id: "partner",
     number: "03 / PARTNERS",
-    title: "企業・地域の方",
-    description: "地域の育成を支える協賛や、学校・クラブ・自治体と一緒につくる活動をご相談いただけます。",
+    title: "企業・地域",
+    description: "次の育成環境をつくる。開催支援や協賛・連携を相談する。",
     href: "/ja/partners",
     action: "連携・協賛の相談へ",
   },
@@ -73,18 +73,36 @@ export async function SimpleJapaneseHome() {
           <GrowthClickTracking />
 
           <section className={styles.hero} aria-labelledby="rba-home-title">
-            <p className={styles.label}>RIOT BASKETBALL ACADEMY / SENDAI · JAPAN · ASIA</p>
-            <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-            <p className={styles.intro}>RBAは仙台市太白区を拠点に、選手・保護者・指導者の学びと挑戦をつなぎます。<br />まずは、あなたに合った入口をお選びください。</p>
-            <nav className={styles.actions} aria-label="最初に選ぶ案内">
-              <a className={styles.primary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口を探す →</a>
-              <a className={styles.secondary} data-growth-id="home-primary-events" href="#home-programmes">募集中の活動を見る →</a>
-            </nav>
+            <div className={styles.heroTopline}>
+              <p className={styles.label}>RIOT BASKETBALL ACADEMY <span aria-hidden="true">/</span> SENDAI · JAPAN · ASIA</p>
+              <span className={styles.heroIssue}>PLAYER DEVELOPMENT / 2026</span>
+            </div>
+            <div className={styles.heroBody}>
+              <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
+              <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
+              <p className={styles.intro}>選手が挑戦し、指導者が学び、地域がつながる。<br />RBAは仙台から全国・アジアへ、次のコートをひらきます。</p>
+              <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
+                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
+              </nav>
+            </div>
+            <div className={styles.heroBaseline}>
+              <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
+              <span>SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span>
+            </div>
           </section>
+
+          <nav className={styles.sectionNavigator} aria-label="このページの目次">
+            <span className={styles.indexLabel}>INDEX</span>
+            <a href="#rba-for-you">01　目的から探す</a>
+            <a href="#home-programmes">02　現在の活動</a>
+            <a href="#home-partners">03　協賛・パートナー</a>
+            <a href="#home-host">04　地域で開催する</a>
+          </nav>
 
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">どなたですか？</h2></div>
+              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">あなたに合う、<span className={styles.headingEmphasis}>次の一歩。</span></h2></div>
             </div>
             <nav className={styles.journeyGrid} aria-label="保護者・指導者・企業の目的別入口">
               {entryPoints.map(item => (
@@ -101,7 +119,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">次の活動に参加する</h2></div>
+              <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">次のコートが、<span className={styles.headingEmphasis}>ここにある。</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
             {active.length ? (
@@ -110,14 +128,14 @@ export async function SimpleJapaneseHome() {
                   const href = p.japaneseInfoPath || (p.detailPath ? localePath("ja", p.detailPath) : p.applicationUrl);
                   const external = /^https?:\/\//.test(href);
                   return <article key={p.id}>
-                    <p className={styles.date}>{tr(p.date, "ja")}</p>
+                    <div className={styles.programmeMeta}><p className={styles.date}>{tr(p.date, "ja")}</p><span className={styles.programmeCategory}>{p.category === "COACH" ? "COACH LEARNING" : p.category === "TRAVEL" ? "CAMP / EXCHANGE" : "TRAINING"}</span></div>
                     <h3>{tr(p.title, "ja")}</h3>
                     <p className={styles.place}>{tr(p.place, "ja")}</p>
                     <dl>
                       <div><dt>対象</dt><dd>{tr(p.audience, "ja")}</dd></div>
                       <div><dt>費用</dt><dd>{tr(p.price, "ja")}</dd></div>
                     </dl>
-                    <a data-growth-id={"home-programme-" + p.id} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>詳細・申込方法を見る →</a>
+                    <a data-growth-id={"home-programme-" + p.id} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>公式案内・参加条件を見る <span aria-hidden="true">↗</span></a>
                   </article>;
                 })}
               </div>
