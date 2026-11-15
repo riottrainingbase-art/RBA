@@ -66,6 +66,8 @@ jobs:
 
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
+      - name: Site-wide route sitemap and expired registration audit
+        run: node audit/site-wide/check.mjs
 
       - name: MY HOME COURT growth privacy and trend regression
         run: node --test tests/homecourt-growth-visualization.test.mjs
