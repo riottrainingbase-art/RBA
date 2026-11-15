@@ -48,7 +48,7 @@ ensure(sitemapMissing.length===0,"sitemap-404","Missing public routes: "+sitemap
 const hasAppRoute=url=>{
   const normalized=url.replace(/\/+$/,"")||"/";
   if(routes.has(normalized))return true;
-  return routes.some(route=>{
+  return [...routes].some(route=>{
     const a=route.split("/").filter(Boolean),b=normalized.split("/").filter(Boolean);
     const catchall=a.findIndex(seg=>/^\[\[?\.\.\./.test(seg));
     if(catchall<0&&a.length!==b.length)return false;
