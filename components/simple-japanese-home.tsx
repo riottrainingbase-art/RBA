@@ -215,6 +215,7 @@ export async function SimpleJapaneseHome() {
             <a className={styles.textLink} href="/ja/about">RBAについて →</a>
             <a className={styles.textLink} href="/ja/approach">育成方針 →</a>
             <a className={styles.textLink} href="/ja/regions">活動地域 →</a>
+            <a className={styles.textLink} href="/ja/okinawa#local-places">沖縄の活動・地域情報 →</a>
             <a className={styles.textLink} href="/ja/policies">規約・安全方針 →</a>
             <a className={styles.textLink} href="/ja/store" data-growth-id="home-performance-tee">RBA公式ウェア →</a>
             <a className={styles.textLink} href="/ja/links">Instagram用リンク集 →</a>
