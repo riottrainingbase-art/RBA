@@ -94,3 +94,31 @@ test("RBA handles marketing and buyer payment while Risa fulfillment contract ga
   assert.match(roles,/前払いの注文承諾メール/);
   assert.doesNotMatch(roles,/顧客情報を無制限に共有/);
 });
+
+
+test("only authorized production users can view and advance paid orders",()=>{
+  const page=read("app/ja/essentials/production/page.tsx");
+  const action=read("app/ja/essentials/production/actions.ts");
+  assert.match(page,/\.auth\.getUser\(\)/);
+  assert.match(page,/rba_essentials_fulfillment_agents/);
+  assert.match(page,/role==="admin"/);
+  assert.match(page,/payment_status","paid"/);
+  assert.doesNotMatch(page,/shipping\.address|shipping_details|customer_details/);
+  assert.match(action,/\.auth\.getUser\(\)/);
+  assert.match(action,/rba_essentials_fulfillment_agents/);
+  assert.match(action,/payment_status!=="paid"/);
+  assert.match(action,/transitions\[old\]/);
+  assert.match(action,/tracking_reference/);
+});
+
+test("production ticket is created only from a recorded order and is private",()=>{
+ const migration=read("supabase/migrations/20261116221000_rba_essentials_fulfillment_handoff.sql");
+ const release=read("lib/essentials-commerce.ts");
+ assert.match(migration,/after insert on public\.rba_essentials_orders/);
+ assert.match(migration,/insert into public\.rba_essentials_fulfillment_tasks/);
+ assert.match(migration,/rba_essentials_fulfillment_audit_trg/);
+ assert.match(migration,/revoke all on public\.rba_essentials_fulfillment_agents from anon, authenticated/);
+ assert.match(migration,/revoke all on public\.rba_essentials_fulfillment_tasks from anon, authenticated/);
+ assert.match(release,/RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED/);
+ assert.match(release,/RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED/);
+});
