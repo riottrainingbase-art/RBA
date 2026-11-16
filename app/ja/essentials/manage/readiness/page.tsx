@@ -10,7 +10,8 @@ import { SiteFrame } from "@/components/site-frame";
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:"RBA ESSENTIALS｜販売前の確認（管理者限定）",robots:{index:false,follow:false}};
 const gates=[
- ["RBA_ESSENTIALS_MANUFACTURING_CONFIRMED","製造委託と工程"],
+ ["RBA_ESSENTIALS_MANUFACTURING_CONFIRMED","りささんの製造・工程・品質管理体制"],
+ ["RBA_ESSENTIALS_RISA_FULFILLMENT_AGREEMENT_APPROVED","りささんとの製作・発送・個人情報の委託契約"],
  ["RBA_ESSENTIALS_SAMPLES_APPROVED","現物サンプルを検品"],
  ["RBA_ESSENTIALS_PHOTOS_APPROVED","実物写真への差替え"],
  ["RBA_ESSENTIALS_SIZE_CHART_APPROVED","サイズ実寸表"],
