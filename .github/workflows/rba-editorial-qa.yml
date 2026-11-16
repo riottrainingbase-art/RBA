@@ -3,6 +3,7 @@ name: RBA Japanese Editorial QA
 on:
   pull_request:
     branches:
+      - release/instagram-conversion-hub-20261117
       - preview-rba
       - main
     paths:
