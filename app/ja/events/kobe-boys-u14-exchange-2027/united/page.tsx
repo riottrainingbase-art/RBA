@@ -5,7 +5,7 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
  title: "RBA UNITED JAPAN｜神戸2027 男子U14選抜プログラム・前金案内",
- description: "選抜育成プログラム参加費10万円、選考・正式条件承認後に前金5万円、残金5万円。一般交流参加とは別商品。宿泊・移動の協賛は交渉中で、現時点で無料提供は確約していません。",
+ description: "準備・国際対戦・振り返りを一体として考える男子U14選抜育成プログラム。参加費10万円、選考・正式条件承認後に前金5万円、残金5万円。一般交流参加とは別商品。宿泊・移動の協賛は交渉中で、現時点で無料提供は確約していません。",
  alternates: {canonical:"/ja/events/kobe-boys-u14-exchange-2027/united"},
  robots: {index:false,follow:false},
 };
@@ -34,10 +34,27 @@ export default async function Page({searchParams}:{searchParams:Promise<{token?:
   </div></header>
   <section className="bg-[#f2691b] px-5 py-14"><div className="mx-auto max-w-5xl">
    <p className="text-xs font-black tracking-[.2em]">RBA UNITED JAPAN / SELECTED BOYS U14</p>
-   <h1 className="mt-4 text-[clamp(2.1rem,6vw,4.6rem)] font-black leading-tight">同じコートで、<br/>世界と戦うための準備。</h1>
+   <h1 className="mt-4 text-[clamp(2.1rem,6vw,4.6rem)] font-black leading-tight">これは、一度きりの試合への<br/>招待ではありません。</h1>
    <p className="mt-4 max-w-3xl text-lg font-black leading-8">2027年1月｜神戸・関西 男子U14選抜育成プログラム</p>
    <p className="mt-5 max-w-3xl text-sm font-bold leading-8">RBA代表・西尾優人がヘッドコーチを担当する日本側の選抜活動。国内の一般交流試合参加とは別のプログラムです。選考希望の受付は無料です。</p>
   </div></section>
+  <section className="mx-auto max-w-5xl px-5 py-12">
+   <p className="text-xs font-black tracking-[.2em] text-[#da570a]">MORE THAN A TOURNAMENT</p>
+   <h2 className="mt-3 max-w-4xl text-3xl font-black leading-tight sm:text-4xl">参加した日数ではなく、<br/>経験の質を高めるための選抜育成。</h2>
+   <p className="mt-5 max-w-3xl text-sm leading-8">RBA UNITEDは、所属チームの枠を越えて集まる選手が「何を見るか」を準備し、異なるプレースタイルの相手に自分で判断して挑み、その経験を日常の練習へ持ち帰る流れを大切にします。単なる試合への出場枠と、選抜チームとしての育成活動は別のものです。</p>
+   <div className="mt-7 grid gap-3 md:grid-cols-3">
+    {[
+     ["01 / PREPARE","準備する","選抜後の課題共有、チームの役割と判断の事前整理を検討しています。"],
+     ["02 / COMPETE","世界と試す","1月5日の日本側チーム練習、1月6〜7日のグアムとの国際交流を調整しています。"],
+     ["03 / REFLECT","次へつなぐ","振り返りや個別フィードバックを含む事後の学びを検討しています。"],
+    ].map(([number,title,body])=><div className="border border-black/20 bg-white p-5" key={number}>
+     <p className="text-xs font-black tracking-wider text-[#cf5414]">{number}</p>
+     <h3 className="mt-3 text-xl font-black">{title}</h3>
+     <p className="mt-3 text-sm leading-8 text-black/75">{body}</p>
+    </div>)}
+   </div>
+   <p className="mt-5 text-xs leading-7 text-black/65">各活動の実施内容・回数・時間・会場・映像撮影の可否は現在調整中です。正式な提供範囲は、前金請求より前に保護者へ書面でご案内します。</p>
+  </section>
   <section className="mx-auto max-w-5xl px-5 py-12">
    <p className="text-xs font-black tracking-[.2em] text-[#da570a]">PROGRAMME FEE / CURRENT PROPOSAL</p>
    <h2 className="mt-3 text-3xl font-black">選抜プログラム料金</h2>
