@@ -18,10 +18,6 @@ const yen = (v: string | undefined) => {
   const n = Number(v);
   return Number.isSafeInteger(n) && n > 0 ? n : null;
 };
-const nonnegativeYen = (v: string | undefined) => {
-  if (v === "0") return 0;
-  return yen(v);
-};
 const safeDate = (s: string | undefined) => {
   if (!s || !/^20\d{2}-\d{2}-\d{2}$/.test(s) || Number.isNaN(Date.parse(s+"T00:00:00+09:00"))) return null;
   // Do not take money after the published dispatch deadline.
