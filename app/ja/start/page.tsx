@@ -90,6 +90,18 @@ const events: Entry[] = [
     note: "施設から受入可能との回答あり。宿泊の正式日数・責任者・体育館時間・送迎は最終調整中です。",
     until: "2026-12-24",
   },
+  {
+    id: "okinawa-after-school",
+    when: "12月22日（火）放課後・第一候補 / 沖縄・糸満",
+    title: "沖縄国際ユースキャンプ｜放課後・1日参加",
+    audience: "沖縄県内在住の7〜18歳",
+    price: "参加費は確定後に案内",
+    detail: "16:15ごろ受付、16:30〜17:30国際交流ゲーム、17:45ごろお迎え（調整中）。",
+    href: "/ja/events/okinawa-international-camp-2026/after-school",
+    cta: "放課後・1日参加を申し込む",
+    note: "12月23日・24日は追加希望日として受付。送信時の支払いはありません。",
+    until: "2026-12-22",
+  },
 ];
 
 const ongoing: Entry[] = [

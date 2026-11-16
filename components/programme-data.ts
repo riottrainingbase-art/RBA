@@ -3,6 +3,7 @@ import type { Text4 } from "./network-data";
 
 export type ProgrammeId =
   | "okinawa-december-camp"
+  | "okinawa-after-school"
   | "okinawa-nov14"
   | "kagoshima-nov29"
   | "yaima"
@@ -82,6 +83,18 @@ export const programmes: readonly Programme[] = [
     payment:["Facility has agreed to host the programme. Two-night paperwork, the responsible supervising adult, gym slots, transfers and inclusions are being finalized; confirm terms before booking non-refundable travel.","施設から利用可能との回答を受領。2泊3日の日数確認・引率責任者・体育館時間・送迎・料金内訳は最終調整中です。返金不可の交通手配の前に詳細をご確認ください。","場地方已回覆可受理，兩晚住宿手續、帶隊成人、體育館時段與接駁仍在協調中。預訂不可退款機票前請先確認條件。","시설 이용 가능 회신을 받았습니다. 2박 숙박 서류, 성인 인솔 책임자, 체육관 시간과 교통편은 최종 조율 중입니다. 환불 불가 항공권 예약 전 조건을 확인하세요."],
     japaneseInfoPath:"/ja/events/okinawa-international-camp-2026",
     applicationUrl:"https://okinawa.camp/",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15"],
+  },
+  {
+    id:"okinawa-after-school",startDate:"2026-12-22",
+    date:["22 DEC 2026 · after school (proposed)","2026年12月22日（火）放課後・第一候補","2026年12月22日（二）放學後（首選日期，待確認）","2026년 12월 22일(화) 방과 후 · 우선 후보"],
+    datePrimary:["22 DEC","12月22日","12月22日","12월 22일"],
+    dateSecondary:["16:15–17:45 JST · proposed","16:15〜17:45ごろ（調整中）","16:15–17:45 日本時間（暫定）","16:15–17:45 일본 시간 · 조율 중"],
+    title:["Okinawa Youth Camp · After-school Day Visit","沖縄国際ユースキャンプ｜放課後・1日参加","沖繩國際青少年籃球營｜放學後單日參加","오키나와 국제 유소년 캠프 · 방과 후 하루 참가"],
+    place:["Itoman Youth Center · pending","糸満青少年の家（調整中）","糸滿青少年之家（協調中）","이토만 청소년의 집 · 조율 중"],
+    price:["Fee pending","参加費は確定後に案内","費用確認後另行通知","참가비 확정 후 안내"],
+    audience:["Okinawa residents aged 7–18","沖縄県内在住の7〜18歳","居住於沖繩縣的7–18歲球員","오키나와현 거주 7–18세"],
+    payment:["Applications open. No payment at submission. 23–24 December are additional preferences only.","申込受付中。送信時の決済なし。12月23日・24日は追加希望日として受付。","已開放報名，送出時無須付款。12月23日、24日僅受理加開意願。","신청 접수 중이며 제출 시 결제하지 않습니다. 12월 23·24일은 추가 희망일입니다."],
+    japaneseInfoPath:"/ja/events/okinawa-international-camp-2026/after-school",applicationUrl:"/ja/events/okinawa-international-camp-2026/after-school",region:"okinawa",category:"TRAIN",pathway:"development-camp",ageGroups:["U8","U10","U12","U15","U18"],
   },
   {
     id:"okinawa-nov14",startDate:"2026-11-14",registrationClosed: true,
