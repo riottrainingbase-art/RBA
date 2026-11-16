@@ -6,11 +6,11 @@ import styles from "./start.module.css";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "参加・体験・開催相談の入口｜RBA・RTB",
+  title: "RBA公式案内｜クリニック・スクール・育成を学ぶ",
   description: "全国のRBAクリニック・キャンプ、仙台スクール、指導者向け講習、RTB体験、地域開催と企業・海外連携。あなたの目的に合う公式の申込・無料相談へ進めます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/start" },
   openGraph: {
-    title: "RBA｜次の一歩を選ぶ",
+    title: "RBA｜参加する・学ぶ・相談する",
     description: "参加する、学ぶ、体験する、チームに呼ぶ。公式の申込・相談先を目的別に整理しました。",
     url: "https://riotbasketballacademy.com/ja/start",
     type: "website",
@@ -107,7 +107,7 @@ const ongoing: Entry[] = [
     title: "RTB｜見学・15分相談",
     audience: "一般の方・競技者・保護者",
     price: "初回相談・見学の受付",
-    detail: "自分に合う運動・トレーニングの入口を相談。日時や有料プランは個別に確認します。",
+    detail: "目的や身体の状態に合う運動を一緒に考えます。日時や料金は、相談後に個別にご案内します。",
     href: "https://form.jotform.com/262724288973067",
     cta: "見学・無料相談フォーム",
     note: "Riot Training Baseの受付です。相談送信だけで有料契約にはなりません。",
@@ -231,7 +231,7 @@ export default function StartPage() {
         <a className={styles.back} href="/ja">← RBAトップへ</a>
         <header className={styles.hero}>
           <p className={styles.kicker}>RBA / RTB · START HERE</p>
-          <h1>今の自分に合う、<br/>次の一歩を。</h1>
+          <h1>参加する。学ぶ。<br/>未来を広げる。</h1>
           <p className={styles.lead}>参加する。体験する。指導者として学ぶ。チームや地域に呼ぶ。あなたの目的から、正しい公式申込・相談先へ進めます。</p>
           <nav className={styles.chips} aria-label="目的から探す">
             <a href="#events">直近のイベント</a>
@@ -242,30 +242,30 @@ export default function StartPage() {
           <p className={styles.disclaimer}>料金の発生・申込確定の条件は、各リンク先でご確認ください。無料の相談だけでは申込や決済は成立しません。</p>
         </header>
         <section className={styles.section} id="events" aria-labelledby="start-events">
-          <div className={styles.sectionHead}><div><p className={styles.kicker}>01 / UPCOMING</p><h2 id="start-events">直近のクリニック・キャンプ</h2><p>日程が近いものから確認できます。会場や宿泊が調整中の企画は、その旨を記載しています。</p></div><a className={styles.more} href="/ja/opportunities" data-growth-id="start-all-opportunities">地域・年代から探す →</a></div>
+          <div className={styles.sectionHead}><div><p className={styles.kicker}>01 / UPCOMING</p><h2 id="start-events">開催予定のクリニック・キャンプ</h2><p>日程が近いものから確認できます。会場や宿泊が調整中の企画は、その旨を記載しています。</p></div><a className={styles.more} href="/ja/opportunities" data-growth-id="start-all-opportunities">地域・年代から探す →</a></div>
           {currentEvents.length ? <EntryCards items={currentEvents} section="event" /> : <p>現在、この一覧で案内できる直近イベントはありません。<a href="/ja/opportunities">活動一覧をご覧ください。</a></p>}
         </section>
         <section className={styles.section} id="regular" aria-labelledby="start-regular">
-          <div className={styles.sectionHead}><div><p className={styles.kicker}>02 / CONTINUE</p><h2 id="start-regular">仙台スクール・身体づくり</h2><p>一日限りの参加ではなく、日常の練習や身体づくりを続けたい方へ。</p></div></div>
+          <div className={styles.sectionHead}><div><p className={styles.kicker}>02 / CONTINUE</p><h2 id="start-regular">仙台で、継続して学ぶ</h2><p>一日限りの参加ではなく、日常の練習や身体づくりを続けたい方へ。</p></div></div>
           <EntryCards items={ongoing} section="regular" />
         </section>
         <section className={styles.section} id="coaches" aria-labelledby="start-coaches">
-          <div className={styles.sectionHead}><div><p className={styles.kicker}>03 / TEAMS & COACHES</p><h2 id="start-coaches">指導者・チーム・地域の主催者</h2><p>育成の課題を共有し、講習・訪問指導・地域開催を相談できます。</p></div></div>
+          <div className={styles.sectionHead}><div><p className={styles.kicker}>03 / TEAMS & COACHES</p><h2 id="start-coaches">指導者・チーム・地域の皆さまへ</h2><p>育成の課題を共有し、講習・訪問指導・地域開催を相談できます。</p></div></div>
           <EntryCards items={professionals} section="coaches" />
         </section>
         <section className={styles.section} id="partners" aria-labelledby="start-partners">
-          <div className={styles.sectionHead}><div><p className={styles.kicker}>04 / PARTNERSHIP</p><h2 id="start-partners">企業・地域・海外の連携</h2><p>法人相談、協賛、国際交流。事業ごとに受付・契約・決済を分けています。</p></div></div>
+          <div className={styles.sectionHead}><div><p className={styles.kicker}>04 / PARTNERSHIP</p><h2 id="start-partners">企業・地域・海外とつながる</h2><p>法人相談、協賛、国際交流。事業ごとに受付・契約・決済を分けています。</p></div></div>
           <EntryCards items={partners} section="partners" />
         </section>
         <section className={styles.help} aria-labelledby="start-share-help">
           <p className={styles.kicker}>SHARE THE OPPORTUNITY</p>
-          <h2 id="start-share-help">紹介できる人がいる方へ。</h2>
+          <h2 id="start-share-help">この活動を、必要な人へ。</h2>
           <p>保護者LINE・チームの指導者・SNS向けの案内文を無料で用意しています。未確定事項は明記し、希望者が公式ページから内容と費用を確認できます。</p>
           <div className={styles.helpActions}><a data-growth-id="start-promotion-share" href="/ja/share">活動別の紹介文を選ぶ →</a></div>
         </section>
         <section className={styles.help} aria-labelledby="start-help">
           <p className={styles.kicker}>NOT SURE WHERE TO START?</p>
-          <h2 id="start-help">迷ったら、開催地と目的から。</h2>
+          <h2 id="start-help">参加先に迷ったら。</h2>
           <p>「近くに開催がない」「チーム単位で指導を呼びたい」「保護者としてまず相談したい」。まだ日程や料金が決まっていなくても、無料で希望を伝えられます。</p>
           <div className={styles.helpActions}>
             <a href="/ja/clinic-interest" data-growth-id="start-help-interest">近くの開催を希望する →</a>
