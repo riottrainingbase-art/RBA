@@ -51,6 +51,6 @@ export default async function EssentialsOrdersManage(){
     {!orders.length&&<p>入金済みの注文はまだありません。</p>}
    </div>}
    <p style={{fontSize:12,color:"#555",marginTop:28,lineHeight:1.9}}>この画面はRBAの管理権限を持つユーザーに限定されています。メールでの受注承諾通知・発送通知・返品対応は別途運用確認が必要です。</p>
-   <div style={{display:"flex",flexWrap:"wrap",gap:25,marginTop:35,fontSize:13}}><Link href="/ja/essentials/manage/atelier">手書き加工の価格ラボ（非公開） ↗</Link><Link href="/ja/essentials">← RBA ESSENTIALSに戻る</Link></div>
+   <div style={{display:"flex",flexWrap:"wrap",gap:25,marginTop:35,fontSize:13}}><Link href="/ja/essentials/manage/readiness">販売開始の確認一覧 ↗</Link><Link href="/ja/essentials/manage/atelier">手書き加工の価格ラボ（非公開） ↗</Link><Link href="/ja/essentials">← RBA ESSENTIALSに戻る</Link></div>
   </main></SiteFrame>;
 }
