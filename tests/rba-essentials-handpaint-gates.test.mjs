@@ -44,3 +44,38 @@ test("RBA donation language accurately uses contribution not sales revenue",()=>
   assert.match(spec,/製造費・作家報酬・運営経費/);
   assert.match(spec,/利益/);
 });
+
+test("artisan trial storage is RLS restricted and records an immutable audit event",()=>{
+ const migration=read("supabase/migrations/20261116215000_rba_essentials_artisan_trials.sql");
+ assert.match(migration,/rba_essentials_artisan_trials enable row level security/);
+ assert.match(migration,/revoke all on table public\.rba_essentials_artisan_trials from anon,authenticated/);
+ assert.match(migration,/revoke all on table public\.rba_essentials_artisan_audit from anon,authenticated/);
+ assert.match(migration,/after insert or update on public\.rba_essentials_artisan_trials/);
+ assert.match(migration,/internal_review_requires_evidence/);
+ assert.match(migration,/wash_cycles >= 10/);
+ assert.doesNotMatch(migration,/approved_for_internal_review.*checkout\.sessions/s);
+});
+
+test("artist trial forms save only after server-side admin role verification",()=>{
+ const action=read("app/ja/essentials/manage/atelier/actions.ts");
+ const board=read("components/essentials-artisan-trials-board.tsx");
+ assert.match(action,/db\.auth\.getUser\(\)/);
+ assert.match(action,/role!=="admin"/);
+ assert.match(action,/role!=="admin"\)notFound\(\)/);
+ assert.match(action,/stage==="approved_for_internal_review"/);
+ assert.match(action,/\.insert\(/);
+ assert.match(action,/\.update\(/);
+ assert.match(board,/action=\{saveRbaArtisanTrial\}/);
+ assert.match(board,/作家報酬/);
+ assert.doesNotMatch(board,/action="\/api\/commerce\/essentials-preorder"/);
+});
+
+test("commercial launch readiness is private and does not reveal secret values",()=>{
+ const page=read("app/ja/essentials/manage/readiness/page.tsx");
+ assert.match(page,/role!=="admin"/);
+ assert.match(page,/getEssentialsPresaleConfig/);
+ assert.match(page,/verifyEssentialsStripeAccount/);
+ assert.match(page,/rba_essentials_orders/);
+ assert.match(page,/robots:\{index:false,follow:false\}/);
+ assert.doesNotMatch(page,/value=\{.*STRIPE_SECRET_KEY/s);
+});
