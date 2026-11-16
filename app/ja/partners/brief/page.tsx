@@ -26,7 +26,7 @@ export default function PartnerBrief() {
   return <SiteFrame locale="ja"><main lang="ja" style={{background:"#fff",color:ink,padding:"clamp(26px,5vw,60px) max(20px,6vw) 80px"}}>
     <div style={{maxWidth:1050,margin:"auto"}}>
       <p style={{fontSize:12,fontWeight:900,letterSpacing:2.4,color:dark}}>RIOT BASKETBALL ACADEMY / CORPORATE PARTNERSHIP</p>
-      <h1 style={{fontSize:"clamp(34px,6vw,66px)",lineHeight:1.18,letterSpacing:"-.04em",margin:"20px 0 21px"}}>育成の次の一歩を、<br/>企業とともに。</h1>
+      <h1 style={{fontSize:"clamp(34px,6vw,66px)",lineHeight:1.18,letterSpacing:"-.04em",margin:"20px 0 21px"}}>子どもの未来に、<br/>企業の力を。</h1>
       <p style={{fontSize:18,lineHeight:1.85,color:dark,maxWidth:800,marginBottom:28}}>RBAは、仙台を拠点に地域のクリニック、指導者の学び、国内・アジア交流へ取り組んでいます。企業のご支援を、子どもたちが学び、挑戦する機会につなげていきます。</p>
       <div style={{display:"flex",gap:13,flexWrap:"wrap",marginBottom:39}}>
         <a href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" style={{padding:"15px 23px",background:ink,color:"#fff",textDecoration:"none",fontWeight:800}}>企業として無料相談する ↗</a>
@@ -50,7 +50,7 @@ export default function PartnerBrief() {
         <p style={{fontSize:16,lineHeight:1.9,color:dark}}>定型の月額企業広告は、RBA公式サイト内の応援ページと月次活動レポートへの掲載です。<strong style={{color:ink}}>トップページ上部への企業ロゴ掲出は自動的には含まれず、掲載位置・媒体・期間等を定める別途スポンサー契約でご相談</strong>します。企業名・ロゴや写真・動画は、利用許諾を得た範囲でのみ使用します。</p>
       </section>
       <section aria-labelledby="brief-process" style={{paddingTop:44}}>
-        <h2 id="brief-process" style={{fontSize:27,marginBottom:20}}>お問い合わせから活動報告まで</h2>
+        <h2 id="brief-process" style={{fontSize:27,marginBottom:20}}>ご相談から実施・報告まで</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(210px,1fr))",gap:12}}>
           {process.map(([title,body],i)=><article key={title} style={{borderTop:"3px solid "+ink,background:"#f7f8f7",padding:20}}><h3 style={{fontSize:19,margin:"0 0 11px"}}>{String(i+1).padStart(2,"0")} / {title}</h3><p style={{fontSize:14,lineHeight:1.8,color:dark}}>{body}</p></article>)}
         </div>
@@ -61,7 +61,7 @@ export default function PartnerBrief() {
         <p style={{fontSize:14,color:dark,lineHeight:1.85,marginTop:18}}>RBAは現時点で適格請求書発行事業者ではないため、インボイスは発行できません。通常の請求書・領収書、契約内容や掲載記録は条件に応じてご案内します。各社の経理・税務処理については担当税理士等へご確認ください。</p>
       </section>
       <section style={{background:ink,color:"#fff",padding:"30px 28px",marginTop:48}}>
-        <h2 style={{fontSize:28,margin:"0 0 12px"}}>一つの企画から、話してみませんか。</h2>
+        <h2 style={{fontSize:28,margin:"0 0 12px"}}>育成の課題から、話しませんか。</h2>
         <p style={{fontSize:15,lineHeight:1.85,color:"#dae2e4"}}>協賛の目的、想定予算、支援したい地域が決まっていない場合も構いません。まずは企業のご希望をお聞かせください。</p>
         <p style={{fontSize:15,color:"#fff",lineHeight:1.8}}>Riot Basketball Academy<br/>riot.training.base@gmail.com</p>
         <a href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" style={{display:"inline-block",background:"#fff",color:ink,textDecoration:"none",padding:"14px 22px",fontWeight:850}}>協賛の無料相談フォームへ ↗</a>
