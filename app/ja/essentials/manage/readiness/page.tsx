@@ -12,6 +12,8 @@ export const metadata:Metadata={title:"RBA ESSENTIALS｜販売前の確認（管
 const gates=[
  ["RBA_ESSENTIALS_MANUFACTURING_CONFIRMED","りささんの製造・工程・品質管理体制"],
  ["RBA_ESSENTIALS_RISA_FULFILLMENT_AGREEMENT_APPROVED","りささんとの製作・発送・個人情報の委託契約"],
+ ["RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED","りささん本人の権限とアクセス方法の確認"],
+ ["RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED","入金→製作→発送情報の受け渡しテスト"],
  ["RBA_ESSENTIALS_SAMPLES_APPROVED","現物サンプルを検品"],
  ["RBA_ESSENTIALS_PHOTOS_APPROVED","実物写真への差替え"],
  ["RBA_ESSENTIALS_SIZE_CHART_APPROVED","サイズ実寸表"],
@@ -82,6 +84,7 @@ export default async function EssentialsReadiness(){
      <p>この画面は秘密鍵・顧客情報を表示しません。前払いの注文承諾通知と返品対応を、開始前に実際に検証してください。</p>
      <div style={{display:"flex",gap:22,flexWrap:"wrap",marginTop:26}}>
       <Link href="/ja/essentials/manage">注文管理 ↗</Link>
+      <Link href="/ja/essentials/production">りささん向け製作・発送管理 ↗</Link>
       <Link href="/ja/essentials/manage/atelier">手書き試作・価格検証 ↗</Link>
       <Link href="/ja/essentials/legal">購入者向け表示 ↗</Link>
      </div>
