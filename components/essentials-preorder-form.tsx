@@ -9,6 +9,8 @@ type Props = {
   teeJPY: number | null;
   setupJPY: number | null;
   shippingJPY: number | null;
+  handwrittenJPY: number | null;
+  handwrittenAvailable: boolean;
   deliveryBy: string | null;
   orderBy: string | null;
   termsVersion: string | null;
@@ -18,18 +20,24 @@ type Props = {
 };
 const yen=(n:number)=>n.toLocaleString("ja-JP")+"円";
 const sizes=["S","M","L","XL"] as const;
-export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,deliveryBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
+export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,handwrittenJPY,handwrittenAvailable,deliveryBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
   const [teeQty,setTeeQty]=useState(initial==="tee"?1:0);
   const [setupQty,setSetupQty]=useState(initial==="setup"?1:0);
   const [teeSize,setTeeSize]=useState("M");
   const [hoodieSize,setHoodieSize]=useState("M");
   const [pantsSize,setPantsSize]=useState("M");
+  const [handwritten,setHandwritten]=useState(false);
+  const [handwrittenText,setHandwrittenText]=useState("");
+  const [handwrittenTarget,setHandwrittenTarget]=useState<"tee"|"setup">("tee");
   const [accepted,setAccepted]=useState(false);
   const [acceptedTerms,setAcceptedTerms]=useState(false);
   const [acknowledged,setAcknowledged]=useState(false);
-  const subtotal=(teeJPY??0)*teeQty+(setupJPY??0)*setupQty;
+  const handwrittenCharge = handwritten && handwrittenAvailable ? (handwrittenJPY??0) : 0;
+  const subtotal=(teeJPY??0)*teeQty+(setupJPY??0)*setupQty+handwrittenCharge;
   const shipping=(teeQty+setupQty>0?(shippingJPY??0):0);
-  const canCheckout=available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged;
+  const handwrittenTargetValid=handwrittenTarget==="tee"?teeQty===1:setupQty===1;
+  const handwrittenValid=!handwritten||(handwrittenAvailable&&handwrittenTargetValid&&handwrittenText.trim().length>0&&Array.from(handwrittenText.trim()).length<=20);
+  const canCheckout=available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged&&handwrittenValid;
   return <div className="epWrap">
     <div className="epHead"><p>RBA ESSENTIALS / PRE-ORDER</p><h1>Pre-order<span>.</span></h1><p>公式ウェアの先行購入。国内送料無料はFIRST DROP限定。商品・サイズ・数量を選び、確定条件をご確認のうえStripe決済へお進みください。</p></div>
     {available ? <form method="POST" action="/api/commerce/essentials-preorder" className="epForm">
@@ -50,6 +58,25 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
             <label>パンツ<select name="pants_size" value={pantsSize} onChange={e=>setPantsSize(e.target.value)} disabled={setupQty===0}>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
           </div>
         </div>
+        <section className="epHandwritten" aria-label="手書きカスタムオプション">
+          <div className="epLine"><span>02 / PERSONAL EDITION</span><span>HANDWRITTEN CUSTOM</span></div>
+          {handwrittenAvailable && handwrittenJPY!==null ? <>
+            <p className="epOptionIntro">1着・1か所に、制作者が直接メッセージを書き入れます。先行販売の国内送料は追加料金なしです。</p>
+            <label className="epConsent"><input name="handwritten" type="checkbox" value="yes" checked={handwritten} onChange={v=>setHandwritten(v.target.checked)}/>手書きオプションを追加する（+{yen(handwrittenJPY)}・税込）</label>
+            {handwritten && <div className="epOptionFields">
+              <label>加工する商品
+                <select name="handwritten_target" value={handwrittenTarget} onChange={e=>setHandwrittenTarget(e.target.value==="setup"?"setup":"tee")}>
+                  <option value="tee" disabled={teeQty!==1}>ホワイトTシャツ（数量1点）</option>
+                  <option value="setup" disabled={setupQty!==1}>ブラックセットアップのパーカー（上下の数量1セット）</option>
+                </select>
+              </label>
+              <label>入れたいメッセージ（20文字以内・改行なし）
+                <textarea name="handwritten_text" rows={2} maxLength={40} required value={handwrittenText} onChange={e=>setHandwrittenText(e.target.value)} placeholder="手書きで入れたい短い言葉"/>
+              </label>
+              <p className="epSmallNotice">生地の素材・印字範囲・個体差・返品特約は販売条件をご確認ください。1注文につき手書き加工は1か所だけです。</p>
+            </div>}
+          </> : <p className="epOptionIntro">手書きメッセージは特別仕様として準備中です。制作者との契約・洗濯耐久試験・追加価格が確定するまで選択できません。</p>}
+        </section>
         <div className="epExplanation">
           <p>商品画像は完成イメージです。素材・実寸・縫製仕様は商品説明・確定サイズ表をご確認ください。</p>
           <p>ご住所、連絡先、お支払い情報は次のStripe決済画面で入力します。現在の発送対象は日本国内です。</p>
@@ -58,6 +85,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
       <aside className="epSummary">
         <p className="epLabel">02 / YOUR ORDER</p><h2>Order summary</h2>
         <div className="epRow"><span>商品代金（税込）</span><strong>{yen(subtotal)}</strong></div>
+        {handwrittenCharge>0 && <div className="epRow"><span>うち手書き追加料金（税込）</span><strong>{yen(handwrittenCharge)}</strong></div>}
         <div className="epRow"><span>送料（先行販売・国内限定）</span><strong>{shipping===0?"無料 / ¥0":yen(shipping)}</strong></div>
         <div className="epRow epTotal"><span>合計（税込）</span><strong>{yen(subtotal+shipping)}</strong></div>
         <div className="epTerms"><p><strong>先行販売・前払い</strong></p><p>支払時期：注文確定時の一括決済（Stripe）。FIRST DROPは日本国内送料無料。</p><p>申込受付期限：{orderBy}</p><p>発送期限：{deliveryBy} まで</p><p>{presaleNote}</p><p><strong>キャンセル</strong>：{cancellationTerms}</p><p><strong>返品・交換</strong>：{returnTerms}</p><p><Link href="/ja/essentials/legal">特定商取引法に基づく表記・販売条件を見る</Link></p></div>
@@ -86,6 +114,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
 .epFields label{display:flex;flex-direction:column;font-size:10px;color:#62605a;gap:9px}
 .epFields select{padding:12px 15px;min-width:68px;background:#fff;border:1px solid #bbb8b0;color:#1e1d1b;font-size:15px}
 .epFields select:disabled{opacity:.45}
+.epHandwritten{margin-top:34px}.epOptionIntro,.epSmallNotice{font-size:12px;line-height:1.95;color:#68645f;margin:20px 0}.epOptionFields{display:flex;flex-direction:column;gap:16px;margin:22px 0}.epOptionFields label{display:flex;flex-direction:column;gap:9px;font-size:12px;line-height:1.7}.epOptionFields select,.epOptionFields textarea{font:inherit;font-size:14px;color:#171717;padding:12px;border:1px solid #bcb9b1;background:white;max-width:510px;width:100%}
 .epExplanation{font-size:12px;line-height:1.9;color:#77716c;margin:28px 0}
 .epSummary{background:#e9e7e1;padding:clamp(26px,3vw,47px);align-self:start}
 .epSummary h2{font-family:Georgia,serif;font-weight:400;font-size:37px;letter-spacing:-.04em;margin:17px 0 30px}
