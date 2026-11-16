@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: "Riot Basketball Academy",
-    title: "RBA｜参加する、学ぶ、手に取る。",
-    description: "最新クリニック・キャンプ・D-HUB・RBA ESSENTIALSの公式受付をひとつに。",
+    title: "RBA｜育成を、日常へ。世界へ。",
+    description: "全国クリニック、国際交流、指導者の学び、RBA ESSENTIALS。申込と購入を一つの公式案内に。",
     url: "https://riotbasketballacademy.com/ja/go",
     images: [{ url: "https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-essentials-white-tee-official-design-reference-20261116.jpg?v=1794837114", alt: "RBA ESSENTIALSの商品デザイン画像" }],
   },
@@ -84,12 +84,12 @@ export default function RBAGo() {
       <header className={styles.hero}>
         <p className={styles.micro}>RIOT BASKETBALL ACADEMY / OFFICIAL LINKS</p>
         <h1>RBA<span>.</span></h1>
-        <p className={styles.headline}>参加する。学ぶ。<br/>次の一歩へ。</p>
-        <p className={styles.heroBody}>クリニックも、育成の学びも、公式ウェアも。<br/>申込・購入先をRBAの公式窓口にまとめました。</p>
-        <a className={styles.quick} href="#essentials">公式ウェアを購入する <span aria-hidden="true">↘</span></a>
+        <p className={styles.headline}>可能性は、<br/>ひとつのコートに収まらない。</p>
+        <p className={styles.heroBody}>クリニック、指導者の学び、国際交流、公式ウェア。<br/>RBAの活動と申込先を、一か所にまとめました。</p>
+        <a className={styles.quick} href="#essentials">RBA ESSENTIALSを見る <span aria-hidden="true">↘</span></a>
       </header>
       <section className={styles.section} aria-labelledby="events-title">
-        <div className={styles.sectionHeading}><p className={styles.micro}>01 / TRAIN & LEARN</p><h2 id="events-title">最新のクリニック・キャンプ</h2></div>
+        <div className={styles.sectionHeading}><p className={styles.micro}>01 / TRAIN & LEARN</p><h2 id="events-title">学びの現場へ。</h2></div>
         {upcomingEvents.length>0?<div className={styles.events}>
           {upcomingEvents.map(event => <article className={styles.event} key={event.key}>
             <div className={styles.eventDate}>{event.date}</div>
@@ -97,10 +97,10 @@ export default function RBAGo() {
             <a href={event.href} className={styles.eventLink} data-growth-id={"go-event-"+event.key}>{event.action} <span aria-hidden="true">↗</span></a>
           </article>)}
         </div>:<p className={styles.empty}>最新の日程はRBA公式カレンダーからご確認ください。</p>}
-        <a className={styles.secondary} href="https://riotbasketballacademy.com/ja/start">その他の講習・全国開催を探す <span aria-hidden="true">↗</span></a>
+        <a className={styles.secondary} href="https://riotbasketballacademy.com/ja/start">すべての開催予定を見る <span aria-hidden="true">↗</span></a>
       </section>
       <section className={styles.section} id="essentials" aria-labelledby="apparel-title">
-        <div className={styles.sectionHeading}><p className={styles.micro}>02 / OFFICIAL APPAREL</p><h2 id="apparel-title">RBA ESSENTIALS</h2><p className={styles.note}>FIRST DROP 限定｜日本国内送料無料｜全額前払い｜ご注文から1か月以内のお届け</p></div>
+        <div className={styles.sectionHeading}><p className={styles.micro}>02 / OFFICIAL APPAREL</p><h2 id="apparel-title">RBA ESSENTIALS</h2><p className={styles.note}>FIRST DROP / 先行販売限定・日本国内送料無料。税込価格で一括前払い、ご注文から1か月以内のお届け</p></div>
         <div className={styles.products}>
           {products.map(item=><article key={item.key} className={styles.product}>
             <img src={item.picture} alt={item.alt} loading="lazy"/>
@@ -111,11 +111,11 @@ export default function RBAGo() {
         <a className={styles.secondary} href="/ja/essentials/shop">商品・返品条件を詳しく見る <span aria-hidden="true">↗</span></a>
       </section>
       <section className={styles.section} aria-labelledby="member-title">
-        <div className={styles.sectionHeading}><p className={styles.micro}>03 / KEEP LEARNING</p><h2 id="member-title">D-HUB COACH LAB</h2><p className={styles.body}>答えを買う場所ではなく、選手を見る力と練習設計を磨く場所。月額3,300円（税込）の指導者向けプログラム。</p></div>
-        <a className={styles.darkLink} href="https://riotbasketballacademy.com/ja/d-hub/coaches" data-growth-id="go-dhub">D-HUBを詳しく見る・会員登録 <span aria-hidden="true">↗</span></a>
+        <div className={styles.sectionHeading}><p className={styles.micro}>03 / KEEP LEARNING</p><h2 id="member-title">D-HUB COACH LAB</h2><p className={styles.body}>学びを、次の練習へ。選手を観察し、判断を促す練習設計を深める指導者向けプログラム。月額3,300円（税込）。</p></div>
+        <a className={styles.darkLink} href="https://riotbasketballacademy.com/ja/d-hub/coaches" data-growth-id="go-dhub">D-HUBの内容・参加方法を見る <span aria-hidden="true">↗</span></a>
       </section>
       <footer className={styles.footer}>
-        <a href="https://riotbasketballacademy.com/ja/start">RBAのすべての活動</a>
+        <a href="https://riotbasketballacademy.com/ja/start">開催予定・活動一覧</a>
         <a href="mailto:riot.training.base@gmail.com">お問い合わせ</a>
         <p>公式販売者：Riot Basketball Academy／西尾優人。先行販売の国内送料は無料です。各申込ページで正式な契約条件をご確認ください。</p>
         <p>© RIOT BASKETBALL ACADEMY.</p>
