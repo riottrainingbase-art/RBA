@@ -19,7 +19,7 @@ function numeric(fd:FormData,key:string,min:number,max:number){
   const n=Number(raw);
   return Number.isSafeInteger(n)&&n>=min&&n<=max?n:undefined;
 }
-function exitWith(status:"invalid"|"saved"|"storage_error"){redirect(DEST+"?status="+status);}
+function exitWith(status:"invalid"|"saved"|"storage_error"):never{redirect(DEST+"?status="+status);}
 export async function saveRbaArtisanTrial(fd:FormData){
   const db=await createClient();
   const {data:{user},error}=await db.auth.getUser();
