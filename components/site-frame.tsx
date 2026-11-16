@@ -36,7 +36,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["U12","/ja/u12"],
     ["U15","/ja/u15"],
     ["GREAM","/ja/gream"],
-    ["クリニック","/ja/opportunities"],
+    ["クリニック・講習","/ja/opportunities"],
     ["指導者の学び","/ja/journal"],
     ["海外交流","/ja/international"],
     ["パートナー","/ja/partners"],
@@ -49,7 +49,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
   ];
   // Display only four first-level routes in the desktop header. The full index remains in the menu and footer.
   const primaryNav: readonly (readonly [string,string])[] = locale==="ja"
-    ? [["開催予定","/ja/opportunities"],["育成記事","/ja/journal"],["海外交流","/ja/international"],["協賛・連携","/ja/partners"]]
+    ? [["クリニック・講習","/ja/opportunities"],["育成を学ぶ","/ja/journal"],["海外交流","/ja/international"],["協賛・連携","/ja/partners"]]
     : nav.slice(0,4);
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
@@ -60,7 +60,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <header className={`site-header ${navigationStyles.header}`}>
       <a href={localePath(locale)} className="brand-lockup" aria-label={ui(locale,"home")}><Image className="brand-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284} priority/><span>RIOT BASKETBALL<br/>ACADEMY</span></a>
       <nav aria-label={ui(locale,"nav")}>{primaryNav.map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={locale==="ja"?"/ja/opportunities":localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"スクール・体験を相談","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a><a className="mobile-menu-member" href={memberHref}><House size={16} aria-hidden="true"/>{({en:"MY HOMECOURT / RBA ID",ja:"MY HOMECOURT・RBA ID","zh-tw":"MY HOMECOURT / RBA ID",ko:"MY HOMECOURT / RBA ID"})[locale]}<ArrowRight size={16} aria-hidden="true"/></a>{nav.filter(([,href])=>href!==(locale==="ja"?"/ja/opportunities":localePath(locale,"opportunities"))).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a><div className="mobile-menu-languages" role="group" aria-label="Language / 言語">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
+      <details className="mobile-site-menu"><summary>{({en:"MENU",ja:"メニュー","zh-tw":"選單",ko:"메뉴"})[locale]}</summary><div><a className="mobile-menu-primary" href={locale==="ja"?"/ja/opportunities":localePath(locale,"opportunities")}>{({en:"Find opportunities",ja:"開催予定・参加申込","zh-tw":"尋找培育機會",ko:"성장 기회 찾기"})[locale]}<ArrowRight size={16}/></a><a className="mobile-menu-member" href={memberHref}><House size={16} aria-hidden="true"/>{({en:"MY HOMECOURT / RBA ID",ja:"MY HOMECOURT・RBA ID","zh-tw":"MY HOMECOURT / RBA ID",ko:"MY HOMECOURT / RBA ID"})[locale]}<ArrowRight size={16} aria-hidden="true"/></a>{nav.filter(([,href])=>href!==(locale==="ja"?"/ja/opportunities":localePath(locale,"opportunities"))).map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a><div className="mobile-menu-languages" role="group" aria-label="Language / 言語">{(Object.keys(languageLabels) as Locale[]).map(lang=><a key={lang} href={localePath(lang,languagePage)} aria-current={lang===locale?"true":undefined} hrefLang={lang==="zh-tw"?"zh-Hant-TW":lang}>{languageLabels[lang]}</a>)}</div></div></details>
       <div className="header-actions">
         <a href={memberHref} className="header-member"><House size={17}/><span>{({en:"RBA ID",ja:"RBA ID","zh-tw":"RBA ID","ko":"RBA ID"})[locale]}</span><ArrowRight size={14}/></a>
         <a href={whatsappHref} className="header-whatsapp" target="_blank" rel="noreferrer"><MessageCircle size={16}/><span>WhatsApp</span></a>
@@ -72,9 +72,9 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     <main id="main-content">{children}<DevelopmentJourneyLink/></main>
     <footer className="site-footer">
       <div className="footer-brand"><Image className="footer-logo" src="/rba-logo-original.jpg" alt="Riot Basketball Academy RBA logo" width={203} height={284}/><p>{c.statement}</p></div>
-      <div><p className="footer-label">{c.explore}</p>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a>{locale==="ja" && <><a href="/ja/about">RBAについて</a><a href="/ja/support">RBAを応援する</a></>}{locale==="ja" && <><a href="/ja/fukuoka">RBA福岡</a><a href="/ja/saga">RBA佐賀</a><a href="/ja/okinawa">RBA沖縄・会員相談</a></>}</div>
-      <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a>{locale==="ja"&&<a href="/ja/links">SNS用公式リンク集</a>}<a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>{locale==="ja"?<a href="https://note.com/rba_official" target="_blank" rel="noopener noreferrer">RBA公式note ↗</a>:null}</div>
-      <div className="footer-legal"><p>{ui(locale,"city")}</p><p>{ui(locale,"representative")}</p><p>© 2026 Riot Basketball Academy</p><p>{c.safeguard}</p><a href={localePath(locale,"policies")}>{({en:"Privacy · Terms · Safety · Cancellation",ja:"プライバシー・参加規約・安全・キャンセル","zh-tw":"隱私・條款・安全・取消政策",ko:"개인정보・약관・안전・취소 정책"})[locale]}</a></div>
+      <div><p className="footer-label">{c.explore}</p>{nav.map(([label,href])=><a key={href} href={href}>{label}</a>)}<a href={localePath(locale,"contact")}>{c.contact}</a>{locale==="ja" && <><a href="/ja/about">RBAについて</a><a href="/ja/essentials/shop">RBA公式ウェア</a><a href="/ja/d-hub/coaches">D-HUB COACH LAB</a><a href="/ja/support">RBAを応援する</a></>}{locale==="ja" && <><a href="/ja/fukuoka">RBA福岡</a><a href="/ja/saga">RBA佐賀</a><a href="/ja/okinawa">RBA沖縄・会員相談</a></>}</div>
+      <div><p className="footer-label">{c.follow}</p><a href={localePath(locale,"social")}>{({en:"All channels",ja:"公式SNS・発信","zh-tw":"所有官方平台",ko:"공식 채널 모음"})[locale]}</a>{locale==="ja"&&<a href="/ja/go">Instagramからの公式案内</a>}<a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>{locale==="ja"?<a href="https://note.com/rba_official" target="_blank" rel="noopener noreferrer">RBA公式note ↗</a>:null}</div>
+      <div className="footer-legal"><p>{ui(locale,"city")}</p><p>{ui(locale,"representative")}</p><p>© 2026 Riot Basketball Academy</p><p>{c.safeguard}</p><a href={localePath(locale,"policies")}>{({en:"Privacy · Terms · Safety · Cancellation",ja:"プライバシー・参加条件・安全・返金","zh-tw":"隱私・條款・安全・取消政策",ko:"개인정보・약관・안전・취소 정책"})[locale]}</a></div>
     </footer>
   </div>;
 }
