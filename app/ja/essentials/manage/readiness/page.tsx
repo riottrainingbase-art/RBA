@@ -39,7 +39,9 @@ export default async function EssentialsReadiness(){
   const env=process.env;
   const rbaStripe=env.STRIPE_SECRET_KEY?await verifyEssentialsStripeAccount(env.STRIPE_SECRET_KEY):false;
   const url=env.NEXT_PUBLIC_SUPABASE_URL,secret=env.SUPABASE_SERVICE_ROLE_KEY;
-  const validDB=Boolean(url&&secret&&new URL(url).hostname==="ctngdzzorhzpdxswahzl.supabase.co");
+  let validDB=false;
+  try{validDB=Boolean(url&&secret&&new URL(url).hostname==="ctngdzzorhzpdxswahzl.supabase.co");}
+  catch{validDB=false;}
   const dbAdmin=validDB?createAdmin(url!,secret!,{auth:{persistSession:false,autoRefreshToken:false}}):null;
   const count=dbAdmin?await dbAdmin.from("rba_essentials_orders").select("order_id",{head:true,count:"exact"}):null;
   const checks=[
