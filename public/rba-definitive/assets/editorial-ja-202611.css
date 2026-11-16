@@ -44,3 +44,5 @@
 @media(prefers-reduced-motion:reduce){
  .definitive-static.locale-ja *{scroll-behavior:auto;transition:none!important}
 }
+
+.definitive-static.locale-ja .rba-editorial-promise{font-size:12px;line-height:1.8;letter-spacing:.055em;color:#cdb99a;margin:18px 0 0}
