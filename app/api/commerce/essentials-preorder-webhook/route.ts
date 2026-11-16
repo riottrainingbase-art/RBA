@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
-import { FIRST_DROP_TEE_JPY, FIRST_DROP_SETUP_JPY } from "@/lib/essentials-commerce";
+import { FIRST_DROP_TEE_JPY, FIRST_DROP_SETUP_JPY, oneMonthFromJstDate } from "@/lib/essentials-commerce";
 
 export const dynamic="force-dynamic";
 function error(reason:string,status:number){return NextResponse.json({error:reason},{status,headers:{"Cache-Control":"no-store"}});}
@@ -34,6 +34,12 @@ export async function POST(request:Request){
  const m=session.metadata;
  const tee=amount(m?.tee_qty),setup=amount(m?.setup_qty),teeSize=size(m?.tee_size),hoodie=size(m?.hoodie_size),pants=size(m?.pants_size);
  const order=m?.order_id,terms=m?.terms_version,deadline=m?.dispatch_by;
+ const deliveredBy=m?.deliver_by;
+ const stripeCreatedJST=typeof session.created==="number"
+   ? new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date(session.created*1000))
+   : "";
+ const latestArrival=oneMonthFromJstDate(stripeCreatedJST);
+
  const handmade=m?.handwritten==="yes";
  const handwrittenTarget=m?.handwritten_target;
  const handwrittenMessage=typeof m?.handwritten_message==="string"?m.handwritten_message.trim():null;
@@ -52,6 +58,7 @@ export async function POST(request:Request){
  if(!order||!/^[0-9a-f-]{36}$/.test(order)||
  !terms||!/^[A-Za-z0-9_-]{5,60}$/.test(terms)||
  !deadline||!/^20\d{2}-\d{2}-\d{2}$/.test(deadline)||
+ !deliveredBy || !/^20\d{2}-\d{2}-\d{2}$/.test(deliveredBy) || deliveredBy < deadline || !latestArrival || deliveredBy > latestArrival ||
  tee===null||setup===null||tee+setup<1||tee+setup>3||
  (tee>0&&!teeSize)||(setup>0&&(!hoodie||!pants))||
  !customIsValid || !session.amount_total || session.amount_total!==expectedAmount || session.amount_total>300000||
@@ -68,6 +75,7 @@ export async function POST(request:Request){
     amount_total_jpy:session.amount_total,
     terms_version:terms,
     dispatch_by:deadline,
+    deliver_by:deliveredBy,
     tee_quantity:tee,
     tee_size:tee>0?teeSize:null,
     setup_quantity:setup,
