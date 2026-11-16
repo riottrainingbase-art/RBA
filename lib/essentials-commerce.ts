@@ -4,6 +4,14 @@
  * can be opened. No defaults for prices, tax, merchant or delivery dates.
  */
 export const RBA_ESSENTIALS_STRIPE_ACCOUNT = "acct_1UGdxZRXDnnSs6XN";
+/**
+ * Owner-approved FIRST DROP retail prices, inclusive of Japanese consumption tax
+ * as described by the merchant. Production margin/tax registration remains a release gate.
+ */
+export const FIRST_DROP_TEE_JPY = 4900;
+export const FIRST_DROP_SETUP_JPY = 19800;
+export const FIRST_DROP_JAPAN_SHIPPING_JPY = 0;
+export const FIRST_DROP_SHIPPING_LABEL = "先行販売限定・日本国内送料無料";
 const isApproved = (v: string | undefined) => v === "true";
 const yen = (v: string | undefined) => {
   if (!v || !/^[1-9][0-9]{2,7}$/.test(v)) return null;
@@ -38,10 +46,14 @@ export type EssentialsPresaleConfig = {
 export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   const p = process.env;
   const unitPrices = {
-    tee: yen(p.RBA_ESSENTIALS_TEE_PRICE_JPY),
-    setup: yen(p.RBA_ESSENTIALS_SETUP_PRICE_JPY),
+    tee: FIRST_DROP_TEE_JPY,
+    setup: FIRST_DROP_SETUP_JPY,
   };
-  const shippingJPY = nonnegativeYen(p.RBA_ESSENTIALS_JAPAN_SHIPPING_JPY);
+  // Shipping is waived for this FIRST DROP only, not all future collections.
+  const shippingJPY = FIRST_DROP_JAPAN_SHIPPING_JPY;
+  const priceOverrideIsValid = (!p.RBA_ESSENTIALS_TEE_PRICE_JPY || yen(p.RBA_ESSENTIALS_TEE_PRICE_JPY) === FIRST_DROP_TEE_JPY) &&
+    (!p.RBA_ESSENTIALS_SETUP_PRICE_JPY || yen(p.RBA_ESSENTIALS_SETUP_PRICE_JPY) === FIRST_DROP_SETUP_JPY);
+  const shippingOverrideIsValid = !p.RBA_ESSENTIALS_JAPAN_SHIPPING_JPY || p.RBA_ESSENTIALS_JAPAN_SHIPPING_JPY === "0";
   const dispatchDeadline = safeDate(p.RBA_ESSENTIALS_DISPATCH_BY);
   const orderDeadline = safeDate(p.RBA_ESSENTIALS_ORDER_BY);
   const merchant = {
@@ -79,7 +91,8 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   ].every(k => isApproved(p[k])) &&
     !!p.STRIPE_SECRET_KEY &&
     p.RBA_ESSENTIALS_TAX_BEHAVIOR === "inclusive" &&
-    !!unitPrices.tee && !!unitPrices.setup && shippingJPY !== null &&
+    priceOverrideIsValid && shippingOverrideIsValid &&
+    !!unitPrices.tee && !!unitPrices.setup && shippingJPY === 0 &&
     !!dispatchDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline &&
     orderDeadline >= todayJST && dispatchDeadline > todayJST &&
     !!termsVersion && /^[a-zA-Z0-9_-]{5,60}$/.test(termsVersion) &&
