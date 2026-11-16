@@ -144,3 +144,16 @@ The confirmed operating intent is **RBA marketing + order intake + seller settle
 - Once production access is independently verified, Risa may be granted access via a verified Supabase authenticated user ID and a recorded `terms_reference`. Do not insert an unverified user, expose admin keys, auto-share Stripe customer data, or copy address/phone into Instagram messages.
 
 **Not yet complete:** complete real receiving/shipping address handoff, buyer email notifications, agreed retail prices, production costs, returns/defects obligations, final photos and actual one-month shipping capacity. Until all verified, paid preorders stay disabled. The previously captured free interest form remains distinct from confirmed purchases.
+
+## 2026-11-16: FIRST DROP only — free domestic shipping and supplied product photos
+
+- User-approved buyer prices incl. tax: RBA ESSENTIAL TEE white ¥4,900, RBA ESSENTIAL SETUP black ¥19,800.
+- Buyer-paid shipping is ¥0 for this FIRST DROP domestic-Japan presale only, including any separately approved optional handwriting. This is not free international shipping and does not set a global free-shipping policy for later retail.
+- Production and postage remain real costs payable to Risa/fulfillment contractors; deduct these and taxes/fees from sales before claiming money is available for youth development.
+- Customer-provided no-model references were uploaded to Shopify CDN and are now used for both product pages and editorial collection: rba-essentials-white-tee-official-design-reference-20261116.jpg and rba-essentials-black-hoodie-setup-official-design-reference-20261116.jpg. These are design mockups, not physical finished samples.
+- The nonbinding order application https://form.jotform.com/263193283498065 now states FIRST DROP Japan domestic shipping is free and offers a handwritten-option interest survey. It remains NONPAYMENT/noncontractual.
+- Buyer retail prices are fixed in FIRST DROP server configuration and mismatch overrides block launch. Stripe prices in connected RBA live account remain archived/inactive, not active payment links.
+- Handwriting is gated separately: artist commercial rights, textile quality and wash testing, author-approved fee, custom return terms, and capacity/delivery. One message, one selected garment, private paid order metadata and maker instructions. ¥5,500 is a working candidate only.
+- Delivery deadline, not merely warehouse dispatch, must be no later than one calendar month from buyer's order date in Asia/Tokyo. Both shipping and buyer-delivery deadlines are required and shown separately in the checkout and legal disclosures.
+- Database migrations applied on 2026-11-16: 20261116230000_rba_essentials_handwritten_option.sql and 20261116231500_rba_essentials_delivery_by_date.sql. Rows in the order ledger remain service-role only.
+- Must still complete Risa production contract, actual sample/size/care verification, actual one-month delivery capacity and shipping costs, seller identity and cancellation terms, production Stripe private key and signed webhook, order acceptance email, data handoff and refunds testing before activating live paid checkout.
