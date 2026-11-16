@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
-import { RBA_ESSENTIALS_STRIPE_ACCOUNT } from "@/lib/essentials-commerce";
+import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 
 export const dynamic="force-dynamic";
 function error(reason:string,status:number){return NextResponse.json({error:reason},{status,headers:{"Cache-Control":"no-store"}});}
@@ -29,8 +29,7 @@ export async function POST(request:Request){
  if(!event.livemode||!session.livemode||session.mode!=="payment"||session.currency!=="jpy")
   return error("unexpected_payment_mode",422);
  if(session.payment_status!=="paid")return NextResponse.json({received:true,pending:true});
- try{const acct=await stripe.accounts.retrieve();if(acct.id!==RBA_ESSENTIALS_STRIPE_ACCOUNT)return error("unexpected_account",503);}
- catch{return error("stripe_unavailable",503);}
+ if(!await verifyEssentialsStripeAccount(stripeSecret))return error("unexpected_account",503);
  const m=session.metadata;
  const tee=amount(m?.tee_qty),setup=amount(m?.setup_qty),teeSize=size(m?.tee_size),hoodie=size(m?.hoodie_size),pants=size(m?.pants_size);
  const order=m?.order_id,terms=m?.terms_version,deadline=m?.dispatch_by;
