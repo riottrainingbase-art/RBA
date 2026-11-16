@@ -11,6 +11,7 @@ type Props = {
   shippingJPY: number | null;
   handwrittenJPY: number | null;
   handwrittenAvailable: boolean;
+  handwrittenTerms: string;
   deliveryBy: string | null;
   orderBy: string | null;
   termsVersion: string | null;
@@ -20,7 +21,7 @@ type Props = {
 };
 const yen=(n:number)=>n.toLocaleString("ja-JP")+"円";
 const sizes=["S","M","L","XL"] as const;
-export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,handwrittenJPY,handwrittenAvailable,deliveryBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
+export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,handwrittenJPY,handwrittenAvailable,handwrittenTerms,deliveryBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
   const [teeQty,setTeeQty]=useState(initial==="tee"?1:0);
   const [setupQty,setSetupQty]=useState(initial==="setup"?1:0);
   const [teeSize,setTeeSize]=useState("M");
@@ -73,7 +74,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
               <label>入れたいメッセージ（20文字以内・改行なし）
                 <textarea name="handwritten_text" rows={2} maxLength={40} required value={handwrittenText} onChange={e=>setHandwrittenText(e.target.value)} placeholder="手書きで入れたい短い言葉"/>
               </label>
-              <p className="epSmallNotice">生地の素材・印字範囲・個体差・返品特約は販売条件をご確認ください。1注文につき手書き加工は1か所だけです。</p>
+              <p className="epSmallNotice">生地・印字範囲・個体差・納期は製品条件をご確認ください。手書き加工は1注文につき1か所です。返品・変更条件：{handwrittenTerms}</p>
             </div>}
           </> : <p className="epOptionIntro">手書きメッセージは特別仕様として準備中です。制作者との契約・洗濯耐久試験・追加価格が確定するまで選択できません。</p>}
         </section>
