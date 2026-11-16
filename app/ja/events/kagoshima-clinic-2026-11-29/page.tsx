@@ -27,15 +27,15 @@ export default function Page() {
       <div>
         <a className={styles.back} href="/ja/schedule">← クリニック・イベント日程</a>
         <p className={styles.label}>BASTET × RBA / KAGOSHIMA</p>
-        <h1>鹿児島で、<br/>次の一歩を。</h1>
+        <h1>鹿児島で、<br/>学びを重ねる。</h1>
         <p className={styles.lead}>BASTET CLINIC<br/><strong>2026年11月29日（日）</strong><br/>錦江湾高校体育館（鹿児島市）</p>
-        <p>BASTETとRBAが、鹿児島でクリニックを開催します。小学生から高校生まで、男女ともに参加できます。錦江湾高校のコートで、一緒にバスケットボールを楽しみましょう。</p>
-        <a className={styles.primary} href="#entry">参加する時間を選んで申し込む ↓</a>
+        <p>BASTETとRBAによる、鹿児島でのバスケットボールクリニック。小学生から高校生まで、男女を問わず参加できます。錦江湾高校のコートで、それぞれの課題に向き合う時間をつくります。</p>
+        <a className={styles.primary} href="#entry">参加時間を選んで申し込む ↓</a>
       </div>
     </section>
 
     <div className={styles.localBand}>
-      <div><p>BASTET × RBA IN KAGOSHIMA</p><strong>鹿児島から、次の一歩を。</strong><span>2026.11.29 SUN ／ 錦江湾高校体育館</span></div>
+      <div><p>BASTET × RBA IN KAGOSHIMA</p><strong>鹿児島から、学びの輪を。</strong><span>2026.11.29 SUN ／ 錦江湾高校体育館</span></div>
       <svg className={styles.landscape} viewBox="0 0 620 180" aria-hidden="true" focusable="false"><path d="M0 134L74 129L123 113L165 102L206 74L244 69L267 42L294 51L318 44L350 76L386 82L430 110L487 121L543 130L620 134" fill="none" stroke="currentColor" strokeWidth="4" strokeLinejoin="round"/><path d="M261 29Q249 8 268 1M282 30Q301 15 289 0" fill="none" stroke="currentColor" strokeWidth="2" opacity=".45"/><path d="M0 149Q78 139 155 149T310 149T465 149T620 149M0 166Q78 156 155 166T310 166T465 166T620 166" fill="none" stroke="currentColor" strokeWidth="2" opacity=".65"/></svg>
     </div>
 
@@ -53,9 +53,9 @@ export default function Page() {
     </section>
 
     <section className={styles.section} id="entry" aria-labelledby="application">
-      <p className={styles.label}>APPLICATION / ONLINE PAYMENT</p><h2 id="application">お申し込みはこちら</h2>
+      <p className={styles.label}>APPLICATION / ONLINE PAYMENT</p><h2 id="application">参加申込・お支払い</h2>
       <p className={styles.lead}>① 参加する時間を選ぶ → ② 必要事項を入力する → ③ 参加費を支払う</p>
-      <p>保護者の方が、参加者1名ずつお手続きください。きょうだいで参加する場合は、お一人ずつお申し込みをお願いします。参加費のお支払いが完了すると、お申し込みが確定します。</p>
+      <p>参加者1名ごとに、保護者の方がお申し込みください。きょうだいで参加する場合も、お一人ずつのお手続きが必要です。参加費のお支払いが完了した時点で、申込確定となります。</p>
       <p className={styles.notice}><strong>すでにメール・DMで申し込んだ方へ：</strong>重複のお申し込みを避けるため、主催者からのお支払い案内をご確認ください。すでにお支払い済みの方は、再度のお手続きは不要です。</p>
       {afternoonClosed ? <p className={styles.notice}>オンラインでのお申し込みは終了しました。ご不明な点はRBAまでお問い合わせください。</p> : null}
       <form action="/api/clinics/kagoshima-20261129/checkout" method="post" className={styles.entryForm}>

@@ -3,8 +3,8 @@ import { FounderAboutPage } from "@/components/founder-profile";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: "西尾優人｜創設者・ミッション・ビジョン",
-  description: "Riot Basketball AcademyのPurpose、Mission、育成方針と、日本・アジアで取り組む活動を紹介します。",
+  title: "RBAについて｜育成理念と創設者",
+  description: "Riot Basketball Academyの育成理念と、創設者・西尾優人の考え方。選手の判断力、身体づくり、指導者の学びを全国・アジアへつなぎます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/about", languages: { "en": "https://riotbasketballacademy.com/about", "ja": "https://riotbasketballacademy.com/ja/about", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/about", "ko": "https://riotbasketballacademy.com/ko/about", "x-default": "https://riotbasketballacademy.com/about" } },
   openGraph: {
     title: "西尾優人｜創設者・ミッション・ビジョン",

@@ -102,3 +102,36 @@
 @media(prefers-reduced-motion:reduce){
  .theme :global(a),.theme :global(button){transition:none!important}
 }
+
+
+/* RBA / Japanese editorial luxury system 2026-11
+   Quiet warm neutrals, clear hierarchy and generous space.
+   Shared safety and transaction states retain their semantic contrast. */
+.theme{
+  --ink:#1c1b19;
+  --paper:#f7f5f0;
+  --orange:#24211e;
+  --signal:#eeeae2;
+  --line:#dad4ca;
+  --muted:#645f57;
+  --rba-ink:#1c1b19;
+  --rba-paper:#f7f5f0;
+  --rba-brass:#a38b65;
+  --rba-line:#d9d3c9;
+  background:#f7f5f0;color:#1c1b19;
+}
+.theme:global(.locale-ja){font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-feature-settings:"palt" 1;}
+.theme :global(.site-header){background:rgba(248,247,243,.98);border-bottom:1px solid #d7d0c6;box-shadow:none}
+.theme :global(.site-header nav a){font-size:12px;letter-spacing:.055em}
+.theme :global(.site-header nav a:hover){color:#8b6f4c;text-decoration:none;border-bottom:1px solid #8b6f4c}
+.theme :global(.header-member),.theme :global(.button-dark),.theme :global(.button-orange),.theme :global(.programme-link){background:#1d1b19;color:#fbf8f2;border-color:#1d1b19;border-radius:0}
+.theme :global(.site-update-strip){background:#edeae3;border-bottom:1px solid #d9d3c9;color:#36312b}
+.theme :global(.site-footer){background:#1a1917;border-top:1px solid #ae9877;color:#ede9e0}
+.theme :global(.site-footer .footer-label){color:#c0a885;letter-spacing:.17em;font-weight:700}
+.theme :global(.site-footer .footer-brand p){color:#e3ded4;line-height:1.9}
+.theme :global(.site-footer a:hover){color:#cdb18a}
+.theme :global(.site-footer .footer-legal){color:#c7beb0}
+.theme :global(.site-header .brand-lockup){font-weight:800;letter-spacing:.14em}
+.theme :global(.mobile-site-menu summary){border-color:#a99f92}
+.theme a:focus-visible,.theme button:focus-visible,.theme summary:focus-visible{outline:3px solid #a38b65;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.theme :global(a),.theme :global(button){scroll-behavior:auto!important;transition:none!important}}

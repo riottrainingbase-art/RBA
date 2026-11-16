@@ -78,7 +78,7 @@ export default function GreamSendaiPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p style={{ margin: "0 0 18px", fontSize: 12, fontWeight: 800, letterSpacing: 3, color: "#c5cacf" }}>RIOT BASKETBALL ACADEMY / SENDAI · TAIHAKU / U15 BOYS CLUB</p>
           <GreamBrandHeading team="GREAM SENDAI" />
-          <h2 style={{ fontSize: "clamp(24px,3.6vw,47px)", lineHeight: 1.25, fontWeight: 900, margin: "0 0 20px" }}>仙台・太白区で、<br/>一緒にバスケを楽しもう。</h2>
+          <h2 style={{ fontSize: "clamp(24px,3.6vw,47px)", lineHeight: 1.25, fontWeight: 900, margin: "0 0 20px" }}>仙台・太白区で、<br/>一人ひとりが育つ。</h2>
           <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>GREAM仙台は、2026年に生まれたU15男子のバスケットボールクラブです。活動の中心は仙台市太白区。現在は中学2・3年生がいない、まだ新しいチームです。まずは仲間とバスケを楽しむこと。そこから一緒に、できることを増やしていきましょう。</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
             <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-hero-intake" style={{ ...button, background: "#fff", color: ink }}>新規メンバーの参加相談をする ↗</a>
@@ -138,7 +138,7 @@ export default function GreamSendaiPage() {
       <section id="programme" style={{ padding: "76px max(20px,6vw)", background: "#fff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p style={{ letterSpacing: 3, fontSize: 12, fontWeight: 900, color: muted }}>OUR DEVELOPMENT PHILOSOPHY</p>
-          <h2 style={{ fontSize: "clamp(33px,5vw,64px)", lineHeight: 1.04, letterSpacing: "-.04em", margin: "12px 0 20px" }}>まず、バスケを楽しむ。<br/>その先に、成長と挑戦がある。</h2>
+          <h2 style={{ fontSize: "clamp(33px,5vw,64px)", lineHeight: 1.04, letterSpacing: "-.04em", margin: "12px 0 20px" }}>楽しむことを、成長の土台に。<br/>考え、挑戦し、学び続ける。</h2>
           <p style={{ fontSize: 18, lineHeight: 1.95, color: muted, maxWidth: 850, margin: "0 0 34px" }}>上手な選手だけが楽しめるチームにはしたくありません。初めてできたプレーを喜んだり、失敗した仲間に声をかけたり。練習も試合も、みんなでバスケットボールを楽しみたいと考えています。勝つことも大切にしながら、一人ひとりが成長できる環境をつくります。</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 1, background: "#bec4c4" }}>
             {pillars.map(p=><article key={p.num} style={{ background: panel, padding: "28px 24px" }}>

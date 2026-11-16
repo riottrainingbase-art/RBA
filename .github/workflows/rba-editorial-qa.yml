@@ -1,0 +1,46 @@
+name: RBA Japanese Editorial QA
+
+on:
+  pull_request:
+    branches:
+      - release/instagram-conversion-hub-20261117
+      - preview-rba
+      - main
+    paths:
+      - "components/**"
+      - "app/ja/**"
+      - "definitive-content/ja/**"
+      - "public/rba-definitive/assets/editorial-ja-202611.css"
+      - "tests/rba-japanese-luxury-editorial.test.mjs"
+      - ".github/workflows/rba-editorial-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  editor-quality:
+    name: Editorial regression and types
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Set up pnpm
+        run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Japanese copy, brand consistency and commerce guards
+        run: node --test tests/rba-japanese-luxury-editorial.test.mjs
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: Site Japanese regression
+        run: pnpm run audit:site-ja
+      - name: Verify deployment policy
+        run: pnpm run audit:deploy-policy
+      - name: Next.js production compilation and CSS Modules QA (no deployment)
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: pnpm run build

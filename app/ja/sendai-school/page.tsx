@@ -7,7 +7,7 @@ export const metadata:Metadata={
   title:"仙台U12・U15バスケットボールスクール｜体験・参加相談｜RBA",
   description:"仙台市太白区のRBAスクール。U12は茂庭台小学校を会場候補に金曜夕方、U15は木曜18:00〜19:30・月3回。所属チームを変えずに学べます。無料の体験相談フォームから学年・希望曜日を登録できます。実際の体験日、会場、体験費用は個別案内。",
   alternates:{canonical:"https://riotbasketballacademy.com/ja/sendai-school"},
-  openGraph:{title:"チームはそのまま。もっと、上手くなる。｜RBA仙台スクール",description:"小学生・中学生のための育成スクール。U12・U15の学年・希望曜日から、無料で体験・参加相談ができます。",url:"https://riotbasketballacademy.com/ja/sendai-school",type:"website"}
+  openGraph:{title:"所属はそのまま、判断を磨く。｜RBA仙台スクール",description:"小学生・中学生のための育成スクール。U12・U15の学年・希望曜日から、無料で体験・参加相談ができます。",url:"https://riotbasketballacademy.com/ja/sendai-school",type:"website"}
 };
 const intake="https://form.jotform.com/263053122067044";
 const u15="https://form.jotform.com/262678369675074";
@@ -63,7 +63,7 @@ export default function SendaiSchoolPage(){
       <section style={{padding:"48px 22px",background:"#fff",borderTop:"1px solid #e1e5e9"}} aria-labelledby="school-who-for">
         <div style={{maxWidth:1080,margin:"0 auto"}}>
           <p style={{fontSize:12,letterSpacing:2,color:"#8d6946",fontWeight:800}}>FOR SENDAI FAMILIES</p>
-          <h2 id="school-who-for" style={{fontSize:"clamp(25px,3.6vw,38px)",margin:"9px 0 12px"}}>こんなご家庭から相談できます。</h2>
+          <h2 id="school-who-for" style={{fontSize:"clamp(25px,3.6vw,38px)",margin:"9px 0 12px"}}>こうしたご相談を受け付けています。</h2>
           <p style={{fontSize:14,color:"#42556d",lineHeight:1.85,maxWidth:790}}>入会を決める前に、学年・現在の活動・ご家庭で無理なく通える曜日を確認します。最初から競技経験や入団意思を問うものではありません。</p>
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:13,marginTop:22}}>
             {parentNeeds.map(([title,desc])=><article key={title} style={{padding:"22px 20px",background:"#f3f5f7",borderTop:"3px solid #10233f"}}><h3 style={{fontSize:19,margin:"0 0 10px"}}>{title}</h3><p style={{fontSize:14,color:"#42556d",lineHeight:1.85,margin:0}}>{desc}</p></article>)}
@@ -75,7 +75,7 @@ export default function SendaiSchoolPage(){
       <section id="classes" style={{background:"#f2f4f6",padding:"54px 22px 60px"}}>
         <div style={{maxWidth:1080,margin:"0 auto"}}>
           <p style={{fontSize:12,letterSpacing:2,color:"#8d6946",fontWeight:800}}>CHOOSE YOUR CLASS</p>
-          <h2 style={{fontSize:"clamp(26px,3.5vw,39px)",letterSpacing:"-.035em",margin:"8px 0 22px"}}>学年と通える曜日から選ぶ。</h2>
+          <h2 style={{fontSize:"clamp(26px,3.5vw,39px)",letterSpacing:"-.035em",margin:"8px 0 22px"}}>学年・曜日から、参加を考える。</h2>
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(270px,1fr))",gap:14}}>
             <article style={{background:"#fff",border:"1px solid #d9e0e6",padding:"clamp(22px,2.9vw,32px)"}}>
               <p style={{fontSize:12,letterSpacing:2,fontWeight:800,color:"#8e6945"}}>ELEMENTARY / U12</p>
@@ -114,7 +114,7 @@ export default function SendaiSchoolPage(){
         <div style={{maxWidth:1080,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(265px,1fr))",gap:28,alignItems:"start"}}>
           <div>
             <p style={{fontSize:12,fontWeight:800,letterSpacing:2,color:"#7d603f"}}>BEFORE YOU DECIDE</p>
-            <h2 id="school-parent-check" style={{fontSize:"clamp(26px,3.7vw,37px)",margin:"10px 0 16px"}}>体験する前に、知ってほしいこと。</h2>
+            <h2 id="school-parent-check" style={{fontSize:"clamp(26px,3.7vw,37px)",margin:"10px 0 16px"}}>体験前のご案内。</h2>
             <p style={{fontSize:15,lineHeight:1.9,color:"#354b62"}}>クラスの雰囲気、指導の考え方、通える曜日、実際の会場・費用。本人が楽しく続けられるかを、ご家庭と一緒に確認します。</p>
           </div>
           <div style={{background:"#fff",padding:"22px 25px",border:"1px solid #d5dee5"}}>
@@ -133,7 +133,7 @@ export default function SendaiSchoolPage(){
       <section className={styles.process} aria-labelledby="school-how-to-join">
         <div className={styles.wrap}>
           <p className={styles.eyebrow}>START WITH A CONVERSATION</p>
-          <h2 id="school-how-to-join">体験・入会まで、3つのステップ。</h2>
+          <h2 id="school-how-to-join">体験・入会までの流れ。</h2>
           <div className={styles.steps}>
             {steps.map(([num,title,description])=><article key={num}>
               <span aria-hidden="true">{num}</span><h3>{title}</h3><p>{description}</p>
@@ -174,7 +174,7 @@ export default function SendaiSchoolPage(){
       </section>
       <section style={{background:navy,color:"#fff",padding:"50px 22px 68px"}}>
         <div style={{maxWidth:1080,margin:"0 auto"}}>
-          <h2 style={{fontSize:"clamp(26px,3.5vw,38px)",lineHeight:1.35,margin:"0 0 13px"}}>まずは、通えるか相談する。</h2>
+          <h2 style={{fontSize:"clamp(26px,3.5vw,38px)",lineHeight:1.35,margin:"0 0 13px"}}>体験日・参加条件を相談する。</h2>
           <p style={{fontSize:15,color:"#d7e1eb",lineHeight:1.9,maxWidth:755}}>学年、希望する曜日、お住まいのおおよそのエリアを入力すれば十分です。保護者のメールアドレスへ開催条件をご案内します。今すぐ入会や決済をする必要はありません。</p>
           <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:23}}>
             <a href={intake} target="_blank" rel="noopener noreferrer" data-growth-id="sendai-school-final-interest" style={{...basicButton,background:"#fff",color:navy}}>体験・参加相談フォーム →</a>

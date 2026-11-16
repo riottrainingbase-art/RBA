@@ -8,14 +8,14 @@ import Image from "next/image";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Instagramから参加する・学ぶ",
+  title: "RBA公式案内｜Instagramから参加・購入",
   description:
-    "仙台U12・U15スクールの無料体験相談、GREAMクラブ、全国クリニック、指導者教育、国際交流、企業協賛。選手・保護者・指導者・企業のためのRBA公式入口。",
+    "RBAの最新クリニック・講習、公式ウェアの購入、D-HUB、スクールを一つの公式リンクからご案内します。",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://riotbasketballacademy.com/ja/instagram" },
   openGraph: {
-    title: "次のコートは、ここから。｜RBA",
-    description: "クリニックに参加する。指導を学ぶ。世界とつながる。RBAの公式入口。",
+    title: "RBA｜参加する。学ぶ。手に取る。",
+    description: "クリニック・D-HUB・公式ウェアまで。RBAの申込・購入先をご案内。",
     url: "https://riotbasketballacademy.com/ja/instagram",
     images: ["/rba-court-hero.png"],
     type: "website",
@@ -107,15 +107,24 @@ export default function InstagramEntryPage() {
           <span className="text-[10px] font-bold tracking-[.12em] text-neutral-600">OFFICIAL / JAPAN</span>
         </header>
 
+        <section className="mx-5 mt-7 border border-[#a99577] bg-[#1d1b19] px-5 py-7 text-[#f8f3e9] sm:mx-9 sm:px-8" aria-label="RBAの最新公式申込・購入案内">
+          <p className="text-[10px] font-semibold tracking-[.2em] text-[#c9b18a]">RBA / OFFICIAL LINKS</p>
+          <h2 className="mt-3 text-[clamp(24px,4.5vw,36px)] font-semibold leading-[1.45] tracking-[-.04em]">参加も、学びも、公式ウェアも。</h2>
+          <p className="mt-4 text-[13px] leading-7 text-[#dfd9cd]">現在の開催予定、D-HUB、RBA ESSENTIALSの購入先を、一つにまとめました。</p>
+          <a href="/ja/go" data-growth-id="instagram-unified-official-links" className="mt-5 flex min-h-[56px] items-center justify-between bg-[#eadcc4] px-5 py-4 text-[13px] font-semibold text-[#1b1915]">
+            最新の公式申込・購入先を見る <ArrowUpRight size={18} aria-hidden="true"/>
+          </a>
+        </section>
+
         <section className="px-5 pb-7 pt-10 sm:px-9 sm:pt-14" aria-labelledby="instagram-title">
           <p className="text-[11px] font-bold tracking-[.2em] text-neutral-600">FROM INSTAGRAM</p>
           <h1 id="instagram-title" className="mt-4 text-[clamp(38px,7vw,70px)] font-black leading-[1.06] tracking-[-.06em]">
-            次のコートは、<br />ここから。
+            コートの外まで、<br />学びを広げる。
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] font-medium leading-7 text-neutral-700 sm:text-base">
             育成の可能性を、もっと広く。<br />
             全国のクリニック、指導者の学び、国際交流。<br className="hidden sm:block" />
-            目的に合った入口を選んでください。
+            最新の公式案内からお選びください。
           </p>
           <div className="mt-7 flex flex-wrap gap-2 text-[11px] font-bold text-neutral-600" aria-label="対象">
             <span className="border border-neutral-300 bg-white px-3 py-2">選手</span>

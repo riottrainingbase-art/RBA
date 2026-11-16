@@ -1,1 +1,41 @@
 .page{background:#f5f4f0;color:#1b1b1a;min-height:100vh}.container{max-width:1000px;margin:auto;padding:30px clamp(16px,4vw,42px) 75px}.micro{font-size:10px;letter-spacing:.17em;font-weight:850;color:#66605a}.hero{border-bottom:1px solid #c8c3bb;padding:45px 0 57px}.hero h1{font-family:Georgia,serif!important;font-size:clamp(92px,20vw,170px)!important;font-weight:400!important;letter-spacing:-.095em!important;line-height:1!important;margin:23px 0 23px!important}.hero h1 span{color:#9e9990}.headline{font-weight:800;font-size:clamp(21px,4vw,40px);line-height:1.55;letter-spacing:-.055em;margin:0}.heroBody{line-height:2;font-size:14px;color:#5b5650;margin:20px 0 28px}.quick,.darkLink,.buy{display:flex;align-items:center;justify-content:space-between;background:#151515!important;color:#fff!important;text-decoration:none!important;padding:19px 23px;font-weight:800;font-size:13px;min-height:56px;max-width:480px}.quick:hover,.darkLink:hover,.buy:hover{background:#383838!important}.section{padding:47px 0 50px;border-bottom:1px solid #cbc7bf;scroll-margin-top:80px}.sectionHeading{margin-bottom:26px}.sectionHeading h2{font-size:clamp(25px,4.3vw,42px)!important;letter-spacing:-.06em!important;line-height:1.3!important;margin:12px 0!important}.note{font-size:13px;line-height:1.9;color:#58544c;margin-top:18px}.events{border-top:1px solid #d2cec5}.event{display:grid;grid-template-columns:112px minmax(0,1fr);column-gap:22px;border-bottom:1px solid #d2cec5;padding:24px 0}.eventDate{font-size:12px;letter-spacing:.13em;font-weight:800}.eventBody h3{font-size:18px!important;line-height:1.45!important;letter-spacing:-.04em;margin:8px 0!important}.eventBody p{font-size:12px;line-height:1.9;color:#56524d;margin:8px 0}.eventMeta{font-size:10px;color:#716e67;letter-spacing:.1em}.eventLink{grid-column:2;color:#111;font-size:13px;font-weight:750;text-decoration:underline;text-underline-offset:4px;margin-top:15px}.secondary{display:inline-flex;margin-top:22px;font-size:12px;color:#1f1f1e;text-decoration:underline;text-underline-offset:4px;font-weight:650}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.product{min-width:0;background:#fff;border:1px solid #d4cec5;overflow:hidden}.product img{width:100%;display:block;aspect-ratio:1/1;object-fit:contain;background:#d5d1cb}.productBody{padding:18px 19px 22px}.productName{font-size:11px;letter-spacing:.11em;font-weight:800}.price{font-family:Georgia,serif;font-size:clamp(25px,3.5vw,37px);margin:15px 0 19px}.price small{display:block;font-family:Arial,sans-serif;font-size:11px;color:#787168;letter-spacing:0;margin-top:8px}.buy{max-width:none;padding:15px 16px;min-height:51px;font-size:12px}.disclaimer,.body,.empty{max-width:780px;font-size:12px;line-height:2.05;color:#57534e;margin:20px 0}.footer{display:flex;flex-wrap:wrap;gap:14px 22px;padding:35px 0 15px;color:#676159;font-size:11px}.footer a{color:inherit;font-weight:650}.footer p{flex-basis:100%;margin:0;line-height:1.8}@media(max-width:620px){.container{padding-top:12px}.hero{padding:32px 0 42px}.products{gap:13px}.productBody{padding:12px}.productName{font-size:9px;letter-spacing:.04em}.price{font-size:25px;margin:10px 0 14px}.buy{font-size:11px;padding:11px;min-height:53px;line-height:1.55}.event{grid-template-columns:1fr;gap:8px}.eventLink{grid-column:1}.eventDate{color:#666}.section{padding:38px 0}.hero h1{font-size:112px!important}}
+
+/* 2026-11 / restrained editorial flagship for the Instagram conversion hub */
+.page{background:#f6f3ee;color:#1b1917;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+.container{max-width:1110px;padding:clamp(18px,4.2vw,64px)}
+.hero{border-bottom:1px solid #d6cec2;padding:clamp(48px,8vw,110px) 0 clamp(65px,8.5vw,122px)}
+.hero .micro,.micro{color:#907a59;letter-spacing:.2em;font-weight:700}
+.hero h1{color:#1a1917;font-family:Georgia,serif!important;letter-spacing:-.10em!important;font-weight:400!important}
+.headline{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;font-size:clamp(35px,5.6vw,69px)!important;line-height:1.5!important;letter-spacing:-.073em!important;font-weight:600}
+.heroBody{font-size:clamp(14px,1.45vw,17px);line-height:2.15;color:#655f58}
+.quick,.darkLink,.buy{background:#191715!important;color:#f9f5ed!important;border-radius:0;letter-spacing:.035em;font-weight:700}
+.quick:hover,.darkLink:hover,.buy:hover{background:#423c33!important}
+.section{border-bottom-color:#d8d0c4;padding:clamp(55px,7vw,95px) 0}
+.sectionHeading{margin-bottom:32px}
+.sectionHeading h2{font-family:"Hiragino Mincho ProN","Yu Mincho",Georgia,serif;font-weight:600!important;font-size:clamp(30px,4.2vw,51px)!important;letter-spacing:-.06em!important}
+.event{border-color:#d8d0c4;padding:30px 0}
+.eventDate{color:#957f5d;font-family:Georgia,serif;font-size:13px;letter-spacing:.095em}
+.eventBody h3{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:clamp(19px,2vw,26px)!important;font-weight:600!important;letter-spacing:-.05em}
+.eventBody p{line-height:2.05}
+.product{border:1px solid #d9d2c7;background:#fffdf9}
+.product img{aspect-ratio:1/1;object-fit:contain;background:#efede8}
+.productBody{padding:clamp(19px,3vw,32px)}
+.productName{letter-spacing:.13em;color:#6a6257}
+.price{font-size:clamp(35px,4vw,48px)}
+.note,.disclaimer,.body{line-height:2.1;color:#59534b}
+.secondary{font-weight:750;text-decoration-thickness:1px;text-underline-offset:6px}
+.footer{border-top-color:#d7d0c5}
+@media(max-width:620px){
+ .container{padding:18px 19px 65px}
+ .hero{padding:48px 0 74px}
+ .hero h1{font-size:clamp(96px,24vw,132px)!important}
+ .headline{font-size:clamp(32px,8.5vw,49px)!important}
+ .products{grid-template-columns:1fr;gap:23px}
+ .product img{aspect-ratio:5/4;object-position:center}
+ .productBody{padding:23px}
+ .productName{font-size:11px}
+ .price{font-size:39px}
+ .buy{min-height:56px;font-size:13px}
+ .event{padding:26px 0}
+ .eventBody h3{font-size:23px!important}
+}

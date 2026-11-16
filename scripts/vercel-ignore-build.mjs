@@ -19,6 +19,14 @@ if (
   process.exit(1);
 }
 
+// Permit a QA build for the Japanese editorial release on the verified RBA site only.
+if (ref === "release/luxury-japanese-editorial-20261117" &&
+   (process.env.VERCEL_PROJECT_ID === "prj_ToviFjFURKMeQe7Gci5K4XLAfwAE" ||
+    process.env.VERCEL_PROJECT_NAME === "rba_site_v11_portal_ready")) {
+  console.log("[vercel-ignore] allow scoped Japanese editorial QA");
+  process.exit(1);
+}
+
 if (ref !== "preview-rba") {
   console.log(`[vercel-ignore] skip Git deployment for ${ref}; only preview-rba may build`);
   process.exit(0);

@@ -4,13 +4,13 @@ import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import styles from "./links.module.css";
 
 export const metadata: Metadata = {
-  title: "RBA公式リンク集｜保護者・指導者・参加できる活動",
-  description: "Riot Basketball Academy公式。保護者・選手、指導者、クリニック参加の3つの入口から、必要な情報に迷わず進める公式リンク集です。",
+  title: "RBA公式案内｜参加・学び・公式ウェア",
+  description: "RBA公式の申込・購入先と育成の情報を一つに。クリニック、指導者の学び、公式ウェア、保護者・選手向けの案内。",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://riotbasketballacademy.com/ja/links" },
   openGraph: {
-    title: "RBA｜保護者・指導者・育成の機会",
-    description: "保護者・指導者・参加希望の方へ。最初に選ぶ入口を3つに整理しました。",
+    title: "RBA｜可能性は、ひとつのコートに収まらない。",
+    description: "RBAの活動・申込・公式ウェアを、目的から探せる公式案内。",
     url: "https://riotbasketballacademy.com/ja/links",
     type: "website",
     images: [{url:"https://riotbasketballacademy.com/rba-logo-original.jpg"}],
@@ -51,7 +51,7 @@ const more = [
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
-  {title: "RBA PERFORMANCE TEE｜公式ウェア",href:"/ja/store",id:"store"},
+  {title: "RBA ESSENTIALS｜公式アパレル",href:"/ja/essentials/shop",id:"store"},
   {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
   {title: "RBA公式サイト",href:"/ja",id:"home"},
 ] as const;
@@ -65,8 +65,8 @@ export default function RbaLinkInBioPage() {
           <Image src="/rba-logo-original.jpg" alt="RBA公式ロゴ" width={66} height={92} priority className={styles.logo} />
         </a>
         <p className={styles.brand}>RIOT BASKETBALL ACADEMY</p>
-        <h1>バスケットボールの<br/>次の一歩を。</h1>
-        <p className={styles.lead}>保護者、指導者、活動に参加したい方へ。<br/>まずは目的をひとつお選びください。</p>
+        <h1>育成の可能性を、<br/>もっと広く。</h1>
+        <p className={styles.lead}>選手・保護者、指導者、地域の皆さまへ。<br/>必要な情報と申込先を、こちらからご案内します。</p>
         <span className={styles.region}>仙台から、全国・アジアへ。</span>
       </header>
       <nav aria-label="RBAの公式案内リンク" className={styles.links}>
