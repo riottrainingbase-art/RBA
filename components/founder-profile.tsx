@@ -13,12 +13,12 @@ const copy = {
   contactTitle:"A shared purpose is where we begin.",contactBody:"Clinics, coach learning, Japan–Asia exchange or a new partnership. Tell us who you work with and what you hope to make possible.",cta:"Contact Masato on WhatsApp",note:"Your message opens in WhatsApp. Review it before sending.",message:"Hello Masato, I read your profile on the RBA website. I would like to discuss a clinic, coach learning, Japan–Asia exchange or partnership. Organisation / location: \nWhat we hope to do: ",more:"Meet the founder",alt:"Masato Nishio giving basketball instruction on court",caption:"MASATO NISHIO / ON COURT"
  },
  ja:{
-  label:"創設者について",name:"西尾 優人",native:"MASATO NISHIO",role:"Riot Basketball Academy 創設者・代表",headline:"一人の可能性に、\n世界への視野を。",
-  bio:"仙台を拠点に、選手育成、身体づくり、指導者の学びを一つにつなぐ。Riot Basketball Academyを通じて、日本各地とアジアの指導者・地域主催者と協働し、コートの現実から育成の機会をつくっています。",
-  belief:"大切にしているのは、一人ひとりを見つめること。ゲームを読み、自分で判断し、実行し、振り返る。その積み重ねが、一度の結果にとどまらない成長の土台になると考えています。",
-  missionLabel:"ミッション",mission:"すべての子どもに、\n次の成長機会を。",missionBody:"一人ひとりが理解し、判断し、意図を持って行動できる力を育む。バスケットボール、身体づくり、指導者教育をつなぎ、長期的な成長が根づく環境をつくります。",
-  visionLabel:"ビジョン",vision:"日本最大級の\n育成プラットフォームへ。",visionBody:"住む場所によって、子どもの学びの可能性が限られない未来へ。日本最大級の育成年代バスケットボール・プラットフォームを目指します。日本とアジアの間に継続的な関係を育て、選手と指導者が知識を分かち合い、共に成長できる環境を目指します。",
-  contactTitle:"共に実現したいことから、話そう。",contactBody:"クリニック、指導者の学び、日本とアジアの交流、パートナーシップ。活動する地域や対象、実現したいことをお聞かせください。",cta:"西尾優人にWhatsAppで相談",note:"WhatsAppが開きます。内容を確認してから送信できます。",message:"西尾さん、RBAのプロフィールを拝見しました。クリニック・指導者の学び・国際交流・連携について相談したいです。\n団体名・地域：\n実現したいこと：",more:"創設者の紹介を読む",alt:"コートでバスケットボールの指導をする西尾優人",caption:"西尾優人 / 指導の現場から"
+  label:"創設者について",name:"西尾 優人",native:"MASATO NISHIO",role:"Riot Basketball Academy 創設者・代表",headline:"子どもの可能性を、\n所属先で決めない。",
+  bio:"仙台を拠点に、選手の技術と身体づくり、指導者の学びをつなぐRiot Basketball Academy。全国各地とアジアの現場で、所属チームだけでは得られない経験の選択肢を広げています。",
+  belief:"大切なのは、今できることだけで選手を決めつけないこと。ゲームを見て、判断し、実行して、振り返る。結果だけでは測れない経験の積み重ねを、育成の中心に置いています。",
+  missionLabel:"ミッション",mission:"一人ひとりに、\n育つ機会を。",missionBody:"一人ひとりが理解し、判断し、意図を持って行動できる力を育む。バスケットボール、身体づくり、指導者教育をつなぎ、長期的な成長が根づく環境をつくります。",
+  visionLabel:"ビジョン",vision:"地域を越えて、\n育成の可能性を広げる。",visionBody:"どこに住んでいても、異なる指導や価値観に触れられる未来へ。日本とアジアの選手・指導者・地域を継続的につなぎ、学びを持ち帰れる育成の仕組みを築いていきます。",
+  contactTitle:"育成の未来を、共につくる。",contactBody:"クリニックの開催、指導者の学び、国内外の交流、協賛・連携。活動地域と対象年代、実現したいことをお聞かせください。",cta:"西尾優人にWhatsAppで相談",note:"WhatsAppが開きます。内容を確認してから送信できます。",message:"西尾さん、RBAのプロフィールを拝見しました。クリニック・指導者の学び・国際交流・連携について相談したいです。\n団体名・地域：\n実現したいこと：",more:"創設者の紹介を読む",alt:"コートでバスケットボールの指導をする西尾優人",caption:"西尾優人 / 指導の現場から"
  },
  "zh-tw":{
   label:"創辦人介紹",name:"西尾 優人",native:"MASATO NISHIO",role:"Riot Basketball Academy 創辦人・代表",headline:"看見每一份潛能，\n開啟世界的視野。",
