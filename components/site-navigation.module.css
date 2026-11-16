@@ -76,3 +76,7 @@
 @media(prefers-reduced-motion:reduce){
   .header :global(.header-member),.header>nav a{transition:none}
 }
+
+/* Site-wide legal transparency: readable footer and inclusive menu focus. */
+.header :global(.mobile-site-menu summary:focus-visible),.header :global(.mobile-site-menu a:focus-visible){outline:3px solid #97b9b1;outline-offset:3px}
+.header :global(.footer-purpose){max-width:430px;line-height:1.85;font-size:12px}
