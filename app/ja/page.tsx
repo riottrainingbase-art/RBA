@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
-  twitter: { card: "summary_large_image", title: "RBA｜子どもの未来から育成を考える", description: "保護者・指導者・地域へ。必要な学びと活動へつながる公式案内。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
+  twitter: { card: "summary_large_image", title: "RBA｜子どもの可能性を、所属先で決めない。", description: "勝敗だけでは測れない、選手の経験と成長を。仙台から全国、そしてアジアへ。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
 export default function Page() {
