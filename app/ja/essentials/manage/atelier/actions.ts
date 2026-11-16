@@ -46,7 +46,7 @@ export async function saveRbaArtisanTrial(fd:FormData){
     quotedArtistFee===undefined||estimatedMinutes===undefined||plannedAddon===undefined)exitWith("invalid");
   const row={
     label,garment,finish,stage,notes,
-    sample_count:sampleCount,wash_cycles:washCycles,
+    sample_count:sampleCount as number,wash_cycles:washCycles as number,
     quoted_artist_fee_jpy:quotedArtistFee,
     estimated_minutes:estimatedMinutes,
     planned_addon_jpy:plannedAddon,
