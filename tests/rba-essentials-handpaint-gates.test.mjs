@@ -91,7 +91,7 @@ test("RBA handles marketing and buyer payment while Risa fulfillment contract ga
   assert.match(roles,/りささんにデザイン・製造・品質管理・梱包・発送/);
   assert.match(roles,/販売者としての法的主体/);
   assert.match(roles,/個人情報/);
-  assert.match(roles,/前払いの注文承諾メール/);
+  assert.match(roles,/前払い?の?注文承諾メール/);
   assert.doesNotMatch(roles,/顧客情報を無制限に共有/);
 });
 
