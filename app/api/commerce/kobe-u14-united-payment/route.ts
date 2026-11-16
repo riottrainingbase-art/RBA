@@ -98,7 +98,7 @@ export async function POST(request:Request){
  try{
   const price=await stripe.prices.retrieve(PRICE[stage],{expand:["product"]});
   const product=price.product;
-  if(!price.active||price.unit_amount!==50000||price.currency!=="jpy"||!product||typeof product==="string"||!product.active){
+  if(!price.active||price.unit_amount!==50000||price.currency!=="jpy"||!product||typeof product==="string"||!("active" in product)||product.active!==true){
    return fail("価格商品はまだ決済可能な状態ではありません。",423);
   }
   const meta={event:PROGRAM,stage:stage==="deposit"?"united_deposit":"united_balance",application_ref:entry.application_ref,selection_id:entry.id,terms_version:agreedVersion};
