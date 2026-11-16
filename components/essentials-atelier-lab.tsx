@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 type Scenario = "signature" | "artist";
 type Assumptions = {
@@ -101,7 +102,7 @@ export function EssentialsAtelierLab(){
         <div className="runway"><p>1着の作業時間：{a.minutes}分</p><p>5着の作業時間：{(5*a.minutes/60).toFixed(1)}時間</p><p>20着の作業時間：{(20*a.minutes/60).toFixed(1)}時間</p><p>現物検証・注文対応・不良再製作・作家の制作スケジュールを別途確保してください。</p></div>
       </aside>
     </main>
-    <footer className="footer"><p>この計算は利益確約や税務助言ではありません。完成した服本体の原価・通常商品の採算・輸送・消費税の適用条件を別途確認してください。</p><p>公開前チェック：作家との契約 → 試作品 → 洗濯耐久 → 報酬・価格 → 納期 → 返品対応 → Stripe/受注テスト。</p><p><a href="/ja/essentials/manage">受注管理に戻る</a> / <a href="/ja/essentials">コレクションへ</a></p></footer>
+    <footer className="footer"><p>この計算は利益確約や税務助言ではありません。完成した服本体の原価・通常商品の採算・輸送・消費税の適用条件を別途確認してください。</p><p>公開前チェック：作家との契約 → 試作品 → 洗濯耐久 → 報酬・価格 → 納期 → 返品対応 → Stripe/受注テスト。</p><p><Link href="/ja/essentials/manage">受注管理に戻る</Link> / <Link href="/ja/essentials">コレクションへ</Link></p></footer>
     <style jsx>{`
     .lab{background:#f3f1eb;color:#151515;font-family:Arial,"Helvetica Neue",sans-serif;min-height:100vh}
     *{box-sizing:border-box}
