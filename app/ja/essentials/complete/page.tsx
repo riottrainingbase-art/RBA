@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Stripe from "stripe";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
-import { RBA_ESSENTIALS_STRIPE_ACCOUNT } from "@/lib/essentials-commerce";
+import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:"RBA ESSENTIALS｜お支払い確認",robots:{index:false,follow:false}};
@@ -15,8 +15,7 @@ export default async function EssentialsPaymentComplete({searchParams}:{searchPa
   if(session_id && /^cs_(test_|live_)[A-Za-z0-9]{20,220}$/.test(session_id) && process.env.STRIPE_SECRET_KEY){
     try{
       const stripe=new Stripe(process.env.STRIPE_SECRET_KEY);
-      const account=await stripe.accounts.retrieve();
-      if(account.id===RBA_ESSENTIALS_STRIPE_ACCOUNT){
+      if(await verifyEssentialsStripeAccount(process.env.STRIPE_SECRET_KEY)){
         const s=await stripe.checkout.sessions.retrieve(session_id);
         paid=s.payment_status==="paid"&&s.mode==="payment"&&s.livemode&&s.metadata?.program==="rba_essentials_presale"&&s.currency==="jpy";
         if(paid){orderRef=s.metadata?.order_id||"";deadline=s.metadata?.dispatch_by||"";}
