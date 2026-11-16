@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
+import { FIRST_DROP_TEE_JPY, FIRST_DROP_SETUP_JPY } from "@/lib/essentials-commerce";
 
 export const dynamic="force-dynamic";
 function error(reason:string,status:number){return NextResponse.json({error:reason},{status,headers:{"Cache-Control":"no-store"}});}
@@ -33,12 +34,27 @@ export async function POST(request:Request){
  const m=session.metadata;
  const tee=amount(m?.tee_qty),setup=amount(m?.setup_qty),teeSize=size(m?.tee_size),hoodie=size(m?.hoodie_size),pants=size(m?.pants_size);
  const order=m?.order_id,terms=m?.terms_version,deadline=m?.dispatch_by;
+ const handmade=m?.handwritten==="yes";
+ const handwrittenTarget=m?.handwritten_target;
+ const handwrittenMessage=typeof m?.handwritten_message==="string"?m.handwritten_message.trim():null;
+ const handwrittenAmount=Number(m?.handwritten_addon_jpy??"0");
+ const customIsValid=!handmade
+   ? (m?.handwritten==="no"||m?.handwritten===undefined)&&handwrittenAmount===0
+   : (
+       (handwrittenTarget==="tee"&&tee===1 || handwrittenTarget==="setup"&&setup===1) &&
+       !!handwrittenMessage && Array.from(handwrittenMessage).length<=20 &&
+       !/[\r\n\t<>]/.test(handwrittenMessage) &&
+       Number.isInteger(handwrittenAmount) && handwrittenAmount>=1000 && handwrittenAmount<=200000
+     );
+ const expectedAmount=(tee??0)*FIRST_DROP_TEE_JPY+(setup??0)*FIRST_DROP_SETUP_JPY+
+   (handmade?handwrittenAmount:0);
+
  if(!order||!/^[0-9a-f-]{36}$/.test(order)||
  !terms||!/^[A-Za-z0-9_-]{5,60}$/.test(terms)||
  !deadline||!/^20\d{2}-\d{2}-\d{2}$/.test(deadline)||
  tee===null||setup===null||tee+setup<1||tee+setup>3||
  (tee>0&&!teeSize)||(setup>0&&(!hoodie||!pants))||
- !session.amount_total||session.amount_total<1000||session.amount_total>300000||
+ !customIsValid || !session.amount_total || session.amount_total!==expectedAmount || session.amount_total>300000||
  !session.client_reference_id||session.client_reference_id!==order||!session.id
  ) return error("unexpected_order_values",422);
  const admin=createClient(database,service,{auth:{persistSession:false,autoRefreshToken:false}});
@@ -57,6 +73,10 @@ export async function POST(request:Request){
     setup_quantity:setup,
     hoodie_size:setup>0?hoodie:null,
     pants_size:setup>0?pants:null,
+    handwritten:handmade,
+    handwritten_target:handmade?String(handwrittenTarget):null,
+    handwritten_message:handmade?handwrittenMessage:null,
+    handwritten_addon_jpy:handmade?handwrittenAmount:0,
     payment_status:"paid",
     fulfillment_status:"preparing",
   };
