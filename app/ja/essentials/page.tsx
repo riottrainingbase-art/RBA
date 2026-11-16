@@ -101,7 +101,7 @@ export default function EssentialsCollectionPage() {
             {commerce.ready ? <Link className={styles.darkButton} href="/ja/essentials/checkout">先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.darkButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">先行注文申込（支払前） <span aria-hidden="true">↗</span></a>}
             <a className={styles.textLink} href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報を見る <span aria-hidden="true">↗</span></a>
           </div>
-          <p className={styles.launchFine}>{commerce.ready ? `先行販売・前払い。国内送料0円（FIRST DROP限定）。発送期限：${commerce.dispatchDeadline}。` : "先行注文申込は無料・正式購入未確定です。送料0円は今回の国内先行販売にのみ適用します。"}</p>
+          <p className={styles.launchFine}>{commerce.ready ? `先行販売・前払い。国内送料0円（FIRST DROP限定）。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。` : "先行注文申込は無料・正式購入未確定です。送料0円は今回の国内先行販売にのみ適用します。"}</p>
         </section>
         <footer className={styles.collectionFooter}><span>RBA ESSENTIALS © RIOT BASKETBALL ACADEMY</span><a href="mailto:riot.training.base@gmail.com">CONTACT / EMAIL ↗</a></footer>
       </div>
