@@ -50,7 +50,8 @@ export async function POST(request: Request) {
   try {
     const stripe = new Stripe(secret);
     // Fail closed if Vercel is accidentally configured with another connected business account.
-    const account = await stripe.accounts.retrieve();
+    const accountReply = await fetch("https://api.stripe.com/v1/account", { headers: { Authorization: `Bearer ${secret}` }, cache: "no-store" });
+    const account: { id?: string } = accountReply.ok ? await accountReply.json() : {};
     if (account.id !== expectedAccount) return failure("決済アカウントを確認できません。RBAへお問い合わせください。", 503);
     const ref = applicationRef || "rba-u14-" + signature.slice(0, 24);
     const metadata = { event: "rba_kobe_boys_u14_2027", category, days, registration_ref: ref, responsible_name: responsibleName, participant_or_team: entryName };
