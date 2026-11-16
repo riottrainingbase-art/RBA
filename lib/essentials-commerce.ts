@@ -42,6 +42,8 @@ export type EssentialsPresaleConfig = {
   ready: boolean;
   unitPrices: { tee: number | null; setup: number | null };
   shippingJPY: number | null;
+  handwrittenJPY: number | null;
+  handwrittenAvailable: boolean;
   dispatchDeadline: string | null;
   orderDeadline: string | null;
   termsVersion: string | null;
@@ -62,6 +64,9 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   const priceOverrideIsValid = (!p.RBA_ESSENTIALS_TEE_PRICE_JPY || yen(p.RBA_ESSENTIALS_TEE_PRICE_JPY) === FIRST_DROP_TEE_JPY) &&
     (!p.RBA_ESSENTIALS_SETUP_PRICE_JPY || yen(p.RBA_ESSENTIALS_SETUP_PRICE_JPY) === FIRST_DROP_SETUP_JPY);
   const shippingOverrideIsValid = !p.RBA_ESSENTIALS_JAPAN_SHIPPING_JPY || p.RBA_ESSENTIALS_JAPAN_SHIPPING_JPY === "0";
+  // Candidate +5,500 yen from market research: not a valid customer price
+  // until written maker compensation, garment wash QA and owner approval.
+  const handwrittenJPY = yen(p.RBA_ESSENTIALS_HANDWRITTEN_PRICE_JPY);
   const dispatchDeadline = safeDate(p.RBA_ESSENTIALS_DISPATCH_BY);
   const orderDeadline = safeDate(p.RBA_ESSENTIALS_ORDER_BY);
   const merchant = {
@@ -109,5 +114,14 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     /^[0-9+()\- ]{8,24}$/.test(merchant.phone) &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(merchant.email) &&
     notice(cancellation) && notice(returns) && notice(note);
-  return { ready, unitPrices, shippingJPY, dispatchDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
+  const handwrittenAvailable = ready && handwrittenJPY !== null &&
+    [
+      "RBA_ESSENTIALS_HANDWRITTEN_PRICE_APPROVED",
+      "RBA_ESSENTIALS_HANDWRITTEN_ARTIST_RIGHTS_APPROVED",
+      "RBA_ESSENTIALS_HANDWRITTEN_SAMPLES_APPROVED",
+      "RBA_ESSENTIALS_HANDWRITTEN_WASH_TEST_APPROVED",
+      "RBA_ESSENTIALS_HANDWRITTEN_RETURNS_APPROVED",
+      "RBA_ESSENTIALS_HANDWRITTEN_DELIVERY_APPROVED"
+    ].every(k => isApproved(p[k]));
+  return { ready, unitPrices, shippingJPY, handwrittenJPY, handwrittenAvailable, dispatchDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
 }
