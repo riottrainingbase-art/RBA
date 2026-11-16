@@ -128,3 +128,19 @@ For the Meta feed, additionally set `RBA_ESSENTIALS_META_FEED_APPROVED=true` **o
 - Last confirmed passing Github RBA Preflight QA for an earlier revision: commit `2291875eb0e8b9c3a74ffbb11318e8decb32a954`; later modified sources must run clean on the final head as well.
 - Vercel build statuses for unrelated shared-repo projects may show **build-rate-limit**, which does not establish the new pages are deployed or verified; never claim production launch on that basis.
 - RBA ESSENTIALS and future artist edition remain **unpublished draft PR #458** until approved. No successful payment or Meta Commerce registration. A single planned live launch cannot omit checks simply because the DB is prepared.
+
+## 2026-11-16: RBA sales / Risa production handoff
+
+The confirmed operating intent is **RBA marketing + order intake + seller settlement** and **Risa's manufacturing + quality control + packaging + fulfillment**. This is a delegation design, not proof of a completed vendor contract or permission to share buyer data.
+
+- Management specification: `docs/RBA_ESSENTIALS_RISA_OPERATIONS_HANDOFF_20261116.md`.
+- Production access: `/ja/essentials/production` (signed-in RBA admin or individually authorized, active production agent). No production agents are registered yet; do not assume Risa's email/identity or grant access by Instagram name.
+- Three added launch gates: `RBA_ESSENTIALS_RISA_FULFILLMENT_AGREEMENT_APPROVED`, `RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED`, and `RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED`. All start false and must be explicitly authorized based on actual written terms and verified account/test results.
+- Applied database migration: `supabase/migrations/20261116221000_rba_essentials_fulfillment_handoff.sql`. Creates private `rba_essentials_fulfillment_agents`, `rba_essentials_fulfillment_tasks` and `rba_essentials_fulfillment_log` with RLS, public grants revoked and service-role backend access only. Paid order ledger INSERT automatically creates a production ticket; task changes produce audit logs. No public shipping address or phone in production task table.
+- Verified in a rollback transaction: 1 synthetic paid order created 1 fulfillment task + 1 audit event; after rollback: **0 paid orders, 0 tasks, 0 audit events and 0 authorized agents**.
+- Production route lets a verified agent record accepted → material ready → making → QA → packed → shipped → delivered, with carrier/tracking/shipping date required at shipped stage; flags unexpected issues. It does **not** email the customer, create shipping labels or receive buyer addresses. Actual shipping-address handoff requires a separate private workflow and purchaser-data processing contract.
+- Existing Re.BRAND supplier email draft is not an order nor authorization for a parallel vendor; Risa is the intended primary producer.
+- Seller obligations (legal consumer disclosures, refunds and customer complaints, tax accounting) remain with the legally named merchant, even when delegated to the producer. Verify the named merchant and contract in writing.
+- Once production access is independently verified, Risa may be granted access via a verified Supabase authenticated user ID and a recorded `terms_reference`. Do not insert an unverified user, expose admin keys, auto-share Stripe customer data, or copy address/phone into Instagram messages.
+
+**Not yet complete:** complete real receiving/shipping address handoff, buyer email notifications, agreed retail prices, production costs, returns/defects obligations, final photos and actual one-month shipping capacity. Until all verified, paid preorders stay disabled. The previously captured free interest form remains distinct from confirmed purchases.
