@@ -30,7 +30,7 @@ export async function POST(request:Request) {
   } catch { return fail("申込元を確認できません。",403); }
   const config=getEssentialsPresaleConfig();
   if(!config.ready || !config.unitPrices.tee || !config.unitPrices.setup ||
-    config.shippingJPY===null || !config.dispatchDeadline || !config.orderDeadline || !config.termsVersion)
+    config.shippingJPY!==0 || !config.dispatchDeadline || !config.deliveryDeadline || !config.orderDeadline || !config.termsVersion)
     return fail("現在、RBA ESSENTIALSの先行販売は準備中です。決済は受け付けていません。",423);
   const form=await request.formData().catch(()=>null);
   if(!form) return fail("申込内容が確認できませんでした。");
@@ -61,12 +61,12 @@ export async function POST(request:Request) {
   if(teeQty>0) items.push({quantity:teeQty,price_data:{
     currency:"jpy",unit_amount:config.unitPrices.tee,tax_behavior:"inclusive",
     product_data:{name:`RBA ESSENTIAL TEE / WHITE / ${teeSize}（先行販売）`,
-      description:`先行販売。発送期限：${config.dispatchDeadline}。確定仕様・返品条件は公式サイトを参照。` }
+      description:`先行販売・日本国内送料無料。お届け期限：${config.deliveryDeadline}。返品条件は公式サイト参照。` }
   }});
   if(setupQty>0) items.push({quantity:setupQty,price_data:{
     currency:"jpy",unit_amount:config.unitPrices.setup,tax_behavior:"inclusive",
     product_data:{name:`RBA ESSENTIAL SETUP / BLACK / Hoodie ${hoodieSize} & Pants ${pantsSize}（先行販売）`,
-      description:`上下セット・先行販売。発送期限：${config.dispatchDeadline}。確定仕様・返品条件は公式サイトを参照。` }
+      description:`上下セット先行販売・日本国内送料無料。お届け期限：${config.deliveryDeadline}。返品条件は公式サイト参照。` }
   }});
   if (handmade && config.handwrittenJPY!==null) {
     items.push({quantity:1,price_data:{
@@ -83,6 +83,7 @@ export async function POST(request:Request) {
     order_id:orderID,
     terms_version:config.termsVersion,
     dispatch_by:config.dispatchDeadline,
+    deliver_by:config.deliveryDeadline,
     tee_qty:String(teeQty),
     tee_size:teeQty>0?teeSize!:"none",
     setup_qty:String(setupQty),
