@@ -112,3 +112,19 @@ For the Meta feed, additionally set `RBA_ESSENTIALS_META_FEED_APPROVED=true` **o
 - Verify Stripe account matches `acct_1UGdxZRXDnnSs6XN`. Preorder route intentionally rejects test or unrelated account keys; perform a separate staging simulation and an owner-approved minimal real checkout before activating public sales.
 - Test success, cancelled payment, failed card, duplicate click, buyer email, Japan-only shipping address, Stripe signed webhook idempotency, ledger availability, refunds, reorder/size changes, inventory cap, fulfillment and cancellation communications.
 - Do not imply the purchase is a charitable donation or tax-deductible. Accounting should assign genuine net profit after manufacturing, shipping, fees and tax to documented RBA youth development activities.
+
+## Artisan edition internal studio — implemented 2026-11-16
+
+- New **RBA administrator-only** `/ja/essentials/manage/atelier` Studio Log plus price simulation. Access requires authenticated user with `profiles.role=admin`; unsigned and ordinary members receive 404.
+- Studio Log supports sample entry and updates for white tee and black hoodie only. Stage choices: design, quote requested, sampling, received, revisions, internal review, paused.
+- Each entry keeps distinct flags for creator rights, negotiated pay, textile paint/ink trial, physical sample quality, care/label compliance, and shipping capacity. Cost and proposed price fields are **non-commercial research only**.
+- To advance to `approved_for_internal_review`, DB CHECK enforces >=1 sample, >=10 wash cycles, all six confirmations, known creator quote and measured time. **This internal status NEVER enables buying or Meta catalog activation.**
+- Applied `supabase/migrations/20261116215000_rba_essentials_artisan_trials.sql` to RBA HOMECOURT project on 2026-11-16. Tables `public.rba_essentials_artisan_trials` and `public.rba_essentials_artisan_audit` have RLS enabled, no `anon` or `authenticated` table SELECT privileges. Private `service_role` access only; updates automatically append snapshots to the audit table through an invoker-security trigger.
+- Verified an insert generated exactly 1 audit event **inside a rolled-back SQL transaction**. After rollback, both tables and the paid-order table held 0 records. No live payment was performed.
+- Added `/ja/essentials/manage/readiness`: operator-only checks for manufacturer, sample, price, size chart, legal seller disclosure, returns, Stripe link, signed webhook, prepaid confirmation notification and one-month manufacturing capacity. It intentionally displays only yes/no status of environment flags and connected services, not secret values.
+- Tests `tests/rba-essentials-handpaint-gates.test.mjs` are included in GitHub Actions to catch public exposure, missing auth and any inadvertent handwritten option being added to the *normal* sales checkout.
+
+### Release review notes
+- Last confirmed passing Github RBA Preflight QA for an earlier revision: commit `2291875eb0e8b9c3a74ffbb11318e8decb32a954`; later modified sources must run clean on the final head as well.
+- Vercel build statuses for unrelated shared-repo projects may show **build-rate-limit**, which does not establish the new pages are deployed or verified; never claim production launch on that basis.
+- RBA ESSENTIALS and future artist edition remain **unpublished draft PR #458** until approved. No successful payment or Meta Commerce registration. A single planned live launch cannot omit checks simply because the DB is prepared.
