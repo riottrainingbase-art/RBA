@@ -78,7 +78,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             </div>
             <p className={styles.detailSize}>{item.sizeNote}</p>
             {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>Stripeで先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">先行注文申込（お支払い前） <span aria-hidden="true">↗</span></a>}
-            <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。発送期限：${commerce.dispatchDeadline}。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。現在は販売、予約、決済を受け付けていません。アンケート回答は注文ではありません。"}</p>
+            <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。現在は販売、予約、決済を受け付けていません。アンケート回答は注文ではありません。"}</p>
           </div>
         </article>
 
