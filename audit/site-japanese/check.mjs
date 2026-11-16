@@ -129,6 +129,37 @@ const partnerStrip=fs.readFileSync("components/corporate-support-strip.tsx","utf
 if(!partnerStrip.includes("PARTNERS / 協賛・パートナー"))
   failures.push({file:"components/corporate-support-strip.tsx",rule:"partner-label",sample:"partner label missing"});
 
+// Protect public trust links and correct indexing across all four languages.
+// This guards the shared header/footer, rather than auditing only one landing page.
+const governanceRoutes=[
+  "app/ja/about/governance/page.tsx",
+  "app/about/governance/page.tsx",
+  "app/zh-tw/about/governance/page.tsx",
+  "app/ko/about/governance/page.tsx",
+];
+for(const route of governanceRoutes){
+ if(!fs.existsSync(route))failures.push({file:route,rule:"governance-route-missing",sample:"all four locales need a working organisation route"});
+}
+const sharedFrame=fs.readFileSync("components/site-frame.tsx","utf8");
+for(const fragment of [
+ "about/governance", "governanceLabels", "safetyLabels", "footer-purpose",
+ "href={governanceHref}", 'href="mailto:riot.training.base@gmail.com"'
+]){
+ if(!sharedFrame.includes(fragment))failures.push({file:"components/site-frame.tsx",rule:"trust-navigation",sample:fragment});
+}
+const sitemapSrc=fs.readFileSync("app/sitemap.ts","utf8");
+for(const fragment of ["governancePages", "...governancePages.map"]){
+ if(!sitemapSrc.includes(fragment))failures.push({file:"app/sitemap.ts",rule:"governance-sitemap",sample:fragment});
+}
+const robotsSrc=fs.readFileSync("app/robots.ts","utf8");
+for(const fragment of ["/api/","/ja/my-homecourt/app","/signin-with-chatgpt"]){
+ if(!robotsSrc.includes(fragment))failures.push({file:"app/robots.ts",rule:"auth-crawl-hygiene",sample:fragment});
+}
+const bylawsSrc=fs.readFileSync("components/rba-governance-content.ts","utf8");
+for(const fragment of ["effectiveBylaws","proposedBylaws","2026年7月7日"]){
+ if(!bylawsSrc.includes(fragment))failures.push({file:"components/rba-governance-content.ts",rule:"effective-versus-draft",sample:fragment});
+}
+
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);
