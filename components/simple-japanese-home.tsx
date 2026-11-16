@@ -231,6 +231,7 @@ export async function SimpleJapaneseHome() {
 
           <nav className={styles.aboutLinks} aria-label="その他の公式情報">
             <a className={styles.textLink} href="/ja/about">RBAについて →</a>
+            <a className={styles.textLink} href="/ja/about/governance">団体概要・会則 →</a>
             <a className={styles.textLink} href="/ja/approach">育成方針 →</a>
             <a className={styles.textLink} href="/ja/regions">活動地域 →</a>
             <a className={styles.textLink} href="/ja/okinawa#local-places">沖縄の活動・地域情報 →</a>
