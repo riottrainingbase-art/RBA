@@ -17,8 +17,10 @@ export default async function KobePaymentComplete({ searchParams }: { searchPara
   let offer = "";
   if (/^cs_(test|live)_[a-zA-Z0-9_]{10,}$/.test(id) && process.env.STRIPE_SECRET_KEY) {
     try {
-      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-      const account = await stripe.accounts.retrieve();
+      const secret = process.env.STRIPE_SECRET_KEY;
+      const stripe = new Stripe(secret);
+      const accountReply = await fetch("https://api.stripe.com/v1/account", { headers: { Authorization: `Bearer ${secret}` }, cache: "no-store" });
+    const account: { id?: string } = accountReply.ok ? await accountReply.json() : {};
       if (account.id === "acct_1UGdxZRXDnnSs6XN") {
         const session = await stripe.checkout.sessions.retrieve(id);
         if (session.metadata?.event === "rba_kobe_boys_u14_2027" && session.payment_status === "paid" && session.mode === "payment") {
