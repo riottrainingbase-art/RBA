@@ -79,3 +79,18 @@ test("commercial launch readiness is private and does not reveal secret values",
  assert.match(page,/robots:\{index:false,follow:false\}/);
  assert.doesNotMatch(page,/value=\{.*STRIPE_SECRET_KEY/s);
 });
+
+
+test("RBA handles marketing and buyer payment while Risa fulfillment contract gates launch",()=>{
+  const release=read("lib/essentials-commerce.ts");
+  const screen=read("app/ja/essentials/manage/readiness/page.tsx");
+  const roles=read("docs/RBA_ESSENTIALS_RISA_OPERATIONS_HANDOFF_20261116.md");
+  assert.match(release,/RBA_ESSENTIALS_RISA_FULFILLMENT_AGREEMENT_APPROVED/);
+  assert.match(screen,/RBA_ESSENTIALS_RISA_FULFILLMENT_AGREEMENT_APPROVED/);
+  assert.match(roles,/RBAが購入窓口・SNSマーケティング/);
+  assert.match(roles,/りささんにデザイン・製造・品質管理・梱包・発送/);
+  assert.match(roles,/販売者としての法的主体/);
+  assert.match(roles,/個人情報/);
+  assert.match(roles,/前払いの注文承諾メール/);
+  assert.doesNotMatch(roles,/顧客情報を無制限に共有/);
+});
