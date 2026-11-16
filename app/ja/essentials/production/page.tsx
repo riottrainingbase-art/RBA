@@ -69,6 +69,7 @@ export default async function RbaEssentialsProduction({searchParams}:{searchPara
           <div><p className={styles.kicker}>RBA / PAID ORDER</p><h2>{o.order_id.slice(0,8).toUpperCase()}</h2><p className={styles.small}>入金日：{new Date(o.paid_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})}</p></div>
           <div><p className={styles.kicker}>PROGRESS</p><strong className={styles.stage}>{stageNames[stage]||stage}</strong><p className={styles.small}>発送期限：{o.dispatch_by}／お届け期限：{o.deliver_by??"要確認"}</p></div>
         </div>
+        <p style={{margin:"20px 0",fontSize:12}}><Link href={`/ja/essentials/production/${o.order_id}/shipping`}>配送先を確認する（権限限定） ↗</Link></p>
         <div className={styles.items}>
           {o.tee_quantity>0&&<div><span>WHITE TEE</span><strong>Size {o.tee_size} × {o.tee_quantity}</strong></div>}
           {o.setup_quantity>0&&<div><span>BLACK SETUP</span><strong>Hoodie {o.hoodie_size} / Pants {o.pants_size} × {o.setup_quantity}</strong></div>}
