@@ -149,3 +149,34 @@ test("first-drop free domestic shipping and approved retail prices are locked se
  assert.doesNotMatch(catalog,/ESSENTIALS_MODEL_IMAGE/);
  assert.match(product,/heroPair/);
 });
+
+
+test("one-month deadline means actual delivery, not merely dispatch",()=>{
+ const cfg=read("lib/essentials-commerce.ts");
+ const route=read("app/api/commerce/essentials-preorder/route.ts");
+ const webhook=read("app/api/commerce/essentials-preorder-webhook/route.ts");
+ const form=read("components/essentials-preorder-form.tsx");
+ const legal=read("app/ja/essentials/legal/page.tsx");
+ const db=read("supabase/migrations/20261116231500_rba_essentials_delivery_by_date.sql");
+ assert.match(cfg,/RBA_ESSENTIALS_DELIVER_BY/);
+ assert.match(cfg,/deliveryDeadline <= \(oneMonthFromJstDate\(todayJST\)/);
+ assert.match(route,/deliver_by:config\.deliveryDeadline/);
+ assert.match(webhook,/deliveredBy > latestArrival/);
+ assert.match(form,/お届け期限/);
+ assert.match(legal,/お届け期限/);
+ assert.match(db,/add column if not exists deliver_by date/);
+});
+
+test("handwritten customization paid metadata is not displayed publicly and cannot be enabled by free-shipping approval",()=>{
+ const cfg=read("lib/essentials-commerce.ts");
+ const webhook=read("app/api/commerce/essentials-preorder-webhook/route.ts");
+ const production=read("app/ja/essentials/production/page.tsx");
+ const db=read("supabase/migrations/20261116230000_rba_essentials_handwritten_option.sql");
+ assert.match(cfg,/RBA_ESSENTIALS_HANDWRITTEN_ARTIST_RIGHTS_APPROVED/);
+ assert.match(cfg,/RBA_ESSENTIALS_HANDWRITTEN_PRICE_APPROVED/);
+ assert.match(cfg,/RBA_ESSENTIALS_HANDWRITTEN_RETURN_TERMS/);
+ assert.match(webhook,/session\.amount_total!==expectedAmount/);
+ assert.match(production,/o\.handwritten_message/);
+ assert.match(db,/rba_essentials_handwritten_order_integrity/);
+ assert.match(db,/handwritten_message/);
+});
