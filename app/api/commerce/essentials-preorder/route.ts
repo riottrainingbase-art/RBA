@@ -40,6 +40,19 @@ export async function POST(request:Request) {
   const teeSize=asSize(form,"tee_size"), hoodieSize=asSize(form,"hoodie_size"), pantsSize=asSize(form,"pants_size");
   if((teeQty>0 && !teeSize) || (setupQty>0 && (!hoodieSize || !pantsSize)))
     return fail("Tシャツとセットアップのサイズを選択してください。");
+  const handmade = form.get("handwritten")==="yes";
+  const handwrittenTarget=form.get("handwritten_target");
+  const rawMessage=form.get("handwritten_text");
+  const handwrittenMessage=typeof rawMessage==="string"?rawMessage.normalize("NFC").trim():"";
+  if (handmade && (!config.handwrittenAvailable || config.handwrittenJPY===null)) return fail("手書き加工の受付はまだ開始していません。",423);
+  if (handmade && (
+    (handwrittenTarget!=="tee"&&handwrittenTarget!=="setup") ||
+    (handwrittenTarget==="tee" && teeQty!==1) ||
+    (handwrittenTarget==="setup" && setupQty!==1) ||
+    Array.from(handwrittenMessage).length<1 ||
+    Array.from(handwrittenMessage).length>20 ||
+    /[\r\n\t<>]/.test(handwrittenMessage)
+  )) return fail("手書きの対象商品・文字数・文面を確認してください。");
   if(form.get("accept_preorder")!=="yes" || form.get("accept_terms")!=="yes" || form.get("accept_development_use")!=="yes"
     || form.get("terms_version")!==config.termsVersion)
     return fail("先行販売条件・利用規約への同意が必要です。");
@@ -55,6 +68,13 @@ export async function POST(request:Request) {
     product_data:{name:`RBA ESSENTIAL SETUP / BLACK / Hoodie ${hoodieSize} & Pants ${pantsSize}（先行販売）`,
       description:`上下セット・先行販売。発送期限：${config.dispatchDeadline}。確定仕様・返品条件は公式サイトを参照。` }
   }});
+  if (handmade && config.handwrittenJPY!==null) {
+    items.push({quantity:1,price_data:{
+      currency:"jpy",unit_amount:config.handwrittenJPY,tax_behavior:"inclusive",
+      product_data:{name:"RBA ESSENTIALS / HANDWRITTEN LETTERING（衣類への直筆加工1か所）",
+        description:"手書き文字・1着1か所。加工条件・返品・納期は購入前の販売規約に準拠。"}
+    }});
+  }
   if(items.length===0) return fail("商品を選択してください。");
   const metadata={
     program:"rba_essentials_presale",
@@ -68,6 +88,10 @@ export async function POST(request:Request) {
     setup_qty:String(setupQty),
     hoodie_size:setupQty>0?hoodieSize!:"none",
     pants_size:setupQty>0?pantsSize!:"none",
+    handwritten:handmade?"yes":"no",
+    handwritten_target:handmade?String(handwrittenTarget):"none",
+    handwritten_message:handmade?handwrittenMessage:"none",
+    handwritten_addon_jpy:handmade?String(config.handwrittenJPY):"0",
     profit_use:"youth_basketball_development",
   };
   try {
