@@ -499,3 +499,66 @@
 @media(prefers-reduced-motion:reduce){
  .page .journeyCard,.page .programmes article,.page .ageCard,.sectionNavigator a{transition:none}
 }
+
+
+/* RBA HOME / Japanese editorial art direction
+   Use typographic contrast and purposeful whitespace instead of decoration. */
+.page{--editorial-line:#d7d1c7;--editorial-paper:#f7f5f0;background:#f7f5f0;color:#1d1b19}
+.page .container{max-width:1240px;padding-left:clamp(18px,4.6vw,74px);padding-right:clamp(18px,4.6vw,74px)}
+.page .hero{
+  background:#1c1b19;
+  background-image:linear-gradient(125deg,rgba(255,255,255,.025),transparent 43%),radial-gradient(circle at 88% 15%,rgba(178,148,101,.105),transparent 45%);
+  color:#f7f3ea;border:1px solid #35312b;border-radius:0;
+  padding:clamp(27px,3.6vw,55px) clamp(25px,5vw,76px) clamp(26px,3vw,42px);
+  min-height:clamp(560px,66vw,765px);
+}
+.page .hero .label,.page .heroIssue{color:#bcb1a0;letter-spacing:.16em;font-size:10px}
+.page .heroEyebrow{color:#d0b990;letter-spacing:.17em;font-size:11px;font-weight:600}
+.page .hero h1{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;
+  font-size:clamp(41px,5.7vw,82px);font-weight:600;line-height:1.39;letter-spacing:-.07em;
+  max-width:1050px;text-wrap:balance;
+}
+.page .hero .intro{font-size:clamp(14px,1.45vw,17px);line-height:2.2;color:#e4dfd5;max-width:630px;font-weight:400;letter-spacing:.035em}
+.page .hero .primary{background:#e7d7ba;color:#161512;border-color:#e7d7ba}
+.page .hero .primary:hover{background:#f1e5cf;border-color:#f1e5cf}
+.page .hero .secondary{border-color:#989084;background:transparent;color:#f7f3ed}
+.page .hero .secondary:hover{background:#f7f3ed;color:#161512}
+.page .hero .actions a{font-size:13px;letter-spacing:.05em;font-weight:750;min-height:55px}
+.page .heroBaseline{border-top:1px solid rgba(238,222,198,.26);color:#b6aa99;font-size:10px}
+.page .label{color:#816f59;font-weight:700;letter-spacing:.16em;font-size:10px}
+.page .heading h2,.page .nextStepIntro h2,.page .ageHub h2,.page .schoolSpotlight h2,.page .hostCallout h2{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;
+  font-weight:600;line-height:1.42;letter-spacing:-.055em;
+}
+.page .heading h2{font-size:clamp(30px,3.6vw,53px)}
+.page .section{padding:clamp(60px,7vw,103px) 0}
+.page .journeyCard{background:#fffdf9;border:0;padding:clamp(29px,3.8vw,53px)}
+.page .journeyCard strong{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:clamp(26px,2.8vw,36px);font-weight:600;letter-spacing:-.055em}
+.page .journeyCard:hover{background:#f2ede4}
+.page .journeyNumber,.page .journeyAction{color:#857155}
+.page .programmes article{background:#fffdf9;border:0;border-top:2px solid #a99270}
+.page .programmes h3{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:clamp(25px,2.5vw,35px);font-weight:600;line-height:1.4}
+.page .programmes article>a,.page .schoolSpotlightActions a,.page .hostPrimary{background:#1d1b19;border-color:#1d1b19;color:#fff}
+.page .nextStepLinks a{letter-spacing:.03em}
+.page .schoolSpotlight{background:#ede8df;border-left:3px solid #a58d65}
+.page .ageCard,.page .ageCard:nth-child(2){background:#211f1c}
+.page .ageCard:nth-child(3){background:#e6dfd4}
+.page .ageCard strong{font-weight:700}
+.page .pathCard{background:#fffdf9}
+.page .pathCard h3{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600}
+.page .hostCallout{background:#1d1b19}
+.page a:focus-visible{outline-color:#bca075}
+@media(max-width:700px){
+ .page .hero{min-height:0;padding:25px 20px;margin-top:8px}
+ .page .heroBody{padding:clamp(75px,15vw,115px) 0 76px}
+ .page .hero h1{font-size:clamp(35px,8vw,56px);line-height:1.43;letter-spacing:-.07em}
+ .page .hero .intro{font-size:13px;line-height:2}
+ .page .heroEyebrow{letter-spacing:.095em}
+ .page .hero .actions{margin-top:31px}
+ .page .section{padding:60px 0}
+ .page .heading h2{font-size:clamp(27px,7.5vw,39px)}
+ .page .journeyCard{padding:28px 24px}
+ .page .journeyCard strong{font-size:27px}
+ .page .programmes h3{font-size:27px}
+}
