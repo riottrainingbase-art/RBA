@@ -6,7 +6,7 @@ import styles from "./governance.module.css";
 export const metadata: Metadata = {
   title: "団体概要・現行会則・規約改訂案｜Riot Basketball Academy",
   description: "RBAの非営利目的の活動原則と、2026年7月7日施行の現行会則全文、ガバナンスを強化する未施行の会則・定款相当規約案を公開。参加費と非営利性、運営責任、利益相反、会計の考え方を明示します。",
-  alternates: { canonical: "https://riotbasketballacademy.com/ja/about/governance" },
+  alternates: { canonical: "https://riotbasketballacademy.com/ja/about/governance", languages: { en: "https://riotbasketballacademy.com/about/governance", ja: "https://riotbasketballacademy.com/ja/about/governance", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/about/governance", ko: "https://riotbasketballacademy.com/ko/about/governance" } },
   openGraph: { title: "団体概要・会則｜Riot Basketball Academy", description: "非営利目的の運営方針・現行会則・規約改訂案を原文と草案を区別して公開。", url: "https://riotbasketballacademy.com/ja/about/governance", type: "website" },
 };
 
@@ -22,7 +22,7 @@ function Articles({ chapters }: { chapters: readonly GovernanceChapter[] }) {
 }
 
 export default function GovernancePage() {
-  return <SiteFrame locale="ja" languagePage="about">
+  return <SiteFrame locale="ja" languagePage="about/governance">
     <div className={styles.page}>
       <header className={styles.hero}>
         <a className={styles.back} href="/ja/about">← RBAについて</a>

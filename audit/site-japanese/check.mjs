@@ -129,6 +129,71 @@ const partnerStrip=fs.readFileSync("components/corporate-support-strip.tsx","utf
 if(!partnerStrip.includes("PARTNERS / 協賛・パートナー"))
   failures.push({file:"components/corporate-support-strip.tsx",rule:"partner-label",sample:"partner label missing"});
 
+// Protect public trust links and correct indexing across all four languages.
+// This guards the shared header/footer, rather than auditing only one landing page.
+const governanceRoutes=[
+  "app/ja/about/governance/page.tsx",
+  "app/about/governance/page.tsx",
+  "app/zh-tw/about/governance/page.tsx",
+  "app/ko/about/governance/page.tsx",
+];
+for(const route of governanceRoutes){
+ if(!fs.existsSync(route))failures.push({file:route,rule:"governance-route-missing",sample:"all four locales need a working organisation route"});
+}
+const sharedFrame=fs.readFileSync("components/site-frame.tsx","utf8");
+for(const fragment of [
+ "about/governance", "governanceLabels", "safetyLabels", "footer-purpose",
+ "href={governanceHref}", 'href="mailto:riot.training.base@gmail.com"'
+]){
+ if(!sharedFrame.includes(fragment))failures.push({file:"components/site-frame.tsx",rule:"trust-navigation",sample:fragment});
+}
+const sitemapSrc=fs.readFileSync("app/sitemap.ts","utf8");
+for(const fragment of ["governancePages", "...governancePages.map"]){
+ if(!sitemapSrc.includes(fragment))failures.push({file:"app/sitemap.ts",rule:"governance-sitemap",sample:fragment});
+}
+const robotsSrc=fs.readFileSync("app/robots.ts","utf8");
+for(const fragment of ["/api/","/ja/my-homecourt/app","/signin-with-chatgpt"]){
+ if(!robotsSrc.includes(fragment))failures.push({file:"app/robots.ts",rule:"auth-crawl-hygiene",sample:fragment});
+}
+const bylawsSrc=fs.readFileSync("components/rba-governance-content.ts","utf8");
+for(const fragment of ["effectiveBylaws","proposedBylaws","2026年7月7日"]){
+ if(!bylawsSrc.includes(fragment))failures.push({file:"components/rba-governance-content.ts",rule:"effective-versus-draft",sample:fragment});
+}
+
+
+// Public information desk: prevent renewed false certainty in live event listings.
+const statusRoute="app/ja/updates/page.tsx";
+const factsRegister="lib/rba-public-status.ts";
+if(!fs.existsSync(statusRoute))failures.push({file:statusRoute,rule:"official-information-route",sample:"missing"});
+if(!fs.existsSync(factsRegister))failures.push({file:factsRegister,rule:"public-facts-register",sample:"missing"});
+if(fs.existsSync(factsRegister)){
+ const status=fs.readFileSync(factsRegister,"utf8");
+ for(const needle of ["開催予定","準備・協議中","RBA GROWTH AWARDS","MY HOME COURT","D-HUB COACH LAB","青龍ラーテルズ","2027年1月5〜7日"]){
+  if(!status.includes(needle))failures.push({file:factsRegister,rule:"status-categorization",sample:needle});
+ }
+ if(/suger\.snow|sayaco0529|take9811225|\bSKY15[45]\b/.test(status)){
+  failures.push({file:factsRegister,rule:"child-travel-privacy",sample:"private trip contact or flight number in public facts"});
+ }
+}
+const tatsunoFile="app/ja/events/kobe-development-camp-2026/page.tsx";
+if(fs.existsSync(tatsunoFile)){
+ const tatsuno=fs.readFileSync(tatsunoFile,"utf8");
+ for(const stale of ["11/23は16:00終了","本キャンプ3日間を担当します。","会場の利用枠と宿泊条件を最終確認しています。"]){
+  if(tatsuno.includes(stale))failures.push({file:tatsunoFile,rule:"stale-tatsuno-guidance",sample:stale});
+ }
+ for(const must of ["青龍ラーテルズ","11/23は別会場","11/23午前の練習には参加しません"]){
+  if(!tatsuno.includes(must))failures.push({file:tatsunoFile,rule:"tatsuno-confirmed-conditions",sample:must});
+ }
+}
+for(const [file,required] of [
+ ["components/simple-japanese-home.tsx",'href="/ja/updates"'],
+ ["components/site-frame.tsx",'href="/ja/updates"'],
+ ["app/sitemap.ts","publicStatusPages"]
+]){
+ if(!fs.existsSync(file)||!fs.readFileSync(file,"utf8").includes(required)){
+  failures.push({file,rule:"status-navigation",sample:required});
+ }
+}
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);

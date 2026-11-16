@@ -9,8 +9,10 @@ const locales=["","/ja","/zh-tw","/ko"] as const;
 const core=["/regional-program","","/players","/families","/coaches","/home-court","/my-homecourt","/my-homecourt/players","/my-homecourt/families","/my-homecourt/coaches","/community","/impact","/d-hub","/united","/connect","/organizer","/about","/approach","/schedule","/payments","/clinic-request","/events/torsten-loibl-online-clinic","/asia","/partners","/contact","/social","/policies","/camp","/faq","/international","/network","/opportunities","/platform","/regional-host","/sponsor","/team","/verified","/journal","/journal/coaches"] as const;
 const japanExperiencePages=["","/ja","/zh-tw"].flatMap(locale=>[`${locale}/international/japan-experience`,`${locale}/international/partner-with-us`]);
 const taiwanPages=locales.flatMap(locale=>[`${locale}/taiwan`,`${locale}/taiwan/exchange`]);
+const governancePages=locales.map(locale=>`${locale}/about/governance`);
 const journalPathPages=["/ja/journal/paths",...journalLearningPaths.map(path=>`/ja/journal/paths/${path.key}`)];
 const journalFamilyPages=["/ja/journal/families","/ja/journal/families/references"];
+const publicStatusPages=["/ja/updates"] as const;
 const productPages=["/ja/national-tour","/ja/development-projects","/ja/support","/ja/support/terms","/ja/support/downloads","/ja/after-clinic","/ja/after-application","/ja/bring-rba","/ja/clinic-interest","/ja/family-basketball","/ja/team-development","/ja/homecourt-plus","/ja/development","/ja/store"];
 const regionalPages=["/ja/sendai","/ja/sendai-school","/ja/u12","/ja/u15","/ja/gream","/ja/gream/support","/ja/gream-okinawa","/ja/gream-akita","/ja/gream-sendai/partners","/ja/gream-sendai","/ja/okinawa","/ja/events/shizugawa-development-camp-2026","/ja/events/kobe-development-camp-2026","/ja/u12-school","/ja/events/okinawa-international-camp-2026","/ja/events/kagoshima-clinic-2026-11-29","/ja/regions","/ja/fukuoka","/ja/saga","/ja/okinawa-coach","/ja/events/okinawa-clinic-2026-11-14"];
 const legacy=["/authentics","/field-notes","/work-with-rba","/ja/work-with-rba","/ja/u15-skill-up","/ja/team-visit-clinic","/ja/team-training","/ja/minibasket-support","/radio","/links","/sponsors"] as const;
@@ -40,8 +42,10 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...legacy.map(path=>({path,lastModified:null as string|null})),
     ...japanExperiencePages.map(path=>({path,lastModified:"2026-11-06T00:00:00Z"})),
     ...taiwanPages.map(path=>({path,lastModified:"2026-10-13T00:00:00Z"})),
+    ...governancePages.map(path=>({path,lastModified:"2026-11-16T00:00:00Z"})),
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
+    ...publicStatusPages.map(path=>({path,lastModified:"2026-11-16T00:00:00Z"})),
     ...productPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...regionalPages.map(path=>({path,lastModified:path==="/ja/sendai-school"?"2026-11-09T00:00:00Z":path==="/ja/okinawa"?"2026-11-15T00:00:00Z":path==="/ja/okinawa-coach"?"2026-10-05T00:00:00Z":"2026-10-04T00:00:00Z"})),
     {path:"/ja/events/torsten-loibl-online-clinic/share",lastModified:"2026-10-28T00:00:00Z"},
