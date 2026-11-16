@@ -41,7 +41,8 @@ export async function POST(request: Request) {
   const applicationRef = safeText(form, "application_ref", 64);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || responsibleName.length < 2 || entryName.length < 2) return failure("保護者・代表者情報を確認してください。", 400);
   if (applicationRef && !/^[\w-]{4,64}$/.test(applicationRef)) return failure("受付番号の形式を確認してください。", 400);
-  const amount = offers[category as Category][days as Days];
+  const total = offers[category as Category][days as Days];
+  const amount = total / 2; // All domestic plans collect 50% up front; remaining 50% is invoiced later.
   const priceLabel = category === "team" ? "男子U14チーム（選手10〜15名）" : "男子U14個人";
   const daysLabel = days === "both" ? "2027年1月6日＋7日" : days === "jan6" ? "2027年1月6日" : "2027年1月7日";
   const hashInput = [email, responsibleName, entryName, category, days, applicationRef].join("|").toLowerCase();
@@ -54,7 +55,7 @@ export async function POST(request: Request) {
     const account: { id?: string } = accountReply.ok ? await accountReply.json() : {};
     if (account.id !== expectedAccount) return failure("決済アカウントを確認できません。RBAへお問い合わせください。", 503);
     const ref = applicationRef || "rba-u14-" + signature.slice(0, 24);
-    const metadata = { event: "rba_kobe_boys_u14_2027", category, days, registration_ref: ref, responsible_name: responsibleName, participant_or_team: entryName };
+    const metadata = { event: "rba_kobe_boys_u14_2027", category, days, stage: "deposit", total_jpy: String(total), deposit_jpy: String(amount), balance_jpy: String(total - amount), registration_ref: ref, responsible_name: responsibleName, participant_or_team: entryName };
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       client_reference_id: ref,
@@ -63,8 +64,8 @@ export async function POST(request: Request) {
       customer_creation: "always",
       line_items: [{ price_data: {
         currency: "jpy", unit_amount: amount, tax_behavior: "inclusive",
-        product_data: { name: "RBA UNITED 神戸国際男子U14交流｜" + priceLabel + "｜" + daysLabel,
-          description: "国内参加プラン・1回払い・交通宿泊食事は別。大会条件は申込ページを確認。" },
+        product_data: { name: "RBA UNITED 神戸国際男子U14交流｜前金50%｜" + priceLabel + "｜" + daysLabel,
+          description: `税込総額${total.toLocaleString("ja-JP")}円の前金${amount.toLocaleString("ja-JP")}円。残金${(total - amount).toLocaleString("ja-JP")}円は別途請求。宿泊・交通・食事は別。会場は未確定。参加条件と返金規定を必ず確認。` },
       }, quantity: 1 }],
       metadata,
       payment_intent_data: { metadata },
