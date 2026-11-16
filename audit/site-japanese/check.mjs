@@ -160,6 +160,40 @@ for(const fragment of ["effectiveBylaws","proposedBylaws","2026年7月7日"]){
  if(!bylawsSrc.includes(fragment))failures.push({file:"components/rba-governance-content.ts",rule:"effective-versus-draft",sample:fragment});
 }
 
+
+// Public information desk: prevent renewed false certainty in live event listings.
+const statusRoute="app/ja/updates/page.tsx";
+const factsRegister="lib/rba-public-status.ts";
+if(!fs.existsSync(statusRoute))failures.push({file:statusRoute,rule:"official-information-route",sample:"missing"});
+if(!fs.existsSync(factsRegister))failures.push({file:factsRegister,rule:"public-facts-register",sample:"missing"});
+if(fs.existsSync(factsRegister)){
+ const status=fs.readFileSync(factsRegister,"utf8");
+ for(const needle of ["開催予定","準備・協議中","RBA GROWTH AWARDS","MY HOME COURT","D-HUB COACH LAB","青龍ラーテルズ","2027年1月5〜7日"]){
+  if(!status.includes(needle))failures.push({file:factsRegister,rule:"status-categorization",sample:needle});
+ }
+ if(/suger\.snow|sayaco0529|take9811225|\bSKY15[45]\b/.test(status)){
+  failures.push({file:factsRegister,rule:"child-travel-privacy",sample:"private trip contact or flight number in public facts"});
+ }
+}
+const tatsunoFile="app/ja/events/kobe-development-camp-2026/page.tsx";
+if(fs.existsSync(tatsunoFile)){
+ const tatsuno=fs.readFileSync(tatsunoFile,"utf8");
+ for(const stale of ["11/23は16:00終了","本キャンプ3日間を担当します。","会場の利用枠と宿泊条件を最終確認しています。"]){
+  if(tatsuno.includes(stale))failures.push({file:tatsunoFile,rule:"stale-tatsuno-guidance",sample:stale});
+ }
+ for(const must of ["青龍ラーテルズ","11/23は別会場","11/23午前の練習には参加しません"]){
+  if(!tatsuno.includes(must))failures.push({file:tatsunoFile,rule:"tatsuno-confirmed-conditions",sample:must});
+ }
+}
+for(const [file,required] of [
+ ["components/simple-japanese-home.tsx",'href="/ja/updates"'],
+ ["components/site-frame.tsx",'href="/ja/updates"'],
+ ["app/sitemap.ts","publicStatusPages"]
+]){
+ if(!fs.existsSync(file)||!fs.readFileSync(file,"utf8").includes(required)){
+  failures.push({file,rule:"status-navigation",sample:required});
+ }
+}
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);
