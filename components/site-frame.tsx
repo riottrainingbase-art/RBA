@@ -3,6 +3,7 @@ import { DocumentLanguage } from "./document-language";
 import { ui } from "./ui-copy";
 import Image from "next/image";
 import Link from "next/link";
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight, House, MessageCircle } from "lucide-react";
 import { PublicUpdateBanner } from "./public-update-banner";
 import brandStyles from "./site-brand.module.css";
