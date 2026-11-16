@@ -46,6 +46,7 @@ export type EssentialsPresaleConfig = {
   handwrittenAvailable: boolean;
   handwrittenTerms: string;
   dispatchDeadline: string | null;
+  deliveryDeadline: string | null;
   orderDeadline: string | null;
   termsVersion: string | null;
   merchant: { name: string; address: string; phone: string; email: string };
@@ -70,6 +71,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   const handwrittenJPY = yen(p.RBA_ESSENTIALS_HANDWRITTEN_PRICE_JPY);
   const handwrittenTerms = p.RBA_ESSENTIALS_HANDWRITTEN_RETURN_TERMS?.trim() || "";
   const dispatchDeadline = safeDate(p.RBA_ESSENTIALS_DISPATCH_BY);
+  const deliveryDeadline = safeDate(p.RBA_ESSENTIALS_DELIVER_BY);
   const orderDeadline = safeDate(p.RBA_ESSENTIALS_ORDER_BY);
   const merchant = {
     name: p.RBA_ESSENTIALS_SELLER_NAME?.trim() || "",
@@ -108,9 +110,9 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     p.RBA_ESSENTIALS_TAX_BEHAVIOR === "inclusive" &&
     priceOverrideIsValid && shippingOverrideIsValid &&
     !!unitPrices.tee && !!unitPrices.setup && shippingJPY === 0 &&
-    !!dispatchDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline &&
+    !!dispatchDeadline && !!deliveryDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline && dispatchDeadline <= deliveryDeadline &&
     orderDeadline >= todayJST && dispatchDeadline > todayJST &&
-    dispatchDeadline <= (oneMonthFromJstDate(todayJST) ?? "") &&
+    deliveryDeadline <= (oneMonthFromJstDate(todayJST) ?? "") &&
     !!termsVersion && /^[a-zA-Z0-9_-]{5,60}$/.test(termsVersion) &&
     merchant.name.length > 1 && merchant.address.length > 8 &&
     /^[0-9+()\- ]{8,24}$/.test(merchant.phone) &&
@@ -125,5 +127,5 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
       "RBA_ESSENTIALS_HANDWRITTEN_RETURNS_APPROVED",
       "RBA_ESSENTIALS_HANDWRITTEN_DELIVERY_APPROVED"
     ].every(k => isApproved(p[k]));
-  return { ready, unitPrices, shippingJPY, handwrittenJPY, handwrittenAvailable, handwrittenTerms, dispatchDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
+  return { ready, unitPrices, shippingJPY, handwrittenJPY, handwrittenAvailable, handwrittenTerms, dispatchDeadline, deliveryDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
 }
