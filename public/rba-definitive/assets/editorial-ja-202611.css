@@ -1,0 +1,46 @@
+/* Riot Basketball Academy / JA editorial layer 2026-11.
+ * Applied only to static Japanese pages after the recovered platform style.
+ * Preserve real event, payment and legal notices; style never hides controls. */
+.definitive-static.locale-ja{
+ --bg:#171613;--panel:#211e1a;--panel2:#27231e;--text:#f5f0e7;
+ --muted:#b4a99a;--line:#413a31;--line2:#52483a;
+ --white:#f4ebdc;--black:#171613;
+ color:#f5f0e7;background:#171613;
+ font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+ font-feature-settings:"palt" 1;
+}
+.definitive-static.locale-ja .hero{padding-top:clamp(90px,11vw,165px);padding-bottom:clamp(65px,9vw,120px);border-color:#483e30}
+.definitive-static.locale-ja .hero:after{opacity:.32;color:#29241d;-webkit-text-stroke:1px #5a4a37}
+.definitive-static.locale-ja .hero h1{
+ font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;
+ font-weight:600;line-height:1.32;letter-spacing:-.068em;font-size:clamp(43px,6.3vw,95px);
+ text-wrap:balance;
+}
+.definitive-static.locale-ja h2:not(.brand-wordmark){
+ font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;
+ font-weight:600;line-height:1.42;letter-spacing:-.054em;
+}
+.definitive-static.locale-ja h3{line-height:1.45;letter-spacing:-.035em}
+.definitive-static.locale-ja .kicker,.definitive-static.locale-ja .eyebrow{color:#cfb48c;letter-spacing:.2em;font-size:10px;font-weight:700}
+.definitive-static.locale-ja .lead{line-height:2.08;letter-spacing:.015em;color:#d6cfc3}
+.definitive-static.locale-ja .section{padding-top:clamp(65px,8vw,125px);padding-bottom:clamp(65px,8vw,125px)}
+.definitive-static.locale-ja .btn{border-radius:0;min-height:52px;letter-spacing:.035em;font-weight:700;padding:12px 24px}
+.definitive-static.locale-ja .btn.fill{background:#ede0cb;color:#181613;border-color:#ede0cb}
+.definitive-static.locale-ja .btn.fill:hover{background:#fff3df;border-color:#fff3df}
+.definitive-static.locale-ja .btn.ghost{border-color:#867661;color:#f5eee2}
+.definitive-static.locale-ja .desktop-nav a:hover{color:#e8cfa9}
+.definitive-static.locale-ja .brand small{letter-spacing:.18em}
+.definitive-static.locale-ja a:focus-visible,.definitive-static.locale-ja button:focus-visible{outline:3px solid #ddba86;outline-offset:4px}
+.definitive-static.locale-ja .footer{border-top:1px solid #76634c}
+.definitive-static.locale-ja .footer a:hover{color:#eed8b7}
+@media(max-width:760px){
+ .definitive-static.locale-ja .hero{padding:88px 0 65px;min-height:0}
+ .definitive-static.locale-ja .hero h1{font-size:clamp(37px,9vw,57px);line-height:1.43;letter-spacing:-.07em}
+ .definitive-static.locale-ja h2{font-size:clamp(27px,8vw,45px);line-height:1.4}
+ .definitive-static.locale-ja .section{padding-top:65px;padding-bottom:65px}
+ .definitive-static.locale-ja .lead{line-height:1.95}
+ .definitive-static.locale-ja .wrap{width:min(var(--max),calc(100% - 34px))}
+}
+@media(prefers-reduced-motion:reduce){
+ .definitive-static.locale-ja *{scroll-behavior:auto;transition:none!important}
+}
