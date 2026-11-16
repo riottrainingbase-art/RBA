@@ -4,15 +4,21 @@ import { readFileSync } from "node:fs";
 
 const read=(path)=>readFileSync(new URL("../"+path,import.meta.url),"utf8");
 
-test("hand-painted edition remains absent from standard paid checkout",()=>{
+test("hand-painted addition cannot be charged without separate producer and quality approvals",()=>{
   const checkout=read("app/api/commerce/essentials-preorder/route.ts");
   const browserForm=read("components/essentials-preorder-form.tsx");
   const settings=read("lib/essentials-commerce.ts");
-  assert.doesNotMatch(checkout,/handwritten|artist_option|painted_option|message_text/i);
-  assert.doesNotMatch(browserForm,/handwritten|artist_option|painted_option|message_text/i);
-  assert.doesNotMatch(settings,/RBA_ESSENTIALS_HANDWRITTEN_OPTION_APPROVED|HANDWRITTEN_MESSAGE_PRICE/i);
+  const webhook=read("app/api/commerce/essentials-preorder-webhook/route.ts");
+  assert.match(checkout,/config\.handwrittenAvailable/);
+  assert.match(checkout,/手書き加工の受付はまだ開始していません/);
+  assert.match(browserForm,/handwrittenAvailable/);
+  assert.match(browserForm,/handwrittenCharge/);
+  assert.match(settings,/RBA_ESSENTIALS_HANDWRITTEN_PRICE_APPROVED/);
+  assert.match(settings,/RBA_ESSENTIALS_HANDWRITTEN_ARTIST_RIGHTS_APPROVED/);
+  assert.match(settings,/RBA_ESSENTIALS_HANDWRITTEN_WASH_TEST_APPROVED/);
   assert.match(settings,/RBA_ESSENTIALS_PREORDER_ENABLED/);
   assert.match(settings,/RBA_ESSENTIALS_SAMPLES_APPROVED/);
+  assert.match(webhook,/handwritten_addon_jpy/);
 });
 
 test("artist price laboratory is strictly private and cannot charge customers",()=>{
@@ -121,4 +127,25 @@ test("production ticket is created only from a recorded order and is private",()
  assert.match(migration,/revoke all on public\.rba_essentials_fulfillment_tasks from anon, authenticated/);
  assert.match(release,/RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED/);
  assert.match(release,/RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED/);
+});
+
+
+test("first-drop free domestic shipping and approved retail prices are locked separately from future sales",()=>{
+ const config=read("lib/essentials-commerce.ts");
+ const checkout=read("components/essentials-preorder-form.tsx");
+ const stripe=read("app/api/commerce/essentials-preorder/route.ts");
+ const catalog=read("lib/rba-essentials.ts");
+ const product=read("app/ja/essentials/page.tsx");
+ assert.match(config,/FIRST_DROP_TEE_JPY = 4900/);
+ assert.match(config,/FIRST_DROP_SETUP_JPY = 19800/);
+ assert.match(config,/FIRST_DROP_JAPAN_SHIPPING_JPY = 0/);
+ assert.match(config,/oneMonthFromJstDate/);
+ assert.match(stripe,/config\.shippingJPY/);
+ assert.match(stripe,/FIRST DROP \/ 日本国内送料無料/);
+ assert.match(checkout,/先行販売・国内限定/);
+ assert.match(checkout,/送料は追加料金なし/);
+ assert.match(catalog,/rba-essentials-white-tee-official-design-reference/);
+ assert.match(catalog,/rba-essentials-black-hoodie-setup-official-design-reference/);
+ assert.doesNotMatch(catalog,/ESSENTIALS_MODEL_IMAGE/);
+ assert.match(product,/heroPair/);
 });
