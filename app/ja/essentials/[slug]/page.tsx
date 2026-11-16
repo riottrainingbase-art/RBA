@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteFrame } from "@/components/site-frame";
+import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 import { essentials, ESSENTIALS_INSTAGRAM, ESSENTIALS_INTEREST_FORM } from "@/lib/rba-essentials";
 import styles from "../essentials.module.css";
 
+export const dynamic = "force-dynamic";
 type PageProps = { params: Promise<{ slug: string }> };
 export function generateStaticParams() { return essentials.map(({ slug }) => ({ slug })); }
 
@@ -13,9 +15,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const item = essentials.find((entry) => entry.slug === slug);
   if (!item) return { title: "RBA ESSENTIALS" };
+  const ready=getEssentialsPresaleConfig().ready;
   return {
     title: `${item.title} | RBA ESSENTIALS`,
-    description: `${item.description} 現在は製品検証中につき注文・予約・決済を受け付けていません。`,
+    description: `${item.description} ${ready?"公式先行販売の商品詳細をご確認ください。":"現在は製品検証中につき注文・予約・決済を受け付けていません。"}`,
     alternates: { canonical: item.pagePath },
     openGraph: {
       title: `${item.title} | RBA ESSENTIALS`,
@@ -31,16 +34,22 @@ export default async function EssentialsProductPage({ params }: PageProps) {
   const { slug } = await params;
   const item = essentials.find((entry) => entry.slug === slug);
   if (!item) notFound();
+  const commerce=getEssentialsPresaleConfig();
+  const unitPrice=item.slug==="tee"?commerce.unitPrices.tee:commerce.unitPrices.setup;
+  const priceText=commerce.ready&&unitPrice!==null?unitPrice.toLocaleString("ja-JP")+"円（税込）":"価格未定 / COMING SOON";
 
   // Product information is editorial only: omit Offer/price/availability schema until approved.
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: item.title,
-    description: item.description + "（商品デザイン検討中・販売前）",
+    description: item.description + (commerce.ready?"（先行販売・詳細条件は購入ページをご確認ください）":"（商品デザイン検討中・販売前）"),
     image: [item.image],
     url: `https://riotbasketballacademy.com${item.pagePath}`,
     brand: { "@type": "Brand", name: "Riot Basketball Academy" },
+    ...(commerce.ready&&unitPrice!==null? { offers: {
+      "@type":"Offer",priceCurrency:"JPY",price:String(unitPrice),availability:"https://schema.org/PreOrder",url:`https://riotbasketballacademy.com/ja/essentials/checkout?item=${item.slug}`,
+    }} : {}),
   };
 
   return (
@@ -62,14 +71,14 @@ export default async function EssentialsProductPage({ params }: PageProps) {
               <span>COLOUR</span><strong>{item.colorJa} / {item.color}</strong>
             </div>
             <div className={styles.detailRule}>
-              <span>SIZE</span><strong>サンプル確認後に確定</strong>
+              <span>SIZE</span><strong>{commerce.ready?"S / M / L / XL":"サンプル確認後に確定"}</strong>
             </div>
             <div className={styles.detailRule}>
-              <span>PRICE</span><strong>価格未定 / COMING SOON</strong>
+              <span>PRICE</span><strong>{priceText}</strong>
             </div>
             <p className={styles.detailSize}>{item.sizeNote}</p>
-            <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">無料の購入前アンケート <span aria-hidden="true">↗</span></a>
-            <p className={styles.detailCaution}>本商品は開発・試作準備中です。現在は販売、予約、決済を受け付けていません。アンケート回答は注文ではありません。</p>
+            {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>Stripeで先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">無料の購入前アンケート <span aria-hidden="true">↗</span></a>}
+            <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。発送期限：${commerce.dispatchDeadline}。送料・キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。現在は販売、予約、決済を受け付けていません。アンケート回答は注文ではありません。"}</p>
           </div>
         </article>
 
