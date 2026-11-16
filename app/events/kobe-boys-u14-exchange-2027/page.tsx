@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 const form = "https://form.jotform.com/263187713938065?utm_source=rba_site&utm_medium=event_page&utm_campaign=kobe_boys_u14_2027_en";
 const japanese = "https://form.jotform.com/263188088558069?utm_source=rba_site&utm_medium=event_page&utm_campaign=kobe_boys_u14_2027_en";
@@ -22,7 +23,7 @@ const programme = [
 export default function KobeInternationalU14() {
   return <main className="min-h-screen bg-[#f6f1e9] text-black">
     <div className="border-b border-black/20 bg-white"><div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-      <a href="/" className="flex items-center gap-3"><Image src="/rba-logo-original.jpg" alt="RBA official emblem" width={48} height={60} className="h-14 w-12 object-contain"/><span className="text-xs font-black leading-5">RIOT BASKETBALL<br/>ACADEMY</span></a><a href="/ja/events/kobe-boys-u14-exchange-2027" className="text-sm font-black underline underline-offset-4">日本語 / JAPANESE</a>
+      <Link href="/" className="flex items-center gap-3"><Image src="/rba-logo-original.jpg" alt="RBA official emblem" width={48} height={60} className="h-14 w-12 object-contain"/><span className="text-xs font-black leading-5">RIOT BASKETBALL<br/>ACADEMY</span></Link><a href="/ja/events/kobe-boys-u14-exchange-2027" className="text-sm font-black underline underline-offset-4">日本語 / JAPANESE</a>
     </div></div>
     <header className="bg-[#ff6709] px-5 py-16 sm:px-8 sm:py-24"><div className="mx-auto max-w-6xl">
       <div className="flex flex-wrap gap-3 text-xs font-black"><span className="border-2 border-black px-3 py-2">BOYS U14 ONLY</span><span className="border-2 border-black px-3 py-2">NON-BINDING TEAM INTEREST</span></div>
@@ -40,7 +41,7 @@ export default function KobeInternationalU14() {
       ["Cultural & Coach Exchange", "Build connections between young players and coaches across the Asia-Pacific region."]
     ].map(([t,b])=><article key={t} className="border border-black/20 bg-white p-6"><h3 className="text-xl font-black">{t}</h3><p className="mt-4 text-sm leading-7">{b}</p></article>)}</div></section>
     <section className="bg-black px-5 py-14 text-white sm:px-8"><div className="mx-auto max-w-6xl"><h2 className="text-3xl font-black sm:text-5xl">Provisional Schedule</h2><div className="mt-8 grid gap-3 md:grid-cols-2">{programme.map(([d,t,b])=><article className="border border-white/30 p-6" key={d}><p className="text-sm font-black text-[#ff9b60]">{d}</p><h3 className="mt-3 text-xl font-black">{t}</h3><p className="mt-3 text-sm leading-7 text-neutral-300">{b}</p></article>)}</div></div></section>
-    <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8"><h2 className="text-3xl font-black sm:text-5xl">Who should enquire?</h2><p className="mt-5 max-w-4xl leading-8">Coaches or team managers who can bring a <strong>boys U14</strong> youth team to Kobe. Share your team's country or region, approximate number of players (a team of 10–15 is a useful starting point), adult chaperones, possible travel dates and preferences for friendly games or joint training. Official age eligibility by date of birth will be published when partner teams agree on a fair rule.</p>
+    <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8"><h2 className="text-3xl font-black sm:text-5xl">Who should enquire?</h2><p className="mt-5 max-w-4xl leading-8">Coaches or team managers who can bring a <strong>boys U14</strong> youth team to Kobe. Share your team&apos;s country or region, approximate number of players (a team of 10–15 is a useful starting point), adult chaperones, possible travel dates and preferences for friendly games or joint training. Official age eligibility by date of birth will be published when partner teams agree on a fair rule.</p>
       <div className="mt-7 border-2 border-black bg-white p-6"><h3 className="text-xl font-black">Travel & costs</h3><p className="mt-4 text-sm leading-8">International flights, accommodation, meals, local transport, supervision and any event fees must be agreed in writing. RBA is seeking options but has not offered free lodging, funded airfares, or complimentary ground transport. Please do not make non-refundable reservations based solely on this page. Existing Guam reservations are unaffected by these enquiries.</p></div>
       <div className="mt-8 flex flex-wrap gap-4"><a href={form} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center bg-[#ff6709] px-7 py-4 font-black">OVERSEAS BOYS U14 TEAM FORM ↗</a><a href={japanese} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center border-2 border-black px-7 py-4 font-black">JAPAN / DOMESTIC PLAYER FORM ↗</a></div>
     </section>
