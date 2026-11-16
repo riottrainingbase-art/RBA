@@ -45,3 +45,70 @@
 - [ ] Confirm existing /ja/store Performance Tee and /authentics are unchanged and that new collection is labeled pre-launch.
 - [ ] Confirm content/brand photo permissions and no false manufacturing or shipping claims.
 - [ ] Merge design separately from eventual payment launch; verify linked deployment for live release only after review.
+
+## Implemented in PR #458 (not live until reviewed deployment)
+
+- Editorial listing `/ja/essentials`, product URLs `/ja/essentials/tee` and `/ja/essentials/setup`.
+- Customer preorder form `/ja/essentials/checkout`: T-shirt size; hoodie and pants sizes independently; 1–3 units/order; tax-inclusive total + Japan shipping + explicit buyer consent; Stripe Checkout created server-side.
+- Stripe webhook `/api/commerce/essentials-preorder-webhook` validates Stripe signature, live RBA account and paid status before persisting a paid order.
+- Supabase order ledger `public.rba_essentials_orders`: migration **applied in RBA HOMECOURT on 2026-11-16**, RLS enabled, no anonymous/authenticated table read privileges, service-role access only, 0 rows at setup. Do not rerun unrelated migrations.
+- Owner-only order list `/ja/essentials/manage`; paid-session verification `/ja/essentials/complete`.
+- `/ja/essentials/legal` commerce disclosure view and `/api/commerce/essentials-meta-catalog` CSV feed gated on approval.
+
+### Production environment configuration (never check secret values into Git)
+
+Required server variables **must be verified and approved**; do not add guessed prices, dates, address details or legal terms:
+
+```text
+STRIPE_SECRET_KEY=<RBA account production key, server only>
+RBA_ESSENTIALS_STRIPE_WEBHOOK_SECRET=<signed webhook endpoint secret, server only>
+NEXT_PUBLIC_SUPABASE_URL=<existing RBA HOMECOURT URL>
+SUPABASE_SERVICE_ROLE_KEY=<existing private service key, server only>
+
+RBA_ESSENTIALS_TEE_PRICE_JPY=<approved tax-inclusive yen>
+RBA_ESSENTIALS_SETUP_PRICE_JPY=<approved tax-inclusive yen>
+RBA_ESSENTIALS_JAPAN_SHIPPING_JPY=<approved yen amount, zero permitted>
+RBA_ESSENTIALS_TAX_BEHAVIOR=inclusive
+RBA_ESSENTIALS_ORDER_BY=<YYYY-MM-DD>
+RBA_ESSENTIALS_DISPATCH_BY=<YYYY-MM-DD>
+RBA_ESSENTIALS_TERMS_VERSION=<approved immutable revision>
+RBA_ESSENTIALS_SELLER_NAME=<legal seller>
+RBA_ESSENTIALS_SELLER_ADDRESS=<publicly disclosed legal address>
+RBA_ESSENTIALS_SELLER_PHONE=<publicly disclosed seller phone>
+RBA_ESSENTIALS_SELLER_EMAIL=<publicly disclosed seller email>
+RBA_ESSENTIALS_CANCELLATION_TERMS=<approved cancellation conditions>
+RBA_ESSENTIALS_RETURN_TERMS=<approved return/refund conditions>
+RBA_ESSENTIALS_PRESALE_NOTE=<verified products and advance-payment fulfillment note>
+```
+
+Each of the following launch controls must be explicitly set to `true` **after evidence is checked**; any missing/false control means the checkout returns HTTP 423 and all buy buttons remain disabled:
+
+```text
+RBA_ESSENTIALS_PREORDER_ENABLED
+RBA_ESSENTIALS_MANUFACTURING_CONFIRMED
+RBA_ESSENTIALS_SAMPLES_APPROVED
+RBA_ESSENTIALS_PHOTOS_APPROVED
+RBA_ESSENTIALS_SIZE_CHART_APPROVED
+RBA_ESSENTIALS_LOGO_RIGHTS_APPROVED
+RBA_ESSENTIALS_PRICING_APPROVED
+RBA_ESSENTIALS_TAX_APPROVED
+RBA_ESSENTIALS_SHIPPING_APPROVED
+RBA_ESSENTIALS_RETURNS_APPROVED
+RBA_ESSENTIALS_SELLER_DISCLOSURE_APPROVED
+RBA_ESSENTIALS_STRIPE_ACCOUNT_APPROVED
+RBA_ESSENTIALS_ORDER_OPERATIONS_READY
+RBA_ESSENTIALS_LEDGER_MIGRATED
+RBA_ESSENTIALS_WEBHOOK_READY
+RBA_ESSENTIALS_CONFIRMATION_NOTICE_READY
+```
+
+For the Meta feed, additionally set `RBA_ESSENTIALS_META_FEED_APPROVED=true` **only after Meta catalog eligibility and real product photos are confirmed**. In Commerce Manager choose scheduled data feed `https://riotbasketballacademy.com/api/commerce/essentials-meta-catalog` and verify every variant's `preorder` availability and landing-page price is accepted. A feed endpoint does not grant product tagging approval or manage the user's Instagram account automatically.
+
+### Critical transactional checks
+
+- Confirm consumer law disclosures including total cost, deadline for delivery, cancellation, returns, and merchant identification. Japanese Consumer Affairs Agency: https://www.no-trouble.caa.go.jp/what/mailorder/index.html
+- Ensure **advance-payment acceptance notice** (including buyer identity, charged amount/date, goods and quantity, and concrete delivery deadline) is sent and recorded. Stripe card receipts alone may not meet this requirement. Set `RBA_ESSENTIALS_CONFIRMATION_NOTICE_READY=true` only after a verified automated email or staffed manual protocol has been implemented and tested.
+- Ensure the Stripe webhook secret is from **this exact** `/api/commerce/essentials-preorder-webhook` endpoint; it must listen for `checkout.session.completed` and `checkout.session.async_payment_succeeded`.
+- Verify Stripe account matches `acct_1UGdxZRXDnnSs6XN`. Preorder route intentionally rejects test or unrelated account keys; perform a separate staging simulation and an owner-approved minimal real checkout before activating public sales.
+- Test success, cancelled payment, failed card, duplicate click, buyer email, Japan-only shipping address, Stripe signed webhook idempotency, ledger availability, refunds, reorder/size changes, inventory cap, fulfillment and cancellation communications.
+- Do not imply the purchase is a charitable donation or tax-deductible. Accounting should assign genuine net profit after manufacturing, shipping, fees and tax to documented RBA youth development activities.
