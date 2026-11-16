@@ -85,3 +85,8 @@
 .productEnd a{color:#eeeae3!important;font-size:11px;letter-spacing:.09em;text-decoration:none!important;border-bottom:1px solid #97938b;padding-bottom:10px}
 @media(max-width:900px){.detailLayout{grid-template-columns:1fr;gap:38px}.detailPhoto{max-width:720px;width:100%;margin:auto}.detailPhoto img{aspect-ratio:4/4.5}.detailCopy{max-width:none}.detailCopy h1{font-size:clamp(54px,10vw,95px)!important}.detailDescription{max-width:660px}}
 @media(max-width:600px){.detailLayout{padding:26px 22px 70px}.detailCopy h1{font-size:60px!important;margin:24px 0!important}.detailPhoto img{aspect-ratio:4/5}.detailDescription{margin-bottom:30px}.detailButton{max-width:none}.productEnd h2{font-size:55px!important}.productEnd>div{gap:23px}}
+
+/* First-drop supplied non-model product reference compositions */
+.heroPair{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#eee;max-width:1500px;margin:auto}
+.heroPair img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center;background:#bcbab7}
+@media(max-width:650px){.heroPair{gap:2px;grid-template-columns:1fr 1fr}.heroPair img{aspect-ratio:4/5;object-position:center}}
