@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
-import { getEssentialsPresaleConfig, RBA_ESSENTIALS_STRIPE_ACCOUNT } from "@/lib/essentials-commerce";
+import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
+import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 
 export const dynamic = "force-dynamic";
 const ORIGIN = "https://riotbasketballacademy.com";
@@ -74,8 +75,7 @@ export async function POST(request:Request) {
     if(!secret) return fail("現在、決済は準備中です。",503);
     const stripe=new Stripe(secret);
     // Never use another connected Stripe business or the test account by accident.
-    const account=await stripe.accounts.retrieve();
-    if(account.id!==RBA_ESSENTIALS_STRIPE_ACCOUNT)
+    if(!await verifyEssentialsStripeAccount(secret))
       return fail("RBA専用決済アカウントを確認できません。",503);
     const session=await stripe.checkout.sessions.create({
       mode:"payment",
