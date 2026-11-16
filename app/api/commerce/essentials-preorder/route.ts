@@ -85,7 +85,7 @@ export async function POST(request:Request) {
       phone_number_collection:{enabled:true},
       shipping_address_collection:{allowed_countries:["JP"]},
       shipping_options:[{shipping_rate_data:{
-        type:"fixed_amount",display_name:"日本国内配送",
+        type:"fixed_amount",display_name:"FIRST DROP / 日本国内送料無料",
         fixed_amount:{amount:config.shippingJPY,currency:"jpy"},
         tax_behavior:"inclusive",
       }}],
