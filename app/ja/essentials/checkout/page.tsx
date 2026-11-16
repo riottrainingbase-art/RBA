@@ -20,6 +20,8 @@ export default async function EssentialsCheckoutPage({
    teeJPY={config.ready?config.unitPrices.tee:null}
    setupJPY={config.ready?config.unitPrices.setup:null}
    shippingJPY={config.ready?config.shippingJPY:null}
+   handwrittenJPY={config.handwrittenAvailable?config.handwrittenJPY:null}
+   handwrittenAvailable={config.handwrittenAvailable}
    deliveryBy={config.ready?config.dispatchDeadline:null}
    orderBy={config.ready?config.orderDeadline:null}
    termsVersion={config.ready?config.termsVersion:null}
