@@ -44,6 +44,7 @@ export type EssentialsPresaleConfig = {
   shippingJPY: number | null;
   handwrittenJPY: number | null;
   handwrittenAvailable: boolean;
+  handwrittenTerms: string;
   dispatchDeadline: string | null;
   orderDeadline: string | null;
   termsVersion: string | null;
@@ -67,6 +68,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   // Candidate +5,500 yen from market research: not a valid customer price
   // until written maker compensation, garment wash QA and owner approval.
   const handwrittenJPY = yen(p.RBA_ESSENTIALS_HANDWRITTEN_PRICE_JPY);
+  const handwrittenTerms = p.RBA_ESSENTIALS_HANDWRITTEN_RETURN_TERMS?.trim() || "";
   const dispatchDeadline = safeDate(p.RBA_ESSENTIALS_DISPATCH_BY);
   const orderDeadline = safeDate(p.RBA_ESSENTIALS_ORDER_BY);
   const merchant = {
@@ -114,7 +116,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     /^[0-9+()\- ]{8,24}$/.test(merchant.phone) &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(merchant.email) &&
     notice(cancellation) && notice(returns) && notice(note);
-  const handwrittenAvailable = ready && handwrittenJPY !== null &&
+  const handwrittenAvailable = ready && handwrittenJPY !== null && notice(handwrittenTerms) &&
     [
       "RBA_ESSENTIALS_HANDWRITTEN_PRICE_APPROVED",
       "RBA_ESSENTIALS_HANDWRITTEN_ARTIST_RIGHTS_APPROVED",
@@ -123,5 +125,5 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
       "RBA_ESSENTIALS_HANDWRITTEN_RETURNS_APPROVED",
       "RBA_ESSENTIALS_HANDWRITTEN_DELIVERY_APPROVED"
     ].every(k => isApproved(p[k]));
-  return { ready, unitPrices, shippingJPY, handwrittenJPY, handwrittenAvailable, dispatchDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
+  return { ready, unitPrices, shippingJPY, handwrittenJPY, handwrittenAvailable, handwrittenTerms, dispatchDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
 }
