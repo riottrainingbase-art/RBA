@@ -180,3 +180,35 @@ test("handwritten customization paid metadata is not displayed publicly and cann
  assert.match(db,/rba_essentials_handwritten_order_integrity/);
  assert.match(db,/handwritten_message/);
 });
+
+
+test("Stripe-hosted payment links reconcile only paid and signed first-drop sessions",()=>{
+ const hook=read("app/api/commerce/essentials-payment-link-webhook/route.ts");
+ const migration=read("supabase/migrations/20261116234500_rba_essentials_fallback_checkout_reconciliation.sql");
+ assert.match(hook,/webhooks\.constructEvent/);
+ assert.match(hook,/verifyEssentialsStripeAccount/);
+ assert.match(hook,/rba_essentials_first_drop/);
+ assert.match(hook,/plink_1UcRBCRXDnnSs6XNEW4xN93M/);
+ assert.match(hook,/plink_1UcRBHRXDnnSs6XNoHlBdpSQ/);
+ assert.match(hook,/stripe\.checkout\.sessions\.listLineItems/);
+ assert.match(hook,/session\.amount_total!==amount\*qty/);
+ assert.match(hook,/checkout_source:"stripe_payment_link"/);
+ assert.match(hook,/buyer_notice_status:"pending"/);
+ assert.match(hook,/ignoreDuplicates:true/);
+ assert.match(migration,/buyer_notice_status/);
+ assert.doesNotMatch(hook,/raw_customer_address|customer_email.*\.insert/i);
+});
+test("Risa shipping address is available only to identity-checked paid-order staff",()=>{
+ const page=read("app/ja/essentials/production/[orderId]/shipping/page.tsx");
+ const maker=read("app/ja/essentials/production/page.tsx");
+ assert.match(page,/\.auth\.getUser\(\)/);
+ assert.match(page,/rba_essentials_fulfillment_agents/);
+ assert.match(page,/terms_reference/);
+ assert.match(page,/role==="admin"/);
+ assert.match(page,/payment_status!=="paid"/);
+ assert.match(page,/verifyEssentialsStripeAccount/);
+ assert.match(page,/address\.country!=="JP"/);
+ assert.match(page,/session\.customer_details\?\.phone/);
+ assert.match(maker,/\/ja\/essentials\/production\/\$\{o\.order_id\}\/shipping/);
+ assert.doesNotMatch(page,/fetch\(\s*["']https:\/\//);
+});
