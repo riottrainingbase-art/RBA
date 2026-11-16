@@ -1,6 +1,7 @@
 // RBA ESSENTIALS / pre-launch collection. Do not add checkout URLs or publish offers
 // until samples, pricing, production rights, delivery, tax and returns are approved.
 export const ESSENTIALS_INTEREST_FORM = "https://form.jotform.com/262947168647069";
+export const ESSENTIALS_MODEL_IMAGE = "https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-essentials-model-concept-white-tee-black-set-20261116.png?v=1794836678";
 export const ESSENTIALS_INSTAGRAM = "https://www.instagram.com/riot.basketball.academy/";
 export const ESSENTIALS_HERO_IMAGE = "https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-essentials-editorial-2026.jpg?v=1794827351";
 
