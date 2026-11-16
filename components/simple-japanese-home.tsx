@@ -11,15 +11,15 @@ const entryPoints = [
     id: "family",
     number: "01 / PARENTS",
     title: "選手・保護者",
-    description: "練習、出場機会、チーム選び。成長につながる選択肢を探す。",
+    description: "出場機会、練習量、チーム選び。子どもの成長を基準に、必要な情報へ。",
     href: "/ja/families",
-    action: "保護者向けの入口へ",
+    action: "保護者・選手向けの案内",
   },
   {
     id: "coach",
     number: "02 / COACHES",
     title: "指導者・チーム",
-    description: "技術を試合へつなぐ。練習設計、講習、育成記事を学ぶ。",
+    description: "選手が見て、判断し、選べる練習へ。根拠と実践から指導を考える。",
     href: "/ja/coaches",
     action: "指導者の学びへ",
   },
@@ -27,7 +27,7 @@ const entryPoints = [
     id: "partner",
     number: "03 / PARTNERS",
     title: "企業・地域",
-    description: "次の育成環境をつくる。開催支援や協賛・連携を相談する。",
+    description: "地域の子どもたちに、学びを届ける。開催や協賛の可能性を話す。",
     href: "/ja/partners",
     action: "連携・協賛の相談へ",
   },
@@ -46,7 +46,7 @@ const steps = [
     id: "join",
     label: "無料でつながる",
     title: "保護者のLINEコミュニティ",
-    copy: "子どものバスケについて考える保護者同士の交流の入口。",
+    copy: "子どもの育成を考える保護者が、安心して意見を交わせる場。",
     href: "https://line.me/ti/g2/8GsWD4iOnyOuoNj60_s24ljg_--cQ7IFMjfDLw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default",
     action: "保護者の部屋へ",
   },
@@ -78,12 +78,12 @@ export async function SimpleJapaneseHome() {
               <span className={styles.heroIssue}>PLAYER DEVELOPMENT / 2026</span>
             </div>
             <div className={styles.heroBody}>
-              <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
-              <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-              <p className={styles.intro}>選手が挑戦し、指導者が学び、地域がつながる。<br />RBAは仙台から全国・アジアへ、次のコートをひらきます。</p>
+              <p className={styles.heroEyebrow}>PLAYER FIRST. DEVELOPMENT ALWAYS.</p>
+              <h1 id="rba-home-title"><span>子どもの可能性を、</span><span>所属先で決めない。</span></h1>
+              <p className={styles.intro}>勝敗だけでは、成長を測れない。<br />自分で見て、考え、選ぶ経験を。仙台から全国、そしてアジアへ。</p>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
-                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
+                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">クリニック・講習を探す <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">RBAの活動を知る <span aria-hidden="true">↗</span></a>
               </nav>
             </div>
             <div className={styles.heroBaseline}>
@@ -102,7 +102,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">あなたに合う、<span className={styles.headingEmphasis}>次の一歩。</span></h2></div>
+              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">立場から探す、<span className={styles.headingEmphasis}>学びの選択肢。</span></h2></div>
             </div>
             <nav className={styles.journeyGrid} aria-label="保護者・指導者・企業の目的別入口">
               {entryPoints.map(item => (
@@ -114,12 +114,12 @@ export async function SimpleJapaneseHome() {
                 </a>
               ))}
             </nav>
-            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。</p>
+            <p className={styles.note}>選手・保護者、指導者、企業・地域。それぞれに必要な案内をご用意しています。</p>
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">次のコートが、<span className={styles.headingEmphasis}>ここにある。</span></h2></div>
+              <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">各地のコートで、<span className={styles.headingEmphasis}>学びを重ねる。</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
             {active.length ? (
@@ -151,8 +151,8 @@ export async function SimpleJapaneseHome() {
           <section className={styles.nextStep} id="home-next-step" aria-labelledby="home-next-step-title">
             <div className={styles.nextStepIntro}>
               <p className={styles.label}>FIRST TIME HERE?</p>
-              <h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2>
-              <p>活動内容が決まっていない方も、必要な情報だけを選べます。</p>
+              <h2 id="home-next-step-title">RBAを知る、最初のページ。</h2>
+              <p>初めての方も、関心のあるテーマからご覧ください。</p>
             </div>
             <nav className={styles.nextStepLinks} aria-label="はじめての方向けの案内">
               <a href="/ja/families" data-growth-id="home-first-family"><span>01</span><strong>選手・保護者の方</strong><span aria-hidden="true">↗</span></a>
@@ -164,7 +164,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.ageHub} aria-labelledby="home-age-categories" id="home-age-categories">
             <p className={styles.label}>PROGRAMMES / 年代と活動形態</p>
-            <h2>年齢・活動から探す。</h2>
+            <h2>年代に合う、育成の機会。</h2>
             <p className={styles.ageIntro}>スクール・クリニック・U15クラブは別の活動です。対象や参加条件を確認してお選びください。</p>
             <nav className={styles.ageGrid} aria-label="年代とU15チームの案内">
               <a href="/ja/u12" className={styles.ageCard} data-growth-id="home-age-u12">
@@ -186,7 +186,7 @@ export async function SimpleJapaneseHome() {
           <section className={styles.schoolSpotlight} aria-labelledby="home-sendai-school">
             <div className={styles.schoolSpotlightIntro}>
               <p className={styles.label}>SENDAI / 太白区</p>
-              <h2 id="home-sendai-school">仙台で、日々の練習を深める。</h2>
+              <h2 id="home-sendai-school">仙台の日常に、質の高い育成を。</h2>
               <p>小学生・中学生向けのスクールと、GREAM仙台のU15クラブを運営しています。スクールとクラブは活動形態が異なります。</p>
               <div className={styles.schoolFacts}><span>U15スクール｜木曜・月3回</span><span>U12スクール｜日程調整中</span></div>
               <small>体験日・費用・受け入れ状況は各公式案内を優先してください。</small>
@@ -199,7 +199,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.section} aria-labelledby="home-continue-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>DISCOVER → CONNECT → CONTINUE</p><h2 id="home-continue-title">まず無料で知る。必要なら続ける。</h2></div>
+              <div><p className={styles.label}>DISCOVER → CONNECT → CONTINUE</p><h2 id="home-continue-title">知ることから、育成を変える。</h2></div>
             </div>
             <div className={styles.pathGrid}>
               {steps.map((item, index) => {
