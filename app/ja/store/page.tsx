@@ -80,6 +80,10 @@ const questions = [
 export default function StorePage() {
   return <SiteFrame locale="ja">
     <main className={styles.page}>
+      <aside className={styles.essentialsNotice} aria-label="RBA ESSENTIALS 新コレクション">
+        <div><span>NEW / RBA ESSENTIALS</span><strong>WHITE TEE & BLACK SETUP</strong><p>公式アパレルの新しいコレクション。現在は発売準備中です。</p></div>
+        <a href="/ja/essentials">コレクションを見る <span aria-hidden="true">↗</span></a>
+      </aside>
       <section className={styles.hero} aria-labelledby="store-title">
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / OFFICIAL COLLECTION</p>
