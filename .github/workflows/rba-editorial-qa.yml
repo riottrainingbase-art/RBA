@@ -40,3 +40,7 @@ jobs:
         run: pnpm run audit:site-ja
       - name: Verify deployment policy
         run: pnpm run audit:deploy-policy
+      - name: Next.js production compilation and CSS Modules QA (no deployment)
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: pnpm run build
