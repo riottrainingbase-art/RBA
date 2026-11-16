@@ -48,6 +48,14 @@ export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}
    <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><h3 className="founder-belief">{c.headline}</h3><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
   </div>
   <div className="founder-principles"><article><p className="founder-eyebrow">01 / MISSION · {c.missionLabel}</p><h3>{c.mission}</h3><p>{c.missionBody}</p></article><article><p className="founder-eyebrow">02 / VISION · {c.visionLabel}</p><h3>{c.vision}</h3><p>{c.visionBody}</p></article></div>
+  {full&&locale==="ja"&&<section className="founder-governance" aria-labelledby="founder-governance-heading">
+    <p className="founder-eyebrow">ORGANISATION / GOVERNANCE</p>
+    <h2 id="founder-governance-heading">団体概要・会則を公開しています。</h2>
+    <p>RBAは育成年代の成長を支えるため、非営利目的の運営と適正な参加費の両立を大切にしています。2026年7月7日施行の現行会則全文に加え、役員・会計・利益相反・子どもの安全を明確にする改訂草案を、施行状況を区別して公開しています。</p>
+    <dl className="founder-governance-facts"><div><dt>名称</dt><dd>Riot Basketball Academy</dd></div><div><dt>拠点</dt><dd>宮城県仙台市</dd></div><div><dt>代表</dt><dd>西尾 優人</dd></div><div><dt>活動目的</dt><dd>育成年代の健全育成、指導者教育、地域・国際交流</dd></div><div><dt>会則</dt><dd>正式版 Ver.3.0（2026年7月7日施行）</dd></div></dl>
+    <a className="founder-governance-link" href="/ja/about/governance">団体概要・現行会則・改訂草案を見る <ArrowUpRight size={17}/></a>
+    <small>改訂草案は未施行です。法人格や公共施設での利用区分を保証するものではありません。</small>
+   </section>}
   {full&&<div className="founder-invitation"><p className="founder-eyebrow">LET’S BEGIN A CONVERSATION</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a><small>{c.note}</small><a className="founder-email" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></div>}
  </section>;
 }
