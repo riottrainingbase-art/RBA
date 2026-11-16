@@ -9,7 +9,7 @@ import styles from "./production.module.css";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:"RBA ESSENTIALS｜製作・発送管理",robots:{index:false,follow:false}};
-type PaidOrder={order_id:string;paid_at:string;tee_quantity:number;tee_size:string|null;setup_quantity:number;hoodie_size:string|null;pants_size:string|null;dispatch_by:string;payment_status:string;handwritten:boolean;handwritten_target:string|null;handwritten_message:string|null;handwritten_addon_jpy:number};
+type PaidOrder={order_id:string;paid_at:string;tee_quantity:number;tee_size:string|null;setup_quantity:number;hoodie_size:string|null;pants_size:string|null;dispatch_by:string;deliver_by:string|null;payment_status:string;handwritten:boolean;handwritten_target:string|null;handwritten_message:string|null;handwritten_addon_jpy:number};
 type Task={order_id:string;stage:string;tracking_reference:string|null;carrier:string|null;dispatch_date:string|null;issue_note:string;updated_at:string};
 const stageNames:Record<string,string>={
  awaiting_handoff:"製作受付待ち",accepted_by_production:"製作受付済み",materials_ready:"素材・サイズ確認済み",
@@ -42,7 +42,7 @@ export default async function RbaEssentialsProduction({searchParams}:{searchPara
  const isAdmin=profile.data?.role==="admin";
  if(!isAdmin&&(!staff.data?.active||!!staff.error))notFound();
  const [orders,tasks,q]=await Promise.all([
-  admin.from("rba_essentials_orders").select("order_id,paid_at,tee_quantity,tee_size,setup_quantity,hoodie_size,pants_size,dispatch_by,payment_status,handwritten,handwritten_target,handwritten_message,handwritten_addon_jpy").eq("payment_status","paid").order("paid_at",{ascending:false}).limit(100),
+  admin.from("rba_essentials_orders").select("order_id,paid_at,tee_quantity,tee_size,setup_quantity,hoodie_size,pants_size,dispatch_by,deliver_by,payment_status,handwritten,handwritten_target,handwritten_message,handwritten_addon_jpy").eq("payment_status","paid").order("paid_at",{ascending:false}).limit(100),
   admin.from("rba_essentials_fulfillment_tasks").select("order_id,stage,tracking_reference,carrier,dispatch_date,issue_note,updated_at").limit(100),
   searchParams,
  ]);
@@ -67,7 +67,7 @@ export default async function RbaEssentialsProduction({searchParams}:{searchPara
       return <article className={styles.order} key={o.order_id}>
         <div className={styles.orderHeader}>
           <div><p className={styles.kicker}>RBA / PAID ORDER</p><h2>{o.order_id.slice(0,8).toUpperCase()}</h2><p className={styles.small}>入金日：{new Date(o.paid_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})}</p></div>
-          <div><p className={styles.kicker}>PROGRESS</p><strong className={styles.stage}>{stageNames[stage]||stage}</strong><p className={styles.small}>発送期限：{o.dispatch_by}</p></div>
+          <div><p className={styles.kicker}>PROGRESS</p><strong className={styles.stage}>{stageNames[stage]||stage}</strong><p className={styles.small}>発送期限：{o.dispatch_by}／お届け期限：{o.deliver_by??"要確認"}</p></div>
         </div>
         <div className={styles.items}>
           {o.tee_quantity>0&&<div><span>WHITE TEE</span><strong>Size {o.tee_size} × {o.tee_quantity}</strong></div>}
