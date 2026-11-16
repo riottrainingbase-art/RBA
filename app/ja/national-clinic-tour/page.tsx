@@ -205,7 +205,7 @@ export default function NationalClinicTourPage() {
 
         <section className="mx-auto max-w-6xl px-5 py-16 sm:px-9 sm:py-24" aria-labelledby="workflow-title">
           <div className="flex items-center gap-3 text-neutral-600"><ClipboardList size={20} aria-hidden="true" /><p className="text-xs font-black tracking-[.16em]">HOW WE WORK</p></div>
-          <h2 id="workflow-title" className="mt-3 text-[clamp(30px,4vw,46px)] font-black tracking-[-.05em]">相談から、次の開催まで。</h2>
+          <h2 id="workflow-title" className="mt-3 text-[clamp(30px,4vw,46px)] font-black tracking-[-.05em]">開催相談から、当日まで。</h2>
           <ol className="mt-8 grid gap-3 md:grid-cols-5">
             {steps.map(([n, title, desc]) => (
               <li key={n} className="border-t-2 border-neutral-900 bg-white p-5">
@@ -270,7 +270,7 @@ export default function NationalClinicTourPage() {
           <div className="mx-auto max-w-6xl px-5 py-16 text-center sm:px-9 sm:py-20">
             <div className="mx-auto flex h-12 w-12 items-center justify-center bg-neutral-100"><CalendarDays size={24} aria-hidden="true" /></div>
             <p className="mt-5 text-xs font-black tracking-[.16em] text-neutral-600">YOUR COURT, NEXT.</p>
-            <h2 className="mt-3 text-[clamp(32px,5vw,58px)] font-black leading-tight tracking-[-.05em]">次は、あなたの地域へ。</h2>
+            <h2 className="mt-3 text-[clamp(32px,5vw,58px)] font-black leading-tight tracking-[-.05em]">地域から、育成の輪を。</h2>
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-neutral-700">県・希望時期・対象年代・人数が分かれば相談を始められます。体育館や料金が未確定でも、まずは条件を整理しましょう。</p>
             <a href={enquiryUrl} target="_blank" rel="noopener noreferrer" data-cta="national-tour-footer-host-enquiry"
               className="mx-auto mt-8 inline-flex min-h-14 w-full max-w-md items-center justify-between bg-[#ff791f] px-6 py-4 text-sm font-black hover:bg-[#ff974d]">
