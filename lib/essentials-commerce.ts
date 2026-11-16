@@ -26,6 +26,18 @@ const safeDate = (s: string | undefined) => {
 const notice = (v: string | undefined) =>
   !!v && v.trim().length >= 15 && v.length <= 1200 && !/[<>]/.test(v);
 
+/** End of the same day next calendar month, with end-of-month clamping. */
+export function oneMonthFromJstDate(date: string): string | null {
+  if (!/^20\d{2}-\d{2}-\d{2}$/.test(date)) return null;
+  const [year, month, day] = date.split("-").map(Number);
+  const actual = new Date(Date.UTC(year, month - 1, day));
+  if (actual.getUTCFullYear() !== year || actual.getUTCMonth() !== month - 1 || actual.getUTCDate() !== day) return null;
+  const targetYear = month === 12 ? year + 1 : year;
+  const targetMonth = month === 12 ? 1 : month + 1;
+  const lastDay = new Date(Date.UTC(targetYear, targetMonth, 0)).getUTCDate();
+  return [targetYear, String(targetMonth).padStart(2, "0"), String(Math.min(day, lastDay)).padStart(2, "0")].join("-");
+}
+
 export type EssentialsPresaleConfig = {
   ready: boolean;
   unitPrices: { tee: number | null; setup: number | null };
@@ -91,6 +103,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     !!unitPrices.tee && !!unitPrices.setup && shippingJPY === 0 &&
     !!dispatchDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline &&
     orderDeadline >= todayJST && dispatchDeadline > todayJST &&
+    dispatchDeadline <= (oneMonthFromJstDate(todayJST) ?? "") &&
     !!termsVersion && /^[a-zA-Z0-9_-]{5,60}$/.test(termsVersion) &&
     merchant.name.length > 1 && merchant.address.length > 8 &&
     /^[0-9+()\- ]{8,24}$/.test(merchant.phone) &&
