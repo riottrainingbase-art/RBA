@@ -24,6 +24,7 @@ export default async function EssentialsCheckoutPage({
    handwrittenAvailable={config.handwrittenAvailable}
    handwrittenTerms={config.handwrittenAvailable?config.handwrittenTerms:""}
    deliveryBy={config.ready?config.dispatchDeadline:null}
+   arrivalBy={config.ready?config.deliveryDeadline:null}
    orderBy={config.ready?config.orderDeadline:null}
    termsVersion={config.ready?config.termsVersion:null}
    cancellationTerms={config.ready?config.cancellation:""}
