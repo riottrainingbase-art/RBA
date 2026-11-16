@@ -18,7 +18,7 @@ export default function EssentialsLegalPage(){
     ["連絡先メール",c.merchant.email],
     ["販売する商品","RBA ESSENTIAL TEE（白）／RBA ESSENTIAL SETUP（黒・パーカー上下）"],
     ["価格","Tシャツ："+Number(c.unitPrices.tee).toLocaleString("ja-JP")+"円（税込）／セットアップ："+Number(c.unitPrices.setup).toLocaleString("ja-JP")+"円（税込）"],
-    ["商品代金以外の費用","日本国内送料："+Number(c.shippingJPY).toLocaleString("ja-JP")+"円（税込）。総額は注文確認画面で表示します。"],
+    ["商品代金以外の費用","FIRST DROP先行販売の日本国内送料は無料（0円）です。通常販売の送料は別途告知します。総額は注文確認画面で表示します。"],
     ["申込受付期間","受付期限："+c.orderDeadline+"。期間外の注文は受け付けません。"],
     ["支払方法・時期","Stripeによるオンライン決済。購入時に1回のみ全額前払いとなります。"],
     ["商品の引渡時期","発送期限："+c.dispatchDeadline+"。配送会社による運送日数は地域・天候などで前後する場合があります。"],
