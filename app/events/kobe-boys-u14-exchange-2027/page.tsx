@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const programme = [
-  ["5 JAN / TUE", "Arrival & Welcome", "The Guam group's international arrival is scheduled at Kansai International Airport. We will not schedule morning tournament games on arrival day."],
+  ["5 JAN / TUE", "Guam Arrival / Japan Team Practice", "Guam arrives at Kansai International Airport at 10:05. Transfer and rest take priority. A Japan-only RBA UNITED Boys U14 practice in Kobe is proposed that afternoon, led by head coach Masato Nishio; venue, times and possible costs are unconfirmed. No competitive game is scheduled for Guam on arrival day."],
   ["6 JAN / WED", "Friendly Games & Joint Practice", "Proposed boys U14 games and development sessions with clubs in Japan; subject to gym and opponent confirmation."],
   ["7 JAN / THU", "Exchange Programme", "Proposed continuation. Local Japanese schools resume classes on this day, so match times need to respect the school schedule."],
   ["8–9 JAN / FRI–SAT", "Optional Additional Exchanges", "Possible extra games, cultural exchange or joint practice, especially Saturday January 9. These dates are not yet confirmed or priced."],
@@ -31,7 +31,7 @@ export default function KobeInternationalU14() {
       <h1 className="mt-5 max-w-5xl text-[clamp(2.5rem,8vw,7rem)] font-black leading-[1.04] tracking-[-.065em]">Different countries.<br/>One court.</h1>
       <p className="mt-7 border-t-[6px] border-black pt-6 text-[clamp(1.9rem,5vw,4.5rem)] font-black leading-tight">RBA INTERNATIONAL<br/>BOYS U14 EXCHANGE</p>
       <p className="mt-6 text-3xl font-black">JANUARY 5–10, 2027 · KOBE / KANSAI</p>
-      <p className="mt-5 max-w-3xl text-base font-semibold leading-8">Youth teams learn from unfamiliar opponents and coaches through friendly games, shared practice and cultural exchange. We are inviting overseas clubs to explore a first international boys U14 exchange in the Kobe area.</p>
+      <p className="mt-5 max-w-3xl text-base font-semibold leading-8">Youth teams learn from unfamiliar opponents and coaches through friendly games, shared practice and cultural exchange. The Japanese RBA UNITED Boys U14 squad will be coached by RBA founder Masato Nishio, with a provisional Japan-only preparation session on January 5. We are inviting overseas clubs to explore a first international boys U14 exchange in the Kobe area.</p>
       <div className="mt-6 max-w-3xl border-l-4 border-black bg-[#fff3e5] p-5 text-sm font-bold leading-7"><strong>Planning status:</strong> Guam has informed RBA that air tickets for travel to Kansai are booked. Competition venue, opponents, other overseas teams, confirmed fees, DOB cutoff and game times are still being arranged. This enquiry is free and does not reserve a team place, charge a fee, or guarantee that the event will proceed.</div>
       <a href={form} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex min-h-14 items-center bg-black px-7 py-4 font-black text-white">EXPRESS BOYS U14 TEAM INTEREST ↗</a>
     </div></header>
