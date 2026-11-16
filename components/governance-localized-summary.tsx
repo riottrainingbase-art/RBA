@@ -73,7 +73,7 @@ export function GovernanceLocalizedSummary({locale}:{locale:TranslationLocale}) 
         <p className={styles.intro}>{c.intro}</p>
         <p className={styles.role}>{c.role}</p>
       </header>
-      <main className={styles.main}>
+      <div className={styles.main}>
         <article className={styles.section}>
           <p className={styles.index}>01 / EFFECTIVE RULES</p>
           <h2>{c.current}</h2>
@@ -96,7 +96,7 @@ export function GovernanceLocalizedSummary({locale}:{locale:TranslationLocale}) 
           <a href="mailto:riot.training.base@gmail.com?subject=RBA%20Governance">{c.contact} ↗</a>
         </div>
         <p className={styles.note}>{c.note}</p>
-      </main>
+      </div>
     </div>
   </SiteFrame>;
 }
