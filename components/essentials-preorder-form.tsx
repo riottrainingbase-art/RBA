@@ -31,7 +31,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const shipping=(teeQty+setupQty>0?(shippingJPY??0):0);
   const canCheckout=available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged;
   return <div className="epWrap">
-    <div className="epHead"><p>RBA ESSENTIALS / PRE-ORDER</p><h1>Pre-order<span>.</span></h1><p>公式ウェアの先行購入。商品とサイズを選び、Stripeの安全な決済画面へお進みください。</p></div>
+    <div className="epHead"><p>RBA ESSENTIALS / PRE-ORDER</p><h1>Pre-order<span>.</span></h1><p>公式ウェアの先行購入。国内送料無料はFIRST DROP限定。商品・サイズ・数量を選び、確定条件をご確認のうえStripe決済へお進みください。</p></div>
     {available ? <form method="POST" action="/api/commerce/essentials-preorder" className="epForm">
       <div className="epLeft">
         <div className="epLine"><span>01 / THE ITEMS</span><span>SELECT & SIZE</span></div>
@@ -58,9 +58,9 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
       <aside className="epSummary">
         <p className="epLabel">02 / YOUR ORDER</p><h2>Order summary</h2>
         <div className="epRow"><span>商品代金（税込）</span><strong>{yen(subtotal)}</strong></div>
-        <div className="epRow"><span>送料（税込）</span><strong>{yen(shipping)}</strong></div>
+        <div className="epRow"><span>送料（先行販売・国内限定）</span><strong>{shipping===0?"無料 / ¥0":yen(shipping)}</strong></div>
         <div className="epRow epTotal"><span>合計（税込）</span><strong>{yen(subtotal+shipping)}</strong></div>
-        <div className="epTerms"><p><strong>先行販売・前払い</strong></p><p>支払時期：注文確定時の一括決済（Stripe）</p><p>申込受付期限：{orderBy}</p><p>発送期限：{deliveryBy} まで</p><p>{presaleNote}</p><p><strong>キャンセル</strong>：{cancellationTerms}</p><p><strong>返品・交換</strong>：{returnTerms}</p><p><Link href="/ja/essentials/legal">特定商取引法に基づく表記・販売条件を見る</Link></p></div>
+        <div className="epTerms"><p><strong>先行販売・前払い</strong></p><p>支払時期：注文確定時の一括決済（Stripe）。FIRST DROPは日本国内送料無料。</p><p>申込受付期限：{orderBy}</p><p>発送期限：{deliveryBy} まで</p><p>{presaleNote}</p><p><strong>キャンセル</strong>：{cancellationTerms}</p><p><strong>返品・交換</strong>：{returnTerms}</p><p><Link href="/ja/essentials/legal">特定商取引法に基づく表記・販売条件を見る</Link></p></div>
         <input type="hidden" name="terms_version" value={termsVersion??""}/>
         <label className="epConsent"><input type="checkbox" checked={accepted} onChange={e=>setAccepted(e.target.checked)} name="accept_preorder" value="yes"/>先行販売であること、決済が先に行われ、発送期限が{deliveryBy}であることを確認しました。</label>
         <label className="epConsent"><input type="checkbox" checked={acceptedTerms} onChange={e=>setAcceptedTerms(e.target.checked)} name="accept_terms" value="yes"/>商品・数量・合計金額・キャンセル・返品条件を確認し、同意します。</label>
@@ -68,7 +68,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
         <button className="epPay" type="submit" disabled={!canCheckout}>Stripeで先行購入する <span aria-hidden="true">↗</span></button>
         <p className="epFine">商品を選択し、上記に同意すると購入画面へ進みます。注文確定前にStripeで最終内容を確認できます。</p>
       </aside>
-    </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>先行販売のための準備を進めています。価格・納期・製造品質・発送条件の確認が終わるまで、お支払いは受け付けません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前アンケートに回答する ↗</a><Link href="/ja/essentials">コレクションに戻る ↗</Link></section>}
+    </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>ホワイトTシャツ4,900円、ブラックパーカー上下19,800円（税込）。FIRST DROPの国内送料は無料です。現在は製造品質・納期・返品条件・決済の確認中につき、お支払いを受け付けていません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">先行注文申込（お支払い前） ↗</a><Link href="/ja/essentials">コレクションに戻る ↗</Link></section>}
     <style jsx>{`
 .epWrap{color:#171715;background:#f5f4f0;min-height:75vh;padding:58px clamp(22px,6vw,110px) 105px;font-family:Arial,sans-serif}
 .epWrap *{box-sizing:border-box}
