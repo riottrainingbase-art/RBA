@@ -151,7 +151,7 @@ export async function SimpleJapaneseHome() {
           <section className={styles.nextStep} id="home-next-step" aria-labelledby="home-next-step-title">
             <div className={styles.nextStepIntro}>
               <p className={styles.label}>FIRST TIME HERE?</p>
-              <h2 id="home-next-step-title">RBAを知る、最初のページ。</h2>
+              <h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2>
               <p>初めての方も、関心のあるテーマからご覧ください。</p>
             </div>
             <nav className={styles.nextStepLinks} aria-label="はじめての方向けの案内">
