@@ -13,6 +13,7 @@ type Props = {
   handwrittenAvailable: boolean;
   handwrittenTerms: string;
   deliveryBy: string | null;
+  arrivalBy: string | null;
   orderBy: string | null;
   termsVersion: string | null;
   cancellationTerms: string;
@@ -21,7 +22,7 @@ type Props = {
 };
 const yen=(n:number)=>n.toLocaleString("ja-JP")+"円";
 const sizes=["S","M","L","XL"] as const;
-export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,handwrittenJPY,handwrittenAvailable,handwrittenTerms,deliveryBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
+export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,handwrittenJPY,handwrittenAvailable,handwrittenTerms,deliveryBy,arrivalBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
   const [teeQty,setTeeQty]=useState(initial==="tee"?1:0);
   const [setupQty,setSetupQty]=useState(initial==="setup"?1:0);
   const [teeSize,setTeeSize]=useState("M");
@@ -89,9 +90,9 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
         {handwrittenCharge>0 && <div className="epRow"><span>うち手書き追加料金（税込）</span><strong>{yen(handwrittenCharge)}</strong></div>}
         <div className="epRow"><span>送料（先行販売・国内限定）</span><strong>{shipping===0?"無料 / ¥0":yen(shipping)}</strong></div>
         <div className="epRow epTotal"><span>合計（税込）</span><strong>{yen(subtotal+shipping)}</strong></div>
-        <div className="epTerms"><p><strong>先行販売・前払い</strong></p><p>支払時期：注文確定時の一括決済（Stripe）。FIRST DROPは日本国内送料無料。</p><p>申込受付期限：{orderBy}</p><p>発送期限：{deliveryBy} まで</p><p>{presaleNote}</p><p><strong>キャンセル</strong>：{cancellationTerms}</p><p><strong>返品・交換</strong>：{returnTerms}</p><p><Link href="/ja/essentials/legal">特定商取引法に基づく表記・販売条件を見る</Link></p></div>
+        <div className="epTerms"><p><strong>先行販売・前払い</strong></p><p>支払時期：注文確定時の一括決済（Stripe）。FIRST DROPは日本国内送料無料。</p><p>申込受付期限：{orderBy}</p><p>発送期限：{deliveryBy}まで</p><p>お届け期限：{arrivalBy}まで（注文から1か月以内の目標を契約上の期限として明示）</p><p>{presaleNote}</p><p><strong>キャンセル</strong>：{cancellationTerms}</p><p><strong>返品・交換</strong>：{returnTerms}</p><p><Link href="/ja/essentials/legal">特定商取引法に基づく表記・販売条件を見る</Link></p></div>
         <input type="hidden" name="terms_version" value={termsVersion??""}/>
-        <label className="epConsent"><input type="checkbox" checked={accepted} onChange={e=>setAccepted(e.target.checked)} name="accept_preorder" value="yes"/>先行販売であること、決済が先に行われ、発送期限が{deliveryBy}であることを確認しました。</label>
+        <label className="epConsent"><input type="checkbox" checked={accepted} onChange={e=>setAccepted(e.target.checked)} name="accept_preorder" value="yes"/>先行販売であること、決済が先に行われ、発送期限が{deliveryBy}、お届け期限が{arrivalBy}であることを確認しました。</label>
         <label className="epConsent"><input type="checkbox" checked={acceptedTerms} onChange={e=>setAcceptedTerms(e.target.checked)} name="accept_terms" value="yes"/>商品・数量・合計金額・キャンセル・返品条件を確認し、同意します。</label>
         <label className="epConsent"><input type="checkbox" checked={acknowledged} onChange={e=>setAcknowledged(e.target.checked)} name="accept_development_use" value="yes"/>販売による利益をRBAの育成活動に活用する方針を確認しました。</label>
         <button className="epPay" type="submit" disabled={!canCheckout}>Stripeで先行購入する <span aria-hidden="true">↗</span></button>
