@@ -4,6 +4,8 @@ import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
 import { ESSENTIALS_HERO_IMAGE, ESSENTIALS_INSTAGRAM, ESSENTIALS_INTEREST_FORM, essentials } from "@/lib/rba-essentials";
 import styles from "./essentials.module.css";
+import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "RBA ESSENTIALS | Official Apparel Collection",
@@ -20,11 +22,12 @@ export const metadata: Metadata = {
 };
 
 export default function EssentialsCollectionPage() {
+  const commerce=getEssentialsPresaleConfig();
   return (
     <SiteFrame locale="ja">
       <div className={styles.page}>
         <section className={styles.intro} aria-labelledby="essentials-title">
-          <div className={styles.overline}><span>RBA / OFFICIAL APPAREL</span><span>COLLECTION 001 — PREVIEW</span></div>
+          <div className={styles.overline}><span>RBA / OFFICIAL APPAREL</span><span>{commerce.ready?"FIRST DROP — PRE-ORDER OPEN":"COLLECTION 001 — PREVIEW"}</span></div>
           <div className={styles.introBody}>
             <p className={styles.chapter}>THE ESSENTIAL COLLECTION</p>
             <h1 id="essentials-title" className={styles.display}>ESSENTIALS<span>.</span></h1>
@@ -56,14 +59,14 @@ export default function EssentialsCollectionPage() {
                   <div>
                     <p className={styles.productEyebrow}>RBA ESSENTIALS / {item.number}</p>
                     <h3>{item.name}</h3>
-                    <p className={styles.productColor}>{item.colorJa} ・ 発売準備中</p>
+                    <p className={styles.productColor}>{item.colorJa} ・ {commerce.ready ? `先行販売受付中　¥${Number(item.slug==="tee"?commerce.unitPrices.tee:commerce.unitPrices.setup).toLocaleString("ja-JP")}（税込）` : "発売準備中"}</p>
                   </div>
                   <Link className={styles.roundArrow} href={item.pagePath} aria-label={item.title+"を見る"}>↗</Link>
                 </div>
               </article>
             ))}
           </div>
-          <p className={styles.previewNote}>掲載写真は製造前のCG・デザインイメージです。生地、タグ、サイズ、色合い、仕様はサンプル検証後に確定します。現在はご注文・ご予約・決済を受け付けていません。</p>
+          <p className={styles.previewNote}>掲載写真はデザイン検討用のCGイメージで、実物撮影ではありません。販売の可否、製品仕様、配送期限、キャンセル条件は各商品ページでご確認ください。</p>
         </section>
 
         <section className={styles.manifesto} aria-label="RBA ESSENTIALS のデザイン哲学">
@@ -90,12 +93,12 @@ export default function EssentialsCollectionPage() {
         <section className={styles.launch} aria-labelledby="launch-title">
           <p className={styles.chapter}>FIRST DROP / IN DEVELOPMENT</p>
           <h2 id="launch-title">Built to last.<br /><em>Not rushed.</em></h2>
-          <p>価格、サイズ表、製造、発送、返品・交換条件が揃ってから販売を開始します。先に、購入前アンケートでご意見をお寄せください。</p>
+          <p>{commerce.ready ? "公式ウェアの先行購入受付中。商品サイズ、税込総額、発送期限、キャンセル・返品条件をご確認のうえ、Stripeで購入いただけます。販売による利益はRBAの育成活動に活用します。" : "価格、サイズ表、製造、発送、返品・交換条件が揃ってから販売を開始します。先に、購入前アンケートでご意見をお寄せください。販売による利益はRBAの育成活動に活用します。"}</p>
           <div className={styles.launchLinks}>
-            <a className={styles.darkButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">無料の購入前アンケート <span aria-hidden="true">↗</span></a>
+            {commerce.ready ? <Link className={styles.darkButton} href="/ja/essentials/checkout">先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.darkButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">無料の購入前アンケート <span aria-hidden="true">↗</span></a>}
             <a className={styles.textLink} href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報を見る <span aria-hidden="true">↗</span></a>
           </div>
-          <p className={styles.launchFine}>アンケートは注文・予約・決済ではありません。発売日は未定です。</p>
+          <p className={styles.launchFine}>{commerce.ready ? `先行販売・前払い。国内配送。発送期限：${commerce.dispatchDeadline}。` : "アンケートは注文・予約・決済ではありません。発売日は未定です。"}</p>
         </section>
         <footer className={styles.collectionFooter}><span>RBA ESSENTIALS © RIOT BASKETBALL ACADEMY</span><a href="mailto:riot.training.base@gmail.com">CONTACT / EMAIL ↗</a></footer>
       </div>
