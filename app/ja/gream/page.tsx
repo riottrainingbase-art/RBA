@@ -7,11 +7,11 @@ const canonical = "https://riotbasketballacademy.com/ja/gream";
 
 export const metadata: Metadata = {
   title: "GREAM U15｜秋田・仙台・沖縄の育成チーム｜RBA",
-  description: "GREAMはRiot Basketball AcademyのU15育成チームプロジェクト。秋田・仙台・沖縄の活動、体験相談、地域と全国の企業協賛をひとつの入口からご案内します。",
+  description: "GREAMはRiot Basketball Academyが展開するU15育成クラブです。秋田・仙台・沖縄の活動、体験相談、企業との協働についてご案内します。",
   alternates: { canonical },
   openGraph: {
     title: "GREAM U15｜地域で育つ。その挑戦を、一緒に。",
-    description: "勝敗だけでなく、見る・判断する・実行する・振り返る。GREAMの地域別の活動と支援の入口。",
+    description: "勝敗の結果だけでなく、見る・判断する・試す・振り返る経験を大切に。GREAMの活動と参加方法をご案内します。",
     url: canonical, siteName: "Riot Basketball Academy", type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
@@ -70,7 +70,7 @@ export default function GreamPage() {
       <section className={styles.section} id="regions" aria-labelledby="gream-regions-title">
         <div className={styles.wrap}>
           <div className={styles.sectionHeader}>
-            <div><p className={styles.sectionTag}>THREE LOCAL CHAPTERS</p><h2 id="gream-regions-title">地域から、次の成長へ。</h2>
+            <div><p className={styles.sectionTag}>THREE LOCAL CHAPTERS</p><h2 id="gream-regions-title">地域で育ち、視野を広げる。</h2>
             <p>チームごとに運営形態や募集状況は異なります。確認できた内容を地域別にご案内します。</p></div>
           </div>
           <div className={styles.regionGrid}>
@@ -93,7 +93,7 @@ export default function GreamPage() {
             </div>
             <div><p className={styles.sectionTag}>RBA PARTNER CLUB / CHIBA</p><strong style={{display:"block",fontSize:19,fontWeight:900,letterSpacing:"-.03em"}}>HBC WOLVES · KOZAKI</strong></div>
           </div>
-          <h2 id="gream-partner-clubs">千葉の地域クラブとも、育成でつながる。</h2>
+          <h2 id="gream-partner-clubs">地域を越えて、学びを分かち合う。</h2>
           <p className={styles.sectionLead}>HBC WOLVESは千葉県神崎町で2018年から活動するU12・U15バスケットボールクラブ。周浦智美コーチが代表を務め、RBA代表・西尾優人が育成アドバイザーとして参画します。独立した運営を尊重しながら練習・体験・交流をサポートします。GREAMの3チームとは別組織です。</p>
           <div className={styles.actions} style={{marginTop:24}}>
             <a className={styles.linkButton} href="/ja/u15/hbc-wolves" data-growth-id="gream-partner-hbc">HBC WOLVESのチーム・体験案内 →</a>
