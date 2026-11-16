@@ -12,6 +12,7 @@ import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
 const official = "https://okinawa.camp/";
 const registration = "/ja/events/okinawa-international-camp-2026/apply";
+const dayPassEnquiry = "https://form.jotform.com/263095015591053";
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
   title: { absolute: "沖縄国際ユースバスケットボールキャンプ｜2026年12月22〜24日｜RBA" },
@@ -23,12 +24,22 @@ export default function Page() {
   return <SiteFrame locale="ja"><div className={styles.page}>
     <OkinawaEarlyBird/>
     <section className={styles.hero}>
-      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#okinawa-resident-discount">プランを選んで申込・決済へ ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p><p><a href="#okinawa-domestic-prices"><strong>県外からの参加プラン ↓</strong></a></p><p><a href="#camp-coaches">キャンプコーチを紹介 ↓</a></p></div>
+      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#okinawa-resident-discount">プランを選んで申込・決済へ ↓</a><p><a href="#okinawa-resident-discount"><strong>沖縄県民割引のご案内 ↓</strong></a></p><p><a href="#okinawa-domestic-prices"><strong>県外からの参加プラン ↓</strong></a></p><p><a href="#after-school"><strong>1日・放課後の参加相談（無料） ↓</strong></a></p><p><a href="#camp-coaches">キャンプコーチを紹介 ↓</a></p></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p><strong>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</strong><br/>{OKINAWA_CAMP_LOGISTICS.address}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
     <OkinawaCampGrowthPanel placement="event" />
     <section className={styles.section} id="family-guide"><p className={styles.label}>FOR FAMILIES / 日本語・ENGLISH・繁體中文・한국어</p><h2>宿泊・食事・送迎。参加前の疑問を、一つのガイドに。</h2><p>糸満青少年の家から受入れ可能との回答を得ています。兄弟の部屋、保護者の同行、言語のサポート、アレルギー、空港からの移動など、ご家族が参加を考えるときに知りたいことをまとめました。</p><a className={styles.primary} href="/okinawa-family-guide-2026.html">保護者ガイドを読む / Family guide →</a><p><a href="/okinawa-international-guide-2026.html">海外から参加するご家族へ / English・繁體中文・한국어 →</a></p><p className={styles.small}>ご相談だけでも歓迎します。最初は選手の年齢・人数、出発地、宿泊希望、同行保護者の人数をお知らせください。</p></section>
     <section className={styles.section} id="cancellation"><h2>キャンセル・中止・返金について</h2><p>申込直後から一律20％を差し引く規定や、20日前以降は一律返金しない規定は設けていません。主催者都合・不可抗力による開催前の中止は参加費を全額返金します。開始後の一部中止は未提供分を返金します。参加者都合の取消条件・返金方法は、下記をご確認ください。</p><a className={styles.primary} href="/ja/cancellation">キャンセル・返金規定を読む →</a><p>スタッフ配置と保険の詳細は確認後にご案内します。施設の賠償責任保険と、選手のけがに備える傷害保険は補償内容が異なります。</p></section>
+    <section className={styles.section} id="after-school" aria-labelledby="after-school-heading">
+      <p className={styles.label}>LOCAL / 1 DAY & AFTER SCHOOL</p>
+      <h2 id="after-school-heading">学校が終わってからでも、世界の仲間と。</h2>
+      <p>沖縄県内の7〜18歳を対象に、宿泊を伴わない1日参加・放課後の交流枠を調整しています。12月22日（火）は16:15頃の受付、16:30〜17:30頃の交流が第一候補です。23日・24日も希望を相談できますが、施設使用時間や引率・受入体制は未確定です。</p>
+      <p><strong>まずは無料で参加希望をご相談ください。</strong> ご希望の日付・到着可能時刻・学年・人数・保護者連絡先をフォームに登録できます。相談フォームの送信は予約・参加確定・お支払いではありません。</p>
+      <p><strong>正式参加は、条件確認後の全額前払いです。</strong> 施設・受入人数・料金が確定した場合に限り、保護者へ個別に正式申込と100%事前決済をご案内します。現地払い・後払いは行いません。未承認の枠について料金を請求しません。</p>
+      <a className={styles.primary} href={dayPassEnquiry}>1日・放課後参加の無料相談フォームを開く →</a>
+      <p className={styles.small}>食事・送迎・宿泊は含みません。保護者の送迎・安全な引渡し方法は別途確認します。すでに3日間プランで申込・お支払い済みの方は重複手続きしないでください。</p>
+      <p><a href={registration}>3日間通い・宿泊の既存正式申込・決済へ →</a></p>
+    </section>
     <OkinawaResidentPrices/><OkinawaResidentPrices residence="japan"/>
     <section className={styles.section} aria-labelledby="camp-coaches">
       <p className={styles.label}>CAMP COACHES / JAPAN × TAIWAN</p>
