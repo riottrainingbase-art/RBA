@@ -50,7 +50,7 @@ export default async function EssentialsReadiness(){
   const checks=[
    {name:"Tシャツの税込価格",ok:cfg.unitPrices.tee!==null},
    {name:"上下セットの税込価格",ok:cfg.unitPrices.setup!==null},
-   {name:"日本国内送料",ok:cfg.shippingJPY!==null},
+   {name:"FIRST DROP限定・国内送料無料：0円",ok:cfg.shippingJPY===0},
    {name:"申込受付期限",ok:Boolean(cfg.orderDeadline)},
    {name:"明示する発送期限",ok:Boolean(cfg.dispatchDeadline)},
    {name:"法定の販売事業者情報",ok:cfg.merchant.name.length>1&&cfg.merchant.address.length>8&&cfg.merchant.email.includes("@")&&cfg.merchant.phone.length>=8},
