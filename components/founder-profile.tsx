@@ -38,6 +38,13 @@ const copy = {
  }
 } as const;
 
+const translatedGovernanceCopy = {
+  en: {heading:"Organisation & governance",body:"Learn how RBA uses participation fees to sustain youth development, why surpluses are not distributed to members, and which governance rules are in force or still proposed.",action:"Read RBA governance",note:"The full current bylaws are published in Japanese. The translated summary does not claim legal certification."},
+  ja: {heading:"団体概要・会則",body:"現行会則と未施行の改訂草案について。",action:"会則を見る",note:""},
+  "zh-tw": {heading:"團體概要與規章",body:"了解RBA如何運用參加費支持青少年培育，並區分現行規章與尚未生效的修訂草案。",action:"閱讀團體治理原則",note:"日文現行規章為原文；翻譯摘要不表示已取得任何法律認證。"},
+  ko: {heading:"단체 개요 및 규약",body:"RBA가 참가비로 유소년 육성 활동을 지속하는 방법과 현행 규약 및 미시행 개정안을 구분해 안내합니다.",action:"단체 운영 원칙 보기",note:"현행 규약의 원문은 일본어이며 번역 요약이 법적 인증을 의미하지는 않습니다."}
+} as const;
+
 export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}) {
  const c=copy[locale];
  const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
@@ -56,6 +63,13 @@ export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}
     <a className="founder-governance-link" href="/ja/about/governance">団体概要・現行会則・改訂草案を見る <ArrowUpRight size={17}/></a>
     <small>改訂草案は未施行です。法人格や公共施設での利用区分を保証するものではありません。</small>
    </section>}
+  {full&&locale!=="ja"&&<section className="founder-governance" aria-labelledby="founder-governance-i18n-heading">
+    <p className="founder-eyebrow">ORGANISATION / GOVERNANCE</p>
+    <h2 id="founder-governance-i18n-heading">{translatedGovernanceCopy[locale].heading}</h2>
+    <p>{translatedGovernanceCopy[locale].body}</p>
+    <a className="founder-governance-link" href={localePath(locale,"about/governance")}>{translatedGovernanceCopy[locale].action}<ArrowUpRight size={17}/></a>
+    <small>{translatedGovernanceCopy[locale].note}</small>
+  </section>}
   {full&&<div className="founder-invitation"><p className="founder-eyebrow">LET’S BEGIN A CONVERSATION</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a><small>{c.note}</small><a className="founder-email" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></div>}
  </section>;
 }
