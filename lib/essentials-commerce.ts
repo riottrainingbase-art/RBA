@@ -26,9 +26,6 @@ export type EssentialsPresaleConfig = {
   ready: boolean;
   unitPrices: { tee: number | null; setup: number | null };
   shippingJPY: number | null;
-  handwrittenMessageJPY: number | null;
-  handwrittenMethod: "garment" | "card" | null;
-  handwrittenLocation: string;
   dispatchDeadline: string | null;
   orderDeadline: string | null;
   termsVersion: string | null;
@@ -45,11 +42,6 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     setup: yen(p.RBA_ESSENTIALS_SETUP_PRICE_JPY),
   };
   const shippingJPY = nonnegativeYen(p.RBA_ESSENTIALS_JAPAN_SHIPPING_JPY);
-  const handwrittenMessageJPY = nonnegativeYen(p.RBA_ESSENTIALS_HANDWRITTEN_MESSAGE_PRICE_JPY);
-  const handwrittenMethod = p.RBA_ESSENTIALS_HANDWRITTEN_MESSAGE_METHOD === "garment" ||
-    p.RBA_ESSENTIALS_HANDWRITTEN_MESSAGE_METHOD === "card"
-    ? p.RBA_ESSENTIALS_HANDWRITTEN_MESSAGE_METHOD : null;
-  const handwrittenLocation = p.RBA_ESSENTIALS_HANDWRITTEN_MESSAGE_LOCATION?.trim() || "";
   const dispatchDeadline = safeDate(p.RBA_ESSENTIALS_DISPATCH_BY);
   const orderDeadline = safeDate(p.RBA_ESSENTIALS_ORDER_BY);
   const merchant = {
@@ -80,14 +72,11 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     "RBA_ESSENTIALS_LEDGER_MIGRATED",
     "RBA_ESSENTIALS_WEBHOOK_READY",
     "RBA_ESSENTIALS_CONFIRMATION_NOTICE_READY",
-    "RBA_ESSENTIALS_HANDWRITTEN_OPTION_APPROVED",
     "RBA_ESSENTIALS_ONE_MONTH_LEAD_TIME_APPROVED"
   ].every(k => isApproved(p[k])) &&
     !!p.STRIPE_SECRET_KEY &&
     p.RBA_ESSENTIALS_TAX_BEHAVIOR === "inclusive" &&
     !!unitPrices.tee && !!unitPrices.setup && shippingJPY !== null &&
-    handwrittenMessageJPY !== null && handwrittenMethod !== null &&
-    (handwrittenMethod === "card" || (handwrittenLocation.length >= 2 && handwrittenLocation.length <= 80)) &&
     !!dispatchDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline &&
     orderDeadline >= todayJST && dispatchDeadline > todayJST &&
     !!termsVersion && /^[a-zA-Z0-9_-]{5,60}$/.test(termsVersion) &&
@@ -95,5 +84,5 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     /^[0-9+()\- ]{8,24}$/.test(merchant.phone) &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(merchant.email) &&
     notice(cancellation) && notice(returns) && notice(note);
-  return { ready, unitPrices, shippingJPY, handwrittenMessageJPY, handwrittenMethod, handwrittenLocation, dispatchDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
+  return { ready, unitPrices, shippingJPY, dispatchDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
 }
