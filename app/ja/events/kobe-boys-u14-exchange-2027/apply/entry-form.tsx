@@ -16,8 +16,8 @@ const yen = (n: number) => n.toLocaleString("ja-JP") + "円";
 const field = "mt-2 w-full rounded-md border border-black/30 bg-white px-4 py-3 text-base outline-none focus:border-[#e66317] focus:ring-2 focus:ring-[#e66317]/20";
 const label = "block text-sm font-bold";
 const checks = "mt-1 h-5 w-5 shrink-0 accent-[#e66317]";
-export default function EntryForm() {
-  const [selected, setSelected] = useState<Plan>("individual_jan6");
+export default function EntryForm({ initialPlan }: { initialPlan?: Plan }) {
+  const [selected, setSelected] = useState<Plan>(initialPlan || "individual_jan6");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const current = plans.find(x => x.id === selected)!;
