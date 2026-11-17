@@ -14,7 +14,8 @@ export type ProgrammeId =
   | "torsten"
   | "sendai-u15"
   | "backbone-chiba"
-  | "miyako";
+  | "miyako"
+  | "kobe-u14-2027";
 
 
 export type Programme = {
@@ -45,6 +46,23 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
+
+  {
+    id: "kobe-u14-2027",
+    startDate: "2027-01-06", endDate: "2027-01-07",
+    date: ["6–7 JAN 2027 · dates tentative", "2027.01.06〜07（予定・会場調整中）", "2027.01.06–07（暫定）", "2027.01.06–07（예정）"],
+    datePrimary: ["6–7 JAN", "1月6〜7日", "1月6–7日", "1월 6–7일"],
+    dateSecondary: ["Wednesday–Thursday · tentative", "水〜木曜・日程調整中", "星期三至四・暫定", "수~목요일·조율 중"],
+    title: ["RBA UNITED × GUAM | Kobe Boys U14 Exchange 2027", "RBA UNITED × GUAM｜神戸男子U14国際育成交流2027", "RBA UNITED × GUAM｜神戶男子U14國際交流2027", "RBA UNITED × GUAM｜고베 남자 U14 국제교류 2027"],
+    place: ["Kobe / Kansai · venue not yet secured", "神戸・関西（会場未確保）", "神戶・關西（場地未定）", "고베·간사이（장소 미확정）"],
+    price: ["Individual ¥8,800 one day / ¥15,400 two days; selected team programme ¥100,000", "個人1日8,800円／2日15,400円、選抜希望100,000円（税込・料金案）", "個人單日¥8,800／兩日¥15,400；選拔方案¥100,000", "개인 1일 ¥8,800／2일 ¥15,400；선발 ¥100,000"],
+    audience: ["Boys U14 players / teams; exact birth-date rule pending", "男子U14の個人・チーム・選抜希望（正式な年齢基準は調整中）", "男子U14個人、球隊及選拔候選人", "남자 U14 개인·팀·선발 희망자"],
+    payment: ["Provisional application asks for a refundable 50% deposit. Checkout remains disabled until safety checks pass.", "申込時前金50％の有料仮申込方式。会場・参加条件未確定。決済は安全検証が完了するまで停止中です。選考不合格・開催不能・正式条件への不同意時は前金を全額返金します。", "暫定申請預定收取50%可退還訂金，尚未開放付款", "가신청 시 50% 환불 가능 예약금을 예정하나 결제는 검증 전까지 중지"],
+    applicationUrl: "/ja/events/kobe-boys-u14-exchange-2027/apply",
+    japaneseInfoPath: "/ja/events/kobe-boys-u14-exchange-2027",
+    region: "kansai", category: "PLAY", pathway: "united", ageGroups: ["U15"],
+  },
+
   {
     id:"miyako",startDate:"2026-10-31",endDate:"2026-10-31",
     date:["31 OCT 2026 · 10:00–17:00","2026.10.31（土）10:00〜17:00","2026.10.31 · 10:00–17:00","2026.10.31 · 10:00–17:00"],
