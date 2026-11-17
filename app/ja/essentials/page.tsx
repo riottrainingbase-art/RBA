@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "RBA ESSENTIALS | Official Apparel Collection",
-  description: "RBA ESSENTIALS公式アパレル。白Tシャツ税込4,900円、黒セットアップ税込19,800円。先行販売は国内送料無料。購入受付は製造と決済の承認後に開始します。",
+  description: "RBA ESSENTIALS。仙台から全国・世界へ広がる育成の哲学を、コートの外へ。ホワイトTシャツとブラックセットアップ。現在は販売準備中です。",
   alternates: { canonical: "/ja/essentials" },
   openGraph: {
     title: "RBA ESSENTIALS | The Essential Collection",
@@ -26,13 +26,23 @@ export default function EssentialsCollectionPage() {
   return (
     <SiteFrame locale="ja">
       <div className={styles.page}>
+        <a className={styles.skipCollection} href="#collection">商品一覧へ移動する</a>
+        <nav className={styles.collectionNav} aria-label="RBA ESSENTIALS ショップ内のご案内">
+          <span>RBA ESSENTIALS / ISSUE NO. 001</span>
+          <div>
+            <a href="#collection">THE COLLECTION</a>
+            <a href="#philosophy">THE PHILOSOPHY</a>
+            <Link href="/ja/essentials/story">OUR STORY</Link>
+            <a href="#essentials-guide">BEFORE YOU ORDER</a>
+          </div>
+        </nav>
         <section className={styles.intro} aria-labelledby="essentials-title">
           <div className={styles.overline}><span>RBA / OFFICIAL APPAREL</span><span>FIRST DROP / 国内送料無料</span></div>
           <div className={styles.introBody}>
-            <p className={styles.chapter}>THE ESSENTIAL COLLECTION / JAPAN FREE SHIPPING FIRST DROP</p>
+            <p className={styles.chapter}>COLLECTION 001 / THE EVERYDAY UNIFORM / RIOT BASKETBALL ACADEMY</p>
             <h1 id="essentials-title" className={styles.display}>ESSENTIALS<span>.</span></h1>
             <div className={styles.introBottom}>
-              <p className={styles.lead}>余計なものは、いらない。<br />コートの外にも、RBAの哲学を。</p>
+              <div><p className={styles.lead}>余計なものは、いらない。<br />コートの外にも、RBAの哲学を。</p><p className={styles.shopStatus} role="status">{commerce.ready ? "PRE-ORDER OPEN / 先行購入受付中" : "FIRST DROP IN DEVELOPMENT / 現在は販売・決済を受け付けていません"}</p></div>
               <a className={styles.editorialLink} href="#collection">EXPLORE THE COLLECTION <span aria-hidden="true">↗</span></a>
             </div>
           </div>
@@ -78,7 +88,7 @@ export default function EssentialsCollectionPage() {
           <p className={styles.previewNote}>掲載写真はデザイン検討用のCGイメージで、実物撮影ではありません。販売の可否、製品仕様、配送期限、キャンセル条件は各商品ページでご確認ください。</p>
         </section>
 
-        <section className={styles.manifesto} aria-label="RBA ESSENTIALS のデザイン哲学">
+        <section id="philosophy" className={styles.manifesto} aria-label="RBA ESSENTIALS のデザイン哲学">
           <p className={styles.chapter}>02 / THE PHILOSOPHY</p>
           <p className={styles.manifestoHeadline}>LESS, <em>but</em><br />MORE RBA.</p>
           <div className={styles.manifestoFooter}>
@@ -115,15 +125,31 @@ export default function EssentialsCollectionPage() {
           </div>
         </section>
 
+        <section id="essentials-guide" className={styles.buyersGuide} aria-labelledby="essentials-guide-heading">
+          <div className={styles.guideIntro}>
+            <p className={styles.chapter}>05 / BEFORE YOU ORDER</p>
+            <h2 id="essentials-guide-heading">Details matter.<br/><em>So does trust.</em></h2>
+            <p>「良さそう」だけで購入してほしくないから。製造・サイズ・お届けについて、現時点でお伝えできることと、まだ確認中のことを分けて公開します。</p>
+            <Link href="/ja/essentials/legal">販売条件・特定商取引法に基づく表記 ↗</Link>
+          </div>
+          <div className={styles.guideQuestions}>
+            <details><summary>現在、購入や決済はできますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready ? "先行購入を受け付けています。購入前にサイズ表・表示価格・発送予定・キャンセルおよび返品条件を確認してください。" : "現在は購入・予約・決済の受付前です。掲載している価格とデザインは、正式販売に向けたご案内です。関心登録フォームへの回答は注文にはなりません。"}</p></details>
+            <details><summary>掲載画像は実際の商品ですか？ <span aria-hidden="true">＋</span></summary><p>現在の商品画像はデザイン確認用のCGで、量産品を撮影したものではありません。素材感・縫製・ロゴ位置は最終サンプル確認後に確定します。</p></details>
+            <details><summary>サイズ・生地・着用感は確認できますか？ <span aria-hidden="true">＋</span></summary><p>実測サイズ、生地組成、厚み、お手入れ方法は確認中です。確定した情報を掲載するまでは、見た目だけでサイズを選んでいただく販売は開始しません。</p></details>
+            <details><summary>送料とお届け時期は？ <span aria-hidden="true">＋</span></summary><p>FIRST DROPの日本国内送料は無料とする予定です。正式な発送日・お届け期限は製造体制の確認後、購入手続きの前に明示します。現在は前払いを受け付けていません。</p></details>
+            <details><summary>商品を買うとRBAの育成を支援できますか？ <span aria-hidden="true">＋</span></summary><p>製造費・販売経費などを差し引いた利益をRBAの育成活動に充てる方針です。これはアパレルの売買であり、寄附や寄附金控除の対象として案内するものではありません。購入の有無がRBAの指導や参加機会に影響することはありません。</p></details>
+          </div>
+        </section>
+
         <section className={styles.launch} aria-labelledby="launch-title">
-          <p className={styles.chapter}>05 / FIRST DROP / IN DEVELOPMENT</p>
+          <p className={styles.chapter}>06 / FIRST DROP / IN DEVELOPMENT</p>
           <h2 id="launch-title">Built to last.<br /><em>Not rushed.</em></h2>
           <p>{commerce.ready ? "公式ウェアの先行購入受付中。商品サイズ、税込総額、発送期限、キャンセル・返品条件をご確認のうえ、Stripeで購入いただけます。販売による利益はRBAの育成活動に活用します。" : "先行販売の国内送料は無料です。税込価格は白Tシャツ4,900円、黒セットアップ19,800円。製造・発送・返品と決済の最終確認が終わるまで、前払いは受け付けません。利益はRBAの育成活動に活用します。"}</p>
           <div className={styles.launchLinks}>
-            {commerce.ready ? <Link className={styles.darkButton} href="/ja/essentials/checkout">先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.darkButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">先行注文申込（支払前） <span aria-hidden="true">↗</span></a>}
+            {commerce.ready ? <Link className={styles.darkButton} href="/ja/essentials/checkout">先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.darkButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） <span aria-hidden="true">↗</span></a>}
             <a className={styles.textLink} href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報を見る <span aria-hidden="true">↗</span></a>
           </div>
-          <p className={styles.launchFine}>{commerce.ready ? `先行販売・前払い。国内送料0円（FIRST DROP限定）。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。` : "先行注文申込は無料・正式購入未確定です。送料0円は今回の国内先行販売にのみ適用します。"}</p>
+          <p className={styles.launchFine}>{commerce.ready ? `先行販売・前払い。国内送料0円（FIRST DROP限定）。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。` : "関心登録は無料で、注文や予約の成立・商品の確保を意味しません。送料0円はFIRST DROPの国内販売にのみ適用します。"}</p>
         </section>
         <footer className={styles.collectionFooter}><span>RBA ESSENTIALS © RIOT BASKETBALL ACADEMY</span><a href="mailto:riot.training.base@gmail.com">CONTACT / EMAIL ↗</a></footer>
       </div>
