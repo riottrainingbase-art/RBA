@@ -25,7 +25,7 @@ export default function EssentialsLegalPage(){
     ["キャンセル・注文変更",c.cancellation],
     ["返品・交換",c.returns],
     ["先行販売について",c.note],
-    ...(c.handwrittenAvailable ? [["手書き加工の追加価格と返品条件",`税込追加料金：${Number(c.handwrittenJPY).toLocaleString("ja-JP")}円。${c.handwrittenTerms}`]] : []),
+    ...(c.handwrittenAvailable ? [["手書き加工の追加価格と返品条件",`メッセージはRBAが用意します。税込追加料金：${Number(c.handwrittenJPY).toLocaleString("ja-JP")}円。${c.handwrittenTerms}`]] : []),
   ]:[];
   return <SiteFrame locale="ja">
     <main style={{background:"#f5f4f0",color:"#171715",padding:"65px clamp(24px,5vw,90px) 110px",fontFamily:"Arial,sans-serif"}}>
