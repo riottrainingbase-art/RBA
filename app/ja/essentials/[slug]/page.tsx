@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: `${item.description} ${ready?"公式先行販売の商品詳細をご確認ください。":"現在は製品検証中につき注文・予約・決済を受け付けていません。"}`,
     alternates: { canonical: item.pagePath },
     openGraph: {
-      title: `${item.title} | RBA ESSENTIALS`,
+      title: `${item.title} | RBA STORE`,
       description: item.description,
       url: item.pagePath,
       images: [{ url: item.image, alt: item.alt }],
@@ -65,7 +65,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           </div>
           <div className={styles.detailCopy}>
             <p className={styles.chapter}>RBA STORE / COLLECTION 001 / LOOK {item.number} / {item.color}</p>
-            <h1>{item.name}</h1>
+            <h1>RBA {item.name}</h1>
             <p className={styles.detailStatement}>{item.statement}</p>
             <p className={styles.detailDescription}>{item.description}</p>
             <div className={styles.detailRule}>
@@ -87,7 +87,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
         <aside className={styles.productPromises} aria-label="ご購入前に確認いただきたいこと">
           <div><span>01 / PHOTO</span><p>掲載画像はデザイン参考用のCGです。実物・着用写真ではありません。</p></div>
           <div><span>02 / FIT & FABRIC</span><p>実測サイズ・生地の組成・厚み・洗濯表示はサンプル確認後に公開します。</p></div>
-          <div><span>03 / DELIVERY</span><p>FIRST DROPは国内送料無料を予定。正式な発送・返品条件を購入前に表示します。</p></div>
+          <div><span>03 / DELIVERY</span><p>{commerce.ready?`FIRST DROPは国内送料無料。発送期限：${commerce.dispatchDeadline}、お届け期限：${commerce.deliveryDeadline}。返品条件は販売条件ページをご確認ください。`:"FIRST DROPは国内送料無料を予定。正式な発送・返品条件を購入前に表示します。"}</p></div>
         </aside>
 
         <section className={styles.productBelief} aria-label="RBAの公式ウェアの背景">
@@ -114,7 +114,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           <div className={styles.productAnswers}>
             <details><summary>この商品はいつ購入できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?"先行購入受付中です。注文画面で販売条件をご確認ください。":"製造・実物確認・サイズ表・発送期限・決済連携が整ってからご案内します。現在は注文・決済を受け付けていません。"}</p></details>
             <details><summary>素材とサイズは確認できますか？ <span aria-hidden="true">＋</span></summary><p>{item.sizeNote} 生地組成や洗濯方法も最終サンプルの仕様確定後に掲載します。</p></details>
-            <details><summary>返品・キャンセルについて教えてください。 <span aria-hidden="true">＋</span></summary><p>商品ごとの確定したキャンセル・返品条件は、販売開始前に<Link href="/ja/essentials/legal">販売条件ページ</Link>でご案内します。現時点で購入契約は成立しません。</p></details>
+            <details><summary>返品・キャンセルについて教えてください。 <span aria-hidden="true">＋</span></summary><p>{commerce.ready?"キャンセル・返品条件は": "商品ごとの確定したキャンセル・返品条件は、販売開始前に"}<Link href="/ja/essentials/legal">販売条件ページ</Link>{commerce.ready?"でご確認ください。":"でご案内します。現時点で購入契約は成立しません。"}</p></details>
           </div>
         </section>
 
