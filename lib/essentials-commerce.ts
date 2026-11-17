@@ -3,7 +3,10 @@
  * Every required commercial fact must be approved explicitly before payments
  * can be opened. No defaults for prices, tax, merchant or delivery dates.
  */
+import { essentials } from "./rba-essentials";
 export const RBA_ESSENTIALS_STRIPE_ACCOUNT = "acct_1UGdxZRXDnnSs6XN";
+/** The published catalog must contain real approved production photos, not concept art. */
+export const essentialsHaveProductionPhotos = essentials.every(item => /^https:\/\//.test(item.image) && !/design-reference|mockup|concept|placeholder/i.test(item.image));
 /**
  * Owner-approved FIRST DROP retail prices, inclusive of Japanese consumption tax
  * as described by the merchant. Production margin/tax registration remains a release gate.
@@ -92,6 +95,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     "RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED",
     "RBA_ESSENTIALS_SAMPLES_APPROVED",
     "RBA_ESSENTIALS_PHOTOS_APPROVED",
+    "RBA_ESSENTIALS_PUBLIC_LISTING_APPROVED",
     "RBA_ESSENTIALS_SIZE_CHART_APPROVED",
     "RBA_ESSENTIALS_LOGO_RIGHTS_APPROVED",
     "RBA_ESSENTIALS_PRICING_APPROVED",
@@ -109,6 +113,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   ].every(k => isApproved(p[k])) &&
     !!p.STRIPE_SECRET_KEY &&
     p.RBA_ESSENTIALS_TAX_BEHAVIOR === "inclusive" &&
+    essentialsHaveProductionPhotos &&
     priceOverrideIsValid && shippingOverrideIsValid &&
     !!unitPrices.tee && !!unitPrices.setup && shippingJPY === 0 &&
     !!dispatchDeadline && !!deliveryDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline && dispatchDeadline <= deliveryDeadline &&
