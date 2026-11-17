@@ -13,7 +13,7 @@ export const essentialsHaveFinalSpecifications = essentials.every(item => !/検�
  * Owner-approved FIRST DROP retail prices, inclusive of Japanese consumption tax
  * as described by the merchant. Production margin/tax registration remains a release gate.
  */
-export const FIRST_DROP_TEE_JPY = 4900;
+export const FIRST_DROP_TEE_JPY = 6600;
 export const FIRST_DROP_SETUP_JPY = 19800;
 export const FIRST_DROP_JAPAN_SHIPPING_JPY = 0;
 export const FIRST_DROP_SHIPPING_LABEL = "先行販売限定・日本国内送料無料";
