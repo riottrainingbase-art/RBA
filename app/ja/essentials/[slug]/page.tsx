@@ -14,10 +14,10 @@ export function generateStaticParams() { return essentials.map(({ slug }) => ({ 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const item = essentials.find((entry) => entry.slug === slug);
-  if (!item) return { title: "RBA ESSENTIALS" };
+  if (!item) return { title: "RBA STORE" };
   const ready=getEssentialsPresaleConfig().ready;
   return {
-    title: `${item.title} | RBA ESSENTIALS`,
+    title: `${item.title} | RBA STORE`,
     description: `${item.description} ${ready?"公式先行販売の商品詳細をご確認ください。":"現在は製品検証中につき注文・予約・決済を受け付けていません。"}`,
     alternates: { canonical: item.pagePath },
     openGraph: {
@@ -57,14 +57,14 @@ export default async function EssentialsProductPage({ params }: PageProps) {
     <SiteFrame locale="ja">
       <div className={styles.page}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}/>
-        <div className={styles.productBreadcrumb}><Link href="/ja/essentials">RBA ESSENTIALS</Link><span aria-hidden="true">/</span><span>{item.number} — {item.name}</span></div>
+        <div className={styles.productBreadcrumb}><Link href="/ja/store">RBA STORE</Link><span aria-hidden="true">/</span><span>{item.number} — {item.name}</span></div>
         <article className={styles.detailLayout}>
           <div className={styles.detailPhoto}>
             <img src={item.image} alt={item.alt} fetchPriority="high"/>
             <p>DESIGN CONCEPT / NOT A PHYSICAL SAMPLE</p>
           </div>
           <div className={styles.detailCopy}>
-            <p className={styles.chapter}>THE ESSENTIAL COLLECTION / LOOK {item.number} / {item.color}</p>
+            <p className={styles.chapter}>RBA STORE / COLLECTION 001 / LOOK {item.number} / {item.color}</p>
             <h1>{item.name}</h1>
             <p className={styles.detailStatement}>{item.statement}</p>
             <p className={styles.detailDescription}>{item.description}</p>
@@ -90,14 +90,14 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           <div><span>03 / DELIVERY</span><p>FIRST DROPは国内送料無料を予定。正式な発送・返品条件を購入前に表示します。</p></div>
         </aside>
 
-        <section className={styles.productBelief} aria-label="RBA ESSENTIALSの背景">
+        <section className={styles.productBelief} aria-label="RBAの公式ウェアの背景">
           <div>
             <p className={styles.chapter}>THE BRAND IS THE BELIEF.</p>
             <h2>Made for what<br/><em>we believe in.</em></h2>
           </div>
           <div>
             <p>バスケットボールが好きだから、育成のあり方を考え続ける。仙台から全国・アジアへ、選手の選択肢を広げてきたRBAの活動と、その背景にある哲学。</p>
-            <Link href="/ja/essentials/story">WHY RBA ESSENTIALS EXISTS <span aria-hidden="true">↗</span></Link>
+            <Link href="/ja/essentials/story">WHY RBA MAKES APPAREL <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
         <section className={styles.details} aria-labelledby="product-features">
@@ -119,15 +119,15 @@ export default async function EssentialsProductPage({ params }: PageProps) {
         </section>
 
         <section className={styles.nextLook} aria-labelledby="next-look-title">
-          <div><p className={styles.chapter}>COMPLETE THE EDIT / {nextItem.number}</p><h2 id="next-look-title">Discover the<br/><em>other essential.</em></h2><p>{nextItem.statement}</p><Link href={nextItem.pagePath}>VIEW {nextItem.name} <span aria-hidden="true">↗</span></Link></div>
+          <div><p className={styles.chapter}>COMPLETE THE EDIT / {nextItem.number}</p><h2 id="next-look-title">Explore the<br/><em>other look.</em></h2><p>{nextItem.statement}</p><Link href={nextItem.pagePath}>VIEW {nextItem.name} <span aria-hidden="true">↗</span></Link></div>
           <Link href={nextItem.pagePath} aria-label={nextItem.title+"の詳細を見る"}><img src={nextItem.image} loading="lazy" alt={nextItem.alt}/></Link>
         </section>
 
         <section className={styles.productEnd}>
-          <p className={styles.chapter}>RBA / THE ESSENTIAL COLLECTION</p>
+          <p className={styles.chapter}>RBA STORE / COLLECTION 001</p>
           <h2>Good things<br/><em>take intention.</em></h2>
           <p>{commerce.ready?"RBAの育成理念を日常に。商品仕様と販売条件をご確認のうえ、お選びください。":"実物サンプル・実測サイズ・発送予定・返品条件を確認したうえで、購入受付を開始します。"}</p>
-          <div><Link href="/ja/essentials">← コレクションへ戻る</Link><a href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報 ↗</a></div>
+          <div><Link href="/ja/store">← コレクションへ戻る</Link><a href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報 ↗</a></div>
         </section>
       </div>
     </SiteFrame>
