@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
+import { essentialsFulfillmentCanAcceptOrders } from "@/lib/essentials-fulfillment-readiness";
 import { verifyEssentialsStripeAccount, verifyEssentialsStripePublicBranding, verifyEssentialsStripeWebhookDestinations } from "@/lib/essentials-stripe";
 
 export const dynamic = "force-dynamic";
@@ -106,6 +107,8 @@ export async function POST(request:Request) {
       return fail("RBAの決済事業者表示の確認が未完了です。現在お支払いを受け付けていません。",423);
     if(!await verifyEssentialsStripeWebhookDestinations(secret))
       return fail("受注記録・発送管理への自動連携が未確認のため、決済を受け付けていません。",423);
+    if(!await essentialsFulfillmentCanAcceptOrders())
+      return fail("製作・発送を担当する方の登録と受注引継ぎが未確認のため、決済を受け付けていません。",423);
     const session=await stripe.checkout.sessions.create({
       mode:"payment",
       locale:"ja",
