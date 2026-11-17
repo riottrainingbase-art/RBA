@@ -280,3 +280,27 @@ test("public product concepts can use approved imagery without falsely claiming 
  assert.doesNotMatch(detail,/承認済みの実物写真/);
  assert.doesNotMatch(guide,/掲載写真は確認済みの実物商品/);
 });
+
+
+test("RBA checkout independently verifies the real Stripe merchant, webhooks and maker access",()=>{
+ const check=read("app/api/commerce/essentials-preorder/route.ts");
+ const stripe=read("lib/essentials-stripe.ts");
+ const maker=read("lib/essentials-fulfillment-readiness.ts");
+ const admin=read("app/ja/essentials/manage/readiness/page.tsx");
+ const paidHook=read("app/api/commerce/essentials-payment-link-webhook/route.ts");
+ assert.match(check,/verifyEssentialsStripePublicBranding\(secret\)/);
+ assert.match(check,/verifyEssentialsStripeWebhookDestinations\(secret\)/);
+ assert.match(check,/essentialsFulfillmentCanAcceptOrders\(\)/);
+ assert.match(stripe,/riotbasketballacademy\.com/);
+ assert.match(stripe,/statement_descriptor/);
+ assert.match(stripe,/checkout\.session\.completed/);
+ assert.match(stripe,/checkout\.session\.async_payment_succeeded/);
+ assert.match(maker,/server-only/);
+ assert.match(maker,/rba_essentials_fulfillment_agents/);
+ assert.match(maker,/\.eq\("active",true\)/);
+ assert.match(maker,/\.eq\("access_role","production"\)/);
+ assert.match(admin,/makerAccessReady/);
+ assert.match(admin,/rbaPublicBrand/);
+ assert.match(admin,/rbaWebhookDestinations/);
+ assert.doesNotMatch(paidHook,/verifyEssentialsStripePublicBranding|verifyEssentialsStripeWebhookDestinations|essentialsFulfillmentCanAcceptOrders/);
+});
