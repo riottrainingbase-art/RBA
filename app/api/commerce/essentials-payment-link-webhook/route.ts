@@ -127,6 +127,11 @@ export async function POST(request:Request){
    onConflict:"stripe_checkout_session_id",ignoreDuplicates:true,
  });
  if(write.error)return reply({error:"order_not_recorded"},503);
- const notice=await sendEssentialsBuyerAcceptance(createdReference);
+ // Stripe retries carry a new event ID. Resolve the immutable order ID from
+ // the unique Checkout Session rather than a fresh fallback UUID.
+ const recorded=await db.from("rba_essentials_orders")
+   .select("order_id").eq("stripe_checkout_session_id",session.id).maybeSingle();
+ if(recorded.error||!recorded.data)return reply({error:"order_lookup_failed"},503);
+ const notice=await sendEssentialsBuyerAcceptance(recorded.data.order_id);
  return reply({received:true,reconciled:true,notice:notice.outcome});
 }
