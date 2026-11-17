@@ -180,3 +180,58 @@
 .productBelief>div:last-child p{font-size:14px;line-height:2.3;color:#d5d0c8;margin:0 0 45px}
 .productBelief a{font-size:10px;letter-spacing:.15em;display:flex;justify-content:space-between;border-top:1px solid #8b8780;padding-top:20px;color:#f4f2ec!important;text-decoration:none!important;gap:18px}
 @media(max-width:720px){.productBelief{grid-template-columns:1fr;padding:75px 22px;gap:46px}.productBelief h2{font-size:clamp(55px,11vw,90px)!important}.productBelief>div:last-child p{margin-bottom:32px}}
+
+
+/* Considered purchase guide — editorial, accessible, fail-closed. */
+.guideOpening{padding:clamp(75px,9vw,160px) clamp(24px,5.5vw,100px) clamp(65px,8vw,125px);background:#f4f2ec}
+.guideOpening h1{font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;font-size:clamp(69px,10.2vw,160px)!important;letter-spacing:-.078em!important;line-height:.99!important;margin:clamp(46px,7vw,105px) 0 90px!important}
+.guideOpening h1 em{color:#85817b}
+.guideOpeningFoot{border-top:1px solid #aaa69e;padding-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,7vw,130px);align-items:start}
+.guideOpeningFoot p:first-child{font-family:Georgia,serif;font-size:clamp(22px,2.6vw,37px);line-height:1.55;margin:0}
+.guideOpeningFoot p:last-child{font-size:14px;line-height:2.2;max-width:500px;margin:0;color:#55524c}
+.guideStatus{background:#171716;color:#f6f3ed;padding:clamp(28px,3.4vw,55px) clamp(24px,5.5vw,100px);display:grid;grid-template-columns:10px 1fr auto;gap:32px;align-items:center}
+.guideStatusDot{display:block;width:9px;height:9px;border:1px solid #bbb9b4;border-radius:100%;align-self:start;margin-top:13px}
+.guideStatus h2{font-family:Georgia,serif!important;font-weight:400!important;font-size:clamp(24px,3.1vw,46px)!important;margin:10px 0 12px!important;line-height:1.2!important}
+.guideStatus p:not(.chapter){font-size:12px;line-height:1.8;color:#cfcbc4;margin:0}
+.guideStatus a{color:#f6f3ed!important;font-size:11px;letter-spacing:.1em;text-decoration:none!important;border-bottom:1px solid #b5b1a8;padding-bottom:8px;white-space:nowrap}
+.guideEssentials{padding:clamp(95px,11vw,170px) clamp(24px,5.5vw,100px);background:#e7e4dc}
+.guideHeading{display:grid;grid-template-columns:28% 1fr;align-items:end;gap:35px;margin-bottom:clamp(55px,7vw,105px)}
+.guideHeading h2{font-family:Georgia,serif!important;font-weight:400!important;font-size:clamp(54px,7vw,112px)!important;letter-spacing:-.066em!important;line-height:1!important;margin:0!important}
+.guideFacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(48px,6vw,85px) clamp(30px,6vw,100px)}
+.guideFacts article{padding-top:20px;border-top:1px solid #99958d}
+.guideFacts article>span{font-size:10px;letter-spacing:.17em;color:#68645e}
+.guideFacts h3{font-family:Georgia,serif!important;font-weight:400!important;font-size:clamp(26px,3.2vw,45px)!important;margin:39px 0 20px!important;line-height:1.3!important}
+.guideFacts p{font-size:13px;line-height:2.15;color:#5e5a53;max-width:480px;margin:0}
+.guideFaq{display:grid;grid-template-columns:31% 1fr;gap:clamp(30px,7vw,140px);padding:clamp(90px,10vw,170px) clamp(24px,5.5vw,100px);background:#f4f2ec}
+.guideFaqTop h2{font-family:Georgia,serif!important;font-weight:400!important;font-size:clamp(48px,5.6vw,85px)!important;letter-spacing:-.06em!important;line-height:1.04!important;margin:34px 0!important}
+.guideFaqTop>p:last-child{font-size:13px;line-height:2.1;max-width:335px;color:#645f59}
+.guideFaqItem{border-top:1px solid #b9b5ac}
+.guideFaqItem:last-child{border-bottom:1px solid #b9b5ac}
+.guideFaqItem summary{cursor:pointer;display:grid;grid-template-columns:35px 1fr 30px;align-items:center;gap:20px;list-style:none;min-height:100px;padding:24px 0;font-size:clamp(13px,1.3vw,17px);line-height:1.6;letter-spacing:.025em}
+.guideFaqItem summary::-webkit-details-marker{display:none}
+.guideFaqItem summary>span:first-child{font-family:Georgia,serif;font-size:15px;color:#827c74}
+.guideFaqPlus{font-size:26px;font-weight:300;text-align:right;transition:transform .2s}
+.guideFaqItem[open] .guideFaqPlus{transform:rotate(45deg)}
+.guideFaqItem summary:focus-visible{outline:2px solid #171716;outline-offset:6px}
+.guideFaqItem>p{padding:0 42px 38px 55px;max-width:680px;font-size:13px;line-height:2.2;color:#5c5750;margin:0}
+.guideEnd{background:#171716;color:#f3f0ea;padding:clamp(85px,10vw,160px) clamp(24px,5.5vw,100px);text-align:center}
+.guideEnd h2{font-family:Georgia,serif!important;font-weight:400!important;font-size:clamp(69px,11vw,155px)!important;line-height:.92!important;letter-spacing:-.08em!important;margin:45px 0 40px!important}
+.guideEnd h2 em{color:#aaa59e}
+.guideEnd>p:not(.chapter){max-width:600px;margin:auto;font-size:13px;line-height:2.2;color:#cbc6be}
+.guideEnd>div{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:30px;margin-top:50px}
+.guideEnd a{color:#f3f0ea!important;text-decoration:none!important;border-bottom:1px solid #858078;padding-bottom:9px;font-size:11px;letter-spacing:.09em}
+@media(max-width:850px){
+ .guideOpeningFoot{grid-template-columns:1fr;gap:25px}.guideStatus{grid-template-columns:10px 1fr}.guideStatus a{grid-column:2;justify-self:start}
+ .guideHeading,.guideFaq{grid-template-columns:1fr;gap:35px}
+ .guideFaqTop h2{font-size:55px!important}
+}
+@media(max-width:600px){
+ .guideOpening{padding:75px 22px}.guideOpening h1{font-size:clamp(62px,11vw,85px)!important;margin:70px 0!important}
+ .guideStatus{padding:30px 22px;gap:14px}.guideEssentials{padding:80px 22px}
+ .guideHeading h2{font-size:57px!important}.guideFacts{grid-template-columns:1fr;gap:45px}
+ .guideFacts h3{margin-top:28px!important}.guideFaq{padding:75px 22px}
+ .guideFaqItem summary{min-height:84px;grid-template-columns:24px 1fr 22px;gap:14px}
+ .guideFaqItem>p{padding:0 12px 30px 38px}.guideEnd{padding:80px 22px}.guideEnd h2{font-size:clamp(58px,11vw,85px)!important}
+ .guideEnd>div{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){.guideFaqPlus{transition:none}}
