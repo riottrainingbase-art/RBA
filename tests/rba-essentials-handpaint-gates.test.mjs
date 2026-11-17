@@ -259,3 +259,24 @@ test("front-end brand name changes preserve first-drop Stripe IDs and fail-close
  assert.match(legal,/c\.ready/);
  assert.doesNotMatch(store,/buy\.stripe\.com\/|checkout\.stripe\.com\//);
 });
+
+
+test("public product concepts can use approved imagery without falsely claiming photographs",()=>{
+ const config=read("lib/essentials-commerce.ts");
+ const admin=read("app/ja/essentials/manage/readiness/page.tsx");
+ const catalog=read("app/ja/essentials/page.tsx");
+ const detail=read("app/ja/essentials/[slug]/page.tsx");
+ const guide=read("app/ja/essentials/guide/page.tsx");
+ const legal=read("app/ja/essentials/legal/page.tsx");
+ assert.doesNotMatch(config,/essentialsHaveProductionPhotos/);
+ assert.match(config,/essentialsHaveFinalSpecifications/);
+ assert.match(config,/RBA_ESSENTIALS_PHOTOS_APPROVED/);
+ assert.match(config,/RBA_ESSENTIALS_PUBLIC_LISTING_APPROVED/);
+ assert.match(admin,/掲載画像（CGを含む）の権利・表示内容の承認/);
+ assert.match(catalog,/商品画像はイメージです/);
+ assert.match(detail,/商品画像はイメージです/);
+ assert.match(guide,/商品画像はイメージです/);
+ assert.match(legal,/商品画像はイメージです/);
+ assert.doesNotMatch(detail,/承認済みの実物写真/);
+ assert.doesNotMatch(guide,/掲載写真は確認済みの実物商品/);
+});
