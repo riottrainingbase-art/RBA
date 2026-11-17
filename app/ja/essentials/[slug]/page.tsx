@@ -82,6 +82,16 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           </div>
         </article>
 
+        <section className={styles.productBelief} aria-label="RBA ESSENTIALSの背景">
+          <div>
+            <p className={styles.chapter}>THE BRAND IS THE BELIEF.</p>
+            <h2>Made for what<br/><em>we believe in.</em></h2>
+          </div>
+          <div>
+            <p>バスケットボールが好きだから、育成のあり方を考え続ける。仙台から全国・アジアへ、選手の選択肢を広げてきたRBAの活動と、その背景にある哲学。</p>
+            <Link href="/ja/essentials/story">WHY RBA ESSENTIALS EXISTS <span aria-hidden="true">↗</span></Link>
+          </div>
+        </section>
         <section className={styles.details} aria-labelledby="product-features">
           <div className={styles.sectionHeader}>
             <div><p className={styles.chapter}>DESIGNED WITH INTENTION</p><h2 id="product-features">The Details.</h2></div>
