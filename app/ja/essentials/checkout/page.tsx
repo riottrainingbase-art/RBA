@@ -5,8 +5,8 @@ import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={
- title:"RBA ESSENTIALS｜公式アパレル・先行購入",
- description:"RBA ESSENTIALSの公式アパレル先行購入手続き。製造と納期が確定した場合のみ、税込価格・配送条件を明示してStripeで受付します。",
+ title:"RBA STORE｜公式アパレル・先行購入",
+ description:"RBA STOREの公式アパレル先行購入手続き。製造と納期が確定した場合のみ、税込価格・配送条件を明示してStripeで受付します。",
  robots:{index:false,follow:false},
 };
 export default async function EssentialsCheckoutPage({
