@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
-import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
+import { verifyEssentialsStripeAccount, verifyEssentialsStripePublicBranding } from "@/lib/essentials-stripe";
 
 export const dynamic = "force-dynamic";
 const ORIGIN = "https://riotbasketballacademy.com";
@@ -102,6 +102,8 @@ export async function POST(request:Request) {
     // Never use another connected Stripe business or the test account by accident.
     if(!await verifyEssentialsStripeAccount(secret))
       return fail("RBA専用決済アカウントを確認できません。",503);
+    if(!await verifyEssentialsStripePublicBranding(secret))
+      return fail("RBAの決済事業者表示の確認が未完了です。現在お支払いを受け付けていません。",423);
     const session=await stripe.checkout.sessions.create({
       mode:"payment",
       locale:"ja",
