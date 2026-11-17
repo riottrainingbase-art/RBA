@@ -25,9 +25,9 @@ const sizes=["S","M","L","XL"] as const;
 export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,handwrittenJPY,handwrittenAvailable,handwrittenTerms,deliveryBy,arrivalBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
   const [teeQty,setTeeQty]=useState(initial==="tee"?1:0);
   const [setupQty,setSetupQty]=useState(initial==="setup"?1:0);
-  const [teeSize,setTeeSize]=useState("M");
-  const [hoodieSize,setHoodieSize]=useState("M");
-  const [pantsSize,setPantsSize]=useState("M");
+  const [teeSize,setTeeSize]=useState("");
+  const [hoodieSize,setHoodieSize]=useState("");
+  const [pantsSize,setPantsSize]=useState("");
   const [handwritten,setHandwritten]=useState(false);
   const [handwrittenText,setHandwrittenText]=useState("");
   const [handwrittenTarget,setHandwrittenTarget]=useState<"tee"|"setup">("tee");
@@ -39,25 +39,26 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const shipping=(teeQty+setupQty>0?(shippingJPY??0):0);
   const handwrittenTargetValid=handwrittenTarget==="tee"?teeQty===1:setupQty===1;
   const handwrittenValid=!handwritten||(handwrittenAvailable&&handwrittenTargetValid&&handwrittenText.trim().length>0&&Array.from(handwrittenText.trim()).length<=20);
-  const canCheckout=available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged&&handwrittenValid;
+  const sizesSelected = (teeQty === 0 || !!teeSize) && (setupQty === 0 || (!!hoodieSize && !!pantsSize));
+  const canCheckout=sizesSelected&&available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged&&handwrittenValid;
   return <div className="epWrap">
-    <div className="epHead"><p>RBA STORE / COLLECTION 001 / PRE-ORDER</p><h1>Pre-order<span>.</span></h1><p>公式ウェアの先行購入。国内送料無料はFIRST DROP限定。商品・サイズ・数量を選び、確定条件をご確認のうえStripe決済へお進みください。</p></div>
+    <div className="epHead"><p>RBA STORE / COLLECTION 001 / PRE-ORDER</p><h1>サイズ・ご注文</h1><p>公式ウェアの先行購入。国内送料無料はFIRST DROP限定。商品・サイズ・数量を選び、確定条件をご確認のうえStripe決済へお進みください。</p></div>
     {available ? <form method="POST" action="/api/commerce/essentials-preorder" className="epForm">
       <div className="epLeft">
         <div className="epLine"><span>01 / THE ITEMS</span><span>SELECT & SIZE</span></div>
         <div className="epItem">
-          <div><h2>ESSENTIAL TEE</h2><p>WHITE / T-SHIRT</p>{teeJPY!==null&&<strong>{yen(teeJPY)}<small> 税込</small></strong>}</div>
+          <div><h2>WHITE TEE</h2><p>WHITE / T-SHIRT</p>{teeJPY!==null&&<strong>{yen(teeJPY)}<small> 税込</small></strong>}</div>
           <div className="epFields">
-            <label>数量<select name="tee_qty" value={teeQty} onChange={e=>{const q=Number(e.target.value);setTeeQty(q);if(q+setupQty>3)setSetupQty(3-q);}}>{[0,1,2,3].map(q=><option value={q} key={q}>{q}</option>)}</select></label>
-            <label>サイズ<select name="tee_size" value={teeSize} onChange={e=>setTeeSize(e.target.value)} disabled={teeQty===0}>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
+            <label>数量<select name="tee_qty" value={teeQty} onChange={e=>{const q=Number(e.target.value);setTeeQty(q);}}>{[0,1,2,3].filter(q => q + setupQty <= 3).map(q=><option value={q} key={q}>{q}</option>)}</select></label>
+            <label>サイズ<select name="tee_size" value={teeSize} onChange={e=>setTeeSize(e.target.value)} disabled={teeQty===0} required><option value="">選択する</option>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
           </div>
         </div>
         <div className="epItem">
-          <div><h2>ESSENTIAL SETUP</h2><p>BLACK / HOODIE + TROUSERS</p>{setupJPY!==null&&<strong>{yen(setupJPY)}<small> 税込</small></strong>}</div>
+          <div><h2>BLACK SETUP</h2><p>BLACK / HOODIE + TROUSERS</p>{setupJPY!==null&&<strong>{yen(setupJPY)}<small> 税込</small></strong>}</div>
           <div className="epFields">
-            <label>数量<select name="setup_qty" value={setupQty} onChange={e=>{const q=Number(e.target.value);setSetupQty(q);if(q+teeQty>3)setTeeQty(3-q);}}>{[0,1,2,3].map(q=><option value={q} key={q}>{q}</option>)}</select></label>
-            <label>パーカー<select name="hoodie_size" value={hoodieSize} onChange={e=>setHoodieSize(e.target.value)} disabled={setupQty===0}>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
-            <label>パンツ<select name="pants_size" value={pantsSize} onChange={e=>setPantsSize(e.target.value)} disabled={setupQty===0}>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
+            <label>数量<select name="setup_qty" value={setupQty} onChange={e=>{const q=Number(e.target.value);setSetupQty(q);}}>{[0,1,2,3].map(q=><option value={q} key={q}>{q}</option>)}</select></label>
+            <label>パーカー<select name="hoodie_size" value={hoodieSize} onChange={e=>setHoodieSize(e.target.value)} disabled={setupQty===0} required><option value="">選択する</option>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
+            <label>パンツ<select name="pants_size" value={pantsSize} onChange={e=>setPantsSize(e.target.value)} disabled={setupQty===0} required><option value="">選択する</option>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
           </div>
         </div>
         <section className="epHandwritten" aria-label="手書きカスタムオプション">
@@ -85,18 +86,18 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
         </div>
       </div>
       <aside className="epSummary">
-        <p className="epLabel">02 / YOUR ORDER</p><h2>Order summary</h2>
+        <p className="epLabel">02 / YOUR ORDER</p><h2>ご注文内容</h2>
         <div className="epRow"><span>商品代金（税込）</span><strong>{yen(subtotal)}</strong></div>
         {handwrittenCharge>0 && <div className="epRow"><span>うち手書き追加料金（税込）</span><strong>{yen(handwrittenCharge)}</strong></div>}
         <div className="epRow"><span>送料（先行販売・国内限定）</span><strong>{shipping===0?"無料 / ¥0":yen(shipping)}</strong></div>
-        <div className="epRow epTotal"><span>合計（税込）</span><strong>{yen(subtotal+shipping)}</strong></div>
+        <div className="epRow epTotal" aria-live="polite"><span>合計（税込）</span><strong>{yen(subtotal+shipping)}</strong></div>
         <div className="epTerms"><p><strong>先行販売・前払い</strong></p><p>支払時期：注文確定時の一括決済（Stripe）。FIRST DROPは日本国内送料無料。</p><p>申込受付期限：{orderBy}</p><p>発送期限：{deliveryBy}まで</p><p>お届け期限：{arrivalBy}まで（注文から1か月以内の目標を契約上の期限として明示）</p><p>{presaleNote}</p><p><strong>キャンセル</strong>：{cancellationTerms}</p><p><strong>返品・交換</strong>：{returnTerms}</p><p><Link href="/ja/essentials/legal">特定商取引法に基づく表記・販売条件を見る</Link></p></div>
         <input type="hidden" name="terms_version" value={termsVersion??""}/>
         <label className="epConsent"><input type="checkbox" checked={accepted} onChange={e=>setAccepted(e.target.checked)} name="accept_preorder" value="yes"/>先行販売であること、決済が先に行われ、発送期限が{deliveryBy}、お届け期限が{arrivalBy}であることを確認しました。</label>
         <label className="epConsent"><input type="checkbox" checked={acceptedTerms} onChange={e=>setAcceptedTerms(e.target.checked)} name="accept_terms" value="yes"/>商品・数量・合計金額・キャンセル・返品条件を確認し、同意します。</label>
         <label className="epConsent"><input type="checkbox" checked={acknowledged} onChange={e=>setAcknowledged(e.target.checked)} name="accept_development_use" value="yes"/>販売による利益をRBAの育成活動に活用する方針を確認しました。</label>
-        <button className="epPay" type="submit" disabled={!canCheckout}>Stripeで先行購入する <span aria-hidden="true">↗</span></button>
-        <p className="epFine">商品を選択し、上記に同意すると購入画面へ進みます。注文確定前にStripeで最終内容を確認できます。</p>
+        <button className="epPay" type="submit" disabled={!canCheckout}>Stripe決済へ進む <span aria-hidden="true">↗</span></button>
+        <p className="epFine">{!sizesSelected ? "選んだ商品のサイズを指定してください。" : "数量と販売条件を確認してから、Stripeへ進んでください。"}</p>
       </aside>
     </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>ホワイトTシャツ4,900円、ブラックパーカー上下19,800円（税込）。FIRST DROPの国内送料は無料です。現在は製造品質・納期・返品条件・決済の確認中につき、お支払いを受け付けていません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） ↗</a><Link href="/ja/store">RBA STOREに戻る ↗</Link></section>}
     <style jsx>{`
@@ -104,7 +105,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
 .epWrap *{box-sizing:border-box}
 .epHead{border-bottom:1px solid #aaa8a3;padding-bottom:36px;margin-bottom:55px}
 .epHead>p:first-child,.epLabel,.epLine{font-size:10px;letter-spacing:.17em;color:#6e6b66}
-.epHead h1{font-family:Georgia,serif;font-size:clamp(65px,10vw,140px);font-weight:400;line-height:1.1;letter-spacing:-.075em;margin:15px 0 25px}
+.epHead h1{font-family:Georgia,serif;font-size:clamp(32px,6vw,78px);font-weight:400;line-height:1.1;letter-spacing:-.075em;margin:15px 0 25px}
 .epHead h1 span{color:#a3a09a}.epHead>p:last-child{font-size:15px;line-height:2;color:#65615d;max-width:670px}
 .epForm{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.75fr);gap:clamp(35px,6vw,110px)}
 .epLine{display:flex;justify-content:space-between;border-bottom:1px solid #77736c;padding-bottom:18px}
@@ -114,7 +115,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
 .epItem strong{font-size:17px;font-weight:600}.epItem small{font-size:11px;color:#75716a}
 .epFields{display:flex;align-items:end;flex-wrap:wrap;justify-content:flex-end;gap:10px}
 .epFields label{display:flex;flex-direction:column;font-size:10px;color:#62605a;gap:9px}
-.epFields select{padding:12px 15px;min-width:68px;background:#fff;border:1px solid #bbb8b0;color:#1e1d1b;font-size:15px}
+.epFields select{padding:12px 15px;min-width:68px;background:#fff;border:1px solid #bbb8b0;color:#1e1d1b;font-size:16px;min-height:44px}
 .epFields select:disabled{opacity:.45}
 .epHandwritten{margin-top:34px}.epOptionIntro,.epSmallNotice{font-size:12px;line-height:1.95;color:#68645f;margin:20px 0}.epOptionFields{display:flex;flex-direction:column;gap:16px;margin:22px 0}.epOptionFields label{display:flex;flex-direction:column;gap:9px;font-size:12px;line-height:1.7}.epOptionFields select,.epOptionFields textarea{font:inherit;font-size:14px;color:#171717;padding:12px;border:1px solid #bcb9b1;background:white;max-width:510px;width:100%}
 .epExplanation{font-size:12px;line-height:1.9;color:#77716c;margin:28px 0}
@@ -133,7 +134,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
 .epOffline>p:not(:first-child){font-size:14px;color:#66605a;line-height:2;max-width:490px;margin:0 auto 28px}
 .epOffline>a{display:block;color:#24221f;text-underline-offset:4px;padding:12px}
 @media(max-width:990px){.epForm{grid-template-columns:1fr}.epSummary{max-width:760px;width:100%}}
-@media(max-width:560px){.epWrap{padding:42px 21px 65px}.epHead{margin-bottom:34px}.epHead h1{font-size:65px}.epItem{flex-direction:column}.epFields{justify-content:flex-start}.epSummary{padding:25px 20px}.epOffline{padding:50px 20px}}
+@media(max-width:560px){.epWrap{padding:42px 21px 65px}.epHead{margin-bottom:34px}.epHead h1{font-size:32px}.epItem{flex-direction:column}.epFields{justify-content:flex-start}.epSummary{padding:25px 20px}.epOffline{padding:50px 20px}}
 `}</style>
   </div>;
 }
