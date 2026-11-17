@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   description: "2027年1月神戸・関西で計画中の男子U14国際育成交流。個人・チーム・選抜の有料仮申込。申込時前金50%、受入不可や正式条件に同意できない場合は全額返金。会場未確定。",
   robots: { index: false, follow: false },
 };
-export default function Page() {
+export default async function Page({ searchParams }: { searchParams: Promise<{ plan?: string }> }) {
+  const query = await searchParams;
   return (
     <main className="min-h-screen bg-[#f6f2e9] text-[#101010]">
       <header className="border-b border-black/20 bg-white">
@@ -39,13 +40,13 @@ export default function Page() {
             ["03 / REVIEW","開催・受入確認","正式条件を別途案内。残金は承諾後に請求"],
           ].map(([n,t,d])=><div key={n} className="border border-black/25 bg-white p-5"><p className="text-xs font-black tracking-widest text-[#dd5811]">{n}</p><p className="mt-2 text-xl font-black">{t}</p><p className="mt-3 text-sm leading-7">{d}</p></div>)}
         </div>
-        <EntryForm />
+        <EntryForm initialPlan={query.plan === "selected" ? "selected" : undefined} />
         <div className="mt-9 space-y-4 border border-black/25 bg-white p-6 text-sm leading-8">
           <h2 className="text-xl font-black">キャンセルと返金について</h2>
           <p>RBA側で会場・受入が確保できない場合、正式条件をご案内した後に参加者が同意できない場合、または選抜不合格の場合は、受領した前金を全額返金します。正式条件提示前に参加者が仮申込を取り下げる場合も前金を全額返金します。</p>
           <p>正式条件確定後の参加者都合による取消・返金条件は、改めて書面で提示し、同意を得た上で適用します。申込時に個人の交通・宿泊などの返金不可予約を行わないでください。交通・宿泊・食事・保険の費用負担は最終条件をご確認ください。</p>
           <p>オーストラリアElite AUS（U11・U13）との大阪近郊の交流は別途協議中であり、この男子U14有料仮申込の対象外です。</p>
-          <p>お問合せ：<a className="underline" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>　|　<Link href="/ja/privacy" className="underline">プライバシーポリシー</Link></p>
+          <p>お問合せ：<a className="underline" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>　|　<Link href="/ja/policies" className="underline">プライバシーポリシー</Link></p>
         </div>
       </section>
     </main>
