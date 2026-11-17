@@ -65,6 +65,7 @@ export async function POST(request:Request){
    return reply({error:"unexpected_product_metadata"},422);
  if(!session.id||!session.id.startsWith("cs_live_")||
     typeof session.created!=="number"||
+    typeof session.amount_total!=="number"||
     !Number.isSafeInteger(session.amount_total)||
     session.amount_total<=0)return reply({error:"invalid_checkout"},422);
  const orderDate=new Intl.DateTimeFormat("en-CA",{
