@@ -30,7 +30,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const [pantsSize,setPantsSize]=useState("");
   const [handwritten,setHandwritten]=useState(false);
   const [handwrittenText,setHandwrittenText]=useState("");
-  const [handwrittenTarget,setHandwrittenTarget]=useState<"tee"|"setup">("tee");
+  const [handwrittenTarget,setHandwrittenTarget]=useState<"tee"|"setup">(initial);
   const [accepted,setAccepted]=useState(false);
   const [acceptedTerms,setAcceptedTerms]=useState(false);
   const [acknowledged,setAcknowledged]=useState(false);
@@ -38,7 +38,9 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const subtotal=(teeJPY??0)*teeQty+(setupJPY??0)*setupQty+handwrittenCharge;
   const shipping=(teeQty+setupQty>0?(shippingJPY??0):0);
   const handwrittenTargetValid=handwrittenTarget==="tee"?teeQty===1:setupQty===1;
-  const handwrittenValid=!handwritten||(handwrittenAvailable&&handwrittenTargetValid&&handwrittenText.trim().length>0&&Array.from(handwrittenText.trim()).length<=20);
+  const message = handwrittenText.normalize("NFC").trim();
+  const messageLength = Array.from(message).length;
+  const handwrittenValid=!handwritten||(handwrittenAvailable&&handwrittenTargetValid&&messageLength>0&&messageLength<=20&&!/[\r\n\t<>]/.test(message));
   const sizesSelected = (teeQty === 0 || !!teeSize) && (setupQty === 0 || (!!hoodieSize && !!pantsSize));
   const canCheckout=sizesSelected&&available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged&&handwrittenValid;
   return <div className="epWrap">
@@ -61,10 +63,10 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
             <label>パンツ<select name="pants_size" value={pantsSize} onChange={e=>setPantsSize(e.target.value)} disabled={setupQty===0} required><option value="">選択する</option>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
           </div>
         </div>
-        <section className="epHandwritten" aria-label="手書きカスタムオプション">
-          <div className="epLine"><span>02 / PERSONAL EDITION</span><span>HANDWRITTEN CUSTOM</span></div>
+        <section id="handwritten-option" className="epHandwritten" aria-label="手書きカスタムオプション">
+          <div className="epLine"><span>手書きカスタム</span><span>HANDWRITTEN CUSTOM</span></div>
           {handwrittenAvailable && handwrittenJPY!==null ? <>
-            <p className="epOptionIntro">1着・1か所に、制作者が直接メッセージを書き入れます。先行販売の国内送料は追加料金なしです。</p>
+            <p className="epOptionIntro">お好きな短い言葉を、制作者が1着の1か所に手書きで入れます。先行販売の国内送料は追加料金なしです。</p>
             <label className="epConsent"><input name="handwritten" type="checkbox" value="yes" checked={handwritten} onChange={v=>setHandwritten(v.target.checked)}/>手書きオプションを追加する（+{yen(handwrittenJPY)}・税込）</label>
             {handwritten && <div className="epOptionFields">
               <label>加工する商品
@@ -76,9 +78,10 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
               <label>入れたいメッセージ（20文字以内・改行なし）
                 <textarea name="handwritten_text" rows={2} maxLength={40} required value={handwrittenText} onChange={e=>setHandwrittenText(e.target.value)} placeholder="手書きで入れたい短い言葉"/>
               </label>
+              <p className="epSmallNotice" aria-live="polite">{messageLength} / 20文字{!handwrittenTargetValid && " ／ 加工する商品は数量を1点にしてください。"}</p>
               <p className="epSmallNotice">生地・印字範囲・個体差・納期は製品条件をご確認ください。手書き加工は1注文につき1か所です。返品・変更条件：{handwrittenTerms}</p>
             </div>}
-          </> : <p className="epOptionIntro">手書きメッセージは特別仕様として準備中です。制作者との契約・洗濯耐久試験・追加価格が確定するまで選択できません。</p>}
+          </> : <p className="epOptionIntro">手書きカスタムは受付準備中です。通常版のお申し込みは上の商品欄からお進みください。</p>}
         </section>
         <div className="epExplanation">
           <p>商品画像は完成イメージです。素材・実寸・縫製仕様は商品説明・確定サイズ表をご確認ください。</p>
@@ -121,7 +124,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
 .epFields label{display:flex;flex-direction:column;font-size:10px;color:#62605a;gap:9px}
 .epFields select{padding:12px 15px;min-width:68px;background:#fff;border:1px solid #bbb8b0;color:#1e1d1b;font-size:16px;min-height:44px}
 .epFields select:disabled{opacity:.45}
-.epHandwritten{margin-top:34px}.epOptionIntro,.epSmallNotice{font-size:12px;line-height:1.95;color:#68645f;margin:20px 0}.epOptionFields{display:flex;flex-direction:column;gap:16px;margin:22px 0}.epOptionFields label{display:flex;flex-direction:column;gap:9px;font-size:12px;line-height:1.7}.epOptionFields select,.epOptionFields textarea{font:inherit;font-size:14px;color:#171717;padding:12px;border:1px solid #bcb9b1;background:white;max-width:510px;width:100%}
+.epHandwritten{margin-top:34px;scroll-margin-top:24px;padding:18px;background:#eee9df}.epOptionIntro,.epSmallNotice{font-size:12px;line-height:1.95;color:#68645f;margin:20px 0}.epOptionFields{display:flex;flex-direction:column;gap:16px;margin:22px 0}.epOptionFields label{display:flex;flex-direction:column;gap:9px;font-size:12px;line-height:1.7}.epOptionFields select,.epOptionFields textarea{font:inherit;font-size:14px;color:#171717;padding:12px;border:1px solid #bcb9b1;background:white;max-width:510px;width:100%}
 .epExplanation{font-size:12px;line-height:1.9;color:#77716c;margin:28px 0}
 .epSummary{background:#e9e7e1;padding:clamp(26px,3vw,47px);align-self:start}
 .epSummary h2{font-family:Georgia,serif;font-weight:400;font-size:37px;letter-spacing:-.04em;margin:17px 0 30px}
