@@ -87,6 +87,10 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
       </div>
       <aside className="epSummary">
         <p className="epLabel">02 / YOUR ORDER</p><h2>ご注文内容</h2>
+        <ul className="epSelected" aria-label="選択した商品">
+          {teeQty > 0 && <li><strong>WHITE TEE × {teeQty}</strong><span>サイズ {teeSize || "未選択"}</span></li>}
+          {setupQty > 0 && <li><strong>BLACK SETUP × {setupQty}</strong><span>パーカー {hoodieSize || "未選択"} ／ パンツ {pantsSize || "未選択"}</span></li>}
+        </ul>
         <div className="epRow"><span>商品代金（税込）</span><strong>{yen(subtotal)}</strong></div>
         {handwrittenCharge>0 && <div className="epRow"><span>うち手書き追加料金（税込）</span><strong>{yen(handwrittenCharge)}</strong></div>}
         <div className="epRow"><span>送料（先行販売・国内限定）</span><strong>{shipping===0?"無料 / ¥0":yen(shipping)}</strong></div>
@@ -121,6 +125,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
 .epExplanation{font-size:12px;line-height:1.9;color:#77716c;margin:28px 0}
 .epSummary{background:#e9e7e1;padding:clamp(26px,3vw,47px);align-self:start}
 .epSummary h2{font-family:Georgia,serif;font-weight:400;font-size:37px;letter-spacing:-.04em;margin:17px 0 30px}
+.epSelected{margin:0 0 12px;padding:0;list-style:none}.epSelected li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;border-top:1px solid #b7b4ac;padding:10px 0;font-size:12px}.epSelected span{color:#49453e}
 .epRow{display:flex;justify-content:space-between;gap:16px;font-size:13px;padding:13px 0}
 .epRow strong{font-weight:500}.epTotal{border-top:1px solid #9a968f;margin-top:14px;padding-top:26px;font-size:17px}
 .epTerms{font-size:11px;line-height:1.9;color:#55514a;border-top:1px solid #b7b4ac;padding:20px 0;margin-top:26px}
