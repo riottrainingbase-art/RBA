@@ -3,7 +3,15 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 const DESTINATION = "https://ctngdzzorhzpdxswahzl.supabase.co/functions/v1/rba-kobe-u14-deposit-intake";
 const headers = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
-export async function GET() { return NextResponse.json({ error: "method_not_allowed" }, { status: 405, headers }); }
+export async function GET() {
+  try {
+    const response = await fetch(DESTINATION, { method: "GET", cache: "no-store", headers: { "origin": "https://riotbasketballacademy.com" }, signal: AbortSignal.timeout(6000) });
+    const payload = await response.json();
+    return NextResponse.json({ payment_open: response.ok && payload.payment_open === true }, { headers });
+  } catch {
+    return NextResponse.json({ payment_open: false }, { headers });
+  }
+}
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
   if (!origin || origin !== new URL(request.url).origin) return NextResponse.json({ error: "invalid_origin" }, { status: 403, headers });
