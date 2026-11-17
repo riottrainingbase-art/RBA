@@ -61,7 +61,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
         <article className={styles.detailLayout}>
           <div className={styles.detailPhoto}>
             <img src={item.image} alt={item.alt} fetchPriority="high"/>
-            <p>DESIGN CONCEPT / NOT A PHYSICAL SAMPLE</p>
+            <p>RBA STORE / PRODUCT VISUAL</p>
           </div>
           <div className={styles.detailCopy}>
             <p className={styles.chapter}>RBA STORE / COLLECTION 001 / LOOK {item.number} / {item.color}</p>
@@ -85,7 +85,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
         </article>
 
         <aside className={styles.productPromises} aria-label="ご購入前に確認いただきたいこと">
-          <div><span>01 / PHOTO</span><p>{commerce.ready?"掲載画像は承認済みの実物写真です。画面環境により色味が異なる場合があります。":"掲載画像はデザイン参考用のCGです。実物・着用写真ではありません。"}</p></div>
+          <div><span>01 / PHOTO</span><p>商品画像はイメージです。色味・生地・仕上がりは実際の商品と異なる場合があります。</p></div>
           <div><span>02 / FIT & FABRIC</span><p>{commerce.ready?"実寸・生地組成・お手入れ方法を商品説明で確認してください。":"実測サイズ・生地の組成・厚み・洗濯表示はサンプル確認後に公開します。"}</p></div>
           <div><span>03 / DELIVERY</span><p>{commerce.ready?`FIRST DROPは国内送料無料。発送期限：${commerce.dispatchDeadline}、お届け期限：${commerce.deliveryDeadline}。返品条件は販売条件ページをご確認ください。`:"FIRST DROPは国内送料無料を予定。正式な発送・返品条件を購入前に表示します。"}</p></div>
         </aside>
