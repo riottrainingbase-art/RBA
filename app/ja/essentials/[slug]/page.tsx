@@ -85,12 +85,12 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             {commerce.ready ? <Link className={styles.detailButton} href={checkoutPath}>サイズを選んで先行購入へ <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前アンケートに回答する <span aria-hidden="true">↗</span></a>}
             <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。正式な素材と実寸は、サンプル確認後に掲載します。アンケートは無料で回答できます。"}</p>
             <aside className={styles.detailHandwritten} aria-label="手書きカスタム">
-              <strong>手書きカスタム</strong>
-              <p>{item.slug === "setup" ? "セットアップのパーカー" : "白T"}に、RBAが用意したメッセージを手書きで添える特別仕様です。</p>
+              <strong>Handwritten Edition.</strong>
+              <p>{item.slug === "setup" ? "セットアップのパーカー" : "白T"}に、RBAからのメッセージを、一点ずつ手書きで添えます。</p>
               {commerce.handwrittenAvailable && commerce.handwrittenJPY !== null ? (
                 <Link href={checkoutPath + "#handwritten-option"}>手書きカスタムを選ぶ（追加 ¥{commerce.handwrittenJPY.toLocaleString("ja-JP")}・税込）</Link>
               ) : (
-                <Link href="/ja/essentials#handwritten">受付準備中 · 手書きカスタムの詳細を見る</Link>
+                <Link href="/ja/essentials#handwritten">受付準備中 ／ 手書きエディションを見る</Link>
               )}
             </aside>
           </div>
