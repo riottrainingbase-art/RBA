@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const features = [
-  ["予約", "次回の予約を確認し、希望日時を申請できます。"],
+  ["予約", "RBAの取り込み済み予定と重ならない空き枠から予約を申請できます。RTBが承認すると確定します。"],
   ["個別メニュー", "担当コーチから届いたトレーニングメニューを確認できます。"],
   ["トレーニング記録", "実施した種目を記録し、次回のセッションに活かせます。"],
   ["チームメニュー", "所属チームのトレーニングメニューを確認できます。"],
@@ -30,6 +30,7 @@ export default function RtbMemberPage() {
           <a href={memberPortal} style={{ display: "inline-flex", alignItems: "center", minHeight: 48, marginTop: 20, borderRadius: 3, padding: "8px 18px", background: "#c7ac78", color: "#171916", fontWeight: 700 }}>
             ログインして開く <span aria-hidden="true">　→</span>
           </a>
+          <a href={memberPortal + "#booking"} style={{ display: "inline-flex", alignItems: "center", minHeight: 48, padding: "8px 18px", color: "#ead8b5", fontWeight: 700 }}>空き枠を見て予約する</a>
           <p style={{ color: "#d8dbce", marginTop: 14, fontSize: 14 }}>RTBで登録したメールアドレスのChatGPTアカウントでログインできます。</p>
           <a href={requestAccess} style={{ display: "inline-flex", alignItems: "center", minHeight: 44, marginTop: 8, color: "#ead8b5", textDecoration: "underline", textUnderlineOffset: 4 }}>初めての方は利用登録を依頼する</a>
           <p style={{ color: "#d8dbce", fontSize: 14 }}>メールにお名前とログイン用アドレスをご記入ください。RTBからの招待後、このページから開けます。</p>
