@@ -80,10 +80,10 @@ export default function EssentialsCollectionPage() {
           <div className={styles.frontContent}>
             <div>
               <p className={styles.frontKicker}>RBA STORE / HANDWRITTEN EDITION</p>
-              <h2 className={styles.frontHeading} id="handwritten-title">好きな言葉を、<br />一着に。</h2>
+              <h2 className={styles.frontHeading} id="handwritten-title">RBAからの言葉を、<br />一着に。</h2>
             </div>
             <div>
-              <p>お好きな短い言葉を、制作者が一点ずつ手書きで入れる特別仕様です。白T、または黒セットアップのパーカーに、20文字まで添えられます。</p>
+              <p>RBAが用意したメッセージを、一点ずつ手書きで添える特別仕様です。白T、または黒セットアップのパーカーが対象です。</p>
               <span className={styles.frontHandwrittenStatus}>{commerce.handwrittenAvailable && commerce.handwrittenJPY !== null ? `受付中 ／ 追加 ¥${commerce.handwrittenJPY.toLocaleString("ja-JP")}（税込）` : "手書きカスタムは受付準備中です。"}</span>
               {commerce.handwrittenAvailable && <a className={styles.frontButton} href="#collection">対象商品を見る <span aria-hidden="true">↑</span></a>}
             </div>
