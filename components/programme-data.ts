@@ -39,7 +39,7 @@ export type Programme = {
   region: "tohoku" | "kanto" | "kansai" | "kyushu" | "okinawa" | "online";
   category: "TRAIN" | "PLAY" | "TRAVEL" | "COACH";
   pathway?: "development-camp" | "united" | "clinic" | "coach";
-  ageGroups: readonly ("U8" | "U10" | "U12" | "U15" | "U18" | "COACH")[];
+  ageGroups: readonly ("U8" | "U10" | "U12" | "U14" | "U15" | "U18" | "COACH")[];
 };
 
 
@@ -60,7 +60,7 @@ export const programmes: readonly Programme[] = [
     payment: ["Provisional application asks for a refundable 50% deposit. Checkout remains disabled until safety checks pass.", "申込時前金50％の有料仮申込方式。会場・参加条件未確定。決済は安全検証が完了するまで停止中です。選考不合格・開催不能・正式条件への不同意時は前金を全額返金します。", "暫定申請預定收取50%可退還訂金，尚未開放付款", "가신청 시 50% 환불 가능 예약금을 예정하나 결제는 검증 전까지 중지"],
     applicationUrl: "/ja/events/kobe-boys-u14-exchange-2027/apply",
     japaneseInfoPath: "/ja/events/kobe-boys-u14-exchange-2027",
-    region: "kansai", category: "PLAY", pathway: "united", ageGroups: ["U15"],
+    region: "kansai", category: "PLAY", pathway: "united", ageGroups: ["U14"],
   },
 
   {
