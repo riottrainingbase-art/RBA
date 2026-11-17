@@ -10,12 +10,12 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "RBA STORE | Riot Basketball Academy 公式アパレル",
   description: "RBA STORE。勝敗の先に、残るものを。Riot Basketball Academyの育成哲学をコートの外へ。公式Tシャツとセットアップ。現在は販売準備中です。",
-  alternates: { canonical: "/ja/store" },
+  alternates: { canonical: "/ja/essentials" },
   openGraph: {
     title: "RBA STORE | 勝敗の先に、残るものを。",
     description: "バスケットボールとともに生きる人へ。RBA WHITE TEE / BLACK SETUP。商品は販売準備中です。",
-    url: "/ja/store",
-    images: [{ url: ESSENTIALS_HERO_IMAGE, alt: "RBA Essentials 白Tシャツの商品デザイン検討画像（モデル着用なし）" }],
+    url: "/ja/essentials",
+    images: [{ url: ESSENTIALS_HERO_IMAGE, alt: "RBA WHITE TEE デザイン参考用CG（モデル着用なし）" }],
     locale: "ja_JP",
     type: "website",
   },
