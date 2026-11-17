@@ -44,10 +44,10 @@ export default function EssentialsGuidePage(){
         <section className={styles.guideEssentials} aria-labelledby="guide-essentials-heading">
           <div className={styles.guideHeading}><p className={styles.chapter}>FIRST DROP / THE FACTS</p><h2 id="guide-essentials-heading">What we know.</h2></div>
           <div className={styles.guideFacts}>
-            <article><span>01 / PIECES</span><h3>2つの定番から。</h3><p>ホワイトのTシャツと、ブラックのフーディ＆パンツ。日常に溶け込む服を目指します。</p></article>
+            <article><span>01 / PIECES</span><h3>2つの形から。</h3><p>ホワイトのTシャツと、ブラックのフーディ＆パンツ。日常に溶け込む服を目指します。</p></article>
             <article><span>02 / PRICE</span><h3>¥4,900 / ¥19,800</h3><p>FIRST DROPの税込予定価格。Tシャツとセットアップの順です。ご購入前に最終金額を表示します。</p></article>
             <article><span>03 / SHIPPING</span><h3>日本国内 0円</h3><p>送料無料はFIRST DROPの国内先行販売限定です。発売後の商品・配送条件とは区別します。</p></article>
-            <article><span>04 / QUALITY</span><h3>実物を確かめてから。</h3><p>生地・縫製・ワッペン・サイズ実寸・洗濯後の状態を確認してから正式に商品仕様を公開します。</p></article>
+            <article><span>04 / QUALITY</span><h3>実物を確かめてから。</h3><p>{config.ready?"実物サンプルの仕様に基づいて販売しています。サイズ・素材・お手入れ方法をご確認ください。":"生地・縫製・ワッペン・サイズ実寸・洗濯後の状態を確認してから正式に商品仕様を公開します。"}</p></article>
           </div>
         </section>
         <section className={styles.guideFaq} aria-labelledby="guide-faq-heading">
@@ -55,7 +55,7 @@ export default function EssentialsGuidePage(){
           <div>
             {importantQuestions.map((entry,i)=><details className={styles.guideFaqItem} key={entry.question}>
               <summary><span>{String(i+1).padStart(2,"0")}</span>{entry.question}<span aria-hidden="true" className={styles.guideFaqPlus}>＋</span></summary>
-              <p>{config.ready ? (i===0?"先行購入受付中です。商品仕様、価格、発送・お届け期限、キャンセル・返品条件をご確認ください。":i===2?"商品詳細で確定した素材と実寸をご確認ください。不明な点があれば購入前にお問い合わせください。":i===3?`国内送料はFIRST DROP限定で0円です。発送期限：${config.dispatchDeadline}、お届け期限：${config.deliveryDeadline}。`:i===4?"キャンセル・返品・不良品対応は販売条件ページでご確認ください。":entry.answer) : entry.answer}</p>
+              <p>{config.ready ? (i===1?"掲載写真は確認済みの実物商品です。商品実寸・素材と色味の注意点を購入前にご確認ください。":i===0?"先行購入受付中です。商品仕様、価格、発送・お届け期限、キャンセル・返品条件をご確認ください。":i===2?"商品詳細で確定した素材と実寸をご確認ください。不明な点があれば購入前にお問い合わせください。":i===3?`国内送料はFIRST DROP限定で0円です。発送期限：${config.dispatchDeadline}、お届け期限：${config.deliveryDeadline}。`:i===4?"キャンセル・返品・不良品対応は販売条件ページでご確認ください。":entry.answer) : entry.answer}</p>
             </details>)}
           </div>
         </section>
