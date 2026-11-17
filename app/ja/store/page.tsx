@@ -102,12 +102,12 @@ export default function StorePage() {
         </div>
         <div className={styles.storeIntroBottom}>
           <p>勝敗の先に、残るものを。</p>
-          <nav aria-label="ショップ内のご案内"><a href="#collection-001">COLLECTION 001</a><a href="#performance-tee">PERFORMANCE</a><Link href="/ja/essentials/story">OUR STORY</Link></nav>
+          <nav aria-label="ショップ内のご案内"><Link href="/ja/essentials">FIRST DROPを見る ↗</Link><a href="#performance-tee">パフォーマンスウェア</a><Link href="/ja/essentials/story">RBAの背景</Link></nav>
         </div>
       </header>
       <section className={styles.collectionFeature} id="collection-001" aria-labelledby="rba-collection-heading">
         <div className={styles.collectionHead}>
-          <div><p className={styles.collectionKicker}>001 / EVERYDAY WEAR / OFF COURT</p><h2 id="rba-collection-heading">On the court.<br/><em>Beyond it.</em></h2></div>
+          <div><p className={styles.collectionKicker}>001 / EVERYDAY WEAR / OFF COURT</p><h2 id="rba-collection-heading">FIRST <em>DROP.</em></h2></div>
           <div><p>仙台から全国へ、そして世界へ。RBAの育成哲学を、コートの外でも着られる一着に。</p><Link href="/ja/essentials/story">RBAの背景と想いを読む <span aria-hidden="true">↗</span></Link></div>
         </div>
         <div className={styles.storeProducts}>
@@ -118,7 +118,7 @@ export default function StorePage() {
                 <span>{item.number} / {item.color}</span>
               </Link>
               <div className={styles.storeProductInfo}>
-                <div><p>RBA / COLLECTION 001</p><h3>RBA {item.name}</h3><span>税込 ¥{Number(item.slug==="tee"?apparel.unitPrices.tee:apparel.unitPrices.setup).toLocaleString("ja-JP")} / FIRST DROP国内送料無料</span></div>
+                <div><p>RBA / COLLECTION 001</p><h3>RBA {item.name}</h3><span>{apparel.ready ? `¥${apparel.unitPrices[item.slug]?.toLocaleString("ja-JP")}（税込・国内送料無料）` : "発売準備中"}</span></div>
                 <Link href={item.pagePath} aria-label={item.title+"の詳細を見る"}>↗</Link>
               </div>
             </article>
@@ -126,7 +126,7 @@ export default function StorePage() {
         </div>
         <div className={styles.collectionFooter}>
           <p>{apparel.ready?"先行購入受付中。必ず実寸・生地・配送条件をご確認ください。":"現在は製品・販売条件を確認中です。注文・予約・決済は受け付けていません。"}</p>
-          <Link href="/ja/essentials">COLLECTION 001 の詳細 <span aria-hidden="true">↗</span></Link>
+          <Link href="/ja/essentials">FIRST DROPの全商品を見る <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
       <section className={styles.hero} id="performance-tee" aria-labelledby="store-title">
