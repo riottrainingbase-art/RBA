@@ -100,7 +100,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
         <button className="epPay" type="submit" disabled={!canCheckout}>Stripe決済へ進む <span aria-hidden="true">↗</span></button>
         <p className="epFine">{!sizesSelected ? "選んだ商品のサイズを指定してください。" : "数量と販売条件を確認してから、Stripeへ進んでください。"}</p>
       </aside>
-    </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>ホワイトTシャツ4,900円、ブラックパーカー上下19,800円（税込）。FIRST DROPの国内送料は無料です。現在は製造品質・納期・返品条件・決済の確認中につき、お支払いを受け付けていません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） ↗</a><Link href="/ja/store">RBA STOREに戻る ↗</Link></section>}
+    </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>ホワイトTシャツ6,600円、ブラックパーカー上下19,800円（税込）。FIRST DROPの国内送料は無料です。現在は製造品質・納期・返品条件・決済の確認中につき、お支払いを受け付けていません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） ↗</a><Link href="/ja/store">RBA STOREに戻る ↗</Link></section>}
     <style jsx>{`
 .epWrap{color:#171715;background:#f5f4f0;min-height:75vh;padding:58px clamp(22px,6vw,110px) 105px;font-family:Arial,sans-serif}
 .epWrap *{box-sizing:border-box}
