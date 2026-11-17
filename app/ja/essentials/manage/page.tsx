@@ -42,7 +42,7 @@ export default async function EssentialsOrdersManage({searchParams}:{searchParam
    <h1 style={{fontFamily:"Georgia,serif",fontSize:"clamp(36px,6vw,70px)",fontWeight:400}}>Essentials orders.</h1>
    <p>お支払いが確認された先行購入の一覧です。注文詳細・配送先はStripe管理画面で確認し、発送記録を照合してください。注文情報は機密情報として扱ってください。</p>
    <p style={{fontSize:12,lineHeight:1.8}}><strong>注文承諾メール：</strong>{emailReady?"確認済みの送信元を使用できます。未送信注文のみ手動で再処理できます。":"送信元とメールサービスの設定が未確認のため、送信できません。"} 失敗した通知の再送は、送信サービスで配信履歴を確認してから別途対応してください。</p>
-   {params.notice&&<p role="status" style={{fontSize:13}}>{params.notice==="shipment_sent"?"発送通知を送信しました。":params.notice==="sent"?"未送信の注文承諾メールを送信しました。":params.notice==="processed"?"この注文は既に処理対象外です。":"通知を送れませんでした。送信設定・配信状態をご確認ください。"}</p>}
+   {params.notice&&<p role="status" style={{fontSize:13}}>{params.notice==="shipment_sent"?"発送通知の送信依頼が受理されました。配信結果は送信サービス側で確認してください。":params.notice==="sent"?"注文承諾メールの送信依頼が受理されました。配信結果は送信サービス側で確認してください。":params.notice==="processed"?"この注文は既に処理対象外です。":"通知を送れませんでした。送信設定・配信状態をご確認ください。"}</p>}
    {result.error?<p role="alert">注文データを取得できませんでした。DBマイグレーションと権限を確認してください。</p>:<div style={{overflowX:"auto",marginTop:35}}>
     <table style={{borderCollapse:"collapse",minWidth:850,width:"100%",fontSize:12}}>
      <thead><tr>{["入金日時","注文番号","商品・サイズ","税込金額","お届け期限","状態","承諾メール","発送通知","Stripe"].map(h=><th key={h} style={{textAlign:"left",padding:"16px 11px",borderBottom:"1px solid #aaa"}}>{h}</th>)}</tr></thead>
@@ -54,12 +54,12 @@ export default async function EssentialsOrdersManage({searchParams}:{searchParam
        <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd"}}>{o.deliver_by??o.dispatch_by}</td>
        <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd"}}>{o.payment_status} / {o.fulfillment_status}</td>
        <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd"}}>
-         <div>{o.buyer_notice_status==="sent"?"送信済み":o.buyer_notice_status==="failed"?"要確認":"未送信"}</div>
+         <div>{o.buyer_notice_status==="sent"?"送信依頼済み":o.buyer_notice_status==="failed"?"要確認":"未送信"}</div>
          {o.buyer_notice_status==="sent"&&o.buyer_notice_sent_at?<small>{new Date(o.buyer_notice_sent_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})}</small>:null}
          {emailReady&&o.payment_status==="paid"&&o.buyer_notice_status==="pending"?<form action={sendPendingEssentialsNotice}><input type="hidden" name="order_id" value={o.order_id}/><button type="submit" style={{fontSize:12,padding:"7px 10px",marginTop:8,border:"1px solid #888"}}>未送信分を送信</button></form>:null}
        </td>
        <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd"}}>
-         <div>{o.shipment_notice_status==="sent"?"発送通知済み":o.shipment_notice_status==="failed"?"要確認":o.shipment_notice_status==="pending"?"通知待ち":"未発送"}</div>
+         <div>{o.shipment_notice_status==="sent"?"発送通知依頼済み":o.shipment_notice_status==="failed"?"要確認":o.shipment_notice_status==="pending"?"通知待ち":"未発送"}</div>
          {o.shipment_notice_status==="sent"&&o.shipment_notice_sent_at?<small>{new Date(o.shipment_notice_sent_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})}</small>:null}
          {emailReady&&o.payment_status==="paid"&&o.shipment_notice_status==="pending"?<form action={sendPendingEssentialsShipmentNotice}><input type="hidden" name="order_id" value={o.order_id}/><button type="submit" style={{fontSize:12,padding:"7px 10px",marginTop:8,border:"1px solid #888"}}>発送通知を送信</button></form>:null}
        </td>
