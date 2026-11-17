@@ -16,7 +16,7 @@ const yen = (n: number) => n.toLocaleString("ja-JP") + "円";
 const field = "mt-2 w-full rounded-md border border-black/30 bg-white px-4 py-3 text-base outline-none focus:border-[#e66317] focus:ring-2 focus:ring-[#e66317]/20";
 const label = "block text-sm font-bold";
 const checks = "mt-1 h-5 w-5 shrink-0 accent-[#e66317]";
-export default function EntryForm({ initialPlan }: { initialPlan?: Plan }) {
+export default function EntryForm({ initialPlan, initialEmail = "", initialName = "" }: { initialPlan?: Plan; initialEmail?: string; initialName?: string }) {
   const [selected, setSelected] = useState<Plan>(initialPlan || "individual_jan6");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -83,8 +83,8 @@ export default function EntryForm({ initialPlan }: { initialPlan?: Plan }) {
       <fieldset className="space-y-5">
         <legend className="mb-4 text-lg font-black">02. 保護者・代表者の情報</legend>
         <div className="grid gap-5 sm:grid-cols-2">
-          <label className={label}>保護者／成人代表者氏名 <span className="text-[#cc4800]">*</span><input className={field} required name="contact_name" autoComplete="name" maxLength={100} placeholder="例：山田 花子" /></label>
-          <label className={label}>メールアドレス <span className="text-[#cc4800]">*</span><input className={field} type="email" required name="contact_email" autoComplete="email" maxLength={200} placeholder="example@example.com" /></label>
+          <label className={label}>保護者／成人代表者氏名 <span className="text-[#cc4800]">*</span><input className={field} required name="contact_name" defaultValue={initialName} autoComplete="name" maxLength={100} placeholder="例：山田 花子" /></label>
+          <label className={label}>メールアドレス <span className="text-[#cc4800]">*</span><input className={field} type="email" required name="contact_email" defaultValue={initialEmail} autoComplete="email" maxLength={200} placeholder="example@example.com" /></label>
           <label className={label}>連絡先電話番号 <span className="text-[#cc4800]">*</span><input className={field} required type="tel" name="contact_phone" autoComplete="tel" maxLength={18} placeholder="09012345678" /></label>
           <label className={label}>{isTeam ? "チーム名" : "選手氏名"} <span className="text-[#cc4800]">*</span><input className={field} required name="participant_or_team" maxLength={120} placeholder={isTeam ? "チーム正式名称" : "選手氏名"} /></label>
         </div>
