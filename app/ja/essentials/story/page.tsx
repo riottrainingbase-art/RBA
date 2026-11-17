@@ -93,6 +93,19 @@ export default function EssentialsStoryPage() {
           <p className={styles.storyArchiveNote}>RBAの活動内容や運営方針については、団体概要をご覧ください。<Link href="/ja/about">RBAの活動について ↗</Link></p>
         </section>
 
+        <section className={styles.storyValues} aria-labelledby="store-values-title">
+          <div className={styles.storyValuesIntro}>
+            <p className={styles.chapter}>OUR PRINCIPLES / LONG-TERM VISION</p>
+            <h2 id="store-values-title">More than<br/><em>the first drop.</em></h2>
+          </div>
+          <div className={styles.storyValueGrid}>
+            <article><span>01 / LONG WEAR</span><h3>長く着るために。</h3><p>発売日を先に決めず、サイズ・素材・縫製・洗濯後の変化まで確かめる。数回のイベントで終わる一着ではなく、何年も手に取れる定番を目指します。</p></article>
+            <article><span>02 / HUMAN MARK</span><h3>手の痕跡を、尊重する。</h3><p>将来の手描き作品は、制作する作家の権利と報酬、実際の制作方法を明確にしたうえで検討します。一点物と原画を再現した作品を、曖昧な言葉で混同しません。</p></article>
+            <article><span>03 / THE ARCHIVE</span><h3>記憶を残すために。</h3><p>日本各地のコート、挑戦した選手たち、制作する人の記録を大切にする。バスケットボールを生活の一部にしてきた人々の物語を、未来へ引き継いでいきます。</p></article>
+          </div>
+          <p className={styles.storyValuesNote}>この3つはブランドの制作方針です。現在販売している手描き作品や、確定した将来の発売予定を示すものではありません。</p>
+        </section>
+
         <section className={styles.storyDeclaration} aria-labelledby="story-declaration-title">
           <p className={styles.chapter}>THE REASON WE MAKE / RBA ESSENTIALS</p>
           <h2 id="story-declaration-title">Wear the<br /><em>mission.</em></h2>
