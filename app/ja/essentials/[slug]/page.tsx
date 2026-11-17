@@ -39,6 +39,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
   const priceText = commerce.ready && unitPrice !== null
     ? `¥${unitPrice.toLocaleString("ja-JP")}（税込）`
     : "発売時にご案内";
+  const checkoutPath = `/ja/essentials/checkout?item=${item.slug}`;
   const nextItem=essentials.find((entry)=>entry.slug!==item.slug)!;
 
   // Product information is editorial only: omit Offer/price/availability schema until approved.
@@ -57,7 +58,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
 
   return (
     <SiteFrame locale="ja">
-      <div className={styles.page}>
+      <div className={[styles.page, commerce.ready && styles.productWithOrder].filter(Boolean).join(" ")}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}/>
         <div className={styles.productBreadcrumb}><Link href="/ja/essentials">RBA STORE</Link><span aria-hidden="true">/</span><span>{item.number} — {item.name}</span></div>
         <article className={styles.detailLayout}>
@@ -81,7 +82,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             </div>
             {!commerce.ready && <p className={styles.detailSize}>{item.sizeNote}</p>}
             <p className={styles.productStatus} role="status">{commerce.ready?"先行購入受付中":"販売準備中｜現在は注文・予約・決済を受け付けていません"}</p>
-            {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>サイズを選んで先行購入へ <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前アンケートに回答する <span aria-hidden="true">↗</span></a>}
+            {commerce.ready ? <Link className={styles.detailButton} href={checkoutPath}>サイズを選んで先行購入へ <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前アンケートに回答する <span aria-hidden="true">↗</span></a>}
             <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。正式な素材と実寸は、サンプル確認後に掲載します。アンケートは無料で回答できます。"}</p>
           </div>
         </article>
@@ -131,6 +132,10 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           <p>{commerce.ready?"RBAの育成理念を日常に。商品仕様と販売条件をご確認のうえ、お選びください。":"実物サンプル・実測サイズ・発送予定・返品条件を確認したうえで、購入受付を開始します。"}</p>
           <div><Link href="/ja/essentials">← コレクションへ戻る</Link><a href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報 ↗</a></div>
         </section>
+        {commerce.ready && <div className={styles.mobileOrder}>
+          <div><strong>{priceText}</strong><small>国内送料無料</small></div>
+          <Link href={checkoutPath}>サイズを選ぶ</Link>
+        </div>}
       </div>
     </SiteFrame>
   );
