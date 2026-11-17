@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-const memberPortal = "https://rtb-member-training.riot-training-base.chatgpt.site";
+const memberPortal = "https://rtb-member-training.riot-training-base.chatgpt.site/";
+const requestAccess = `mailto:riot.training.base@gmail.com?subject=${encodeURIComponent("RTB会員ページの利用登録")}&body=${encodeURIComponent("RTB会員ページの利用登録をお願いします。\n\nお名前：\nログインに使うメールアドレス：\n")}`;
 
 export const metadata: Metadata = {
   title: "RTB会員ページ | Riot Training Base",
@@ -24,9 +25,11 @@ export default function RtbMemberPage() {
           <h1 style={{ fontSize: "clamp(30px, 7vw, 58px)", fontFamily: "Georgia, serif", lineHeight: 1.15, margin: "12px 0 16px" }}>RTB会員ページ</h1>
           <p>次回の予約と、あなたのトレーニングメニューを確認できます。</p>
           <a href={memberPortal} style={{ display: "inline-flex", alignItems: "center", minHeight: 48, marginTop: 20, borderRadius: 3, padding: "8px 18px", background: "#c7ac78", color: "#171916", fontWeight: 700 }}>
-            会員ページを開く <span aria-hidden="true">　→</span>
+            ログインして開く <span aria-hidden="true">　→</span>
           </a>
-          <p style={{ color: "#d8dbce", marginTop: 14, fontSize: 14 }}>初めての方は、RTBで利用登録したメールアドレスでログインしてください。</p>
+          <p style={{ color: "#d8dbce", marginTop: 14, fontSize: 14 }}>RTBで登録したメールアドレスのChatGPTアカウントでログインできます。</p>
+          <a href={requestAccess} style={{ display: "inline-flex", alignItems: "center", minHeight: 44, marginTop: 8, color: "#ead8b5", textDecoration: "underline", textUnderlineOffset: 4 }}>初めての方は利用登録を依頼する</a>
+          <p style={{ color: "#d8dbce", fontSize: 14 }}>メールにお名前とログイン用アドレスをご記入ください。RTBからの招待後、このページから開けます。</p>
         </section>
         <ul aria-label="会員ページでできること" style={{ listStyle: "none", padding: 0, margin: "16px 0", display: "grid", gap: 8 }}>
           {features.map(([title, detail]) => (
