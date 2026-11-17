@@ -11,7 +11,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
 type Region="all"|"tohoku"|"kanto"|"kansai"|"kyushu"|"okinawa"|"online";
-type Age="all"|"U8"|"U10"|"U12"|"U15"|"U18"|"COACH";
+type Age="all"|"U8"|"U10"|"U12"|"U14"|"U15"|"U18"|"COACH";
 type Kind="all"|"TRAIN"|"PLAY"|"TRAVEL"|"COACH";
 
 const copy={
@@ -43,7 +43,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
       const q=new URLSearchParams(location.search);
       const r=q.get("region") as Region|null; const a=q.get("age") as Age|null; const k=q.get("kind") as Kind|null;
       if(r&&["tohoku","kanto","kansai","kyushu","okinawa","online"].includes(r))setRegion(r);
-      if(a&&["U8","U10","U12","U15","U18","COACH"].includes(a))setAge(a);
+      if(a&&["U8","U10","U12","U14","U15","U18","COACH"].includes(a))setAge(a);
       if(k&&["TRAIN","PLAY","TRAVEL","COACH"].includes(k))setKind(k);
       void db.auth.getUser().then(async({data})=>{
         const id=data.user?.id||null;setUserId(id);
@@ -81,7 +81,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
     <section className="opportunity-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index inverse"><Search size={15}/> RBA OPPORTUNITIES</p><h1>{c.title}</h1><p>{c.lead}</p>{locale==="ja"?<><p className={styles.steps}>日程を選ぶ → 内容・費用を確認 → 申し込む</p><a className={styles.heroLink} href="#opportunity-list">募集中の活動を見る <ArrowRight size={18}/></a></>:null}</section>
     <section className="opportunity-controls section-pad" aria-label={c.filter}><div className="opportunity-filter-head"><SlidersHorizontal/><div><p className="section-index">FILTER</p><h2>{c.filter}</h2></div><strong>{visible.length}{c.results}</strong></div><div className="opportunity-filters">
       <label>{c.region}<select value={region} onChange={e=>{const v=e.target.value as Region;setRegion(v);update({region:v})}}><option value="all">{c.all}</option>{Object.entries(c.regions).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label>
-      <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U15","U18","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
+      <label>{c.age}<select value={age} onChange={e=>{const v=e.target.value as Age;setAge(v);update({age:v})}}><option value="all">{c.all}</option>{["U8","U10","U12","U14","U15","U18","COACH"].map(v=><option key={v}>{v}</option>)}</select></label>
       <label>{c.kind}<select value={kind} onChange={e=>{const v=e.target.value as Kind;setKind(v);update({kind:v})}}><option value="all">{c.all}</option>{(["TRAIN","PLAY","TRAVEL","COACH"] as const).map(v=><option key={v} value={v}>{locale==="ja"?({TRAIN:"クリニック・キャンプ・スクール",PLAY:"試合・交流",TRAVEL:"海外遠征",COACH:"指導者講習"})[v]:v}</option>)}</select></label>
     </div></section>
     <section id="opportunity-list" className="opportunity-results section-pad" aria-live="polite" aria-label={locale==="ja"?"募集中の活動":c.results}>{visible.length?<div className="opportunity-card-grid">{visible.map(p=>{const info=locale==="ja"?p.japaneseInfoPath:undefined;const detail=locale==="ko"&&p.id==="okinawa-december-camp"?"/ko/events/okinawa-international-camp-2026":info||(p.detailPath?localePath(locale,p.detailPath):null);return <article key={p.id}><div className="opportunity-card-top"><span>{pathwayLabel(locale,p.pathway)}</span><strong>{c.open}</strong></div><h2>{tr(p.title,locale)}</h2><dl><div><dt><CalendarDays/>{c.date}</dt><dd>{tr(p.date,locale)}</dd></div><div><dt><MapPin/>{c.place}</dt><dd>{tr(p.place,locale)}</dd></div><div><dt><Users/>{c.target}</dt><dd>{tr(p.audience,locale)}</dd></div><div><dt><CircleDollarSign/>{c.fee}</dt><dd>{tr(p.price,locale)}</dd></div></dl><p className={styles.entryNote}>{tr(p.payment,locale)}</p><div className={styles.cardActions}><a className={styles.apply} data-growth-id={`opportunity-apply-${p.id}`} href={detail||p.applicationUrl} target={(detail||p.applicationUrl).startsWith("/")?undefined:"_blank"} rel={(detail||p.applicationUrl).startsWith("/")?undefined:"noopener noreferrer"} aria-label={locale==="ja"?`${tr(p.title,locale)}の詳細・申込へ`:undefined}>{locale==="ja"?"詳細・申込へ":c.apply}<ArrowRight size={18}/></a><button className={styles.save} type="button" aria-pressed={saved.includes(p.id)} disabled={saving===p.id} onClick={()=>void toggleSave(p)}><Bookmark size={16} fill={saved.includes(p.id)?"currentColor":"none"}/>{saved.includes(p.id)?({ja:"保存済み",en:"Saved","zh-tw":"已收藏",ko:"저장됨"})[locale] :({ja:"保存する",en:"Save","zh-tw":"收藏",ko:"저장"})[locale]}</button></div></article>})}</div>:<div className="opportunity-empty"><Search/><p>{c.empty}</p><button type="button" className={styles.reset} onClick={()=>{setRegion("all");setAge("all");setKind("all");update({region:"all",age:"all",kind:"all"})}}>{locale==="ja"?"条件をリセット":c.all}</button></div>}</section>
