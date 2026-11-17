@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { programmes, isProgrammeActive } from "./programme-data";
 
 type Category = "all" | "clinic" | "camp" | "lecture" | "other";
@@ -87,11 +88,11 @@ export function MemberClinicCatalog() {
       <span className="text-xs font-black tracking-widest text-[#de6419]">RBA UNITED / JAPAN × GUAM</span>
       <h2 className="mt-3 text-2xl font-black">神戸2027・男子U14国際交流</h2>
       <p className="mt-3 text-sm leading-8">グアム来日と国内男子U14交流を調整中です。会場・日時・年齢基準・正式受入枠が確定しておらず、前金決済はまだ開始していません。申込や出場を確約しません。</p>
-      <a href="/ja/events/kobe-boys-u14-exchange-2027" className="mt-5 inline-flex min-h-12 items-center rounded bg-black px-5 py-3 text-sm font-bold text-white">神戸交流の最新情報・申込方法 →</a>
+      <Link href="/ja/events/kobe-boys-u14-exchange-2027" className="mt-5 inline-flex min-h-12 items-center rounded bg-black px-5 py-3 text-sm font-bold text-white">神戸交流の最新情報・申込方法 →</Link>
     </aside>
     <div className="mt-8 flex flex-wrap gap-4 text-sm">
-      <a href="/ja/my-homecourt/app" className="font-bold underline underline-offset-4">MY HOME COURTへ戻る</a>
-      <a href="/ja/payments" className="font-bold underline underline-offset-4">支払い・参加費の案内</a>
+      <Link href="/ja/my-homecourt/app" className="font-bold underline underline-offset-4">MY HOME COURTへ戻る</Link>
+      <Link href="/ja/payments" className="font-bold underline underline-offset-4">支払い・参加費の案内</Link>
       <a href="mailto:riot.training.base@gmail.com" className="font-bold underline underline-offset-4">申込・入金の問い合わせ</a>
     </div>
     <p className="mt-4 text-xs leading-7 text-black/60">新規企画はRBA公式のプログラム一覧に掲載・審査されるとここにも反映されます。リンク先は各企画の公式申込先であり、MY HOME COURTへのログインのみでは申込完了にはなりません。</p>
