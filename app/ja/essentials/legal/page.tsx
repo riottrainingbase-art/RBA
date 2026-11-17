@@ -36,7 +36,7 @@ export default function EssentialsLegalPage(){
         {!c.ready?<div style={{background:"#e7e5df",padding:"30px",margin:"35px 0",lineHeight:2}}><strong>現在、公式アパレルの先行販売は開始していません。</strong><p>価格案はTシャツ4,900円、ブラック上下セット19,800円（税込）です。正式な販売条件は発売前に確定して掲載します。先行販売の日本国内送料は無料です。事業者の販売者表示・サイズ表・受注期間・発送期限・キャンセル及び返品条件を確定し、販売条件を公開した後に決済を有効化します。以下は販売開始前のご案内です。</p></div>:
         <div style={{borderTop:"1px solid #999",margin:"45px 0 60px"}}>{details.map(([key,value])=><div key={key} style={{display:"grid",gridTemplateColumns:"minmax(125px,1fr) minmax(0,2.5fr)",gap:20,padding:"25px 0",borderBottom:"1px solid #d1cec7",fontSize:13,lineHeight:2}}><strong>{key}</strong><span>{value}</span></div>)}</div>}
         <h2 style={{fontFamily:"Georgia,serif",fontWeight:400,fontSize:34,margin:"60px 0 20px"}}>About the first drop.</h2>
-        <p style={{fontSize:13,lineHeight:2,maxWidth:800}}>RBAのCOLLECTION 001はホワイトTシャツとブラックのセットアップを揃える公式アパレル企画です。掲載中の画像は実物の撮影写真ではなくデザイン検討用イメージです。素材・サイズ・ロゴワッペン・写真は量産仕様と相違する場合があるため、正式な商品説明を確認してからお申込みください。</p>
+        <p style={{fontSize:13,lineHeight:2,maxWidth:800}}>RBAのCOLLECTION 001はホワイトTシャツとブラックのセットアップを揃える公式アパレル企画です。商品画像はイメージです。生地・サイズ・ロゴの仕様は、ご購入前に確定した商品説明と販売条件をご確認ください。</p>
         <div style={{display:"flex",flexWrap:"wrap",gap:25,marginTop:50,fontSize:12}}><Link href="/ja/store">ショップトップへ戻る ↗</Link><Link href="/ja/essentials/guide">購入前のご案内 ↗</Link><Link href="/ja/policies">RBAの参加規約等 ↗</Link></div>
       </div>
     </main>
