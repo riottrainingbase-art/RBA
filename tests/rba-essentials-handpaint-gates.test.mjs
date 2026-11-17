@@ -212,3 +212,50 @@ test("Risa shipping address is available only to identity-checked paid-order sta
  assert.match(maker,/\/ja\/essentials\/production\/\$\{o\.order_id\}\/shipping/);
  assert.doesNotMatch(page,/fetch\(\s*["']https:\/\//);
 });
+
+
+test("RBA STORE is the clearly identified public shop with both apparel initiatives and original logo",()=>{
+ const hub=read("app/ja/store/page.tsx");
+ const hubStyles=read("app/ja/store/store.module.css");
+ const catalogPage=read("app/ja/essentials/page.tsx");
+ const story=read("app/ja/essentials/story/page.tsx");
+ const productPage=read("app/ja/essentials/[slug]/page.tsx");
+ const siteFrame=read("components/site-frame.tsx");
+ const catalog=read("lib/rba-essentials.ts");
+ assert.match(hub,/id="rba-store-heading"/);
+ assert.match(hub,/id="collection-001"/);
+ assert.match(hub,/id="performance-tee"/);
+ assert.match(hub,/RBA STORE/);
+ assert.match(hub,/rba-logo-original\.jpg/);
+ assert.match(hub,/getEssentialsPresaleConfig/);
+ assert.match(hub,/canSellPerformanceTee/);
+ assert.match(hubStyles,/\.storeProducts/);
+ assert.match(hubStyles,/\.storeIntro/);
+ assert.match(catalogPage,/RBA STORE/);
+ assert.match(catalogPage,/canonical: "\/ja\/essentials"/);
+ assert.match(productPage,/RBA STORE/);
+ assert.match(story,/LONG WEAR/);
+ assert.match(story,/HUMAN MARK/);
+ assert.match(story,/THE ARCHIVE/);
+ assert.match(siteFrame,/RBA STORE｜公式ウェア/);
+ assert.match(catalog,/name: "WHITE TEE"/);
+ assert.match(catalog,/name: "BLACK SETUP"/);
+ assert.match(catalogPage,/commerce\.ready/);
+ assert.match(productPage,/commerce\.ready/);
+});
+
+test("front-end brand name changes preserve first-drop Stripe IDs and fail-closed live checkout",()=>{
+ const config=read("lib/essentials-commerce.ts");
+ const hook=read("app/api/commerce/essentials-payment-link-webhook/route.ts");
+ const store=read("app/ja/store/page.tsx");
+ const legal=read("app/ja/essentials/legal/page.tsx");
+ assert.match(config,/RBA_ESSENTIALS_PREORDER_ENABLED/);
+ assert.match(config,/RBA_ESSENTIALS_SAMPLES_APPROVED/);
+ assert.match(hook,/plink_1UcRBCRXDnnSs6XNEW4xN93M/);
+ assert.match(hook,/plink_1UcRBHRXDnnSs6XNoHlBdpSQ/);
+ assert.match(hook,/session\.payment_status!=="paid"/);
+ assert.match(store,/getEssentialsPresaleConfig/);
+ assert.match(store,/apparel\.ready/);
+ assert.match(legal,/c\.ready/);
+ assert.doesNotMatch(store,/buy\.stripe\.com\/|checkout\.stripe\.com\//);
+});
