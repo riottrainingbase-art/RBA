@@ -86,7 +86,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。正式な素材と実寸は、サンプル確認後に掲載します。アンケートは無料で回答できます。"}</p>
             <aside className={styles.detailHandwritten} aria-label="手書きカスタム">
               <strong>手書きカスタム</strong>
-              <p>{item.slug === "setup" ? "セットアップのパーカー" : "白T"}に、お好きな短い言葉を手書きで添える特別仕様です。</p>
+              <p>{item.slug === "setup" ? "セットアップのパーカー" : "白T"}に、RBAが用意したメッセージを手書きで添える特別仕様です。</p>
               {commerce.handwrittenAvailable && commerce.handwrittenJPY !== null ? (
                 <Link href={checkoutPath + "#handwritten-option"}>手書きカスタムを選ぶ（追加 ¥{commerce.handwrittenJPY.toLocaleString("ja-JP")}・税込）</Link>
               ) : (
