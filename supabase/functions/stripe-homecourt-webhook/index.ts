@@ -1,3 +1,4 @@
+import { processOkinawaCampCheckout, processOkinawaCampRefund } from "./okinawa-camp.ts";
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import Stripe from "npm:stripe@22.4.0";
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -310,7 +311,93 @@ async function processOkinawaClinicFailure(supabase:any,event:any,session:any){
   return true;
 }
 
+
+const KOBE_DEPOSIT_LINKS: Record<string,number> = {
+ "plink_1UcPwIRXDnnSs6XNAUOHoZJy":4400,
+ "plink_1UcPwxRXDnnSs6XNE6AIg8iA":7700,
+ "plink_1UcPx7RXDnnSs6XNrLgIh6ix":38500,
+ "plink_1UcPxERXDnnSs6XNemtg7jMC":71500,
+ "plink_1UcQ26RXDnnSs6XNKwkYgjeJ":50000,
+};
+const KOBE_BALANCE_LINKS: Record<string,number> = {
+ "plink_1UcPy5RXDnnSs6XN6EFKyxBC":4400,
+ "plink_1UcPyIRXDnnSs6XNgh5I9gDm":7700,
+ "plink_1UcPyVRXDnnSs6XNEaP6WDny":38500,
+ "plink_1UcPydRXDnnSs6XNX8eE1KuW":71500,
+ "plink_1UcQ2ORXDnnSs6XN7tE5U2Xs":50000,
+};
+async function processKobeU14DepositCheckout(supabase:any,event:any,session:any) {
+ const link=sid(session.payment_link);
+ const depositAmount=KOBE_DEPOSIT_LINKS[link] ?? null;
+ const balanceAmount=KOBE_BALANCE_LINKS[link] ?? null;
+ if(depositAmount===null && balanceAmount===null)return false;
+ const isDeposit=depositAmount!==null;
+ const expected=isDeposit?depositAmount:balanceAmount;
+ const reference=String(session.client_reference_id||"");
+ if(!UUID_RE.test(reference)){
+   await storeUnmatched(supabase,event,session,"kobe_u14_reference_missing"); return true;
+ }
+ const {data:entry,error}=await supabase.from("kobe_u14_deposit_applications")
+  .select("id,contact_email,status,plan_key,deposit_jpy,balance_jpy,stripe_deposit_link_id,stripe_balance_link_id,stripe_deposit_session_id,stripe_balance_session_id,deposit_paid_at")
+  .eq("id",reference).maybeSingle();
+ if(error)throw error;
+ if(!entry){ await storeUnmatched(supabase,event,session,"kobe_u14_application_not_found"); return true; }
+ const email=String(session.customer_details?.email||session.customer_email||"").trim().toLowerCase();
+ const amount=Number(session.amount_total);
+ const expectedLink=isDeposit?entry.stripe_deposit_link_id:entry.stripe_balance_link_id;
+ const expectedAmount=isDeposit?entry.deposit_jpy:entry.balance_jpy;
+ if(link!==expectedLink || amount!==expectedAmount || amount!==expected ||
+   session.currency!=="jpy" || session.livemode!==true || session.mode!=="payment" ||
+   !email || email!==String(entry.contact_email).trim().toLowerCase()){
+   await storeUnmatched(supabase,event,session,"kobe_u14_payment_values_or_email_mismatch"); return true;
+ }
+ if(session.payment_status!=="paid")return true;
+ const col=isDeposit?"stripe_deposit_session_id":"stripe_balance_session_id";
+ const piCol=isDeposit?"stripe_deposit_payment_intent_id":"stripe_balance_payment_intent_id";
+ const dateCol=isDeposit?"deposit_paid_at":"balance_paid_at";
+ const desired=isDeposit?"deposit_paid":"fully_paid";
+ const required=isDeposit?"awaiting_deposit":"balance_approved";
+ if(entry.status===desired && entry[col]===session.id)return true;
+ if(entry.status!==required || entry[col] || (!isDeposit && !entry.deposit_paid_at)){
+   await storeUnmatched(supabase,event,session,"kobe_u14_duplicate_or_unapproved_payment"); return true;
+ }
+ const now=new Date().toISOString();
+ const {data:row,error:writeError}=await supabase.from("kobe_u14_deposit_applications")
+  .update({status:desired,[col]:session.id,[piCol]:sid(session.payment_intent),[dateCol]:now,stripe_paid_email:email,updated_at:now})
+  .eq("id",entry.id).eq("status",required).is(col,null).select("id").maybeSingle();
+ if(writeError)throw writeError;
+ if(!row){await storeUnmatched(supabase,event,session,"kobe_u14_concurrent_or_duplicate_payment");return true;}
+ await logAction(supabase,"kobe_u14_payment_confirmed",session.id,null,null,{
+  registration_id:entry.id,stage:isDeposit?"deposit":"balance",amount_jpy:amount,plan:entry.plan_key,paid:true
+ },event.id+":kobe-u14-paid");
+ return true;
+}
+async function processKobeU14Refund(supabase:any,event:any,refund:any) {
+ const intent=sid(refund.payment_intent);
+ if(!intent)return false;
+ const {data:entry,error}=await supabase.from("kobe_u14_deposit_applications")
+   .select("id,status,stripe_deposit_payment_intent_id,stripe_balance_payment_intent_id")
+   .or("stripe_deposit_payment_intent_id.eq."+intent+",stripe_balance_payment_intent_id.eq."+intent)
+   .maybeSingle();
+ if(error)throw error;
+ if(!entry)return false;
+ const isDeposit=entry.stripe_deposit_payment_intent_id===intent;
+ const now=new Date().toISOString();
+ const fullyRefunded=refund.status==="succeeded";
+ const next=fullyRefunded?(isDeposit?"refunded":"needs_review"):"refund_pending";
+ const updates:any={status:next,updated_at:now};
+ if(fullyRefunded && isDeposit)updates.refund_completed_at=now;
+ const {error:updateError}=await supabase.from("kobe_u14_deposit_applications").update(updates).eq("id",entry.id);
+ if(updateError)throw updateError;
+ await logAction(supabase,"kobe_u14_refund",refund.id,null,null,{
+  registration_id:entry.id,stage:isDeposit?"deposit":"balance",status:refund.status,amount_jpy:refund.amount
+ },event.id+":kobe-u14-refund");
+ return true;
+}
+
 async function processCheckout(supabase:any,event:any,session:any) {
+  if(await processKobeU14DepositCheckout(supabase,event,session))return;
+  if(await processOkinawaCampCheckout(supabase,event,session))return;
   if(await processOkinawaClinicCheckout(supabase,event,session))return;
   const subjectFromRef=await resolveByClientRef(supabase,session);
   const emailUser=await resolveByEmail(supabase,session);
@@ -547,6 +634,7 @@ async function processInvoice(supabase:any,invoice:any,paid:boolean) {
   return false;
 }
 async function processRefund(supabase:any,refund:any) {
+  if(await processOkinawaCampRefund(supabase,refund))return true;
   const paymentIntentId=sid(refund.payment_intent);
   if(!paymentIntentId) return false;
   const {error}=await supabase.rpc("record_stripe_refund",{
@@ -588,7 +676,7 @@ Deno.serve(async (request:Request)=>{
       const session=event.data.object; handled=await processEssentialCheckout(supabase,event,session); if(!handled){ await processCheckout(supabase,event,session); handled=true; }
     } else if(event.type==="checkout.session.async_payment_failed") {
       const session=event.data.object;
-      if(await processOkinawaClinicFailure(supabase,event,session)){ handled=true; } else if(String(session.metadata?.program||"")==="essential_supporters"){ await logAction(supabase,"essential_supporter_payment_failed",session.id,null,null,{program:"essential_supporters"},event.id+":essential_supporter_payment_failed"); handled=true; } else {
+      if(await processOkinawaCampCheckout(supabase,event,session)){ handled=true; } else if(await processOkinawaClinicFailure(supabase,event,session)){ handled=true; } else if(String(session.metadata?.program||"")==="essential_supporters"){ await logAction(supabase,"essential_supporter_payment_failed",session.id,null,null,{program:"essential_supporters"},event.id+":essential_supporter_payment_failed"); handled=true; } else {
       const subjectId=await resolveByClientRef(supabase,session);
       const payerId=(await resolveByEmail(supabase,session))||subjectId;
       if(payerId) {
@@ -607,7 +695,7 @@ Deno.serve(async (request:Request)=>{
     } else if(event.type==="charge.succeeded") {
       handled=await processEssentialCharge(supabase,event,event.data.object);
     } else if(["refund.created","refund.updated","refund.failed"].includes(event.type)) {
-      handled=await processEssentialRefund(supabase,event,event.data.object); if(!handled) handled=await processRefund(supabase,event.data.object);
+      handled=await processEssentialRefund(supabase,event,event.data.object); if(!handled) handled=await processKobeU14Refund(supabase,event,event.data.object); if(!handled) handled=await processRefund(supabase,event.data.object);
     } else if(["charge.dispute.created","charge.dispute.updated","charge.dispute.closed","charge.dispute.funds_withdrawn","charge.dispute.funds_reinstated"].includes(event.type)) {
       handled=await processEssentialDispute(supabase,event,event.data.object);
     }
@@ -620,3 +708,4 @@ Deno.serve(async (request:Request)=>{
     return new Response("Webhook processing failed",{status:500});
   }
 });
+
