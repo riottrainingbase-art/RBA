@@ -499,3 +499,88 @@
 @media(prefers-reduced-motion:reduce){
  .page .journeyCard,.page .programmes article,.page .ageCard,.sectionNavigator a{transition:none}
 }
+
+
+/* RBA mobile homepage CTA readability guard (iOS Safari / Instagram in-app browser).
+   Explicit foreground and text-fill prevent a white CTA from appearing blank if
+   inherited text styles are overridden by webview styling. */
+.page .hostActions .hostPrimary,
+.page .hostActions .hostPrimary:visited {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+  font-weight: 900;
+  text-decoration: none;
+  text-align: left;
+}
+.page .hostActions .hostPrimary > span {
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+  opacity: 1;
+  visibility: visible;
+  mix-blend-mode: normal;
+}
+.page .hostActions .hostPrimary:hover,
+.page .hostActions .hostPrimary:focus-visible {
+  background-color: #eceee9;
+  border-color: #eceee9;
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+}
+.page .hostActions .hostPrimary:focus-visible {
+  outline: 3px solid #b4e600;
+  outline-offset: 4px;
+}
+.page .hostActions .hostSecondary,
+.page .hostActions .hostSecondary:visited {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.page .hostActions .hostSecondary:hover {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.page .hero .actions .primary,
+.page .hero .actions .primary:visited,
+.page .programmes article > a {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.page .hero .actions .secondary,
+.page .hero .actions .secondary:visited {
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+}
+@media (max-width: 700px) {
+  .page .hostCallout {
+    gap: 24px;
+    padding: 30px 22px;
+  }
+  .page .hostCallout h2 {
+    font-size: clamp(30px, 8.25vw, 42px);
+    line-height: 1.28;
+    letter-spacing: -.045em;
+    text-wrap: pretty;
+  }
+  .page .hostDescription {
+    font-size: 15px;
+    line-height: 1.85;
+    overflow-wrap: break-word;
+  }
+  .page .hostActions .hostPrimary {
+    min-height: 58px;
+    padding: 14px 17px;
+    line-height: 1.5;
+    font-size: 15px;
+    white-space: normal;
+  }
+  .page .hostActions .hostPrimary > span:first-child {
+    flex: 1 1 auto;
+  }
+  .page .hostActions .hostSecondary {
+    min-height: 50px;
+    line-height: 1.6;
+    white-space: normal;
+  }
+}
