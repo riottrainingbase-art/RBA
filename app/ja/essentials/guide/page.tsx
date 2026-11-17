@@ -6,8 +6,8 @@ import styles from "../essentials.module.css";
 
 export const dynamic="force-dynamic";
 export const metadata: Metadata = {
-  title: "購入前に知っておきたいこと | RBA ESSENTIALS",
-  description: "RBA ESSENTIALSのサイズ・商品画像・先行販売・国内送料・発送・返品・購入方法を確認するガイド。販売開始前の確認事項も透明にお知らせします。",
+  title: "購入前に知っておきたいこと | RBA STORE",
+  description: "RBA公式ウェアのサイズ・商品画像・先行販売・国内送料・発送・返品・購入方法を確認するガイド。販売開始前の確認事項も透明にお知らせします。",
   alternates:{canonical:"/ja/essentials/guide"},
   robots:{index:false,follow:true},
 };
@@ -26,9 +26,9 @@ export default function EssentialsGuidePage(){
   return (
     <SiteFrame locale="ja">
       <main className={styles.page}>
-        <div className={styles.productBreadcrumb}><Link href="/ja/essentials">RBA ESSENTIALS</Link><span aria-hidden="true">/</span><span>BEFORE YOU BUY</span></div>
+        <div className={styles.productBreadcrumb}><Link href="/ja/store">RBA STORE</Link><span aria-hidden="true">/</span><span>BEFORE YOU BUY</span></div>
         <header className={styles.guideOpening}>
-          <div><p className={styles.chapter}>A CONSIDERED PURCHASE / RBA ESSENTIALS</p>
+          <div><p className={styles.chapter}>A CONSIDERED PURCHASE / RBA STORE</p>
             <h1>Good design.<br/><em>Clear promises.</em></h1></div>
           <div className={styles.guideOpeningFoot}>
             <p>気に入った一着を、納得して選んでほしい。</p>
@@ -63,7 +63,7 @@ export default function EssentialsGuidePage(){
           <p className={styles.chapter}>THE NEXT CHAPTER IS MADE WITH CARE.</p>
           <h2>No shortcuts.<br/><em>No false promises.</em></h2>
           <p>正式な商品説明が整ってから、購入を選べる状態にします。販売条件の確定前に決済を求めることはありません。</p>
-          <div><Link href="/ja/essentials">コレクションを見る ↗</Link><Link href="/ja/essentials/story">ブランドの背景 ↗</Link><Link href="/ja/essentials/legal">法定表示・販売条件 ↗</Link></div>
+          <div><Link href="/ja/store">ショップトップへ ↗</Link><Link href="/ja/essentials/story">ブランドの背景 ↗</Link><Link href="/ja/essentials/legal">法定表示・販売条件 ↗</Link></div>
         </section>
       </main>
     </SiteFrame>
