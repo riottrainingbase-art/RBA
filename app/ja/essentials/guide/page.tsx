@@ -55,14 +55,14 @@ export default function EssentialsGuidePage(){
           <div>
             {importantQuestions.map((entry,i)=><details className={styles.guideFaqItem} key={entry.question}>
               <summary><span>{String(i+1).padStart(2,"0")}</span>{entry.question}<span aria-hidden="true" className={styles.guideFaqPlus}>＋</span></summary>
-              <p>{entry.answer}</p>
+              <p>{config.ready ? (i===0?"先行購入受付中です。商品仕様、価格、発送・お届け期限、キャンセル・返品条件をご確認ください。":i===2?"商品詳細で確定した素材と実寸をご確認ください。不明な点があれば購入前にお問い合わせください。":i===3?`国内送料はFIRST DROP限定で0円です。発送期限：${config.dispatchDeadline}、お届け期限：${config.deliveryDeadline}。`:i===4?"キャンセル・返品・不良品対応は販売条件ページでご確認ください。":entry.answer) : entry.answer}</p>
             </details>)}
           </div>
         </section>
         <section className={styles.guideEnd}>
           <p className={styles.chapter}>THE NEXT CHAPTER IS MADE WITH CARE.</p>
           <h2>No shortcuts.<br/><em>No false promises.</em></h2>
-          <p>正式な商品説明が整ってから、購入を選べる状態にします。販売条件の確定前に決済を求めることはありません。</p>
+          <p>{config.ready?"販売条件・実寸・納期をご確認のうえ、納得できる商品をお選びください。":"正式な商品説明が整ってから、購入を選べる状態にします。販売条件の確定前に決済を求めることはありません。"}</p>
           <div><Link href="/ja/store">ショップトップへ ↗</Link><Link href="/ja/essentials/story">ブランドの背景 ↗</Link><Link href="/ja/essentials/legal">法定表示・販売条件 ↗</Link></div>
         </section>
       </main>
