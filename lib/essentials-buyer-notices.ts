@@ -67,7 +67,7 @@ export async function sendEssentialsBuyerAcceptance(orderId:string):Promise<Resu
    const expectedLink=row.stripe_payment_link_id;
    const isLink=row.checkout_source==="stripe_payment_link" &&
        session.metadata?.program==="rba_essentials_first_drop" &&
-       (expectedLink==="plink_1UcRBCRXDnnSs6XNEW4xN93M"||expectedLink==="plink_1UcRBHRXDnnSs6XNoHlBdpSQ") &&
+       (expectedLink==="plink_1UcRBCRXDnnSs6XNEW4xN93M"||expectedLink==="plink_1UcRBHRXDnnSs6XNoHlBdpSQ"||expectedLink==="plink_1UcioHRXDnnSs6XNiyndHsxG") &&
        link===expectedLink;
    if(!session.livemode||session.mode!=="payment"||session.payment_status!=="paid"||
       session.currency!=="jpy"||session.amount_total!==row.amount_total_jpy||
