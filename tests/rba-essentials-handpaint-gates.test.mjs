@@ -304,3 +304,43 @@ test("RBA checkout independently verifies the real Stripe merchant, webhooks and
  assert.match(admin,/rbaWebhookDestinations/);
  assert.doesNotMatch(paidHook,/verifyEssentialsStripePublicBranding|verifyEssentialsStripeWebhookDestinations|essentialsFulfillmentCanAcceptOrders/);
 });
+
+
+test("acceptance notices are fail-closed and never expose buyer email in the database",()=>{
+ const mail=read("lib/essentials-buyer-notices.ts");
+ const mailConfig=read("lib/essentials-notice-config.ts");
+ const cfg=read("lib/essentials-commerce.ts");
+ const stripeSite=read("app/api/commerce/essentials-preorder-webhook/route.ts");
+ const stripeLink=read("app/api/commerce/essentials-payment-link-webhook/route.ts");
+ assert.match(mail,/import "server-only"/);
+ assert.match(mail,/stripe\.checkout\.sessions\.retrieve/);
+ assert.match(mail,/session\.payment_status!=="paid"/);
+ assert.match(mail,/\.eq\("buyer_notice_status","pending"\)/);
+ assert.match(mail,/buyer_notice_status:"sent"/);
+ assert.match(mail,/Idempotency-Key/);
+ assert.match(mail,/rba-store-acceptance-/);
+ assert.match(mail,/buyer_notice_sent_at/);
+ assert.doesNotMatch(mail,/customer_email.*\.insert|customer_details.*\.upsert/);
+ assert.match(mailConfig,/RBA_ESSENTIALS_NOTICE_SENDER_VERIFIED/);
+ assert.match(mailConfig,/RBA_ESSENTIALS_NOTICE_ENABLED/);
+ assert.match(mailConfig,/RBA_ESSENTIALS_RESEND_API_KEY/);
+ assert.match(cfg,/getEssentialsNoticeConfig\(\)\.configured/);
+ assert.match(stripeSite,/sendEssentialsBuyerAcceptance\(order\)/);
+ assert.match(stripeLink,/sendEssentialsBuyerAcceptance\(recorded\.data\.order_id\)/);
+ assert.match(stripeLink,/\.eq\("stripe_checkout_session_id",session\.id\)/);
+});
+
+test("only RBA admin may manually send pending buyer notices, failures are not automatically retried",()=>{
+ const action=read("app/ja/essentials/manage/notice-actions.ts");
+ const orders=read("app/ja/essentials/manage/page.tsx");
+ const sender=read("lib/essentials-buyer-notices.ts");
+ assert.match(action,/\.auth\.getUser\(\)/);
+ assert.match(action,/profile.*role/);
+ assert.match(action,/role!=="admin"/);
+ assert.match(action,/sendEssentialsBuyerAcceptance/);
+ assert.match(orders,/buyer_notice_status/);
+ assert.match(orders,/emailReady&&o\.payment_status==="paid"&&o\.buyer_notice_status==="pending"/);
+ assert.match(sender,/if\(row\.buyer_notice_status!=="pending"\)/);
+ assert.match(sender,/delivery_uncertain_review_required/);
+ assert.doesNotMatch(action,/role==="production"/);
+});
