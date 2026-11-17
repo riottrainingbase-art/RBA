@@ -90,3 +90,83 @@
 .heroPair{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#eee;max-width:1500px;margin:auto}
 .heroPair img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center;background:#bcbab7}
 @media(max-width:650px){.heroPair{gap:2px;grid-template-columns:1fr 1fr}.heroPair img{aspect-ratio:4/5;object-position:center}}
+
+
+/* RBA editorial identity: black / off-white / court-grey. No counterfeit luxury gold. */
+.identityRibbon{display:grid;grid-template-columns:1fr 2fr 1fr;align-items:center;gap:35px;padding:29px clamp(24px,5.5vw,100px);background:#111;color:#f4f2ec;border-top:1px solid #3a3a3a;border-bottom:1px solid #3a3a3a}
+.identityRibbon>span{font-size:9px;letter-spacing:.22em;font-weight:700}
+.identityRibbon p{font-family:Georgia,"Times New Roman",serif;font-size:clamp(18px,2.4vw,35px);letter-spacing:-.035em;text-align:center;line-height:1.1;margin:0}
+.identityRibbon em{font-style:italic;color:#a7a7a7;font-weight:400}
+.identityRibbon a{justify-self:end;font-size:10px;letter-spacing:.11em;color:#f4f2ec!important;text-decoration:none!important;border-bottom:1px solid #777;padding-bottom:7px;white-space:nowrap}
+.origin{display:grid;grid-template-columns:28% 1fr;gap:clamp(30px,7vw,120px);background:#e9e7e0;padding:clamp(80px,9vw,150px) clamp(24px,5.5vw,100px);border-bottom:1px solid #cac8bf}
+.originAside{display:flex;flex-direction:column;justify-content:space-between;gap:50px}
+.originAside>span{font-size:10px;line-height:1.7;letter-spacing:.19em;color:#666259}
+.originContent{max-width:1000px}
+.originMini{margin:0 0 clamp(35px,6vw,80px);color:#75716a;font-size:10px;letter-spacing:.18em}
+.originContent h2{font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;letter-spacing:-.07em!important;line-height:1.3!important;font-size:clamp(35px,5vw,79px)!important;margin:0 0 clamp(38px,6vw,82px)!important}
+.originContent h2 em{font-style:italic;color:#84817a}
+.originFoot{max-width:670px;margin-left:auto;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.originFoot p{font-size:13px;line-height:2.25;color:#48453f;margin:0}
+.originLink{display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid #88837a;border-bottom:1px solid #88837a;text-decoration:none!important;padding:24px 0;margin-top:66px;font-size:10px;letter-spacing:.15em;font-weight:700}
+.originLink span{font-weight:400;color:#57534e}
+
+/* Editorial heritage story, integrated with the shop design system. */
+.storyNav{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:23px clamp(24px,5.5vw,100px);border-bottom:1px solid #c8c5bd;font-size:10px;letter-spacing:.14em}
+.storyNav a{text-decoration:none!important;border-bottom:1px solid transparent;padding-bottom:4px}
+.storyNav a:hover{border-color:currentColor}
+.storyNav span{color:#77736e;font-size:9px}
+.storyOpening{padding:clamp(50px,8vw,120px) clamp(24px,5.5vw,100px) clamp(45px,7vw,95px);background:#f4f2ec}
+.storyOpeningTop,.storyOpeningBottom{display:flex;align-items:flex-start;justify-content:space-between;gap:26px}
+.storyOpeningAside{font-size:10px;letter-spacing:.12em;line-height:2;color:#696761;text-align:right;margin:0}
+.storyTitle{font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;line-height:.86!important;letter-spacing:-.088em!important;font-size:clamp(85px,15vw,225px)!important;margin:clamp(65px,9vw,145px) 0 clamp(55px,8vw,135px)!important}
+.storyTitle em{color:#85817b;font-weight:400}
+.storyOpeningBottom{align-items:flex-end;border-top:1px solid #a6a39c;padding-top:25px}
+.storyOpeningBottom p{font-family:Georgia,"Times New Roman",serif;font-size:clamp(18px,2.3vw,35px);line-height:1.6;margin:0}
+.storyOpeningBottom span{font-size:9px;letter-spacing:.15em}
+.storyImageBand{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#c6c3bd;padding:2px}
+.storyImageBand figure{margin:0;background:#d4d1ca;min-width:0}
+.storyImageBand img{width:100%;aspect-ratio:4/4;object-fit:cover;display:block}
+.storyImageBand figcaption{padding:16px clamp(22px,3vw,45px);font-size:10px;letter-spacing:.15em;background:#f4f2ec}
+.storyLetter{display:grid;grid-template-columns:26% 1fr;gap:clamp(30px,8vw,130px);padding:clamp(90px,10vw,170px) clamp(24px,5.5vw,100px);background:#f4f2ec}
+.storyLetter>div{max-width:850px}
+.storyLetter h2{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(37px,5.1vw,83px)!important;line-height:1.35!important;font-weight:400!important;letter-spacing:-.06em!important;margin:0 0 clamp(45px,6vw,80px)!important}
+.storyLetter p:not(.chapter){font-size:clamp(14px,1.3vw,18px);line-height:2.3;letter-spacing:.025em;margin:0 0 27px;max-width:700px}
+.storyLetter .storyLetterEnd{font-family:Georgia,"Times New Roman",serif;font-size:clamp(21px,2.2vw,34px)!important;line-height:1.65!important;margin:65px 0 0!important;color:#393630}
+.storyChapters{background:#e4e1d9;padding:clamp(85px,9vw,160px) clamp(24px,5.5vw,100px)}
+.storySectionHeading{display:grid;grid-template-columns:25% 1fr;gap:5%;padding-bottom:clamp(75px,8vw,130px)}
+.storySectionHeading h2{font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;font-size:clamp(54px,8vw,133px)!important;letter-spacing:-.07em!important;line-height:1!important;margin:0!important}
+.storySectionHeading h2 em{color:#88847d}
+.storyChapter{display:grid;grid-template-columns:15% 35% 1fr;gap:clamp(20px,3vw,60px);padding:clamp(38px,5vw,72px) 0;border-top:1px solid #a39f97;align-items:start}
+.storyChapter:last-of-type{border-bottom:1px solid #a39f97}
+.storyRoman{font-family:Georgia,"Times New Roman",serif;font-size:clamp(45px,5.8vw,92px);line-height:1;color:#858078}
+.storyChapter h3{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(24px,2.6vw,42px)!important;font-weight:400!important;line-height:1.4!important;letter-spacing:-.035em!important;margin:20px 0 0!important}
+.storyChapter>p{font-size:13px;line-height:2.2;color:#55514b;margin:0}
+.storyArchiveNote{font-size:10px;line-height:1.9;color:#75716a;margin:25px 0 0}
+.storyDeclaration{background:#111;color:#f5f2eb;padding:clamp(90px,11vw,170px) clamp(24px,5.5vw,100px)}
+.storyDeclaration h2{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(88px,15vw,225px)!important;line-height:.88!important;letter-spacing:-.085em!important;font-weight:400!important;margin:clamp(60px,9vw,150px) 0 clamp(60px,8vw,140px)!important}
+.storyDeclaration h2 em{color:#8b8986}
+.storyDeclarationBottom{display:grid;grid-template-columns:1fr 1fr;gap:12%;border-top:1px solid #5b5854;padding-top:38px}
+.storyDeclarationBottom>p{font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,2.5vw,41px);line-height:1.65;margin:0}
+.storyDeclarationBottom h3{font-size:14px!important;letter-spacing:.09em!important;margin:0 0 25px!important;color:#fff}
+.storyDeclarationBottom div p{font-size:13px;line-height:2.25;color:#b7b4ae;max-width:600px;margin:0}
+.storyLast{padding:clamp(95px,11vw,175px) clamp(24px,5.5vw,100px);background:#f4f2ec;text-align:center}
+.storyLast h2{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(67px,10vw,155px)!important;line-height:.95!important;letter-spacing:-.074em!important;font-weight:400!important;margin:40px 0!important}
+.storyLast>p:not(.chapter){font-size:14px;line-height:2.2;max-width:620px;margin:auto;color:#57524d}
+.storyLastLinks{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:40px;margin-top:50px}
+
+@media(max-width:1000px){
+ .identityRibbon{grid-template-columns:1fr auto;gap:18px}.identityRibbon p{grid-column:1/-1;grid-row:2;text-align:left}.identityRibbon a{grid-column:2;grid-row:1}
+ .origin{grid-template-columns:1fr;gap:50px}.originAside{flex-direction:row}.originFoot{margin-left:0}
+ .storyLetter{grid-template-columns:1fr;gap:50px}.storySectionHeading{grid-template-columns:1fr;gap:35px}
+}
+@media(max-width:700px){
+ .identityRibbon{padding:24px 22px}.identityRibbon>span,.identityRibbon a{font-size:8px}.identityRibbon p{font-size:23px}
+ .origin{padding:75px 22px}.originAside>span{display:none}.originContent h2{font-size:36px!important}.originFoot{grid-template-columns:1fr;gap:19px}.originLink{flex-direction:column;align-items:flex-start;gap:10px;margin-top:42px;line-height:1.7}
+ .storyNav{padding:18px 22px}.storyNav span{display:none}.storyOpening{padding:65px 22px 42px}.storyTitle{font-size:clamp(70px,14.2vw,115px)!important;letter-spacing:-.079em!important;margin:85px 0 80px!important}.storyOpeningAside{font-size:8px}.storyOpeningBottom p{font-size:21px}
+ .storyImageBand img{aspect-ratio:3/4}.storyImageBand figcaption{font-size:8px;padding:13px 10px}
+ .storyLetter{padding:82px 22px}.storyLetter h2{font-size:40px!important}
+ .storyChapters{padding:80px 22px}.storySectionHeading h2{font-size:63px!important}
+ .storyChapter{grid-template-columns:52px 1fr;gap:20px}.storyRoman{font-size:55px}.storyChapter>p{grid-column:2;max-width:530px}.storyChapter h3{font-size:29px!important;margin-top:14px!important}
+ .storyDeclaration{padding:80px 22px}.storyDeclaration h2{font-size:clamp(76px,15vw,125px)!important;margin:65px 0 80px!important}.storyDeclarationBottom{grid-template-columns:1fr;gap:38px}
+ .storyLast{padding:80px 22px}.storyLast h2{font-size:clamp(65px,11vw,90px)!important}.storyLastLinks{flex-direction:column;gap:27px}
+}
