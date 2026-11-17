@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient as createAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
-import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
+import { essentialsHaveProductionPhotos, getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -15,7 +15,8 @@ const gates=[
  ["RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED","りささん本人の権限とアクセス方法の確認"],
  ["RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED","入金→製作→発送情報の受け渡しテスト"],
  ["RBA_ESSENTIALS_SAMPLES_APPROVED","現物サンプルを検品"],
- ["RBA_ESSENTIALS_PHOTOS_APPROVED","実物写真への差替え"],
+ ["RBA_ESSENTIALS_PHOTOS_APPROVED","実物写真の品質・権利確認"],
+ ["RBA_ESSENTIALS_PUBLIC_LISTING_APPROVED","公開ページの商品写真・名称・説明・サイズの最終承認"],
  ["RBA_ESSENTIALS_SIZE_CHART_APPROVED","サイズ実寸表"],
  ["RBA_ESSENTIALS_LOGO_RIGHTS_APPROVED","公式ロゴの商用版下"],
  ["RBA_ESSENTIALS_PRICING_APPROVED","価格・原価・利益"],
@@ -52,6 +53,7 @@ export default async function EssentialsReadiness(){
    {name:"Tシャツの税込価格",ok:cfg.unitPrices.tee!==null},
    {name:"上下セットの税込価格",ok:cfg.unitPrices.setup!==null},
    {name:"FIRST DROP限定・国内送料無料：0円",ok:cfg.shippingJPY===0},
+   {name:"公開商品の写真が実物であること（CG不可）",ok:essentialsHaveProductionPhotos},
    {name:"申込受付期限",ok:Boolean(cfg.orderDeadline)},
    {name:"明示する発送期限",ok:Boolean(cfg.dispatchDeadline)},
    {name:"法定の販売事業者情報",ok:cfg.merchant.name.length>1&&cfg.merchant.address.length>8&&cfg.merchant.email.includes("@")&&cfg.merchant.phone.length>=8},
