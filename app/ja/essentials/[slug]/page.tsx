@@ -110,7 +110,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           </div>
         </section>
         <section className={styles.productQuestions} aria-labelledby="product-questions-heading">
-          <div><p className={styles.chapter}>PRODUCT INFORMATION / FIRST DROP</p><h2 id="product-questions-heading">Before it's yours.</h2><p>長く使う一着だからこそ、販売前に確かめたいことを明確にしています。</p></div>
+          <div><p className={styles.chapter}>PRODUCT INFORMATION / FIRST DROP</p><h2 id="product-questions-heading">Before it&apos;s yours.</h2><p>長く使う一着だからこそ、販売前に確かめたいことを明確にしています。</p></div>
           <div className={styles.productAnswers}>
             <details><summary>この商品はいつ購入できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?"先行購入受付中です。注文画面で販売条件をご確認ください。":"製造・実物確認・サイズ表・発送期限・決済連携が整ってからご案内します。現在は注文・決済を受け付けていません。"}</p></details>
             <details><summary>素材とサイズは確認できますか？ <span aria-hidden="true">＋</span></summary><p>{item.sizeNote} 生地組成や洗濯方法も最終サンプルの仕様確定後に掲載します。</p></details>
