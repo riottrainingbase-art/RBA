@@ -36,7 +36,9 @@ export default async function EssentialsProductPage({ params }: PageProps) {
   if (!item) notFound();
   const commerce=getEssentialsPresaleConfig();
   const unitPrice=item.slug==="tee"?commerce.unitPrices.tee:commerce.unitPrices.setup;
-  const priceText=unitPrice!==null?unitPrice.toLocaleString("ja-JP")+"円（税込）":"価格未定";
+  const priceText = commerce.ready && unitPrice !== null
+    ? `¥${unitPrice.toLocaleString("ja-JP")}（税込）`
+    : "発売時にご案内";
   const nextItem=essentials.find((entry)=>entry.slug!==item.slug)!;
 
   // Product information is editorial only: omit Offer/price/availability schema until approved.
@@ -57,7 +59,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
     <SiteFrame locale="ja">
       <div className={styles.page}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}/>
-        <div className={styles.productBreadcrumb}><Link href="/ja/store">RBA STORE</Link><span aria-hidden="true">/</span><span>{item.number} — {item.name}</span></div>
+        <div className={styles.productBreadcrumb}><Link href="/ja/essentials">RBA STORE</Link><span aria-hidden="true">/</span><span>{item.number} — {item.name}</span></div>
         <article className={styles.detailLayout}>
           <div className={styles.detailPhoto}>
             <img src={item.image} alt={item.alt} fetchPriority="high"/>
@@ -69,18 +71,18 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             <p className={styles.detailStatement}>{item.statement}</p>
             <p className={styles.detailDescription}>{item.description}</p>
             <div className={styles.detailRule}>
-              <span>COLOUR</span><strong>{item.colorJa} / {item.color}</strong>
+              <span>カラー</span><strong>{item.colorJa} / {item.color}</strong>
             </div>
             <div className={styles.detailRule}>
-              <span>SIZE</span><strong>{commerce.ready?"S / M / L / XL":"サンプル確認後に確定"}</strong>
+              <span>サイズ</span><strong>{commerce.ready?"S / M / L / XL":"サンプル確認後に確定"}</strong>
             </div>
             <div className={styles.detailRule}>
-              <span>PRICE / FIRST DROP</span><strong>{priceText}</strong>
+              <span>価格</span><strong>{priceText}</strong>
             </div>
             <p className={styles.detailSize}>{item.sizeNote}</p>
             <p className={styles.productStatus} role="status">{commerce.ready?"先行購入受付中":"販売準備中｜現在は注文・予約・決済を受け付けていません"}</p>
-            {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>Stripeで先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） <span aria-hidden="true">↗</span></a>}
-            <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。現在は販売、予約、決済を受け付けていません。アンケート回答は注文ではありません。"}</p>
+            {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>サイズを選んで先行購入へ <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前アンケートに回答する <span aria-hidden="true">↗</span></a>}
+            <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。正式な素材と実寸は、サンプル確認後に掲載します。アンケートは無料で回答できます。"}</p>
           </div>
         </article>
 
@@ -110,7 +112,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           </div>
         </section>
         <section className={styles.productQuestions} aria-labelledby="product-questions-heading">
-          <div><p className={styles.chapter}>PRODUCT INFORMATION / FIRST DROP</p><h2 id="product-questions-heading">Before it&apos;s yours.</h2><p>長く使う一着だからこそ、販売前に確かめたいことを明確にしています。</p></div>
+          <div><p className={styles.chapter}>PRODUCT INFORMATION / FIRST DROP</p><h2 id="product-questions-heading">購入前によくある質問</h2><p>長く使う一着だからこそ、販売前に確かめたいことを明確にしています。</p></div>
           <div className={styles.productAnswers}>
             <details><summary>この商品はいつ購入できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?"先行購入受付中です。注文画面で販売条件をご確認ください。":"製造・実物確認・サイズ表・発送期限・決済連携が整ってからご案内します。現在は注文・決済を受け付けていません。"}</p></details>
             <details><summary>素材とサイズは確認できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?`${item.sizeNote} 素材と洗濯表示を購入前にご確認ください。`:`${item.sizeNote} 生地組成や洗濯方法も最終サンプルの仕様確定後に掲載します。`}</p></details>
@@ -119,15 +121,15 @@ export default async function EssentialsProductPage({ params }: PageProps) {
         </section>
 
         <section className={styles.nextLook} aria-labelledby="next-look-title">
-          <div><p className={styles.chapter}>COMPLETE THE EDIT / {nextItem.number}</p><h2 id="next-look-title">Explore the<br/><em>other look.</em></h2><p>{nextItem.statement}</p><Link href={nextItem.pagePath}>VIEW {nextItem.name} <span aria-hidden="true">↗</span></Link></div>
+          <div><p className={styles.chapter}>COMPLETE THE EDIT / {nextItem.number}</p><h2 id="next-look-title">もう一つのアイテム</h2><p>{nextItem.statement}</p><Link href={nextItem.pagePath}>{nextItem.name}を見る <span aria-hidden="true">↗</span></Link></div>
           <Link href={nextItem.pagePath} aria-label={nextItem.title+"の詳細を見る"}><img src={nextItem.image} loading="lazy" alt={nextItem.alt}/></Link>
         </section>
 
         <section className={styles.productEnd}>
           <p className={styles.chapter}>RBA STORE / COLLECTION 001</p>
-          <h2>Good things<br/><em>take intention.</em></h2>
+          <h2>コレクションを見比べる</h2>
           <p>{commerce.ready?"RBAの育成理念を日常に。商品仕様と販売条件をご確認のうえ、お選びください。":"実物サンプル・実測サイズ・発送予定・返品条件を確認したうえで、購入受付を開始します。"}</p>
-          <div><Link href="/ja/store">← コレクションへ戻る</Link><a href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報 ↗</a></div>
+          <div><Link href="/ja/essentials">← コレクションへ戻る</Link><a href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報 ↗</a></div>
         </section>
       </div>
     </SiteFrame>
