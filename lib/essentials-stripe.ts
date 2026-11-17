@@ -50,3 +50,34 @@ export async function verifyEssentialsStripePublicBranding(secret: string): Prom
     return siteVerified && descriptorVerified && name.includes("riot basketball academy");
   } catch {return false;}
 }
+
+
+/**
+ * Read-only check: both webhook routes must exist on this exact RBA domain
+ * and listen for the paid Checkout events. A configured environment flag alone
+ * is not evidence that Stripe will deliver paid orders to our ledger.
+ * This must never be used to reject an already-paid webhook delivery.
+ */
+export async function verifyEssentialsStripeWebhookDestinations(secret:string):Promise<boolean>{
+  if(!secret.startsWith("sk_live_")&&!secret.startsWith("rk_live_"))return false;
+  try{
+    const response=await fetch("https://api.stripe.com/v1/webhook_endpoints?limit=100",{
+      headers:{Authorization:`Bearer ${secret}`},
+      cache:"no-store",
+      signal:AbortSignal.timeout(8000),
+    });
+    if(!response.ok)return false;
+    const result=(await response.json()) as {data?:Array<{url?:string;status?:string;enabled_events?:string[]}>;has_more?:boolean};
+    if(result.has_more||!Array.isArray(result.data))return false;
+    const required=[
+      "https://riotbasketballacademy.com/api/commerce/essentials-preorder-webhook",
+      "https://riotbasketballacademy.com/api/commerce/essentials-payment-link-webhook",
+    ];
+    return required.every(url=>result.data?.some(endpoint=>
+      endpoint.status==="enabled" && endpoint.url===url &&
+      (endpoint.enabled_events?.includes("*")||
+       (endpoint.enabled_events?.includes("checkout.session.completed") &&
+        endpoint.enabled_events?.includes("checkout.session.async_payment_succeeded")))
+    ));
+  }catch{return false;}
+}
