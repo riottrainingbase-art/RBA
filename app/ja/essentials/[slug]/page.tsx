@@ -63,7 +63,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
         <article className={styles.detailLayout}>
           <div className={styles.detailPhoto}>
             <img src={item.image} alt={item.alt} fetchPriority="high"/>
-            <p>RBA STORE / PRODUCT VISUAL</p>
+            <p>RBA STORE / 商品イメージ</p>
           </div>
           <div className={styles.detailCopy}>
             <p className={styles.chapter}>RBA STORE / COLLECTION 001 / LOOK {item.number} / {item.color}</p>
@@ -79,7 +79,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             <div className={styles.detailRule}>
               <span>価格</span><strong>{priceText}</strong>
             </div>
-            <p className={styles.detailSize}>{item.sizeNote}</p>
+            {!commerce.ready && <p className={styles.detailSize}>{item.sizeNote}</p>}
             <p className={styles.productStatus} role="status">{commerce.ready?"先行購入受付中":"販売準備中｜現在は注文・予約・決済を受け付けていません"}</p>
             {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>サイズを選んで先行購入へ <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前アンケートに回答する <span aria-hidden="true">↗</span></a>}
             <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。正式な素材と実寸は、サンプル確認後に掲載します。アンケートは無料で回答できます。"}</p>
@@ -95,20 +95,20 @@ export default async function EssentialsProductPage({ params }: PageProps) {
         <section className={styles.productBelief} aria-label="RBAの公式ウェアの背景">
           <div>
             <p className={styles.chapter}>THE BRAND IS THE BELIEF.</p>
-            <h2>Made for what<br/><em>we believe in.</em></h2>
+            <h2>コートで育った、<br/><em>RBAの考え方。</em></h2>
           </div>
           <div>
             <p>バスケットボールが好きだから、育成のあり方を考え続ける。仙台から全国・アジアへ、選手の選択肢を広げてきたRBAの活動と、その背景にある哲学。</p>
-            <Link href="/ja/essentials/story">WHY RBA MAKES APPAREL <span aria-hidden="true">↗</span></Link>
+            <Link href="/ja/essentials/story">RBAがウェアをつくる理由 <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
         <section className={styles.details} aria-labelledby="product-features">
           <div className={styles.sectionHeader}>
-            <div><p className={styles.chapter}>DESIGNED WITH INTENTION</p><h2 id="product-features">The Details.</h2></div>
-            <p>{item.shape}</p>
+            <div><p className={styles.chapter}>DESIGNED WITH INTENTION</p><h2 id="product-features">デザインと仕様</h2></div>
+            <p>{item.colorJa}</p>
           </div>
           <div className={styles.detailGrid}>
-            {item.details.map((detail, index) => <div key={detail}><span>{String(index+1).padStart(2,"0")}</span><h3>{index===0?"FORM":index===1?"FIT":index===2?"SIGNATURE":"FINISH"}</h3><p>{detail}</p></div>)}
+            {item.details.map((detail, index) => <div key={detail}><span>{String(index+1).padStart(2,"0")}</span><h3>{index===0?"シルエット":index===1?"デザイン":index===2?"ディテール":"仕上げ"}</h3><p>{detail}</p></div>)}
           </div>
         </section>
         <section className={styles.productQuestions} aria-labelledby="product-questions-heading">
