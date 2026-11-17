@@ -43,17 +43,12 @@ export async function POST(request:Request) {
     return fail("Tシャツとセットアップのサイズを選択してください。");
   const handmade = form.get("handwritten")==="yes";
   const handwrittenTarget=form.get("handwritten_target");
-  const rawMessage=form.get("handwritten_text");
-  const handwrittenMessage=typeof rawMessage==="string"?rawMessage.normalize("NFC").trim():"";
   if (handmade && (!config.handwrittenAvailable || config.handwrittenJPY===null)) return fail("手書き加工の受付はまだ開始していません。",423);
   if (handmade && (
     (handwrittenTarget!=="tee"&&handwrittenTarget!=="setup") ||
     (handwrittenTarget==="tee" && teeQty!==1) ||
-    (handwrittenTarget==="setup" && setupQty!==1) ||
-    Array.from(handwrittenMessage).length<1 ||
-    Array.from(handwrittenMessage).length>20 ||
-    /[\r\n\t<>]/.test(handwrittenMessage)
-  )) return fail("手書きの対象商品・文字数・文面を確認してください。");
+    (handwrittenTarget==="setup" && setupQty!==1)
+  )) return fail("手書きの対象商品と数量を確認してください。");
   if(form.get("accept_preorder")!=="yes" || form.get("accept_terms")!=="yes" || form.get("accept_development_use")!=="yes"
     || form.get("terms_version")!==config.termsVersion)
     return fail("先行販売条件・利用規約への同意が必要です。");
@@ -92,7 +87,7 @@ export async function POST(request:Request) {
     pants_size:setupQty>0?pantsSize!:"none",
     handwritten:handmade?"yes":"no",
     handwritten_target:handmade?String(handwrittenTarget):"none",
-    handwritten_message:handmade?handwrittenMessage:"none",
+    handwritten_message:handmade?config.handwrittenMessage:"none",
     handwritten_addon_jpy:handmade?String(config.handwrittenJPY):"0",
     profit_use:"youth_basketball_development",
   };
