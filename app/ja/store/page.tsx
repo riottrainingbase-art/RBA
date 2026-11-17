@@ -125,7 +125,7 @@ export default function StorePage() {
           ))}
         </div>
         <div className={styles.collectionFooter}>
-          <p>{apparel.ready?"先行購入受付中。必ず実寸・生地・配送条件をご確認ください。":"現在は製品・販売条件を確認中です。注文・予約・決済は受け付けていません。掲載写真は実物ではなくデザイン参考用のCGです。"}</p>
+          <p>{apparel.ready?"先行購入受付中。必ず実寸・生地・配送条件をご確認ください。":"現在は製品・販売条件を確認中です。注文・予約・決済は受け付けていません。"}</p>
           <Link href="/ja/essentials">COLLECTION 001 の詳細 <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
