@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "RBA STORE | 勝敗の先に、残るものを。",
     description: "バスケットボールとともに生きる人へ。RBA WHITE TEE / BLACK SETUP。商品は販売準備中です。",
     url: "/ja/essentials",
-    images: [{ url: ESSENTIALS_HERO_IMAGE, alt: "RBA WHITE TEE デザイン参考用CG（モデル着用なし）" }],
+    images: [{ url: ESSENTIALS_HERO_IMAGE, alt: "RBA WHITE TEE 白いTシャツのデザインイメージ" }],
     locale: "ja_JP",
     type: "website",
   },
@@ -53,7 +53,7 @@ export default function EssentialsCollectionPage() {
             <img src={ESSENTIALS_HERO_IMAGE} alt="RBA公式の白いTシャツ。右裾ワッペンと首裏のブランド表示を示したデザインイメージ。モデルなし。" fetchPriority="high" />
             <img src={ESSENTIALS_SETUP_IMAGE} alt="RBA公式の黒いパーカーとワイドパンツ。ワッペンを統一したデザインイメージ。モデルなし。" />
           </div>
-          <div className={styles.heroCaption}><span>WHITE TEE / BLACK SETUP</span><span>CG CONCEPT IMAGES / NOT PHYSICAL SAMPLES</span></div>
+          <div className={styles.heroCaption}><span>WHITE TEE / BLACK SETUP</span><span>COLLECTION 001 / WHITE & BLACK</span></div>
         </section>
 
         <section className={styles.identityRibbon} aria-label="RBA ブランド哲学">
@@ -85,7 +85,7 @@ export default function EssentialsCollectionPage() {
               </article>
             ))}
           </div>
-          <p className={styles.previewNote}>掲載写真はデザイン検討用のCGイメージで、実物撮影ではありません。販売の可否、製品仕様、配送期限、キャンセル条件は各商品ページでご確認ください。</p>
+          <p className={styles.previewNote}>商品画像はイメージです。素材・サイズ・配送・返品などの正式な条件は各商品ページでご確認ください。</p>
         </section>
 
         <section id="philosophy" className={styles.manifesto} aria-label="RBA STORE のデザイン哲学">
@@ -134,7 +134,7 @@ export default function EssentialsCollectionPage() {
           </div>
           <div className={styles.guideQuestions}>
             <details><summary>現在、購入や決済はできますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready ? "先行購入を受け付けています。購入前にサイズ表・表示価格・発送予定・キャンセルおよび返品条件を確認してください。" : "現在は購入・予約・決済の受付前です。掲載している価格とデザインは、正式販売に向けたご案内です。関心登録フォームへの回答は注文にはなりません。"}</p></details>
-            <details><summary>掲載画像は実際の商品ですか？ <span aria-hidden="true">＋</span></summary><p>現在の商品画像はデザイン確認用のCGで、量産品を撮影したものではありません。素材感・縫製・ロゴ位置は最終サンプル確認後に確定します。</p></details>
+            <details><summary>商品の色や仕様は確定していますか？ <span aria-hidden="true">＋</span></summary><p>画像はイメージです。実際の生地・縫製・ロゴ位置・サイズは商品仕様をご確認ください。最終仕様が確定するまで販売は開始しません。</p></details>
             <details><summary>サイズ・生地・着用感は確認できますか？ <span aria-hidden="true">＋</span></summary><p>実測サイズ、生地組成、厚み、お手入れ方法は確認中です。確定した情報を掲載するまでは、見た目だけでサイズを選んでいただく販売は開始しません。</p></details>
             <details><summary>送料とお届け時期は？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready ? `FIRST DROPの国内送料は無料です。発送期限は${commerce.dispatchDeadline}、お届け期限は${commerce.deliveryDeadline}です。購入前に正式な販売条件をご確認ください。` : "FIRST DROPの日本国内送料は無料とする予定です。正式な発送日・お届け期限は製造体制の確認後、購入手続きの前に明示します。現在は前払いを受け付けていません。"}</p></details>
             <details><summary>商品を買うとRBAの育成を支援できますか？ <span aria-hidden="true">＋</span></summary><p>製造費・販売経費などを差し引いた利益をRBAの育成活動に充てる方針です。これはアパレルの売買であり、寄附や寄附金控除の対象として案内するものではありません。購入の有無がRBAの指導や参加機会に影響することはありません。</p></details>
