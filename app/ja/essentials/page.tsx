@@ -46,6 +46,12 @@ export default function EssentialsCollectionPage() {
           <div className={styles.heroCaption}><span>WHITE TEE / BLACK SETUP</span><span>CG DESIGN REFERENCES / NOT PHYSICAL SAMPLES</span></div>
         </section>
 
+        <section className={styles.identityRibbon} aria-label="RBA ブランド哲学">
+          <span>RIOT BASKETBALL ACADEMY</span>
+          <p>BUILT IN THE GYM. <em>WORN BEYOND IT.</em></p>
+          <Link href="/ja/essentials/story">DISCOVER OUR STORY <span aria-hidden="true">↗</span></Link>
+        </section>
+
         <section id="collection" className={styles.collection} aria-labelledby="collection-title">
           <div className={styles.sectionHeader}>
             <div><p className={styles.chapter}>001 / THE LINEUP</p><h2 id="collection-title">The Collection</h2></div>
@@ -81,9 +87,25 @@ export default function EssentialsCollectionPage() {
           </div>
         </section>
 
+        <section className={styles.origin} aria-labelledby="origin-title">
+          <div className={styles.originAside}>
+            <p className={styles.chapter}>03 / THE REASON</p>
+            <span>FROM SENDAI,<br/>BEYOND THE COURT.</span>
+          </div>
+          <div className={styles.originContent}>
+            <p className={styles.originMini}>THE STORY BEHIND THE LABEL</p>
+            <h2 id="origin-title">服を売るために、<br/><em>バスケットボールを</em><br/>始めたんじゃない。</h2>
+            <div className={styles.originFoot}>
+              <p>仙台から全国、そしてアジアへ。RBAが向き合ってきたのは、子どもたちが自分で考え、挑戦し、成長できる環境づくりです。目の前の勝利だけにとらわれず、コートの外にも広がる可能性を大切にしたい。</p>
+              <p>ESSENTIALSは、その考えを日常に持ち帰るための一着。大きな主張ではなく、いつもの服に小さく残る意思を。</p>
+            </div>
+            <Link className={styles.originLink} href="/ja/essentials/story">OUR ROOTS. OUR PHILOSOPHY. <span aria-hidden="true">EXPLORE THE STORY ↗</span></Link>
+          </div>
+        </section>
+
         <section className={styles.details} aria-labelledby="details-title">
           <div className={styles.sectionHeader}>
-            <div><p className={styles.chapter}>03 / THE DETAILS</p><h2 id="details-title">Quiet by design.</h2></div>
+            <div><p className={styles.chapter}>04 / THE DETAILS</p><h2 id="details-title">Quiet by design.</h2></div>
             <p>2つのアイテムに共通する、小さなこだわり。</p>
           </div>
           <div className={styles.detailGrid}>
@@ -94,7 +116,7 @@ export default function EssentialsCollectionPage() {
         </section>
 
         <section className={styles.launch} aria-labelledby="launch-title">
-          <p className={styles.chapter}>FIRST DROP / IN DEVELOPMENT</p>
+          <p className={styles.chapter}>05 / FIRST DROP / IN DEVELOPMENT</p>
           <h2 id="launch-title">Built to last.<br /><em>Not rushed.</em></h2>
           <p>{commerce.ready ? "公式ウェアの先行購入受付中。商品サイズ、税込総額、発送期限、キャンセル・返品条件をご確認のうえ、Stripeで購入いただけます。販売による利益はRBAの育成活動に活用します。" : "先行販売の国内送料は無料です。税込価格は白Tシャツ4,900円、黒セットアップ19,800円。製造・発送・返品と決済の最終確認が終わるまで、前払いは受け付けません。利益はRBAの育成活動に活用します。"}</p>
           <div className={styles.launchLinks}>
