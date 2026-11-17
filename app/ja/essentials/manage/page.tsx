@@ -5,7 +5,7 @@ import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { SiteFrame } from "@/components/site-frame";
 import { getEssentialsNoticeConfig } from "@/lib/essentials-notice-config";
-import { sendPendingEssentialsNotice } from "./notice-actions";
+import { sendPendingEssentialsNotice, sendPendingEssentialsShipmentNotice } from "./notice-actions";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={
@@ -18,6 +18,7 @@ type Order={
  hoodie_size:string|null;pants_size:string|null;terms_version:string;
  dispatch_by:string;deliver_by:string|null;paid_at:string;fulfillment_status:string;payment_status:string;
  buyer_notice_status:string;buyer_notice_sent_at:string|null;
+ shipment_notice_status:string;shipment_notice_sent_at:string|null;
 };
 export default async function EssentialsOrdersManage({searchParams}:{searchParams:Promise<{notice?:string}>}){
  const userDb=await createClient();
@@ -33,7 +34,7 @@ export default async function EssentialsOrdersManage({searchParams}:{searchParam
  if(new URL(url).hostname!=="ctngdzzorhzpdxswahzl.supabase.co")notFound();
  const admin=createServiceClient(url,service,{auth:{persistSession:false,autoRefreshToken:false}});
  const result=await admin.from("rba_essentials_orders")
- .select("order_id,stripe_checkout_session_id,stripe_payment_intent_id,amount_total_jpy,tee_quantity,tee_size,setup_quantity,hoodie_size,pants_size,terms_version,dispatch_by,deliver_by,paid_at,fulfillment_status,payment_status,buyer_notice_status,buyer_notice_sent_at")
+ .select("order_id,stripe_checkout_session_id,stripe_payment_intent_id,amount_total_jpy,tee_quantity,tee_size,setup_quantity,hoodie_size,pants_size,terms_version,dispatch_by,deliver_by,paid_at,fulfillment_status,payment_status,buyer_notice_status,buyer_notice_sent_at,shipment_notice_status,shipment_notice_sent_at")
  .order("paid_at",{ascending:false}).limit(100);
  const orders=(result.data||[]) as Order[];
  return <SiteFrame locale="ja"><main style={{padding:"45px clamp(20px,5vw,70px) 100px",background:"#f4f3f0",color:"#222"}}>
@@ -41,10 +42,10 @@ export default async function EssentialsOrdersManage({searchParams}:{searchParam
    <h1 style={{fontFamily:"Georgia,serif",fontSize:"clamp(36px,6vw,70px)",fontWeight:400}}>Essentials orders.</h1>
    <p>お支払いが確認された先行購入の一覧です。注文詳細・配送先はStripe管理画面で確認し、発送記録を照合してください。注文情報は機密情報として扱ってください。</p>
    <p style={{fontSize:12,lineHeight:1.8}}><strong>注文承諾メール：</strong>{emailReady?"確認済みの送信元を使用できます。未送信注文のみ手動で再処理できます。":"送信元とメールサービスの設定が未確認のため、送信できません。"} 失敗した通知の再送は、送信サービスで配信履歴を確認してから別途対応してください。</p>
-   {params.notice&&<p role="status" style={{fontSize:13}}>{params.notice==="sent"?"未送信の注文承諾メールを送信しました。":params.notice==="processed"?"この注文は既に処理対象外です。":"通知を送れませんでした。送信設定・配信状態をご確認ください。"}</p>}
+   {params.notice&&<p role="status" style={{fontSize:13}}>{params.notice==="shipment_sent"?"発送通知を送信しました。":params.notice==="sent"?"未送信の注文承諾メールを送信しました。":params.notice==="processed"?"この注文は既に処理対象外です。":"通知を送れませんでした。送信設定・配信状態をご確認ください。"}</p>}
    {result.error?<p role="alert">注文データを取得できませんでした。DBマイグレーションと権限を確認してください。</p>:<div style={{overflowX:"auto",marginTop:35}}>
     <table style={{borderCollapse:"collapse",minWidth:850,width:"100%",fontSize:12}}>
-     <thead><tr>{["入金日時","注文番号","商品・サイズ","税込金額","お届け期限","状態","承諾メール","Stripe"].map(h=><th key={h} style={{textAlign:"left",padding:"16px 11px",borderBottom:"1px solid #aaa"}}>{h}</th>)}</tr></thead>
+     <thead><tr>{["入金日時","注文番号","商品・サイズ","税込金額","お届け期限","状態","承諾メール","発送通知","Stripe"].map(h=><th key={h} style={{textAlign:"left",padding:"16px 11px",borderBottom:"1px solid #aaa"}}>{h}</th>)}</tr></thead>
      <tbody>{orders.map(o=><tr key={o.order_id}>
        <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd"}}>{new Date(o.paid_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})}</td>
        <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd",fontFamily:"monospace"}}>{o.order_id.slice(0,8)}</td>
@@ -56,6 +57,11 @@ export default async function EssentialsOrdersManage({searchParams}:{searchParam
          <div>{o.buyer_notice_status==="sent"?"送信済み":o.buyer_notice_status==="failed"?"要確認":"未送信"}</div>
          {o.buyer_notice_status==="sent"&&o.buyer_notice_sent_at?<small>{new Date(o.buyer_notice_sent_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})}</small>:null}
          {emailReady&&o.payment_status==="paid"&&o.buyer_notice_status==="pending"?<form action={sendPendingEssentialsNotice}><input type="hidden" name="order_id" value={o.order_id}/><button type="submit" style={{fontSize:12,padding:"7px 10px",marginTop:8,border:"1px solid #888"}}>未送信分を送信</button></form>:null}
+       </td>
+       <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd"}}>
+         <div>{o.shipment_notice_status==="sent"?"発送通知済み":o.shipment_notice_status==="failed"?"要確認":o.shipment_notice_status==="pending"?"通知待ち":"未発送"}</div>
+         {o.shipment_notice_status==="sent"&&o.shipment_notice_sent_at?<small>{new Date(o.shipment_notice_sent_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})}</small>:null}
+         {emailReady&&o.payment_status==="paid"&&o.shipment_notice_status==="pending"?<form action={sendPendingEssentialsShipmentNotice}><input type="hidden" name="order_id" value={o.order_id}/><button type="submit" style={{fontSize:12,padding:"7px 10px",marginTop:8,border:"1px solid #888"}}>発送通知を送信</button></form>:null}
        </td>
        <td style={{padding:"17px 10px",borderBottom:"1px solid #ddd"}}>{o.stripe_payment_intent_id?<a href={`https://dashboard.stripe.com/payments/${encodeURIComponent(o.stripe_payment_intent_id)}`} rel="noopener noreferrer" target="_blank">決済を開く ↗</a>:<span>照合中</span>}</td>
      </tr>)}</tbody>
