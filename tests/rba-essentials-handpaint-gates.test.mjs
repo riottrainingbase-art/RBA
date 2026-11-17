@@ -136,7 +136,7 @@ test("first-drop free domestic shipping and approved retail prices are locked se
  const stripe=read("app/api/commerce/essentials-preorder/route.ts");
  const catalog=read("lib/rba-essentials.ts");
  const product=read("app/ja/essentials/page.tsx");
- assert.match(config,/FIRST_DROP_TEE_JPY = 4900/);
+ assert.match(config,/FIRST_DROP_TEE_JPY = 6600/);
  assert.match(config,/FIRST_DROP_SETUP_JPY = 19800/);
  assert.match(config,/FIRST_DROP_JAPAN_SHIPPING_JPY = 0/);
  assert.match(config,/oneMonthFromJstDate/);
