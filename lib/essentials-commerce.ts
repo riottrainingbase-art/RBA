@@ -5,7 +5,7 @@
  */
 import { essentials } from "./rba-essentials";
 export const RBA_ESSENTIALS_STRIPE_ACCOUNT = "acct_1UGdxZRXDnnSs6XN";
-/** Approved CG product images may be used with an explicit concept-image disclosure. The source file itself is not evidence of the product specification. */
+/** Image assets may be concept renders approved for advertising. Real samples and final specifications are validated independently of the image format. */
 /** Neither size details nor garment features may still describe unverified samples. */
 export const essentialsHaveFinalSpecifications = essentials.every(item => !/検討中|候補|サンプル確認後|未確定/.test(item.sizeNote+" "+item.details.join(" ")));
 /**
