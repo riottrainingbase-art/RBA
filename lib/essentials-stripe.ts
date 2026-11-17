@@ -14,3 +14,39 @@ export async function verifyEssentialsStripeAccount(secret: string): Promise<boo
     return account.id===RBA_ESSENTIALS_STRIPE_ACCOUNT;
   }catch{return false;}
 }
+
+
+/**
+ * Extra independent protection for *creating new* Stripe checkouts.
+ * Existing paid-session webhooks must continue to reconcile even if the
+ * merchant has temporarily misconfigured the public account profile.
+ * Avoid any disclosure of settings or API response to the browser.
+ */
+export async function verifyEssentialsStripePublicBranding(secret: string): Promise<boolean> {
+  if (!secret.startsWith("sk_live_") && !secret.startsWith("rk_live_")) return false;
+  try {
+    const response=await fetch("https://api.stripe.com/v1/account",{
+      headers:{Authorization:`Bearer ${secret}`},
+      cache:"no-store",
+      signal:AbortSignal.timeout(8000),
+    });
+    if (!response.ok) return false;
+    const account=(await response.json()) as {
+      id?:string;
+      business_profile?:{name?:string|null;url?:string|null};
+      settings?:{payments?:{statement_descriptor?:string|null}};
+    };
+    if (account.id!==RBA_ESSENTIALS_STRIPE_ACCOUNT) return false;
+    const rawUrl=account.business_profile?.url?.trim()||"";
+    let website:URL;
+    try {website=new URL(rawUrl);} catch {return false;}
+    const domain=website.hostname.toLowerCase();
+    const siteVerified=website.protocol==="https:" &&
+      (domain==="riotbasketballacademy.com" || domain==="www.riotbasketballacademy.com") &&
+      !website.username && !website.password;
+    const descriptor=(account.settings?.payments?.statement_descriptor||"").trim().toUpperCase();
+    const descriptorVerified=descriptor.startsWith("RBA") || descriptor.startsWith("RIOT");
+    const name=(account.business_profile?.name||"").trim().toLowerCase();
+    return siteVerified && descriptorVerified && name.includes("riot basketball academy");
+  } catch {return false;}
+}
