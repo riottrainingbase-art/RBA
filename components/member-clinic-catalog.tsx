@@ -7,7 +7,7 @@ import { isProgrammeActive, programmes, type Programme } from "@/components/prog
 
 type Area = "all" | Programme["region"];
 type Focus = "all" | "clinic" | "camp" | "online" | "exchange";
-type Age = "all" | "U8" | "U10" | "U12" | "U15" | "U18" | "COACH";
+type Age = "all" | "U8" | "U10" | "U12" | "U14" | "U15" | "U18" | "COACH";
 const areas: { key: Area; label: string }[] = [
  {key:"all",label:"全国・すべて"},{key:"tohoku",label:"東北"},{key:"kanto",label:"関東"},{key:"kansai",label:"関西"},
  {key:"kyushu",label:"九州"},{key:"okinawa",label:"沖縄"},{key:"online",label:"オンライン"},
@@ -15,7 +15,7 @@ const areas: { key: Area; label: string }[] = [
 const focus: {key:Focus;label:string}[] = [
  {key:"all",label:"全プログラム"},{key:"clinic",label:"クリニック・スクール"},{key:"camp",label:"キャンプ"},{key:"online",label:"オンライン講習"},{key:"exchange",label:"国際交流・大会"},
 ];
-const ages:Age[]=["all","U8","U10","U12","U15","U18","COACH"];
+const ages:Age[]=["all","U8","U10","U12","U14","U15","U18","COACH"];
 const emoji:Record<Focus,string>={all:"🏀",clinic:"🏀",camp:"⛹️",online:"💻",exchange:"🌍"};
 const special=new Set(["kobe-u14-2027"]);
 function classify(p:Programme):Focus{
