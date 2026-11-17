@@ -90,7 +90,7 @@ export default function EssentialsStoryPage() {
               <p>{chapter.body}</p>
             </article>
           ))}
-          <p className={styles.storyArchiveNote}>※このページは活動の背景を表現したブランドストーリーです。設立年月日や未確認の沿革を創作した年表ではありません。<Link href="/ja/about">RBAの活動について ↗</Link></p>
+          <p className={styles.storyArchiveNote}>RBAの活動内容や運営方針については、団体概要をご覧ください。<Link href="/ja/about">RBAの活動について ↗</Link></p>
         </section>
 
         <section className={styles.storyDeclaration} aria-labelledby="story-declaration-title">
