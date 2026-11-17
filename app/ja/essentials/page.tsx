@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
-import { ESSENTIALS_HERO_IMAGE, ESSENTIALS_INSTAGRAM, ESSENTIALS_INTEREST_FORM, essentials } from "@/lib/rba-essentials";
+import { ESSENTIALS_HERO_IMAGE, ESSENTIALS_SETUP_IMAGE, ESSENTIALS_INSTAGRAM, ESSENTIALS_INTEREST_FORM, essentials } from "@/lib/rba-essentials";
 import styles from "./essentials.module.css";
 import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 export const dynamic = "force-dynamic";
@@ -32,7 +32,7 @@ export default function EssentialsCollectionPage() {
           <strong style={{ display: "inline-flex", alignItems: "center", gap: 10 }}><img src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={30} height={42} style={{ objectFit: "contain" }} />RBA STORE</strong>
           <div>
             <a href="#collection">商品一覧</a>
-            <a href="#handwritten">手書きカスタム</a>
+            <a href="#handwritten">手書きエディション</a>
             <a href="#origin">RBAの背景</a>
             <a href="#essentials-guide">ご注文について</a>
           </div>
@@ -43,7 +43,10 @@ export default function EssentialsCollectionPage() {
             <p className={styles.frontKicker}>RIOT BASKETBALL ACADEMY / 001</p>
             <h1 id="collection-hero">FIRST <em>DROP.</em></h1>
             <p>練習に向かうときも、コートを出たあとも。<br />バスケットボールのある日常に。</p>
-            <a className={styles.frontButton} href="#collection">コレクションを見る <span aria-hidden="true">↓</span></a>
+            <div className={styles.frontHeroActions}>
+              <a className={styles.frontButton} href="#collection">コレクションを見る <span aria-hidden="true">↓</span></a>
+              <a className={styles.frontEditionLink} href="#handwritten">手書きエディション <span aria-hidden="true">↘</span></a>
+            </div>
             <span className={styles.frontStatus}>{commerce.ready ? "先行購入受付中" : "発売準備中"}</span>
           </div>
           <div className={styles.frontVisual}>
@@ -78,15 +81,20 @@ export default function EssentialsCollectionPage() {
 
         <section id="handwritten" className={styles.frontHandwritten} aria-labelledby="handwritten-title">
           <div className={styles.frontContent}>
-            <div>
-              <p className={styles.frontKicker}>RBA STORE / HANDWRITTEN EDITION</p>
-              <h2 className={styles.frontHeading} id="handwritten-title">RBAからの言葉を、<br />一着に。</h2>
+            <div className={styles.editionCopy}>
+              <p className={styles.frontKicker}>RBA STORE / COLLECTION 001</p>
+              <h2 id="handwritten-title">Handwritten <em>Edition.</em></h2>
+              <p className={styles.editionLead}>RBAからの言葉を、一着に。</p>
+              <p className={styles.editionDescription}>RBAが用意したメッセージを、一点ずつ手書きで添えます。対象は白Tと、黒セットアップのフーディーです。</p>
+              <div className={styles.editionStatus}>
+                <span>{commerce.handwrittenAvailable && commerce.handwrittenJPY !== null ? `受付中 ／ 追加 ¥${commerce.handwrittenJPY.toLocaleString("ja-JP")}（税込）` : "手書きエディションは受付準備中"}</span>
+                {commerce.handwrittenAvailable && <a href="#collection">対象商品を見る <span aria-hidden="true">↑</span></a>}
+              </div>
             </div>
-            <div>
-              <p>RBAが用意したメッセージを、一点ずつ手書きで添える特別仕様です。白T、または黒セットアップのパーカーが対象です。</p>
-              <span className={styles.frontHandwrittenStatus}>{commerce.handwrittenAvailable && commerce.handwrittenJPY !== null ? `受付中 ／ 追加 ¥${commerce.handwrittenJPY.toLocaleString("ja-JP")}（税込）` : "手書きカスタムは受付準備中です。"}</span>
-              {commerce.handwrittenAvailable && <a className={styles.frontButton} href="#collection">対象商品を見る <span aria-hidden="true">↑</span></a>}
-            </div>
+            <figure className={styles.editionFigure}>
+              <img src={ESSENTIALS_SETUP_IMAGE} alt="黒のフーディーとパンツの通常版デザインイメージ。フーディーが手書きエディションの対象。" loading="lazy" />
+              <figcaption><span>BLACK SETUP</span><span>通常版のデザインイメージ</span></figcaption>
+            </figure>
           </div>
         </section>
 
