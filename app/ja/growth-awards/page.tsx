@@ -69,6 +69,11 @@ export default function GrowthAwardsPage() {
           <div className="mt-8 grid gap-4 md:grid-cols-4">{steps.map(([title,body],i)=><article key={title} className="border-t-4 border-neutral-900 pt-5"><p className="text-xs font-black">0{i+1}</p><h3 className="mt-2 text-xl font-black">{title}</h3><p className="mt-3 text-sm leading-7">{body}</p></article>)}</div>
           <div className="mt-8 border border-neutral-300 bg-neutral-50 p-6"><h3 className="text-xl font-black">応募の際に必要なもの</h3><p className="mt-3 text-sm leading-8">参加したイベント名・日付、保護者の連絡先、本人の言葉での学び、実際に挑戦したこと、次に試したいこと。写真・動画、住所、学校名、健康情報は申請時に求めません。</p><a className="mt-5 inline-flex min-h-12 items-center bg-neutral-900 px-6 py-3 font-bold text-white" target="_blank" rel="noopener noreferrer" href={reportUrl}>成長レポートを送る ↗</a></div>
         </section>
+        <section className="my-6 border border-neutral-300 bg-neutral-50 p-6">
+          <h2 className="text-xl font-black">受賞のご案内を受け取った方へ</h2>
+          <p className="mt-3 text-sm leading-7">記念品のご案内に記載の受取コードをお手元にご用意ください。</p>
+          <a href="/ja/growth-awards/claim" className="mt-3 inline-flex min-h-11 items-center font-bold underline underline-offset-4">受賞記念品のお受け取り →</a>
+        </section>
         <section id="partners" aria-labelledby="awards-partners" className="scroll-mt-24 border-t-2 border-neutral-900 py-14">
           <p className="text-xs font-bold tracking-[.2em]">PARTNERSHIP / SUPPORT</p>
           <h2 id="awards-partners" className="mt-3 text-3xl font-black leading-normal">企業の支援を、<br/>子どもの挑戦へ。</h2>
