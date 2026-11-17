@@ -72,6 +72,7 @@ export default function EssentialsCollectionPage() {
               );
             })}
           </div>
+          <p className={styles.previewNote}>商品画像はイメージです。素材・実寸は各商品ページでご確認ください。</p>
         </section>
 
         <section id="origin" className={styles.frontOrigin} aria-labelledby="origin-title">
