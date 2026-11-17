@@ -6,7 +6,7 @@ const headers = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosnif
 export async function GET() {
   try {
     const response = await fetch(DESTINATION, { method: "GET", cache: "no-store", headers: { "origin": "https://riotbasketballacademy.com" }, signal: AbortSignal.timeout(6000) });
-    const payload = await response.json();
+    const payload = (await response.json()) as { payment_open?: boolean };
     return NextResponse.json({ payment_open: response.ok && payload.payment_open === true }, { headers });
   } catch {
     return NextResponse.json({ payment_open: false }, { headers });
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     JSON.parse(text);
     const forwardedIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "";
     const upstream = await fetch(DESTINATION, { method: "POST", cache: "no-store", headers: { "content-type": "application/json", "origin": "https://riotbasketballacademy.com", ...(forwardedIp ? { "x-forwarded-for": forwardedIp } : {}) }, body: text, signal: AbortSignal.timeout(12000) });
-    const data = await upstream.json().catch(() => ({ error: "invalid_upstream" }));
+    const data = (await upstream.json().catch(() => ({ error: "invalid_upstream" }))) as { checkout_url?: unknown; error?: string; message?: string; ok?: boolean };
     const url = data.checkout_url;
     if (url && (typeof url !== "string" || !url.startsWith("https://buy.stripe.com/"))) {
       return NextResponse.json({ error: "unsafe_destination" }, { status: 503, headers });
