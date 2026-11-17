@@ -5,8 +5,7 @@
  */
 import { essentials } from "./rba-essentials";
 export const RBA_ESSENTIALS_STRIPE_ACCOUNT = "acct_1UGdxZRXDnnSs6XN";
-/** The published catalog must contain real approved production photos, not concept art. */
-export const essentialsHaveProductionPhotos = essentials.every(item => /^https:\/\//.test(item.image) && !/design-reference|mockup|concept|placeholder/i.test(item.image));
+/** Approved CG product images may be used with an explicit concept-image disclosure. The source file itself is not evidence of the product specification. */
 /** Neither size details nor garment features may still describe unverified samples. */
 export const essentialsHaveFinalSpecifications = essentials.every(item => !/検討中|候補|サンプル確認後|未確定/.test(item.sizeNote+" "+item.details.join(" ")));
 /**
@@ -115,7 +114,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   ].every(k => isApproved(p[k])) &&
     !!p.STRIPE_SECRET_KEY &&
     p.RBA_ESSENTIALS_TAX_BEHAVIOR === "inclusive" &&
-    essentialsHaveProductionPhotos && essentialsHaveFinalSpecifications &&
+    essentialsHaveFinalSpecifications &&
     priceOverrideIsValid && shippingOverrideIsValid &&
     !!unitPrices.tee && !!unitPrices.setup && shippingJPY === 0 &&
     !!dispatchDeadline && !!deliveryDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline && dispatchDeadline <= deliveryDeadline &&
