@@ -37,6 +37,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
   const commerce=getEssentialsPresaleConfig();
   const unitPrice=item.slug==="tee"?commerce.unitPrices.tee:commerce.unitPrices.setup;
   const priceText=unitPrice!==null?unitPrice.toLocaleString("ja-JP")+"円（税込）":"価格未定";
+  const nextItem=essentials.find((entry)=>entry.slug!==item.slug)!;
 
   // Product information is editorial only: omit Offer/price/availability schema until approved.
   const productSchema = {
@@ -63,7 +64,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             <p>DESIGN CONCEPT / NOT A PHYSICAL SAMPLE</p>
           </div>
           <div className={styles.detailCopy}>
-            <p className={styles.chapter}>COLLECTION 001 / {item.color}</p>
+            <p className={styles.chapter}>THE ESSENTIAL COLLECTION / LOOK {item.number} / {item.color}</p>
             <h1>{item.name}</h1>
             <p className={styles.detailStatement}>{item.statement}</p>
             <p className={styles.detailDescription}>{item.description}</p>
@@ -77,10 +78,17 @@ export default async function EssentialsProductPage({ params }: PageProps) {
               <span>PRICE / FIRST DROP</span><strong>{priceText}</strong>
             </div>
             <p className={styles.detailSize}>{item.sizeNote}</p>
-            {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>Stripeで先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">先行注文申込（お支払い前） <span aria-hidden="true">↗</span></a>}
+            <p className={styles.productStatus} role="status">{commerce.ready?"先行購入受付中":"販売準備中｜現在は注文・予約・決済を受け付けていません"}</p>
+            {commerce.ready ? <Link className={styles.detailButton} href={`/ja/essentials/checkout?item=${item.slug}`}>Stripeで先行購入する <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） <span aria-hidden="true">↗</span></a>}
             <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。現在は販売、予約、決済を受け付けていません。アンケート回答は注文ではありません。"}</p>
           </div>
         </article>
+
+        <aside className={styles.productPromises} aria-label="ご購入前に確認いただきたいこと">
+          <div><span>01 / PHOTO</span><p>掲載画像はデザイン参考用のCGです。実物・着用写真ではありません。</p></div>
+          <div><span>02 / FIT & FABRIC</span><p>実測サイズ・生地の組成・厚み・洗濯表示はサンプル確認後に公開します。</p></div>
+          <div><span>03 / DELIVERY</span><p>FIRST DROPは国内送料無料を予定。正式な発送・返品条件を購入前に表示します。</p></div>
+        </aside>
 
         <section className={styles.productBelief} aria-label="RBA ESSENTIALSの背景">
           <div>
@@ -101,10 +109,24 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             {item.details.map((detail, index) => <div key={detail}><span>{String(index+1).padStart(2,"0")}</span><h3>{index===0?"FORM":index===1?"FIT":index===2?"SIGNATURE":"FINISH"}</h3><p>{detail}</p></div>)}
           </div>
         </section>
+        <section className={styles.productQuestions} aria-labelledby="product-questions-heading">
+          <div><p className={styles.chapter}>PRODUCT INFORMATION / FIRST DROP</p><h2 id="product-questions-heading">Before it's yours.</h2><p>長く使う一着だからこそ、販売前に確かめたいことを明確にしています。</p></div>
+          <div className={styles.productAnswers}>
+            <details><summary>この商品はいつ購入できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?"先行購入受付中です。注文画面で販売条件をご確認ください。":"製造・実物確認・サイズ表・発送期限・決済連携が整ってからご案内します。現在は注文・決済を受け付けていません。"}</p></details>
+            <details><summary>素材とサイズは確認できますか？ <span aria-hidden="true">＋</span></summary><p>{item.sizeNote} 生地組成や洗濯方法も最終サンプルの仕様確定後に掲載します。</p></details>
+            <details><summary>返品・キャンセルについて教えてください。 <span aria-hidden="true">＋</span></summary><p>商品ごとの確定したキャンセル・返品条件は、販売開始前に<Link href="/ja/essentials/legal">販売条件ページ</Link>でご案内します。現時点で購入契約は成立しません。</p></details>
+          </div>
+        </section>
+
+        <section className={styles.nextLook} aria-labelledby="next-look-title">
+          <div><p className={styles.chapter}>COMPLETE THE EDIT / {nextItem.number}</p><h2 id="next-look-title">Discover the<br/><em>other essential.</em></h2><p>{nextItem.statement}</p><Link href={nextItem.pagePath}>VIEW {nextItem.name} <span aria-hidden="true">↗</span></Link></div>
+          <Link href={nextItem.pagePath} aria-label={nextItem.title+"の詳細を見る"}><img src={nextItem.image} loading="lazy" alt={nextItem.alt}/></Link>
+        </section>
+
         <section className={styles.productEnd}>
           <p className={styles.chapter}>RBA / THE ESSENTIAL COLLECTION</p>
           <h2>Good things<br/><em>take intention.</em></h2>
-          <p>実物サンプルの検品、サイズ表、販売価格、送料、発送予定、返品・交換条件を確認後、販売情報を公開します。</p>
+          <p>{commerce.ready?"RBAの育成理念を日常に。商品仕様と販売条件をご確認のうえ、お選びください。":"実物サンプル・実測サイズ・発送予定・返品条件を確認したうえで、購入受付を開始します。"}</p>
           <div><Link href="/ja/essentials">← コレクションへ戻る</Link><a href={ESSENTIALS_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagramで最新情報 ↗</a></div>
         </section>
       </div>
