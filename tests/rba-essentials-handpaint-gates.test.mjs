@@ -344,3 +344,37 @@ test("only RBA admin may manually send pending buyer notices, failures are not a
  assert.match(sender,/delivery_uncertain_review_required/);
  assert.doesNotMatch(action,/role==="production"/);
 });
+
+
+test("shipments queue exactly one private notice only after a shipped stage",()=>{
+ const migration=read("supabase/migrations/20261117042410_rba_essentials_shipment_notices_20261117.sql");
+ const sender=read("lib/essentials-shipment-notices.ts");
+ const action=read("app/ja/essentials/production/actions.ts");
+ const admin=read("app/ja/essentials/manage/page.tsx");
+ const noticeActions=read("app/ja/essentials/manage/notice-actions.ts");
+ assert.match(migration,/shipment_notice_status text NOT NULL DEFAULT 'not_ready'/);
+ assert.match(migration,/NEW\.stage='shipped'/);
+ assert.match(migration,/shipment_notice_status='not_ready'/);
+ assert.match(migration,/SECURITY INVOKER/);
+ assert.match(sender,/import "server-only"/);
+ assert.match(sender,/rba_essentials_fulfillment_tasks/);
+ assert.match(sender,/session\.payment_status!=="paid"/);
+ assert.match(sender,/\.eq\("shipment_notice_status","pending"\)/);
+ assert.match(sender,/shipment_notice_status:"sent"/);
+ assert.match(sender,/Idempotency-Key/);
+ assert.doesNotMatch(sender,/customer_email.*\.insert|customer_details.*\.upsert/);
+ assert.match(action,/stage==="shipped"\)await sendEssentialsShipmentNotice\(orderId\)/);
+ assert.match(action,/\.eq\("access_role","production"\)/);
+ assert.match(admin,/shipment_notice_status/);
+ assert.match(admin,/sendPendingEssentialsShipmentNotice/);
+ assert.match(noticeActions,/role!=="admin"/);
+ assert.match(noticeActions,/sendEssentialsShipmentNotice/);
+});
+
+test("buyer acceptance does not treat draft Payment Link terms as an approved order contract",()=>{
+ const sender=read("lib/essentials-buyer-notices.ts");
+ assert.match(sender,/unapproved_terms_manual_review/);
+ assert.match(sender,/row\.handwritten_addon_jpy/);
+ assert.match(sender,/RBA WHITE TEE/);
+ assert.match(sender,/RBA BLACK SETUP/);
+});
