@@ -318,3 +318,13 @@
  .frontVisual img{aspect-ratio:1;max-height:250px}
  .frontNav div{gap:0 14px}
 }
+
+.mobileOrder{display:none}
+@media(max-width:760px){
+ .productWithOrder{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+ .mobileOrder{position:fixed;z-index:20;inset:auto 0 0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));color:#171715;background:#f4f2ec;border-top:1px solid #ccc8bd}
+ .mobileOrder strong,.mobileOrder small{display:block}
+ .mobileOrder small{font-size:11px}
+ .mobileOrder a{display:flex;align-items:center;min-height:46px;padding:8px 16px;background:#171715;color:#fff;text-decoration:none;font-weight:700;font-size:13px}
+ .mobileOrder a:focus-visible{outline:2px solid #171715;outline-offset:3px}
+}
