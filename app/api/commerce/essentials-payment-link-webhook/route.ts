@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
+import { sendEssentialsBuyerAcceptance } from "@/lib/essentials-buyer-notices";
 import {
   FIRST_DROP_TEE_JPY,
   FIRST_DROP_SETUP_JPY,
@@ -126,5 +127,6 @@ export async function POST(request:Request){
    onConflict:"stripe_checkout_session_id",ignoreDuplicates:true,
  });
  if(write.error)return reply({error:"order_not_recorded"},503);
- return reply({received:true,reconciled:true});
+ const notice=await sendEssentialsBuyerAcceptance(createdReference);
+ return reply({received:true,reconciled:true,notice:notice.outcome});
 }
