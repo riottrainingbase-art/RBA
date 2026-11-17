@@ -4,6 +4,7 @@ import { createClient as serviceClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { sendEssentialsShipmentNotice } from "@/lib/essentials-shipment-notices";
 
 const PATH="/ja/essentials/production";
 const transitions:Record<string,readonly string[]>={
@@ -32,7 +33,7 @@ export async function updateEssentialsProduction(form:FormData){
  const admin=serviceClient(u!,service!,{auth:{persistSession:false,autoRefreshToken:false}});
  const [profile,agent]=await Promise.all([
    publicClient.from("profiles").select("role").eq("id",user.id).maybeSingle(),
-   admin.from("rba_essentials_fulfillment_agents").select("active").eq("user_id",user.id).eq("active",true).maybeSingle(),
+   admin.from("rba_essentials_fulfillment_agents").select("active").eq("user_id",user.id).eq("active",true).eq("access_role","production").maybeSingle(),
  ]);
  if(profile.data?.role!=="admin" && (!agent.data?.active||!!agent.error))notFound();
 
@@ -54,7 +55,7 @@ export async function updateEssentialsProduction(form:FormData){
  };
  if(stage==="problem" && issue.length<6)done("invalid");
  if(stage==="shipped"){
-   if(carrier.length<2||tracking.length<5||!/^20\d{2}-\d{2}-\d{2}$/.test(date)||
+   if(!/^[\p{L}\p{N} .()_-]{2,80}$/u.test(carrier)||!/^[A-Za-z0-9 -]{5,140}$/.test(tracking)||!/^20\d{2}-\d{2}-\d{2}$/.test(date)||
    Number.isNaN(Date.parse(date+"T00:00:00+09:00")))done("invalid");
    const nowJST=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
    if(date>nowJST)done("invalid");
@@ -63,6 +64,9 @@ export async function updateEssentialsProduction(form:FormData){
  const {data:saved,error:saveError}=await admin.from("rba_essentials_fulfillment_tasks")
   .update(update).eq("order_id",orderId).eq("stage",old).select("order_id").maybeSingle();
  if(saveError||!saved)done("error");
+ // Shipped transitions atomically queue notice through a database trigger.
+ // A missing sender keeps the notice pending for an authorized operator.
+ if(stage==="shipped")await sendEssentialsShipmentNotice(orderId);
  revalidatePath(PATH);
  done("saved");
 }
