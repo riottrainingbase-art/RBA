@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient as createAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
-import { essentialsHaveProductionPhotos, getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
+import { essentialsHaveFinalSpecifications, essentialsHaveProductionPhotos, getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -54,6 +54,7 @@ export default async function EssentialsReadiness(){
    {name:"上下セットの税込価格",ok:cfg.unitPrices.setup!==null},
    {name:"FIRST DROP限定・国内送料無料：0円",ok:cfg.shippingJPY===0},
    {name:"公開商品の写真が実物であること（CG不可）",ok:essentialsHaveProductionPhotos},
+   {name:"サイズ・素材・仕様から未確定の表記を解消",ok:essentialsHaveFinalSpecifications},
    {name:"申込受付期限",ok:Boolean(cfg.orderDeadline)},
    {name:"明示する発送期限",ok:Boolean(cfg.dispatchDeadline)},
    {name:"法定の販売事業者情報",ok:cfg.merchant.name.length>1&&cfg.merchant.address.length>8&&cfg.merchant.email.includes("@")&&cfg.merchant.phone.length>=8},
