@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
+import { sendEssentialsBuyerAcceptance } from "@/lib/essentials-buyer-notices";
 import { FIRST_DROP_TEE_JPY, FIRST_DROP_SETUP_JPY, oneMonthFromJstDate } from "@/lib/essentials-commerce";
 
 export const dynamic="force-dynamic";
@@ -87,11 +88,15 @@ export async function POST(request:Request){
     handwritten_addon_jpy:handmade?handwrittenAmount:0,
     payment_status:"paid",
     fulfillment_status:"preparing",
+    buyer_notice_status:"pending",
   };
   const {error:writeError}=await admin.from("rba_essentials_orders").upsert(row,{
     onConflict:"stripe_checkout_session_id",
     ignoreDuplicates:true,
   });
   if(writeError)return error("ledger_write_failed",503);
-  return NextResponse.json({received:true});
+  // A sent notice is recorded atomically; missing sender credentials leave the job pending.
+  // A provider ambiguity is flagged for manual review, never automatically resent.
+  const notice=await sendEssentialsBuyerAcceptance(order);
+  return NextResponse.json({received:true,notice:notice.outcome});
 }
