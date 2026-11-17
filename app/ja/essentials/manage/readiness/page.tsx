@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { createClient as createAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { essentialsHaveFinalSpecifications, getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
-import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
+import { verifyEssentialsStripeAccount, verifyEssentialsStripePublicBranding } from "@/lib/essentials-stripe";
 import { SiteFrame } from "@/components/site-frame";
 
 export const dynamic="force-dynamic";
@@ -43,6 +43,7 @@ export default async function EssentialsReadiness(){
   const cfg=getEssentialsPresaleConfig();
   const env=process.env;
   const rbaStripe=env.STRIPE_SECRET_KEY?await verifyEssentialsStripeAccount(env.STRIPE_SECRET_KEY):false;
+  const rbaPublicBrand=env.STRIPE_SECRET_KEY?await verifyEssentialsStripePublicBranding(env.STRIPE_SECRET_KEY):false;
   const url=env.NEXT_PUBLIC_SUPABASE_URL,secret=env.SUPABASE_SERVICE_ROLE_KEY;
   let validDB=false;
   try{validDB=Boolean(url&&secret&&new URL(url).hostname==="ctngdzzorhzpdxswahzl.supabase.co");}
@@ -61,6 +62,7 @@ export default async function EssentialsReadiness(){
    {name:"返品・キャンセルの明示",ok:cfg.returns.length>=15&&cfg.cancellation.length>=15},
    {name:"承認済み規約バージョン",ok:Boolean(cfg.termsVersion)},
    {name:"RBA Stripeの実接続",ok:rbaStripe},
+   {name:"RBA Stripeの事業サイト・カード明細名（実設定）",ok:rbaPublicBrand},
    {name:"受注台帳への実接続",ok:Boolean(count&&!count.error)},
    {name:"Instagramカタログの公開承認（商品タグの審査とは別）",ok:env.RBA_ESSENTIALS_META_FEED_APPROVED==="true"},
   ];
