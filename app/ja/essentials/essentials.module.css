@@ -235,3 +235,37 @@
  .guideEnd>div{flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){.guideFaqPlus{transition:none}}
+
+
+/* RBA STORE / Official identity lockup. Retain original registered RBA mark. */
+.storeLockup{display:flex;align-items:flex-end;gap:clamp(18px,3.8vw,68px);margin:clamp(58px,7vw,110px) 0 clamp(45px,5vw,85px)}
+.storeLockup>img{display:block;width:clamp(65px,7vw,105px);height:auto;max-height:150px;object-fit:contain;flex-shrink:0}
+.storeLockup>div{min-width:0;flex:1}
+.storeLockup>div>p{margin:0 0 clamp(18px,2vw,35px);font-size:10px;letter-spacing:.23em;font-weight:700;color:#55514b}
+.storeDisplay{display:flex;align-items:baseline;flex-wrap:wrap;gap:clamp(15px,2.5vw,50px);font-family:Arial,"Helvetica Neue",sans-serif!important;line-height:.85!important;letter-spacing:-.095em!important;margin:0!important;font-weight:750!important}
+.storeDisplay span{font-size:clamp(82px,12.2vw,218px)!important;font-weight:800}
+.storeDisplay em{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-style:italic;font-size:clamp(59px,7.1vw,128px)!important;letter-spacing:-.065em;color:#77716b}
+.storyValues{padding:clamp(85px,10vw,160px) clamp(24px,5.5vw,100px);background:#f5f4f0}
+.storyValuesIntro{display:grid;grid-template-columns:29% 1fr;gap:7%;margin-bottom:clamp(45px,7vw,110px)}
+.storyValuesIntro h2{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(43px,6vw,96px)!important;font-weight:400!important;line-height:1.1!important;letter-spacing:-.07em!important;margin:0!important}
+.storyValuesIntro h2 em{color:#8c8982}
+.storyValueGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,4vw,70px)}
+.storyValueGrid article{padding-top:22px;border-top:1px solid #aaa69d}
+.storyValueGrid article>span{font-size:10px;color:#66625d;letter-spacing:.18em}
+.storyValueGrid h3{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(29px,3.2vw,50px)!important;font-weight:400!important;line-height:1.17!important;margin:38px 0 26px!important}
+.storyValueGrid p{font-size:13px;line-height:2.2;color:#57534e;margin:0}
+.storyValuesNote{font-size:11px;color:#77736c;line-height:1.9;margin:clamp(35px,5vw,75px) 0 0}
+@media(max-width:850px){
+ .storeLockup{align-items:center;gap:22px;margin:55px 0 53px}.storeLockup>img{width:62px}
+ .storeDisplay{flex-direction:column;gap:7px;align-items:flex-start;line-height:.89!important}
+ .storeDisplay span{font-size:clamp(70px,15vw,127px)!important}
+ .storeDisplay em{font-size:clamp(50px,10vw,85px)!important}
+ .storyValuesIntro{grid-template-columns:1fr;gap:28px}
+}
+@media(max-width:600px){
+ .storeLockup>img{width:49px}.storeLockup{gap:13px;margin:50px 0 54px}
+ .storeLockup>div>p{font-size:8px;letter-spacing:.13em;margin:0 0 18px}
+ .storeDisplay span{font-size:clamp(62px,17vw,90px)!important}.storeDisplay em{font-size:clamp(43px,11vw,65px)!important}
+ .storyValues{padding:75px 22px}.storyValuesIntro h2{font-size:48px!important}
+ .storyValueGrid{grid-template-columns:1fr;gap:36px}.storyValueGrid h3{margin:20px 0!important}
+}
