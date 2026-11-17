@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import EntryForm from "./entry-form";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "【申込時前金50%】RBA UNITED × GUAM｜神戸男子U14国際育成交流 2027",
@@ -10,6 +11,10 @@ export const metadata: Metadata = {
 };
 export default async function Page({ searchParams }: { searchParams: Promise<{ plan?: string }> }) {
   const query = await searchParams;
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const { data: profile } = user ? await supabase.from("profiles").select("display_name,role").eq("id",user.id).maybeSingle() : { data: null };
+  const adultAccount = profile?.role === "parent" || profile?.role === "coach" || profile?.role === "admin";
   return (
     <main className="min-h-screen bg-[#f6f2e9] text-[#101010]">
       <header className="border-b border-black/20 bg-white">
@@ -40,7 +45,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
             ["03 / REVIEW","開催・受入確認","正式条件を別途案内。残金は承諾後に請求"],
           ].map(([n,t,d])=><div key={n} className="border border-black/25 bg-white p-5"><p className="text-xs font-black tracking-widest text-[#dd5811]">{n}</p><p className="mt-2 text-xl font-black">{t}</p><p className="mt-3 text-sm leading-7">{d}</p></div>)}
         </div>
-        <EntryForm initialPlan={query.plan === "selected" ? "selected" : undefined} />
+        <EntryForm initialPlan={["individual_jan6","individual_jan7","individual_both","team_jan6","team_jan7","team_both","selected"].includes(query.plan||"") ? query.plan as "individual_jan6"|"individual_jan7"|"individual_both"|"team_jan6"|"team_jan7"|"team_both"|"selected" : undefined} initialEmail={adultAccount ? user?.email || "" : ""} initialName={adultAccount ? profile?.display_name || "" : ""} />
         <div className="mt-9 space-y-4 border border-black/25 bg-white p-6 text-sm leading-8">
           <h2 className="text-xl font-black">キャンセルと返金について</h2>
           <p>RBA側で会場・受入が確保できない場合、正式条件をご案内した後に参加者が同意できない場合、または選抜不合格の場合は、受領した前金を全額返金します。正式条件提示前に参加者が仮申込を取り下げる場合も前金を全額返金します。</p>
