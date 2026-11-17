@@ -41,7 +41,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const handwrittenValid=!handwritten||(handwrittenAvailable&&handwrittenTargetValid&&handwrittenText.trim().length>0&&Array.from(handwrittenText.trim()).length<=20);
   const canCheckout=available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged&&handwrittenValid;
   return <div className="epWrap">
-    <div className="epHead"><p>RBA ESSENTIALS / PRE-ORDER</p><h1>Pre-order<span>.</span></h1><p>公式ウェアの先行購入。国内送料無料はFIRST DROP限定。商品・サイズ・数量を選び、確定条件をご確認のうえStripe決済へお進みください。</p></div>
+    <div className="epHead"><p>RBA STORE / COLLECTION 001 / PRE-ORDER</p><h1>Pre-order<span>.</span></h1><p>公式ウェアの先行購入。国内送料無料はFIRST DROP限定。商品・サイズ・数量を選び、確定条件をご確認のうえStripe決済へお進みください。</p></div>
     {available ? <form method="POST" action="/api/commerce/essentials-preorder" className="epForm">
       <div className="epLeft">
         <div className="epLine"><span>01 / THE ITEMS</span><span>SELECT & SIZE</span></div>
@@ -98,7 +98,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
         <button className="epPay" type="submit" disabled={!canCheckout}>Stripeで先行購入する <span aria-hidden="true">↗</span></button>
         <p className="epFine">商品を選択し、上記に同意すると購入画面へ進みます。注文確定前にStripeで最終内容を確認できます。</p>
       </aside>
-    </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>ホワイトTシャツ4,900円、ブラックパーカー上下19,800円（税込）。FIRST DROPの国内送料は無料です。現在は製造品質・納期・返品条件・決済の確認中につき、お支払いを受け付けていません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">先行注文申込（お支払い前） ↗</a><Link href="/ja/essentials">コレクションに戻る ↗</Link></section>}
+    </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>ホワイトTシャツ4,900円、ブラックパーカー上下19,800円（税込）。FIRST DROPの国内送料は無料です。現在は製造品質・納期・返品条件・決済の確認中につき、お支払いを受け付けていません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） ↗</a><Link href="/ja/store">RBA STOREに戻る ↗</Link></section>}
     <style jsx>{`
 .epWrap{color:#171715;background:#f5f4f0;min-height:75vh;padding:58px clamp(22px,6vw,110px) 105px;font-family:Arial,sans-serif}
 .epWrap *{box-sizing:border-box}
