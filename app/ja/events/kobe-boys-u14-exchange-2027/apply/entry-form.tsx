@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
 const plans = [
   { id: "individual_jan6", label: "個人｜1月6日のみ", total: 8800, deposit: 4400 },
@@ -19,12 +19,19 @@ const checks = "mt-1 h-5 w-5 shrink-0 accent-[#e66317]";
 export default function EntryForm({ initialPlan, initialEmail = "", initialName = "" }: { initialPlan?: Plan; initialEmail?: string; initialName?: string }) {
   const [selected, setSelected] = useState<Plan>(initialPlan || "individual_jan6");
   const [sending, setSending] = useState(false);
+  const [paymentOpen, setPaymentOpen] = useState(false);
+  const [checking, setChecking] = useState(true);
+  useEffect(() => {
+    let mounted = true;
+    fetch("/api/commerce/kobe-u14-deposit-intake", { cache: "no-store" }).then(r => r.json()).then(data => { if (mounted) setPaymentOpen(data.payment_open === true); }).catch(() => { if (mounted) setPaymentOpen(false); }).finally(() => { if (mounted) setChecking(false); });
+    return () => { mounted = false; };
+  }, []);
   const [error, setError] = useState("");
   const current = plans.find(x => x.id === selected)!;
   const isTeam = selected.startsWith("team_");
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (sending) return;
+    if (sending || !paymentOpen) return;
     const form = new FormData(event.currentTarget);
     const value = (key: string) => String(form.get(key) || "").trim();
     const payload = {
@@ -111,8 +118,9 @@ export default function EntryForm({ initialPlan, initialEmail = "", initialName 
       <div className="border-t border-black/20 pt-6">
         <p className="text-sm font-bold">お支払い金額：<span className="text-2xl font-black">{yen(current.deposit)}</span></p>
         <p className="mt-2 text-xs leading-6">ボタンを押すと受付番号が作成され、金額・メールアドレスを固定したStripe公式ページへ移動します。カード決済が成功するまでは前金受領になりません。</p>
+        {!paymentOpen && !checking ? <p className="mt-4 border border-amber-700 bg-amber-50 p-4 text-sm font-bold text-amber-950" role="status">前金受付は最終確認中です。フォームへの入力内容を確認できますが、現在は支払いを開始できません。開催・返金条件とStripe設定の検証後に有効になります。</p> : null}
         {error && <p className="mt-4 border border-red-700 bg-red-50 p-4 text-sm text-red-900" role="alert">{error}　<a className="underline" href="mailto:riot.training.base@gmail.com">RBAに問い合わせる</a></p>}
-        <button className="mt-5 min-h-16 w-full rounded bg-[#f36b16] px-6 py-4 text-lg font-black text-black disabled:cursor-not-allowed disabled:opacity-50" type="submit" disabled={sending}>{sending ? "申込番号を登録しています…" : "申込を登録して前金をStripeで支払う →"}</button>
+        <button className="mt-5 min-h-16 w-full rounded bg-[#f36b16] px-6 py-4 text-lg font-black text-black disabled:cursor-not-allowed disabled:opacity-50" type="submit" disabled={sending || !paymentOpen || checking}>{checking ? "決済の受付状況を確認しています…" : !paymentOpen ? "前金決済は現在準備中" : sending ? "申込番号を登録しています…" : "申込を登録して前金をStripeで支払う →"}</button>
         <p className="mt-3 text-center text-xs">決済サービス：Stripe ｜ 実際のお支払いはStripe画面で確定します</p>
       </div>
     </form>
