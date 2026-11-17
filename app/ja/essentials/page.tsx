@@ -65,8 +65,8 @@ export default function EssentialsCollectionPage() {
                   <img src={item.image} alt={item.alt} loading="lazy" />
                   <div className={styles.frontInfo}>
                     <h3>{item.name}</h3><span aria-hidden="true">↗</span>
-                    <p>{commerce.ready && price !== null ? `¥${price.toLocaleString("ja-JP")}（税込）` : item.colorJa}</p>
-                    <p>商品詳細を見る</p>
+                    <p>{commerce.ready && price !== null ? `¥${price.toLocaleString("ja-JP")}（税込・国内送料無料）` : item.colorJa}</p>
+                    <p>{commerce.ready ? "サイズ・商品詳細を見る" : "商品詳細を見る"}</p>
                   </div>
                 </Link>
               );
