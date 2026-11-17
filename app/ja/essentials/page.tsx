@@ -29,7 +29,7 @@ export default function EssentialsCollectionPage() {
     <SiteFrame locale="ja">
       <div className={styles.front}>
         <nav className={styles.frontNav} aria-label="RBAストア">
-          <strong>RBA STORE</strong>
+          <strong style={{ display: "inline-flex", alignItems: "center", gap: 10 }}><img src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={30} height={42} style={{ objectFit: "contain" }} />RBA STORE</strong>
           <div>
             <a href="#collection">商品一覧</a>
             <a href="#origin">RBAの背景</a>
