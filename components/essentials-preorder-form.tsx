@@ -29,7 +29,6 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const [hoodieSize,setHoodieSize]=useState("");
   const [pantsSize,setPantsSize]=useState("");
   const [handwritten,setHandwritten]=useState(false);
-  const [handwrittenText,setHandwrittenText]=useState("");
   const [handwrittenTarget,setHandwrittenTarget]=useState<"tee"|"setup">(initial);
   const [accepted,setAccepted]=useState(false);
   const [acceptedTerms,setAcceptedTerms]=useState(false);
@@ -38,9 +37,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const subtotal=(teeJPY??0)*teeQty+(setupJPY??0)*setupQty+handwrittenCharge;
   const shipping=(teeQty+setupQty>0?(shippingJPY??0):0);
   const handwrittenTargetValid=handwrittenTarget==="tee"?teeQty===1:setupQty===1;
-  const message = handwrittenText.normalize("NFC").trim();
-  const messageLength = Array.from(message).length;
-  const handwrittenValid=!handwritten||(handwrittenAvailable&&handwrittenTargetValid&&messageLength>0&&messageLength<=20&&!/[\r\n\t<>]/.test(message));
+  const handwrittenValid = !handwritten || (handwrittenAvailable && handwrittenTargetValid);
   const sizesSelected = (teeQty === 0 || !!teeSize) && (setupQty === 0 || (!!hoodieSize && !!pantsSize));
   const canCheckout=sizesSelected&&available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged&&handwrittenValid;
   return <div className="epWrap">
@@ -66,7 +63,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
         <section id="handwritten-option" className="epHandwritten" aria-label="手書きカスタムオプション">
           <div className="epLine"><span>手書きカスタム</span><span>HANDWRITTEN CUSTOM</span></div>
           {handwrittenAvailable && handwrittenJPY!==null ? <>
-            <p className="epOptionIntro">お好きな短い言葉を、制作者が1着の1か所に手書きで入れます。先行販売の国内送料は追加料金なしです。</p>
+            <p className="epOptionIntro">RBAが用意したメッセージを、1着の1か所に手書きで添えます。先行販売の国内送料は追加料金なしです。</p>
             <label className="epConsent"><input name="handwritten" type="checkbox" value="yes" checked={handwritten} onChange={v=>setHandwritten(v.target.checked)}/>手書きオプションを追加する（+{yen(handwrittenJPY)}・税込）</label>
             {handwritten && <div className="epOptionFields">
               <label>加工する商品
@@ -75,10 +72,7 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
                   <option value="setup" disabled={setupQty!==1}>ブラックセットアップのパーカー（上下の数量1セット）</option>
                 </select>
               </label>
-              <label>入れたいメッセージ（20文字以内・改行なし）
-                <textarea name="handwritten_text" rows={2} maxLength={40} required value={handwrittenText} onChange={e=>setHandwrittenText(e.target.value)} placeholder="手書きで入れたい短い言葉"/>
-              </label>
-              <p className="epSmallNotice" aria-live="polite">{messageLength} / 20文字{!handwrittenTargetValid && " ／ 加工する商品は数量を1点にしてください。"}</p>
+              {!handwrittenTargetValid && <p className="epSmallNotice" role="status">加工する商品は数量を1点にしてください。</p>}
               <p className="epSmallNotice">生地・印字範囲・個体差・納期は製品条件をご確認ください。手書き加工は1注文につき1か所です。返品・変更条件：{handwrittenTerms}</p>
             </div>}
           </> : <p className="epOptionIntro">手書きカスタムは受付準備中です。通常版のお申し込みは上の商品欄からお進みください。</p>}
