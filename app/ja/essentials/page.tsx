@@ -8,13 +8,13 @@ import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "RBA ESSENTIALS | Official Apparel Collection",
-  description: "RBA ESSENTIALS。仙台から全国・世界へ広がる育成の哲学を、コートの外へ。ホワイトTシャツとブラックセットアップ。現在は販売準備中です。",
-  alternates: { canonical: "/ja/essentials" },
+  title: "RBA STORE | Riot Basketball Academy 公式アパレル",
+  description: "RBA STORE。勝敗の先に、残るものを。Riot Basketball Academyの育成哲学をコートの外へ。公式Tシャツとセットアップ。現在は販売準備中です。",
+  alternates: { canonical: "/ja/store" },
   openGraph: {
-    title: "RBA ESSENTIALS | The Essential Collection",
-    description: "White Tee. Black Setup. No noise, only essentials. 発売前の商品イメージを公開中。",
-    url: "/ja/essentials",
+    title: "RBA STORE | 勝敗の先に、残るものを。",
+    description: "バスケットボールとともに生きる人へ。RBA WHITE TEE / BLACK SETUP。商品は販売準備中です。",
+    url: "/ja/store",
     images: [{ url: ESSENTIALS_HERO_IMAGE, alt: "RBA Essentials 白Tシャツの商品デザイン検討画像（モデル着用なし）" }],
     locale: "ja_JP",
     type: "website",
@@ -28,7 +28,7 @@ export default function EssentialsCollectionPage() {
       <div className={styles.page}>
         <a className={styles.skipCollection} href="#collection">商品一覧へ移動する</a>
         <nav className={styles.collectionNav} aria-label="RBA ESSENTIALS ショップ内のご案内">
-          <span>RBA ESSENTIALS / ISSUE NO. 001</span>
+          <span>RBA STORE / COLLECTION 001</span>
           <div>
             <a href="#collection">THE COLLECTION</a>
             <a href="#philosophy">THE PHILOSOPHY</a>
@@ -37,10 +37,10 @@ export default function EssentialsCollectionPage() {
           </div>
         </nav>
         <section className={styles.intro} aria-labelledby="essentials-title">
-          <div className={styles.overline}><span>RBA / OFFICIAL APPAREL</span><span>FIRST DROP / 国内送料無料</span></div>
+          <div className={styles.overline}><span>RIOT BASKETBALL ACADEMY / OFFICIAL STORE</span><span>COLLECTION 001 / FIRST DROP</span></div>
           <div className={styles.introBody}>
-            <p className={styles.chapter}>COLLECTION 001 / THE EVERYDAY UNIFORM / RIOT BASKETBALL ACADEMY</p>
-            <h1 id="essentials-title" className={styles.display}>ESSENTIALS<span>.</span></h1>
+            <p className={styles.chapter}>COLLECTION 001 / FROM THE COURT. FOR EVERY DAY.</p>
+            <div className={styles.storeLockup}><img src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width="75" height="105" /><div><p>RIOT BASKETBALL ACADEMY</p><h1 id="essentials-title" className={styles.storeDisplay}><span>RBA</span><em>STORE.</em></h1></div></div>
             <div className={styles.introBottom}>
               <div><p className={styles.lead}>勝敗の先に、残るものを。<br />コートの外にも、RBAの哲学を。</p><p className={styles.shopStatus} role="status">{commerce.ready ? "PRE-ORDER OPEN / 先行購入受付中" : "FIRST DROP IN DEVELOPMENT / 現在は販売・決済を受け付けていません"}</p></div>
               <a className={styles.editorialLink} href="#collection">EXPLORE THE COLLECTION <span aria-hidden="true">↗</span></a>
@@ -53,18 +53,18 @@ export default function EssentialsCollectionPage() {
             <img src={ESSENTIALS_HERO_IMAGE} alt="RBA公式の白いTシャツ。右裾ワッペンと首裏のブランド表示を示したデザインイメージ。モデルなし。" fetchPriority="high" />
             <img src={ESSENTIALS_SETUP_IMAGE} alt="RBA公式の黒いパーカーとワイドパンツ。ワッペンを統一したデザインイメージ。モデルなし。" />
           </div>
-          <div className={styles.heroCaption}><span>WHITE TEE / BLACK SETUP</span><span>CG DESIGN REFERENCES / NOT PHYSICAL SAMPLES</span></div>
+          <div className={styles.heroCaption}><span>WHITE TEE / BLACK SETUP</span><span>CG CONCEPT IMAGES / NOT PHYSICAL SAMPLES</span></div>
         </section>
 
         <section className={styles.identityRibbon} aria-label="RBA ブランド哲学">
           <span>RIOT BASKETBALL ACADEMY</span>
-          <p>BUILT IN THE GYM. <em>WORN BEYOND IT.</em></p>
+          <p>FROM THE COURT. <em>FOR EVERY DAY.</em></p>
           <Link href="/ja/essentials/story">DISCOVER OUR STORY <span aria-hidden="true">↗</span></Link>
         </section>
 
         <section id="collection" className={styles.collection} aria-labelledby="collection-title">
           <div className={styles.sectionHeader}>
-            <div><p className={styles.chapter}>001 / THE LINEUP</p><h2 id="collection-title">The Collection</h2></div>
+            <div><p className={styles.chapter}>001 / THE LINEUP</p><h2 id="collection-title">Collection 001.</h2></div>
             <p>選んだのは、シンプルな2つの形。<br />主張ではなく、佇まいで伝える。</p>
           </div>
           <div className={styles.productGrid}>
@@ -76,7 +76,7 @@ export default function EssentialsCollectionPage() {
                 </Link>
                 <div className={styles.productInfo}>
                   <div>
-                    <p className={styles.productEyebrow}>RBA ESSENTIALS / {item.number}</p>
+                    <p className={styles.productEyebrow}>RBA STORE / {item.number}</p>
                     <h3>{item.name}</h3>
                     <p className={styles.productColor}>{item.colorJa} ・ 税込 ¥{Number(item.slug==="tee"?commerce.unitPrices.tee:commerce.unitPrices.setup).toLocaleString("ja-JP")} ・ 先行販売国内送料無料{commerce.ready?" ／ 購入受付中":" ／ 決済準備中"}</p>
                   </div>
@@ -88,9 +88,9 @@ export default function EssentialsCollectionPage() {
           <p className={styles.previewNote}>掲載写真はデザイン検討用のCGイメージで、実物撮影ではありません。販売の可否、製品仕様、配送期限、キャンセル条件は各商品ページでご確認ください。</p>
         </section>
 
-        <section id="philosophy" className={styles.manifesto} aria-label="RBA ESSENTIALS のデザイン哲学">
+        <section id="philosophy" className={styles.manifesto} aria-label="RBA STORE のデザイン哲学">
           <p className={styles.chapter}>02 / THE PHILOSOPHY</p>
-          <p className={styles.manifestoHeadline}>LESS, <em>but</em><br />MORE RBA.</p>
+          <p className={styles.manifestoHeadline}>BEYOND <em>the</em><br />SCORE.</p>
           <div className={styles.manifestoFooter}>
             <span>THE JOURNEY / THE HUMAN MARK / LONG WEAR</span>
             <p>勝った日も、負けた日も。<br />挑戦を重ねた時間にこそ、残しておきたい価値がある。</p>
@@ -107,7 +107,7 @@ export default function EssentialsCollectionPage() {
             <h2 id="origin-title">服を売るために、<br/><em>バスケットボールを</em><br/>始めたんじゃない。</h2>
             <div className={styles.originFoot}>
               <p>仙台から全国、そしてアジアへ。RBAが向き合ってきたのは、子どもたちが自分で考え、挑戦し、成長できる環境づくりです。目の前の勝利だけにとらわれず、コートの外にも広がる可能性を大切にしたい。</p>
-              <p>ESSENTIALSは、その考えを日常に持ち帰るための一着。大きな主張ではなく、いつもの服に小さく残る意思を。</p>
+              <p>RBAの公式ウェアは、その考えを日常に持ち帰るための一着。大きな主張ではなく、いつもの服に小さく残る意思を。</p>
             </div>
             <Link className={styles.originLink} href="/ja/essentials/story">OUR ROOTS. OUR PHILOSOPHY. <span aria-hidden="true">EXPLORE THE STORY ↗</span></Link>
           </div>
@@ -115,7 +115,7 @@ export default function EssentialsCollectionPage() {
 
         <section className={styles.details} aria-labelledby="details-title">
           <div className={styles.sectionHeader}>
-            <div><p className={styles.chapter}>04 / THE DETAILS</p><h2 id="details-title">Quiet by design.</h2></div>
+            <div><p className={styles.chapter}>04 / THE DETAILS</p><h2 id="details-title">Made with intention.</h2></div>
             <p>2つのアイテムに共通する、小さなこだわり。</p>
           </div>
           <div className={styles.detailGrid}>
@@ -151,7 +151,7 @@ export default function EssentialsCollectionPage() {
           </div>
           <p className={styles.launchFine}>{commerce.ready ? `先行販売・前払い。国内送料0円（FIRST DROP限定）。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。` : "関心登録は無料で、注文や予約の成立・商品の確保を意味しません。送料0円はFIRST DROPの国内販売にのみ適用します。"}</p>
         </section>
-        <footer className={styles.collectionFooter}><span>RBA ESSENTIALS © RIOT BASKETBALL ACADEMY</span><a href="mailto:riot.training.base@gmail.com">CONTACT / EMAIL ↗</a></footer>
+        <footer className={styles.collectionFooter}><span>RBA STORE © RIOT BASKETBALL ACADEMY</span><a href="mailto:riot.training.base@gmail.com">CONTACT / EMAIL ↗</a></footer>
       </div>
     </SiteFrame>
   );
