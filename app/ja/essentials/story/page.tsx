@@ -118,7 +118,7 @@ export default function EssentialsStoryPage() {
         <section className={styles.storyLast} aria-labelledby="story-last-title">
           <p className={styles.chapter}>FIRST DROP / AN INTRODUCTION</p>
           <h2 id="story-last-title">Start with<br />the essentials.</h2>
-          <p>白いTシャツと、黒いセットアップ。まずは2つだけ。完成品の品質・生地・納期を確かめてから届けます。掲載画像は実物写真ではなくデザイン参考画像です。</p>
+          <p>白いTシャツと、黒いセットアップ。まずは2つだけ。完成品の品質・生地・納期を確かめてから届けます。商品画像はイメージです。最終仕様は商品詳細でご確認ください。</p>
           <div className={styles.storyLastLinks}>
             <Link className={styles.darkButton} href="/ja/store">THE COLLECTION <span aria-hidden="true">↗</span></Link>
             <Link className={styles.textLink} href="/ja/essentials/legal">販売条件を見る <span aria-hidden="true">↗</span></Link>
