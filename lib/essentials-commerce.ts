@@ -4,6 +4,7 @@
  * can be opened. No defaults for prices, tax, merchant or delivery dates.
  */
 import { essentials } from "./rba-essentials";
+import { getEssentialsNoticeConfig } from "./essentials-notice-config";
 export const RBA_ESSENTIALS_STRIPE_ACCOUNT = "acct_1UGdxZRXDnnSs6XN";
 /** Image assets may be concept renders approved for advertising. Real samples and final specifications are validated independently of the image format. */
 /** Neither size details nor garment features may still describe unverified samples. */
@@ -114,7 +115,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   ].every(k => isApproved(p[k])) &&
     !!p.STRIPE_SECRET_KEY &&
     p.RBA_ESSENTIALS_TAX_BEHAVIOR === "inclusive" &&
-    essentialsHaveFinalSpecifications &&
+    essentialsHaveFinalSpecifications && getEssentialsNoticeConfig().configured &&
     priceOverrideIsValid && shippingOverrideIsValid &&
     !!unitPrices.tee && !!unitPrices.setup && shippingJPY === 0 &&
     !!dispatchDeadline && !!deliveryDeadline && !!orderDeadline && orderDeadline <= dispatchDeadline && dispatchDeadline <= deliveryDeadline &&
