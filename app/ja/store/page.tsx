@@ -91,7 +91,7 @@ export default function StorePage() {
       <header className={styles.storeIntro} aria-labelledby="rba-store-heading">
         <div className={styles.storeIntroTop}>
           <span>RIOT BASKETBALL ACADEMY / OFFICIAL ONLINE STORE</span>
-          <span>EST. ON THE COURT / COLLECTION 001</span>
+          <span>BUILT ON THE COURT / COLLECTION 001</span>
         </div>
         <div className={styles.storeBrandLine}>
           <Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={203} height={284} priority />
