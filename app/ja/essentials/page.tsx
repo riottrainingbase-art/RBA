@@ -32,6 +32,7 @@ export default function EssentialsCollectionPage() {
           <strong style={{ display: "inline-flex", alignItems: "center", gap: 10 }}><img src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={30} height={42} style={{ objectFit: "contain" }} />RBA STORE</strong>
           <div>
             <a href="#collection">商品一覧</a>
+            <a href="#handwritten">手書きカスタム</a>
             <a href="#origin">RBAの背景</a>
             <a href="#essentials-guide">ご注文について</a>
           </div>
@@ -73,6 +74,20 @@ export default function EssentialsCollectionPage() {
             })}
           </div>
           <p className={styles.previewNote}>商品画像はイメージです。素材・実寸は各商品ページでご確認ください。</p>
+        </section>
+
+        <section id="handwritten" className={styles.frontHandwritten} aria-labelledby="handwritten-title">
+          <div className={styles.frontContent}>
+            <div>
+              <p className={styles.frontKicker}>RBA STORE / HANDWRITTEN EDITION</p>
+              <h2 className={styles.frontHeading} id="handwritten-title">好きな言葉を、<br />一着に。</h2>
+            </div>
+            <div>
+              <p>お好きな短い言葉を、制作者が一点ずつ手書きで入れる特別仕様です。白T、または黒セットアップのパーカーに、20文字まで添えられます。</p>
+              <span className={styles.frontHandwrittenStatus}>{commerce.handwrittenAvailable && commerce.handwrittenJPY !== null ? `受付中 ／ 追加 ¥${commerce.handwrittenJPY.toLocaleString("ja-JP")}（税込）` : "手書きカスタムは受付準備中です。"}</span>
+              {commerce.handwrittenAvailable && <a className={styles.frontButton} href="#collection">対象商品を見る <span aria-hidden="true">↑</span></a>}
+            </div>
+          </div>
         </section>
 
         <section id="origin" className={styles.frontOrigin} aria-labelledby="origin-title">
