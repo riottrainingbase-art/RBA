@@ -17,6 +17,8 @@ import {
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 const TEE_LINK="plink_1UcRBCRXDnnSs6XNEW4xN93M";
+const REVISED_TEE_LINK="plink_1UcioHRXDnnSs6XNiyndHsxG";
+const REVISED_TEE_PRICE="price_1UcioHRXDnnSs6XNEIYDMnJe";
 const SETUP_LINK="plink_1UcRBHRXDnnSs6XNoHlBdpSQ";
 const TEE_PRICE="price_1UcQ68RXDnnSs6XN5XW1ZMaj";
 const SETUP_PRICE="price_1UcQ6jRXDnnSs6XNeJUiq622";
@@ -61,8 +63,9 @@ export async function POST(request:Request){
  if(session.payment_status!=="paid")return reply({received:true,pending:true});
  if(!await verifyEssentialsStripeAccount(secret))return reply({error:"invalid_account"},503);
  const link=typeof session.payment_link==="string"?session.payment_link:null;
- if(link!==TEE_LINK&&link!==SETUP_LINK)return reply({error:"unexpected_payment_link"},422);
- if(m?.product!==(link===TEE_LINK?"tee":"setup")||m?.shipping_japan_jpy!=="0")
+ const isTee=link===TEE_LINK||link===REVISED_TEE_LINK;
+ if(!isTee&&link!==SETUP_LINK)return reply({error:"unexpected_payment_link"},422);
+ if(m?.product!==(isTee?"tee":"setup")||m?.shipping_japan_jpy!=="0")
    return reply({error:"unexpected_product_metadata"},422);
  if(!session.id||!session.id.startsWith("cs_live_")||
     typeof session.created!=="number"||
@@ -86,13 +89,13 @@ export async function POST(request:Request){
  const amount=line?.price?.unit_amount,qty=line?.quantity,priceId=line?.price?.id;
  if(!Number.isInteger(qty)||!qty||qty<1||qty>3||
     typeof amount!=="number"||
-    priceId!==(link===TEE_LINK?TEE_PRICE:SETUP_PRICE)||
-    amount!==(link===TEE_LINK?FIRST_DROP_TEE_JPY:FIRST_DROP_SETUP_JPY)||
+    priceId!==(link===REVISED_TEE_LINK?REVISED_TEE_PRICE:isTee?TEE_PRICE:SETUP_PRICE)||
+    amount!==(link===TEE_LINK?4900:isTee?FIRST_DROP_TEE_JPY:FIRST_DROP_SETUP_JPY)||
     session.amount_total!==amount*qty)return reply({error:"unexpected_amount_or_quantity"},422);
- const teeSize=link===TEE_LINK?textField(session,"teesize"):null;
+ const teeSize=isTee?textField(session,"teesize"):null;
  const hoodieSize=link===SETUP_LINK?textField(session,"hoodsize"):null;
  const pantsSize=link===SETUP_LINK?textField(session,"pantssize"):null;
- if((link===TEE_LINK&&!validSize(teeSize))||
+ if((isTee&&!validSize(teeSize))||
     (link===SETUP_LINK&&(!validSize(hoodieSize)||!validSize(pantsSize))))
    return reply({error:"missing_or_invalid_size"},422);
  const createdReference=crypto.randomUUID();
@@ -108,7 +111,7 @@ export async function POST(request:Request){
     terms_version:"first_drop_20261116_pending_final_review",
     dispatch_by:addDays(arrivalBy,-4),
     deliver_by:arrivalBy,
-    tee_quantity:link===TEE_LINK?qty:0,
+    tee_quantity:isTee?qty:0,
     tee_size:teeSize,
     setup_quantity:link===SETUP_LINK?qty:0,
     hoodie_size:hoodieSize,
