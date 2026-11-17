@@ -88,13 +88,15 @@ Deno.serve(async (req: Request) => {
     if ((count ?? 0) >= 8) return respond({ error: "rate_limited", message: "受付回数の上限に達しました。RBAへご連絡ください。" }, 429, origin);
   }
   const { data: existing, error: existsError } = await db.from("kobe_u14_deposit_applications")
-    .select("id,participant_or_team,status").eq("contact_email", email).eq("plan_key", planKey)
-    .gte("created_at", new Date(Date.now() - 24 * 3600 * 1000).toISOString())
-    .order("created_at", { ascending: false }).limit(5);
+    .select("id,plan_key,participant_or_team,status").eq("contact_email", email)
+    .ilike("participant_or_team", participant)
+    .in("status", ["awaiting_deposit","deposit_paid","balance_approved","fully_paid","refund_pending","needs_review"])
+    .order("created_at", { ascending: false }).limit(50);
   if (existsError) return respond({ error: "database_unavailable" }, 503, origin);
-  const paid = (existing || []).find(x => ["deposit_paid", "balance_approved", "fully_paid"].includes(x.status));
-  if (paid) return respond({ error: "payment_already_recorded", message: "このプランには入金済みの申込があります。重複申込を避けるためRBAへご連絡ください。" }, 409, origin);
-  const pending = (existing || []).find(x => x.status === "awaiting_deposit" && x.participant_or_team === participant);
+  const paid = (existing || []).find(x => ["deposit_paid","balance_approved","fully_paid","refund_pending","needs_review"].includes(x.status));
+  if (paid) return respond({ error: "payment_already_recorded", message: "既にお支払いまたは確認中の申込があります。重複請求を避けるためRBAへご連絡ください。" }, 409, origin);
+  const pending = (existing || []).find(x => x.status === "awaiting_deposit");
+  if (pending && pending.plan_key !== planKey) return respond({ error: "plan_changed", message: "同じ選手・チームで別プランの仮申込があります。二重払いを防ぐためプラン変更はRBAへご相談ください。" }, 409, origin);
   if (pending) return respond({ ok: true, application_id: pending.id, deposit_jpy: plan.deposit, checkout_url: checkoutUrl(plan, pending.id, email), reused: true }, 200, origin);
   const insert = {
     contact_name: name, contact_email: email, contact_phone: phone,
