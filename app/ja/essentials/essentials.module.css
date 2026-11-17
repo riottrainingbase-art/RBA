@@ -170,3 +170,13 @@
  .storyDeclaration{padding:80px 22px}.storyDeclaration h2{font-size:clamp(76px,15vw,125px)!important;margin:65px 0 80px!important}.storyDeclarationBottom{grid-template-columns:1fr;gap:38px}
  .storyLast{padding:80px 22px}.storyLast h2{font-size:clamp(65px,11vw,90px)!important}.storyLastLinks{flex-direction:column;gap:27px}
 }
+
+
+/* Product detail crosslink: buyer can reach the academy story without losing product clarity. */
+.productBelief{display:grid;grid-template-columns:1.1fr .9fr;align-items:end;gap:clamp(40px,8vw,140px);padding:clamp(80px,8vw,130px) clamp(24px,5.5vw,100px);background:#111;color:#f4f2ec}
+.productBelief h2{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(47px,7.8vw,115px)!important;font-weight:400!important;line-height:1.02!important;letter-spacing:-.07em!important;margin:30px 0 0!important}
+.productBelief h2 em{color:#a9a49d}
+.productBelief>div:last-child{max-width:500px}
+.productBelief>div:last-child p{font-size:14px;line-height:2.3;color:#d5d0c8;margin:0 0 45px}
+.productBelief a{font-size:10px;letter-spacing:.15em;display:flex;justify-content:space-between;border-top:1px solid #8b8780;padding-top:20px;color:#f4f2ec!important;text-decoration:none!important;gap:18px}
+@media(max-width:720px){.productBelief{grid-template-columns:1fr;padding:75px 22px;gap:46px}.productBelief h2{font-size:clamp(55px,11vw,90px)!important}.productBelief>div:last-child p{margin-bottom:32px}}
