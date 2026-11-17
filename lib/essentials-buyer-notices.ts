@@ -13,6 +13,7 @@ type PaidRow={
  amount_total_jpy:number;
  tee_quantity:number;tee_size:string|null;
  setup_quantity:number;hoodie_size:string|null;pants_size:string|null;
+ handwritten:boolean;handwritten_addon_jpy:number;
  dispatch_by:string;deliver_by:string|null;paid_at:string;
  terms_version:string;buyer_notice_status:string;
 };
@@ -33,13 +34,16 @@ export async function sendEssentialsBuyerAcceptance(orderId:string):Promise<Resu
  if(!await verifyEssentialsStripeAccount(stripeSecret))return {outcome:"failed",code:"stripe_account_mismatch"};
  const db=createClient(url,service,{auth:{persistSession:false,autoRefreshToken:false}});
  const {data:order,error:readError}=await db.from("rba_essentials_orders")
-   .select("order_id,stripe_checkout_session_id,checkout_source,stripe_payment_link_id,payment_status,amount_total_jpy,tee_quantity,tee_size,setup_quantity,hoodie_size,pants_size,dispatch_by,deliver_by,paid_at,terms_version,buyer_notice_status")
+   .select("order_id,stripe_checkout_session_id,checkout_source,stripe_payment_link_id,payment_status,amount_total_jpy,tee_quantity,tee_size,setup_quantity,hoodie_size,pants_size,handwritten,handwritten_addon_jpy,dispatch_by,deliver_by,paid_at,terms_version,buyer_notice_status")
    .eq("order_id",orderId).maybeSingle();
  if(readError||!order)return {outcome:"failed",code:"order_unavailable"};
  const row=order as PaidRow;
  if(row.payment_status!=="paid")return {outcome:"failed",code:"unpaid_order"};
  if(row.buyer_notice_status!=="pending")return {outcome:"already_processed"};
  if(!row.deliver_by)return {outcome:"failed",code:"delivery_terms_missing"};
+ // Historical Stripe-hosted links recorded draft terms; a payment event alone
+ // must not be treated as consent to a finalized contract.
+ if(/draft|pending|review/i.test(row.terms_version))return {outcome:"failed",code:"unapproved_terms_manual_review"};
  const merchantEmail=process.env.RBA_ESSENTIALS_SELLER_EMAIL?.trim()||"";
  const sellerName=process.env.RBA_ESSENTIALS_SELLER_NAME?.trim()||"";
  if(!sellerName||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(merchantEmail))return {outcome:"not_configured"};
@@ -81,6 +85,7 @@ export async function sendEssentialsBuyerAcceptance(orderId:string):Promise<Resu
      "注文番号："+row.order_id.slice(0,8).toUpperCase(),
      ...(row.tee_quantity>0?["RBA WHITE TEE / "+row.tee_size+" × "+row.tee_quantity]:[]),
      ...(row.setup_quantity>0?["RBA BLACK SETUP / 上 "+row.hoodie_size+"・下 "+row.pants_size+" × "+row.setup_quantity]:[]),
+     ...(row.handwritten?["直筆加工オプション：1点 / 追加料金 "+yen(row.handwritten_addon_jpy)]:[]),
      "お支払金額（税込・国内送料込み）："+yen(row.amount_total_jpy),
      "入金日："+new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"long",day:"numeric"}).format(new Date(row.paid_at)),
      "発送期限："+row.dispatch_by,
