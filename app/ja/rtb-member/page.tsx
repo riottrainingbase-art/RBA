@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 };
 
 const features = [
-  ["予約", "RBAの取り込み済み予定と重ならない空き枠から予約を申請できます。RTBが承認すると確定します。"],
-  ["個別メニュー", "担当コーチから届いたトレーニングメニューを確認できます。"],
-  ["トレーニング記録", "実施した種目を記録し、次回のセッションに活かせます。"],
-  ["チームメニュー", "所属チームのトレーニングメニューを確認できます。"],
-  ["数値記録", "使用重量・体重・身長を記録し、ご自身の推移をグラフで確認できます。"],
-  ["トレーニングコラム", "コーチが共有したコラムと参考文献を読めます。"],
-  ["コーチからの動画", "ご自身に配信された動画を、会員ページで視聴できます。"],
+  ["予約", "RBAの取り込み済み予定と重ならない空き枠から申請できます。", "booking"],
+  ["個別メニュー", "担当コーチから届いたメニューと実施状況を確認できます。", "training"],
+  ["チームメニュー", "所属チームのメニューを確認できます。", "teams"],
+  ["個別動画", "ご自身に配信されたコーチの動画を視聴できます。", "videos"],
+  ["トレーニング履歴", "完了した種目と過去の実施日を振り返れます。", "log"],
+  ["数値記録・グラフ", "使用重量・体重・身長の推移を確認できます。", "progress"],
+  ["コラム・参考文献", "コーチが共有した記事と参考文献を読めます。", "articles"],
 ] as const;
 
 export default function RtbMemberPage() {
@@ -36,9 +36,9 @@ export default function RtbMemberPage() {
           <p style={{ color: "#d8dbce", fontSize: 14 }}>メールにお名前とログイン用アドレスをご記入ください。RTBからの招待後、このページから開けます。</p>
         </section>
         <ul aria-label="会員ページでできること" style={{ listStyle: "none", padding: 0, margin: "16px 0", display: "grid", gap: 8 }}>
-          {features.map(([title, detail]) => (
+          {features.map(([title, detail, section]) => (
             <li key={title} style={{ padding: "14px 18px", borderRadius: 4, background: "#fbf8f1", border: "1px solid #d9d1c2" }}>
-              <strong>{title}</strong><p style={{ margin: "4px 0 0" }}>{detail}</p>
+              <a href={memberPortal + "#" + section} style={{ color: "#171916", fontWeight: 700, textUnderlineOffset: 4 }}>{title} →</a><p style={{ margin: "4px 0 0" }}>{detail}</p>
             </li>
           ))}
         </ul>
