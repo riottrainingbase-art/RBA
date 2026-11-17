@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { createClient as createAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { essentialsHaveFinalSpecifications, getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
+import { essentialsFulfillmentCanAcceptOrders } from "@/lib/essentials-fulfillment-readiness";
 import { verifyEssentialsStripeAccount, verifyEssentialsStripePublicBranding, verifyEssentialsStripeWebhookDestinations } from "@/lib/essentials-stripe";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -45,6 +46,7 @@ export default async function EssentialsReadiness(){
   const rbaStripe=env.STRIPE_SECRET_KEY?await verifyEssentialsStripeAccount(env.STRIPE_SECRET_KEY):false;
   const rbaPublicBrand=env.STRIPE_SECRET_KEY?await verifyEssentialsStripePublicBranding(env.STRIPE_SECRET_KEY):false;
   const rbaWebhookDestinations=env.STRIPE_SECRET_KEY?await verifyEssentialsStripeWebhookDestinations(env.STRIPE_SECRET_KEY):false;
+  const makerAccessReady=await essentialsFulfillmentCanAcceptOrders();
   const url=env.NEXT_PUBLIC_SUPABASE_URL,secret=env.SUPABASE_SERVICE_ROLE_KEY;
   let validDB=false;
   try{validDB=Boolean(url&&secret&&new URL(url).hostname==="ctngdzzorhzpdxswahzl.supabase.co");}
@@ -66,6 +68,7 @@ export default async function EssentialsReadiness(){
    {name:"RBA Stripeの事業サイト・カード明細名（実設定）",ok:rbaPublicBrand},
    {name:"Stripeが実際に署名付きWebhookへ配信する設定",ok:rbaWebhookDestinations},
    {name:"受注台帳への実接続",ok:Boolean(count&&!count.error)},
+   {name:"受注・製作・発送を担当する有効なユーザー権限（実登録）",ok:makerAccessReady},
    {name:"Instagramカタログの公開承認（商品タグの審査とは別）",ok:env.RBA_ESSENTIALS_META_FEED_APPROVED==="true"},
   ];
   const flags=gates.map(([key,name])=>({key,name,ok:env[key]==="true"}));
