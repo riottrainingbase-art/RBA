@@ -50,6 +50,7 @@ export type EssentialsPresaleConfig = {
   handwrittenJPY: number | null;
   handwrittenAvailable: boolean;
   handwrittenTerms: string;
+  handwrittenMessage: string;
   dispatchDeadline: string | null;
   deliveryDeadline: string | null;
   orderDeadline: string | null;
@@ -126,7 +127,10 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     /^[0-9+()\- ]{8,24}$/.test(merchant.phone) &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(merchant.email) &&
     notice(cancellation) && notice(returns) && notice(note);
-  const handwrittenAvailable = ready && handwrittenJPY !== null && notice(handwrittenTerms) &&
+  const handwrittenMessage = p.RBA_ESSENTIALS_HANDWRITTEN_MESSAGE?.normalize("NFC").trim() ?? "";
+  const messageLength = Array.from(handwrittenMessage).length;
+  const validHandwrittenMessage = messageLength > 0 && messageLength <= 20 && !/[\r\n\t<>]/.test(handwrittenMessage);
+  const handwrittenAvailable = validHandwrittenMessage && ready && handwrittenJPY !== null && notice(handwrittenTerms) &&
     [
       "RBA_ESSENTIALS_HANDWRITTEN_PRICE_APPROVED",
       "RBA_ESSENTIALS_HANDWRITTEN_ARTIST_RIGHTS_APPROVED",
@@ -135,5 +139,5 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
       "RBA_ESSENTIALS_HANDWRITTEN_RETURNS_APPROVED",
       "RBA_ESSENTIALS_HANDWRITTEN_DELIVERY_APPROVED"
     ].every(k => isApproved(p[k]));
-  return { ready, unitPrices, shippingJPY, handwrittenJPY, handwrittenAvailable, handwrittenTerms, dispatchDeadline, deliveryDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
+  return { ready, unitPrices, shippingJPY, handwrittenJPY, handwrittenAvailable, handwrittenTerms, handwrittenMessage, dispatchDeadline, deliveryDeadline, orderDeadline, termsVersion, merchant, cancellation, returns, note };
 }
