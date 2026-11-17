@@ -147,7 +147,9 @@ test("first-drop free domestic shipping and approved retail prices are locked se
  assert.match(catalog,/rba-essentials-white-tee-official-design-reference/);
  assert.match(catalog,/rba-essentials-black-hoodie-setup-official-design-reference/);
  assert.doesNotMatch(catalog,/ESSENTIALS_MODEL_IMAGE/);
- assert.match(product,/heroPair/);
+ assert.match(product,/essentials\.map\(\(item, index\) => \(/);
+ assert.match(product,/href=\{item\.pagePath\}/);
+ assert.match(product,/src=\{item\.image\}/);
 });
 
 
