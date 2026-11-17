@@ -45,7 +45,7 @@ export default function EssentialsGuidePage(){
           <div className={styles.guideHeading}><p className={styles.chapter}>FIRST DROP / THE FACTS</p><h2 id="guide-essentials-heading">What we know.</h2></div>
           <div className={styles.guideFacts}>
             <article><span>01 / PIECES</span><h3>2つの形から。</h3><p>ホワイトのTシャツと、ブラックのフーディ＆パンツ。日常に溶け込む服を目指します。</p></article>
-            <article><span>02 / PRICE</span><h3>¥4,900 / ¥19,800</h3><p>FIRST DROPの税込予定価格。Tシャツとセットアップの順です。ご購入前に最終金額を表示します。</p></article>
+            <article><span>02 / PRICE</span><h3>¥6,600 / ¥19,800</h3><p>FIRST DROPの税込予定価格。Tシャツとセットアップの順です。ご購入前に最終金額を表示します。</p></article>
             <article><span>03 / SHIPPING</span><h3>日本国内 0円</h3><p>送料無料はFIRST DROPの国内先行販売限定です。発売後の商品・配送条件とは区別します。</p></article>
             <article><span>04 / QUALITY</span><h3>実物を確かめてから。</h3><p>{config.ready?"実物サンプルの仕様に基づいて販売しています。サイズ・素材・お手入れ方法をご確認ください。":"生地・縫製・ワッペン・サイズ実寸・洗濯後の状態を確認してから正式に商品仕様を公開します。"}</p></article>
           </div>
