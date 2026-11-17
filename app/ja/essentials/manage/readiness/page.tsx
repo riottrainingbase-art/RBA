@@ -7,6 +7,7 @@ import { essentialsHaveFinalSpecifications, getEssentialsPresaleConfig } from "@
 import { essentialsFulfillmentCanAcceptOrders } from "@/lib/essentials-fulfillment-readiness";
 import { verifyEssentialsStripeAccount, verifyEssentialsStripePublicBranding, verifyEssentialsStripeWebhookDestinations } from "@/lib/essentials-stripe";
 import { SiteFrame } from "@/components/site-frame";
+import { getEssentialsNoticeConfig } from "@/lib/essentials-notice-config";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:"RBA ESSENTIALS｜販売前の確認（管理者限定）",robots:{index:false,follow:false}};
@@ -42,6 +43,7 @@ export default async function EssentialsReadiness(){
   const profile=await db.from("profiles").select("role").eq("id",user.id).maybeSingle();
   if(profile.error||profile.data?.role!=="admin")notFound();
   const cfg=getEssentialsPresaleConfig();
+  const transactionalMailReady=getEssentialsNoticeConfig().configured;
   const env=process.env;
   const rbaStripe=env.STRIPE_SECRET_KEY?await verifyEssentialsStripeAccount(env.STRIPE_SECRET_KEY):false;
   const rbaPublicBrand=env.STRIPE_SECRET_KEY?await verifyEssentialsStripePublicBranding(env.STRIPE_SECRET_KEY):false;
@@ -68,6 +70,7 @@ export default async function EssentialsReadiness(){
    {name:"RBA Stripeの事業サイト・カード明細名（実設定）",ok:rbaPublicBrand},
    {name:"Stripeが実際に署名付きWebhookへ配信する設定",ok:rbaWebhookDestinations},
    {name:"受注台帳への実接続",ok:Boolean(count&&!count.error)},
+   {name:"注文承諾・発送通知の送信元ドメインとメールAPI",ok:transactionalMailReady},
    {name:"受注・製作・発送を担当する有効なユーザー権限（実登録）",ok:makerAccessReady},
    {name:"Instagramカタログの公開承認（商品タグの審査とは別）",ok:env.RBA_ESSENTIALS_META_FEED_APPROVED==="true"},
   ];
@@ -92,7 +95,7 @@ export default async function EssentialsReadiness(){
     <section style={{background:"#e0ddd5",padding:35,fontSize:13,lineHeight:2}}>
      <h2 style={{fontFamily:"Georgia,serif",fontWeight:400,fontSize:34}}>Order operations.</h2>
      <p>受注台帳：{count&&!count.error?"接続済み・入金済み注文 "+String(count.count??0)+" 件":"接続の再確認が必要"}</p>
-     <p>この画面は秘密鍵・顧客情報を表示しません。前払いの注文承諾通知と返品対応を、開始前に実際に検証してください。</p>
+     <p>この画面は秘密鍵・顧客情報を表示しません。前払いの注文承諾メールと発送通知は、認証済み送信元・決済済み注文・送信状態を確認して処理します。送信サービスのAPI受理と実際の受信は別に検証してください。</p>
      <div style={{display:"flex",gap:22,flexWrap:"wrap",marginTop:26}}>
       <Link href="/ja/essentials/manage">注文管理 ↗</Link>
       <Link href="/ja/essentials/production">りささん向け製作・発送管理 ↗</Link>
