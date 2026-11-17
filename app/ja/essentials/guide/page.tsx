@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const importantQuestions=[
   {question:"いま、支払いはできますか？",answer:"製品検証・販売条件の最終確認が完了するまでは、お支払いを受け付けません。無料アンケートへの回答は、注文や購入予約ではありません。販売を開始する場合は、商品仕様・総額・納期・返品条件を確認できる専用画面を公開します。"},
-  {question:"掲載されている写真と同じ製品が届きますか？",answer:"現在の画像はデザイン検討用のCGイメージであり、実物撮影ではありません。生地感、シルエット、ロゴの仕上がりなどは量産仕様と異なる可能性があります。販売開始前に現物の写真と確定仕様を掲載します。"},
+  {question:"画像と商品の色味・サイズは同じですか？",answer:"商品画像はイメージです。色味や細部は実際の商品と異なる場合があります。生地組成、サイズ実寸、ロゴの仕様は確定した商品情報をご確認ください。"},
   {question:"サイズはどのように選べばいいですか？",answer:"S・M・L・XLは現時点の検討対象で、確定した実寸表はまだ公開していません。セットアップは上衣とパンツの各サイズを別々に確認できる購入手続きを準備しています。実寸表が掲載されるまでは、サイズ選択を伴う決済は行いません。"},
   {question:"送料とお届け時期は？",answer:"FIRST DROPの日本国内送料は0円を予定しています。販売を開始する際は、注文受付の期限、発送期限とお届け期限を購入前に明示します。具体的な日付は製造と発送体制の確認後にご案内します。"},
   {question:"キャンセルや不良品の対応は？",answer:"購入前にキャンセル条件、返品・交換の対象、連絡方法をご確認いただけるようにします。品質に問題がある場合の対応も含め、条件を確定するまでは販売しません。"},
@@ -55,7 +55,7 @@ export default function EssentialsGuidePage(){
           <div>
             {importantQuestions.map((entry,i)=><details className={styles.guideFaqItem} key={entry.question}>
               <summary><span>{String(i+1).padStart(2,"0")}</span>{entry.question}<span aria-hidden="true" className={styles.guideFaqPlus}>＋</span></summary>
-              <p>{config.ready ? (i===1?"掲載写真は確認済みの実物商品です。商品実寸・素材と色味の注意点を購入前にご確認ください。":i===0?"先行購入受付中です。商品仕様、価格、発送・お届け期限、キャンセル・返品条件をご確認ください。":i===2?"商品詳細で確定した素材と実寸をご確認ください。不明な点があれば購入前にお問い合わせください。":i===3?`国内送料はFIRST DROP限定で0円です。発送期限：${config.dispatchDeadline}、お届け期限：${config.deliveryDeadline}。`:i===4?"キャンセル・返品・不良品対応は販売条件ページでご確認ください。":entry.answer) : entry.answer}</p>
+              <p>{config.ready ? (i===1?"画像はイメージです。購入前に確定したサイズ・素材・色味の注意点をご確認ください。":i===0?"先行購入受付中です。商品仕様、価格、発送・お届け期限、キャンセル・返品条件をご確認ください。":i===2?"商品詳細で確定した素材と実寸をご確認ください。不明な点があれば購入前にお問い合わせください。":i===3?`国内送料はFIRST DROP限定で0円です。発送期限：${config.dispatchDeadline}、お届け期限：${config.deliveryDeadline}。`:i===4?"キャンセル・返品・不良品対応は販売条件ページでご確認ください。":entry.answer) : entry.answer}</p>
             </details>)}
           </div>
         </section>
