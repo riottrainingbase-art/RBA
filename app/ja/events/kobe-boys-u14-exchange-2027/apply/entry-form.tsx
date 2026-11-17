@@ -23,7 +23,7 @@ export default function EntryForm({ initialPlan, initialEmail = "", initialName 
   const [checking, setChecking] = useState(true);
   useEffect(() => {
     let mounted = true;
-    fetch("/api/commerce/kobe-u14-deposit-intake", { cache: "no-store" }).then(r => r.json()).then(data => { if (mounted) setPaymentOpen(data.payment_open === true); }).catch(() => { if (mounted) setPaymentOpen(false); }).finally(() => { if (mounted) setChecking(false); });
+    fetch("/api/commerce/kobe-u14-deposit-intake", { cache: "no-store" }).then(r => r.json()).then(value => { const data = value as { payment_open?: boolean }; if (mounted) setPaymentOpen(data.payment_open === true); }).catch(() => { if (mounted) setPaymentOpen(false); }).finally(() => { if (mounted) setChecking(false); });
     return () => { mounted = false; };
   }, []);
   const [error, setError] = useState("");
@@ -57,7 +57,7 @@ export default function EntryForm({ initialPlan, initialEmail = "", initialName 
       const response = await fetch("/api/commerce/kobe-u14-deposit-intake", {
         method: "POST", headers: { "Content-Type": "application/json" }, cache: "no-store", body: JSON.stringify(payload),
       });
-      const data = await response.json();
+      const data = (await response.json()) as { ok?: boolean; message?: string; deposit_jpy?: number; checkout_url?: string };
       if (!response.ok || !data.ok) throw new Error(data.message || "お申込みの処理が完了しませんでした。");
       if (data.deposit_jpy !== current.deposit || typeof data.checkout_url !== "string" || !data.checkout_url.startsWith("https://buy.stripe.com/")) {
         throw new Error("請求金額を確認できません。決済せずRBAへお問い合わせください。");
