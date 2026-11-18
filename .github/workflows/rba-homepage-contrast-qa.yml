@@ -1,0 +1,31 @@
+name: RBA Homepage CTA Contrast QA
+
+on:
+  pull_request:
+    branches: [preview-rba, release/instagram-conversion-hub-20261117]
+    paths:
+      - components/simple-japanese-home.module.css
+      - components/simple-japanese-home.tsx
+      - tests/homepage-cta-contrast.test.mjs
+      - .github/workflows/rba-homepage-contrast-qa.yml
+  push:
+    branches: [preview-rba, release/instagram-conversion-hub-20261117]
+    paths:
+      - components/simple-japanese-home.module.css
+      - components/simple-japanese-home.tsx
+      - tests/homepage-cta-contrast.test.mjs
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-cta-contrast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Reject unreadable homepage CTA variants (normal, visited, hover, focus)
+        run: node --test tests/homepage-cta-contrast.test.mjs
