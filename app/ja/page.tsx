@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: { absolute: "RBA｜代表・西尾優人｜仙台から全国・アジアの育成年代へ" },
+  title: { absolute: "RBA｜仙台・太白区のバスケットボール育成｜代表 西尾優人" },
   description: "Riot Basketball Academyは、仙台を拠点とする西尾優人（NSCA-CPT）が創設したバスケットボール育成活動。選手・保護者・指導者の学びを支え、スクール・クリニック・国際交流の機会を全国・アジアにつなぎます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
   openGraph: {
