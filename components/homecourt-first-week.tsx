@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowRight, BookOpen, Check, CheckCircle2, Clock3, ShieldCheck } from "lucide-react";
 import styles from "./homecourt-first-week.module.css";
 
@@ -232,17 +233,20 @@ export function HomecourtFirstWeek({ userId, role }: { userId: string; role: str
   const [storageWarning, setStorageWarning] = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(storageKey);
-      const parsed: unknown = raw ? JSON.parse(raw) : [];
-      setCompleted(Array.isArray(parsed)
-        ? [...new Set(parsed.filter((value): value is number => Number.isInteger(value) && value >= 0 && value < 7))]
-        : []);
-      setStorageWarning(false);
-    } catch {
-      setCompleted([]);
-      setStorageWarning(true);
-    }
+    const timer = window.setTimeout(() => {
+      try {
+        const raw = window.localStorage.getItem(storageKey);
+        const parsed: unknown = raw ? JSON.parse(raw) : [];
+        setCompleted(Array.isArray(parsed)
+          ? [...new Set(parsed.filter((value): value is number => Number.isInteger(value) && value >= 0 && value < 7))]
+          : []);
+        setStorageWarning(false);
+      } catch {
+        setCompleted([]);
+        setStorageWarning(true);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [storageKey]);
 
   const current = items[activeDay];
@@ -310,13 +314,13 @@ export function HomecourtFirstWeek({ userId, role }: { userId: string; role: str
             {completed.includes(activeDay) ? <CheckCircle2 aria-hidden="true" size={20} /> : <Check aria-hidden="true" size={20} />}
             {completed.includes(activeDay) ? "試したことを記録済み（取り消す）" : "今日、試した"}
           </button>
-          <a href={`/ja/journal/${current.article}`}><BookOpen aria-hidden="true" size={18} /> 関連記事を読む <ArrowRight aria-hidden="true" size={16} /></a>
+          <Link href={`/ja/journal/${current.article}`}><BookOpen aria-hidden="true" size={18} /> 関連記事を読む <ArrowRight aria-hidden="true" size={16} /></Link>
         </div>
       </article>
       {count === 7 ? <p className={styles.celebrate} role="status"><CheckCircle2 size={20} aria-hidden="true" /> 7つの実践を記録しました。次は、一つ選んだことを日常の練習で続けてみましょう。</p> : null}
       <footer className={styles.footer}>
         <p><ShieldCheck aria-hidden="true" size={18} /> チェックは「試した」自己記録です。能力の評価や比較には使用しません。状態はこの端末のブラウザ内にのみ保存され、他の端末とは同期しません。自由に取り消せます。</p>
-        <a href="/ja/my-homecourt/app/start">経験や目標をBasketball Passportに残す <ArrowRight size={16} aria-hidden="true" /></a>
+        <Link href="/ja/my-homecourt/app/start">経験や目標をBasketball Passportに残す <ArrowRight size={16} aria-hidden="true" /></Link>
         {storageWarning ? <small role="status">このブラウザではチェックを保存できない可能性があります。画面を閉じると記録が消える場合があります。</small> : null}
       </footer>
     </section>
