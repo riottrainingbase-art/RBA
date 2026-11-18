@@ -213,3 +213,44 @@
  .site-header{padding-top:max(8px,env(safe-area-inset-top));min-height:calc(68px + env(safe-area-inset-top))}
  .mobile-site-menu>div{top:calc(68px + env(safe-area-inset-top));max-height:calc(100dvh - 68px - env(safe-area-inset-top))}
 }
+
+
+/* CTA contrast fallback for legacy Torsten feature on narrow mobile webviews.
+   Use explicit text-fill, not only inherited color, on light buttons in dark panels. */
+.torsten-feature a.button-light,
+.torsten-feature a.button-light:visited {
+  background-color: #fff;
+  border-color: #fff;
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+}
+.torsten-feature a.button-light > *,
+.torsten-feature a.button-light svg {
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+  opacity: 1;
+  visibility: visible;
+}
+.torsten-feature a.button-light:hover,
+.torsten-feature a.button-light:focus-visible {
+  background-color: #ebeee9;
+  border-color: #ebeee9;
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+}
+.torsten-feature a.button-light:focus-visible {
+  outline: 3px solid #b4e600;
+  outline-offset: 3px;
+}
+@media (max-width: 560px) {
+  .torsten-feature a.button-light {
+    min-height: 54px;
+    width: 100%;
+    padding: 13px 18px;
+    line-height: 1.55;
+    white-space: normal;
+  }
+}

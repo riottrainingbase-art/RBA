@@ -501,83 +501,169 @@
 }
 
 
-/* RBA homepage hero CTA contract — iPhone Safari / Instagram webview.
-   Keep background, text colour and WebKit text fill together. The previous
-   release accidentally set WHITE text on the WHITE primary CTA and DARK
-   text on the DARK secondary CTA. This explicit pairing is intentional.
-   Do not add a colour override to these selectors without updating both
-   sides of the pairing and tests/homepage-cta-contrast.test.mjs. */
-.page .hero .actions .primary,
-.page .hero .actions .primary:link,
-.page .hero .actions .primary:visited {
-  background-color:#ffffff !important;
-  color:#171817 !important;
-  -webkit-text-fill-color:#171817 !important;
-  border-color:#ffffff;
-  font-weight:900;
-  text-decoration:none;
-  opacity:1;
-  visibility:visible;
-  mix-blend-mode:normal;
+/* RBA mobile homepage CTA readability guard (iOS Safari / Instagram in-app browser).
+   Explicit foreground and text-fill prevent a white CTA from appearing blank if
+   inherited text styles are overridden by webview styling. */
+.page .hostActions .hostPrimary,
+.page .hostActions .hostPrimary:visited {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+  font-weight: 900;
+  text-decoration: none;
+  text-align: left;
 }
-.page .hero .actions .primary > span {
-  color:#171817 !important;
-  -webkit-text-fill-color:#171817 !important;
-  opacity:1;
-  visibility:visible;
+.page .hostActions .hostPrimary > span {
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+  opacity: 1;
+  visibility: visible;
+  mix-blend-mode: normal;
+}
+.page .hostActions .hostPrimary:hover,
+.page .hostActions .hostPrimary:focus-visible {
+  background-color: #eceee9;
+  border-color: #eceee9;
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
+}
+.page .hostActions .hostPrimary:focus-visible {
+  outline: 3px solid #b4e600;
+  outline-offset: 4px;
+}
+.page .hostActions .hostSecondary,
+.page .hostActions .hostSecondary:visited {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.page .hostActions .hostSecondary:hover {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.page .hero .actions .primary,
+.page .hero .actions .primary:visited,
+.page .programmes article > a {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 .page .hero .actions .secondary,
-.page .hero .actions .secondary:link,
 .page .hero .actions .secondary:visited {
-  background-color:#171817 !important;
-  color:#ffffff !important;
-  -webkit-text-fill-color:#ffffff !important;
-  border-color:#ffffff;
-  font-weight:900;
-  text-decoration:none;
-  opacity:1;
-  visibility:visible;
-  mix-blend-mode:normal;
+  color: #171817 !important;
+  -webkit-text-fill-color: #171817 !important;
 }
-.page .hero .actions .secondary > span {
-  color:#ffffff !important;
-  -webkit-text-fill-color:#ffffff !important;
-  opacity:1;
-  visibility:visible;
-}
-.page .hero .actions .primary:hover,
-.page .hero .actions .primary:focus-visible {
-  background-color:#e6e8e4 !important;
-  color:#171817 !important;
-  -webkit-text-fill-color:#171817 !important;
-}
-.page .hero .actions .secondary:hover,
-.page .hero .actions .secondary:focus-visible {
-  background-color:#ffffff !important;
-  color:#171817 !important;
-  -webkit-text-fill-color:#171817 !important;
-}
-.page .hero .actions .secondary:hover > span,
-.page .hero .actions .secondary:focus-visible > span {
-  color:#171817 !important;
-  -webkit-text-fill-color:#171817 !important;
-}
-.page .hero .actions a:focus-visible {
-  outline:3px solid #b4e600;
-  outline-offset:4px;
-}
-@media (max-width:700px) {
-  .page .hero .actions { display:flex; flex-direction:column; gap:12px; }
-  .page .hero .actions .primary,
-  .page .hero .actions .secondary {
-    width:100%;
-    min-height:54px;
-    padding:14px 18px;
-    font-size:16px;
-    line-height:1.5;
-    white-space:normal;
-    text-align:left;
-    justify-content:space-between;
+@media (max-width: 700px) {
+  .page .hostCallout {
+    gap: 24px;
+    padding: 30px 22px;
+  }
+  .page .hostCallout h2 {
+    font-size: clamp(30px, 8.25vw, 42px);
+    line-height: 1.28;
+    letter-spacing: -.045em;
+    text-wrap: pretty;
+  }
+  .page .hostDescription {
+    font-size: 15px;
+    line-height: 1.85;
+    overflow-wrap: break-word;
+  }
+  .page .hostActions .hostPrimary {
+    min-height: 58px;
+    padding: 14px 17px;
+    line-height: 1.5;
+    font-size: 15px;
+    white-space: normal;
+  }
+  .page .hostActions .hostPrimary > span:first-child {
+    flex: 1 1 auto;
+  }
+  .page .hostActions .hostSecondary {
+    min-height: 50px;
+    line-height: 1.6;
+    white-space: normal;
   }
 }
 
+
+/* RBA / RTB paid business services: a single compact conversion route.
+   Sponsorship remains separate below this bridge. */
+.page .businessBridge {
+  scroll-margin-top: 104px;
+  margin: 36px 0 16px;
+  padding: clamp(24px, 3.6vw, 45px);
+  display: grid;
+  grid-template-columns: minmax(0,1.3fr) minmax(250px,.7fr);
+  gap: clamp(18px,4vw,50px);
+  align-items: center;
+  background: #171a17;
+  color: #fff;
+  border-top: 4px solid #b4e500;
+}
+.page .businessBridgeText { min-width: 0; }
+.page .businessBridgeText > p:first-child {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .15em;
+  color: #b4e500;
+}
+.page .businessBridge h2 {
+  margin: 0 0 14px;
+  font-size: clamp(25px,3.1vw,43px);
+  line-height: 1.35;
+  letter-spacing: -.045em;
+  font-weight: 900;
+  color: #fff;
+}
+.page .businessBridgeText > p:last-child {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #dbe2d8;
+  max-width: 740px;
+}
+.page .businessBridgeActions {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 12px;
+}
+.page .businessBridgeActions a,
+.page .businessBridgeActions a:visited {
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #b4e500;
+  border: 1px solid #b4e500;
+  color: #151815 !important;
+  -webkit-text-fill-color: #151815 !important;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 900;
+  text-decoration: none;
+}
+.page .businessBridgeActions a:hover {
+  background: #d4ff3d;
+  border-color: #d4ff3d;
+  color: #151815 !important;
+}
+.page .businessBridgeActions span {
+  font-size: 11px;
+  line-height: 1.75;
+  color: #c5cec1;
+}
+.page .businessBridgeActions a span {
+  color: #151815 !important;
+  -webkit-text-fill-color: #151815 !important;
+  font-size: 18px;
+}
+@media (max-width: 780px) {
+  .page .businessBridge { grid-template-columns: minmax(0,1fr); gap: 25px; margin: 24px 0 12px; padding: 28px 23px; }
+  .page .businessBridge h2 { font-size: clamp(25px,6.7vw,36px); }
+  .page .businessBridgeActions a { white-space: normal; }
+}

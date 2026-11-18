@@ -26,10 +26,10 @@ const entryPoints = [
   {
     id: "partner",
     number: "03 / PARTNERS",
-    title: "企業・地域",
-    description: "次の育成環境をつくる。開催支援や協賛・連携を相談する。",
-    href: "/ja/partners",
-    action: "連携・協賛の相談へ",
+    title: "企業・主催者",
+    description: "社員研修・親子イベントの発注と、広告・協賛の相談を分けてご案内。",
+    href: "/ja/business",
+    action: "法人向けサービスを見る",
   },
 ] as const;
 
@@ -96,7 +96,7 @@ export async function SimpleJapaneseHome() {
             <span className={styles.indexLabel}>INDEX</span>
             <a href="#rba-for-you">01　目的から探す</a>
             <a href="#home-programmes">02　現在の活動</a>
-            <a href="#home-partners">03　協賛・パートナー</a>
+            <a href="#home-business">03　法人向けサービス</a>
             <a href="#home-host">04　地域で開催する</a>
           </nav>
 
@@ -114,7 +114,7 @@ export async function SimpleJapaneseHome() {
                 </a>
               ))}
             </nav>
-            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。</p>
+            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、有料の法人研修、広告・協賛は、それぞれ別の手続きです。</p>
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
@@ -143,6 +143,17 @@ export async function SimpleJapaneseHome() {
             <p className={styles.note}>申込受付・定員・会場・決済方法・キャンセル条件は、各活動の公式ページにある最新情報をご確認ください。</p>
           </section>
 
+          <section className={styles.businessBridge} id="home-business" aria-labelledby="home-business-title">
+            <div className={styles.businessBridgeText}>
+              <p>RBA / RTB FOR BUSINESS</p>
+              <h2 id="home-business-title">企業の研修も、地域のイベントも。</h2>
+              <p>仙台市内の社員向け60分運動研修、親子向け運動イベント、法人研修事業者との有償共同提供をご案内します。協賛・広告とは別のサービスです。</p>
+            </div>
+            <div className={styles.businessBridgeActions}>
+              <a href="/ja/business" data-growth-id="home-business-services">法人向けサービスと料金を見る <span aria-hidden="true">↗</span></a>
+              <span>相談・初回見積無料／送信だけで契約・決済は発生しません。</span>
+            </div>
+          </section>
 
           <div id="home-partners" className={styles.sponsorAnchor} aria-label="RBA協賛・パートナー">
             <CorporateSupportStrip locale="ja" />
@@ -220,11 +231,11 @@ export async function SimpleJapaneseHome() {
               <p className={styles.hostKicker}>FOR TEAMS &amp; LOCAL ORGANISERS</p>
               <h2 id="home-host-cta-title">あなたの地域に、<span>RBAを。</span></h2>
               <p className={styles.hostDescription}>チーム訪問・地域合同クリニック・指導者研修。企業・学校・自治体との協働もご相談ください。</p>
-              <ul className={styles.hostFormats} aria-label="連携の例"><li>クリニック開催</li><li>指導者研修</li><li>企業協賛</li></ul>
+              <ul className={styles.hostFormats} aria-label="連携の例"><li>クリニック開催</li><li>指導者研修</li><li>法人向け有料研修</li></ul>
             </div>
             <div className={styles.hostActions}>
               <a className={styles.hostPrimary} data-growth-id="home-host-request" href="/ja/clinic-request"><span>無料で開催相談する</span><span aria-hidden="true">↗</span></a>
-              <a className={styles.hostSecondary} data-growth-id="home-partner-details" href="/ja/partners">協賛・法人連携について →</a>
+              <a className={styles.hostSecondary} data-growth-id="home-business-details" href="/ja/business">法人研修・企業イベントについて →</a>
               <p>相談・見積もりは無料。正式な開催・協賛内容は双方の合意後に確定します。</p>
             </div>
           </section>
