@@ -12,7 +12,7 @@ import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
 const official = "https://okinawa.camp/";
 const registration = "/ja/events/okinawa-international-camp-2026/apply";
-const afterSchoolContact = "https://form.jotform.com/263095015591053";
+const afterSchoolContact = "https://form.jotform.com/263210681585054";
 
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
@@ -44,10 +44,10 @@ export default function Page() {
             <li>16:30〜17:30　少人数ゲーム・海外選手との交流</li>
             <li>17:30〜17:45ごろ　振り返り・お迎え</li>
           </ul>
-          <p>時間は候補です。22日に間に合わない場合は23日・24日の日帰り希望もフォームからご相談ください。追加枠は体育館の利用時間とスタッフ配置に応じて判断します。</p>
+          <p>時間は候補です。22日に間に合わない場合も、23日・24日の日帰り希望を申込画面で選択できます。受入日は体育館の利用時間とスタッフ配置の確認後に確定します。</p>
           <p>体育館シューズ、運動着、飲み物をご用意ください。現地集合・現地解散で、食事・送迎・宿泊は含まれません。</p>
-          <a className={styles.primary} href={afterSchoolContact}>放課後・1日参加の無料相談フォームを開く ↗</a>
-          <p className={styles.small}>参加希望の相談は無料です。フォーム送信は予約・参加確定・支払いではありません。実施日、集合・解散時刻、料金・受入枠が決まり次第、正式申込方法を個別にご案内します。既に3日間プランを申込・決済済みの方は二重にお手続きしないでください。</p>
+          <a className={styles.primary} href={afterSchoolContact}>放課後・1日参加の申込・事前決済案内へ ↗</a>
+          <p className={styles.small}>日帰り・放課後参加も現地払いではなく、参加費全額のStripe事前決済です。施設の利用時間・料金・年齢別の受入条件を確認した申込者に専用の決済ページを個別に案内します。確認できない枠を課金したり、フォーム送信だけで参加確定と表示したりしません。3日間プランをお支払い済みの方は重複して手続きしないでください。</p>
         </article>
         <article className={styles.card}>
           <h3>3日間の通い・宿泊をご希望の方</h3>
