@@ -14,6 +14,7 @@ on:
       - "app/ko/about/page.tsx"
       - "app/ja/page.tsx"
       - "audit/site-japanese/check.mjs"
+      - "audit/founder-profile/tsx-syntax.mjs"
       - ".github/workflows/rba-founder-profile-qa.yml"
   workflow_dispatch:
 
@@ -38,3 +39,7 @@ jobs:
         run: node --version
       - name: Audit Japanese site and founder visibility
         run: node audit/site-japanese/check.mjs
+      - name: Install isolated pinned TypeScript parser
+        run: npm install --prefix /tmp/rba-founder-typescript --no-save --ignore-scripts --no-audit --no-fund typescript@5.9.3
+      - name: Parse all founder and localized routes
+        run: node audit/founder-profile/tsx-syntax.mjs
