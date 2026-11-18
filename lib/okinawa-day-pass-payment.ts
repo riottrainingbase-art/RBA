@@ -5,11 +5,14 @@ export const DAY_PASS_TABLE = "okinawa_2026_day_pass_payments";
 export const DAY_PASS_STRIPE_ACCOUNT = "acct_1UGdxZRXDnnSs6XN";
 export const DAY_PASS_SITE_URL = "https://riotbasketballacademy.com";
 export const DAY_PASS_LABELS = {
-  dec22_day: "12月22日（火）1日参加",
+  dec22_day: "12月22日（火）午後参加（予定）",
   dec22_after: "12月22日（火）放課後交流",
   dec23_day: "12月23日（水）1日参加",
   dec23_after: "12月23日（水）放課後交流",
-  dec24_day: "12月24日（木）1日参加",
+  dec24_day: "12月24日（木）短縮日帰り参加（午前〜午後、予定）",
+  dec22_23_day: "12月22日午後＋23日の日帰り2日間",
+  dec23_24_day: "12月23日＋24日の日帰り2日間",
+  dec22_24_day: "12月22日午後＋24日の日帰り2日間",
 } as const;
 export type DayPassPlan = keyof typeof DAY_PASS_LABELS;
 
@@ -56,7 +59,7 @@ export function approvedAmount(plan: string) {
   try {
     const parsed = JSON.parse(raw) as Record<string, unknown>;
     const amount = parsed[plan];
-    return typeof amount === "number" && Number.isInteger(amount) && amount >= 2000 && amount <= 20000
+    return typeof amount === "number" && Number.isInteger(amount) && amount >= 2000 && amount <= 40000
       ? amount : null;
   } catch { return null; }
 }
@@ -72,10 +75,18 @@ export function dayPassInviteValid(row: DayPassRecord) {
   if (row.terms_version !== process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION) return false;
   if (!row.invite_expires_at || Date.parse(row.invite_expires_at) <= Date.now()) return false;
   if (approvedAmount(row.plan_code) !== row.amount_jpy) return false;
-  const closes = row.plan_code.startsWith("dec22") ? "2026-12-22T14:00:00+09:00"
-    : row.plan_code.startsWith("dec23") ? "2026-12-23T09:00:00+09:00"
-    : "2026-12-24T09:00:00+09:00";
-  return Date.now() < Date.parse(closes);
+  // A two-day pass closes before the first included session; no partial retrospective sales.
+  const closes: Record<DayPassPlan, string> = {
+    dec22_day: "2026-12-22T14:00:00+09:00",
+    dec22_after: "2026-12-22T16:15:00+09:00",
+    dec23_day: "2026-12-23T09:00:00+09:00",
+    dec23_after: "2026-12-23T15:30:00+09:00",
+    dec24_day: "2026-12-24T09:00:00+09:00",
+    dec22_23_day: "2026-12-22T14:00:00+09:00",
+    dec23_24_day: "2026-12-23T09:00:00+09:00",
+    dec22_24_day: "2026-12-22T14:00:00+09:00",
+  };
+  return Date.now() < Date.parse(closes[row.plan_code as DayPassPlan]);
 }
 
 export async function findDayPassInvite(token: string) {
