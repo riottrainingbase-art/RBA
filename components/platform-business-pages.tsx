@@ -27,10 +27,10 @@ function PlatformPage({locale,kind}:{locale:Locale;kind:"united"|"connect"|"orga
     <article className="homecourt-plan-card"><h3>{({ja:"参加後はどうなりますか？",en:"What happens after the programme?","zh-tw":"參加後如何延續？",ko:"참가 후에는 어떻게 이어지나요?"})[locale]}</h3><p>{({ja:"所属先へ戻り、得た経験を日常へ持ち帰ります。参加履歴や振り返りはMY HOME COURTに残し、次の挑戦につなげます。",en:"You return to your home environment and bring the experience back. Keep the participation and reflection in MY HOME COURT for the next step.","zh-tw":"回到原本環境，把新的經驗帶回日常。參加紀錄與反思可留在 MY HOME COURT，連到下一次挑戰。",ko:"기존 환경으로 돌아가 경험을 일상에 가져갑니다. 참가 이력과 회고는 MY HOME COURT에 남겨 다음 도전으로 연결합니다."})[locale]}</p></article>
   </div>
 </section>
-{locale==="ja"?<section className="homecourt-product-preview section-pad" aria-label="RBA UNITED 韓国・仁川 2027 無料参加意向登録">
+{locale==="ja"?<section className="homecourt-product-preview section-pad" aria-label="RBA UNITED 韓国・仁川 2027 無料選考エントリー">
   <div className="homecourt-private-note"><Globe2/><div><strong>RBA UNITED JAPAN｜韓国・仁川 2027</strong>
-  <p>全国の選手を対象とする無料の参加意向登録を受付中。先行238,000円・通常248,000円は航空券別の検討価格で、正式な募集金額ではありません。日程・出場資格・返金・引率体制・旅行契約を確認しています。</p>
-  <a className="text-link" href="/ja/my-homecourt/united-korea-2027">料金案・参加条件と無料登録について確認する <ArrowRight size={16}/></a>
+  <p>男女U12・U15・U17の無料選考エントリーを受付中。2027年1月28〜31日・3泊4日。先行238,000円・通常248,000円は航空券別の検討価格で、正式な請求額ではありません。RBAの参加カテゴリー、返金・引率・旅行契約条件を確認しています。</p>
+  <a className="text-link" href="/ja/my-homecourt/united-korea-2027">募集要項・基本年齢条件を確認して無料エントリーする <ArrowRight size={16}/></a>
   <p>無料登録は出場確定・参加契約ではなく、前金も請求しません。</p></div></div>
 </section>:null}
 <section className="homecourt-product-preview section-pad">
