@@ -126,6 +126,74 @@ export default function InstagramEntryPage() {
           </div>
         </section>
 
+
+        <section className="mx-5 mb-6 border border-neutral-300 bg-white px-5 py-6 sm:mx-9 sm:px-7" aria-labelledby="instagram-first-visit-title">
+          <p className="text-[11px] font-black tracking-[.16em] text-neutral-600">FIRST VISIT / はじめてのRBA</p>
+          <h2 id="instagram-first-visit-title" className="mt-2 text-[25px] font-black leading-[1.3] tracking-[-.04em] sm:text-[31px]">今の悩みから、行き先を選ぶ。</h2>
+          <p className="mt-3 text-[13px] leading-6 text-neutral-700">目的に合った公式案内へ直接進めます。リンクを開くだけでは申し込み・決済は発生しません。</p>
+          <nav aria-label="目的別の最短入口" className="mt-5 grid gap-2 sm:grid-cols-2">
+            <a
+              href={showTorsten ? track("/ja/events/torsten-loibl-online-clinic", "first_coach_torsten", "torsten_vol2_20261125") : track("/ja/coaches", "first_coach_evergreen", "rba_first_visit")}
+              data-growth-id="instagram-first-coach"
+              className="flex min-h-[112px] flex-col justify-between border-2 border-[#151719] bg-[#151719] px-4 py-4 text-white transition-colors hover:bg-[#333] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              style={{ color: "#fff" }}
+            >
+              <span className="text-[10px] font-black tracking-[.12em] text-neutral-300">01 / COACHES</span>
+              <strong className="mt-2 block text-[17px] font-black leading-6">{showTorsten ? "指導者｜練習のシュートを試合につなげたい" : "指導者｜練習設計を学びたい"}</strong>
+              <span className="mt-2 text-xs font-semibold text-neutral-200">{showTorsten ? "11/25 Torsten講習の内容・料金を見る →" : "指導者向けの学びを見る →"}</span>
+            </a>
+            <a href={track("/ja/opportunities", "first_player", "rba_first_visit")} data-growth-id="instagram-first-player"
+              className="flex min-h-[112px] flex-col justify-between border border-neutral-300 bg-[#f7f7f4] px-4 py-4 text-[#151719] transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+              <span className="text-[10px] font-black tracking-[.12em] text-neutral-600">02 / PLAYERS</span>
+              <strong className="mt-2 block text-[17px] font-black leading-6">選手｜自分に合うクリニックを探したい</strong>
+              <span className="mt-2 text-xs font-semibold">地域・年代から開催予定を見る →</span>
+            </a>
+            <a href={track("/ja/families", "first_parent", "rba_first_visit")} data-growth-id="instagram-first-parent"
+              className="flex min-h-[112px] flex-col justify-between border border-neutral-300 bg-[#f7f7f4] px-4 py-4 text-[#151719] transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+              <span className="text-[10px] font-black tracking-[.12em] text-neutral-600">03 / FAMILIES</span>
+              <strong className="mt-2 block text-[17px] font-black leading-6">保護者｜育成環境や参加先を考えたい</strong>
+              <span className="mt-2 text-xs font-semibold">保護者向け情報から選ぶ →</span>
+            </a>
+            <a href={track("/ja/clinic-request", "first_team_host", "rba_first_visit")} data-growth-id="instagram-first-team"
+              className="flex min-h-[112px] flex-col justify-between border border-neutral-300 bg-[#f7f7f4] px-4 py-4 text-[#151719] transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+              <span className="text-[10px] font-black tracking-[.12em] text-neutral-600">04 / TEAMS & HOSTS</span>
+              <strong className="mt-2 block text-[17px] font-black leading-6">チーム・地域｜RBAを呼びたい</strong>
+              <span className="mt-2 text-xs font-semibold">開催希望地から相談する →</span>
+            </a>
+          </nav>
+        </section>
+
+        {showTorsten && (
+          <section className="mx-5 mb-6 overflow-hidden bg-[#17191b] text-white sm:mx-9" aria-labelledby="featured-title">
+            <div className="border-b border-white/20 px-5 py-4 sm:px-7">
+              <p className="text-[11px] font-bold tracking-[.18em] text-neutral-300">FEATURED / 11.25 ONLINE</p>
+            </div>
+            <div className="px-5 py-7 sm:px-7 sm:py-9">
+              <p className="text-[12px] font-bold text-neutral-200">練習では入る。試合では打てない。</p>
+              <h2 id="featured-title" className="mt-3 text-[30px] font-black leading-[1.12] tracking-[-.045em] sm:text-[43px]">
+                シュートを、<br />試合の判断につなげる。
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-neutral-300">
+                TORSTEN LOIBL ONLINE CLINIC Vol.2。シュート技術、スペーシング、練習設計、試合での判断を90分で考えます。
+              </p>
+              <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-3 border-t border-white/20 pt-5 text-[12px]">
+                <div><span className="block text-neutral-400">開催</span><strong className="mt-1 block text-sm">11/25（水）20:00〜21:30</strong></div>
+                <div><span className="block text-neutral-400">形式</span><strong className="mt-1 block text-sm">Zoom・日本語逐次通訳</strong></div>
+                <div><span className="block text-neutral-400">LIVE（税込）</span><strong className="mt-1 block text-lg">¥3,300</strong></div>
+                <div><span className="block text-neutral-400">録画（税込）</span><strong className="mt-1 block text-lg">¥4,400</strong><span className="block text-[10px] text-neutral-400">配信開始後30日間</span></div>
+              </div>
+              <a
+                className="mt-6 flex min-h-14 items-center justify-between gap-3 bg-white px-5 py-3 font-black text-[#17191b] transition-colors hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                href={track("/ja/events/torsten-loibl-online-clinic", "featured_torsten", "torsten_vol2_20261125")}
+                data-cta="torsten_vol2" data-growth-id="instagram-featured-torsten"
+              >
+                講習の内容・申込方法を見る <ArrowUpRight size={20} aria-hidden="true" />
+              </a>
+              <p className="mt-3 text-[11px] leading-5 text-neutral-400">公式案内 → Googleフォーム → 送信後のSquare決済案内を確認。お支払い完了で申込確定。</p>
+            </div>
+          </section>
+        )}
+
         <section className="mx-5 mb-6 border-2 border-[#10233f] bg-white px-5 py-6 text-[#10233f] sm:mx-9 sm:px-7" aria-labelledby="instagram-sendai-school-title">
           <p className="text-[11px] font-black tracking-[.12em] text-[#735c48]">SENDAI / TAIHAKU · SCHOOL TRIAL</p>
           <h2 id="instagram-sendai-school-title" className="mt-3 text-[27px] font-black leading-[1.3] tracking-[-.04em] sm:text-[34px]">仙台の小学生・中学生へ。<br />チームはそのまま、もっと学ぼう。</h2>
@@ -176,37 +244,6 @@ export default function InstagramEntryPage() {
             ※月額企業広告にトップページ上部・ユニフォーム等への掲出は含まれません。個別企画協賛は別途契約となります。
           </p>
         </section>
-
-        {showTorsten && (
-          <section className="mx-5 overflow-hidden bg-[#17191b] text-white sm:mx-9" aria-labelledby="featured-title">
-            <div className="border-b border-white/20 px-5 py-4 sm:px-7">
-              <p className="text-[11px] font-bold tracking-[.18em] text-neutral-300">FEATURED / 11.25 ONLINE</p>
-            </div>
-            <div className="px-5 py-7 sm:px-7 sm:py-9">
-              <p className="text-[12px] font-bold text-neutral-200">練習では入る。試合では打てない。</p>
-              <h2 id="featured-title" className="mt-3 text-[30px] font-black leading-[1.12] tracking-[-.045em] sm:text-[43px]">
-                シュートを、<br />試合の判断につなげる。
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-neutral-300">
-                TORSTEN LOIBL ONLINE CLINIC Vol.2。シュート技術、スペーシング、練習設計、試合での判断を90分で考えます。
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-3 border-t border-white/20 pt-5 text-[12px]">
-                <div><span className="block text-neutral-400">開催</span><strong className="mt-1 block text-sm">11/25（水）20:00〜21:30</strong></div>
-                <div><span className="block text-neutral-400">形式</span><strong className="mt-1 block text-sm">Zoom・日本語逐次通訳</strong></div>
-                <div><span className="block text-neutral-400">LIVE（税込）</span><strong className="mt-1 block text-lg">¥3,300</strong></div>
-                <div><span className="block text-neutral-400">録画（税込）</span><strong className="mt-1 block text-lg">¥4,400</strong><span className="block text-[10px] text-neutral-400">配信開始後30日間</span></div>
-              </div>
-              <a
-                className="mt-6 flex min-h-14 items-center justify-between gap-3 bg-white px-5 py-3 font-black text-[#17191b] transition-colors hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                href={track("/ja/events/torsten-loibl-online-clinic", "featured_torsten", "torsten_vol2_20261125")}
-                data-cta="torsten_vol2" data-growth-id="instagram-featured-torsten"
-              >
-                講習の内容・申込方法を見る <ArrowUpRight size={20} aria-hidden="true" />
-              </a>
-              <p className="mt-3 text-[11px] leading-5 text-neutral-400">公式案内 → 専用Googleフォーム → フォーム送信後、選択プランの決済へ。</p>
-            </div>
-          </section>
-        )}
 
         {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
           <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
