@@ -660,3 +660,128 @@
   .page .businessBridge h2 { font-size: clamp(25px,6.7vw,36px); }
   .page .businessBridgeActions a { white-space: normal; }
 }
+
+
+/* The founder's self-introduction lives on the Japanese homepage, not only on About. */
+.page .founderIntroduction {
+  scroll-margin-top: 100px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.27fr) minmax(260px, .73fr);
+  gap: clamp(28px, 4vw, 58px);
+  align-items: center;
+  margin: 34px 0 36px;
+  padding: clamp(25px, 4vw, 52px);
+  background: #171a17;
+  color: #fff;
+  border-top: 4px solid #b4e500;
+}
+.page .founderIntroductionText { min-width: 0; }
+.page .founderIntroductionKicker {
+  margin: 0 0 14px;
+  color: #b4e500;
+  font-weight: 900;
+  font-size: 11px;
+  line-height: 1.65;
+  letter-spacing: .15em;
+}
+.page .founderIntroduction h2 {
+  margin: 0 0 21px;
+  max-width: 670px;
+  color: #fff;
+  font-size: clamp(23px, 2.8vw, 37px);
+  line-height: 1.45;
+  letter-spacing: -.045em;
+  font-weight: 900;
+}
+.page .founderIntroductionName {
+  margin: 0 0 5px;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -.03em;
+}
+.page .founderIntroductionName span {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 11px;
+  letter-spacing: .15em;
+  font-weight: 700;
+  color: #b4e500;
+}
+.page .founderIntroductionPosition {
+  margin: 0 0 23px;
+  color: #b5c0b8;
+  font-size: 12px;
+  line-height: 1.85;
+}
+.page .founderIntroductionBody {
+  margin: 0 0 15px;
+  color: #e6ebe6;
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 660px;
+}
+.page .founderIntroductionFacts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 24px 0 22px;
+}
+.page .founderIntroductionFacts span {
+  border: 1px solid #586653;
+  color: #eff4eb;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+  padding: 7px 10px;
+}
+.page .founderIntroductionLink,
+.page .founderIntroductionLink:visited {
+  display: inline-flex;
+  min-height: 52px;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 17px;
+  text-decoration: none;
+  color: #151815 !important;
+  -webkit-text-fill-color: #151815 !important;
+  background: #b4e500;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.6;
+}
+.page .founderIntroductionLink:hover { background: #d7ff47; }
+.page .founderIntroductionPortrait {
+  margin: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.page .founderIntroductionPortrait img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 874 / 860;
+  object-fit: cover;
+  display: block;
+}
+.page .founderIntroductionPortrait figcaption {
+  margin: 11px 0 0;
+  color: #b4e500;
+  font-size: 10px;
+  letter-spacing: .12em;
+  line-height: 1.6;
+}
+@media (max-width: 760px) {
+  .page .founderIntroduction {
+    grid-template-columns: minmax(0, 1fr);
+    margin: 22px 0 26px;
+    padding: 27px 21px;
+    gap: 24px;
+  }
+  .page .founderIntroductionName span { display: block; margin: 5px 0 0; }
+  .page .founderIntroductionPortrait { max-width: 520px; }
+  .page .founderIntroductionLink { width: 100%; }
+}
