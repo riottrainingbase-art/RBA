@@ -1,5 +1,3 @@
-import { DAY_PASS_LABELS } from "@/lib/okinawa-day-pass-payment";
-
 export const OKINAWA_DAY_PASS_REQUEST_URL = "https://form.jotform.com/263217090103041";
 
 const options = [
@@ -79,7 +77,6 @@ export function OkinawaDayPassOptions({ compact = false }: { compact?: boolean }
       </p>
       <p style={{ fontSize: 12, color: "#514b44" }}>
         問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>
-        <span style={{ display: "none" }}>{Object.keys(DAY_PASS_LABELS).length}</span>
       </p>
     </section>
   );
