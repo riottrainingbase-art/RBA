@@ -28,7 +28,7 @@ const copy = {
   principlesLabel:"COACHING PRINCIPLES / 指導の軸",principlesTitle:"育成で、私が譲らないこと。",
   principles:[{title:"ドリルの再現より、試合での判断",body:"技術だけを切り離さず、状況を認知し、選び、実行する力をゲームの中で育てます。"},{title:"目先の勝敗より、長期的な成長",body:"出場機会、発育段階、練習量を考え、一人ひとりが学べる環境を設計します。"},{title:"身体の準備と、休息も育成の一部",body:"S&C、基本動作、負荷管理、けがの予防を、競技力の話と切り離しません。"},{title:"指導者と保護者も学び続ける",body:"慣習や経験則を無条件に正解とせず、科学的根拠と子どもの実際の姿に照らして考えます。"}],
   nextAction:"RBAの育成方針を読む",nextLink:"開催予定・参加の入口を見る",
-  contactTitle:"共に実現したいことから、話そう。",contactBody:"クリニック、指導者の学び、日本とアジアの交流、パートナーシップ。活動する地域や対象、実現したいことをお聞かせください。",cta:"西尾優人にWhatsAppで相談",note:"WhatsAppが開きます。内容を確認してから送信できます。",message:"西尾さん、RBAのプロフィールを拝見しました。クリニック・指導者の学び・国際交流・連携について相談したいです。\n団体名・地域：\n実現したいこと：",more:"創設者の紹介を読む",alt:"コートでバスケットボールの指導をする西尾優人",caption:"西尾優人 / 指導の現場から"
+  contactTitle:"共に実現したいことから、話そう。",contactBody:"クリニック、指導者の学び、日本とアジアの交流、パートナーシップ。活動する地域や対象、実現したいことをお聞かせください。",cta:"RBA公式窓口へ問い合わせる",note:"公式のお問い合わせページへ移動します。内容を確認してからご連絡ください。",message:"西尾さん、RBAのプロフィールを拝見しました。クリニック・指導者の学び・国際交流・連携について相談したいです。\n団体名・地域：\n実現したいこと：",more:"創設者の紹介を読む",alt:"コートでバスケットボールの指導をする西尾優人",caption:"西尾優人 / 指導の現場から"
  },
  "zh-tw":{
   label:"創辦人介紹",name:"西尾 優人",native:"MASATO NISHIO",role:"Riot Basketball Academy 創辦人・代表",headline:"看見每一份潛能，\n開啟世界的視野。",
@@ -61,12 +61,14 @@ const copy = {
 export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}) {
  const c=copy[locale];
  const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
+ const contactHref=locale==="ja"?localePath(locale,"contact"):whatsapp;
+ const isExternalContact=locale!=="ja";
  const Heading=full?"h1":"h2";
  const SectionHeading=full?"h2":"h3";
  return <section className={`founder-profile${full?" founder-profile-full":""}`} id="founder" aria-labelledby="founder-name">
   <div className="founder-intro">
    <figure className="founder-portrait"><Image src="/media/founder/masato-nishio-on-court.webp" sizes="(max-width: 760px) 90vw, 42vw" alt={c.alt} width="874" height="860" loading={full?"eager":"lazy"}/><figcaption>{c.caption}</figcaption></figure>
-   <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><SectionHeading className="founder-belief">{c.headline}</SectionHeading><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
+   <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><SectionHeading className="founder-belief">{c.headline}</SectionHeading><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><a className="founder-contact" href={contactHref} target={isExternalContact?"_blank":undefined} rel={isExternalContact?"noopener noreferrer":undefined}><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
   </div>
   <div className="founder-principles"><article><p className="founder-eyebrow">01 / MISSION · {c.missionLabel}</p><SectionHeading>{c.mission}</SectionHeading><p>{c.missionBody}</p></article><article><p className="founder-eyebrow">02 / VISION · {c.visionLabel}</p><SectionHeading>{c.vision}</SectionHeading><p>{c.visionBody}</p></article></div>
   {full&&<div className="founder-depth" aria-labelledby="founder-depth-title">
@@ -86,7 +88,7 @@ export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}
       </nav>
     </div>
   </div>}
-  {full&&<div className="founder-invitation"><p className="founder-eyebrow">LET’S BEGIN A CONVERSATION</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a><small>{c.note}</small><a className="founder-email" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></div>}
+  {full&&<div className="founder-invitation"><p className="founder-eyebrow">LET’S BEGIN A CONVERSATION</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p><a className="founder-contact" href={contactHref} target={isExternalContact?"_blank":undefined} rel={isExternalContact?"noopener noreferrer":undefined}><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a><small>{c.note}</small><a className="founder-email" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></div>}
  </section>;
 }
 
