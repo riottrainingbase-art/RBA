@@ -44,6 +44,28 @@ const fixture = '<!doctype html><html lang="ja"><head>' +
  '<span>更新 / JOURNAL</span><strong>今のチームのまま、学びの場を広げる｜MY HOME COURTのこれから</strong>' +
  '<span class="site-update-cta">見る →</span></a></div></body></html>';
 
+// Founder section fixture: exercise its CSS at the same viewport widths as the
+// hero. This is a visual-layout regression guard, NOT a real Next.js route test.
+const founderFixture = `
+<section class="founderIntroduction" id="home-founder" aria-labelledby="home-founder-title">
+  <div class="founderIntroductionText">
+    <p class="founderIntroductionKicker">WHO LEADS RBA / FOUNDER PROFILE</p>
+    <h2 id="home-founder-title">誰が、どんな考えで、子どもの育成に向き合っているのか。</h2>
+    <p class="founderIntroductionName">西尾 優人 <span>MASATO NISHIO</span></p>
+    <p class="founderIntroductionPosition">Riot Basketball Academy 創設者・代表 / Riot Training Base 代表</p>
+    <p class="founderIntroductionBody">NSCA-CPT。選手として東北選抜・国体を経験し、ドイツでS&amp;Cの指導に携わった後、仙台から育成年代の活動を広げています。</p>
+    <p class="founderIntroductionBody">試合の結果だけで子どもの可能性を決めない。判断力、身体の発達、休息、そして指導者の学びまでを含めて成長できる環境をつくります。</p>
+    <div class="founderIntroductionFacts"><span>NSCA-CPT</span><span>ドイツでのS&amp;C指導</span></div>
+    <a class="founderIntroductionLink" href="/ja/about">代表の経歴・理念・活動を詳しく読む <span>↗</span></a>
+  </div>
+  <figure class="founderIntroductionPortrait">
+    <img width="874" height="860" alt="RBA代表がバスケットボールの指導を行う様子" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" />
+    <figcaption>MASATO NISHIO / THE COACH BEHIND RBA</figcaption>
+  </figure>
+</section>`;
+assert.ok(fixture.includes('</div></main>'),'Home fixture closing marker missing');
+const completeFixture=fixture.replace('</div></main>',founderFixture+'</div></main>');
+
 mkdirSync('screenshots/home-mobile', { recursive:true });
 
 /** A computed CSS contrast can be green while a browser actually paints blank
@@ -95,7 +117,7 @@ for (const [engineName, engine] of [['chromium',chromium], ['webkit',webkit]]) {
         isMobile:width<=430, hasTouch:width<=430
       });
       const page=await context.newPage();
-      await page.setContent(fixture,{waitUntil:'domcontentloaded'});
+      await page.setContent(completeFixture,{waitUntil:'domcontentloaded'});
       for (const kind of ['primary','secondary']) {
         const locator=page.locator('.page .hero .actions .' + kind);
         assert.equal(await locator.isVisible(), true, engineName+' '+width+' '+kind+' visible');
@@ -121,6 +143,35 @@ for (const [engineName, engine] of [['chromium',chromium], ['webkit',webkit]]) {
         assert.ok(ratio(focused.color,focused.background)>=4.5,
           engineName+' '+width+' '+kind+' focused');
       }
+      // Founder layout, legible CTA and image positioning at all breakpoints.
+      const founder=page.locator('#home-founder');
+      const founderLink=founder.locator('.founderIntroductionLink');
+      const founderPhoto=founder.locator('.founderIntroductionPortrait img');
+      assert.equal(await founder.isVisible(),true,engineName+' '+width+' founder visible');
+      assert.equal(await founderLink.isVisible(),true,engineName+' '+width+' founder link visible');
+      assert.equal(await founderPhoto.isVisible(),true,engineName+' '+width+' founder image visible');
+      const cta=await cssValues(founderLink);
+      assert.ok(cta.height>=44,engineName+' '+width+' founder link touch height');
+      assert.ok(ratio(cta.color,cta.background)>=4.5,engineName+' '+width+' founder CTA contrast');
+      assert.ok(ratio(cta.fill,cta.background)>=4.5,engineName+' '+width+' founder WebKit glyph contrast');
+      const founderGeometry=await founder.evaluate(section=>{
+        const r=section.getBoundingClientRect();
+        const intro=section.querySelector('.founderIntroductionText').getBoundingClientRect();
+        const photo=section.querySelector('.founderIntroductionPortrait').getBoundingClientRect();
+        return {x:r.left,right:r.right,scrollWidth:section.scrollWidth,clientWidth:section.clientWidth,
+          textBottom:intro.bottom,photoTop:photo.top,photoLeft:photo.left,contentLeft:intro.left,
+          photoWidth:photo.width,photoHeight:photo.height};
+      });
+      assert.ok(founderGeometry.x>=-2&&founderGeometry.right<=width+2,
+        engineName+' '+width+' founder stays within viewport: '+JSON.stringify(founderGeometry));
+      assert.ok(founderGeometry.scrollWidth<=founderGeometry.clientWidth+2,
+        engineName+' '+width+' founder has no own horizontal overflow');
+      assert.ok(founderGeometry.photoWidth>100&&founderGeometry.photoHeight>70,
+        engineName+' '+width+' founder photo has meaningful size');
+      if(width<=760){
+        assert.ok(founderGeometry.photoTop>=founderGeometry.textBottom-2,
+          engineName+' '+width+' portrait must stack below founder copy');
+      }
       const announcement=page.locator('.site-update-strip strong');
       const announcementCSS=await cssValues(announcement);
       if(width<=430){
@@ -132,7 +183,7 @@ for (const [engineName, engine] of [['chromium',chromium], ['webkit',webkit]]) {
       assert.ok(docWidth<=width+2,engineName+' '+width+' has no horizontal overflow ('+docWidth+')');
       await page.screenshot({path:'screenshots/home-mobile/'+engineName+'-'+width+'.png',fullPage:true});
       await context.close();
-      process.stdout.write('PASS '+engineName+' '+width+' CTAs, update title, responsive width\n');
+      process.stdout.write('PASS '+engineName+' '+width+' CTAs, founder, update title, responsive width\n');
     }
   } finally { await browser.close(); }
 }
