@@ -130,6 +130,32 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
   const clear=clarityCopy[locale];
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={17}/>{ja&&!authReady?"登録再開のお知らせを受け取る":c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div>{ja&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開までは、公式LINEで新しい活動・記事・登録再開のお知らせを受け取れます。</p>:null}</div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
+    {ja?<section className="homecourt-product-preview section-pad" aria-labelledby="after-loss-learning-heading">
+      <div className="section-head">
+        <div>
+          <p className="section-index">NEW / RBA JOURNAL × MY HOME COURT</p>
+          <h2 id="after-loss-learning-heading">負けたあと、どう立ち上がる？</h2>
+        </div>
+        <p>勝敗のあとに必要なのは、すぐに前向きになることだけではありません。気持ちを落ち着けて、試合で起きた一場面から次の練習を考えます。</p>
+      </div>
+      <div className="homecourt-preview-grid">
+        <article>
+          <HeartHandshake/><span>FOR PLAYER</span><h3>悔しさを、急いで消さなくていい。</h3>
+          <p>「負けた＝自分がダメ」ではない。気持ちが落ち着いたら、次の練習で試すことを一つ見つけよう。</p>
+          <a className="text-link" href="/ja/journal/after-losing-how-to-restart-20261119">無料記事を読む <ArrowRight size={16}/></a>
+        </article>
+        <article>
+          <BookOpen/><span>FOR PARENT</span><h3>帰り道を、もう一つの反省会にしない。</h3>
+          <p>話したい時には聞く。今は話したくない時には待つ。子どもの気持ちと人格を、試合結果から切り離して考えます。</p>
+          <a className="text-link" href="/ja/journal/after-losing-how-to-restart-20261119">保護者の視点を読む <ArrowRight size={16}/></a>
+        </article>
+        <article>
+          <Compass/><span>FOR COACH</span><h3>説教より、次の練習を変える。</h3>
+          <p>スコア・確認できる事実・原因の仮説を分け、2対2や3対3で再び学べる条件を整えます。詳しい実践はD-HUB COACH LABへ。</p>
+          <a className="text-link" href="/ja/d-hub/coaches/articles/after-loss-coaching-recovery-game-design-20261119">指導者向け教材を見る <ArrowRight size={16}/></a>
+        </article>
+      </div>
+    </section>:null}
     {ja&&!role?<div className="home-screen-card-wrap"><IPhoneHomeScreenCard/></div>:null}
     {!role?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">{clear.kicker}</p><h2>{clear.title}</h2></div><p>{clear.lead}</p></div>
