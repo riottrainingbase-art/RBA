@@ -46,6 +46,7 @@ const fixture = '<!doctype html><html lang="ja"><head>' +
 
 // Founder section fixture: exercise its CSS at the same viewport widths as the
 // hero. This is a visual-layout regression guard, NOT a real Next.js route test.
+const founderPhotoData=readFileSync('public/media/founder/masato-nishio-on-court.webp').toString('base64');
 const founderFixture = `
 <section class="founderIntroduction" id="home-founder" aria-labelledby="home-founder-title">
   <div class="founderIntroductionText">
@@ -59,7 +60,7 @@ const founderFixture = `
     <a class="founderIntroductionLink" href="/ja/about">代表の経歴・理念・活動を詳しく読む <span>↗</span></a>
   </div>
   <figure class="founderIntroductionPortrait">
-    <img width="874" height="860" alt="RBA代表がバスケットボールの指導を行う様子" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" />
+    <img width="874" height="860" alt="RBA代表がバスケットボールの指導を行う様子" src="data:image/webp;base64,${founderPhotoData}" />
     <figcaption>MASATO NISHIO / THE COACH BEHIND RBA</figcaption>
   </figure>
 </section>`;
@@ -150,6 +151,8 @@ for (const [engineName, engine] of [['chromium',chromium], ['webkit',webkit]]) {
       assert.equal(await founder.isVisible(),true,engineName+' '+width+' founder visible');
       assert.equal(await founderLink.isVisible(),true,engineName+' '+width+' founder link visible');
       assert.equal(await founderPhoto.isVisible(),true,engineName+' '+width+' founder image visible');
+      assert.equal(await founderPhoto.evaluate(el=>el.complete&&el.naturalWidth>100&&el.naturalHeight>100),
+        true,engineName+' '+width+' real founder image decoded');
       const cta=await cssValues(founderLink);
       assert.ok(cta.height>=44,engineName+' '+width+' founder link touch height');
       assert.ok(ratio(cta.color,cta.background)>=4.5,engineName+' '+width+' founder CTA contrast');
