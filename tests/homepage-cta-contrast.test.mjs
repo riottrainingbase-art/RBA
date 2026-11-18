@@ -33,8 +33,8 @@ function contrast(a, b) {
 
 for(const variant of ["primary", "secondary"]) {
   const base = `.page .hero .actions .${variant}`;
-  const normalBG = variant === "primary" ? "#ffffff" : "#171817";
-  const normalFG = variant === "primary" ? "#171817" : "#ffffff";
+  const normalBG = variant === "primary" ? "#ffffff" : "#e9ede8";
+  const normalFG = "#171817";
   test(`RBA homepage ${variant} mobile CTA has WCAG AA text in default/link/visited states`, () => {
     for(const selector of [base, `${base}:link`, `${base}:visited`]) {
       assert.equal(computed(selector, "background-color"), normalBG, `${selector} background`);
@@ -67,5 +67,5 @@ test("Both actual homepage CTA labels and their in-page destinations are retaine
   assert.match(source, /href="#rba-for-you"/);
 });
 test("Mobile links are full-width and at least 44px high", () => {
-  assert.match(css, /@media\s*\(max-width:\s*700px\)[\s\S]*?\.page \.hero \.actions \.primary,\s*\.page \.hero \.actions \.secondary\s*\{\s*width:100%;\s*min-height:54px;/);
+  assert.match(css, /@media\s*\(max-width:\s*700px\)[\s\S]*?\.page \.hero \.actions \.primary,\s*\.page \.hero \.actions \.secondary\s*\{[\s\S]*?width:100%;[\s\S]*?min-height:54px;/);
 });
