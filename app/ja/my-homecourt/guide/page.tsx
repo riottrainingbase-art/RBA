@@ -34,7 +34,7 @@ const details = [
 
 export default function MyHomecourtGuide() {
  return <SiteFrame locale="ja" languagePage="my-homecourt">
-  <main className={s.page} lang="ja">
+  <div className={s.page} lang="ja">
    <header className={s.intro}>
     <p className={s.overline}>RBA / OFFICIAL HOW-TO</p>
     <h1>MY HOME COURT<br/>はじめての使い方。</h1>
@@ -47,13 +47,13 @@ export default function MyHomecourtGuide() {
    </header>
    <section id="posters" className={s.gallery} aria-labelledby="posters-title">
     <div className={s.sectionHead}><p className={s.overline}>SWIPE / 01—10</p><h2 id="posters-title">10枚でわかる、最初の一歩。</h2><p>横にスワイプして順にご覧ください。下の番号から好きなページに進めます。</p></div>
-    <ol className={s.slider} aria-label="MY HOME COURT・10枚の使い方ガイド">
+    <ol className={s.slider} aria-label="MY HOME COURT・10枚の使い方ガイド" aria-roledescription="横スクロール式の10枚ガイド" tabIndex={0}>
      {slides.map((a,i)=><li key={i} id={`guide-${i+1}`} className={s.slide}>
       <article className={s.poster} aria-label={`${i+1}枚目・${a[0]}`}>
        <div className={s.mark} aria-hidden="true"><Image src="/rba-logo-original.jpg" alt="" width={120} height={142} sizes="(max-width:700px) 60px,110px"/></div>
        <div className={s.posterTop}><strong className={s.kicker}>{a[0]}</strong><h3>{a[1].split("|").map((line,j)=><span key={j}>{line}</span>)}</h3></div>
        <p className={s.emphasis}>{a[2]}</p>
-       <div className={s.posterWhite}><h4>{a[3]}</h4><ul>{a[4].split("|").map(line=><li key={line}>{line}</li>)}</ul><strong className={s.posterBanner}>{a[5]}</strong><div className={s.posterFoot}><span>{a[6]}</span><span>{i+1}/10</span></div></div>
+       <div className={s.posterWhite}><h4 className={a[3].length>12?s.longTitle:undefined}>{a[3]}</h4><ul>{a[4].split("|").map(line=><li key={line}>{line}</li>)}</ul><strong className={s.posterBanner}>{a[5]}</strong><div className={s.posterFoot}><span>{a[6]}</span><span>{i+1}/10</span></div></div>
       </article>
       <div className={s.prevNext}>{i>0?<a href={`#guide-${i}`}>← 前へ</a>:<span/>}<strong>{i+1} / 10</strong>{i<9?<a href={`#guide-${i+2}`}>次へ →</a>:<a href="#detailed">操作手順を読む ↓</a>}</div>
      </li>)}
@@ -77,6 +77,6 @@ export default function MyHomecourtGuide() {
      <Link className={s.secondary} href="/ja/contact">RBAに相談する →</Link>
     </nav>
    </section>
-  </main>
+  </div>
  </SiteFrame>;
 }
