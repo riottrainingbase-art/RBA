@@ -105,7 +105,7 @@ export async function SimpleJapaneseHome() {
           <section className={styles.founderIntroduction} id="home-founder" aria-labelledby="home-founder-title">
             <div className={styles.founderIntroductionText}>
               <p className={styles.founderIntroductionKicker}>WHO LEADS RBA / FOUNDER PROFILE</p>
-              <h2 id="home-founder-title">どんな人間が、何のために育成に向き合っているのか。</h2>
+              <h2 id="home-founder-title">誰が、どんな考えで、子どもの育成に向き合っているのか。</h2>
               <p className={styles.founderIntroductionName}>西尾 優人 <span>MASATO NISHIO</span></p>
               <p className={styles.founderIntroductionPosition}>Riot Basketball Academy 創設者・代表 / Riot Training Base 代表</p>
               <p className={styles.founderIntroductionBody}>NSCA-CPT。選手として東北選抜・国体を経験し、ドイツでS&amp;C（ストレングス＆コンディショニング）の指導に携わった後、日本のクラブ指導の現場を経て、仙台から育成年代の活動を広げています。</p>
