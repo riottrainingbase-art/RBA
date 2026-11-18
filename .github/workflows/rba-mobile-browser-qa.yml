@@ -1,0 +1,46 @@
+name: RBA Mobile Browser Visual Guard
+
+on:
+  pull_request:
+    branches: [preview-rba, release/instagram-conversion-hub-20261117]
+    paths:
+      - "components/simple-japanese-home.module.css"
+      - "components/site-brand.module.css"
+      - "tests/homepage-browser-contrast.test.mjs"
+      - ".github/workflows/rba-mobile-browser-qa.yml"
+  push:
+    branches: [preview-rba, release/instagram-conversion-hub-20261117]
+    paths:
+      - "components/simple-japanese-home.module.css"
+      - "components/site-brand.module.css"
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-chromium-and-webkit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install isolated, pinned browser test runtime
+        run: |
+          npm install --prefix /tmp/rba-visual-qa --no-save --ignore-scripts --no-audit playwright@1.55.0 pngjs@7.0.0
+          /tmp/rba-visual-qa/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Test actual computed CSS and capture viewport screenshots
+        env:
+          RBA_PLAYWRIGHT_PATH: /tmp/rba-visual-qa/node_modules/playwright/index.mjs
+          RBA_PNGJS_PATH: /tmp/rba-visual-qa/node_modules/pngjs
+        run: node tests/homepage-browser-contrast.test.mjs
+      - name: Retain mobile screenshots for review
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rba-mobile-browser-qa
+          path: screenshots/home-mobile/
+          if-no-files-found: ignore
