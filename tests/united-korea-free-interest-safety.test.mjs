@@ -30,6 +30,11 @@ test("Korea fee proposal includes full programme cost, but is explicitly provisi
 test("No Korea payment or deposit capability was introduced", () => {
   assert.doesNotMatch(page, /stripe\.com|\/api\/commerce\/checkout|\/api\/commerce\/kobe|payment_intent|checkout\.sessions\.create|price_id_/i);
   assert.ok(page.includes("前金"));
+  assert.ok(page.includes("¥119,000"));
+  assert.ok(page.includes("¥124,000"));
+  assert.ok(page.includes("残金50％"));
+  assert.ok(page.includes("保護者が書面で同意"));
+  assert.ok(page.includes("現在は無料の参加意向登録のみ"));
   assert.ok(page.includes("決済を行いません"));
 });
 
