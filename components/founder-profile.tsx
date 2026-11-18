@@ -6,7 +6,7 @@ import { Locale, localePath, SiteFrame } from "./site-frame";
 const copy = {
  en: {
   label:"THE FOUNDER",name:"Masato Nishio",native:"西尾 優人",role:"Founder & Director · Riot Basketball Academy",headline:"The player comes first.\nThe horizon stays open.",
-  bio:"Based in Sendai, Japan, Masato Nishio brings player development, physical preparation and coach learning into one continuous practice. Through Riot Basketball Academy, he works with coaches and local organisers across Japan and Asia to create learning grounded in the realities of the court.",
+  bio:"Masato Nishio is a Sendai-based basketball and strength & conditioning coach and an NSCA-CPT. He represented Tohoku in competition and participated in Japan’s National Sports Festival, then gained S&C coaching experience in Germany before returning to Japan. He leads Riot Training Base and founded Riot Basketball Academy to connect game understanding, age-appropriate physical preparation and coach education across Japan and Asia.",
   belief:"His conviction is simple: development begins by seeing the individual. Learning to read the game, make a choice and reflect on the result builds a foundation that lasts beyond a single performance.",
   missionLabel:"OUR MISSION",mission:"A next opportunity to grow,\nfor every young player.",missionBody:"Help each player understand, decide and act with purpose. Connect basketball learning, physical preparation and coach education to build environments where long-term growth can take root.",
   visionLabel:"OUR VISION",vision:"A leading platform.\nA wider world of opportunity.",visionBody:"Build one of Japan’s leading youth basketball development platforms. A future in which where a child lives does not limit what they can learn, with lasting relationships between Japan and Asia that help players and coaches grow together.",
@@ -14,8 +14,8 @@ const copy = {
  },
  ja:{
   label:"創設者について",name:"西尾 優人",native:"MASATO NISHIO",role:"Riot Basketball Academy 創設者・代表",headline:"一人の可能性に、\n世界への視野を。",
-  bio:"仙台を拠点に、選手育成、身体づくり、指導者の学びを一つにつなぐ。Riot Basketball Academyを通じて、日本各地とアジアの指導者・地域主催者と協働し、コートの現実から育成の機会をつくっています。",
-  belief:"大切にしているのは、一人ひとりを見つめること。ゲームを読み、自分で判断し、実行し、振り返る。その積み重ねが、一度の結果にとどまらない成長の土台になると考えています。",
+  bio:"仙台を拠点に活動するバスケットボール指導者・S&Cコーチ。NSCA-CPT。選手として東北選抜・国体を経験し、ドイツでS&C指導に携わった後、国内のクラブ指導の現場を経てRiot Training Baseを運営、Riot Basketball Academyを創設しました。今も日本各地やアジアの現場とつながり、ゲームの理解、年齢に応じた身体づくり、指導者教育を一つにつなぐ活動を続けています。",
+  belief:"子どもの可能性を、勝敗や早い段階の選手評価だけで決めたくありません。試合の中で状況を読み、自分で判断し、実行して振り返ること。成長段階に応じた身体づくりと休息を大切にすること。指導者自身も学び続けること。そのすべてが、一度の結果に終わらない育成の土台になると考えています。",
   missionLabel:"ミッション",mission:"すべての子どもに、\n次の成長機会を。",missionBody:"一人ひとりが理解し、判断し、意図を持って行動できる力を育む。バスケットボール、身体づくり、指導者教育をつなぎ、長期的な成長が根づく環境をつくります。",
   visionLabel:"ビジョン",vision:"日本最大級の\n育成プラットフォームへ。",visionBody:"住む場所によって、子どもの学びの可能性が限られない未来へ。日本最大級の育成年代バスケットボール・プラットフォームを目指します。日本とアジアの間に継続的な関係を育て、選手と指導者が知識を分かち合い、共に成長できる環境を目指します。",
   contactTitle:"共に実現したいことから、話そう。",contactBody:"クリニック、指導者の学び、日本とアジアの交流、パートナーシップ。活動する地域や対象、実現したいことをお聞かせください。",cta:"西尾優人にWhatsAppで相談",note:"WhatsAppが開きます。内容を確認してから送信できます。",message:"西尾さん、RBAのプロフィールを拝見しました。クリニック・指導者の学び・国際交流・連携について相談したいです。\n団体名・地域：\n実現したいこと：",more:"創設者の紹介を読む",alt:"コートでバスケットボールの指導をする西尾優人",caption:"西尾優人 / 指導の現場から"
