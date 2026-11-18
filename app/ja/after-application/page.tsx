@@ -42,6 +42,7 @@ export default function Page(){
       </div>
     </section>
 
+    <section className="section-pad"><p className="section-index">PARENT / SAFETY</p><h2 className="text-2xl font-bold">参加前の案内が分からないときは</h2><p className="my-4 leading-8">集合・解散、宿泊や移動、引率、安全対応、食物アレルギー、追加費用などで未確認の点があれば、無理に判断せずお問い合わせください。各企画ごとに確定事項と調整中の事項を区別して案内します。</p><a className="text-link" href="/ja/participant-safety">参加前の確認事項・安全案内を見る →</a></section>
     <section className="section-pad"><h2 className="text-2xl font-bold">参加が終わった方へ</h2><p className="my-4 leading-8">気づいたこと、次の練習で試すことを整理する振り返りメモと、保護者の声かけ例を公開しています。登録なしで使えます。</p><a className="text-link" href="/ja/after-clinic">参加後の振り返り・次の機会を探す →</a></section>
     <section className="statement section-pad">
       <p className="section-index">WHY HOME COURT</p>
