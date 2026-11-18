@@ -95,11 +95,11 @@ export async function SimpleJapaneseHome() {
 
           <nav className={styles.sectionNavigator} aria-label="このページの目次">
             <span className={styles.indexLabel}>INDEX</span>
-            <a href="#rba-for-you">01　目的から探す</a>
-            <a href="#home-programmes">02　現在の活動</a>
-            <a href="#home-business">03　法人向けサービス</a>
-            <a href="#home-host">04　地域で開催する</a>
-            <a href="#home-founder">05　代表の自己紹介</a>
+            <a href="#home-founder">01　代表の自己紹介</a>
+            <a href="#rba-for-you">02　目的から探す</a>
+            <a href="#home-programmes">03　現在の活動</a>
+            <a href="#home-business">04　法人向けサービス</a>
+            <a href="#home-host">05　地域で開催する</a>
           </nav>
 
           <section className={styles.founderIntroduction} id="home-founder" aria-labelledby="home-founder-title">
