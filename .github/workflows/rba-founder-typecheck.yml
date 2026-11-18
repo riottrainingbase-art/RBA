@@ -1,0 +1,44 @@
+name: RBA Founder TypeScript Check
+
+on:
+  pull_request:
+    branches:
+      - release/instagram-conversion-hub-20261117
+    paths:
+      - "components/founder-profile.tsx"
+      - "components/simple-japanese-home.tsx"
+      - "components/site-frame.tsx"
+      - "app/about/page.tsx"
+      - "app/ja/about/page.tsx"
+      - "app/zh-tw/about/page.tsx"
+      - "app/ko/about/page.tsx"
+      - "app/ja/page.tsx"
+      - ".github/workflows/rba-founder-typecheck.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rba-founder-typecheck-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  full-repo-typecheck:
+    name: Validate complete TypeScript project
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out reviewed PR commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up pinned Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install pinned package manager
+        run: npm install --global --ignore-scripts --no-audit --no-fund pnpm@11.25.0
+      - name: Install exact locked dependencies without lifecycle scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Type-check complete repository without emitting files
+        run: pnpm exec tsc --noEmit --incremental false --pretty false
