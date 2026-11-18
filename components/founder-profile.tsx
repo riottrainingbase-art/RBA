@@ -62,12 +62,13 @@ export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}
  const c=copy[locale];
  const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
  const Heading=full?"h1":"h2";
+ const SectionHeading=full?"h2":"h3";
  return <section className={`founder-profile${full?" founder-profile-full":""}`} id="founder" aria-labelledby="founder-name">
   <div className="founder-intro">
    <figure className="founder-portrait"><Image src="/media/founder/masato-nishio-on-court.webp" sizes="(max-width: 760px) 90vw, 42vw" alt={c.alt} width="874" height="860" loading={full?"eager":"lazy"}/><figcaption>{c.caption}</figcaption></figure>
-   <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><h3 className="founder-belief">{c.headline}</h3><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
+   <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><SectionHeading className="founder-belief">{c.headline}</SectionHeading><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
   </div>
-  <div className="founder-principles"><article><p className="founder-eyebrow">01 / MISSION · {c.missionLabel}</p><h3>{c.mission}</h3><p>{c.missionBody}</p></article><article><p className="founder-eyebrow">02 / VISION · {c.visionLabel}</p><h3>{c.vision}</h3><p>{c.visionBody}</p></article></div>
+  <div className="founder-principles"><article><p className="founder-eyebrow">01 / MISSION · {c.missionLabel}</p><SectionHeading>{c.mission}</SectionHeading><p>{c.missionBody}</p></article><article><p className="founder-eyebrow">02 / VISION · {c.visionLabel}</p><SectionHeading>{c.vision}</SectionHeading><p>{c.visionBody}</p></article></div>
   {full&&<div className="founder-depth" aria-labelledby="founder-depth-title">
     <div className="founder-depth-intro">
       <p className="founder-eyebrow">{c.journeyLabel}</p>
