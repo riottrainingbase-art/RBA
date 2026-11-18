@@ -173,6 +173,27 @@ if(!fs.existsSync(founderImage)) {
     failures.push({file:founderImage,rule:"founder-photo-invalid",sample:"expected a non-empty WebP"});
 }
 
+// The same full founder biography must be discoverable at every hreflang route.
+for(const [locale,route] of [
+  ["en","app/about/page.tsx"],
+  ["ja","app/ja/about/page.tsx"],
+  ["zh-tw","app/zh-tw/about/page.tsx"],
+  ["ko","app/ko/about/page.tsx"],
+]){
+  if(!fs.existsSync(route)){failures.push({file:route,rule:"founder-locale-route-missing",sample:locale});continue;}
+  const source=fs.readFileSync(route,"utf8");
+  if(!source.includes('<FounderAboutPage locale="'+locale+'" />'))
+    failures.push({file:route,rule:"founder-locale-not-detailed",sample:locale});
+  if(!source.includes("NSCA-CPT"))
+    failures.push({file:route,rule:"founder-locale-credentials-absent",sample:locale});
+  if(!source.includes('alternates: { canonical:'))
+    failures.push({file:route,rule:"founder-locale-canonical-absent",sample:locale});
+}
+if(!founderSource.includes('const SectionHeading=full?"h2":"h3";'))
+  failures.push({file:founderFile,rule:"founder-heading-semantics",sample:"full profile requires h2 after h1"});
+if(!partnerNav.includes('["代表紹介","/ja/about"]'))
+  failures.push({file:"components/site-frame.tsx",rule:"founder-desktop-navigation",sample:"desktop founder link missing"});
+
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);
