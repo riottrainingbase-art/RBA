@@ -3,6 +3,7 @@ import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { OkinawaCampGrowthPanel } from "@/components/okinawa-camp-growth-panel";
 import { OkinawaResidentPrices } from "@/components/okinawa-resident-prices";
 import { OkinawaCampPartner } from "@/components/okinawa-camp-partner";
+import { OkinawaDayPassOptions } from "@/components/okinawa-day-pass-options";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
@@ -12,7 +13,6 @@ import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
 const official = "https://okinawa.camp/";
 const registration = "/ja/events/okinawa-international-camp-2026/apply";
-const afterSchoolContact = "https://www.jotform.com/app/263210909647460";
 
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
@@ -31,31 +31,7 @@ export default function Page() {
     <OkinawaCampGrowthPanel placement="event" />
     <section className={styles.section} id="family-guide"><p className={styles.label}>FOR FAMILIES / 日本語・ENGLISH・繁體中文・한국어</p><h2>宿泊・食事・送迎。参加前の疑問を、一つのガイドに。</h2><p>糸満青少年の家から受入れ可能との回答を得ています。兄弟の部屋、保護者の同行、言語のサポート、アレルギー、空港からの移動など、ご家族が参加を考えるときに知りたいことをまとめました。</p><a className={styles.primary} href="/okinawa-family-guide-2026.html">保護者ガイドを読む / Family guide →</a><p><a href="/okinawa-international-guide-2026.html">海外から参加するご家族へ / English・繁體中文・한국어 →</a></p><p className={styles.small}>ご相談だけでも歓迎します。最初は選手の年齢・人数、出発地、宿泊希望、同行保護者の人数をお知らせください。</p></section>
     <section className={styles.section} id="cancellation"><h2>キャンセル・中止・返金について</h2><p>申込直後から一律20％を差し引く規定や、20日前以降は一律返金しない規定は設けていません。主催者都合・不可抗力による開催前の中止は参加費を全額返金します。開始後の一部中止は未提供分を返金します。参加者都合の取消条件・返金方法は、下記をご確認ください。</p><a className={styles.primary} href="/ja/cancellation">キャンセル・返金規定を読む →</a><p>スタッフ配置と保険の詳細は確認後にご案内します。施設の賠償責任保険と、選手のけがに備える傷害保険は補償内容が異なります。</p></section>
-    <section className={styles.section} id="after-school" aria-labelledby="after-school-heading">
-      <p className={styles.label}>LOCAL / AFTER SCHOOL</p>
-      <h2 id="after-school-heading">学校が終わってから、1日だけでも。</h2>
-      <p>海外の同世代と同じコートで、放課後に1回だけ。沖縄県内の7〜18歳を対象に、宿泊なし・現地集合と解散で参加できる短時間の交流枠を準備しています。</p>
-      <div className={styles.columns}>
-        <article className={styles.card}>
-          <h3>放課後・1日参加（調整中）</h3>
-          <p><strong>第一候補は12月22日（火）・糸満青少年の家です。</strong></p>
-          <ul>
-            <li>16:15ごろ　受付・健康確認</li>
-            <li>16:30〜17:30　少人数ゲーム・海外選手との交流</li>
-            <li>17:30〜17:45ごろ　振り返り・お迎え</li>
-          </ul>
-          <p>時間は候補です。22日に間に合わない場合も、23日・24日の日帰り希望を申込画面で選択できます。受入日は体育館の利用時間とスタッフ配置の確認後に確定します。</p>
-          <p>体育館シューズ、運動着、飲み物をご用意ください。現地集合・現地解散で、食事・送迎・宿泊は含まれません。</p>
-          <a className={styles.primary} href={afterSchoolContact}>放課後・1日参加の申込・事前決済案内へ ↗</a>
-          <p className={styles.small}>日帰り・放課後参加も現地払いではなく、参加費全額のStripe事前決済です。施設の利用時間・料金・年齢別の受入条件を確認した申込者に専用の決済ページを個別に案内します。確認できない枠を課金したり、フォーム送信だけで参加確定と表示したりしません。3日間プランをお支払い済みの方は重複して手続きしないでください。</p>
-        </article>
-        <article className={styles.card}>
-          <h3>3日間の通い・宿泊をご希望の方</h3>
-          <p>通いプランは3日間参加です。沖縄県内の方は、通い・宿泊それぞれの料金と仮予約条件をご確認いただけます。</p>
-          <a href="#okinawa-resident-discount">沖縄県民の3日間プランを見る ↓</a>
-        </article>
-      </div>
-    </section>
+    <section className={styles.section} id="after-school"><OkinawaDayPassOptions/></section>
     <OkinawaResidentPrices/><OkinawaResidentPrices residence="japan"/>
     <section className={styles.section} aria-labelledby="camp-coaches">
       <p className={styles.label}>CAMP COACHES / JAPAN × TAIWAN</p>
