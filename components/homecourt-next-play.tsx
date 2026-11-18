@@ -10,12 +10,14 @@ import {
 import styles from "./homecourt-next-play.module.css";
 
 type SaveState = "idle" | "saving" | "saved" | "login" | "error";
+type FeedbackState = "idle" | "sending" | "interested" | "not_relevant" | "login" | "error";
 type Props = { initialRole: NextPlayRole; initialTopic: string };
 
 export function HomecourtNextPlay({ initialRole, initialTopic }: Props) {
   const [role, setRole] = useState<NextPlayRole>(initialRole);
   const [topic, setTopic] = useState(getNextPlay(initialRole, initialTopic).id);
   const [saveState, setSaveState] = useState<SaveState>("idle");
+  const [feedbackState, setFeedbackState] = useState<FeedbackState>("idle");
   const [copied, setCopied] = useState(false);
   const plans = useMemo(() => nextPlayForRole(role), [role]);
   const selected = getNextPlay(role, topic);
@@ -28,11 +30,13 @@ export function HomecourtNextPlay({ initialRole, initialTopic }: Props) {
     setRole(next);
     setTopic(first.id);
     setSaveState("idle");
+    setFeedbackState("idle");
     setCopied(false);
   }
   function changeTopic(id: string) {
     setTopic(id);
     setSaveState("idle");
+    setFeedbackState("idle");
     setCopied(false);
   }
   async function copyLink() {
@@ -69,6 +73,30 @@ export function HomecourtNextPlay({ initialRole, initialTopic }: Props) {
       setSaveState("saved");
     } catch {
       setSaveState("error");
+    }
+  }
+
+  async function submitFeedback(signal: "interested" | "not_relevant") {
+    if (feedbackState === "sending" || feedbackState === "interested" || feedbackState === "not_relevant") return;
+    setFeedbackState("sending");
+    try {
+      const db = createClient();
+      const { data, error: authError } = await db.auth.getUser();
+      if (authError || !data.user) {
+        setFeedbackState("login");
+        return;
+      }
+      const { error } = await db.from("recommendation_feedback").insert({
+        user_id: data.user.id,
+        item_type: "content",
+        item_key: "next-play-" + selected.id,
+        signal,
+        metadata: { source: "RBA NEXT PLAY" },
+      });
+      if (error && error.code !== "23505") throw error;
+      setFeedbackState(signal);
+    } catch {
+      setFeedbackState("error");
     }
   }
 
@@ -155,6 +183,24 @@ export function HomecourtNextPlay({ initialRole, initialTopic }: Props) {
             {saveState === "error" ? "保存できませんでした。通信状況を確認して再度お試しください。課金は発生しません。" : null}
             {saveState === "saved" ? "プランを保存しました。ログイン中のMY HOME COURTの保存一覧から確認できます。" : null}
           </div>
+          <div className={styles.feedback} aria-labelledby="next-play-feedback-heading">
+            <strong id="next-play-feedback-heading">この提案は、今の状況に合いそうですか？</strong>
+            <p>実際に試す前の印象で構いません。ご本人が希望したときだけ回答できます。</p>
+            <div>
+              <button type="button" disabled={feedbackState === "sending" || feedbackState === "interested" || feedbackState === "not_relevant"} onClick={() => void submitFeedback("interested")}>
+                <CheckCircle2 size={17} aria-hidden="true"/> 試してみたい
+              </button>
+              <button type="button" disabled={feedbackState === "sending" || feedbackState === "interested" || feedbackState === "not_relevant"} onClick={() => void submitFeedback("not_relevant")}>
+                自分には合わない
+              </button>
+            </div>
+            <p role="status" aria-live="polite">
+              {feedbackState === "interested" ? "ご回答ありがとうございます。実践結果を保証する評価ではありません。" : null}
+              {feedbackState === "not_relevant" ? "ご回答ありがとうございます。別の悩みや方法も選べます。" : null}
+              {feedbackState === "login" ? <>回答の記録には無料RBA IDへのログインが必要です。<Link href={loginPath}>ログインする <ArrowRight size={14} aria-hidden="true"/></Link></> : null}
+              {feedbackState === "error" ? "回答を保存できませんでした。通信状態をご確認ください。" : null}
+            </p>
+          </div>
         </section>
 
         <section className={styles.next} aria-labelledby="next-heading">
@@ -164,7 +210,7 @@ export function HomecourtNextPlay({ initialRole, initialTopic }: Props) {
             <Link href="/ja/opportunities">全国の育成機会を探す <ArrowRight size={18} aria-hidden="true"/></Link>
           </nav>
         </section>
-        <footer className={styles.footnote}><ShieldCheck size={18} aria-hidden="true" /><p>このページは一般的な学習・行動のヒントであり、診断・法律相談・個別指導契約を提供するものではありません。この画面での選択だけではRBAのデータベースに保存されません。共有リンクには選んだ一般的な課題が含まれます。明示的に「保存」を選んだ場合のみ、選択した一般プランがご本人のアカウントに保存されます。未成年の方は保護者と利用してください。</p></footer>
+        <footer className={styles.footnote}><ShieldCheck size={18} aria-hidden="true" /><p>このページは一般的な学習・行動のヒントであり、診断・法律相談・個別指導契約を提供するものではありません。この画面での選択だけではRBAのデータベースに保存されません。共有リンクには選んだ一般的な課題が含まれます。明示的に「保存」や「試してみたい／合わない」を選んだ場合のみ、一般プランIDと選択結果がログイン中のご本人のアカウントに保存されます。未成年の方は保護者と利用してください。</p></footer>
       </main>
     </div>
   );
