@@ -501,64 +501,60 @@
 }
 
 
-/* RBA homepage hero CTA contract — iPhone Safari / Instagram webview.
-   Keep background, text colour and WebKit text fill together. The previous
-   release accidentally set WHITE text on the WHITE primary CTA and DARK
-   text on the DARK secondary CTA. This explicit pairing is intentional.
-   Do not add a colour override to these selectors without updating both
-   sides of the pairing and tests/homepage-cta-contrast.test.mjs. */
+/* RBA HOMEPAGE CTA PIXEL-SAFE CONTRACT (2026-11-18)
+   Never rely on transparent dark background for the second CTA.
+   Chromium/WebKit screenshots revealed invisible lettering although the
+   computed CSS contrast passed. BOTH CTAs use OPAQUE LIGHT backgrounds
+   with DARK lettering across link, visited, hover and focus states.
+   This deliberately avoids blending the text into the dark hero artwork.
+   Regression: tests/homepage-cta-contrast.test.mjs +
+   tests/homepage-browser-contrast.test.mjs (pixel-level screenshot checks).
+*/
 .page .hero .actions .primary,
 .page .hero .actions .primary:link,
 .page .hero .actions .primary:visited {
   background-color:#ffffff !important;
   color:#171817 !important;
   -webkit-text-fill-color:#171817 !important;
-  border-color:#ffffff;
-  font-weight:900;
-  text-decoration:none;
+  border-color:#ffffff !important;
   opacity:1;
   visibility:visible;
   mix-blend-mode:normal;
-}
-.page .hero .actions .primary > span {
-  color:#171817 !important;
-  -webkit-text-fill-color:#171817 !important;
-  opacity:1;
-  visibility:visible;
+  isolation:isolate;
+  font-weight:900;
+  text-decoration:none;
 }
 .page .hero .actions .secondary,
 .page .hero .actions .secondary:link,
 .page .hero .actions .secondary:visited {
-  background-color:#171817 !important;
-  color:#ffffff !important;
-  -webkit-text-fill-color:#ffffff !important;
-  border-color:#ffffff;
+  background-color:#e9ede8 !important;
+  color:#171817 !important;
+  -webkit-text-fill-color:#171817 !important;
+  border-color:#e9ede8 !important;
+  opacity:1;
+  visibility:visible;
+  mix-blend-mode:normal;
+  isolation:isolate;
   font-weight:900;
   text-decoration:none;
+}
+.page .hero .actions .primary > span,
+.page .hero .actions .secondary > span {
+  color:#171817 !important;
+  -webkit-text-fill-color:#171817 !important;
   opacity:1;
   visibility:visible;
   mix-blend-mode:normal;
 }
-.page .hero .actions .secondary > span {
-  color:#ffffff !important;
-  -webkit-text-fill-color:#ffffff !important;
-  opacity:1;
-  visibility:visible;
-}
 .page .hero .actions .primary:hover,
 .page .hero .actions .primary:focus-visible {
-  background-color:#e6e8e4 !important;
+  background-color:#f2f3f0 !important;
   color:#171817 !important;
   -webkit-text-fill-color:#171817 !important;
 }
 .page .hero .actions .secondary:hover,
 .page .hero .actions .secondary:focus-visible {
-  background-color:#ffffff !important;
-  color:#171817 !important;
-  -webkit-text-fill-color:#171817 !important;
-}
-.page .hero .actions .secondary:hover > span,
-.page .hero .actions .secondary:focus-visible > span {
+  background-color:#dfe4de !important;
   color:#171817 !important;
   -webkit-text-fill-color:#171817 !important;
 }
@@ -566,10 +562,12 @@
   outline:3px solid #b4e600;
   outline-offset:4px;
 }
-@media (max-width:700px) {
-  .page .hero .actions { display:flex; flex-direction:column; gap:12px; }
+@media(max-width:700px) {
+  .page .hero .actions {display:flex;flex-direction:column;gap:12px}
   .page .hero .actions .primary,
   .page .hero .actions .secondary {
+    display:inline-flex;
+    min-width:0;
     width:100%;
     min-height:54px;
     padding:14px 18px;
