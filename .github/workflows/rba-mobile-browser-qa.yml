@@ -30,11 +30,12 @@ jobs:
           node-version: 24
       - name: Install isolated, pinned browser test runtime
         run: |
-          npm install --prefix /tmp/rba-visual-qa --no-save --ignore-scripts --no-audit playwright@1.55.0
+          npm install --prefix /tmp/rba-visual-qa --no-save --ignore-scripts --no-audit playwright@1.55.0 pngjs@7.0.0
           /tmp/rba-visual-qa/node_modules/.bin/playwright install --with-deps chromium webkit
       - name: Test actual computed CSS and capture viewport screenshots
         env:
           RBA_PLAYWRIGHT_PATH: /tmp/rba-visual-qa/node_modules/playwright/index.mjs
+          RBA_PNGJS_PATH: /tmp/rba-visual-qa/node_modules/pngjs
         run: node tests/homepage-browser-contrast.test.mjs
       - name: Retain mobile screenshots for review
         if: always()
