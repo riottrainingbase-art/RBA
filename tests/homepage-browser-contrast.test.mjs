@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFileSync, mkdirSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const { PNG } = require(process.env.RBA_PNGJS_PATH || 'pngjs');
 
 const modulePath = process.env.RBA_PLAYWRIGHT_PATH;
 const { chromium, webkit } = modulePath
@@ -43,6 +46,33 @@ const fixture = '<!doctype html><html lang="ja"><head>' +
 
 mkdirSync('screenshots/home-mobile', { recursive:true });
 
+/** A computed CSS contrast can be green while a browser actually paints blank
+ * letters. Inspect real rendered PNG pixels of each CTA in BOTH engines. */
+function assertButtonPixels(buffer, description) {
+  const png = PNG.sync.read(buffer);
+  let bright = 0, dark = 0, count = 0;
+  const left = Math.floor(png.width * 0.04);
+  const right = Math.ceil(png.width * 0.96);
+  const top = Math.floor(png.height * 0.16);
+  const bottom = Math.ceil(png.height * 0.84);
+  for (let y=top;y<bottom;y+=2) {
+    for (let x=left;x<right;x+=2) {
+      const i=(png.width*y+x)*4;
+      const red=png.data[i], green=png.data[i+1], blue=png.data[i+2], a=png.data[i+3];
+      if(a<250)continue;
+      count++;
+      if(red>=205&&green>=205&&blue>=205)bright++;
+      if(red<=100&&green<=100&&blue<=100)dark++;
+    }
+  }
+  assert.ok(count>100, description+' PNG pixel scan has samples');
+  const brightPercent=bright/count;
+  const darkPercent=dark/count;
+  assert.ok(brightPercent>0.58, description+' needs an opaque LIGHT background in actual screenshot, got '+(brightPercent*100).toFixed(1)+'% bright');
+  assert.ok(darkPercent>0.003, description+' needs painted DARK glyphs in actual screenshot, got '+(darkPercent*100).toFixed(2)+'% dark');
+}
+
+
 async function cssValues(locator) {
   return locator.evaluate(el => {
     const s = getComputedStyle(el);
@@ -69,6 +99,7 @@ for (const [engineName, engine] of [['chromium',chromium], ['webkit',webkit]]) {
       for (const kind of ['primary','secondary']) {
         const locator=page.locator('.page .hero .actions .' + kind);
         assert.equal(await locator.isVisible(), true, engineName+' '+width+' '+kind+' visible');
+        assertButtonPixels(await locator.screenshot(), engineName+' '+width+' '+kind+' default');
         const s=await cssValues(locator);
         assert.ok(s.height>=44, engineName+' '+width+' '+kind+' tap target');
         assert.ok(s.width>=100, engineName+' '+width+' '+kind+' width');
@@ -85,6 +116,7 @@ for (const [engineName, engine] of [['chromium',chromium], ['webkit',webkit]]) {
             engineName+' '+width+' '+kind+' nested text');
         }
         await locator.focus();
+        assertButtonPixels(await locator.screenshot(), engineName+' '+width+' '+kind+' focus');
         const focused=await cssValues(locator);
         assert.ok(ratio(focused.color,focused.background)>=4.5,
           engineName+' '+width+' '+kind+' focused');
