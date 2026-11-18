@@ -9,6 +9,7 @@ const files = {
   route: readFileSync("app/ja/my-homecourt/next-play/page.tsx", "utf8"),
   portal: readFileSync("components/my-homecourt.tsx", "utf8"),
   member: readFileSync("components/member-app.tsx", "utf8"),
+  redirect: readFileSync("lib/member-auth-redirect.ts", "utf8"),
 };
 
 test("NEXT PLAY contains four distinct pathways for each audience", () => {
@@ -47,6 +48,14 @@ test("Only explicit authenticated feedback uses owner-protected recommendation t
   assert.match(files.app, /ご本人が希望したときだけ回答できます/);
   assert.match(files.app, /試してみたい/);
   assert.match(files.app, /自分には合わない/);
+});
+
+test("Magic-link safe return accepts only catalogued NEXT PLAY topics", () => {
+  assert.match(files.redirect, /nextPlayPlans\.some/);
+  assert.match(files.redirect, /nextPlay=value\.match/);
+  assert.match(files.redirect, /nextPlay\[2\]/);
+  assert.match(files.redirect, /return value;/);
+  assert.match(files.redirect, /fallback="\/ja\/my-homecourt\/app"/);
 });
 
 test("Landing page has discoverability and free entry", () => {
