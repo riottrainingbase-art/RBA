@@ -1,10 +1,14 @@
 import { checkoutOffers } from "./checkout-options";
+import { nextPlayPlans } from "./homecourt-next-play";
 /** Permit only existing member sections and verified checkout routes. */
 export function memberAuthDestination(value: string | null): string {
  const fallback="/ja/my-homecourt/app";
  if(!value)return fallback;
  if(value==="/ja/support/manage"||value==="/ja/support/advertisers/manage")return value;
  if(value==="/ja/events/okinawa-clinic-2026-11-14")return value;
+ if(value==="/ja/my-homecourt/next-play")return value;
+ const nextPlay=value.match(/^\/ja\/my-homecourt\/next-play\?role=(player|parent|coach)&topic=([a-z0-9-]{1,80})$/);
+ if(nextPlay&&nextPlayPlans.some(plan=>plan.role===nextPlay[1]&&plan.id===nextPlay[2]))return value;
  if(value==="/my-homecourt/app/mvp")return value;
  if(/^\/my-homecourt\/app\/coach-library(?:\?group=(penang|kuala-lumpur|malaysia))?$/.test(value))return value;
  if(/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/(?:calendar|team|notifications|my|admin|start|plus|report|learn(?:\/[a-z0-9-]+)?))?$/.test(value))return value;
