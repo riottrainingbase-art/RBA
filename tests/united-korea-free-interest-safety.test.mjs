@@ -16,7 +16,15 @@ test("Korea page and both MY HOME COURT entry points lead to free-interest page"
   assert.ok(member.includes(path));
   assert.ok(united.includes(path));
   assert.ok(page.includes("https://form.jotform.com/263207310187047"));
-  assert.ok(page.includes("FREE INTEREST ONLY"));
+  assert.ok(page.includes("FREE SELECTION ENTRY"));
+  assert.ok(page.includes("2014年7月〜2015年12月"));
+  assert.ok(page.includes("2011年7月〜2012年12月"));
+  assert.ok(page.includes("2009年7月〜2010年12月"));
+  assert.ok(page.includes("U14の独立カテゴリーは設けられていません"));
+  assert.ok(page.includes("3泊4日"));
+  assert.ok(page.includes("日本国内での追加の海外旅行保険加入費用"));
+  assert.ok(!page.includes("4泊5日"));
+
 });
 
 test("Korea fee proposal includes full programme cost, but is explicitly provisional and flight-exclusive", () => {
@@ -34,7 +42,7 @@ test("No Korea payment or deposit capability was introduced", () => {
   assert.ok(page.includes("¥124,000"));
   assert.ok(page.includes("残金50％"));
   assert.ok(page.includes("保護者が書面で同意"));
-  assert.ok(page.includes("現在は無料の参加意向登録のみ"));
+  assert.ok(page.includes("現在は無料の参加意向・選考エントリーのみ"));
   assert.ok(page.includes("決済を行いません"));
 });
 
