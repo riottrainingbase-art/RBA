@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment", locale: "ja", customer_email: row.guardian_email,
       customer_creation: "always", client_reference_id: row.id,
-      payment_method_types: ["card"],
+      // Leave payment methods dynamic; Stripe determines eligible methods.
       line_items: [{ price_data: {
         currency: "jpy", unit_amount: row.amount_jpy, tax_behavior: "inclusive",
         product_data: { name: "RBA沖縄国際ユースキャンプ2026｜" + DAY_PASS_LABELS[row.plan_code as keyof typeof DAY_PASS_LABELS],
