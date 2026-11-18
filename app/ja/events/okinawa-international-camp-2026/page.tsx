@@ -12,7 +12,7 @@ import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
 const official = "https://okinawa.camp/";
 const registration = "/ja/events/okinawa-international-camp-2026/apply";
-const afterSchoolContact = "https://form.jotform.com/263210681585054";
+const afterSchoolContact = "https://www.jotform.com/app/263210909647460";
 
 const overseasEmail = "mailto:hi@spartans.com.tw?subject=Okinawa%20Camp%202026";
 export const metadata: Metadata = {
