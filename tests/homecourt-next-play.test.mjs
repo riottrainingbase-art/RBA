@@ -40,6 +40,15 @@ test("Selection is local; user explicitly opts into storage and redirects", () =
   assert.doesNotMatch(files.app, /service_role|NEXT_PUBLIC_SUPABASE_SERVICE|supabase\.auth\.admin/);
 });
 
+test("Only explicit authenticated feedback uses owner-protected recommendation table", () => {
+  assert.match(files.app, /async function submitFeedback/);
+  assert.match(files.app, /\.from\("recommendation_feedback"\)\.insert/);
+  assert.match(files.app, /signal: "interested" \| "not_relevant"/);
+  assert.match(files.app, /ご本人が希望したときだけ回答できます/);
+  assert.match(files.app, /試してみたい/);
+  assert.match(files.app, /自分には合わない/);
+});
+
 test("Landing page has discoverability and free entry", () => {
   assert.match(files.route, /canonical: "\/ja\/my-homecourt\/next-play"/);
   assert.match(files.portal, /\/ja\/my-homecourt\/next-play/);
