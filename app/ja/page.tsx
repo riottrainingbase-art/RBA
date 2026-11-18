@@ -5,18 +5,18 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: { absolute: "RBA｜仙台・太白区から全国・アジアへ｜バスケットボール育成" },
-  description: "仙台市太白区から全国・アジアへ。保護者・選手、指導者、地域・企業それぞれの入口から、スクール、クリニック、育成記事、協賛の案内へ進めます。",
+  title: { absolute: "RBA｜代表・西尾優人｜仙台から全国・アジアの育成年代へ" },
+  description: "Riot Basketball Academyは、仙台を拠点とする西尾優人（NSCA-CPT）が創設したバスケットボール育成活動。選手・保護者・指導者の学びを支え、スクール・クリニック・国際交流の機会を全国・アジアにつなぎます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
   openGraph: {
-    title: "RBA｜子どもの未来から育成を考える",
-    description: "保護者・指導者・地域の方へ。育成の記事からスクール・クリニック・連携まで、目的別の入口をご案内します。",
+    title: "RBA｜西尾優人と考える育成年代のバスケットボール",
+    description: "代表・西尾優人の経歴と育成理念、全国のクリニック、スクール、指導者教育、国際交流の公式案内です。",
     url: "https://riotbasketballacademy.com/ja/",
     siteName: "Riot Basketball Academy",
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
-  twitter: { card: "summary_large_image", title: "RBA｜子どもの未来から育成を考える", description: "保護者・指導者・地域へ。必要な学びと活動へつながる公式案内。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
+  twitter: { card: "summary_large_image", title: "RBA｜西尾優人と考える育成年代のバスケットボール", description: "代表の経歴・育成理念、スクール、クリニック、指導者教育、国際交流をご案内します。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
 export default function Page() {
