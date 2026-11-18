@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Instagramから参加する・学ぶ",
   description:
-    "仙台U12・U15スクールの無料体験相談、GREAMクラブ、全国クリニック、指導者教育、国際交流、企業協賛。選手・保護者・指導者・企業のためのRBA公式入口。",
+    "仙台U12・U15スクールの無料体験相談、全国クリニック、オンライン指導者講習、国際交流、D-HUBへ。選手・保護者・指導者のためのRBA公式入口。",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://riotbasketballacademy.com/ja/instagram" },
   openGraph: {
@@ -122,7 +122,6 @@ export default function InstagramEntryPage() {
             <span className="border border-neutral-300 bg-white px-3 py-2">保護者</span>
             <span className="border border-neutral-300 bg-white px-3 py-2">指導者</span>
             <span className="border border-neutral-300 bg-white px-3 py-2">チーム・地域</span>
-            <span className="border border-neutral-300 bg-white px-3 py-2">企業・協賛担当者</span>
           </div>
         </section>
 
@@ -134,47 +133,6 @@ export default function InstagramEntryPage() {
             U12・U15の体験を無料相談する <ArrowUpRight size={19} aria-hidden="true" />
           </a>
           <p className="mt-3 text-[11px] leading-5 text-[#52627a]">※相談送信は無料。体験参加・入会・決済は自動で確定しません。GREAM U15クラブへの入団とは別です。</p>
-        </section>
-
-        <section className="mx-5 mb-6 border border-[#151719] bg-white px-4 py-5 sm:mx-9 sm:px-7 sm:py-7" aria-labelledby="instagram-sponsor-title">
-          <p className="text-[11px] font-black tracking-[.13em] text-neutral-600">CORPORATE SUPPORT / 企業協賛</p>
-          <h2 id="instagram-sponsor-title" className="mt-2 text-[24px] font-black leading-[1.3] tracking-[-.04em] sm:text-[30px]">
-            企業協賛・広告パートナー募集中。
-          </h2>
-          <p className="mt-2 text-[13px] leading-6 text-neutral-700">
-            子どもたちの挑戦を、企業・地域の皆さまと。ご希望に合わせて2つの入口をご用意しています。
-          </p>
-          <nav className="mt-4 grid gap-2 sm:grid-cols-2" aria-label="企業広告・協賛のご案内">
-            <a
-              href={track("/ja/support", "monthly_corporate_ad", "rba_sponsor_202611")}
-              data-cta="instagram-monthly-business-ad" data-growth-id="instagram-corporate-monthly"
-              style={{ color: "#151719", backgroundColor: "#ffffff" }}
-              className="group flex min-h-[84px] items-center justify-between gap-3 border-2 border-[#151719] px-4 py-3 transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              <span className="min-w-0">
-                <span className="block text-[10px] font-bold tracking-wide text-neutral-600">01 / 月額企業広告</span>
-                <strong className="mt-1 block text-[16px] font-black leading-[1.4] sm:text-[17px]">月額11,000円（税込）</strong>
-                <span className="mt-1 block text-[11px] leading-5 text-neutral-600">応援ページ・月次活動レポートに掲載</span>
-              </span>
-              <ArrowUpRight size={21} className="shrink-0" aria-hidden="true" />
-            </a>
-            <a
-              href={track("/ja/sponsor", "custom_sponsorship_inquiry", "rba_sponsor_202611")}
-              data-cta="instagram-sponsorship-inquiry" data-growth-id="instagram-corporate-custom"
-              style={{ color: "#151719", backgroundColor: "#f3f3f3" }}
-              className="group flex min-h-[84px] items-center justify-between gap-3 border border-neutral-400 px-4 py-3 transition-colors hover:border-neutral-900 hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              <span className="min-w-0">
-                <span className="block text-[10px] font-bold tracking-wide text-neutral-600">02 / 個別企画協賛</span>
-                <strong className="mt-1 block text-[16px] font-black leading-[1.4] sm:text-[17px]">トップ掲載・企画協賛を相談</strong>
-                <span className="mt-1 block text-[11px] leading-5 text-neutral-600">掲出先・期間・費用を個別に相談</span>
-              </span>
-              <ArrowUpRight size={21} className="shrink-0" aria-hidden="true" />
-            </a>
-          </nav>
-          <p className="mt-3 text-[11px] leading-5 text-neutral-600">
-            ※月額企業広告にトップページ上部・ユニフォーム等への掲出は含まれません。個別企画協賛は別途契約となります。
-          </p>
         </section>
 
         {showTorsten && (

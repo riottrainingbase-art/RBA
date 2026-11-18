@@ -85,22 +85,6 @@ export default function GreamPage() {
           </div>
         </div>
       </section>
-      <section className={styles.section} aria-labelledby="gream-partner-clubs" style={{background:"#eef2f3"}}>
-        <div className={styles.wrap}>
-          <div style={{display:"flex",alignItems:"center",gap:18,flexWrap:"wrap",marginBottom:22}}>
-            <div style={{width:94,height:94,background:"#fff",border:"1px solid #cfd9de",padding:8,display:"flex",justifyContent:"center",alignItems:"center"}}>
-              <img src="/images/hbc/hbc-wolf-only.svg" alt="HBC WOLVES 狼のエンブレム（掲載用ゴール除去版）" width={80} height={80} style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain"}} loading="lazy"/>
-            </div>
-            <div><p className={styles.sectionTag}>RBA PARTNER CLUB / CHIBA</p><strong style={{display:"block",fontSize:19,fontWeight:900,letterSpacing:"-.03em"}}>HBC WOLVES · KOZAKI</strong></div>
-          </div>
-          <h2 id="gream-partner-clubs">千葉の地域クラブとも、育成でつながる。</h2>
-          <p className={styles.sectionLead}>HBC WOLVESは千葉県神崎町で2018年から活動するU12・U15バスケットボールクラブ。周浦智美コーチが代表を務め、RBA代表・西尾優人が育成アドバイザーとして参画します。独立した運営を尊重しながら練習・体験・交流をサポートします。GREAMの3チームとは別組織です。</p>
-          <div className={styles.actions} style={{marginTop:24}}>
-            <a className={styles.linkButton} href="/ja/u15/hbc-wolves" data-growth-id="gream-partner-hbc">HBC WOLVESのチーム・体験案内 →</a>
-            <a className={styles.linkButton} href="https://www.instagram.com/hbcwolves/" target="_blank" rel="noopener noreferrer" data-growth-id="gream-partner-hbc-instagram">HBCに体験・見学を相談 ↗</a>
-          </div>
-        </div>
-      </section>
       <section className={styles.section} aria-labelledby="gream-identity">
         <div className={styles.wrap}>
           <p className={styles.sectionTag}>OUR DEVELOPMENT PRINCIPLES</p>

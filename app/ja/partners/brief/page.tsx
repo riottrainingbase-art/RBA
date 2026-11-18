@@ -32,10 +32,6 @@ export default function PartnerBrief() {
         <a href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" style={{padding:"15px 23px",background:ink,color:"#fff",textDecoration:"none",fontWeight:800}}>企業として無料相談する ↗</a>
         <a href="/ja/support#apply" style={{padding:"15px 23px",border:"1px solid "+ink,color:ink,textDecoration:"none",fontWeight:800}}>月額企業広告を確認する →</a>
       </div>
-      <aside style={{display:"flex",gap:16,flexWrap:"wrap",alignItems:"center",padding:"18px 20px",border:"1px solid #d8dede",background:"#f4f7ef",margin:"0 0 34px"}}>
-        <p style={{flex:"1 1 340px",fontSize:14,lineHeight:1.85,color:ink,margin:0}}>社員向けの運動研修や親子イベントの<strong>有償発注</strong>をご検討の場合は、協賛・広告とは別の法人サービスからお申し込みください。</p>
-        <a href="/ja/business" style={{display:"inline-flex",alignItems:"center",minHeight:46,padding:"10px 16px",background:"#171a17",color:"#fff",textDecoration:"none",fontWeight:850,fontSize:13}}>法人向け有料サービスを見る ↗</a>
-      </aside>
       <section aria-labelledby="brief-activities" style={{borderTop:"1px solid "+frame,paddingTop:34,marginTop:30}}>
         <h2 id="brief-activities" style={{fontSize:27,margin:"0 0 17px"}}>RBAが大切にする育成の機会</h2>
         <p style={{fontSize:16,lineHeight:1.95,color:dark}}>選手が見る・判断する・実行する力、指導者が日々の練習を工夫するための学び、地域や所属を越えて挑戦できる場、国内・アジアの選手や指導者との実践的な交流。ひとつのイベントで終わらせず、次につながる学習環境を目指しています。</p>
