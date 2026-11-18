@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Bookmark, BookOpen, Check, CheckCircle2, Compass, ExternalLink, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Bookmark, BookOpen, Check, CheckCircle2, Compass, ExternalLink, ShieldCheck } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import {
   getNextPlay, nextPlayForRole, nextPlayRoleLabels, type NextPlayRole,
@@ -29,13 +29,11 @@ export function HomecourtNextPlay({ initialRole, initialTopic }: Props) {
     setTopic(first.id);
     setSaveState("idle");
     setCopied(false);
-    window.history.replaceState(null, "", permanentPath + "?role=" + next + "&topic=" + first.id);
   }
   function changeTopic(id: string) {
     setTopic(id);
     setSaveState("idle");
     setCopied(false);
-    window.history.replaceState(null, "", permanentPath + "?role=" + role + "&topic=" + id);
   }
   async function copyLink() {
     try {
@@ -166,7 +164,7 @@ export function HomecourtNextPlay({ initialRole, initialTopic }: Props) {
             <Link href="/ja/opportunities">全国の育成機会を探す <ArrowRight size={18} aria-hidden="true"/></Link>
           </nav>
         </section>
-        <footer className={styles.footnote}><ShieldCheck size={18} aria-hidden="true" /><p>このページは一般的な学習・行動のヒントであり、診断・法律相談・個別指導契約を提供するものではありません。入力された悩みをこのページから送信・保存することはありません。明示的に「保存」を選んだ場合のみ、選択した一般プランがご本人のアカウントに保存されます。未成年の方は保護者と利用してください。</p></footer>
+        <footer className={styles.footnote}><ShieldCheck size={18} aria-hidden="true" /><p>このページは一般的な学習・行動のヒントであり、診断・法律相談・個別指導契約を提供するものではありません。この画面での選択だけではRBAのデータベースに保存されません。共有リンクには選んだ一般的な課題が含まれます。明示的に「保存」を選んだ場合のみ、選択した一般プランがご本人のアカウントに保存されます。未成年の方は保護者と利用してください。</p></footer>
       </main>
     </div>
   );
