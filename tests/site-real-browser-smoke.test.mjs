@@ -60,6 +60,18 @@ for(const [engineName,engine] of [["chromium",chromium],["webkit",webkit]]){
             assert.ok(info.title.length>6,engineName+" "+target.path+" missing title");
             assert.ok(info.heading.length>1,engineName+" "+target.path+" missing h1");
             assert.ok(info.links>1,engineName+" "+target.path+" missing links");
+            if(info.width>info.viewport+2){
+              const overflow=await page.evaluate(()=>{
+                const viewport=innerWidth;
+                const candidates=[...document.querySelectorAll("body *")].map(e=>{
+                  const r=e.getBoundingClientRect();
+                  return {tag:e.tagName.toLowerCase(),className:typeof e.className==="string"?e.className.slice(0,100):"",right:Math.round(r.right),left:Math.round(r.left),width:Math.round(r.width),text:(e.textContent||"").trim().slice(0,35)};
+                }).filter(x=>x.right>viewport+6||x.left<-6).sort((a,b)=>b.right-a.right);
+                return {viewportMeta:document.querySelector('meta[name="viewport"]')?.content||"",htmlClientWidth:document.documentElement.clientWidth,bodyScrollWidth:document.body.scrollWidth,offenders:candidates.slice(0,18)};
+              });
+              console.error("OVERFLOW_DEBUG "+engineName+" "+width+" "+target.path+" "+JSON.stringify(overflow));
+              await page.screenshot({path:"screenshots/site-smoke/overflow-"+engineName+"-"+width+"-"+target.path.replaceAll("/","_")+".png",fullPage:false});
+            }
             assert.ok(info.width<=info.viewport+2,engineName+" "+width+" "+target.path+" horizontal overflow "+JSON.stringify(info));
             if(target.path.includes("rizehope")){
               assert.match(info.heading,/RIZEHOPE/i);
