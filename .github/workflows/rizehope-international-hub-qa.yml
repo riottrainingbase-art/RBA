@@ -7,6 +7,10 @@ on:
       - "components/international-platform.tsx"
       - "components/rizehope-international.*"
       - "lib/rizehope-2027.ts"
+      - "public/media/rizehope-2027/**"
+      - "docs/rizehope/rizehope-images.sha256"
+      - "scripts/rizehope-photo-import.sh"
+      - "tests/rizehope-photo-integrity.test.mjs"
       - "tests/rizehope-international-hub.test.mjs"
       - ".github/workflows/rizehope-international-hub-qa.yml"
   push:
@@ -31,8 +35,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Event accuracy, payment and photo safeguards
-        run: node --test tests/rizehope-international-hub.test.mjs
+      - name: Check import script syntax
+        run: bash -n scripts/rizehope-photo-import.sh
+      - name: Event accuracy, payments, photo checksum and publication safeguards
+        run: node --test tests/rizehope-international-hub.test.mjs tests/rizehope-photo-integrity.test.mjs
       - name: Pin pnpm
         run: corepack enable && corepack prepare pnpm@11.25.0 --activate
       - name: Install dependencies
@@ -40,6 +46,6 @@ jobs:
       - name: Type check
         run: pnpm exec tsc --noEmit --pretty false
       - name: ESLint for project files
-        run: pnpm exec eslint app/ja/international/rizehope-japan-2027/page.tsx app/international/rizehope-japan-2027/page.tsx components/rizehope-international.tsx components/international-platform.tsx lib/rizehope-2027.ts tests/rizehope-international-hub.test.mjs
+        run: pnpm exec eslint app/ja/international/rizehope-japan-2027/page.tsx app/international/rizehope-japan-2027/page.tsx components/rizehope-international.tsx components/international-platform.tsx lib/rizehope-2027.ts tests/rizehope-international-hub.test.mjs tests/rizehope-photo-integrity.test.mjs
       - name: Site Japanese style audit
         run: pnpm run audit:site-ja
