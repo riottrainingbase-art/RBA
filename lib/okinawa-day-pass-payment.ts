@@ -46,7 +46,9 @@ export function dayPassAdmin() {
 
 export function dayPassPaymentsEnabled() {
   return process.env.OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED === "true"
-    && Boolean(process.env.OKINAWA_2026_DAY_PASS_WEBHOOK_SECRET)
+    // Stripe events are verified by the independent Supabase Edge webhook;
+    // Vercel does not need to possess its signing secret.
+    && process.env.OKINAWA_2026_DAY_PASS_WEBHOOK_READY === "true"
     && Boolean(process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION)
     && Boolean(process.env.STRIPE_SECRET_KEY)
     && Boolean(dayPassAdmin());
@@ -72,6 +74,8 @@ export async function hashDayPassToken(token: string) {
 export function dayPassInviteValid(row: DayPassRecord) {
   if (row.program_code !== DAY_PASS_PROGRAM || !Object.hasOwn(DAY_PASS_LABELS, row.plan_code)) return false;
   if (!row.guardian_verified_at || !row.venue_verified_at || !row.terms_version) return false;
+  // Facility can only be called final after the 22 Nov priority-booking cutoff.
+  if (Date.parse(row.venue_verified_at) < Date.parse("2026-11-23T00:00:00+09:00")) return false;
   if (row.terms_version !== process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION) return false;
   if (!row.invite_expires_at || Date.parse(row.invite_expires_at) <= Date.now()) return false;
   if (approvedAmount(row.plan_code) !== row.amount_jpy) return false;
