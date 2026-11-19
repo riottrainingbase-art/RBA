@@ -21,6 +21,7 @@ export function InternationalPlatform({locale}:{locale:Locale}){
       <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:24}}>
         <a className="button button-light" href={locale==="ja"?"/ja/international/japan-experience":locale==="zh-tw"?"/zh-tw/international/japan-experience":"/international/japan-experience"}>{({ja:"訪日プログラム・無料相談",en:"Plan a Japan team visit","zh-tw":"赴日球隊諮詢",ko:"팀 방문 상담"})[locale]} <ArrowRight size={18}/></a>
         <a className="button button-dark" style={{border:"1px solid #aeb6ba"}} href={locale==="ja"?"/ja/international/partner-with-us":locale==="zh-tw"?"/zh-tw/international/partner-with-us":"/international/partner-with-us"}>{({ja:"旅行会社・企業協賛の方",en:"Travel suppliers & sponsors","zh-tw":"旅行業者與企業贊助",ko:"여행업체 및 후원사"})[locale]} <ArrowRight size={18}/></a>
+        <a className="button button-light" href="/international/services">{({ja:"海外向け3サービス・提案依頼",en:"Global services & academy advisory","zh-tw":"國際育成專業服務",ko:"글로벌 코칭·아카데미 서비스"})[locale]} <ArrowRight size={18}/></a>
       </div>
     </div>
   </section>
