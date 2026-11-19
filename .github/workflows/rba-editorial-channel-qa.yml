@@ -1,0 +1,46 @@
+name: RBA JOURNAL and note Distinction QA
+on:
+  pull_request:
+    paths:
+      - "app/ja/reading-guide/**"
+      - "components/note-bridge.*"
+      - "components/my-homecourt.tsx"
+      - "components/public-journal.tsx"
+      - "components/simple-japanese-home.tsx"
+      - "components/site-frame.tsx"
+      - "tests/note-journal-differentiation.test.mjs"
+      - ".github/workflows/rba-editorial-channel-qa.yml"
+  push:
+    branches: ["release/instagram-conversion-hub-20261117"]
+    paths:
+      - "app/ja/reading-guide/**"
+      - "components/note-bridge.*"
+      - "components/my-homecourt.tsx"
+      - "components/simple-japanese-home.tsx"
+      - "components/site-frame.tsx"
+      - "tests/note-journal-differentiation.test.mjs"
+permissions:
+  contents: read
+jobs:
+  editorial-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout exact revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Editorial distinction regression
+        run: node --test tests/note-journal-differentiation.test.mjs
+      - name: Pin pnpm
+        run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: Lint changed source
+        run: pnpm exec eslint app/ja/reading-guide/page.tsx components/note-bridge.tsx components/my-homecourt.tsx components/site-frame.tsx components/simple-japanese-home.tsx tests/note-journal-differentiation.test.mjs
+      - name: Existing Japanese content audit
+        run: pnpm run audit:homecourt-ja
