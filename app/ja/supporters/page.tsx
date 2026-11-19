@@ -121,7 +121,7 @@ export default function SupportersPage() {
             <h2 id="supporters-trust-title">応援に、説明責任を。</h2>
             <p className={styles.lead}>月額会費は、RBA全体の育成・指導者教育・地域交流・国際交流などの活動を継続するための収入です。特定の選手・地域への配分や成果を確約するものではありません。</p>
             <p className={styles.lead}>実際に行った活動と次に取り組む課題は、確認できた事実に基づいて発信します。未確認の会員数や使途実績は掲載しません。</p>
-            <p className={styles.learningFoot}>RBAの確定した活動と準備中の企画は、<Link href="/ja/updates" data-growth-id="supporters-updates">公式の活動・運営状況</Link>で確認できます。活動状況の公開は、会費の個別使途を証明する資料ではありません。</p>
+            <p className={styles.learningFoot}>開催予定と参加条件は、<Link href="/ja/schedule" data-growth-id="supporters-schedule">公式の開催・活動一覧</Link>で確認できます。なお、イベント情報は会費の個別使途を証明するものではありません。</p>
             <div className={styles.bottomActions}>
               <Link className={styles.outline} href="/ja/journal" data-growth-id="supporters-proof-journal">これまでの育成記事を見る →</Link>
               <a className={styles.primary} href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-trust-note">noteのプランを確認する <span aria-hidden="true">↗</span></a>
