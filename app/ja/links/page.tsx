@@ -19,13 +19,22 @@ export const metadata: Metadata = {
 
 const featured = [
   {
+    id: "homecourt-free",
+    label: "FREE / RBA ID",
+    title: "MY HOME COURT｜無料RBA ID",
+    description: "現在の所属チームはそのまま。参加経験と学びを記録して、次の活動を見つける。登録だけでは料金は発生しません。",
+    href: "/ja/my-homecourt/login?source=instagram-bio-free-202611",
+    action: "無料で始める・ログインする",
+    style: "primary",
+  },
+  {
     id: "families",
     label: "01 / FOR PARENTS",
     title: "保護者・選手の方",
     description: "チーム選びや出場機会、育成の記事と参加できる活動へ。",
     href: "/ja/families",
     action: "保護者向けの入口へ",
-    style: "primary",
+    style: "standard",
   },
   {
     id: "coaches",
@@ -80,7 +89,7 @@ export default function RbaLinkInBioPage() {
       <nav className={styles.more} aria-label="その他の公式窓口">
         {more.map(item=><a href={item.href} key={item.id} data-growth-id={`bio-${item.id}`}>{item.title}<span aria-hidden="true">↗</span></a>)}
       </nav>
-      <p className={styles.notice}>無料相談の送信と、体験・入会・決済の確定は別です。開催日・参加費・会場・安全上の条件は、各公式ページでご確認ください。未成年者の参加相談は保護者の方からお願いいたします。</p>
+      <p className={styles.notice}>RBA IDは無料で、既に登録済みの方も同じ入口からログインできます。有料プランへの加入は任意です。無料相談の送信と、体験・入会・決済の確定は別です。開催日・参加費・会場・安全上の条件は各公式ページをご確認ください。未成年者の参加相談は保護者の方からお願いいたします。</p>
       <footer>© 2026 Riot Basketball Academy <a href="/ja/policies">プライバシー・安全方針</a></footer>
     </div>
   </main>;
