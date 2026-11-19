@@ -42,3 +42,7 @@
 - 当日予定/募集終了を正確に反映。古い募集ページを自動削除・リダイレクトせず、アーカイブと最新導線を個別に判断。
 
 **本番承認条件:** GitHub QA success + 正規Vercelの同一SHA Preview READY + 実画面QA + 現行本番からの差分監査 + 明示的なProduction承認。
+
+## 管理・会員画面の検索除外追加（11月19日）
+
+17個の管理・会員・支払完了セグメントにNext.jsの `robots: { index: false, follow: false }` を継承させる専用レイアウトを追加し、Google等の検索対象から外す意図を実装。共通メタデータは `lib/private-page-seo.ts`、漏れは `tests/site-public-discovery.test.mjs` で検査。**robots/noindexはアクセス制御ではない**ため、認証・認可の有無は別途サーバ検査が必要。一般向け案内・無料申込・プラン紹介ページは検索対象を維持する。

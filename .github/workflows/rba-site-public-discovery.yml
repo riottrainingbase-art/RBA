@@ -5,6 +5,8 @@ on:
     branches: [release/instagram-conversion-hub-20261117]
     paths:
       - "app/sitemap.ts"
+      - "lib/private-page-seo.ts"
+      - "app/**/layout.tsx"
       - "app/robots.ts"
       - "tests/site-public-discovery.test.mjs"
       - ".github/workflows/rba-site-public-discovery.yml"
@@ -43,6 +45,6 @@ jobs:
       - name: Full project TypeScript check
         run: pnpm exec tsc --noEmit --pretty false
       - name: ESLint on changed source and QA
-        run: pnpm exec eslint app/sitemap.ts app/robots.ts tests/site-public-discovery.test.mjs
+        run: pnpm exec eslint app/sitemap.ts app/robots.ts lib/private-page-seo.ts tests/site-public-discovery.test.mjs
       - name: Japanese content style audit
         run: pnpm run audit:site-ja

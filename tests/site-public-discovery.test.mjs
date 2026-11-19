@@ -71,3 +71,33 @@ test("robots leaves public areas discoverable but discourages crawlers from inde
   assert.match(robots,/sitemap:\s*"https:\/\/riotbasketballacademy.com\/sitemap.xml"/);
   assert.ok(!robots.includes('disallow: ["/ja/reading-guide"'));
 });
+
+const privateLayouts=[
+  "app/my-homecourt/app/layout.tsx",
+  "app/ja/my-homecourt/app/layout.tsx",
+  "app/ko/my-homecourt/app/layout.tsx",
+  "app/zh-tw/my-homecourt/app/layout.tsx",
+  "app/ja/d-hub/admin/layout.tsx",
+  "app/ja/d-hub/coaches/member/layout.tsx",
+  "app/ja/d-hub/players/member/layout.tsx",
+  "app/ja/d-hub/member/layout.tsx",
+  "app/d-hub/players/member/layout.tsx",
+  "app/payment-complete/layout.tsx",
+  "app/ja/payment-complete/layout.tsx",
+  "app/ko/payment-complete/layout.tsx",
+  "app/zh-tw/payment-complete/layout.tsx",
+  "app/ja/support/manage/layout.tsx",
+  "app/ja/support/advertisers/manage/layout.tsx",
+  "app/ja/store/manage/layout.tsx",
+  "app/ja/events/okinawa-clinic-2026-11-14/admin/layout.tsx"
+];
+test("private member, admin and payment completion routes have explicit noindex layouts",()=>{
+  const meta=read("lib/private-page-seo.ts");
+  assert.match(meta,/index: false/);
+  assert.match(meta,/follow: false/);
+  for(const routeFile of privateLayouts){
+    assert.ok(existsSync(path.join(root,routeFile)),routeFile+" noindex layout missing");
+    const source=read(routeFile);
+    assert.match(source,/privatePageMetadata/,routeFile+" metadata not applied");
+  }
+});
