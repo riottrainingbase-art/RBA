@@ -62,13 +62,13 @@ test("payments default closed and require price, organiser confirmation, policy 
  assert.match(config,/displayPrice: null/);
  assert.match(config,/officialEntryTermsUrl: null/);
  assert.match(config,/officialRefundTermsUrl: null/);
- assert.match(config,/&& payments\.organiserApprovedPaidRegistration/);
+ assert.match(config,/&& p\.organiserApprovedPaidRegistration/);
  assert.match(config,/&& programme\.finalAgeRulesPublished/);
- assert.match(config,/&& payments\.cancellationAndRefundTermsPublished/);
- assert.match(component,/isRizehopePaymentOpen\(\)/);
+ assert.match(config,/&& p\.cancellationAndRefundTermsPublished/);
+ assert.match(component,/isRizehopePaymentOpen\(track\.key\)/);
  assert.match(component,/決済の受付は行っていません/);
- assert.match(component,/payments\.displayPrice/);
- assert.match(component,/payments\.officialRefundTermsUrl/);
+ assert.match(component,/payment\.displayPrice/);
+ assert.match(component,/payment\.officialRefundTermsUrl/);
  assert.doesNotMatch(component,/createCheckoutSession|\/api\/commerce\/checkout|stripe\.checkout/);
 });
 
