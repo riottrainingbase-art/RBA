@@ -676,3 +676,8 @@
 .memberBridgeAction a:last-child{border:1px solid #10233f;color:#10233f;background:#fff}
 .memberBridgeAction a:last-child:hover{background:#e9edf4}
 @media(max-width:700px){.memberBridge{grid-template-columns:1fr;gap:18px;padding:22px 18px;margin:14px 0 12px}.memberBridgeAction a{width:100%}.hero .actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.heroSignupLine{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:16px 0 0;font-size:12px;line-height:1.7}
+.heroSignupLine a{display:inline-flex;align-items:center;min-height:36px;color:#10233f;font-size:13px;font-weight:800;text-underline-offset:4px;text-decoration:underline}
+.heroSignupLine span{color:#536174}
+@media(max-width:650px){.heroSignupLine{align-items:flex-start;flex-direction:column;gap:2px}.heroSignupLine span{font-size:11px}}
