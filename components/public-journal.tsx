@@ -8,6 +8,7 @@ import { JournalReaderTools } from "@/components/journal-reader-tools";
 import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 import { JournalPracticeGuides } from "@/components/journal-practice-guides";
 import { NoteBridge } from "@/components/note-bridge";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -104,6 +105,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
     {label:"判断を増やす練習をつくりたい",slug:"small-sided-games"}
   ];
   return <SiteFrame locale={locale} languagePage="journal">
+    <GrowthClickTracking />
     <div className="journal-hub journal-cms">
       <section className="journal-cms-hero section-pad">
         <p className="section-index">{c.kicker}</p>
