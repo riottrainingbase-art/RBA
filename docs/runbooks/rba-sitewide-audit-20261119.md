@@ -16,6 +16,7 @@
 2. `/ja/reading-guide`、`/ja/supporters`、`/ja/my-homecourt/nationwide`、`/ja/my-homecourt/united`、`/ja/partners/brief`、`/ja/cancellation` を追加。いずれも実ルートとcanonicalをソース確認。
 3. `/ja/links` は既存の `noindex` を尊重し、サイトマップへ強制追加しない。
 4. Node標準のみで実行できるGitHub Actionsのサイトマップ・日英相互リンク・内部 href QAを作成。外部の秘密情報や実決済は利用しない。
+5. `robots.ts` に認証/管理/個人用アプリのクロール除外を追加。これは検索向けの案内に過ぎず、認証/認可を代替しない。公開の紹介ページ・無料受付ページはブロックしない。
 
 ## 監査で確認した重要リスクと未実施の検証
 
