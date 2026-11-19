@@ -26,7 +26,7 @@ test("Free qualification never creates an unapproved payment",()=>{
 test("Operational planning separates coaching from travel, and RIZEHOPE fee from service fees",()=>{
  const ops=read("docs/business/rba-global-sales-operations-2027.md");
  const pricing=read("docs/business/rba-global-pricing-scenarios-2027.md");
- for(const text of ["JBA","旅行","書面","未成年","INVOICED"]) assert.ok(ops.includes(text),text);
+ for(const text of ["JBA","旅行","書面","未成年","INVOICE ISSUED"]) assert.ok(ops.includes(text),text);
  assert.match(pricing,/RIZEHOPE/);
  assert.match(pricing,/仮説/);
  assert.match(pricing,/127000/);
