@@ -36,6 +36,7 @@ export default async function PaymentPage({ searchParams }: { searchParams: Prom
         <section style={{border:"1px solid #aaa",padding:24,margin:"24px 0"}}>
           <p style={{fontWeight:700}}>参加プラン：{DAY_PASS_LABELS[row.plan_code as keyof typeof DAY_PASS_LABELS]}</p>
           <p>受付番号：{row.application_ref}</p>
+          <p><strong>施設確認済みの初回参加日時：</strong>{row.first_session_at ? new Date(row.first_session_at).toLocaleString("ja-JP", { timeZone:"Asia/Tokyo", year:"numeric", month:"long", day:"numeric", weekday:"short", hour:"2-digit", minute:"2-digit" }) : "未確定"}</p>
           <p style={{fontSize:30,fontWeight:800}}>全額 {(row.amount_jpy).toLocaleString("ja-JP")}円 <small style={{fontSize:13}}>税込</small></p>
           <p style={{fontSize:13}}>宿泊・食事・送迎なし。登録された保護者のメールアドレスで決済してください。複数名分を1回で払うリンクではありません。</p>
         </section>
