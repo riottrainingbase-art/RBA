@@ -73,3 +73,8 @@ localhost化とCSSロード待機、開発専用CSP例外でもWebKit開発ブ�
 WebKitの390pxだけで代表写真の固有幅874px、文書幅922pxとなった根本原因は**サイトのCSSグリッド不具合ではなかった**。GitHub ActionsローカルNext.js本番バンドルを `http://localhost:5173` で提供するのに、サイト標準CSP `upgrade-insecure-requests` がWebKit内で `/_next/static/chunks/*.css`、画像、JSを `https://localhost:5173` にアップグレードし、TLSハンドシェイクが失敗したためである。ChromiumはHTTPでCSSを正常取得し、11ページ×390/1280pxで成功。WebKitはCSSOM `access denied`、画像がwidth874pxのデフォルト表示になった。したがって**旧レポートの「WebKitで代表写真CSSが横はみ出しの主因」という断定を撤回**し、CSS追加ガードは防御的指定とする。
 
 修復: GitHub Actions のローカルHTTP本番ビルドQAに限り `CI=true`、`GITHUB_ACTIONS=true`、`RBA_HTTP_E2E_QA=1`、`NODE_ENV=production` の**4条件すべて成立時だけ**CSPから `upgrade-insecure-requests` を取り除く。これによりローカルHTTPサーバへの内部CSSリクエストがHTTPSに変換されるのを止める。**通常のVercel Preview/ProductionのCSPは、文字列ごと従来どおり不変**。デバッグ専用の1ページ判定を解除し、本来の11ルート・Chromium/WebKit・390/1280pxの44ケースに戻して再検査。これはVercel READY URLの検査に代わるものではない。
+
+
+## 公開・参加・学習・信頼導線のブラウザ網羅拡張
+
+GitHub内Next.js本番バンドルのブラウザQAは初回11ページ×2ブラウザ×2画面幅=**44ケース成功**（Actions run 44544559680）。ホーム/海外交流の修正だけでなく、対象を22公開ページに拡張し、**88ケース**を定義。代表紹介の4言語、日本語開催一覧、法人サービス、問い合わせ、参加規約、RBA UNITED、D-HUB、沖縄キャンプの案内・申込紹介ページも追加。申込は**GETによるページ表示のみ**、本番のフォーム送信・決済や会員データ操作はしない。拡張版の実行結果を確認するまでは88ケース成功とは報告しない。
