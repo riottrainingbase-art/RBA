@@ -1,5 +1,6 @@
 import { ArrowRight, Globe2, MessageCircle, Plane, ShieldCheck, Users } from "lucide-react";
 import { Locale, localePath, SiteFrame } from "./site-frame";
+import { RizehopeInternationalTeaser } from "./rizehope-international";
 import { tr, worldPoints } from "./network-data";
 
 const copy={
@@ -13,6 +14,7 @@ export function InternationalPlatform({locale}:{locale:Locale}){
  const c=copy[locale];const message=encodeURIComponent(locale==="ja"?"RBAの海外連携について相談したいです。団体名、対象年代、希望時期、交流目的をお送りします。":"Hello RBA, I would like to discuss a Japan–Asia basketball programme.");
  return <SiteFrame locale={locale} languagePage="international"><div className="international-platform">
   <section className="international-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><Globe2/><p className="section-index inverse">RBA INTERNATIONAL / JAPAN × ASIA</p><h1>{c.title}</h1><p>{c.lead}</p><div><a className="button button-light" href="#international-contact">{c.contact}<ArrowRight/></a></div></section>
+  <RizehopeInternationalTeaser locale={locale}/>
   <section className="section-pad" style={{background:"#111518",color:"#f9f9f9",borderTop:"1px solid #3f474c"}} aria-labelledby="japan-experience-hub">
     <div style={{maxWidth:1110,margin:"0 auto"}}>
       <p className="section-index inverse">RBA JAPAN EXPERIENCE / NEW</p>
