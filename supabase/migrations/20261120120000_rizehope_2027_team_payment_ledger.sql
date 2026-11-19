@@ -103,14 +103,14 @@ begin
      p_source_submission_id is null or char_length(p_source_submission_id) < 8 then
     raise exception 'missing_original_form_reference';
   end if;
-  v_key := pg_catalog.regexp_replace(pg_catalog.lower(pg_catalog.trim(p_team_name || '|' || p_region)),
+  v_key := pg_catalog.regexp_replace(pg_catalog.lower(pg_catalog.btrim(p_team_name || '|' || p_region)),
                                        '[[:space:][:punct:]]+', '', 'g');
   insert into public.rizehope_2027_team_entries(
     category,team_name,region,team_key,adult_representative,representative_email,
     source_form_id,source_submission_id,source_submitted_at
   ) values (
-    p_category,pg_catalog.trim(p_team_name),pg_catalog.trim(p_region),v_key,
-    pg_catalog.trim(p_adult_representative),pg_catalog.lower(pg_catalog.trim(p_representative_email)),
+    p_category,pg_catalog.btrim(p_team_name),pg_catalog.btrim(p_region),v_key,
+    pg_catalog.btrim(p_adult_representative),pg_catalog.lower(pg_catalog.btrim(p_representative_email)),
     p_source_form_id,p_source_submission_id,p_source_submitted_at
   )
   on conflict (source_form_id,source_submission_id) do nothing
@@ -171,12 +171,12 @@ declare
   v_entry public.rizehope_2027_team_entries;
   v_existing public.rizehope_2027_payment_audit;
 begin
-  if current_user <> 'service_role' then raise exception 'service_role_only' using errcode='42501'; end if;
+  -- EXECUTE is granted only to service_role; security definer runs as its owner.
   if not p_livemode or p_amount_jpy <> 33000 or pg_catalog.lower(p_currency) <> 'jpy' or
      p_stage not in ('deposit','balance') or
-     pg_catalog.coalesce(pg_catalog.length(p_session_id),0) < 5 or
-     pg_catalog.coalesce(pg_catalog.length(p_payment_intent_id),0) < 5 or
-     pg_catalog.coalesce(pg_catalog.length(p_stripe_event_id),0) < 5 then
+     coalesce(pg_catalog.length(p_session_id),0) < 5 or
+     coalesce(pg_catalog.length(p_payment_intent_id),0) < 5 or
+     coalesce(pg_catalog.length(p_stripe_event_id),0) < 5 then
     raise exception 'unverified_payment_payload';
   end if;
   select * into v_existing from public.rizehope_2027_payment_audit
