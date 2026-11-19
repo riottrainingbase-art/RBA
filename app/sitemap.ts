@@ -39,6 +39,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...localized.map(path=>({path,lastModified:null as string|null})),
     ...legacy.map(path=>({path,lastModified:null as string|null})),
     ...japanExperiencePages.map(path=>({path,lastModified:"2026-11-06T00:00:00Z"})),
+    {path:"/international/services",lastModified:"2026-11-19T00:00:00Z"},
     ...taiwanPages.map(path=>({path,lastModified:"2026-10-13T00:00:00Z"})),
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
