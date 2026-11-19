@@ -165,6 +165,10 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       </div>
     </section>:null}
     
+    {!role&&ja?<section className="homecourt-product-preview section-pad" aria-labelledby="homecourt-united-guide-title">
+      <div className="section-head"><div><p className="section-index">RBA UNITED / FREE ENTRY</p><h2 id="homecourt-united-guide-title">所属はそのまま。世界への挑戦を見つけよう。</h2></div><p>神戸・グアムU14、韓国遠征、深圳U12交流。企画ごとの対象・日程・費用案・準備状況を比べて、無料の参加希望登録へ進めます。会場などの未確定条件は明記しています。</p></div>
+      <div className="homecourt-plan-grid"><article className="homecourt-plan-card homecourt-plan-free"><span>国際交流・遠征 / 無料事前エントリー</span><h3>RBA UNITED｜企画一覧と申込ガイド</h3><p>個人参加・チーム参加・選考が必要な遠征を整理。まずは詳細を見てから、希望する企画のフォームへ。今は前金や参加費の支払いはありません。</p><a className="button button-member" href="/ja/my-homecourt/united">企画の詳細を見て無料エントリーへ <ArrowRight size={16}/></a><p className="registration-note">※無料登録は参加確定・予約・決済ではありません。</p></article></div>
+    </section>:null}
     {!role&&ja?<section className="homecourt-product-preview section-pad" aria-labelledby="homecourt-national-entry-title">
       <div className="section-head"><div><p className="section-index">JAPAN-WIDE / FREE EARLY ENTRY</p><h2 id="homecourt-national-entry-title">全国で開催へ。まずは無料の先行受付から。</h2></div><p>RBAのクリニック、キャンプ、国際交流、指導者講習を、さらに多くの地域へ。47都道府県のどこからでも、開催希望や先行案内の登録ができます。</p></div>
       <div className="homecourt-plan-grid">
