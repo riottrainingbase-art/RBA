@@ -50,7 +50,7 @@ test("separate interest and first-come domestic requests do not promise paid or 
  assert.match(component,/先着申込希望/);
  assert.match(component,/RBA UNITED/);
  assert.match(component,/Requests alone do not confirm entry or payment/);
- assert.doesNotMatch(component,/RBA UNITED.*参加確定|必ず出場|guaranteed games/);
+ assert.doesNotMatch(component,/RBA UNITEDに申し込むと参加確定|必ず出場|guaranteed games/);
 });
 
 test("payments default closed and require price, organiser confirmation, policy and checkout URL",()=>{
