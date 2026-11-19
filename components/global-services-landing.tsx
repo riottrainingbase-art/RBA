@@ -80,7 +80,7 @@ export function GlobalServicesLanding() {
             <article className={styles.card}><span className={styles.cardNo}>TAIWAN</span><h3>Cross-border learning</h3><p>Japan–Taiwan basketball exchange has already been part of RBA's work with partner organisations.</p></article>
             <article className={styles.card}><span className={styles.cardNo}>MALAYSIA</span><h3>Coach education in practice</h3><p>Penang clinics demonstrate RBA's ability to work with an overseas local host. New delivery remains subject to availability.</p></article>
           </div>
-          <p className={styles.note}>Read the <a href="/our-work" style={{textDecoration:"underline"}}>selected activity records</a> and <a href="/international/japan-experience" style={{textDecoration:"underline"}}>Japan visit overview</a>.</p>
+          <p className={styles.note}>Read the <a href="/taiwan" style={{textDecoration:"underline"}}>Japan–Taiwan programme record</a> and <a href="/international/japan-experience" style={{textDecoration:"underline"}}>Japan visit overview</a>.</p>
         </section>
 
         <section className={`${styles.section} ${styles.dark}`}>
