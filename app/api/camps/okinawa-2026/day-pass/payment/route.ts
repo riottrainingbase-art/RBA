@@ -2,8 +2,8 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import {
   DAY_PASS_LABELS, DAY_PASS_PROGRAM, DAY_PASS_SITE_URL, DAY_PASS_STRIPE_ACCOUNT,
-  DAY_PASS_TABLE, dayPassAdmin, dayPassInviteValid, dayPassPaymentsEnabled,
-  findDayPassInvite,
+  DAY_PASS_TABLE, DAY_PASS_DATES, dayPassAdmin, dayPassInviteValid, dayPassPaymentsEnabled,
+  approvedNewSlotsByDay, findDayPassInvite,
 } from "@/lib/okinawa-day-pass-payment";
 
 export const dynamic = "force-dynamic";
@@ -41,6 +41,24 @@ export async function POST(request: Request) {
   const stripe = new Stripe(secret);
   const admin = dayPassAdmin();
   if (!admin) return fail("予約データに接続できません。", 503);
+
+  // Recheck net venue-approved capacity at the last possible moment.
+  // A single 2-day invitation must occupy a seat on BOTH requested dates.
+  // The operator script issues invitations serially; automated bulk issuance
+  // requires an atomic database reservation before that feature is enabled.
+  const caps = approvedNewSlotsByDay();
+  if (!caps) return fail("会場の確定受入定員を確認できません。", 423);
+  const days = DAY_PASS_DATES[row.plan_code as keyof typeof DAY_PASS_DATES];
+  if (!days?.every(day => caps[day] > 0)) return fail("選択された日程の正式受入枠がありません。", 423);
+  const { data: reserved, error: capError } = await admin.from(DAY_PASS_TABLE)
+    .select("plan_code,status")
+    .in("status", ["approved", "checkout_creating", "checkout_open", "paid"]).limit(1000);
+  if (capError || !reserved || reserved.length >= 1000) return fail("受付枠の最新状況を確認できません。", 503);
+  if (days.some(day => reserved.filter(item =>
+        DAY_PASS_DATES[item.plan_code as keyof typeof DAY_PASS_DATES]?.includes(day)
+      ).length > caps[day]))
+    return fail("現在の受入枠を超えるため、この決済を開始できません。RBAへご連絡ください。", 423);
+
   try {
     // Prevent use of the other connected business's Stripe account.
     const result = await fetch("https://api.stripe.com/v1/account", {
