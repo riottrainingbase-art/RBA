@@ -46,6 +46,11 @@ test("Approved net day capacity required", gate.includes("OKINAWA_2026_DAY_PASS_
 test("Venue capacity checked on final checkout POST", checkout.includes("現在の受入枠を超えるため") && checkout.includes(".in(\"status\", [\"approved\", \"checkout_creating\", \"checkout_open\", \"paid\"])"));
 const issue = file("scripts/okinawa-daypass-issue-invite.mjs");
 test("Issue invite requires facility, guardian and existing payments signoff", ["venue_schedule_confirmed","staffing_confirmed","handoff_confirmed","existing_payments_reconciled"].every(flag => issue.includes(flag)));
+test("Invite tool only creates atomic DB reservations", issue.includes('db.rpc("reserve_okinawa_2026_daypass"') && !issue.includes("db.from(TABLE).insert("));
+test("Operator approval and after-cutoff required", issue.includes('OKINAWA_DAYPASS_OPERATOR_APPROVAL') && issue.includes('Date.now() >= VALID_FROM'));
+test("Two-day venues are allocated for both days", issue.includes('PLAN_DAYS') && issue.includes('p_daily_capacity:capacity'));
+test("All required safety attestations reach the atomic RPC", issue.includes("...Object.fromEntries(checks.map(check => [check, true]))"));
+test("Route remains closed without price, venue capacity and webhook config", gate.includes('OKINAWA_2026_DAY_PASS_APPROVED_AMOUNTS_JPY') && gate.includes('OKINAWA_2026_DAY_PASS_APPROVED_NEW_SLOTS_BY_DATE') && gate.includes('OKINAWA_2026_DAY_PASS_WEBHOOK_READY'));
 test("No public payment URL on interest cards", interests.includes("https://form.jotform.com/263217090103041") && !interests.includes("buy.stripe.com") && !interests.includes("checkout.stripe.com"));
 test("Existing 3-day plan component preserved", intake.includes("<OkinawaResidentPrices/>") && intake.includes('<OkinawaResidentPrices residence="japan"/>'));
 test("Private payment page non-indexed", ui.includes("index: false"));
