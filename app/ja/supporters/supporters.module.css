@@ -49,3 +49,14 @@
 .reasonGrid h3{font-size:19px;line-height:1.5;letter-spacing:-.02em;margin:0 0 12px}
 .reasonGrid p{font-size:13px;line-height:1.9;color:#52606a;margin:0}
 @media(max-width:800px){.reasonGrid{grid-template-columns:1fr;gap:4px;margin-top:16px}}
+
+/* A concrete, accessible free learning sample that does not reveal full paid articles. */
+.learningGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 16px}
+.learningGrid>div{background:#f3f4f2;border-top:2px solid #c0c5c4;padding:18px 14px 16px;min-width:0}
+.learningGrid span{display:block;font-size:10px;line-height:1.4;letter-spacing:.08em;font-weight:800;color:#985b52;margin-bottom:10px}
+.learningGrid strong{font-size:19px;display:block;line-height:1.45;margin-bottom:8px}
+.learningGrid p{font-size:13px;line-height:1.85;color:#4f5962;margin:0}
+.learningFoot{font-size:13px;line-height:1.9;color:#5b656c;max-width:860px}
+.learningFoot a{font-weight:800;text-decoration:underline;text-underline-offset:4px;color:#1d303f}
+@media(max-width:850px){.learningGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.learningGrid{grid-template-columns:1fr}.learningGrid>div{padding:16px}}
