@@ -20,10 +20,24 @@ export async function POST(request: Request) {
   try { event = stripe.webhooks.constructEvent(await request.text(), signature, webhookSecret); }
   catch { return respond({ error: "signature_invalid" }, 400); }
 
-  if (event.type !== "checkout.session.completed" && event.type !== "checkout.session.async_payment_succeeded")
-    return respond({ received: true });
+  const allowed = ["checkout.session.completed", "checkout.session.async_payment_succeeded",
+    "checkout.session.async_payment_failed", "checkout.session.expired"];
+  if (!allowed.includes(event.type)) return respond({ received: true });
   const session = event.data.object as Stripe.Checkout.Session;
   if (session.metadata?.event !== DAY_PASS_PROGRAM) return respond({ received: true });
+
+  // A failed asynchronous payment or an expired session is NOT a participant confirmation.
+  // Place the invitation on hold instead of automatically starting a second charge.
+  if (event.type === "checkout.session.async_payment_failed" || event.type === "checkout.session.expired") {
+    if (!event.livemode || !session.livemode || !session.client_reference_id || !session.id)
+      return respond({ error: "unexpected_payment_failure" }, 422);
+    const { error } = await admin.from(DAY_PASS_TABLE)
+      .update({ status: "hold", updated_at: new Date().toISOString() })
+      .eq("id", session.client_reference_id)
+      .eq("checkout_session_id", session.id)
+      .eq("status", "checkout_open");
+    return error ? respond({ error: "payment_hold_update_failed" }, 503) : respond({ received: true });
+  }
   if (!event.livemode || !session.livemode || session.mode !== "payment" || session.payment_status !== "paid"
       || session.currency !== "jpy" || session.metadata.payment_stage !== "full_prepay"
       || !session.client_reference_id || typeof session.amount_total !== "number")

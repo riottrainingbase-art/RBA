@@ -14,6 +14,7 @@
     "db:generate": "drizzle-kit generate",
     "audit:homecourt-ja": "node audit/homecourt-japanese/check.mjs",
     "audit:deploy-policy": "node scripts/check-deployment-policy.mjs",
+    "audit:okinawa-daypass": "node scripts/check-okinawa-daypass-safety.mjs",
     "audit:site-ja": "node audit/site-japanese/check.mjs"
   },
   "dependencies": {

@@ -1,0 +1,20 @@
+{
+  "application_ref": "JOTFORM_SUBMISSION_ID",
+  "guardian_email": "guardian@example.com",
+  "guardian_name": "REPLACE_WITH_VERIFIED_GUARDIAN",
+  "plan_code": "dec23_day",
+  "amount_jpy": 0,
+  "guardian_verified_at": "REPLACE_WITH_VERIFIED_ISO_TIMESTAMP",
+  "venue_verified_at": "REPLACE_WITH_FACILITY_CONFIRMATION_ISO_TIMESTAMP_AFTER_2026-11-22",
+  "terms_version": "REPLACE_WITH_PUBLISHED_TERMS_VERSION",
+  "operator_reviewed": false,
+  "first_session_confirmed": false,
+  "venue_schedule_confirmed": false,
+  "capacity_confirmed": false,
+  "staffing_confirmed": false,
+  "handoff_confirmed": false,
+  "guardian_identity_confirmed": false,
+  "existing_payments_reconciled": false,
+  "refund_terms_agreed": false,
+  "first_session_at": "REPLACE_WITH_FACILITY_APPROVED_FIRST_SESSION_ISO_TIMESTAMP"
+}
