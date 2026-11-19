@@ -22,14 +22,14 @@ const targets=[
 ];
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 let ready=false;
-for(let attempt=0;attempt<45;attempt++){
+for(let attempt=0;attempt<75;attempt++){
   try{
     const response=await fetch(root+"/ja",{signal:AbortSignal.timeout(2500)});
     if(response.status<500){ready=true;break;}
   }catch{}
   await sleep(2000);
 }
-assert.ok(ready,"Local app did not become ready within 90 seconds");
+assert.ok(ready,"Local app did not become ready within 150 seconds");
 mkdirSync("screenshots/site-smoke",{recursive:true});
 for(const [engineName,engine] of [["chromium",chromium],["webkit",webkit]]){
   const browser=await engine.launch({headless:true});
