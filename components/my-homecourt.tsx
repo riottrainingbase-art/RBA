@@ -130,6 +130,27 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
   const clear=clarityCopy[locale];
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={17}/>{ja&&!authReady?"登録再開のお知らせを受け取る":c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div>{ja&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開までは、公式LINEで新しい活動・記事・登録再開のお知らせを受け取れます。</p>:null}</div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
+    {ja?<section id="korea-2027-free-interest" className="homecourt-product-preview section-pad" aria-label="RBA UNITED 韓国遠征の無料参加意向受付">
+      <div className="section-head">
+        <div><p className="section-index">RBA UNITED JAPAN / KOREA 2027</p><h2>所属はそのまま。<br/>韓国のコートに挑戦してみませんか。</h2></div>
+        <p>2027年1月29日〜31日に韓国・仁川で予定されている国際大会 IYIBS 2027。RBA UNITEDは、全国から選手の参加意向を募り、U15男子を中心にチーム編成を検討しています。大会参加と渡航はまだ確定していません。</p>
+      </div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card homecourt-plan-free">
+          <div className="homecourt-plan-card-head"><span>FREE / PARENT REGISTRATION</span><strong>¥0</strong></div>
+          <h3>無料の参加意向登録を受付中</h3>
+          <p>現所属チームの移籍は不要。1月28日チェックイン〜31日チェックアウトの3泊4日を基準に、選手の生年月日・予定・希望カテゴリーを確認します。U12・U15・U17男女の関心も受け付けますが、優先検討はU15男子です。</p>
+          <a className="button button-member" href="https://form.jotform.com/263207310187047" target="_blank" rel="noopener noreferrer">保護者の方が無料で登録する <ArrowRight size={16}/></a>
+        </article>
+        <article className="homecourt-plan-card">
+          <div className="homecourt-plan-card-head"><span>CURRENT STATUS</span><strong>検討中</strong></div>
+          <h3>費用と安全条件を先に説明します</h3>
+          <p>選手参加費の現在の検討案は先行238,000円・通常248,000円（税込想定、国際航空券・国内移動・日本で加入する海外旅行保険は別途）。最終価格、引率・宿泊・移動・出場資格・取消返金規定、適法な旅行契約主体は調整中です。</p>
+          <p>無料登録は契約・選考合格・出場確約・予約ではありません。カード情報や前金は求めません。正式申込と支払案内は、必要な条件の確認と保護者の書面同意後に限ります。</p>
+          <a className="text-link" href="/ja/united">RBA UNITEDの考え方と活動を見る <ArrowRight size={16}/></a>
+        </article>
+      </div>
+    </section>
     {ja&&!role?<section className="homecourt-product-preview section-pad" aria-label="RBA IDの初期設定ガイド"><div className="section-head"><div><p className="section-index">START GUIDE / 10 SLIDES</p><h2>無料RBA IDの始め方を、10枚で。</h2></div><p>登録・メールログイン・初期設定まで。選手・保護者・指導者向けの使い方ガイドを公開しました。</p></div><a className="button button-member" href="/ja/my-homecourt/guide">10枚の使い方ガイドを見る <ArrowRight size={16}/></a></section>:null}
     {ja&&!role?<div className="home-screen-card-wrap"><IPhoneHomeScreenCard/></div>:null}
     {!role?<section className="homecourt-product-preview section-pad">
