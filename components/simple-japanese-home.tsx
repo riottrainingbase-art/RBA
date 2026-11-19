@@ -38,7 +38,7 @@ const steps = [
     id: "read",
     label: "無料で読む",
     title: "RBA JOURNAL",
-    copy: "チーム選び、出場機会、練習設計。最初は無料の記事から。",
+    copy: "研究・公式資料とRBAの解釈を分けて読む、無料の育成ライブラリー。",
     href: "/ja/journal",
     action: "育成記事を見る",
   },
@@ -223,7 +223,7 @@ export async function SimpleJapaneseHome() {
                 </article>;
               })}
             </div>
-            <p className={styles.note}>指導者向けの学びは <a href="/ja/d-hub" data-growth-id="home-coach-dhub">D-HUB</a>、継続サポートは <a href="/ja/home-court" data-growth-id="home-homecourt">HOMECOURT</a> から確認できます。無料登録と有料プランは別です。</p>
+            <p className={styles.note}>指導者向けの学びは <a href="/ja/d-hub" data-growth-id="home-coach-dhub">D-HUB</a>、継続サポートは <a href="/ja/home-court" data-growth-id="home-homecourt">HOMECOURT</a> から確認できます。無料登録と有料プランは別です。 <a href="/ja/reading-guide" data-growth-id="home-reading-guide">JOURNALと公式noteの違いを見る →</a></p>
           </section>
 
           <section className={styles.hostCallout} id="home-host" aria-labelledby="home-host-cta-title">
