@@ -23,6 +23,8 @@ const targets=[
   {path:"/ja/my-homecourt/nationwide",name:"Nationwide interest"},
   {path:"/ja/partners/brief",name:"Partner brief"}
 ];
+const debugOnly=process.env.RBA_BROWSER_DEBUG_ONLY==="1";
+const pagesToTest=debugOnly?targets.filter(x=>x.path==="/"):targets;
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 let ready=false;
 for(let attempt=0;attempt<75;attempt++){
@@ -37,15 +39,19 @@ mkdirSync("screenshots/site-smoke",{recursive:true});
 for(const [engineName,engine] of [["chromium",chromium],["webkit",webkit]]){
   const browser=await engine.launch({headless:true});
   try{
-    for(const width of [390,1280]){
+    for(const width of (debugOnly?[390]:[390,1280])){
       const context=await browser.newContext({
         viewport:{width,height:844},
         deviceScaleFactor:1,
         isMobile:width===390,hasTouch:width===390
       });
       try{
-        for(const target of targets){
+        for(const target of pagesToTest){
           const page=await context.newPage();
+          if(debugOnly){
+            page.on('requestfailed',req=>{if(/_next|\\.css/.test(req.url()))console.error('REQUEST_FAILED '+engineName+' '+req.url()+' '+req.failure()?.errorText);});
+            page.on('response',response=>{if(/\\.css/.test(response.url()))console.log('CSS_RESPONSE '+engineName+' '+response.status()+' '+response.url());});
+          }
           try{
             const url=root+target.path;
             const result=await page.goto(url,{waitUntil:"load",timeout:45000});
@@ -66,6 +72,18 @@ for(const [engineName,engine] of [["chromium",chromium],["webkit",webkit]]){
                 links:[...document.querySelectorAll('a[href]')].length
               };
             });
+            if(debugOnly){
+              const styleInfo=await page.evaluate(()=>{
+                const element=document.querySelector(".founder-portrait img");
+                const style=element?getComputedStyle(element):null;
+                const sheetInfo=[...document.styleSheets].map(sheet=>{
+                  let rules;try{rules=sheet.cssRules.length}catch{rules="access denied"}
+                  return {href:sheet.href,rules};
+                });
+                return {cssLinks:[...document.querySelectorAll('link[rel="stylesheet"]')].map(l=>({href:l.href,loaded:!!l.sheet})),sheets:sheetInfo,img:element?{width:element.getBoundingClientRect().width,cssWidth:style?.width,cssMaxWidth:style?.maxWidth,parent:element.parentElement?.className}:null};
+              });
+              console.log("STYLE_DEBUG "+engineName+" "+JSON.stringify(styleInfo));
+            }
             assert.ok(info.title.length>6,engineName+" "+target.path+" missing title");
             assert.ok(info.heading.length>1,engineName+" "+target.path+" missing h1");
             assert.ok(info.links>1,engineName+" "+target.path+" missing links");
