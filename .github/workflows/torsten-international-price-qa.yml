@@ -33,3 +33,23 @@ jobs:
           persist-credentials: false
       - name: Verify fixed prices, approved checkout links and mobile access
         run: node --test tests/torsten-international-price-first.test.mjs
+
+  typescript-check:
+    name: Full RBA TypeScript check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact reviewed commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install pinned pnpm
+        run: npm install --global --ignore-scripts --no-audit --no-fund pnpm@11.25.0
+      - name: Install exact locked dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Validate the complete TypeScript project
+        run: pnpm exec tsc --noEmit --incremental false --pretty false
