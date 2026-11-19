@@ -43,13 +43,13 @@ test("venue booking and event presentation permissions correctly represent user-
  assert.doesNotMatch(component,/体育館.*未予約|会場の予約待ち|not booked/);
 });
 
-test("three free interest routes do not promise paid or confirmed tournament admission",()=>{
+test("separate interest and first-come domestic requests do not promise paid or confirmed admission",()=>{
  assert.match(config,/263221234159047/);
  assert.match(config,/263220855042046/);
  assert.match(config,/263221266794057/);
- assert.match(component,/無料の先行参加意向受付/);
+ assert.match(component,/先着申込希望/);
  assert.match(component,/RBA UNITED/);
- assert.match(component,/Free expressions of interest are open/);
+ assert.match(component,/Submission alone is not a confirmed entry or payment/);
  assert.doesNotMatch(component,/RBA UNITED.*参加確定|必ず出場|guaranteed games/);
 });
 
@@ -87,4 +87,19 @@ test("local partners are a contact route only until sponsors and supporters sign
  assert.match(component,/後援・共催/);
  assert.match(component,/mailto:/);
  assert.match(component,/not claimed before a separate agreement/);
+});
+
+test("global cap is ten teams and no preferential UNITED reservation",()=>{
+ assert.match(config,/maximumTeamCount: 10/);
+ assert.match(config,/reservedUnitedTeamSlots: 0/);
+ assert.match(config,/domesticTeamFeeJpy: 66000/);
+ assert.match(config,/263223566035050/);
+ assert.match(config,/263223619546056/);
+ assert.match(config,/automaticCapacityLockVerified: false/);
+ assert.match(component,/10チーム/);
+ assert.match(component,/66,000円/);
+ assert.match(component,/japanTeamWaitingList/);
+ assert.match(component,/sponsorInterest/);
+ assert.match(config,/japanTeam: \{\s+status: "not-open"/);
+ assert.match(config,/unitedPlayer: \{\s+status: "not-open"/);
 });
