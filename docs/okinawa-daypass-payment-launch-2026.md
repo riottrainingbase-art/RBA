@@ -34,12 +34,12 @@ RBA公式サイトの更新PR： https://github.com/riottrainingbase-art/RBA/pul
 2. **価格承認**：各プランについて利用者に示す税込価格を最終決定。ここにある料金案を自動で課金可能にしない。
 3. **取消・返金**：具体的な集合条件、実施時間、キャンセル規定を決済前に書面案内。施設未確定・未提供は全額返金。
 4. **運営データ**：対象プランごとに安全な上限（既存3日間の国内外参加者と保護者・車両を含む）を確認。支払済みの家庭は新規決済から除外。
-5. **Webhook**：StripeのRBA本番アカウント acct_1UGdxZRXDnnSs6XN に、日帰り専用Webhookを登録。既存のSupabase HOMECOURT webhookは日帰り専用DBを現状自動更新しないので代用しない。署名シークレットを認証済み本番実行環境へ安全に配置し、Checkout Session completed / async succeeded / async failed / expired をテストする。発生したイベントを参照し日帰り決済台帳が paid / hold に正確に更新されるか検証。
+5. **Webhook（設定済み・実決済テスト待ち）**：RBA Stripe本番 acct_1UGdxZRXDnnSs6XN で Webhook ID `we_1UdJ4hRXDnnSs6XNH01Wk6t6` を追加・enabled検証済み。宛先は `https://ctngdzzorhzpdxswahzl.supabase.co/functions/v1/rba-okinawa-2026-day-pass-webhook`。署名シークレットはSupabase private.integration_secrets に保存済み。Edge Function v2 ACTIVE、匿名GETは405確認済み。イベントは completed, async succeeded, async failed, expired, refund.created, refund.updated。**実際の署名付きWebhookとカード決済のテストはまだ未完了**。入金記録・失敗保留・二重回避・返金記録をStripeテストイベント相当で検証後に決済を解禁する。既存HOMECOURT Webhookは別途稼働。
 6. **本番公開とQA**：GitHub静的QA成功後、DEPLOYMENT.mdに従い one preview checkpoint → browser/paywall/モバイル QA → 承認済み本番リリース。日帰り専用ルートがHTTPS 200、POSTは正しい認証済み応募のみ受け付けることを確認。
 7. **環境変数の明示承認**：本番に以下を設定後、最後に OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED=true とする。サイトとDBの参照先・Stripeのacct番号が正しいこと。
    - OKINAWA_2026_DAY_PASS_APPROVED_AMOUNTS_JPY = JSON（下記は**案**。正式承認後のみ設定）
    - OKINAWA_2026_DAY_PASS_TERMS_VERSION = 承認済み規約のバージョン識別子
-   - OKINAWA_2026_DAY_PASS_WEBHOOK_SECRET = Stripe日帰り専用endpointの署名シークレット
+   - OKINAWA_2026_DAY_PASS_WEBHOOK_READY = true（Vercelの構成に設定済み。独立したSupabase Webhookの導通を示す非秘密フラグ。署名シークレットはSupabase側だけが保持）
    - STRIPE_SECRET_KEY = RBA口座のみ、Supabase Service Role Keyはサーバーのみ
    - OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED = false（開始直前まで）
 8. **金額JSON案（未承認）**：
@@ -55,4 +55,4 @@ RBA公式サイトの更新PR： https://github.com/riottrainingbase-art/RBA/pul
 - **paid と「最終参加確定」を区別**。決済直後の成功画面だけを根拠に参加確定メールを自動送信しない。RBA側で全情報と入金を照合後、集合・解散・持ち物・保護者引渡しを確定案内する。
 
 ## 6. 現状の未完了
-2026/11/19監査時点で日帰り専用決済台帳は0件、専用の本番WebhookはStripe上に未登録、PR #481は未マージ。施設利用時間・料金の正式決定も未確認。したがって新日帰りプランの**実決済受付は未解禁**。この要件が揃う前に、本番リンクを共有したり、受付を「入金可能」と表示してはいけない。
+2026/11/19監査時点で日帰り専用決済台帳は0件。Webhook本番登録と署名シークレット保存は完了したが、署名付きイベントの実結合テストは未完了。PR #481は未マージで本番導線が未公開、Vercelの正式決済用STRIPE_SECRET_KEY・SUPABASE_SERVICE_ROLE_KEY・承認価格・利用規約バージョンは未検証/未設定。公式Vercelプロジェクトでは OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED=false を明示。施設利用時間・料金の正式決定も未確認。したがって新日帰りプランの**実決済受付は未解禁**。この要件が揃う前に、本番リンクを共有したり、受付を「入金可能」と表示してはいけない。
