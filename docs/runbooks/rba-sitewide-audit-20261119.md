@@ -62,3 +62,7 @@ Next.js開発サーバを立ち上げたE2EでChromiumは11ルート×390/1280px
 ## 本番CSPを保ったままNext.js devのWebKitブラウザQAを許可
 
 本番の `next.config.ts` で `script-src 'self' 'unsafe-inline'` を維持。Next.js development HMRの `eval()` はCSPに遮断され、WebKitでCSSが未適用のページを見かけ上のレイアウト異常として誤認する場合がある。GitHub Actionsのローカルブラウザ試験に限り `NODE_ENV=development` かつ `RBA_LOCAL_BROWSER_QA=1` の両方を満たした場合だけ `'unsafe-eval'` を追加する条件分岐を導入した。**Productionではこの条件が成立せずCSPは変更されない。** サーバの認証・課金・ドメイン設定には変更しない。これでもCSSが読めない場合はネットワークリクエスト/スタイルシートの取得を調査する。
+
+## E2E再構成：実際のNext.js productionビルド
+
+localhost化とCSSロード待機、開発専用CSP例外でもWebKit開発ブラウザがCSS未装飾のままになることを確認。これは `Next.js dev` + HMRの環境差が残るため、画面の本番不具合を証明しない。**開発専用CSP例外を`next.config.ts`から取り除き元の厳格なCSPへ復元した。** 新しいCIは `pnpm exec next build` → `pnpm exec next start --port 5173` として、ホスティングには一切デプロイせずNext.js本番バンドルをChromium/WebKitで検査する。ビルドに必要な接続情報が無い場合はQA失敗として明示し、架空の本番接続を作らない。
