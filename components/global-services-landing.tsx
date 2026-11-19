@@ -2,7 +2,8 @@ import { ArrowRight, BookOpenCheck, ClipboardCheck, Globe2, ShieldCheck } from "
 import { SiteFrame } from "./site-frame";
 import styles from "./japan-experience.module.css";
 
-const intake = "https://form.jotform.com/263218488425060";
+const quickFit = "https://form.jotform.com/263221936704052";
+const detailedIntake = "https://form.jotform.com/263218488425060";
 
 const services = [
   {
@@ -44,7 +45,7 @@ export function GlobalServicesLanding() {
           <h1>BETTER BASKETBALL. REAL CONNECTIONS.</h1>
           <p>Japan-based youth development, international team exchange and coach education. A practical partner for academies and organisations that want learning—not a generic sports tour.</p>
           <div className={styles.actions}>
-            <a className={styles.primary} href={intake} target="_blank" rel="noopener noreferrer">Request a written proposal <ArrowRight size={17}/></a>
+            <a className={styles.primary} href={quickFit} target="_blank" rel="noopener noreferrer">Start free 90-second fit check <ArrowRight size={17}/></a>
             <a className={styles.secondary} href="#programmes">Explore three services</a>
           </div>
           <p style={{fontSize:13,marginTop:4}}>FREE FIRST ENQUIRY · NO BOOKING · NO PAYMENT · NO CHILDREN'S PERSONAL DETAILS</p>
@@ -89,12 +90,12 @@ export function GlobalServicesLanding() {
             <h2>One clear next step at a time.</h2>
           </div>
           <div className={styles.stepList}>
-            <div className={styles.step}><b>01 / FREE</b><h3>Tell us your objective.</h3><p>Adult representative, organisation, age groups, country, timing, delivery format and indicative organisation budget.</p></div>
-            <div className={styles.step}><b>02 / REVIEW</b><h3>Check feasibility.</h3><p>RBA reviews learning goals, calendar, staffing, child safeguarding, language and host capacity. We may decline unsuitable requests.</p></div>
+            <div className={styles.step}><b>01 / FREE</b><h3>Start with 90 seconds.</h3><p>Share an adult contact, organisation, country and service interest. No player details, budget or travel plans are required at this first stage.</p></div>
+            <div className={styles.step}><b>02 / REVIEW</b><h3>Check feasibility.</h3><p>We reply when the request fits. Interested organisations may then complete a <a href={detailedIntake} target="_blank" rel="noopener noreferrer" style={{textDecoration:"underline"}}>detailed programme brief</a>; RBA checks dates, staffing, safeguarding, language and host capacity.</p></div>
             <div className={styles.step}><b>03 / WRITTEN QUOTE</b><h3>Agree the actual service.</h3><p>A tailored proposal states scope, deliverables, provider roles, tax treatment, price, payment schedule and cancellation terms.</p></div>
             <div className={styles.step}><b>04 / CONFIRMED</b><h3>Pay only after agreement.</h3><p>Only after written acceptance and required checks will RBA send an individual invoice/payment instruction and coordinate delivery.</p></div>
           </div>
-          <div className={styles.notice}><ShieldCheck size={18}/><strong>TRAVEL & YOUTH SAFETY:</strong> RBA provides basketball instruction and lawful coordination, not an unlicensed package tour. Flights, accommodation, buses and regulated travel arrangements must be contracted through appropriately registered providers when required. Opponents, facilities, visas, travel and school placements are never guaranteed. Supervising adults, consent, insurance, language and emergency contacts must be agreed before confirming any youth activity.</div>
+          <div className={styles.notice}><ShieldCheck size={18}/><strong>TRAVEL, INTERNATIONAL MATCH & YOUTH SAFETY:</strong> RBA provides basketball instruction and lawful coordination, not an unlicensed package tour. Flights, accommodation, buses and regulated travel arrangements must be contracted through appropriately registered providers when required. Opponents, facilities, visas, travel and school placements are never guaranteed. Supervising adults, consent, insurance, language and emergency contacts must be agreed before confirming any youth activity. For Japan international matches involving JBA-registered teams, the JBA requires advance permission through the applicable prefectural association; the published guidance sets a one-month-ahead submission deadline. The responsible host must verify the current rules and match category before any games are announced. <a href="https://www.japanbasketball.jp/jba/kitei/" target="_blank" rel="noopener noreferrer" style={{textDecoration:"underline"}}>JBA procedures</a>.</div>
         </section>
 
         <section className={styles.section}>
@@ -116,7 +117,7 @@ export function GlobalServicesLanding() {
             <h2>Tell us what your academy needs.</h2>
             <p>One free enquiry covers team exchanges, international clinics, curriculum advisory and coach education. Adult professional contacts only. Riot Basketball Academy · Sendai, Japan · riot.training.base@gmail.com</p>
           </div>
-          <div><a href={intake} target="_blank" rel="noopener noreferrer">Request a proposal ↗</a><p className={styles.note}>Submitting the form is not a reservation, an invoice or an agreement. Please avoid non-refundable travel arrangements until confirmed by the responsible suppliers.</p></div>
+          <div><a href={quickFit} target="_blank" rel="noopener noreferrer">Start free fit check ↗</a><p className={styles.note}>Ready with more details? <a href={detailedIntake} target="_blank" rel="noopener noreferrer" style={{display:"inline",width:"auto",padding:0,border:0,background:"none",color:"inherit",textDecoration:"underline",fontWeight:750}}>Open the detailed free proposal request</a>.</p><p className={styles.note}>No booking, payment, invoice or agreement is created by either form. Avoid non-refundable travel arrangements until confirmed by responsible suppliers.</p></div>
         </section>
       </main>
     </SiteFrame>
