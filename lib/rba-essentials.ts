@@ -2,8 +2,13 @@
 // until samples, pricing, production rights, delivery, tax and returns are approved.
 export const ESSENTIALS_INTEREST_FORM = "https://form.jotform.com/263193283498065";
 export const ESSENTIALS_INSTAGRAM = "https://www.instagram.com/riot.basketball.academy/";
-export const ESSENTIALS_HERO_IMAGE = "https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-essentials-white-tee-official-design-reference-20261116.jpg?v=1794837114";
-export const ESSENTIALS_SETUP_IMAGE = "https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-essentials-black-hoodie-setup-official-design-reference-20261116.jpg?v=1794837122";
+export const ESSENTIALS_COLLECTION_GALLERY = [
+  {src:"https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-collection-001-group-flatlay-concept-20261120.jpg?v=1795103039",alt:"RBA COLLECTION 001 白Tシャツ、黒フーディー、黒パンツの3点。デザイン検討用イメージ。",label:"COLLECTION 001 / LINEUP"},
+  {src:"https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-collection-001-group-editorial-concept-20261120.jpg?v=1795103061",alt:"RBA WHITE TEEとBLACK SETUPのレイアウト提案。実物商品写真ではありません。",label:"COLLECTION 001 / STYLING"}
+] as const;
+
+export const ESSENTIALS_HERO_IMAGE = "https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-white-tee-concept-detail-20261120.jpg?v=1795103081";
+export const ESSENTIALS_SETUP_IMAGE = "https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-black-setup-concept-detail-20261120.jpg?v=1795103099";
 
 export const essentials = [
   {
