@@ -43,3 +43,7 @@
 提供済みWebP 9点のSHA-256を `docs/rizehope/rizehope-images.sha256` に記録。画像が後日GitHubへ追加されたら、CIの `tests/rizehope-photo-integrity.test.mjs` がファイル形式と署名一致を検査する。現在ファイル未登録なのでチェックサムは掲載準備証拠でありGitHub上の実ファイル検査済みではない。
 
 新しく `creditVerified:false`、各写真の `sourceDate:""` / `sourceEventJa:""` / `sourceEventEn:""` を追加。2027年未実施イベントの開催写真と誤認させないよう、撮影日・撮影イベントと適切なクレジットが確認されるまで公開禁止を継続。画像を追加するだけでは表示されない。
+
+## ワンコマンド画像配置スクリプト
+
+GitHub PRに `scripts/rizehope-photo-import.sh` を追加済み。GitHubチェックアウトした作業ツリーで `bash scripts/rizehope-photo-import.sh /path/to/RBA_RIZEHOPE_site_gallery_9photos_ready_for_upload.zip` を実行すると、SHA-256を9点すべて検証してから `public/media/rizehope-2027/` へコピーする。コミット/マージ/公開フラグ更新はしない。ZIPはChatGPT内のダウンロード成果物として受渡し済みであり、コネクタはローカルのバイナリファイルをGitHubへ直接渡せないため、まだ画像はGitHubには無い。
