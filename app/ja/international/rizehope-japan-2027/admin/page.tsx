@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { importRizehopeTeam, acceptRizehopeTeam } from "./actions";
+import { importRizehopeTeam, acceptRizehopeTeam, recordRizehopeTermsEvidence } from "./actions";
+import { RizehopeCheckoutControl } from "./checkout-control";
 
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:"RIZEHOPE 2027｜内部受付・入金台帳",robots:{index:false,follow:false,noarchive:true}};
@@ -14,7 +15,7 @@ export default async function Page() {
   const {data:profile}=await db.from("profiles").select("role").eq("id",user.id).maybeSingle();
   if(profile?.role!=="admin")redirect("/ja/international/rizehope-japan-2027");
   const [list,cap]=await Promise.all([
-    db.from("rizehope_2027_team_entries").select("id,team_name,region,category,adult_representative,representative_email,status,source_submitted_at,source_form_id,source_submission_id,terms_version,deposit_paid_at,balance_paid_at").order("source_submitted_at",{ascending:true}),
+    db.from("rizehope_2027_team_entries").select("id,team_name,region,category,adult_representative,representative_email,status,source_submitted_at,source_form_id,source_submission_id,terms_version,terms_accepted_at,deposit_paid_at,balance_paid_at").order("source_submitted_at",{ascending:true}),
     db.from("rizehope_2027_capacity").select("max_teams").eq("event_key","rizehope_japan_2027").maybeSingle()
   ]);
   const teams=list.data??[];
@@ -23,6 +24,7 @@ export default async function Page() {
   const payable=teams.filter(t=>t.status==="approved_pending_deposit").length;
   const max=cap.data?.max_teams??10;
   const approvalEnabled=process.env.RIZEHOPE_2027_APPROVAL_ENABLED==="true";
+  const checkoutEnabled=["RIZEHOPE_2027_CHECKOUT_ENABLED","RIZEHOPE_2027_ORGANIZER_APPROVED","RIZEHOPE_2027_TERMS_PUBLISHED","RIZEHOPE_2027_TAX_REVIEW_APPROVED","RIZEHOPE_2027_STRIPE_WEBHOOK_READY"].every(k=>process.env[k]==="true");
   return <main className="min-h-screen bg-[#f7f4ed] px-5 py-12 text-[#1d1d1d]">
     <div className="mx-auto max-w-6xl">
       <a href="/ja/international/rizehope-japan-2027" className="text-sm underline">← RIZEHOPE案内へ</a>
@@ -58,6 +60,16 @@ export default async function Page() {
             <input type="hidden" name="team_id" value={t.id}/><input name="terms_version" placeholder="合意済み規約版ID" required className="border p-2" disabled={!approvalEnabled}/>
             <button disabled={!approvalEnabled} className="border bg-orange-500 px-5 py-2 font-bold disabled:opacity-40">正式承認・枠を仮確保</button>
           </form>}
+          {t.status==="approved_pending_deposit"&&!t.terms_accepted_at&&<form action={recordRizehopeTermsEvidence} className="mt-4 flex flex-wrap gap-2">
+            <input type="hidden" name="team_id" value={t.id}/>
+            <input type="hidden" name="terms_version" value={t.terms_version??""}/>
+            <input name="evidence_ref" required placeholder="代表者の規約受諾原票ID（10文字以上）" className="min-w-60 border p-2" disabled={!approvalEnabled}/>
+            <button disabled={!approvalEnabled} className="border px-5 py-2 font-bold disabled:opacity-40">規約受諾の証拠を記録</button>
+          </form>}
+          {["approved_pending_deposit","deposit_paid","balance_requested"].includes(t.status)&&
+            <RizehopeCheckoutControl teamId={t.id}
+              stage={t.status==="approved_pending_deposit"?"deposit":"balance"}
+              enabled={checkoutEnabled&&Boolean(t.terms_accepted_at)}/>}
         </article>)}</div>}
       </section>
     </div>
