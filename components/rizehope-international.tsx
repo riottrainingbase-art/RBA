@@ -110,7 +110,11 @@ const entryLinks=[rizehopeProject.outreach.overseasTeam,rizehopeProject.outreach
 export function RizehopeInternationalPage({lang}:{lang:Language}){
   const c=copy[lang];
   const photos=approvedRizehopeGallery();
-  const paymentUrl=isRizehopePaymentOpen() ? rizehopeProject.payments.verifiedCheckoutUrl : null;
+  const paymentTracks=[
+    {key:"overseasTeam" as const,label:lang==="ja"?"海外U12チーム":"Overseas U12 teams"},
+    {key:"japanTeam" as const,label:lang==="ja"?"国内U12チーム":"Japan U12 teams"},
+    {key:"unitedPlayer" as const,label:"RBA UNITED"},
+  ];
   const partnerSubject=encodeURIComponent("RIZEHOPE JAPAN 2027 | U12 International Exchange – partnership enquiry");
   return <SiteFrame locale={lang} languagePage="international">
     <main className={styles.page} lang={lang}>
@@ -164,7 +168,12 @@ export function RizehopeInternationalPage({lang}:{lang:Language}){
 
       <section className={styles.section} aria-labelledby="rizehope-payments-title"><div className={styles.wrap}>
         <div className={styles.payment}><div><p className={styles.kicker}>PAYMENT / FUTURE FORMAL REGISTRATION</p><h2 id="rizehope-payments-title">{c.payment}</h2><p>{c.paymentIntro}</p></div>
-        {paymentUrl?<div className={styles.paymentReady}><strong>{rizehopeProject.payments.displayPrice}</strong><a className={styles.payLink} href={paymentUrl} target="_blank" rel="noopener noreferrer"><Wallet size={20} aria-hidden="true"/>{c.paymentLink}<ArrowRight size={17}/></a><div className={styles.termLinks}><a href={rizehopeProject.payments.officialEntryTermsUrl??undefined} target="_blank" rel="noopener noreferrer">{lang==="ja"?"募集・参加条件":"Official entry terms"}</a><a href={rizehopeProject.payments.officialRefundTermsUrl??undefined} target="_blank" rel="noopener noreferrer">{lang==="ja"?"キャンセル・返金規定":"Refund and cancellation terms"}</a></div></div>:<p className={styles.noPayment}><Wallet size={19} aria-hidden="true"/>{c.paymentPending}</p>}</div>
+        <div className={styles.paymentTracks}>{paymentTracks.map(track=>{
+          const payment=rizehopeProject.payments[track.key];
+          const paymentUrl=isRizehopePaymentOpen(track.key) ? payment.verifiedCheckoutUrl : null;
+          return <div key={track.key} className={styles.paymentTrack}><strong>{track.label}</strong>
+            {paymentUrl?<div className={styles.paymentReady}><span>{payment.displayPrice}</span><a className={styles.payLink} href={paymentUrl} target="_blank" rel="noopener noreferrer"><Wallet size={20} aria-hidden="true"/>{c.paymentLink}<ArrowRight size={17}/></a><div className={styles.termLinks}><a href={payment.officialEntryTermsUrl??undefined} target="_blank" rel="noopener noreferrer">{lang==="ja"?"募集・参加条件":"Official entry terms"}</a><a href={payment.officialRefundTermsUrl??undefined} target="_blank" rel="noopener noreferrer">{lang==="ja"?"キャンセル・返金規定":"Refund and cancellation terms"}</a></div></div>:<span className={styles.noPayment}><Wallet size={17} aria-hidden="true"/>{c.paymentPending}</span>}</div>;
+        })}</div></div>
       </div></section>
 
       <section className={styles.partner} aria-labelledby="rizehope-partners-title"><div className={styles.wrap}>
