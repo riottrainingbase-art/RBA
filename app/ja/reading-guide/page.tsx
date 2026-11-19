@@ -35,7 +35,7 @@ export default function ReadingGuidePage(){
           <p className={styles.kicker}>RBA / READING GUIDE</p>
           <h1>JOURNALとnote。<br/><span>違いは、読む目的。</span></h1>
           <p className={styles.intro}>RBAの発信を迷わず使えるように整理しました。<strong>JOURNALは無料で学ぶ場所。noteは現場の視点や背景を読む場所。</strong>そしてMY HOME COURTで、学びを次の行動につなげます。</p>
-          <div className={styles.heroActions}><Link href="/ja/journal" className={styles.primary}>まず無料で記事を読む <ArrowRight size={18}/></Link><a href="https://note.com/rba_official" className={styles.secondary} target="_blank" rel="noopener noreferrer">noteを見に行く <ExternalLink size={18}/></a></div>
+          <div className={styles.heroActions}><Link href="/ja/journal" className={styles.primary}>まず無料で記事を読む <ArrowRight size={18}/></Link><a href="https://note.com/rba_official" className={styles.secondary} target="_blank" rel="noopener noreferrer">noteを見に行く <ExternalLink size={18}/></a><Link href="/ja/my-homecourt" className={styles.secondary}>学びを記録する <ArrowRight size={18}/></Link></div>
         </div>
       </header>
 
