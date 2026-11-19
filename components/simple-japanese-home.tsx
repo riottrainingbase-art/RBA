@@ -83,8 +83,9 @@ export async function SimpleJapaneseHome() {
               <p className={styles.intro}>選手が挑戦し、指導者が学び、地域がつながる。<br />RBAは仙台から全国・アジアへ、次のコートをひらきます。</p>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-rba-id" href="/ja/my-homecourt/login?source=home-hero-free-202611">無料RBA ID <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
               </nav>
+              <p className={styles.heroSignupLine}><a href="/ja/my-homecourt/login?source=home-hero-free-202611" data-growth-id="home-primary-rba-id">無料のRBA IDを始める →</a><span>登録済みの方も同じ入口からログインできます。料金はかかりません。</span></p>
             </div>
             <div className={styles.heroBaseline}>
               <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
