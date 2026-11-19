@@ -48,3 +48,13 @@
 .founder-next-links a{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:8px 0;border-bottom:1px solid #b5a588;font-size:13px;font-weight:700;line-height:1.6}
 .founder-next-links a:hover{border-color:#10233f}
 @media(max-width:760px){.founder-depth{margin-top:42px;padding-top:38px}.founder-credentials,.founder-practice-grid{grid-template-columns:1fr}.founder-practice{margin-top:45px}.founder-practice-grid article{padding:23px}.founder-next-links{align-items:stretch;flex-direction:column;gap:8px}.founder-next-links a{width:100%;justify-content:space-between}}
+
+
+/* WebKit mobile grid sizing: an intrinsic 874px Next/Image must not force
+   the founder column beyond a phone viewport. Do not mask overflow with clip. */
+.founder-intro,.founder-copy,.founder-portrait{min-width:0}
+.founder-portrait{max-width:100%}
+.founder-portrait img{max-width:100%}
+@media(max-width:760px){
+  .founder-intro{grid-template-columns:minmax(0,1fr)}
+}
