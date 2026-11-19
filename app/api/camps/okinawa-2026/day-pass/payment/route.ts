@@ -83,8 +83,11 @@ export async function POST(request: Request) {
       cancel_url: DAY_PASS_SITE_URL + "/ja/events/okinawa-international-camp-2026/day-pass/payment?token=" + token,
       expires_at: Math.floor(Date.now() / 1000) + 3600,
     }, { idempotencyKey: "okinawa-2026-day-pass-" + row.id + "-full-v1" });
-    if (!session.id || !session.url || new URL(session.url).hostname !== "checkout.stripe.com")
-      return fail("決済画面を生成できません。", 503);
+    // Never allow a test-mode Checkout session in a production applicant flow.
+    if (!session.livemode || !session.id || !session.url || new URL(session.url).hostname !== "checkout.stripe.com") {
+      if (session.id) { try { await stripe.checkout.sessions.expire(session.id); } catch {/* best effort */} }
+      return fail("RBA本番決済を確認できません。", 503);
+    }
     const saved = await admin.from(DAY_PASS_TABLE).update({
       checkout_session_id: session.id, status: "checkout_open", updated_at: new Date().toISOString(),
     }).eq("id", row.id).eq("status", "checkout_creating").select("id").maybeSingle();
