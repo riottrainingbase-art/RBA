@@ -354,3 +354,17 @@
  .editionCopy{padding-block:0}
  .editionFigure img{max-height:420px}
 }
+
+
+/* COLLECTION 001 / accessible concept lookbook. Does not enable checkout. */
+.frontLookbook{max-width:1800px;margin:0 auto;padding:clamp(44px,6vw,100px) clamp(20px,5.5vw,100px);color:#171717;background:#f5f4f0}
+.frontLookbookIntro{display:grid;grid-template-columns:1fr 1fr;gap:16px 30px;align-items:end;margin-bottom:30px}
+.frontLookbookIntro>.frontKicker{grid-column:1/-1}
+.frontLookbookIntro h2{font:400 clamp(32px,4.8vw,72px)/1.04 Georgia,"Times New Roman",serif;letter-spacing:-.055em;margin:0}
+.frontLookbookIntro p:not(.frontKicker){font-size:14px;line-height:1.9;color:#4f4c48;margin:0}
+.frontLookbookIntro .frontLookbookNotice{grid-column:1/-1;font-size:12px!important;line-height:1.85!important;color:#5e5952!important;border-top:1px solid #bbb5ad;padding-top:13px}
+.frontLookbookGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.frontLookbookGrid figure{min-width:0;margin:0;background:#dad8d2}
+.frontLookbookGrid img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.frontLookbookGrid figcaption{font-size:10px;font-weight:700;letter-spacing:.1em;line-height:1.7;padding:13px 16px;background:#f5f4f0;color:#5d5851}
+@media(max-width:680px){.frontLookbook{padding:40px 18px}.frontLookbookIntro{grid-template-columns:1fr;gap:14px;margin-bottom:22px}.frontLookbookIntro h2{font-size:clamp(30px,8vw,48px)}.frontLookbookGrid{grid-template-columns:1fr;gap:14px}.frontLookbookGrid img{aspect-ratio:3/2}}
