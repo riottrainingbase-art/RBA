@@ -94,6 +94,7 @@ export default function SupportersPage() {
               <div><span>04 / ENVIRONMENT</span><strong>環境</strong><p>普段の練習にも、相手や味方を見て選ぶ機会があるか。</p></div>
             </div>
             <p className={styles.learningFoot}>無料のRBA JOURNALでは育成の問いと根拠を共有します。月1,000円プランでは、観察方法や練習設計まで深める実践記事を案内しています。公開済みの閲覧対象はnoteのプラン画面が優先されます。</p>
+            <p className={styles.learningFoot}>実際に会員向けに公開されている記事の例：<a href="https://note.com/rba_official/n/n2deba8d36846" target="_blank" rel="noopener noreferrer" data-growth-id="supporters-real-article">「出場できないのは仕方ない」で終わらせない。全員に学ぶ機会をつくるチーム設計 ↗</a>。公開部分は無料で確認でき、全文はnoteに表示される対象プランへの加入が必要です。</p>
             <div className={styles.bottomActions}>
               <Link className={styles.outline} href="/ja/journal" data-growth-id="supporters-learning-free">まず無料で読む →</Link>
               <a className={styles.primary} href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-learning-1000">月1,000円の学びを確認 <span aria-hidden="true">↗</span></a>
