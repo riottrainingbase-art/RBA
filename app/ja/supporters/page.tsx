@@ -67,14 +67,14 @@ export default function SupportersPage() {
                 <span className={styles.planLabel}>02 / 応援メンバー</span>
                 <p className={styles.price}><strong>500</strong>円 <span>/ 月</span></p>
                 <h3>RBAの活動を応援する</h3>
-                <p>育成の機会を増やす活動を支えたい方へ。まずは月500円から、無理のない範囲で参加できます。特典や条件はnoteでご確認ください。</p>
+                <p>RBAの活動を気軽に応援する入口。公式noteでは月1回の活動・使途・次の計画の報告が案内されています。提供条件はnoteでご確認ください。</p>
                 <a href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-500-note">月500円から応援する ↗</a>
               </article>
               <article className={styles.plan}>
                 <span className={styles.planLabel}>03 / 育成記事プラン</span>
                 <p className={styles.price}><strong>1,000</strong>円 <span>/ 月</span></p>
                 <h3>育成を継続して学ぶ</h3>
-                <p>保護者・指導者として継続的に育成を学びたい方へ。対象記事と特典の詳細は公式noteでご確認ください。</p>
+                <p>活動を応援しながら、保護者・指導者として学ぶプラン。公式noteでは活動報告に加えて月2本の育成・見守り方の記事が案内されています。</p>
                 <a href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-1000-note">月1,000円で学びながら応援する ↗</a>
               </article>
             </div>
@@ -119,7 +119,7 @@ export default function SupportersPage() {
                 <p>クリニックに合わせた交流企画を検討しています。開催の有無、日時、場所、参加条件は決まり次第案内します。すべての回で実施することは確約していません。</p>
               </details>
               <details><summary>月500円と月1,000円の違いは？</summary>
-                <p>月500円はRBAの活動を応援する入口、月1,000円は育成記事をより深く読みたい方向けの案内です。実際の閲覧権限や特典はnoteでのプラン説明を優先してください。</p>
+                <p>月500円は活動応援と活動・使途報告、月1,000円はそれに加えて育成記事を学びたい方向けです。公開済みの案内内容を記載していますが、実際の閲覧権限・提供条件はnoteの最新プラン説明が優先されます。</p>
               </details>
               <details><summary>会費は特定の選手・チームへの寄付ですか？</summary>
                 <p>いいえ。RBA全体の活動を支える月額メンバーシップです。特定の選手・地域への配分や、税控除の対象となる寄付であることを約束するものではありません。</p>
