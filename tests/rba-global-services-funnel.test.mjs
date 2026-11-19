@@ -19,7 +19,7 @@ test("Free qualification never creates an unapproved payment",()=>{
   assert.match(src,/263218488425060/);
   assert.doesNotMatch(src,/createCheckoutSession|stripe\.checkout|\/api\/commerce\/checkout/);
  }
- assert.match(en,/NO CHILDREN'S PERSONAL DETAILS/);
+ assert.match(en,/NO CHILDREN(?:'|&apos;)S PERSONAL DETAILS/);
  assert.match(ja,/未成年/);
  assert.match(ja,/書面/);
 });
