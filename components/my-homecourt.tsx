@@ -165,6 +165,14 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       </div>
     </section>:null}
     
+    {!role&&ja?<section className="homecourt-product-preview section-pad" aria-labelledby="homecourt-national-entry-title">
+      <div className="section-head"><div><p className="section-index">JAPAN-WIDE / FREE EARLY ENTRY</p><h2 id="homecourt-national-entry-title">全国で開催へ。まずは無料の先行受付から。</h2></div><p>RBAのクリニック、キャンプ、国際交流、指導者講習を、さらに多くの地域へ。47都道府県のどこからでも、開催希望や先行案内の登録ができます。</p></div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card homecourt-plan-free"><span>全国開催希望・先行案内 / 無料</span><h3>あなたの地域でも、RBAを。</h3><p>現在の先行案内登録に人数枠・地域制限は設けません。希望地域と年代を伺い、今後の開催計画に役立てます。未開催地域の開催や、先行登録者の参加を確約するものではありません。</p><a className="button button-member" href="https://form.jotform.com/263217942684061" target="_blank" rel="noopener noreferrer">全国開催の先行案内に登録する <ArrowRight size={16}/></a></article>
+        <article className="homecourt-plan-card"><span>RBA UNITED JAPAN / 韓国・仁川2027</span><h3>全国から無料先行エントリー。</h3><p>「選考応募」ではなく、まずは参加意向を伺う無料の先行受付です。エントリー人数に上限はありません。チーム人数・出場資格・参加費・安全管理などは正式募集前に確認し、先着順の参加確約は行いません。</p><a className="text-link" href="https://form.jotform.com/263207310187047" target="_blank" rel="noopener noreferrer">韓国2027の無料先行エントリーへ <ArrowRight size={16}/></a></article>
+      </div>
+      <p className="registration-note">※「全国開催」は今後の開催拡大方針です。確定済みの会場・日程・定員は各企画の募集要項をご確認ください。どちらの無料登録も予約・契約・決済・参加枠の確保ではありません。</p>
+    </section>:null}
     {!role&&ja?<HomecourtConversionSection/>:null}
     
     
