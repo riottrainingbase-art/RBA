@@ -63,7 +63,7 @@ export default function NationwideHomecourtPage() {
 
       <section className={styles.section} aria-labelledby="for-whom">
         <div className={styles.wrap}>
-          <div className={styles.sectionHead}><p className={styles.eyebrow}>WHO IT'S FOR</p><h2 id="for-whom">参加したい人も。<br />開催したい人も。</h2><p>所属クラブを変える必要はありません。選手・保護者・指導者・地域の皆さん、それぞれの立場からご登録いただけます。</p></div>
+          <div className={styles.sectionHead}><p className={styles.eyebrow}>WHO THIS IS FOR</p><h2 id="for-whom">参加したい人も。<br />開催したい人も。</h2><p>所属クラブを変える必要はありません。選手・保護者・指導者・地域の皆さん、それぞれの立場からご登録いただけます。</p></div>
           <div className={styles.cards}>{programmes.map(({ name,title,body,icon: Icon })=><article key={name} className={styles.card}><Icon size={30} strokeWidth={1.8} aria-hidden="true"/><span>{name}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
         </div>
       </section>
