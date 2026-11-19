@@ -9,6 +9,14 @@ on:
       - "components/simple-japanese-home.tsx"
       - "components/site-frame.tsx"
       - "tests/note-journal-differentiation.test.mjs"
+      - "tests/release-support-and-registration.test.mjs"
+      - "app/ja/supporters/**"
+      - "app/ja/development-check/**"
+      - "app/ja/support/**"
+      - "app/ja/after-application/**"
+      - "app/ja/after-clinic/**"
+      - "app/ja/events/kagoshima-clinic-2026-11-29/**"
+      - "components/clinic-support-invitation.*"
       - ".github/workflows/rba-editorial-channel-qa.yml"
   push:
     branches: ["release/instagram-conversion-hub-20261117"]
@@ -34,6 +42,8 @@ jobs:
           node-version: "24"
       - name: Editorial distinction regression
         run: node --test tests/note-journal-differentiation.test.mjs
+      - name: Site support, seven-day guide, and clinic checkout separation
+        run: node --test tests/release-support-and-registration.test.mjs
       - name: Pin pnpm
         run: corepack enable && corepack prepare pnpm@11.25.0 --activate
       - name: Install
