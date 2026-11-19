@@ -38,6 +38,7 @@ export function InternationalPlatform({locale}:{locale:Locale}){
         ].map(([number,title])=><div key={number} style={{border:"1px solid #d8dfe7",padding:18}}><strong style={{display:"block",fontSize:12,marginBottom:7}}>{number}</strong><span style={{fontWeight:700}}>{title}</span></div>)}
       </div>
       <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+        <a className="button button-dark" href="https://form.jotform.com/263221936704052" target="_blank" rel="noopener noreferrer"><Globe2 size={18}/>{({ja:"海外団体向け90秒の無料相談",en:"Free 90-second academy fit check","zh-tw":"海外球隊90秒免費諮詢",ko:"해외 아카데미 90초 무료 상담"})[locale]} <ArrowRight size={16}/></a>
         <a className="button button-dark" href={`https://wa.me/818032483703?text=${encodeURIComponent(({ja:"日本でのバスケットボール交流を相談したいです。団体名・国／地域：　希望内容：　希望時期：　人数：",en:"Hello RBA! We would like to explore a basketball visit to Japan. Organisation / country:  Interested activities:  Preferred timing:  Approximate group size: ", "zh-tw":"您好！我們想詢問赴日籃球交流。單位／國家：　希望活動：　時間：　人數：",ko:"안녕하세요. 일본 농구 교류를 상담하고 싶습니다. 단체/국가:  희망 활동:  시기:  인원: "})[locale])}`} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{({ja:"WhatsAppで無料相談",en:"Ask on WhatsApp — free","zh-tw":"WhatsApp 免費洽詢",ko:"WhatsApp 무료 상담"})[locale]}</a>
         <a className="button button-light" href={localePath(locale,"contact")}>{({ja:"メールで相談",en:"Contact by email","zh-tw":"電子郵件洽詢",ko:"이메일 문의"})[locale]} <ArrowRight size={16}/></a>
       </div>
