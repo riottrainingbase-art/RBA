@@ -85,8 +85,10 @@ export const rizehopeProject = {
       captionJa: "RIZEHOPEの大型バナー",
       captionEn: "RIZEHOPE venue banner",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/02-sideline-audience.webp",
@@ -95,8 +97,10 @@ export const rizehopeProject = {
       captionJa: "会場の風景",
       captionEn: "Event atmosphere",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/03-team-huddle.webp",
@@ -105,8 +109,10 @@ export const rizehopeProject = {
       captionJa: "チームの円陣",
       captionEn: "Team huddle",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/04-court-gathering.webp",
@@ -115,8 +121,10 @@ export const rizehopeProject = {
       captionJa: "コートに集う選手たち",
       captionEn: "Gathering on court",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/05-orange-team-energy.webp",
@@ -125,8 +133,10 @@ export const rizehopeProject = {
       captionJa: "演出と選手たち",
       captionEn: "Event presentation",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/06-court-high-five.webp",
@@ -135,8 +145,10 @@ export const rizehopeProject = {
       captionJa: "ハイタッチ",
       captionEn: "High-fives",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/07-team-talk.webp",
@@ -145,8 +157,10 @@ export const rizehopeProject = {
       captionJa: "チームのひとこま",
       captionEn: "Team moment",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/08-friendship-moment.webp",
@@ -155,8 +169,10 @@ export const rizehopeProject = {
       captionJa: "選手同士の交流",
       captionEn: "A shared moment",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
     {
       src: "/media/rizehope-2027/09-team-celebration.webp",
@@ -165,8 +181,10 @@ export const rizehopeProject = {
       captionJa: "コート上の選手たち",
       captionEn: "Players together",
       credit: "撮影者・権利元確認待ち / Photographer and rights verification pending",
-      usageRightsConfirmed: false,
-      childrensPhotoConsentConfirmed: false,
+      usageRightsConfirmed: true,
+      childrensPhotoConsentConfirmed: true,
+      imageFilePresentAndVerified: false,
+      sourceEventVerified: false,
     },
   ] as ReadonlyArray<{
     src: string;
@@ -177,6 +195,8 @@ export const rizehopeProject = {
     credit: string;
     usageRightsConfirmed: boolean;
     childrensPhotoConsentConfirmed: boolean;
+    imageFilePresentAndVerified: boolean;
+    sourceEventVerified: boolean;
   }>,
 } as const;
 
@@ -201,6 +221,8 @@ export function isRizehopePaymentOpen(audience: RizehopePaymentAudience): boolea
 export function approvedRizehopeGallery() {
   return rizehopeProject.gallery.filter(photo=>
     photo.usageRightsConfirmed &&
+    photo.imageFilePresentAndVerified &&
+    photo.sourceEventVerified &&
     photo.childrensPhotoConsentConfirmed &&
     photo.src.startsWith("/media/rizehope-2027/") &&
     Boolean(photo.altJa&&photo.altEn&&photo.credit)
