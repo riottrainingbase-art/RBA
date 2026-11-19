@@ -31,6 +31,18 @@ export function TorstenInternational() {
       <div className="tg-hero-copy"><Link className="tg-back" href="/">← RIOT BASKETBALL ACADEMY</Link><p className="tg-kicker">ONLINE CLINIC VOL.2 · 25 NOVEMBER 2026</p>
         <h1>Develop shooters.<br/><em>Change the game.</em></h1>
         <p className="tg-lead">Your players can make shots in practice. Can they find and take the right shot in a game?</p>
+        <div className="tg-fast-purchase" aria-labelledby="torsten-international-fast-title">
+          <p id="torsten-international-fast-title" className="tg-fast-intro">INTERNATIONAL REGISTRATION · TWO SEPARATE OPTIONS</p>
+          <div className="tg-fast-options">
+            <a href={torstenUsdLive} target="_blank" rel="noopener noreferrer" className="tg-fast-option">
+              <span><strong>LIVE · US$29</strong><small>Wed 25 Nov · 11:00–12:30 UTC · Zoom</small></span><ArrowUpRight size={20} aria-hidden="true"/>
+            </a>
+            <a href={torstenUsdRecording} target="_blank" rel="noopener noreferrer" className="tg-fast-option">
+              <span><strong>RECORDING · US$29</strong><small>Released after the event · 30-day access</small></span><ArrowUpRight size={20} aria-hidden="true"/>
+            </a>
+          </div>
+          <p className="tg-fast-note">Choose one format; each is a separate purchase. LIVE does not include recording. No separate Google Form is required for international USD checkout. <a href="/ja/events/torsten-loibl-online-clinic">In Japan? Use the separate JPY registration.</a></p>
+        </div>
         <p>Learn with <strong>Torsten Loibl</strong> — <strong>Levanga Hokkaido Head Coach</strong> in Japan’s B.LEAGUE PREMIER, recipient of <strong>FIBA WABC Level 3 Coach Instructor Status</strong> through RPL recognition (22 October 2026), former Japan youth national-team Head Coach, and WABC Executive Committee member. Hosted independently by RBA.</p>
         <div className="tg-tags"><span><Globe size={16}/> English lecture</span><span><Video size={16}/> Live on Zoom</span><span>USD checkout</span></div>
         <div className="tg-actions"><a className="tg-button" href="#register">Choose live or recording <ArrowRight size={19}/></a><a className="tg-text-link" href="#speaker">Meet your coach ↓</a></div>
