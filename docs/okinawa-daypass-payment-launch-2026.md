@@ -39,6 +39,7 @@ RBA公式サイトの更新PR： https://github.com/riottrainingbase-art/RBA/pul
 7. **環境変数の明示承認**：本番に以下を設定後、最後に OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED=true とする。サイトとDBの参照先・Stripeのacct番号が正しいこと。
    - OKINAWA_2026_DAY_PASS_APPROVED_AMOUNTS_JPY = JSON（下記は**案**。正式承認後のみ設定）
    - OKINAWA_2026_DAY_PASS_TERMS_VERSION = 承認済み規約のバージョン識別子
+   - OKINAWA_2026_DAY_PASS_APPROVED_NEW_SLOTS_BY_DATE = 施設側と照合した**追加販売可能人数**のJSON（既存3日間の参加者・宿泊者・スタッフ・保護者・車両・ほかの利用者を考慮して差し引いた後の上限）。例は説明用のみ：`{"2026-12-22":1,"2026-12-23":1,"2026-12-24":1}`。実際の値の承認まで設定不可。招待発行スクリプトの承認・発行数チェックに用いる（新プランを重複計数）。
    - OKINAWA_2026_DAY_PASS_WEBHOOK_READY = true（Vercelの構成に設定済み。独立したSupabase Webhookの導通を示す非秘密フラグ。署名シークレットはSupabase側だけが保持）
    - STRIPE_SECRET_KEY = RBA口座のみ、Supabase Service Role Keyはサーバーのみ
    - OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED = false（開始直前まで）
@@ -48,7 +49,7 @@ RBA公式サイトの更新PR： https://github.com/riottrainingbase-art/RBA/pul
 ```
 
 ## 5. 審査済み申込への個別決済案内
-入力0件時は有料リンクを発行しない。RBA管理者は申込者ごとに既存入金を照合し、Jotform submission IDをapplication_refに用いる。施設確定・保護者承諾・税込料金・terms_versionを確認後、 **サーバー専用** `scripts/okinawa-daypass-issue-invite.mjs`を実行する。秘密鍵は安全な実行環境にのみ保持。発行されたprivate URLは保護者本人へ個別連絡し、同じURLをウェブ、LINEグループ、SNSで共有しない。発行には11/23以降の施設利用の確認時刻を要求する。
+入力0件時は有料リンクを発行しない。RBA管理者は申込者ごとに既存入金を照合し、Jotform submission IDをapplication_refに用いる。施設確定・保護者承諾・税込料金・terms_versionを確認後、 **サーバー専用** `scripts/okinawa-daypass-issue-invite.mjs`を実行する。運営者は `scripts/okinawa-daypass-approved-application.example.json` を参考に安全な保管場所で申込者ごとの個別入力JSONを作り、各同意・入金確認・許可・人数・責任者・引渡し・規約の項目すべてを証拠で確認して `true` とする。このテンプレートは値 `false`、金額0のため誤ってそのまま実行できない。秘密鍵は安全な実行環境にのみ保持。発行されたprivate URLは保護者本人へ個別連絡し、同じURLをウェブ、LINEグループ、SNSで共有しない。発行には11/23以降の施設利用の確認時刻を要求する。
 - 申込データがすでに台帳にあれば、二重発行せず要確認。 
 - 保護者が専用URLで同意しStripe Checkoutに進む。サーバーが金額を決定し、二重セッションを原子的に防止。
 - Stripeの署名検証Webhookで支払を台帳に記録。返金・失敗・期限切れを照合。
@@ -56,3 +57,24 @@ RBA公式サイトの更新PR： https://github.com/riottrainingbase-art/RBA/pul
 
 ## 6. 現状の未完了
 2026/11/19監査時点で日帰り専用決済台帳は0件。Webhook本番登録と署名シークレット保存は完了したが、署名付きイベントの実結合テストは未完了。PR #481は未マージで本番導線が未公開、Vercelの正式決済用STRIPE_SECRET_KEY・SUPABASE_SERVICE_ROLE_KEY・承認価格・利用規約バージョンは未検証/未設定。公式Vercelプロジェクトでは OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED=false を明示。施設利用時間・料金の正式決定も未確認。したがって新日帰りプランの**実決済受付は未解禁**。この要件が揃う前に、本番リンクを共有したり、受付を「入金可能」と表示してはいけない。
+
+## 7. 決済完了ページと照合（2026/11/20改善）
+- 正式招待を受けた保護者がStripeの画面から戻った際、`/ja/events/okinawa-international-camp-2026/day-pass/complete?session_id=...` はサーバーからStripe Checkoutと専用受付台帳を読み直す。
+- Stripe側で `payment_status=paid` かつ当該イベント・プラン・金額・受付番号が一致する場合だけ「Stripeでの支払いを確認」と案内。受付番号、選手氏名、メールアドレス、決済セッションIDなどを画面に公開しない。
+- Webhookの入金記録・RBAによるスタッフ／保護者確認・施設側承認・個別最終案内は別。戻りページを閲覧しただけで参加は確定しない。
+- ネットワーク不具合・二重クリック・Stripe処理中・タイムアウト時は**新しい支払いを促さない**。入金を個別照合し、必要があればオペレーターが再案内する。
+- 受入人数・費用を正確に確認できない間は公開CTAを「無料希望登録」のままにし、費用をサイトの一般公開ページに出さない。従来の3日間プランを変えない。
+
+## 8. 実装済みだが本番有料販売前に検証すべきこと
+- [ ] 施設の11/22以降の最終利用許可・希望時間帯・人数・車両・保護者引渡し・スタッフ配置の書面/通話記録
+- [ ] RBAの各税込料金・プラン内容・返金規約の正式承認
+- [ ] 追加販売可能人数を日別JSONに設定。**無料申込件数やSNSの反応を「既に半分埋まった」と表示しない。**
+- [ ] Supabase専用台帳とRBA Stripe本番アカウントだけが接続されていることを確認（他事業口座には接続しない）
+- [ ] Vercelサーバー秘密鍵と承認価格、日別上限、規約版数を安全に設定し、平文やNEXT_PUBLICで秘密鍵を公開しない
+- [ ] 匿名GET・不正トークン・無効招待・同時送信・金額改ざん・支払済み再決済がブロックされること
+- [ ] 署名付きWebhook（支払成功/遅延成功/失敗/期限切れ/返金）およびStripe実環境の少額検証に代わる承認済み安全な結合試験
+- [ ] 決済後画面でStripe成功/確認中/未払いが正しく分岐し、最終参加確定と混同しないこと
+- [ ] GitHub QAとVercelプレビュー、スマートフォン・現地スタッフによる購入者・返金の実務QA
+- [ ] 全項目合格後に初めて本番支払機能を解禁、最初の1件は保護者とRBAで二重照合して確認する
+
+**現時点での停止条件**：RBA用のStripe秘密鍵・Supabaseサーバーキー・承認済み料金・規約版数がVercel本番に揃っていない。Webhooksの署名付き本番試験は未完了。日帰り無料希望登録は0件。管理者承認前に新たな実決済リンクを公開しない。
