@@ -112,3 +112,13 @@ test("immutable production CSP retains HTTPS upgrades; HTTP exemption is restric
   assert.match(config,/localHttpSmoke\s*\?\s*immutableProductionCsp\.replace/);
   assert.doesNotMatch(config,/unsafe-eval/);
 });
+
+
+test("opportunities remain publicly readable without Supabase browser credentials",()=>{
+  const src=read("components/opportunity-explorer.tsx");
+  assert.match(src,/NEXT_PUBLIC_SUPABASE_URL\s*&&\s*process\.env\.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY/);
+  assert.match(src,/if\(!db\)return/);
+  assert.match(src,/if\(userId&&db\)/);
+  assert.match(src,/if\(!userId\|\|!db\)/);
+  assert.match(src,/programmes\.filter/);
+});
