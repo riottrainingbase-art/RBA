@@ -23,9 +23,26 @@ export const rizehopeProject = {
   outreach: {
     // Public Jotform links; free expressions of interest, NOT confirmed entries.
     overseasTeam: "https://form.jotform.com/263221234159047",
-    japanTeam: "https://form.jotform.com/263220855042046",
+    japanTeam: "https://form.jotform.com/263223566035050",
+    japanTeamInterest: "https://form.jotform.com/263220855042046",
+    japanTeamWaitingList: "https://form.jotform.com/263223619546056",
+    sponsorInterest: "https://form.jotform.com/263222129730046",
     unitedPlayer: "https://form.jotform.com/263221266794057",
     contactEmail: "riot.training.base@gmail.com",
+  },
+  intake: {
+    maximumTeamCount: 10,
+    countsAcross: "all-teams-including-overseas-and-rba-united",
+    // No automatic reservation for the RBA-affiliated team: same ten-team capacity.
+    reservedUnitedTeamSlots: 0,
+    domesticTeamFeeJpy: 66000,
+    domesticTeamFeeIncludesTax: true,
+    domesticTeamFeeCovers: "two-days-per-team",
+    domesticTeamRegistrationMethod: "first-submitted-and-verified",
+    // Jotform configuration cannot be independently verified as an atomic 10-slot cap;
+    // staff must reconcile all three team intake channels and accepted registrations.
+    automaticCapacityLockVerified: false,
+    bookingConfirmationRequires: "written-acceptance-and-confirmed-payment",
   },
   programme: {
     invitationStatus: "inviting" as "inviting" | "confirmed",
