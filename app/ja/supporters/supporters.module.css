@@ -41,3 +41,22 @@
 @media(max-width:800px){.planGrid{grid-template-columns:1fr}.plan{min-height:0}.flow{grid-template-columns:1fr;gap:0}.flow>div{padding:16px 0}.section,.sectionAlt{padding:35px 0}}
 @media(max-width:480px){.container{width:min(100% - 32px,1080px)}.hero{padding:33px 0 40px}.hero h1{font-size:36px}.primary,.outline{width:100%;justify-content:center}.plan{padding:22px 20px}.faq summary{font-size:14px;padding:18px 6px}.bottomActions{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.page *{scroll-behavior:auto}}
+
+.lead{font-size:clamp(15px,1.4vw,18px);line-height:1.95;color:#4d5960;max-width:820px;margin:0 0 18px}
+.reasonGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px}
+.reasonGrid article{border-top:1px solid #9ba2a5;padding:20px 6px 10px 0}
+.reasonGrid span{display:block;font-size:11px;letter-spacing:.1em;font-weight:850;color:#9b5c51;margin-bottom:12px}
+.reasonGrid h3{font-size:19px;line-height:1.5;letter-spacing:-.02em;margin:0 0 12px}
+.reasonGrid p{font-size:13px;line-height:1.9;color:#52606a;margin:0}
+@media(max-width:800px){.reasonGrid{grid-template-columns:1fr;gap:4px;margin-top:16px}}
+
+/* A concrete, accessible free learning sample that does not reveal full paid articles. */
+.learningGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 16px}
+.learningGrid>div{background:#f3f4f2;border-top:2px solid #c0c5c4;padding:18px 14px 16px;min-width:0}
+.learningGrid span{display:block;font-size:10px;line-height:1.4;letter-spacing:.08em;font-weight:800;color:#985b52;margin-bottom:10px}
+.learningGrid strong{font-size:19px;display:block;line-height:1.45;margin-bottom:8px}
+.learningGrid p{font-size:13px;line-height:1.85;color:#4f5962;margin:0}
+.learningFoot{font-size:13px;line-height:1.9;color:#5b656c;max-width:860px}
+.learningFoot a{font-weight:800;text-decoration:underline;text-underline-offset:4px;color:#1d303f}
+@media(max-width:850px){.learningGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.learningGrid{grid-template-columns:1fr}.learningGrid>div{padding:16px}}
