@@ -50,3 +50,7 @@
 ## 実ページブラウザQAの追加
 
 `tests/site-real-browser-smoke.test.mjs` を新設し、GitHub Actionsで実際のポータブル開発サーバを立ち上げ、11の公開ルートをChromium/WebKitの390px・1280pxで検査する。コンテナには `mcr.microsoft.com/playwright:v1.55.0-noble` を使用し、毎回APT数百個をインストールしない。HTTP 200、見出し、タイトル、リンク、水平はみ出し、RIZEHOPE受付セクションを確認。写真・代表紹介の一部ページはスクリーンショットもアップロード。**Vercelの正式Previewや本番URLの表示確認とは別であり、その代替ではない。** 公開サイトにアクセスするのではなくGitHub runner上のローカル開発サーバのみを利用し、課金・決済・Production変更を行わない。
+
+## E2E初回失敗と原因切り分け
+
+初回GitHub ActionsのブラウザE2Eはページ描画前にローカル起動失敗。`pnpm dev` が参照する `vite.config.ts` はGitHubの通常チェックアウトに存在しない `.openai/hosting.json` および `build/sites-vite-plugin` を必須としており、ホスト専用環境外で起動できない。これをブラウザ表示の不具合と混同しない。リポジトリに架空のホスティング設定を追加せず、E2E専用Workflowのみ `pnpm exec next dev --hostname 0.0.0.0 --port 5173` へ変更し、標準Next.jsレンダリングが可能か検証する。Next.js環境で成功してもVercel/本番ビルド成功と同一視しない。
