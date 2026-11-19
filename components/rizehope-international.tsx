@@ -12,11 +12,11 @@ const copy = {
     hero:"その一歩を、世界と。",
     lead:"日本と海外のU12チームが、同じコートで学び、競い、つながる2日間。RBAが海外チームの招待・受入調整の窓口を担います。",
     date:"開催日",venue:"会場",fact1:"施設の2日間予約は完了",fact2:"大会・チーム入場演出の許可は取得済み",
-    gate:"現在は無料の先行参加意向受付です。出場枠・相手チーム・参加費・試合数・主催名義の最終確定を意味しません。",
+    gate:"募集総数は国内・海外・RBA UNITEDを合わせて10チーム。国内チームは2日間・1チーム66,000円（税込）で先着申込希望を受付中です。送信だけでは出場は確定せず、審査・正式承認・入金確認が必要です。決済は準備中です。",
     paths:"参加・協力したい方へ",pathsIntro:"あなたの立場に合った窓口から。3つの登録フォームは別々に管理しています。",
     cards:[
       {eyebrow:"INTERNATIONAL / CLUBS",title:"海外U12チーム",body:"海外のクラブ・アカデミー・学校チーム。人数や渡航計画が未確定でも、英語で参加意向を送れます。",cta:"海外チーム用・英語フォーム"},
-      {eyebrow:"JAPAN / TEAMS",title:"国内U12チーム",body:"国内チーム責任者向けの参加意向受付。試合方式・参加費・正式な出場条件は確定後にご案内します。",cta:"国内チーム用・日本語フォーム"},
+      {eyebrow:"JAPAN / TEAMS",title:"国内U12チーム",body:"国内チームは2日間・1チーム66,000円（税込総額）。国内・海外・RBA UNITEDを合計して先着10チームを上限に、無料の申込希望を受付します。正式出場は承認後。",cta:"国内チーム｜先着10チーム申込希望"},
       {eyebrow:"RBA UNITED / PLAYERS",title:"RBA UNITED｜個人",body:"全国から希望者を集め、人数・コーチ・安全な運営体制が揃った場合に限り編成を検討します。所属チームは継続できます。",cta:"保護者による無料先行登録"},
     ],
     purpose:"試合だけで終わらない国際交流",purposeLead:"異なる言葉・プレースタイル・判断を学び合う。主役は、子どもたちです。",
@@ -28,7 +28,7 @@ const copy = {
     status:"準備状況を正確にお知らせします",
     fixed:"確認済み",planned:"条件調整中",
     fixedList:["2027年2月27日（土）・28日（日）","柴田町総合体育館を両日予約済み","大会・チーム入場演出の許可を取得済み","RBAが海外チーム窓口・英語連絡を担当"],
-    pendingList:["参加チーム・大会の最終主催表記","実際の試合日程、出場資格とコート割当","チーム参加費・RBA UNITEDの料金・返金条件","宿泊・貸切バスの見積、旅程・当日運営"],
+    pendingList:["参加チーム・大会の最終主催表記","実際の試合日程、出場資格とコート割当","国内チーム66,000円の正式な請求条件・返金規定／海外チーム・RBA UNITED料金","宿泊・貸切バスの見積、旅程・当日運営"],
     travel:"海外チームの訪日サポート",travelLead:"RBAは大会に向けた連絡・交流調整を担当します。旅費・宿泊・輸送を無料提供するという意味ではありません。",
     travelCards:[
       {title:"到着・アクセス",body:"仙台空港／仙台駅からの移動ルート、集合場所、移動時間帯をチームごとに確認します。"},
@@ -36,11 +36,11 @@ const copy = {
       {title:"保険・未成年者保護",body:"保護者同意、引率責任者、救護、緊急連絡と必要な入国条件を正式案内で確認します。"},
     ],
     sponsor:"地域パートナー・協賛のご相談",sponsorLead:"宿泊、交通、飲料・食事、医療、備品、企業協賛、観光・自治体との協働。RBAが海外アテンドを担当し、地元の皆さまと受入体制をつくります。",
-    sponsorAction:"協賛・地域連携をメールで相談",sponsorFoot:"協賛・自治体後援・共催は、申請・契約が成立するまでは未決定です。",
+    sponsorAction:"企業協賛・地域連携の無料相談",sponsorFoot:"協賛・自治体後援・共催は、申請・契約が成立するまでは未決定です。",
     faq:"よくある質問",
     faqs:[
       ["海外チームはもう決まっていますか？","海外チームを招聘中です。国・チーム名・人数は受入条件と正式な承諾が確認できてから掲載します。"],
-      ["参加費と送迎・宿泊費は？","チーム参加費・RBA UNITED参加費・送迎・宿泊はまだ正式確定していません。無料フォームに登録しても請求や予約は発生しません。"],
+      ["参加費と送迎・宿泊費は？","国内チームは2日間・1チーム66,000円（税込総額）。交通・宿泊・食事は別途です。RBA UNITEDと海外チームの費用、国内チームの最終的な返金・決済条件は調整中です。申込送信のみでは請求しません。"],
       ["会場と演出は確定していますか？","2月27・28日の柴田町総合体育館の予約と大会・チーム入場演出の許可は取得済みです。利用時間・コート配置・機材仕様など運営詳細は調整中です。"],
       ["何試合できますか？","対戦数、競技時間、男女区分、生年月日要件、レフェリー・TO体制は正式規定で公表します。現段階で最低試合数は確約しません。"],
       ["RBA UNITEDに申し込むと出場できますか？","いいえ。保護者の無料先行登録は編成可能性の確認です。人数・指導者・安全体制と正式出場条件を満たした場合のみご案内します。"],
@@ -49,7 +49,7 @@ const copy = {
     ],
     media:"公式写真・活動レポート",mediaIntro:"過去の開催写真や交流レポートは、確認済みの素材から後日追加します。実施前の大会に参加実績があるような写真は掲載しません。",
     noPhotos:"写真は後日掲載予定です。撮影・肖像利用の確認を経て更新します。",
-    payment:"参加費・決済について",paymentIntro:"現在は無料の意向登録のみです。料金・対象・支払方法・キャンセル条件を主催者が決定した後、別途正式募集の決済ページを公開します。",
+    payment:"参加費・決済について",paymentIntro:"国内チームは2日間・1チーム66,000円（税込総額）の先着申込希望を受付中。定員は国内・海外・RBA UNITEDを含めて10チームです。正式な出場資格・主催体制・キャンセル条件を確認後に決済を案内します。",
     paymentPending:"現在、決済の受付は行っていません。",
     paymentReady:"正式募集と決済のご案内",
     paymentLink:"内容と料金を確認して進む",
@@ -61,11 +61,11 @@ const copy = {
     hero:"Different teams. One court.",
     lead:"A two-day international youth basketball exchange in Miyagi, Japan. RBA coordinates the overseas-team enquiries, invitations and local information.",
     date:"Dates",venue:"Venue",fact1:"Venue reserved for both dates",fact2:"Event and team-entrance presentation permits obtained",
-    gate:"Free expressions of interest are open. Submitting a form is not a confirmed team place, payment, finalized organizer agreement or guarantee of overseas opponents.",
+    gate:"The total cap is 10 teams across domestic, overseas and RBA UNITED. Domestic U12 teams can submit first-come requests for the two-day JPY 66,000 tax-inclusive fee per team. Submission alone is not a confirmed entry or payment; acceptance and safe operating conditions must be verified.",
     paths:"Choose your entry route",pathsIntro:"Each audience has a separate form. Free interest is not formal tournament registration.",
     cards:[
       {eyebrow:"INTERNATIONAL / CLUBS",title:"Overseas U12 teams",body:"Clubs, academies and school teams planning a Japan visit. Tell us your estimated group size and travel interests in English.",cta:"Overseas teams — free EOI"},
-      {eyebrow:"JAPAN / TEAMS",title:"Japan-based U12 teams",body:"A Japanese-language form for coaches and team representatives. Final eligibility, fees and format will follow.",cta:"Japan teams — Japanese form"},
+      {eyebrow:"JAPAN / TEAMS",title:"Japan-based U12 teams",body:"Japan-based U12 teams may request two-day participation for JPY 66,000 per team including tax. Ten teams maximum overall, including overseas and RBA UNITED. Requests are free; confirmation follows review.",cta:"Japan teams — first-come request (JA)"},
       {eyebrow:"RBA UNITED / PLAYERS",title:"RBA UNITED — individual interest",body:"A proposed temporary team of players from across Japan. Formation depends on eligible numbers, coaches and safe operations; current clubs may be retained.",cta:"RBA UNITED — guardian form (JA)"},
     ],
     purpose:"More than a weekend of games",purposeLead:"Players learn to read the game, adapt to different styles and build connections across borders.",
@@ -76,7 +76,7 @@ const copy = {
     ],
     status:"What has been confirmed",fixed:"Confirmed",planned:"Still being finalized",
     fixedList:["Feb 27 (Sat)–28 (Sun), 2027","Shibata Town Gymnasium is reserved for both dates","Event and team entrance presentation permissions obtained","RBA handles overseas team enquiry coordination"],
-    pendingList:["Final organizer credits and participating clubs","Game schedules, age eligibility and usable court allocation","Team fees, RBA UNITED fees and refund terms","Accommodation, coach/bus contracts and arrival itineraries"],
+    pendingList:["Final organizer credits and participating clubs","Game schedules, age eligibility and usable court allocation","Final domestic checkout/refund terms, overseas team and RBA UNITED fees","Accommodation, coach/bus contracts and arrival itineraries"],
     travel:"Practical support for visiting teams",travelLead:"RBA coordinates information and communication. Flights, lodging or buses are not automatically included or provided free of charge.",
     travelCards:[
       {title:"Arrival and access",body:"We will confirm routes and arrival plans from Sendai Airport or Sendai Station with each visiting team."},
@@ -84,11 +84,11 @@ const copy = {
       {title:"Minors and safeguarding",body:"Final instructions will cover guardian consent, responsible adults, emergency contacts, medical response and any immigration requirements."},
     ],
     sponsor:"Partners and community support",sponsorLead:"We welcome discussions with local hotels, bus operators, food and beverage providers, medical partners, businesses and relevant public bodies. RBA leads overseas-team coordination.",
-    sponsorAction:"Email RBA about partnership",sponsorFoot:"Sponsorship, government endorsement or co-hosting is not claimed before a separate agreement is reached.",
+    sponsorAction:"Partner & sponsor enquiry form",sponsorFoot:"Sponsorship, government endorsement or co-hosting is not claimed before a separate agreement is reached.",
     faq:"Frequently asked questions",
     faqs:[
       ["Which overseas teams are confirmed?","Invitations are being coordinated. We will publish clubs, regions and numbers only after acceptance is confirmed."],
-      ["How much does participation cost?","Team and player fees, lodging and transfer costs have not been finalized. The free EOI is not a payment request or booking."],
+      ["How much does participation cost?","Japan-based U12 teams have a proposed two-day tax-inclusive fee of JPY 66,000 per team. Travel and lodging are separate. Overseas and UNITED fees and final refund terms remain under review. No payment is collected by submitting a form."],
       ["Is the venue confirmed?","The gymnasium is reserved for Feb 27–28 and the event/entrance-show permissions have been obtained. Session hours, court allocation and equipment plans are still being finalized."],
       ["How many games are guaranteed?","Game count, periods, divisions, eligibility, officials and final rules will be published later. No minimum game count is guaranteed yet."],
       ["Does RBA UNITED guarantee a place?","No. The guardian EOI only measures interest. A team will be considered if numbers, coaching, safeguarding and participation conditions permit."],
@@ -97,7 +97,7 @@ const copy = {
     ],
     media:"Photos and activity reports",mediaIntro:"Approved photographs from earlier activities may be added here later. We will clearly identify the event shown and avoid implying this event has already taken place.",
     noPhotos:"Photos coming later, after media and consent checks.",
-    payment:"Fees and checkout",paymentIntro:"Currently only free interest registration is open. Formal application, prices, payment and refund terms will be published after organizer confirmation.",
+    payment:"Fees and checkout",paymentIntro:"Japan-based U12 clubs can submit a free first-come request for a tax-inclusive JPY 66,000 two-day team entry. Total team capacity is 10, including any confirmed RBA UNITED team. Checkout remains closed until final eligibility, acceptance and refund terms are published.",
     paymentPending:"Payments are not open yet.",
     paymentReady:"Formal registration and payment",
     paymentLink:"Review confirmed price and terms",
@@ -138,6 +138,10 @@ export function RizehopeInternationalPage({lang}:{lang:Language}){
         <p className={styles.kicker}>THREE ROUTES / FREE EXPRESSION OF INTEREST</p>
         <h2 id="rizehope-entry-title">{c.paths}</h2><p className={styles.sectionLead}>{c.pathsIntro}</p>
         <div className={styles.cards}>{c.cards.map((card,i)=><article className={styles.card} key={card.eyebrow}><span className={styles.cardEyebrow}>{card.eyebrow}</span><h3>{card.title}</h3><p>{card.body}</p><a href={entryLinks[i]} target="_blank" rel="noopener noreferrer">{card.cta} <ArrowRight size={16} aria-hidden="true"/></a></article>)}</div>
+      <p className={styles.sectionLead} role="note">{lang==="ja"?
+          <>上限に達した場合は、<a href={rizehopeProject.outreach.japanTeamWaitingList} target="_blank" rel="noopener noreferrer">無料キャンセル待ちフォーム</a>をご利用ください。受付順と有効件数は主催窓口が照合します。残席数は自動表示していません。RBA UNITEDは出場が確定した場合に10チームのうちの1チームとして扱い、優先枠はありません。</>:
+          <>For Japan-based clubs, a <a href={rizehopeProject.outreach.japanTeamWaitingList} target="_blank" rel="noopener noreferrer">free waiting-list form (Japanese)</a> is available. No preferential slot is reserved for RBA UNITED.</>}
+        </p>
       </div></section>
 
       <section className={styles.dark} aria-labelledby="rizehope-purpose-title"><div className={styles.wrap}>
@@ -178,7 +182,7 @@ export function RizehopeInternationalPage({lang}:{lang:Language}){
 
       <section className={styles.partner} aria-labelledby="rizehope-partners-title"><div className={styles.wrap}>
         <div className={styles.partnerInner}><div><p className={styles.kicker}>COMMUNITY / SPONSORS / LOCAL AUTHORITIES</p><h2 id="rizehope-partners-title">{c.sponsor}</h2><p>{c.sponsorLead}</p><small>{c.sponsorFoot}</small></div>
-        <a href={`mailto:${rizehopeProject.outreach.contactEmail}?subject=${partnerSubject}`}>{c.sponsorAction}<ArrowRight size={17} aria-hidden="true"/></a></div>
+        <a href={rizehopeProject.outreach.sponsorInterest} target="_blank" rel="noopener noreferrer">{c.sponsorAction}<ArrowRight size={17} aria-hidden="true"/></a></div>
       </div></section>
       <footer className={styles.end}><div className={styles.wrap}><Users size={18} aria-hidden="true"/> {c.footer} <a href={`mailto:${rizehopeProject.outreach.contactEmail}`}>{rizehopeProject.outreach.contactEmail}</a></div></footer>
     </main>
