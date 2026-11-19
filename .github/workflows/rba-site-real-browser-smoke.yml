@@ -42,11 +42,11 @@ jobs:
           pnpm install --frozen-lockfile
           npm install --prefix /tmp/rba-site-browser --no-save --ignore-scripts --no-audit playwright@1.55.0
           test -d /ms-playwright
-      - name: Run public site without production credentials and smoke-test actual routes
+      - name: Run native Next.js public pages without production credentials
         shell: bash
         run: |
           set -euo pipefail
-          pnpm dev > /tmp/rba-public-smoke.log 2>&1 &
+          pnpm exec next dev --hostname 0.0.0.0 --port 5173 > /tmp/rba-public-smoke.log 2>&1 &
           devpid=$!
           trap 'kill "$devpid" 2>/dev/null || true' EXIT
           if ! node tests/site-real-browser-smoke.test.mjs; then
