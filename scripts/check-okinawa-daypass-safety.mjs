@@ -40,7 +40,12 @@ test("Only customer-bound payment", checkout.includes("customer_email: row.guard
 test("Full prepayment only", checkout.includes('payment_stage: "full_prepay"'));
 test("Webhook signed and amount matched", webhook.includes("constructEvent(") && webhook.includes("record.amount_jpy !== session.amount_total"));
 test("Webhook only marks paid after Stripe paid", webhook.includes('session.payment_status !== "paid"') && webhook.includes('status: "paid"'));
-test("No auto-confirmation via checkout return", confirm.includes("この画面の表示だけでは決済完了・参加確定とは判断できません"));
+test("Checkout return verifies live Stripe session and matching ledger amount", confirm.includes('session.payment_status === "paid"') && confirm.includes("row.amount_jpy !== session.amount_total") && confirm.includes("session.metadata?.event !== DAY_PASS_PROGRAM"));
+test("Checkout return does not auto-confirm participant", confirm.includes("最終参加確定メールとは別です") && confirm.includes("RBAで入金情報と参加者情報を照合"));
+test("Approved net day capacity required", gate.includes("OKINAWA_2026_DAY_PASS_APPROVED_NEW_SLOTS_BY_DATE") && checkout.includes("approvedNewSlotsByDay()") && checkout.includes("DAY_PASS_DATES"));
+test("Venue capacity checked on final checkout POST", checkout.includes("現在の受入枠を超えるため") && checkout.includes(".in(\"status\", [\"approved\", \"checkout_creating\", \"checkout_open\", \"paid\"])"));
+const issue = file("scripts/okinawa-daypass-issue-invite.mjs");
+test("Issue invite requires facility, guardian and existing payments signoff", ["venue_schedule_confirmed","staffing_confirmed","handoff_confirmed","existing_payments_reconciled"].every(flag => issue.includes(flag)));
 test("No public payment URL on interest cards", interests.includes("https://form.jotform.com/263217090103041") && !interests.includes("buy.stripe.com") && !interests.includes("checkout.stripe.com"));
 test("Existing 3-day plan component preserved", intake.includes("<OkinawaResidentPrices/>") && intake.includes('<OkinawaResidentPrices residence="japan"/>'));
 test("Private payment page non-indexed", ui.includes("index: false"));
