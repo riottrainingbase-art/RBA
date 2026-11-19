@@ -23,18 +23,18 @@ export default function KobeDevelopmentCamp() {
     <section className={`${styles.hero} border-y-2 border-[#c3ad89] bg-[#183f47] text-[#fff8ee]`}>
       <div className="relative mx-auto max-w-5xl px-5 py-12 sm:px-9 sm:py-20">
         <div className="flex flex-wrap items-center justify-between gap-4"><p className="text-xs font-black tracking-widest">HYOGO / TATSUNO · DEVELOPMENT CAMP 2026</p><span className="border border-[#e8ca95]/60 px-4 py-2 text-sm font-bold tracking-[.2em] text-[#e8ca95]">兵庫・たつの</span></div>
-        <div className={styles.quickStart}><p>11/21–23｜小5〜中3｜半日6,600円〜（税込）</p><a href={inquiry} data-cta="kobe-top-inquiry">参加できる日を無料で相談 ↗</a></div>
+        <div className={styles.quickStart}><p>11/21–23｜小5〜中3｜半日6,600円〜（税込）</p><a href={form} data-cta="kobe-top-apply">希望プランを選んで申込・事前決済へ ↗</a></div>
         <p className="mt-7 text-sm font-semibold tracking-[.15em] text-[#e8ca95]">揖保川の流れと、城下町のぬくもりを感じるまちで。</p>
         <h1 className="mt-7 text-[clamp(38px,7.8vw,84px)] font-black leading-[1.15] tracking-[-.06em]">練習ではできる。<br/>試合では出せない。</h1>
         <p className="mt-6 text-2xl font-black sm:text-4xl">その差を、次の一歩へ。</p>
         <p className="mt-6 max-w-2xl text-base font-semibold leading-8">ドリブルも、パスも、シュートも。<br/>「何を見て、いつ使うか」まで学ぶRBAの育成キャンプ。</p>
         <div className="mt-8 border-y border-[#c3ad89]/60 py-5"><p className="text-[clamp(29px,6vw,60px)] font-black tracking-tight">2026.11.21–23</p><p className="mt-1 font-bold sm:text-xl">兵庫県たつの市 ／ 小学5年生〜中学3年生</p></div>
         <p className="mt-6 text-xl font-black">半日・日帰り・通いでも参加できます。</p>
-        <a href={inquiry} data-cta="kobe-hero-inquiry" className="mt-6 inline-flex min-h-14 items-center justify-center bg-[#844a2c] px-6 py-4 text-base font-black text-white" style={{color:"#fff"}}>参加できる日・プランを無料で相談する ↗</a><p className="mt-3 text-xs font-semibold leading-6">相談フォームは無料です。送信しても予約・申込・決済は確定しません。</p>
+        <a href={form} data-cta="kobe-hero-apply" className="mt-6 inline-flex min-h-14 items-center justify-center bg-[#844a2c] px-6 py-4 text-base font-black text-white" style={{color:"#fff"}}>参加日・プランを選んで申込へ ↗</a><p className="mt-3 text-xs font-semibold leading-6">申込フォームの送信だけでは入金・参加確定となりません。案内された該当プランのお支払い完了後、RBAが入金を照合します。すでにお支払い済みの方は再決済不要です。</p><p className="mt-3 text-sm font-semibold"><a className="underline underline-offset-4" href={inquiry}>宿泊・11/23午前・送迎の条件は決済前に無料相談 ↗</a></p>
       </div>
     </section>
     <section aria-labelledby="planning-note" className="mx-auto max-w-5xl px-5 py-7 sm:px-9">
-      <div className="border-l-4 border-[#9c6545] bg-white p-5 text-sm leading-7"><h2 id="planning-note" className="font-black">参加を検討されている方へ</h2><p>11月20日夜・21日・22日は、現地の青龍ラーテルズとの合同練習を中心に実施します。21・22日の活動時間は9:00〜17:00、23日は別会場の午前9:00〜12:00を予定しています。宿泊・食事・送迎の個別条件は調整中のため、新規参加の方には希望日とプランを伺ったうえでご案内します。申込・決済済みの方は再手続き不要です。</p></div>
+      <div className="border-l-4 border-[#9c6545] bg-white p-5 text-sm leading-7"><h2 id="planning-note" className="font-black">ご参加・お支払い前にご確認ください</h2><p>11月20日夜・21日・22日は、現地の青龍ラーテルズとの合同練習を中心に実施します。21・22日の活動は9:00〜17:00、23日は別会場で午前9:00〜12:00を予定しています。21・22日の日帰り参加は公式フォームで希望日・参加プランを選択し、該当する参加費の事前決済へ進めます。11月23日の現地指導担当、宿泊・食事・送迎など個別条件が参加判断に必要な場合は、決済前にRBAへ確認してください。フォーム送信のみでは入金済みになりません。支払済みの方は重複申込・再決済をせず、案内の不足はRBAにご連絡ください。キャンセル条件は公式申込画面で事前にご確認ください。</p></div>
     </section>
     <section className="mx-auto max-w-5xl px-5 py-10 sm:px-9">
       <h2 className="text-3xl font-black tracking-tight sm:text-4xl">こんな場面を、変えていく。</h2>
