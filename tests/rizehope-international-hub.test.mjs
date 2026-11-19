@@ -55,6 +55,9 @@ test("three free interest routes do not promise paid or confirmed tournament adm
 
 test("payments default closed and require price, organiser confirmation, policy and checkout URL",()=>{
  assert.match(config,/status: "not-open"/);
+ assert.match(config,/overseasTeam: \{/);
+ assert.match(config,/japanTeam: \{/);
+ assert.match(config,/unitedPlayer: \{/);
  assert.match(config,/verifiedCheckoutUrl: null/);
  assert.match(config,/displayPrice: null/);
  assert.match(config,/officialEntryTermsUrl: null/);
