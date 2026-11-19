@@ -101,3 +101,14 @@ test("private member, admin and payment completion routes have explicit noindex 
     assert.match(source,/privatePageMetadata/,routeFile+" metadata not applied");
   }
 });
+
+
+test("immutable production CSP retains HTTPS upgrades; HTTP exemption is restricted to GitHub CI",()=>{
+  const config=read("next.config.ts");
+  assert.match(config,/immutableProductionCsp/);
+  assert.match(config,/upgrade-insecure-requests/);
+  for(const key of ["GITHUB_ACTIONS","RBA_HTTP_E2E_QA","NODE_ENV","CI"])
+    assert.ok(config.includes(key),key+" missing local-only guard");
+  assert.match(config,/localHttpSmoke\s*\?\s*immutableProductionCsp\.replace/);
+  assert.doesNotMatch(config,/unsafe-eval/);
+});
