@@ -9,7 +9,8 @@
  * node scripts/okinawa-daypass-issue-invite.mjs /secure/path/approved-application.json
  *
  * JSON keys: application_ref, guardian_email, guardian_name, plan_code,
- * amount_jpy, guardian_verified_at, venue_verified_at, terms_version,
+ * amount_jpy, guardian_verified_at, venue_verified_at, first_session_at,
+ * terms_version,
  * operator_reviewed, first_session_confirmed, venue_schedule_confirmed,
  * capacity_confirmed, staffing_confirmed, handoff_confirmed,
  * guardian_identity_confirmed, existing_payments_reconciled,
@@ -67,6 +68,12 @@ async function main() {
   must(Number.isFinite(venueTime) && venueTime>=VALID_FROM,
     "Venue time must be formally rechecked after 22 November; a provisional offer is not enough.");
   must(Number.isFinite(parentTime),"Guardian identity and consent not verified");
+  const start=Date.parse(input.first_session_at);
+  must(Number.isFinite(start) && start>Date.now(),
+    "Actual venue-approved first session time must be in the future.");
+  const jstStartDay=new Date(start+9*60*60*1000).toISOString().slice(0,10);
+  must(jstStartDay===PLAN_DAYS[input.plan_code][0],
+    "First confirmed session must be on the first selected date.");
   const terms=process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION;
   must(Boolean(terms) && input.terms_version===terms, "Published terms version mismatch");
   const approved=JSON.parse(process.env.OKINAWA_2026_DAY_PASS_APPROVED_AMOUNTS_JPY||"{}");
@@ -100,6 +107,7 @@ async function main() {
     terms_version:terms,
     invite_token_sha256:digest,
     invite_expires_at:expires,
+    first_session_at:new Date(start).toISOString(),
     ...Object.fromEntries(checks.map(check => [check, true])),
   };
   const {data:reservationId,error}=await db.rpc("reserve_okinawa_2026_daypass",{
