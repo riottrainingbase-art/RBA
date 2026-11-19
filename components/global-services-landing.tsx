@@ -49,14 +49,14 @@ export function GlobalServicesLanding() {
             <a className={styles.primary} href={quickFit} target="_blank" rel="noopener noreferrer">Start free 90-second fit check <ArrowRight size={17}/></a>
             <a className={styles.secondary} href="#programmes">Explore three services</a>
           </div>
-          <p style={{fontSize:13,marginTop:4}}>FREE FIRST ENQUIRY · NO BOOKING · NO PAYMENT · NO CHILDREN'S PERSONAL DETAILS</p>
+          <p style={{fontSize:13,marginTop:4}}>FREE FIRST ENQUIRY · NO BOOKING · NO PAYMENT · NO CHILDREN&apos;S PERSONAL DETAILS</p>
         </section>
 
         <section className={styles.section} id="programmes">
           <div className={styles.sectionHead}>
             <span className={styles.kicker}>01 / THREE WAYS TO WORK WITH RBA</span>
             <h2>Choose the problem you want to solve.</h2>
-            <p>Start with your organisation's needs, ages, timetable and learning goals. We only propose what we can check and safely deliver.</p>
+            <p>Start with your organisation&apos;s needs, ages, timetable and learning goals. We only propose what we can check and safely deliver.</p>
           </div>
           <div className={styles.cards}>
             {services.map(service=><article className={styles.card} key={service.code}>
@@ -79,8 +79,8 @@ export function GlobalServicesLanding() {
           </div>
           <div className={styles.cards}>
             <article className={styles.card}><span className={styles.cardNo}>JAPAN</span><h3>On-court development</h3><p>Sessions designed for the age, game context and decisions players face—not a list of flashy moves.</p></article>
-            <article className={styles.card}><span className={styles.cardNo}>TAIWAN</span><h3>Cross-border learning</h3><p>Japan–Taiwan basketball exchange has already been part of RBA's work with partner organisations.</p></article>
-            <article className={styles.card}><span className={styles.cardNo}>MALAYSIA</span><h3>Coach education in practice</h3><p>Penang clinics demonstrate RBA's ability to work with an overseas local host. New delivery remains subject to availability.</p></article>
+            <article className={styles.card}><span className={styles.cardNo}>TAIWAN</span><h3>Cross-border learning</h3><p>Japan–Taiwan basketball exchange has already been part of RBA&apos;s work with partner organisations.</p></article>
+            <article className={styles.card}><span className={styles.cardNo}>MALAYSIA</span><h3>Coach education in practice</h3><p>Penang clinics demonstrate RBA&apos;s ability to work with an overseas local host. New delivery remains subject to availability.</p></article>
           </div>
           <p className={styles.note}>Read the <a href="/taiwan" style={{textDecoration:"underline"}}>Japan–Taiwan programme record</a> and <a href="/international/japan-experience" style={{textDecoration:"underline"}}>Japan visit overview</a>.</p>
         </section>
@@ -106,9 +106,9 @@ export function GlobalServicesLanding() {
             <p>Our services are quoted for each organisation and project, depending on programme length, group size, coaching scope, staffing, delivery language, location and local costs. The initial inquiry is free and does not hold a date. RBA does not take travel payments through this service form.</p>
           </div>
           <div className={styles.cards}>
-            <article className={styles.card}><ClipboardCheck/><h3>Specific deliverables</h3><p>You'll know which coaching sessions, design work, review or advisory meetings you are paying for.</p></article>
+            <article className={styles.card}><ClipboardCheck/><h3>Specific deliverables</h3><p>You&apos;ll know which coaching sessions, design work, review or advisory meetings you are paying for.</p></article>
             <article className={styles.card}><BookOpenCheck/><h3>Development first</h3><p>Age-appropriate learning and practical coach feedback are built into the proposal whenever appropriate.</p></article>
-            <article className={styles.card}><Globe2/><h3>Cross-border clarity</h3><p>Separate the RBA instructional agreement from any licensed travel provider's obligations and invoices.</p></article>
+            <article className={styles.card}><Globe2/><h3>Cross-border clarity</h3><p>Separate the RBA instructional agreement from any licensed travel provider&apos;s obligations and invoices.</p></article>
           </div>
         </section>
 
