@@ -19,8 +19,6 @@ import { readFile } from "node:fs/promises";
 import { randomBytes, createHash } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 
-const TABLE = "okinawa_2026_day_pass_payments";
-const PROGRAM = "rba_okinawa_2026_day_pass";
 const PLANS = new Set([
   "dec22_day", "dec22_after", "dec23_day", "dec23_after", "dec24_day",
   "dec22_23_day", "dec23_24_day", "dec22_24_day",
