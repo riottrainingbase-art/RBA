@@ -164,7 +164,7 @@ export function RizehopeInternationalPage({lang}:{lang:Language}){
 
       <section className={styles.section} aria-labelledby="rizehope-payments-title"><div className={styles.wrap}>
         <div className={styles.payment}><div><p className={styles.kicker}>PAYMENT / FUTURE FORMAL REGISTRATION</p><h2 id="rizehope-payments-title">{c.payment}</h2><p>{c.paymentIntro}</p></div>
-        {paymentUrl?<a className={styles.payLink} href={paymentUrl} target="_blank" rel="noopener noreferrer"><Wallet size={20} aria-hidden="true"/>{c.paymentLink}<ArrowRight size={17}/></a>:<p className={styles.noPayment}><Wallet size={19} aria-hidden="true"/>{c.paymentPending}</p>}</div>
+        {paymentUrl?<div className={styles.paymentReady}><strong>{rizehopeProject.payments.displayPrice}</strong><a className={styles.payLink} href={paymentUrl} target="_blank" rel="noopener noreferrer"><Wallet size={20} aria-hidden="true"/>{c.paymentLink}<ArrowRight size={17}/></a><div className={styles.termLinks}><a href={rizehopeProject.payments.officialEntryTermsUrl??undefined} target="_blank" rel="noopener noreferrer">{lang==="ja"?"募集・参加条件":"Official entry terms"}</a><a href={rizehopeProject.payments.officialRefundTermsUrl??undefined} target="_blank" rel="noopener noreferrer">{lang==="ja"?"キャンセル・返金規定":"Refund and cancellation terms"}</a></div></div>:<p className={styles.noPayment}><Wallet size={19} aria-hidden="true"/>{c.paymentPending}</p>}</div>
       </div></section>
 
       <section className={styles.partner} aria-labelledby="rizehope-partners-title"><div className={styles.wrap}>
