@@ -54,3 +54,7 @@
 ## E2E初回失敗と原因切り分け
 
 初回GitHub ActionsのブラウザE2Eはページ描画前にローカル起動失敗。`pnpm dev` が参照する `vite.config.ts` はGitHubの通常チェックアウトに存在しない `.openai/hosting.json` および `build/sites-vite-plugin` を必須としており、ホスト専用環境外で起動できない。これをブラウザ表示の不具合と混同しない。リポジトリに架空のホスティング設定を追加せず、E2E専用Workflowのみ `pnpm exec next dev --hostname 0.0.0.0 --port 5173` へ変更し、標準Next.jsレンダリングが可能か検証する。Next.js環境で成功してもVercel/本番ビルド成功と同一視しない。
+
+## E2Eで実際に発見したWebKit 390px横はみ出し
+
+Next.js開発サーバを立ち上げたE2EでChromiumは11ルート×390/1280pxすべて成功。WebKit 390pxの英語トップ `/` で document scrollWidth 922px / viewport 390px の横はみ出しを検出。診断による主因はCSS grid内で874pxの固有幅が残った代表写真 `<img>` であり、`components/founder-profile.css` の `min-width:0`、`max-width:100%` およびモバイル `grid-template-columns:minmax(0,1fr)` で修正。代表紹介PR #482側にも同一CSS修正を独立適用。**この行は修正コードの記録であり、再実行の全ブラウザ成功を意味しない。**
