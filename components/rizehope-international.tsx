@@ -115,7 +115,7 @@ export function RizehopeInternationalPage({lang}:{lang:Language}){
     {key:"japanTeam" as const,label:lang==="ja"?"国内U12チーム":"Japan U12 teams"},
     {key:"unitedPlayer" as const,label:"RBA UNITED"},
   ];
-  const partnerSubject=encodeURIComponent("RIZEHOPE JAPAN 2027 | U12 International Exchange – partnership enquiry");
+  // Sponsors use their dedicated intake form so requests are not lost in general email.
   return <SiteFrame locale={lang} languagePage="international">
     <main className={styles.page} lang={lang}>
       <header className={styles.hero}>
