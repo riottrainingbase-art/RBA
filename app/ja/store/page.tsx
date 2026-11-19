@@ -118,7 +118,7 @@ export default function StorePage() {
                 <span>{item.number} / {item.color}</span>
               </Link>
               <div className={styles.storeProductInfo}>
-                <div><p>RBA / COLLECTION 001</p><h3>RBA {item.name}</h3><span>{apparel.ready ? `¥${apparel.unitPrices[item.slug]?.toLocaleString("ja-JP")}（税込・国内送料無料）` : "発売準備中"}</span></div>
+                <div><p>RBA / COLLECTION 001</p><h3>RBA {item.name}</h3><span>¥{apparel.unitPrices[item.slug]?.toLocaleString("ja-JP")}（税込・国内送料無料）{apparel.ready?" ／ 受付中":" ／ 販売準備中"}</span></div>
                 <Link href={item.pagePath} aria-label={item.title+"の詳細を見る"}>↗</Link>
               </div>
             </article>
