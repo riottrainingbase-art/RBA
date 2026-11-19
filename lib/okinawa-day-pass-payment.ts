@@ -50,7 +50,8 @@ export function dayPassPaymentsEnabled() {
     // Vercel does not need to possess its signing secret.
     && process.env.OKINAWA_2026_DAY_PASS_WEBHOOK_READY === "true"
     && Boolean(process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION)
-    && Boolean(process.env.STRIPE_SECRET_KEY)
+    // Explicitly refuse test-mode Stripe keys when the RBA live-payment flag is enabled.
+    && /^(sk|rk)_live_/.test(process.env.STRIPE_SECRET_KEY || "")
     && Boolean(dayPassAdmin());
 }
 
