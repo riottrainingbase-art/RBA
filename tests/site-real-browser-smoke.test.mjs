@@ -21,7 +21,18 @@ const targets=[
   {path:"/ja/reading-guide",name:"Reading guide"},
   {path:"/ja/supporters",name:"Supporter guide"},
   {path:"/ja/my-homecourt/nationwide",name:"Nationwide interest"},
-  {path:"/ja/partners/brief",name:"Partner brief"}
+  {path:"/ja/partners/brief",name:"Partner brief"},
+  {path:"/about",name:"Founder English"},
+  {path:"/zh-tw/about",name:"Founder Traditional Chinese"},
+  {path:"/ko/about",name:"Founder Korean"},
+  {path:"/ja/opportunities",name:"Events listing"},
+  {path:"/ja/business",name:"Corporate services"},
+  {path:"/ja/contact",name:"Official contact"},
+  {path:"/ja/policies",name:"Participant policies"},
+  {path:"/ja/united",name:"RBA UNITED"},
+  {path:"/ja/d-hub",name:"D-HUB"},
+  {path:"/ja/events/okinawa-international-camp-2026",name:"Okinawa camp information"},
+  {path:"/ja/events/okinawa-international-camp-2026/apply",name:"Okinawa application information (render only)"}
 ];
 const debugOnly=process.env.RBA_BROWSER_DEBUG_ONLY==="1";
 const pagesToTest=debugOnly?targets.filter(x=>x.path==="/"):targets;
@@ -105,7 +116,7 @@ for(const [engineName,engine] of [["chromium",chromium],["webkit",webkit]]){
               assert.equal(await page.locator("#rizehope-entry").count(),1,"RIZEHOPE registration section missing");
             }
             if(target.path==="/ja/about")assert.match(info.heading,/西尾/);
-            if(target.path==="/ja"||target.path.includes("rizehope")){
+            if(target.path==="/ja"||target.path.includes("rizehope")||target.path.endsWith("/about")){
               await page.screenshot({path:"screenshots/site-smoke/"+engineName+"-"+width+"-"+target.path.replaceAll("/","_")+".png",fullPage:false});
             }
             console.log("PASS "+engineName+" "+width+" "+target.path+" "+info.heading.slice(0,50));
