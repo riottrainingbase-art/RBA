@@ -6,6 +6,15 @@ type NoteBridgeProps = {
 
 const noteItems = [
   {
+    label: "無料で試す｜登録不要",
+    title: "子どもの学べる環境を、7日間で見直す",
+    description: "出場機会・判断・休息・声かけ。1日5〜10分でできる無料の観察ガイドです。",
+    href: "/ja/development-check",
+    action: "無料7日間チェックを読む",
+    trackingId: "journal-development-check",
+  },
+
+  {
     label: "無料で読む",
     title: "ドイツの選手17名が日本で経験したこと",
     description: "学校交流、合同練習、ホームステイ。勝敗だけでは測れない育成の価値を考えます。",
@@ -62,8 +71,8 @@ export function NoteBridge({ variant = "home" }: NoteBridgeProps) {
           <a
             key={item.href}
             href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={item.href.startsWith("/") ? undefined : "_blank"}
+            rel={item.href.startsWith("/") ? undefined : "noopener noreferrer"}
             className={styles.card}
             data-growth-id={item.trackingId}
           >
@@ -74,7 +83,7 @@ export function NoteBridge({ variant = "home" }: NoteBridgeProps) {
           </a>
         ))}
       </div>
-      <p className={styles.note}>リンク先は外部サービスのnoteです。単品記事と月額メンバーシップは別のサービス・料金です。</p>
+      <p className={styles.note}>7日間チェックは公式サイト内の無料記事です。noteは外部サービスで、単品記事と月額メンバーシップは別の商品・料金です。</p>
     </section>
   );
 }
