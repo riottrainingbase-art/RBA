@@ -44,6 +44,9 @@ test("Checkout return verifies live Stripe session and matching ledger amount", 
 test("Checkout return does not auto-confirm participant", confirm.includes("最終参加確定メールとは別です") && confirm.includes("RBAで入金情報と参加者情報を照合"));
 test("Approved net day capacity required", gate.includes("OKINAWA_2026_DAY_PASS_APPROVED_NEW_SLOTS_BY_DATE") && checkout.includes("approvedNewSlotsByDay()") && checkout.includes("DAY_PASS_DATES"));
 test("Venue capacity checked on final checkout POST", checkout.includes("現在の受入枠を超えるため") && checkout.includes(".in(\"status\", [\"approved\", \"checkout_creating\", \"checkout_open\", \"paid\"])"));
+test("Only verified actual first-session time can be purchased", gate.includes("row.first_session_at") && gate.includes("Date.now() >= first") && gate.includes("jstDay === DAY_PASS_DATES"));
+test("Operator must supply a future facility-approved first session", issue.includes("input.first_session_at") && issue.includes("start>Date.now()"));
+test("Guardian sees real first-session date prior to paying", ui.includes("施設確認済みの初回参加日時"));
 const issue = file("scripts/okinawa-daypass-issue-invite.mjs");
 test("Issue invite requires facility, guardian and existing payments signoff", ["venue_schedule_confirmed","staffing_confirmed","handoff_confirmed","existing_payments_reconciled"].every(flag => issue.includes(flag)));
 test("Invite tool only creates atomic DB reservations", issue.includes('db.rpc("reserve_okinawa_2026_daypass"') && !issue.includes("db.from(TABLE).insert("));
