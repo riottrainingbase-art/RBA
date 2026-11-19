@@ -33,3 +33,7 @@
 ## 対象外
 
 代表紹介PR #482、既存決済・Jotform、HOMECOURT、Productionデプロイ、ドメイン変更には手を加えない。
+
+## 11月19日・掲載同意の確認
+
+ユーザーより撮影者の使用許諾および未成年者のRBA公式サイト掲載同意が取得済みである旨を明示的に確認したため、9件の `usageRightsConfirmed` および `childrensPhotoConsentConfirmed` を `true` にした。現時点でGitHubへの9点の画像バイナリ登録が未完了、撮影イベント名・日付が未確定のため、**`imageFilePresentAndVerified: false` と `sourceEventVerified: false` を別に追加し表示を引き続き停止する。** 写真が2027年2月の未開催イベントを示すと誤認されないよう、過去イベントとの区別を明記したうえで両条件を別途検証する。**PRをマージしても画像は表示されない。**
