@@ -50,7 +50,15 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: TypeScript
         run: pnpm exec tsc --noEmit --pretty false
+      - name: Full Japanese site routes and expired-registration audit
+        run: node audit/site-wide/check.mjs
+      - name: Domestic Torsten Google Form and Square regression
+        run: node audit/torsten-japan-landing/check.mjs
+      - name: Site Japanese content regression
+        run: pnpm run audit:site-ja
       - name: Lint changed source
         run: pnpm exec eslint app/ja/reading-guide/page.tsx components/note-bridge.tsx components/my-homecourt.tsx components/site-frame.tsx components/simple-japanese-home.tsx tests/note-journal-differentiation.test.mjs
+      - name: Changed support and clinic surfaces lint
+        run: pnpm exec eslint app/ja/supporters/page.tsx app/ja/development-check/page.tsx app/ja/support/page.tsx app/ja/after-application/page.tsx app/ja/after-clinic/page.tsx app/ja/events/kagoshima-clinic-2026-11-29/page.tsx components/clinic-support-invitation.tsx components/public-journal.tsx tests/release-support-and-registration.test.mjs
       - name: Existing Japanese content audit
         run: pnpm run audit:homecourt-ja
