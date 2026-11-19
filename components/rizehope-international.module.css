@@ -108,3 +108,14 @@
 .termLinks{display:flex;gap:12px;flex-wrap:wrap}
 .termLinks a{font-size:12px;font-weight:800;color:#fff;text-decoration:underline;text-underline-offset:4px;line-height:1.5}
 @media(max-width:650px){.paymentReady{margin-top:22px;max-width:100%}.paymentReady .payLink{width:100%;justify-content:center}}
+
+/* Each audience has a separate checkout gate; never reuse another track's fee. */
+.payment{display:block}
+.paymentTracks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:25px}
+.paymentTrack{min-width:0;background:#262628;padding:18px 14px;border:1px solid #4c4b4a;display:flex;align-items:flex-start;flex-direction:column;gap:16px}
+.paymentTrack>strong{font-size:15px;font-weight:900;line-height:1.45}
+.paymentTrack .noPayment{margin:0;font-size:12px;font-weight:700;max-width:100%;padding:10px;line-height:1.5;border-color:#5b5b5b}
+.paymentReady{width:100%;gap:10px}
+.paymentReady>span{font-size:18px;color:#ffad6c;font-weight:950;line-height:1.4}
+.paymentTrack .payLink{font-size:12px;gap:7px;flex-wrap:wrap;min-height:48px;line-height:1.5}
+@media(max-width:940px){.paymentTracks{grid-template-columns:1fr}}
