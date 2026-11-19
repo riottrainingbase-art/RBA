@@ -35,23 +35,42 @@ export const rizehopeProject = {
     finalParticipationFeePublished: false,
     unitedTeamConfirmed: false,
   },
+  /**
+   * Three INDEPENDENT payment tracks. Never use one team's payment link for
+   * individual players or for another team's contract.
+   * All tracks are closed until the exact price, terms and operator approval are verified.
+   */
   payments: {
-    /**
-     * Future publisher workflow:
-     * 1. Confirm organiser, game regulations and eligibility.
-     * 2. Publish price, tax display and cancellation/refund terms for the exact plan.
-     * 3. Obtain a verified live payment destination for that same plan.
-     * 4. Set status to "open" only after the above, and rerun project QA.
-     * There is deliberately no checkout route or charge in the current release.
-     */
-    status: "not-open" as "not-open" | "open",
-    verifiedCheckoutUrl: null as string | null,
-    displayPrice: null as string | null,
-    officialEntryTermsUrl: null as string | null,
-    officialRefundTermsUrl: null as string | null,
-    priceAndTaxPublished: false,
-    cancellationAndRefundTermsPublished: false,
-    organiserApprovedPaidRegistration: false,
+    overseasTeam: {
+      status: "not-open" as "not-open" | "open",
+      verifiedCheckoutUrl: null as string | null,
+      displayPrice: null as string | null,
+      officialEntryTermsUrl: null as string | null,
+      officialRefundTermsUrl: null as string | null,
+      priceAndTaxPublished: false as boolean,
+      cancellationAndRefundTermsPublished: false as boolean,
+      organiserApprovedPaidRegistration: false as boolean,
+    },
+    japanTeam: {
+      status: "not-open" as "not-open" | "open",
+      verifiedCheckoutUrl: null as string | null,
+      displayPrice: null as string | null,
+      officialEntryTermsUrl: null as string | null,
+      officialRefundTermsUrl: null as string | null,
+      priceAndTaxPublished: false as boolean,
+      cancellationAndRefundTermsPublished: false as boolean,
+      organiserApprovedPaidRegistration: false as boolean,
+    },
+    unitedPlayer: {
+      status: "not-open" as "not-open" | "open",
+      verifiedCheckoutUrl: null as string | null,
+      displayPrice: null as string | null,
+      officialEntryTermsUrl: null as string | null,
+      officialRefundTermsUrl: null as string | null,
+      priceAndTaxPublished: false as boolean,
+      cancellationAndRefundTermsPublished: false as boolean,
+      organiserApprovedPaidRegistration: false as boolean,
+    },
   },
   /**
    * Future photo workflow: put consent-cleared images in
@@ -70,19 +89,22 @@ export const rizehopeProject = {
   }>,
 } as const;
 
-export function isRizehopePaymentOpen(): boolean {
-  const {payments,programme}=rizehopeProject;
-  return payments.status==="open"
-    && Boolean(payments.verifiedCheckoutUrl?.startsWith("https://"))
-    && Boolean(payments.displayPrice)
-    && Boolean(payments.officialEntryTermsUrl?.startsWith("https://"))
-    && Boolean(payments.officialRefundTermsUrl?.startsWith("https://"))
-    && payments.priceAndTaxPublished
-    && payments.cancellationAndRefundTermsPublished
-    && payments.organiserApprovedPaidRegistration
+export type RizehopePaymentAudience = "overseasTeam" | "japanTeam" | "unitedPlayer";
+
+export function isRizehopePaymentOpen(audience: RizehopePaymentAudience): boolean {
+  const {payments, programme} = rizehopeProject;
+  const p = payments[audience];
+  return p.status === "open"
+    && Boolean(p.verifiedCheckoutUrl?.startsWith("https://"))
+    && Boolean(p.displayPrice)
+    && Boolean(p.officialEntryTermsUrl?.startsWith("https://"))
+    && Boolean(p.officialRefundTermsUrl?.startsWith("https://"))
+    && p.priceAndTaxPublished
+    && p.cancellationAndRefundTermsPublished
+    && p.organiserApprovedPaidRegistration
     && programme.finalOrganizerCreditsApproved
     && programme.finalAgeRulesPublished
-    && programme.finalParticipationFeePublished;
+    && (audience !== "unitedPlayer" || programme.unitedTeamConfirmed);
 }
 
 export function approvedRizehopeGallery() {
