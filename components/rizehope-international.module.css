@@ -90,3 +90,15 @@
 @media(max-width:910px){.cards,.values,.travelGrid,.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.cards .card:last-child,.values article:last-child,.travelGrid article:last-child{grid-column:1/-1}.partnerInner{flex-direction:column;align-items:stretch}.partnerInner a{max-width:none}}
 @media(max-width:650px){.hero{padding-bottom:60px}.brand{margin-bottom:45px}.hero h1{font-size:clamp(45px,11.5vw,73px)}.headline{font-size:24px}.dateRow{grid-template-columns:1fr}.cards,.values,.travelGrid,.statusGrid,.gallery{grid-template-columns:1fr}.cards .card:last-child,.values article:last-child,.travelGrid article:last-child{grid-column:auto}.card{min-height:0}.cardEyebrow{margin-bottom:19px}.card p{margin-bottom:25px}.heroAction,.partnerInner a{width:100%}.values article{padding:18px}.payment{display:block}.payment .noPayment,.payment .payLink{margin-top:24px;max-width:none;justify-content:center}.emptyPhotos{flex-direction:column;gap:12px}}
 @media(prefers-reduced-motion:reduce){.page *{scroll-behavior:auto}}
+
+/* International landing cross-link: visually distinct, no fabricated match photos. */
+.teaser{padding:clamp(34px,5vw,62px) 0;background:#ff781b;color:#141414;border-top:8px solid #161616}
+.teaserInner{max-width:1180px;margin:auto;padding-inline:clamp(20px,4vw,50px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,.5fr);align-items:center;gap:30px}
+.teaserLabel{font-weight:900;font-size:12px;letter-spacing:.1em}
+.teaser h2{font-size:clamp(33px,6vw,70px);font-weight:1000;line-height:1.08;letter-spacing:-.065em;margin:13px 0}
+.teaser p{line-height:1.75;margin:0 0 16px;max-width:840px;font-size:clamp(14px,1.7vw,17px);font-weight:650}
+.teaserStatus{display:flex;flex-wrap:wrap;gap:10px 24px}
+.teaserStatus span{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:900}
+.teaser a{background:#161616;color:#fff!important;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:14px 20px;font-size:14px;font-weight:900;line-height:1.45;text-decoration:none!important;text-align:center}
+.teaser a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+@media(max-width:760px){.teaserInner{grid-template-columns:1fr}.teaser a{width:100%}}
