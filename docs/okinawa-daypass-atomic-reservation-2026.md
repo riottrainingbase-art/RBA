@@ -6,6 +6,7 @@
 - Public-schema RPC (not publicly executable): `public.reserve_okinawa_2026_daypass(p_application jsonb, p_daily_capacity jsonb)`
 - Migration applied: `okinawa_2026_day_pass_atomic_reservation`
 - Additional DB CHECK migration: `okinawa_2026_day_pass_approved_record_guard`
+- Actual start-time column, constraint and RPC migration: `okinawa_day_pass_verified_first_session`
 - GitHub operator tool: `scripts/okinawa-daypass-issue-invite.mjs`
 - Jotform interest: https://form.jotform.com/263217090103041
 - RBA Stripe Checkout remains off until event and payment conditions pass: `OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED=false`
@@ -17,14 +18,15 @@
 3. **No arbitrary amounts or capacity.** The operator script first matches the input plan amount to the RBA-approved server-side JSON, then the RPC validates the range and approved per-date net capacity. The supply entered into `p_daily_capacity` is the approved number of *additional* seats after existing participants, families, staff and vehicles are accounted for. Numbers cannot be invented or derived from a marketing graphic.
 4. **Guardian review.** All nine attestation fields must be true before a reservation may be created, with a real venue confirmation timestamp after the Nov 22 booking cutoff and a limited token lifespan.
 5. **Record constraints.** A DB CHECK rejects records with an active/paid state unless required guardian, venue, terms and token evidence exists. Unique indexes prevent reusing the same application reference, invite hash, Checkout session and payment intent.
-6. **No stored bearer token.** Only SHA-256 of the random token is stored; the full URL is emitted only to the trusted operator for verified one-to-one delivery.
-7. **No automatic charge.** Reserving a place does not call Stripe or charge a card. The guardian must visit an individual, still-valid payment page, expressly accept terms and proceed into Stripe. RBA/Stripe success is verified separately from confirmed participation.
+6. **Confirmed start time.** `first_session_at` is mandatory for any approved or paid record. PostgreSQL verifies it is in the future and falls on the first selected participation day in Japan time. The payment page displays the actual date/time, and Checkout closes before that time rather than relying on provisional timetable estimates.
+7. **No stored bearer token.** Only SHA-256 of the random token is stored; the full URL is emitted only to the trusted operator for verified one-to-one delivery.
+8. **No automatic charge.** Reserving a place does not call Stripe or charge a card. The guardian must visit an individual, still-valid payment page, expressly accept terms and proceed into Stripe. RBA/Stripe success is verified separately from confirmed participation.
 
 ## User workflow
 
 1. After November 22, obtain the venue's formal authorization for *each* gym block and daily approved net additional capacity; record adult supervision, low-age safeguarding and arrival/handover arrangements.
 2. Agree on, and publish, accurate participant-facing terms/price/venue/cancellation version. Do not claim “already half full” without audited evidence.
-3. Review the Jotform response for the individual guardian, cross-check the RBA Stripe 3-day camp receipts, SPARTANS and any alternative payments. Validate date, planned vehicle count and age.
+3. Review the Jotform response for the individual guardian, cross-check the RBA Stripe 3-day camp receipts, SPARTANS and any alternative payments. Validate date, planned vehicle count and age. **Record the confirmed first gym session's ISO-8601 timestamp with timezone** (for example only after obtaining actual venue confirmation).
 4. Set approved prices, per-day caps and terms in the server's protected environment; configure RBA Stripe live key, service role key and verified webhook credentials. Do not paste secrets into the repository or chats.
 5. Fill the example `scripts/okinawa-daypass-approved-application.example.json` with a real *one-person* approved application **only in a private operator environment**. All review flags must have documentary evidence; the sample has false defaults.
 6. Issue the private invitation in a *single* operator workflow and deliver it to the exact guardian, never in bulk or on a public page. PostgreSQL serializes simultaneous requests.
