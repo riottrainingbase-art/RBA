@@ -1,0 +1,33 @@
+name: RBA Site Public Discovery QA
+
+on:
+  pull_request:
+    branches: [release/instagram-conversion-hub-20261117]
+    paths:
+      - "app/sitemap.ts"
+      - "tests/site-public-discovery.test.mjs"
+      - ".github/workflows/rba-site-public-discovery.yml"
+      - "app/ja/reading-guide/page.tsx"
+      - "app/ja/supporters/page.tsx"
+      - "app/ja/my-homecourt/nationwide/page.tsx"
+      - "app/ja/my-homecourt/united/page.tsx"
+      - "app/ja/partners/brief/page.tsx"
+      - "app/ja/cancellation/page.tsx"
+      - "app/ja/international/rizehope-japan-2027/page.tsx"
+      - "app/international/rizehope-japan-2027/page.tsx"
+      - "components/simple-japanese-home.tsx"
+      - "components/site-frame.tsx"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-discovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact PR commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Check static public navigation and sitemap without secrets
+        run: node --version && node --test tests/site-public-discovery.test.mjs
