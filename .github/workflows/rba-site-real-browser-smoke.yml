@@ -11,6 +11,7 @@ on:
       - "app/ja/international/rizehope-japan-2027/**"
       - "app/international/rizehope-japan-2027/**"
       - "components/rizehope-international.*"
+      - "components/founder-profile.css"
       - "tests/site-real-browser-smoke.test.mjs"
       - ".github/workflows/rba-site-real-browser-smoke.yml"
   workflow_dispatch:
