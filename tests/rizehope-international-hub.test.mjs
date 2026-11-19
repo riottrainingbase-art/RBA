@@ -49,8 +49,8 @@ test("separate interest and first-come domestic requests do not promise paid or 
  assert.match(config,/263221266794057/);
  assert.match(component,/先着申込希望/);
  assert.match(component,/RBA UNITED/);
- assert.match(component,/Submission alone is not a confirmed entry or payment/);
- assert.doesNotMatch(component,/RBA UNITED.*参加確定|必ず出場|guaranteed games/);
+ assert.match(component,/Requests alone do not confirm entry or payment/);
+ assert.doesNotMatch(component,/RBA UNITEDに申し込むと参加確定|必ず出場|guaranteed games/);
 });
 
 test("payments default closed and require price, organiser confirmation, policy and checkout URL",()=>{
@@ -102,4 +102,25 @@ test("global cap is ten teams and no preferential UNITED reservation",()=>{
  assert.match(component,/sponsorInterest/);
  assert.match(config,/japanTeam: \{\s+status: "not-open"/);
  assert.match(config,/unitedPlayer: \{\s+status: "not-open"/);
+});
+
+test("domestic 66k team fee is split into a 33k deposit and 33k balance",()=>{
+ const paymentPage=read("app/ja/international/rizehope-japan-2027/payment/page.tsx");
+ assert.match(config,/depositJpy: 33000/);
+ assert.match(config,/balanceJpy: 33000/);
+ assert.match(config,/depositPercent: 50/);
+ assert.match(config,/balancePercent: 50/);
+ assert.match(config,/stripePaymentLinksEnabled: false/);
+ assert.match(config,/stripeDepositLinkId:/);
+ assert.match(config,/stripeBalanceLinkId:/);
+ assert.match(component,/前金33,000円/);
+ assert.match(component,/残金33,000円/);
+ assert.match(component,/JPY 33,000 deposit/);
+ assert.match(paymentPage,/66,000円/);
+ assert.match(paymentPage,/決済は現在準備中/);
+ assert.match(paymentPage,/33,000円/);
+ assert.match(paymentPage,/前金は「返金不可」の意味ではありません/);
+ assert.match(paymentPage,/outreach\.japanTeam/);
+ assert.doesNotMatch(paymentPage,/buy\.stripe\.com|book\.stripe\.com/);
+ assert.match(config,/status: "not-open"/);
 });

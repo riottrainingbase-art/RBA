@@ -37,7 +37,22 @@ export const rizehopeProject = {
     reservedUnitedTeamSlots: 0,
     domesticTeamFeeJpy: 66000,
     domesticTeamFeeIncludesTax: true,
+    depositJpy: 33000,
+    depositPercent: 50,
+    balanceJpy: 33000,
+    balancePercent: 50,
+    depositAccounting: "applies-to-total-fee-not-extra",
+    depositInvitationRequires: "organizer-acceptance-and-written-refund-terms",
+    depositPaidStatus: "provisional-team-place",
+    finalConfirmationRequires: "balance-paid-and-eligibility-verified",
+    balanceDueDateConfirmed: false,
     domesticTeamFeeCovers: "two-days-per-team",
+    // Stripe live objects are staged and every link has active=false:
+    stripeDepositPriceId: "price_1UdX1YRXDnnSs6XNKuXr8BKc",
+    stripeBalancePriceId: "price_1UdX1aRXDnnSs6XN8HYjjPNB",
+    stripeDepositLinkId: "plink_1UdX3XRXDnnSs6XNHPAh1IGh",
+    stripeBalanceLinkId: "plink_1UdX3dRXDnnSs6XN30zT14Mr",
+    stripePaymentLinksEnabled: false,
     domesticTeamRegistrationMethod: "first-submitted-and-verified",
     // Jotform configuration cannot be independently verified as an atomic 10-slot cap;
     // staff must reconcile all three team intake channels and accepted registrations.
