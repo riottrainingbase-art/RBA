@@ -175,3 +175,21 @@ export function RizehopeInternationalPage({lang}:{lang:Language}){
     </main>
   </SiteFrame>;
 }
+
+const teaserCopy={
+  ja:{label:"新着プロジェクト / 宮城県・柴田町",title:"RIZEHOPE JAPAN 2027",description:"2月27・28日、会場予約・入場演出許可取得済み。海外U12チーム、国内チーム、RBA UNITEDの無料先行受付を開始。RBAは海外チームの受入・国際交流を担当します。",action:"プロジェクト詳細・無料先行受付"},
+  en:{label:"FEATURED PROJECT / SHIBATA, MIYAGI",title:"RIZEHOPE JAPAN 2027",description:"Feb 27–28, 2027. Venue and team-entrance presentation permissions secured. Free expressions of interest for overseas and Japanese U12 teams; RBA coordinates international team enquiries.",action:"Event details and free team interest"},
+  "zh-tw":{label:"國際交流新企劃 / 宮城縣柴田町",title:"RIZEHOPE JAPAN 2027",description:"2027年2月27日至28日U12國際交流賽，場館已預訂、入場表演許可已取得。海外球隊可先填寫免費意向表。詳細資料提供英文版。",action:"查看英文介紹與免費意向登記 (EN)"},
+  ko:{label:"국제교류 새 프로젝트 / 미야기현 시바타",title:"RIZEHOPE JAPAN 2027",description:"2027년 2월 27~28일 U12 국제 교류 경기. 체육관 예약 및 팀 입장 행사 허가 완료. 해외 팀을 위한 무료 참가 의향 접수. 상세 설명은 영어로 제공됩니다.",action:"영문 안내 및 무료 관심 등록 (EN)"},
+} as const;
+
+/** Featured project entry inside every RBA International landing page. */
+export function RizehopeInternationalTeaser({locale}:{locale:"ja"|"en"|"zh-tw"|"ko"}){
+  const c=teaserCopy[locale];
+  const href=locale==="ja"?"/ja/international/rizehope-japan-2027":"/international/rizehope-japan-2027";
+  return <section className={styles.teaser} aria-labelledby="rizehope-international-feature-title"><div className={styles.teaserInner}>
+    <div><span className={styles.teaserLabel}>{c.label}</span><h2 id="rizehope-international-feature-title">{c.title}</h2>
+    <p>{c.description}</p><div className={styles.teaserStatus}><span><CheckCircle2 size={16} aria-hidden="true"/> VENUE RESERVED</span><span><CheckCircle2 size={16} aria-hidden="true"/> ENTRANCE SHOW PERMITTED</span></div></div>
+    <a href={href}>{c.action}<ArrowRight size={17} aria-hidden="true"/></a>
+  </div></section>;
+}
