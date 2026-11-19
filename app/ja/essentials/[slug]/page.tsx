@@ -36,9 +36,9 @@ export default async function EssentialsProductPage({ params }: PageProps) {
   if (!item) notFound();
   const commerce=getEssentialsPresaleConfig();
   const unitPrice=item.slug==="tee"?commerce.unitPrices.tee:commerce.unitPrices.setup;
-  const priceText = commerce.ready && unitPrice !== null
-    ? `¥${unitPrice.toLocaleString("ja-JP")}（税込）`
-    : "発売時にご案内";
+  const priceText = unitPrice !== null
+    ? `¥${unitPrice.toLocaleString("ja-JP")}（税込・国内送料無料）`
+    : "価格はお問い合わせください";
   const checkoutPath = `/ja/essentials/checkout?item=${item.slug}`;
   const nextItem=essentials.find((entry)=>entry.slug!==item.slug)!;
 
@@ -75,7 +75,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
               <span>カラー</span><strong>{item.colorJa} / {item.color}</strong>
             </div>
             <div className={styles.detailRule}>
-              <span>サイズ</span><strong>{commerce.ready?"S / M / L / XL":"サンプル確認後に確定"}</strong>
+              <span>サイズ</span><strong>{item.slug==="tee"?"S / M / L / XL":"フーディ S〜XXL ／ パンツ M〜XL（個別指定）"}</strong>
             </div>
             <div className={styles.detailRule}>
               <span>価格</span><strong>{priceText}</strong>
@@ -83,7 +83,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
             {!commerce.ready && <p className={styles.detailSize}>{item.sizeNote}</p>}
             <p className={styles.productStatus} role="status">{commerce.ready?"先行購入受付中":"販売準備中｜現在は注文・予約・決済を受け付けていません"}</p>
             {commerce.ready ? <Link className={styles.detailButton} href={checkoutPath}>サイズを選んで先行購入へ <span aria-hidden="true">↗</span></Link> : <a className={styles.detailButton} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前アンケートに回答する <span aria-hidden="true">↗</span></a>}
-            <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"本商品は開発・試作準備中です。正式な素材と実寸は、サンプル確認後に掲載します。アンケートは無料で回答できます。"}</p>
+            <p className={styles.detailCaution}>{commerce.ready?`先行販売・前払い。FIRST DROPのみ日本国内送料無料。お届け期限：${commerce.deliveryDeadline}（発送期限：${commerce.dispatchDeadline}）。キャンセル・返品条件は購入画面をご確認ください。`:"販売価格と素材の仕様は決定済みです。CGとメーカー製品の形状差、加工後の実寸・品質、受注／発送／返品の運営は販売前に検証します。アンケートは無料です。"}</p>
             <aside className={styles.detailHandwritten} aria-label="手書きカスタム">
               <strong>Handwritten Edition.</strong>
               <p>{item.slug === "setup" ? "セットアップのパーカー" : "白T"}に、RBAからのメッセージを、一点ずつ手書きで添えます。</p>
@@ -98,7 +98,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
 
         <aside className={styles.productPromises} aria-label="ご購入前に確認いただきたいこと">
           <div><span>01 / PHOTO</span><p>商品画像はイメージです。色味・生地・仕上がりは実際の商品と異なる場合があります。</p></div>
-          <div><span>02 / FIT & FABRIC</span><p>{commerce.ready?"実寸・生地組成・お手入れ方法を商品説明で確認してください。":"実測サイズ・生地の組成・厚み・洗濯表示はサンプル確認後に公開します。"}</p></div>
+          <div><span>02 / FIT & FABRIC</span><p>{commerce.ready?"実寸・生地組成・お手入れ方法を商品説明で確認してください。":"生地の組成・厚みは商品仕様欄に記載しています。加工後の実寸と製品の洗濯表示はサンプル確認後に公開します。"}</p></div>
           <div><span>03 / DELIVERY</span><p>{commerce.ready?`FIRST DROPは国内送料無料。発送期限：${commerce.dispatchDeadline}、お届け期限：${commerce.deliveryDeadline}。返品条件は販売条件ページをご確認ください。`:"FIRST DROPは国内送料無料を予定。正式な発送・返品条件を購入前に表示します。"}</p></div>
         </aside>
 
@@ -125,7 +125,7 @@ export default async function EssentialsProductPage({ params }: PageProps) {
           <div><p className={styles.chapter}>PRODUCT INFORMATION / FIRST DROP</p><h2 id="product-questions-heading">購入前によくある質問</h2><p>長く使う一着だからこそ、販売前に確かめたいことを明確にしています。</p></div>
           <div className={styles.productAnswers}>
             <details><summary>この商品はいつ購入できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?"先行購入受付中です。注文画面で販売条件をご確認ください。":"製造・実物確認・サイズ表・発送期限・決済連携が整ってからご案内します。現在は注文・決済を受け付けていません。"}</p></details>
-            <details><summary>素材とサイズは確認できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?`${item.sizeNote} 素材と洗濯表示を購入前にご確認ください。`:`${item.sizeNote} 生地組成や洗濯方法も最終サンプルの仕様確定後に掲載します。`}</p></details>
+            <details><summary>素材とサイズは確認できますか？ <span aria-hidden="true">＋</span></summary><p>{commerce.ready?`${item.sizeNote} 素材と洗濯表示を購入前にご確認ください。`:`${item.sizeNote} 素材の組成は商品仕様に記載しています。実際の製品表示・洗濯方法は量産前に検証します。`}</p></details>
             <details><summary>返品・キャンセルについて教えてください。 <span aria-hidden="true">＋</span></summary><p>{commerce.ready?"キャンセル・返品条件は": "商品ごとの確定したキャンセル・返品条件は、販売開始前に"}<Link href="/ja/essentials/legal">販売条件ページ</Link>{commerce.ready?"でご確認ください。":"でご案内します。現時点で購入契約は成立しません。"}</p></details>
           </div>
         </section>
