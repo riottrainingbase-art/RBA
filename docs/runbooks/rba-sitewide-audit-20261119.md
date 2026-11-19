@@ -46,3 +46,7 @@
 ## 管理・会員画面の検索除外追加（11月19日）
 
 17個の管理・会員・支払完了セグメントにNext.jsの `robots: { index: false, follow: false }` を継承させる専用レイアウトを追加し、Google等の検索対象から外す意図を実装。共通メタデータは `lib/private-page-seo.ts`、漏れは `tests/site-public-discovery.test.mjs` で検査。**robots/noindexはアクセス制御ではない**ため、認証・認可の有無は別途サーバ検査が必要。一般向け案内・無料申込・プラン紹介ページは検索対象を維持する。
+
+## 実ページブラウザQAの追加
+
+`tests/site-real-browser-smoke.test.mjs` を新設し、GitHub Actionsで実際のポータブル開発サーバを立ち上げ、11の公開ルートをChromium/WebKitの390px・1280pxで検査する。コンテナには `mcr.microsoft.com/playwright:v1.55.0-noble` を使用し、毎回APT数百個をインストールしない。HTTP 200、見出し、タイトル、リンク、水平はみ出し、RIZEHOPE受付セクションを確認。写真・代表紹介の一部ページはスクリーンショットもアップロード。**Vercelの正式Previewや本番URLの表示確認とは別であり、その代替ではない。** 公開サイトにアクセスするのではなくGitHub runner上のローカル開発サーバのみを利用し、課金・決済・Production変更を行わない。
