@@ -1,0 +1,45 @@
+name: RIZEHOPE International Hub QA
+on:
+  pull_request:
+    paths:
+      - "app/ja/international/rizehope-japan-2027/**"
+      - "app/international/rizehope-japan-2027/**"
+      - "components/international-platform.tsx"
+      - "components/rizehope-international.*"
+      - "lib/rizehope-2027.ts"
+      - "tests/rizehope-international-hub.test.mjs"
+      - ".github/workflows/rizehope-international-hub-qa.yml"
+  push:
+    branches: ["release/instagram-conversion-hub-20261117"]
+    paths:
+      - "app/ja/international/rizehope-japan-2027/**"
+      - "app/international/rizehope-japan-2027/**"
+      - "components/international-platform.tsx"
+      - "components/rizehope-international.*"
+      - "lib/rizehope-2027.ts"
+      - "tests/rizehope-international-hub.test.mjs"
+permissions:
+  contents: read
+jobs:
+  rizehope-safe-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out exact source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Event accuracy, payment and photo safeguards
+        run: node --test tests/rizehope-international-hub.test.mjs
+      - name: Pin pnpm
+        run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Type check
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: ESLint for project files
+        run: pnpm exec eslint app/ja/international/rizehope-japan-2027/page.tsx app/international/rizehope-japan-2027/page.tsx components/rizehope-international.tsx components/international-platform.tsx lib/rizehope-2027.ts tests/rizehope-international-hub.test.mjs
+      - name: Site Japanese style audit
+        run: pnpm run audit:site-ja
