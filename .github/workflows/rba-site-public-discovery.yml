@@ -5,6 +5,7 @@ on:
     branches: [release/instagram-conversion-hub-20261117]
     paths:
       - "app/sitemap.ts"
+      - "components/opportunity-explorer.tsx"
       - "lib/private-page-seo.ts"
       - "app/**/layout.tsx"
       - "app/robots.ts"
