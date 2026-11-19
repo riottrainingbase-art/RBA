@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
-import { ESSENTIALS_HERO_IMAGE, ESSENTIALS_SETUP_IMAGE, ESSENTIALS_INSTAGRAM, ESSENTIALS_INTEREST_FORM, essentials } from "@/lib/rba-essentials";
+import { ESSENTIALS_HERO_IMAGE, ESSENTIALS_SETUP_IMAGE, ESSENTIALS_COLLECTION_GALLERY, ESSENTIALS_INSTAGRAM, ESSENTIALS_INTEREST_FORM, essentials } from "@/lib/rba-essentials";
 import styles from "./essentials.module.css";
 import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 export const dynamic = "force-dynamic";
@@ -56,6 +56,21 @@ export default function EssentialsCollectionPage() {
                 <span>{item.name}</span>
               </Link>
             ))}
+          </div>
+        </section>
+
+        <section className={styles.frontLookbook} aria-labelledby="rba-lookbook-title">
+          <header className={styles.frontLookbookIntro}>
+            <p className={styles.frontKicker}>COLLECTION 001 / LOOKBOOK</p>
+            <h2 id="rba-lookbook-title">LESS LOGO. MORE EVERYDAY.</h2>
+            <p>WHITE TEE と BLACK SETUP。練習や移動、日常の延長で着られるミニマルなRBAコレクションです。</p>
+            <p className={styles.frontLookbookNotice}>以下の写真はデザインイメージです。実際の製品写真ではありません。描かれたタグ・ワッペンは正式ロゴの版下ではなく、素材・サイズ・価格・製造・発送時期は検証中です。ご注文・ご予約・決済は受け付けていません。</p>
+          </header>
+          <div className={styles.frontLookbookGrid}>
+            {ESSENTIALS_COLLECTION_GALLERY.map(photo=><figure key={photo.src}>
+              <img src={photo.src} alt={photo.alt} loading="lazy"/>
+              <figcaption>{photo.label} / DESIGN CONCEPT ONLY</figcaption>
+            </figure>)}
           </div>
         </section>
 
