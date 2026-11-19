@@ -51,3 +51,19 @@ export async function acceptRizehopeTeam(f:FormData) {
   revalidatePath(back);
   redirect(back+"?saved=accepted");
 }
+export async function recordRizehopeTermsEvidence(f:FormData) {
+  const db=await requireAdmin();
+  if(process.env.RIZEHOPE_2027_APPROVAL_ENABLED!=="true")redirect(back+"?error=terms_recording_locked");
+  const entryId=clean(f,"team_id",45);
+  const termsVersion=clean(f,"terms_version",100);
+  const evidence=clean(f,"evidence_ref",220);
+  if(!/^[0-9a-f-]{36}$/i.test(entryId)||termsVersion.length<5||evidence.length<10) {
+    redirect(back+"?error=missing_documentary_evidence");
+  }
+  const {error}=await db.rpc("rizehope_2027_record_terms_acceptance",{
+    p_entry_id:entryId,p_terms_version:termsVersion,p_evidence_reference:evidence
+  });
+  if(error)redirect(back+"?error=terms_evidence_not_accepted");
+  revalidatePath(back);
+  redirect(back+"?saved=terms_confirmed");
+}
