@@ -78,7 +78,7 @@ export default function SupportersPage() {
                 <a href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-1000-note">月1,000円で学びながら応援する ↗</a>
               </article>
             </div>
-            <p className={styles.disclaimer}>価格と特典は変更される場合があります。実際のお申し込み画面に表示される内容を優先してください。月額プランと単品記事、スクール月謝、クリニック参加費は別です。</p>
+            <p className={styles.disclaimer}>価格と特典は変更される場合があります。実際のお申し込み画面に表示される内容を優先してください。noteの月額応援は、単品記事、スクール月謝、クリニック参加費、MY HOME COURT、D-HUBとは別の商品です。</p>
           </div>
         </section>
 
