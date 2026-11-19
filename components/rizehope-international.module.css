@@ -102,3 +102,9 @@
 .teaser a{background:#161616;color:#fff!important;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:14px 20px;font-size:14px;font-weight:900;line-height:1.45;text-decoration:none!important;text-align:center}
 .teaser a:focus-visible{outline:3px solid #fff;outline-offset:4px}
 @media(max-width:760px){.teaserInner{grid-template-columns:1fr}.teaser a{width:100%}}
+
+.paymentReady{display:grid;gap:12px;justify-items:start;max-width:390px}
+.paymentReady>strong{font-size:20px;color:#ff994e;font-weight:900}
+.termLinks{display:flex;gap:12px;flex-wrap:wrap}
+.termLinks a{font-size:12px;font-weight:800;color:#fff;text-decoration:underline;text-underline-offset:4px;line-height:1.5}
+@media(max-width:650px){.paymentReady{margin-top:22px;max-width:100%}.paymentReady .payLink{width:100%;justify-content:center}}
