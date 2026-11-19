@@ -59,6 +59,7 @@ export type DayPassRecord = {
   terms_version: string | null;
   invite_token_sha256: string | null;
   invite_expires_at: string | null;
+  first_session_at: string | null;
   checkout_session_id: string | null;
   paid_at: string | null;
 };
@@ -112,18 +113,12 @@ export function dayPassInviteValid(row: DayPassRecord) {
   if (approvedAmount(row.plan_code) !== row.amount_jpy) return false;
   const capacity = approvedNewSlotsByDay();
   if (!capacity || !DAY_PASS_DATES[row.plan_code as DayPassPlan].every(day => capacity[day] > 0)) return false;
-  // A two-day pass closes before the first included session; no partial retrospective sales.
-  const closes: Record<DayPassPlan, string> = {
-    dec22_day: "2026-12-22T14:00:00+09:00",
-    dec22_after: "2026-12-22T16:15:00+09:00",
-    dec23_day: "2026-12-23T09:00:00+09:00",
-    dec23_after: "2026-12-23T15:30:00+09:00",
-    dec24_day: "2026-12-24T09:00:00+09:00",
-    dec22_23_day: "2026-12-22T14:00:00+09:00",
-    dec23_24_day: "2026-12-23T09:00:00+09:00",
-    dec22_24_day: "2026-12-22T14:00:00+09:00",
-  };
-  return Date.now() < Date.parse(closes[row.plan_code as DayPassPlan]);
+  // Every invitation uses the ACTUAL first gym session time, not a
+  // previously advertised estimate. No payment after check-in has begun.
+  const first = row.first_session_at ? Date.parse(row.first_session_at) : NaN;
+  if (!Number.isFinite(first) || Date.now() >= first) return false;
+  const jstDay = new Date(first + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  return jstDay === DAY_PASS_DATES[row.plan_code as DayPassPlan][0];
 }
 
 export async function findDayPassInvite(token: string) {
