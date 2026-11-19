@@ -10,7 +10,10 @@
  *
  * JSON keys: application_ref, guardian_email, guardian_name, plan_code,
  * amount_jpy, guardian_verified_at, venue_verified_at, terms_version,
- * operator_reviewed (boolean), first_session_confirmed (boolean).
+ * operator_reviewed, first_session_confirmed, venue_schedule_confirmed,
+ * capacity_confirmed, staffing_confirmed, handoff_confirmed,
+ * guardian_identity_confirmed, existing_payments_reconciled,
+ * refund_terms_agreed (all booleans, true).
  */
 import { readFile } from "node:fs/promises";
 import { randomBytes, createHash } from "node:crypto";
@@ -25,6 +28,17 @@ const PLANS = new Set([
 const EXPECTED_SITE = "https://riotbasketballacademy.com";
 const HOST = "ctngdzzorhzpdxswahzl.supabase.co";
 const VALID_FROM = Date.parse("2026-11-23T00:00:00+09:00");
+// The venue-approved NEW day-pass seats, net of pre-existing three-day participants,
+// supervising staff, carers and any other commitments, must be explicitly configured.
+// After-school attendees count against the date's total as a conservative safeguard.
+const PLAN_DAYS = Object.freeze({
+  dec22_day: ["2026-12-22"], dec22_after: ["2026-12-22"],
+  dec23_day: ["2026-12-23"], dec23_after: ["2026-12-23"],
+  dec24_day: ["2026-12-24"],
+  dec22_23_day: ["2026-12-22","2026-12-23"],
+  dec23_24_day: ["2026-12-23","2026-12-24"],
+  dec22_24_day: ["2026-12-22","2026-12-24"],
+});
 const TOKEN_HOURS = 48;
 function must(v, msg) { if (!v) throw new Error(msg); }
 function normalizeEmail(input) {
@@ -37,8 +51,15 @@ async function main() {
   must(process.env.OKINAWA_DAYPASS_OPERATOR_APPROVAL==="REVIEWED_BY_RBA",
     "Missing explicit operator review confirmation.");
   const input=JSON.parse(await readFile(process.argv[2],"utf8"));
-  must(input.operator_reviewed===true && input.first_session_confirmed===true,
-    "RBA must approve guardian and exact first session, not just event existence.");
+  const checks = [
+    "operator_reviewed", "first_session_confirmed", "venue_schedule_confirmed",
+    "capacity_confirmed", "staffing_confirmed", "handoff_confirmed",
+    "guardian_identity_confirmed", "existing_payments_reconciled", "refund_terms_agreed",
+  ];
+  for (const check of checks) {
+    must(input[check] === true, `RBA review incomplete: ${check}`);
+  }
+  must(Date.now() >= VALID_FROM, "No paid invitation before the venue's November 22 booking cutoff.");
   const ref=String(input.application_ref||"").trim();
   must(ref.length>=5 && ref.length<=80,"Invalid application_ref");
   must(PLANS.has(input.plan_code),"Invalid plan");
@@ -58,6 +79,24 @@ async function main() {
   const key=process.env.SUPABASE_SERVICE_ROLE_KEY;
   must(url && new URL(url).hostname===HOST && key,"Wrong database or missing privileged credentials");
   const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
+  const capacity = JSON.parse(process.env.OKINAWA_2026_DAY_PASS_APPROVED_NEW_SLOTS_BY_DATE || "{}");
+  const days=PLAN_DAYS[input.plan_code];
+  // Fail closed until every occupied date has a facility-approved maximum.
+  for (const day of days) {
+    must(Number.isInteger(capacity[day]) && capacity[day] >= 1 && capacity[day] <= 200,
+      "No confirmed safe new-slot capacity for "+day);
+  }
+  const {data:active,error:capacityError}=await db.from(TABLE).select("plan_code,status")
+    .in("status",["approved","checkout_creating","checkout_open","paid"]).limit(1000);
+  if (capacityError) throw capacityError;
+  must((active||[]).length < 1000, "Capacity ledger too large for manual review; stop and audit.");
+  for (const day of days) {
+    const reserved=(active||[]).filter(row => PLAN_DAYS[row.plan_code]?.includes(day)).length;
+    must(reserved < capacity[day], `No confirmed unreserved day-pass seat remains for ${day}`);
+  }
+  // Operational safeguard: invitations must be issued serially by one approved
+  // operator. A transaction-backed capacity reservation is required before
+  // permitting concurrent issuance or bulk invitations.
   const {data:existing,error:lookupError}=await db.from(TABLE).select("id,status,checkout_session_id,paid_at,guardian_email,plan_code").eq("application_ref",ref).maybeSingle();
   if(lookupError)throw lookupError;
   must(!existing, "Application already registered: do not issue a second link or duplicate payment. Review existing record manually.");
