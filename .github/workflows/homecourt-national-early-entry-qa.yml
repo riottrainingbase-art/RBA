@@ -1,0 +1,35 @@
+name: MY HOME COURT National Early Entry QA
+
+on:
+  pull_request:
+    paths:
+      - "app/ja/my-homecourt/nationwide/**"
+      - "components/my-homecourt.tsx"
+      - "components/member-app.tsx"
+      - "tests/homecourt-nationwide-entry.test.mjs"
+      - ".github/workflows/homecourt-national-early-entry-qa.yml"
+  push:
+    branches:
+      - "release/instagram-conversion-hub-20261117"
+    paths:
+      - "app/ja/my-homecourt/nationwide/**"
+      - "components/my-homecourt.tsx"
+      - "components/member-app.tsx"
+      - "tests/homecourt-nationwide-entry.test.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  national-entry-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c # v4.2.2
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Nationwide entry and disclosure regression
+        run: node --test tests/homecourt-nationwide-entry.test.mjs
