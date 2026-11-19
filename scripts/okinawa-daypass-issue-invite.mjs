@@ -86,32 +86,35 @@ async function main() {
     must(Number.isInteger(capacity[day]) && capacity[day] >= 1 && capacity[day] <= 200,
       "No confirmed safe new-slot capacity for "+day);
   }
-  const {data:active,error:capacityError}=await db.from(TABLE).select("plan_code,status")
-    .in("status",["approved","checkout_creating","checkout_open","paid"]).limit(1000);
-  if (capacityError) throw capacityError;
-  must((active||[]).length < 1000, "Capacity ledger too large for manual review; stop and audit.");
-  for (const day of days) {
-    const reserved=(active||[]).filter(row => PLAN_DAYS[row.plan_code]?.includes(day)).length;
-    must(reserved < capacity[day], `No confirmed unreserved day-pass seat remains for ${day}`);
-  }
-  // Operational safeguard: invitations must be issued serially by one approved
-  // operator. A transaction-backed capacity reservation is required before
-  // permitting concurrent issuance or bulk invitations.
-  const {data:existing,error:lookupError}=await db.from(TABLE).select("id,status,checkout_session_id,paid_at,guardian_email,plan_code").eq("application_ref",ref).maybeSingle();
-  if(lookupError)throw lookupError;
-  must(!existing, "Application already registered: do not issue a second link or duplicate payment. Review existing record manually.");
+  // Atomic database reservation; an advisory transaction lock prevents
+  // two operators or concurrent calls from overbooking the same date.
   const token=randomBytes(32).toString("hex");
   const digest=createHash("sha256").update(token).digest("hex");
   const expires=new Date(Date.now()+TOKEN_HOURS*60*60*1000).toISOString();
-  const {data,error}=await db.from(TABLE).insert({
-    program_code:PROGRAM,application_ref:ref,guardian_email:email,
-    guardian_name:input.guardian_name.trim(),plan_code:input.plan_code,
-    amount_jpy:input.amount_jpy,status:"approved",
+  const inputData={
+    application_ref:ref,
+    guardian_email:email,
+    guardian_name:input.guardian_name.trim(),
+    plan_code:input.plan_code,
+    amount_jpy:input.amount_jpy,
     guardian_verified_at:new Date(parentTime).toISOString(),
     venue_verified_at:new Date(venueTime).toISOString(),
-    terms_version:terms,invite_token_sha256:digest,invite_expires_at:expires,
-  }).select("id,application_ref,plan_code,status,amount_jpy,invite_expires_at").single();
-  if(error)throw error;
+    terms_version:terms,
+    invite_token_sha256:digest,
+    invite_expires_at:expires,
+    ...Object.fromEntries(checks.map(check => [check, true])),
+  };
+  const {data:reservationId,error}=await db.rpc("reserve_okinawa_2026_daypass",{
+    p_application:inputData,p_daily_capacity:capacity,
+  });
+  if(error || typeof reservationId !== "string" ||
+      !/^[0-9a-f-]{36}$/i.test(reservationId))
+    throw new Error("Atomic reservation failed; do NOT issue an unreserved payment link. " +
+      (error?.message||"Unexpected database result"));
+  const data={
+    id:reservationId,application_ref:ref,plan_code:input.plan_code,
+    status:"approved",amount_jpy:input.amount_jpy,invite_expires_at:expires,
+  };
   const paymentUrl=EXPECTED_SITE+"/ja/events/okinawa-international-camp-2026/day-pass/payment?token="+token;
   // This private operator output must be delivered to the verified guardian only.
   // Do not put this URL in public logs, analytics, GitHub, Jotform or shared documents.
