@@ -21,9 +21,13 @@ function applicationEmail(session: string) {
   return `mailto:wakuuzu@gmail.com?subject=${encodeURIComponent("11/29 鹿児島クリニック 参加申込")}&body=${encodeURIComponent(body)}`;
 }
 
+function isRegistrationClosedAt(localTime: string) {
+  return Date.now() >= Date.parse(localTime);
+}
+
 export default function Page() {
-  const morningClosed = Date.now() >= Date.parse("2026-11-29T09:30:00+09:00");
-  const afternoonClosed = Date.now() >= Date.parse("2026-11-29T13:00:00+09:00");
+  const morningClosed = isRegistrationClosedAt("2026-11-29T09:30:00+09:00");
+  const afternoonClosed = isRegistrationClosedAt("2026-11-29T13:00:00+09:00");
   return <SiteFrame locale="ja"><GrowthClickTracking /><div className={styles.page}>
     <section className={styles.hero}>
       <div>
