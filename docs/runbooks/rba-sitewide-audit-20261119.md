@@ -66,3 +66,10 @@ Next.js開発サーバを立ち上げたE2EでChromiumは11ルート×390/1280px
 ## E2E再構成：実際のNext.js productionビルド
 
 localhost化とCSSロード待機、開発専用CSP例外でもWebKit開発ブラウザがCSS未装飾のままになることを確認。これは `Next.js dev` + HMRの環境差が残るため、画面の本番不具合を証明しない。**開発専用CSP例外を`next.config.ts`から取り除き元の厳格なCSPへ復元した。** 新しいCIは `pnpm exec next build` → `pnpm exec next start --port 5173` として、ホスティングには一切デプロイせずNext.js本番バンドルをChromium/WebKitで検査する。ビルドに必要な接続情報が無い場合はQA失敗として明示し、架空の本番接続を作らない。
+
+
+## 11月19日・WebKit実機風QAの原因確定と修復（最優先・以前の暫定判断を訂正）
+
+WebKitの390pxだけで代表写真の固有幅874px、文書幅922pxとなった根本原因は**サイトのCSSグリッド不具合ではなかった**。GitHub ActionsローカルNext.js本番バンドルを `http://localhost:5173` で提供するのに、サイト標準CSP `upgrade-insecure-requests` がWebKit内で `/_next/static/chunks/*.css`、画像、JSを `https://localhost:5173` にアップグレードし、TLSハンドシェイクが失敗したためである。ChromiumはHTTPでCSSを正常取得し、11ページ×390/1280pxで成功。WebKitはCSSOM `access denied`、画像がwidth874pxのデフォルト表示になった。したがって**旧レポートの「WebKitで代表写真CSSが横はみ出しの主因」という断定を撤回**し、CSS追加ガードは防御的指定とする。
+
+修復: GitHub Actions のローカルHTTP本番ビルドQAに限り `CI=true`、`GITHUB_ACTIONS=true`、`RBA_HTTP_E2E_QA=1`、`NODE_ENV=production` の**4条件すべて成立時だけ**CSPから `upgrade-insecure-requests` を取り除く。これによりローカルHTTPサーバへの内部CSSリクエストがHTTPSに変換されるのを止める。**通常のVercel Preview/ProductionのCSPは、文字列ごと従来どおり不変**。デバッグ専用の1ページ判定を解除し、本来の11ルート・Chromium/WebKit・390/1280pxの44ケースに戻して再検査。これはVercel READY URLの検査に代わるものではない。
