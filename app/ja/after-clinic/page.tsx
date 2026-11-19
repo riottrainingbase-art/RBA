@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import styles from "@/components/clinic-reflection.module.css";
 import { SiteFrame } from "@/components/site-frame";
 import { ClinicReflection } from "@/components/clinic-reflection";
+import { ClinicSupportInvitation } from "@/components/clinic-support-invitation";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
 
 export const metadata: Metadata = {
@@ -39,6 +40,7 @@ export default function Page() {
         ["チームのみんなと学びたい", "訪問指導や継続支援の内容を確認し、成人の担当者から相談できます。", "/ja/team-development", "チーム開催・継続支援を見る", "return-team"],
         ["学びや経験を残したい", "RBA IDを使う活動記録は、MY HOME COURTから。利用方法を確認できます。", "/ja/my-homecourt", "MY HOME COURTを見る", "return-record"],
       ].map(([title,body,href,cta,id]) => <article key={id} className="flex flex-col border border-slate-300 p-6"><h3 className="text-lg font-bold">{title}</h3><p className="my-3 text-sm leading-7">{body}</p><a className="mt-auto inline-flex min-h-12 items-center font-bold underline underline-offset-4" href={id==="return-record"?"/ja/my-homecourt/login?source=after-clinic":href} data-growth-id={id}>{cta} →</a></article>)}</div><p className="mt-5 text-sm leading-7">開催希望登録は、参加申込ではありません。開催を計画できる場合に条件をご案内します。海外との交流に関心がある方は、<a className="underline underline-offset-4" href="/ja/international" data-growth-id="return-international">交流の考え方と相談窓口</a>をご覧ください。</p></section>
+      <ClinicSupportInvitation stage="feedback" />
       <section className="border-t border-slate-300 py-8"><h2 className="text-xl font-bold">チームを離れても、続け方は考えられる。</h2><p className="mt-4 leading-8">今の環境が合わない時は、休むことも含めて本人の気持ちを聞き、一緒に次の機会を探しましょう。スクールやクリニックの参加条件と、公式大会の選手登録・移籍条件はそれぞれ確認が必要です。</p><a className="mt-4 inline-flex min-h-12 items-center font-bold underline underline-offset-4" href="/ja/contact" data-growth-id="return-consult">参加について相談する →</a></section>
     </div>
   </SiteFrame></div>;
