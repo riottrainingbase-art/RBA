@@ -38,7 +38,7 @@ const steps = [
     id: "read",
     label: "無料で読む",
     title: "RBA JOURNAL",
-    copy: "チーム選び、出場機会、練習設計。最初は無料の記事から。",
+    copy: "研究・公式資料とRBAの解釈を分けて読む、無料の育成ライブラリー。",
     href: "/ja/journal",
     action: "育成記事を見る",
   },
