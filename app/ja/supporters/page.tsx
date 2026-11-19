@@ -82,6 +82,25 @@ export default function SupportersPage() {
           </div>
         </section>
 
+        <section className={styles.section} aria-labelledby="supporters-learning-title">
+          <div className={styles.container}>
+            <p className={styles.kicker}>FROM QUESTION TO PRACTICE</p>
+            <h2 id="supporters-learning-title">読んで終わりではなく、次の練習を変える。</h2>
+            <p className={styles.lead}>たとえば「練習ではシュートが入るのに、試合では打たない」。そこで「もっと自信を持て」と言う前に、RBAでは原因をひとつに決めつけず、次の4つを見ます。</p>
+            <div className={styles.learningGrid}>
+              <div><span>01 / SKILL</span><strong>技術</strong><p>守備のいない状態でも、動作やリズムは安定しているか。</p></div>
+              <div><span>02 / PERCEPTION</span><strong>知覚</strong><p>打てる時間やスペースに気づけていたか。</p></div>
+              <div><span>03 / DECISION</span><strong>判断</strong><p>打つ、抜く、パスの選択肢を比べられたか。</p></div>
+              <div><span>04 / ENVIRONMENT</span><strong>環境</strong><p>普段の練習にも、相手や味方を見て選ぶ機会があるか。</p></div>
+            </div>
+            <p className={styles.learningFoot}>無料のRBA JOURNALでは育成の問いと根拠を共有します。月1,000円プランでは、観察方法や練習設計まで深める実践記事を案内しています。公開済みの閲覧対象はnoteのプラン画面が優先されます。</p>
+            <div className={styles.bottomActions}>
+              <Link className={styles.outline} href="/ja/journal" data-growth-id="supporters-learning-free">まず無料で読む →</Link>
+              <a className={styles.primary} href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-learning-1000">月1,000円の学びを確認 <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.sectionAlt} aria-labelledby="supporters-flow-title">
           <div className={styles.container}>
             <p className={styles.kicker}>FROM INTEREST TO SUPPORT</p>
@@ -100,6 +119,7 @@ export default function SupportersPage() {
             <h2 id="supporters-trust-title">応援に、説明責任を。</h2>
             <p className={styles.lead}>月額会費は、RBA全体の育成・指導者教育・地域交流・国際交流などの活動を継続するための収入です。特定の選手・地域への配分や成果を確約するものではありません。</p>
             <p className={styles.lead}>実際に行った活動と次に取り組む課題は、確認できた事実に基づいて発信します。未確認の会員数や使途実績は掲載しません。</p>
+            <p className={styles.learningFoot}>活動の実例として、台湾・マレーシアなどで実施した取り組みと今後の計画を分けて記した<a href="/ja/updates/2026-october" data-growth-id="supporters-october-report">2026年10月の活動報告</a>をご覧いただけます。なお、活動報告は会費の個別使途を証明する資料ではありません。</p>
             <div className={styles.bottomActions}>
               <Link className={styles.outline} href="/ja/journal" data-growth-id="supporters-proof-journal">これまでの育成記事を見る →</Link>
               <a className={styles.primary} href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-trust-note">noteのプランを確認する <span aria-hidden="true">↗</span></a>
@@ -123,6 +143,12 @@ export default function SupportersPage() {
               </details>
               <details><summary>会費は特定の選手・チームへの寄付ですか？</summary>
                 <p>いいえ。RBA全体の活動を支える月額メンバーシップです。特定の選手・地域への配分や、税控除の対象となる寄付であることを約束するものではありません。</p>
+              </details>
+              <details><summary>すでにnote会員です。もう一度申し込む必要がありますか？</summary>
+                <p>いいえ。重複した加入・課金を避けるため、まずnoteにログインし、現在の加入プランと請求状況をご確認ください。プランの変更が必要な場合もnoteの案内に従ってください。</p>
+              </details>
+              <details><summary>スマートフォンから参加できますか？</summary>
+                <p>スマートフォンのSafariやChromeなどのブラウザーで公式noteを開き、ログインして手続きしてください。noteアプリ内では参加設定ができない場合があります。</p>
               </details>
               <details><summary>支払い・更新・退会の手続きは？</summary>
                 <p>月額プランの入会・決済・更新・解約はnoteで管理されます。加入前に請求日、更新・退会条件、特典をnoteの最新表示でご確認ください。</p>
