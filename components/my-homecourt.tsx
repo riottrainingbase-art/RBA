@@ -150,7 +150,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
           <a className="text-link" href="/ja/united">RBA UNITEDの考え方と活動を見る <ArrowRight size={16}/></a>
         </article>
       </div>
-    </section>
+    </section>:null}
     {ja&&!role?<section className="homecourt-product-preview section-pad" aria-label="RBA IDの初期設定ガイド"><div className="section-head"><div><p className="section-index">START GUIDE / 10 SLIDES</p><h2>無料RBA IDの始め方を、10枚で。</h2></div><p>登録・メールログイン・初期設定まで。選手・保護者・指導者向けの使い方ガイドを公開しました。</p></div><a className="button button-member" href="/ja/my-homecourt/guide">10枚の使い方ガイドを見る <ArrowRight size={16}/></a></section>:null}
     {ja&&!role?<div className="home-screen-card-wrap"><IPhoneHomeScreenCard/></div>:null}
     {!role?<section className="homecourt-product-preview section-pad">
