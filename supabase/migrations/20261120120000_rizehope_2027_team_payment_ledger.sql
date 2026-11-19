@@ -172,8 +172,9 @@ declare
   v_existing public.rizehope_2027_payment_audit;
 begin
   -- EXECUTE is granted only to service_role; security definer runs as its owner.
-  if not p_livemode or p_amount_jpy <> 33000 or pg_catalog.lower(p_currency) <> 'jpy' or
-     p_stage not in ('deposit','balance') or
+  if p_livemode is distinct from true or p_amount_jpy is distinct from 33000 or
+     coalesce(pg_catalog.lower(p_currency),'') <> 'jpy' or
+     coalesce(p_stage,'') not in ('deposit','balance') or
      coalesce(pg_catalog.length(p_session_id),0) < 5 or
      coalesce(pg_catalog.length(p_payment_intent_id),0) < 5 or
      coalesce(pg_catalog.length(p_stripe_event_id),0) < 5 then
