@@ -73,7 +73,11 @@ test("payments default closed and require price, organiser confirmation, policy 
 });
 
 test("future gallery requires rights and photos of minors consent; no synthetic attendance record",()=>{
- assert.match(config,/gallery: \[\] as ReadonlyArray/);
+ assert.match(config,/gallery: \[/);
+ assert.match(config,/usageRightsConfirmed: false/);
+ assert.match(config,/childrensPhotoConsentConfirmed: false/);
+ assert.match(config,/01-rizehope-banner\.webp/);
+ assert.match(config,/09-team-celebration\.webp/);
  assert.match(config,/usageRightsConfirmed/);
  assert.match(config,/childrensPhotoConsentConfirmed/);
  assert.match(config,/photo\.src\.startsWith\("\/media\/rizehope-2027\/"\)/);
