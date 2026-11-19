@@ -11,6 +11,7 @@ const noteItems = [
     description: "学校交流、合同練習、ホームステイ。勝敗だけでは測れない育成の価値を考えます。",
     href: "https://note.com/rba_official/n/nf2fc33040fc7",
     action: "無料記事を読む",
+    trackingId: "journal-note-free",
   },
   {
     label: "指導者向け｜単品 ¥1,200（税込）",
@@ -18,13 +19,15 @@ const noteItems = [
     description: "合同練習90分の構成例、選手評価、安全管理、帰国後4週間の振り返りを整理した実践編です。",
     href: "https://note.com/rba_official/n/nae7e55e4dec5",
     action: "有料実践編を見る",
+    trackingId: "journal-note-oneoff",
   },
   {
     label: "継続して学ぶ・応援する",
     title: "RBAメンバーズ",
     description: "活動を応援する月500円プランと、育成記事も読める月1,000円プランがあります。",
-    href: "https://note.com/rba_official/membership",
-    action: "月額プランを確認",
+    href: "https://note.com/rba_official/membership/join",
+    action: "月500円から参加する",
+    trackingId: "journal-note-membership",
   },
 ] as const;
 
@@ -62,6 +65,7 @@ export function NoteBridge({ variant = "home" }: NoteBridgeProps) {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.card}
+            data-growth-id={item.trackingId}
           >
             <span className={styles.label}>{item.label}</span>
             <strong>{item.title}</strong>
