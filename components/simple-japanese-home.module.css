@@ -660,3 +660,24 @@
   .page .businessBridge h2 { font-size: clamp(25px,6.7vw,36px); }
   .page .businessBridgeActions a { white-space: normal; }
 }
+
+
+/* RBA ID acquisition: useful, no-obligation free onboarding. */
+.memberBridge{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,.85fr);gap:28px;align-items:center;margin:20px 0 16px;padding:28px 30px;border:1px solid #d8dfe7;border-left:5px solid #f26519;background:#f6f8fb}
+.memberBridgeCopy{min-width:0}
+.memberBridgeCopy>p{color:#bf4d13;font-size:11px;font-weight:800;letter-spacing:.1em;line-height:1.6;margin:0 0 8px}
+.memberBridgeCopy h2{font-size:clamp(20px,2.3vw,27px);font-weight:800;line-height:1.48;letter-spacing:-.03em;margin:0 0 12px}
+.memberBridgeCopy>span{display:block;font-size:14px;color:#33455f;line-height:1.85;max-width:660px}
+.memberBridgeCopy>small{display:block;color:#566a81;font-size:12px;line-height:1.8;margin-top:10px}
+.memberBridgeAction{display:flex;flex-direction:column;gap:10px;min-width:0}
+.memberBridgeAction a{display:flex;min-height:49px;justify-content:center;align-items:center;gap:8px;padding:12px 14px;font-size:13px;font-weight:800;text-align:center;text-decoration:none}
+.memberBridgeAction a:first-child{background:#10233f;color:white}
+.memberBridgeAction a:first-child:hover{background:#28476c}
+.memberBridgeAction a:last-child{border:1px solid #10233f;color:#10233f;background:#fff}
+.memberBridgeAction a:last-child:hover{background:#e9edf4}
+@media(max-width:700px){.memberBridge{grid-template-columns:1fr;gap:18px;padding:22px 18px;margin:14px 0 12px}.memberBridgeAction a{width:100%}.hero .actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.heroSignupLine{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:16px 0 0;font-size:12px;line-height:1.7}
+.heroSignupLine a{display:inline-flex;align-items:center;min-height:36px;color:#10233f;font-size:13px;font-weight:800;text-underline-offset:4px;text-decoration:underline}
+.heroSignupLine span{color:#536174}
+@media(max-width:650px){.heroSignupLine{align-items:flex-start;flex-direction:column;gap:2px}.heroSignupLine span{font-size:11px}}

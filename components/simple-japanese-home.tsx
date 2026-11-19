@@ -85,10 +85,24 @@ export async function SimpleJapaneseHome() {
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
                 <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
               </nav>
+              <p className={styles.heroSignupLine}><a href="/ja/my-homecourt/login?source=home-hero-free-202611" data-growth-id="home-primary-rba-id">無料のRBA IDを始める →</a><span>登録済みの方も同じ入口からログインできます。料金はかかりません。</span></p>
             </div>
             <div className={styles.heroBaseline}>
               <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
               <span>SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span>
+            </div>
+          </section>
+
+          <section className={styles.memberBridge} aria-labelledby="homecourt-free-cta">
+            <div className={styles.memberBridgeCopy}>
+              <p>MY HOME COURT / RBA ID · FREE</p>
+              <h2 id="homecourt-free-cta">今のチームはそのまま。学びと挑戦を、次につなごう。</h2>
+              <span>保護者・選手・指導者のための無料RBA ID。参加経験や振り返り、次の活動を一つの場所で確認できます。登録だけで料金は発生しません。</span>
+              <small>パスワード不要 · メールでログイン · 既に登録済みの方も同じ入口</small>
+            </div>
+            <div className={styles.memberBridgeAction}>
+              <a href="/ja/my-homecourt/login?source=home-bridge-free-202611" data-growth-id="home-free-member-bridge">無料でRBA IDを始める <span aria-hidden="true">→</span></a>
+              <a href="/ja/my-homecourt" data-growth-id="home-bridge-guide">できること・無料と有料の違いを見る →</a>
             </div>
           </section>
 
