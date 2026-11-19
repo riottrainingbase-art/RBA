@@ -16,6 +16,35 @@ export const DAY_PASS_LABELS = {
 } as const;
 export type DayPassPlan = keyof typeof DAY_PASS_LABELS;
 
+// The venue-approved NEW day-pass allocation is net of existing 3-day
+// participants, supervising staff, parents, and facility commitments.
+export const DAY_PASS_DATES: Record<DayPassPlan, readonly string[]> = {
+  dec22_day: ["2026-12-22"], dec22_after: ["2026-12-22"],
+  dec23_day: ["2026-12-23"], dec23_after: ["2026-12-23"],
+  dec24_day: ["2026-12-24"],
+  dec22_23_day: ["2026-12-22", "2026-12-23"],
+  dec23_24_day: ["2026-12-23", "2026-12-24"],
+  dec22_24_day: ["2026-12-22", "2026-12-24"],
+};
+
+export function approvedNewSlotsByDay(): Record<string, number> | null {
+  const raw = process.env.OKINAWA_2026_DAY_PASS_APPROVED_NEW_SLOTS_BY_DATE;
+  if (!raw) return null;
+  try {
+    const obj: unknown = JSON.parse(raw);
+    if (!obj || typeof obj !== "object" || Array.isArray(obj)) return null;
+    const limits: Record<string, number> = {};
+    for (const day of ["2026-12-22", "2026-12-23", "2026-12-24"]) {
+      const value = (obj as Record<string, unknown>)[day];
+      if (typeof value !== "number" || !Number.isInteger(value) || value < 1 || value > 200)
+        return null;
+      limits[day] = value;
+    }
+    return limits;
+  } catch { return null; }
+}
+
+
 export type DayPassRecord = {
   id: string;
   program_code: string;
@@ -50,6 +79,7 @@ export function dayPassPaymentsEnabled() {
     // Vercel does not need to possess its signing secret.
     && process.env.OKINAWA_2026_DAY_PASS_WEBHOOK_READY === "true"
     && Boolean(process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION)
+    && Boolean(approvedNewSlotsByDay())
     // Explicitly refuse test-mode Stripe keys when the RBA live-payment flag is enabled.
     && /^(sk|rk)_live_/.test(process.env.STRIPE_SECRET_KEY || "")
     && Boolean(dayPassAdmin());
@@ -80,6 +110,7 @@ export function dayPassInviteValid(row: DayPassRecord) {
   if (row.terms_version !== process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION) return false;
   if (!row.invite_expires_at || Date.parse(row.invite_expires_at) <= Date.now()) return false;
   if (approvedAmount(row.plan_code) !== row.amount_jpy) return false;
+  if (!approvedNewSlotsByDay()) return false;
   // A two-day pass closes before the first included session; no partial retrospective sales.
   const closes: Record<DayPassPlan, string> = {
     dec22_day: "2026-12-22T14:00:00+09:00",
