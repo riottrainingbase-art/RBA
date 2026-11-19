@@ -43,3 +43,22 @@ test("note membership release follows existing preview checkpoint policy", () =>
   assert.match(deployment, /preview-rba/);
   assert.ok(!supporters.includes("500人が参加"));
 });
+
+test("clinic application and feedback surfaces include optional supporter invitation", () => {
+  const component = source("components/clinic-support-invitation.tsx");
+  const application = source("app/ja/after-application/page.tsx");
+  const afterClinic = source("app/ja/after-clinic/page.tsx");
+  const kagoshima = source("app/ja/events/kagoshima-clinic-2026-11-29/page.tsx");
+
+  assert.match(application, /ClinicSupportInvitation stage="application"/);
+  assert.match(afterClinic, /ClinicSupportInvitation stage="feedback"/);
+  assert.match(kagoshima, /ClinicSupportInvitation stage="application"/);
+  assert.match(component, /\/ja\/supporters/);
+  assert.match(component, /月500円/);
+  assert.match(component, /月1,000円/);
+  assert.match(component, /任意の月額/);
+  assert.match(component, /参加条件・選手の評価/);
+  assert.match(component, /重複してお申し込みいただく必要はありません/);
+  assert.doesNotMatch(component, /<input|<form|type="submit"|stripe\.com|buy\.stripe/);
+  assert.match(component, /data-growth-id=\{c\.growthId\}/);
+});
