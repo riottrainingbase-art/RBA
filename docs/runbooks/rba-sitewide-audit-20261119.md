@@ -58,3 +58,7 @@
 ## E2Eで実際に発見したWebKit 390px横はみ出し
 
 Next.js開発サーバを立ち上げたE2EでChromiumは11ルート×390/1280pxすべて成功。WebKit 390pxの英語トップ `/` で document scrollWidth 922px / viewport 390px の横はみ出しを検出。診断による主因はCSS grid内で874pxの固有幅が残った代表写真 `<img>` であり、`components/founder-profile.css` の `min-width:0`、`max-width:100%` およびモバイル `grid-template-columns:minmax(0,1fr)` で修正。代表紹介PR #482側にも同一CSS修正を独立適用。**この行は修正コードの記録であり、再実行の全ブラウザ成功を意味しない。**
+
+## 本番CSPを保ったままNext.js devのWebKitブラウザQAを許可
+
+本番の `next.config.ts` で `script-src 'self' 'unsafe-inline'` を維持。Next.js development HMRの `eval()` はCSPに遮断され、WebKitでCSSが未適用のページを見かけ上のレイアウト異常として誤認する場合がある。GitHub Actionsのローカルブラウザ試験に限り `NODE_ENV=development` かつ `RBA_LOCAL_BROWSER_QA=1` の両方を満たした場合だけ `'unsafe-eval'` を追加する条件分岐を導入した。**Productionではこの条件が成立せずCSPは変更されない。** サーバの認証・課金・ドメイン設定には変更しない。これでもCSSが読めない場合はネットワークリクエスト/スタイルシートの取得を調査する。
