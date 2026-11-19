@@ -5,6 +5,7 @@ on:
     branches: [release/instagram-conversion-hub-20261117]
     paths:
       - "app/sitemap.ts"
+      - "app/robots.ts"
       - "tests/site-public-discovery.test.mjs"
       - ".github/workflows/rba-site-public-discovery.yml"
       - "app/ja/reading-guide/page.tsx"
