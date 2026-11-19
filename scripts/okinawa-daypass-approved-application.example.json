@@ -15,5 +15,6 @@
   "handoff_confirmed": false,
   "guardian_identity_confirmed": false,
   "existing_payments_reconciled": false,
-  "refund_terms_agreed": false
+  "refund_terms_agreed": false,
+  "first_session_at": "REPLACE_WITH_FACILITY_APPROVED_FIRST_SESSION_ISO_TIMESTAMP"
 }
