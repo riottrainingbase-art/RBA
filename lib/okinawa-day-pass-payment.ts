@@ -36,7 +36,7 @@ export function approvedNewSlotsByDay(): Record<string, number> | null {
     const limits: Record<string, number> = {};
     for (const day of ["2026-12-22", "2026-12-23", "2026-12-24"]) {
       const value = (obj as Record<string, unknown>)[day];
-      if (typeof value !== "number" || !Number.isInteger(value) || value < 1 || value > 200)
+      if (typeof value !== "number" || !Number.isInteger(value) || value < 0 || value > 200)
         return null;
       limits[day] = value;
     }
@@ -110,7 +110,8 @@ export function dayPassInviteValid(row: DayPassRecord) {
   if (row.terms_version !== process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION) return false;
   if (!row.invite_expires_at || Date.parse(row.invite_expires_at) <= Date.now()) return false;
   if (approvedAmount(row.plan_code) !== row.amount_jpy) return false;
-  if (!approvedNewSlotsByDay()) return false;
+  const capacity = approvedNewSlotsByDay();
+  if (!capacity || !DAY_PASS_DATES[row.plan_code as DayPassPlan].every(day => capacity[day] > 0)) return false;
   // A two-day pass closes before the first included session; no partial retrospective sales.
   const closes: Record<DayPassPlan, string> = {
     dec22_day: "2026-12-22T14:00:00+09:00",
