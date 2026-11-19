@@ -62,3 +62,12 @@ test("primary homepage, navigation, event and bio links resolve to actual pages"
   }
   assert.deepEqual(missing,[]);
 });
+
+test("robots leaves public areas discoverable but discourages crawlers from indexing private tools",()=>{
+  const robots=read("app/robots.ts");
+  for(const privatePath of ["/api/","/auth/","/ja/d-hub/admin","/ja/my-homecourt/app","/my-homecourt/app","/ja/store/manage","/ja/support/manage"]){
+    assert.ok(robots.includes(JSON.stringify(privatePath)),privatePath+" missing robots exclusion");
+  }
+  assert.match(robots,/sitemap:\s*"https:\/\/riotbasketballacademy.com\/sitemap.xml"/);
+  assert.ok(!robots.includes('disallow: ["/ja/reading-guide"'));
+});
