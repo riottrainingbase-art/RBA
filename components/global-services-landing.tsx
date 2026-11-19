@@ -41,6 +41,7 @@ export function GlobalServicesLanding() {
       <main className={styles.page}>
         <section className={styles.hero}>
           <a className={styles.breadcrumb} href="/international">← RBA INTERNATIONAL</a>
+          <a className={styles.breadcrumb} href="/ja/international/services" hrefLang="ja">日本語の事業案内 →</a>
           <span className={styles.kicker}>RIOT BASKETBALL ACADEMY / GLOBAL SERVICES</span>
           <h1>BETTER BASKETBALL. REAL CONNECTIONS.</h1>
           <p>Japan-based youth development, international team exchange and coach education. A practical partner for academies and organisations that want learning—not a generic sports tour.</p>
