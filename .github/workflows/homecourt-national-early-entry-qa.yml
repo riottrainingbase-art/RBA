@@ -23,7 +23,7 @@ permissions:
 jobs:
   national-entry-safety:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Check out exact commit
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -33,3 +33,13 @@ jobs:
           node-version: "24"
       - name: Nationwide entry and disclosure regression
         run: node --test tests/homecourt-nationwide-entry.test.mjs
+      - name: Enable pinned pnpm
+        run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript validation
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: Lint modified source and tests
+        run: pnpm exec eslint app/ja/my-homecourt/nationwide/page.tsx components/my-homecourt.tsx tests/homecourt-nationwide-entry.test.mjs
+      - name: MY HOME COURT Japanese copy audit
+        run: pnpm run audit:homecourt-ja
