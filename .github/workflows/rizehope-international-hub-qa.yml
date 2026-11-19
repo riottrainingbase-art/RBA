@@ -9,6 +9,7 @@ on:
       - "lib/rizehope-2027.ts"
       - "public/media/rizehope-2027/**"
       - "docs/rizehope/rizehope-images.sha256"
+      - "scripts/rizehope-photo-import.sh"
       - "tests/rizehope-photo-integrity.test.mjs"
       - "tests/rizehope-international-hub.test.mjs"
       - ".github/workflows/rizehope-international-hub-qa.yml"
@@ -34,6 +35,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Check import script syntax
+        run: bash -n scripts/rizehope-photo-import.sh
       - name: Event accuracy, payments, photo checksum and publication safeguards
         run: node --test tests/rizehope-international-hub.test.mjs tests/rizehope-photo-integrity.test.mjs
       - name: Pin pnpm
