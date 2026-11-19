@@ -3,7 +3,10 @@ import {mkdirSync} from "node:fs";
 import {pathToFileURL} from "node:url";
 
 const port=Number(process.env.RBA_SMOKE_PORT||5173);
-const root="http://127.0.0.1:"+port;
+// The Next.js dev server serves browser assets on localhost; a different host
+// can trigger its cross-origin dev-asset guard in WebKit.
+const root="http://localhost:"+port;
+const probe="http://127.0.0.1:"+port;
 const modulePath=process.env.RBA_PLAYWRIGHT_PATH;
 assert.ok(modulePath,"RBA_PLAYWRIGHT_PATH must resolve the exact pinned Playwright version");
 const {chromium,webkit}=await import(pathToFileURL(modulePath).href);
@@ -24,7 +27,7 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 let ready=false;
 for(let attempt=0;attempt<75;attempt++){
   try{
-    const response=await fetch(root+"/ja",{signal:AbortSignal.timeout(2500)});
+    const response=await fetch(probe+"/ja",{signal:AbortSignal.timeout(2500)});
     if(response.status<500){ready=true;break;}
   }catch{}
   await sleep(2000);
@@ -45,8 +48,14 @@ for(const [engineName,engine] of [["chromium",chromium],["webkit",webkit]]){
           const page=await context.newPage();
           try{
             const url=root+target.path;
-            const result=await page.goto(url,{waitUntil:"domcontentloaded",timeout:45000});
+            const result=await page.goto(url,{waitUntil:"load",timeout:45000});
             assert.equal(result?.status(),200,engineName+" "+width+" "+target.name+" HTTP status "+result?.status());
+            // Never report CSS overflow before the app's stylesheet links are loaded.
+            await page.waitForFunction(()=>{
+              const links=[...document.querySelectorAll('link[rel="stylesheet"]')];
+              return links.length ? links.every(link=>Boolean(link.sheet)) : document.styleSheets.length>0;
+            },null,{timeout:15000});
+            await page.waitForTimeout(180);
             const info=await page.evaluate(()=>{
               const h1=document.querySelector("h1");
               return {
@@ -67,7 +76,7 @@ for(const [engineName,engine] of [["chromium",chromium],["webkit",webkit]]){
                   const r=e.getBoundingClientRect();
                   return {tag:e.tagName.toLowerCase(),className:typeof e.className==="string"?e.className.slice(0,100):"",right:Math.round(r.right),left:Math.round(r.left),width:Math.round(r.width),text:(e.textContent||"").trim().slice(0,35)};
                 }).filter(x=>x.right>viewport+6||x.left<-6).sort((a,b)=>b.right-a.right);
-                return {viewportMeta:document.querySelector('meta[name="viewport"]')?.content||"",htmlClientWidth:document.documentElement.clientWidth,bodyScrollWidth:document.body.scrollWidth,offenders:candidates.slice(0,18)};
+                return {stylesheetCount:document.styleSheets.length,viewportMeta:document.querySelector('meta[name="viewport"]')?.content||"",htmlClientWidth:document.documentElement.clientWidth,bodyScrollWidth:document.body.scrollWidth,offenders:candidates.slice(0,18)};
               });
               console.error("OVERFLOW_DEBUG "+engineName+" "+width+" "+target.path+" "+JSON.stringify(overflow));
               await page.screenshot({path:"screenshots/site-smoke/overflow-"+engineName+"-"+width+"-"+target.path.replaceAll("/","_")+".png",fullPage:false});
