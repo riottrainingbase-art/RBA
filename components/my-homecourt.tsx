@@ -137,7 +137,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <article className="homecourt-plan-card homecourt-plan-free"><div className="homecourt-plan-card-head"><span>FREE / INTEREST ONLY</span><strong>¥0</strong></div><h3>保護者から無料エントリー</h3><p>所属チームの移籍は不要。参加意向登録は、選考合格・出場確約・旅行予約・請求ではありません。</p><a className="button button-member" href="https://form.jotform.com/263207310187047" target="_blank" rel="noopener noreferrer">無料で参加意向を登録する <ArrowRight size={16}/></a></article>
         <article className="homecourt-plan-card"><div className="homecourt-plan-card-head"><span>DETAIL / BEFORE YOU DECIDE</span><strong>要確認</strong></div><h3>日程・費用・安全条件を先に</h3><p>最終参加費、航空券、引率・保険、契約主体、取消・返金条件は確認中です。前金やカード情報を求める正式募集ではありません。</p><a className="text-link" href="/ja/journal/rba-united-incheon-iyibs-2027">保護者向け詳細記事を見る <ArrowRight size={16}/></a></article>
       </div>
-    </section>
+    </section>:null}
     {ja&&!role?<div className="home-screen-card-wrap"><IPhoneHomeScreenCard/></div>:null}
     {!role?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">{clear.kicker}</p><h2>{clear.title}</h2></div><p>{clear.lead}</p></div>
