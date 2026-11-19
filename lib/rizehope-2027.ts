@@ -89,6 +89,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/02-sideline-audience.webp",
@@ -101,6 +105,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/03-team-huddle.webp",
@@ -113,6 +121,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/04-court-gathering.webp",
@@ -125,6 +137,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/05-orange-team-energy.webp",
@@ -137,6 +153,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/06-court-high-five.webp",
@@ -149,6 +169,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/07-team-talk.webp",
@@ -161,6 +185,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/08-friendship-moment.webp",
@@ -173,6 +201,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
     {
       src: "/media/rizehope-2027/09-team-celebration.webp",
@@ -185,6 +217,10 @@ export const rizehopeProject = {
       childrensPhotoConsentConfirmed: true,
       imageFilePresentAndVerified: false,
       sourceEventVerified: false,
+      creditVerified: false,
+      sourceDate: "",
+      sourceEventJa: "",
+      sourceEventEn: "",
     },
   ] as ReadonlyArray<{
     src: string;
@@ -197,6 +233,10 @@ export const rizehopeProject = {
     childrensPhotoConsentConfirmed: boolean;
     imageFilePresentAndVerified: boolean;
     sourceEventVerified: boolean;
+    creditVerified: boolean;
+    sourceDate: string;
+    sourceEventJa: string;
+    sourceEventEn: string;
   }>,
 } as const;
 
@@ -223,6 +263,8 @@ export function approvedRizehopeGallery() {
     photo.usageRightsConfirmed &&
     photo.imageFilePresentAndVerified &&
     photo.sourceEventVerified &&
+    photo.creditVerified &&
+    Boolean(photo.sourceDate && photo.sourceEventJa && photo.sourceEventEn) &&
     photo.childrensPhotoConsentConfirmed &&
     photo.src.startsWith("/media/rizehope-2027/") &&
     Boolean(photo.altJa&&photo.altEn&&photo.credit)

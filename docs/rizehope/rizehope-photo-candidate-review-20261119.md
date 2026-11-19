@@ -37,3 +37,9 @@
 ## 11月19日・掲載同意の確認
 
 ユーザーより撮影者の使用許諾および未成年者のRBA公式サイト掲載同意が取得済みである旨を明示的に確認したため、9件の `usageRightsConfirmed` および `childrensPhotoConsentConfirmed` を `true` にした。現時点でGitHubへの9点の画像バイナリ登録が未完了、撮影イベント名・日付が未確定のため、**`imageFilePresentAndVerified: false` と `sourceEventVerified: false` を別に追加し表示を引き続き停止する。** 写真が2027年2月の未開催イベントを示すと誤認されないよう、過去イベントとの区別を明記したうえで両条件を別途検証する。**PRをマージしても画像は表示されない。**
+
+## バイナリ整合性と出典・クレジットの追加公開ゲート
+
+提供済みWebP 9点のSHA-256を `docs/rizehope/rizehope-images.sha256` に記録。画像が後日GitHubへ追加されたら、CIの `tests/rizehope-photo-integrity.test.mjs` がファイル形式と署名一致を検査する。現在ファイル未登録なのでチェックサムは掲載準備証拠でありGitHub上の実ファイル検査済みではない。
+
+新しく `creditVerified:false`、各写真の `sourceDate:""` / `sourceEventJa:""` / `sourceEventEn:""` を追加。2027年未実施イベントの開催写真と誤認させないよう、撮影日・撮影イベントと適切なクレジットが確認されるまで公開禁止を継続。画像を追加するだけでは表示されない。

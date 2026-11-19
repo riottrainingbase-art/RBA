@@ -78,6 +78,8 @@ test("future gallery requires rights and photos of minors consent; no synthetic 
  assert.match(config,/childrensPhotoConsentConfirmed: true/);
  assert.match(config,/imageFilePresentAndVerified: false/);
  assert.match(config,/sourceEventVerified: false/);
+ assert.match(config,/creditVerified: false/);
+ assert.match(config,/photo\.creditVerified/);
  assert.match(config,/photo\.imageFilePresentAndVerified/);
  assert.match(config,/photo\.sourceEventVerified/);
  assert.match(config,/01-rizehope-banner\.webp/);
