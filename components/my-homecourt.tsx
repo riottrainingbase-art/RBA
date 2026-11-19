@@ -173,6 +173,15 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
       </div>
       <p className="registration-note">※「全国開催」は今後の開催拡大方針です。確定済みの会場・日程・定員は各企画の募集要項をご確認ください。どちらの無料登録も予約・契約・決済・参加枠の確保ではありません。</p>
     </section>:null}
+    {!role&&ja?<section className="homecourt-product-preview section-pad" aria-labelledby="homecourt-reading-choice">
+      <div className="section-head"><div><p className="section-index">READ → THINK → DO</p><h2 id="homecourt-reading-choice">JOURNALとnote。使い分けはシンプルです。</h2></div><p>RBA JOURNALは根拠と育成の基本を無料で学ぶ場所。公式noteは現場の経験や代表の考えを読む場所。MY HOME COURTは、その学びを自分の行動や記録につなげます。</p></div>
+      <div className="homecourt-preview-grid">
+        <article><BookOpen/><span>FREE / JOURNAL</span><h3>まず、無料で確かめる。</h3><p>根拠とRBAの解釈を分けて、知りたいテーマを学ぶ。</p><a className="text-link" href="/ja/journal">RBA JOURNALへ <ArrowRight size={16}/></a></article>
+        <article><FileText/><span>NOTE / VOICE</span><h3>その先の視点を読む。</h3><p>代表の問題提起・現場報告・実践編。無料記事と任意の有料記事があります。</p><a className="text-link" href="https://note.com/rba_official" target="_blank" rel="noopener noreferrer">公式noteへ <ArrowUpRight size={16}/></a></article>
+        <article><History/><span>HOMECOURT / ACTION</span><h3>学びを行動に変える。</h3><p>自分の気づきと経験を記録し、次の練習や参加につなげる。</p><a className="text-link" href="/ja/my-homecourt/participants">MY HOME COURTへ <ArrowRight size={16}/></a></article>
+      </div>
+      <p className="registration-note">公開JOURNALは無料。noteの記事購入・月額会員、MY HOME COURTの有料機能、D-HUBは別々の任意サービスです。<a href="/ja/reading-guide">それぞれの違いを詳しく見る →</a></p>
+    </section>:null}
     {!role&&ja?<HomecourtConversionSection/>:null}
     
     
