@@ -8,6 +8,7 @@ import {
   safePerformanceTeeProductUrl,
 } from "@/lib/performance-tee-launch";
 import styles from "./store.module.css";
+import { RbaCollection001Preview } from "@/components/rba-collection-001-preview";
 
 export const metadata: Metadata = {
   title: "RBA PERFORMANCE TEE | Riot Basketball Academy 公式スポーツウェア",
@@ -110,6 +111,7 @@ export default function StorePage() {
         </figure>
       </section>
 
+      <RbaCollection001Preview />
       <section className={styles.section} id="details" aria-labelledby="details-title">
         <div className={styles.sectionHeading}>
           <p className={styles.eyebrow}>PRODUCT PHILOSOPHY</p>
