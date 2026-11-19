@@ -173,3 +173,12 @@ https://riotbasketballacademy.com/ja/supporters
 5. メールフォーム内容と購読同意を確認し、任意の無料ニュース登録に限り公開する。
 6. 公式SNSの接続・公開権限と素材許諾を確認して投稿。予約・送信した場合は別途明記。
 7. noteの実有効会員数をもとにKPIシートへ初期値を入力。未確認のものは空欄のまま。
+
+## 13. 無料7日間ガイドを追加（2026-11-19）
+- 新規の内部ページ `/ja/development-check` をPR #494の作業ブランチに実装。**本番未公開**。
+- テーマ：出場機会→知覚→判断→役割→負荷→会話→改善。各日、観察／小さな変更／振り返りの問いを提示。
+- /ja/supportersからの無料体験導線と、RBA JOURNALのNoteBridgeからのリンクを追加。
+- 個人情報・メールアドレスの入力は不要。無料ガイドを読むだけで会員登録を強制しない。
+- 検証するCTA：`supporters-learning-free-guide`, `journal-development-check`, `development-check-supporters`, `development-check-note-500`, `development-check-note-1000`。
+- noteの入会URL・料金は既存のまま。複数プランへの同時加入による二重課金は公式noteの最新案内で注意喚起。
+- インフルエンサー等への初回営業は自動実行しない。利用者が自発的に共有できる無料教材として配布する。
