@@ -46,6 +46,9 @@ export const rizehopeProject = {
      */
     status: "not-open" as "not-open" | "open",
     verifiedCheckoutUrl: null as string | null,
+    displayPrice: null as string | null,
+    officialEntryTermsUrl: null as string | null,
+    officialRefundTermsUrl: null as string | null,
     priceAndTaxPublished: false,
     cancellationAndRefundTermsPublished: false,
     organiserApprovedPaidRegistration: false,
@@ -71,6 +74,9 @@ export function isRizehopePaymentOpen(): boolean {
   const {payments,programme}=rizehopeProject;
   return payments.status==="open"
     && Boolean(payments.verifiedCheckoutUrl?.startsWith("https://"))
+    && Boolean(payments.displayPrice)
+    && Boolean(payments.officialEntryTermsUrl?.startsWith("https://"))
+    && Boolean(payments.officialRefundTermsUrl?.startsWith("https://"))
     && payments.priceAndTaxPublished
     && payments.cancellationAndRefundTermsPublished
     && payments.organiserApprovedPaidRegistration
