@@ -50,19 +50,29 @@ export default function RizehopeUnitedPage(){
         <div className="flex flex-col gap-5 border-l-4 border-[#f57929] bg-[#fff0e5] p-6 sm:flex-row">
           <Users size={34} className="shrink-0"/>
           <div><h2 className="text-xl font-black">国内U12チームの66,000円は、選手個人の参加費ではありません。</h2>
-          <p className="mt-4 text-sm leading-8">国内の一般チームは2日間・1チーム66,000円（税込）の参加費案です。RBA UNITEDの選手1名には別の試算案（2日間36,000円／前金15,000円／残金21,000円）があります。これは14名での編成と仮の費用計算に基づく参考値で、正式価格・税込表示・決済開始を意味しません。これらを混同して請求しません。</p></div>
+          <p className="mt-4 text-sm leading-8">国内の一般チームは2日間・1チーム66,000円（税込）の参加費案です。RBA UNITEDの選手1名については、2日間の価格を通常24,800円・先行優待22,000円、前金はいずれも10,000円として再試算しています。先行の適用条件・人数・締切、正式価格・税込表示・決済開始は未確定です。これらを混同して請求しません。</p></div>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-5 pb-14">
         <div className="border border-neutral-200 bg-white p-6">
           <p className="text-xs font-black tracking-widest text-[#b95c1e]">INTERNAL COST MODEL / PROVISIONAL</p>
-          <h2 className="mt-3 text-2xl font-black">RBA UNITED 個人参加費の参考試算</h2>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <div className="bg-[#f9f5ef] p-5"><p className="text-xs">参考・2日間の総額／1名</p><p className="mt-2 text-3xl font-black">36,000円</p></div>
-            <div className="bg-[#f9f5ef] p-5"><p className="text-xs">参考・正式承認後の前金／1名</p><p className="mt-2 text-3xl font-black">15,000円</p></div>
-            <div className="bg-[#f9f5ef] p-5"><p className="text-xs">参考・後日残金／1名</p><p className="mt-2 text-3xl font-black">21,000円</p></div>
+          <h2 className="mt-3 text-2xl font-black">RBA UNITED｜新しい料金プラン案</h2>
+          <p className="mt-3 text-sm leading-8 text-neutral-700">保護者の負担を抑えるため、旧36,000円の試算を見直しました。以下は税込を想定した<strong>未確定の料金提案</strong>です。無料参加意向登録の段階では請求されません。</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="border-t-4 border-[#f57929] bg-[#fff5eb] p-5">
+              <p className="text-xs font-black tracking-widest text-[#a04a19]">EARLY INTEREST / PROPOSED</p>
+              <h3 className="mt-2 text-lg font-black">先行優待価格案</h3>
+              <p className="mt-2 text-4xl font-black">22,000円</p>
+              <p className="mt-3 text-sm leading-8">前金10,000円 ＋ 残金12,000円<br/>前金は総額の一部です。</p>
+            </div>
+            <div className="border-t-4 border-neutral-600 bg-[#f7f7f7] p-5">
+              <p className="text-xs font-black tracking-widest text-neutral-600">REGULAR / PROPOSED</p>
+              <h3 className="mt-2 text-lg font-black">通常価格案</h3>
+              <p className="mt-2 text-4xl font-black">24,800円</p>
+              <p className="mt-3 text-sm leading-8">前金10,000円 ＋ 残金14,800円<br/>前金は総額の一部です。</p>
+            </div>
           </div>
-          <p className="mt-5 text-sm leading-8 text-neutral-700">36,000円＝15,000円＋21,000円。過去に作成した14名編成の収支シミュレーションに基づく案であり、最終の参加費・課税区分・キャンセル返金条件は未決定です。個人の交通・宿泊・食事は含めず、各家庭が別に負担する想定です。正式な契約条件がそろうまでは前金を請求しません。</p>
+          <p className="mt-5 text-sm leading-8 text-neutral-700">先行優待の対象・期限・人数は決まっていません。2日間の指導・チーム編成・大会参加費の配分を試算している段階で、交通・宿泊・食事は各家庭が別に負担する想定です。正式な出場条件・安全体制・徴収主体・税務・返金規約が確定するまで、前金を含む決済は行いません。</p>
         </div>
       </section>
       <section className="bg-[#161616] px-5 py-16 text-white">
