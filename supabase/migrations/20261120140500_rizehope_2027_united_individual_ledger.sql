@@ -181,7 +181,7 @@ create or replace function public.rizehope_2027_united_claim_checkout(
 declare v_player public.rizehope_2027_united_players;
 begin
  if not private.is_global_admin() then raise exception 'forbidden' using errcode='42501'; end if;
- if p_stage not in ('deposit','balance') or coalesce(pg_catalog.length(p_session_id),0)<5 then
+ if coalesce(p_stage,'') not in ('deposit','balance') or coalesce(pg_catalog.length(p_session_id),0)<5 then
    raise exception 'invalid_checkout_claim';
  end if;
  select * into v_player from public.rizehope_2027_united_players
@@ -227,7 +227,7 @@ declare v_player public.rizehope_2027_united_players;
         v_event public.rizehope_2027_united_payment_audit;
 begin
  if p_livemode is distinct from true or coalesce(pg_catalog.lower(p_currency),'')<>'jpy' or
-    p_stage not in ('deposit','balance') or
+    coalesce(p_stage,'') not in ('deposit','balance') or
     coalesce(pg_catalog.length(p_payment_intent_id),0)<5 or
     coalesce(pg_catalog.length(p_session_id),0)<5 or
     coalesce(pg_catalog.length(p_stripe_event_id),0)<5 then
