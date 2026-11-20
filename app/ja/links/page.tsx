@@ -45,6 +45,15 @@ const featured = [
     action: "参加できる活動を見る",
     style: "standard",
   },
+  {
+    id: "korea-free-interest",
+    label: "04 / INTERNATIONAL · FREE INTEREST ONLY",
+    title: "韓国・仁川2027｜無料先行受付",
+    description: "U12・U15・U17の男女。保護者からの参加意向登録です。出場・旅行・支払いは確定しません。",
+    href: "https://form.jotform.com/263207310187047",
+    action: "保護者から無料で参加意向を登録",
+    style: "standard",
+  },
 ] as const;
 
 const more = [
