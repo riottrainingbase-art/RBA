@@ -42,17 +42,22 @@ export const rizehopeProject = {
     balanceJpy: 33000,
     balancePercent: 50,
     depositAccounting: "applies-to-total-fee-not-extra",
-    depositInvitationRequires: "organizer-acceptance-and-written-refund-terms",
-    depositPaidStatus: "provisional-team-place",
+    depositInvitationRequires: "adult-team-application-and-conditional-full-refund-terms",
+    depositPaidStatus: "paid-pending-eligibility-and-team-cap-review",
     finalConfirmationRequires: "balance-paid-and-eligibility-verified",
     balanceDueDateConfirmed: false,
     domesticTeamFeeCovers: "two-days-per-team",
-    // Stripe live objects are staged and every link has active=false:
+    // Verified on 2026-11-20: domestic team deposit link is live; balance link remains inactive.
     stripeDepositPriceId: "price_1UdX1YRXDnnSs6XNKuXr8BKc",
     stripeBalancePriceId: "price_1UdX1aRXDnnSs6XN8HYjjPNB",
     stripeDepositLinkId: "plink_1UdX3XRXDnnSs6XNHPAh1IGh",
     stripeBalanceLinkId: "plink_1UdX3dRXDnnSs6XN30zT14Mr",
-    stripePaymentLinksEnabled: false,
+    stripePaymentLinksEnabled: true,
+    stripeDepositLinkActive: true,
+    stripeBalanceLinkActive: false,
+    stripeDepositPaymentUrl: "https://buy.stripe.com/28E3cx0PRbHK3Ux8cn7EQ1S",
+    admissionNotGuaranteedAfterDeposit: true,
+    depositFullRefundIfNotAccepted: true,
     domesticTeamRegistrationMethod: "first-submitted-and-verified",
     // Jotform configuration cannot be independently verified as an atomic 10-slot cap;
     // staff must reconcile all three team intake channels and accepted registrations.
