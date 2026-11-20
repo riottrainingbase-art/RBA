@@ -16,7 +16,7 @@
 .founder-more{display:inline-flex;align-items:center;gap:12px;font-size:12px;border-bottom:1px solid #a99b7f;padding-bottom:5px}
 .founder-principles{max-width:1400px;margin:clamp(60px,7vw,100px) auto 0;border-top:1px solid #c8beaa;display:grid;grid-template-columns:1fr 1fr}
 .founder-principles article{padding:44px 50px 0 0}.founder-principles article+article{border-left:1px solid #c8beaa;padding:44px 0 0 50px}
-.founder-principles h3{font-family:Georgia,"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;font-weight:400;white-space:pre-line;line-height:1.35;letter-spacing:-.025em;font-size:clamp(28px,3.2vw,46px);margin:0 0 23px}
+.founder-principles h2,.founder-principles h3{font-family:Georgia,"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;font-weight:400;white-space:pre-line;line-height:1.35;letter-spacing:-.025em;font-size:clamp(28px,3.2vw,46px);margin:0 0 23px}
 .founder-principles article>p:last-child{max-width:540px;font-size:15px;line-height:1.95;color:#52574c;margin:0}
 .founder-invitation{max-width:1400px;margin:80px auto 0;padding-top:65px;border-top:1px solid #c8beaa;text-align:center}
 .founder-invitation h2{font-family:Georgia,"Times New Roman","Yu Mincho",serif;font-size:clamp(28px,3.5vw,48px);font-weight:400;line-height:1.4;letter-spacing:-.025em;margin:0 0 22px}
@@ -30,3 +30,31 @@
 .founder-contact{background:#10233f}
 .founder-contact:hover{background:#233e62}
 .founder-principles,.founder-principles article+article,.founder-invitation{border-color:#d6cbb9}
+
+/* Career credibility and practical coaching commitments on the full founder page. */
+.founder-depth{max-width:1400px;margin:72px auto 0;padding-top:54px;border-top:1px solid #d6cbb9}
+.founder-depth-intro h2,.founder-practice>h2{font-family:Georgia,"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(27px,3.4vw,45px);font-weight:500;line-height:1.4;letter-spacing:-.035em;margin:0 0 18px}
+.founder-depth-intro>p:not(.founder-eyebrow){max-width:850px;font-size:15px;line-height:2;color:#52574c;margin:0 0 25px}
+.founder-credentials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 30px;list-style:none;margin:0;padding:0}
+.founder-credentials li{position:relative;padding:16px 16px 16px 31px;border-top:1px solid #d6cbb9;font-size:13px;line-height:1.8;font-weight:600}
+.founder-credentials li::before{content:"";display:block;position:absolute;left:9px;top:25px;width:7px;height:7px;border-radius:50%;background:#705b3d}
+.founder-practice{margin-top:68px}
+.founder-practice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:27px}
+.founder-practice-grid article{background:#fffdf7;border:1px solid #d6cbb9;padding:27px;min-width:0}
+.founder-practice-grid article>span{display:block;color:#705b3d;font-size:12px;letter-spacing:.15em;font-weight:700;margin-bottom:16px}
+.founder-practice-grid h3{font-size:clamp(18px,2vw,24px);font-weight:700;line-height:1.5;letter-spacing:-.02em;margin:0 0 11px}
+.founder-practice-grid p{font-size:14px;line-height:1.9;color:#52574c;margin:0}
+.founder-next-links{display:flex;flex-wrap:wrap;align-items:center;gap:15px 24px;margin:30px 0 0}
+.founder-next-links a{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:8px 0;border-bottom:1px solid #b5a588;font-size:13px;font-weight:700;line-height:1.6}
+.founder-next-links a:hover{border-color:#10233f}
+@media(max-width:760px){.founder-depth{margin-top:42px;padding-top:38px}.founder-credentials,.founder-practice-grid{grid-template-columns:1fr}.founder-practice{margin-top:45px}.founder-practice-grid article{padding:23px}.founder-next-links{align-items:stretch;flex-direction:column;gap:8px}.founder-next-links a{width:100%;justify-content:space-between}}
+
+
+/* WebKit mobile grid sizing: an intrinsic 874px Next/Image must not force
+   the founder column beyond a phone viewport. Do not mask overflow with clip. */
+.founder-intro,.founder-copy,.founder-portrait{min-width:0}
+.founder-portrait{max-width:100%}
+.founder-portrait img{max-width:100%}
+@media(max-width:760px){
+  .founder-intro{grid-template-columns:minmax(0,1fr)}
+}

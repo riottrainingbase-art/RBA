@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { SendaiCommunity } from "./sendai-community";
@@ -94,11 +95,29 @@ export async function SimpleJapaneseHome() {
 
           <nav className={styles.sectionNavigator} aria-label="このページの目次">
             <span className={styles.indexLabel}>INDEX</span>
-            <a href="#rba-for-you">01　目的から探す</a>
-            <a href="#home-programmes">02　現在の活動</a>
-            <a href="#home-business">03　法人向けサービス</a>
-            <a href="#home-host">04　地域で開催する</a>
+            <a href="#home-founder">01　代表の自己紹介</a>
+            <a href="#rba-for-you">02　目的から探す</a>
+            <a href="#home-programmes">03　現在の活動</a>
+            <a href="#home-business">04　法人向けサービス</a>
+            <a href="#home-host">05　地域で開催する</a>
           </nav>
+
+          <section className={styles.founderIntroduction} id="home-founder" aria-labelledby="home-founder-title">
+            <div className={styles.founderIntroductionText}>
+              <p className={styles.founderIntroductionKicker}>WHO LEADS RBA / FOUNDER PROFILE</p>
+              <h2 id="home-founder-title">誰が、どんな考えで、子どもの育成に向き合っているのか。</h2>
+              <p className={styles.founderIntroductionName}>西尾 優人 <span>MASATO NISHIO</span></p>
+              <p className={styles.founderIntroductionPosition}>Riot Basketball Academy 創設者・代表 / Riot Training Base 代表</p>
+              <p className={styles.founderIntroductionBody}>NSCA-CPT。選手として東北選抜・国体を経験し、ドイツでS&amp;C（ストレングス＆コンディショニング）の指導に携わった後、日本のクラブ指導の現場を経て、仙台から育成年代の活動を広げています。</p>
+              <p className={styles.founderIntroductionBody}>試合の結果だけで子どもの可能性を決めない。判断力、身体の発達、休息、そして指導者の学びまでを含め、長く成長できる環境をつくることが私の仕事です。</p>
+              <div className={styles.founderIntroductionFacts} aria-label="代表の経歴と専門分野"><span>NSCA-CPT</span><span>ドイツでのS&amp;C指導</span><span>育成年代のバスケットボール</span></div>
+              <a className={styles.founderIntroductionLink} href="/ja/about" data-growth-id="home-founder-profile">代表の経歴・理念・活動を詳しく読む <span aria-hidden="true">↗</span></a>
+            </div>
+            <figure className={styles.founderIntroductionPortrait}>
+              <Image src="/media/founder/masato-nishio-on-court.webp" width={874} height={860} sizes="(max-width: 760px) 100vw, 35vw" alt="RBA代表・西尾優人がバスケットボールの指導を行う様子" />
+              <figcaption>MASATO NISHIO / THE COACH BEHIND RBA</figcaption>
+            </figure>
+          </section>
 
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>

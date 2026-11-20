@@ -129,6 +129,71 @@ const partnerStrip=fs.readFileSync("components/corporate-support-strip.tsx","utf
 if(!partnerStrip.includes("PARTNERS / 協賛・パートナー"))
   failures.push({file:"components/corporate-support-strip.tsx",rule:"partner-label",sample:"partner label missing"});
 
+// Founder visibility, trustworthy identity and responsive-page regression checks.
+// The founder must be discoverable without scrolling to the footer, and profile
+// links must lead to the same verified biography across the website.
+const founderFile="components/founder-profile.tsx";
+const founderSource=fs.readFileSync(founderFile,"utf8");
+const founderCss=fs.readFileSync("components/founder-profile.css","utf8");
+const homepageCss=fs.readFileSync("components/simple-japanese-home.module.css","utf8");
+const founderMetadata=fs.readFileSync("app/ja/about/page.tsx","utf8");
+const founderImage="public/media/founder/masato-nishio-on-court.webp";
+const founderChecks=[
+  [organizedHome,'id="home-founder"',"founder-home-section"],
+  [organizedHome,'href="/ja/about"',"founder-home-about-route"],
+  [organizedHome,'alt="RBA代表・西尾優人がバスケットボールの指導を行う様子"',"founder-home-image-alt"],
+  [organizedHome,"NSCA-CPT","founder-home-qualification"],
+  [organizedHome,"ドイツでのS&amp;C","founder-home-coaching-experience"],
+  [organizedHome,'href="#home-founder"',"founder-home-table-of-contents"],
+  [founderSource,'name:"西尾 優人"',"founder-ja-identity"],
+  [founderSource,"credentials:[","founder-credentials"],
+  [founderSource,"principles:[","founder-coaching-principles"],
+  [founderSource,"founder-practice-grid","founder-content-present"],
+  [founderSource,'localePath(locale,"approach")',"founder-approach-link"],
+  [founderSource,'localePath(locale,"opportunities")',"founder-opportunities-link"],
+  [founderMetadata,'"@type": "Person"',"founder-structured-data"],
+  [founderMetadata,'"NSCA-CPT"',"founder-structured-credential"],
+  [partnerNav,'["代表・理念","/ja/about"]',"founder-navigation"],
+  [homepageCss,".page .founderIntroduction {","founder-home-layout"],
+  [homepageCss,"@media (max-width: 760px)","founder-home-mobile-layout"],
+  [founderCss,".founder-depth{","founder-full-profile-layout"],
+];
+for(const [source,fragment,rule] of founderChecks){
+  if(!source.includes(fragment))failures.push({file:"founder profile / homepage",rule,sample:fragment});
+}
+if((organizedHome.match(/id="home-founder"/g)||[]).length!==1)
+  failures.push({file:"components/simple-japanese-home.tsx",rule:"founder-unique-home-section",sample:"expected one founder section"});
+if(organizedHome.indexOf('id="home-founder"')>organizedHome.indexOf('id="home-programmes"'))
+  failures.push({file:"components/simple-japanese-home.tsx",rule:"founder-visible-near-start",sample:"founder introduction placed after activity listing"});
+if(!fs.existsSync(founderImage)) {
+  failures.push({file:founderImage,rule:"founder-photo-missing",sample:"missing approved founder photo"});
+} else {
+  const imageData=fs.readFileSync(founderImage);
+  if(imageData.length<10240 || imageData.toString("ascii",0,4)!=="RIFF" || imageData.toString("ascii",8,12)!=="WEBP")
+    failures.push({file:founderImage,rule:"founder-photo-invalid",sample:"expected a non-empty WebP"});
+}
+
+// The same full founder biography must be discoverable at every hreflang route.
+for(const [locale,route] of [
+  ["en","app/about/page.tsx"],
+  ["ja","app/ja/about/page.tsx"],
+  ["zh-tw","app/zh-tw/about/page.tsx"],
+  ["ko","app/ko/about/page.tsx"],
+]){
+  if(!fs.existsSync(route)){failures.push({file:route,rule:"founder-locale-route-missing",sample:locale});continue;}
+  const source=fs.readFileSync(route,"utf8");
+  if(!source.includes('<FounderAboutPage locale="'+locale+'" />'))
+    failures.push({file:route,rule:"founder-locale-not-detailed",sample:locale});
+  if(!source.includes("NSCA-CPT"))
+    failures.push({file:route,rule:"founder-locale-credentials-absent",sample:locale});
+  if(!source.includes('alternates: { canonical:'))
+    failures.push({file:route,rule:"founder-locale-canonical-absent",sample:locale});
+}
+if(!founderSource.includes('const SectionHeading=full?"h2":"h3";'))
+  failures.push({file:founderFile,rule:"founder-heading-semantics",sample:"full profile requires h2 after h1"});
+if(!partnerNav.includes('["代表紹介","/ja/about"]'))
+  failures.push({file:"components/site-frame.tsx",rule:"founder-desktop-navigation",sample:"desktop founder link missing"});
+
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);

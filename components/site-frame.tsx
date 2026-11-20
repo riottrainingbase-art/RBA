@@ -39,6 +39,7 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     ["クリニック","/ja/opportunities"],
     ["指導者の学び","/ja/journal"],
     ["海外交流","/ja/international"],
+    ["代表・理念","/ja/about"],
     ["パートナー","/ja/partners"],
   ] : [
     [({en:"Activities","zh-tw":"尋找活動",ko:"활동 찾기",ja:"活動を探す"})[locale],localePath(locale,"opportunities")],
@@ -47,9 +48,9 @@ export function SiteFrame({ children, locale="en", languagePage }: { children:Re
     [({en:"International","zh-tw":"國際交流",ko:"국제 교류",ja:"海外交流"})[locale],localePath(locale,"international")],
     [c.about,localePath(locale,"about")],
   ];
-  // Display only four first-level routes in the desktop header. The full index remains in the menu and footer.
+  // Keep founder visible in the desktop header; the complete index remains in the mobile menu and footer.
   const primaryNav: readonly (readonly [string,string])[] = locale==="ja"
-    ? [["開催予定","/ja/opportunities"],["育成記事","/ja/journal"],["海外交流","/ja/international"],["協賛・連携","/ja/partners"]]
+    ? [["開催予定","/ja/opportunities"],["代表紹介","/ja/about"],["育成記事","/ja/journal"],["海外交流","/ja/international"],["協賛・連携","/ja/partners"]]
     : nav.slice(0,4);
   const whatsappHref=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
