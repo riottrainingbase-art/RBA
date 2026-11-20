@@ -59,6 +59,27 @@ export const rizehopeProject = {
     automaticCapacityLockVerified: false,
     bookingConfirmationRequires: "written-acceptance-and-confirmed-payment",
   },
+  /** RBA UNITED individual intake, independent from the domestic U12 team fee. */
+  unitedIndividual: {
+    freeInterestForm: "https://form.jotform.com/263221266794057",
+    domesticTeamFeeIsNotAnIndividualPrice: true,
+    totalJpy: null as number | null,
+    depositJpy: null as number | null,
+    balanceJpy: null as number | null,
+    depositRatioCandidatePercent: 50,
+    stripeDepositPriceId: null as string | null,
+    stripeBalancePriceId: null as string | null,
+    stripeDepositLinkId: null as string | null,
+    stripeBalanceLinkId: null as string | null,
+    individualCheckoutEnabled: false,
+    genericPublicPaymentLinksAllowed: false,
+    selectedRosterConfirmed: false,
+    writtenGuardianTermsAgreed: false,
+    organizerApprovedPriceAndRefundTerms: false,
+    officialTermsPublished: false,
+    stripePaidWebhookVerified: false,
+    reconciliationToSelectedPlayerVerified: false,
+  },
   programme: {
     invitationStatus: "inviting" as "inviting" | "confirmed",
     finalOrganizerCreditsApproved: false,
@@ -137,6 +158,27 @@ export function isRizehopePaymentOpen(audience: RizehopePaymentAudience): boolea
     && programme.finalOrganizerCreditsApproved
     && programme.finalAgeRulesPublished
     && (audience !== "unitedPlayer" || programme.unitedTeamConfirmed);
+}
+
+/** Public pages must never expose generic deposits to unselected minors. */
+export function isRizehopeUnitedIndividualPaymentReady(): boolean {
+  const p=rizehopeProject.unitedIndividual;
+  const amounts=[p.totalJpy,p.depositJpy,p.balanceJpy];
+  return p.individualCheckoutEnabled
+    && isRizehopePaymentOpen("unitedPlayer")
+    && amounts.every(amount=>Number.isSafeInteger(amount) && Number(amount)>0)
+    && Number(p.totalJpy)===Number(p.depositJpy)+Number(p.balanceJpy)
+    && p.selectedRosterConfirmed
+    && p.writtenGuardianTermsAgreed
+    && p.organizerApprovedPriceAndRefundTerms
+    && p.officialTermsPublished
+    && p.stripePaidWebhookVerified
+    && p.reconciliationToSelectedPlayerVerified
+    && Boolean(p.stripeDepositPriceId?.startsWith("price_"))
+    && Boolean(p.stripeBalancePriceId?.startsWith("price_"))
+    && Boolean(p.stripeDepositLinkId?.startsWith("plink_"))
+    && Boolean(p.stripeBalanceLinkId?.startsWith("plink_"))
+    && !p.genericPublicPaymentLinksAllowed;
 }
 
 export function approvedRizehopeGallery() {
