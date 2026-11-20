@@ -50,7 +50,19 @@ export default function RizehopeUnitedPage(){
         <div className="flex flex-col gap-5 border-l-4 border-[#f57929] bg-[#fff0e5] p-6 sm:flex-row">
           <Users size={34} className="shrink-0"/>
           <div><h2 className="text-xl font-black">国内U12チームの66,000円は、選手個人の参加費ではありません。</h2>
-          <p className="mt-4 text-sm leading-8">国内の一般チームは2日間・1チーム66,000円（税込）の検討条件です。RBA UNITEDの選手1名の参加費、前金、残金は別途、編成人数・運営・税務条件を確認して確定します。これらを混同して請求しません。</p></div>
+          <p className="mt-4 text-sm leading-8">国内の一般チームは2日間・1チーム66,000円（税込）の参加費案です。RBA UNITEDの選手1名には別の試算案（2日間36,000円／前金15,000円／残金21,000円）があります。これは14名での編成と仮の費用計算に基づく参考値で、正式価格・税込表示・決済開始を意味しません。これらを混同して請求しません。</p></div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-6xl px-5 pb-14">
+        <div className="border border-neutral-200 bg-white p-6">
+          <p className="text-xs font-black tracking-widest text-[#b95c1e]">INTERNAL COST MODEL / PROVISIONAL</p>
+          <h2 className="mt-3 text-2xl font-black">RBA UNITED 個人参加費の参考試算</h2>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className="bg-[#f9f5ef] p-5"><p className="text-xs">参考・2日間の総額／1名</p><p className="mt-2 text-3xl font-black">36,000円</p></div>
+            <div className="bg-[#f9f5ef] p-5"><p className="text-xs">参考・正式承認後の前金／1名</p><p className="mt-2 text-3xl font-black">15,000円</p></div>
+            <div className="bg-[#f9f5ef] p-5"><p className="text-xs">参考・後日残金／1名</p><p className="mt-2 text-3xl font-black">21,000円</p></div>
+          </div>
+          <p className="mt-5 text-sm leading-8 text-neutral-700">36,000円＝15,000円＋21,000円。過去に作成した14名編成の収支シミュレーションに基づく案であり、最終の参加費・課税区分・キャンセル返金条件は未決定です。個人の交通・宿泊・食事は含めず、各家庭が別に負担する想定です。正式な契約条件がそろうまでは前金を請求しません。</p>
         </div>
       </section>
       <section className="bg-[#161616] px-5 py-16 text-white">
