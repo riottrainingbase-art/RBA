@@ -9,7 +9,8 @@ test("RBA UNITED individual registration is not domestic team fee",()=>{
  assert.match(c,/domesticTeamFeeIsNotAnIndividualPrice: true/);
  assert.match(c,/totalJpy: null as number \| null/);
  assert.match(p,/66,000円は、選手個人の参加費ではありません/);
- assert.match(p,/263221266794057/);
+ assert.match(c,/263221266794057/);
+ assert.match(p,/p\.freeInterestForm/);
 });
 test("individual payment is blocked until selection, terms, tax, and reconciliation",()=>{
  assert.match(c,/individualCheckoutEnabled: false/);
