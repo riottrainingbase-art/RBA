@@ -1,0 +1,70 @@
+name: RBA Real Public Pages Browser Smoke
+
+on:
+  pull_request:
+    branches: [release/instagram-conversion-hub-20261117]
+    paths:
+      - "app/sitemap.ts"
+      - "app/robots.ts"
+      - "next.config.ts"
+      - "app/**/layout.tsx"
+      - "app/ja/reading-guide/**"
+      - "app/ja/international/rizehope-japan-2027/**"
+      - "app/international/rizehope-japan-2027/**"
+      - "components/rizehope-international.*"
+      - "components/founder-profile.css"
+      - "components/opportunity-explorer.tsx"
+      - "tests/site-real-browser-smoke.test.mjs"
+      - ".github/workflows/rba-site-real-browser-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-real-pages:
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.55.0-noble
+    timeout-minutes: 25
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      RBA_PLAYWRIGHT_PATH: /tmp/rba-site-browser/node_modules/playwright/index.mjs
+      RBA_SMOKE_PORT: "5173"
+      NEXT_TELEMETRY_DISABLED: "1"
+      RBA_HTTP_E2E_QA: "1"
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install dependencies and pinned Playwright runtime
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.25.0 --activate
+          pnpm install --frozen-lockfile
+          npm install --prefix /tmp/rba-site-browser --no-save --ignore-scripts --no-audit playwright@1.55.0
+          test -d /ms-playwright
+      - name: Build a real Next.js production bundle (does not deploy)
+        run: pnpm exec next build
+      - name: Run built public pages without production credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm exec next start --hostname 0.0.0.0 --port 5173 > /tmp/rba-public-smoke.log 2>&1 &
+          devpid=$!
+          trap 'kill "$devpid" 2>/dev/null || true' EXIT
+          if ! node tests/site-real-browser-smoke.test.mjs; then
+            echo "Local app output (last 120 lines):"
+            tail -120 /tmp/rba-public-smoke.log
+            exit 1
+          fi
+      - name: Upload screenshots for review
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rba-public-real-browser-smoke
+          path: screenshots/site-smoke/
+          if-no-files-found: ignore

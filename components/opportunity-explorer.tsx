@@ -34,7 +34,9 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
   const [region,setRegion]=useState<Region>("all");
   const [age,setAge]=useState<Age>("all");
   const [kind,setKind]=useState<Kind>("all");
-  const db=useMemo(()=>createClient(),[]);
+  // Public event discovery must still render if client-side auth is not configured.
+  // Saving requires a configured Supabase client, but reading the public list does not.
+  const db=useMemo(()=>process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ? createClient() : null,[]);
   const [userId,setUserId]=useState<string|null>(null);
   const [saved,setSaved]=useState<string[]>([]);
   const [saving,setSaving]=useState("");
@@ -45,6 +47,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
       if(r&&["tohoku","kanto","kansai","kyushu","okinawa","online"].includes(r))setRegion(r);
       if(a&&["U8","U10","U12","U15","U18","COACH"].includes(a))setAge(a);
       if(k&&["TRAIN","PLAY","TRAVEL","COACH"].includes(k))setKind(k);
+      if(!db)return;
       void db.auth.getUser().then(async({data})=>{
         const id=data.user?.id||null;setUserId(id);
         if(!id)return;
@@ -60,10 +63,10 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
     const r=next.region??region,a=next.age??age,k=next.kind??kind;
     const q=new URLSearchParams(); if(r!=="all")q.set("region",r);if(a!=="all")q.set("age",a);if(k!=="all")q.set("kind",k);
     history.replaceState(null,"",`${location.pathname}${q.size?`?${q}`:""}`);
-    if(userId)void db.from("analytics_events").insert({user_id:userId,event_name:"filter_apply",item_type:"opportunity",item_key:[r,a,k].join(":"),locale});
+    if(userId&&db)void db.from("analytics_events").insert({user_id:userId,event_name:"filter_apply",item_type:"opportunity",item_key:[r,a,k].join(":"),locale});
   };
   async function toggleSave(p:(typeof programmes)[number]){
-    if(!userId){router.push(`${locale==="en"?"":`/${locale}`}/my-homecourt/login?next=${encodeURIComponent(`${locale==="en"?"":`/${locale}`}/opportunities`)}`);return;}
+    if(!userId||!db){router.push(`${locale==="en"?"":`/${locale}`}/my-homecourt/login?next=${encodeURIComponent(`${locale==="en"?"":`/${locale}`}/opportunities`)}`);return;}
     setSaving(p.id);
     const exists=saved.includes(p.id);
     if(exists){

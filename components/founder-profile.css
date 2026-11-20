@@ -30,3 +30,13 @@
 .founder-contact{background:#10233f}
 .founder-contact:hover{background:#233e62}
 .founder-principles,.founder-principles article+article,.founder-invitation{border-color:#d6cbb9}
+
+
+/* WebKit mobile grid sizing: an intrinsic 874px Next/Image must not force
+   the founder column beyond a phone viewport. Do not mask overflow with clip. */
+.founder-intro,.founder-copy,.founder-portrait{min-width:0}
+.founder-portrait{max-width:100%}
+.founder-portrait img{max-width:100%}
+@media(max-width:760px){
+  .founder-intro{grid-template-columns:minmax(0,1fr)}
+}
