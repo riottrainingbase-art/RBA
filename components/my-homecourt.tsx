@@ -138,6 +138,13 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
         <article className="homecourt-plan-card"><div className="homecourt-plan-card-head"><span>DETAIL / BEFORE YOU DECIDE</span><strong>要確認</strong></div><h3>日程・費用・安全条件を先に</h3><p>最終参加費、航空券、引率・保険、契約主体、取消・返金条件は確認中です。前金やカード情報を求める正式募集ではありません。</p><a className="text-link" href="/ja/journal/rba-united-incheon-iyibs-2027">保護者向け詳細記事を見る <ArrowRight size={16}/></a></article>
       </div>
     </section>:null}
+    {ja&&!role?<section className="homecourt-product-preview section-pad" aria-label="RBA育成ネットワークに関わる方を募集">
+      <div className="section-head"><div><p className="section-index">RBA NETWORK / GET INVOLVED</p><h2>選手だけでなく、育成を支える仲間を。</h2></div><p>保護者、指導者、会場・運営・地域の協力者、企業、学校、海外の仲間。あなたに合う関わり方から始められます。</p></div>
+      <div className="homecourt-plan-grid">
+        <article className="homecourt-plan-card homecourt-plan-free"><div className="homecourt-plan-card-head"><span>JOIN THE RBA NETWORK</span><strong>¥0</strong></div><h3>育成に関わる、6つの入口</h3><p>選手・保護者、指導者、運営・ボランティア、開催場所、企業、海外連携。登録先と参加・協力の条件を一度に確認できます。</p><a className="button button-member" href="/ja/get-involved">関わり方を探す <ArrowRight size={16}/></a></article>
+        <article className="homecourt-plan-card"><div className="homecourt-plan-card-head"><span>SUPPORT CREW / 18+</span><strong>無料</strong></div><h3>地元でできることから始める</h3><p>受付・通訳・救護・体育館紹介・撮影・広報・企業紹介など。全国の成人協力者を募集しています。登録だけで採用・謝礼・活動日は決定しません。</p><a className="button button-light" href="https://form.jotform.com/263227860681058" target="_blank" rel="noopener noreferrer">成人協力者として無料登録 <ArrowUpRight size={16}/></a></article>
+      </div>
+    </section>:null}
     {ja&&!role?<div className="home-screen-card-wrap"><IPhoneHomeScreenCard/></div>:null}
     {!role?<section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">{clear.kicker}</p><h2>{clear.title}</h2></div><p>{clear.lead}</p></div>
