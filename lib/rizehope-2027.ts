@@ -66,14 +66,21 @@ export const rizehopeProject = {
     totalJpy: null as number | null,
     depositJpy: null as number | null,
     balanceJpy: null as number | null,
-    // Approved only for INTERNAL PLANNING in the 2026-11-19 finance worksheet.
-    // These are NOT payable or confirmed tax-inclusive prices.
-    proposalTotalJpy: 36000,
-    proposalDepositJpy: 15000,
-    proposalBalanceJpy: 21000,
+    // Revised user-approved direction 2026-11-20: PROPOSALS for EOI recruitment,
+    // not a legally binding, tax-reviewed, paid offer. Previous 36k model superseded.
+    proposalEarlyTotalJpy: 22000,
+    proposalRegularTotalJpy: 24800,
+    proposalDepositJpy: 10000,
+    proposalEarlyBalanceJpy: 12000,
+    proposalRegularBalanceJpy: 14800,
+    proposalEarlyQuota: null as number | null, // no fabricated early deadline/cap
     proposalRosterTarget: 14,
     proposalRosterMaximum: 15,
     proposalEventTeamEntryCostJpy: 66000,
+    proposalFixedCostsJpy: 231000, // conditional cost reductions; vendor quotes pending
+    proposalEquipmentJpyPerPlayer: 1500, // rental/lending assumption
+    proposalInsuranceReserveJpyPerPlayer: 1000,
+    proposalPaymentFeeReserveRate: 0.04,
     proposalIsApprovedForPublicPayment: false,
     stripeDepositPriceId: null as string | null,
     stripeBalancePriceId: null as string | null,
