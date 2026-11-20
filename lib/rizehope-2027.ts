@@ -176,8 +176,8 @@ export function isRizehopeUnitedIndividualPaymentReady(): boolean {
     && p.reconciliationToSelectedPlayerVerified
     && Boolean(p.stripeDepositPriceId?.startsWith("price_"))
     && Boolean(p.stripeBalancePriceId?.startsWith("price_"))
-    && Boolean(p.stripeDepositLinkId?.startsWith("plink_"))
-    && Boolean(p.stripeBalanceLinkId?.startsWith("plink_"))
+    // Individual checkouts are generated per approved guardian by a protected admin route.
+    // Static public Payment Links are neither needed nor permitted.
     && !p.genericPublicPaymentLinksAllowed;
 }
 
