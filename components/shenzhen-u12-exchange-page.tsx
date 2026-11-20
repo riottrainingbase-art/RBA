@@ -4,7 +4,7 @@ type Locale = "ja" | "en";
 const links = {
   parents: "https://form.jotform.com/263237260217048?utm_source=rba_site&utm_medium=shenzhen_u12_page&utm_campaign=kanto_exchange_2027",
   teams: "https://form.jotform.com/263217708013047?utm_source=rba_site&utm_medium=shenzhen_u12_page&utm_campaign=kanto_exchange_2027",
-  crew: "https://form.jotform.com/263227860681058?utm_source=rba_site&utm_medium=shenzhen_u12_page&utm_campaign=kanto_exchange_2027",
+  crew: "https://form.jotform.com/263237187851060?utm_source=rba_site&utm_medium=shenzhen_u12_page&utm_campaign=kanto_exchange_2027",
 };
 
 const translations = {
