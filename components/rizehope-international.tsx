@@ -138,6 +138,7 @@ export function RizehopeInternationalPage({lang}:{lang:Language}){
         <p className={styles.kicker}>THREE ROUTES / FREE EXPRESSION OF INTEREST</p>
         <h2 id="rizehope-entry-title">{c.paths}</h2><p className={styles.sectionLead}>{c.pathsIntro}</p>
         <div className={styles.cards}>{c.cards.map((card,i)=><article className={styles.card} key={card.eyebrow}><span className={styles.cardEyebrow}>{card.eyebrow}</span><h3>{card.title}</h3><p>{card.body}</p><a href={entryLinks[i]} target="_blank" rel="noopener noreferrer">{card.cta} <ArrowRight size={16} aria-hidden="true"/></a></article>)}</div>
+        <p className={styles.sectionLead}><a href="/ja/international/rizehope-japan-2027/united">{lang==="ja"?"RBA UNITED｜個人参加・前金・残金の流れを詳しく見る":"RBA UNITED player recruitment and deposit steps (JA)"} <ArrowRight size={16} aria-hidden="true"/></a></p>
       <p className={styles.sectionLead} role="note">{lang==="ja"?
           <>上限に達した場合は、<a href={rizehopeProject.outreach.japanTeamWaitingList} target="_blank" rel="noopener noreferrer">無料キャンセル待ちフォーム</a>をご利用ください。受付順と有効件数は主催窓口が照合します。残席数は自動表示していません。RBA UNITEDは出場が確定した場合に10チームのうちの1チームとして扱い、優先枠はありません。</>:
           <>For Japan-based clubs, a <a href={rizehopeProject.outreach.japanTeamWaitingList} target="_blank" rel="noopener noreferrer">free waiting-list form (Japanese)</a> is available. No preferential slot is reserved for RBA UNITED.</>}
