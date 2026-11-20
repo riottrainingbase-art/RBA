@@ -1,0 +1,51 @@
+name: RBA SNS and Recruitment Consistency QA
+
+on:
+  pull_request:
+    branches: [release/instagram-conversion-hub-20261117, main]
+    paths:
+      - "app/ja/instagram/page.tsx"
+      - "app/ja/links/page.tsx"
+      - "components/localized-home.tsx"
+      - "components/localized-social.tsx"
+      - "components/platform-business-pages.tsx"
+      - "tests/sns-consistency.test.mjs"
+      - ".github/workflows/rba-sns-consistency-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-safety:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out the exact PR commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Source-only recruitment and social regression tests
+        run: node --test tests/sns-consistency.test.mjs
+      - name: Pin pnpm to this repository version
+        run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript compilation checks
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: ESLint for edited pages and regression tests
+        run: >
+          pnpm exec eslint
+          app/ja/instagram/page.tsx
+          app/ja/links/page.tsx
+          components/localized-home.tsx
+          components/localized-social.tsx
+          components/platform-business-pages.tsx
+          tests/sns-consistency.test.mjs
+      - name: Japanese-language source QA
+        run: pnpm run audit:site-ja
+
+# Never run Vercel builds from this feature branch.
+# Actual browser / end-to-end QA is required on one approved preview checkpoint.
