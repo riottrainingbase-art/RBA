@@ -66,7 +66,15 @@ export const rizehopeProject = {
     totalJpy: null as number | null,
     depositJpy: null as number | null,
     balanceJpy: null as number | null,
-    depositRatioCandidatePercent: 50,
+    // Approved only for INTERNAL PLANNING in the 2026-11-19 finance worksheet.
+    // These are NOT payable or confirmed tax-inclusive prices.
+    proposalTotalJpy: 36000,
+    proposalDepositJpy: 15000,
+    proposalBalanceJpy: 21000,
+    proposalRosterTarget: 14,
+    proposalRosterMaximum: 15,
+    proposalEventTeamEntryCostJpy: 66000,
+    proposalIsApprovedForPublicPayment: false,
     stripeDepositPriceId: null as string | null,
     stripeBalancePriceId: null as string | null,
     stripeDepositLinkId: null as string | null,
