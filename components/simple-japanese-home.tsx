@@ -100,6 +100,17 @@ export async function SimpleJapaneseHome() {
             <a href="#home-host">04　地域で開催する</a>
           </nav>
 
+          <section className={styles.section} aria-labelledby="home-rizehope-2027" style={{border:"2px solid #eb7b31",padding:"clamp(20px,4vw,40px)",background:"linear-gradient(135deg,#1b1917,#29231d)",color:"#fff"}}>
+            <p className={styles.label} style={{color:"#ffad70"}}>U12 INTERNATIONAL EXCHANGE / FEB 27–28, 2027</p>
+            <h2 id="home-rizehope-2027" style={{fontSize:"clamp(27px,4vw,42px)",fontWeight:900,lineHeight:1.25,marginTop:12}}>宮城で、世界と出会う2日間。<br/>RIZEHOPE JAPAN 2027</h2>
+            <p style={{marginTop:18,lineHeight:1.9,maxWidth:850}}>柴田町総合体育館で国内外U12チームの育成交流を計画。国内チームは2日間1チーム66,000円（税込）、申込後の前金33,000円を受付中。海外チーム・RBA UNITEDの個人参加は無料の意向登録からご相談いただけます。</p>
+            <p style={{marginTop:10,lineHeight:1.8,fontSize:13,color:"#ddd"}}>会場は両日予約済み。海外出場クラブ・年齢条件・対戦形式は最終調整中です。前金だけでは参加確定とならず、参加不承認・満枠等は全額返金します。</p>
+            <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:20}}>
+              <a href="/ja/international/rizehope-japan-2027" data-growth-id="home-rizehope-2027" style={{display:"inline-flex",padding:"14px 22px",minHeight:52,alignItems:"center",fontWeight:800,color:"#151515",background:"#ff9549"}}>募集内容を見る →</a>
+              <a href="https://form.jotform.com/263223566035050" target="_blank" rel="noopener noreferrer" style={{display:"inline-flex",padding:"14px 22px",minHeight:52,alignItems:"center",fontWeight:800,color:"#fff",border:"1px solid #aaa"}}>国内U12チーム申込 →</a>
+            </div>
+          </section>
+
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>
               <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">あなたに合う、<span className={styles.headingEmphasis}>次の一歩。</span></h2></div>
