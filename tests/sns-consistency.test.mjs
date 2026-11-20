@@ -6,12 +6,15 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 
 test("UNITED distinguishes formal applications from free interest", () => {
   const source = read("components/platform-business-pages.tsx");
-  assert.match(source, /FORMAL APPLICATION \/ VERIFIED/);
+  assert.match(source, /FORMAL APPLICATION \/ DATA-LISTED/);
   assert.match(source, /韓国・仁川 IYIBS 2027/);
   assert.match(source, /無料の参加意向登録/);
   assert.match(source, /263207310187047/);
   assert.match(source, /rizehope-japan-2027\/united/);
   assert.doesNotMatch(source, /現在、募集を確認できるRBA UNITED企画はありません。/);
+  assert.match(source, /Asia\\/Tokyo|9\\*60\\*60\\*1000/);
+  assert.match(source, /Japan-only free-interest notices/);
+  assert.doesNotMatch(source, /Free expressions of interest appear separately below/);
 });
 
 test("public social handles are their actual handles", () => {
