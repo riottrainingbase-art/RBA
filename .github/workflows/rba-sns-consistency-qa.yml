@@ -10,6 +10,7 @@ on:
       - "components/localized-social.tsx"
       - "components/platform-business-pages.tsx"
       - "tests/sns-consistency.test.mjs"
+      - "docs/runbooks/rba-sns-38-fixes-release-20261120.md"
       - ".github/workflows/rba-sns-consistency-qa.yml"
   workflow_dispatch:
 
