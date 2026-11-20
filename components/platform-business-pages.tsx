@@ -7,6 +7,11 @@ import { tr } from "./network-data";
 const pick=<T,>(locale:Locale,value:{en:T;ja:T;"zh-tw":T;ko:T})=>value[locale];
 
 
+function currentJapanDate(){
+  // Resolve server clock outside React render, using the calendar day in Japan.
+  return new Date(Date.now()+9*60*60*1000).toISOString().slice(0,10);
+}
+
 function PlatformPage({locale,kind}:{locale:Locale;kind:"united"|"connect"|"organizer"}){
   const data={
     united:pick(locale,{en:{tag:"INDIVIDUAL PARTICIPATION",title:"Go beyond your club. Return stronger.",lead:"RBA UNITED brings individually registered players together for a defined tournament, trip or exchange. It does not replace their home team.",cards:[["01","Apply as an individual","Check age, dates, purpose and total cost before applying."],["02","Form a time-limited team","Roles, safeguarding and staff responsibility are stated for every programme."],["03","Keep the history","Participation and the next opportunity stay connected to your RBA ID."]],cta:"See available programmes"},ja:{tag:"個人参加型プログラム",title:"所属チームの枠を越えて集まり、成長を持ち帰る。",lead:"RBA UNITEDは、個人で申し込んだ選手が、大会・遠征・国際交流などの企画ごとに期間限定のチームを組む仕組みです。現在の所属チームでの活動を続けながら参加できます。",cards:[["01","個人で申し込む","対象年代、日程、目的、総費用を確認したうえで申し込みます。"],["02","期間限定のチームをつくる","選手とスタッフの役割、安全管理、引率責任を企画ごとに明示します。"],["03","経験を記録に残す","参加履歴をRBA IDに記録し、次の機会へつなげます。"]],cta:"現在参加できる活動を見る"},"zh-tw":{tag:"個人參加型計畫",title:"跨越所屬團隊，把成長帶回去。",lead:"RBA UNITED讓個人報名球員為特定大會、遠征或交流組成期間限定團隊，不取代原所屬團隊。",cards:[["01","個人申請","申請前確認年齡、日期、目的與總費用。"],["02","期間限定團隊","每項計畫明示角色、安全與帶隊責任。"],["03","保留參加紀錄","以RBA ID連結參加歷史與下一個機會。"]],cta:"查看可參加活動"},ko:{tag:"개인 참가 프로그램",title:"소속을 넘어 모이고, 성장을 가져갑니다.",lead:"RBA UNITED는 개인 참가 선수가 대회·원정·국제교류별로 기간 한정 팀을 구성합니다. 기존 소속팀을 대체하지 않습니다.",cards:[["01","개인 신청","연령, 일정, 목적과 총비용을 확인합니다."],["02","기간 한정 팀","역할, 안전과 인솔 책임을 프로그램별로 명시합니다."],["03","참가 이력","RBA ID로 참가 기록과 다음 기회를 연결합니다."]],cta:"참가 가능한 프로그램"}}),
@@ -14,7 +19,7 @@ function PlatformPage({locale,kind}:{locale:Locale;kind:"united"|"connect"|"orga
     organizer:pick(locale,{en:{tag:"ORGANIZER HOME",title:"One operating path from recruitment to completion.",lead:"A future workspace for tournament and event organisers. RBA is building the data foundation first; operations open only after payment, staffing and safeguarding rules are verified.",cards:[["BUILD","Create and recruit","Programme details, categories, capacity, multilingual guidance and team intake."],["OPERATE","Run the event","Participants, payment status, staff, officials, venue and communication."],["CLOSE","Complete responsibly","Receipts, results, incident records and participation history."]],cta:"Discuss an organizer project"},ja:{tag:"大会・イベント主催者向け",title:"募集から開催後まで、大会運営を一つにつなぐ。",lead:"ORGANIZER HOMEは、大会・イベント主催者の業務を一つにまとめるワークスペースとして開発を進めています。決済、人員配置、安全管理の運用を確認できた機能から、段階的に提供します。",cards:[["BUILD","大会を企画し、参加者を募集する","大会情報、カテゴリー、定員、多言語での案内、チームの受付をまとめます。"],["OPERATE","大会を運営する","参加者、支払い状況、スタッフ、審判、会場、連絡事項を管理します。"],["CLOSE","開催後の記録を残す","領収書、結果、事故・トラブルの記録、参加履歴を保管します。"]],cta:"主催者向けサービスを相談する"},"zh-tw":{tag:"主辦方專區",title:"從招募到完成，統一營運流程。",lead:"ORGANIZER HOME是大會與活動主辦方的未來工作區。付款、人力與兒少安全規則確認後分階段開放。",cards:[["BUILD","建立與招募","活動資料、類別、名額、多語案內與團隊受理。"],["OPERATE","活動營運","參加者、付款、工作人員、裁判、場地與聯絡。"],["CLOSE","負責完成","收據、結果、事故紀錄與參加歷史。"]],cta:"洽詢主辦方服務"},ko:{tag:"주최자 전용",title:"모집부터 종료까지 운영을 하나로 연결합니다.",lead:"ORGANIZER HOME는 대회·이벤트 주최자의 미래 업무 공간입니다. 결제, 인력과 안전 운영이 확인된 기능부터 단계적으로 제공합니다.",cards:[["BUILD","대회 개설과 모집","정보, 카테고리, 정원, 다국어 안내와 팀 접수."],["OPERATE","행사 운영","참가자, 결제, 스태프, 심판, 장소와 연락."],["CLOSE","책임 있는 마감","영수증, 결과, 사고 기록과 참가 이력."]],cta:"주최자 서비스 상담"}})
   }[kind];
   const Icon=kind==="united"?Users:kind==="connect"?Globe2:Trophy;
-  const today=new Date(Date.now()+9*60*60*1000).toISOString().slice(0,10); // Japanese calendar date (JST, no DST)
+  const today=currentJapanDate();
   const unitedProgrammes=kind==="united"?programmes
     .filter(programme=>!programme.registrationClosed&&programme.startDate>=today&&programme.pathway==="united")
     .slice(0,3):[];
