@@ -52,6 +52,8 @@ test("link hub leads to official activities, social directory and founder readin
   const page = source("app/ja/links/page.tsx");
   for (const value of ["/ja/united", "/ja/social", "/ja/my-homecourt", "/ja/contact", "にしお まさと"]) contains(page, value);
   contains(page, "/ja/supporters");
+  contains(page, "href: \"https://form.jotform.com/263207310187047\"");
+  contains(page, "出場・旅行・支払いは確定しません");
   excludes(page, "rbaofficialnm2.wixsite.com");
 });
 
