@@ -10,6 +10,7 @@ on:
       - "tests/rizehope-international-hub.test.mjs"
       - "tests/rizehope-payment-ops.test.mjs"
       - "tests/rizehope-united-flow.test.mjs"
+      - "tests/rizehope-united-payment-ops.test.mjs"
       - "app/api/rizehope-2027/**"
       - "supabase/migrations/*rizehope_2027*"
       - ".github/workflows/rizehope-international-hub-qa.yml"
@@ -24,6 +25,7 @@ on:
       - "tests/rizehope-international-hub.test.mjs"
       - "tests/rizehope-payment-ops.test.mjs"
       - "tests/rizehope-united-flow.test.mjs"
+      - "tests/rizehope-united-payment-ops.test.mjs"
       - "app/api/rizehope-2027/**"
       - "supabase/migrations/*rizehope_2027*"
 permissions:
@@ -40,7 +42,7 @@ jobs:
         with:
           node-version: "24"
       - name: Event accuracy, payment and photo safeguards
-        run: node --test tests/rizehope-international-hub.test.mjs tests/rizehope-payment-ops.test.mjs tests/rizehope-united-flow.test.mjs
+        run: node --test tests/rizehope-international-hub.test.mjs tests/rizehope-payment-ops.test.mjs tests/rizehope-united-flow.test.mjs tests/rizehope-united-payment-ops.test.mjs
       - name: Pin pnpm
         run: corepack enable && corepack prepare pnpm@11.25.0 --activate
       - name: Install dependencies
@@ -48,6 +50,6 @@ jobs:
       - name: Type check
         run: pnpm exec tsc --noEmit --pretty false
       - name: ESLint for project files
-        run: pnpm exec eslint app/ja/international/rizehope-japan-2027/united/page.tsx tests/rizehope-united-flow.test.mjs app/ja/international/rizehope-japan-2027/page.tsx app/international/rizehope-japan-2027/page.tsx components/rizehope-international.tsx components/international-platform.tsx lib/rizehope-2027.ts tests/rizehope-international-hub.test.mjs tests/rizehope-payment-ops.test.mjs app/api/rizehope-2027/admin/checkout/route.ts app/api/rizehope-2027/stripe-webhook/route.ts app/ja/international/rizehope-japan-2027/admin/page.tsx app/ja/international/rizehope-japan-2027/admin/actions.ts app/ja/international/rizehope-japan-2027/admin/checkout-control.tsx
+        run: pnpm exec eslint app/ja/international/rizehope-japan-2027/united/page.tsx app/ja/international/rizehope-japan-2027/united/admin/page.tsx app/ja/international/rizehope-japan-2027/united/admin/actions.ts app/ja/international/rizehope-japan-2027/united/admin/checkout-control.tsx app/api/rizehope-2027/united/admin/checkout/route.ts app/api/rizehope-2027/united/stripe-webhook/route.ts tests/rizehope-united-flow.test.mjs tests/rizehope-united-payment-ops.test.mjs app/ja/international/rizehope-japan-2027/page.tsx app/international/rizehope-japan-2027/page.tsx components/rizehope-international.tsx components/international-platform.tsx lib/rizehope-2027.ts tests/rizehope-international-hub.test.mjs tests/rizehope-payment-ops.test.mjs app/api/rizehope-2027/admin/checkout/route.ts app/api/rizehope-2027/stripe-webhook/route.ts app/ja/international/rizehope-japan-2027/admin/page.tsx app/ja/international/rizehope-japan-2027/admin/actions.ts app/ja/international/rizehope-japan-2027/admin/checkout-control.tsx
       - name: Site Japanese style audit
         run: pnpm run audit:site-ja
