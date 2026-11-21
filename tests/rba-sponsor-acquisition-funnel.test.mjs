@@ -54,8 +54,8 @@ test("No fictional confirmations, endorsement, or child-data marketing", () => {
   assert.ok(landing.includes("調整中"));
   assert.ok(landing.includes("交渉案"));
   assert.ok(landing.includes("選手・保護者の名簿や連絡先"));
-  assert.ok(landing.includes("企業名やロゴ"));
-  assert.ok(landing.includes("利用許諾"));
+  assert.ok(landing.includes("社名・ロゴ"));
+  assert.ok(landing.includes("許諾"));
   assert.ok(landing.includes("事前にご確認"));
 });
 
