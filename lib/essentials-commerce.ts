@@ -99,7 +99,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
         p.RBA_ESSENTIALS_RBA_OPERATOR_USER_ID ?? ""
       ) &&
-      /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(p.RBA_ESSENTIALS_RBA_OPERATOR_EMAIL ?? "")
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.RBA_ESSENTIALS_RBA_OPERATOR_EMAIL ?? "")
     : fulfillmentMode === "supplier_login"
       ? ["RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED", "RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED"]
         .every(key => isApproved(p[key]))
