@@ -32,12 +32,12 @@ export async function essentialsFulfillmentCanAcceptOrders(): Promise<boolean> {
           process.env.RBA_ESSENTIALS_RBA_SUPPLIER_HANDOFF_VERIFIED !== "true") return false;
       const operatorId = process.env.RBA_ESSENTIALS_RBA_OPERATOR_USER_ID?.trim() || "";
       if (!UUID.test(operatorId)) return false;
-      const [profile, identity] = await Promise.all([
-        db.from("profiles").select("role").eq("id",operatorId).maybeSingle(),
-        db.auth.admin.getUserById(operatorId),
-      ]);
-      return !profile.error && profile.data?.role === "admin" &&
-        !identity.error && !!identity.data.user?.email_confirmed_at;
+      const expectedEmail = process.env.RBA_ESSENTIALS_RBA_OPERATOR_EMAIL?.trim().toLowerCase();
+      if (!expectedEmail || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(expectedEmail)) return false;
+      const {data,error} = await db.auth.admin.getUserById(operatorId);
+      return !error && !!data.user && data.user.id === operatorId &&
+        !!data.user.email_confirmed_at &&
+        data.user.email?.trim().toLowerCase() === expectedEmail;
     }
 
     if (mode === "supplier_login") {
