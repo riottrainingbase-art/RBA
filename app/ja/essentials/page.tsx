@@ -64,7 +64,7 @@ export default function EssentialsCollectionPage() {
             <p className={styles.frontKicker}>COLLECTION 001 / LOOKBOOK</p>
             <h2 id="rba-lookbook-title">LESS LOGO. MORE EVERYDAY.</h2>
             <p>WHITE TEE と BLACK SETUP。練習や移動、日常の延長で着られるミニマルなRBAコレクションです。</p>
-            <p className={styles.frontLookbookNotice}>以下の写真はデザインイメージです。実際の製品写真ではありません。描かれたタグ・ワッペンは正式ロゴの版下ではなく、素材・サイズ・価格・製造・発送時期は検証中です。ご注文・ご予約・決済は受け付けていません。</p>
+            <p className={styles.frontLookbookNotice}>以下の写真はデザインイメージです。実際の製品写真ではありません。描かれたタグ・ワッペンは製造用の正式ロゴ版下ではありません。販売予定価格はWHITE TEE税込6,600円・BLACK SETUP税込19,800円、FIRST DROP国内送料無料です。素材のメーカー品番は決定していますが、加工後の実寸・製造品質・納期・返品条件は最終確認中です。ご注文・ご予約・決済は受け付けていません。</p>
           </header>
           <div className={styles.frontLookbookGrid}>
             {ESSENTIALS_COLLECTION_GALLERY.map(photo=><figure key={photo.src}>
@@ -91,7 +91,7 @@ export default function EssentialsCollectionPage() {
               );
             })}
           </div>
-          <p className={styles.previewNote}>商品画像はイメージです。素材・実寸は各商品ページでご確認ください。</p>
+          <p className={styles.previewNote}>商品画像はCGイメージです。メーカー素材情報は各商品ページで確認できます。加工後の実寸表と確定仕様は販売開始前に公開します。</p>
         </section>
 
         <section id="handwritten" className={styles.frontHandwritten} aria-labelledby="handwritten-title">
@@ -135,7 +135,7 @@ export default function EssentialsCollectionPage() {
           </details>
           <details>
             <summary>送料とお届け</summary>
-            <p>{commerce.ready ? `FIRST DROPは日本国内送料無料です。発送期限は${commerce.dispatchDeadline}、お届け期限は${commerce.deliveryDeadline}です。` : "国内送料とお届け時期は、受付開始前にご案内します。"}</p>
+            <p>{commerce.ready ? `FIRST DROPは日本国内送料無料です。発送期限は${commerce.dispatchDeadline}、お届け期限は${commerce.deliveryDeadline}です。` : "FIRST DROPの日本国内送料は無料（0円）です。発送日・お届け期限は製造・物流の確定後、受付開始前にご案内します。"}</p>
           </details>
           <details>
             <summary>素材・サイズ・返品</summary>
