@@ -13,6 +13,10 @@ const en = {
   domesticDesc: "Two-day team fee: ¥66,000 incl. tax. Initial deposit ¥33,000 and remaining ¥33,000 after review. A deposit alone does not confirm entry. Travel, hotel and meals are separate; published refund safeguards apply.",
   international: "Overseas U12 teams",
   internationalDesc: "International team fees and eligibility are not final. Start with a free, non-binding expression of interest. No travel or entry payment is requested at this stage.",
+  united: "RBA UNITED — Individual U12 players",
+  unitedDesc: "For Japan-based families who want to explore a temporary development team without changing clubs. Guardian-only free expression of interest; selection, team entry and individual price are not confirmed. No payment at this stage.",
+  ctaUnited: "Guardian: Register interest free",
+  learnUnited: "Read individual participation details",
   ctaDomestic: "Domestic team interest",
   ctaInternational: "Overseas team interest — FREE",
   transferTitle: "Airport arrival & group transfer options",
@@ -46,6 +50,10 @@ const ja = {
   domesticDesc: "2日間・1チーム66,000円（税込）。前金33,000円、承認後に残金33,000円。前金のみで参加確定にはなりません。交通・宿泊・食事は別途。参加不承認等の返金条件は募集資料をご確認ください。",
   international: "海外U12チーム",
   internationalDesc: "海外参加費と出場資格は未確定です。まずは無料の参加意向登録から。現段階では旅行・大会の支払いをお願いしません。",
+  united: "RBA UNITED｜個人で参加したい選手・保護者",
+  unitedDesc: "所属チームを変えずに、全国から集まる期間限定チームへの参加を検討する方向け。保護者が無料で意向登録できます。選考・出場・個人参加費は未確定で、今は決済不要です。",
+  ctaUnited: "保護者から無料で参加意向を登録",
+  learnUnited: "参加までの流れ・料金の考え方を見る",
   ctaDomestic: "国内チームの無料意向登録",
   ctaInternational: "海外チーム・無料意向登録（英語）",
   transferTitle: "成田・仙台空港からの送迎案",
@@ -89,6 +97,7 @@ export function RizehopeEventLanding({locale}:{locale:Locale}){
       <section><h2 style={{fontSize:27,marginBottom:18}}>{t.section1}</h2><div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(270px,1fr))",gap:16}}>
         <div style={card}><h3>{t.domestic}</h3><p style={{lineHeight:1.75}}>{t.domesticDesc}</p><a href="https://form.jotform.com/263220855042046" target="_blank" rel="noopener noreferrer">{t.ctaDomestic} ↗</a></div>
         <div style={card}><h3>{t.international}</h3><p style={{lineHeight:1.75}}>{t.internationalDesc}</p><a href="https://form.jotform.com/263221234159047" target="_blank" rel="noopener noreferrer">{t.ctaInternational} ↗</a></div>
+        <div style={card}><h3>{t.united}</h3><p style={{lineHeight:1.75}}>{t.unitedDesc}</p><a href="https://form.jotform.com/263221266794057" target="_blank" rel="noopener noreferrer" style={{display:"inline-block",background:"#f28a38",color:"#172027",fontWeight:800,padding:"12px 18px",borderRadius:9,marginBottom:12}}>{t.ctaUnited} ↗</a><div><a href="/ja/international/rizehope-japan-2027/united">{t.learnUnited} →</a></div></div>
       </div></section>
       <section style={{marginTop:46}}><h2 style={{fontSize:27}}>{t.transferTitle}</h2><p style={{lineHeight:1.75,maxWidth:900}}>{t.transferNote}</p><div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))",gap:14}}>{t.options.map(([title,desc])=><article key={title} style={card}><h3 style={{fontSize:17,marginTop:0}}>{title}</h3><p style={{lineHeight:1.7}}>{desc}</p></article>)}</div><div style={{marginTop:14,padding:18,background:"#e7ecea",borderRadius:12}}><strong>{t.capacityTitle}</strong><p style={{marginBottom:0,lineHeight:1.7}}>{t.capacity}</p></div></section>
       <section style={{marginTop:46,...card}}><h2 style={{marginTop:0}}>{t.sponsorTitle}</h2><p style={{lineHeight:1.75}}>{t.sponsorDesc}</p><a href="/international/partner-with-us">{t.ctaSponsors} ↗</a></section>
