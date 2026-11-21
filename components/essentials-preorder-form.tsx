@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ESSENTIALS_INTEREST_FORM } from "@/lib/rba-essentials";
 import { ESSENTIALS_TEE_SIZES, ESSENTIALS_HOODIE_SIZES, ESSENTIALS_PANTS_SIZES } from "@/lib/essentials-size-options";
@@ -32,17 +32,23 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
   const [handwrittenTarget,setHandwrittenTarget]=useState<"tee"|"setup">(initial);
   const [accepted,setAccepted]=useState(false);
   const [acceptedTerms,setAcceptedTerms]=useState(false);
-  const [acknowledged,setAcknowledged]=useState(false);
+  const [submitting,setSubmitting]=useState(false);
+  const submissionStarted=useRef(false);
+  const preventDuplicateSubmission=(event:FormEvent<HTMLFormElement>)=>{
+    if(submissionStarted.current){event.preventDefault();return;}
+    submissionStarted.current=true;
+    setSubmitting(true);
+  };
   const handwrittenCharge = handwritten && handwrittenAvailable ? (handwrittenJPY??0) : 0;
   const subtotal=(teeJPY??0)*teeQty+(setupJPY??0)*setupQty+handwrittenCharge;
   const shipping=(teeQty+setupQty>0?(shippingJPY??0):0);
   const handwrittenTargetValid=handwrittenTarget==="tee"?teeQty===1:setupQty===1;
   const handwrittenValid = !handwritten || (handwrittenAvailable && handwrittenTargetValid);
   const sizesSelected = (teeQty === 0 || !!teeSize) && (setupQty === 0 || (!!hoodieSize && !!pantsSize));
-  const canCheckout=sizesSelected&&available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&acknowledged&&handwrittenValid;
+  const canCheckout=sizesSelected&&available&&teeQty+setupQty>=1&&teeQty+setupQty<=3&&accepted&&acceptedTerms&&handwrittenValid&&!submitting;
   return <div className="epWrap">
     <div className="epHead"><p>RBA STORE / COLLECTION 001 / PRE-ORDER</p><h1>サイズ・ご注文</h1><p>公式ウェアの先行購入。国内送料無料はFIRST DROP限定。商品・サイズ・数量を選び、確定条件をご確認のうえStripe決済へお進みください。</p></div>
-    {available ? <form method="POST" action="/api/commerce/essentials-preorder" className="epForm">
+    {available ? <form method="POST" action="/api/commerce/essentials-preorder" onSubmit={preventDuplicateSubmission} className="epForm">
       <div className="epLeft">
         <div className="epLine"><span>01 / THE ITEMS</span><span>SELECT & SIZE</span></div>
         <div className="epItem">
@@ -96,8 +102,8 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
         <input type="hidden" name="terms_version" value={termsVersion??""}/>
         <label className="epConsent"><input type="checkbox" checked={accepted} onChange={e=>setAccepted(e.target.checked)} name="accept_preorder" value="yes"/>先行販売であること、決済が先に行われ、発送期限が{deliveryBy}、お届け期限が{arrivalBy}であることを確認しました。</label>
         <label className="epConsent"><input type="checkbox" checked={acceptedTerms} onChange={e=>setAcceptedTerms(e.target.checked)} name="accept_terms" value="yes"/>商品・数量・合計金額・キャンセル・返品条件を確認し、同意します。</label>
-        <label className="epConsent"><input type="checkbox" checked={acknowledged} onChange={e=>setAcknowledged(e.target.checked)} name="accept_development_use" value="yes"/>販売による利益をRBAの育成活動に活用する方針を確認しました。</label>
-        <button className="epPay" type="submit" disabled={!canCheckout}>Stripe決済へ進む <span aria-hidden="true">↗</span></button>
+        <p className="epSmallNotice">必要経費を差し引いた販売利益はRBAの育成活動に活用する方針です。商品購入は寄付ではなく、寄付金控除の対象ではありません。</p>
+        <button className="epPay" type="submit" disabled={!canCheckout}>{submitting?"Stripeへ移動中・再送信しないでください":"Stripe決済へ進む"} <span aria-hidden="true">↗</span></button>
         <p className="epFine">{!sizesSelected ? "選んだ商品のサイズを指定してください。" : "数量と販売条件を確認してから、Stripeへ進んでください。"}</p>
       </aside>
     </form>:<section className="epOffline"><p>PRE-ORDER / COMING SOON</p><h2>First, we make it right.</h2><p>ホワイトTシャツ6,600円、ブラックパーカー上下19,800円（税込）。FIRST DROPの国内送料は無料です。現在は製造品質・納期・返品条件・決済の確認中につき、お支払いを受け付けていません。</p><a href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">発売前の関心登録（決済なし） ↗</a><Link href="/ja/store">RBA STOREに戻る ↗</Link></section>}
