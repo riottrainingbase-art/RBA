@@ -20,6 +20,18 @@ export const metadata: Metadata = {
 
 const offers = [
   {
+    slug: "u12-guide",
+    category: "FOR COACHES / ONE-TIME",
+    title: "U12の練習を、試合につながるものへ。",
+    name: "RBA COACHING GUIDE Vol.1",
+    description: "90分の練習例、4週間の取り組み方、観察チェックリストを収録。ゲームの中で選手が何を見て、どう選ぶかを考えるための指導教材です。",
+    price: "3,300円（税込）・買い切り",
+    action: "教材を確認して購入する",
+    href: "/ja/materials/u12-fundamentals",
+    note: "月額課金への自動加入はありません。RBA IDでログインしてお申し込みください。決済情報を照合した購入者が閲覧できます。購入済みなら再決済不要です。",
+    external: false,
+  },
+  {
     slug: "coach",
     category: "FOR COACHES / MONTHLY",
     title: "毎週の指導を、少しずつ良くする。",
