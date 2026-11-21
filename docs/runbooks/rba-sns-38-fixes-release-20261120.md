@@ -88,3 +88,15 @@ Do not force a canonical LINE URL until all current shortened URLs resolve to th
 - Jotform phone field was changed to optional Japanese/international-friendly format; the legacy US mask was not visible on public read-back; existing one submission remains.
 
 Do not send marketing emails, create travel bookings, change guest invitations or enable payments as part of this PR.
+
+
+## 2026-11-21 implementation check — source audit workbook
+- Re-read all four sheets of `Riot_SNS_check_2026-11-20.xlsx`: 38 issues = 11 high / 19 medium / 8 low. A 38-row execution workbook with owner/account action, ready-to-use wording and a formula-based dashboard was prepared separately for operations.
+- GitHub PR #516 remains OPEN / DRAFT / UNMERGED at `f3da3a5c0aa64eacb9f16604b2f77171f62dec1a`; six numbered audit items have changes in code, not in the production site. Never count this as a six-item public fix.
+- GitHub Actions `RBA SNS and Recruitment Consistency QA` run `44724655471` completed with success for that SHA. Vercel status checks for other projects still include rate-limit failures; these are not equivalent to the RBA site's official release QA.
+- Verified correct official Vercel project: `rba_site_v11_portal_ready` / `prj_ToviFjFURKMeQe7Gci5K4XLAfwAE`, with verified domains `riotbasketballacademy.com` and `www.riotbasketballacademy.com`.
+- A scoped STAGING preview attempt for the PR exact SHA was made on the official project: deployment `dpl_3Xjjrm45gKxXWdsiZZrweiXDXeDU`. **Canceled by the intentional ignored-build gate**, log: `[vercel-ignore] skip Git deployment for fix/sns-audit-consistency-20261120; only preview-rba may build`. Do not work around this guard by spoofing a ref or overwriting an unrelated release branch. The next step is reviewed consolidation into the authorised `preview-rba` release checkpoint, followed by browser/form QA.
+- Google Calendar `primary` on 2026-11-25 lists Torsten Loibl Vol.2 at **20:00–21:30 JST**, but no second India-themed online clinic on that date. The Instagram-advertised `16:30–18:00 IST` overlaps exactly; responsible organisers must resolve the public claim before sending updated invitations or moving the confirmed event.
+- Public indexed English homepage still displayed `3,000+` and `25 activity locations` during the read-back; no source-grounded basis for calling the production correction complete.
+- Linktree credentials were not available via a confirmed signed-in browser context. The legacy Wix button and expired event buttons require an authorised Linktree sign-in and editor action, rather than claiming the PR updates them.
+- No payments, bookings, messages, subscriptions, external-profile edits, website production release, or customer-data updates were performed in this check.
