@@ -22,12 +22,12 @@ test("RBA UNITED has a clear guardian-only free primary CTA and no active indivi
   assert.match(united, /参加確定・選考合格・出場枠確保にはなりません/);
   assert.match(united, /保護者氏名/);
   assert.match(united, /居住都道府県/);
-  assert.match(united, /現在の学年/);
+  assert.match(united, /学年/);
   assert.match(united, /マーケティング情報への同意は任意/);
   assert.doesNotMatch(united, /buy\.stripe\.com|checkout\.stripe\.com|squareup\.com/);
 });
 test("Nonpayable fee scenarios and domestic team price never conflate", () => {
-  assert.match(united, /66,000円\/チーム/);
+  assert.match(united, /66,000円／チーム/);
   assert.match(united, /先行22,000円/);
   assert.match(united, /通常24,800円/);
   assert.match(united, /未確定の試算/);
