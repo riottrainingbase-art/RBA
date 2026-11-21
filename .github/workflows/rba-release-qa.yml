@@ -108,6 +108,9 @@ jobs:
       - name: Brand support publishing approval gate
         run: node --test tests/361-homepage-partner-approval.test.mjs
 
+      - name: Japanese sponsorship conversion and contract safety audit
+        run: node --test tests/rba-sponsor-acquisition-funnel.test.mjs
+
       - name: Corporate partner link, accessibility, and historical status checks
         run: node --test tests/corporate-support-link-targets.test.mjs
 
