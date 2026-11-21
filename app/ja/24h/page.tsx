@@ -178,6 +178,7 @@ export default function Rba24HourPage() {
             <p>料金、参加資格、すでに支払った場合のお手続きなど、分からないことがあればご連絡ください。</p>
             <div className={styles.helpActions}>
               <a href="https://form.jotform.com/263243557140049" target="_blank" rel="noopener noreferrer" data-growth-id="24h-paid-access-help">支払済み・アクセスできない方はこちら →</a>
+              <a href="https://form.jotform.com/263243206556051" target="_blank" rel="noopener noreferrer" data-growth-id="24h-advertiser-intake">契約済み企業はこちら：掲載情報・ロゴ許諾を登録 →</a>
               <a href="mailto:riot.training.base@gmail.com?subject=RBA%20%E7%94%B3%E8%BE%BC%E3%81%BF%E3%83%BB%E6%B1%BA%E6%B8%88%E3%81%AE%E7%9B%B8%E8%AB%87">RBAにメールする →</a>
             </div>
           </section>
