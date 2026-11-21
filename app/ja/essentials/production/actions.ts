@@ -2,6 +2,7 @@
 
 import { createClient as serviceClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { sendEssentialsShipmentNotice } from "@/lib/essentials-shipment-notices";
@@ -35,7 +36,7 @@ export async function updateEssentialsProduction(form:FormData){
    publicClient.from("profiles").select("role").eq("id",user.id).maybeSingle(),
    admin.from("rba_essentials_fulfillment_agents").select("active").eq("user_id",user.id).eq("active",true).eq("access_role","production").maybeSingle(),
  ]);
- if(profile.data?.role!=="admin" && (!agent.data?.active||!!agent.error))notFound();
+ if(profile.data?.role!=="admin" && !await isRbaStoreOwner(user.id) && (!agent.data?.active||!!agent.error))notFound();
 
  const orderId=txt(form,"order_id",50),stage=txt(form,"stage",50);
  if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(orderId))done("invalid");
