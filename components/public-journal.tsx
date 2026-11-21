@@ -8,6 +8,7 @@ import { JournalReaderTools } from "@/components/journal-reader-tools";
 import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 import { JournalPracticeGuides } from "@/components/journal-practice-guides";
 import { NoteBridge } from "@/components/note-bridge";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -104,6 +105,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
     {label:"判断を増やす練習をつくりたい",slug:"small-sided-games"}
   ];
   return <SiteFrame locale={locale} languagePage="journal">
+    <GrowthClickTracking />
     <div className="journal-hub journal-cms">
       <section className="journal-cms-hero section-pad">
         <p className="section-index">{c.kicker}</p>
@@ -329,7 +331,7 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
         <span>{String(index+1).padStart(2,"0")}</span><p className="note-tag">{categoryLabels[locale][item.category as keyof typeof categoryLabels.en]||item.category}</p><h3>{item.title}</h3><p>{item.standfirst}</p><strong>{c.read}<ArrowRight size={16}/></strong>
       </Link>)}</div>
     </section>:null}
-    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、育成機会、参加履歴を一つのRBA IDでつなぐ無料の入口です。</p><a className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の行動に変える。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}</footer>
+    <footer className="article-convert section-pad"><p className="section-index inverse">RBA / NEXT STEP</p><h2>{post.cta_title||c.exchangeTitle}</h2><p>{post.cta_body||c.exchangeBody}</p>{locale==="ja"?<div className="homecourt-plan-grid" style={{marginTop:"1.5rem"}}><article className="homecourt-plan-card"><span>FREE / RBA ID</span><h3>まずは知る・探す・残す。</h3><p>JOURNAL、育成機会、参加履歴を一つのRBA IDでつなぐ無料の入口です。</p><a className="button button-light" href="/ja/my-homecourt/login">無料でRBA IDをつくる<ArrowRight size={17}/></a></article><article className="homecourt-plan-card homecourt-plan-paid"><span>HOMECOURT PLUS / ¥3,300</span><h3>教科書を、次の行動に変える。</h3><p>DEVELOPMENT LIBRARYの教科書・DEEP DIVE・実践ガイドを使い、試す・振り返る・次を決めるところまで続けたい方へ。</p><a className="button button-member" href="/ja/homecourt-plus">HOMECOURT PLUSを見る<ArrowRight size={17}/></a></article></div>:null}<div><Link className="button button-light" href={journalRoot(locale)}>{c.back}<ArrowRight size={17}/></Link>{locale==="ja"?<Link className="button button-dark" href={post.category==="coaching"?"/ja/my-homecourt/coaches":post.category==="families"?"/ja/my-homecourt/families":post.category==="international"?"/ja/international":"/ja/my-homecourt/players"}>自分向けのHOMEを見る <ArrowRight size={17}/></Link>:<Link className="button button-dark" href={localePath(locale,"international")}>International <ArrowRight size={17}/></Link>}</div>{locale==="ja"?<p style={{marginTop:"1rem"}}>無料で知る・探すところから始めても構いません。継続的に学びを残したい方はHOMECOURT PLUSへ進めます。</p>:null}{locale==="ja"?<p style={{marginTop:"0.75rem",fontSize:"0.9rem",lineHeight:1.8}}>記事に共感し、RBAの育成活動を気軽に応援したい方へ。<Link href="/ja/supporters" data-growth-id="journal-supporters-note-500">月500円のRBA応援メンバー</Link>という任意の月額プランもあります。HOMECOURT PLUSとは別のサービスです。</p>:null}</footer>
   </article></SiteFrame>;
 }
 

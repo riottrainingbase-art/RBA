@@ -69,6 +69,9 @@ jobs:
       - name: Site-wide route sitemap and expired registration audit
         run: node audit/site-wide/check.mjs
 
+      - name: Note membership pricing and conversion safety regression
+        run: node --test tests/rba-note-membership.test.mjs
+
       - name: MY HOME COURT growth privacy and trend regression
         run: node --test tests/homecourt-growth-visualization.test.mjs
 
