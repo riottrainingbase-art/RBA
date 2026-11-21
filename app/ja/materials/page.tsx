@@ -57,6 +57,7 @@ export default async function Page() {
       </div>
     </section>
 
+    <section className="access-promise section-pad"><p className="section-index">COMPARE / ほかの学びと比較</p><div><h2>一度買い切りの教材と、月額の継続学習は別です。</h2><p>この教材は1回3,300円（税込）。HOMECOURT PLUS・D-HUB COACH LABはそれぞれ月額3,300円（税込）の別サービスです。必要な内容だけ選べます。</p><p><a href="/ja/learning" data-growth-id="materials-compare-learning">RBAの学び方と料金を比較する →</a></p></div></section>
     <section className="access-promise section-pad">
       <p className="section-index">SOURCE / POSITION</p>
       <div>
