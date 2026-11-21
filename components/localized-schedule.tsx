@@ -29,6 +29,25 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
         <article><span>04</span><strong>KEEP</strong><p>参加後はMY HOME COURTに経験を記録する。</p></article>
       </div>
     </section>:null}
+    {locale === "ja" && <section className="event-list section-pad" id="clinic-2027-q1" aria-labelledby="clinic-2027-q1-title">
+      <div className="section-head">
+        <div><p className="section-index"><CalendarDays size={15}/> 2027年1〜3月</p><h2 id="clinic-2027-q1-title">育成クリニックの開催候補</h2></div>
+        <p>日程は変更になる場合があります。会場・対象・参加費・申込方法は、開催が決まり次第お知らせします。</p>
+      </div>
+      <article>
+        <time dateTime="2027-01-23"><strong>1月23日（土）</strong><span>第一候補</span></time>
+        <div><p className="note-tag">開催調整中</p><h3>岩手・宮古｜RBA育成クリニック</h3><p>会場の利用可否を確認中です。</p></div>
+      </article>
+      <article>
+        <time dateTime="2027-02-13"><strong>2月13日（土）</strong><span>第一候補・予備日2月14日（日）</span></time>
+        <div><p className="note-tag">開催調整中</p><h3>山形・新庄｜U12・U15 RBA育成クリニック</h3><p>会場の利用可否を確認中です。</p></div>
+      </article>
+      <article>
+        <time dateTime="2027-03-27"><strong>3月27日（土）</strong><span>仮日程</span></time>
+        <div><p className="note-tag">開催調整中</p><h3>秋田・美郷｜RBA育成クリニック</h3><p>日程と会場を調整しています。</p></div>
+      </article>
+      <div className="event-actions"><a href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">公式LINEで開催情報を受け取る <ArrowUpRight size={17}/></a></div>
+    </section>}
     <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{isTaipeiClinicUpcoming() && <article>
       <time dateTime={taipeiClinicSessions[0].date}><strong>{clinic.dates}</strong><span>{clinic.zone}</span></time>
       <div><p className="note-tag">{clinic.place} · RBA × SPARTANS Academy</p><h3>{clinic.title}</h3><p>{clinic.pending}</p></div>
