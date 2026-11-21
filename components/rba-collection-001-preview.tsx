@@ -31,7 +31,7 @@ export function RbaCollection001Preview() {
             <div className={styles.productInfo}>
               <span>001 / WHITE</span>
               <h3>RBA WHITE TEE.</h3>
-              <p>白のTシャツ。襟元と裾に小さなブランド表現を置く構想。素材・寸法・サイズ・ロゴ表現は実物サンプルの確認後に決定します。</p>
+              <p>税込6,600円・日本国内送料無料（販売予定価格）。United Athle 4252-01、7.1oz・綿100%。襟元と右裾に控えめなRBAブランド表現を予定。加工後の実寸、ロゴ版下・ワッペンと品質は実物検品後に最終承認します。</p>
             </div>
           </article>
 
@@ -42,7 +42,7 @@ export function RbaCollection001Preview() {
             <div className={styles.productInfo}>
               <span>002 / BLACK</span>
               <h3>RBA BLACK SETUP.</h3>
-              <p>黒フーディーとスウェットパンツのセットアップ構想。上下のサイズ、素材、正式なワッペン、製造・発送方法はまだ確定していません。</p>
+              <p>上下セット税込19,800円・日本国内送料無料（販売予定価格）。United Athle 5763-01と5765-01、12oz裏起毛。実物パンツの裾はシャーリング仕様でCGのワイドストレートとは異なります。上下別サイズ・加工品質・製造/発送条件は最終確認前です。</p>
             </div>
           </article>
         </div>
@@ -59,8 +59,8 @@ export function RbaCollection001Preview() {
         </div>
 
         <div className={styles.footer}>
-          <p><strong>画像はCG・デザインイメージです。</strong>描かれた襟元表示やワッペンは正式なロゴ版下ではありません。実際の製品はサンプル確認後に決定します。販売価格・サイズ・納期・配送・返品条件は確定していないため、まだ代金を受け付けていません。</p>
-          <a href="https://form.jotform.com/263193283498065" target="_blank" rel="noopener noreferrer">無料の発売希望アンケートに回答する <span aria-hidden="true">↗</span></a>
+          <p><strong>画像はCG・デザインイメージで実物商品ではありません。</strong>表示中の襟元表現やワッペンは製造用の正式版下ではありません。価格（白T税込6,600円・黒上下税込19,800円）と初回国内送料無料はRBA側の方針です。加工後のサイズ・実物品質・製造契約・発送期限・返品条件は未承認のため、注文・予約・代金は受け付けていません。</p>
+          <a href="https://form.jotform.com/263193283498065" target="_blank" rel="noopener noreferrer">無料の発売案内・購入希望を登録する <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
