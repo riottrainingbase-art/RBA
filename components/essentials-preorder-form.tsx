@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ESSENTIALS_INTEREST_FORM } from "@/lib/rba-essentials";
+import { ESSENTIALS_TEE_SIZES, ESSENTIALS_HOODIE_SIZES, ESSENTIALS_PANTS_SIZES } from "@/lib/essentials-size-options";
 type Props = {
   available: boolean;
   initial: "tee" | "setup";
@@ -21,7 +22,6 @@ type Props = {
   presaleNote: string;
 };
 const yen=(n:number)=>n.toLocaleString("ja-JP")+"円";
-const sizes=["S","M","L","XL"] as const;
 export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippingJPY,handwrittenJPY,handwrittenAvailable,handwrittenTerms,deliveryBy,arrivalBy,orderBy,termsVersion,cancellationTerms,returnTerms,presaleNote}:Props){
   const [teeQty,setTeeQty]=useState(initial==="tee"?1:0);
   const [setupQty,setSetupQty]=useState(initial==="setup"?1:0);
@@ -49,15 +49,15 @@ export function EssentialsPreorderForm({available,initial,teeJPY,setupJPY,shippi
           <div><h2>WHITE TEE</h2><p>WHITE / T-SHIRT</p>{teeJPY!==null&&<strong>{yen(teeJPY)}<small> 税込</small></strong>}</div>
           <div className="epFields">
             <label>数量<select name="tee_qty" value={teeQty} onChange={e=>{const q=Number(e.target.value);setTeeQty(q);}}>{[0,1,2,3].filter(q => q + setupQty <= 3).map(q=><option value={q} key={q}>{q}</option>)}</select></label>
-            <label>サイズ<select name="tee_size" value={teeSize} onChange={e=>setTeeSize(e.target.value)} disabled={teeQty===0} required><option value="">選択する</option>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
+            <label>サイズ<select name="tee_size" value={teeSize} onChange={e=>setTeeSize(e.target.value)} disabled={teeQty===0} required><option value="">選択する</option>{ESSENTIALS_TEE_SIZES.map(s=><option key={s}>{s}</option>)}</select></label>
           </div>
         </div>
         <div className="epItem">
           <div><h2>BLACK SETUP</h2><p>BLACK / HOODIE + TROUSERS</p>{setupJPY!==null&&<strong>{yen(setupJPY)}<small> 税込</small></strong>}</div>
           <div className="epFields">
             <label>数量<select name="setup_qty" value={setupQty} onChange={e=>{const q=Number(e.target.value);setSetupQty(q);}}>{[0,1,2,3].map(q=><option value={q} key={q}>{q}</option>)}</select></label>
-            <label>パーカー<select name="hoodie_size" value={hoodieSize} onChange={e=>setHoodieSize(e.target.value)} disabled={setupQty===0} required><option value="">選択する</option>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
-            <label>パンツ<select name="pants_size" value={pantsSize} onChange={e=>setPantsSize(e.target.value)} disabled={setupQty===0} required><option value="">選択する</option>{sizes.map(s=><option key={s}>{s}</option>)}</select></label>
+            <label>パーカー<select name="hoodie_size" value={hoodieSize} onChange={e=>setHoodieSize(e.target.value)} disabled={setupQty===0} required><option value="">選択する</option>{ESSENTIALS_HOODIE_SIZES.map(s=><option key={s}>{s}</option>)}</select></label>
+            <label>パンツ<select name="pants_size" value={pantsSize} onChange={e=>setPantsSize(e.target.value)} disabled={setupQty===0} required><option value="">選択する</option>{ESSENTIALS_PANTS_SIZES.map(s=><option key={s}>{s}</option>)}</select></label>
           </div>
         </div>
         <section id="handwritten-option" className="epHandwritten" aria-label="手書きカスタムオプション">
