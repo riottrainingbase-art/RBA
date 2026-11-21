@@ -14,8 +14,6 @@ export const metadata:Metadata={title:"RBA ESSENTIALS｜販売前の確認（管
 const gates=[
  ["RBA_ESSENTIALS_MANUFACTURING_CONFIRMED","りささんの製造・工程・品質管理体制"],
  ["RBA_ESSENTIALS_RISA_FULFILLMENT_AGREEMENT_APPROVED","りささんとの製作・発送・個人情報の委託契約"],
- ["RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED","りささん本人の権限とアクセス方法の確認"],
- ["RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED","入金→製作→発送情報の受け渡しテスト"],
  ["RBA_ESSENTIALS_SAMPLES_APPROVED","現物サンプルを検品"],
  ["RBA_ESSENTIALS_PHOTOS_APPROVED","掲載画像（CGを含む）の権利・表示内容の承認"],
  ["RBA_ESSENTIALS_PUBLIC_LISTING_APPROVED","公開ページの商品写真・名称・説明・サイズの最終承認"],
@@ -45,10 +43,11 @@ export default async function EssentialsReadiness(){
   const cfg=getEssentialsPresaleConfig();
   const transactionalMailReady=getEssentialsNoticeConfig().configured;
   const env=process.env;
+  const rbaManaged = env.RBA_ESSENTIALS_FULFILLMENT_MODE === "rba_managed";
   const rbaStripe=env.STRIPE_SECRET_KEY?await verifyEssentialsStripeAccount(env.STRIPE_SECRET_KEY):false;
   const rbaPublicBrand=env.STRIPE_SECRET_KEY?await verifyEssentialsStripePublicBranding(env.STRIPE_SECRET_KEY):false;
   const rbaWebhookDestinations=env.STRIPE_SECRET_KEY?await verifyEssentialsStripeWebhookDestinations(env.STRIPE_SECRET_KEY):false;
-  const makerAccessReady=await essentialsFulfillmentCanAcceptOrders();
+  const operatorHandoffReady=await essentialsFulfillmentCanAcceptOrders();
   const url=env.NEXT_PUBLIC_SUPABASE_URL,secret=env.SUPABASE_SERVICE_ROLE_KEY;
   let validDB=false;
   try{validDB=Boolean(url&&secret&&new URL(url).hostname==="ctngdzzorhzpdxswahzl.supabase.co");}
@@ -71,10 +70,19 @@ export default async function EssentialsReadiness(){
    {name:"Stripeが実際に署名付きWebhookへ配信する設定",ok:rbaWebhookDestinations},
    {name:"受注台帳への実接続",ok:Boolean(count&&!count.error)},
    {name:"注文承諾・発送通知の送信元ドメインとメールAPI",ok:transactionalMailReady},
-   {name:"受注・製作・発送を担当する有効なユーザー権限（実登録）",ok:makerAccessReady},
+   {name:rbaManaged?"RBA管理者の本人確認・製造委託先への引渡テスト":"製造担当ログインの実登録・権限",ok:operatorHandoffReady},
    {name:"Instagramカタログの公開承認（商品タグの審査とは別）",ok:env.RBA_ESSENTIALS_META_FEED_APPROVED==="true"},
   ];
-  const flags=gates.map(([key,name])=>({key,name,ok:env[key]==="true"}));
+  const operationGates = rbaManaged
+    ? [
+       ["RBA_ESSENTIALS_RBA_OPERATOR_ACCOUNT_VERIFIED","RBA管理者アカウントの本人確認"],
+       ["RBA_ESSENTIALS_RBA_SUPPLIER_HANDOFF_VERIFIED","RBAによる外部製造先への安全な引渡しと報告のテスト"],
+      ]
+    : [
+       ["RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED","外部製造担当者の本人確認・ログイン権限"],
+       ["RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED","入金から製造・発送情報の引渡しテスト"],
+      ];
+  const flags = [...gates, ...operationGates].map(([key,name])=>({key,name,ok:env[key]==="true"}));
   const total=checks.length+flags.length;
   const completed=checks.filter(x=>x.ok).length+flags.filter(x=>x.ok).length;
   return <SiteFrame locale="ja"><main style={{background:"#f2f0eb",color:"#191919",padding:"65px clamp(20px,5vw,90px) 105px",fontFamily:"Arial,sans-serif"}}>
@@ -94,12 +102,13 @@ export default async function EssentialsReadiness(){
     </div>
     <section style={{background:"#e0ddd5",padding:35,fontSize:13,lineHeight:2}}>
      <h2 style={{fontFamily:"Georgia,serif",fontWeight:400,fontSize:34}}>Order operations.</h2>
+     <p><strong>運営方式：</strong>{rbaManaged?"RBAが販売・入金・注文管理・製造依頼・発送記録を一元管理。製造委託先のRBA IDログインは不要です。":"認証済み製造担当のアカウントで製作・発送工程を更新する方式です。"}</p>
      <p>受注台帳：{count&&!count.error?"接続済み・入金済み注文 "+String(count.count??0)+" 件":"接続の再確認が必要"}</p>
      <p>この画面は秘密鍵・顧客情報を表示しません。前払いの注文承諾メールと発送通知は、認証済み送信元・決済済み注文・送信状態を確認して処理します。送信サービスのAPI受理と実際の受信は別に検証してください。</p>
      <div style={{display:"flex",gap:22,flexWrap:"wrap",marginTop:26}}>
       <Link href="/ja/essentials/manage">注文管理 ↗</Link>
       <Link href="/ja/essentials/production">製作・発送管理 ↗</Link>
-      <Link href="/ja/essentials/manage/fulfillment-access">製作担当の本人確認と権限設定 ↗</Link>
+      <Link href="/ja/essentials/manage/fulfillment-access">外部スタッフにログイン権限を付与する場合（任意） ↗</Link>
       <Link href="/ja/essentials/manage/atelier">手書き試作・価格検証 ↗</Link>
       <Link href="/ja/essentials/legal">購入者向け表示 ↗</Link>
      </div>
