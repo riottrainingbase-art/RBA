@@ -19,6 +19,19 @@ if (
   process.exit(1);
 }
 
+// One-time RBA STORE integration QA: preview only, exact project and opt-in commit.
+// Does not permit a production launch or change the existing release/preview policy.
+if (
+  ref === "release/rba-store-safe-candidate-20261121" &&
+  process.env.VERCEL_ENV === "preview" &&
+  (process.env.VERCEL_PROJECT_ID === "prj_ToviFjFURKMeQe7Gci5K4XLAfwAE" ||
+   process.env.VERCEL_PROJECT_NAME === "rba_site_v11_portal_ready") &&
+  has("[rba-store-qa]")
+) {
+  console.log("[vercel-ignore] permit isolated RBA STORE preview build for QA");
+  process.exit(1);
+}
+
 if (ref !== "preview-rba") {
   console.log(`[vercel-ignore] skip Git deployment for ${ref}; only preview-rba may build`);
   process.exit(0);
