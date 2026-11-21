@@ -169,6 +169,7 @@ export default function RbaLearningRevenueHub() {
             <a href={freeArticles} data-growth-id="rba-learning-free-journal" className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-[#162830] px-5 py-3 font-bold text-white">無料の指導者JOURNALを読む <ArrowRight size={16} aria-hidden="true"/></a>
             <a href="/ja/after-clinic" data-growth-id="rba-learning-free-reflection" className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-[#384f50] px-5 py-3 font-bold text-[#14262d]">無料の振り返りを使う <ArrowRight size={16} aria-hidden="true"/></a>
           </div>
+          <p className="mt-5 text-sm leading-7 text-[#4c5e64]">成人指導者向けの新しい無料教材・講習案内を希望される方は、<a href="https://form.jotform.com/262858264882068" target="_blank" rel="noopener noreferrer" data-growth-id="rba-learning-optin-coaches" className="font-bold underline underline-offset-4">ご本人の同意で情報を受け取る</a>こともできます。登録だけで購入・有料会員にはなりません。配信停止の希望も受け付けています。</p>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-5 py-14 sm:py-20" aria-labelledby="other-title">
