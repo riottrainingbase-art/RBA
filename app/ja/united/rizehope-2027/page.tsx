@@ -31,9 +31,9 @@ export default function RizehopeUnitedInvitation() {
               </Link>
               <div><span className={styles.eyebrow}>RIOT BASKETBALL ACADEMY</span><span className={styles.tag}>OFFICIAL INVITATION / U12</span></div>
             </div>
-            <p className={styles.region}>東北の小学6年生と、その保護者の皆さまへ。</p>
-            <h1>いつものチームを越えて。<br />まだ知らない仲間と、<br /><span>次のコートへ。</span></h1>
-            <p className={styles.english}>STAY WITH YOUR TEAM. EXPLORE A NEW COURT.</p>
+            <p className={styles.region}>東北の小学6年生と、保護者の皆さまへ。</p>
+            <h1>小学校最後のシーズンに、<br />いつもと違う仲間と<br /><span>バスケをしませんか。</span></h1>
+            <p className={styles.english}>YOUR TEAM STAYS. NEW EXPERIENCES AWAIT.</p>
             <div className={styles.event}>
               <p className={styles.eventName}>RBA UNITED <span aria-hidden="true">×</span> RIZEHOPE JAPAN 2027</p>
               <div className={styles.eventFacts}>
@@ -42,7 +42,7 @@ export default function RizehopeUnitedInvitation() {
               </div>
             </div>
             <div className={styles.heroActions}>
-              <a href={entryUrl} target="_blank" rel="noopener noreferrer" data-growth-id="united-rizehope-2027-guardian-interest" className={styles.primary}>保護者の方から、無料で希望を送る <span aria-hidden="true">↗</span></a>
+              <a href={entryUrl} target="_blank" rel="noopener noreferrer" data-growth-id="united-rizehope-2027-guardian-interest" className={styles.primary}>保護者の方はこちら（無料） <span aria-hidden="true">↗</span></a>
               <a href="#details" className={styles.subtle}>参加までの流れを読む <span aria-hidden="true">↓</span></a>
             </div>
             <p className={styles.caution}>この募集は無料の参加意向調査です。選考・参加枠・個人参加費は未確定で、送信のみで出場は決まりません。</p>
@@ -51,13 +51,13 @@ export default function RizehopeUnitedInvitation() {
           <section id="details" className={styles.story}>
             <p className={styles.sectionIndex}>WHY THIS OPPORTUNITY</p>
             <h2>小学校最後のシーズンに、もうひとつの選択肢を。</h2>
-            <p>今いるチームの仲間や活動を大切にしたまま、普段とは違う選手たちと一緒にプレーしてみる。違う考え方や、違うプレーに出会う。そんな機会をRBA UNITEDを通じてつくりたいと考えています。</p>
-            <p>特に東北の小学6年生の皆さんには、中学校へ進む前に「まだ知らないバスケットボールがある」と感じてもらえたら嬉しいです。上手な子だけを集めるための案内ではありません。一方で、希望された全員の参加をお約束できる段階でもありません。</p>
+            <p>今のチームでの活動を大切にしながら、普段は一緒にプレーする機会のない選手たちとコートに立つ。そんな経験があってもいいと思っています。</p>
+            <p>東北の小学6年生には、中学校へ進む前に、いつもと違う相手や仲間とプレーする機会を知ってほしい。その思いから、ご家族の希望を伺うことにしました。参加対象やチーム編成は調整中ですので、登録いただいた方全員の出場が決まるものではありません。</p>
           </section>
 
           <section className={styles.stepBlock}>
             <p className={styles.sectionIndex}>HOW TO EXPRESS INTEREST</p>
-            <h2>まずは、保護者の方からご連絡ください。</h2>
+            <h2>ご希望は、保護者の方からお聞かせください。</h2>
             <div className={styles.steps}>
               <article><span>01</span><h3>無料で希望を登録</h3><p>現在の学年、お住まいの地域、希望する参加日などを伺います。子どもの氏名や医療情報、学校名は必要ありません。</p></article>
               <article><span>02</span><h3>参加条件を確認</h3><p>大会側のU12年齢要件、編成、安全管理、指導体制、個人参加費などが整い次第、対象の保護者へご案内します。</p></article>
