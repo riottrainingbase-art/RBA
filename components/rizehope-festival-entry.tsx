@@ -201,7 +201,7 @@ export function RizehopeFestivalEntry({ locale }: { locale: Locale }) {
 
         <footer className="mt-14 border-t border-[#d5d4cf] py-6 text-xs leading-6 text-[#55606a]">
           <p>{t.footer}</p><p className="mt-3">{t.inquiry}</p>
-          <p className="mt-2">© 2026 Riot Basketball Academy | <a href={locale==="ja"?"/ja/policies":"/en/policies"} className="underline">Privacy &amp; safety</a></p>
+          <p className="mt-2">© 2026 Riot Basketball Academy | <a href={locale==="ja"?"/ja/policies":"/policies"} className="underline">Privacy &amp; safety</a></p>
         </footer>
       </div>
     </main>
