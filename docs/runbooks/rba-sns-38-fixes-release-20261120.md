@@ -108,3 +108,10 @@ Do not send marketing emails, create travel bookings, change guest invitations o
 - The original RIZEHOPE individual route and its dependency `lib/rizehope-2027.ts` are absent from the existing `preview-rba` baseline; their PR is independent. The integrated site uses a working enquiry route until those features are released, rather than linking to a 404.
 - The Linktree legacy Wix URL is still present publicly. Owners must replace it in Linktree itself; site code does not control Linktree.
 - Re-run GitHub static checks on the integration PR, then create a single reviewed `[preview]` checkpoint using the documented branch release process. No automatic live publication from this branch.
+
+## Reviewed preview checkpoint — 2026-11-21
+- Release candidate is the exact `preview-rba` baseline `92a9696868b01213b7cca160d7371f92ffafeaac` plus eight changed files in integration PR #525; no RIZEHOPE payments or cross-project files were added.
+- At preflight SHA `c892f8e7052a142aec318107e6a6bf4ba08fa13f`, workflow run `44909733823` completed **success** (source tests, TypeScript, lint and Japanese QA).
+- Korea Jotform `263207310187047` is enabled, *only* free-interest; actual signup-submission testing must not be performed with real minors without consent.
+- The upcoming preview is a verification environment, **not** a public change. It cannot substitute for external Linktree/note/Instagram edits.
+- Do not merge unrelated open PRs or enable payments in this release.
