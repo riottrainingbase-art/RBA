@@ -1,5 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+
 import { SiteFrame } from "@/components/site-frame";
 import {
   canSellPerformanceTee,
@@ -8,15 +11,17 @@ import {
   safePerformanceTeeProductUrl,
 } from "@/lib/performance-tee-launch";
 import styles from "./store.module.css";
+import { essentials } from "@/lib/rba-essentials";
+import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 
 export const metadata: Metadata = {
-  title: "RBA PERFORMANCE TEE | Riot Basketball Academy 公式スポーツウェア",
+  title: "RBA STORE | Riot Basketball Academy 公式ウェア",
   description:
-    "コートへ、その先へ。Riot Basketball Academy公式Performance Tee。発売状況・着用設計・購入前の確認事項をご案内します。",
+    "RBAの公式オンラインショップ。バスケットボールの育成哲学を日常へ。WHITE TEE、BLACK SETUP、PERFORMANCE TEEの製品情報と発売状況をご案内します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/store" },
   openGraph: {
-    title: "RBA PERFORMANCE TEE | コートへ、その先へ。",
-    description: "RBA公式スポーツウェアの第一弾。製品の検証と発売情報はこちら。",
+    title: "RBA STORE | 勝敗の先に、残るものを。",
+    description: "RBA公式ウェア。育成の想いをコートの外へ。COLLECTION 001とPERFORMANCE TEEを掲載。",
     url: "https://riotbasketballacademy.com/ja/store",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -77,14 +82,58 @@ const questions = [
   },
 ] as const;
 
+export const dynamic = "force-dynamic";
+
 export default function StorePage() {
+  const apparel = getEssentialsPresaleConfig();
   return <SiteFrame locale="ja">
     <main className={styles.page}>
-      <section className={styles.hero} aria-labelledby="store-title">
+      <header className={styles.storeIntro} aria-labelledby="rba-store-heading">
+        <div className={styles.storeIntroTop}>
+          <span>RIOT BASKETBALL ACADEMY / OFFICIAL ONLINE STORE</span>
+          <span>BUILT ON THE COURT / COLLECTION 001</span>
+        </div>
+        <div className={styles.storeBrandLine}>
+          <Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={203} height={284} priority />
+          <div>
+            <p className={styles.storeMicro}>R I O T &nbsp; B A S K E T B A L L &nbsp; A C A D E M Y</p>
+            <h1 id="rba-store-heading">RBA <em>STORE.</em></h1>
+          </div>
+        </div>
+        <div className={styles.storeIntroBottom}>
+          <p>勝敗の先に、残るものを。</p>
+          <nav aria-label="ショップ内のご案内"><Link href="/ja/essentials">FIRST DROPを見る ↗</Link><a href="#performance-tee">パフォーマンスウェア</a><Link href="/ja/essentials/story">RBAの背景</Link></nav>
+        </div>
+      </header>
+      <section className={styles.collectionFeature} id="collection-001" aria-labelledby="rba-collection-heading">
+        <div className={styles.collectionHead}>
+          <div><p className={styles.collectionKicker}>001 / EVERYDAY WEAR / OFF COURT</p><h2 id="rba-collection-heading">FIRST <em>DROP.</em></h2></div>
+          <div><p>仙台から全国へ、そして世界へ。RBAの育成哲学を、コートの外でも着られる一着に。</p><Link href="/ja/essentials/story">RBAの背景と想いを読む <span aria-hidden="true">↗</span></Link></div>
+        </div>
+        <div className={styles.storeProducts}>
+          {essentials.map(item=>(
+            <article key={item.slug}>
+              <Link href={item.pagePath} className={styles.storeProductImage} aria-label={item.title+"の商品詳細"}>
+                <img src={item.image} alt={item.alt} width="800" height="1000" loading="lazy"/>
+                <span>{item.number} / {item.color}</span>
+              </Link>
+              <div className={styles.storeProductInfo}>
+                <div><p>RBA / COLLECTION 001</p><h3>RBA {item.name}</h3><span>¥{apparel.unitPrices[item.slug]?.toLocaleString("ja-JP")}（税込・国内送料無料）{apparel.ready?" ／ 受付中":" ／ 販売準備中"}</span></div>
+                <Link href={item.pagePath} aria-label={item.title+"の詳細を見る"}>↗</Link>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className={styles.collectionFooter}>
+          <p>{apparel.ready?"先行購入受付中。必ず実寸・生地・配送条件をご確認ください。":"現在は製品・販売条件を確認中です。注文・予約・決済は受け付けていません。"}</p>
+          <Link href="/ja/essentials">FIRST DROPの全商品を見る <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+      <section className={styles.hero} id="performance-tee" aria-labelledby="store-title">
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / OFFICIAL COLLECTION</p>
+          <p className={styles.eyebrow}>002 / PERFORMANCE WEAR / RBA PERFORMANCE TEE</p>
           <p className={styles.status}>{checkoutUrl ? "NOW AVAILABLE" : "FIRST DROP / LAUNCH PREPARATION"}</p>
-          <h1 id="store-title">コートへ、<br />その先へ。<br /><span>RBAと。</span></h1>
+          <h2 id="store-title">コートへ、<br />その先へ。<br /><span>RBAと。</span></h2>
           <p className={styles.lead}>
             着るたびに、次のコートを思い出す。<br />
             RBAがつくる、最初のパフォーマンスウェア。
