@@ -41,10 +41,10 @@ function PlatformPage({locale,kind}:{locale:Locale;kind:"united"|"connect"|"orga
       <p>現段階は無料の参加意向登録です。大会の正式受入、チーム編成、参加費、引率・旅行条件は未確定です。登録によって参加・航空券・支払義務は確定しません。</p>
       <a className="button button-dark" href="https://form.jotform.com/263207310187047" target="_blank" rel="noopener noreferrer">韓国2027・保護者から無料登録 <ArrowRight/></a>
     </article>
-    <article><span>無料先行受付／個人参加条件未確定</span><h3>RIZEHOPE JAPAN 2027｜RBA UNITED U12</h3>
+    <article><span>個人参加の条件調整中／正式受付前</span><h3>RIZEHOPE JAPAN 2027｜RBA UNITED U12</h3>
       <p>2027年2月27〜28日・宮城県柴田町。正式な個人参加費・選考・保護者同意・引率条件を確認中です。</p>
-      <p>無料の意向登録と、正式参加・前金決済・出場確定は別の段階です。決済は正式な条件と承認が整うまで案内しません。</p>
-      <a className="button button-dark" href="/ja/international/rizehope-japan-2027/united">RIZEHOPEの個人参加案内を見る <ArrowRight/></a>
+      <p>個人参加の相談は無料です。申込フォーム・個人参加費・選考・引率条件が確定するまでは、正式申込・前金決済・出場確定には進みません。</p>
+      <a className="button button-dark" href="/ja/contact">RIZEHOPE個人参加について無料相談 <ArrowRight/></a>
     </article>
   </div>:null}
   {locale!=="ja"?<p className="homecourt-private-note">
