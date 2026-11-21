@@ -12,7 +12,7 @@ test("UNITED separates verified formal applications from free interest", () => {
   contains(page, "韓国・仁川 IYIBS 2027");
   contains(page, "無料の参加意向登録");
   contains(page, "263207310187047");
-  contains(page, "/ja/international/rizehope-japan-2027/united");
+  contains(page, "href=\"/ja/contact\"");
   excludes(page, "現在、募集を確認できるRBA UNITED企画はありません。");
 });
 
