@@ -100,6 +100,16 @@ export async function SimpleJapaneseHome() {
             <a href="#home-host">04　地域で開催する</a>
           </nav>
 
+          <section className={styles.openNow} aria-labelledby="rba-open-now-title">
+            <div>
+              <p className={styles.openNowLabel}>RBA / OPEN ALL HOURS</p>
+              <h2 id="rba-open-now-title">学びたいときに、申し込める。</h2>
+              <p>指導者向けの学習、MY HOME COURT、育成活動の応援プラン。内容と料金を見比べて、必要なものだけ選べます。</p>
+              <p className={styles.openNowNote}>お申し込み・決済は各公式ページへ。すでに会員の方は重複してお申し込みにならないようご確認ください。</p>
+            </div>
+            <a href="/ja/24h" data-growth-id="home-rba24h-open">24時間受付の案内を見る <span aria-hidden="true">→</span></a>
+          </section>
+
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>
               <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">あなたに合う、<span className={styles.headingEmphasis}>次の一歩。</span></h2></div>
