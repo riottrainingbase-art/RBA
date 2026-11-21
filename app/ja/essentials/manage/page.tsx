@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { SiteFrame } from "@/components/site-frame";
 import { getEssentialsNoticeConfig } from "@/lib/essentials-notice-config";
 import { sendPendingEssentialsNotice, sendPendingEssentialsShipmentNotice } from "./notice-actions";
@@ -25,7 +26,7 @@ export default async function EssentialsOrdersManage({searchParams}:{searchParam
  const {data:{user},error}=await userDb.auth.getUser();
  if(error||!user)notFound();
  const profile=await userDb.from("profiles").select("role").eq("id",user.id).maybeSingle();
- if(profile.error||profile.data?.role!=="admin")notFound();
+ if(profile.error||(profile.data?.role!=="admin" && !await isRbaStoreOwner(user.id)))notFound();
  const params=await searchParams;
  const emailReady=getEssentialsNoticeConfig().configured;
  const service=process.env.SUPABASE_SERVICE_ROLE_KEY;
