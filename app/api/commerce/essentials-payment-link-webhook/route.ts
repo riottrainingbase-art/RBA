@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 import { sendEssentialsBuyerAcceptance } from "@/lib/essentials-buyer-notices";
+import { essentialsSizeIsAllowed } from "@/lib/essentials-size-options";
 import {
   FIRST_DROP_TEE_JPY,
   FIRST_DROP_SETUP_JPY,
@@ -16,11 +17,11 @@ import {
  */
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-const TEE_LINK="plink_1UcRBCRXDnnSs6XNEW4xN93M";
-const REVISED_TEE_LINK="plink_1UcioHRXDnnSs6XNiyndHsxG";
-const REVISED_TEE_PRICE="price_1UcioHRXDnnSs6XNEIYDMnJe";
+// Previously distributed hosted links remain inactive; only the latest,
+ // separately audited line item may be reconciled with approved terms.
+const TEE_LINK="plink_1UeCrqRXDnnSs6XNf9mnO2Te";
+const TEE_PRICE="price_1UeCqERXDnnSs6XN2re7INMd";
 const SETUP_LINK="plink_1UcRBHRXDnnSs6XNoHlBdpSQ";
-const TEE_PRICE="price_1UcQ68RXDnnSs6XN5XW1ZMaj";
 const SETUP_PRICE="price_1UcQ6jRXDnnSs6XNeJUiq622";
 const origin="https://ctngdzzorhzpdxswahzl.supabase.co";
 function reply(value:Record<string,unknown>,status=200){
@@ -30,13 +31,11 @@ function textField(s:Stripe.Checkout.Session,key:string){
  const x=s.custom_fields?.find(f=>f.key===key);
  return x?.dropdown?.value??null;
 }
-function validSize(s:string|null):s is "S"|"M"|"L"|"XL"{
- return s==="S"||s==="M"||s==="L"||s==="XL";
-}
-function addDays(date:string,delta:number):string{
- const [year,month,day]=date.split("-").map(Number);
- const d=new Date(Date.UTC(year,month-1,day+delta));
- return [d.getUTCFullYear(),String(d.getUTCMonth()+1).padStart(2,"0"),String(d.getUTCDate()).padStart(2,"0")].join("-");
+function approvedDate(x:unknown):x is string {
+ if(typeof x!=="string"||!/^20\\d{2}-\\d{2}-\\d{2}$/.test(x))return false;
+ const [year,month,day]=x.split("-").map(Number);
+ const parsed=new Date(Date.UTC(year,month-1,day));
+ return parsed.getUTCFullYear()===year && parsed.getUTCMonth()===month-1 && parsed.getUTCDate()===day;
 }
 export async function GET(){return reply({error:"method_not_allowed"},405);}
 export async function POST(request:Request){
@@ -63,7 +62,7 @@ export async function POST(request:Request){
  if(session.payment_status!=="paid")return reply({received:true,pending:true});
  if(!await verifyEssentialsStripeAccount(secret))return reply({error:"invalid_account"},503);
  const link=typeof session.payment_link==="string"?session.payment_link:null;
- const isTee=link===TEE_LINK||link===REVISED_TEE_LINK;
+ const isTee=link===TEE_LINK;
  if(!isTee&&link!==SETUP_LINK)return reply({error:"unexpected_payment_link"},422);
  if(m?.product!==(isTee?"tee":"setup")||m?.shipping_japan_jpy!=="0")
    return reply({error:"unexpected_product_metadata"},422);
@@ -75,8 +74,19 @@ export async function POST(request:Request){
  const orderDate=new Intl.DateTimeFormat("en-CA",{
    timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit",
  }).format(new Date(session.created*1000));
- const arrivalBy=oneMonthFromJstDate(orderDate);
- if(!arrivalBy)return reply({error:"invalid_order_date"},422);
+ const latestPermittedArrival=oneMonthFromJstDate(orderDate);
+ if(!latestPermittedArrival)return reply({error:"invalid_order_date"},422);
+ // Payment Link metadata must contain the real buyer-approved contractual terms.
+ // Inactive links from the old launch draft have no approved delivery dates.
+ // Never invent a contractual dispatch or delivery date after charging a buyer.
+ const dispatchBy=m?.dispatch_by, deliverBy=m?.deliver_by;
+ const termsVersion=m?.retail_terms_version;
+ if(m?.terms_state!=="approved"||
+    !termsVersion||!/^[A-Za-z0-9_-]{5,60}$/.test(termsVersion)||
+    /draft|pending|review/i.test(termsVersion)||
+    !approvedDate(dispatchBy)||!approvedDate(deliverBy)||
+    dispatchBy<orderDate||deliverBy<dispatchBy||deliverBy>latestPermittedArrival)
+   return reply({error:"paid_without_approved_contract_terms_manual_reconciliation_required"},422);
  const shippingAmount=session.total_details?.amount_shipping;
  if(typeof shippingAmount==="number"&&shippingAmount!==0)
    return reply({error:"unexpected_shipping_charge"},422);
@@ -89,14 +99,14 @@ export async function POST(request:Request){
  const amount=line?.price?.unit_amount,qty=line?.quantity,priceId=line?.price?.id;
  if(!Number.isInteger(qty)||!qty||qty<1||qty>3||
     typeof amount!=="number"||
-    priceId!==(link===REVISED_TEE_LINK?REVISED_TEE_PRICE:isTee?TEE_PRICE:SETUP_PRICE)||
-    amount!==(link===TEE_LINK?4900:isTee?FIRST_DROP_TEE_JPY:FIRST_DROP_SETUP_JPY)||
+    priceId!==(isTee?TEE_PRICE:SETUP_PRICE)||
+    amount!==(isTee?FIRST_DROP_TEE_JPY:FIRST_DROP_SETUP_JPY)||
     session.amount_total!==amount*qty)return reply({error:"unexpected_amount_or_quantity"},422);
  const teeSize=isTee?textField(session,"teesize"):null;
  const hoodieSize=link===SETUP_LINK?textField(session,"hoodsize"):null;
  const pantsSize=link===SETUP_LINK?textField(session,"pantssize"):null;
- if((isTee&&!validSize(teeSize))||
-    (link===SETUP_LINK&&(!validSize(hoodieSize)||!validSize(pantsSize))))
+ if((isTee&&!essentialsSizeIsAllowed("tee",teeSize))||
+    (link===SETUP_LINK&&(!essentialsSizeIsAllowed("hoodie",hoodieSize)||!essentialsSizeIsAllowed("pants",pantsSize))))
    return reply({error:"missing_or_invalid_size"},422);
  const createdReference=crypto.randomUUID();
  const row={
@@ -108,9 +118,9 @@ export async function POST(request:Request){
     stripe_payment_link_id:link,
     currency:"jpy",
     amount_total_jpy:session.amount_total,
-    terms_version:"first_drop_20261116_pending_final_review",
-    dispatch_by:addDays(arrivalBy,-4),
-    deliver_by:arrivalBy,
+    terms_version:termsVersion,
+    dispatch_by:dispatchBy,
+    deliver_by:deliverBy,
     tee_quantity:isTee?qty:0,
     tee_size:teeSize,
     setup_quantity:link===SETUP_LINK?qty:0,
