@@ -9,22 +9,20 @@ export const dynamic = "force-dynamic";
 // 参加可否・決済は必ず各公式ページの受付条件を優先する。
 const availableOffers = [
   {
-    id: "torsten-20261125",
-    label: "11/25 WED / ONLINE",
-    title: "世界基準のシュート・判断を学ぶ90分",
-    description: "Torsten Loibl氏のオンライン講習。LIVE 3,300円／開催後の録画30日間 4,400円（税込・別プラン）。",
-    href: "/ja/events/torsten-loibl-online-clinic",
-    action: "LIVE・録画の詳細と申込へ",
-    until: "2026-11-25T20:00:00+09:00",
+    id: "u12-check-free",
+    label: "FREE / FOR COACHES",
+    title: "その練習、子どもは何を見て考えていますか？",
+    description: "まずはU12の指導を5分で振り返る無料チェック。診断結果を見るために購入や会員登録は必要ありません。",
+    href: "https://form.jotform.com/262542128767059",
+    action: "無料チェックを始める",
   },
   {
-    id: "kagoshima-20261129",
-    label: "11/29 SUN / KAGOSHIMA",
-    title: "BASTET × RBA 鹿児島クリニック",
-    description: "小学生〜高校生対象。午前・午後 各3,000円／通し4,000円（税込）。保護者の方からお申し込みください。",
-    href: "/ja/events/kagoshima-clinic-2026-11-29",
-    action: "時間・規約・申込方法を確認",
-    until: "2026-11-29T15:30:00+09:00",
+    id: "u12-guide",
+    label: "ONE-TIME / COACHING GUIDE",
+    title: "RBA COACHING GUIDE Vol.1｜U12で本当に教えるべきこと",
+    description: "90分の練習例と4週間の実践プランをまとめた買い切り教材。3,300円（税込）、月額課金はありません。",
+    href: "/ja/materials/u12-fundamentals",
+    action: "内容と購入方法を見る",
   },
   {
     id: "dhub-coach-lab",
@@ -33,7 +31,6 @@ const availableOffers = [
     description: "月額3,300円（税込）。指導者向けの年間48回の実践カリキュラム。既存会員は重複決済不要です。",
     href: "/ja/d-hub/coaches",
     action: "学べる内容・入会手順を見る",
-    until: null,
   },
 ] as const;
 
@@ -107,7 +104,7 @@ export default function RbaLinkInBioPage() {
       <section aria-labelledby="open-offers-heading">
         <h2 id="open-offers-heading" style={{fontSize:"18px",margin:"0 0 10px",fontWeight:850}}>いま学べる・参加できるRBA</h2>
         <nav aria-label="受付中の公式案内" className={styles.links}>
-          {availableOffers.filter(offer => !offer.until || Date.now() < Date.parse(offer.until)).map(offer=>
+          {availableOffers.map(offer=>
             <a key={offer.id} className={styles.card} href={offer.href} data-growth-id={`bio-offer-${offer.id}`}>
               <span className={styles.eyebrow}>{offer.label}</span>
               <strong>{offer.title}</strong>
