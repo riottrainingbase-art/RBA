@@ -45,7 +45,9 @@ export default function EssentialsCollectionPage() {
             <p>練習に向かうときも、コートを出たあとも。<br />バスケットボールのある日常に。</p>
             <div className={styles.frontHeroActions}>
               <a className={styles.frontButton} href="#collection">コレクションを見る <span aria-hidden="true">↓</span></a>
-              <a className={styles.frontEditionLink} href="#handwritten">手書きエディション <span aria-hidden="true">↘</span></a>
+              {commerce.ready
+                ? <Link className={styles.frontEditionLink} href="/ja/essentials/checkout">サイズを選んで購入する <span aria-hidden="true">↗</span></Link>
+                : <a className={styles.frontEditionLink} href={ESSENTIALS_INTEREST_FORM} target="_blank" rel="noopener noreferrer">無料で発売案内を受け取る <span aria-hidden="true">↗</span></a>}
             </div>
             <span className={styles.frontStatus}>{commerce.ready ? "先行購入受付中" : "発売準備中"}</span>
           </div>
