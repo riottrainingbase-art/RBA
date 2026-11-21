@@ -16,8 +16,8 @@
 
 ## 設定とシステムの安全ゲート
 - `RBA_ESSENTIALS_FULFILLMENT_MODE=rba_managed` でRBA管理方式を選択。
-- `RBA_ESSENTIALS_RBA_OPERATOR_USER_ID` はRBA管理者の**既存・メール認証済み**SupabaseユーザーID。管理者権限も実データで検証する。IDを推測しない。
-- `RBA_ESSENTIALS_RBA_OPERATOR_ACCOUNT_VERIFIED=true` は実際の本人確認と管理権限を監査後に承認する。自己申告だけで変更しない。
+- `RBA_ESSENTIALS_RBA_OPERATOR_USER_ID` と `RBA_ESSENTIALS_RBA_OPERATOR_EMAIL` はRBA STOREだけの本人確認用固定値。Supabase Authの既存ユーザーID・メール確認済み状態・メール完全一致をサーバー上で検証し、RBA STORE管理者画面・操作に限定して認可する。HOMECOURT全体の `profiles.role` は変更・昇格しない。
+- `RBA_ESSENTIALS_RBA_OPERATOR_ACCOUNT_VERIFIED=true` はRBA公式メールに紐づく既存Authアカウントの実在とメール確認を読み戻した場合にのみ使用する。これだけで製造契約・引渡テスト・販売許可を意味しない。
 - `RBA_ESSENTIALS_RBA_SUPPLIER_HANDOFF_VERIFIED=true` は**実際に製造依頼を出し、委託先が商品・仕様・数量・加工・納期を確認し受理したテスト**の記録があるときのみ承認する。
 - それとは別に既存の製造契約・実物サンプル・サイズ表・特商法表示・発送期限・返品条件・Stripe署名Webhook／購入者通知・税・価格の各ゲートを満たす必要がある。
 - `RBA_ESSENTIALS_PREORDER_ENABLED` の `false` はこの運営方式の変更では解除しない。決済リンクも未承認のまま有効化しない。
@@ -42,3 +42,8 @@
 - 発売前は契約済み、サンプル検品済み、製造完了、発送済み等の事実がない限り表示しない。
 
 **状態:** 運用方式とコードを整備中。製造委託先のログインは不要だが、契約・発送能力・本人確認・署名Webhook・注文通知等の未検証事項が自動で解消されるものではない。本番の有料注文は別途正式ゲート通過後に開始する。
+
+## 2026-11-21 認証点検の追記
+- HOMECOURT全体の管理者ロールが現時点で設定されていないため、店舗専用の認証済みアカウント認可を実装。一般利用者・他のコーチ・未認証ユーザーには権限が及ばない。
+- RBA STORE管理画面には注文・返金の金額情報等が含まれるため、RBA代表のアカウントID・確認済みメールをサーバー側の暗号化環境変数で固定し、正規セッションと照合する。
+- 製造先アカウント、RBA HOMECOURT全体のロール、他の事業の決済情報は変更しない。
