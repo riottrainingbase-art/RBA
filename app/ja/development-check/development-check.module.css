@@ -1,0 +1,48 @@
+.page{color:#1e2225;background:#fafaf8}
+.container{width:min(100% - 40px,1080px);margin:0 auto}
+.hero{background:#1c2023;color:#fff;padding:48px 0 72px}
+.back{display:inline-flex;min-height:44px;align-items:center;color:#e4e7e7;font-size:13px;text-decoration:underline;text-underline-offset:4px;margin-bottom:25px}
+.kicker{font-size:11px;letter-spacing:.14em;font-weight:850;color:#b16c60;margin:0 0 18px;line-height:1.6}
+.hero .kicker{color:#ddb0a7}
+.hero h1{font-size:clamp(36px,5.7vw,64px);letter-spacing:-.055em;line-height:1.21;margin:0 0 24px;max-width:830px}
+.intro{font-size:clamp(15px,1.6vw,19px);line-height:2;max-width:780px;color:#e2e5e5;margin:0 0 29px}
+.intro strong{color:#fff}
+.heroActions{display:flex;gap:12px;flex-wrap:wrap}
+.primary,.secondary{display:inline-flex;min-height:54px;align-items:center;justify-content:center;line-height:1.5;font-size:14px;font-weight:850;padding:13px 20px;text-decoration:none;gap:18px}
+.primary{color:#1e2225;background:#fff;border:1px solid #fff}
+.secondary{color:#fff;border:1px solid #92999b}
+.primary:hover{background:#eceae7}.secondary:hover{background:#34393d}
+.small{font-size:12px;line-height:1.9;color:#c4c8cb;margin:19px 0 0}
+.section,.sectionAlt{padding:clamp(42px,6vw,74px) 0}
+.sectionAlt{background:#f0f1ee;border-block:1px solid #dce0de}
+.section h2,.sectionAlt h2{font-size:clamp(25px,3.5vw,39px);letter-spacing:-.045em;line-height:1.4;margin:0 0 20px}
+.lead{font-size:15px;line-height:2;color:#4c585e;max-width:860px;margin:0 0 24px}
+.howto{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.howto>div{border-top:1px solid #aeb3b2;padding:22px 0 0}
+.howto span{display:block;font-size:12px;letter-spacing:.15em;font-weight:800;color:#a16054;margin-bottom:10px}
+.howto strong{font-size:20px;line-height:1.5}.howto p{font-size:13px;line-height:1.8;color:#566066}
+.dayList{display:grid;gap:14px;margin-top:24px}
+.day{background:#fff;border:1px solid #dadfdd;display:grid;grid-template-columns:110px 1fr;gap:20px;padding:28px}
+.daySide{display:flex;flex-direction:column;gap:2px;border-right:1px solid #e2e4e3}
+.daySide span{font-size:11px;letter-spacing:.16em;font-weight:850;color:#9d675e}
+.daySide strong{font-size:44px;line-height:1.15;letter-spacing:-.05em}.daySide small{font-size:12px;color:#667078}
+.dayBody h3{font-size:clamp(19px,2.1vw,25px);line-height:1.4;letter-spacing:-.03em;margin:0 0 12px}
+.dayBody p{font-size:14px;line-height:1.85;color:#526067;margin:0 0 14px}
+.dayBody dl{display:grid;gap:9px;margin:0}
+.dayBody dl>div{display:grid;grid-template-columns:90px 1fr;gap:13px;border-top:1px solid #e6e8e7;padding-top:10px}
+.dayBody dt{font-size:12px;line-height:1.7;font-weight:850;color:#986357}
+.dayBody dd{font-size:13px;line-height:1.8;color:#39444a;margin:0}
+.planGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.planGrid article{background:#fff;border:1px solid #d7dddb;min-width:0;min-height:250px;padding:23px;display:flex;flex-direction:column}
+.planGrid article span{font-size:11px;letter-spacing:.09em;color:#a16a60;font-weight:850}
+.planGrid h3{font-size:20px;line-height:1.5;margin:14px 0 8px}
+.planGrid p{color:#526067;font-size:13px;line-height:1.85;flex:1;margin:0 0 16px}
+.planGrid a{color:#1c343e;font-size:14px;line-height:1.5;font-weight:850;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
+.disclaimer{font-size:12px;line-height:1.9;color:#5e686e;max-width:940px;margin:23px 0 0}
+.footer{background:#22282c;padding:30px 0;color:#dce0df}
+.footer p{font-size:12px;line-height:1.9;max-width:800px;margin:0 0 12px}
+.page a:focus-visible{outline:3px solid #b76353;outline-offset:3px}
+.page [id]{scroll-margin-top:110px}
+@media(max-width:780px){.howto,.planGrid{grid-template-columns:1fr}.day{grid-template-columns:1fr;gap:12px;padding:22px}.daySide{border:0;border-bottom:1px solid #e2e4e3;padding-bottom:9px;flex-direction:row;align-items:baseline;gap:12px}.daySide strong{font-size:30px}.dayBody dl>div{grid-template-columns:1fr;gap:2px}.planGrid article{min-height:0}}
+@media(max-width:480px){.container{width:min(100% - 32px,1080px)}.hero{padding:32px 0 46px}.heroActions{flex-direction:column}.heroActions a{width:100%}}
+@media print{.hero{background:#fff;color:#111;padding:10px 0}.intro,.hero .kicker{color:#222}.heroActions,.back,.planGrid,.disclaimer,.footer{display:none!important}.section,.sectionAlt{padding:12px 0}.day{break-inside:avoid;padding:12px}.sectionAlt{background:#fff;border:0}.page{background:#fff}.daySide strong{font-size:25px}}

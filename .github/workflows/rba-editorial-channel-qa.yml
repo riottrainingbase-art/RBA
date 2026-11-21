@@ -9,6 +9,14 @@ on:
       - "components/simple-japanese-home.tsx"
       - "components/site-frame.tsx"
       - "tests/note-journal-differentiation.test.mjs"
+      - "tests/release-support-and-registration.test.mjs"
+      - "app/ja/supporters/**"
+      - "app/ja/development-check/**"
+      - "app/ja/support/**"
+      - "app/ja/after-application/**"
+      - "app/ja/after-clinic/**"
+      - "app/ja/events/kagoshima-clinic-2026-11-29/**"
+      - "components/clinic-support-invitation.*"
       - ".github/workflows/rba-editorial-channel-qa.yml"
   push:
     branches: ["release/instagram-conversion-hub-20261117"]
@@ -34,13 +42,23 @@ jobs:
           node-version: "24"
       - name: Editorial distinction regression
         run: node --test tests/note-journal-differentiation.test.mjs
+      - name: Site support, seven-day guide, and clinic checkout separation
+        run: node --test tests/release-support-and-registration.test.mjs
       - name: Pin pnpm
         run: corepack enable && corepack prepare pnpm@11.25.0 --activate
       - name: Install
         run: pnpm install --frozen-lockfile
       - name: TypeScript
         run: pnpm exec tsc --noEmit --pretty false
+      - name: Full Japanese site routes and expired-registration audit
+        run: node audit/site-wide/check.mjs
+      - name: Domestic Torsten Google Form and Square regression
+        run: node audit/torsten-japan-landing/check.mjs
+      - name: Site Japanese content regression
+        run: pnpm run audit:site-ja
       - name: Lint changed source
         run: pnpm exec eslint app/ja/reading-guide/page.tsx components/note-bridge.tsx components/my-homecourt.tsx components/site-frame.tsx components/simple-japanese-home.tsx tests/note-journal-differentiation.test.mjs
+      - name: Changed support and clinic surfaces lint
+        run: pnpm exec eslint app/ja/supporters/page.tsx app/ja/development-check/page.tsx app/ja/support/page.tsx app/ja/after-application/page.tsx app/ja/after-clinic/page.tsx app/ja/events/kagoshima-clinic-2026-11-29/page.tsx components/clinic-support-invitation.tsx components/public-journal.tsx tests/release-support-and-registration.test.mjs
       - name: Existing Japanese content audit
         run: pnpm run audit:homecourt-ja
