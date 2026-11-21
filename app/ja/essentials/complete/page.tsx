@@ -42,20 +42,27 @@ async function verifyPaymentAndLedger(sessionId: string): Promise<PaymentResult>
     const dbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const dbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!dbUrl || !dbKey || !/^[0-9a-f-]{36}$/i.test(orderRef)) return paid;
-    const url = new URL(dbUrl);
-    if (url.protocol !== "https:" || url.hostname !== HOST || url.username || url.password) return paid;
 
-    const db = createServiceClient(dbUrl, dbKey, {auth:{persistSession:false,autoRefreshToken:false}});
-    const {data,error} = await db.from("rba_essentials_orders")
-      .select("order_id,stripe_checkout_session_id,payment_status")
-      .eq("stripe_checkout_session_id",sessionId)
-      .maybeSingle();
+    try {
+      const url = new URL(dbUrl);
+      if (url.protocol !== "https:" || url.hostname !== HOST || url.username || url.password)
+        return paid;
 
-    // A missing/mismatched row must not be displayed as a completed order.
-    paid.recorded = !error && !!data &&
-      data.order_id === orderRef && data.stripe_checkout_session_id === sessionId &&
-      data.payment_status === "paid";
-    return paid;
+      const db = createServiceClient(dbUrl, dbKey, {auth:{persistSession:false,autoRefreshToken:false}});
+      const {data,error} = await db.from("rba_essentials_orders")
+        .select("order_id,stripe_checkout_session_id,payment_status")
+        .eq("stripe_checkout_session_id",sessionId)
+        .maybeSingle();
+
+      // A missing/mismatched row must not be displayed as a completed order.
+      paid.recorded = !error && !!data &&
+        data.order_id === orderRef && data.stripe_checkout_session_id === sessionId &&
+        data.payment_status === "paid";
+      return paid;
+    } catch {
+      // The payment is proven. Ledger failures must not erase that fact.
+      return paid;
+    }
   } catch {
     // If Stripe or the ledger cannot be verified, never infer a paid/recorded state.
     return empty;
