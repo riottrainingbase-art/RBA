@@ -126,6 +126,18 @@ export default function InstagramEntryPage() {
           </div>
         </section>
 
+
+        <section className="mx-5 mb-6 border-2 border-[#c25b21] bg-[#fff8f1] px-5 py-6 text-[#222] sm:mx-9 sm:px-7" aria-labelledby="instagram-korea-interest-title">
+          <p className="text-[11px] font-black tracking-[.12em] text-[#934318]">RBA UNITED / KOREA 2027 · FREE INTEREST ONLY</p>
+          <h2 id="instagram-korea-interest-title" className="mt-3 text-[26px] font-black leading-[1.3] sm:text-[32px]">所属はそのまま。韓国・仁川への挑戦を考えてみませんか。</h2>
+          <p className="mt-3 text-[14px] leading-7">IYIBS 2027｜2027年1月28〜31日予定。現在はU15男子を優先検討し、その他の年代も無料で参加意向を受け付けています。</p>
+          <p className="mt-2 text-[12px] leading-6 text-[#624c3e]">これは無料の参加希望登録です。チーム編成、正式な大会受入、参加費、宿泊・移動・引率の条件は確認中です。登録だけで出場、航空券手配、支払いは確定しません。</p>
+          <a href="https://form.jotform.com/263207310187047" target="_blank" rel="noopener noreferrer" data-growth-id="instagram-korea-2027-free-interest" className="mt-5 flex min-h-[54px] items-center justify-between bg-[#aa4516] px-5 py-4 text-[14px] font-black text-white">
+            保護者から無料で参加意向を登録 <ArrowUpRight size={19} aria-hidden="true" />
+          </a>
+          <a href="/ja/united" className="mt-3 inline-flex text-[12px] font-bold underline underline-offset-4">RBA UNITEDの正式募集との違いを見る</a>
+        </section>
+
         <section className="mx-5 mb-6 border-2 border-[#10233f] bg-white px-5 py-6 text-[#10233f] sm:mx-9 sm:px-7" aria-labelledby="instagram-sendai-school-title">
           <p className="text-[11px] font-black tracking-[.12em] text-[#735c48]">SENDAI / TAIHAKU · SCHOOL TRIAL</p>
           <h2 id="instagram-sendai-school-title" className="mt-3 text-[27px] font-black leading-[1.3] tracking-[-.04em] sm:text-[34px]">仙台の小学生・中学生へ。<br />チームはそのまま、もっと学ぼう。</h2>
