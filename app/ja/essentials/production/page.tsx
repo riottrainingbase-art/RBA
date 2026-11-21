@@ -52,7 +52,7 @@ export default async function RbaEssentialsProduction({searchParams}:{searchPara
   <section className={styles.head}>
     <div className={styles.kicker}><span>RBA ESSENTIALS / PRODUCTION</span><span>RESTRICTED ACCESS</span></div>
     <h1>From order<br/><em>to delivery.</em></h1>
-    <p>RBAが集客と注文受付を担当し、承認された製作担当が製作・検品・発送まで進行します。入金が確認された注文のみ表示しています。</p>
+    <p>RBAが販売・入金照合・製造依頼・工程記録を管理し、製造委託先は加工・検品・発送の作業を担当します。製造委託先のRBAアカウントは必須ではありません。入金が確認された注文のみ表示しています。</p>
     <div className={styles.meta}><strong>{list.length}</strong><span>PAID ORDERS / 最新100件まで表示</span></div>
     {q.status==="saved"&&<p className={styles.success} role="status">製作ステータスを記録しました。</p>}
     {q.status==="invalid"&&<p className={styles.error} role="alert">ステータスの順序、追跡番号、発送日または問題の記録を確認してください。</p>}
