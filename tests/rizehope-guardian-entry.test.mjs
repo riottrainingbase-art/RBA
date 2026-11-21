@@ -20,6 +20,9 @@ test("RBA UNITED has a clear guardian-only free primary CTA and no active indivi
   assert.ok(united.includes(officialForm), "Must use original valid no-fee Jotform");
   assert.match(united, /保護者から無料で先行エントリー/);
   assert.match(united, /登録は無料・決済なし/);
+  assert.match(united, /参加費全額の入金後にロスター確定/);
+  assert.match(united, /前金だけでロスター確定とはなりません/);
+  assert.match(united, /登録料・事務手数料は別途徴収しません/);
   assert.match(united, /参加確定・選考合格・出場枠確保にはなりません/);
   assert.match(united, /保護者氏名/);
   assert.match(united, /居住都道府県/);
@@ -37,7 +40,8 @@ test("Nonpayable fee scenarios and domestic team price never conflate", () => {
 test("RBA UNITED main landing surfaces the correct free form and details page", () => {
   assert.ok(generalUnited.includes("263221266794057"));
   assert.ok(generalUnited.includes("/ja/international/rizehope-japan-2027/united"));
-  assert.ok(generalUnited.includes("無料登録は参加枠の確保や出場確定ではありません"));
+  assert.ok(generalUnited.includes("正式参加費全額の前払い確認後"));
+  assert.ok(generalUnited.includes("無料先行登録・別途登録料は0円"));
 });
 test("Child-safety and organizer claims are not overstated", () => {
   assert.match(united, /年齢条件・指導者・引率・保険・救護/);
