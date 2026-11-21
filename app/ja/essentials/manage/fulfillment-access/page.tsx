@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient as createService } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { SiteFrame } from "@/components/site-frame";
 import { grantEssentialsMakerAccess, revokeEssentialsMakerAccess } from "./actions";
 
@@ -26,7 +27,7 @@ export default async function MakerAccessPage({searchParams}:{searchParams:Promi
   const {data:{user},error} = await session.auth.getUser();
   if(error||!user)notFound();
   const {data:profile,error:profileError} = await session.from("profiles").select("role").eq("id",user.id).maybeSingle();
-  if(profileError||profile?.role!=="admin")notFound();
+  if(profileError||(profile?.role!=="admin" && !await isRbaStoreOwner(user.id)))notFound();
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const secret = process.env.SUPABASE_SERVICE_ROLE_KEY;
   const expected = "ctngdzzorhzpdxswahzl.supabase.co";
