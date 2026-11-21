@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { sendEssentialsBuyerAcceptance } from "@/lib/essentials-buyer-notices";
@@ -11,7 +12,7 @@ export async function sendPendingEssentialsNotice(form:FormData):Promise<never>{
  const {data:{user},error}=await auth.auth.getUser();
  if(error||!user)notFound();
  const role=await auth.from("profiles").select("role").eq("id",user.id).maybeSingle();
- if(role.error||role.data?.role!=="admin")notFound();
+ if(role.error||(role.data?.role!=="admin" && !await isRbaStoreOwner(user.id)))notFound();
  const id=form.get("order_id");
  if(typeof id!=="string"||!/^[a-f0-9]{8}-[a-f0-9-]{28}$/i.test(id))
    redirect("/ja/essentials/manage?notice=invalid");
@@ -27,7 +28,7 @@ export async function sendPendingEssentialsShipmentNotice(form:FormData):Promise
  const {data:{user},error}=await auth.auth.getUser();
  if(error||!user)notFound();
  const role=await auth.from("profiles").select("role").eq("id",user.id).maybeSingle();
- if(role.error||role.data?.role!=="admin")notFound();
+ if(role.error||(role.data?.role!=="admin" && !await isRbaStoreOwner(user.id)))notFound();
  const id=form.get("order_id");
  if(typeof id!=="string"||!/^[a-f0-9]{8}-[a-f0-9-]{28}$/i.test(id))
    redirect("/ja/essentials/manage?notice=invalid");
