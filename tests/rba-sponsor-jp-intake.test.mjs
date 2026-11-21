@@ -21,7 +21,7 @@ test("Published sponsorship products explain their actual prices and different c
   assert.ok(html.includes("送信だけで契約や請求は発生しません"));
 });
 test("No unapproved title sponsorship or data-sharing promise",()=>{
-  assert.ok(html.includes("正式な参加"));
+  assert.ok(html.includes("海外参加チームや大会の詳細は調整中"));
   assert.ok(html.includes("企業名・ロゴの掲載"));
   assert.ok(html.includes("子さまの氏名・連絡先・写真"));
   assert.ok(html.includes("企業の皆さまに協賛や紹介の義務はありません"));
