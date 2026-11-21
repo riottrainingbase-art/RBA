@@ -21,7 +21,7 @@ export function HomecourtPlusPage(){
           <Link className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></Link>
           <a className="button button-light" href="#difference">無料版との違いを見る <ArrowRight size={17}/></a>
         </div>
-        <p className="hc-plus-small">今のチームに所属したまま使えます。決済にはRBA IDでのログインが必要です。</p>
+        <p className="hc-plus-small">今のチームに所属したまま使えます。決済にはRBA IDでのログインが必要です。単品教材・D-HUB COACH LABとの違いは <a href="/ja/learning" className="underline underline-offset-4">RBAの学習プラン比較</a>でご確認いただけます。別の月額会員は自動的には付属しません。</p>
       </section>
 
       <section className="hc-plus-method section-pad">
