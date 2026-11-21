@@ -180,6 +180,7 @@ export default async function StoreReconciliation() {
       </p>
       <div style={{display:"flex",gap:25,flexWrap:"wrap",marginTop:35}}>
         <Link href="/ja/essentials/manage">注文管理へ戻る</Link>
+        <Link href="/ja/essentials/manage/payment-exceptions">入金済み・要確認案件へ</Link>
         <Link href="/ja/essentials/manage/readiness">販売準備の監査へ</Link>
       </div>
     </div>
