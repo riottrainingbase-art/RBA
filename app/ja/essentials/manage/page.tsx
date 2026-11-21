@@ -68,7 +68,7 @@ export default async function EssentialsOrdersManage({searchParams}:{searchParam
     </table>
     {!orders.length&&<p>入金済みの注文はまだありません。</p>}
    </div>}
-   <p style={{fontSize:12,color:"#555",marginTop:28,lineHeight:1.9}}>この売上・注文管理はRBA側が扱い、製作・検品・発送工程は契約と権限確認後にりささんへ委託します。メールでの受注承諾通知・発送通知・返品対応は別途動作確認が必要です。</p>
+   <p style={{fontSize:12,color:"#555",marginTop:28,lineHeight:1.9}}>RBAが販売・入金確認・注文管理と製造依頼、発送結果の記録を担当します。りささん側には、合意済みの製作・検品・発送作業のみを委託し、RBA IDやStripe権限は必要ありません。委託先への安全な注文引渡しと、購入者への通知・返品対応は運用テスト後に有効化します。</p>
    <div style={{display:"flex",flexWrap:"wrap",gap:25,marginTop:35,fontSize:13}}><Link href="/ja/essentials/production">製作・発送ステータス ↗</Link><Link href="/ja/essentials/manage/readiness">販売開始の確認一覧 ↗</Link><Link href="/ja/essentials/manage/atelier">手書き加工の価格ラボ（非公開） ↗</Link><Link href="/ja/essentials">← RBA ESSENTIALSに戻る</Link></div>
   </main></SiteFrame>;
 }
