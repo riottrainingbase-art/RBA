@@ -10,7 +10,7 @@ test("RIZEHOPE Japanese and English event pages offer distinct domestic, oversea
   assert.match(hub, /263220855042046/);
   assert.match(hub, /263221234159047/);
   assert.match(hub, /263221266794057/);
-  assert.match(hub, //ja/international/rizehope-japan-2027/united/);
+  assert.ok(hub.includes("/ja/international/rizehope-japan-2027/united"));
   assert.match(hub, /RBA UNITED — Individual U12 players/);
   assert.match(hub, /RBA UNITED｜個人で参加したい選手・保護者/);
   assert.match(hub, /公式|無料|今は決済不要/);
