@@ -1,0 +1,40 @@
+name: RBA Global Services Funnel QA
+on:
+  pull_request:
+    branches: [release/instagram-conversion-hub-20261117]
+    paths:
+      - "app/international/services/**"
+      - "app/ja/international/services/**"
+      - "components/global-services-landing*.tsx"
+      - "components/international-platform.tsx"
+      - "components/japan-experience-landing.tsx"
+      - "app/sitemap.ts"
+      - "tests/rba-global-services-funnel.test.mjs"
+      - "docs/business/rba-global-*.md"
+      - ".github/workflows/rba-global-services-funnel-qa.yml"
+permissions:
+  contents: read
+jobs:
+  funnel-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out exact PR code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Validate business copy, consent and payments
+        run: node --test tests/rba-global-services-funnel.test.mjs
+      - name: Install locked dependencies
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.25.0 --activate
+          pnpm install --frozen-lockfile
+      - name: Full TypeScript check
+        run: pnpm exec tsc --noEmit --pretty false
+      - name: ESLint on changed pages and test
+        run: pnpm exec eslint app/international/services/page.tsx app/ja/international/services/page.tsx components/global-services-landing.tsx components/global-services-landing-ja.tsx components/international-platform.tsx tests/rba-global-services-funnel.test.mjs
+      - name: Japanese style audit
+        run: pnpm run audit:site-ja
