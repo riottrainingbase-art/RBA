@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient as createAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { essentialsHaveFinalSpecifications, getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 import { essentialsFulfillmentCanAcceptOrders } from "@/lib/essentials-fulfillment-readiness";
 import { verifyEssentialsStripeAccount, verifyEssentialsStripePublicBranding, verifyEssentialsStripeWebhookDestinations } from "@/lib/essentials-stripe";
@@ -39,7 +40,7 @@ export default async function EssentialsReadiness(){
   const {data:{user},error}=await db.auth.getUser();
   if(error||!user)notFound();
   const profile=await db.from("profiles").select("role").eq("id",user.id).maybeSingle();
-  if(profile.error||profile.data?.role!=="admin")notFound();
+  if(profile.error||(profile.data?.role!=="admin" && !await isRbaStoreOwner(user.id)))notFound();
   const cfg=getEssentialsPresaleConfig();
   const transactionalMailReady=getEssentialsNoticeConfig().configured;
   const env=process.env;
