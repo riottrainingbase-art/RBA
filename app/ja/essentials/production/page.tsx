@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient as serviceClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { SiteFrame } from "@/components/site-frame";
 import { updateEssentialsProduction } from "./actions";
 import styles from "./production.module.css";
@@ -39,7 +40,7 @@ export default async function RbaEssentialsProduction({searchParams}:{searchPara
   db.from("profiles").select("role").eq("id",user.id).maybeSingle(),
   admin.from("rba_essentials_fulfillment_agents").select("active").eq("user_id",user.id).eq("active",true).maybeSingle(),
  ]);
- const isAdmin=profile.data?.role==="admin";
+ const isAdmin=profile.data?.role==="admin" || await isRbaStoreOwner(user.id);
  if(!isAdmin&&(!staff.data?.active||!!staff.error))notFound();
  const [orders,tasks,q]=await Promise.all([
   admin.from("rba_essentials_orders").select("order_id,paid_at,tee_quantity,tee_size,setup_quantity,hoodie_size,pants_size,dispatch_by,deliver_by,payment_status,handwritten,handwritten_target,handwritten_message,handwritten_addon_jpy").eq("payment_status","paid").order("paid_at",{ascending:false}).limit(100),
