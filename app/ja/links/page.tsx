@@ -86,6 +86,7 @@ const more = [
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
+  {title: "RBA公式ウェア｜発売準備中（購入不可）",href:"/ja/store",id:"store"},
   {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
   {title: "RBA公式サイト",href:"/ja",id:"home"},
 ] as const;
