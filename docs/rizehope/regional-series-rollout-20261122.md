@@ -12,7 +12,7 @@
 |---|---|---|---|---|
 | Core flagship | Shibata, Miyagi | Existing tournament | 2027-02-27–28 | Venue reported reserved by local operations; final official basis and safety still open |
 | A | Kawasaki/Kanto | one-day, 4–6 team pilot | May–Jun 2027 | First enquiry to Saiwai Sports Center **sent 2026-11-22**; no reservation |
-| A | Kobe/Kansai | 1–2-day pilot with visiting-team potential | Sep–Nov 2027 | Kobe Central Gymnasium inquiry **sent 2026-11-22**; no reservation |
+| A | Kobe/Kansai | **one-day pilot first**; two-day only with a suitable separate venue | Sep–Nov 2027 | Kobe Central Gymnasium inquiry **sent 2026-11-22**; no reservation. Oji event booking restricted to one day per month |
 | B | Itoman/Naha/Okinawa | Taiwan/HK/Korea-friendly exchange pilot | Nov–Dec 2027 | Nishizaki general gym is a researched candidate; no enquiry/booking |
 | C | Akita/Iwate and other Tohoku sites | domestic feeder clinics and exchange | only after local support | Not marketed as an international event unless international participation is verified |
 | Future | Penang/Malaysia | jointly operated overseas edition | 2028+ only | Requires documented host, safety, contract, insurance and local legal review |
@@ -27,6 +27,8 @@
 
 ## Arena research (published rules are NOT confirmed quotes)
 - Kobe Oji Sports Center main arena: basketball two courts; event-day rate JPY 70,000 weekdays, +20% weekend; commercial classifications can greatly increase rate. Source: https://www.kobe-spokyo.jp/ojisports/about/arena
+  **Critical newly confirmed limit:** Oji's event-only main arena rules state no more than ONE booked event day in a calendar month per group, so the prior '1–2 days' assumption must not be presented as available at this venue. Bookings for September/October/November are published to begin on March 1 / April 1 / May 1, 2027 respectively, at the office/FAX and not through AjiSai net; final 2027 policy is subject to official confirmation. Source: https://www.kobe-spokyo.jp/ojisports/riyou/case_taikai
+  Weekend 9:00–21:00 reference is JPY 84,000 ONLY at the ordinary event-use rate (JPY 70,000 × 1.2). If the organiser is classed as for-profit, listed base rates may be 6× before applicable extras and final classification; do not assume that charging team fees is non-commercial. A one-day Kobe pilot is contingent on a WRITTEN confirmed fee class and a cash-secure budget.
 - Kobe Central Gymnasium: event reservations depend on monthly booking windows, and venue staff previously said friendlies belong to 'event use'. Formal written clarification needed on paid team participation, spectator admission and profit-motivated events; do not infer the correct fee multiplier from this alone. Source: https://kobechuo-gym.jp/guide/convention/
 - Kawasaki Saiwai Sports Center: proposed venue only. Kawasaki City has announced revised sports-center pricing from 2027-04-01; new full event quote and eligibility required. Source: https://www.city.kawasaki.jp/250/page/0000191882.html
 - Okinawa Nishizaki General Gymnasium: 2026-05 price revision; day type, non-resident surcharge and event classification matter. Source: https://www.city.itoman.lg.jp/soshiki/22/35531.html
@@ -54,3 +56,20 @@
 **Documentation created:** RBA internal regional rollout strategy (10-page PDF & DOCX), 7-sheet financial/venue/ops workbook, 2026-11-22. Source evidence from prior RIZEHOPE master plan, connected calendar/Gmail, public facility and airport sources.
 
 Only internal planning code; no public release, invoice, charge, admission, event booking or third-party commitments were created here.
+
+## Verified live pipeline check (2026-11-22 morning, JST)
+- Jotform `263244816480055` (regional adult co-host enquiries): ENABLED, **0 submissions**.
+- Jotform domestic RIZEHOPE `263223566035050`, overseas `263221234159047`, UNITED `263243952545057`, sponsor `263222129730046`: all ENABLED with **0 submissions** at this read-back. This is not evidence of zero individual email conversations or interest.
+- RBA site PR #528 remains unmerged on `feature/rizehope-festival-brand-hub-20261122`; a successful static CI check does not prove that the new public page is live. Prior Vercel deployment quota failures should not be bypassed by deploying to unrelated projects.
+- Kawasaki Saiwai Sports Centre and Kobe Central Gymnasium were contacted the previous day for future regional use terms. No reply from either was found at this morning check. Do not send duplicate reminders now.
+- **INJ Mongolia** replied 2026-11-22 early JST that February 27–28 is interesting and they want to discuss age/eligibility and integration with a 7-day educational visit at the existing 25 Nov 2026 meeting. This is a positive lead, **not an accepted entry**.
+- **まちづくり村田** declined cooperation for February 2027 and cannot introduce other contacts; do NOT re-pitch this proposal as a fresh opportunity without a new invitation.
+- Miyagi U12 referees face a same-day official tournament conflict; do not publish an assured referee count.
+- RIZEHOPE Feb 27–28 overlaps Kinki/Chugoku/Shikoku U12 regional blocks: https://u12.japanbasketball.jp/schedule2026 .
+- Separate 2027-03-27–28 HBC Wolves venue confirmation refers to a **different youth development camp**, not a signed second RIZEHOPE festival venue.
+
+## Commercial gate refinements
+- Do not publish the speculative JPY 27,500 one-day / JPY 55,000 two-day prices, nor sponsor targets as confirmed revenue.
+- At a reference one-day pilot: 4 × JPY 27,500 = JPY 110,000, compared with JPY 450,000 *unverified* cost. Absent signed sponsorship, the illustrative deficit is JPY 340,000 even before additional unforeseen venue classification or emergency costs. Proposed sponsorship JPY 350,000 is a target only.
+- For Oji, when fee status is unclear, screen alternative venues rather than assuming a nominal JPY 84,000 weekend hall cost.
+- New regional Jotform is for adult partner interest only, not child applications or paid booking.
