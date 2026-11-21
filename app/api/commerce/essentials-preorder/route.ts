@@ -3,18 +3,18 @@ import { NextResponse } from "next/server";
 import { getEssentialsPresaleConfig } from "@/lib/essentials-commerce";
 import { essentialsFulfillmentCanAcceptOrders } from "@/lib/essentials-fulfillment-readiness";
 import { verifyEssentialsStripeAccount, verifyEssentialsStripePublicBranding, verifyEssentialsStripeWebhookDestinations } from "@/lib/essentials-stripe";
+import { essentialsSizeIsAllowed, type EssentialsGarment } from "@/lib/essentials-size-options";
 
 export const dynamic = "force-dynamic";
 const ORIGIN = "https://riotbasketballacademy.com";
-const SIZES = new Set(["S","M","L","XL"]);
 const asQty = (form:FormData, name:string) => {
   const val = form.get(name);
   if (typeof val !== "string" || !/^[0-3]$/.test(val)) return null;
   return Number(val);
 };
-const asSize = (form:FormData, name:string) => {
+const asSize = (form:FormData, name:string, garment:EssentialsGarment) => {
   const val = form.get(name);
-  return typeof val === "string" && SIZES.has(val) ? val : null;
+  return essentialsSizeIsAllowed(garment, val) ? val : null;
 };
 function fail(message:string,status=400) {
   return new NextResponse(message, {status,headers:{"Content-Type":"text/plain; charset=utf-8","Cache-Control":"no-store"}});
@@ -38,7 +38,7 @@ export async function POST(request:Request) {
   const teeQty=asQty(form,"tee_qty"), setupQty=asQty(form,"setup_qty");
   if(teeQty===null || setupQty===null || teeQty+setupQty<1 || teeQty+setupQty>3)
     return fail("商品数量は合計1〜3点で選択してください。");
-  const teeSize=asSize(form,"tee_size"), hoodieSize=asSize(form,"hoodie_size"), pantsSize=asSize(form,"pants_size");
+  const teeSize=asSize(form,"tee_size","tee"), hoodieSize=asSize(form,"hoodie_size","hoodie"), pantsSize=asSize(form,"pants_size","pants");
   if((teeQty>0 && !teeSize) || (setupQty>0 && (!hoodieSize || !pantsSize)))
     return fail("Tシャツとセットアップのサイズを選択してください。");
   const handmade = form.get("handwritten")==="yes";
