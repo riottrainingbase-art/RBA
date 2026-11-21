@@ -52,5 +52,8 @@ test("bilingual routes and official brand imagery are included", () => {
 test("the link hub points to the new route, and never to the outdated wix site", () => {
   const page=read("app/ja/links/page.tsx");
   assert.ok(page.includes('/ja/international/rizehope-japan-2027'));
+  assert.ok(page.includes('https://form.jotform.com/263244816480055'));
+  assert.ok(page.includes('2027年以降の地域開催'));
+
   assert.ok(!page.includes('rbaofficialnm2.wixsite.com'));
 });
