@@ -46,3 +46,62 @@
 - 消費者庁「通信販売の最終確認画面」 https://www.caa.go.jp/notice/assets/consumer_transaction_cms203_240315_02.pdf
 - ローカル実装 docs/RBA_STORE_ORDER_FULFILLMENT_SYSTEM_20261117.md
 - この書類は法的助言や署名済み契約書ではない。実在の氏名・住所・電話番号を入力せずGitHubに掲載しない。
+
+
+---
+
+## 2026-11-21 追補：決済コード修正・RBA管理方式・本番切替手順
+
+この節は過去のPR #458中心の説明に対する**最新の差分**です。歴史的な記録を消さず、現在の実装は **PR #519** を基準とします。**有料販売はまだNO-GO**。
+
+### 今回修正・検証できた内容
+- Supabase本番の注文台帳で、フーディー `XXL` を受け付け、パンツ `S` を拒否する CHECK制約へ変更。変更前の注文0件を確認した上で、実際の制約をread-back。マイグレーション `20261121113401_rba_essentials_checkout_size_integrity_20261121.sql`。
+- 決済完了画面 `/ja/essentials/complete` は、**Stripe入金成功**と**注文台帳への反映成功**を分けて表示。入金済み・台帳未反映なら再度の決済を促さない。
+- RBA運営者限定 `/ja/essentials/manage/reconciliation` を追加。RBA名義Stripe直近100セッションから、支払済みかつアパレル関連のものだけを抽出し、台帳・製造タスクと照合。**読取専用**。Stripeに100件を超える履歴がある場合、画面に部分照合である旨を表示。
+- 購入ボタンの二重クリック抑止、適用販売条件への同意、実額・税込・送料・返品特約・配送期限の最終表示。寄附金控除と誤認させる必須チェックは廃止。
+- RBA管理者本人が、決済・注文・製造依頼・発送確認・顧客応対を担う。りささんのHOMECOURTアカウント・Stripeアカウントは**不要**。委託先が実物の製造・検品・発送を受託する。
+- 公式サイトの新Checkoutには `https://riotbasketballacademy.com/api/commerce/essentials-preorder-webhook` **だけ**をStripe側の必須Webhookとする。旧Hosted Payment Linksは引き続き無効で、使わない決済リンク専用Webhookを有料開始の条件としない。
+
+### 本番セットアップ（販売前に確認すべき順番）
+
+**1. Vercelの商用環境**
+- 現在、公式サイトドメインはHobby所属プロジェクト `rba_site_v11_portal_ready` にあります。商用運用可能なPro環境への移管またはHobbyチームの正式Pro契約を、ユーザー本人が管理画面で決定。既存ドメイン・環境変数・サブシステムを壊さないリリース計画を確認。
+- PR #519の最新コミットでNext.js/TypeScriptのビルド、375px・768px・1440px表示、商品詳細、法定表示、注文画面、管理者のみの注文/照合/製造ページのアクセスを検証。
+- 直近、Vercelは `402 api-deployments-free-per-day` 制限を返したため、新しいコミットのREADYは未検証です。古いプレビューのREADYを最新の根拠として使わない。
+
+**2. 暗号化・サーバー限定環境変数（値や秘密鍵はPR/チャットへ貼り付けない）**
+- `STRIPE_SECRET_KEY`：**RBAのStripeアカウント `acct_1UGdxZRXDnnSs6XN` 専用**の本番秘密鍵。顧客/他事業用アカウントやテストキーを混ぜない。
+- `SUPABASE_SERVICE_ROLE_KEY`：Supabase `ctngdzzorhzpdxswahzl` のサービスキー。クライアント公開不可、他事業と共有しない権限管理。
+- `RBA_ESSENTIALS_STRIPE_WEBHOOK_SECRET`：次項のRBA STORE専用署名シークレット。
+- `RBA_ESSENTIALS_RESEND_API_KEY`：送信元ドメインを検証した通知専用メールAPIキー。
+- `RBA_ESSENTIALS_NOTICE_FROM`：確認済み `RBA STORE <...@riotbasketballacademy.com>` 形式。
+- `RBA_ESSENTIALS_NOTICE_REPLY_TO`：RBAが実際に確認する事業用返信先。
+- `RBA_ESSENTIALS_NOTICE_SENDER_VERIFIED`、`RBA_ESSENTIALS_NOTICE_ENABLED`：送信元ドメインと受信テスト成功後のみtrue。
+- `RBA_ESSENTIALS_RBA_OPERATOR_USER_ID`、`RBA_ESSENTIALS_RBA_OPERATOR_EMAIL`、`RBA_ESSENTIALS_RBA_OPERATOR_ACCOUNT_VERIFIED`、`RBA_ESSENTIALS_FULFILLMENT_MODE=rba_managed` は既存の本人照合結果とRBA管理方針に従って設定。**外部の製作担当ログインは任意**。
+- `RBA_ESSENTIALS_RBA_SUPPLIER_HANDOFF_VERIFIED` は実際に注文番号・SKU・サイズ・数量・納期を送り、委託先が安全な経路で受理したテスト記録がある場合のみtrue。
+
+**3. Stripe公式サイト専用Webhook**
+- RBAアカウントのStripe Dashboard → Developers → Webhooksで宛先 `https://riotbasketballacademy.com/api/commerce/essentials-preorder-webhook` を作成。
+- 通知対象は `checkout.session.completed` と `checkout.session.async_payment_succeeded`。署名を検証し、`metadata.program=rba_essentials_presale` の有料Stripeセッションだけ処理する。
+- Stripe側で署名シークレットを安全に取得し、Vercelの `RBA_ESSENTIALS_STRIPE_WEBHOOK_SECRET` に暗号化保存。値をメールやGitHubに記載しない。
+- 本番ルートが実際に公開されてからWebhookを有効化。**署名付きイベントを送って注文台帳へ反映されるまで有料受付をONにしない**。
+- RBA STORE以外のイベントはこのルートが無視することを検証。他のHOMECOURT / 沖縄決済のWebhookに影響を与えない。
+- 旧Stripe Payment Linksは停止状態を維持。復活させる場合は別途サイズ・価格・契約・専用通知の検証が必要。
+
+**4. 法定販売条件・在庫／履行**
+- `RBA_ESSENTIALS_SELLER_NAME` / `_ADDRESS` / `_PHONE` / `_EMAIL` は実在し購入者へ表示する情報を本人が承認する。Stripeアカウント表示名だけでは法的販売者情報にならない。
+- `RBA_ESSENTIALS_ORDER_BY` / `_DISPATCH_BY` / `_DELIVER_BY` は具体的な日付（JST、YYYY-MM-DD）。注文期限≦発送期限≦お届け期限で、サイトが規定する最終引渡期限を現実に履行できることを証跡で確認。
+- `RBA_ESSENTIALS_CANCELLATION_TERMS` / `_RETURN_TERMS` / `_PRESALE_NOTE` / `_TERMS_VERSION`、 `RBA_ESSENTIALS_TAX_BEHAVIOR=inclusive` を正式な消費者向け文言で承認する。
+- 見本完成・洗濯表示・加工後実寸・色・対応サイズ・注文可能数量・正式RBAロゴ版下・返品や破損時の製造先責任の記録が必要。
+- `RBA_ESSENTIALS_PREORDER_ENABLED` は、**全てのゲートが証拠と実機テストで確認された最後だけ**trueへ変更。単なる代表の承認や既存の「りささんOK」報告だけで他のフラグをまとめてtrueにしない。
+
+### 本番移行直前の受入テスト
+1. 閉鎖状態：未ログイン管理画面が404、決済フォームのPOSTが423（適切なOrigin付き）、旧Payment Linksが無効。
+2. Stripe：RBAアカウントの識別子・公開名・ドメイン・明細名が正しい。別アカウントキーでは決済を作れない。
+3. 署名Webhook：無署名・別署名・別番組を拒否／無視、成功取引を1件の台帳と1件の製造タスクへ反映。
+4. サイズ・金額：TEE S〜XL、HOODIE S〜XXL、PANTS M〜XL、金額6,600/19,800円、送料0円、税区分を画面/Stripe/台帳で一致させる。
+5. 同じStripe Checkoutイベントを2回送っても、注文・製造タスク・承諾通知は増えない。
+6. 成功ページは「入金済み・受注台帳登録済み」と「入金済み・受注照合中」を正しく区別する。
+7. `/ja/essentials/manage/reconciliation` が未登録入金・製造タスク欠落を検出し、自動返金・再請求しない。
+8. 発送追跡番号、発送日、委託先の受理、顧客通知の送信元と到達を実際にテスト。委託先へStripe・顧客の決済情報を渡さない。
+9. Vercelの正式商用ホスティングで、スマートフォン購入画面・返品/法定条件・公式ロゴを確認してから公開。
