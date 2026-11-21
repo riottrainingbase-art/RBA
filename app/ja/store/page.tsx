@@ -8,15 +8,16 @@ import {
   safePerformanceTeeProductUrl,
 } from "@/lib/performance-tee-launch";
 import styles from "./store.module.css";
+import { RbaCollection001Preview } from "@/components/rba-collection-001-preview";
 
 export const metadata: Metadata = {
-  title: "RBA PERFORMANCE TEE | Riot Basketball Academy 公式スポーツウェア",
+  title: "RBA STORE | COLLECTION 001・公式アパレル | Riot Basketball Academy",
   description:
-    "コートへ、その先へ。Riot Basketball Academy公式Performance Tee。発売状況・着用設計・購入前の確認事項をご案内します。",
+    "RBA公式アパレル FIRST DROP。WHITE TEE（6,600円）／BLACK SETUP（19,800円）の発売案内・無料購入希望登録。商品CGと実物は異なります。注文・決済は未開始。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/store" },
   openGraph: {
-    title: "RBA PERFORMANCE TEE | コートへ、その先へ。",
-    description: "RBA公式スポーツウェアの第一弾。製品の検証と発売情報はこちら。",
+    title: "RBA STORE | COLLECTION 001 / 発売準備中",
+    description: "RBA WHITE TEE・BLACK SETUP。税込価格は確定、製造と品質の最終承認・販売開始はこれから。無料発売案内のみ受付。",
     url: "https://riotbasketballacademy.com/ja/store",
     siteName: "Riot Basketball Academy",
     locale: "ja_JP",
@@ -80,14 +81,15 @@ const questions = [
 export default function StorePage() {
   return <SiteFrame locale="ja">
     <main className={styles.page}>
+      <RbaCollection001Preview />
       <section className={styles.hero} aria-labelledby="store-title">
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / OFFICIAL COLLECTION</p>
+          <p className={styles.eyebrow}>RBA / FUTURE PERFORMANCE WEAR CONCEPT</p>
           <p className={styles.status}>{checkoutUrl ? "NOW AVAILABLE" : "FIRST DROP / LAUNCH PREPARATION"}</p>
           <h1 id="store-title">コートへ、<br />その先へ。<br /><span>RBAと。</span></h1>
           <p className={styles.lead}>
             着るたびに、次のコートを思い出す。<br />
-            RBAがつくる、最初のパフォーマンスウェア。
+            RBAが開発を検討しているパフォーマンスウェア。
           </p>
           <p className={styles.productName}>RBA PERFORMANCE TEE <span>01 / BLACK</span></p>
           {checkoutUrl ? <a className={styles.button} href={checkoutUrl} target="_blank" rel="noopener noreferrer" data-growth-id="store-performance-buy">
