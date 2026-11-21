@@ -90,12 +90,23 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
   const note = p.RBA_ESSENTIALS_PRESALE_NOTE?.trim() || "";
   const termsVersion = p.RBA_ESSENTIALS_TERMS_VERSION?.trim() || null;
   const todayJST = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  // RBA owns customer sales, payment reconciliation and the manufacturing handoff.
+  // The external supplier needs no login when RBA is the verified operator.
+  const fulfillmentMode = p.RBA_ESSENTIALS_FULFILLMENT_MODE;
+  const fulfillmentGateApproved = fulfillmentMode === "rba_managed"
+    ? ["RBA_ESSENTIALS_RBA_OPERATOR_ACCOUNT_VERIFIED", "RBA_ESSENTIALS_RBA_SUPPLIER_HANDOFF_VERIFIED"]
+      .every(key => isApproved(p[key])) &&
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+        p.RBA_ESSENTIALS_RBA_OPERATOR_USER_ID ?? ""
+      )
+    : fulfillmentMode === "supplier_login"
+      ? ["RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED", "RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED"]
+        .every(key => isApproved(p[key]))
+      : false;
   const ready = [
     "RBA_ESSENTIALS_PREORDER_ENABLED",
     "RBA_ESSENTIALS_MANUFACTURING_CONFIRMED",
     "RBA_ESSENTIALS_RISA_FULFILLMENT_AGREEMENT_APPROVED",
-    "RBA_ESSENTIALS_RISA_FULFILLMENT_ACCESS_VERIFIED",
-    "RBA_ESSENTIALS_RISA_ORDER_HANDOFF_VERIFIED",
     "RBA_ESSENTIALS_SAMPLES_APPROVED",
     "RBA_ESSENTIALS_PHOTOS_APPROVED",
     "RBA_ESSENTIALS_PUBLIC_LISTING_APPROVED",
@@ -114,6 +125,7 @@ export function getEssentialsPresaleConfig(): EssentialsPresaleConfig {
     "RBA_ESSENTIALS_CONFIRMATION_NOTICE_READY",
     "RBA_ESSENTIALS_ONE_MONTH_LEAD_TIME_APPROVED"
   ].every(k => isApproved(p[k])) &&
+    fulfillmentGateApproved &&
     !!p.STRIPE_SECRET_KEY &&
     p.RBA_ESSENTIALS_TAX_BEHAVIOR === "inclusive" &&
     essentialsHaveFinalSpecifications && getEssentialsNoticeConfig().configured &&
