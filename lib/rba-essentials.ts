@@ -35,7 +35,7 @@ export const essentials = [
     color: "BLACK",
     colorJa: "ブラック",
     image: ESSENTIALS_SETUP_IMAGE,
-    alt: "RBAの黒いオーバーサイズパーカーとワイドスウェットパンツの上下セットのデザインイメージ。",
+    alt: "RBA BLACK SETUPのデザインイメージ。CGのパンツはワイド型だが、採用予定のUnited Athle 5765-01は裾が絞られた仕様で、実物商品写真ではありません。",
     statement: "コートを離れても、変わらないものがある。",
     description: "BLACK SETUP / 12.0oz裏起毛。United Athle 5763-01フーディーと5765-01パンツを揃える上下セット。綿75％・ポリエステル25％（ブラック）、控えめなRBAワッペンのデザインです。",
     details: ["フーディ：United Athle 5763-01／12.0オンス裏起毛／綿75％・ポリエステル25％", "パンツ：United Athle 5765-01／同じ12.0オンス裏起毛・混用率", "メーカー5765-01の裾はシャーリング仕様。CGのワイドストレート裾とは形状が異なります", "上下に小型RBAワッペン。フーディとパンツのサイズを個別に選択"],
