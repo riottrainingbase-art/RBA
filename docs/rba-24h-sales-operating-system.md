@@ -51,7 +51,7 @@
 **Supabase RBA HOMECOURT**
 - Edge Function `stripe-homecourt-webhook` はACTIVE（v20）。
 - DBでStripe通知イベント136件：processed 70件、ignored 63件、failed 3件（過去累計）。直近7日間受信8件のうち、処理済み・無視扱い以外は0件。
-- `unmatched_stripe_payments` 30件のうち、resolved 1件、unresolved 29件。**29件を確定未入金・未提供とは断定できない。** 個別取引の照合と原因分類が必要。
+- `unmatched_stripe_payments` 30件のうち、resolved 1件、unresolved 29件。**29件を確定未入金・未提供とは断定できない。** 2026-11-21の追加監査で29件すべてが `payment_status=paid` 相当、未照合理由は `rba_user_not_resolved`。つまり入金そのものが未完了なのではなく、RBAユーザーIDとの紐付けが残る決済記録である。内訳には沖縄国際ユースキャンプ10件、鹿児島BASTETクリニック7件、Torsten Vol.2のLIVE1件・録画1件などを含む。イベント参加者や録画購入者に会員IDがない場合もあるため、全件を「未提供」と決めつけず、購入したサービスに応じて申込・領収書・連絡先を個別に突合する。
 - `public.subscriptions` にHOMECOURT月額のactive 3件。ただしStripe側5件とはサービス範囲・データソースが異なるため単純な件数一致を求めない。
 - 事後の会員付与確認、失敗通知の再実行判断、未照合記録の解消には、Stripe取引と当該利用者の認証済み情報が必要。メールアドレスだけで別アカウントへ勝手に付与しない。
 
