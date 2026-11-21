@@ -40,7 +40,7 @@ export default async function MakerAccessPage({searchParams}:{searchParams:Promi
     <div style={{maxWidth:1050,margin:"0 auto"}}>
       <p style={{fontSize:12,letterSpacing:".14em"}}>RBA STORE / PRIVATE ADMIN / IDENTITY + AGREEMENT</p>
       <h1 style={{fontFamily:"Georgia,serif",fontSize:"clamp(31px,5vw,57px)",fontWeight:400}}>製造・発送担当者の権限設定</h1>
-      <p style={{maxWidth:790,lineHeight:2}}>登録済みSupabaseアカウントの本人確認と、双方署名済み製造・発送・個人情報取扱契約の原本確認を済ませた場合に限り権限を付与します。この画面はアカウントを新規作成したり、委託契約を成立させたりしません。</p>
+      <p style={{maxWidth:790,lineHeight:2}}>RBA管理方式では販売・入金・製造依頼・発送記録をRBA管理者が扱うため、製造委託先のログインは不要です。この画面は将来、外部製造担当者に直接操作を委任すると決めた場合だけ利用してください。登録済みSupabaseアカウントの本人確認と、双方署名済み契約の原本確認を済ませた場合に限り権限を付与します。アカウントや契約を自動作成することはありません。</p>
       {safeState?<p role="status" style={{padding:16,background:"#ebe3d5"}}>{messages[safeState]}</p>:null}
       {!connected?<p role="alert">本番管理接続が未設定です。権限付与を停止しています。</p>:null}
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,350px),1fr))",gap:30,margin:"40px 0"}}>
