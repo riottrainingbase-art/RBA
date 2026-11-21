@@ -10,7 +10,8 @@ test("RBA-managed operational mode never requires a supplier login", () => {
   assert.match(fulfillment, /mode === "rba_managed"/);
   assert.match(fulfillment, /RBA_ESSENTIALS_RBA_OPERATOR_USER_ID/);
   assert.match(fulfillment, /getUserById\(operatorId\)/);
-  assert.match(fulfillment, /profile\.data\?\.role === "admin"/);
+  assert.match(fulfillment, /data\.user\.id === operatorId/);
+  assert.match(fulfillment, /RBA_ESSENTIALS_RBA_OPERATOR_EMAIL/);
   assert.match(fulfillment, /email_confirmed_at/);
   assert.match(fulfillment, /RBA_ESSENTIALS_RBA_SUPPLIER_HANDOFF_VERIFIED/);
   assert.match(fulfillment, /mode === "supplier_login"/);
@@ -48,4 +49,23 @@ test("RBA administrator may manage manufacturing and shipping statuses", () => {
   assert.match(action, /tracking_reference/);
   assert.match(orderPage, /Stripe管理画面で確認/);
   assert.match(reference, /りささんのSupabase \/ RBA HOMECOURTアカウントは、\*\*RBA管理方式では不要\*\*/);
+});
+
+test("RBA STORE owner is narrowly pinned and cannot gain global HOMECOURT admin", () => {
+  const owner = read("lib/essentials-store-owner.ts");
+  const routeNames = [
+    "app/ja/essentials/manage/page.tsx",
+    "app/ja/essentials/manage/readiness/page.tsx",
+    "app/ja/essentials/manage/notice-actions.ts",
+    "app/ja/essentials/production/page.tsx",
+    "app/ja/essentials/production/actions.ts",
+    "app/ja/essentials/production/[orderId]/shipping/page.tsx",
+  ];
+  assert.match(owner, /RBA_ESSENTIALS_RBA_OPERATOR_USER_ID/);
+  assert.match(owner, /RBA_ESSENTIALS_RBA_OPERATOR_EMAIL/);
+  assert.match(owner, /data\.user\.id === userId|owner\.id === userId/);
+  assert.match(owner, /email_confirmed_at/);
+  assert.match(owner, /getUserById\(userId\)/);
+  assert.doesNotMatch(owner, /update\(\{\s*role/);
+  for (const p of routeNames) assert.match(read(p), /isRbaStoreOwner\(user\.id\)/, p);
 });
