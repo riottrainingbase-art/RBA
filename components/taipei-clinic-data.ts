@@ -1,5 +1,7 @@
 import { localePath, type Locale } from "./site-frame";
 
+export const taipeiClinicPartner = "Riot Basketball Academy × SPARTANS";
+
 export const taipeiClinicSessions = [
   { date: "2026-12-11", start: "16:00", end: "18:00", weekday: { ja: "金", en: "Fri", "zh-tw": "五", ko: "금" } },
   { date: "2026-12-12", start: "10:00", end: "12:00", weekday: { ja: "土", en: "Sat", "zh-tw": "六", ko: "토" } },
@@ -16,9 +18,11 @@ export const taipeiClinicCopy = {
     team: "公開枠以外の時間帯もチーム単位でご相談いただけます。指導者・チーム代表の方は、選手の年代・人数・希望日時をお知らせください。",
     teamCta: "チーム専用クリニックを相談する",
     details: "台北クリニックの日程を見る",
+    status: "一般申込は準備中",
+    ended: "この日程は終了しました。",
   },
   "zh-tw": {
-    title: "台北籃球訓練營",
+    title: "台北青少年籃球訓練營",
     dates: "2026 年 12 月 11–13 日",
     zone: "台灣時間（UTC+8）",
     place: "台灣・台北",
@@ -26,6 +30,8 @@ export const taipeiClinicCopy = {
     team: "公開場次以外，也可洽詢球隊專班。歡迎教練或領隊提供球員年齡、人數和希望的時段。",
     teamCta: "洽詢球隊專班",
     details: "查看台北訓練營時程",
+    status: "報名尚未開放",
+    ended: "此活動已結束。",
   },
   en: {
     title: "Taipei Basketball Clinic",
@@ -36,6 +42,8 @@ export const taipeiClinicCopy = {
     team: "Coaches and team leads can enquire about team sessions outside the public clinic times. Please share the players’ ages, group size and preferred time.",
     teamCta: "Enquire about a team clinic",
     details: "View the Taipei clinic schedule",
+    status: "Registration not yet open",
+    ended: "This clinic has ended.",
   },
   ko: {
     title: "타이베이 농구 클리닉",
@@ -46,6 +54,8 @@ export const taipeiClinicCopy = {
     team: "공개 일정 외에도 팀 단위 클리닉을 문의할 수 있습니다. 지도자 또는 팀 대표가 선수 연령, 인원과 희망 시간을 알려 주세요.",
     teamCta: "팀 클리닉 문의",
     details: "타이베이 클리닉 일정 보기",
+    status: "참가 신청 준비 중",
+    ended: "이 클리닉은 종료되었습니다.",
   },
 } satisfies Record<Locale, Record<string, string>>;
 

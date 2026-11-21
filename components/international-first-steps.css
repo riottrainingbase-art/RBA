@@ -1,0 +1,46 @@
+.international-platform .international-first-steps {
+  min-height: auto;
+  padding-top: clamp(32px, 6vw, 86px);
+  padding-bottom: clamp(40px, 6vw, 86px);
+}
+.international-first-steps h1 {
+  font-size: clamp(38px, 8vw, 92px);
+  line-height: 1.05;
+  margin: 14px 0;
+  overflow-wrap: anywhere;
+}
+.international-first-steps > .international-entry-actions {
+  align-items: start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  gap: 18px;
+  max-width: 790px;
+  margin-top: 20px;
+}
+.international-entry-actions .button {
+  width: 100%;
+  justify-content: space-between;
+  min-height: 50px;
+  gap: 10px;
+}
+.international-entry-actions p {
+  color: #d7dce0;
+  font-size: .875rem;
+  margin: 7px 0 0;
+}
+.international-entry-actions .button svg { flex: none; }
+.international-platform .international-region-entry { background: #f2f4f3; color: #182631; }
+.international-region-entry h2 { margin: 0 0 18px; }
+.international-region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: 16px;
+}
+.international-region-grid article { background: #fff; border: 1px solid #d8dfe2; padding: 22px; }
+.international-region-grid article h3 { margin-top: 0; }
+.international-region-grid a { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.international-entry-actions .international-team-action {
+  background: transparent;
+  border: 1px solid #ccd8de;
+  color: #fff;
+}
