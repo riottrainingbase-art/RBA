@@ -17,6 +17,7 @@ const faqs = [
   ["当日参加できない場合は？", "録画視聴（4,400円）を選択できます。開催後の配信開始から30日間ご覧いただけます。"],
   ["LIVEに録画は含まれますか？", "LIVEと録画は別の申込プランです。両方をご希望の場合は事前にRBAへお問い合わせください。"],
   ["フォームを送れば申込完了ですか？", "いいえ。国内申込はフォーム送信後の確認画面に表示されるSquare決済の案内に従ってお支払いください。決済完了後に申込確定となります。"],
+  ["フォームを送り直す必要がありますか？", "同じ申込については、重複送信・重複決済を避けてください。確認画面を閉じた、支払状況が不明、プランを変更したい場合は、再送信・再決済の前にRBAへお問い合わせください。"],
 ] as const;
 
 function RegisterLink({ label, id, className }: { label: string; id: string; className?: string }) {
@@ -80,6 +81,37 @@ export function TorstenJapanLanding() {
           <p className={styles.shortCareer}>男子U16・U18・U19日本代表ヘッドコーチ、東京2020の3x3日本代表ディレクターコーチ、日独の年間最優秀コーチ賞などの経歴も持ちます。</p>
         </section>
 
+        <section className={styles.fit} aria-labelledby="torsten-fit">
+          <div className={styles.fitHead}>
+            <p className={styles.sectionKicker}>IS THIS FOR YOU? / 対象と学び方</p>
+            <h2 id="torsten-fit">こんな課題を、現場で感じていませんか。</h2>
+            <p>以下はRBAが整理した受講の目安です。講師の発言や成果保証ではありません。</p>
+          </div>
+          <div className={styles.fitGrid}>
+            <article>
+              <span>01 / U12・ミニバス</span>
+              <h3>練習では入るのに、試合では打てない。</h3>
+              <p>フォームだけでなく、守備者を見て打つ機会を選ぶ練習を考えたい指導者へ。</p>
+            </article>
+            <article>
+              <span>02 / U15・U18</span>
+              <h3>シュート練習が、ゲームにつながらない。</h3>
+              <p>スペーシングや味方との関係を含め、実戦につながる練習設計を学びたい方へ。</p>
+            </article>
+            <article>
+              <span>03 / 保護者・選手</span>
+              <h3>「もっと打て」以外の学び方を知りたい。</h3>
+              <p>本数や成功率だけにとらわれず、シュートにつながる状況づくりを理解したい方へ。</p>
+            </article>
+          </div>
+          <div className={styles.fitActions}>
+            <p><strong>当日参加：</strong>11/25（水）20:00〜21:30、LIVE 3,300円（税込）</p>
+            <p><strong>時間が合わない：</strong>開催後の録画30日間、4,400円（税込）</p>
+            <RegisterLink label="受講方法を選んで申し込む" id="torsten-fit-register" />
+            <p className={styles.fitSmall}>国内申込は同一Googleフォームから。選んだプランのSquare決済を完了した時点で申込確定です。</p>
+          </div>
+        </section>
+
         <section className={styles.about} aria-labelledby="torsten-learn">
           <div>
             <p className={styles.sectionKicker}>90 MINUTES / 講習内容</p>
@@ -132,6 +164,14 @@ export function TorstenJapanLanding() {
           <p className={styles.help}>日本国内は税込円建て・Square決済でのお支払いです。<a href="/events/torsten-loibl-online-clinic#register">海外向けUSD申込はこちら</a>。支払方法でお困りの方は<a href={clinicHelpUrl("申込・お支払い手続きの相談")}>RBAにご相談ください</a>。</p>
         </section>
 
+        <section className={styles.shareInvite} aria-label="チームへの情報共有">
+          <div>
+            <p className={styles.sectionKicker}>SHARE / チームに紹介する</p>
+            <h2>一人で学ぶ。その学びを、チームへ。</h2>
+            <p>U12・U15・保護者向けに、講習の内容と料金を正確に伝えられる紹介文を用意しました。共有は任意です。</p>
+          </div>
+          <a data-growth-id="torsten-share-from-lp" href={clinicSharePath} className={styles.shareAction}>紹介文を選んで共有する <ArrowRight size={18} aria-hidden="true" /></a>
+        </section>
         <section className={styles.faq} aria-labelledby="torsten-faq">
           <h2 id="torsten-faq">よくある質問</h2>
           {faqs.map(([question, answer])=><details key={question}><summary>{question}<ChevronDown size={17} aria-hidden="true" /></summary><p>{answer}</p></details>)}
