@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 import { sendEssentialsBuyerAcceptance } from "@/lib/essentials-buyer-notices";
 import { essentialsSizeIsAllowed } from "@/lib/essentials-size-options";
+import { quarantinePaidEssentialsSession, type EssentialsPaidExceptionReason } from "@/lib/essentials-payment-exceptions";
 import {
   FIRST_DROP_TEE_JPY,
   FIRST_DROP_SETUP_JPY,
@@ -61,11 +62,18 @@ export async function POST(request:Request){
    return reply({error:"invalid_payment_account_or_mode"},422);
  if(session.payment_status!=="paid")return reply({received:true,pending:true});
  if(!await verifyEssentialsStripeAccount(secret))return reply({error:"invalid_account"},503);
+ // Do not treat a paid-but-invalid Stripe event as a fulfilled order.
+ // Persist an idempotent private exception or ask Stripe to retry if storage fails.
+ const manualReview=async(reason:EssentialsPaidExceptionReason)=>{
+   const recorded=await quarantinePaidEssentialsSession(event,session,reason);
+   if(!recorded)return reply({error:"paid_exception_record_failed"},503);
+   return reply({received:true,manual_review_required:true});
+ };
  const link=typeof session.payment_link==="string"?session.payment_link:null;
  const isTee=link===TEE_LINK;
- if(!isTee&&link!==SETUP_LINK)return reply({error:"unexpected_payment_link"},422);
+ if(!isTee&&link!==SETUP_LINK)return manualReview("unsupported_payment_link");
  if(m?.product!==(isTee?"tee":"setup")||m?.shipping_japan_jpy!=="0")
-   return reply({error:"unexpected_product_metadata"},422);
+   return manualReview("unexpected_product_metadata");
  if(!session.id||!session.id.startsWith("cs_live_")||
     typeof session.created!=="number"||
     typeof session.amount_total!=="number"||
@@ -86,7 +94,7 @@ export async function POST(request:Request){
     /draft|pending|review/i.test(termsVersion)||
     !approvedDate(dispatchBy)||!approvedDate(deliverBy)||
     dispatchBy<orderDate||deliverBy<dispatchBy||deliverBy>latestPermittedArrival)
-   return reply({error:"paid_without_approved_contract_terms_manual_reconciliation_required"},422);
+   return manualReview("unapproved_contract_terms");
  const shippingAmount=session.total_details?.amount_shipping;
  if(typeof shippingAmount==="number"&&shippingAmount!==0)
    return reply({error:"unexpected_shipping_charge"},422);
@@ -101,13 +109,13 @@ export async function POST(request:Request){
     typeof amount!=="number"||
     priceId!==(isTee?TEE_PRICE:SETUP_PRICE)||
     amount!==(isTee?FIRST_DROP_TEE_JPY:FIRST_DROP_SETUP_JPY)||
-    session.amount_total!==amount*qty)return reply({error:"unexpected_amount_or_quantity"},422);
+    session.amount_total!==amount*qty)return manualReview("incorrect_line_items_or_amount");
  const teeSize=isTee?textField(session,"teesize"):null;
  const hoodieSize=link===SETUP_LINK?textField(session,"hoodsize"):null;
  const pantsSize=link===SETUP_LINK?textField(session,"pantssize"):null;
  if((isTee&&!essentialsSizeIsAllowed("tee",teeSize))||
     (link===SETUP_LINK&&(!essentialsSizeIsAllowed("hoodie",hoodieSize)||!essentialsSizeIsAllowed("pants",pantsSize))))
-   return reply({error:"missing_or_invalid_size"},422);
+   return manualReview("invalid_garment_sizes");
  const createdReference=crypto.randomUUID();
  const row={
     order_id:createdReference,
@@ -133,7 +141,7 @@ export async function POST(request:Request){
     payment_status:"paid",
     fulfillment_status:"preparing",
     buyer_notice_status:"pending",
-    paid_at:new Date(session.created*1000).toISOString(),
+    paid_at:new Date(event.created*1000).toISOString(),
  };
  const db=createClient(database,service,{auth:{persistSession:false,autoRefreshToken:false}});
  const write=await db.from("rba_essentials_orders").upsert(row,{
