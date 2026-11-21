@@ -3,6 +3,40 @@ import Image from "next/image";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import styles from "./links.module.css";
 
+export const dynamic = "force-dynamic";
+
+// 展示期間が終わったイベントはリンク集から自動で非表示にする。
+// 参加可否・決済は必ず各公式ページの受付条件を優先する。
+const availableOffers = [
+  {
+    id: "torsten-20261125",
+    label: "11/25 WED / ONLINE",
+    title: "世界基準のシュート・判断を学ぶ90分",
+    description: "Torsten Loibl氏のオンライン講習。LIVE 3,300円／開催後の録画30日間 4,400円（税込・別プラン）。",
+    href: "/ja/events/torsten-loibl-online-clinic",
+    action: "LIVE・録画の詳細と申込へ",
+    until: "2026-11-25T20:00:00+09:00",
+  },
+  {
+    id: "kagoshima-20261129",
+    label: "11/29 SUN / KAGOSHIMA",
+    title: "BASTET × RBA 鹿児島クリニック",
+    description: "小学生〜高校生対象。午前・午後 各3,000円／通し4,000円（税込）。保護者の方からお申し込みください。",
+    href: "/ja/events/kagoshima-clinic-2026-11-29",
+    action: "時間・規約・申込方法を確認",
+    until: "2026-11-29T15:30:00+09:00",
+  },
+  {
+    id: "dhub-coach-lab",
+    label: "MONTHLY / COACH DEVELOPMENT",
+    title: "D-HUB COACH LAB｜毎週の学びを現場に",
+    description: "月額3,300円（税込）。指導者向けの年間48回の実践カリキュラム。既存会員は重複決済不要です。",
+    href: "/ja/d-hub/coaches",
+    action: "学べる内容・入会手順を見る",
+    until: null,
+  },
+] as const;
+
 export const metadata: Metadata = {
   title: "RBA公式リンク集｜保護者・指導者・参加できる活動",
   description: "Riot Basketball Academy公式。保護者・選手、指導者、クリニック参加の3つの入口から、必要な情報に迷わず進める公式リンク集です。",
@@ -51,7 +85,6 @@ const more = [
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
-  {title: "RBA PERFORMANCE TEE｜公式ウェア",href:"/ja/store",id:"store"},
   {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
   {title: "RBA公式サイト",href:"/ja",id:"home"},
 ] as const;
@@ -69,6 +102,21 @@ export default function RbaLinkInBioPage() {
         <p className={styles.lead}>保護者、指導者、活動に参加したい方へ。<br/>まずは目的をひとつお選びください。</p>
         <span className={styles.region}>仙台から、全国・アジアへ。</span>
       </header>
+      <section aria-labelledby="open-offers-heading">
+        <h2 id="open-offers-heading" style={{fontSize:"18px",margin:"0 0 10px",fontWeight:850}}>いま学べる・参加できるRBA</h2>
+        <nav aria-label="受付中の公式案内" className={styles.links}>
+          {availableOffers.filter(offer => !offer.until || Date.now() < Date.parse(offer.until)).map(offer=>
+            <a key={offer.id} className={styles.card} href={offer.href} data-growth-id={`bio-offer-${offer.id}`}>
+              <span className={styles.eyebrow}>{offer.label}</span>
+              <strong>{offer.title}</strong>
+              <span className={styles.description}>{offer.description}</span>
+              <span className={styles.action}>{offer.action}<span aria-hidden="true">→</span></span>
+            </a>
+          )}
+        </nav>
+        <p className={styles.notice}>開催日時・枠・お支払い条件は各公式ページをご確認ください。申込済み・入金済みの方は重複してお申し込みにならないようご注意ください。</p>
+      </section>
+      <h2 style={{fontSize:"18px",margin:"24px 0 10px",fontWeight:850}}>目的から探す</h2>
       <nav aria-label="RBAの公式案内リンク" className={styles.links}>
         {featured.map(item=><a key={item.id} className={item.style==="primary"?styles.featured:styles.card} href={item.href} data-growth-id={`bio-${item.id}`}>
           <span className={styles.eyebrow}>{item.label}</span>
