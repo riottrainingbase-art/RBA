@@ -22,6 +22,7 @@ export default function GreamSupport() {
           <p className={styles.eyebrow} style={{color:"#806c51"}}>GREAM / DEVELOPMENT PARTNERS</p>
           <h1>地域で育つ。<span>その挑戦を、一緒に。</span></h1>
           <p className={styles.sectionLead}>GREAMの活動を支える入口を一つにしました。地域のお店、全国の企業、個人の方。希望する応援方法を選ぶだけで、既存の公式申込・相談先へ進めます。</p>
+          <p className={styles.note}>企業・お店のご担当者様へ：<a href="/ja/partners/sponsor-options">地域広告と全国協賛の金額・契約期間を比較する →</a></p>
           <nav className={styles.choiceGrid} aria-label="応援する方法を選択">
             <a className={styles.choice} href="#local" data-growth-id="gream-support-choice-local"><span>01 / LOCAL</span><strong>地域のGREAMを応援</strong><em>秋田・仙台の企業やお店 →</em></a>
             <a className={styles.choice} href="#national" data-growth-id="gream-support-choice-national"><span>02 / RBA NATIONAL</span><strong>全国の育成を応援</strong><em>月額企業広告 →</em></a>
