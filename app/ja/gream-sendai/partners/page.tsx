@@ -27,7 +27,7 @@ export default function SendaiPartnersPage() {
       <h1>太白区のまちで、<br />子どもたちの挑戦を支える。</h1>
       <p>いつものお店に、GREAMのポスターがある。地域の企業の名前を、選手たちが知っている。そんな顔の見える関係を、仙台市太白区から育てたいと考えています。</p>
       <p>GREAM仙台は2026年に発足した男子U15バスケットボールクラブです。長町・富沢・八木山・茂庭台などの企業やお店と、日々の練習と学びを支える地域パートナーを募集しています。</p>
-      <div className={styles.actions}><a href="#plans">協賛メニューを見る ↓</a><a href={enquiry} data-growth-id="sendai-partner-enquiry">広告協賛を相談する →</a><a href="/downloads/gream-sendai/partnership-proposal.pdf">提案書PDFを開く ↓</a></div>
+      <div className={styles.actions}><a href="#plans">協賛メニューを見る ↓</a><a href={enquiry} data-growth-id="sendai-partner-enquiry">広告協賛を相談する →</a><a href="/ja/partners/sponsor-options">全国・他企画の協賛と比較する →</a><a href="/downloads/gream-sendai/partnership-proposal.pdf">提案書PDFを開く ↓</a></div>
     </div></section>
     <SendaiSponsorFilm />
     <section className={styles.section} id="plans"><h2>地域のお店も、企業も。<br />続けられる形から。</h2>

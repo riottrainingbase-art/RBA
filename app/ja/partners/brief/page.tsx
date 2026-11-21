@@ -30,6 +30,7 @@ export default function PartnerBrief() {
       <p style={{fontSize:18,lineHeight:1.85,color:dark,maxWidth:800,marginBottom:28}}>RBAは、仙台を拠点に地域のクリニック、指導者の学び、国内・アジア交流へ取り組んでいます。企業のご支援を、子どもたちが学び、挑戦する機会につなげていきます。</p>
       <div style={{display:"flex",gap:13,flexWrap:"wrap",marginBottom:39}}>
         <a href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" style={{padding:"15px 23px",background:ink,color:"#fff",textDecoration:"none",fontWeight:800}}>企業として無料相談する ↗</a>
+        <a href="/ja/partners/sponsor-options" style={{padding:"15px 23px",border:"1px solid "+ink,color:ink,textDecoration:"none",fontWeight:800}}>協賛の種類・金額を比較する →</a>
         <a href="/ja/support#apply" style={{padding:"15px 23px",border:"1px solid "+ink,color:ink,textDecoration:"none",fontWeight:800}}>月額企業広告を確認する →</a>
       </div>
       <section aria-labelledby="brief-activities" style={{borderTop:"1px solid "+frame,paddingTop:34,marginTop:30}}>
