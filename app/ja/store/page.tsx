@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
+import { ApparelInterestPath } from "@/components/apparel-interest-path";
 import {
   canSellPerformanceTee,
   performanceTeeRelease,
@@ -144,6 +145,8 @@ export default function StorePage() {
           <a className={styles.textLink} href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">発売情報は公式Instagramから ↗</a>
         </div>
       </section>
+
+      <ApparelInterestPath />
 
       <section className={styles.section} aria-labelledby="faq-title">
         <div className={styles.sectionHeading}>
