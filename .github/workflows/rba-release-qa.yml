@@ -78,6 +78,9 @@ jobs:
       - name: RBA network partnerships and safety gates
         run: node --test tests/rba-network-partners.test.mjs
 
+      - name: RIZEHOPE U12 UNITED guardian free registration and payment guards
+        run: node --test tests/rizehope-guardian-entry.test.mjs
+
       - name: RBA Performance Tee launch and safe checkout verification
         run: node --test tests/rba-performance-tee-launch.test.mjs
 
