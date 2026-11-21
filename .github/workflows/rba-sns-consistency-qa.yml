@@ -6,6 +6,10 @@ on:
     paths:
       - "app/ja/instagram/page.tsx"
       - "app/ja/links/page.tsx"
+      - "app/ja/international/rizehope-japan-2027/page.tsx"
+      - "app/international/rizehope-japan-2027/page.tsx"
+      - "components/rizehope-festival-entry.tsx"
+      - "tests/rizehope-festival-consistency.test.mjs"
       - "components/localized-home.tsx"
       - "components/localized-social.tsx"
       - "components/platform-business-pages.tsx"
@@ -29,7 +33,7 @@ jobs:
         with:
           node-version: "24"
       - name: Source-only recruitment and social regression tests
-        run: node --test tests/sns-consistency.test.mjs
+        run: node --test tests/sns-consistency.test.mjs tests/rizehope-festival-consistency.test.mjs
       - name: Pin pnpm to this repository version
         run: corepack enable && corepack prepare pnpm@11.25.0 --activate
       - name: Install locked dependencies
@@ -41,6 +45,10 @@ jobs:
           pnpm exec eslint
           app/ja/instagram/page.tsx
           app/ja/links/page.tsx
+          app/ja/international/rizehope-japan-2027/page.tsx
+          app/international/rizehope-japan-2027/page.tsx
+          components/rizehope-festival-entry.tsx
+          tests/rizehope-festival-consistency.test.mjs
           components/localized-home.tsx
           components/localized-social.tsx
           components/platform-business-pages.tsx
