@@ -33,7 +33,7 @@ export async function essentialsFulfillmentCanAcceptOrders(): Promise<boolean> {
       const operatorId = process.env.RBA_ESSENTIALS_RBA_OPERATOR_USER_ID?.trim() || "";
       if (!UUID.test(operatorId)) return false;
       const expectedEmail = process.env.RBA_ESSENTIALS_RBA_OPERATOR_EMAIL?.trim().toLowerCase();
-      if (!expectedEmail || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(expectedEmail)) return false;
+      if (!expectedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(expectedEmail)) return false;
       const {data,error} = await db.auth.admin.getUserById(operatorId);
       return !error && !!data.user && data.user.id === operatorId &&
         !!data.user.email_confirmed_at &&
