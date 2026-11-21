@@ -22,7 +22,7 @@ test("no paid order is committed with fabricated delivery terms or draft seller 
   assert.match(webhook, /approvedDate\(dispatchBy\)/);
   assert.match(webhook, /approvedDate\(deliverBy\)/);
   assert.match(webhook, /deliverBy>latestPermittedArrival/);
-  assert.match(webhook, /paid_without_approved_contract_terms_manual_reconciliation_required/);
+  assert.match(webhook, /manualReview\("unapproved_contract_terms"\)/);
   assert.match(webhook, /terms_version:termsVersion/);
   assert.match(webhook, /dispatch_by:dispatchBy/);
   assert.match(webhook, /deliver_by:deliverBy/);
@@ -48,4 +48,26 @@ test("ISO date validation is actual numeric ISO validation, not escaped literal 
   assert.ok(date.test("2026-12-20"));
   assert.ok(!date.test("2026-2-20"));
   assert.ok(!date.test("unverified"));
+});
+
+test("a paid but nonconforming Stripe session goes to private exception inbox",()=>{
+ const webhook=read("app/api/commerce/essentials-payment-link-webhook/route.ts");
+ const queue=read("lib/essentials-payment-exceptions.ts");
+ const screen=read("app/ja/essentials/manage/payment-exceptions/page.tsx");
+ const migration=read("supabase/migrations/20261121115844_rba_essentials_paid_session_exception_inbox_20261121.sql");
+ assert.match(webhook,/quarantinePaidEssentialsSession\(event,session,reason\)/);
+ assert.match(webhook,/manualReview\("unsupported_payment_link"\)/);
+ assert.match(webhook,/manualReview\("unapproved_contract_terms"\)/);
+ assert.match(webhook,/manualReview\("invalid_garment_sizes"\)/);
+ assert.match(webhook,/paid_exception_record_failed/);
+ assert.match(queue,/ignoreDuplicates:true/);
+ assert.match(queue,/payment_status!=="paid"/);
+ assert.match(queue,/checkout_session_id:session\.id/);
+ assert.match(queue,/rba_essentials_payment_exceptions/);
+ assert.match(migration,/ENABLE ROW LEVEL SECURITY/);
+ assert.match(migration,/REVOKE ALL ON public\.rba_essentials_payment_exceptions FROM PUBLIC,anon,authenticated/);
+ assert.match(migration,/GRANT SELECT,INSERT,UPDATE ON public\.rba_essentials_payment_exceptions TO service_role/);
+ assert.match(screen,/isRbaStoreOwner\(user\.id\)/);
+ assert.match(screen,/review_state/);
+ assert.doesNotMatch(screen, /refunds\.create|upsert\(/);
 });
