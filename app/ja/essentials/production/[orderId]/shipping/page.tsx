@@ -4,6 +4,7 @@ import Link from "next/link";
 import Stripe from "stripe";
 import { createClient as adminDbClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 
 export const dynamic="force-dynamic";
@@ -29,7 +30,7 @@ export default async function EssentialsShippingForMaker({params}:Props){
   client.from("profiles").select("role").eq("id",user.id).maybeSingle(),
   admin.from("rba_essentials_fulfillment_agents").select("active,terms_reference").eq("user_id",user.id).eq("active",true).maybeSingle(),
  ]);
- const isRbaAdmin=profile.data?.role==="admin";
+ const isRbaAdmin=profile.data?.role==="admin" || await isRbaStoreOwner(user.id);
  const hasValidProductionMandate=agent.data?.active&&!!agent.data?.terms_reference;
  if(!isRbaAdmin&&!hasValidProductionMandate)notFound();
  const {data:order,error:orderError}=await admin.from("rba_essentials_orders")
