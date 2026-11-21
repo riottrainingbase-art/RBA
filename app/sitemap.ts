@@ -47,6 +47,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...journalFamilyPages.map(path=>({path,lastModified:"2026-09-28T12:31:00Z"})),
     ...publicStatusPages.map(path=>({path,lastModified:"2026-11-16T00:00:00Z"})),
+    ...learningCommercePages.map(path=>({path,lastModified:"2026-11-21T00:00:00Z"})),
     ...productPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
     ...regionalPages.map(path=>({path,lastModified:path==="/ja/sendai-school"?"2026-11-09T00:00:00Z":path==="/ja/okinawa"?"2026-11-15T00:00:00Z":path==="/ja/okinawa-coach"?"2026-10-05T00:00:00Z":"2026-10-04T00:00:00Z"})),
     {path:"/ja/events/torsten-loibl-online-clinic/share",lastModified:"2026-10-28T00:00:00Z"},
