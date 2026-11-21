@@ -69,3 +69,17 @@ test("RBA STORE owner is narrowly pinned and cannot gain global HOMECOURT admin"
   assert.doesNotMatch(owner, /update\(\{\s*role/);
   for (const p of routeNames) assert.match(read(p), /isRbaStoreOwner\(user\.id\)/, p);
 });
+
+test("store-only identity binding keeps Supabase member roles unchanged", () => {
+  const owner = read("lib/essentials-store-owner.ts");
+  const readiness = read("lib/essentials-fulfillment-readiness.ts");
+  const config = read("lib/essentials-commerce.ts");
+  assert.match(owner, /isRbaStoreOwner\(userId/);
+  assert.match(owner, /RBA_ESSENTIALS_RBA_OPERATOR_EMAIL/);
+  assert.match(owner, /RBA_ESSENTIALS_RBA_OPERATOR_USER_ID/);
+  assert.match(owner, /email_confirmed_at/);
+  assert.match(readiness, /RBA_ESSENTIALS_RBA_OPERATOR_EMAIL/);
+  assert.match(config, /RBA_ESSENTIALS_RBA_OPERATOR_EMAIL/);
+  assert.doesNotMatch(owner, /from\("profiles"\)\.update/);
+  assert.doesNotMatch(readiness, /from\("profiles"\)\.update/);
+});
