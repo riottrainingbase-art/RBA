@@ -98,7 +98,8 @@ export default async function EssentialsReadiness(){
      <p>この画面は秘密鍵・顧客情報を表示しません。前払いの注文承諾メールと発送通知は、認証済み送信元・決済済み注文・送信状態を確認して処理します。送信サービスのAPI受理と実際の受信は別に検証してください。</p>
      <div style={{display:"flex",gap:22,flexWrap:"wrap",marginTop:26}}>
       <Link href="/ja/essentials/manage">注文管理 ↗</Link>
-      <Link href="/ja/essentials/production">りささん向け製作・発送管理 ↗</Link>
+      <Link href="/ja/essentials/production">製作・発送管理 ↗</Link>
+      <Link href="/ja/essentials/manage/fulfillment-access">製作担当の本人確認と権限設定 ↗</Link>
       <Link href="/ja/essentials/manage/atelier">手書き試作・価格検証 ↗</Link>
       <Link href="/ja/essentials/legal">購入者向け表示 ↗</Link>
      </div>
