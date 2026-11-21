@@ -2,6 +2,7 @@
 
 import { createClient as createService } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { isRbaStoreOwner } from "@/lib/essentials-store-owner";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
@@ -20,7 +21,7 @@ async function authorized() {
   const { data: { user }, error } = await session.auth.getUser();
   if (error || !user) notFound();
   const { data: profile, error: roleError } = await session.from("profiles").select("role").eq("id", user.id).maybeSingle();
-  if (roleError || profile?.role !== "admin") notFound();
+  if (roleError || (profile?.role !== "admin" && !await isRbaStoreOwner(user.id))) notFound();
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) next("config");
