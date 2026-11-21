@@ -112,7 +112,10 @@ export default function Rba24HourPage() {
             <p className={styles.kicker}>RBA / LEARN · JOIN · SUPPORT</p>
             <h1>必要な学びや活動へ。<br />自分のタイミングで。</h1>
             <p>RBAの講習、会員サービス、全国の育成活動、企業向けの応援プランをまとめました。自分に合ったものを選び、各公式ページで条件を確認してください。</p>
-            <a href="#services" className={styles.mainCta}>サービスを選ぶ <span aria-hidden="true">↓</span></a>
+            <div className={styles.heroActions}>
+              <a href="https://form.jotform.com/262542128767059" target="_blank" rel="noopener noreferrer" data-growth-id="24h-free-coach-audit" className={styles.mainCta}>無料でU12の指導を振り返る ↗</a>
+              <a href="#services" className={styles.mainCta}>商品・サービスを見る <span aria-hidden="true">↓</span></a>
+            </div>
             <p className={styles.heroCaution}>すでに申込・入金済みの方は二重のお支払いをしないでください。</p>
           </header>
 
@@ -173,7 +176,10 @@ export default function Rba24HourPage() {
           <section className={styles.help} aria-label="お問い合わせ">
             <h2>申込みのことで迷ったら</h2>
             <p>料金、参加資格、すでに支払った場合のお手続きなど、分からないことがあればご連絡ください。</p>
-            <a href="mailto:riot.training.base@gmail.com?subject=RBA%20%E7%94%B3%E8%BE%BC%E3%81%BF%E3%83%BB%E6%B1%BA%E6%B8%88%E3%81%AE%E7%9B%B8%E8%AB%87">RBAにメールする →</a>
+            <div className={styles.helpActions}>
+              <a href="https://form.jotform.com/263243557140049" target="_blank" rel="noopener noreferrer" data-growth-id="24h-paid-access-help">支払済み・アクセスできない方はこちら →</a>
+              <a href="mailto:riot.training.base@gmail.com?subject=RBA%20%E7%94%B3%E8%BE%BC%E3%81%BF%E3%83%BB%E6%B1%BA%E6%B8%88%E3%81%AE%E7%9B%B8%E8%AB%87">RBAにメールする →</a>
+            </div>
           </section>
 
           <footer className={styles.footer}>
