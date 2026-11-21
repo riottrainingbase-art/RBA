@@ -11,6 +11,7 @@ const coach = read("definitive-content/ja/d-hub-coaches.html");
 const support = read("app/ja/support/page.tsx");
 const after = read("app/ja/after-clinic/page.tsx");
 const sitemap = read("app/sitemap.ts");
+const homepage = read("components/simple-japanese-home.tsx");
 const checkout = read("app/api/commerce/checkout/[option]/route.ts");
 const guideAccess = read("lib/digital-material-access.ts");
 const materialRls = read("supabase/migrations/20260929153500_add_secure_digital_materials.sql");
@@ -61,7 +62,7 @@ test("One-time material purchase stays gated by login, protected checkout and RL
 });
 
 test("All existing source entry points and sitemap route to the compare page", () => {
-  for (const entry of [guide, plus, coach, after, support, sitemap]) {
+  for (const entry of [guide, plus, coach, after, support, sitemap, homepage]) {
     assert.ok(entry.includes("/ja/learning"), "Missing learning funnel link");
   }
 });
