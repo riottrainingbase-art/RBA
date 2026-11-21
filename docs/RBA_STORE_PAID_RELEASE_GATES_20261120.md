@@ -105,3 +105,27 @@
 7. `/ja/essentials/manage/reconciliation` が未登録入金・製造タスク欠落を検出し、自動返金・再請求しない。
 8. 発送追跡番号、発送日、委託先の受理、顧客通知の送信元と到達を実際にテスト。委託先へStripe・顧客の決済情報を渡さない。
 9. Vercelの正式商用ホスティングで、スマートフォン購入画面・返品/法定条件・公式ロゴを確認してから公開。
+
+
+---
+
+## 2026-11-21 実装：Stripe WHITE TEEの既定価格と停止中の決済リンクを再構築
+
+- **RBA本番Stripeアカウント**：`acct_1UGdxZRXDnnSs6XN`。確認時点では `charges_enabled=true`、`payouts_enabled=true`、公開事業者名は Riot Basketball Academy、事業URLは `https://riotbasketballacademy.com/`、カード明細表示は RIOT BASKETBALL。
+- WHITE TEE 商品 `prod_VdhVeR8cgnzE6d` に **¥6,600・税込（税内包）** の新価格 `price_1UeCqERXDnnSs6XN2re7INMd` を作成。商品 `default_price` へ設定し、Stripe API read-back で一致を確認。旧¥4,900価格は使わない。
+- WHITE TEE用の新しいPayment Link `plink_1UeCrqRXDnnSs6XNf9mnO2Te` を用意。**active=false** の状態をread-back確認。税込¥6,600、数量1〜3、サイズS/M/L/XL、国内配送先と電話番号・確認欄に対応。
+- BLACK SETUP既存リンク `plink_1UcRBHRXDnnSs6XNoHlBdpSQ` は **active=false** のまま。税込¥19,800、上S/M/L/XL/XXL・下M/L/XLの別サイズ、国内配送先と電話番号・確認欄を再検証。
+- 古いTEE用Payment Linkは現在も無効。新しいリンクと過去のリンクを**並行公開しない**。
+- Stripeの商品説明は販売価格を確定事実、CG/完成品・加工後実寸・引渡期限・返品条件を区別する表現へ修正済み。
+- 元のStripe Price `price_1UcioHRXDnnSs6XNEIYDMnJe` は「取得ではactive:true、商品既定価格への設定でarchivedと応答」の不整合があったため、**新価格の作成と既定価格への設定で解消**した。旧価格の再利用は行わない。
+
+### Hosted Payment Linkと公式サイトの受注を区別する
+1. 公式サイトStripe Checkout：`metadata.program=rba_essentials_presale`。署名Webhook `/api/commerce/essentials-preorder-webhook` から注文台帳へ反映。
+2. StripeネイティブPayment Link：`metadata.program=rba_essentials_first_drop`。署名Webhook `/api/commerce/essentials-payment-link-webhook` から台帳へ反映。
+3. Payment LinkのWebhookは新TEEのリンクID・価格IDだけを使用し、SETUPリンクは現行正規IDに限定。旧リンク・旧4,900円価格からの新規受注を許容しない。
+4. **Payment Linkは、実際に承認された `terms_state=approved`、`retail_terms_version`、`dispatch_by`、`deliver_by` をStripe側メタデータに設定するまで有効化しない。** Webhookもこれらを検証し、仮の発送・お届け期限を生成しない。
+5. Link向けの `RBA_ESSENTIALS_PAYMENT_LINK_WEBHOOK_SECRET` とVercel側のRBA専用Stripe/Supabaseサーバー秘密鍵、Webhook送信先の稼働確認が済むまでは、Stripeへ入金だけ発生させない。
+6. どちらか1つの決済導線に統一して公開。購入者・製造担当に別々の決済リンクを重複案内しない。
+7. 誤って有料決済が発生し、リンク側の正式条件を検証できない場合、Webhookは受注完了を偽らず `manual_reconciliation_required` を返す。RBAはStripe実取引と顧客対応・返金可否を原本確認する。
+
+**現在のStripe Payment Linkは2本ともinactive。作成・価格設定だけでは代金を受け取っていない。**
