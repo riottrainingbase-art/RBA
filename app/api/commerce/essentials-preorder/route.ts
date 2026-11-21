@@ -49,7 +49,7 @@ export async function POST(request:Request) {
     (handwrittenTarget==="tee" && teeQty!==1) ||
     (handwrittenTarget==="setup" && setupQty!==1)
   )) return fail("手書きの対象商品と数量を確認してください。");
-  if(form.get("accept_preorder")!=="yes" || form.get("accept_terms")!=="yes" || form.get("accept_development_use")!=="yes"
+  if(form.get("accept_preorder")!=="yes" || form.get("accept_terms")!=="yes"
     || form.get("terms_version")!==config.termsVersion)
     return fail("先行販売条件・利用規約への同意が必要です。");
   const orderID=crypto.randomUUID();
