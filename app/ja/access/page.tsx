@@ -1,0 +1,1 @@
+import type {Metadata} from "next";import {AccessGlobalPage} from "@/components/access-global-page";export const metadata:Metadata={title:"RBA ACCESS｜世界とつくる、子どものバスケ機会",description:"RBA奨学金・参加支援構想の国際協働相談。寄付決済・奨学生募集は未開始です。",alternates:{canonical:"https://riotbasketballacademy.com/ja/access"}};export default function Page(){return <AccessGlobalPage locale="ja"/>}
