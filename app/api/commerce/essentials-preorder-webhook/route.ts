@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 import { verifyEssentialsStripeAccount } from "@/lib/essentials-stripe";
 import { sendEssentialsBuyerAcceptance } from "@/lib/essentials-buyer-notices";
 import { FIRST_DROP_TEE_JPY, FIRST_DROP_SETUP_JPY, oneMonthFromJstDate } from "@/lib/essentials-commerce";
+import { essentialsSizeIsAllowed } from "@/lib/essentials-size-options";
 
 export const dynamic="force-dynamic";
 function error(reason:string,status:number){return NextResponse.json({error:reason},{status,headers:{"Cache-Control":"no-store"}});}
 function amount(s:string|undefined){if(!s||!/^[0-3]$/.test(s))return null;return Number(s);}
-function size(s:string|undefined){return s==="S"||s==="M"||s==="L"||s==="XL"?s:null;}
 export async function GET(){return error("method_not_allowed",405);}
 export async function POST(request:Request){
  const stripeSecret=process.env.STRIPE_SECRET_KEY;
@@ -33,7 +33,7 @@ export async function POST(request:Request){
  if(session.payment_status!=="paid")return NextResponse.json({received:true,pending:true});
  if(!await verifyEssentialsStripeAccount(stripeSecret))return error("unexpected_account",503);
  const m=session.metadata;
- const tee=amount(m?.tee_qty),setup=amount(m?.setup_qty),teeSize=size(m?.tee_size),hoodie=size(m?.hoodie_size),pants=size(m?.pants_size);
+ const tee=amount(m?.tee_qty),setup=amount(m?.setup_qty),teeSize=essentialsSizeIsAllowed("tee",m?.tee_size)?m!.tee_size:null,hoodie=essentialsSizeIsAllowed("hoodie",m?.hoodie_size)?m!.hoodie_size:null,pants=essentialsSizeIsAllowed("pants",m?.pants_size)?m!.pants_size:null;
  const order=m?.order_id,terms=m?.terms_version,deadline=m?.dispatch_by;
  const deliveredBy=m?.deliver_by;
  const stripeCreatedJST=typeof session.created==="number"
