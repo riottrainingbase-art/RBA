@@ -18,7 +18,7 @@ import {
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 // Previously distributed hosted links remain inactive; only the latest,
- // separately audited line item may be reconciled with approved terms.
+// separately audited line item may be reconciled with approved terms.
 const TEE_LINK="plink_1UeCrqRXDnnSs6XNf9mnO2Te";
 const TEE_PRICE="price_1UeCqERXDnnSs6XN2re7INMd";
 const SETUP_LINK="plink_1UcRBHRXDnnSs6XNoHlBdpSQ";
@@ -32,7 +32,7 @@ function textField(s:Stripe.Checkout.Session,key:string){
  return x?.dropdown?.value??null;
 }
 function approvedDate(x:unknown):x is string {
- if(typeof x!=="string"||!/^20\\d{2}-\\d{2}-\\d{2}$/.test(x))return false;
+ if(typeof x!=="string"||!/^20\d{2}-\d{2}-\d{2}$/.test(x))return false;
  const [year,month,day]=x.split("-").map(Number);
  const parsed=new Date(Date.UTC(year,month-1,day));
  return parsed.getUTCFullYear()===year && parsed.getUTCMonth()===month-1 && parsed.getUTCDate()===day;
