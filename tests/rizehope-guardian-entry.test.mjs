@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 const read = (p) => readFileSync(new URL("../" + p, import.meta.url), "utf8");
 const hub = read("components/rizehope-event-landing.tsx");
 const united = read("app/ja/international/rizehope-japan-2027/united/page.tsx");
+const generalUnited = read("components/platform-business-pages.tsx");
 const officialForm = "https://form.jotform.com/263221266794057";
 
 test("RIZEHOPE Japanese and English event pages offer distinct domestic, overseas and UNITED routes", () => {
@@ -32,6 +33,11 @@ test("Nonpayable fee scenarios and domestic team price never conflate", () => {
   assert.match(united, /通常24,800円/);
   assert.match(united, /未確定の試算/);
   assert.match(united, /この金額による申込・決済は受け付けていません/);
+});
+test("RBA UNITED main landing surfaces the correct free form and details page", () => {
+  assert.ok(generalUnited.includes("263221266794057"));
+  assert.ok(generalUnited.includes("/ja/international/rizehope-japan-2027/united"));
+  assert.ok(generalUnited.includes("無料登録は参加枠の確保や出場確定ではありません"));
 });
 test("Child-safety and organizer claims are not overstated", () => {
   assert.match(united, /年齢条件・指導者・引率・保険・救護/);
