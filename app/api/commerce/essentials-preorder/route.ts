@@ -103,7 +103,7 @@ export async function POST(request:Request) {
     if(!await verifyEssentialsStripeWebhookDestinations(secret))
       return fail("受注記録・発送管理への自動連携が未確認のため、決済を受け付けていません。",423);
     if(!await essentialsFulfillmentCanAcceptOrders())
-      return fail("製作・発送を担当する方の登録と受注引継ぎが未確認のため、決済を受け付けていません。",423);
+      return fail("RBAの受注管理者と製造先への引渡しが未確認のため、決済を受け付けていません。",423);
     const session=await stripe.checkout.sessions.create({
       mode:"payment",
       locale:"ja",
