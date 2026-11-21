@@ -380,3 +380,25 @@ test("buyer acceptance does not treat draft Payment Link terms as an approved or
  assert.match(sender,/RBA WHITE TEE/);
  assert.match(sender,/RBA BLACK SETUP/);
 });
+
+
+test("FIRST DROP size options match the garment reference specifications across UI, checkout and webhook", () => {
+  const sizes = read("lib/essentials-size-options.ts");
+  const ui = read("components/essentials-preorder-form.tsx");
+  const checkout = read("app/api/commerce/essentials-preorder/route.ts");
+  const webhook = read("app/api/commerce/essentials-preorder-webhook/route.ts");
+  assert.match(sizes, /ESSENTIALS_TEE_SIZES = \["S", "M", "L", "XL"\]/);
+  assert.match(sizes, /ESSENTIALS_HOODIE_SIZES = \["S", "M", "L", "XL", "XXL"\]/);
+  assert.match(sizes, /ESSENTIALS_PANTS_SIZES = \["M", "L", "XL"\]/);
+  assert.doesNotMatch(sizes, /ESSENTIALS_PANTS_SIZES = \["S"/);
+  assert.match(ui, /ESSENTIALS_TEE_SIZES\.map/);
+  assert.match(ui, /ESSENTIALS_HOODIE_SIZES\.map/);
+  assert.match(ui, /ESSENTIALS_PANTS_SIZES\.map/);
+  assert.match(checkout, /asSize\(form,"tee_size","tee"\)/);
+  assert.match(checkout, /asSize\(form,"hoodie_size","hoodie"\)/);
+  assert.match(checkout, /asSize\(form,"pants_size","pants"\)/);
+  assert.match(webhook, /essentialsSizeIsAllowed\("tee"/);
+  assert.match(webhook, /essentialsSizeIsAllowed\("hoodie"/);
+  assert.match(webhook, /essentialsSizeIsAllowed\("pants"/);
+  assert.match(checkout, /config\.ready/);
+});
