@@ -90,6 +90,9 @@ jobs:
       - name: National clinic hosting and payment gate audit
         run: node audit/national-clinic-funnel/check.mjs
 
+      - name: Chiba 2027 schedule, bilingual registration and venue privacy audit
+        run: node --test tests/chiba-camp-2027-funnel.test.mjs
+
       - name: Member onboarding audit
         run: node audit/member-experience/onboarding-check.mjs
 
