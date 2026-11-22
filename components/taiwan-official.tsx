@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiteFrame, type Locale } from "./site-frame";
 import "./taiwan-official.css";
-import { taipeiClinicCopy, taipeiClinicSessions } from "./taipei-clinic-data";
+import { taipeiClinicCopy, taipeiClinicSessions, taipeiClinicPath } from "./taipei-clinic-data";
 
 const path = (locale: Locale) => locale === "en" ? "/taiwan" : `/${locale}/taiwan`;
 const exchangePath = (locale: Locale) => `${path(locale)}/exchange`;
@@ -76,7 +76,7 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
         <div className="rba-taiwan-inner">
           <div className="rba-taiwan-top"><p>RBA INTERNATIONAL / JAPAN × TAIWAN</p><nav aria-label={c.language}>{options.map(x=><Link key={x.key} href={path(x.key)} aria-current={locale===x.key?"page":undefined}>{x.label}</Link>)}</nav></div>
           <h1>{c.title}</h1><p className="rba-taiwan-lead">{c.lead}</p>
-          <a className="rba-taiwan-btn" href="#taipei-clinic-december-2026">{clinic.details} ↓</a>
+          <Link className="rba-taiwan-btn" href={taipeiClinicPath(locale)}>{clinic.details} ↗</Link>
         </div>
       </section>
       <section className="rba-taiwan-section rba-taiwan-muted" id="taipei-clinic-december-2026" aria-labelledby="taipei-clinic-title">
@@ -92,7 +92,11 @@ export function TaiwanOfficial({locale}:{locale:Locale}) {
           </div>
           <p className="rba-taiwan-intro">{clinic.pending}</p>
           <p className="rba-taiwan-intro">{clinic.team}</p>
-          <a className="rba-taiwan-outline" href={`${formUrl}?utm_source=rba_official&utm_medium=site&utm_campaign=taipei_clinic_december_2026&utm_content=${locale}`} target="_blank" rel="noopener noreferrer">{clinic.teamCta} ↗</a>
+          <div className="rba-taiwan-links">
+            <Link href={taipeiClinicPath(locale)}>{clinic.details} ↗</Link>
+            <a className="rba-taiwan-outline" href="https://hbl.tw/line?utm_source=spartans_site&utm_medium=web&utm_content=contact" target="_blank" rel="noopener noreferrer">{clinic.teamCta} ↗</a>
+          </div>
+          <p className="rba-taiwan-small">SPARTANS LINE @spartans · hi@spartans.com.tw</p>
           <p className="rba-taiwan-intro">{c.safety}</p>
         </div>
       </section>

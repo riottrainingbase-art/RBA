@@ -93,6 +93,9 @@ jobs:
       - name: Chiba 2027 schedule, bilingual registration and venue privacy audit
         run: node --test tests/chiba-camp-2027-funnel.test.mjs
 
+      - name: Taipei SPARTANS three-language session and safe payment audit
+        run: node --test tests/taipei-dec-2026-spartans.test.mjs
+
       - name: Member onboarding audit
         run: node audit/member-experience/onboarding-check.mjs
 
