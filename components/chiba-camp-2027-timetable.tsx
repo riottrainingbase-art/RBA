@@ -38,47 +38,48 @@ const dayTwo: Row[] = [
 ];
 
 function Day({n,title,lead,rows,ja}:{n:string;title:string;lead:string;rows:Row[];ja:boolean}){
- return <article className="overflow-hidden border-2 border-black bg-white">
-   <div className="bg-[#111] px-5 py-8 text-white sm:px-8">
-     <p className="text-xs font-black uppercase tracking-[.2em] text-[#ff8b46]">{n==="01"?"DAY 01 / SATURDAY / 2027.03.27":"DAY 02 / SUNDAY / 2027.03.28"}</p>
-     <h3 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">{title}</h3>
+ return <details open={n==="01"} className="group overflow-hidden rounded-xl border-2 border-[#d4c7af] bg-white shadow-sm">
+   <summary className="cursor-pointer list-none bg-[#27534c] px-5 py-6 text-white marker:hidden sm:px-8 sm:py-7">
+     <p className="text-xs font-black uppercase tracking-[.18em] text-[#e6d2a9]">{n==="01"?"DAY 01 / SATURDAY / 2027.03.27":"DAY 02 / SUNDAY / 2027.03.28"}</p>
+     <h3 className="mt-3 flex items-center justify-between gap-4 text-2xl font-black leading-tight sm:text-3xl"><span>{title}</span><span aria-hidden="true" className="text-lg font-medium text-[#e6d2a9] transition-transform group-open:rotate-45">＋</span></h3>
      <p className="mt-3 max-w-3xl text-sm leading-7 text-white/85 sm:text-base">{lead}</p>
-   </div>
-   <div className="divide-y divide-black/10 px-4 py-3 sm:px-7">
+   </summary>
+   <div className="divide-y divide-[#e6ded1] px-3 py-2 sm:px-7 sm:py-3">
      {rows.map((r,i)=>{
        const rest=r[1].includes("休息")||r[1].includes("昼食");
-       return <div key={n+"-"+i} className={"grid gap-2 px-2 py-3 sm:grid-cols-[128px_200px_1fr] sm:gap-4 "+(rest?"bg-[#f6f2ec]":"")}>
-         <p className="text-sm font-black tabular-nums">{r[0]}</p>
+       return <div key={n+"-"+i} className={"grid gap-1 px-3 py-3.5 sm:grid-cols-[118px_210px_1fr] sm:gap-4 sm:py-3 "+(rest?"bg-[#f3eee5]":"")}>
+         <p className="text-sm font-black tabular-nums text-[#315f57]">{r[0]}</p>
          <h4 className="text-sm font-black leading-6">{ja?r[1]:r[3]}</h4>
          <p className="text-sm leading-6 text-[#3a3a3a]">{ja?r[2]:r[4]}</p>
        </div>
      })}
    </div>
- </article>
+ </details>
 }
 
 export function ChibaCamp2027Timetable({locale}:{locale:Lang}){
  const ja=locale==="ja";
- return <section id="timetable" className="scroll-mt-5 border-t-4 border-black bg-[#f4f1e9] px-5 py-14 text-[#101010] sm:py-20" aria-labelledby="timetable-heading">
+ return <section id="timetable" className="scroll-mt-20 border-t border-[#d4c7af] bg-[#f1eadc] px-5 py-14 text-[#1b2925] sm:py-20" aria-labelledby="timetable-heading">
    <div className="mx-auto max-w-6xl">
-     <p className="text-xs font-black uppercase tracking-[.22em] text-[#b94c00]">ON-COURT PROGRAM / 2027.03.27–28</p>
+     <p className="text-xs font-black uppercase tracking-[.22em] text-[#815b36]">ON-COURT PROGRAM / 2027.03.27–28</p>
      <h2 id="timetable-heading" className="mt-3 text-[clamp(2rem,5vw,4.1rem)] font-black leading-tight">{ja?"2日間、何を学ぶのか。":"What we'll learn over two days."}</h2>
      <p className="mt-4 max-w-3xl text-base leading-8">{ja?"最初にプレーし、課題を見つけ、人数や条件を変えてもう一度試す。1日目は「見る・選ぶ」、2日目は「仲間とつながる・ゲームで試す」。1日だけの参加でも、その日から理解できる導入を設けます。":"Play first, discover the challenge, change the conditions and try again. Day one is about noticing and choosing. Day two brings teammates into the decision and applies the learning in games. Each day works as a standalone session."}</p>
-     <div className="mt-7 border-l-4 border-[#ff6b00] bg-white px-5 py-4">
+     <p className="mt-3 text-sm font-bold text-[#2d5b52]">{ja?"日付をタップすると、時間ごとの内容を開閉できます。":"Tap each day to expand or collapse its detailed timetable."}</p>
+     <div className="mt-7 border-l-4 border-[#a58049] bg-white px-5 py-4">
        <p className="font-black">{ja?"各日 9:15受付 ／ 9:40開始 ／ 16:15頃解散【予定】":"Daily plan: check-in 09:15 / start 09:40 / finish around 16:15 [provisional]"}</p>
        <p className="mt-2 text-sm leading-7">{ja?"体育館の正式な利用時間、参加人数、選手の疲労に応じて調整します。確定した集合・解散時刻は参加者へ個別に連絡します。":"Timing may change after venue-hours confirmation and in response to attendance and player wellbeing. Final arrival/departure instructions will be sent directly to registered guardians."}</p>
      </div>
-     <div className="mt-8 grid gap-8">
+     <div className="mt-8 grid gap-4">
        <Day n="01" ja={ja} rows={dayOne} title={ja?"まず、見て、選ぶ。":"See first. Then choose."} lead={ja?"技術を「使う場面」から考える。午前は1対1・2対2、午後は3対3。まずプレーして、問い直し、もう一度試す。":"Explore when skills matter: begin in real game situations, move through 1v1 and 2v2, then use 3v3 and reflection."}/>
        <Day n="02" ja={ja} rows={dayTwo} title={ja?"仲間とつながり、ゲームで試す。":"Connect. Apply. Reflect."} lead={ja?"攻守の切り替え・オフボール・3対3／4対4。昨日の学びを次の判断につなげ、普段の練習へ持ち帰る。":"Build on transition moments, off-ball movement and 3v3/4v4. Bring one clear learning point back to regular practice."}/>
      </div>
      <div className="mt-8 grid gap-4 md:grid-cols-2">
-       <article className="border-t-4 border-[#ff6b00] bg-white p-6">
+       <article className="border-t-4 border-[#a58049] bg-white p-6">
          <p className="text-xs font-black text-[#bf5100]">U12 / MINI BASKET</p>
          <h3 className="mt-3 text-2xl font-black">{ja?"関わる機会を増やす。":"More involvement."}</h3>
          <p className="mt-3 text-sm leading-7">{ja?"3対3・4対4を中心に、ボールを持つ・持たない両方の判断を経験します。役割の固定や複雑な戦術の詰め込みを避け、楽しく試せる状況を工夫します。":"Mostly 3v3 and 4v4 so players can make on-ball and off-ball decisions. Avoid fixed roles and excessive tactical instruction."}</p>
        </article>
-       <article className="border-t-4 border-black bg-white p-6">
+       <article className="border-t-4 border-[#27534c] bg-white p-6">
          <p className="text-xs font-black text-[#bf5100]">U15 / YOUTH</p>
          <h3 className="mt-3 text-2xl font-black">{ja?"判断の条件を増やす。":"Broaden the decisions."}</h3>
          <p className="mt-3 text-sm leading-7">{ja?"スペース・オフボール・攻守の切り替えの条件を少し複雑にし、4対4・5対5へつなげます。経験差と当日の様子に合わせます。":"Increase complexity through space, off-ball actions and transitions; progress to 4v4 and 5v5 where appropriate."}</p>

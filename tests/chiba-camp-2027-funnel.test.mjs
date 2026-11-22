@@ -42,3 +42,22 @@ test("School address stays private and on-site event listings link to both langu
  assert.match(en, /USD \$219/);
  assert.match(jp, /24,200円/);
 });
+
+test("Kozaki culture and mobile-first information design remain legible and sourced", () => {
+ assert.match(camp, /神崎（こうざき）/);
+ assert.match(camp, /発酵の里こうざき/);
+ assert.match(camp, /KOZAKI, CHIBA/);
+ assert.match(camp, /https:\/\/www\.town\.kozaki\.chiba\.jp\/kanko_iju\//);
+ assert.match(camp, /町の主催・後援・協賛を示すものではありません/);
+ for (const anchor of ['id="place"','id="learning"','id="payment"','id="registration"','id="faq"']) assert.ok(camp.includes(anchor), anchor);
+ assert.match(camp, /overflow-x-auto/);
+ assert.match(camp, /text-\[clamp\(2\.2rem,7\.5vw,5rem\)\]/);
+ assert.match(timetable, /<details open=\{n==="01"\} className/);
+ assert.match(timetable, /group-open:rotate-45/);
+ assert.doesNotMatch(camp, /bg-\[#ff6b00\]/i);
+});
+test("Published Kozaki subdomain is used as the canonical address", () => {
+ assert.match(en, /https:\/\/chiba\.riotbasketballacademy\.com\/events\/chiba-development-camp-2027/);
+ assert.match(jp, /https:\/\/chiba\.riotbasketballacademy\.com\/ja\/events\/chiba-development-camp-2027/);
+ assert.doesNotMatch(en,/Kanzaki, Chiba/);
+});
