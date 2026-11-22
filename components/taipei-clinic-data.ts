@@ -1,8 +1,8 @@
 import { localePath, type Locale } from "./site-frame";
 
 export const taipeiClinicSessions = [
-  { date: "2026-12-11", start: "16:00", end: "18:00", weekday: { ja: "金", en: "Fri", "zh-tw": "五", ko: "금" } },
-  { date: "2026-12-12", start: "10:00", end: "12:00", weekday: { ja: "土", en: "Sat", "zh-tw": "六", ko: "토" } },
+  { date: "2026-12-11", start: "18:30", end: "20:00", weekday: { ja: "金", en: "Fri", "zh-tw": "五", ko: "금" } },
+  { date: "2026-12-12", start: "16:00", end: "18:00", weekday: { ja: "土", en: "Sat", "zh-tw": "六", ko: "토" } },
   { date: "2026-12-13", start: "14:00", end: "16:00", weekday: { ja: "日", en: "Sun", "zh-tw": "日", ko: "일" } },
 ] as const;
 
@@ -12,9 +12,9 @@ export const taipeiClinicCopy = {
     dates: "2026年12月11日〜13日",
     zone: "台湾時間（UTC+8）",
     place: "台湾・台北",
-    pending: "会場の詳細、対象、参加費、申込方法は後日ご案内します。現在、参加申込・決済は受け付けていません。",
-    team: "公開枠以外の時間帯もチーム単位でご相談いただけます。指導者・チーム代表の方は、選手の年代・人数・希望日時をお知らせください。",
-    teamCta: "チーム専用クリニックを相談する",
+    pending: "天母・内湖・林口の3会場は予約済み。通常クラス以外の追加受入数、特別参加費、正式な申込・決済リンクはSPARTANSが確認中です。お問い合わせはSPARTANSへ。",
+    team: "12/11（金）天母18:30〜20:00、12/12（土）内湖16:00〜18:00、12/13（日）林口14:00〜16:00。すべて台湾現地時間です。",
+    teamCta: "SPARTANSへ参加相談する",
     details: "台北クリニックの日程を見る",
   },
   "zh-tw": {
@@ -22,9 +22,9 @@ export const taipeiClinicCopy = {
     dates: "2026 年 12 月 11–13 日",
     zone: "台灣時間（UTC+8）",
     place: "台灣・台北",
-    pending: "場館、參加對象、費用與報名方式將另行公布，目前尚未開放報名及付款。",
-    team: "公開場次以外，也可洽詢球隊專班。歡迎教練或領隊提供球員年齡、人數和希望的時段。",
-    teamCta: "洽詢球隊專班",
+    pending: "天母、內湖及林口三個場館均已預訂。額外名額、特別活動費用與專用報名付款連結由 SPARTANS 確認中，請直接洽詢 SPARTANS。",
+    team: "12/11（五）天母18:30–20:00、12/12（六）內湖16:00–18:00、12/13（日）林口14:00–16:00，全部為台灣時間。",
+    teamCta: "向 SPARTANS 洽詢報名",
     details: "查看台北訓練營時程",
   },
   en: {
@@ -32,9 +32,9 @@ export const taipeiClinicCopy = {
     dates: "11–13 December 2026",
     zone: "Taiwan time (UTC+8)",
     place: "Taipei, Taiwan",
-    pending: "Venue details, eligibility, fees and registration will be announced separately. Registration and payment are currently closed.",
-    team: "Coaches and team leads can enquire about team sessions outside the public clinic times. Please share the players’ ages, group size and preferred time.",
-    teamCta: "Enquire about a team clinic",
+    pending: "All three gyms are booked. Extra places, event fees and dedicated registration/payment links are being finalised by SPARTANS. Please contact SPARTANS for enquiries.",
+    team: "Fri Dec 11 Tianmu 18:30–20:00; Sat Dec 12 Neihu 16:00–18:00; Sun Dec 13 Linkou 14:00–16:00. All times in Taipei.",
+    teamCta: "Enquire with SPARTANS",
     details: "View the Taipei clinic schedule",
   },
   ko: {
@@ -42,14 +42,14 @@ export const taipeiClinicCopy = {
     dates: "2026년 12월 11~13일",
     zone: "대만 현지 시간(UTC+8)",
     place: "대만 타이베이",
-    pending: "장소, 참가 대상, 참가비와 신청 방법은 추후 안내합니다. 아직 신청과 결제를 받지 않습니다.",
-    team: "공개 일정 외에도 팀 단위 클리닉을 문의할 수 있습니다. 지도자 또는 팀 대표가 선수 연령, 인원과 희망 시간을 알려 주세요.",
-    teamCta: "팀 클리닉 문의",
+    pending: "톈무·네이후·린커우 3개 체육관 예약 완료. 추가 인원, 특별 참가비와 신청·결제 링크는 SPARTANS 확인 후 안내합니다. 문의는 SPARTANS에 해주세요.",
+    team: "12/11(금) 톈무 18:30–20:00, 12/12(토) 네이후 16:00–18:00, 12/13(일) 린커우 14:00–16:00. 모든 시간은 타이베이 현지 시간입니다.",
+    teamCta: "SPARTANS에 문의하기",
     details: "타이베이 클리닉 일정 보기",
   },
 } satisfies Record<Locale, Record<string, string>>;
 
-export const taipeiClinicPath = (locale: Locale) => `${localePath(locale, "taiwan")}#taipei-clinic-december-2026`;
+export const taipeiClinicPath = (locale: Locale) => locale === "ko" ? `${localePath(locale, "taiwan")}#taipei-clinic-december-2026` : `${locale === "en" ? "" : `/${locale}`}/events/taipei-development-clinic-2026`;
 
 export function isTaipeiClinicUpcoming(now = new Date()) {
   const last = taipeiClinicSessions[taipeiClinicSessions.length - 1];
