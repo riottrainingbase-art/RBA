@@ -29,7 +29,18 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
         <article><span>04</span><strong>KEEP</strong><p>参加後はMY HOME COURTに経験を記録する。</p></article>
       </div>
     </section>:null}
-    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{isTaipeiClinicUpcoming() && <article>
+    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{(locale==="ja"||locale==="en") && <article>
+      <time dateTime="2027-03-27"><strong>2027.03.27–28</strong><span>{locale==="ja"?"土・日／2日間":"Sat–Sun / 2 days"}</span></time>
+      <div>
+        <p className="note-tag">RBA × HBC Wolves / {locale==="ja"?"千葉県神崎町":"Kanzaki, Chiba, Japan"}</p>
+        <h3>{locale==="ja"?"千葉育成キャンプ2027｜試合で使える判断を学ぶ":"CHIBA DEVELOPMENT CAMP 2027 | Read. Decide. Play."}</h3>
+        <p><strong>{c.target}：</strong>{locale==="ja"?"U12・U15、男女／HBC以外の選手も個人参加歓迎":"U12 / U15 boys and girls; individual and international entries welcome"}</p>
+        <p className="event-price">{locale==="ja"?"2日間24,200円／1日14,300円（税込、指導参加費のみ）":"Both days USD $219 / one day USD $129 (camp coaching only)"}</p>
+        <p className="event-payment"><strong>{c.payment}：</strong>{locale==="ja"?"保護者申込 → Stripe事前決済 → 照合後に会場詳細を個別案内":"Guardian application → secure Stripe USD checkout → private venue confirmation"}</p>
+        <p>{locale==="ja"?"2日間の予定時間割・休息・年齢別の学びを掲載。集合時間は施設利用条件の確認後に確定します。":"Full provisional two-day schedule, recovery breaks and age-specific learning plan. Final arrival time is confirmed privately."}</p>
+      </div>
+      <div className="event-actions"><a href={locale==="ja"?"/ja/events/chiba-development-camp-2027":"/events/chiba-development-camp-2027"}>{locale==="ja"?"詳細時間割・申込・決済":"Full schedule / Register / Pay"}<ArrowUpRight size={17}/></a></div>
+    </article>}{isTaipeiClinicUpcoming() && <article>
       <time dateTime={taipeiClinicSessions[0].date}><strong>{clinic.dates}</strong><span>{clinic.zone}</span></time>
       <div><p className="note-tag">{clinic.place} · RBA × SPARTANS Academy</p><h3>{clinic.title}</h3><p>{clinic.pending}</p></div>
       <div className="event-actions"><a href={taipeiClinicPath(locale)}>{clinic.details}<ArrowUpRight size={17}/></a></div>

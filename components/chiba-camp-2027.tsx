@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site-frame";
+import { ChibaCamp2027Timetable } from "@/components/chiba-camp-2027-timetable";
 
 type Lang = "ja" | "en";
 const registrationJa = "https://form.jotform.com/263252863924059";
@@ -30,6 +31,7 @@ export function ChibaCamp2027({ locale }: { locale: Lang }) {
         </div>
         <p className="mt-5 text-sm font-semibold">{ja ? "会場の正式な所在地・集合詳細は、申込・入金確認済みの保護者へ個別にお送りします。" : "Exact venue address and meeting information will be emailed privately after application and payment verification."}</p>
         <a className="mt-8 inline-flex min-h-16 items-center bg-black px-8 py-4 text-lg font-black text-white hover:bg-[#242424]" href="#registration">{ja ? "申込・決済へ進む ↗" : "REGISTER & PAY ↗"}</a>
+        <a className="ml-0 mt-4 inline-flex min-h-14 items-center border-2 border-black px-6 py-3 text-base font-black text-black hover:bg-black hover:text-white sm:ml-3" href="#timetable">{ja?"2日間の時間割を見る ↓":"VIEW FULL 2-DAY SCHEDULE ↓"}</a>
       </div>
     </section>
 
@@ -48,6 +50,8 @@ export function ChibaCamp2027({ locale }: { locale: Lang }) {
         <p className="mt-2 leading-7">{ja ? "日本の選手と同じコートで学べます。航空券、宿泊、送迎はキャンプ参加費に含まれません。ご自身で手配のうえ、未成年者は保護者または適切な引率者の同伴・安全管理をお願いします。" : "Train alongside players in Japan. Flights, accommodation, meals and airport transfers are not included. Parents or responsible guardians must arrange travel, supervision and safeguarding for minors."}</p>
       </div>
     </section>
+
+    <ChibaCamp2027Timetable locale={locale} />
 
     <section id="registration" className="bg-[#111] px-5 py-14 text-white sm:py-20" aria-labelledby="register-title">
       <div className="mx-auto max-w-6xl">
