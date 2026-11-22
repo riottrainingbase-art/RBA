@@ -60,6 +60,8 @@ const more = [
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM SENDAI｜仙台のU15クラブ",href:"/ja/gream",id:"gream"},
   {title: "RBA UNITED｜韓国無料意向登録・RIZEHOPE個人参加相談",href:"/ja/united",id:"united"},
+  {title: "RIZEHOPE JAPAN 2027｜国内・海外・UNITEDの参加案内",href:"/ja/international/rizehope-japan-2027",id:"rizehope-festival"},
+  {title: "【無料相談】2027年以降の地域開催・体育館・協賛・共同主催",href:"https://form.jotform.com/263244816480055",id:"rizehope-regional-host-interest"},
   {title: "MY HOME COURT｜RBA ID・育成の記録",href:"/ja/my-homecourt",id:"homecourt"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
   {title: "RBA PERFORMANCE TEE｜公式ウェア",href:"/ja/store",id:"store"},
