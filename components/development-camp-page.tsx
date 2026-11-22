@@ -83,6 +83,15 @@ export function DevelopmentCampPage({locale}:{locale:Locale}){
   const today=new Date().toISOString().slice(0,10);
   const open=programmes.filter(p=>p.pathway==="development-camp"&&!p.registrationClosed&&p.startDate>=today);
   return <SiteFrame locale={locale} languagePage="camp">
+    {(locale==="en"||locale==="ja")&&<section aria-label="Chiba 2027 camp registration" className="section-pad" style={{background:"#ff6b00",color:"#111"}}>
+      <div style={{maxWidth:1090,margin:"0 auto"}}>
+        <p style={{fontWeight:900,letterSpacing:".16em",fontSize:12}}>REGISTRATION OPEN / RBA × HBC WOLVES / CHIBA 2027</p>
+        <h2 style={{fontWeight:900,fontSize:"clamp(2rem,5vw,4rem)",lineHeight:1.1,margin:"12px 0"}}>{locale==="ja"?"千葉・神崎 育成キャンプ":"CHIBA DEVELOPMENT CAMP 2027"}</h2>
+        <p style={{fontWeight:800,fontSize:"clamp(1.1rem,2vw,1.6rem)"}}>{locale==="ja"?"2027年3月27–28日｜2日間24,200円・1日14,300円（税込）":"March 27–28, 2027 | 2 days $219 USD / 1 day $129 USD (camp only)"}</p>
+        <p style={{maxWidth:850,margin:"16px 0",fontWeight:600}}>{locale==="ja"?"U12・U15、男女・海外選手歓迎。保護者申込とStripe事前決済。会場の詳細は確認後に個別案内。":"U12/U15 boys and girls welcome from overseas. Training fee only; travel, meals and accommodation are separate. Submit the international guardian form, then pay securely in USD."}</p>
+        <a href={locale==="ja"?"/ja/events/chiba-development-camp-2027":"/events/chiba-development-camp-2027"} style={{display:"inline-block",padding:"14px 24px",background:"#111",color:"#fff",fontWeight:900}}>{locale==="ja"?"正式申込と決済へ ↗":"INTERNATIONAL REGISTRATION & USD PAYMENT ↗"}</a>
+      </div>
+    </section>}
     <section className="network-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><p className="section-index inverse">RBA / {c.tag}</p><Compass/><h1>RBA DEVELOPMENT CAMP</h1><strong>{c.title}</strong><p>{c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-light" href="#open-camps">{c.openTitle}<ArrowRight/></a><a className="button button-dark" href={localePath(locale,"my-homecourt")}>{c.home}<ArrowRight/></a></div></section>
     <section className="homecourt-product-preview section-pad"><div className="section-head"><div><p className="section-index">{c.purpose}</p><h2>{c.purposeTitle}</h2></div><p>{c.purposeBody}</p></div><div className="homecourt-preview-grid">{c.steps.map(([n,title,body])=><article key={n}><BookOpen/><span>{n}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section>
     <section className="homecourt-plan-separation section-pad"><div className="homecourt-plan-intro"><p className="section-index">CAMP / UNITED</p><h2>{c.differenceTitle}</h2></div><div className="homecourt-plan-grid"><article className="homecourt-plan-card"><span>DEVELOPMENT</span><h3>{c.campLabel}</h3><p>{c.campBody}</p><a className="button button-light" href={localePath(locale,"camp")}>{c.campLabel}<ArrowRight/></a></article><article className="homecourt-plan-card"><span>CHALLENGE</span><h3>{c.unitedLabel}</h3><p>{c.unitedBody}</p><a className="button button-dark" href={localePath(locale,"united")}>{c.unitedLabel}<ArrowRight/></a></article></div></section>
