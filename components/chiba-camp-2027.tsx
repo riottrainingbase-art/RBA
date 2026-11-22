@@ -151,7 +151,7 @@ export function ChibaCamp2027({ locale }: { locale: Lang }) {
           </div>
         </section>
 
-        <ChibaCamp2027Timetable locale={locale}/>
+        <ChibaCamp2027Timetable locale={locale} />
 
         <section id="payment" aria-labelledby="payment-title" className="scroll-mt-20 border-t border-[#d7cbb8] bg-[#fffdf7] px-5 py-14 sm:py-20">
           <div className="mx-auto max-w-6xl">
@@ -164,7 +164,7 @@ export function ChibaCamp2027({ locale }: { locale: Lang }) {
                 <h3 className="mt-3 text-lg font-bold">{ja ? p.dateJa : p.dateEn}</h3>
                 <p className="mt-4 text-[clamp(2.35rem,4vw,3.2rem)] font-black tracking-[-.04em] tabular-nums">{ja?"¥":"$"}{ja?p.priceJa:p.priceUsd}</p>
                 <p className="mt-1 text-xs font-medium text-[#565e54]">{ja?"税込／選手1名":"USD fixed total / per player"}</p>
-                <a href={ja?p.hrefJa:p.hrefUsd} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-13 items-center justify-center rounded-md bg-[#24554e] px-5 py-3 text-center text-sm font-bold text-white hover:bg-[#163b36]">{ja ? "申込済みの方：この日程を決済 ↗" : "AFTER APPLYING: PAY THIS PLAN ↗"}</a>
+                <a href={ja ? p.hrefJa : p.hrefUsd} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-13 items-center justify-center rounded-md bg-[#24554e] px-5 py-3 text-center text-sm font-bold text-white hover:bg-[#163b36]">{ja ? "申込済みの方：この日程を決済 ↗" : "AFTER APPLYING: PAY THIS PLAN ↗"}</a>
               </article>)}
             </div>
             <div className="mt-7 grid gap-5 rounded-lg border border-[#d5c9b4] bg-[#f3eee4] p-5 sm:grid-cols-[1fr_auto] sm:items-center sm:p-7">
