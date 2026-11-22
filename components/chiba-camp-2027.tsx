@@ -4,7 +4,7 @@ import { SiteFrame } from "@/components/site-frame";
 
 type Lang = "ja" | "en";
 const registrationJa = "https://form.jotform.com/263252863924059";
-const registrationEn = "https://form.jotform.com/263253227135048";
+const registrationEn = "https://form.jotform.com/263253268053052";
 const cancellation = "https://riotbasketballacademy.com/ja/cancellation";
 const plans = [
   { id: "two", dateJa: "3月27日（土）＋28日（日）", dateEn: "Mar 27 & 28", priceJa: "24,200", priceUsd: "219", hrefJa: "https://book.stripe.com/8x27sN0PRdPSbmZ78j7EQ21", hrefUsd: "https://book.stripe.com/14AdRb5676nqfDfakv7EQ27" },
