@@ -52,7 +52,7 @@ test("Kozaki culture and mobile-first information design remain legible and sour
  for (const anchor of ['id="place"','id="learning"','id="payment"','id="registration"','id="faq"']) assert.ok(camp.includes(anchor), anchor);
  assert.match(camp, /overflow-x-auto/);
  assert.match(camp, /text-\[clamp\(2\.2rem,7\.5vw,5rem\)\]/);
- assert.match(timetable, /<details open=\{n==="01"\}/);
+ assert.match(timetable, /<details open=\{n==="01"\} className/);
  assert.match(timetable, /group-open:rotate-45/);
  assert.doesNotMatch(camp, /bg-\[#ff6b00\]/i);
 });
