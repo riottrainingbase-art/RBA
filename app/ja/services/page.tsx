@@ -25,7 +25,7 @@ const plans = [
     title: "選手・保護者",
     subtitle: "一度の練習で終わらない育成",
     fee: "月額3,300円",
-    feeNote: "HOMECOURT 月額プランの登録料金（税込扱い・最新の正式条件は申込画面で確認）。無料で知る導線もあります。",
+    feeNote: "HOMECOURT 月額プランの登録台帳上の料金。税込・適用期間を含む最新の正式条件は申込画面で確認してください。無料で知る導線もあります。",
     body: "日々の目標・振り返り、育成の記事、必要な機会を自分のペースで探す。スクール・クラブ・遠征への参加費とは別です。",
     primary: { label: "HOMECOURTを確認する", href: "/ja/home-court", tracking: "growth-services-homecourt" },
     secondary: { label: "仙台スクール・体験を探す", href: "/ja/sendai-school", tracking: "growth-services-school" },
