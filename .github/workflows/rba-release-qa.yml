@@ -120,6 +120,9 @@ jobs:
       - name: Okinawa camp live funnel and pricing CTA regression
         run: node --test tests/okinawa-camp-conversion.test.mjs
 
+      - name: RBA revenue service destinations and payment safety
+        run: pnpm run audit:revenue-services
+
       - name: ESLint changed files
         if: github.event_name == 'pull_request'
         env:
