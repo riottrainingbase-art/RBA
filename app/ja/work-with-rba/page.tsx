@@ -118,6 +118,7 @@ export default function WorkWithRbaPage() {
           <nav className={styles.bottomLinks} aria-label="共同事業別の相談窓口">
             <Link href="/ja/clinic-request" data-growth-id="network-bottom-local">地域開催を相談 <ArrowUpRight size={16}/></Link>
             <Link href="/ja/partners" data-growth-id="network-bottom-corporate">企業協賛を相談 <ArrowUpRight size={16}/></Link>
+            <Link href="/ja/mobility-partner" data-growth-id="network-bottom-mobility">全国車両パートナー募集 <ArrowUpRight size={16}/></Link>
             <Link href="/ja/contact" data-growth-id="network-bottom-global">海外連携を相談 <ArrowUpRight size={16}/></Link>
           </nav>
         </div>
