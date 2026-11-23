@@ -1,0 +1,31 @@
+.page{background:#f5f8f8;color:#18303d;min-height:80vh;padding:30px 0 70px}
+.wrap{width:min(1040px,calc(100% - 36px));margin:auto}
+.hero{background:#13303f;color:#fff;padding:38px 40px;margin-bottom:24px;border-radius:6px}
+.back{font-size:13px;color:#e4e9ea;text-underline-offset:4px}
+.kicker{font-size:12px;font-weight:900;letter-spacing:.12em;color:#e7c282;margin:25px 0 10px}
+.hero h1{font-size:clamp(30px,5.2vw,54px);line-height:1.35;margin:8px 0 15px;letter-spacing:-.04em}
+.hero>p:not(.kicker){font-size:15px;line-height:1.9;color:#e0ebed}
+.hero .notice{background:#edf5f4;color:#18303d!important;font-size:13px!important;padding:13px 17px;border-left:4px solid #d5a655;border-radius:4px;line-height:1.8}
+.sheets{display:grid;gap:23px}
+.sheet{background:#fff;border:1px solid #d6e2e4;border-radius:5px;padding:35px}
+.top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#9b702c;font-size:11px;letter-spacing:.1em;font-weight:900}
+.top strong{color:#465a65}
+.sheet h2{font-size:clamp(22px,3.3vw,30px);margin:14px 0 7px}
+.sheet>p{font-size:14px;line-height:1.9;color:#4b626c;margin-bottom:23px}
+.sheet table{width:100%;border-collapse:collapse}
+.sheet tr{border-top:1px solid #d6e0e2}
+.sheet th{text-align:left;width:25%;vertical-align:top;font-size:13px;line-height:1.7;padding:19px 18px 18px 0}
+.sheet td{padding:19px 0;vertical-align:top}
+.sheet td p{font-size:13px;color:#596e79;margin:0 0 14px;line-height:1.8}
+.writingSpace{height:38px;border-bottom:1px dashed #c4d0d4}
+.end{background:#e3ebed;padding:30px 34px;margin-top:26px;border-radius:5px}
+.end h2{font-size:22px;margin:0 0 9px}
+.end p{font-size:14px;line-height:1.8}
+.end a{display:inline-flex;align-items:center;background:#143341;color:#fff;padding:12px 17px;text-decoration:none;border-radius:3px;margin:10px 0 15px;font-size:13px;font-weight:800}
+.end small{display:block;font-size:11px;color:#566974;line-height:1.75}
+.locked{max-width:760px;margin:70px auto;padding:30px;line-height:1.9}
+.locked h1{font-size:28px}
+.locked a{display:inline-block;margin-top:20px;background:#173440;color:white;padding:12px 15px;text-decoration:none}
+.page a:focus-visible{outline:3px solid #e8c27e;outline-offset:4px}
+@media(max-width:650px){.wrap{width:calc(100% - 24px)}.hero{padding:24px 20px}.sheet{padding:21px 16px}.sheet th,.sheet td{display:block;width:100%;padding:11px 0}.sheet th{padding-bottom:0}.sheet td{padding-top:0}.writingSpace{height:33px}.end{padding:22px}}
+@media print{.page{background:white;padding:0}.wrap{width:100%}.hero{background:white;color:#111;padding:10px 0;margin-bottom:14px}.hero .back,.end>a{display:none}.hero>p:not(.kicker){color:#222!important}.hero .notice{color:#222!important;background:#eee}.sheet{page-break-before:always;break-before:page;padding:0;border:none;page-break-inside:avoid;break-inside:avoid}.sheet th{width:25%}.sheet td{padding:12px 0}.writingSpace{height:56px}.end{background:#fff;color:#111}.page *{box-shadow:none!important}}

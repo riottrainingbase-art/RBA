@@ -113,6 +113,10 @@ export default function ServicesPage() {
                 </article>
               ))}
             </div>
+            <div className={styles.advancedCallout}>
+              <div><span>RBA ADVANCED SERVICES</span><strong>より深い育成・個別サポートへ。</strong><p>現行の月額会員・チーム訪問の提供範囲と、新たな個別メンタリング・継続支援・企業研修の相談窓口をまとめました。新しい個別サービスはまだ有料申込ではなく、無料相談・見積のみです。</p></div>
+              <a data-growth-id="growth-services-advanced" href="/ja/services/advanced">有料サービス詳細と個別相談へ →</a>
+            </div>
           </div>
         </section>
         <section className={styles.flow}>
