@@ -43,6 +43,20 @@ export function InternationalPlatform({locale}:{locale:Locale}){
       <p style={{fontSize:12,marginTop:16,color:"#536174",lineHeight:1.8}}>{({ja:"相談は無料です。対戦相手、会場、宿泊、移動、通訳などは確約ではなく、条件を確認したうえで個別にご提案します。",en:"Enquiries are free. Opponents, venues, accommodation, transport and interpreters are subject to availability and written confirmation.","zh-tw":"洽詢免費。比賽對手、場地、住宿與交通等均須確認後才能安排。",ko:"상담은 무료입니다. 상대 팀, 시설, 숙박, 이동 등은 확인 후 제안합니다."})[locale]}</p>
     </div>
   </section>
+  <section className="section-pad" style={{background:"#f3e7db",color:"#17202b"}} aria-labelledby="shenzhen-u12-callout">
+    <div style={{maxWidth:1110,margin:"0 auto",padding:"12px 0"}}>
+      <p className="section-index">SHENZHEN U12 / KANTO 2027 · PLANNING STAGE</p>
+      <h2 id="shenzhen-u12-callout" style={{fontSize:"clamp(27px,4.2vw,44px)",lineHeight:1.2,margin:"12px 0 18px"}}>
+        {({ja:"深圳U12 × 関東。次の国際育成交流を準備中。",en:"Shenzhen U12 × Kanto, Japan — exchange in planning.","zh-tw":"深圳U12 × 日本關東青少年交流，籌備中。",ko:"선전 U12 × 일본 간토 청소년 교류 준비 중."})[locale]}
+      </h2>
+      <p style={{maxWidth:900,lineHeight:1.8}}>
+        {({ja:"2027年2月11日（木・祝）、千葉・神崎の体育館に利用可能との第一報があります。試合、施設許可、RBA UNITEDの参加は未確定です。保護者・チーム・成人協力者向けに無料の意向確認を受け付けています。",en:"A potential gym window in Chiba has been reported for 11 February 2027. Matches, venue permissions and RBA UNITED roster are not confirmed. Free, non-binding interest forms are available for families, clubs and adults.","zh-tw":"預計2027年2月11日在千葉交流；場地許可、對賽及球員名單尚未確認，目前僅收集免費意向。",ko:"2027년 2월 11일 지바 교류를 준비 중이며, 장소 허가와 참가 명단은 미확정입니다. 무료 사전 의향을 받고 있습니다."})[locale]}
+      </p>
+      <a className="button button-dark" style={{marginTop:24}} href={locale==="ja"?"/ja/events/shenzhen-u12-exchange-2027":"/events/shenzhen-u12-exchange-2027"}>
+        {({ja:"深圳U12交流の仮企画・無料受付を見る",en:"Explore the proposed Shenzhen U12 exchange","zh-tw":"了解深圳U12交流提案",ko:"선전 U12 교류 제안 보기"})[locale]} <ArrowRight size={18}/>
+      </a>
+    </div>
+  </section>
   <section className="international-network section-pad"><div className="section-head"><div><p className="section-index">JAPAN × ASIA</p><h2>{c.status}</h2></div><p>{c.statusBody}</p></div><div className="international-network-grid">{worldPoints.map(point=><article key={point.id}><span>{point.status==="partner"?c.partner:tr(point.statusLabel||[c.discussion,c.discussion,c.discussion,c.discussion],locale)}</span><h3>{tr(point.name,locale)}</h3><p>{tr(point.detail,locale)}</p></article>)}</div><p style={{marginTop:28}}><a className="button button-dark" href={locale==="en"?"/taiwan":`/${locale}/taiwan`}>{({ja:"台湾専用ページ｜日台育成交流",en:"Taiwan / Japan–Taiwan development","zh-tw":"台灣專頁｜台日青少年培育",ko:"대만 전용 페이지｜일본·대만 육성 교류"})[locale]} →</a></p></section>
   <section className="international-programmes section-pad"><p className="section-index inverse">PROGRAMME DESIGN</p><h2>{c.ways}</h2><div>{c.cards.map(([title,body])=><article key={title}><Plane/><h3>{title}</h3><p>{body}</p></article>)}</div></section>
   <section className="international-process section-pad"><div><p className="section-index">SAFE / CLEAR / PURPOSEFUL</p><h2>{c.process}</h2><ShieldCheck/></div><ol>{c.steps.map(([no,title,body])=><li key={no}><span>{no}</span><div><strong>{title}</strong><p>{body}</p></div></li>)}</ol></section>
