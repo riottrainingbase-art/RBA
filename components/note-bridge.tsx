@@ -6,11 +6,21 @@ type NoteBridgeProps = {
 
 const noteItems = [
   {
+    label: "無料で試す｜登録不要",
+    title: "子どもの学べる環境を、7日間で見直す",
+    description: "出場機会・判断・休息・声かけ。1日5〜10分でできる無料の観察ガイドです。",
+    href: "/ja/development-check",
+    action: "無料7日間チェックを読む",
+    trackingId: "journal-development-check",
+  },
+
+  {
     label: "無料で読む",
     title: "ドイツの選手17名が日本で経験したこと",
     description: "学校交流、合同練習、ホームステイ。勝敗だけでは測れない育成の価値を考えます。",
     href: "https://note.com/rba_official/n/nf2fc33040fc7",
     action: "無料記事を読む",
+    trackingId: "journal-note-free",
   },
   {
     label: "指導者向け｜単品 ¥1,200（税込）",
@@ -18,13 +28,15 @@ const noteItems = [
     description: "合同練習90分の構成例、選手評価、安全管理、帰国後4週間の振り返りを整理した実践編です。",
     href: "https://note.com/rba_official/n/nae7e55e4dec5",
     action: "有料実践編を見る",
+    trackingId: "journal-note-oneoff",
   },
   {
     label: "継続して学ぶ・応援する",
     title: "RBAメンバーズ",
     description: "活動を応援する月500円プランと、育成記事も読める月1,000円プランがあります。",
-    href: "https://note.com/rba_official/membership",
-    action: "月額プランを確認",
+    href: "https://note.com/rba_official/membership/join",
+    action: "月500円から参加する",
+    trackingId: "journal-note-membership",
   },
 ] as const;
 
@@ -59,9 +71,10 @@ export function NoteBridge({ variant = "home" }: NoteBridgeProps) {
           <a
             key={item.href}
             href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={item.href.startsWith("/") ? undefined : "_blank"}
+            rel={item.href.startsWith("/") ? undefined : "noopener noreferrer"}
             className={styles.card}
+            data-growth-id={item.trackingId}
           >
             <span className={styles.label}>{item.label}</span>
             <strong>{item.title}</strong>
@@ -70,7 +83,7 @@ export function NoteBridge({ variant = "home" }: NoteBridgeProps) {
           </a>
         ))}
       </div>
-      <p className={styles.note}>リンク先は外部サービスのnoteです。単品記事と月額メンバーシップは別のサービス・料金です。</p>
+      <p className={styles.note}>7日間チェックは公式サイト内の無料記事です。noteは外部サービスで、単品記事と月額メンバーシップは別の商品・料金です。</p>
     </section>
   );
 }

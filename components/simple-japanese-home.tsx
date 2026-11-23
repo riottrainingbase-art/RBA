@@ -54,7 +54,7 @@ const steps = [
     id: "support",
     label: "必要なら継続する",
     title: "月500円のRBA応援メンバー",
-    copy: "活動を継続して応援したい方へ。内容と加入条件は公式の案内で確認。",
+    copy: "育成の課題を「仕方ない」で終わらせない。月500円から無理なく応援。",
     href: "/ja/supporters",
     action: "会員案内を見る",
   },

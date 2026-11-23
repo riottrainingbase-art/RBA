@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
+import { ClinicSupportInvitation } from "@/components/clinic-support-invitation";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -19,10 +21,14 @@ function applicationEmail(session: string) {
   return `mailto:wakuuzu@gmail.com?subject=${encodeURIComponent("11/29 鹿児島クリニック 参加申込")}&body=${encodeURIComponent(body)}`;
 }
 
+function isRegistrationClosedAt(localTime: string) {
+  return Date.now() >= Date.parse(localTime);
+}
+
 export default function Page() {
-  const morningClosed = Date.now() >= Date.parse("2026-11-29T09:30:00+09:00");
-  const afternoonClosed = Date.now() >= Date.parse("2026-11-29T13:00:00+09:00");
-  return <SiteFrame locale="ja"><div className={styles.page}>
+  const morningClosed = isRegistrationClosedAt("2026-11-29T09:30:00+09:00");
+  const afternoonClosed = isRegistrationClosedAt("2026-11-29T13:00:00+09:00");
+  return <SiteFrame locale="ja"><GrowthClickTracking /><div className={styles.page}>
     <section className={styles.hero}>
       <div>
         <a className={styles.back} href="/ja/schedule">← クリニック・イベント日程</a>
@@ -71,6 +77,7 @@ export default function Page() {
         </div>
         <p className={styles.small}>表示金額が参加者1名分のお支払い総額です。午前・午後の両方に参加する場合は、4,000円のコースをお選びください。お支払い方法は次の画面で確認できます。お支払いが完了していない場合、お申し込みは確定していません。</p>
       </form>
+      <ClinicSupportInvitation stage="application" />
       <div className={styles.checklist}><h3>キャンセル・変更について</h3><ul><li>11月21日まで：参加費の100％を返金</li><li>11月22日〜25日：参加費の50％を返金</li><li>11月26日〜当日：原則返金なし</li></ul><p className={styles.small}>RBAがキャンセルのご連絡を受け取った日（日本時間）を基準に返金額を計算します。決済事業者から返還されない手数料や、すでに発生した返金できない実費を差し引く場合があります。RBAの都合で中止する場合は、参加費を全額返金します。詳細は<a href="/ja/policies">参加規約・キャンセル方針</a>をご確認ください。</p><p>変更・キャンセル、お支払いについてのお問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>。参加者のお名前と、午前・午後・両方のいずれに申し込んだかをお知らせください。お支払いが完了したか分からない場合は、再度お支払いをせずにお問い合わせください。</p></div>
       <details className={styles.checklist}><summary>メール・DMでのお申し込み・ご相談</summary><p>オンラインでのお手続きが難しい場合は、主催者のメールアドレス、またはRBA公式InstagramのDMへご連絡ください。すでにお申し込み済みの場合は、その旨をお伝えください。</p><div className={styles.actions}><a href={applicationEmail("午前／午後／通し（選択してください）")}>主催者へメール ↗</a><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">RBA公式Instagram ↗</a></div><p className={styles.email}>主催者メール：wakuuzu@gmail.com</p></details>
     </section>

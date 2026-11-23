@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2, History, House, Search, ShieldCheck } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
+import { ClinicSupportInvitation } from "@/components/clinic-support-invitation";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 
 export const metadata:Metadata={
   title:"申込後の次の一歩｜RBA ID・MY HOME COURT",
@@ -20,7 +22,7 @@ export const metadata:Metadata={
 };
 
 export default function Page(){
-  return <SiteFrame locale="ja">
+  return <SiteFrame locale="ja"><GrowthClickTracking />
     <section className="inner-hero section-pad">
       <a className="back-link" href="/ja">← RBA</a>
       <p className="section-index"><CheckCircle2 size={16}/> AFTER APPLICATION</p>
@@ -43,6 +45,7 @@ export default function Page(){
     </section>
 
     <section className="section-pad"><h2 className="text-2xl font-bold">参加が終わった方へ</h2><p className="my-4 leading-8">気づいたこと、次の練習で試すことを整理する振り返りメモと、保護者の声かけ例を公開しています。登録なしで使えます。</p><a className="text-link" href="/ja/after-clinic">参加後の振り返り・次の機会を探す →</a></section>
+    <ClinicSupportInvitation stage="application" />
     <section className="statement section-pad">
       <p className="section-index">WHY HOME COURT</p>
       <div>
