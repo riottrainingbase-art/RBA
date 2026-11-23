@@ -123,3 +123,11 @@ Web form intake -> manual consent-verified import or trusted integration -> RBA 
 - Tourist travel agency law: https://www.mlit.go.jp/kankocho/seisaku_seido/ryokogyoho/ryokogyohogaiyo.html
 - Bell Sunpia facilities/lodging: https://bellsunpia.jp/facilities/ ; https://bellsunpia.jp/lodging/
 - Existing public RBA paths: `/ja/united`, `/ja/opportunities`, `/ja/camp`, `/ja/sponsors`, `/ja/support`, `/ja/store`.
+
+## 11. NEXT COURT TOUR and CONNECT mapping
+
+- **NEXT COURT TOUR** is the 2027 geographically distributed clinic programme (6 regions, 12 event days and 480 session places are *targets*, NOT reserved events). It serves as discovery and development entry, not a UNITED entry-team price or player selection fee. https://riotbasketballacademy.com/ja/national-tour
+- **RBA CONNECT** handles B2B outreach to domestic/overseas clubs, venues and tournament organizers; it cannot collect individual UNITED player fees by default.
+- **RBA UNITED** provides the individually enrolled, temporary group/team challenge; **RIZEHOPE** is a separate host/event owner. Event-level contracts and staff/insurance obligations remain separate.
+- Facility outreach: drafts only were prepared in Primary Gmail for Bell Sunpia Miyagi Izumi and Grandy 21. **Neither has been sent or accepted** as of this version.
+- First-day pilot at ¥9,900*20 is **loss-making by ~¥16,056** under the current conservative 8-hour staffing/venue cost budget; do not treat ¥9,900 as a launch-approved price. Refer to RBA_UNITED_Operating_System_2027.xlsx for editable assumptions.
