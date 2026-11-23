@@ -91,6 +91,7 @@ export async function SimpleJapaneseHome() {
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
                 <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">サービス・料金を見る <span aria-hidden="true">↗</span></a>
               </nav>
             </div>
             <div className={styles.heroBaseline}>
@@ -121,7 +122,7 @@ export async function SimpleJapaneseHome() {
                 </a>
               ))}
             </nav>
-            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。</p>
+            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。<a href="/ja/services" data-growth-id="home-services-from-audience">公式サービス一覧と料金の比較を見る →</a></p>
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
