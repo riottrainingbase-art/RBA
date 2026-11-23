@@ -48,6 +48,7 @@ const featured = [
 ] as const;
 
 const more = [
+  {title: "RBA ACCESS｜子どもの育成機会を支える国際協働",href:"/ja/access",id:"access-global"},
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
