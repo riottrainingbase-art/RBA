@@ -94,6 +94,9 @@ export default async function Page(){
     </section>
 
     <section className="dhub-player-home-actions section-pad">
+      <Link href="/ja/d-hub/players/member/toolkit">
+        <NotebookPen size={20}/><span>NEW / PRACTICE TOOLS</span><strong>振り返りワークシート3種類</strong><small>自分の言葉で次のプレーを考える</small>
+      </Link>
       <Link href="/ja/d-hub/players/member/profile">
         <UserRound size={20}/><span>MY PROFILE</span><strong>{profileReady?"プロフィールを見る":"最初に設定する"}</strong><small>学年・所属・目標・今の課題</small>
       </Link>
