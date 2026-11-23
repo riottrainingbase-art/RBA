@@ -84,6 +84,9 @@ export default async function Page() {
             <strong>{membership?.status === "grace" ? "GRACE" : "ACTIVE"}</strong>
             <small>Square 月額3,300円</small>
           </div>
+          <div className="dhub-member-actions">
+            <Link className="button button-member" href="/ja/d-hub/coaches/member/toolkit">新特典：実践ワークシート4種類を見る <ArrowRight size={16}/></Link>
+          </div>
         </section>
 
         <section className="dhub-progress-strip section-pad">
