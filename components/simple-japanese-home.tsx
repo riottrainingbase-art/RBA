@@ -123,6 +123,21 @@ export async function SimpleJapaneseHome() {
               <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">次のコートが、<span className={styles.headingEmphasis}>ここにある。</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
+            <div className={styles.programmes}>
+              <article id="nikaho-elementary-2027">
+                <div className={styles.programmeMeta}>
+                  <p className={styles.date}>2027.04.11 SUN｜13:30〜16:30</p>
+                  <span className={styles.programmeCategory}>開催予定・小学生のみ</span>
+                </div>
+                <h3>にかほ育成クリニック</h3>
+                <p className={styles.place}>秋田県にかほ市／会場調整中</p>
+                <dl>
+                  <div><dt>対象</dt><dd>小学生のみ（男女）</dd></div>
+                  <div><dt>参加費</dt><dd>調整中・正式案内前</dd></div>
+                </dl>
+                <a href="/ja/events/nikaho-clinic-2027" data-growth-id="home-nikaho-elementary-2027">開催概要・協会への問い合わせ案内を見る ↗</a>
+              </article>
+            </div>
             {active.length ? (
               <div className={styles.programmes}>
                 {active.map(p => {
