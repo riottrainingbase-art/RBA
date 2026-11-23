@@ -98,7 +98,7 @@ export default function NikahoElementaryClinicPage() {
             </p>
             <p className="mt-5 max-w-3xl text-sm font-bold leading-7">
               会場・参加条件・申込方法・参加費については、にかほバスケットボール協会の正式案内をご確認ください。
-              RBA公式サイト上では参加受付・決済を行っていません。
+              RBA公式サイト上では参加受付・決済を行っていません。募集開始は協会からの正式案内をご確認ください。
             </p>
             <a href="/ja/schedule" className="mt-7 inline-flex min-h-12 items-center border-2 border-black bg-black px-6 font-bold text-white">
               RBA開催予定一覧へ戻る →
