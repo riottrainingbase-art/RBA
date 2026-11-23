@@ -18,7 +18,7 @@ Korea IYIBS interest: https://form.jotform.com/263207310187047
 Kobe/Guam interest: https://form.jotform.com/263188088558069
 RIZEHOPE / sixth-grade interest: https://form.jotform.com/263243952545057
 Shenzhen/Kanto U12 interest: https://form.jotform.com/263237260217048
-Corporate / regional event support interest: https://form.jotform.com/263222129730046
+RBA UNITED corporate/venue partnership interest: https://form.jotform.com/263264266082054\nRIZEHOPE-specific corporate/event support interest (separate): https://form.jotform.com/263222129730046
 MY HOME COURT: /ja/my-homecourt; apparel /ja/store; sponsor directory /ja/sponsors.
 **Do not migrate existing applicants or collect duplicate payments** simply because new generic intake exists.
 
