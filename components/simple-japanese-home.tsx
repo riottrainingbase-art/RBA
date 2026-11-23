@@ -123,6 +123,21 @@ export async function SimpleJapaneseHome() {
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
             <div className={styles.programmes}>
+              <article id="rba-united-network">
+                <div className={styles.programmeMeta}>
+                  <p className={styles.date}>RBA UNITED｜国内・国際育成ネットワーク</p>
+                  <span className={styles.programmeCategory}>保護者向け無料希望登録</span>
+                </div>
+                <h3>チームの枠を越えて、新しい仲間と挑戦する。</h3>
+                <p className={styles.place}>クリニック → Development Camp → UNITED交流試合・国際交流</p>
+                <dl>
+                  <div><dt>対象</dt><dd>各企画で異なります。保護者から希望登録できます。</dd></div>
+                  <div><dt>料金</dt><dd>希望登録は無料。実際の参加費・旅程は企画ごとに確定後ご案内。</dd></div>
+                </dl>
+                <a href="/ja/united" data-growth-id="home-united-network">RBA UNITED｜仕組み・国内外企画・無料登録を見る ↗</a>
+              </article>
+            </div>
+            <div className={styles.programmes}>
               <article id="nikaho-elementary-2027">
                 <div className={styles.programmeMeta}>
                   <p className={styles.date}>2027.04.11 SUN｜13:30〜16:30</p>
