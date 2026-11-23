@@ -46,8 +46,17 @@ const featured = [
     style: "standard",
   },
   {
+    id: "united-network",
+    label: "04 / RBA UNITED",
+    title: "全国・国際の仲間と挑戦する",
+    description: "所属チームはそのまま。クリニックで出会い、交流試合と国内外の挑戦へ。無料の参加希望受付。",
+    href: "/ja/united",
+    action: "UNITEDの仕組みと開催予定を見る",
+    style: "standard",
+  },
+  {
     id: "korea-free-interest",
-    label: "04 / INTERNATIONAL · FREE INTEREST ONLY",
+    label: "05 / INTERNATIONAL · FREE INTEREST ONLY",
     title: "韓国・仁川2027｜無料先行受付",
     description: "U12・U15・U17の男女。保護者からの参加意向登録です。出場・旅行・支払いは確定しません。",
     href: "https://form.jotform.com/263207310187047",
@@ -59,7 +68,7 @@ const featured = [
 const more = [
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM SENDAI｜仙台のU15クラブ",href:"/ja/gream",id:"gream"},
-  {title: "RBA UNITED｜韓国無料意向登録・RIZEHOPE個人参加相談",href:"/ja/united",id:"united"},
+  {title: "RBA UNITED｜全国・国際交流と保護者向け無料登録",href:"/ja/united",id:"united"},
   {title: "MY HOME COURT｜RBA ID・育成の記録",href:"/ja/my-homecourt",id:"homecourt"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
   {title: "RBA PERFORMANCE TEE｜公式ウェア",href:"/ja/store",id:"store"},
