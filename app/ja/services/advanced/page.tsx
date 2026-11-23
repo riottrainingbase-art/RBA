@@ -66,7 +66,7 @@ export default function AdvancedPaidServicesPage(){
  </div></section>
  <section className={styles.section} id="new-programmes"><div className={styles.wrap}>
    <p className={styles.kicker}>03 / CONCEPTS FOR CUSTOM PAID SUPPORT</p><h2>新しい有料サービスは、<br/>まず相談から設計する。</h2>
-   <p className={styles.intro}>以下は**企画・個別見積段階**のサービス案です。料金・提供日時・担当人数は未確定です。フォーム提出だけで契約や課金、指導枠の確保は発生しません。</p>
+   <p className={styles.intro}>以下は企画・個別見積段階のサービス案です。料金・提供日時・担当人数は未確定です。フォーム提出だけで契約や課金、指導枠の確保は発生しません。</p>
    <div className={styles.proposalGrid}>{proposals.map(item=><article key={item.id} className={styles.proposal}>
      <div className={styles.cardTop}><span>{item.code}</span><b>個別見積・相談のみ</b></div>
      <h3>{item.title}</h3><p className={styles.label}>{item.tag}</p><p>{item.body}</p>
