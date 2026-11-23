@@ -28,7 +28,7 @@ test("all worksheets are original and accessible from existing paid member pages
 });
 test("new toolkits avoid collecting sensitive data in the browser",()=>{
  for(const s of [coach,player]){
-  assert.ok(s.includes("個人情報"));
+  assert.ok(s.includes("氏名"));
   assert.ok(!s.includes("upload"));
   assert.ok(!s.includes("setState"));
  }
