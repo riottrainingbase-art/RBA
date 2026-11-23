@@ -120,6 +120,9 @@ jobs:
       - name: Okinawa camp live funnel and pricing CTA regression
         run: node --test tests/okinawa-camp-conversion.test.mjs
 
+      - name: Okinawa day-pass checkout fail-closed security regression
+        run: pnpm run audit:okinawa-daypass
+
       - name: ESLint changed files
         if: github.event_name == 'pull_request'
         env:

@@ -5,13 +5,45 @@ export const DAY_PASS_TABLE = "okinawa_2026_day_pass_payments";
 export const DAY_PASS_STRIPE_ACCOUNT = "acct_1UGdxZRXDnnSs6XN";
 export const DAY_PASS_SITE_URL = "https://riotbasketballacademy.com";
 export const DAY_PASS_LABELS = {
-  dec22_day: "12月22日（火）1日参加",
+  dec22_day: "12月22日（火）午後参加（予定）",
   dec22_after: "12月22日（火）放課後交流",
   dec23_day: "12月23日（水）1日参加",
   dec23_after: "12月23日（水）放課後交流",
-  dec24_day: "12月24日（木）1日参加",
+  dec24_day: "12月24日（木）短縮日帰り参加（午前〜午後、予定）",
+  dec22_23_day: "12月22日午後＋23日の日帰り2日間",
+  dec23_24_day: "12月23日＋24日の日帰り2日間",
+  dec22_24_day: "12月22日午後＋24日の日帰り2日間",
 } as const;
 export type DayPassPlan = keyof typeof DAY_PASS_LABELS;
+
+// The venue-approved NEW day-pass allocation is net of existing 3-day
+// participants, supervising staff, parents, and facility commitments.
+export const DAY_PASS_DATES: Record<DayPassPlan, readonly string[]> = {
+  dec22_day: ["2026-12-22"], dec22_after: ["2026-12-22"],
+  dec23_day: ["2026-12-23"], dec23_after: ["2026-12-23"],
+  dec24_day: ["2026-12-24"],
+  dec22_23_day: ["2026-12-22", "2026-12-23"],
+  dec23_24_day: ["2026-12-23", "2026-12-24"],
+  dec22_24_day: ["2026-12-22", "2026-12-24"],
+};
+
+export function approvedNewSlotsByDay(): Record<string, number> | null {
+  const raw = process.env.OKINAWA_2026_DAY_PASS_APPROVED_NEW_SLOTS_BY_DATE;
+  if (!raw) return null;
+  try {
+    const obj: unknown = JSON.parse(raw);
+    if (!obj || typeof obj !== "object" || Array.isArray(obj)) return null;
+    const limits: Record<string, number> = {};
+    for (const day of ["2026-12-22", "2026-12-23", "2026-12-24"]) {
+      const value = (obj as Record<string, unknown>)[day];
+      if (typeof value !== "number" || !Number.isInteger(value) || value < 0 || value > 200)
+        return null;
+      limits[day] = value;
+    }
+    return limits;
+  } catch { return null; }
+}
+
 
 export type DayPassRecord = {
   id: string;
@@ -27,6 +59,7 @@ export type DayPassRecord = {
   terms_version: string | null;
   invite_token_sha256: string | null;
   invite_expires_at: string | null;
+  first_session_at: string | null;
   checkout_session_id: string | null;
   paid_at: string | null;
 };
@@ -43,9 +76,13 @@ export function dayPassAdmin() {
 
 export function dayPassPaymentsEnabled() {
   return process.env.OKINAWA_2026_DAY_PASS_PAYMENTS_ENABLED === "true"
-    && Boolean(process.env.OKINAWA_2026_DAY_PASS_WEBHOOK_SECRET)
+    // Stripe events are verified by the independent Supabase Edge webhook;
+    // Vercel does not need to possess its signing secret.
+    && process.env.OKINAWA_2026_DAY_PASS_WEBHOOK_READY === "true"
     && Boolean(process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION)
-    && Boolean(process.env.STRIPE_SECRET_KEY)
+    && Boolean(approvedNewSlotsByDay())
+    // Explicitly refuse test-mode Stripe keys when the RBA live-payment flag is enabled.
+    && /^(sk|rk)_live_/.test(process.env.STRIPE_SECRET_KEY || "")
     && Boolean(dayPassAdmin());
 }
 
@@ -56,7 +93,7 @@ export function approvedAmount(plan: string) {
   try {
     const parsed = JSON.parse(raw) as Record<string, unknown>;
     const amount = parsed[plan];
-    return typeof amount === "number" && Number.isInteger(amount) && amount >= 2000 && amount <= 20000
+    return typeof amount === "number" && Number.isInteger(amount) && amount >= 2000 && amount <= 40000
       ? amount : null;
   } catch { return null; }
 }
@@ -69,13 +106,19 @@ export async function hashDayPassToken(token: string) {
 export function dayPassInviteValid(row: DayPassRecord) {
   if (row.program_code !== DAY_PASS_PROGRAM || !Object.hasOwn(DAY_PASS_LABELS, row.plan_code)) return false;
   if (!row.guardian_verified_at || !row.venue_verified_at || !row.terms_version) return false;
+  // Facility can only be called final after the 22 Nov priority-booking cutoff.
+  if (Date.parse(row.venue_verified_at) < Date.parse("2026-11-23T00:00:00+09:00")) return false;
   if (row.terms_version !== process.env.OKINAWA_2026_DAY_PASS_TERMS_VERSION) return false;
   if (!row.invite_expires_at || Date.parse(row.invite_expires_at) <= Date.now()) return false;
   if (approvedAmount(row.plan_code) !== row.amount_jpy) return false;
-  const closes = row.plan_code.startsWith("dec22") ? "2026-12-22T14:00:00+09:00"
-    : row.plan_code.startsWith("dec23") ? "2026-12-23T09:00:00+09:00"
-    : "2026-12-24T09:00:00+09:00";
-  return Date.now() < Date.parse(closes);
+  const capacity = approvedNewSlotsByDay();
+  if (!capacity || !DAY_PASS_DATES[row.plan_code as DayPassPlan].every(day => capacity[day] > 0)) return false;
+  // Every invitation uses the ACTUAL first gym session time, not a
+  // previously advertised estimate. No payment after check-in has begun.
+  const first = row.first_session_at ? Date.parse(row.first_session_at) : NaN;
+  if (!Number.isFinite(first) || Date.now() >= first) return false;
+  const jstDay = new Date(first + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  return jstDay === DAY_PASS_DATES[row.plan_code as DayPassPlan][0];
 }
 
 export async function findDayPassInvite(token: string) {
