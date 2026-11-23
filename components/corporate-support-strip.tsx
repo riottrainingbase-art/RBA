@@ -162,9 +162,14 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
             </a>
           )}
           {isJapanese && (
-            <a className={styles.details} href={partnerPath}>
-              協賛メニュー・掲載条件を見る<span aria-hidden="true"> →</span>
-            </a>
+            <>
+              <a className={styles.details} href="/ja/sponsors">
+                公式スポンサー・協賛一覧を見る<span aria-hidden="true"> →</span>
+              </a>
+              <a className={styles.details} href={partnerPath}>
+                協賛メニュー・掲載条件を見る<span aria-hidden="true"> →</span>
+              </a>
+            </>
           )}
         </div>
       </div>
