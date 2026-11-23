@@ -14,6 +14,8 @@ export const unitedLinks = {
 
 export const unitedPortfolio = [
   { code:"CLINIC", title:"RBA CLINIC",role:"出会いと育成の入口",fee:"開催ごとの既存クリニック料金",status:"既存サービス",detail:"単発のクリニックがUNITED参加・出場選考を保証することはありません。",href:"/ja/opportunities" },
+  { code:"NEXTCOURT",title:"RBA NEXT COURT TOUR",role:"全国の地域へ指導と学習機会を届ける",fee:"各地域の開催形態に応じて確定。6地域・12日・延べ480枠は2027年の目標値",status:"2027年計画／開催・資金確定前",detail:"地域クリニックと4週間フォロー。UNITED選考や大会参加費と分離し、同じ参加枠を二重に売りません。",href:"/ja/national-tour" },
+  { code:"CONNECT",title:"RBA CONNECT",role:"国内外のチームと大会主催者・地域協力先の紹介・調整",fee:"相談対象ごとに実費・役務を個別見積（公開定額なし）",status:"連携相談の受付",detail:"チーム・主催者側の窓口。選手個人向けのUNITEDと区別し、取引・会場・渡航を確約しません。",href:"/ja/connect" },
   { code:"CAMP",title:"RBA DEVELOPMENT CAMP",role:"技術と判断を深める",fee:"開催企画の税込参加料。千葉2027・2日間24,200円はその企画限定",status:"既存サービス",detail:"技術と判断を学ぶ育成キャンプ。期間限定チームや大会とは別の契約です。",href:"/ja/camp" },
   { code:"UNITED",title:"RBA UNITED",role:"個人が集まり期間限定で試合・交流へ",fee:"企画ごとの個人参加料／正式条件の確定後に発表",status:"無料希望受付のみ",detail:"JBA既存所属の変更や二重登録を伴わない交流から始め、大会参加資格は別途確認します。",href:"/ja/united" },
   { code:"RIZEHOPE",title:"RIZEHOPE JAPAN",role:"国内外U12チーム向け国際育成交流大会",fee:"国内チーム2日間66,000円（税込）。UNITED個人参加費は未確定",status:"大会準備中",detail:"大会主催・チーム参加料と、RBA UNITEDの個人参加・選考・支払を混同しません。",href:"/ja/opportunities" },
