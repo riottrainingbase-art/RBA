@@ -56,8 +56,8 @@ export default function UnitedJapanPage(){
     <section className="bg-[#151515] px-5 py-14 text-white sm:py-20" id="united-system">
       <div className="mx-auto max-w-6xl">
         <p className="text-xs font-black tracking-widest text-[#ffaf80]">ONE RBA ECOSYSTEM / CLEAR CONTRACTS</p>
-        <h2 className="mt-3 text-3xl font-black sm:text-4xl">6つのサービスを、正しくつなぐ。</h2>
-        <p className="mt-4 max-w-4xl leading-8 text-white/80">CLINIC、DEVELOPMENT CAMP、UNITED、RIZEHOPE、MY HOME COURT、TEAMWEAR。それぞれ役割を分け、申込・会計・契約・権利は混同しません。</p>
+        <h2 className="mt-3 text-3xl font-black sm:text-4xl">8つの役割を、正しくつなぐ。</h2>
+        <p className="mt-4 max-w-4xl leading-8 text-white/80">CLINIC・NEXT COURT TOUR・DEVELOPMENT CAMP・UNITED・RIZEHOPE・CONNECT・MY HOME COURT・TEAMWEAR。それぞれ役割を分け、申込・会計・契約・権利は混同しません。</p>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           {unitedPortfolio.map(p=><article key={p.code} className="border border-white/30 bg-[#222] p-6">
             <div className="flex flex-wrap justify-between gap-3 text-xs font-black text-[#ffaf80]"><span>{p.code}</span><span className="border border-white/40 px-2 py-1 text-white">{p.status}</span></div>
