@@ -5,7 +5,7 @@ export const unitedLinks = {
   guam: "https://form.jotform.com/263188088558069",
   rizehopeU12: "https://form.jotform.com/263243952545057",
   shenzhen: "https://form.jotform.com/263237260217048",
-  partnerInquiry: "https://form.jotform.com/263222129730046",
+  partnerInquiry: "https://form.jotform.com/263264266082054",
   myHomecourt: "/ja/my-homecourt",
   store: "/ja/store",
   developmentCamp: "/ja/camp",
