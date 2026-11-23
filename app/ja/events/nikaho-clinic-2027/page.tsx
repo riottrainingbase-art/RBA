@@ -1,70 +1,111 @@
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
 
-const base = "https://riotbasketballacademy.com";
-const application = "https://form.jotform.com/263223688314055?utm_source=rba_site&utm_medium=event_page&utm_campaign=nikaho_20270411";
-const path = "/ja/events/nikaho-clinic-2027";
+const canonical = "https://riotbasketballacademy.com/ja/events/nikaho-clinic-2027";
 
 export const metadata: Metadata = {
-  title: "【先行案内受付】2027年4月11日 にかほ市RBA育成クリニック｜秋田",
-  description: "秋田県にかほ市で2027年4月11日（日）にRBA育成クリニックを計画中。平沢男子・象潟男子・にかほ女子など地域の育成年代を対象とし、13:30〜16:30を予定。会場・参加条件は最終調整中。無料の先行案内登録を受付。",
-  alternates: { canonical: base + path },
-  openGraph: { title: "にかほで、次の判断を。｜RBA育成クリニック 2027", description: "4月11日（日）開催に向け調整中。先行案内希望は無料で登録できます。", url: base + path, type: "website", locale: "ja_JP", images: ["/rba-court-hero.png"] },
-  twitter: { card: "summary_large_image", title: "にかほで、次の判断を。｜RBA育成クリニック 2027", images: ["/rba-court-hero.png"] },
+  title: "にかほ育成クリニック 2027年4月11日｜小学生対象・開催予定｜RBA",
+  description: "2027年4月11日（日）13:30〜16:30、秋田県にかほ市で小学生のみを対象とするRBA育成クリニックを開催予定。平沢男子・象潟男子・にかほ女子との地域合同クリニックを調整中。お問い合わせはにかほバスケットボール協会まで。",
+  alternates: { canonical },
+  openGraph: {
+    title: "にかほ育成クリニック｜2027年4月11日（日）",
+    description: "小学生のみ対象。13:30〜16:30開催予定。詳細・お問い合わせはにかほバスケットボール協会まで。",
+    url: canonical,
+    locale: "ja_JP",
+    type: "website",
+    siteName: "Riot Basketball Academy",
+  },
 };
-const topics = [
-  ["MOVE", "次の動きにつながる身体の使い方", "ただ反復するだけではなく、状況に応じて止まる・方向を変える・動き直すことを考えます。"],
-  ["READ", "相手と味方を見て選ぶ", "1対1での駆け引きや、スペースを見つける判断を実際のプレーで試します。"],
-  ["PLAY", "ゲームに生きる学びへ", "ドリブルやシュートを目的化せず、プレーの中で使える技術と判断をつなげます。"],
+
+const facts = [
+  ["開催予定日", "2027年4月11日（日）"],
+  ["予定時間", "13:30〜16:30"],
+  ["対象", "小学生のみ（男女）"],
+  ["開催地", "秋田県にかほ市"],
+  ["会場", "平沢小学校体育館を候補として調整中／正式な利用許可未確認"],
+  ["合同参加予定", "平沢男子・象潟男子・にかほ女子（調整中）"],
+  ["参加費・参加方法", "未確定。地域主催者の正式案内をご確認ください"],
 ] as const;
 
-export default function NikahoClinicPage() {
-  return <SiteFrame locale="ja">
-    <div className="bg-[#f7f4ee] text-[#191919]">
-      <section className="bg-[#151515] text-white">
-        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
-          <a href="/ja/schedule" className="text-sm font-bold underline underline-offset-4 text-white/80">← クリニック開催予定</a>
-          <p className="mt-12 text-xs font-black tracking-[.24em] text-[#ff8a4b]">RBA DEVELOPMENT CLINIC / NIKAHO 2027</p>
-          <h1 className="mt-5 text-[clamp(2.8rem,7vw,5.8rem)] font-black leading-[1.08] tracking-[-.05em]">にかほで、<br/>次の判断を。</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-9">ボールを扱うだけでは終わらない。相手と味方を見て、考え、選ぶ。ゲームの中で生きるバスケットボールを、秋田の子どもたちと。</p>
-          <div className="mt-8 max-w-3xl border-l-4 border-[#ff8a4b] bg-white/10 p-5">
-            <p className="font-black text-[#ffbc97]">開催に向けて最終調整中／正式な参加募集・決済は未開始</p>
-            <p className="mt-2 text-sm leading-7">日程は地域主催者と4月11日（日）で合意していますが、会場の利用許可、参加条件、当日の進行・参加費は正式発表前です。現在は無料の先行案内希望登録のみ受け付けます。</p>
+const themes = [
+  ["01", "技術", "姿勢・フットワーク・ボール操作を、実際のプレーに結びつける。"],
+  ["02", "判断", "相手と味方を見て、選び、動く。"],
+  ["03", "空間認識", "間合い・スペース・サポートの原則を学ぶ。"],
+  ["04", "実戦への応用", "少人数ゲームで試し、考え、仲間と学び合う。"],
+] as const;
+
+export default function NikahoElementaryClinicPage() {
+  return (
+    <SiteFrame locale="ja">
+      <main className="bg-[#f6f3ec] text-[#161616]">
+        <header className="bg-[#ff741f] px-5 py-14 sm:py-20">
+          <div className="mx-auto max-w-6xl">
+            <a href="/ja/schedule" className="text-sm font-bold underline underline-offset-4">← 開催予定一覧へ</a>
+            <p className="mt-12 text-xs font-black tracking-[.2em]">RBA / NIKAHO DEVELOPMENT CLINIC</p>
+            <h1 className="mt-5 text-[clamp(2.5rem,7vw,5.4rem)] font-black leading-[1.12] tracking-[-.045em]">
+              にかほ<br/>育成クリニック
+            </h1>
+            <p className="mt-7 border-y-4 border-black py-4 text-xl font-black sm:text-3xl">
+              2027年4月11日（日）<br/>13:30〜16:30
+            </p>
+            <p className="mt-5 text-lg font-black">小学生のみ対象（男女）／開催予定</p>
+            <p className="mt-5 max-w-3xl text-base font-medium leading-8">
+              技術だけではなく、見る・考える・判断する力を。
+              地域の仲間と、実戦につながるバスケットボールを学ぶクリニックです。
+            </p>
+            <p className="mt-7 border-l-4 border-black bg-white p-5 text-sm font-bold leading-7">
+              現在、地域主催者と開催条件を調整中です。会場・参加費・対象学年の詳細・受付方法は正式確定前のため、参加枠の予約や有料申込は受け付けていません。
+            </p>
           </div>
-          <a href={application} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex min-h-14 items-center bg-[#ff762d] px-7 py-4 text-center text-base font-black text-black hover:bg-[#ffa074]">先行案内を無料で受け取る ↗</a>
-          <p className="mt-3 text-xs leading-6 text-white/70">登録だけでは予約確定・参加枠確保・料金請求になりません。</p>
-        </div>
-      </section>
-      <section className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
-        <p className="text-xs font-black tracking-[.17em] text-[#b5571e]">EVENT INFORMATION</p>
-        <h2 className="mt-3 text-3xl font-black sm:text-4xl">開催概要（調整中）</h2>
-        <dl className="mt-8 grid gap-px border border-black/15 bg-black/15 sm:grid-cols-2">
-          {[
-            ["開催予定日", "2027年4月11日（日）"],
-            ["時間帯", "13:30〜16:30（予定・最終調整中）"],
-            ["開催地", "秋田県にかほ市"],
-            ["会場", "平沢小学校体育館を候補として調整中／未確保"],
-            ["対象", "地域の育成年代（学年・参加条件調整中）"],
-            ["地域参加チーム", "平沢男子・象潟男子・にかほ女子（調整中）"],
-            ["参加費・定員", "地域主催者による正式案内をお待ちください"],
-            ["受付状況", "無料の先行案内登録のみ"],
-          ].map(([label,value])=><div className="bg-white px-5 py-5" key={label}><dt className="text-xs font-black text-neutral-600">{label}</dt><dd className="mt-2 text-base font-bold leading-7">{value}</dd></div>)}
-        </dl>
-      </section>
-      <section className="bg-white py-14 sm:py-20">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <p className="text-xs font-black tracking-[.17em] text-[#b5571e]">THE DEVELOPMENT EXPERIENCE</p>
-          <h2 className="mt-3 text-3xl font-black sm:text-4xl">上手く見せる練習より、<br/>上手くなる経験を。</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">{topics.map(([eyebrow,title,note])=><article key={eyebrow} className="border border-black/15 bg-[#f9f6ef] p-6"><p className="text-xs font-black tracking-widest text-[#b5571e]">{eyebrow}</p><h3 className="mt-3 text-xl font-black leading-8">{title}</h3><p className="mt-4 text-sm leading-7 text-neutral-700">{note}</p></article>)}</div>
-          <p className="mt-7 max-w-3xl text-sm leading-8 text-neutral-700">発育発達段階や競技経験に応じ、内容を調整します。プログラムは現地の人数・学年・指導体制を確認後に確定します。</p>
-        </div>
-      </section>
-      <section className="mx-auto max-w-5xl px-5 py-14 text-center sm:px-8 sm:py-20">
-        <h2 className="text-3xl font-black sm:text-4xl">正式募集の案内を受け取る</h2>
-        <p className="mx-auto mt-5 max-w-2xl text-sm leading-8">会場・募集人数・参加料金・参加方法が決まり次第、登録いただいた保護者へ案内します。無料登録は正式な参加申込や決済ではありません。</p>
-        <a href={application} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-14 items-center bg-black px-8 py-4 font-black text-white">無料で先行案内登録 ↗</a>
-        <p className="mt-7 text-sm">お問い合わせ：<a className="underline" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></p>
-      </section>
-    </div>
-  </SiteFrame>;
+        </header>
+        <section className="mx-auto max-w-6xl px-5 py-12 sm:py-16" aria-labelledby="nikaho-facts">
+          <p className="text-xs font-black tracking-widest text-[#a74910]">EVENT INFORMATION</p>
+          <h2 id="nikaho-facts" className="mt-2 text-3xl font-black">開催概要（予定）</h2>
+          <dl className="mt-7 grid gap-px border border-black/15 bg-black/15 sm:grid-cols-2">
+            {facts.map(([label, value]) => (
+              <div key={label} className="bg-white p-5">
+                <dt className="text-xs font-black text-neutral-600">{label}</dt>
+                <dd className="mt-2 text-base font-bold leading-7">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+        <section className="bg-white px-5 py-12 sm:py-16" aria-labelledby="nikaho-learning">
+          <div className="mx-auto max-w-6xl">
+            <p className="text-xs font-black tracking-widest text-[#a74910]">SKILL × DECISION</p>
+            <h2 id="nikaho-learning" className="mt-2 text-3xl font-black">技術を、試合で使える力に。</h2>
+            <p className="mt-4 max-w-3xl leading-8">
+              小学生の発達段階や経験に合わせ、1対1や少人数ゲームなどを活用する予定です。
+              正式な実施内容は、参加人数と現地指導体制を確認して決定します。
+            </p>
+            <div className="mt-7 grid gap-3 md:grid-cols-2">
+              {themes.map(([num, title, note]) => (
+                <article key={num} className="border-2 border-black p-5">
+                  <span className="text-sm font-black text-[#a74910]">{num} / DEVELOPMENT</span>
+                  <h3 className="mt-2 text-2xl font-black">{title}</h3>
+                  <p className="mt-3 text-sm leading-7">{note}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="bg-[#ff741f] px-5 py-12 sm:py-16" aria-labelledby="nikaho-contact">
+          <div className="mx-auto max-w-5xl">
+            <p className="text-xs font-black tracking-widest">CONTACT / LOCAL ORGANIZER</p>
+            <h2 id="nikaho-contact" className="mt-3 text-3xl font-black sm:text-4xl">詳細・お問い合わせ</h2>
+            <p className="mt-5 border-y-4 border-black bg-white px-5 py-6 text-xl font-black leading-8 sm:text-2xl">
+              にかほバスケットボール協会
+            </p>
+            <p className="mt-5 max-w-3xl text-sm font-bold leading-7">
+              会場・参加条件・申込方法・参加費については、にかほバスケットボール協会の正式案内をご確認ください。
+              RBA公式サイト上では参加受付・決済を行っていません。募集開始は協会からの正式案内をご確認ください。
+            </p>
+            <a href="/ja/schedule" className="mt-7 inline-flex min-h-12 items-center border-2 border-black bg-black px-6 font-bold text-white">
+              RBA開催予定一覧へ戻る →
+            </a>
+          </div>
+        </section>
+      </main>
+    </SiteFrame>
+  );
 }
