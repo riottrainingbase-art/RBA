@@ -18,7 +18,7 @@ export const unitedPortfolio = [
   { code:"UNITED",title:"RBA UNITED",role:"個人が集まり期間限定で試合・交流へ",fee:"企画ごとの個人参加料／正式条件の確定後に発表",status:"無料希望受付のみ",detail:"JBA既存所属の変更や二重登録を伴わない交流から始め、大会参加資格は別途確認します。",href:"/ja/united" },
   { code:"RIZEHOPE",title:"RIZEHOPE JAPAN",role:"国内外U12チーム向け国際育成交流大会",fee:"国内チーム2日間66,000円（税込）。UNITED個人参加費は未確定",status:"大会準備中",detail:"大会主催・チーム参加料と、RBA UNITEDの個人参加・選考・支払を混同しません。",href:"/ja/opportunities" },
   { code:"HOMECOURT",title:"MY HOME COURT",role:"無料RBA IDと参加記録",fee:"基本登録無料。note会員500円/月・育成記事1,000円/月は別サービス",status:"既存サービス",detail:"UNITEDに別の強制月額会費は設けず、各企画の経験を同意の範囲でつなぎます。",href:"/ja/my-homecourt" },
-  { code:"TEAMWEAR",title:"RBA UNITED GAME KIT",role:"競技用ユニフォーム企画",fee:"発売前・税込販売価格未定",status:"Shopify下書き",detail:"RBA PERFORMANCE TEE・AUTHENTICSとは区分。サンプル・サイズ・製造費・納期・競技規定確認後のみ発売。",href:"/ja/store" },
+  { code:"TEAMWEAR",title:"RBA UNITED OFFICIAL GAME UNIFORM",role:"濃色・淡色の競技用ユニフォーム企画",fee:"発売前・税込販売価格未定",status:"Shopify下書き",detail:"JBA主催大会ではリバーシブルを原則公式ウェアにできないため、濃色・淡色の別セットを第一候補にします。サンプル・サイズ・原価・広告許可・大会規定の確認後のみ発売。",href:"/ja/store" },
 ] as const;
 
 export const unitedProjects = [
