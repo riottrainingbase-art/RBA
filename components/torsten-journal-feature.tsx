@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { connection } from "next/server";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/components/site-frame";
 
@@ -28,19 +29,26 @@ const internationalTopics={
 } as const;
 const start=Date.parse("2026-11-25T20:00:00+09:00");
 const end=Date.parse("2026-11-25T21:30:00+09:00");
-const recordingReview=Date.parse("2026-12-25T00:00:00+09:00");
-export function TorstenJournalFeature({locale}:{locale:Locale}){
- const c=copy[locale],now=Date.now(),before=now<start,recordPeriod=now>=end&&now<recordingReview;
+// This is a request-time Server Component, not a client render. Opt out of
+// prerendering before reading the clock so an old LIVE offer is never cached.
+async function requestTime(): Promise<number> {
+ await connection();
+ return Date.now();
+}
+export async function TorstenJournalFeature({locale}:{locale:Locale}){
+ const now=await requestTime();
+ const c=copy[locale],before=now<start,recordPeriod=now>=end;
  const href=(locale==="ja"?"/ja/events/torsten-loibl-online-clinic":"/events/torsten-loibl-online-clinic")+"?utm_source=rba_journal&utm_medium=internal&utm_campaign=torsten_vol2&utm_content="+locale+"_feature";
  const guides=locale==="ja"?topics:internationalTopics[locale];
+ const registrationLabel=before?c.cta:recordPeriod?c.after:c.closed;
  return <section className="journal-cms-index section-pad" id="torsten-shooting-special" aria-labelledby="torsten-special-heading">
   <div className="journal-clinic-bridge">
-   <div className="journal-clinic-copy"><p className="section-index inverse">{c.label}</p><h2 id="torsten-special-heading">{c.title}</h2><p>{c.intro}</p><p>{c.date}</p><div className="journal-clinic-facts">{before?<span>{c.live}</span>:null}{(before||recordPeriod)?<span>{c.record}</span>:null}</div></div>
-   <div className="journal-clinic-actions"><strong>TORSTEN LOIBL<br/><em>ONLINE CLINIC VOL.2</em></strong><Link className="button button-member" href={href}>{before?c.cta:recordPeriod?c.after:c.closed}<ArrowRight size={17}/></Link><small>{before?c.payment:null}</small></div>
+   <div className="journal-clinic-copy"><p className="section-index inverse">{c.label}</p><h2 id="torsten-special-heading">{c.title}</h2><p>{c.intro}</p><p>{c.date}</p><div className="journal-clinic-facts">{before?<span>{c.live}</span>:null}{before?<span>{c.record}</span>:null}</div></div>
+   <div className="journal-clinic-actions"><strong>TORSTEN LOIBL<br/><em>ONLINE CLINIC VOL.2</em></strong><Link className="button button-member" href={href}>{registrationLabel}<ArrowRight size={17}/></Link><small>{before?c.payment:null}</small></div>
   </div>
   <div className="section-head"><div><p className="section-index">RBA / PRACTICE DESIGN</p><h2>{c.guide}</h2></div><p>{c.disclaimer}</p></div>
   <div className="journal-coach-tool-grid">{guides.map(([title,body,practice],index)=><article key={title}><div className="journal-coach-tool-head"><span>{String(index+1).padStart(2,"0")} / COACH TOOL</span><h3>{title}</h3><p>{body}</p></div><div><strong>{c.practice}</strong><p>{practice}</p></div></article>)}</div>
-  <div className="homecourt-launch-actions"><Link className="button button-dark" href={href}>{before?c.cta:recordPeriod?c.after:c.closed}<ArrowRight size={17}/></Link></div>
+  <div className="homecourt-launch-actions"><Link className="button button-dark" href={href}>{registrationLabel}<ArrowRight size={17}/></Link></div>
   <div className="section-head"><div><p className="section-index">MEDIA COVERAGE</p><h2>{c.media}</h2></div><p>{c.mediaText}</p></div>
   <div className="journal-source-list"><a href="https://sixten.jp/journal/815-torsten-loibl-online-clinic.html" target="_blank" rel="noreferrer"><span>01</span><div><strong>610 BASKETBALL JOURNAL</strong><small>日本語 / Japanese</small></div><ArrowUpRight size={17}/></a></div>
  </section>;
