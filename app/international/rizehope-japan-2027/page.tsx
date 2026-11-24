@@ -75,7 +75,7 @@ export default function RizehopeInternational(){
       <h2 id="next" style={{fontSize:27,marginTop:0}}>Tell us about your team.</h2>
       <p style={{lineHeight:1.85,maxWidth:740}}>An adult club representative can share the country and city, estimated U12 birth years, number of players and adult chaperones, travel window, preferred airport and whether your group prefers more games, training or cultural experiences. We will discuss a tailored plan once we know your priorities.</p>
       <a href="https://form.jotform.com/263221234159047" target="_blank" rel="noopener noreferrer" style={{display:"inline-block",padding:"14px 20px",background:"#fff",color:navy,fontWeight:800,textDecoration:"none",margin:"10px 0"}}>Submit free team interest →</a>
-      <p style={{fontSize:13,opacity:.87,lineHeight:1.7}}>Do not submit children's names, passports or medical records in ordinary email or public messaging. For group enquiries: <a style={{color:"#fff"}} href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>. No deposit is requested.</p>
+      <p style={{fontSize:13,opacity:.87,lineHeight:1.7}}>Do not submit children&apos;s names, passports or medical records in ordinary email or public messaging. For group enquiries: <a style={{color:"#fff"}} href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>. No deposit is requested.</p>
     </section>
    </div>
   </main>
