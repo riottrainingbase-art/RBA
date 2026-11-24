@@ -522,7 +522,7 @@ export default function SagaPage() {
           <div className="homecourt-plan-grid">
             {Object.entries(sagaWinterOffers).map(([key,offer])=><article className="homecourt-plan-card" key={key}><h3>{offer.label}</h3><strong>¥{offer.amount.toLocaleString("ja-JP")}</strong></article>)}
           </div>
-          <p>関係者の方には個別の割引をご案内します。対象・割引額は申込前に公式LINEへお問い合わせください（一般の決済フォームで支払う前にご相談ください）。単部参加歓迎。全3部参加は必須ではありません。休憩・水分補給を確保し、体調に応じて参加量を調整します。食事・交通・宿泊は参加費に含みません。</p>
+          <p>単部参加歓迎。全3部参加は必須ではありません。休憩・水分補給を確保し、体調に応じて参加量を調整します。食事・交通・宿泊は参加費に含みません。</p>
           <div className="homecourt-private-note"><ShieldCheck/><div><strong>持ち物・安全・送迎</strong><p>室内シューズ、ボール、飲料、タオル、着替え、昼食（必要な方）。保護者による送迎・休憩中の管理をお願いします。体調不良や怪我がある場合は無理をせず、事前に主催者へ相談してください。見学・駐車の詳細は個別案内します。</p></div></div>
           <div id="entry" className="homecourt-plan-card" style={{marginTop:24}}>
             <h3>12月28日 申込・事前決済</h3>
