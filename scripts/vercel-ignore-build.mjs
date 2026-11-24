@@ -19,6 +19,18 @@ if (
   process.exit(1);
 }
 
+// Single scoped preview for the Saga winter clinic release, on this branch only.
+// Keep all existing project/branch gates intact.
+if (
+  ref === "release/saga-winter-20261124" &&
+  has("[preview]") &&
+  (process.env.VERCEL_PROJECT_ID === "prj_ToviFjFURKMeQe7Gci5K4XLAfwAE" ||
+   process.env.VERCEL_PROJECT_NAME === "rba_site_v11_portal_ready")
+) {
+  console.log("[vercel-ignore] allow scoped Saga winter clinic release preview");
+  process.exit(1);
+}
+
 if (ref !== "preview-rba") {
   console.log(`[vercel-ignore] skip Git deployment for ${ref}; only preview-rba may build`);
   process.exit(0);
