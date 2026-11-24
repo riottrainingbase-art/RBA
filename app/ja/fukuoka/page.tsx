@@ -22,7 +22,7 @@ export default function FukuokaPage() {
       <p>RBAは福岡を、アジアとの継続的な育成・交流を育む重点地域として展開していきます。海外のオーガナイザー、地域の指導者・保護者・協力者とともに、子どもたちの次の可能性をつくります。</p>
       <div className={styles.actions}><a href="#contact">福岡で一緒に活動する・相談する →</a><a href="/ja/saga">佐賀の活動を見る →</a></div>
     </header>
-    <section className={styles.section}><p className={styles.eyebrow}>FUKUOKA × ASIA</p><h2>国際交流を、一度きりで終わらせない。</h2><div className={styles.grid}>{projects.map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div><p className={styles.note}>今後の展開として企画する内容です。各イベントの日程・会場・対象・料金・参加条件は、決定後に個別の開催案内でお知らせします。</p></section>
+    <section className={styles.section}><p className={styles.eyebrow}>WINTER CLINIC 2026</p><h2>12月28日・29日 佐賀・福岡 年末クリニック</h2><p>28日（月）開催決定：佐賀市内／9:00〜12:00・13:00〜16:00・17:00〜19:00。対象：小学生・中学生。29日（火）は佐賀市内の会場を調整中。福岡からの参加も歓迎します。</p><div className={styles.actions}><a href="/ja/saga#next">詳細・料金・28日の申込／決済はこちら →</a></div></section><section className={styles.section}><p className={styles.eyebrow}>FUKUOKA × ASIA</p><h2>国際交流を、一度きりで終わらせない。</h2><div className={styles.grid}>{projects.map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div><p className={styles.note}>今後の展開として企画する内容です。各イベントの日程・会場・対象・料金・参加条件は、決定後に個別の開催案内でお知らせします。</p></section>
     <section className={styles.section}><p className={styles.eyebrow}>BUILD IT TOGETHER</p><h2>福岡・佐賀で、一緒に活動する仲間を募集。</h2><p>指導者、トレーナー、運営協力者、地域の主催者、通訳、海外交流のサポート、会場をご紹介いただける方、企業・団体の皆さま。役割や企画が決まる前のご相談も歓迎します。</p><p>保護者・指導者・地域の皆さんと共に、学びが日常へ戻り、また次の挑戦へ続く育成のつながりを育てていきます。</p><p className={styles.note}>関わり方、役割、活動条件は、ご希望や対応できる範囲を伺いながら個別に相談します。</p></section>
     <div id="contact" className={styles.anchor}><KyushuContact region="福岡" /></div>
   </article></SiteFrame>;
