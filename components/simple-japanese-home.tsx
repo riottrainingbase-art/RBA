@@ -92,11 +92,11 @@ export async function SimpleJapaneseHome() {
             </div>
           </section>
 
-          <aside aria-label="2027年千葉育成キャンプ申込受付" style={{background:"#ff6b00",color:"#0b0b0b",padding:"18px 20px",marginTop:"22px",marginBottom:"22px",border:"3px solid #111"}}>
+          <aside aria-label="2027年千葉育成キャンプ申込受付" style={{background:"var(--rba-blue)",color:"#fff",padding:"18px 20px",marginTop:"22px",marginBottom:"22px",border:"3px solid #111"}}>
             <p style={{fontWeight:900,fontSize:"12px",letterSpacing:".16em"}}>REGISTRATION OPEN / CHIBA · KANZAKI · 2027.03.27–28</p>
             <p style={{fontWeight:900,fontSize:"clamp(18px,3.1vw,27px)",lineHeight:1.25,marginTop:"6px"}}>千葉育成キャンプ｜U12・U15｜国内・海外選手歓迎</p>
             <p style={{fontWeight:700,marginTop:"4px",fontSize:"13px"}}>2日間24,200円／1日14,300円（税込）・保護者申込→Stripe決済</p>
-            <a href="/ja/events/chiba-development-camp-2027" style={{display:"inline-block",marginTop:"12px",padding:"10px 16px",background:"#111",color:"#fff",fontWeight:900,textDecoration:"none"}}>詳細・申込・決済へ ↗</a>
+            <a href="/ja/events/chiba-development-camp-2027" style={{display:"inline-block",marginTop:"12px",padding:"10px 16px",background:"#fff",color:"var(--rba-black)",fontWeight:900,textDecoration:"none"}}>詳細・申込・決済へ ↗</a>
           </aside>
 
           <nav className={styles.sectionNavigator} aria-label="このページの目次">
