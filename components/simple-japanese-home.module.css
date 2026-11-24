@@ -500,31 +500,21 @@
  .page .journeyCard,.page .programmes article,.page .ageCard,.sectionNavigator a{transition:none}
 }
 
-/* RBA UNITED / editorial cover — typography and court geometry, no stock imagery. */
-.page .unitedHero{background:#111211;border-color:#262626}
-.page .unitedHero::before{background:linear-gradient(112deg,#111211 12%,rgba(17,18,17,.92) 50%,rgba(255,107,0,.13) 100%)}
-.page .unitedHero::after{border-color:rgba(255,132,58,.38);box-shadow:0 0 0 92px rgba(255,107,0,.025),0 0 0 93px rgba(255,132,58,.17),0 0 0 182px rgba(255,107,0,.015),0 0 0 183px rgba(255,132,58,.09)}
-.page .unitedHero .heroBody{padding:clamp(34px,4vw,64px) 0}
-.unitedWordmark{font-size:clamp(36px,7.2vw,106px);line-height:.98;font-weight:950;letter-spacing:-.07em;color:#fff;margin:0 0 24px;overflow-wrap:normal}
+/* RBA UNITED / minimal editorial cover */
+.page .unitedHero{justify-content:center;min-height:clamp(430px,48vw,620px);background:#111211;border-color:#262626}
+.page .unitedHero::before{background:linear-gradient(110deg,#111211 25%,rgba(17,18,17,.82) 75%,rgba(255,107,0,.08))}
+.page .unitedHero::after{border-color:rgba(255,132,58,.24);box-shadow:0 0 0 92px transparent,0 0 0 93px rgba(255,132,58,.12)}
+.page .unitedHero .heroBody{padding:clamp(30px,5vw,68px) 0}
+.unitedWordmark{font-size:clamp(34px,8.2vw,118px);line-height:1;font-weight:950;letter-spacing:-.065em;color:#fff;margin:0 0 clamp(22px,3vw,34px)}
 .unitedWordmark span{color:#ff7828}
-.page .unitedHero .heroEyebrow{color:#ff9c65;letter-spacing:.08em;margin:0 0 16px}
-.page .unitedHero h1{font-size:clamp(38px,5.4vw,78px);letter-spacing:-.065em}
+.page .unitedHero h1{font-size:clamp(32px,4.5vw,65px);letter-spacing:-.055em;line-height:1.25}
 .page .unitedHero h1 span:last-child{color:#ff7828}
-.page .unitedHero .intro{max-width:740px}
+.page .unitedHero .intro{margin:20px 0 0;max-width:650px}
 .page .unitedHero .primary{background:#ff7828;border-color:#ff7828;color:#111211}
 .page .unitedHero .primary:hover{background:#ffab78;border-color:#ffab78;color:#111211}
 .page .unitedHero a:focus-visible{outline:3px solid #ffb98e;outline-offset:4px}
-.unitedFinePrint{color:#c4c4c1;font-size:12px;line-height:1.8;max-width:700px;margin:18px 0 0}
-.unitedPrinciples{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,60px);padding:clamp(38px,5.6vw,72px) 0;border-bottom:1px solid var(--editorial-line)}
-.unitedPrinciples h2{font-size:clamp(30px,4.2vw,56px);line-height:1.24;letter-spacing:-.055em;font-weight:900;margin:14px 0}
-.unitedPrinciples p:not(.label){font-size:15px;line-height:1.9;color:#535954}
-.unitedLoop{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;padding:0;margin:0;background:#d9dbd6;border:1px solid #d9dbd6}
-.unitedLoop li{padding:clamp(16px,2.3vw,27px);background:#fff;min-width:0}
-.unitedLoop li span{display:block;color:#8c3907;font-weight:850;letter-spacing:.1em;font-size:11px;margin-bottom:9px}
-.unitedLoop li strong{display:block;font-size:clamp(17px,2vw,23px);font-weight:900}
-.unitedLoop li p{font-size:13px!important;line-height:1.7!important;margin:8px 0 0}
-.unitedLinks{grid-column:1/-1;display:flex;gap:12px 28px;flex-wrap:wrap;align-items:center}
-.unitedLinks a{display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:850;text-decoration:underline;text-underline-offset:5px;color:#171817}
-.unitedPrinciples .unitedDisclaimer{grid-column:1/-1;font-size:12px!important;margin:0}
-@media(max-width:700px){.page .unitedHero .heroBody{padding:42px 0 36px}.unitedWordmark{font-size:clamp(32px,10vw,64px);margin-bottom:20px}.page .unitedHero h1{font-size:clamp(32px,8.8vw,57px)}.unitedPrinciples{grid-template-columns:minmax(0,1fr);gap:20px}.unitedPrinciples h2{font-size:clamp(29px,8vw,43px)}.unitedLinks{gap:4px 18px}.unitedLoop li{padding:16px 12px}}
-@media(max-width:350px){.unitedLoop{grid-template-columns:1fr}}
+.unitedPrinciples{padding:clamp(32px,5vw,62px) 0;border-bottom:1px solid var(--editorial-line);max-width:850px}
+.unitedPrinciples h2{font-size:clamp(24px,3.5vw,42px);line-height:1.35;letter-spacing:-.045em;font-weight:900;margin:0 0 14px}
+.unitedPrinciples p{font-size:15px;line-height:1.9;color:#535954;margin:0;max-width:680px}
+.unitedLinks a{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:13px;font-weight:850;text-decoration:underline;text-underline-offset:5px;color:#171817}
+@media(max-width:700px){.page .unitedHero{min-height:0}.page .unitedHero .heroBody{padding:40px 0 32px}.unitedWordmark{font-size:clamp(30px,10vw,68px);margin-bottom:22px}.page .unitedHero h1{font-size:clamp(29px,8vw,48px)}.page .unitedHero .intro{margin-top:16px}.page .unitedHero .actions{margin-top:24px}.unitedPrinciples{padding:30px 0}}
