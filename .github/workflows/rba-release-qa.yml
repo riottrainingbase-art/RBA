@@ -123,6 +123,9 @@ jobs:
       - name: RBA revenue service destinations and payment safety
         run: pnpm run audit:revenue-services
 
+      - name: RBA sport-programme margin and launch gates
+        run: node --experimental-strip-types --test tests/rba-margin-model.test.mjs
+
       - name: ESLint changed files
         if: github.event_name == 'pull_request'
         env:
