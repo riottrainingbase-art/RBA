@@ -109,3 +109,23 @@ export async function TorstenJournalFeature({locale}:{locale:Locale}){
   <div className="journal-source-list"><a href="https://sixten.jp/journal/815-torsten-loibl-online-clinic.html" target="_blank" rel="noreferrer"><span>01</span><div><strong>610 BASKETBALL JOURNAL</strong><small>日本語 / Japanese</small></div><ArrowUpRight size={17}/></a></div>
  </section>;
 }
+
+/** Public educational notice reused in authenticated MY HOME COURT.
+ * Not a personal notification, subscription entitlement or purchase record. */
+export async function TorstenHomecourtNotice({locale,surface="member"}:{locale:Locale;surface?:"member"|"public"}){
+ if(locale!=="ja")return null;
+ const now=await requestTime(),before=now<start,finished=now>=end;
+ const journal="/ja/journal#torsten-shooting-special";
+ const href="/ja/events/torsten-loibl-online-clinic?utm_source=my_homecourt&utm_medium=internal&utm_campaign=torsten_vol2&utm_content="+surface;
+ return <section className={surface==="member"?"member-section":"section-pad"} aria-label="RBAからのお知らせ・指導者教育">
+   <div className="member-next-step">
+     <div><p>RBAからのお知らせ / 指導者・保護者の方へ</p>
+       <h2>シュートを教えるだけでなく、シューターを育てる。</h2>
+       <p>トーステン・ロイブル氏のオンライン講習 Vol.2。技術だけでなく、状況を見て判断する力、味方との協力、試合につながる練習の組み立て方を学ぶ機会です。</p>
+       {before?<><p><strong>11月25日（水）20:00〜21:30（日本時間）</strong>／Zoom・日本語逐次通訳付き</p><p>ライブ参加 3,300円（税込）／録画視聴 4,400円（税込・配信開始から30日間）。別々のお申し込みです。MY HOME COURTの会費には含まれません。</p></>:<p>{finished?"録画視聴の受付状況は講習の公式案内をご確認ください。":"ライブ講習の開始時刻を過ぎました。受付状況は公式案内をご確認ください。"}</p>}
+     </div>
+     <a className="button button-member" href={href}>{before?"講習の詳細・お申し込み":finished?"録画視聴のご案内":"講習のご案内"}<ArrowRight size={17}/></a>
+     <a className="button button-light" href={journal}>無料JOURNAL特集を読む <ArrowRight size={17}/></a>
+   </div>
+ </section>;
+}
