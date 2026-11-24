@@ -79,3 +79,9 @@
 
 /* Site-wide legal transparency: readable footer and inclusive menu focus. */
 .header :global(.mobile-site-menu summary:focus-visible),.header :global(.mobile-site-menu a:focus-visible){outline:3px solid #97b9b1;outline-offset:3px}
+
+/* Approved brand accents; navigation remains monochrome by default. */
+.header :global(.header-member){background:var(--rba-blue);color:#fff;border-color:var(--rba-blue)}
+.header :global(.header-member:hover){background:var(--rba-blue-hover);color:#fff}
+.header :global(.language-links a[aria-current="true"]){background:var(--rba-blue-light);color:var(--rba-blue)}
+@media(max-width:1359px){.header :global(.mobile-site-menu .mobile-menu-primary){background:var(--rba-blue);color:#fff;border:1px solid #fff}}
