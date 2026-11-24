@@ -94,7 +94,7 @@ function roleStatusLabel(status:string,locale:Locale){
   return ({active:"利用中",pending:"確認中",suspended:"利用停止中",revoked:"無効"} as Record<string,string>)[status]||status;
 }
 
-export function MemberApp({locale,section,userId,email,learningCount}:{locale:Locale;section:string;userId:string;email:string;learningCount:number}){
+export function MemberApp({locale,section,userId,email,learningCount,educationNotice}:{locale:Locale;section:string;userId:string;email:string;learningCount:number;educationNotice?:import("react").ReactNode}){
   const c=locale==="ja"?{...copy.ja,my:"設定",today:"今日の確認",primary:"あなたの立場",join:"招待コードでチームに参加",roles:"利用中の役割",addRole:"役割を追加",paid:"支払い・集金",safe:"未成年者と成人が制限なく直接やり取りできる機能は設けていません。チーム内の権限と保護者の同意を前提に運用します。",businessBody:"大会、国内外の交流、遠征、施設、人材については、空き状況や条件を確認できるまで「要確認」として扱います。",coachDeskBody:"今日の練習、出欠、連絡事項、集金を一つの画面で確認できます。",memberStatus:"利用状況",setup:"初期設定",membershipDetails:"メンバーシップを確認"}:copy[locale]; const prefix=locale==="en"?"":`/${locale}`; const active=navSections.includes(section as typeof navSections[number])?section:"home";
   const pc=practiceCopy[locale];
   const [data,setData]=useState<AppData>(empty); const [loading,setLoading]=useState(true); const [busy,setBusy]=useState(false); const [message,setMessage]=useState(""); const [teamId,setTeamId]=useState("");
@@ -205,6 +205,7 @@ export function MemberApp({locale,section,userId,email,learningCount}:{locale:Lo
   const appHref=(part:string)=>`${prefix}/my-homecourt/app${part==="home"?"":`/${part}`}`;
   return <div className="member-app"><header><a href={appHref("home")}><strong>RBA</strong><span>MY HOME COURT</span></a><div><span>{data.profile.display_name||email}</span>{data.platformNotifications.length?<a className="member-header-notifications" href={appHref("notifications")} aria-label={`${data.platformNotifications.length}件の未読のお知らせ`}><Bell/><i>{Math.min(data.platformNotifications.length,9)}</i></a>:null}<a className="member-header-account" href={appHref("my")} aria-label={c.account}><UserRound/></a></div></header><main>
     {active==="home"&&locale==="ja"?<section className="member-next-step" aria-label="RBAクリニックとキャンプの参加申込"><div><ClipboardList/><span>RBA PROGRAMMES / ENTRY & PAYMENT</span><strong>すべてのクリニック・キャンプの申込窓口</strong><p>全国のクリニック、Development Camp、オンライン講習、国際交流の情報を一覧で確認。各企画の参加条件を確認して公式申込・決済へ。終了した企画や決済未開始は区別し、二重払いを防ぎます。</p></div><a href="/ja/my-homecourt/app/clinics">募集中の企画・申込・支払いへ<ChevronRight/></a></section>:null}
+    {(active==="home"||active==="notifications")?educationNotice:null}
     {active==="home"&&locale==="ja"?<IPhoneHomeScreenCard compact/>:null}
     {active==="home"&&locale==="ja"?<section className="member-next-step" aria-label="RBA UNITED 深圳U12男子チームとの国際交流・受入チーム事前登録"><div><Users/><span>RBA UNITED / INTERNATIONAL EXCHANGE / 事前意向登録</span><strong>中国・深圳U12男子との5対5交流試合・合同練習を調整中</strong><p>深圳のCiroo Basketball Academy（CR）から、2027年2月10日来日、関東約7日滞在、11〜12歳の男子選手約10名との交流希望が届きました。日本側U12男子チームの受入・対戦希望を伺います。日時・会場・費用・試合数は未確定で、この受付は参加確約や有料申込ではありません。</p></div><a href="https://form.jotform.com/263217708013047" target="_blank" rel="noopener noreferrer">U12チーム事前登録フォームへ<ChevronRight/></a></section>:null}
 
