@@ -8,6 +8,7 @@ import { JournalReaderTools } from "@/components/journal-reader-tools";
 import { JournalLearningPathsGrid } from "@/components/journal-learning-paths";
 import { JournalPracticeGuides } from "@/components/journal-practice-guides";
 import { NoteBridge } from "@/components/note-bridge";
+import { TorstenJournalFeature } from "@/components/torsten-journal-feature";
 
 const copy={
   en:{kicker:"RBA JOURNAL",title:"Useful ideas. Real programmes.",lead:"Development guides, field notes and international exchange stories from RBA.",latest:"LATEST",all:"ALL STORIES",exchange:"ASIA EXCHANGE DESK",exchangeTitle:"Build the next exchange with us.",exchangeBody:"Academies, teams and coaches can contact RBA about Japan visits, joint clinics, coach education and youth exchange.",ask:"Ask RBA on WhatsApp",read:"Read article",back:"Back to Journal"},
@@ -111,6 +112,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <p>{c.lead}</p>
 
       </section>
+      <TorstenJournalFeature locale={locale}/>
       {locale==="ja"?<div className="section-pad"><NoteBridge variant="journal" /></div>:null}
       {locale==="ja"?<JournalPracticeGuides posts={posts}/>:null}
       <JournalExplorer locale={locale} items={explorerItems}/>
@@ -165,18 +167,6 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         </div>
       </section>:null}
 
-      {locale==="ja"?<section className="journal-clinic-bridge section-pad">
-        <div className="journal-clinic-copy">
-          <p className="section-index inverse">NEXT LIVE LEARNING / 11.25</p>
-          <h2>シュートフォームだけ教えて、<br/>シューターは育つのか。</h2>
-          <p>11月25日、トーステン・ロイブル氏と90分。技術だけでなく、スペーシング、判断、アドバンテージ、オフボールまで含めて「試合で質の高いシュートを生み出す育成」を学びます。</p>
-          <div className="journal-clinic-facts"><span>ZOOM</span><span>日本語逐次通訳</span><span>LIVE ¥3,300</span><span>30日視聴 ¥4,400</span></div>
-        </div>
-        <div className="journal-clinic-actions">
-          <strong>2026.11.25<br/><em>20:00–21:30</em></strong>
-          <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">講習内容を見る <ArrowRight size={17}/></Link>
-        </div>
-      </section>:null}
       {locale==="ja"&&startHere.length?<section className="journal-cms-index section-pad">
         <div className="section-head"><div><p className="section-index">初めて読む方へ</p><h2>RBAの考え方が分かる4本です。</h2></div><p>RBAが育成年代をどう考えているのか、土台になる記事を選びました。</p></div>
         <div className="journal-cms-grid">{startHere.map((post,index)=><Link href={journalHref(locale,post.slug)} key={post.slug}>
@@ -299,17 +289,8 @@ export async function PublicJournalArticle({locale,slug}:{locale:Locale;slug:str
         <Link className="button button-member" href="/ja/opportunities">募集中の活動を見る <ArrowRight size={17}/></Link>
       </div>
     </section>:post.category==="coaching"?<section className="article-learning-bridge section-pad">
-      <div>
-        <p className="section-index inverse">ARTICLE → LIVE LEARNING</p>
-        <h2>読むだけで終わらせず、<br/>次の練習へ。</h2>
-        <p>11月25日のTorsten Loibl Online Clinicでは、「現代バスケットボールにおけるシューターの育成と活用」をテーマに、技術・練習設計・ゲーム戦略を90分でつなぎます。</p>
-      </div>
-      <div className="article-learning-panel">
-        <span>11.25 / 20:00 JST / ZOOM</span>
-        <strong>LIVE ¥3,300</strong>
-        <small>日本語逐次通訳付き</small>
-        <Link className="button button-member" href="/ja/events/torsten-loibl-online-clinic">オンライン講習を見る <ArrowRight size={17}/></Link>
-      </div>
+      <div><p className="section-index inverse">ARTICLE → COACH EDUCATION</p><h2>読むだけで終わらせず、<br/>次の練習へ。</h2><p>シュート技術、練習設計、ゲーム戦略をつなぐRBA特集。10の問いと現場で試せる練習提案から、指導を見直しましょう。</p></div>
+      <div className="article-learning-panel"><span>RBA JOURNAL / SPECIAL EDITION</span><strong>TORSTEN LOIBL VOL.2</strong><small>講習・録画視聴の詳細は特集ページへ</small><Link className="button button-member" href="/ja/journal#torsten-shooting-special">指導者教育特集を見る <ArrowRight size={17}/></Link></div>
     </section>:<section className="article-learning-bridge section-pad">
       <div>
         <p className="section-index inverse">ARTICLE → ACTION</p>
