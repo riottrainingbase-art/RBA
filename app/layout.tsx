@@ -4,12 +4,13 @@ import { headers } from "next/headers";
 import Script from "next/script";
 import "./globals.css";
 import "./platform-v9.css";
+import "./rba-brand.css";
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#10233f",
+  themeColor: "#111211",
 };
 
 export const metadata: Metadata = {
