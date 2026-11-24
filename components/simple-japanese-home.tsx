@@ -73,46 +73,23 @@ export async function SimpleJapaneseHome() {
           <GrowthClickTracking />
 
           <section className={`${styles.hero} ${styles.unitedHero}`} aria-labelledby="rba-home-title">
-            <div className={styles.heroTopline}>
-              <p className={styles.label}>RIOT BASKETBALL ACADEMY <span aria-hidden="true">/</span> SENDAI · JAPAN · WORLD</p>
-              <span className={styles.heroIssue}>YOUTH DEVELOPMENT / BEYOND YOUR TEAM</span>
-            </div>
             <div className={styles.heroBody}>
               <p className={styles.unitedWordmark}>RBA UNITED<span aria-hidden="true">.</span></p>
-              <p className={styles.heroEyebrow}>全国で出会い、世界へ挑戦する。</p>
               <h1 id="rba-home-title"><span>今のチームのまま、</span><span>世界へ。</span></h1>
-              <p className={styles.intro}>住んでいる場所も、所属チームも、子どもたちの可能性を制限する理由にはならない。<br />全国から集まる仲間と、国内外の大会や交流に挑戦し、その経験を日常のコートへ持ち帰る。</p>
-              <nav className={styles.actions} aria-label="RBA UNITEDとRBA公式サイトの主な入口">
-                <a className={styles.primary} data-growth-id="home-united-concept" href="/ja/united">RBA UNITEDを知る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-events" href="/ja/opportunities">挑戦できる機会を探す <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-united-homecourt" href="/ja/my-homecourt">MY HOME COURT <span aria-hidden="true">↗</span></a>
+              <p className={styles.intro}>所属を越えて、全国で出会い、世界へ挑戦する。</p>
+              <nav className={styles.actions} aria-label="RBA UNITEDへの入口">
+                <a className={styles.primary} data-growth-id="home-primary-events" href="/ja/opportunities">挑戦できる機会を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-united-concept" href="/ja/united">RBA UNITEDとは <span aria-hidden="true">↗</span></a>
               </nav>
-              <p className={styles.unitedFinePrint}>所属変更は不要。企画ごとの個人参加制です。対象年代・選考・費用・開催条件は各公式案内をご確認ください。</p>
-            </div>
-            <div className={styles.heroBaseline}>
-              <span>YOUR TEAM. YOUR CITY. YOUR JOURNEY.</span>
-              <span>SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span>
             </div>
           </section>
 
           <section className={styles.unitedPrinciples} aria-labelledby="united-principles-title">
-            <div>
-              <p className={styles.label}>THE UNITED PHILOSOPHY / RBAの育成理念</p>
-              <h2 id="united-principles-title">チームではなく、<br />機会をつくる。</h2>
-              <p>RBA UNITEDは常設クラブではありません。普段のチームを大切にしたまま、地域や所属を越えて個人で参加できる、企画ごとの期間限定の育成・交流プロジェクトです。勝敗だけでなく、すべての参加選手が意味のある経験を積み、学びを持ち帰ることを大切にします。</p>
-            </div>
-            <ol className={styles.unitedLoop} aria-label="RBA UNITEDの育成サイクル">
-              <li><span>01 / PLAY</span><strong>挑戦する</strong><p>いつもとは違う仲間や相手とプレーする。</p></li>
-              <li><span>02 / EXPERIENCE</span><strong>経験する</strong><p>違う文化やプレースタイルに触れ、自分の現在地を知る。</p></li>
-              <li><span>03 / REFLECT</span><strong>振り返る</strong><p>できたことと課題を整理する。</p></li>
-              <li><span>04 / NEXT</span><strong>日常へ持ち帰る</strong><p>今いるチームでの成長と次の挑戦につなげる。</p></li>
-            </ol>
+            <h2 id="united-principles-title">チームではなく、機会をつくる。</h2>
+            <p>今の所属を変える必要はありません。国内外の大会や交流に企画ごとに参加し、そこで得た経験を日常のコートに持ち帰る。それがRBA UNITEDです。</p>
             <div className={styles.unitedLinks}>
-              <a href="/ja/united" data-growth-id="home-united-principles">プロジェクトと参加条件を見る →</a>
-              <a href="/ja/my-homecourt" data-growth-id="home-united-passport">無料のRBA ID・MY HOME COURTへ →</a>
-              <a href="/ja/international" data-growth-id="home-united-international">国際交流・連携について →</a>
+              <a href="/ja/my-homecourt" data-growth-id="home-united-homecourt">MY HOME COURT（無料登録） →</a>
             </div>
-            <p className={styles.unitedDisclaimer}>無料登録・参加意向の登録は、出場・選考通過・参加費の決済・旅行の予約を確約するものではありません。</p>
           </section>
 
           <aside aria-label="2027年千葉育成キャンプ申込受付" style={{background:"#ff6b00",color:"#0b0b0b",padding:"18px 20px",marginTop:"22px",marginBottom:"22px",border:"3px solid #111"}}>
