@@ -11,13 +11,13 @@ const c={
   kicker:"CORPORATE PARTNERSHIP / BASKETBALL",
   title:"子どもたちの「次の挑戦」を、企業と一緒につくる。",
   lead:"RBAは、全国のバスケットボールクリニック、キャンプ、指導者教育、国際交流と、MY HOME COURTをつなぐ育成プラットフォームです。企業のご支援を、ロゴ掲出だけでなく、実際の育成機会へ変えていきます。",
-  metrics:[["3,000+","延べ参加者"],["25","国内活動地域"],["4","対応言語"]],
+  metrics:[["4,000+","指導実績（2026年9月・RBA集計）"],["4","公式サイトの対応言語"]],
   section:"WHY RBA",sectionTitle:"広告枠ではなく、バスケットボールの育成環境を支える。",
   values:[["PLAY","プレーする機会","地域や所属だけで挑戦の機会が決まらないよう、外のコートへつなぎます。"],["LEARN","学ぶ機会","選手だけでなく、指導者・保護者にも現代バスケットボールの学びを届けます。"],["PREPARE","身体を準備する","S&C、回復、栄養、怪我予防まで含め、長く競技を続ける土台をつくります。"],["CONNECT","次のコートへ","日本各地とアジアをつなぎ、異なるプレースタイルや価値観に触れる機会をつくります。"]],
   platform:"MY HOME COURT",platformTitle:"イベントで終わらせず、日常の成長へ。",
   platformBody:"練習・試合・大会の予定、カウントダウン、大会準備、参加履歴、Basketball Passport、次の育成機会を一つのHOMEへ。スポンサー企業は個人データにアクセスするのではなく、この育成環境を支えるパートナーとして関わります。",
   categories:[["SPORTS / APPAREL","ボール・ウェア・用具・大会準備"],["HEALTH / MEDICAL","怪我予防・安全・コンディショニング"],["FOOD / NUTRITION","補食・栄養教育・キャンプ"],["TRAVEL / MOBILITY","遠征・移動安全・国内外交流"],["IT / DIGITAL","MY HOME COURT・運営基盤"],["LOCAL BUSINESS","地域クリニック・参加機会"]],
-  pilot:"FIRST PARTNER PILOT",pilotTitle:"まずは90日・5万円からの企画提案。",pilotBody:"企画協賛の参考案です。無条件の提供価格や活動実施を確約するものではありません。対象企画、必要費用、企業名・ロゴの掲出媒体と期間、実施後の報告内容を見積・契約で決め、継続は双方で判断します。月額企業広告とは別の制度です。",
+  pilot:"PROJECT PARTNERSHIP",pilotTitle:"一つの企画から、企業の目的に合わせて。",pilotBody:"対象企画、必要費用、企業名・ロゴの掲出媒体と期間、実施後の報告内容を見積・契約で決め、継続は双方で判断します。月額企業広告とは別の制度です。",
   included:["公式サイトのパートナー掲載","対象企画での社名・ロゴ掲出または連携","SNS・JOURNAL等での活動紹介","実施後の簡易インパクトレポート"],
   safety:"RBAが守ること",safetyItems:["未成年者への直接営業は行いません","健康・体調などの個人データをスポンサーへ提供しません","広告と育成コンテンツを明確に分けます","肖像・コメントの利用は同意を前提とします"],
   cta:"次の育成機会を、一緒につくる。",ctaBody:"企業が大切にしている価値と、RBAの育成活動が重なる場所を先に決めます。まず一つの企画からご相談ください。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
@@ -29,7 +29,7 @@ const c={
   values:[["PLAY","Opportunities to play","Create access to new courts, opponents and experiences."],["LEARN","Opportunities to learn","Support players, coaches and parents with better learning."],["PREPARE","Prepare the body","Connect S&C, recovery, nutrition and injury prevention."],["CONNECT","Reach the next court","Link local Japanese basketball with wider Asian opportunities."]],
   platform:"MY HOME COURT",platformTitle:"Turn events into daily development.",platformBody:"Schedules, countdowns, preparation, participation history, Basketball Passport and next opportunities live in one HOME. Partners support the environment without receiving private player data.",
   categories:[["SPORTS / APPAREL","Equipment, apparel and event preparation"],["HEALTH / MEDICAL","Safety, injury prevention and conditioning"],["FOOD / NUTRITION","Nutrition education and camps"],["TRAVEL / MOBILITY","Travel and exchange"],["IT / DIGITAL","MY HOME COURT and operations"],["LOCAL BUSINESS","Local clinics and access"]],
-  pilot:"FIRST PARTNER PILOT",pilotTitle:"Start with 90 days from JPY 50,000.",pilotBody:"No annual commitment is required first. Run one basketball initiative together, review use and impact, then decide whether to continue.",
+  pilot:"FIRST PARTNER PILOT",pilotTitle:"Discuss a project tailored to your organisation.",pilotBody:"Price, dates, placement rights and reporting are agreed in writing before payment. An enquiry is free and does not create a contract.",
   included:["Partner listing on the official site","Brand presence or activation in one agreed programme","RBA story/content introduction","Short impact report after delivery"],
   safety:"What RBA protects",safetyItems:["No direct marketing to minors","No sponsor access to private health or condition data","Clear separation between sponsorship and development content","Consent-first use of youth images and comments"],
   cta:"We are looking for our next partner.",ctaBody:"Start with the value your organisation wants to support. We will shape one realistic basketball project around it.",primary:"Discuss partnership",secondary:"View MY HOME COURT"
@@ -41,7 +41,7 @@ const c={
   values:[["PLAY","比賽與挑戰","讓孩子接觸不同球場與對手。"],["LEARN","學習","支持球員、教練與家長的學習。"],["PREPARE","身體準備","連結體能、恢復、營養與傷害預防。"],["CONNECT","下一個球場","連結日本各地與亞洲交流。"]],
   platform:"MY HOME COURT",platformTitle:"讓活動回到日常成長。",platformBody:"行程、倒數、準備、參與紀錄、Basketball Passport與下一個機會集中在一個HOME。企業支持環境，不會取得個人健康資料。",
   categories:[["SPORTS / APPAREL","器材、服裝、比賽準備"],["HEALTH / MEDICAL","安全與傷害預防"],["FOOD / NUTRITION","營養教育與訓練營"],["TRAVEL / MOBILITY","遠征與交流"],["IT / DIGITAL","MY HOME COURT"],["LOCAL BUSINESS","地方訓練與參與機會"]],
-  pilot:"FIRST PARTNER PILOT",pilotTitle:"先從90天、5萬日圓起。",pilotBody:"不要求一開始就簽年度合約。先一起完成一個籃球企劃，再根據成果決定是否繼續。",
+  pilot:"FIRST PARTNER PILOT",pilotTitle:"從適合企業的企劃開始。",pilotBody:"費用、期間、品牌露出與成果報告需個別協議。諮詢免費，不代表已簽約或付款。",
   included:["官網合作夥伴頁面","指定活動的品牌露出或合作","RBA內容介紹","活動後簡易成果報告"],
   safety:"RBA的原則",safetyItems:["不直接向未成年者行銷","不向贊助商提供個人健康資料","明確區分贊助與培育內容","兒少影像與留言以同意為前提"],
   cta:"我們正在尋找下一位合作夥伴。",ctaBody:"先從貴公司重視的價值開始，再共同設計一個可實行的籃球企劃。",primary:"洽談合作",secondary:"查看MY HOME COURT"
@@ -53,7 +53,7 @@ const c={
   values:[["PLAY","플레이 기회","다른 코트와 상대를 경험할 기회를 만듭니다."],["LEARN","배움","선수·코치·보호자의 학습을 지원합니다."],["PREPARE","몸 준비","S&C, 회복, 영양, 부상 예방을 연결합니다."],["CONNECT","다음 코트","일본 지역과 아시아 교류를 연결합니다."]],
   platform:"MY HOME COURT",platformTitle:"이벤트를 일상의 성장으로.",platformBody:"일정, 카운트다운, 준비, 참가 기록, Basketball Passport와 다음 기회를 하나의 HOME으로 연결합니다. 파트너는 개인 건강 데이터 없이 육성 환경을 지원합니다.",
   categories:[["SPORTS / APPAREL","장비·의류·대회 준비"],["HEALTH / MEDICAL","안전·부상 예방"],["FOOD / NUTRITION","영양 교육·캠프"],["TRAVEL / MOBILITY","원정·교류"],["IT / DIGITAL","MY HOME COURT"],["LOCAL BUSINESS","지역 클리닉·참가 기회"]],
-  pilot:"FIRST PARTNER PILOT",pilotTitle:"90일·5만 엔부터 시작합니다.",pilotBody:"처음부터 연간 계약을 요구하지 않습니다. 하나의 농구 프로젝트를 함께 실행하고 결과를 확인한 뒤 지속 여부를 결정합니다.",
+  pilot:"FIRST PARTNER PILOT",pilotTitle:"기업에 맞는 프로젝트부터 상담합니다.",pilotBody:"비용, 기간, 브랜드 노출 및 결과 보고는 개별 합의 후 확정됩니다. 상담은 무료이며 계약이나 결제를 의미하지 않습니다.",
   included:["공식 사이트 파트너 표기","대상 프로그램의 브랜드 표기 또는 연계","SNS·JOURNAL 소개","실행 후 간단한 임팩트 리포트"],
   safety:"RBA가 지키는 것",safetyItems:["미성년자 대상 직접 영업 없음","개인 건강·컨디션 데이터 제공 없음","스폰서십과 육성 콘텐츠 명확히 구분","아동 이미지·코멘트는 동의 우선"],
   cta:"다음 파트너를 찾고 있습니다.",ctaBody:"기업이 중요하게 생각하는 가치부터 시작해 하나의 현실적인 농구 프로젝트로 설계합니다.",primary:"파트너십 상담",secondary:"MY HOME COURT 보기"
@@ -69,8 +69,8 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
  const mail="mailto:riot.training.base@gmail.com?subject="+subject+"&body="+body;
  const sponsorEnquiry = locale === "ja" ? "https://form.jotform.com/263089038431054" : mail;
  const externalEnquiry = locale === "ja" ? {target:"_blank" as const,rel:"noopener noreferrer"} : {};
- return <main className="sponsor-page">
-  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={locale==="ja"?"/ja/work-with-rba":prefix+"/my-homecourt"} data-growth-id={locale==="ja"?"partner-network-business":"partner-homecourt"}>{locale==="ja"?"地域・アジアの共同事業":x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
+ return <div className="sponsor-page">
+  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={locale==="ja"?"#sponsor-options":sponsorEnquiry} {...(locale==="ja"?{}:externalEnquiry)}>{locale==="ja"?"料金・申込方法を見る":x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={locale==="ja"?sponsorEnquiry:prefix+"/my-homecourt"} data-growth-id={locale==="ja"?"partner-network-business":"partner-homecourt"}>{locale==="ja"?"無料で企画協賛を相談":x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
   {locale === "ja" && <section className={sponsorOfferStyles.section} id="sponsor-options" aria-labelledby="sponsor-options-title">
     <div className={sponsorOfferStyles.inner}>
       <div className={sponsorOfferStyles.heading}>
@@ -82,15 +82,18 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
         <article className={sponsorOfferStyles.card + " " + sponsorOfferStyles.cardPrimary}>
           <span className={sponsorOfferStyles.plan}>01 / MONTHLY ADVERTISING</span>
           <h3>企業広告パートナー</h3>
-          <p className={sponsorOfferStyles.price}>月額10,000円＋税</p>
-          <p>1社1口、税込11,000円／月。公式サイト内の応援ページでの企業紹介・許諾済みロゴ・リンク、活動レポートへの掲載を基本とする定型プランです。トップページ掲出は個別契約の対象です。掲載開始・更新・解約条件は専用ページをご確認ください。</p>
-          <a className={sponsorOfferStyles.link} href="/ja/support#apply" data-growth-id="sponsor-monthly-plan">企業広告の詳細・申込を見る →</a>
+          <p className={sponsorOfferStyles.price}>月額11,000円（税込）</p>
+          <p>1社1口。公式応援ページに企業名・URL・許諾済みロゴ・紹介文、月次活動レポートに企業名・ロゴを掲載します。トップページ・大会掲出は別契約です。</p>
+          <p>初回11,000円・毎月自動更新。次回請求前の解約で期間末終了。入金・掲載許諾確認後に提供します。</p>
+          <a href="/ja/support/terms" className={sponsorOfferStyles.detail}>掲載・更新・解約条件を確認 →</a>
+          <a className={sponsorOfferStyles.link} href="https://buy.stripe.com/cNibJ35678vy0Il64f7EQ1u?locale=ja" data-growth-id="sponsor-monthly-plan">月11,000円｜Stripe決済へ →</a>
+          <a href="https://form.jotform.com/263243206556051" className={sponsorOfferStyles.detail}>すでに決済済みの企業｜掲載素材を提出 →</a>
         </article>
         <article className={sponsorOfferStyles.card}>
           <span className={sponsorOfferStyles.plan}>02 / PROJECT PARTNERSHIP</span>
           <h3>クリニック・キャンプ協賛</h3>
           <p className={sponsorOfferStyles.price}>企画ごとにご相談</p>
-          <p>会場、備品、指導者、移動、参加費補助など、具体的な活動への協力です。90日パイロット案も含め、金額・期間・企業名掲出・成果報告の条件は個別に協議します。</p>
+          <p>会場、備品、指導者、移動、参加費補助など、具体的な活動への協力です。金額・期間・企業名掲出・成果報告の条件は個別に協議します。</p>
           <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" data-growth-id="sponsor-project-enquiry">無料で協賛相談をする ↗</a>
         </article>
         <article className={sponsorOfferStyles.card}>
@@ -98,9 +101,10 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
           <h3>全国育成・海外交流連携</h3>
           <p className={sponsorOfferStyles.price}>年間・共同企画</p>
           <p>全国育成ツアー、指導者教育、アジアの育成年代との交流、物品・専門的な知識の提供など。目的・使途・実施報告・費用は個別に設計します。</p>
-          <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href="/ja/national-tour" data-growth-id="sponsor-national-tour">全国育成ツアーの協賛企画 →</a>
+          <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href={sponsorEnquiry} data-growth-id="sponsor-national-tour">無料で共同企画を相談 →</a><a href="/ja/national-tour" className={sponsorOfferStyles.detail}>全国育成ツアーの詳細 →</a>
         </article>
       </div>
+      <div className={sponsorOfferStyles.delivery}><h3>お申し込み後の流れ</h3><div><article><strong>月額広告</strong><p>Stripe決済 → 素材・掲載許諾提出 → RBA確認 → 掲載 → 月次報告。入金後3営業日以内を目安に案内し、必要情報確認後、原則14営業日以内に掲載します。</p></article><article><strong>企画協賛・共同事業</strong><p>無料相談 → 目的・使途・見積 → 契約条件に合意 → 請求・実施 → 報告。相談時点では課金しません。</p></article></div><p>通常の請求書・領収書を発行します。適格請求書は発行できません。<a href="/ja/support#accounting">経理資料・掲載実績の確認</a></p></div>
       <p className={sponsorOfferStyles.disclosure}>無料の相談フォーム送信だけでは契約・掲載・請求は確定しません。企業名・ロゴは許諾や掲載条件の確認後に公開します。未成年者の名簿や健康情報はスポンサーへ提供しません。広告効果や税務上の取扱いを保証するものではありません。<a href="/ja/support#accounting">掲載内容・経理資料・利用条件</a>をご確認ください。</p>
     </div>
   </section>}
@@ -115,5 +119,5 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
   <section className="sponsor-pilot section-pad"><div className="sponsor-pilot-main"><p className="section-index inverse">{x.pilot}</p><h2>{x.pilotTitle}</h2><p>{x.pilotBody}</p><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a></div><div className="sponsor-pilot-list">{x.included.map(item=><p key={item}><CheckCircle2/>{item}</p>)}</div></section>
   <section className="sponsor-safety section-pad"><ShieldCheck/><div><p className="section-index">{x.safety}</p>{x.safetyItems.map(item=><p key={item}>{item}</p>)}</div></section>
   <section className="sponsor-final section-pad"><p className="section-index">PARTNER WITH RBA</p><h2>{x.cta}</h2><p>{x.ctaBody}</p><div><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a>{locale==="ja"&&<a className="button button-dark" href="/ja/family-basketball">企業・団体の親子企画を見る<ArrowRight size={17}/></a>}<a className="button button-dark" href={localePath(locale,"contact")}>CONTACT RBA<ArrowUpRight size={17}/></a></div></section>
- </main>;
+ </div>;
 }
