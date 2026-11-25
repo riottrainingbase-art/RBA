@@ -3,7 +3,7 @@ import { GrowthClickTracking } from "./growth-click-tracking";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { SendaiCommunity } from "./sendai-community";
 import { SiteFrame, localePath } from "./site-frame";
-import { isProgrammeActive, programmes } from "./programme-data";
+import { isProgrammeActive, programmeById, programmes } from "./programme-data";
 import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
 
@@ -63,7 +63,7 @@ const steps = [
 
 export async function SimpleJapaneseHome() {
   const active = programmes
-    .filter(p => isProgrammeActive(p))
+    .filter(p => isProgrammeActive(p) && p.id !== "saga-winter-20261228")
     .sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate))
     .slice(0, 3);
 
@@ -113,8 +113,8 @@ export async function SimpleJapaneseHome() {
           <section className={styles.homeQuick} id="home-supporters" aria-labelledby="home-supporters-title">
             <div className={styles.quickHeading}><p className={styles.quickKicker}>02 / SUPPORT RBA</p><h2 id="home-supporters-title">子どもたちの次の挑戦を支える。</h2><p>個人の応援会員・企業協賛。無理のない方法で、育成機会を一緒に広げませんか。</p></div>
             <div className={styles.supportGrid}>
-              <article><span>個人 / 応援メンバー</span><strong>月500円</strong><p>活動を継続して応援する入口。</p><a href="/ja/supporters#supporters-choose-title" data-growth-id="home-support-500">月500円プランを見る →</a></article>
-              <article><span>個人 / 育成記事プラン</span><strong>月1,000円</strong><p>育成を深く学びながら活動を応援。</p><a href="/ja/supporters#supporters-choose-title" data-growth-id="home-support-1000">月1,000円プランを見る →</a></article>
+              <article><span>個人 / 応援メンバー</span><strong>月500円</strong><p>活動を継続して応援する入口。</p><a href="/ja/supporters#supporters-500" data-growth-id="home-support-500">月500円プランを見る →</a></article>
+              <article><span>個人 / 育成記事プラン</span><strong>月1,000円</strong><p>育成を深く学びながら活動を応援。</p><a href="/ja/supporters#supporters-1000" data-growth-id="home-support-1000">月1,000円プランを見る →</a></article>
               <article><span>企業 / 協賛・連携</span><strong>企業パートナー</strong><p>参加機会・安全な運営・国際交流を支援。</p><a href="/ja/partners" data-growth-id="home-support-company">協賛・パートナーを相談 →</a></article>
             </div><p className={styles.note}>個人会員はnoteの公式プランです。料金・特典・更新条件は申込画面を確認してください。クリニック参加費は別です。</p>
           </section>
@@ -150,11 +150,11 @@ export async function SimpleJapaneseHome() {
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
             <div className={styles.programmes}>
-              <article id="saga-winter-20261228">
+              {isProgrammeActive(programmeById["saga-winter-20261228"])&&<article id="saga-winter-20261228">
                 <div className={styles.programmeMeta}><p className={styles.date}>2026.12.28 MON｜9:00〜19:00（3部制）</p><span className={styles.programmeCategory}>12月28日 開催決定</span></div>
                 <h3>佐賀・福岡 WINTER CLINIC</h3><p className={styles.place}>佐賀市内／会場詳細は受付確認後に案内</p><dl><div><dt>対象</dt><dd>小学1年〜中学3年・男女</dd></div><div><dt>費用</dt><dd>4,400円〜12,100円（税込・選手1名）</dd></div></dl>
                 <a href="/ja/saga#entry" data-growth-id="home-saga-winter-entry">12月28日 申込・事前決済へ ↗</a>
-              </article>
+              </article>}
               <article id="chiba-development-camp-2027">
                 <div className={styles.programmeMeta}><p className={styles.date}>2027.03.27–28</p><span className={styles.programmeCategory}>申込受付</span></div><h3>千葉育成キャンプ｜U12・U15</h3><p className={styles.place}>千葉県神崎町</p><dl><div><dt>対象</dt><dd>国内・海外選手</dd></div><div><dt>費用</dt><dd>2日24,200円／1日14,300円（税込）</dd></div></dl><a href="/ja/events/chiba-development-camp-2027">詳細・申込へ ↗</a>
               </article>
