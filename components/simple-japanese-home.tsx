@@ -11,7 +11,7 @@ const entryPoints = [
     id: "family",
     number: "01 / PARENTS",
     title: "選手・保護者",
-    description: "練習、出場機会、チーム選び。成長につながる選択肢を探す。",
+    description: "練習や試合にもっと挑戦したい。子どもに合う育成環境を見つけたい方へ。",
     href: "/ja/families",
     action: "保護者向けの入口へ",
   },
@@ -19,7 +19,7 @@ const entryPoints = [
     id: "coach",
     number: "02 / COACHES",
     title: "指導者・チーム",
-    description: "技術を試合へつなぐ。練習設計、講習、育成記事を学ぶ。",
+    description: "練習の組み立て方や指導方法を学び、選手の成長につなげたい方へ。",
     href: "/ja/coaches",
     action: "指導者の学びへ",
   },
@@ -27,7 +27,7 @@ const entryPoints = [
     id: "partner",
     number: "03 / PARTNERS",
     title: "企業・主催者",
-    description: "社員研修・親子イベントの発注と、広告・協賛の相談を分けてご案内。",
+    description: "社員研修、親子イベントの開催、子どもたちの活動を支える協賛をご検討の方へ。",
     href: "/ja/business",
     action: "法人向けサービスを見る",
   },
@@ -38,7 +38,7 @@ const steps = [
     id: "read",
     label: "無料で読む",
     title: "RBA JOURNAL",
-    copy: "チーム選び、出場機会、練習設計。最初は無料の記事から。",
+    copy: "チーム選びや出場機会、練習の組み立て方について、まずは無料の記事から学べます。",
     href: "/ja/journal",
     action: "育成記事を見る",
   },
@@ -46,7 +46,7 @@ const steps = [
     id: "join",
     label: "無料でつながる",
     title: "保護者のLINEコミュニティ",
-    copy: "子どものバスケについて考える保護者同士の交流の入口。",
+    copy: "子どものバスケットボールについて、保護者同士で情報を共有できる場です。",
     href: "https://line.me/ti/g2/8GsWD4iOnyOuoNj60_s24ljg_--cQ7IFMjfDLw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default",
     action: "保護者の部屋へ",
   },
@@ -54,9 +54,9 @@ const steps = [
     id: "support",
     label: "個人で応援する",
     title: "月500円からの個人サポーター",
-    copy: "月500円で活動を応援できます。月1,000円のプランでは、保護者・指導者向けの育成記事も読めます。",
+    copy: "月500円から、子どもたちの育成活動を応援できます。月1,000円のプランでは、保護者や指導者向けの育成記事もお読みいただけます。",
     href: "/ja/support#individual",
-    action: "会員案内を見る",
+    action: "応援会員になる",
   },
 ] as const;
 
@@ -78,13 +78,13 @@ export async function SimpleJapaneseHome() {
               <span className={styles.heroIssue}>PLAYER DEVELOPMENT / 2026</span>
             </div>
             <div className={styles.heroBody}>
-              <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
-              <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-              <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に活動するバスケットボールアカデミーです。全国で小中学生のクリニックや指導者講習を開き、海外のチームとの合同練習・交流試合も企画しています。</p>
+              <p className={styles.heroEyebrow}>成長の機会は、今いる場所だけで決まらない。</p>
+              <h1 id="rba-home-title"><span>今のチームのまま、</span><span>もっと広い世界へ。</span></h1>
+              <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に全国・アジアへ活動を広げる非営利のバスケットボール育成団体です。小中学生のクリニック、指導者の学び、国内外の交流を通じて、所属チームを変えずに成長できる機会を届けます。</p>
               <a className={styles.textLink} href="/ja/about">代表・西尾優人の経歴と指導方針を見る</a>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">目的に合わせて探す <span aria-hidden="true">↗</span></a>
                 <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">サービス・料金を見る <span aria-hidden="true">↗</span></a>
               </nav>
             </div>
@@ -97,14 +97,14 @@ export async function SimpleJapaneseHome() {
           <nav className={styles.sectionNavigator} aria-label="このページの目次">
             <span className={styles.indexLabel}>INDEX</span>
             <a href="#rba-for-you">01　目的から探す</a>
-            <a href="#home-programmes">02　現在の活動</a>
+            <a href="#home-programmes">02　開催・募集情報</a>
             <a href="#home-business">03　法人向けサービス</a>
             <a href="#home-host">04　地域で開催する</a>
           </nav>
 
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">あなたに合う、<span className={styles.headingEmphasis}>次の一歩。</span></h2></div>
+              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">目的に合わせて、<span className={styles.headingEmphasis}>次の一歩。</span></h2></div>
             </div>
             <nav className={styles.journeyGrid} aria-label="保護者・指導者・企業の目的別入口">
               {entryPoints.map(item => (
@@ -116,12 +116,12 @@ export async function SimpleJapaneseHome() {
                 </a>
               ))}
             </nav>
-            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、有料の法人研修、広告・協賛は、それぞれ別の手続きです。</p>
+            <p className={styles.note}>参加したい活動や、ご相談の内容に合わせてお進みください。</p>
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">クリニック・キャンプの<span className={styles.headingEmphasis}>開催予定</span></h2></div>
+              <div><p className={styles.label}>JOIN / 開催・募集情報</p><h2 id="home-programme-title">クリニック・キャンプの<span className={styles.headingEmphasis}>開催予定</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
             {programmes.some(p => p.id === "saga-winter-20261228" && isProgrammeActive(p)) && (
@@ -129,10 +129,10 @@ export async function SimpleJapaneseHome() {
                 <article id="saga-winter-20261228">
                   <div className={styles.programmeMeta}><p className={styles.date}>12月28日（月）9:00〜19:00・3部制</p><span className={styles.programmeCategory}>正式申込受付中</span></div>
                   <h3>佐賀・福岡 WINTER CLINIC</h3>
-                  <p className={styles.place}>佐賀市内／会場詳細は受付確認後に案内</p>
+                  <p className={styles.place}>佐賀市内（会場の詳細は受付確認後にご案内）</p>
                   <dl><div><dt>対象</dt><dd>小学1年〜中学3年・男女</dd></div><div><dt>費用</dt><dd>4,400円〜12,100円（税込・選手1名）</dd></div></dl>
-                  {Date.now() < Date.parse("2026-12-21T00:00:00+09:00") && <p>早割1,000円引き｜12月20日（日）23:59まで</p>}
-                  <a href="/ja/saga#entry" data-growth-id="home-saga-winter-entry">12月28日 申込・事前決済へ ↗</a>
+                  {Date.now() < Date.parse("2026-12-21T00:00:00+09:00") && <p>12月20日（日）23:59までの早割で1,000円引き</p>}
+                  <a href="/ja/saga#entry" data-growth-id="home-saga-winter-entry">12月28日の参加を申し込む ↗</a>
                 </article>
               </div>
             )}
@@ -161,11 +161,11 @@ export async function SimpleJapaneseHome() {
             <div className={styles.businessBridgeText}>
               <p>RBA / RTB FOR BUSINESS</p>
               <h2 id="home-business-title">企業の研修も、地域のイベントも。</h2>
-              <p>仙台市内の社員向け60分運動研修、親子向け運動イベント、法人研修事業者との有償共同提供をご案内します。協賛・広告とは別のサービスです。</p>
+              <p>仙台市内での社員向け60分運動研修や親子向けイベント、法人研修事業者との有償連携をご案内します。協賛とは別にお申し込みいただけるサービスです。</p>
             </div>
             <div className={styles.businessBridgeActions}>
               <a href="/ja/business" data-growth-id="home-business-services">法人向けサービスと料金を見る <span aria-hidden="true">↗</span></a>
-              <span>相談・初回見積無料／送信だけで契約・決済は発生しません。</span>
+              <span>初回のご相談・お見積もりは無料です。お問い合わせだけで契約やお支払いが発生することはありません。</span>
             </div>
           </section>
 
@@ -177,7 +177,7 @@ export async function SimpleJapaneseHome() {
             <div className={styles.nextStepIntro}>
               <p className={styles.label}>FIRST TIME HERE?</p>
               <h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2>
-              <p>活動内容が決まっていない方も、必要な情報だけを選べます。</p>
+              <p>どの活動に参加するか決まっていない方も、まずは興味のある内容からご覧ください。</p>
             </div>
             <nav className={styles.nextStepLinks} aria-label="はじめての方向けの案内">
               <a href="/ja/families" data-growth-id="home-first-family"><span>01</span><strong>選手・保護者の方</strong><span aria-hidden="true">↗</span></a>
@@ -224,7 +224,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.section} aria-labelledby="home-continue-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>DISCOVER → CONNECT → CONTINUE</p><h2 id="home-continue-title">まず無料で知る。必要なら続ける。</h2></div>
+              <div><p className={styles.label}>DISCOVER → CONNECT → CONTINUE</p><h2 id="home-continue-title">知ることから、応援することへ。</h2></div>
             </div>
             <div className={styles.pathGrid}>
               {steps.map((item, index) => {
@@ -237,14 +237,14 @@ export async function SimpleJapaneseHome() {
                 </article>;
               })}
             </div>
-            <p className={styles.note}>指導者向けの学びは <a href="/ja/d-hub" data-growth-id="home-coach-dhub">D-HUB</a>、継続サポートは <a href="/ja/home-court" data-growth-id="home-homecourt">HOMECOURT</a> から確認できます。無料登録と有料プランは別です。</p>
+            <p className={styles.note}>指導者向けの学びは <a href="/ja/d-hub" data-growth-id="home-coach-dhub">D-HUB</a>、活動情報や参加登録は <a href="/ja/home-court" data-growth-id="home-homecourt">MY HOME COURT</a> へ。無料登録と有料プランは別のお手続きです。</p>
           </section>
 
           <section className={styles.hostCallout} id="home-host" aria-labelledby="home-host-cta-title">
             <div className={styles.hostContent}>
               <p className={styles.hostKicker}>FOR TEAMS &amp; LOCAL ORGANISERS</p>
               <h2 id="home-host-cta-title">あなたの地域に、<span>RBAを。</span></h2>
-              <p className={styles.hostDescription}>チーム訪問・地域合同クリニック・指導者研修。企業・学校・自治体との協働もご相談ください。</p>
+              <p className={styles.hostDescription}>チーム訪問・地域合同クリニック・指導者研修。企業、学校、自治体との連携についてもお気軽にご相談ください。</p>
               <ul className={styles.hostFormats} aria-label="連携の例"><li>クリニック開催</li><li>指導者研修</li><li>法人向け有料研修</li></ul>
             </div>
             <div className={styles.hostActions}>
