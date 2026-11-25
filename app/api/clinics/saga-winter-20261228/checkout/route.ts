@@ -23,6 +23,7 @@ export async function POST(request:Request){
   // A code is optional. Never accept a client-supplied discount amount.
   const couponCode=(form.get("coupon")||"").trim();
   if(couponCode && !/^[A-Za-z0-9-]{1,64}$/.test(couponCode)) return fail("クーポンコードの形式をご確認ください。決済は作成されていません。",400);
+  if(couponCode && Date.now()>=Date.parse("2026-12-21T00:00:00+09:00")) return fail("早割の申込期限は終了しました。クーポンを空欄にして通常料金でお申し込みください。決済は作成されていません。",400);
   const secret=process.env.STRIPE_SECRET_KEY;
   if(!secret||!secret.startsWith("sk_live_")) return fail("決済設定を確認中です。RBAへお問い合わせください。",503);
   try{
@@ -35,7 +36,7 @@ export async function POST(request:Request){
       // Only codes expressly approved and tagged for this event are eligible.
       // Do not expose or apply promotions created for other RBA programmes.
       const promotions=await stripe.promotionCodes.list({code:couponCode,active:true,limit:100});
-      const promotion=promotions.data.find(item=>item.active && item.livemode && item.code.toLowerCase()===couponCode.toLowerCase() && item.metadata?.event==="rba_saga_fukuoka_winter_2026" && item.metadata?.rba_approved==="true" && !item.customer && !item.customer_account && (!item.expires_at || item.expires_at>Math.floor(Date.now()/1000)) && (item.max_redemptions===null || item.times_redeemed<item.max_redemptions));
+      const promotion=promotions.data.find(item=>item.active && item.livemode && item.code.toLowerCase()===couponCode.toLowerCase() && item.metadata?.event==="rba_saga_fukuoka_winter_2026" && item.metadata?.rba_approved==="true" && item.metadata?.campaign==="earlybird" && !item.customer && !item.customer_account && (!item.expires_at || item.expires_at>Math.floor(Date.now()/1000)) && (item.max_redemptions===null || item.times_redeemed<item.max_redemptions));
       if(!promotion)return fail("このクーポンは佐賀12月28日の申込に利用できません。コード・有効期限をご確認ください。決済は作成されていません。",400);
       promotionCodeId=promotion.id;
     }
