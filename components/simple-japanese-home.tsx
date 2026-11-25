@@ -57,8 +57,28 @@ export async function SimpleJapaneseHome() {
             <a className={styles.secondary} href="#home-supporters" data-growth-id="home-primary-support">支える<span aria-hidden="true">→</span></a>
           </nav>
           <div className={styles.quickLinks}>
+            <a href="#home-organisation" data-growth-id="home-founder-anchor">代表紹介</a>
             <a href="/ja/my-homecourt" data-growth-id="home-free-id">無料RBA ID・ログイン</a>
             <a href="https://form.jotform.com/263243557140049" data-growth-id="home-paid-help">支払済み・アクセス相談</a>
+          </div>
+        </section>
+
+        <section className={styles.about} id="home-organisation" aria-labelledby="home-founder-name">
+          <figure className={styles.founderPhoto}>
+            <Image src="/media/founder/masato-nishio-on-court.webp" alt="コートで指導するRBA代表 西尾優人" width={874} height={860} sizes="(max-width: 760px) 85vw, 250px"/>
+            <figcaption>RBA / 指導の現場から</figcaption>
+          </figure>
+          <div className={styles.founderContent}>
+            <p className={styles.label}>FOUNDER &amp; DIRECTOR</p>
+            <h2 id="home-founder-name">西尾 優人 <span>MASATO NISHIO</span></h2>
+            <p className={styles.founderRole}>Riot Basketball Academy 創設者・代表</p>
+            <p>東北選抜・国体の競技経験を経て、ドイツでバスケットボールの競技と育成を学ぶ。現在は仙台を拠点に、選手育成・身体づくり・指導者教育・国際交流をつなぐ活動を行っています。</p>
+            <ul className={styles.founderFacts}>
+              <li><strong>GERMANY</strong><span>Sports Elite Academy・Chemnitz 99ersに関連する研修・育成学習</span></li>
+              <li><strong>4,000名以上</strong><span>国内のクリニック等での指導実績（2026年9月 RBA公式資料）</span></li>
+            </ul>
+            <p className={styles.founderBelief}>勝敗だけで子どもの可能性を決めない。自ら見て、考え、判断できる選手を育てる。</p>
+            <a className={styles.textLink} href="/ja/about#founder" data-growth-id="home-primary-founder">代表の経歴・指導理念を見る →</a>
           </div>
         </section>
 
@@ -102,10 +122,6 @@ export async function SimpleJapaneseHome() {
           <a href="/ja/clinic-request" className={styles.primary} data-growth-id="home-host-request">無料で開催相談<span aria-hidden="true">→</span></a>
         </section>
 
-        <section className={styles.about} id="home-organisation">
-          <Image src="/media/founder/masato-nishio-on-court.webp" alt="コートで指導するRBA代表 西尾優人" width={874} height={860} sizes="(max-width: 650px) 120px, 150px"/>
-          <div><p className={styles.label}>ABOUT RBA</p><h2>育成のために。</h2><p>代表 西尾優人。仙台から全国・アジアへ、学びと交流の機会を広げます。</p><a className={styles.textLink} href="/ja/about#founder">RBAについて・代表紹介 →</a></div>
-        </section>
         <details className={styles.more} id="rba-for-you"><summary>活動・地域・その他の公式情報</summary><nav aria-label="その他の公式情報">{otherLinks.map(([label,href])=><a href={href} key={label}>{label} →</a>)}</nav></details>
         <details className={styles.more}><summary>仙台地域の活動情報</summary><SendaiCommunity/></details>
       </div>
