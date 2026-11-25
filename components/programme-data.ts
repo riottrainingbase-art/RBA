@@ -51,10 +51,10 @@ export const programmes: readonly Programme[] = [
     date:["28 DEC 2026 · 09:00–19:00 (3 sessions)","2026.12.28（月）9:00〜19:00・3部制","2026.12.28 · 09:00–19:00（三節）","2026.12.28 · 09:00–19:00 (3부)"],
     datePrimary:["28 DEC","12月28日","12月28日","12월 28일"],dateSecondary:["Monday / 3 sessions","月曜・3部制","星期一・三節","월요일・3부"],
     title:["RBA Saga & Fukuoka Winter Clinic","佐賀・福岡 WINTER CLINIC","佐賀・福岡冬季籃球訓練","사가·후쿠오카 WINTER CLINIC"],
-    place:["Saga City · venue details after acceptance","佐賀市内・会場詳細は受付確認後に案内","佐賀市內・受理後提供場地資訊","사가 시내・접수 확인 후 장소 안내"],
+    place:["Saga City · venue details after acceptance","佐賀市内（会場の詳細は受付確認後にご案内）","佐賀市內・受理後提供場地資訊","사가 시내・접수 확인 후 장소 안내"],
     price:["¥4,400–¥12,100 per player, tax included","4,400円〜12,100円（税込・選手1名）","每位選手 ¥4,400–¥12,100（含稅）","선수 1인 ¥4,400–¥12,100 (세금 포함)"],
     audience:["Grades 1–9 · all genders","小学1年〜中学3年（男女）","小學1年級至國中3年級（男女）","초등 1학년~중학 3학년 (남녀)"],
-    payment:["Guardian application and advance Stripe payment; RBA confirms acceptance. 28 December only. Japanese application.","保護者が申込→Stripe事前決済→RBAが受付確認。28日のみ。29日は調整中。","家長報名後先以 Stripe 付款，由 RBA 確認受理。只限28日（日文報名）。","보호자 신청 후 Stripe 선결제, RBA 접수 확인. 28일만 해당(일본어 신청)."],
+    payment:["Guardian application and advance Stripe payment; RBA confirms acceptance. 28 December only. Japanese application.","保護者の方がお申し込み後、Stripeで参加費をお支払いください。RBAで受付を確認します。28日のみ受付中、29日は調整中です。","家長報名後先以 Stripe 付款，由 RBA 確認受理。只限28日（日文報名）。","보호자 신청 후 Stripe 선결제, RBA 접수 확인. 28일만 해당(일본어 신청)."],
     applicationUrl:"/ja/saga#entry",japaneseInfoPath:"/ja/saga#entry",region:"kyushu",category:"TRAIN",pathway:"clinic",ageGroups:["U8","U10","U12","U15"],
   },
   {
