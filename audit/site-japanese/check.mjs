@@ -91,7 +91,7 @@ for (const [file,fragment,rule] of homeConversionGuards) {
 // Prevent a homepage regression to repeated campaign panels or buried signup paths.
 const organizedHome = fs.readFileSync("components/simple-japanese-home.tsx","utf8");
 const homePositions = [
-  "<section className={styles.hero}",
+  "<section className={`${styles.hero} ${styles.unitedHero}`}",
   'id="home-programmes"',
   'id="home-partners"',
   'id="home-next-step"',
