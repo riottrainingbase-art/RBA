@@ -63,7 +63,8 @@ const steps = [
 
 export async function SimpleJapaneseHome() {
   const active = programmes
-    .filter(p => isProgrammeActive(p) && p.id !== "saga-winter-20261228")
+    .filter(p => isProgrammeActive(p))
+    .filter(p => p.id !== "saga-winter-20261228")
     .sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate))
     .slice(0, 3);
 
