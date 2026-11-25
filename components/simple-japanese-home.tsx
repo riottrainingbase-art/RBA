@@ -62,7 +62,7 @@ const steps = [
 
 export async function SimpleJapaneseHome() {
   const active = programmes
-    .filter(p => isProgrammeActive(p))
+    .filter(p => isProgrammeActive(p) && p.id !== "saga-winter-20261228")
     .sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate))
     .slice(0, 3);
 
@@ -124,6 +124,17 @@ export async function SimpleJapaneseHome() {
               <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">クリニック・キャンプの<span className={styles.headingEmphasis}>開催予定</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
+            {programmes.some(p => p.id === "saga-winter-20261228" && isProgrammeActive(p)) && (
+              <div className={styles.programmes}>
+                <article id="saga-winter-20261228">
+                  <div className={styles.programmeMeta}><p className={styles.date}>12月28日（月）9:00〜19:00・3部制</p><span className={styles.programmeCategory}>正式申込受付中</span></div>
+                  <h3>佐賀・福岡 WINTER CLINIC</h3>
+                  <p className={styles.place}>佐賀市内／会場詳細は受付確認後に案内</p>
+                  <dl><div><dt>対象</dt><dd>小学1年〜中学3年・男女</dd></div><div><dt>費用</dt><dd>4,400円〜12,100円（税込・選手1名）</dd></div></dl>
+                  <a href="/ja/saga#entry" data-growth-id="home-saga-winter-entry">12月28日 申込・事前決済へ ↗</a>
+                </article>
+              </div>
+            )}
             {active.length ? (
               <div className={styles.programmes}>
                 {active.map(p => {
