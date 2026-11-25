@@ -52,10 +52,10 @@ const steps = [
   },
   {
     id: "support",
-    label: "必要なら継続する",
-    title: "月500円のRBA応援メンバー",
-    copy: "活動を継続して応援したい方へ。内容と加入条件は公式の案内で確認。",
-    href: "/ja/supporters",
+    label: "個人で応援する",
+    title: "月500円からの個人サポーター",
+    copy: "月500円で活動を応援できます。月1,000円のプランでは、保護者・指導者向けの育成記事も読めます。",
+    href: "/ja/support#individual",
     action: "会員案内を見る",
   },
 ] as const;
@@ -80,7 +80,8 @@ export async function SimpleJapaneseHome() {
             <div className={styles.heroBody}>
               <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
               <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-              <p className={styles.intro}>選手が挑戦し、指導者が学び、地域がつながる。<br />RBAは仙台から全国・アジアへ、次のコートをひらきます。</p>
+              <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に活動するバスケットボールアカデミーです。全国で小中学生のクリニックや指導者講習を開き、海外のチームとの合同練習・交流試合も企画しています。</p>
+              <a className={styles.textLink} href="/ja/about">代表・西尾優人の経歴と指導方針を見る</a>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
                 <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
@@ -119,7 +120,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">次のコートが、<span className={styles.headingEmphasis}>ここにある。</span></h2></div>
+              <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">クリニック・キャンプの<span className={styles.headingEmphasis}>開催予定</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
             <div className={styles.programmes}>
@@ -165,7 +166,7 @@ export async function SimpleJapaneseHome() {
                       <div><dt>対象</dt><dd>{tr(p.audience, "ja")}</dd></div>
                       <div><dt>費用</dt><dd>{tr(p.price, "ja")}</dd></div>
                     </dl>
-                    <a data-growth-id={"home-programme-" + p.id} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>公式案内・参加条件を見る <span aria-hidden="true">↗</span></a>
+                    <a data-growth-id={"home-programme-" + p.id} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>日程・参加費・申込方法を見る <span aria-hidden="true">↗</span></a>
                   </article>;
                 })}
               </div>
