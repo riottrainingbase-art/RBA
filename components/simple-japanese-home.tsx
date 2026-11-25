@@ -3,7 +3,7 @@ import { GrowthClickTracking } from "./growth-click-tracking";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { SendaiCommunity } from "./sendai-community";
 import { SiteFrame } from "./site-frame";
-import { isProgrammeActive, programmeById } from "./programme-data";
+import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
 
@@ -39,8 +39,12 @@ function OfferCard({offer}:{offer:(typeof learning)[number]|(typeof support)[num
 export async function SimpleJapaneseHome() {
   const dateParts = new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
   const today = ["year","month","day"].map(type=>dateParts.find(part=>part.type===type)?.value).join("-");
-  const active = [programmeById["kagoshima-nov29"]]
-    .filter(p=>p && !p.registrationClosed && p.startDate>today && isProgrammeActive(p));
+  const available = programmes
+    .filter(p => isProgrammeActive(p))
+    .filter(p => p.startDate > today);
+  // Explicit allowlist: only a verified registration route receives a payment CTA.
+  const active = available.filter(p => p.id === "kagoshima-nov29");
+  const okinawa = available.find(p => p.id === "okinawa-december-camp");
 
   return <div className={styles.page} lang="ja">
     <SiteFrame locale="ja" compact>
@@ -64,7 +68,7 @@ export async function SimpleJapaneseHome() {
 
         <section className={styles.about} id="home-organisation" aria-labelledby="home-founder-name">
           <figure className={styles.founderPhoto}>
-            <Image src="/media/founder/masato-nishio-on-court.webp" alt="コートで指導するRBA代表 西尾優人" width={874} height={860} sizes="(max-width: 760px) 85vw, 250px"/>
+            <Image src="/media/founder/masato-nishio-on-court.webp" alt="コートで指導するRBA代表 西尾優人" width={874} height={860} sizes="(max-width: 760px) 200px, 250px"/>
             <figcaption>RBA / 指導の現場から</figcaption>
           </figure>
           <div className={styles.founderContent}>
@@ -90,10 +94,14 @@ export async function SimpleJapaneseHome() {
               <p>{tr(p.place,"ja")}<br/>{tr(p.audience,"ja")}</p>
               <p className={styles.eventFee}>{tr(p.price,"ja")}</p>
               <p className={styles.flow}>保護者が日程・条件確認 → 申込 → 案内に従って決済</p>
-              <a className={styles.primary} href={p.id==="kagoshima-nov29"?"/ja/events/kagoshima-clinic-2026-11-29#entry":p.japaneseInfoPath || p.applicationUrl} data-growth-id={"home-programme-"+p.id}>参加申込・決済へ<span aria-hidden="true">→</span></a>
+              <a className={styles.primary} href="/ja/events/kagoshima-clinic-2026-11-29#entry" data-growth-id={"home-programme-"+p.id}>参加申込・決済へ<span aria-hidden="true">→</span></a>
             </article>)}
 
           </div>
+          {okinawa && <article className={styles.pendingEvent}>
+            <div><p className={styles.label}>{tr(okinawa.date,"ja")} / 条件確認中</p><h3>{tr(okinawa.title,"ja")}</h3><p>施設利用・集合解散・送迎などの最新条件を保護者の方がご確認ください。このページからは決済を案内しません。</p></div>
+            <a className={styles.secondary} href="/ja/events/okinawa-international-camp-2026#family-guide" data-growth-id="home-okinawa-info">開催情報・参加条件を確認 →</a>
+          </article>}
           <div className={styles.linkRow}>
             <a href="/ja/united" data-growth-id="home-united">RBA UNITED｜国内・国際交流 →</a>
             <a href="/ja/sendai-school" data-growth-id="home-school-consultation">仙台スクール・体験相談 →</a>
