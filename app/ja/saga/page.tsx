@@ -22,7 +22,7 @@ import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
   title: { absolute: "佐賀のバスケットボールクリニック・キャンプ｜U8・U10・U12・U15｜RBA佐賀" },
   description:
-    "Riot Basketball Academy（RBA）の佐賀での活動をまとめた公式ページです。2025年から続く育成年代のバスケットボールクリニック・2DAYS CAMPの歩み、育成内容、2026年12月28日・29日に予定している年末クリニック、今後の展開を紹介します。",
+    "佐賀で開催する小中学生向けバスケットボールクリニック。2026年12月28日開催分の参加申込を受付中。29日は会場調整中です。",
   keywords: [
     "佐賀 バスケ",
     "佐賀 バスケットボール",
@@ -60,41 +60,41 @@ const history = [
     date: "2025 / SEP",
     title: "佐賀・育成クリニック",
     body:
-      "現在確認できる申込記録では、佐賀での開催は2025年9月が最初です。小学生を中心に中学生までを対象とし、22名分の申込みを確認しています。",
+      "確認できる記録では、2025年9月に佐賀で初めて開催しました。小中学生22名からお申し込みがありました。",
   },
   {
     index: "02",
     date: "2026 / JAN",
     title: "佐賀・2DAYS CAMP",
     body:
-      "1月24日・25日に開催。単発の技術練習で終わらせず、2日間を通して学びを積み上げる形式で実施しました。申込記録では28名分の申込記録があります。",
+      "1月24日・25日に開催。単発の技術練習で終わらせず、2日間を通して学びを積み上げる形式で実施しました。28名からお申し込みがありました。",
   },
   {
     index: "03",
     date: "2026 / JUL",
     title: "SUMMER DEVELOPMENT",
     body:
-      "7月4日・5日に開催。1日参加や午前のみの参加枠も設け、家庭の予定や所属チームでの活動と両立しやすい形に広げました。申込記録では42名分の申込記録があります。",
+      "7月4日・5日に開催。1日参加や午前のみの参加枠も設け、家庭の予定や所属チームでの活動と両立しやすい形に広げました。42名からお申し込みがありました。",
   },
   {
     index: "04",
     date: "2026 / OCT",
     title: "SAGA × FUKUOKA 2DAYS",
     body:
-      "U8・U10・U12・U15を対象に、基礎から1on1、2on2・3on3、スペーシング、5on5へつなぐDevelopment Campを実施しました。申込記録では17名分の申込記録があります。",
+      "U8・U10・U12・U15を対象に、基礎から1on1、2on2・3on3、スペーシング、5on5へつなぐDevelopment Campを実施しました。17名からお申し込みがありました。",
   },
 ];
 
 const principles = [
   [
     "01",
-    "今の所属のまま参加できる",
+    "今のチームのまま参加できる",
     "RBA佐賀は、クラブ移籍やチーム勧誘を目的とした活動ではありません。今いるチームを大切にしながら、普段とは異なる環境で得た学びを日々の活動へ持ち帰れる場をつくります。",
   ],
   [
     "02",
-    "現在のレベルだけで参加を決めない",
-    "現在の技術レベルだけで参加の可否を決めません。年代、経験、理解度に合わせて、挑戦できる課題やゲームの条件を調整します。",
+    "経験や技術レベルを問わず挑戦できる",
+    "技術レベルだけで参加をお断りすることはありません。年代、経験、理解度に合わせて、挑戦できる課題やゲームの条件を調整します。",
   ],
   [
     "03",
@@ -233,7 +233,7 @@ export default function SagaPage() {
     inLanguage: "ja",
     description:
       "Riot Basketball Academyが佐賀で継続して行う、育成年代向けバスケットボールクリニック・キャンプの情報。",
-    dateModified: "2026-11-24",
+    dateModified: "2026-11-25",
     isPartOf: {
       "@type": "WebSite",
       name: "Riot Basketball Academy",
@@ -305,17 +305,17 @@ export default function SagaPage() {
             一度きりで終わらない、育成の機会を。
           </h1>
           <p>
-            現在確認できる申込記録では、Riot Basketball Academyは2025年9月から佐賀で育成年代のクリニック・キャンプを継続しています。
-            目指しているのは、強い選手だけを集めることでも、所属チームを変えてもらうことでもありません。
-            今いる環境を大切にしながら、普段とは違う環境でも学び、試し、その経験を日々のバスケットボールへ持ち帰れる場所を佐賀で育てていきます。
+            Riot Basketball Academy（RBA）は、2025年9月から佐賀で小中学生向けのクリニックやキャンプを開催しています。
+            選抜や移籍を目的とする活動ではありません。
+            今のチームに所属したまま、新しい仲間と学び、挑戦し、そこで得た経験を普段の練習や試合に生かせる場をつくっています。
           </p>
           <div className="saga-status-row" aria-label="ページ更新情報">
             <span>UPDATED 2026.11.25</span>
-            <strong>12/28 開催決定・正式申込受付中／12/29は会場調整中</strong>
+            <strong>12月28日：開催決定・申込受付中｜29日：会場調整中</strong>
           </div>
           <div className="homecourt-launch-actions">
             <Link className="button button-dark" href="#entry">
-              12/28 申込・事前決済へ <ArrowRight size={17} />
+              12月28日の参加を申し込む <ArrowRight size={17} />
             </Link>
             <Link className="button button-light" href="#history">
               これまでの開催を見る <ArrowRight size={17} />
@@ -335,22 +335,22 @@ export default function SagaPage() {
           <div className="homecourt-plan-intro">
             <p className="section-index">RBA SAGA × FUKUOKA / WINTER CLINIC 2026</p>
             <h2>12月28日（月）開催。<br />29日（火）は調整中。</h2>
-            <p>対象：小学生・中学生（男女）。佐賀市内で開催。28日の会場は確保済みです。会場名・アクセス・集合場所・駐車等の詳細は申込者へ個別にご案内します。福岡からの参加も歓迎します。</p>
+            <p>対象は小学1年生から中学3年生までの男女です。28日は佐賀市内で開催します（会場確保済み）。会場名、アクセス、集合場所、駐車場などはお申し込み後にご案内します。福岡など県外からの参加も歓迎します。</p>
           </div>
           <div className="homecourt-plan-grid">
             <article className="homecourt-plan-card"><CalendarDays /><span>DAY 1 / 12.28 MON</span><h3>開催決定・佐賀市内</h3><p>第1部 9:00〜12:00／基礎技術<br/>第2部 13:00〜16:00／認知・判断・ゲームスキル<br/>第3部 17:00〜19:00／シュート・実戦応用</p><p>内容は選手の年代・経験・疲労に応じて調整します。</p></article>
-            <article className="homecourt-plan-card"><CalendarDays /><span>DAY 2 / 12.29 TUE</span><h3>佐賀市内・会場調整中</h3><p>開催時間・会場は確定後に案内します。29日単日・2日間プランは現時点で決済を受け付けません。</p><p>29日の募集・料金は確定後にご案内します。</p><a className="button button-light" href="https://lin.ee/5l1YG8N">29日の参加希望・最新情報（公式LINE）</a></article>
+            <article className="homecourt-plan-card"><CalendarDays /><span>DAY 2 / 12.29 TUE</span><h3>佐賀市内・会場調整中</h3><p>開催時間と会場が決まり次第、お知らせします。29日のみの参加や2日間参加のお申し込み・お支払いは、まだ受け付けていません。</p><p>29日の募集・料金は確定後にご案内します。</p><a className="button button-light" href="https://lin.ee/5l1YG8N">29日の参加希望・最新情報（公式LINE）</a></article>
           </div>
           <h3 style={{marginTop:32}}>28日 参加プラン（税込・選手1名）</h3>
-          {earlybirdOpen ? <p><strong>早割：12月20日（日）23:59まで、全プラン1,000円引き。</strong> お申込時にクーポンコード <code>SAGA1000</code> を入力してください。</p> : <p>早割受付は終了しました。通常料金で受付中です。</p>}
+          {earlybirdOpen ? <p><strong>早割：12月20日（日）23:59まで、全プラン1,000円引き。</strong> お申込時にクーポンコード <code>SAGA1000</code> を入力してください。</p> : <p>早割の受付は終了しました。通常料金でのお申し込みを受け付けています。</p>}
           <div className="homecourt-plan-grid">
             {Object.entries(sagaWinterOffers).map(([key,offer])=><article className="homecourt-plan-card" key={key}><h3>{offer.label}</h3><strong>¥{offer.amount.toLocaleString("ja-JP")}</strong>{earlybirdOpen && <p>早割 ¥{(offer.amount-1000).toLocaleString("ja-JP")}（12/20まで）</p>}</article>)}
           </div>
-          <p>単部参加歓迎。全3部参加は必須ではありません。休憩・水分補給を確保し、体調に応じて参加量を調整します。食事・交通・宿泊は参加費に含みません。</p>
+          <p>1部だけの参加も歓迎します。休憩や水分補給の時間を確保し、選手の体調に合わせて練習内容を調整します。食事・交通・宿泊は参加費に含みません。</p>
           <div className="homecourt-private-note"><ShieldCheck/><div><strong>持ち物・安全・送迎</strong><p>室内シューズ、ボール、飲料、タオル、着替え、昼食（必要な方）。保護者による送迎・休憩中の管理をお願いします。体調不良や怪我がある場合は無理をせず、事前に主催者へ相談してください。見学・駐車の詳細は個別案内します。</p></div></div>
           <div id="entry" className="homecourt-plan-card" style={{marginTop:24}}>
             <h3>12月28日 申込・事前決済</h3>
-            <p>保護者が選手1名ずつ申込情報を入力し、Stripeで全額お支払いください。決済後、主催者が入金・受付を確認し、登録メールアドレスへ会場と当日の詳細をご案内します。画面に戻っただけでは入金確認済みにはなりません。満員等で受け付けられない場合は全額返金します。重複申込はせず、案内が届かない場合はお問い合わせください。</p>
+            <p>保護者の方がお子さま1名ずつお申し込みのうえ、Stripeで参加費をお支払いください。RBAで入金を確認した後、ご登録のメールアドレスへ会場や当日の詳細をご案内します。決済後にページが表示されても、それだけでは参加確定にはなりません。満員などの理由で参加をお受けできない場合は、全額返金します。案内が届かない場合は、再度申し込む前にお問い合わせください。</p>
             <p><strong>キャンセル：</strong>12月20日まで100%、21〜24日50%、25日以降原則返金なし。返金不能な手数料・外部実費の取扱いは<a href="/ja/policies">RBA参加規約・返金方針</a>に従います。主催者都合の中止は全額返金または希望に応じ振替。法令が優先されます。</p>
             <form action="/api/clinics/saga-winter-20261228/checkout" method="post" style={{display:"grid",gap:14,maxWidth:640}}>
               <label>参加プラン（必須）<select name="plan" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{Object.entries(sagaWinterOffers).map(([key,p])=><option value={key} key={key}>{p.label}｜{p.amount.toLocaleString("ja-JP")}円</option>)}</select></label>
@@ -361,12 +361,12 @@ export default function SagaPage() {
                 <input id="saga-coupon" name="coupon" type="text" maxLength={64}  autoComplete="off" autoCapitalize="characters" spellCheck={false} placeholder="お持ちのコードを入力" aria-describedby="saga-coupon-help" style={{display:"block",width:"100%",minHeight:48,padding:10,marginTop:8,border:"1px solid #6B706F",background:"#fff",color:"#111211"}}/>
                 <p id="saga-coupon-help" style={{margin:"8px 0 0",fontSize:13,color:"#111211"}}>12月20日（日）23:59（日本時間）までの早期申込は、コード「SAGA1000」で全参加プランから1,000円引き。Stripeの決済画面で割引後の金額をご確認ください。期限後は通常料金でお申し込みいただけます。</p>
               </div>}
-              <label><input type="checkbox" name="consent" value="yes" required/> 保護者として参加・緊急連絡に同意します。</label>
+              <label><input type="checkbox" name="consent" value="yes" required/> 保護者として、お子さまの参加および緊急時の連絡に同意します。</label>
               <label><input type="checkbox" name="terms" value="yes" required/> 料金・日程・キャンセル条件・<a href="/ja/policies" target="_blank" rel="noreferrer">参加規約</a>を確認し、同意します。</label>
               <p>入力した情報は決済・参加受付・安全管理・開催案内のために使用します。</p>
-              <button className="button button-dark" type="submit">申込内容・割引後の金額を確認してStripe決済へ <ArrowRight size={17}/></button>
+              <button className="button button-dark" type="submit">申込内容を確認し、お支払いに進む <ArrowRight size={17}/></button>
             </form>
-            <p style={{marginTop:16}}>オンライン決済に進めない場合のみ、<a href="https://form.jotform.com/263273659493066" target="_blank" rel="noopener noreferrer">代替の参加申込フォーム（個別決済案内）</a>をご利用ください。すでに申込・決済済みの方は再申込しないでください。</p>
+            <p style={{marginTop:16}}>オンライン決済ができない場合は、<a href="https://form.jotform.com/263273659493066" target="_blank" rel="noopener noreferrer">こちらの申込フォーム（個別にお支払いをご案内）</a>をご利用ください。すでに申込・決済済みの方は再申込しないでください。</p>
             <p style={{marginTop:16}}>お問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a> ／ <a href="https://lin.ee/5l1YG8N">公式LINE</a></p>
           </div>
         </section>
@@ -479,7 +479,7 @@ export default function SagaPage() {
             <div>
               <strong>数字の扱いについて</strong>
               <p>
-                上記の人数は、各開催の申込フォームに記録された選手名から、同一開催内の明らかな重複申込みを除いて集計した、申込記録上の人数です。
+                上記の人数は、各開催の申込記録から明らかな重複を除いて集計したものです。
                 当日の参加人数や決済人数とは異なる場合があります。キャンセル等を含む可能性があるため、実参加人数としては表示していません。
               </p>
             </div>
@@ -501,7 +501,7 @@ export default function SagaPage() {
               </h2>
             </div>
             <p>
-              直近の佐賀・九州での開催では、技術を単独で反復するだけで終わらせず、基礎から小局面へ、さらにゲームへとつなげることを軸にしています。
+              直近の佐賀・九州での開催では、技術を単独で反復するだけで終わらせず、基礎から1対1や少人数でのゲームを経て、実際の試合で使える力につなげることを大切にしています。
             </p>
           </div>
           <div className="journal-evidence-grid">
@@ -559,7 +559,7 @@ export default function SagaPage() {
               <h2>佐賀で、これからつくりたいこと。</h2>
             </div>
             <p>
-              下記は確定した開催予定ではなく、地域のニーズ、会場の確保状況、協力体制、参加状況を見ながら進めていく方向性です。
+              以下は今後の活動方針です。開催が決まったものから、順次ご案内します。
               無理に広げるのではなく、実際に継続できる形を優先します。
             </p>
           </div>
@@ -657,7 +657,7 @@ export default function SagaPage() {
               育成の選択肢は増やせる。
             </h2>
             <p>
-              RBA佐賀が目指すのは、RBAだけで選手を育てようとすることではありません。佐賀を中心とした九州の子どもたちが、必要なときに普段とは違う学びの場にも参加できることを大切にします。
+              RBA佐賀が目指すのは、所属チームに加えて、子どもたちが学べる場を増やすことです。佐賀を中心とした九州の子どもたちが、必要なときに普段とは違う学びの場にも参加できることを大切にします。
               選手、保護者、指導者、そして地域で開催を支えてくださる方々と一緒に、無理なく続けられる形をつくっていきます。
             </p>
           </div>
