@@ -36,7 +36,8 @@ function OfferCard({offer}:{offer:(typeof learning)[number]|(typeof support)[num
 }
 
 export async function SimpleJapaneseHome() {
-  const today = new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  const dateParts = new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+  const today = ["year","month","day"].map(type=>dateParts.find(part=>part.type===type)?.value).join("-");
   const active = [programmeById["kagoshima-nov29"],programmeById["saga-winter-20261228"]]
     .filter(p=>p && !p.registrationClosed && p.startDate>today && isProgrammeActive(p));
   const chibaUpcoming = today < "2027-03-27";
@@ -44,7 +45,7 @@ export async function SimpleJapaneseHome() {
 
   return <div className={styles.page} lang="ja">
     <SiteFrame locale="ja" compact>
-      <main className={styles.container}>
+      <div className={styles.container}>
         <GrowthClickTracking />
         <section className={styles.hero} aria-labelledby="rba-home-title">
           <p className={styles.label}>RIOT BASKETBALL ACADEMY / SENDAI · JAPAN · ASIA</p>
@@ -107,7 +108,7 @@ export async function SimpleJapaneseHome() {
         </section>
         <details className={styles.more} id="rba-for-you"><summary>活動・地域・その他の公式情報</summary><nav aria-label="その他の公式情報">{otherLinks.map(([label,href])=><a href={href} key={label}>{label} →</a>)}</nav></details>
         <details className={styles.more}><summary>仙台地域の活動情報</summary><SendaiCommunity/></details>
-      </main>
+      </div>
     </SiteFrame>
   </div>;
 }
