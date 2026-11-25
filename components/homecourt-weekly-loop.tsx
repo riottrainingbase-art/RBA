@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { CheckCircle2, ChevronRight, LoaderCircle, RotateCcw, Sparkles, Target } from "lucide-react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { Locale } from "./site-frame";
 import { weeklyFocus } from "@/lib/homecourt-weekly-focus";
@@ -58,28 +59,41 @@ const general={
   ko:{eyebrow:"WEEKLY DEVELOPMENT LOOP",title:"이번 주에는 한 가지만 정합니다.",lead:"한 가지를 정하고 실제로 시도한 뒤 주말에 돌아봅니다.",reflection:"실제로 해보니 무엇이 일어났나요?",next:"다음 주에 이어가거나 바꿀 것",save:"이번 주 저장",complete:"이번 주 완료 및 회고",reopen:"다시 편집",saved:"저장했습니다.",error:"저장하지 못했습니다. 다시 시도하세요.",loading:"이번 주 불러오는 중…",streak:"완료",weeks:"주",history:"최근 주",empty:"완료한 주가 아직 없습니다."}
 } as const;
 
+const focusCopy={
+  ja:{heading:"今週のRBA実践テーマ",evidence:"振り返りの目印",guide:"関連ガイドを読む",apply:"空欄にテーマを設定",hint:"週ごとにテーマが切り替わります。入力済みの内容は保持されます。",applied:"空欄に設定しました。内容を確認して保存してください。",loadError:"今週の記録を読み込めませんでした。",retry:"もう一度読み込む"},
+  en:{heading:"This week's RBA practice focus",evidence:"What to look for",guide:"Related guide (Japanese)",apply:"Fill empty fields with this focus",hint:"The focus changes each week. Your existing text is kept.",applied:"Empty fields are filled. Review and save your plan.",loadError:"Could not load your weekly records.",retry:"Try again"},
+  "zh-tw":{heading:"本週 RBA 實踐主題",evidence:"回顧的觀察重點",guide:"閱讀相關指南（日文）",apply:"將主題填入空白欄位",hint:"主題每週更新，已輸入的內容會保留。",applied:"已填入空白欄位，請確認內容後儲存。",loadError:"無法讀取本週紀錄。",retry:"重新讀取"},
+  ko:{heading:"이번 주 RBA 실천 주제",evidence:"회고할 관찰 기준",guide:"관련 가이드 읽기 (일본어)",apply:"빈 칸에 주제 넣기",hint:"주제는 매주 바뀌며 기존 입력 내용은 유지됩니다.",applied:"빈 칸을 채웠습니다. 내용을 확인하고 저장하세요.",loadError:"이번 주 기록을 불러오지 못했습니다.",retry:"다시 불러오기"},
+} as const;
+
 export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:Locale;role:string}){
   const c=general[locale];
+  const fc=focusCopy[locale];
   const safeRole=role==="coach"?"coach":role==="parent"?"parent":"player";
   const rc=roleCopy[locale][safeRole];
   const db=useMemo(()=>createClient(),[]);
   const week=mondayKey();
-  const focus=weeklyFocus(safeRole,week);
+  const focus=weeklyFocus(safeRole,week,locale);
   const [entry,setEntry]=useState<Weekly|null>(null);
   const [recent,setRecent]=useState<Weekly[]>([]);
   const [loading,setLoading]=useState(true);
+  const [loadFailed,setLoadFailed]=useState(false);
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
 
   const load=useCallback(async()=>{
     setLoading(true);
-    const [currentQ,recentQ]=await Promise.all([
-      db.from("homecourt_weekly_actions").select("*").eq("user_id",userId).eq("week_start",week).eq("role",safeRole).maybeSingle(),
-      db.from("homecourt_weekly_actions").select("*").eq("user_id",userId).eq("role",safeRole).eq("status","completed").order("week_start",{ascending:false}).limit(8)
-    ]);
-    setEntry((currentQ.data as Weekly|null)||null);
-    setRecent((recentQ.data||[]) as Weekly[]);
-    setLoading(false);
+    setLoadFailed(false);
+    try {
+      const [currentQ,recentQ]=await Promise.all([
+        db.from("homecourt_weekly_actions").select("*").eq("user_id",userId).eq("week_start",week).eq("role",safeRole).maybeSingle(),
+        db.from("homecourt_weekly_actions").select("*").eq("user_id",userId).eq("role",safeRole).eq("status","completed").order("week_start",{ascending:false}).limit(8)
+      ]);
+      if(currentQ.error||recentQ.error){setLoadFailed(true);return;}
+      setEntry((currentQ.data as Weekly|null)||null);
+      setRecent((recentQ.data||[]) as Weekly[]);
+    } catch {setLoadFailed(true);}
+    finally {setLoading(false);}
   },[db,safeRole,userId,week]);
   useEffect(()=>{const initial=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(initial);},[load]);
 
@@ -108,7 +122,7 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
   }
 
   async function completeWeek(form:HTMLFormElement){
-    await persist(form,true);
+    if(form.reportValidity())await persist(form,true);
   }
 
   async function reopen(){
@@ -120,28 +134,31 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
   }
 
   if(loading)return <section className="member-next-step"><div><LoaderCircle className="spin"/><span>{c.eyebrow}</span><strong>{c.loading}</strong></div></section>;
+  if(loadFailed)return <section className="member-section" role="alert"><h2>{fc.loadError}</h2><button type="button" onClick={()=>void load()}>{fc.retry}</button></section>;
 
   return <section className="member-section">
     <div className="member-section-head"><div><p>{c.eyebrow}</p><h2>{c.title}</h2><p>{c.lead}</p></div><Target/></div>
     <form className="member-inline-form" onSubmit={e=>void submit(e)}>
-      {locale==="ja"?<section className={styles.focus}>
-        <p>THIS WEEK / RBAからの実践テーマ</p>
+      <section className={styles.focus}>
+        <p>{fc.heading}</p>
         <h3>{focus.theme}</h3>
         <p>{focus.action}</p>
-        <p>振り返りの目印：{focus.evidence}</p>
+        <p>{fc.evidence}：{focus.evidence}</p>
         <div className="member-attendance">
-          <a href={`/ja/my-homecourt/app/learn/${focus.slug}`}>関連ガイドを読む <ChevronRight/></a>
+          <Link prefetch={false} href={`/ja/my-homecourt/app/learn/${focus.slug}`}>{fc.guide} <ChevronRight/></Link>
           <button type="button" disabled={busy||entry?.status==="completed"} onClick={e=>{
             const form=e.currentTarget.closest("form");
             if(!form)return;
+            let applied=false;
             for(const name of ["theme","action","evidence"] as const){
               const field=form.elements.namedItem(name);
-              if(field instanceof HTMLTextAreaElement&&!field.value.trim())field.value=focus[name];
+              if(field instanceof HTMLTextAreaElement&&!field.value.trim()){field.value=focus[name];applied=true;}
             }
-          }}>空欄にテーマを設定</button>
+            if(applied)setMessage(fc.applied);
+          }}>{fc.apply}</button>
         </div>
-        <small>週ごとにテーマが切り替わります。すでに入力した内容は保持されます。</small>
-      </section>:null}
+        <small>{fc.hint}</small>
+      </section>
       <label>{rc.theme}<textarea name="theme" rows={2} maxLength={500} defaultValue={entry?.theme||""} placeholder={rc.prompt} required/></label>
       <label>{rc.action}<textarea name="action" rows={3} maxLength={1200} defaultValue={entry?.action||""} required/></label>
       <label>{rc.evidence}<textarea name="evidence" rows={2} maxLength={1200} defaultValue={entry?.evidence||""}/></label>
