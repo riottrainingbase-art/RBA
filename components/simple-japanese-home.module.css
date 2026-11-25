@@ -62,3 +62,5 @@
 .detailLink{display:inline-flex;align-items:center;min-height:36px;font-size:12px;font-weight:650;text-decoration:underline;text-underline-offset:3px;color:#111211}
 .card .primary{min-height:52px}
 @media(max-width:760px){.heroActions a{font-size:13px!important;justify-content:center;gap:4px}.heroActions a span{display:none}}
+
+.ageHub{padding:22px 0;border-top:1px solid var(--rba-line)}.ageHub h2{font-size:20px;font-weight:750;margin:0 0 12px}.ageGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.page .ageCard{display:flex;min-width:0;min-height:70px;flex-direction:column;justify-content:center;gap:5px;border:1px solid var(--rba-line);border-radius:5px;background:#fff;color:var(--rba-black);text-decoration:none;padding:12px;overflow-wrap:anywhere}.ageCard strong{font-size:16px}.ageCard span{font-size:12px;color:var(--rba-muted)}.page .ageCard:hover{border-color:var(--rba-blue);background:var(--rba-white)}@media(max-width:380px){.ageGrid{grid-template-columns:minmax(0,1fr)}}
