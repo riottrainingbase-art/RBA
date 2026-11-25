@@ -72,37 +72,36 @@ export async function SimpleJapaneseHome() {
         <div className={styles.container}>
           <GrowthClickTracking />
 
-          <aside aria-label="2027年千葉育成キャンプ申込受付" style={{background:"#ff6b00",color:"#0b0b0b",padding:"18px 20px",marginBottom:"22px",border:"3px solid #111"}}>
-            <p style={{fontWeight:900,fontSize:"12px",letterSpacing:".16em"}}>REGISTRATION OPEN / CHIBA · KANZAKI · 2027.03.27–28</p>
-            <p style={{fontWeight:900,fontSize:"clamp(18px,3.1vw,27px)",lineHeight:1.25,marginTop:"6px"}}>千葉育成キャンプ｜U12・U15｜国内・海外選手歓迎</p>
-            <p style={{fontWeight:700,marginTop:"4px",fontSize:"13px"}}>2日間24,200円／1日14,300円（税込）・保護者申込→Stripe決済</p>
-            <a href="/ja/events/chiba-development-camp-2027" style={{display:"inline-block",marginTop:"12px",padding:"10px 16px",background:"#111",color:"#fff",fontWeight:900,textDecoration:"none"}}>詳細・申込・決済へ ↗</a>
-          </aside>
-
-          <section className={styles.hero} aria-labelledby="rba-home-title">
-            <div className={styles.heroTopline}>
-              <p className={styles.label}>RIOT BASKETBALL ACADEMY <span aria-hidden="true">/</span> SENDAI · JAPAN · ASIA</p>
-              <span className={styles.heroIssue}>PLAYER DEVELOPMENT / 2026</span>
-            </div>
+          <section className={`${styles.hero} ${styles.unitedHero}`} aria-labelledby="rba-home-title">
             <div className={styles.heroBody}>
-              <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
-              <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-              <p className={styles.intro}>選手が挑戦し、指導者が学び、地域がつながる。<br />RBAは仙台から全国・アジアへ、次のコートをひらきます。</p>
-              <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
-                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">サービス・料金を見る <span aria-hidden="true">↗</span></a>
+              <p className={styles.unitedWordmark}>RBA UNITED<span aria-hidden="true">.</span></p>
+              <h1 id="rba-home-title"><span>今のチームのまま、</span><span>世界へ。</span></h1>
+              <p className={styles.intro}>所属を越えて、全国で出会い、世界へ挑戦する。</p>
+              <nav className={styles.actions} aria-label="RBA UNITEDへの入口">
+                <a className={styles.primary} data-growth-id="home-primary-events" href="/ja/opportunities">挑戦できる機会を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-united-concept" href="/ja/united">RBA UNITEDとは <span aria-hidden="true">↗</span></a>
               </nav>
-            </div>
-            <div className={styles.heroBaseline}>
-              <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
-              <span>SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span>
             </div>
           </section>
 
+          <section className={styles.unitedPrinciples} aria-labelledby="united-principles-title">
+            <h2 id="united-principles-title">チームではなく、機会をつくる。</h2>
+            <p>今の所属を変える必要はありません。国内外の大会や交流に企画ごとに参加し、そこで得た経験を日常のコートに持ち帰る。それがRBA UNITEDです。</p>
+            <div className={styles.unitedLinks}>
+              <a href="/ja/my-homecourt" data-growth-id="home-united-homecourt">MY HOME COURT（無料登録） →</a>
+            </div>
+          </section>
+
+          <aside aria-label="2027年千葉育成キャンプ申込受付" style={{background:"var(--rba-blue)",color:"#fff",padding:"18px 20px",marginTop:"22px",marginBottom:"22px",border:"3px solid #111"}}>
+            <p style={{fontWeight:900,fontSize:"12px",letterSpacing:".16em"}}>REGISTRATION OPEN / CHIBA · KANZAKI · 2027.03.27–28</p>
+            <p style={{fontWeight:900,fontSize:"clamp(18px,3.1vw,27px)",lineHeight:1.25,marginTop:"6px"}}>千葉育成キャンプ｜U12・U15｜国内・海外選手歓迎</p>
+            <p style={{fontWeight:700,marginTop:"4px",fontSize:"13px"}}>2日間24,200円／1日14,300円（税込）・保護者申込→Stripe決済</p>
+            <a href="/ja/events/chiba-development-camp-2027" style={{display:"inline-block",marginTop:"12px",padding:"10px 16px",background:"#fff",color:"var(--rba-black)",fontWeight:900,textDecoration:"none"}}>詳細・申込・決済へ ↗</a>
+          </aside>
+
           <nav className={styles.sectionNavigator} aria-label="このページの目次">
             <span className={styles.indexLabel}>INDEX</span>
-            <a href="#rba-for-you">01　目的から探す</a>
+            <a href="#rba-for-you" data-growth-id="home-primary-role">01　目的から探す</a>
             <a href="#home-programmes">02　現在の活動</a>
             <a href="#home-partners">03　協賛・パートナー</a>
             <a href="#home-host">04　地域で開催する</a>
@@ -122,7 +121,7 @@ export async function SimpleJapaneseHome() {
                 </a>
               ))}
             </nav>
-            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。<a href="/ja/services" data-growth-id="home-services-from-audience">公式サービス一覧と料金の比較を見る →</a></p>
+            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。<a href="/ja/services" data-growth-id="home-revenue-services">公式サービス一覧と料金の比較を見る →</a></p>
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">

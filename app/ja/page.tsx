@@ -5,18 +5,18 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   manifest: "/rba-definitive/manifest.json",
-  title: { absolute: "RBA｜仙台・太白区から全国・アジアへ｜バスケットボール育成" },
-  description: "仙台市太白区から全国・アジアへ。保護者・選手、指導者、地域・企業それぞれの入口から、スクール、クリニック、育成記事、協賛の案内へ進めます。",
+  title: { absolute: "RBA｜今のチームのまま、世界へ。｜青少年バスケットボール育成" },
+  description: "RBA UNITEDをはじめ、所属を越えた国内外の育成・交流機会を届けるRiot Basketball Academy。スクール、クリニック、指導者教育、MY HOME COURTを通じて子どもたちの次の一歩を支えます。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/", languages: { "en": "https://riotbasketballacademy.com/", "ja": "https://riotbasketballacademy.com/ja/", "zh-Hant-TW": "https://riotbasketballacademy.com/zh-tw/", "ko": "https://riotbasketballacademy.com/ko/", "x-default": "https://riotbasketballacademy.com/" } },
   openGraph: {
-    title: "RBA｜子どもの未来から育成を考える",
-    description: "保護者・指導者・地域の方へ。育成の記事からスクール・クリニック・連携まで、目的別の入口をご案内します。",
+    title: "RBA｜今のチームのまま、世界へ。",
+    description: "全国で出会い、世界へ挑戦する。所属を変えずに挑戦できるRBA UNITEDと、日常の育成をつなぐRBA公式サイト。",
     url: "https://riotbasketballacademy.com/ja/",
     siteName: "Riot Basketball Academy",
     type: "website",
     images: [{ url: "https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png" }],
   },
-  twitter: { card: "summary_large_image", title: "RBA｜子どもの未来から育成を考える", description: "保護者・指導者・地域へ。必要な学びと活動へつながる公式案内。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
+  twitter: { card: "summary_large_image", title: "RBA｜今のチームのまま、世界へ。", description: "所属チームを大切にしながら、国内外の新しい育成機会へ。RBA UNITEDとMY HOME COURT。", images: ["https://riotbasketballacademy.com/rba-definitive/assets/og-platform.png"] },
 };
 
 export default function Page() {

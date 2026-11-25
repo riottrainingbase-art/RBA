@@ -1,0 +1,13 @@
+/* RBA BRAND IDENTITY 2026–2036 — docs/RBA-BRAND-IDENTITY.md */
+:root {
+  --rba-blue:#2454D8;
+  --rba-black:#111211;
+  --rba-white:#F6F5F1;
+  --rba-gray:#6B706F;
+  --rba-blue-hover:#1942B8;
+  --rba-blue-light:#EAF0FF;
+  --ink:var(--rba-black);
+  --paper:var(--rba-white);
+  --muted:var(--rba-gray);
+}
+::selection { background:var(--rba-blue); color:#fff; }

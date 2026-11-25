@@ -114,3 +114,14 @@
 }
 .theme :global(.footer-legal a){overflow-wrap:anywhere}
 @media(max-width:700px){.theme :global(.footer-purpose){max-width:none;font-size:12px}}
+
+/* 2026–2036 official RBA brand: shared public frame, all locales. */
+.theme{--ink:var(--rba-black);--paper:var(--rba-white);--muted:var(--rba-gray);--rba-ink:var(--rba-black);--rba-paper:var(--rba-white);--orange:#242824;--rba-brass:var(--rba-gray);color:var(--rba-black);background:var(--rba-white)}
+.theme :global(.site-header nav a:after),.theme :global(.header-contact:after){background:var(--rba-blue)}
+.theme :global(.site-footer){background:var(--rba-black);border-top:3px solid var(--rba-blue);color:#fff}
+.theme :global(.button-orange),.theme :global(.programme-link){background:var(--rba-blue);border-color:var(--rba-blue);color:#fff}
+.theme :global(.button-orange:hover),.theme :global(.programme-link:hover){background:var(--rba-blue-hover);border-color:var(--rba-blue-hover);color:#fff}
+.theme :global(.button-dark){background:var(--rba-black);border-color:var(--rba-black);color:#fff}
+.theme :global(.hero-grid),.theme :global(.opportunity-hero),.theme :global(.international-hero),.theme :global(.torsten-feature),.theme :global(.asia-desk-home),.theme :global(.field-footprint){background-color:var(--rba-black);color:#fff}
+.theme :global(.site-update-strip){background:var(--rba-white);color:var(--rba-black)}
+.theme a:focus-visible,.theme button:focus-visible,.theme summary:focus-visible{outline:3px solid var(--rba-blue);outline-offset:3px;box-shadow:0 0 0 3px #fff}
