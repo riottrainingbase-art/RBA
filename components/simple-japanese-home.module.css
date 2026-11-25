@@ -58,3 +58,7 @@
 .about .founderBelief{font-weight:750;color:var(--rba-black)}
 @media(max-width:760px){.about{grid-template-columns:minmax(0,1fr);gap:14px}.founderPhoto{max-width:250px;width:100%}.founderFacts{gap:8px}}
 @media(max-width:350px){.founderFacts{grid-template-columns:1fr}}
+
+.detailLink{display:inline-flex;align-items:center;min-height:36px;font-size:12px;font-weight:650;text-decoration:underline;text-underline-offset:3px;color:#111211}
+.card .primary{min-height:52px}
+@media(max-width:760px){.heroActions a{font-size:13px!important;justify-content:center;gap:4px}.heroActions a span{display:none}}
