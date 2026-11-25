@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - release/rba-home-production-baseline-20261126
   push:
     branches:
       - main
@@ -67,6 +68,9 @@ jobs:
 
       - name: Site Japanese regression audit
         run: pnpm run audit:site-ja
+
+      - name: Homepage checkout and sponsor regression
+        run: node --test tests/rba-simple-home-checkout.test.mjs
       - name: Site-wide route sitemap and expired registration audit
         run: node audit/site-wide/check.mjs
 
