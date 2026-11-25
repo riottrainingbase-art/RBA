@@ -22,7 +22,7 @@ const otherLinks = [
   ["選手・保護者","/ja/families"],["指導者・チーム","/ja/coaches"],["U12","/ja/u12"],["U15","/ja/u15"],
   ["仙台スクール","/ja/sendai-school"],["GREAM","/ja/gream"],["BACKBONE 3x3・RIZEHOPE","/ja/opportunities"],
   ["RBA CONNECT","/ja/connect"],["保護者LINEコミュニティ","https://line.me/ti/g2/8GsWD4iOnyOuoNj60_s24ljg_--cQ7IFMjfDLw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"],
-  ["法人向け運動研修・親子イベント","/ja/business"],["活動地域","/ja/regions"],["沖縄の活動","/ja/okinawa#local-places"],["運営状況","/ja/updates"],["育成方針","/ja/approach"],["規約・安全方針","/ja/policies"],["Instagramリンク集","/ja/links"],
+  ["法人向け運動研修・親子イベント","/ja/business"],["活動地域","/ja/regions"],["沖縄の活動","/ja/okinawa#local-places"],["育成方針","/ja/approach"],["規約・安全方針","/ja/policies"],["Instagramリンク集","/ja/links"],
 ] as const;
 
 function OfferCard({offer}:{offer:(typeof learning)[number]|(typeof support)[number]}){
@@ -84,6 +84,7 @@ export async function SimpleJapaneseHome() {
         <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
           <header className={styles.heading}><div><p className={styles.label}>01 / PARTICIPATE</p><h2 id="home-programme-title">参加する。</h2></div><a href="/ja/opportunities" className={styles.textLink} data-growth-id="home-all-opportunities">開催予定をすべて見る →</a></header>
           <div className={styles.grid}>
+            {active.length===0&&<p className={styles.note}>現在の募集は開催予定一覧からご確認ください。</p>}
             {active.map(p=><article key={p.id} className={styles.card}>
               <p className={styles.label}>{tr(p.date,"ja")}</p><h3>{tr(p.title,"ja")}</h3>
               <p>{tr(p.place,"ja")}<br/>{tr(p.audience,"ja")}</p>
@@ -98,7 +99,7 @@ export async function SimpleJapaneseHome() {
             <a href="/ja/sendai-school" data-growth-id="home-school-consultation">仙台スクール・体験相談 →</a>
 
           </div>
-          <a className={styles.textLink} href="/ja/saga">佐賀の年末開催予定（正式条件の案内を確認） →</a>
+          {today < "2026-12-28" && <a className={styles.textLink} href="/ja/saga">佐賀の年末開催予定（正式条件の案内を確認） →</a>}
           <p className={styles.note}>会場・定員・取消条件・受付状況は各公式案内を確認してください。無料希望登録や相談は参加確定・決済ではありません。未確定企画は事前決済に誘導しません。</p>
         </section>
 
