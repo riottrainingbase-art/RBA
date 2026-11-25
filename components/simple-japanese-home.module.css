@@ -533,3 +533,9 @@
 .supportGrid article>a:hover,.page .programmes article>a:hover{background:#1942B8!important;color:#fff!important}
 @media(max-width:860px){.orgGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.page .hero{padding:16px 18px 20px}.page .heroBody{padding:24px 0 20px}.page .hero h1{font-size:clamp(29px,8.3vw,43px);line-height:1.2}.page .hero .intro{margin:16px 0 0;line-height:1.8}.page .hero .actions{margin-top:20px;gap:8px}.page .hero .actions a{min-height:48px;font-size:13px}.heroBaseline{padding-top:12px}.orgCard{padding:12px}.orgCard strong{font-size:14px}.orgCard span:nth-child(2){font-size:12px}.founderCard{grid-template-columns:minmax(100px,125px) minmax(0,1fr);gap:12px;padding:12px}.founderCard p:not(.quickKicker){font-size:12px}.quickLink{font-size:12px;margin-right:0}.supportGrid{grid-template-columns:1fr}.supportGrid article{padding:15px}.page .section{padding:30px 0}}
+
+/* iOS Safari and Instagram webview may inherit text-fill independently of color. */
+.page .hero .actions .primary,.page .hero .actions .primary:visited,.page .hero .actions .primary>*{color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:1;visibility:visible}
+.page .hero .actions .secondary,.page .hero .actions .secondary:visited,.page .hero .actions .secondary>*{color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:1;visibility:visible}
+.page .hero .actions .secondary:hover,.page .hero .actions .secondary:hover>*{color:#111211!important;-webkit-text-fill-color:#111211!important}
+.page .supportGrid article>a,.page .supportGrid article>a:visited,.page .programmes article>a,.page .programmes article>a:visited{color:#fff!important;-webkit-text-fill-color:#fff!important}
