@@ -1,3 +1,4 @@
+import { sagaWinterOffers, sagaWinterGrades } from "@/lib/saga-winter-2026";
 import { KyushuContact } from "@/components/kyushu-contact";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -165,7 +166,7 @@ const roadmap = [
   [
     "NOW",
     "年末クリニックの準備",
-    "2026年12月28日・29日の開催を予定しています。現在は日程と時間帯のみ先行してお知らせしており、会場、対象カテゴリー、参加費、申込方法は確定後に正式にご案内します。",
+    "12月28日は開催決定。29日は佐賀市内で会場調整中です。詳細・申込方法は開催案内をご確認ください。",
   ],
   [
     "NEXT",
@@ -207,7 +208,7 @@ const faq = [
   ],
   [
     "12月28日・29日の申込はもうできますか？",
-    "現時点では先行案内の段階です。会場、対象カテゴリー、参加費、申込方法が確定した後、このページとRBAの公式チャンネルでご案内します。",
+    "12月28日はこのページから申込・事前決済ができます。29日は会場調整中のため、決済受付はまだ行いません。",
   ],
 ];
 
@@ -230,7 +231,7 @@ export default function SagaPage() {
     inLanguage: "ja",
     description:
       "Riot Basketball Academyが佐賀で継続して行う、育成年代向けバスケットボールクリニック・キャンプの情報。",
-    dateModified: "2026-10-04",
+    dateModified: "2026-11-24",
     isPartOf: {
       "@type": "WebSite",
       name: "Riot Basketball Academy",
@@ -307,12 +308,12 @@ export default function SagaPage() {
             今いる環境を大切にしながら、普段とは違う環境でも学び、試し、その経験を日々のバスケットボールへ持ち帰れる場所を佐賀で育てていきます。
           </p>
           <div className="saga-status-row" aria-label="ページ更新情報">
-            <span>UPDATED 2026.10.04</span>
-            <strong>12/28・29は開催予定／会場・対象・参加費・申込方法は未確定</strong>
+            <span>UPDATED 2026.11.25</span>
+            <strong>12/28 開催決定・正式申込受付中／12/29は会場調整中</strong>
           </div>
           <div className="homecourt-launch-actions">
-            <Link className="button button-dark" href="#next">
-              12/28・29の予定を見る <ArrowRight size={17} />
+            <Link className="button button-dark" href="#entry">
+              12/28 申込・事前決済へ <ArrowRight size={17} />
             </Link>
             <Link className="button button-light" href="#history">
               これまでの開催を見る <ArrowRight size={17} />
@@ -328,12 +329,51 @@ export default function SagaPage() {
           </div>
         </section>
 
+        <section className="homecourt-plan-separation section-pad" id="next">
+          <div className="homecourt-plan-intro">
+            <p className="section-index">RBA SAGA × FUKUOKA / WINTER CLINIC 2026</p>
+            <h2>12月28日（月）開催。<br />29日（火）は調整中。</h2>
+            <p>対象：小学生・中学生（男女）。佐賀市内で開催。28日の会場は確保済みです。会場名・アクセス・集合場所・駐車等の詳細は申込者へ個別にご案内します。福岡からの参加も歓迎します。</p>
+          </div>
+          <div className="homecourt-plan-grid">
+            <article className="homecourt-plan-card"><CalendarDays /><span>DAY 1 / 12.28 MON</span><h3>開催決定・佐賀市内</h3><p>第1部 9:00〜12:00／基礎技術<br/>第2部 13:00〜16:00／認知・判断・ゲームスキル<br/>第3部 17:00〜19:00／シュート・実戦応用</p><p>内容は選手の年代・経験・疲労に応じて調整します。</p></article>
+            <article className="homecourt-plan-card"><CalendarDays /><span>DAY 2 / 12.29 TUE</span><h3>佐賀市内・会場調整中</h3><p>開催時間・会場は確定後に案内します。29日単日・2日間プランは現時点で決済を受け付けません。</p><p>29日の募集・料金は確定後にご案内します。</p><a className="button button-light" href="https://lin.ee/5l1YG8N">29日の参加希望・最新情報（公式LINE）</a></article>
+          </div>
+          <h3 style={{marginTop:32}}>28日 参加プラン（税込・選手1名）</h3>
+          <div className="homecourt-plan-grid">
+            {Object.entries(sagaWinterOffers).map(([key,offer])=><article className="homecourt-plan-card" key={key}><h3>{offer.label}</h3><strong>¥{offer.amount.toLocaleString("ja-JP")}</strong></article>)}
+          </div>
+          <p>単部参加歓迎。全3部参加は必須ではありません。休憩・水分補給を確保し、体調に応じて参加量を調整します。食事・交通・宿泊は参加費に含みません。</p>
+          <div className="homecourt-private-note"><ShieldCheck/><div><strong>持ち物・安全・送迎</strong><p>室内シューズ、ボール、飲料、タオル、着替え、昼食（必要な方）。保護者による送迎・休憩中の管理をお願いします。体調不良や怪我がある場合は無理をせず、事前に主催者へ相談してください。見学・駐車の詳細は個別案内します。</p></div></div>
+          <div id="entry" className="homecourt-plan-card" style={{marginTop:24}}>
+            <h3>12月28日 申込・事前決済</h3>
+            <p>保護者が選手1名ずつ申込情報を入力し、Stripeで全額お支払いください。決済後、主催者が入金・受付を確認し、登録メールアドレスへ会場と当日の詳細をご案内します。画面に戻っただけでは入金確認済みにはなりません。満員等で受け付けられない場合は全額返金します。重複申込はせず、案内が届かない場合はお問い合わせください。</p>
+            <p><strong>キャンセル：</strong>12月20日まで100%、21〜24日50%、25日以降原則返金なし。返金不能な手数料・外部実費の取扱いは<a href="/ja/policies">RBA参加規約・返金方針</a>に従います。主催者都合の中止は全額返金または希望に応じ振替。法令が優先されます。</p>
+            <form action="/api/clinics/saga-winter-20261228/checkout" method="post" style={{display:"grid",gap:14,maxWidth:640}}>
+              <label>参加プラン（必須）<select name="plan" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{Object.entries(sagaWinterOffers).map(([key,p])=><option value={key} key={key}>{p.label}｜{p.amount.toLocaleString("ja-JP")}円</option>)}</select></label>
+              {([["guardian","保護者氏名","text"],["email","保護者メールアドレス","email"],["phone","緊急連絡先（保護者電話番号）","tel"],["player","参加選手氏名","text"]] as const).map(([name,label,type])=><label key={name}>{label}（必須）<input name={name} type={type} required maxLength={name==="email"?200:name==="phone"?30:100} style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}/></label>)}
+              <label>学年（必須）<select name="grade" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{sagaWinterGrades.map(g=><option key={g}>{g}</option>)}</select></label>
+              <div style={{padding:16,border:"1px solid #2454D8",background:"#F6F5F1",color:"#111211"}}>
+                <label htmlFor="saga-coupon" style={{display:"block",fontWeight:800,color:"#111211"}}>早割クーポンコード（任意）</label>
+                <input id="saga-coupon" name="coupon" type="text" maxLength={64}  autoComplete="off" autoCapitalize="characters" spellCheck={false} placeholder="お持ちのコードを入力" aria-describedby="saga-coupon-help" style={{display:"block",width:"100%",minHeight:48,padding:10,marginTop:8,border:"1px solid #6B706F",background:"#fff",color:"#111211"}}/>
+                <p id="saga-coupon-help" style={{margin:"8px 0 0",fontSize:13,color:"#111211"}}>RBAから配布された佐賀12月28日対象の早割クーポンをお持ちの場合のみ入力してください。適用できる場合は、Stripeの決済画面で割引後の金額を確認できます。コードがない場合は空欄で進めます。</p>
+              </div>
+              <label><input type="checkbox" name="consent" value="yes" required/> 保護者として参加・緊急連絡に同意します。</label>
+              <label><input type="checkbox" name="terms" value="yes" required/> 料金・日程・キャンセル条件・<a href="/ja/policies" target="_blank" rel="noreferrer">参加規約</a>を確認し、同意します。</label>
+              <p>入力した情報は決済・参加受付・安全管理・開催案内のために使用します。</p>
+              <button className="button button-dark" type="submit">申込内容・割引後の金額を確認してStripe決済へ <ArrowRight size={17}/></button>
+            </form>
+            <p style={{marginTop:16}}>オンライン決済に進めない場合のみ、<a href="https://form.jotform.com/263273659493066" target="_blank" rel="noopener noreferrer">代替の参加申込フォーム（個別決済案内）</a>をご利用ください。すでに申込・決済済みの方は再申込しないでください。</p>
+            <p style={{marginTop:16}}>お問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a> ／ <a href="https://lin.ee/5l1YG8N">公式LINE</a></p>
+          </div>
+        </section>
+
         <KyushuContact region="佐賀" />
         <nav className="saga-section-nav" aria-label="RBA佐賀 ページ内メニュー">
           <a href="#concept">RBA佐賀とは</a>
           <a href="#history">これまで</a>
           <a href="#development">育成内容</a>
-          <a href="#next">12/28・29</a>
+          <a href="#next">12/28・29の開催条件</a><a href="#entry">12/28申込</a>
           <a href="#roadmap">今後</a>
           <a href="#faq">FAQ</a>
         </nav>
@@ -507,67 +547,7 @@ export default function SagaPage() {
           </div>
         </section>
 
-        <section className="homecourt-plan-separation section-pad" id="next">
-          <div className="homecourt-plan-intro">
-            <p className="section-index">NEXT / YEAR END 2026</p>
-            <h2>
-              12月28日・29日、<br />
-              佐賀で年末クリニックを開催予定。
-            </h2>
-            <p>
-              現在は、年末の予定を立てていただきやすいよう、日程と時間帯を先にお知らせしている段階です。会場、対象カテゴリー、参加費、定員、申込方法は、確定後に正式にご案内します。
-              正式募集までは、申込・決済リンクを公開しません。
-            </p>
-          </div>
-          <div className="homecourt-plan-grid">
-            <article className="homecourt-plan-card">
-              <CalendarDays />
-              <span>2026.12.28 / MON</span>
-              <h3>DAY 1 / PLANNED</h3>
-              <p>
-                9:00〜11:30
-                <br />
-                13:30〜16:30
-                <br />
-                19:00〜20:30
-              </p>
-            </article>
-            <article className="homecourt-plan-card">
-              <CalendarDays />
-              <span>2026.12.29 / TUE</span>
-              <h3>DAY 2 / PLANNED</h3>
-              <p>
-                9:00〜11:30
-                <br />
-                13:30〜16:30
-                <br />
-                19:00〜20:30
-              </p>
-            </article>
-          </div>
-          <div className="homecourt-private-note">
-            <BellRing />
-            <div>
-              <strong>正式募集が始まったら</strong>
-              <p>
-                このページを更新し、RBA公式LINE、MY HOME COURT、公式SNSなどで案内します。現時点では申込フォームや決済リンクは公開していません。
-              </p>
-            </div>
-          </div>
-          <div className="homecourt-launch-actions">
-            <a
-              className="button button-dark"
-              href="https://lin.ee/5l1YG8N"
-              target="_blank"
-              rel="noreferrer"
-            >
-              公式LINEで最新情報を受け取る <BellRing size={16} />
-            </a>
-            <Link className="button button-light" href="/ja/my-homecourt">
-              無料でRBA IDをつくる <ArrowRight size={16} />
-            </Link>
-          </div>
-        </section>
+
 
         <section className="journal-cms-index section-pad" id="roadmap">
           <div className="section-head">
