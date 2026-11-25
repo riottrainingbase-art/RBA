@@ -41,3 +41,20 @@
 .more nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
 @media(max-width:760px){.grid,.gridTwo{grid-template-columns:minmax(0,1fr)}.heading{align-items:start;flex-direction:column;gap:4px}.heading .textLink{min-height:36px}.host{align-items:stretch;flex-direction:column}.heroActions a{min-width:0;padding:10px 9px!important;font-size:14px!important}.quickLinks{gap:0 14px}.card{gap:8px}.about img{width:120px}.more nav{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:350px){.heroActions{gap:5px}.heroActions a{font-size:13px!important}.heroActions a span{display:none}}
+
+/* Founder: visible before the event cards, without interrupting the three primary actions. */
+.about{display:grid;grid-template-columns:minmax(150px,250px) minmax(0,1fr);align-items:start;gap:clamp(20px,4vw,42px);padding:clamp(24px,4vw,40px) 0;border-top:0;border-bottom:1px solid var(--rba-line)}
+.founderPhoto{margin:0;min-width:0}
+.about .founderPhoto img{display:block;width:100%;max-width:none;aspect-ratio:874/860;height:auto;object-fit:cover;border-radius:5px}
+.founderPhoto figcaption{font-size:11px;color:var(--rba-muted);margin-top:7px}
+.founderContent{min-width:0}
+.founderContent h2 span{display:block;font-size:12px;letter-spacing:.12em;color:var(--rba-muted);margin-top:7px}
+.about .founderRole{font-weight:750;color:var(--rba-black)}
+.founderFacts{display:grid;grid-template-columns:1fr 1fr;gap:10px;list-style:none;padding:0;margin:14px 0}
+.founderFacts li{border-left:3px solid var(--rba-blue);padding:5px 10px;min-width:0}
+.founderFacts strong,.founderFacts span{display:block;overflow-wrap:anywhere}
+.founderFacts strong{font-size:16px;color:var(--rba-black)}
+.founderFacts span{font-size:12px;line-height:1.65;color:var(--rba-muted)}
+.about .founderBelief{font-weight:750;color:var(--rba-black)}
+@media(max-width:760px){.about{grid-template-columns:minmax(0,1fr);gap:14px}.founderPhoto{max-width:250px;width:100%}.founderFacts{gap:8px}}
+@media(max-width:350px){.founderFacts{grid-template-columns:1fr}}
