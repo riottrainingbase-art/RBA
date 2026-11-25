@@ -30,3 +30,13 @@ test("brand, mobile and focus are explicit",()=>{
   assert.match(css,/:focus-visible/);
   assert.match(css,/@media\(max-width:760px\)/);
 });
+
+test("founder is prominent without replacing the three primary actions",()=>{
+  assert.ok(home.indexOf('id="home-organisation"') < home.indexOf('id="home-programmes"'));
+  assert.match(home,/masato-nishio-on-court\.webp/);
+  assert.match(home,/東北選抜・国体/);
+  assert.match(home,/2026年9月 RBA公式資料/);
+  const profile=read("components/founder-profile.tsx");
+  assert.match(profile,/現行の資格登録・更新状況/);
+  assert.match(profile,/RBA International Profile 2026/);
+});
