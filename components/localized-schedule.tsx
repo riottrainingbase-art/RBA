@@ -1,3 +1,4 @@
+import { RizehopeTeamEnquiry } from "./rizehope-team-enquiry";
 import { ui } from "./ui-copy";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import { Locale, SiteFrame, localePath } from "@/components/site-frame";
@@ -29,6 +30,7 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
         <article><span>04</span><strong>KEEP</strong><p>参加後はMY HOME COURTに経験を記録する。</p></article>
       </div>
     </section>:null}
+    {locale === "en" && <RizehopeTeamEnquiry />}
     <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{isTaipeiClinicUpcoming() && <article>
       <time dateTime={taipeiClinicSessions[0].date}><strong>{clinic.dates}</strong><span>{clinic.zone}</span></time>
       <div><p className="note-tag">{clinic.place} · RBA × SPARTANS Academy</p><h3>{clinic.title}</h3><p>{clinic.pending}</p></div>

@@ -205,6 +205,7 @@ export const programmes: readonly Programme[] = [
   },
   {
     id: "kobe",
+    registrationClosed: true,
     startDate: "2026-11-20",
     endDate: "2026-11-23",
     date: ["21–23 NOV 2026 · optional evening clinic 20 NOV", "2026.11.21〜23／11.20は別料金の前夜クリニック", "2026.11.21–23／11.20晚間訓練另計", "2026.11.21–23 / 11.20 전야 클리닉 별도"],
