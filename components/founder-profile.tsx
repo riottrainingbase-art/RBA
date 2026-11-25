@@ -47,6 +47,24 @@ export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}
    <figure className="founder-portrait"><Image src="/media/founder/masato-nishio-on-court.webp" sizes="(max-width: 760px) 90vw, 42vw" alt={c.alt} width="874" height="860" loading={full?"eager":"lazy"}/><figcaption>{c.caption}</figcaption></figure>
    <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><h3 className="founder-belief">{c.headline}</h3><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
   </div>
+  {full&&locale==="ja"&&<section className="founder-career" aria-labelledby="founder-career-title">
+    <p className="founder-eyebrow">BACKGROUND / 競技・学習・指導</p>
+    <h2 id="founder-career-title">なぜ、育成に取り組むのか。</h2>
+    <p>日本で競技を経験し、ドイツで異なるバスケットボール文化と育成に触れたことが、現在の活動の背景にあります。技術を教えるだけではなく、選手の身体の発達、ゲームを理解する力、判断を支える指導環境まで一緒に考えることを大切にしています。</p>
+    <div className="founder-career-grid">
+      <article><span>01 / PLAYING EXPERIENCE</span><h3>日本での競技経験</h3><p>東北選抜・国民体育大会（国体）の競技経験。育成年代から選手として競技に取り組む。</p></article>
+      <article><span>02 / GERMANY</span><h3>ドイツでの学び</h3><p>Sports Elite Academy・Chemnitz 99ersに関連する研修、育成学習、ドイツでのクラブ競技・指導法の学習経験。</p></article>
+      <article><span>03 / RBA</span><h3>仙台から全国へ</h3><p>Riot Basketball Academyを創設。クリニック、キャンプ、育成プログラム、連携事業を通じた指導実績は4,000名以上（2026年9月時点のRBA公式国際プロフィール記載）。</p></article>
+      <article><span>04 / COACH EDUCATION</span><h3>指導者教育と国際交流</h3><p>全国の育成現場での実践、D-HUB、BACKBONE 3x3、RBA UNITEDを通して、選手と指導者が地域・国を越えて学べる機会をつくる。</p></article>
+    </div>
+    <h3>専門領域</h3>
+    <ul className="founder-expertise"><li>育成年代の長期的な選手育成</li><li>ファンダメンタル・ゲーム理解・意思決定</li><li>ゲームを通じた練習設計</li><li>ストレングス＆コンディショニング</li><li>3x3の育成・実践</li><li>指導者教育・国際交流</li></ul>
+    <h3>資格・学習歴</h3>
+    <p>2026年9月のRBA公式プロフィールには、NSCA-CPT、ドイツバスケットボール連盟（DBB）C級指導者ライセンスの取得歴が記載されています。現行の資格登録・更新状況やFIBA・WABCの指導者認定を示すものではありません。</p>
+    <h3>指導において大切にすること</h3>
+    <p>育成年代の勝敗だけで選手を評価しないこと。子どもたち一人ひとりに学びと実践の機会をつくること。所属チームや地域を越えて学べる環境を広げること。そして、指導者自身も学び続けること。</p>
+    <small>経歴・指導実績の出典：RBA International Profile 2026（2026年9月）、RBA Global Partnership Deck 2026（団体資料）。指導実績はRBAによる集計です。</small>
+  </section>}
   <div className="founder-principles"><article><p className="founder-eyebrow">01 / MISSION · {c.missionLabel}</p><h3>{c.mission}</h3><p>{c.missionBody}</p></article><article><p className="founder-eyebrow">02 / VISION · {c.visionLabel}</p><h3>{c.vision}</h3><p>{c.visionBody}</p></article></div>
   {full&&<div className="founder-invitation"><p className="founder-eyebrow">LET’S BEGIN A CONVERSATION</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a><small>{c.note}</small><a className="founder-email" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></div>}
  </section>;
