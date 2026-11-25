@@ -45,7 +45,7 @@ export async function POST(request:Request){
     const ref="saga-winter-"+Array.from(new Uint8Array(hash)).map(x=>x.toString(16).padStart(2,"0")).join("").slice(0,32);
     const metadata={event:"rba_saga_fukuoka_winter_2026",date:"2026-12-28",plan:choice,player,grade,guardian,guardian_phone:phone,registration_ref:ref};
     const session=await stripe.checkout.sessions.create({mode:"payment",locale:"ja",customer_email:email,customer_creation:"always",client_reference_id:ref,
-      line_items:[{quantity:1,price_data:{currency:"jpy",unit_amount:plan.amount,tax_behavior:"inclusive",product_data:{name:"RBA 佐賀・福岡 WINTER CLINIC｜12月28日｜"+plan.label,description:"選手1名・税込。宿泊、食事、交通費は含みません。会場詳細は受付確認後にご案内。29日は対象外。"}}}],
+      line_items:[{quantity:1,price_data:{currency:"jpy",unit_amount:plan.amount,tax_behavior:"inclusive",product_data:{name:"RBA 佐賀・福岡 WINTER CLINIC｜12月28日｜"+plan.label,description:"選手1名・税込。宿泊、食事、交通費は含みません。会場名・住所は入金確認後に保護者へ個別にご案内。29日は対象外。"}}}],
       ...(promotionCodeId ? {discounts:[{promotion_code:promotionCodeId}]} : {}),
       metadata,payment_intent_data:{metadata},success_url:site+"/ja/saga?checkout=returned#next",cancel_url:site+page,
     },{idempotencyKey:ref});
