@@ -19,8 +19,8 @@ const support = [
 ] as const;
 
 const otherLinks = [
-  ["選手・保護者","/ja/families"],["指導者・チーム","/ja/coaches"],["U12","/ja/u12"],["U15","/ja/u15"],
-  ["仙台スクール","/ja/sendai-school"],["GREAM","/ja/gream"],["BACKBONE 3x3・RIZEHOPE","/ja/opportunities"],
+  ["選手・保護者","/ja/families"],["指導者・チーム","/ja/coaches"],
+  ["仙台スクール","/ja/sendai-school"],["BACKBONE 3x3・RIZEHOPE","/ja/opportunities"],
   ["RBA CONNECT","/ja/connect"],["保護者LINEコミュニティ","https://line.me/ti/g2/8GsWD4iOnyOuoNj60_s24ljg_--cQ7IFMjfDLw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"],
   ["法人向け運動研修・親子イベント","/ja/business"],["活動地域","/ja/regions"],["沖縄の活動","/ja/okinawa#local-places"],["育成方針","/ja/approach"],["規約・安全方針","/ja/policies"],["Instagramリンク集","/ja/links"],
 ] as const;
@@ -124,6 +124,14 @@ export async function SimpleJapaneseHome() {
           <a href="/ja/clinic-request" className={styles.primary} data-growth-id="home-host-request">無料で開催相談する<span aria-hidden="true">→</span></a>
         </section>
 
+        <section className={styles.ageHub} id="home-age-categories" aria-labelledby="home-age-title">
+          <h2 id="home-age-title">年代・活動から探す</h2>
+          <nav className={styles.ageGrid} aria-label="年代と育成クラブ">
+            <a className={styles.ageCard} href="/ja/u12"><strong>U12</strong><span>小学生向け活動 →</span></a>
+            <a className={styles.ageCard} href="/ja/u15"><strong>U15</strong><span>中学生年代の活動 →</span></a>
+            <a className={styles.ageCard} href="/ja/gream"><strong>GREAM</strong><span>U15地域クラブ →</span></a>
+          </nav>
+        </section>
         <details className={styles.more} id="rba-for-you"><summary>活動・地域・その他の公式情報</summary><nav aria-label="その他の公式情報">{otherLinks.map(([label,href])=><a href={href} key={label}>{label} →</a>)}</nav></details>
         <details className={styles.more}><summary>仙台地域の活動情報</summary><SendaiCommunity /></details>
       </div>
