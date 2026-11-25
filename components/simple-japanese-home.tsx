@@ -98,6 +98,7 @@ export async function SimpleJapaneseHome() {
             <span className={styles.indexLabel}>INDEX</span>
             <a href="#rba-for-you">01　目的から探す</a>
             <a href="#home-programmes">02　開催・募集情報</a>
+            <a href="#home-organisation">RBAの活動一覧</a>
             <a href="#home-business">03　法人向けサービス</a>
             <a href="#home-host">04　地域で開催する</a>
           </nav>
@@ -117,6 +118,21 @@ export async function SimpleJapaneseHome() {
               ))}
             </nav>
             <p className={styles.note}>参加したい活動や、ご相談の内容に合わせてお進みください。</p>
+          </section>
+
+          <section className={styles.section} id="home-organisation" aria-labelledby="home-organisation-title">
+            <div className={styles.heading}>
+              <div><p className={styles.label}>OUR PROGRAMMES</p><h2 id="home-organisation-title">RBAの活動を知る。</h2></div>
+            </div>
+            <p className={styles.note}>RBAは、子どもたちの成長を支える非営利の育成活動です。それぞれの取り組みは役割が異なります。</p>
+            <div className={styles.pathGrid}>
+              <article className={styles.pathCard}><h3>RBA UNITED</h3><p>今のチームに所属したまま、個人で国内外の練習や交流試合に参加できるプロジェクト。</p><a href="/ja/united">国内・国際交流について →</a></article>
+              <article className={styles.pathCard}><h3>BACKBONE</h3><p>3人制バスケットボール（3x3）に特化した育成・実践プログラム。</p></article>
+              <article className={styles.pathCard}><h3>RBA CONNECT</h3><p>国内外のチーム同士をつなぎ、交流や合同練習の機会をつくる取り組み。</p><a href="/ja/connect">チーム間交流について →</a></article>
+              <article className={styles.pathCard}><h3>RIZEHOPE</h3><p>選手が試合を通じて経験を積む機会をつくる大会事業。</p></article>
+              <article className={styles.pathCard}><h3>D-HUB</h3><p>選手や指導者が継続して学び、成長できる育成・教育プログラム。</p><a href="/ja/d-hub">学びの場を見る →</a></article>
+              <article className={styles.pathCard}><h3>MY HOME COURT</h3><p>RBAの活動情報や参加登録の窓口となる統合プラットフォーム。</p><a href="/ja/home-court">MY HOME COURTへ →</a></article>
+            </div>
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
