@@ -186,6 +186,7 @@ const roadmap = [
 ];
 
 const faq = [
+  ["会場はいつ分かりますか？", "12月28日の会場は佐賀市内で確保済みです。安全管理のため、会場名・住所・当日の詳細は入金確認後、登録された保護者の方へ個別にご案内します。"],
   [
     "今のチームに所属したまま参加できますか？",
     "はい。RBA佐賀は所属変更を前提とした活動ではありません。普段のミニバス、クラブ、部活動を続けながら参加できます。",
@@ -335,7 +336,7 @@ export default function SagaPage() {
           <div className="homecourt-plan-intro">
             <p className="section-index">RBA SAGA × FUKUOKA / WINTER CLINIC 2026</p>
             <h2>12月28日（月）開催。<br />29日（火）は調整中。</h2>
-            <p>対象は小学1年生から中学3年生までの男女です。28日は佐賀市内で開催します（会場確保済み）。会場名、アクセス、集合場所、駐車場などはお申し込み後にご案内します。福岡など県外からの参加も歓迎します。</p>
+            <p>対象は小学1年生から中学3年生までの男女です。28日は佐賀市内で開催します（会場確保済み）。お子さまの安全管理のため、会場名・住所・当日の詳細はご入金確認後、ご登録の保護者メールアドレスへ個別にご案内します。福岡など県外からの参加も歓迎します。</p>
           </div>
           <div className="homecourt-plan-grid">
             <article className="homecourt-plan-card"><CalendarDays /><span>DAY 1 / 12.28 MON</span><h3>開催決定・佐賀市内</h3><p>第1部 9:00〜12:00／基礎技術<br/>第2部 13:00〜16:00／認知・判断・ゲームスキル<br/>第3部 17:00〜19:00／シュート・実戦応用</p><p>内容は選手の年代・経験・疲労に応じて調整します。</p></article>
@@ -347,10 +348,10 @@ export default function SagaPage() {
             {Object.entries(sagaWinterOffers).map(([key,offer])=><article className="homecourt-plan-card" key={key}><h3>{offer.label}</h3><strong>¥{offer.amount.toLocaleString("ja-JP")}</strong>{earlybirdOpen && <p>早割 ¥{(offer.amount-1000).toLocaleString("ja-JP")}（12/20まで）</p>}</article>)}
           </div>
           <p>1部だけの参加も歓迎します。休憩や水分補給の時間を確保し、選手の体調に合わせて練習内容を調整します。食事・交通・宿泊は参加費に含みません。</p>
-          <div className="homecourt-private-note"><ShieldCheck/><div><strong>持ち物・安全・送迎</strong><p>室内シューズ、ボール、飲料、タオル、着替え、昼食（必要な方）。保護者による送迎・休憩中の管理をお願いします。体調不良や怪我がある場合は無理をせず、事前に主催者へ相談してください。見学・駐車の詳細は個別案内します。</p></div></div>
+          <div className="homecourt-private-note"><ShieldCheck/><div><strong>持ち物・安全・送迎</strong><p>室内シューズ、ボール、飲料、タオル、着替え、昼食（必要な方）。保護者による送迎・休憩中の管理をお願いします。体調不良や怪我がある場合は無理をせず、事前に主催者へ相談してください。見学・駐車の詳細は入金確認後、個別にご案内します。</p></div></div>
           <div id="entry" className="homecourt-plan-card" style={{marginTop:24}}>
             <h3>12月28日 申込・事前決済</h3>
-            <p>保護者の方がお子さま1名ずつお申し込みのうえ、Stripeで参加費をお支払いください。RBAで入金を確認した後、ご登録のメールアドレスへ会場や当日の詳細をご案内します。決済後にページが表示されても、それだけでは参加確定にはなりません。満員などの理由で参加をお受けできない場合は、全額返金します。案内が届かない場合は、再度申し込む前にお問い合わせください。</p>
+            <p>保護者の方がお子さま1名ずつお申し込みのうえ、Stripeで参加費をお支払いください。RBAで入金と参加受付を確認した後、ご登録の保護者メールアドレスへ会場名・住所・参加時間・当日の詳細を個別にお送りします。決済後にページが表示されても、それだけでは参加確定にはなりません。満員などの理由で参加をお受けできない場合は、全額返金します。案内が届かない場合は、再度申し込む前にお問い合わせください。</p>
             <p><strong>キャンセル：</strong>12月20日まで100%、21〜24日50%、25日以降原則返金なし。返金不能な手数料・外部実費の取扱いは<a href="/ja/policies">RBA参加規約・返金方針</a>に従います。主催者都合の中止は全額返金または希望に応じ振替。法令が優先されます。</p>
             <form action="/api/clinics/saga-winter-20261228/checkout" method="post" style={{display:"grid",gap:14,maxWidth:640}}>
               <label>参加プラン（必須）<select name="plan" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{Object.entries(sagaWinterOffers).map(([key,p])=><option value={key} key={key}>{p.label}｜{p.amount.toLocaleString("ja-JP")}円</option>)}</select></label>
