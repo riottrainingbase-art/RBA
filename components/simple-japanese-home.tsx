@@ -131,7 +131,7 @@ export async function SimpleJapaneseHome() {
                   <h3>佐賀・福岡 WINTER CLINIC</h3>
                   <p className={styles.place}>佐賀市内／会場詳細は受付確認後に案内</p>
                   <dl><div><dt>対象</dt><dd>小学1年〜中学3年・男女</dd></div><div><dt>費用</dt><dd>4,400円〜12,100円（税込・選手1名）</dd></div></dl>
-                  <p>早割1,000円引き｜12月20日（日）23:59まで</p>
+                  {Date.now() < Date.parse("2026-12-21T00:00:00+09:00") && <p>早割1,000円引き｜12月20日（日）23:59まで</p>}
                   <a href="/ja/saga#entry" data-growth-id="home-saga-winter-entry">12月28日 申込・事前決済へ ↗</a>
                 </article>
               </div>
