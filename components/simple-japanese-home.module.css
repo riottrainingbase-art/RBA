@@ -499,3 +499,43 @@
 @media(prefers-reduced-motion:reduce){
  .page .journeyCard,.page .programmes article,.page .ageCard,.sectionNavigator a{transition:none}
 }
+
+/* 2026-11-25: clear first view, founder, support and programme conversion.
+   The scoped important colours override legacy shared frame link styling. */
+.page{--rba-blue:#2454D8;--rba-black:#111211;--rba-white:#F6F5F1;--rba-gray:#6B706F;background:var(--rba-white);color:var(--rba-black)}
+.page .hero{background:var(--rba-black);min-height:0;padding:clamp(20px,3vw,38px);margin-top:8px}
+.page .hero::before{background:linear-gradient(105deg,#111211 24%,rgba(17,18,17,.93) 67%,rgba(36,84,216,.18))}
+.page .hero::after{border-color:rgba(36,84,216,.25)}
+.page .heroBody{padding:clamp(28px,5vw,64px) 0}
+.page .hero .intro{color:#fff;opacity:1;max-width:710px}
+.page .hero .actions .primary{background:var(--rba-blue)!important;color:#fff!important;border-color:#fff!important}
+.page .hero .actions .secondary{background:var(--rba-black)!important;color:#fff!important;border-color:#fff!important}
+.page .hero .actions .primary:hover{background:#1942B8!important;color:#fff!important}
+.page .hero .actions .secondary:hover{background:#fff!important;color:var(--rba-black)!important}
+.page .hero .actions a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.page .heroEyebrow{color:#fff}
+.page .homeQuick{padding:clamp(28px,5vw,60px) 0;border-bottom:1px solid #d6d6d0;scroll-margin-top:100px}
+.quickHeading{max-width:820px;margin-bottom:20px}.quickKicker{color:#2454D8;font-size:11px;letter-spacing:.13em;font-weight:850;margin:0 0 7px}
+.quickHeading h2{font-size:clamp(25px,4.1vw,40px);font-weight:900;line-height:1.35;letter-spacing:-.035em;margin:0 0 10px}
+.quickHeading>p:last-child,.founderCard p:not(.quickKicker){font-size:14px;line-height:1.85;color:#414442;margin:0}
+.orgGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.orgCard{display:flex;flex-direction:column;gap:6px;min-width:0;padding:16px;background:#fff;border:1px solid #d6d6d0;color:#111211!important;text-decoration:none}
+.orgCard strong{font-size:15px;line-height:1.5;font-weight:850}.orgCard span:nth-child(2){font-size:13px;line-height:1.65;color:#414442;flex:1}.orgCard span:last-child{font-size:15px;color:#2454D8;font-weight:900}
+.orgCard:hover{border-color:#2454D8;box-shadow:inset 0 0 0 1px #2454D8}
+.founderCard{display:grid;grid-template-columns:minmax(120px,210px) minmax(0,1fr);gap:20px;align-items:center;background:#fff;border:1px solid #d6d6d0;margin-top:18px;padding:16px}
+.founderCard img{display:block;width:100%;height:auto;max-height:230px;object-fit:cover}
+.founderCard h3{font-size:clamp(25px,3vw,35px);font-weight:900;margin:0 0 10px;color:#111211}
+.quickLink{display:inline-flex;align-items:center;min-height:44px;margin:6px 20px 0 0;color:#2454D8!important;font-weight:800;font-size:13px;text-decoration:underline;text-underline-offset:4px}
+.supportGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.supportGrid article{display:flex;flex-direction:column;min-width:0;padding:18px;background:#fff;border:1px solid #d6d6d0;border-top:4px solid #2454D8}
+.supportGrid article>span{font-size:11px;font-weight:800;color:#414442}.supportGrid article>strong{font-size:clamp(23px,3vw,31px);line-height:1.3;color:#111211;margin:8px 0}.supportGrid article>p{color:#414442;line-height:1.75;font-size:13px;flex:1;margin:0 0 14px}
+.supportGrid article>a,.page .programmes article>a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px;background:#2454D8!important;border:1px solid #2454D8;color:#fff!important;font-size:13px;font-weight:800;text-decoration:none}
+.supportGrid article>a:hover,.page .programmes article>a:hover{background:#1942B8!important;color:#fff!important}
+@media(max-width:860px){.orgGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.page .hero{padding:16px 18px 20px}.page .heroBody{padding:24px 0 20px}.page .hero h1{font-size:clamp(29px,8.3vw,43px);line-height:1.2}.page .hero .intro{margin:16px 0 0;line-height:1.8}.page .hero .actions{margin-top:20px;gap:8px}.page .hero .actions a{min-height:48px;font-size:13px}.heroBaseline{padding-top:12px}.orgCard{padding:12px}.orgCard strong{font-size:14px}.orgCard span:nth-child(2){font-size:12px}.founderCard{grid-template-columns:minmax(100px,125px) minmax(0,1fr);gap:12px;padding:12px}.founderCard p:not(.quickKicker){font-size:12px}.quickLink{font-size:12px;margin-right:0}.supportGrid{grid-template-columns:1fr}.supportGrid article{padding:15px}.page .section{padding:30px 0}}
+
+/* iOS Safari and Instagram webview may inherit text-fill independently of color. */
+.page .hero .actions .primary,.page .hero .actions .primary:visited,.page .hero .actions .primary>*{color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:1;visibility:visible}
+.page .hero .actions .secondary,.page .hero .actions .secondary:visited,.page .hero .actions .secondary>*{color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:1;visibility:visible}
+.page .hero .actions .secondary:hover,.page .hero .actions .secondary:hover>*{color:#111211!important;-webkit-text-fill-color:#111211!important}
+.page .supportGrid article>a,.page .supportGrid article>a:visited,.page .programmes article>a,.page .programmes article>a:visited{color:#fff!important;-webkit-text-fill-color:#fff!important}

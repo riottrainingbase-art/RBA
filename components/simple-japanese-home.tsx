@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { SendaiCommunity } from "./sendai-community";
 import { SiteFrame, localePath } from "./site-frame";
-import { isProgrammeActive, programmes } from "./programme-data";
+import { isProgrammeActive, programmeById, programmes } from "./programme-data";
 import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
 
@@ -63,6 +64,7 @@ const steps = [
 export async function SimpleJapaneseHome() {
   const active = programmes
     .filter(p => isProgrammeActive(p))
+    .filter(p => p.id !== "saga-winter-20261228")
     .sort((a, b) => Number(Boolean(a.ongoing)) - Number(Boolean(b.ongoing)) || a.startDate.localeCompare(b.startDate))
     .slice(0, 3);
 
@@ -72,39 +74,57 @@ export async function SimpleJapaneseHome() {
         <div className={styles.container}>
           <GrowthClickTracking />
 
-          <aside aria-label="2027年千葉育成キャンプ申込受付" style={{background:"#ff6b00",color:"#0b0b0b",padding:"18px 20px",marginBottom:"22px",border:"3px solid #111"}}>
-            <p style={{fontWeight:900,fontSize:"12px",letterSpacing:".16em"}}>REGISTRATION OPEN / CHIBA · KANZAKI · 2027.03.27–28</p>
-            <p style={{fontWeight:900,fontSize:"clamp(18px,3.1vw,27px)",lineHeight:1.25,marginTop:"6px"}}>千葉育成キャンプ｜U12・U15｜国内・海外選手歓迎</p>
-            <p style={{fontWeight:700,marginTop:"4px",fontSize:"13px"}}>2日間24,200円／1日14,300円（税込）・保護者申込→Stripe決済</p>
-            <a href="/ja/events/chiba-development-camp-2027" style={{display:"inline-block",marginTop:"12px",padding:"10px 16px",background:"#111",color:"#fff",fontWeight:900,textDecoration:"none"}}>詳細・申込・決済へ ↗</a>
-          </aside>
+
 
           <section className={styles.hero} aria-labelledby="rba-home-title">
             <div className={styles.heroTopline}>
-              <p className={styles.label}>RIOT BASKETBALL ACADEMY <span aria-hidden="true">/</span> SENDAI · JAPAN · ASIA</p>
-              <span className={styles.heroIssue}>PLAYER DEVELOPMENT / 2026</span>
+              <p className={styles.label}>RIOT BASKETBALL ACADEMY / SENDAI · JAPAN · ASIA</p>
             </div>
             <div className={styles.heroBody}>
-              <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
-              <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-              <p className={styles.intro}>選手が挑戦し、指導者が学び、地域がつながる。<br />RBAは仙台から全国・アジアへ、次のコートをひらきます。</p>
+              <p className={styles.heroEyebrow}>RBA UNITED / DEVELOPMENT BEFORE RESULTS</p>
+              <h1 id="rba-home-title"><span>今のチームのまま、</span><span>世界へ。</span></h1>
+              <p className={styles.intro}>RBAは仙台を拠点とする非営利のバスケットボール育成活動です。全国クリニック、国際交流、指導者教育を通して、子どもたちの成長機会を広げます。</p>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
-                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">サービス・料金を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">クリニック・参加する <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-support" href="#home-supporters">月500円から応援・企業協賛 <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-founder" href="#home-organisation">RBAとは・代表紹介 <span aria-hidden="true">↗</span></a>
               </nav>
             </div>
-            <div className={styles.heroBaseline}>
-              <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
-              <span>SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span>
+            <div className={styles.heroBaseline}><span>Different Teams. Different Countries. One Future.</span></div>
+          </section>
+          <section className={styles.homeQuick} id="home-organisation" aria-labelledby="home-organisation-title">
+            <div className={styles.quickHeading}><p className={styles.quickKicker}>01 / ABOUT RBA</p><h2 id="home-organisation-title">何をしている団体？</h2><p>子どもと指導者が、所属・地域・国を越えて学び続けられる環境をつくります。</p></div>
+            <div className={styles.orgGrid}>
+              {[
+                ["クリニック・キャンプ","全国の育成年代向けの練習・ゲーム・判断を学ぶ機会","/ja/opportunities"],
+                ["RBA UNITED","所属を変えず、個人で国内・国際交流に参加","/ja/united"],
+                ["BACKBONE 3x3","3人制バスケに特化した育成・実践","/ja/opportunities"],
+                ["RBA CONNECT","チーム・団体同士の交流をつなぐ","/ja/connect"],
+                ["RIZEHOPE","育成年代の大会・競技機会","/ja/opportunities"],
+                ["D-HUB","指導者・保護者・選手の継続的な育成教育","/ja/d-hub"],
+                ["MY HOME COURT","活動・学び・参加履歴をつなぐ統合プラットフォーム","/ja/my-homecourt"],
+                ["仙台スクール・GREAM","地域での日常的な育成・クラブ活動","/ja/sendai-school"],
+              ].map(([title,desc,href])=><a key={title} href={href} className={styles.orgCard}><strong>{title}</strong><span>{desc}</span><span aria-hidden="true">→</span></a>)}
             </div>
+            <div className={styles.founderCard}>
+              <Image src="/media/founder/masato-nishio-on-court.webp" alt="コートで指導するRBA代表 西尾優人" width={874} height={860} sizes="(max-width: 650px) 90vw, 240px"/>
+              <div><p className={styles.quickKicker}>FOUNDER / 代表</p><h3>西尾 優人</h3><p>Riot Basketball Academy 創設者・代表。仙台を拠点に選手育成、身体づくり、指導者教育をつなぎ、全国・アジアで育成機会をつくります。</p><a className={styles.quickLink} href="/ja/about#founder">代表紹介・ミッションを読む →</a><a className={styles.quickLink} href="/ja/about/governance">団体概要・会則 →</a></div>
+            </div>
+          </section>
+          <section className={styles.homeQuick} id="home-supporters" aria-labelledby="home-supporters-title">
+            <div className={styles.quickHeading}><p className={styles.quickKicker}>02 / SUPPORT RBA</p><h2 id="home-supporters-title">子どもたちの次の挑戦を支える。</h2><p>個人の応援会員・企業協賛。無理のない方法で、育成機会を一緒に広げませんか。</p></div>
+            <div className={styles.supportGrid}>
+              <article><span>個人 / 応援メンバー</span><strong>月500円</strong><p>活動を継続して応援する入口。</p><a href="/ja/supporters#supporters-500" data-growth-id="home-support-500">月500円プランを見る →</a></article>
+              <article><span>個人 / 育成記事プラン</span><strong>月1,000円</strong><p>育成を深く学びながら活動を応援。</p><a href="/ja/supporters#supporters-1000" data-growth-id="home-support-1000">月1,000円プランを見る →</a></article>
+              <article><span>企業 / 協賛・連携</span><strong>企業パートナー</strong><p>参加機会・安全な運営・国際交流を支援。</p><a href="/ja/partners" data-growth-id="home-support-company">協賛・パートナーを相談 →</a></article>
+            </div><p className={styles.note}>個人会員はnoteの公式プランです。料金・特典・更新条件は申込画面を確認してください。クリニック参加費は別です。</p>
           </section>
 
           <nav className={styles.sectionNavigator} aria-label="このページの目次">
             <span className={styles.indexLabel}>INDEX</span>
-            <a href="#rba-for-you">01　目的から探す</a>
+            <a href="#rba-for-you" data-growth-id="home-primary-role">01　目的から探す</a>
             <a href="#home-programmes">02　現在の活動</a>
-            <a href="#home-partners">03　協賛・パートナー</a>
+            <a href="#home-supporters">03　応援・協賛</a>
             <a href="#home-host">04　地域で開催する</a>
           </nav>
 
@@ -122,7 +142,7 @@ export async function SimpleJapaneseHome() {
                 </a>
               ))}
             </nav>
-            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。<a href="/ja/services" data-growth-id="home-services-from-audience">公式サービス一覧と料金の比較を見る →</a></p>
+            <p className={styles.note}>スクール・クリニックへの参加、指導者の学習、企業協賛は、それぞれ別の手続きです。<a href="/ja/services" data-growth-id="home-revenue-services">公式サービス一覧と料金の比較を見る →</a></p>
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
@@ -131,6 +151,14 @@ export async function SimpleJapaneseHome() {
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
             </div>
             <div className={styles.programmes}>
+              {isProgrammeActive(programmeById["saga-winter-20261228"])&&<article id="saga-winter-20261228">
+                <div className={styles.programmeMeta}><p className={styles.date}>2026.12.28 MON｜9:00〜19:00（3部制）</p><span className={styles.programmeCategory}>12月28日 開催決定</span></div>
+                <h3>佐賀・福岡 WINTER CLINIC</h3><p className={styles.place}>佐賀市内／会場詳細は受付確認後に案内</p><dl><div><dt>対象</dt><dd>小学1年〜中学3年・男女</dd></div><div><dt>費用</dt><dd>4,400円〜12,100円（税込・選手1名）</dd></div></dl>
+                <a href="/ja/saga#entry" data-growth-id="home-saga-winter-entry">12月28日 申込・事前決済へ ↗</a>
+              </article>}
+              <article id="chiba-development-camp-2027">
+                <div className={styles.programmeMeta}><p className={styles.date}>2027.03.27–28</p><span className={styles.programmeCategory}>申込受付</span></div><h3>千葉育成キャンプ｜U12・U15</h3><p className={styles.place}>千葉県神崎町</p><dl><div><dt>対象</dt><dd>国内・海外選手</dd></div><div><dt>費用</dt><dd>2日24,200円／1日14,300円（税込）</dd></div></dl><a href="/ja/events/chiba-development-camp-2027">詳細・申込へ ↗</a>
+              </article>
               <article id="nikaho-elementary-2027">
                 <div className={styles.programmeMeta}>
                   <p className={styles.date}>2027.04.11 SUN｜13:30〜16:30</p>
