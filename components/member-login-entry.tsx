@@ -46,7 +46,7 @@ export async function MemberLoginEntry({ locale, authError, next, source, initia
       <div className="member-login-copy"><p>RBA ID / MY HOME COURT</p><h1>{c.title}</h1></div>
       <div className="member-login-sent" role="status">
         <Mail aria-hidden="true" /><h2>{c.status}</h2><p>{c.message}</p>
-        {locale==="ja"?<p><a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer"><MessageCircle size={17}/>登録再開のお知らせを受け取る</a></p>:null}
+        {locale==="ja"?<p><a className="button button-member" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer"><MessageCircle size={17}/>登録再開のお知らせを受け取る</a></p>:<p><a className="button button-member" href="https://form.jotform.com/263278726958072" target="_blank" rel="noreferrer"><Mail size={17}/>{({en:"Request free registration updates","zh-tw":"免費登記註冊開放通知",ko:"무료 가입 재개 알림 신청",ja:"登録再開のお知らせを受け取る"})[locale]}</a></p>}
         <p><a className="button button-dark" href={`${prefix}/schedule`}>{c.schedule}</a></p>
         {locale==="ja"?<p><a className="button button-outline" href="/ja/my-homecourt/guide">初期設定の使い方を10枚で見る →</a></p>:null}<p><a className="button button-outline" href={paymentOption?paymentEnquiryUrl(paymentOption,locale):`${prefix}/contact`}>{c.contact}</a></p>
       </div>
