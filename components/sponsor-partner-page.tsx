@@ -11,13 +11,13 @@ const c={
   kicker:"CORPORATE PARTNERSHIP / BASKETBALL",
   title:"子どもたちの「次の挑戦」を、企業と一緒につくる。",
   lead:"RBAは、全国のバスケットボールクリニック、キャンプ、指導者教育、国際交流と、MY HOME COURTをつなぐ育成プラットフォームです。企業のご支援を、ロゴ掲出だけでなく、実際の育成機会へ変えていきます。",
-  metrics:[["3,000+","延べ参加者"],["25","国内活動地域"],["4","対応言語"]],
+  metrics:[["4,000+","指導実績（2026年9月・RBA集計）"],["4","公式サイトの対応言語"]],
   section:"WHY RBA",sectionTitle:"広告枠ではなく、バスケットボールの育成環境を支える。",
   values:[["PLAY","プレーする機会","地域や所属だけで挑戦の機会が決まらないよう、外のコートへつなぎます。"],["LEARN","学ぶ機会","選手だけでなく、指導者・保護者にも現代バスケットボールの学びを届けます。"],["PREPARE","身体を準備する","S&C、回復、栄養、怪我予防まで含め、長く競技を続ける土台をつくります。"],["CONNECT","次のコートへ","日本各地とアジアをつなぎ、異なるプレースタイルや価値観に触れる機会をつくります。"]],
   platform:"MY HOME COURT",platformTitle:"イベントで終わらせず、日常の成長へ。",
   platformBody:"練習・試合・大会の予定、カウントダウン、大会準備、参加履歴、Basketball Passport、次の育成機会を一つのHOMEへ。スポンサー企業は個人データにアクセスするのではなく、この育成環境を支えるパートナーとして関わります。",
   categories:[["SPORTS / APPAREL","ボール・ウェア・用具・大会準備"],["HEALTH / MEDICAL","怪我予防・安全・コンディショニング"],["FOOD / NUTRITION","補食・栄養教育・キャンプ"],["TRAVEL / MOBILITY","遠征・移動安全・国内外交流"],["IT / DIGITAL","MY HOME COURT・運営基盤"],["LOCAL BUSINESS","地域クリニック・参加機会"]],
-  pilot:"FIRST PARTNER PILOT",pilotTitle:"まずは90日・5万円からの企画提案。",pilotBody:"企画協賛の参考案です。無条件の提供価格や活動実施を確約するものではありません。対象企画、必要費用、企業名・ロゴの掲出媒体と期間、実施後の報告内容を見積・契約で決め、継続は双方で判断します。月額企業広告とは別の制度です。",
+  pilot:"PROJECT PARTNERSHIP",pilotTitle:"一つの企画から、企業の目的に合わせて。",pilotBody:"対象企画、必要費用、企業名・ロゴの掲出媒体と期間、実施後の報告内容を見積・契約で決め、継続は双方で判断します。月額企業広告とは別の制度です。",
   included:["公式サイトのパートナー掲載","対象企画での社名・ロゴ掲出または連携","SNS・JOURNAL等での活動紹介","実施後の簡易インパクトレポート"],
   safety:"RBAが守ること",safetyItems:["未成年者への直接営業は行いません","健康・体調などの個人データをスポンサーへ提供しません","広告と育成コンテンツを明確に分けます","肖像・コメントの利用は同意を前提とします"],
   cta:"次の育成機会を、一緒につくる。",ctaBody:"企業が大切にしている価値と、RBAの育成活動が重なる場所を先に決めます。まず一つの企画からご相談ください。",primary:"協賛について相談する",secondary:"MY HOME COURTを見る"
@@ -70,7 +70,7 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
  const sponsorEnquiry = locale === "ja" ? "https://form.jotform.com/263089038431054" : mail;
  const externalEnquiry = locale === "ja" ? {target:"_blank" as const,rel:"noopener noreferrer"} : {};
  return <main className="sponsor-page">
-  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={sponsorEnquiry} {...externalEnquiry}>{x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={locale==="ja"?"/ja/work-with-rba":prefix+"/my-homecourt"} data-growth-id={locale==="ja"?"partner-network-business":"partner-homecourt"}>{locale==="ja"?"地域・アジアの共同事業":x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
+  <section className="sponsor-hero section-pad"><div><p className="section-index">{x.kicker}</p><h1>{x.title}</h1><p>{x.lead}</p><div className="sponsor-hero-actions"><a className="button button-orange" href={locale==="ja"?"#sponsor-options":sponsorEnquiry} {...(locale==="ja"?{}:externalEnquiry)}>{locale==="ja"?"料金・申込方法を見る":x.primary}<ArrowRight size={17}/></a><a className="button button-dark" href={locale==="ja"?sponsorEnquiry:prefix+"/my-homecourt"} data-growth-id={locale==="ja"?"partner-network-business":"partner-homecourt"}>{locale==="ja"?"無料で企画協賛を相談":x.secondary}<ArrowUpRight size={17}/></a></div></div><div className="sponsor-ball" aria-hidden="true"><span/><i/><b/></div></section>
   {locale === "ja" && <section className={sponsorOfferStyles.section} id="sponsor-options" aria-labelledby="sponsor-options-title">
     <div className={sponsorOfferStyles.inner}>
       <div className={sponsorOfferStyles.heading}>
@@ -82,15 +82,18 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
         <article className={sponsorOfferStyles.card + " " + sponsorOfferStyles.cardPrimary}>
           <span className={sponsorOfferStyles.plan}>01 / MONTHLY ADVERTISING</span>
           <h3>企業広告パートナー</h3>
-          <p className={sponsorOfferStyles.price}>月額10,000円＋税</p>
-          <p>1社1口、税込11,000円／月。公式サイト内の応援ページでの企業紹介・許諾済みロゴ・リンク、活動レポートへの掲載を基本とする定型プランです。トップページ掲出は個別契約の対象です。掲載開始・更新・解約条件は専用ページをご確認ください。</p>
-          <a className={sponsorOfferStyles.link} href="/ja/support#apply" data-growth-id="sponsor-monthly-plan">企業広告の詳細・申込を見る →</a>
+          <p className={sponsorOfferStyles.price}>月額11,000円（税込）</p>
+          <p>1社1口。公式応援ページに企業名・URL・許諾済みロゴ・紹介文、月次活動レポートに企業名・ロゴを掲載します。トップページ・大会掲出は別契約です。</p>
+          <p>初回11,000円・毎月自動更新。次回請求前の解約で期間末終了。入金・掲載許諾確認後に提供します。</p>
+          <a href="/ja/support/terms" className={sponsorOfferStyles.detail}>掲載・更新・解約条件を確認 →</a>
+          <a className={sponsorOfferStyles.link} href="https://buy.stripe.com/cNibJ35678vy0Il64f7EQ1u?locale=ja" data-growth-id="sponsor-monthly-plan">月11,000円｜Stripe決済へ →</a>
+          <a href="https://form.jotform.com/263243206556051" className={sponsorOfferStyles.detail}>すでに決済済みの企業｜掲載素材を提出 →</a>
         </article>
         <article className={sponsorOfferStyles.card}>
           <span className={sponsorOfferStyles.plan}>02 / PROJECT PARTNERSHIP</span>
           <h3>クリニック・キャンプ協賛</h3>
           <p className={sponsorOfferStyles.price}>企画ごとにご相談</p>
-          <p>会場、備品、指導者、移動、参加費補助など、具体的な活動への協力です。90日パイロット案も含め、金額・期間・企業名掲出・成果報告の条件は個別に協議します。</p>
+          <p>会場、備品、指導者、移動、参加費補助など、具体的な活動への協力です。金額・期間・企業名掲出・成果報告の条件は個別に協議します。</p>
           <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" data-growth-id="sponsor-project-enquiry">無料で協賛相談をする ↗</a>
         </article>
         <article className={sponsorOfferStyles.card}>
@@ -98,9 +101,10 @@ export function SponsorPartnerPage({locale}:{locale:Locale}){
           <h3>全国育成・海外交流連携</h3>
           <p className={sponsorOfferStyles.price}>年間・共同企画</p>
           <p>全国育成ツアー、指導者教育、アジアの育成年代との交流、物品・専門的な知識の提供など。目的・使途・実施報告・費用は個別に設計します。</p>
-          <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href="/ja/national-tour" data-growth-id="sponsor-national-tour">全国育成ツアーの協賛企画 →</a>
+          <a className={sponsorOfferStyles.link + " " + sponsorOfferStyles.linkAlt} href={sponsorEnquiry} data-growth-id="sponsor-national-tour">無料で共同企画を相談 →</a><a href="/ja/national-tour" className={sponsorOfferStyles.detail}>全国育成ツアーの詳細 →</a>
         </article>
       </div>
+      <div className={sponsorOfferStyles.delivery}><h3>お申し込み後の流れ</h3><div><article><strong>月額広告</strong><p>Stripe決済 → 素材・掲載許諾提出 → RBA確認 → 掲載 → 月次報告。入金後3営業日以内を目安に案内し、必要情報確認後、原則14営業日以内に掲載します。</p></article><article><strong>企画協賛・共同事業</strong><p>無料相談 → 目的・使途・見積 → 契約条件に合意 → 請求・実施 → 報告。相談時点では課金しません。</p></article></div><p>通常の請求書・領収書を発行します。適格請求書は発行できません。<a href="/ja/support#accounting">経理資料・掲載実績の確認</a></p></div>
       <p className={sponsorOfferStyles.disclosure}>無料の相談フォーム送信だけでは契約・掲載・請求は確定しません。企業名・ロゴは許諾や掲載条件の確認後に公開します。未成年者の名簿や健康情報はスポンサーへ提供しません。広告効果や税務上の取扱いを保証するものではありません。<a href="/ja/support#accounting">掲載内容・経理資料・利用条件</a>をご確認ください。</p>
     </div>
   </section>}
