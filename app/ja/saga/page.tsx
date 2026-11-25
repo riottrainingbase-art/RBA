@@ -358,6 +358,7 @@ export default function SagaPage() {
               <p>入力した情報は決済・参加受付・安全管理・開催案内のために使用します。</p>
               <button className="button button-dark" type="submit">申込内容を確認してStripe決済へ <ArrowRight size={17}/></button>
             </form>
+            <p style={{marginTop:16}}>オンライン決済に進めない場合のみ、<a href="https://form.jotform.com/263273659493066" target="_blank" rel="noopener noreferrer">代替の参加申込フォーム（個別決済案内）</a>をご利用ください。すでに申込・決済済みの方は再申込しないでください。</p>
             <p style={{marginTop:16}}>お問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a> ／ <a href="https://lin.ee/5l1YG8N">公式LINE</a></p>
           </div>
         </section>
