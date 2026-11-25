@@ -25,3 +25,24 @@ Suggested composition: black 45%, court white 40%, blue 10%, steel gray 5%. This
 
 ## Implementation and review
 Use shared CSS variables --rba-blue, --rba-black, --rba-white, --rba-gray. Maintain responsive legibility and WCAG 2.2 AA, check mobile and all languages; do not change application, fees, or payment endpoints as part of rebranding. Before publication, build and visually verify. Existing documents and products are migrated in future revisions rather than silently modified. Approval of colors does not authorize a logo replacement.
+
+
+## UNITED GLOBAL DEVELOPMENT PROJECT 2027
+Core campaign: **Different Teams. Different Countries. One Future.**
+- UNITED: individual participation in domestic/international development exchanges. No change of home club required; project-specific eligibility applies.
+- BACKBONE: dedicated 3x3 development programme.
+- CONNECT: team-to-team exchange and introductions.
+- RIZEHOPE: tournaments.
+- D-HUB: continuing development and coach education.
+- MY HOME COURT: integrated platform, registration and participation history.
+- RBA is a non-profit-purpose youth development initiative; do not imply a legal entity or charitable tax status not verified.
+- Japanese: 今のチームのまま、世界へ。
+- English: Keep your team. Take on the world.
+- Traditional Chinese: 保留原球隊身分，走向世界。
+- Korean: 지금의 팀 그대로, 세계로.
+
+## Participation and publication
+- Label free interest as nonbinding, not an application, reservation, or payment; official entry requires verified eligibility, guardian consent, current fees, safety and payment terms. Advance payment is the default where approved; payment alone does not guarantee acceptance.
+- Display verified dates, locations, scope, currency, refunds and deadlines from the authoritative programme record. Pending arrangements remain pending; never imply confirmed partner participation.
+- Keep public recruitment separate from sensitive youth data. Use approved imagery, guardian consent, role-restricted records and qualified travel partners where required.
+- For any release: verify all four locales, mobile layout, valid CTA destination, accessibility, current event/price, consent and cancellation disclosure, registration-to-payment reconciliation in a safe test environment, and production status. No live test charges.
