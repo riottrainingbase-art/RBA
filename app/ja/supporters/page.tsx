@@ -33,8 +33,8 @@ export default function SupportersPage() {
               RBAの活動を見守り、必要なときに支えてくださる方のためのご案内です。
             </p>
             <a className={styles.primary} href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-note-join">
-              note公式メンバーシップを見る <span aria-hidden="true">↗</span>
-            </a>
+              月500円・1,000円から応援する <span aria-hidden="true">↗</span>
+            </a><p><a href="#supporters-choose-title" style={{color:"#fff",fontWeight:800}}>2つのプランの違いを見る ↓</a></p>
             <p className={styles.heroNote}>入会・決済は外部サービス「note」で行います。加入前に最新の特典・月額料金・更新条件をご確認ください。</p>
           </div>
         </section>
@@ -50,14 +50,14 @@ export default function SupportersPage() {
                 <p>子どもの成長、出場機会、練習の考え方。まずは無料のRBA JOURNALから知ってください。</p>
                 <Link href="/ja/journal" data-growth-id="supporters-free-journal">無料記事を見る →</Link>
               </article>
-              <article className={styles.plan}>
+              <article id="supporters-500" className={styles.plan} style={{scrollMarginTop:100}}>
                 <span className={styles.planLabel}>02 / 応援メンバー</span>
                 <p className={styles.price}><strong>500</strong>円 <span>/ 月</span></p>
                 <h3>RBAの活動を応援する</h3>
                 <p>育成の機会を継続して支えたい方向け。正式な特典と提供条件はnoteの該当プランをご確認ください。</p>
                 <a href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-500-note">月500円プランを確認 ↗</a>
               </article>
-              <article className={styles.plan}>
+              <article id="supporters-1000" className={styles.plan} style={{scrollMarginTop:100}}>
                 <span className={styles.planLabel}>03 / 育成記事プラン</span>
                 <p className={styles.price}><strong>1,000</strong>円 <span>/ 月</span></p>
                 <h3>育成を継続して学ぶ</h3>
@@ -65,6 +65,7 @@ export default function SupportersPage() {
                 <a href={noteJoinUrl} target="_blank" rel="noopener noreferrer" data-growth-id="supporters-1000-note">月1,000円プランを確認 ↗</a>
               </article>
             </div>
+            <p className={styles.disclaimer}><strong>企業・団体の方へ：</strong>会場費、備品、参加機会、国際交流の支援は個人月額会員とは別の協賛制度です。<Link href="/ja/partners">企業協賛・パートナーの相談 →</Link></p>
             <p className={styles.disclaimer}>価格と特典は変更される場合があります。実際のお申し込み画面に表示される内容を優先してください。月額プランと単品記事、スクール月謝、クリニック参加費は別です。</p>
           </div>
         </section>
