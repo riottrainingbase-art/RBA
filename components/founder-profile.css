@@ -30,3 +30,19 @@
 .founder-contact{background:#10233f}
 .founder-contact:hover{background:#233e62}
 .founder-principles,.founder-principles article+article,.founder-invitation{border-color:#d6cbb9}
+
+/* RBA founder biography — editorial detail in the official blue palette. */
+.founder-profile{--founder-paper:#f6f5f1;--founder-ink:#111211;--founder-gold:#2454d8}
+.founder-profile .founder-contact,.founder-profile .founder-governance-link{background:#2454d8;color:#fff;-webkit-text-fill-color:#fff}
+.founder-profile .founder-contact:hover,.founder-profile .founder-governance-link:hover{background:#193eae}
+.founder-profile a:focus-visible{outline-color:#2454d8}
+.founder-career{max-width:1400px;margin:clamp(36px,6vw,75px) auto 0;padding-top:clamp(24px,4vw,48px);border-top:1px solid #d8d9d5}
+.founder-career h2{font-size:clamp(26px,3vw,40px);line-height:1.4;margin:0 0 18px}
+.founder-career p{font-size:15px;line-height:1.9;color:#535957;max-width:850px}
+.founder-career-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0 32px}
+.founder-career-grid article{min-width:0;background:#fff;padding:clamp(16px,2.4vw,26px);border-left:3px solid #2454d8;overflow-wrap:anywhere}
+.founder-career-grid article span{font-size:11px;color:#2454d8;font-weight:750;letter-spacing:.06em}
+.founder-career h3{font-size:19px;margin:18px 0 10px}
+.founder-expertise{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding-left:20px;gap:8px 24px;font-size:14px;line-height:1.7}
+.founder-career small{display:block;color:#535957;font-size:12px;line-height:1.7;margin-top:24px}
+@media(max-width:760px){.founder-career-grid,.founder-expertise{grid-template-columns:minmax(0,1fr)}}
