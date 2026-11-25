@@ -205,6 +205,7 @@ export const programmes: readonly Programme[] = [
   },
   {
     id: "kobe",
+    registrationClosed: true,
     startDate: "2026-11-20",
     endDate: "2026-11-23",
     date: ["21–23 NOV 2026 · joint practice 21–22; morning session 23", "2026.11.21〜23／21・22日は青龍ラーテルズ合同練習、23日は午前枠", "2026.11.21–23／21–22日與當地球隊聯合訓練、23日上午時段", "2026.11.21–23 / 21–22일 지역팀 합동훈련, 23일 오전"],

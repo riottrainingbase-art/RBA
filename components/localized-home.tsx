@@ -1,3 +1,4 @@
+import { RizehopeTeamEnquiry } from "./rizehope-team-enquiry";
 import { isTaipeiClinicUpcoming, taipeiClinicCopy, taipeiClinicPath } from "./taipei-clinic-data";
 import { SendaiCommunity } from "./sendai-community";
 import { FounderProfile } from "./founder-profile";
@@ -106,6 +107,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
       </div>
     </section>:null}
 
+    {locale === "en" && <RizehopeTeamEnquiry />}
     <PaidProgrammes locale={locale}/>
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">

@@ -25,7 +25,7 @@ export async function POST(request:Request){
   try{
     const reply=await fetch("https://api.stripe.com/v1/account",{headers:{Authorization:"Bearer "+secret},cache:"no-store"});
     const account=reply.ok?await reply.json():{};
-    if(account.id!=="acct_1UGdxZRXDnnSs6XN") return fail("決済アカウント確認中です。RBAへお問い合わせください。",503);
+    if(typeof account !== "object" || account === null || !("id" in account) || account.id!=="acct_1UGdxZRXDnnSs6XN") return fail("決済アカウント確認中です。RBAへお問い合わせください。",503);
     const stripe=new Stripe(secret);
     const hash=await crypto.subtle.digest("SHA-256",new TextEncoder().encode([email,guardian,player,grade,choice].join("|").toLowerCase()));
     const ref="saga-winter-"+Array.from(new Uint8Array(hash)).map(x=>x.toString(16).padStart(2,"0")).join("").slice(0,32);
