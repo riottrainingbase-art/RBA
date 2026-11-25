@@ -353,10 +353,15 @@ export default function SagaPage() {
               <label>参加プラン（必須）<select name="plan" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{Object.entries(sagaWinterOffers).map(([key,p])=><option value={key} key={key}>{p.label}｜{p.amount.toLocaleString("ja-JP")}円</option>)}</select></label>
               {([["guardian","保護者氏名","text"],["email","保護者メールアドレス","email"],["phone","緊急連絡先（保護者電話番号）","tel"],["player","参加選手氏名","text"]] as const).map(([name,label,type])=><label key={name}>{label}（必須）<input name={name} type={type} required maxLength={name==="email"?200:name==="phone"?30:100} style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}/></label>)}
               <label>学年（必須）<select name="grade" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{sagaWinterGrades.map(g=><option key={g}>{g}</option>)}</select></label>
+              <div style={{padding:16,border:"1px solid #2454D8",background:"#F6F5F1",color:"#111211"}}>
+                <label htmlFor="saga-coupon" style={{display:"block",fontWeight:800,color:"#111211"}}>クーポンコード（任意）</label>
+                <input id="saga-coupon" name="coupon" type="text" maxLength={64} pattern="[A-Za-z0-9\x2D]{1,64}" autoComplete="off" autoCapitalize="characters" spellCheck={false} placeholder="お持ちのコードを入力" aria-describedby="saga-coupon-help" style={{display:"block",width:"100%",minHeight:48,padding:10,marginTop:8,border:"1px solid #6B706F",background:"#fff",color:"#111211"}}/>
+                <p id="saga-coupon-help" style={{margin:"8px 0 0",fontSize:13,color:"#111211"}}>RBAから配布された佐賀12月28日対象のクーポンをお持ちの場合のみ入力してください。適用できる場合は、Stripeの決済画面で割引後の金額を確認できます。コードがない場合は空欄で進めます。</p>
+              </div>
               <label><input type="checkbox" name="consent" value="yes" required/> 保護者として参加・緊急連絡に同意します。</label>
               <label><input type="checkbox" name="terms" value="yes" required/> 料金・日程・キャンセル条件・<a href="/ja/policies" target="_blank" rel="noreferrer">参加規約</a>を確認し、同意します。</label>
               <p>入力した情報は決済・参加受付・安全管理・開催案内のために使用します。</p>
-              <button className="button button-dark" type="submit">申込内容を確認してStripe決済へ <ArrowRight size={17}/></button>
+              <button className="button button-dark" type="submit">申込内容・割引後の金額を確認してStripe決済へ <ArrowRight size={17}/></button>
             </form>
             <p style={{marginTop:16}}>オンライン決済に進めない場合のみ、<a href="https://form.jotform.com/263273659493066" target="_blank" rel="noopener noreferrer">代替の参加申込フォーム（個別決済案内）</a>をご利用ください。すでに申込・決済済みの方は再申込しないでください。</p>
             <p style={{marginTop:16}}>お問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a> ／ <a href="https://lin.ee/5l1YG8N">公式LINE</a></p>
