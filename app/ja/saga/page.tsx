@@ -212,7 +212,9 @@ const faq = [
   ],
 ];
 
+export const dynamic = "force-dynamic";
 export default function SagaPage() {
+  const earlybirdOpen = Date.now() < Date.parse("2026-12-21T00:00:00+09:00");
   const faqJson = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -340,9 +342,9 @@ export default function SagaPage() {
             <article className="homecourt-plan-card"><CalendarDays /><span>DAY 2 / 12.29 TUE</span><h3>佐賀市内・会場調整中</h3><p>開催時間・会場は確定後に案内します。29日単日・2日間プランは現時点で決済を受け付けません。</p><p>29日の募集・料金は確定後にご案内します。</p><a className="button button-light" href="https://lin.ee/5l1YG8N">29日の参加希望・最新情報（公式LINE）</a></article>
           </div>
           <h3 style={{marginTop:32}}>28日 参加プラン（税込・選手1名）</h3>
-          <p><strong>早割：12月20日（日）23:59まで、全プラン1,000円引き。</strong> お申込時にクーポンコード <code>SAGA1000</code> を入力してください。</p>
+          {earlybirdOpen ? <p><strong>早割：12月20日（日）23:59まで、全プラン1,000円引き。</strong> お申込時にクーポンコード <code>SAGA1000</code> を入力してください。</p> : <p>早割受付は終了しました。通常料金で受付中です。</p>}
           <div className="homecourt-plan-grid">
-            {Object.entries(sagaWinterOffers).map(([key,offer])=><article className="homecourt-plan-card" key={key}><h3>{offer.label}</h3><strong>¥{offer.amount.toLocaleString("ja-JP")}</strong><p>早割 ¥{(offer.amount-1000).toLocaleString("ja-JP")}（12/20まで）</p></article>)}
+            {Object.entries(sagaWinterOffers).map(([key,offer])=><article className="homecourt-plan-card" key={key}><h3>{offer.label}</h3><strong>¥{offer.amount.toLocaleString("ja-JP")}</strong>{earlybirdOpen && <p>早割 ¥{(offer.amount-1000).toLocaleString("ja-JP")}（12/20まで）</p>}</article>)}
           </div>
           <p>単部参加歓迎。全3部参加は必須ではありません。休憩・水分補給を確保し、体調に応じて参加量を調整します。食事・交通・宿泊は参加費に含みません。</p>
           <div className="homecourt-private-note"><ShieldCheck/><div><strong>持ち物・安全・送迎</strong><p>室内シューズ、ボール、飲料、タオル、着替え、昼食（必要な方）。保護者による送迎・休憩中の管理をお願いします。体調不良や怪我がある場合は無理をせず、事前に主催者へ相談してください。見学・駐車の詳細は個別案内します。</p></div></div>
@@ -354,11 +356,11 @@ export default function SagaPage() {
               <label>参加プラン（必須）<select name="plan" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{Object.entries(sagaWinterOffers).map(([key,p])=><option value={key} key={key}>{p.label}｜{p.amount.toLocaleString("ja-JP")}円</option>)}</select></label>
               {([["guardian","保護者氏名","text"],["email","保護者メールアドレス","email"],["phone","緊急連絡先（保護者電話番号）","tel"],["player","参加選手氏名","text"]] as const).map(([name,label,type])=><label key={name}>{label}（必須）<input name={name} type={type} required maxLength={name==="email"?200:name==="phone"?30:100} style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}/></label>)}
               <label>学年（必須）<select name="grade" required defaultValue="" style={{display:"block",width:"100%",padding:10,border:"1px solid #888"}}><option value="" disabled>選択してください</option>{sagaWinterGrades.map(g=><option key={g}>{g}</option>)}</select></label>
-              <div style={{padding:16,border:"1px solid #2454D8",background:"#F6F5F1",color:"#111211"}}>
+              {earlybirdOpen && <div style={{padding:16,border:"1px solid #2454D8",background:"#F6F5F1",color:"#111211"}}>
                 <label htmlFor="saga-coupon" style={{display:"block",fontWeight:800,color:"#111211"}}>早割クーポンコード（任意）</label>
                 <input id="saga-coupon" name="coupon" type="text" maxLength={64}  autoComplete="off" autoCapitalize="characters" spellCheck={false} placeholder="お持ちのコードを入力" aria-describedby="saga-coupon-help" style={{display:"block",width:"100%",minHeight:48,padding:10,marginTop:8,border:"1px solid #6B706F",background:"#fff",color:"#111211"}}/>
                 <p id="saga-coupon-help" style={{margin:"8px 0 0",fontSize:13,color:"#111211"}}>12月20日（日）23:59（日本時間）までの早期申込は、コード「SAGA1000」で全参加プランから1,000円引き。Stripeの決済画面で割引後の金額をご確認ください。期限後は通常料金でお申し込みいただけます。</p>
-              </div>
+              </div>}
               <label><input type="checkbox" name="consent" value="yes" required/> 保護者として参加・緊急連絡に同意します。</label>
               <label><input type="checkbox" name="terms" value="yes" required/> 料金・日程・キャンセル条件・<a href="/ja/policies" target="_blank" rel="noreferrer">参加規約</a>を確認し、同意します。</label>
               <p>入力した情報は決済・参加受付・安全管理・開催案内のために使用します。</p>
