@@ -8,14 +8,14 @@ import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
 
 const learning = [
-  { id:"guide", name:"U12指導教材", price:"3,300円", term:"税込・買い切り", copy:"育成年代の基礎と練習設計を体系的に学ぶ。", flow:"RBA ID → 内容・条件確認 → 購入", href:"/ja/materials/u12-fundamentals", action:"教材の内容・購入へ" },
-  { id:"dhub", name:"D-HUB COACH LAB", price:"3,300円", term:"税込／月", copy:"指導者のための継続学習と現場実践。", flow:"内容・条件確認 → Square申込・決済", href:"/ja/d-hub/coaches", action:"指導者プランの申込へ" },
-  { id:"plus", name:"MY HOME COURT PLUS", price:"3,300円", term:"税込／月", copy:"選手・保護者・指導者の育成ライブラリと記録。", flow:"内容確認 → RBA ID → Stripe決済", href:"/ja/homecourt-plus", action:"PLUSの内容・登録へ" },
+  { id:"guide", name:"U12指導教材", price:"3,300円", term:"税込・買い切り", copy:"育成年代の基礎と練習設計を体系的に学ぶ。", flow:"RBA IDでログインして購入。購入済みなら教材が開きます。", href:"/ja/materials/u12-fundamentals", action:"3,300円で教材を購入・閲覧", detailHref:"/ja/materials/u12-fundamentals#contents", detailLabel:"教材の詳細" },
+  { id:"dhub", name:"D-HUB COACH LAB", price:"3,300円", term:"税込／月", copy:"指導者のための継続学習と現場実践。", flow:"申込フォーム送信後、Square決済をご案内。既存会員は追加決済不要。", href:"https://form.jotform.com/262498803883068", action:"月3,300円｜入会申込", detailHref:"/ja/d-hub/coaches", detailLabel:"内容・条件を確認" },
+  { id:"plus", name:"MY HOME COURT PLUS", price:"3,300円", term:"税込／月", copy:"選手・保護者・指導者の育成ライブラリと記録。", flow:"RBA IDでログイン → 会員画面で登録・Stripe決済。", href:"/ja/my-homecourt/app/plus", action:"月3,300円｜PLUS登録へ", detailHref:"/ja/homecourt-plus", detailLabel:"無料版との違い・契約条件" },
 ] as const;
 
 const support = [
-  { id:"individual", name:"個人の応援メンバー", price:"500円 / 1,000円", term:"月額・note", copy:"活動の応援、または育成記事を読むプラン。", flow:"プラン確認 → noteで入会・決済", href:"/ja/supporters", action:"応援プランを選ぶ" },
-  { id:"business", name:"企業広告パートナー", price:"11,000円", term:"税込／月・1口", copy:"公式応援ページ・月次活動レポートへの広告掲載。素材・許諾確認後に掲載します。", flow:"契約条件確認 → Stripe決済 → 素材提出", href:"/ja/support#apply", action:"企業広告の条件・申込へ" },
+  { id:"individual", name:"個人の応援メンバー", price:"500円 / 1,000円", term:"月額・note", copy:"活動の応援、または育成記事を読むプラン。", flow:"noteでプランを選び、入会・決済・解約を管理。", href:"https://note.com/rba_official/membership/join", action:"noteで入会・決済へ", detailHref:"/ja/supporters", detailLabel:"500円・1,000円の違い" },
+  { id:"business", name:"企業広告パートナー", price:"11,000円", term:"税込／月・1口", copy:"公式応援ページ・月次活動レポートへの広告掲載。素材・許諾確認後に掲載します。", flow:"初回11,000円・毎月自動更新。次回請求前の解約で期間末終了。", href:"https://buy.stripe.com/cNibJ35678vy0Il64f7EQ1u?locale=ja", action:"月11,000円｜Stripe決済へ", detailHref:"/ja/support/terms", detailLabel:"広告掲載・契約・解約条件" },
 ] as const;
 
 const otherLinks = [
@@ -31,6 +31,7 @@ function OfferCard({offer}:{offer:(typeof learning)[number]|(typeof support)[num
     <p className={styles.price}>{offer.price}<small>{offer.term}</small></p>
     <p>{offer.copy}</p>
     <p className={styles.flow}>{offer.flow}</p>
+    <a className={styles.detailLink} href={offer.detailHref}>{offer.detailLabel} →</a>
     <a className={styles.primary} href={offer.href} data-growth-id={"home-simple-"+offer.id}>{offer.action}<span aria-hidden="true">→</span></a>
   </article>;
 }
@@ -52,9 +53,9 @@ export async function SimpleJapaneseHome() {
           <h1 id="rba-home-title">今のチームのまま、<br/>世界へ。</h1>
           <p className={styles.lead}>全国クリニック、国際交流、指導者教育。子どもたちが所属や地域を越えて学べる環境をつくる、非営利の育成活動です。</p>
           <nav className={styles.heroActions} aria-label="目的を選ぶ">
-            <a className={styles.primary} href="#home-programmes" data-growth-id="home-primary-events">参加する<span aria-hidden="true">→</span></a>
-            <a className={styles.secondary} href="#home-learning" data-growth-id="home-primary-learning">学ぶ<span aria-hidden="true">→</span></a>
-            <a className={styles.secondary} href="#home-supporters" data-growth-id="home-primary-support">支える<span aria-hidden="true">→</span></a>
+            <a className={styles.primary} href="#home-programmes" data-growth-id="home-primary-events">参加申込<span aria-hidden="true">→</span></a>
+            <a className={styles.secondary} href="#home-learning" data-growth-id="home-primary-learning">教材・入会<span aria-hidden="true">→</span></a>
+            <a className={styles.secondary} href="#home-supporters" data-growth-id="home-primary-support">応援・協賛<span aria-hidden="true">→</span></a>
           </nav>
           <div className={styles.quickLinks}>
             <a href="#home-organisation" data-growth-id="home-founder-anchor">代表紹介</a>
@@ -90,9 +91,9 @@ export async function SimpleJapaneseHome() {
               <p>{tr(p.place,"ja")}<br/>{tr(p.audience,"ja")}</p>
               <p className={styles.eventFee}>{tr(p.price,"ja")}</p>
               <p className={styles.flow}>保護者が日程・条件確認 → 申込 → 案内に従って決済</p>
-              <a className={styles.primary} href={p.japaneseInfoPath || p.applicationUrl} data-growth-id={"home-programme-"+p.id}>詳細・申込条件を見る<span aria-hidden="true">→</span></a>
+              <a className={styles.primary} href={p.id==="kagoshima-nov29"?"/ja/events/kagoshima-clinic-2026-11-29#entry":p.japaneseInfoPath || p.applicationUrl} data-growth-id={"home-programme-"+p.id}>参加申込・決済へ<span aria-hidden="true">→</span></a>
             </article>)}
-            {chibaUpcoming&&<article className={styles.card}><p className={styles.label}>2027.03.27–28</p><h3>千葉育成キャンプ｜U12・U15</h3><p>千葉県神崎町／国内・海外選手</p><p className={styles.eventFee}>2日24,200円／1日14,300円（税込）</p><p className={styles.flow}>保護者が条件確認 → 申込 → Stripe決済</p><a className={styles.primary} href="/ja/events/chiba-development-camp-2027" data-growth-id="home-programme-chiba">詳細・申込条件を見る<span aria-hidden="true">→</span></a></article>}
+            {chibaUpcoming&&<article className={styles.card}><p className={styles.label}>2027.03.27–28</p><h3>千葉育成キャンプ｜U12・U15</h3><p>千葉県神崎町／国内・海外選手</p><p className={styles.eventFee}>2日24,200円／1日14,300円（税込）</p><p className={styles.flow}>保護者が条件確認 → 申込 → Stripe決済</p><a className={styles.primary} href="/ja/events/chiba-development-camp-2027#registration" data-growth-id="home-programme-chiba">保護者申込へ<span aria-hidden="true">→</span></a></article>}
           </div>
           <div className={styles.linkRow}>
             <a href="/ja/united" data-growth-id="home-united">RBA UNITED｜国内・国際交流 →</a>
@@ -112,7 +113,7 @@ export async function SimpleJapaneseHome() {
         <section className={styles.section} id="home-supporters" aria-labelledby="home-supporters-title">
           <header className={styles.heading}><div><p className={styles.label}>03 / SUPPORT</p><h2 id="home-supporters-title">支える。</h2></div><a className={styles.textLink} href="/ja/partners" data-growth-id="home-support-company">企画協賛・法人連携の相談 →</a></header>
           <div className={styles.gridTwo}>{support.map(offer=><OfferCard key={offer.id} offer={offer}/>)}</div>
-          <p className={styles.note}>応援・広告・イベント参加は別契約。既存契約への追加決済は不要です。</p>
+          <p className={styles.note}>応援・広告・イベント参加は別契約です。<a href="/ja/partners">企業の協賛・共同企画の詳細</a> ／ <a href="https://form.jotform.com/263243206556051">企業広告の決済済み・素材提出</a>。既存契約への追加決済は不要です。</p>
         </section>
 
         <div id="home-partners" className={styles.sponsors} aria-label="RBA協賛・パートナー"><CorporateSupportStrip locale="ja"/></div>
