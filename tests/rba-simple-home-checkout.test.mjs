@@ -23,7 +23,13 @@ test("only established service pages and explicitly verified advertising checkou
 });
 test("event dates and unresolved projects are guarded",()=>{
   assert.match(home,/Asia\/Tokyo/);
-  assert.match(home,/!p.registrationClosed && p.startDate>today && isProgrammeActive\(p\)/);
+  assert.match(home,/programmes\s*\.filter\(p => isProgrammeActive\(p\)\)\s*\.filter\(p => p.startDate > today\)/);
+  assert.match(home,/const active = available.filter\(p => p.id === "kagoshima-nov29"\)/);
+  assert.match(home,/const okinawa = available.find\(p => p.id === "okinawa-december-camp"\)/);
+  const pending=home.split("{okinawa &&")[1].split("</article>")[0];
+  assert.match(pending,/\/ja\/events\/okinawa-international-camp-2026#family-guide/);
+  assert.match(pending,/このページからは決済を案内しません/);
+  assert.doesNotMatch(pending,/buy\.stripe|checkout|applicationUrl|参加申込・決済へ/);
   assert.doesNotMatch(home,/chiba-development-camp-2027|nikaho-clinic-2027|saga-winter-20261228/);
   assert.match(home,/佐賀の年末開催予定/);
   assert.match(home,/href="\/ja\/business"/);
