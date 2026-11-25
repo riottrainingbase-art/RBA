@@ -3,6 +3,8 @@ import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { CheckCircle2, ChevronRight, LoaderCircle, RotateCcw, Sparkles, Target } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import type { Locale } from "./site-frame";
+import { weeklyFocus } from "@/lib/homecourt-weekly-focus";
+import styles from "./homecourt-weekly-focus.module.css";
 
 type Weekly={
   id:string;
@@ -62,6 +64,7 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
   const rc=roleCopy[locale][safeRole];
   const db=useMemo(()=>createClient(),[]);
   const week=mondayKey();
+  const focus=weeklyFocus(safeRole,week);
   const [entry,setEntry]=useState<Weekly|null>(null);
   const [recent,setRecent]=useState<Weekly[]>([]);
   const [loading,setLoading]=useState(true);
@@ -121,6 +124,24 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
   return <section className="member-section">
     <div className="member-section-head"><div><p>{c.eyebrow}</p><h2>{c.title}</h2><p>{c.lead}</p></div><Target/></div>
     <form className="member-inline-form" onSubmit={e=>void submit(e)}>
+      {locale==="ja"?<section className={styles.focus}>
+        <p>THIS WEEK / RBAからの実践テーマ</p>
+        <h3>{focus.theme}</h3>
+        <p>{focus.action}</p>
+        <p>振り返りの目印：{focus.evidence}</p>
+        <div className="member-attendance">
+          <a href={`/ja/my-homecourt/app/learn/${focus.slug}`}>関連ガイドを読む <ChevronRight/></a>
+          <button type="button" disabled={busy||entry?.status==="completed"} onClick={e=>{
+            const form=e.currentTarget.closest("form");
+            if(!form)return;
+            for(const name of ["theme","action","evidence"] as const){
+              const field=form.elements.namedItem(name);
+              if(field instanceof HTMLTextAreaElement&&!field.value.trim())field.value=focus[name];
+            }
+          }}>空欄にテーマを設定</button>
+        </div>
+        <small>週ごとにテーマが切り替わります。すでに入力した内容は保持されます。</small>
+      </section>:null}
       <label>{rc.theme}<textarea name="theme" rows={2} maxLength={500} defaultValue={entry?.theme||""} placeholder={rc.prompt} required/></label>
       <label>{rc.action}<textarea name="action" rows={3} maxLength={1200} defaultValue={entry?.action||""} required/></label>
       <label>{rc.evidence}<textarea name="evidence" rows={2} maxLength={1200} defaultValue={entry?.evidence||""}/></label>
