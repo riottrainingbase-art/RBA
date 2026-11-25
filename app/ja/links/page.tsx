@@ -48,6 +48,7 @@ const featured = [
 ] as const;
 
 const more = [
+  {title: "東北の小6へ｜RBA UNITED × RIZEHOPE 2027 無料希望登録",href:"/ja/united/rizehope-2027",id:"rizehope-u12-invite"},
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},

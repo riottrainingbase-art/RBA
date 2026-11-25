@@ -41,6 +41,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap>{
     ...localized.map(path=>({path,lastModified:null as string|null})),
     ...legacy.map(path=>({path,lastModified:null as string|null})),
     ...japanExperiencePages.map(path=>({path,lastModified:"2026-11-06T00:00:00Z"})),
+    {path:"/ja/united/rizehope-2027",lastModified:"2026-11-21T00:00:00Z"},
     ...taiwanPages.map(path=>({path,lastModified:"2026-10-13T00:00:00Z"})),
     ...governancePages.map(path=>({path,lastModified:"2026-11-16T00:00:00Z"})),
     ...journalPathPages.map(path=>({path,lastModified:"2026-09-27T00:00:00Z"})),
