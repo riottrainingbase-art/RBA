@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { SendaiCommunity } from "./sendai-community";
@@ -112,7 +113,7 @@ export async function SimpleJapaneseHome() {
         </section>
 
         <section className={styles.section} id="home-learning" aria-labelledby="home-learning-title">
-          <header className={styles.heading}><div><p className={styles.label}>02 / LEARN</p><h2 id="home-learning-title">学ぶ。</h2></div><a href="/ja/journal" className={styles.textLink} data-growth-id="home-free-journal">無料の育成記事 →</a></header>
+          <header className={styles.heading}><div><p className={styles.label}>02 / LEARN</p><h2 id="home-learning-title">学ぶ。</h2></div><Link href="/ja/journal" className={styles.textLink} data-growth-id="home-free-journal">無料の育成記事 →</Link></header>
           <div className={styles.grid}>{learning.map(offer=><OfferCard key={offer.id} offer={offer}/>)}</div>
           <div className={styles.linkRow}><a href="https://form.jotform.com/262542128767059" data-growth-id="home-free-u12">無料U12指導セルフチェック →</a><a href="/ja/services" data-growth-id="home-revenue-services">サービス・料金を比較 →</a></div>
           <p className={styles.note}>月額と買い切りは別契約です。更新・解約・提供内容は各サービスの正式条件を確認してください。すでに決済済みの方は再購入せず、上部のアクセス相談へ。</p>
