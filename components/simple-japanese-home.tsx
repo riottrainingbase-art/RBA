@@ -89,6 +89,7 @@ export async function SimpleJapaneseHome() {
             <p>今の所属を変える必要はありません。国内外の大会や交流に企画ごとに参加し、そこで得た経験を日常のコートに持ち帰る。それがRBA UNITEDです。</p>
             <div className={styles.unitedLinks}>
               <a href="/ja/my-homecourt" data-growth-id="home-united-homecourt">MY HOME COURT（無料登録） →</a>
+              <a href="/ja/united#united-asia" data-growth-id="home-united-asia">RBA UNITED ASIA 2027｜台湾・マレーシア・フィリピンの構想 →</a>
             </div>
           </section>
 
