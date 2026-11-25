@@ -10,9 +10,13 @@ test("three distinct first-screen destinations",()=>{
   assert.deepEqual(links,["home-programmes","home-learning","home-supporters"]);
   for(const id of links)assert.ok(home.includes('id="'+id+'"'));
 });
-test("only established service pages, no direct or obsolete checkout",()=>{
-  for(const path of ["/ja/materials/u12-fundamentals","/ja/d-hub/coaches","/ja/homecourt-plus","/ja/supporters","/ja/support#apply","/ja/opportunities"])assert.ok(home.includes(path));
-  assert.doesNotMatch(home,/buy\.stripe\.com|\/api\/commerce\/checkout|\/ja\/24h|\/ja\/learning|\/ja\/store|torstenRegistrationUrl/);
+test("only established service pages and explicitly verified advertising checkout",()=>{
+  for(const path of ["/ja/materials/u12-fundamentals","/ja/d-hub/coaches","/ja/homecourt-plus","/ja/supporters","/ja/support/terms","/ja/opportunities"])assert.ok(home.includes(path));
+  assert.doesNotMatch(home,/\/api\/commerce\/checkout|\/ja\/24h|\/ja\/learning|\/ja\/store|torstenRegistrationUrl/);
+  assert.deepEqual([...home.matchAll(/https:\/\/buy\.stripe\.com\/[^"]+/g)].map(m=>m[0]),["https://buy.stripe.com/cNibJ35678vy0Il64f7EQ1u?locale=ja"]);
+  assert.match(home,/https:\/\/form\.jotform\.com\/262498803883068/);
+  assert.match(home,/\/ja\/my-homecourt\/app\/plus/);
+  assert.match(home,/note\.com\/rba_official\/membership\/join/);
   assert.match(home,/263243557140049/);
   assert.match(home,/再購入せず/);
   assert.match(home,/無料希望登録や相談は参加確定・決済ではありません/);
@@ -39,4 +43,19 @@ test("founder is prominent without replacing the three primary actions",()=>{
   const profile=read("components/founder-profile.tsx");
   assert.match(profile,/現行の資格登録・更新状況/);
   assert.match(profile,/RBA International Profile 2026/);
+});
+
+test("sponsor checkout and fulfilment remain separate from enquiry",()=>{
+  const partner=read("components/sponsor-partner-page.tsx");
+  const support=read("app/ja/support/page.tsx");
+  for(const page of [partner,support]){
+    assert.match(page,/cNibJ35678vy0Il64f7EQ1u/);
+    assert.match(page,/263243206556051/);
+    assert.match(page,/毎月自動更新/);
+    assert.match(page,/\/ja\/support\/terms/);
+  }
+  assert.match(partner,/263089038431054/);
+  assert.match(partner,/相談時点では課金しません/);
+  assert.match(partner,/原則14営業日以内/);
+  assert.match(support,/再度お支払い不要/);
 });
