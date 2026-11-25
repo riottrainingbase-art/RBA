@@ -145,7 +145,7 @@ export async function SimpleJapaneseHome() {
                 <article id="saga-winter-20261228">
                   <div className={styles.programmeMeta}><p className={styles.date}>12月28日（月）9:00〜19:00・3部制</p><span className={styles.programmeCategory}>正式申込受付中</span></div>
                   <h3>佐賀・福岡 WINTER CLINIC</h3>
-                  <p className={styles.place}>佐賀市内（会場の詳細は受付確認後にご案内）</p>
+                  <p className={styles.place}>佐賀市内（会場確保済み・入金確認後に個別案内）</p>
                   <dl><div><dt>対象</dt><dd>小学1年〜中学3年・男女</dd></div><div><dt>費用</dt><dd>4,400円〜12,100円（税込・選手1名）</dd></div></dl>
                   {Date.now() < Date.parse("2026-12-21T00:00:00+09:00") && <p>12月20日（日）23:59までの早割で1,000円引き</p>}
                   <a href="/ja/saga#entry" data-growth-id="home-saga-winter-entry">12月28日の参加を申し込む ↗</a>
