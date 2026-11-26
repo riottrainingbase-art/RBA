@@ -17,11 +17,13 @@ export function UnitedParticipationGuide({locale, now=new Date()}:{locale:Locale
   const c=copy[locale];
   const app=`${localePath(locale,"my-homecourt")}/app`;
   const showKobe=now < new Date("2027-01-05T00:00:00+09:00");
+  const reflectionNote={ja:"",en:"On the member home, use Reflect on today and download your note. It is not automatically saved to your account.","zh-tw":"在會員首頁開啟今天的回顧並下載筆記。筆記不會自動儲存至帳戶。",ko:"회원 홈에서 오늘의 돌아보기를 열고 메모를 다운로드하세요. 계정에 자동 저장되지 않습니다."}[locale];
   return <section id="united-participation" className="homecourt-product-preview section-pad">
     <div className="section-head"><div><p className="section-index">UNITED / HOW TO JOIN</p><h2>{c.title}</h2></div><p>{c.intro}</p></div>
     {showKobe?<article className="homecourt-plan-card"><span>{c.upcoming}</span><h3>{c.kobe}</h3><p>{c.kobeDetail}</p><a className="button button-dark" href="/ja/events/kobe-boys-u14-exchange-2027" hrefLang="ja">{c.details}<ArrowRight/></a>{locale!=="ja"?<p>{c.lang}</p>:null}</article>:null}
     <div className="homecourt-preview-grid">{c.steps.map((step,index)=><article key={step}><CheckCircle2/><span>0{index+1}</span><p>{step}</p></article>)}</div>
     <p className="registration-note">{c.note}</p>
-    <div className="homecourt-launch-actions"><a className="button button-light" href={localePath(locale,"contact")}>{c.ask}<ArrowRight/></a><a className="button button-dark" href={`${app}/calendar`}><CalendarDays/>{c.prepare}<ArrowRight/></a><a className="button button-dark" href={locale==="ja"?`${app}/start`:app}>{c.reflect}<ArrowRight/></a><a className="button button-light" href={`${app}/report`}>{c.report}<ArrowRight/></a></div>
+    <div className="homecourt-launch-actions"><a className="button button-light" href={localePath(locale,"contact")}>{c.ask}<ArrowRight/></a><a className="button button-dark" href={`${app}/calendar`}><CalendarDays/>{c.prepare}<ArrowRight/></a><a className="button button-dark" href={locale==="ja"?`${app}/start`:`${app}#member-reflection`}>{c.reflect}<ArrowRight/></a><a className="button button-light" href={`${app}/report`}>{c.report}<ArrowRight/></a></div>
+    {reflectionNote?<p className="registration-note">{reflectionNote}</p>:null}
   </section>;
 }
