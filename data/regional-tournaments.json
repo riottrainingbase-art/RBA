@@ -1,0 +1,52 @@
+[
+  {
+    "region": "宮城県",
+    "city": "仙台市泉区",
+    "title": "3×3バスケットボール大会 in 泉",
+    "start": "2026-12-06",
+    "end": "2026-12-06",
+    "dates": "12月6日",
+    "venue": "泉体育館",
+    "source": "https://www.spf-sendai.jp/sports_event/"
+  },
+  {
+    "region": "宮城県",
+    "city": "仙台市泉区",
+    "title": "ミニバスケットボール新人大会",
+    "start": "2027-01-09",
+    "end": "2027-01-11",
+    "dates": "1月9日〜11日",
+    "venue": "泉海洋センター",
+    "source": "https://www.spf-sendai.jp/sports_event/"
+  },
+  {
+    "region": "宮城県",
+    "city": "宮城郡",
+    "title": "第46回東北ミニバスケットボール交歓大会",
+    "start": "2027-02-20",
+    "end": "2027-02-21",
+    "dates": "2月20日〜21日",
+    "venue": "宮城郡",
+    "source": "https://u12.japanbasketball.jp/schedule2026"
+  },
+  {
+    "region": "宮城県",
+    "city": "仙台市",
+    "title": "仙台市中学校春季大会（バスケットボール）",
+    "start": "2027-02-27",
+    "end": "2027-03-20",
+    "dates": "2月27日・28日、3月20日",
+    "venue": "市内中学校・仙台市体育館（事業計画）",
+    "source": "https://sendai-ctr.com/uploads/about/uploads/r08_sendaishi_kyousai_keikaku.pdf"
+  },
+  {
+    "region": "香川県",
+    "city": "丸亀市",
+    "title": "第48回四国ブロックU12バスケットボール大会",
+    "start": "2027-02-27",
+    "end": "2027-02-28",
+    "dates": "2月27日〜28日",
+    "venue": "丸亀市",
+    "source": "https://u12.japanbasketball.jp/schedule2026"
+  }
+]
