@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { JapanAcademicCalendar } from "./japan-academic-calendar";
 import Link from "next/link";
 import tournaments from "@/data/regional-tournaments.json";
 import { todayJst } from "@/lib/homecourt-growth";
@@ -22,6 +23,7 @@ export function RegionalTournaments({ region, settingsHref }: { region: string |
   return <section className="member-section" aria-label="地域の大会と育成機会">
     <div className="member-section-head"><div><p>LOCAL BASKETBALL</p><h2>{region ? region + "の大会・育成情報" : "地域の大会・育成情報"}</h2>
       <p className="mt-2 text-sm">主催者が公表した情報を掲載しています。参加資格・受付・変更は公式案内をご確認ください。</p></div></div>
+    <JapanAcademicCalendar region={region}/>
     <div className="flex flex-wrap items-center gap-3 py-3">
       <button type="button" aria-pressed={!nationwide} className={(!nationwide?"bg-black text-white":"border border-black/30")+" rounded px-4 py-2 text-sm font-bold"} onClick={()=>{setNationwide(false);setCityFilter("");}}>登録地域</button>
       <button type="button" aria-pressed={nationwide} className={(nationwide?"bg-black text-white":"border border-black/30")+" rounded px-4 py-2 text-sm font-bold"} onClick={()=>{setNationwide(true);setCityFilter("");}}>全国 {allEvents.length}件</button>
