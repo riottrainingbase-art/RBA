@@ -7,7 +7,10 @@
     "end": "2026-12-06",
     "dates": "12月6日",
     "venue": "泉体育館",
-    "source": "https://www.spf-sendai.jp/sports_event/"
+    "source": "https://www.spf-sendai.jp/sports_event/",
+    "category": "3x3",
+    "level": "市区・地区",
+    "status": "日程公表"
   },
   {
     "region": "宮城県",
@@ -17,7 +20,10 @@
     "end": "2027-01-11",
     "dates": "1月9日〜11日",
     "venue": "泉海洋センター",
-    "source": "https://www.spf-sendai.jp/sports_event/"
+    "source": "https://www.spf-sendai.jp/sports_event/",
+    "category": "U12",
+    "level": "市区・地区",
+    "status": "日程公表"
   },
   {
     "region": "宮城県",
@@ -27,7 +33,10 @@
     "end": "2027-02-21",
     "dates": "2月20日〜21日",
     "venue": "宮城郡",
-    "source": "https://u12.japanbasketball.jp/schedule2026"
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "category": "U12",
+    "level": "ブロック",
+    "status": "日程公表"
   },
   {
     "region": "宮城県",
@@ -37,7 +46,10 @@
     "end": "2027-03-20",
     "dates": "2月27日・28日、3月20日",
     "venue": "市内中学校・仙台市体育館（事業計画）",
-    "source": "https://sendai-ctr.com/uploads/about/uploads/r08_sendaishi_kyousai_keikaku.pdf"
+    "source": "https://sendai-ctr.com/uploads/about/uploads/r08_sendaishi_kyousai_keikaku.pdf",
+    "category": "U15",
+    "level": "市区・地区",
+    "status": "事業計画"
   },
   {
     "region": "香川県",
@@ -47,6 +59,152 @@
     "end": "2027-02-28",
     "dates": "2月27日〜28日",
     "venue": "丸亀市",
-    "source": "https://u12.japanbasketball.jp/schedule2026"
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "category": "U12",
+    "level": "ブロック",
+    "status": "日程公表"
+  },
+  {
+    "region": "北海道",
+    "city": "美唄市",
+    "title": "第5回北海道ブロックミニバスケットボール大会・道央",
+    "start": "2027-02-06",
+    "end": "2027-02-07",
+    "dates": "2月6日〜7日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "北海道",
+    "city": "深川市",
+    "title": "第5回北海道ブロックミニバスケットボール大会・道北",
+    "start": "2027-02-06",
+    "end": "2027-02-07",
+    "dates": "2月6日〜7日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "北海道",
+    "city": "釧路市",
+    "title": "第5回北海道ブロックミニバスケットボール大会・道東",
+    "start": "2027-02-20",
+    "end": "2027-02-21",
+    "dates": "2月20日〜21日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "北海道",
+    "city": "室蘭市・伊達市",
+    "title": "第5回北海道ブロックミニバスケットボール大会・道南",
+    "start": "2027-02-20",
+    "end": "2027-02-21",
+    "dates": "2月20日〜21日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "千葉県",
+    "city": "船橋市",
+    "title": "第48回関東ミニバスケットボール大会",
+    "start": "2027-03-06",
+    "end": "2027-03-07",
+    "dates": "3月6日〜7日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "石川県",
+    "city": "金沢市",
+    "title": "第46回北信越ミニバスケットボール大会",
+    "start": "2027-03-06",
+    "end": "2027-03-07",
+    "dates": "3月6日〜7日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "岐阜県",
+    "city": "岐阜市",
+    "title": "第49回東海U12バスケットボール大会",
+    "start": "2027-02-20",
+    "end": "2027-02-21",
+    "dates": "2月20日〜21日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "和歌山県",
+    "city": "和歌山市",
+    "title": "第51回近畿ミニバスケットボール交歓大会",
+    "start": "2027-02-27",
+    "end": "2027-02-28",
+    "dates": "2月27日〜28日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "日程公表",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "山口県",
+    "city": "市町村未公表",
+    "title": "第46回中国ミニバスケットボール大会",
+    "start": "2027-02-27",
+    "end": "2027-02-28",
+    "dates": "2月27日〜28日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "開催地予定",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "熊本県",
+    "city": "市町村未公表",
+    "title": "第47回U12全九州バスケットボール大会",
+    "start": "2027-02-20",
+    "end": "2027-02-21",
+    "dates": "2月20日〜21日",
+    "venue": "詳細は主催者発表を確認",
+    "source": "https://u12.japanbasketball.jp/schedule2026",
+    "status": "開催地予定",
+    "category": "U12",
+    "level": "ブロック"
+  },
+  {
+    "region": "東京都",
+    "city": "調布市",
+    "title": "京王 Jr.ウインターカップ2026-27",
+    "start": "2027-01-04",
+    "end": "2027-01-08",
+    "dates": "1月4日〜8日",
+    "venue": "京王アリーナTOKYO",
+    "source": "https://juniorwintercup.japanbasketball.jp/2026-27/about/",
+    "status": "日程公表（予定）",
+    "category": "U15",
+    "level": "全国"
   }
 ]
