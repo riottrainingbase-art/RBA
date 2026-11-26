@@ -19,6 +19,12 @@ export function HomecourtPlusMemberHub({
     ko:{title:"이번 주에는 한 가지부터 시작하세요.",lead:"학습 자료나 주간 실천 주제에서 한 가지를 선택해 시도하고 돌아보세요.",decide:"이번 주 주제 정하기",decideBody:"선수·보호자·코치의 역할에 맞춰 한 가지를 선택하세요.",prep:"다음 일정을 준비하기",prepBody:"경기, 원정 준비, 컨디션을 함께 확인하세요.",review:"성장 기록 돌아보기",reviewBody:"주간·월간·참가 기록을 함께 확인하세요.",next:"다음 단계",one:"이번 주에는 한 가지면 충분합니다.",oneBody:"다음 훈련에서 한 가지를 시도하고 주말에 돌아보세요.",report:"성장 리포트"},
   }[locale];
   const libraryLabel={ja:"育成ライブラリを開く",en:"Open Japanese-language library","zh-tw":"開啟日文教材庫",ko:"일본어 학습 자료 열기"}[locale];
+  const supportCopy={
+    ja:{title:"教材・受講案内が見つからないとき",body:"講義資料の未着や録画の再生エラーは、RBAへの相談で確認できます。再決済せず、講習名・申込時のメールアドレス・端末とエラーをお知らせください。カード番号・パスワードは不要です。",cta:"受講・教材の相談"},
+    en:{title:"Need help accessing your learning materials?",body:"If a handout is missing or a recording will not play, contact RBA with the clinic name, registration email, device and error message. Do not pay again or send card details or passwords.",cta:"Get learning support"},
+    "zh-tw":{title:"找不到教材或無法觀看錄影？",body:"如未收到講義或錄影無法播放，請提供課程名稱、報名電子郵件、裝置及錯誤訊息，向 RBA 查詢。無須再次付款，也請勿提供信用卡號或密碼。",cta:"聯絡學習支援"},
+    ko:{title:"교재나 수강 안내를 찾기 어려운가요?",body:"교재를 받지 못했거나 녹화 영상이 재생되지 않으면 강의명, 신청 이메일, 기기 및 오류 메시지를 RBA에 알려 주세요. 재결제하거나 카드 번호·비밀번호를 보내지 마세요.",cta:"학습 지원 문의"},
+  }[locale];
   const unitedCopy={
     ja:{title:"RBA UNITEDで、学びを実際のゲームへ。",lead:"所属チームを続けながら、大会・遠征・国際交流ごとに期間限定チームへ個人参加できます。参加条件、費用と募集状況は各企画で確認してください。",find:"参加できるUNITED企画を探す",prep:"大会・遠征の準備をする",record:"参加経験を記録する",review:"学びを次の練習へつなぐ"},
     en:{title:"Take your learning into games with RBA UNITED.",lead:"Join time-limited teams for tournaments, trips and international exchanges while keeping your home club. Check each programme's eligibility, fees and availability.",find:"Explore UNITED opportunities",prep:"Prepare for games and trips",record:"Record your experiences",review:"Bring learning back to practice"},
@@ -66,6 +72,10 @@ export function HomecourtPlusMemberHub({
         <Link prefetch={false} href="/ja/my-homecourt/app/learn">{libraryLabel}<ArrowRight/></Link>
         <a href={`${prefix}/my-homecourt/app/report`}>{hubCopy.report}<ArrowRight/></a>
       </div>
+    </section>
+    <section className="member-next-step">
+      <div><BookOpen/><strong>{supportCopy.title}</strong><p>{supportCopy.body}</p></div>
+      <Link prefetch={false} href={ja?"/ja/after-application#online-checklist":`${prefix}/contact`}>{supportCopy.cta}<ArrowRight/></Link>
     </section>
   </section>;
 }

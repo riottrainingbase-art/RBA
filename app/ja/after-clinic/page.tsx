@@ -29,6 +29,21 @@ export default function Page() {
         <p className="mt-4 text-sm leading-7 text-slate-300">メールアドレスを入力して、届いたログインリンクを開くだけ。お子さまの利用は保護者の方と一緒に進めてください。有料のHOMECOURT PLUSは任意です。下の振り返りメモは自動でアカウントに保存されないため、必要に応じてコピーしてください。</p>
       </section>
       <ClinicReflection />
+      <section className="my-8 border border-slate-300 p-6 md:p-8" aria-labelledby="practice-return">
+        <h2 id="practice-return" className="text-2xl font-bold">次の練習で、学んだ判断を試す。</h2>
+        <p className="mt-3 leading-8">シュートやドライブ、守備の学びから一つ選び、普段の少人数ゲームで試しましょう。対戦相手の動きに応じて自分で選べた場面を振り返ります。</p>
+        <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          <article><h3 className="font-bold">選手</h3><p className="mt-2 text-sm leading-7">2対2・3対3で守備を見て、パス・シュート・ドライブのどれを選んだか一場面を思い出す。</p></article>
+          <article><h3 className="font-bold">保護者</h3><p className="mt-2 text-sm leading-7">どんな選択ができたか本人に聞く。話したくない時は、次の機会まで待つ。</p></article>
+          <article><h3 className="font-bold">指導者</h3><p className="mt-2 text-sm leading-7">参加人数と年代、体調に合わせて少人数ゲームを組み、全員に実践・交代の機会を確保する。</p></article>
+        </div>
+        <p className="mt-4 text-xs leading-6 text-slate-600">参考：<a className="underline underline-offset-4" href="https://about.fiba.basketball/en/wabc-documents" target="_blank" rel="noopener noreferrer">FIBA WABC Mini-Basketball Coaches Manual §5.3</a>。上記はRBAによる実践・振り返りの提案です。</p>
+      </section>
+      <section className="my-8 border border-slate-300 p-6 md:p-8" aria-labelledby="clinic-access-help">
+        <h2 id="clinic-access-help" className="text-xl font-bold">受講資料や視聴案内でお困りの方へ</h2>
+        <p className="mt-3 leading-8">講習の資料・録画が届かない、再生できない場合は、購入済みの受講内容を確認します。再申込・再決済をせず、受講前後の案内をご確認ください。解消しない場合はRBAにご相談ください。</p>
+        <Link href="/ja/after-application#online-checklist" className="mt-3 inline-flex min-h-12 items-center font-bold underline">オンライン講習の確認事項・相談先 →</Link>
+      </section>
       <section className="my-8 border border-slate-300 bg-slate-50 p-6 md:p-8" aria-labelledby="clinic-feedback">
         <p className="text-xs font-bold tracking-widest">YOUR VOICE / 90 SECONDS</p>
         <h2 id="clinic-feedback" className="mt-3 text-2xl font-bold">次のクリニックを、一緒に良くする。</h2>
