@@ -90,10 +90,11 @@ export async function SimpleJapaneseHome() {
               <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に活動するバスケットボールアカデミーです。全国で小中学生のクリニックや指導者講習を開き、海外のチームとの合同練習・交流試合も企画しています。</p>
               <a className={styles.textLink} href="/ja/about">代表・西尾優人の経歴と指導方針を見る</a>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
-                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">サービス・料金を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">参加・開催予定を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">選手・保護者・指導者の入口 <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">教材・会員・料金を見る <span aria-hidden="true">↗</span></a>
               </nav>
+              <p className={styles.heroQuickLinks}><a href="/ja/my-homecourt" data-growth-id="home-free-id">無料RBA ID・ログイン</a>　/　<a href="/ja/support" data-growth-id="home-support">応援・企業協賛</a>　/　<a href="/ja/book" data-growth-id="home-book-guide">申込・支払いの流れ</a></p>
             </div>
             <div className={styles.heroBaseline}>
               <span>RBA / DEVELOPMENT BEFORE RESULTS</span>

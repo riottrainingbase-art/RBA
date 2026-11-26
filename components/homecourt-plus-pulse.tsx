@@ -18,9 +18,10 @@ const copy={
 
 function startOfWeek(){
   const d=new Date(); const day=(d.getDay()+6)%7; d.setHours(12,0,0,0); d.setDate(d.getDate()-day);
-  return d.toISOString().slice(0,10);
+  return localDate(d);
 }
-function sevenDaysAgo(){return new Date(Date.now()-6*86400000).toISOString().slice(0,10)}
+function localDate(d:Date){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
+function sevenDaysAgo(){const d=new Date();d.setDate(d.getDate()-6);return localDate(d);}
 const avg=(values:number[])=>values.length?Math.round(values.reduce((a,b)=>a+b,0)/values.length*10)/10:null;
 
 export function HomecourtPlusPulse({userId,locale,role}:{userId:string;locale:Locale;role:string}){
@@ -28,6 +29,8 @@ export function HomecourtPlusPulse({userId,locale,role}:{userId:string;locale:Lo
   const db=useMemo(()=>createClient(),[]);
   const safeRole=role==="coach"?"coach":role==="parent"?"parent":"player";
   const [loading,setLoading]=useState(true);
+  const [failed,setFailed]=useState(false);
+  const [openCount,setOpenCount]=useState(0);
   const [wellness,setWellness]=useState<Wellness[]>([]);
   const [tasks,setTasks]=useState<Task[]>([]);
   const [weekly,setWeekly]=useState<Weekly|null>(null);
@@ -37,25 +40,28 @@ export function HomecourtPlusPulse({userId,locale,role}:{userId:string;locale:Lo
     let alive=true;
     void Promise.all([
       db.from("homecourt_wellness_checkins").select("checkin_on,energy,fatigue,soreness,sleep_hours,pain_level").eq("user_id",userId).gte("checkin_on",sevenDaysAgo()).order("checkin_on"),
-      db.from("homecourt_schedule_tasks").select("id,title,due_at,completed_at,category").eq("user_id",userId).is("completed_at",null).order("due_at",{ascending:true}).limit(5),
+      db.from("homecourt_schedule_tasks").select("id,title,due_at,completed_at,category",{count:"exact"}).eq("user_id",userId).is("completed_at",null).order("due_at",{ascending:true}).limit(5),
       db.from("homecourt_weekly_actions").select("theme,action,next_action,status").eq("user_id",userId).eq("week_start",startOfWeek()).eq("role",safeRole).maybeSingle(),
       db.from("homecourt_monthly_reviews").select("focus,next_action,period_month").eq("user_id",userId).eq("role",safeRole).order("period_month",{ascending:false}).limit(1).maybeSingle(),
     ]).then(([w,t,week,month])=>{
       if(!alive)return;
+      setFailed(Boolean(w.error||t.error||week.error||month.error));
+      setOpenCount(t.count??t.data?.length??0);
       setWellness((w.data||[]) as Wellness[]);
       setTasks((t.data||[]) as Task[]);
       setWeekly((week.data as Weekly|null)||null);
       setMonthly((month.data as Monthly|null)||null);
       setLoading(false);
-    });
+    }).catch(()=>{if(alive){setFailed(true);setLoading(false);}});
     return()=>{alive=false};
   },[db,userId,safeRole]);
 
   if(loading)return <section className="member-next-step"><div><LoaderCircle className="spin"/><span>{c.eyebrow}</span><strong>{c.loading}</strong></div></section>;
+  if(failed)return <section className="member-next-step" role="alert"><div><Activity/><span>{c.eyebrow}</span><strong>{({ja:"今週の記録を確認できませんでした。ページを再読み込みしてください。",en:"Could not load your weekly records. Reload the page.","zh-tw":"無法讀取本週紀錄，請重新載入頁面。",ko:"이번 주 기록을 불러오지 못했습니다. 페이지를 새로고침하세요."})[locale]}</strong></div></section>;
 
   const energies=wellness.map(x=>Number(x.energy)).filter(Number.isFinite);
   const fatigues=wellness.map(x=>Number(x.fatigue)).filter(Number.isFinite);
-  const sleeps=wellness.map(x=>Number(x.sleep_hours)).filter(Number.isFinite);
+  const sleeps=wellness.flatMap(x=>x.sleep_hours==null?[]:[Number(x.sleep_hours)]).filter(Number.isFinite);
   const energyAvg=avg(energies),fatigueAvg=avg(fatigues),sleepAvg=avg(sleeps);
   const nextAction=weekly?.next_action||monthly?.next_action||"";
 
@@ -64,7 +70,7 @@ export function HomecourtPlusPulse({userId,locale,role}:{userId:string;locale:Lo
     <div className="member-summary">
       <article><Target/><span>{c.theme}</span><strong>{weekly?.theme||c.noTheme}</strong><p>{weekly?.action||"—"}</p></article>
       <article><Activity/><span>{c.condition}</span><strong>{wellness.length?wellness.length+" "+c.days:c.noCondition}</strong><p>{wellness.length?`${c.energy} ${energyAvg ?? "—"} / ${c.fatigue} ${fatigueAvg ?? "—"} / ${c.sleep} ${sleepAvg ?? "—"}h`:"—"}</p></article>
-      <article><CheckCircle2/><span>{c.prep}</span><strong>{tasks.length?String(tasks.length):c.noPrep}</strong><p>{tasks[0]?.title||"—"}</p></article>
+      <article><CheckCircle2/><span>{c.prep}</span><strong>{openCount?String(openCount):c.noPrep}</strong><p>{tasks[0]?.title||"—"}</p></article>
       <article><CalendarDays/><span>{c.next}</span><strong>{nextAction||c.noNext}</strong><p>{monthly?.focus||"—"}</p></article>
     </div>
   </section>;

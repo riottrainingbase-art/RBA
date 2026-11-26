@@ -234,6 +234,7 @@ export default function StartPage() {
           <h1>今の自分に合う、<br/>次の一歩を。</h1>
           <p className={styles.lead}>参加する。体験する。指導者として学ぶ。チームや地域に呼ぶ。あなたの目的から、正しい公式申込・相談先へ進めます。</p>
           <nav className={styles.chips} aria-label="目的から探す">
+            <a href="/ja/book" data-growth-id="start-booking-hub">公式の参加・予約案内</a>
             <a href="#events">直近のイベント</a>
             <a href="/ja/sendai-school" data-growth-id="start-school-hero">仙台スクールの無料体験相談</a>
             <a href="#coaches">指導者・開催相談</a>

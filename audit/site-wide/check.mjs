@@ -100,7 +100,7 @@ ensure(pastEvent.includes("registrationClosed: true"),"past-event-status","Nov 1
 const torsten=programme.split('id: "torsten"')[1]?.slice(0,1800)||"";
 ensure(torsten.includes("Square")&&torsten.includes("Googleフォーム"),"jp-payment-flow","Japanese Torsten form/Square route is not explicit in the programme source.");
 const jpLanding=read("components/torsten-japan-landing.tsx");
-ensure(jpLanding.includes("Square")&&jpLanding.includes("Googleフォーム"),"jp-registration","Japanese Torsten page must use Google Form then Square.");
+ensure(jpLanding.includes("LIVEは終了")&&jpLanding.includes("再決済不要")&&!jpLanding.includes("torstenRegistrationUrl"),"jp-registration","Completed Torsten page must distinguish closed LIVE, recording enquiries and existing-purchaser support.");
 ensure(!jpLanding.includes("Stripe"),"jp-stripe-confusion","Japanese Torsten page should not mention Stripe.");
 
 ensure(missingLinks.length===0,"literal-link-404","Unresolved literal internal link(s): "+missingLinks.map(x=>x.to).join(", "));
