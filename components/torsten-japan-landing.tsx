@@ -1,8 +1,7 @@
 import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, Clock3, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
 import { GrowthClickTracking } from "./growth-click-tracking";
-import { torstenRegistrationUrl } from "./programme-data";
-import { clinicHelpUrl, clinicSharePath } from "@/lib/torsten-clinic";
+import { clinicHelpUrl } from "@/lib/torsten-clinic";
 import styles from "./torsten-japan-landing.module.css";
 
 const credentials = [
@@ -14,13 +13,13 @@ const credentials = [
 
 const faqs = [
   ["英語が分からなくても参加できますか？", "はい。英語講義に日本語の逐次通訳が付きます。"],
-  ["当日参加できない場合は？", "録画視聴（4,400円）を選択できます。開催後の配信開始から30日間ご覧いただけます。"],
+  ["これから録画を視聴したい場合は？", "LIVEは終了しました。録画の新規受付可否と残り視聴期間は、お支払い前にRBAへご確認ください。"],
   ["LIVEに録画は含まれますか？", "LIVEと録画は別の申込プランです。両方をご希望の場合は事前にRBAへお問い合わせください。"],
-  ["フォームを送れば申込完了ですか？", "いいえ。国内申込はフォーム送信後の確認画面に表示されるSquare決済の案内に従ってお支払いください。決済完了後に申込確定となります。"],
+  ["支払済みですが録画が見られません。", "再購入せず、購入時のメールアドレスでRBAにお問い合わせください。決済と視聴対象を個別に確認します。"],
 ] as const;
 
 function RegisterLink({ label, id, className }: { label: string; id: string; className?: string }) {
-  return <a data-growth-id={id} className={className || styles.register} href={torstenRegistrationUrl} target="_blank" rel="noopener noreferrer">
+  return <a data-growth-id={id} className={className || styles.register} href={clinicHelpUrl("Vol.2 録画の新規受付・視聴期間の確認")}>
     {label}<ArrowUpRight size={21} strokeWidth={2.4} aria-hidden="true" />
   </a>;
 }
@@ -31,14 +30,9 @@ export function TorstenJapanLanding() {
     name: "Torsten Loibl Online Clinic Vol.2｜現代バスケットボールにおけるシューターの育成と活用",
     startDate: "2026-11-25T20:00:00+09:00", endDate: "2026-11-25T21:30:00+09:00",
     eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
     location: { "@type": "VirtualLocation", url: "https://riotbasketballacademy.com/ja/events/torsten-loibl-online-clinic" },
     organizer: { "@type": "Organization", name: "Riot Basketball Academy", url: "https://riotbasketballacademy.com" },
     performer: { "@type": "Person", name: "Torsten Loibl" },
-    offers: [
-      { "@type": "Offer", price: 3300, priceCurrency: "JPY", name: "LIVE", url: torstenRegistrationUrl },
-      { "@type": "Offer", price: 4400, priceCurrency: "JPY", name: "録画視聴30日", url: torstenRegistrationUrl },
-    ],
   };
 
   return <SiteFrame locale="ja" languagePage="events/torsten-loibl-online-clinic">
@@ -53,19 +47,19 @@ export function TorstenJapanLanding() {
             <p className={styles.heroProof}>B.PREMIER HC <span>FIBA WABC LEVEL 3</span> <span>2019 WORLD CHAMPION</span></p>
             <p className={styles.subheading}>シュートを「打つ技術」から、<br/>「試合で生み出す力」へ。</p>
             <p className={styles.lead}>育成年代の日本代表からプロまで。シュート技術・練習設計・スペーシング・判断をつなぐ90分。</p>
-            <RegisterLink label="LIVE・録画を選んで申し込む" id="torsten-simple-hero" />
-            <p className={styles.micro}>国内申込はGoogleフォームで参加形式を選択。送信後の確認画面にあるSquare決済の案内からお支払いください。</p>
+            <RegisterLink label="録画の受付状況を確認する" id="torsten-simple-hero" />
+            <p className={styles.micro}>11月25日のLIVEは終了しました。新規録画受付と視聴期限はお問い合わせください。お支払い済みの方は再決済不要です。</p>
           </div>
           <aside className={styles.info} aria-label="開催日時と参加料金">
-            <p className={styles.infoLabel}>LIVE / ZOOM</p>
+            <p className={styles.infoLabel}>LIVE終了 / 録画のご案内</p>
             <div className={styles.bigDate}>11.25 <span>WED</span></div>
             <p className={styles.time}><Clock3 size={18} aria-hidden="true" />20:00–21:30（日本時間）</p>
             <p className={styles.time}><Video size={18} aria-hidden="true" />Zoom・英語講義＋日本語逐次通訳</p>
             <div className={styles.prices}>
-              <div><span>LIVE参加</span><strong>¥3,300</strong></div>
+              <div><span>LIVE参加</span><strong>受付終了</strong></div>
               <div><span>録画30日間</span><strong>¥4,400</strong></div>
             </div>
-            <p className={styles.infoFoot}>税込・1名／別プラン。録画は開催後、公開から30日間。</p>
+            <p className={styles.infoFoot}>録画の従来料金は税込4,400円。公開から30日間の条件で、新規受付と残り期間は要確認。</p>
           </aside>
         </section>
 
@@ -120,16 +114,16 @@ export function TorstenJapanLanding() {
         <section className={styles.booking} aria-labelledby="torsten-booking">
           <div className={styles.bookingHead}>
             <p className={styles.sectionKicker}>REGISTRATION / お申し込み</p>
-            <h2 id="torsten-booking">参加方法は2つ。申込先は1つ。</h2>
-            <p>同じGoogleフォームで、LIVE・録画のどちらか1つを選べます。</p>
+            <h2 id="torsten-booking">録画のご案内と購入後のサポート</h2>
+            <p>LIVE受付は終了しています。録画をご希望の方は、視聴可能期間を確認してからお申し込みください。</p>
           </div>
           <div className={styles.choices}>
-            <div><span>11月25日・Zoom</span><h3>LIVE参加</h3><strong>3,300円</strong></div>
+            <div><span>11月25日開催済み</span><h3>LIVE参加</h3><strong>受付終了</strong></div>
             <div><span>開催後・視聴30日間</span><h3>録画視聴</h3><strong>4,400円</strong></div>
           </div>
-          <RegisterLink label="申込フォームを開く" id="torsten-simple-book" />
-          <p className={styles.bookingNote}><CheckCircle2 size={18} aria-hidden="true" />Googleフォーム入力 → 送信後の確認画面でSquare決済 → お支払い完了で申込確定</p>
-          <p className={styles.help}>日本国内は税込円建て・Square決済でのお支払いです。<a href="/events/torsten-loibl-online-clinic#register">海外向けUSD申込はこちら</a>。支払方法でお困りの方は<a href={clinicHelpUrl("申込・お支払い手続きの相談")}>RBAにご相談ください</a>。</p>
+          <RegisterLink label="録画受付・視聴期限を問い合わせる" id="torsten-simple-book" />
+          <p className={styles.bookingNote}><CheckCircle2 size={18} aria-hidden="true" />購入済みの方は再決済不要です。RBAが個別に視聴対象を確認します。</p>
+          <p className={styles.help}><a href="https://form.jotform.com/263243557140049">決済済み・アクセスできない方の無料照合依頼</a> ／ <a href={clinicHelpUrl("Vol.2 録画の再生・案内について")}>録画の再生・案内について問い合わせる</a>。メール内ブラウザで再生できないときはSafariまたはChromeで直接開いてみてください。解消しない場合は端末、ブラウザ、エラー表示をお知らせください。カード番号やパスワードは不要です。</p>
         </section>
 
         <section className={styles.faq} aria-labelledby="torsten-faq">
@@ -139,10 +133,10 @@ export function TorstenJapanLanding() {
         <footer className={styles.bottom}>
           <p>本講習はRiot Basketball Academyの独立主催です。講師の所属・認定・過去の実績は経歴情報であり、FIBA、WABC、所属クラブ等が本講習を公認・後援するものではありません。</p>
           <p>経歴の参考：<a href="https://www.levanga.com/news/detail/id=22241" target="_blank" rel="noopener noreferrer">レバンガ北海道公式</a> ／ <a href="https://about.fiba.basketball/en/organization/recognized-organizations/world-association-of-basketball-coaches/executive-committee" target="_blank" rel="noopener noreferrer">FIBA WABC委員名簿</a>。Level 3 Coach Instructor Statusは2026年10月22日付のWABC会長書簡によるRPL認定。</p>
-          <a href={clinicSharePath} className={styles.footerLink}>講習の紹介文を共有する <ArrowRight size={16} aria-hidden="true" /></a>
+          <a href="https://www.jotform.com/app/263243514100442" className={styles.footerLink}>RBAのその他の学び・参加窓口 <ArrowRight size={16} aria-hidden="true" /></a>
         </footer>
       </div>
-      <div className={styles.mobileBar}><span><b>11/25（水）20:00</b><small>LIVE 3,300円／録画 4,400円</small></span><RegisterLink label="申し込む" id="torsten-simple-mobile" className={styles.mobileButton}/></div>
+      <div className={styles.mobileBar}><span><b>LIVE受付終了</b><small>録画受付・視聴期間は要確認</small></span><RegisterLink label="問い合わせ" id="torsten-simple-mobile" className={styles.mobileButton}/></div>
     </div>
   </SiteFrame>;
 }
