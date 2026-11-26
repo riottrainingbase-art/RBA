@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { programmes, isProgrammeActive } from "./programme-data";
+import { isLocalProgramme } from "@/lib/regional-programmes";
 
 type Category = "all" | "clinic" | "camp" | "lecture" | "other";
 function typeOf(p: (typeof programmes)[number]): Category {
@@ -31,15 +32,17 @@ function paymentGuide(id: string) {
 }
 const filters: Category[] = ["all","clinic","camp","lecture","other"];
 
-export function MemberClinicCatalog() {
+export function MemberClinicCatalog({ region = null }: { region?: string | null }) {
+  const [localOnly,setLocalOnly] = useState(Boolean(region));
   const [filter,setFilter] = useState<Category>("all");
   const [search,setSearch] = useState("");
   const items = useMemo(() => programmes
     .filter(p => isProgrammeActive(p))
+    .filter(p => !localOnly || isLocalProgramme(p, region))
     .filter(p => filter === "all" || typeOf(p) === filter)
     .filter(p => !search.trim() ||
       [p.title[1],p.place[1],p.audience[1],p.price[1]].join(" ").toLowerCase().includes(search.toLowerCase().trim()))
-    .sort((a,b) => a.startDate.localeCompare(b.startDate)),[filter,search]);
+    .sort((a,b) => a.startDate.localeCompare(b.startDate)),[filter,search,localOnly,region]);
   return <div>
     <div className="border-l-4 border-[#e56a18] bg-white p-5 text-sm leading-8">
       <strong>参加・決済は企画ごとの公式窓口で確認してください。</strong>
@@ -47,6 +50,7 @@ export function MemberClinicCatalog() {
       <p className="mt-2">決済はStripe・Square・主催者サイトなど企画により異なります。支払済みの方は再決済しないでください。</p>
     </div>
     <div className="mt-7 space-y-4 rounded-md border border-black/15 bg-white p-4 sm:p-6">
+      {region && <div className="flex flex-wrap gap-2"><button type="button" aria-pressed={localOnly} onClick={()=>setLocalOnly(true)} className={"rounded border border-black/25 px-4 py-2 text-sm font-bold "+(localOnly?"bg-black text-white":"bg-white")}>{region}の開催</button><button type="button" aria-pressed={!localOnly} onClick={()=>setLocalOnly(false)} className={"rounded border border-black/25 px-4 py-2 text-sm font-bold "+(!localOnly?"bg-black text-white":"bg-white")}>全国・オンライン</button></div>}
       <label className="block text-sm font-bold" htmlFor="clinic-search">クリニック・地域・対象を検索</label>
       <input id="clinic-search" value={search} onChange={e=>setSearch(e.target.value)} placeholder="例：鹿児島、U15、オンライン" className="w-full rounded border border-black/25 px-4 py-3 text-base"/>
       <div className="flex flex-wrap gap-2" aria-label="企画の種類を絞り込む">
@@ -73,7 +77,7 @@ export function MemberClinicCatalog() {
           <p className="mt-4 text-xs leading-7 text-black/70">{pay.step}</p>
           <div className="mt-5 flex flex-wrap gap-3">
             {application?<a className="inline-flex min-h-12 items-center justify-center rounded bg-[#f36b17] px-5 py-3 text-sm font-black"
-              href={application} target={external?"_blank":undefined} rel={external?"noopener noreferrer":undefined}>
+              data-growth-id={"homecourt-clinic-"+p.id} href={application} target={external?"_blank":undefined} rel={external?"noopener noreferrer":undefined}>
               {pay.cta} →</a>:<span className="text-sm">申込先を調整中</span>}
             {details && details!==application?
               <a className="inline-flex min-h-12 items-center justify-center rounded border border-black/25 px-4 py-3 text-sm font-bold"
@@ -83,7 +87,7 @@ export function MemberClinicCatalog() {
         </article>;
       })}
     </div>
-    {!items.length && <p className="mt-7 rounded-md border border-black/20 bg-white px-5 py-7 text-sm leading-7">条件に合う受付対象の企画は現在ありません。絞り込みを解除するか、新しい公式案内をご確認ください。</p>}
+    {!items.length && <p className="mt-7 rounded-md border border-black/20 bg-white px-5 py-7 text-sm leading-7">条件に合う受付対象の企画は現在ありません。絞り込みを解除するか、<Link href="/ja/clinic-interest" data-growth-id="homecourt-clinic-interest" className="font-bold underline">無料の開催希望登録</Link>をご利用ください。</p>}
     <aside className="mt-9 rounded-md border-2 border-black bg-white p-6">
       <span className="text-xs font-black tracking-widest text-[#de6419]">RBA UNITED / JAPAN × GUAM</span>
       <h2 className="mt-3 text-2xl font-black">神戸2027・男子U14国際交流</h2>

@@ -15,6 +15,7 @@ export default async function Page() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/ja/my-homecourt/login?next=%2Fja%2Fmy-homecourt%2Fapp%2Fclinics");
+  const { data: profile } = await supabase.from("profiles").select("region").eq("id",user.id).maybeSingle();
   return <main className="min-h-screen bg-[#f8f3ed] text-[#141414]">
     <header className="border-b border-black/15 bg-white">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4">
@@ -32,6 +33,6 @@ export default async function Page() {
         <p className="mt-5 max-w-3xl text-base font-bold leading-8">全国のクリニック・キャンプ・講習・国際交流を一つの入口に。企画ごとの対象・日程・参加費を見て、公式申込へ進みます。</p>
       </div>
     </section>
-    <div className="mx-auto max-w-5xl px-5 py-8 sm:py-12"><MemberClinicCatalog /></div>
+    <div className="mx-auto max-w-5xl px-5 py-8 sm:py-12"><MemberClinicCatalog region={profile?.region ?? null} /></div>
   </main>;
 }
