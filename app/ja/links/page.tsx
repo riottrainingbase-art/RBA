@@ -3,6 +3,37 @@ import Image from "next/image";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import styles from "./links.module.css";
 
+export const dynamic = "force-dynamic";
+
+// 展示期間が終わったイベントはリンク集から自動で非表示にする。
+// 参加可否・決済は必ず各公式ページの受付条件を優先する。
+const availableOffers = [
+  {
+    id: "u12-check-free",
+    label: "FREE / FOR COACHES",
+    title: "その練習、子どもは何を見て考えていますか？",
+    description: "まずはU12の指導を5分で振り返る無料チェック。診断結果を見るために購入や会員登録は必要ありません。",
+    href: "https://form.jotform.com/262542128767059",
+    action: "無料チェックを始める",
+  },
+  {
+    id: "u12-guide",
+    label: "ONE-TIME / COACHING GUIDE",
+    title: "RBA COACHING GUIDE Vol.1｜U12で本当に教えるべきこと",
+    description: "90分の練習例と4週間の実践プランをまとめた買い切り教材。3,300円（税込）、月額課金はありません。",
+    href: "/ja/materials/u12-fundamentals",
+    action: "内容と購入方法を見る",
+  },
+  {
+    id: "dhub-coach-lab",
+    label: "MONTHLY / COACH DEVELOPMENT",
+    title: "D-HUB COACH LAB｜毎週の学びを現場に",
+    description: "月額3,300円（税込）。指導者向けの年間48回の実践カリキュラム。既存会員は重複決済不要です。",
+    href: "/ja/d-hub/coaches",
+    action: "学べる内容・入会手順を見る",
+  },
+] as const;
+
 export const metadata: Metadata = {
   title: "RBA公式リンク集｜保護者・指導者・参加できる活動",
   description: "Riot Basketball Academy公式。保護者・選手、指導者、クリニック参加の3つの入口から、必要な情報に迷わず進める公式リンク集です。",
@@ -45,37 +76,15 @@ const featured = [
     action: "参加できる活動を見る",
     style: "standard",
   },
-  {
-    id: "united-network",
-    label: "04 / RBA UNITED",
-    title: "全国・国際の仲間と挑戦する",
-    description: "所属チームはそのまま。クリニックで出会い、交流試合と国内外の挑戦へ。無料の参加希望受付。",
-    href: "/ja/united",
-    action: "UNITEDの仕組みと開催予定を見る",
-    style: "standard",
-  },
-  {
-    id: "korea-free-interest",
-    label: "05 / INTERNATIONAL · FREE INTEREST ONLY",
-    title: "韓国・仁川2027｜無料先行受付",
-    description: "U12・U15・U17の男女。保護者からの参加意向登録です。出場・旅行・支払いは確定しません。",
-    href: "https://form.jotform.com/263207310187047",
-    action: "保護者から無料で参加意向を登録",
-    style: "standard",
-  },
 ] as const;
 
 const more = [
+  {title: "24時間受付｜学び・月額会員・企業広告",href:"/ja/24h",id:"rba24h"},
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
-  {title: "GREAM SENDAI｜仙台のU15クラブ",href:"/ja/gream",id:"gream"},
-  {title: "RBA UNITED｜全国・国際交流と保護者向け無料登録",href:"/ja/united",id:"united"},
-  {title: "MY HOME COURT｜RBA ID・育成の記録",href:"/ja/my-homecourt",id:"homecourt"},
+  {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
-  {title: "RBA PERFORMANCE TEE｜公式ウェア",href:"/ja/store",id:"store"},
+  {title: "RBA公式ウェア｜発売準備中（購入不可）",href:"/ja/store",id:"store"},
   {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
-  {title: "公式SNSアカウント一覧",href:"/ja/social",id:"social"},
-  {title: "西尾優人（にしお まさと）の育成note",href:"https://note.com/rba_official",id:"note"},
-  {title: "お問い合わせ・公式窓口",href:"/ja/contact",id:"contact"},
   {title: "RBA公式サイト",href:"/ja",id:"home"},
 ] as const;
 
@@ -87,11 +96,26 @@ export default function RbaLinkInBioPage() {
         <a href="/ja" aria-label="Riot Basketball Academy公式サイトに戻る" data-growth-id="bio-logo-home">
           <Image src="/rba-logo-original.jpg" alt="RBA公式ロゴ" width={66} height={92} priority className={styles.logo} />
         </a>
-        <p className={styles.brand}>RIOT BASKETBALL ACADEMY / JAPAN</p>
+        <p className={styles.brand}>RIOT BASKETBALL ACADEMY</p>
         <h1>バスケットボールの<br/>次の一歩を。</h1>
         <p className={styles.lead}>保護者、指導者、活動に参加したい方へ。<br/>まずは目的をひとつお選びください。</p>
         <span className={styles.region}>仙台から、全国・アジアへ。</span>
       </header>
+      <section aria-labelledby="open-offers-heading">
+        <h2 id="open-offers-heading" style={{fontSize:"18px",margin:"0 0 10px",fontWeight:850}}>いま学べる・参加できるRBA</h2>
+        <nav aria-label="受付中の公式案内" className={styles.links}>
+          {availableOffers.map(offer=>
+            <a key={offer.id} className={styles.card} href={offer.href} data-growth-id={`bio-offer-${offer.id}`}>
+              <span className={styles.eyebrow}>{offer.label}</span>
+              <strong>{offer.title}</strong>
+              <span className={styles.description}>{offer.description}</span>
+              <span className={styles.action}>{offer.action}<span aria-hidden="true">→</span></span>
+            </a>
+          )}
+        </nav>
+        <p className={styles.notice}>開催日時・枠・お支払い条件は各公式ページをご確認ください。申込済み・入金済みの方は重複してお申し込みにならないようご注意ください。</p>
+      </section>
+      <h2 style={{fontSize:"18px",margin:"24px 0 10px",fontWeight:850}}>目的から探す</h2>
       <nav aria-label="RBAの公式案内リンク" className={styles.links}>
         {featured.map(item=><a key={item.id} className={item.style==="primary"?styles.featured:styles.card} href={item.href} data-growth-id={`bio-${item.id}`}>
           <span className={styles.eyebrow}>{item.label}</span>
@@ -103,7 +127,7 @@ export default function RbaLinkInBioPage() {
       <nav className={styles.more} aria-label="その他の公式窓口">
         {more.map(item=><a href={item.href} key={item.id} data-growth-id={`bio-${item.id}`}>{item.title}<span aria-hidden="true">↗</span></a>)}
       </nav>
-      <p className={styles.notice}>公式サイト：riotbasketballacademy.com。過去のイベント記事や旧リンク集の申込ボタンは、現在の受付を保証しません。韓国2027・RBA UNITEDの「無料参加意向登録」は正式参加・出場確定・旅行予約・決済ではありません。無料相談の送信と、体験・入会・決済の確定は別です。開催日・参加費・会場・安全上の条件は、各公式ページでご確認ください。未成年者の参加相談は保護者の方からお願いいたします。</p>
+      <p className={styles.notice}>無料相談の送信と、体験・入会・決済の確定は別です。開催日・参加費・会場・安全上の条件は、各公式ページでご確認ください。未成年者の参加相談は保護者の方からお願いいたします。</p>
       <footer>© 2026 Riot Basketball Academy <a href="/ja/policies">プライバシー・安全方針</a></footer>
     </div>
   </main>;

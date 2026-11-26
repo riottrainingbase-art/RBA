@@ -35,16 +35,6 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
       <time dateTime={taipeiClinicSessions[0].date}><strong>{clinic.dates}</strong><span>{clinic.zone}</span></time>
       <div><p className="note-tag">{clinic.place} · RBA × SPARTANS Academy</p><h3>{clinic.title}</h3><p>{clinic.pending}</p></div>
       <div className="event-actions"><a href={taipeiClinicPath(locale)}>{clinic.details}<ArrowUpRight size={17}/></a></div>
-    </article>}{locale==="ja"&&<article>
-      <time dateTime="2027-04-11"><strong>2027.04.11 SUN</strong><span>秋田県にかほ市</span></time>
-      <div>
-        <p className="note-tag">開催予定／会場・参加条件を調整中</p>
-        <h3>にかほ育成クリニック｜小学生のみ対象</h3>
-        <p><strong>対象：</strong>小学生（男女）／平沢男子・象潟男子・にかほ女子との合同開催を調整中</p>
-        <p className="event-price">13:30〜16:30予定／参加費・受付方法は協会の正式案内をご確認ください</p>
-        <p className="event-payment"><strong>お問い合わせ：</strong>にかほバスケットボール協会（RBAからの受付・決済なし）</p>
-      </div>
-      <div className="event-actions"><a href="/ja/events/nikaho-clinic-2027">開催概要を見る <ArrowUpRight size={17}/></a></div>
     </article>}{programmes.filter(event=>isProgrammeActive(event)).map((event)=><article key={event.id}><time dateTime={event.startDate}><strong>{tr(event.datePrimary,locale)}</strong><span>{tr(event.dateSecondary,locale)}</span></time><div><p className="note-tag">{tr(event.place,locale)}</p><h3>{tr(event.title,locale)}</h3><p><strong>{c.target}：</strong>{tr(event.audience,locale)}</p><p className="event-price">{tr(event.price,locale)}</p><p className="event-payment"><strong>{c.payment}：</strong>{tr(event.payment,locale)}</p></div><div className="event-actions"><a href={locale!=="ja"&&event.id==="torsten"?"/events/torsten-loibl-online-clinic#register":locale==="ko"&&event.id==="okinawa-december-camp"?"/ko/events/okinawa-international-camp-2026":event.applicationUrl} target="_blank" rel="noreferrer">{locale==="ja"?"申込方法を確認する":c.apply}<ArrowUpRight size={17}/></a><a href={event.id==="okinawa-december-camp"?(locale==="ja"?"/ja/events/okinawa-international-camp-2026/apply":locale==="ko"?"/ko/events/okinawa-international-camp-2026#details":"/ja/events/okinawa-international-camp-2026#entry"):event.id==="kagoshima-nov29"?`${event.applicationUrl}#entry`:`${localePath(locale,"payments")}#${event.id}`}>{event.id==="okinawa-december-camp"?({ja:"参加前の確認・申し込み",en:"Details & registration","zh-tw":"詳情與報名",ko:"안내 및 신청"})[locale]:event.id==="kagoshima-nov29"?({ja:"メール・DMで申し込む",en:"Apply by email / DM","zh-tw":"電郵／私訊報名",ko:"이메일·DM 신청"})[locale]:c.pay}<ArrowUpRight size={17}/></a></div></article>)}</section>
     <section className="calendar-notice section-pad"><div><h2>{c.notice}</h2><p>{c.noticeCopy}</p></div><a className="button button-light" href="https://lin.ee/5l1YG8N" target="_blank" rel="noreferrer">{c.line}<ArrowUpRight size={17}/></a></section>
     <section className="next-page section-pad"><p>{ui(locale,"continue")}</p><a href={localePath(locale)}>{c.back}<span>→</span></a></section>

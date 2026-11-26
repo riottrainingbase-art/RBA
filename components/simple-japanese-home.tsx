@@ -83,9 +83,11 @@ export async function SimpleJapaneseHome() {
               <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に活動するバスケットボールアカデミーです。全国で小中学生のクリニックや指導者講習を開き、海外のチームとの合同練習・交流試合も企画しています。</p>
               <a className={styles.textLink} href="/ja/about">代表・西尾優人の経歴と指導方針を見る</a>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
-                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">自分に合う入口 <span aria-hidden="true">↗</span></a>
+                <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">参加・開催予定を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">選手・保護者・指導者の入口 <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">教材・会員・料金を見る <span aria-hidden="true">↗</span></a>
               </nav>
+              <p className={styles.heroQuickLinks}><a href="/ja/my-homecourt" data-growth-id="home-free-id">無料RBA ID・ログイン</a>　/　<a href="/ja/support" data-growth-id="home-support">応援・企業協賛</a>　/　<a href="/ja/book" data-growth-id="home-book-guide">申込・支払いの流れ</a></p>
             </div>
             <div className={styles.heroBaseline}>
               <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
@@ -100,6 +102,16 @@ export async function SimpleJapaneseHome() {
             <a href="#home-business">03　法人向けサービス</a>
             <a href="#home-host">04　地域で開催する</a>
           </nav>
+
+          <section className={styles.openNow} aria-labelledby="rba-open-now-title">
+            <div>
+              <p className={styles.openNowLabel}>RBA / OPEN ALL HOURS</p>
+              <h2 id="rba-open-now-title">学びたいときに、申し込める。</h2>
+              <p>指導者向けの学習、MY HOME COURT、育成活動の応援プラン。内容と料金を見比べて、必要なものだけ選べます。</p>
+              <p className={styles.openNowNote}>お申し込み・決済は各公式ページへ。すでに会員の方は重複してお申し込みにならないようご確認ください。</p>
+            </div>
+            <a href="/ja/24h" data-growth-id="home-rba24h-open">24時間受付の案内を見る <span aria-hidden="true">→</span></a>
+          </section>
 
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>
@@ -122,36 +134,6 @@ export async function SimpleJapaneseHome() {
             <div className={styles.heading}>
               <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">クリニック・キャンプの<span className={styles.headingEmphasis}>開催予定</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>
-            </div>
-            <div className={styles.programmes}>
-              <article id="rba-united-network">
-                <div className={styles.programmeMeta}>
-                  <p className={styles.date}>RBA UNITED｜国内・国際育成ネットワーク</p>
-                  <span className={styles.programmeCategory}>保護者向け無料希望登録</span>
-                </div>
-                <h3>チームの枠を越えて、新しい仲間と挑戦する。</h3>
-                <p className={styles.place}>クリニック → Development Camp → UNITED交流試合・国際交流</p>
-                <dl>
-                  <div><dt>対象</dt><dd>各企画で異なります。保護者から希望登録できます。</dd></div>
-                  <div><dt>料金</dt><dd>希望登録は無料。実際の参加費・旅程は企画ごとに確定後ご案内。</dd></div>
-                </dl>
-                <a href="/ja/united" data-growth-id="home-united-network">RBA UNITED｜仕組み・国内外企画・無料登録を見る ↗</a>
-              </article>
-            </div>
-            <div className={styles.programmes}>
-              <article id="nikaho-elementary-2027">
-                <div className={styles.programmeMeta}>
-                  <p className={styles.date}>2027.04.11 SUN｜13:30〜16:30</p>
-                  <span className={styles.programmeCategory}>開催予定・小学生のみ</span>
-                </div>
-                <h3>にかほ育成クリニック</h3>
-                <p className={styles.place}>秋田県にかほ市／会場調整中</p>
-                <dl>
-                  <div><dt>対象</dt><dd>小学生のみ（男女）</dd></div>
-                  <div><dt>参加費</dt><dd>調整中・正式案内前</dd></div>
-                </dl>
-                <a href="/ja/events/nikaho-clinic-2027" data-growth-id="home-nikaho-elementary-2027">開催概要・協会への問い合わせ案内を見る ↗</a>
-              </article>
             </div>
             {active.length ? (
               <div className={styles.programmes}>

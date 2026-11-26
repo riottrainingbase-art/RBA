@@ -19,11 +19,12 @@ for (const id of ["torsten-simple-hero", "torsten-simple-book", "torsten-simple-
   has(landing, id, "Required CTA missing: " + id);
 }
 assert.equal(count(landing, /<RegisterLink\b/g), 3, "Use three visible, consistent registration CTAs");
-has(landing, "href={torstenRegistrationUrl}", "CTAs must use the canonical existing registration URL");
+has(landing, "href={clinicHelpUrl(", "CTAs must use the recording enquiry route after LIVE closes");
+assert.ok(!landing.includes("torstenRegistrationUrl"), "The completed event must not link to the old payment form");
 has(programmes, 'applicationUrl: "https://forms.gle/fy4etmavBtw1s7FQ8"', "Expected official Google Form URL changed - verify before release");
 has(landing, "2026-11-25T20:00:00+09:00", "Event start time mismatch");
 has(landing, "2026-11-25T21:30:00+09:00", "Event end time mismatch");
-for (const value of ["3300", "4400", "Level 3 Coach Instructor", "Executive Committee", "2019", "RPL", "Google", "録画", "決済"]) {
+for (const value of ["4,400", "Level 3 Coach Instructor", "Executive Committee", "2019", "RPL", "受付終了", "録画", "再決済不要"]) {
   has(landing, value, "Required fact or payment note missing: " + value);
 }
 has(landing, "本講習はRiot Basketball Academyの独立主催", "Avoid implying club or FIBA endorsement");

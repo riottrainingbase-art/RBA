@@ -7,6 +7,32 @@ const root=path=>readFileSync(new URL("../"+path,import.meta.url),"utf8");
 const source=root("lib/homecourt-growth.ts");
 const compiled=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
 const growth=await import("data:text/javascript;base64,"+Buffer.from(compiled).toString("base64"));
+const focusSource=root("lib/homecourt-weekly-focus.ts");
+const focusCompiled=ts.transpileModule(focusSource,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {weeklyFocus}=await import("data:text/javascript;base64,"+Buffer.from(focusCompiled).toString("base64"));
+
+test("all twelve role-specific weekly prompts are localized, retain valid protected guide links and rotate",()=>{
+  const catalog=root("lib/member-articles.ts");
+  const roles=["player","parent","coach"];
+  const locales=["ja","en","zh-tw","ko"];
+  for(const role of roles){
+    const slugs=new Set();
+    for(let week=0;week<4;week++){
+      const monday=new Date(Date.UTC(2026,10,23+7*week)).toISOString().slice(0,10);
+      const original=weeklyFocus(role,monday,"ja");
+      slugs.add(original.slug);
+      assert.ok(catalog.includes(`"${original.slug}"`),original.slug);
+      for(const locale of locales){
+        const prompt=weeklyFocus(role,monday,locale);
+        assert.equal(prompt.slug,original.slug);
+        assert.ok(prompt.theme&&prompt.action&&prompt.evidence);
+        if(locale!=="ja")assert.notEqual(prompt.theme,original.theme);
+      }
+    }
+    assert.equal(slugs.size,4);
+  }
+  assert.equal(weeklyFocus("coach","invalid","en").slug,weeklyFocus("coach","2026-11-23","en").slug);
+});
 
 test("12 week chart counts distinct recorded days, not training sessions or future dates",()=>{
   const checkins=[{checked_on:"2026-11-09"},{checked_on:"2026-11-09"},{checked_on:"2026-11-20"}];
