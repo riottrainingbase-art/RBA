@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - release/rba-live-baseline-20261127
   push:
     branches:
       - main
