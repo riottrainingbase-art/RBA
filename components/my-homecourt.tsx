@@ -5,6 +5,7 @@ import { Locale, localePath, SiteFrame } from "./site-frame";
 import { programmes } from "./programme-data";
 import { getPublicJournalPosts } from "@/lib/public-content";
 import { HomecourtConversionSection } from "./homecourt-conversion-section";
+import { UnitedSeason } from "./united-season";
 import { IPhoneHomeScreenCard } from "./iphone-home-screen-card";
 
 const copy={
@@ -130,7 +131,7 @@ export async function MyHomecourt({locale,role}:{locale:Locale;role?:HomecourtRo
   const clear=clarityCopy[locale];
   return <SiteFrame locale={locale} languagePage="my-homecourt">
     <section className="my-homecourt-hero section-pad"><div className="my-homecourt-hero-copy"><a className="back-link" href={localePath(locale,"home-court")}>{ja?"← MY HOME COURTについて":"← MY HOME COURT"}</a><p className="section-index inverse">RBA / OPEN DEVELOPMENT PLATFORM</p><h1>{selected?(ja?selected.label:selected.shortLabel):c.title}</h1><p>{selected?(ja?selected.description:"Your dedicated route to RBA programmes and resources."):c.lead}</p><div className="my-homecourt-hero-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={17}/>{ja&&!authReady?"登録再開のお知らせを受け取る":c.register}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"home-court")}>{c.upgrade}<ArrowRight size={16}/></a></div>{ja&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開までは、公式LINEで新しい活動・記事・登録再開のお知らせを受け取れます。</p>:null}</div><div className="my-homecourt-hero-mark" aria-hidden="true"><span>RBA</span><strong>MY<br/>HOME<br/>COURT</strong><small>PLAYER / PARENT / COACH</small></div></section>
-    {ja&&!role?<section className="homecourt-product-preview section-pad" aria-label="RBA UNITED 中国・深圳U12国際交流の事前登録"><div className="section-head"><div><p className="section-index">RBA UNITED / INTERNATIONAL EXCHANGE / 関東・事前調整</p><h2>中国・深圳のU12男子チームと交流しませんか？</h2></div><p>中国・深圳のCiroo Basketball Academy（CR）は2027年2月10日に来日し、関東に約7日間滞在予定。11〜12歳の男子約10名との5対5交流試合・合同練習に向け、国内U12男子チームの事前意向を受け付けます。日時・会場・費用・対戦成立は未確定です。</p></div><a className="button button-member" href="https://form.jotform.com/263217708013047" target="_blank" rel="noopener noreferrer">国内U12チーム・指導者の事前登録へ <ArrowRight size={16}/></a><p className="registration-note">※ 無料の事前意向調査です。正式な参加申込や会場予約ではなく、登録しても交流試合への参加は確約されません。</p></section>:null}
+    {ja&&!role?<UnitedSeason locale={locale}/>:null}
     {ja&&!role?<section className="homecourt-product-preview section-pad" aria-label="RBA IDの初期設定ガイド"><div className="section-head"><div><p className="section-index">START GUIDE / 10 SLIDES</p><h2>無料RBA IDの始め方を、10枚で。</h2></div><p>登録・メールログイン・初期設定まで。選手・保護者・指導者向けの使い方ガイドを公開しました。</p></div><a className="button button-member" href="/ja/my-homecourt/guide">10枚の使い方ガイドを見る <ArrowRight size={16}/></a></section>:null}
     {ja&&!role?<div className="home-screen-card-wrap"><IPhoneHomeScreenCard/></div>:null}
     {!role?<section className="homecourt-product-preview section-pad">

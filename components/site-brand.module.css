@@ -114,3 +114,81 @@
 }
 .theme :global(.footer-legal a){overflow-wrap:anywhere}
 @media(max-width:700px){.theme :global(.footer-purpose){max-width:none;font-size:12px}}
+
+/* RBA master identity — approved 2026-11-25. Keep status and partner colours independent. */
+.theme {
+  --rba-blue:#2454D8;
+  --rba-blue-hover:#1944B9;
+  --rba-black:#111211;
+  --rba-white:#F6F5F1;
+  --rba-steel:#6B706F;
+  --rba-ink:var(--rba-black);
+  --rba-paper:var(--rba-white);
+  --rba-line:#D9DAD5;
+  --ink:var(--rba-black);
+  --paper:var(--rba-white);
+  --muted:var(--rba-steel);
+  --line:var(--rba-line);
+  /* Legacy --orange is intentionally neutral: older sections use it for surfaces. */
+  --orange:var(--rba-black);
+  --signal:#ECEDE9;
+  background:var(--rba-white);
+  color:var(--rba-black);
+}
+.theme :global(.site-header){background:rgba(246,245,241,.98);border-color:var(--rba-line)}
+.theme :global(.site-header nav a:after),.theme :global(.header-contact:after){background:var(--rba-blue)}
+.theme :global(.site-update-strip){background:var(--rba-white);color:var(--rba-black);border-color:var(--rba-line)}
+.theme :global(.site-update-cta){color:var(--rba-blue)}
+.theme :global(.site-footer){background:var(--rba-black);color:var(--rba-white);border-top:3px solid var(--rba-blue)}
+.theme :global(.button-dark){background:var(--rba-black);border-color:var(--rba-black);color:#fff}
+.theme :global(.button-orange),.theme :global(.button-rba-primary),.theme :global(.header-member),.theme :global(.mobile-menu-primary){background:var(--rba-blue);border-color:var(--rba-blue);color:#fff}
+.theme :global(.button-orange:hover),.theme :global(.button-rba-primary:hover),.theme :global(.header-member:hover),.theme :global(.mobile-menu-primary:hover){background:var(--rba-blue-hover);border-color:var(--rba-blue-hover);color:#fff}
+.theme :global(.button-light){background:#fff;border-color:var(--rba-line);color:var(--rba-black)}
+.theme :global(.button-member){background:var(--rba-white);border-color:var(--rba-line);color:var(--rba-black)}
+.theme :global(.language-links a[aria-current="true"]),.theme :global(.mobile-menu-languages a[aria-current="true"]){background:var(--rba-blue);border-color:var(--rba-blue);color:#fff}
+.theme :global(.mobile-menu-languages),.theme :global(.mobile-menu-languages a){border-color:var(--rba-line)}
+.theme :global(.hero-grid),.theme :global(.opportunity-hero),.theme :global(.international-hero),.theme :global(.torsten-feature),.theme :global(.asia-desk-home),.theme :global(.field-footprint){background-color:var(--rba-black);color:var(--rba-white)}
+.theme :global(.paid-programmes),.theme :global(.homecourt-product-preview){background:var(--rba-white);color:var(--rba-black)}
+.theme :global(.network-hero-united){background:var(--rba-black);color:var(--rba-white);border-bottom:4px solid var(--rba-blue)}
+.theme :global(.network-hero-united > svg){color:#7092FF}
+.theme :global(.network-hero-united .section-index){color:#C2CCEB}
+.theme :global(.network-hero-united .united-tagline){font-size:clamp(12px,1.3vw,16px);font-weight:800;letter-spacing:.08em;line-height:1.7;color:#C2CCEB;margin:12px 0 0}
+.theme :global(.united-entry-note){font-size:14px;line-height:1.8;color:#D6DAD5;max-width:760px;margin:12px 0 0}
+.theme :global(.network-hero-united .button-rba-primary){min-height:52px;border-radius:8px}
+.theme a:focus-visible,.theme button:focus-visible,.theme summary:focus-visible,.theme select:focus-visible{outline:3px solid var(--rba-blue);outline-offset:3px;box-shadow:0 0 0 2px #fff}
+@media(prefers-reduced-motion:reduce){.theme :global(a),.theme :global(button){transition:none!important}}
+
+/* UNITED season editorial schedule — a single layout shared by both public entry pages. */
+.theme :global(.united-season){background:var(--rba-white);color:var(--rba-black);border-bottom:1px solid var(--rba-line);padding-block:clamp(64px,9vw,128px)}
+.theme :global(.united-season-inner){max-width:1320px;margin-inline:auto}
+.theme :global(.united-season-head){display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(28px,6vw,96px);align-items:end;margin-bottom:clamp(32px,5vw,60px)}
+.theme :global(.united-season-kicker){color:var(--rba-blue);letter-spacing:.15em;font-size:12px;font-weight:800;margin:0 0 20px}
+.theme :global(.united-season-head h2){font-size:clamp(36px,5.5vw,76px);line-height:1.15;letter-spacing:-.055em;font-weight:900;margin:0;overflow-wrap:anywhere}
+.theme :global(.united-season-head > p){font-size:16px;line-height:1.9;margin:0;color:#4B504D;max-width:36em}
+.theme :global(.united-season-list){border-top:2px solid var(--rba-black)}
+.theme :global(.united-season-row){display:grid;grid-template-columns:minmax(120px,.24fr) minmax(0,1fr) minmax(112px,.25fr);gap:clamp(20px,4vw,56px);align-items:center;padding:clamp(24px,4vw,42px) 0;border-bottom:1px solid var(--rba-line)}
+.theme :global(.united-season-date){display:flex;flex-direction:column;gap:4px;font-variant-numeric:tabular-nums;align-self:start}
+.theme :global(.united-season-date span){font-weight:800;font-size:11px;color:var(--rba-steel);letter-spacing:.14em}
+.theme :global(.united-season-date strong){font-size:clamp(30px,4vw,54px);line-height:1.1;letter-spacing:-.065em;font-weight:900;color:var(--rba-black)}
+.theme :global(.united-season-info){min-width:0}
+.theme :global(.united-season-status){font-size:11px;font-weight:800;letter-spacing:.03em;color:var(--rba-blue);margin:0 0 9px}
+.theme :global(.united-season-info h3){font-size:clamp(23px,3vw,40px);line-height:1.12;letter-spacing:-.035em;font-weight:900;margin:0 0 9px;overflow-wrap:anywhere}
+.theme :global(.united-season-description){font-size:16px;line-height:1.65;margin:0 0 7px;font-weight:700}
+.theme :global(.united-season-meta){font-size:13px;line-height:1.75;color:#535955;margin:0}
+.theme :global(.united-season-actions){display:grid;gap:8px;justify-items:end}
+.theme :global(.united-season-actions a){display:inline-flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:6px 0;color:var(--rba-blue);border-bottom:1px solid currentColor;font-size:13px;font-weight:800}
+.theme :global(.united-season-actions a:hover){color:var(--rba-blue-hover)}
+.theme :global(.united-season-actions a svg){flex:none}
+.theme :global(.united-season-foot){display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;margin-top:32px}
+.theme :global(.united-season-foot p){font-size:13px;line-height:1.85;color:#535955;max-width:60em;margin:0 0 7px}
+.theme :global(.united-season-ctas){display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.theme :global(.united-season-ctas .button){min-height:52px;border-radius:8px}
+.theme :global(.united-season-ctas .text-link){min-height:44px;align-items:center}
+@media(max-width:760px){
+ .theme :global(.united-season-head),.theme :global(.united-season-foot){grid-template-columns:minmax(0,1fr);gap:20px}
+ .theme :global(.united-season-row){grid-template-columns:74px minmax(0,1fr);gap:12px 16px;align-items:start;padding:24px 0}
+ .theme :global(.united-season-date strong){font-size:29px}
+ .theme :global(.united-season-actions){grid-column:2;justify-items:start}
+ .theme :global(.united-season-ctas){align-items:stretch}
+ .theme :global(.united-season-ctas .button){width:100%;justify-content:space-between}
+}
