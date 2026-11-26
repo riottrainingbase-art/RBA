@@ -72,6 +72,9 @@ jobs:
       - name: MY HOME COURT growth privacy and trend regression
         run: node --test tests/homecourt-growth-visualization.test.mjs
 
+      - name: UNITED multilingual participation and membership regression
+        run: node --test tests/united-participation-guide.test.mjs
+
       - name: U12 U15 GREAM navigation and regional hubs
         run: node --test tests/gream-category-hubs.test.mjs
 
@@ -122,6 +125,15 @@ jobs:
 
       - name: RBA revenue service destinations and payment safety
         run: pnpm run audit:revenue-services
+
+      - name: RBA sport-programme margin and launch gates
+        run: node --experimental-strip-types --test tests/rba-margin-model.test.mjs
+
+      - name: Completed Torsten event safety
+        run: node --test tests/torsten-vol2-post-event.test.mjs
+
+      - name: D-HUB coach cases
+        run: node --test tests/dhub-coach-case-lab.test.mjs
 
       - name: ESLint changed files
         if: github.event_name == 'pull_request'

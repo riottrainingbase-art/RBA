@@ -1,0 +1,6 @@
+.focus{border:1px solid #cbd0cd;border-left:4px solid #e86f24;padding:18px;background:#f6f6f3;display:grid;gap:8px;min-width:0}
+.focus h3{font-size:20px;margin:0;line-height:1.4}
+.focus p,.focus small{margin:0;line-height:1.7}
+.focus>p:first-child{font-size:11px;font-weight:800;letter-spacing:.06em}
+.focus a{display:inline-flex;align-items:center;gap:6px;min-height:44px;text-decoration:underline}
+.focus small{font-size:12px;color:#5d676b}

@@ -114,3 +114,45 @@
 }
 .theme :global(.footer-legal a){overflow-wrap:anywhere}
 @media(max-width:700px){.theme :global(.footer-purpose){max-width:none;font-size:12px}}
+
+/* RBA master identity — approved 2026-11-25. Keep status and partner colours independent. */
+.theme {
+  --rba-blue:#2454D8;
+  --rba-blue-hover:#1944B9;
+  --rba-black:#111211;
+  --rba-white:#F6F5F1;
+  --rba-steel:#6B706F;
+  --rba-ink:var(--rba-black);
+  --rba-paper:var(--rba-white);
+  --rba-line:#D9DAD5;
+  --ink:var(--rba-black);
+  --paper:var(--rba-white);
+  --muted:var(--rba-steel);
+  --line:var(--rba-line);
+  --signal:#ECEDE9;
+  background:var(--rba-white);
+  color:var(--rba-black);
+}
+.theme :global(.site-header){background:rgba(246,245,241,.98);border-color:var(--rba-line)}
+.theme :global(.site-header nav a:after),.theme :global(.header-contact:after){background:var(--rba-blue)}
+.theme :global(.site-update-strip){background:var(--rba-white);color:var(--rba-black);border-color:var(--rba-line)}
+.theme :global(.site-update-cta){color:var(--rba-blue)}
+.theme :global(.site-footer){background:var(--rba-black);color:var(--rba-white);border-top:3px solid var(--rba-blue)}
+.theme :global(.button-dark){background:var(--rba-black);border-color:var(--rba-black);color:#fff}
+.theme :global(.button-orange),.theme :global(.button-rba-primary),.theme :global(.header-member),.theme :global(.mobile-menu-primary){background:var(--rba-blue);border-color:var(--rba-blue);color:#fff}
+.theme :global(.button-orange:hover),.theme :global(.button-rba-primary:hover),.theme :global(.header-member:hover),.theme :global(.mobile-menu-primary:hover){background:var(--rba-blue-hover);border-color:var(--rba-blue-hover);color:#fff}
+.theme :global(.button-light){background:#fff;border-color:var(--rba-line);color:var(--rba-black)}
+.theme :global(.button-member){background:var(--rba-white);border-color:var(--rba-line);color:var(--rba-black)}
+.theme :global(.language-links a[aria-current="true"]),.theme :global(.mobile-menu-languages a[aria-current="true"]){background:var(--rba-blue);border-color:var(--rba-blue);color:#fff}
+.theme :global(.mobile-menu-languages),.theme :global(.mobile-menu-languages a){border-color:var(--rba-line)}
+.theme :global(.hero-grid),.theme :global(.opportunity-hero),.theme :global(.international-hero),.theme :global(.torsten-feature),.theme :global(.asia-desk-home),.theme :global(.field-footprint){background-color:var(--rba-black);color:var(--rba-white)}
+.theme :global(.paid-programmes),.theme :global(.homecourt-product-preview){background:var(--rba-white);color:var(--rba-black)}
+.theme :global(.network-hero-united){background:var(--rba-black);color:var(--rba-white);border-bottom:4px solid var(--rba-blue)}
+.theme :global(.network-hero-united > svg){color:#7092FF}
+.theme :global(.network-hero-united .section-index){color:#C2CCEB}
+.theme :global(.network-hero-united .united-tagline){font-size:clamp(12px,1.3vw,16px);font-weight:800;letter-spacing:.08em;line-height:1.7;color:#C2CCEB;margin:12px 0 0}
+.theme :global(.united-entry-note){font-size:14px;line-height:1.8;color:#D6DAD5;max-width:760px;margin:12px 0 0}
+.theme :global(.network-hero-united .button-rba-primary){min-height:52px;border-radius:8px}
+.theme a:focus-visible,.theme button:focus-visible,.theme summary:focus-visible,.theme select:focus-visible{outline:3px solid var(--rba-blue);outline-offset:3px;box-shadow:0 0 0 2px #fff}
+@media(prefers-reduced-motion:reduce){.theme :global(a),.theme :global(button){transition:none!important}}
+

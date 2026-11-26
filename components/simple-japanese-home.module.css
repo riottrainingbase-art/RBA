@@ -499,3 +499,9 @@
 @media(prefers-reduced-motion:reduce){
  .page .journeyCard,.page .programmes article,.page .ageCard,.sectionNavigator a{transition:none}
 }
+
+/* Keep the approved identity and readable quick routes on the dark hero. */
+.page .hero .actions .primary{background:#2454D8;border-color:#2454D8;color:#fff!important}
+.page .hero .actions .primary:hover{background:#1944B9;border-color:#1944B9;color:#fff!important}
+.heroQuickLinks{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#D6DAD5;font-size:13px;line-height:1.8;margin:18px 0 0}
+.heroQuickLinks a,.heroQuickLinks a:visited{color:#fff!important;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
