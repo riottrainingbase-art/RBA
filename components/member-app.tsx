@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { Locale } from "./site-frame";
 import { MemberJourney } from "./member-journey";
 import { BasketballPassport } from "./basketball-passport";
+import { UnitedMemberEntry } from "./united-participation-guide";
 import { MemberBilling } from "./member-billing";
 import { hasCurrentHomecourtSubscription } from "@/lib/homecourt-billing";
 import { CalendarImport } from "./calendar-import";
@@ -208,6 +209,7 @@ export function MemberApp({locale,section,userId,email,learningCount}:{locale:Lo
     {active==="home"&&locale==="ja"?<IPhoneHomeScreenCard compact/>:null}
     {active==="home"&&locale==="ja"?<section className="member-next-step" aria-label="RBA UNITED 深圳U12男子チームとの国際交流・受入チーム事前登録"><div><Users/><span>RBA UNITED / INTERNATIONAL EXCHANGE / 事前意向登録</span><strong>中国・深圳U12男子との5対5交流試合・合同練習を調整中</strong><p>深圳のCiroo Basketball Academy（CR）から、2027年2月10日来日、関東約7日滞在、11〜12歳の男子選手約10名との交流希望が届きました。日本側U12男子チームの受入・対戦希望を伺います。日時・会場・費用・試合数は未確定で、この受付は参加確約や有料申込ではありません。</p></div><a href="https://form.jotform.com/263217708013047" target="_blank" rel="noopener noreferrer">U12チーム事前登録フォームへ<ChevronRight/></a></section>:null}
 
+    {active==="home"?<UnitedMemberEntry locale={locale}/>:null}
     {active==="home"&&locale==="en"&&isCoach?<section className="member-section"><p>FREE COACH LIBRARY</p><h2>Find one idea for your next practice.</h2><p>English resources, coaching references and simple practice prompts.</p><a href="/my-homecourt/app/coach-library">Open coach library →</a></section>:null}
     {active==="admin"&&data.profile.role==="admin"?<section className="member-section"><a href="/my-homecourt/app/coach-library/insights">マレーシア指導者：関心テーマ・資料アクセスを見る →</a></section>:null}
     {message?<div className="member-alert" role="alert">{message}<button onClick={()=>setMessage("")}>×</button></div>:null}
