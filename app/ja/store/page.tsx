@@ -1,3 +1,4 @@
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
@@ -78,7 +79,7 @@ const questions = [
 ] as const;
 
 export default function StorePage() {
-  return <SiteFrame locale="ja">
+  return <SiteFrame locale="ja"><GrowthClickTracking/>
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="store-title">
         <div className={styles.heroCopy}>

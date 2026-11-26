@@ -1,3 +1,4 @@
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,7 +17,7 @@ export default async function Page() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/ja/my-homecourt/login?next=%2Fja%2Fmy-homecourt%2Fapp%2Fclinics");
   const { data: profile } = await supabase.from("profiles").select("region").eq("id",user.id).maybeSingle();
-  return <main className="min-h-screen bg-[#f8f3ed] text-[#141414]">
+  return <main className="min-h-screen bg-[#f8f3ed] text-[#141414]"><GrowthClickTracking/>
     <header className="border-b border-black/15 bg-white">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4">
         <Link href="/ja/my-homecourt/app" className="flex items-center gap-3">
