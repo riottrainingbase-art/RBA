@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
-import { getMiyagiPayment } from "@/lib/miyagi-united-payments";
+import { getMiyagiPayment, miyagiRegions, miyagiTermsVersion } from "@/lib/miyagi-united-payments";
 import { miyagiPath } from "@/components/united-miyagi";
 import styles from "@/components/united-miyagi.module.css";
 
@@ -14,6 +14,7 @@ export default async function Page({searchParams}:{searchParams:Promise<{program
    <a href={miyagiPath}>← 企画詳細へ</a>
    <h1>正式申込・お支払い</h1>
    <p>会員登録やログインは不要です。保護者の方が申込フォームを入力し、そのままお支払いへ進めます。</p>
+   {params.status==="cancelled"&&<p className={styles.notice}>お支払い画面を閉じました。既に決済済みの場合は再決済不要です。未決済の申込についてはRBAにご連絡ください。</p>}
    {choices.map(programme=>{
      const payment=getMiyagiPayment(programme);
      if(!payment)return null;
@@ -22,7 +23,19 @@ export default async function Page({searchParams}:{searchParams:Promise<{program
        {payment.payable? <>
          <p>参加費（税込） <strong>{payment.amount?.toLocaleString("ja-JP")}円</strong>／1名</p>
          <p>参加資格・総費用・取消条件をご確認ください。支払済みの方は再手続き不要です。</p>
-         <a className={styles.button} href={payment.formUrl!}>正式申込・決済へ →</a>
+         <form className={styles.application} method="POST" action="/api/commerce/miyagi-united-checkout">
+           <input type="hidden" name="programme" value={programme}/><input type="hidden" name="amount" value={payment.amount!}/><input type="hidden" name="termsVersion" value={miyagiTermsVersion}/>
+           <label>保護者氏名<input name="guardian" required maxLength={100} autoComplete="name"/></label>
+           <label>保護者メール<input name="email" type="email" required maxLength={254} autoComplete="email"/></label>
+           <label>保護者電話番号<input name="phone" type="tel" required maxLength={32} autoComplete="tel"/></label>
+           <label>選手氏名<input name="player" required maxLength={100}/></label>
+           <label>学年<select name="grade" required defaultValue=""><option value="" disabled>選択してください</option>{(programme==="rizehope"?["小6"]:["小4","小5","小6","中1","中2","中3"]).map(x=><option key={x}>{x}</option>)}</select></label>
+           <label>都道府県{programme==="rizehope"?<select name="region" required defaultValue=""><option value="" disabled>選択してください</option>{miyagiRegions.map(x=><option key={x}>{x}</option>)}</select>:<input name="region" required maxLength={40}/>}</label>
+           <label>所属チーム（任意）<input name="team" maxLength={100}/></label>
+           <p>参加費は1名分・税込です。<a href="/ja/policies">参加規約・キャンセル・返金方針</a>をご確認ください。主催者都合の中止・受入不可の場合は全額返金します。</p>
+           <label className={styles.agree}><input type="checkbox" name="accepted" value="yes" required/> 私は保護者または法定代理人で、参加条件・安全方針・個人情報の取扱い・取消条件に同意します。</label>
+           <button className={styles.button} type="submit">{payment.amount?.toLocaleString("ja-JP")}円で申込・Stripe決済へ →</button>
+         </form>
        </>:<>
          <p className={styles.notice}>正式受付準備中です。会場・受入枠・料金の確認後、このページから直接お申し込みいただけます。</p>
        </>}
