@@ -80,7 +80,7 @@ export async function SimpleJapaneseHome() {
             <div className={styles.heroBody}>
               <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
               <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-              <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に活動するバスケットボールアカデミーです。全国で小中学生のクリニックや指導者講習を開き、海外のチームとの合同練習・交流試合も企画しています。</p>
+              <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に、子どもたちの育成と参加機会を広げる活動を行っています。所属チームでの活動を大切にしながら、全国のクリニック、3x3、国内外の交流、指導者の学びを通じて、自分で見て、考え、仲間とプレーする力を育てます。</p>
               <a className={styles.textLink} href="/ja/about">代表・西尾優人の経歴と指導方針を見る</a>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">参加・開催予定を見る <span aria-hidden="true">↗</span></a>
@@ -172,11 +172,22 @@ export async function SimpleJapaneseHome() {
             <CorporateSupportStrip locale="ja" />
           </div>
 
-          <section className={styles.nextStep} id="home-next-step" aria-labelledby="home-next-step-title">
-            <div className={styles.nextStepIntro}>
-              <p className={styles.label}>FIRST TIME HERE?</p>
-              <h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2>
-              <p>活動内容が決まっていない方も、必要な情報だけを選べます。</p>
+          <section className={styles.section} id="home-next-step" aria-labelledby="home-next-step-title">
+            <div className={styles.heading}>
+              <div><p className={styles.label}>FIRST TIME HERE?</p><h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2><p>目的に合わせて、活動を選ぶ。所属を変える必要はありません。</p></div>
+            </div>
+            <div className={styles.pathGrid}>
+              {[
+                {id:"clinic",title:"クリニック・キャンプ",copy:"技術を試合の判断につなげる実践の場。単発や複数日で参加できる企画を選べます。対象年代・会場・料金・引率条件は各開催案内へ。",href:"/ja/opportunities",action:"開催予定を見る"},
+                {id:"backbone",title:"BACKBONE",copy:"3x3を通じて、距離・ズレ・スペーシング、攻守の判断を学ぶ育成・実践プログラム。通常の5対5スクールとは異なります。",href:"/ja/opportunities",action:"現在の活動を確認"},
+                {id:"gream",title:"GREAM",copy:"地域で継続的に育成に取り組むクラブ活動。入団条件や体験・練習日程は各地域の案内で確認してください。",href:"/ja/gream",action:"地域クラブを確認"},
+                {id:"united",title:"RBA UNITED",copy:"所属先を変えず、企画ごとに期間限定のチームで交流する個人参加型プログラム。無料意向登録と正式参加・決済は別の手続きです。",href:"/ja/united",action:"参加の仕組みを知る"},
+                {id:"homecourt",title:"MY HOME COURT",copy:"無料RBA IDで育成機会を探し、学びと参加の記録をつなぐ入口。有料のHOMECOURT PLUSは内容と料金を確認してから選択できます。",href:"/ja/my-homecourt",action:"無料の入口へ"},
+                {id:"dhub",title:"D-HUB",copy:"指導者・選手が継続して学ぶ教育プログラム。指導者向けのケース教材では、練習設計・観察・振り返りを現場で試します。",href:"/ja/d-hub",action:"教育プログラムを見る"},
+              ].map(item => <article className={styles.pathCard} key={item.id}>
+                <h3>{item.title}</h3><p>{item.copy}</p>
+                <a href={item.href} data-growth-id={"home-programme-guide-" + item.id}>{item.action} →</a>
+              </article>)}
             </div>
             <nav className={styles.nextStepLinks} aria-label="はじめての方向けの案内">
               <a href="/ja/families" data-growth-id="home-first-family"><span>01</span><strong>選手・保護者の方</strong><span aria-hidden="true">↗</span></a>
@@ -184,6 +195,7 @@ export async function SimpleJapaneseHome() {
               <a href="/ja/coaches" data-growth-id="home-first-coaches"><span>03</span><strong>指導者・チームの方</strong><span aria-hidden="true">↗</span></a>
               <a href="/ja/clinic-request" data-growth-id="home-first-hosts"><span>04</span><strong>地域の主催者の方</strong><span aria-hidden="true">↗</span></a>
             </nav>
+            <p className={styles.note}>RBAは育成と教育の機会を広げることを目的に活動しています。既存の所属・会員契約を変更する必要はありません。開催や受入れ、参加費の確定は個別の公式案内をご確認ください。</p>
           </section>
 
           <section className={styles.ageHub} aria-labelledby="home-age-categories" id="home-age-categories">
@@ -236,7 +248,7 @@ export async function SimpleJapaneseHome() {
                 </article>;
               })}
             </div>
-            <p className={styles.note}>指導者向けの学びは <a href="/ja/d-hub" data-growth-id="home-coach-dhub">D-HUB</a>、継続サポートは <a href="/ja/home-court" data-growth-id="home-homecourt">HOMECOURT</a> から確認できます。無料登録と有料プランは別です。</p>
+            <p className={styles.note}>指導者向けの学びは <a href="/ja/d-hub" data-growth-id="home-coach-dhub">D-HUB</a>、継続サポートは <a href="/ja/home-court" data-growth-id="home-homecourt">HOMECOURT PLUS</a> から確認できます。無料登録と有料プランは別です。</p>
           </section>
 
           <section className={styles.hostCallout} id="home-host" aria-labelledby="home-host-cta-title">

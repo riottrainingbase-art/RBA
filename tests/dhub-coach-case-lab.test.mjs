@@ -4,9 +4,9 @@ import { readFileSync } from "node:fs";
 const read = path => readFileSync(new URL("../"+path, import.meta.url),"utf8");
 const source=read("lib/dhub-coach-cases.ts");
 const cases=JSON.parse(source.split("export const dhubCoachCases = ")[1].split(" as const;")[0]);
-test("eight distinct and complete field cases",()=>{
-  assert.equal(cases.length,8);
-  assert.equal(new Set(cases.map(c=>c.id)).size,8);
+test("twelve distinct and complete field cases",()=>{
+  assert.equal(cases.length,12);
+  assert.equal(new Set(cases.map(c=>c.id)).size,12);
   for(const c of cases){
     for(const key of ["title","age","duration","question","setup","observe","adjust","cue","review","player","parent"])assert.ok(c[key]?.trim(),c.id+":"+key);
     assert.equal(c.steps.length,3);
@@ -27,4 +27,14 @@ test("content has no recording, checkout, data collection or claimed accreditati
   assert.match(component,/RBA独自の練習設計案/);
   assert.match(component,/自動加算されません/);
   assert.match(component,/氏名や健康情報を外部共有しない/);
+});
+
+test("reference-based framework is shared across locales without a certification claim",()=>{
+  const framework=read("components/rba-coaching-framework.tsx");
+  const page=read("components/localized-core-page.tsx");
+  assert.match(page,/kind==="approach"&&<RbaCoachingFramework locale=\{locale\}\/>/);
+  for(const item of ["選手が主役","個々の発達","ゲームから学ぶ","問いかけと発見","全員の学習機会","身体と健康","尊厳と安全","指導者の成長","5〜7歳","8〜9歳","10〜12歳","U15","U18","公式認定・資格取得コース・提携を示すものではありません"])assert.ok(framework.includes(item),item);
+  for(const marker of ["en:{","\"zh-tw\":{","ko:{","https://about.fiba.basketball/en/wabc-documents","https://about.fiba.basketball/en/services/integrity/safeguarding"])assert.ok(framework.includes(marker),marker);
+  assert.doesNotMatch(framework,/buy\.stripe\.com|<form|<input|use client/);
+  assert.match(read("components/dhub-coach-case-lab.tsx"),/指導者の自己評価/);
 });
