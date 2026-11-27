@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { localePath, type Locale, type LanguagePage } from "./site-frame";
 
@@ -26,11 +25,10 @@ const text={
 export function RbaProjectDirectory({locale}:{locale:Locale}){
  const c=text[locale],i=locale==="ja"?0:locale==="en"?1:locale==="zh-tw"?2:3;
  return <section id="rba-project-directory" className="section-pad" style={{background:"#F6F5F1",color:"#111211"}}>
-  <div style={{display:"flex",alignItems:"center",gap:16,marginBottom:24}}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy" width={52} height={80} style={{objectFit:"contain"}}/><div><p className="section-index" style={{color:"#2454D8"}}>RBA / PROJECT DIRECTORY</p><h2 style={{fontSize:"clamp(1.5rem,4vw,2.6rem)",fontWeight:900,marginTop:8}}>{c.title}</h2></div></div>
+  <div style={{marginBottom:16}}><p className="section-index" style={{color:"#2454D8"}}>RBA / PROJECT DIRECTORY</p><h2 style={{fontSize:"clamp(1.5rem,4vw,2.6rem)",fontWeight:900,marginTop:8}}>{c.title}</h2></div>
   <p style={{lineHeight:1.8,maxWidth:860,marginBottom:24}}>{c.body}</p>
   <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,240px),1fr))",gap:12}}>
-   {projects.map((p,n)=><article key={p.name} style={{background:"#fff",border:"1px solid #D6D9DC",borderTop:"3px solid #2454D8",padding:18,display:"flex",flexDirection:"column",gap:10}}><span style={{fontSize:11,fontWeight:900,color:"#6B706F"}}>{String(n+1).padStart(2,"0")} / RBA</span><h3 style={{fontSize:"1.1rem",fontWeight:900}}>{p.name}</h3><p style={{lineHeight:1.7,fontSize:14,flex:1}}>{p.copy[i]}</p><a style={{fontWeight:800,color:"#2454D8",display:"inline-flex",alignItems:"center",gap:6,minHeight:44}} href={p.local?p.path:localePath(locale,p.path as LanguagePage)}>{p.local&&locale!=="ja"?c.jp:c.open}<ArrowRight size={16}/></a></article>)}
+   {projects.map(p=><article key={p.name} style={{background:"#fff",border:"1px solid #D6D9DC",borderTop:"3px solid #2454D8",padding:14,display:"flex",flexDirection:"column",gap:6}}><h3 style={{fontSize:"1.1rem",fontWeight:900}}>{p.name}</h3><p style={{lineHeight:1.7,fontSize:14,flex:1}}>{p.copy[i]}</p><a style={{fontWeight:800,color:"#2454D8",display:"inline-flex",alignItems:"center",gap:6,minHeight:44}} href={p.local?p.path:localePath(locale,p.path as LanguagePage)}>{p.local&&locale!=="ja"?c.jp:c.open}<ArrowRight size={16}/></a></article>)}
   </div>
-  <a className="button button-member" style={{marginTop:20}} href={localePath(locale,"my-homecourt")}>{c.next}<ArrowRight size={16}/></a>
  </section>;
 }
