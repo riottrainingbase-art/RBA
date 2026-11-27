@@ -1,175 +1,31 @@
-import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
-import {
-  canSellPerformanceTee,
-  performanceTeeRelease,
-  PERFORMANCE_TEE_INTEREST_FORM,
-  safePerformanceTeeProductUrl,
-} from "@/lib/performance-tee-launch";
-import styles from "./store.module.css";
+import { GrowthClickTracking } from "@/components/growth-click-tracking";
+import { collectionCheckout } from "@/lib/store-collection-release";
 
 export const metadata: Metadata = {
-  title: "RBA PERFORMANCE TEE | Riot Basketball Academy 公式スポーツウェア",
-  description:
-    "コートへ、その先へ。Riot Basketball Academy公式Performance Tee。発売状況・着用設計・購入前の確認事項をご案内します。",
+  title: "RBA公式オンラインショップ｜COLLECTION 001",
+  description: "白Tシャツと黒セットアップを受注販売。国内送料無料。ご注文から3週間を目安に発送します。",
   alternates: { canonical: "https://riotbasketballacademy.com/ja/store" },
-  openGraph: {
-    title: "RBA PERFORMANCE TEE | コートへ、その先へ。",
-    description: "RBA公式スポーツウェアの第一弾。製品の検証と発売情報はこちら。",
-    url: "https://riotbasketballacademy.com/ja/store",
-    siteName: "Riot Basketball Academy",
-    locale: "ja_JP",
-    type: "website",
-    images: [{ url: "/rba-logo-original.jpg" }],
-  },
 };
 
-const ready = canSellPerformanceTee(performanceTeeRelease);
-const checkoutUrl = ready
-  ? safePerformanceTeeProductUrl(performanceTeeRelease.confirmedShopifyProductUrl)
-  : null;
-
-const features = [
-  {
-    number: "01",
-    title: "FOR THE COURT",
-    subtitle: "毎日の練習に。",
-    detail:
-      "現在の候補はSOL’S 11939。通気性のあるポリエステルメッシュ、140g/㎡、リラックスフィットのラグランスリーブ。着用サンプルで適合性を確かめてから最終採用します。",
-  },
-  {
-    number: "02",
-    title: "OFFICIAL RBA",
-    subtitle: "本物の公式ロゴを。",
-    detail:
-      "RBAの公式ロゴを用いたシンプルなブラックを検討中。仕上がり、プリント耐久性、サイズ感は製造サンプルの確認後に確定します。",
-  },
-  {
-    number: "03",
-    title: "MADE WHEN ORDERED",
-    subtitle: "必要な分だけ届ける。",
-    detail:
-      "在庫を大量に抱えない受注生産方式を予定しています。製造・配送会社との連携を確認した国・地域のみで販売し、送料を購入前に明示します。",
-  },
-] as const;
-
-const questions = [
-  {
-    question: "いつ購入できますか？",
-    answer:
-      "正式な発売日と販売価格はまだ確定していません。製品サンプル、サイズ、配送・返品条件、決済と製造の接続テストが完了した段階で、公式サイトとInstagramからご案内します。",
-  },
-  {
-    question: "価格とサイズは？",
-    answer:
-      "現在のShopify管理画面の価格やXS・3XLを含む登録内容は旧案の仮設定です。実際に販売するサイズと日本円の価格は、サンプルと製造費用を確認した後に表示します。現時点で確定価格を掲示しません。",
-  },
-  {
-    question: "海外からも購入できますか？",
-    answer:
-      "日本に加え、台湾・マレーシアへの発送も検討しています。ただし、対応国・送料・関税・到着目安は未確定です。購入できる地域だけを注文時に選択可能にします。",
-  },
-  {
-    question: "受注生産なら返品できませんか？",
-    answer:
-      "受注生産だからすべての返品・交換をお断りする、という対応ではありません。不良品・誤配送・キャンセル・サイズ交換の条件を、正式販売前に明示します。",
-  },
-] as const;
-
 export default function StorePage() {
-  return <SiteFrame locale="ja"><GrowthClickTracking/>
-    <main className={styles.page}>
-      <section className={styles.hero} aria-labelledby="store-title">
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / OFFICIAL COLLECTION</p>
-          <p className={styles.status}>{checkoutUrl ? "NOW AVAILABLE" : "FIRST DROP / LAUNCH PREPARATION"}</p>
-          <h1 id="store-title">コートへ、<br />その先へ。<br /><span>RBAと。</span></h1>
-          <p className={styles.lead}>
-            着るたびに、次のコートを思い出す。<br />
-            RBAがつくる、最初のパフォーマンスウェア。
-          </p>
-          <p className={styles.productName}>RBA PERFORMANCE TEE <span>01 / BLACK</span></p>
-          {checkoutUrl ? <a className={styles.button} href={checkoutUrl} target="_blank" rel="noopener noreferrer" data-growth-id="store-performance-buy">
-            Shopifyで購入する <span aria-hidden="true">↗</span>
-          </a> : <>
-            <p className={styles.noCheckout}>現在は発売準備中です。ご注文・ご予約・お支払いは受け付けていません。</p>
-            <a className={styles.button} href={PERFORMANCE_TEE_INTEREST_FORM} target="_blank" rel="noopener noreferrer" data-growth-id="store-performance-survey">
-              発売前アンケートに回答する <span aria-hidden="true">↗</span>
-            </a>
-            <p className={styles.surveyHelp}>無料・購入予約ではありません。回答に決済は発生しません。</p>
-          </>}
-        </div>
-        <figure className={styles.visual}>
-          <div className={styles.shirt} aria-hidden="true">
-            <div className={styles.collar}/>
-            <Image className={styles.logo} src="/rba-logo-original.jpg" width={203} height={312} alt="" />
-          </div>
-          <div className={styles.visualCaption}><span>RBA / PERFORMANCE TEE</span><strong>COLLECTION 01</strong></div>
-          <figcaption>デザイン検討図です。実際の商品写真ではありません。ロゴの位置、素材、仕上がりは最終確認前です。</figcaption>
-        </figure>
-      </section>
-
-      <section className={styles.section} id="details" aria-labelledby="details-title">
-        <div className={styles.sectionHeading}>
-          <p className={styles.eyebrow}>PRODUCT PHILOSOPHY</p>
-          <h2 id="details-title">パフォーマンスにも、<br />日常にも。</h2>
-          <p>「RBAらしさ」と「練習で着られる品質」。両方が成立するまで、仕様をごまかさずに準備します。</p>
-        </div>
-        <div className={styles.grid}>
-          {features.map(({number,title,subtitle,detail})=><article key={number}>
-            <span className={styles.featureNum}>{number} / {title}</span>
-            <h3>{subtitle}</h3><p>{detail}</p>
-          </article>)}
-        </div>
-      </section>
-
-      <section className={styles.section} aria-labelledby="collection-title">
-        <div className={styles.sectionHeading}><p className={styles.eyebrow}>RBA COLLECTION / DEVELOPMENT</p><h2 id="collection-title">コートの外でも、RBA。</h2><p>日常着と移動用のコレクションも企画しています。製造・納期・販売条件を確認中です。</p></div>
-        <div className={styles.grid}>
-          <article><span className={styles.featureNum}>01 / WHITE TEE</span><h3>WHITE TEE</h3><p>白のヘビーウェイトTシャツを企画中。素材・サイズ・加工はサンプル確認後に決定します。</p><a className={styles.textLink} href="mailto:riot.training.base@gmail.com?subject=RBA%20WHITE%20TEE%20%E7%99%BA%E5%A3%B2%E6%83%85%E5%A0%B1" data-growth-id="store-white-tee-interest">発売情報について問い合わせる ↗</a></article>
-          <article><span className={styles.featureNum}>02 / BLACK SETUP</span><h3>BLACK SETUP</h3><p>移動・遠征・日常用の黒の上下セットを企画中。上下別サイズなどの条件を検討しています。</p><a className={styles.textLink} href="mailto:riot.training.base@gmail.com?subject=RBA%20BLACK%20SETUP%20%E7%99%BA%E5%A3%B2%E6%83%85%E5%A0%B1" data-growth-id="store-black-setup-interest">発売情報について問い合わせる ↗</a></article>
-          <article><span className={styles.featureNum}>03 / LOCAL RECORDS</span><h3>地域のコートから。</h3><p>現場の学びや地域の交流を起点にしたコレクションを企画しています。</p><a className={styles.textLink} href="mailto:riot.training.base@gmail.com?subject=RBA%20LOCAL%20RECORDS" data-growth-id="store-local-records-interest">企画について問い合わせる ↗</a></article>
-        </div><p className={styles.smallPrint}>各企画は販売準備中です。お問い合わせは購入予約・決済にはなりません。</p>
-      </section>
-
-      <section className={styles.preparation} aria-labelledby="next-title">
-        <div>
-          <p className={styles.eyebrow}>FROM SAMPLE TO DELIVERY</p>
-          <h2 id="next-title">販売までの約束。</h2>
-          <p className={styles.preparationLead}>発売前に、製品の品質も、お支払い後の流れも確かめます。</p>
-        </div>
-        <div>
-          <ol className={styles.launchSteps}>
-            <li><span>01</span><div><strong>製品・ロゴの検証</strong><p>生地、着心地、サイズ、印刷品質と洗濯後の状態をサンプルで確認。</p></div></li>
-            <li><span>02</span><div><strong>価格・発送条件の確定</strong><p>販売価格・送料・税・対応国・キャンセルと返品条件を掲載。</p></div></li>
-            <li><span>03</span><div><strong>販売と製造の接続テスト</strong><p>決済・製造発注・発送追跡まで実際の注文で検証。</p></div></li>
-          </ol>
-          {checkoutUrl?<a className={styles.lightButton} href={checkoutUrl} target="_blank" rel="noopener noreferrer" data-growth-id="store-buy-bottom">
-            公式Shopifyで購入する <span aria-hidden="true">↗</span>
-          </a>:<a className={styles.lightButton} href={PERFORMANCE_TEE_INTEREST_FORM} target="_blank" rel="noopener noreferrer" data-growth-id="store-survey-bottom">
-            発売前アンケート <span aria-hidden="true">↗</span>
-          </a>}
-          <a className={styles.textLink} href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">発売情報は公式Instagramから ↗</a>
-        </div>
-      </section>
-
-      <section className={styles.section} aria-labelledby="faq-title">
-        <div className={styles.sectionHeading}>
-          <p className={styles.eyebrow}>QUESTIONS & ANSWERS</p>
-          <h2 id="faq-title">購入前に知っておきたいこと。</h2>
-        </div>
-        <div className={styles.faq}>
-          {questions.map(({question,answer})=><details key={question}>
-            <summary>{question}</summary><p>{answer}</p>
-          </details>)}
-        </div>
-        <p className={styles.smallPrint}>
-          本ページはRiot Basketball Academy公式商品のご案内です。製品の仕様・販売価格・発送可能地域は正式発売時に確定します。
-          <a href="mailto:riot.training.base@gmail.com?subject=RBA%20Performance%20Tee"> 商品に関するお問い合わせはこちら。</a>
-        </p>
-      </section>
-    </main>
-  </SiteFrame>;
+  const teeCheckout=collectionCheckout("tee"),setupCheckout=collectionCheckout("setup");
+  return <SiteFrame locale="ja"><GrowthClickTracking/><main><section aria-labelledby="collection-title" className="rba-atelier">
+<header><h1 id="collection-title">RBA <span>Collection 001</span></h1><p>受注販売 ｜ 国内送料無料 ｜ ご注文から3週間を目安に発送</p></header>
+<div className="atelier-grid"><article><a href="https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-white-tee-concept-detail-20261120.jpg?v=1795103081" target="_blank" rel="noopener noreferrer" aria-label="WHITE TEEの商品イメージを拡大"><Image unoptimized src="https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-white-tee-concept-detail-20261120.jpg?v=1795103081" alt="白のヘビーウェイトTシャツの全体とロゴ部分のデザインイメージ" width={1300} height={1200} sizes="(max-width: 720px) 100vw, 48vw" /></a><h2>WHITE TEE</h2><p>綿100％の厚手の生地を使いました。ほどよいハリがあり、肌触りはさらっとしています。</p><p>¥6,600（税込）</p><p>S / M / L / XL</p>{teeCheckout?<a href={teeCheckout} data-growth-id="store-collection-tee-buy">サイズを選んで購入する <span aria-hidden="true">→</span></a>:<p>購入受付準備中</p>}</article><article><a href="https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-black-setup-concept-detail-20261120.jpg?v=1795103099" target="_blank" rel="noopener noreferrer" aria-label="BLACK SETUPの商品イメージを拡大"><Image unoptimized src="https://cdn.shopify.com/s/files/1/0841/4098/2529/files/rba-black-setup-concept-detail-20261120.jpg?v=1795103099" alt="黒のフーディー＋スウェットパンツの全体とロゴ部分のデザインイメージ" width={1300} height={1200} sizes="(max-width: 720px) 100vw, 48vw" /></a><h2>BLACK SETUP</h2><p>パーカーもパンツも、裏起毛でやわらかな着心地です。厚手の黒い生地に、小さなRBAワッペンを合わせました。</p><p>¥19,800（税込）</p><p>上 S〜XXL ／ 下 M〜XL（上下別に選択）</p>{setupCheckout?<a href={setupCheckout} data-growth-id="store-collection-setup-buy">サイズを選んで購入する <span aria-hidden="true">→</span></a>:<p>購入受付準備中</p>}</article></div>
+<style>{`
+.rba-atelier{background:#faf9f6;color:#24231f;padding:clamp(28px,5vw,80px) max(5vw,calc((100vw - 1280px)/2));font-family:inherit}
+.rba-atelier header{border-bottom:1px solid #bdb9af;margin-bottom:clamp(20px,3vw,44px);padding-bottom:20px}
+.rba-atelier h1,.rba-atelier h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:1.12;letter-spacing:-.035em}
+.rba-atelier h1{font-size:clamp(34px,6vw,82px);margin:0 0 12px}.rba-atelier h1 span{font-style:italic}
+.rba-atelier header p,.rba-atelier article p{font-size:14px;line-height:1.85}
+.atelier-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px)}
+.atelier-grid article{display:flex;flex-direction:column}.atelier-grid article>a:first-child{display:block;background:#f0eee9}.atelier-grid img{display:block;width:100%;height:auto;aspect-ratio:1.06;object-fit:contain}
+.atelier-grid h2{font-size:clamp(27px,3vw,46px);margin:22px 0 10px}.atelier-grid article p{margin:0 0 8px}.atelier-grid article p:nth-of-type(2){font-size:18px;margin-top:auto;padding-top:10px;font-variant-numeric:tabular-nums}.atelier-grid article p:nth-of-type(3){color:#514e46}
+.atelier-grid article>a:last-child{display:flex;align-items:center;justify-content:space-between;background:#24231f;color:white;padding:16px 20px;margin-top:8px;text-decoration:none;font-size:14px;letter-spacing:.04em}.atelier-grid article>a:last-child:hover{background:#413f38}.rba-atelier a:focus-visible,.rba-atelier summary:focus-visible{outline:3px solid #826143;outline-offset:3px}
+.rba-atelier details{border-block:1px solid #c8c4bc;margin-top:40px;padding:18px 0;font-size:14px}.rba-atelier summary{cursor:pointer}.rba-atelier details p{max-width:65ch;line-height:1.9;margin:14px 0}.rba-atelier details a{text-decoration:underline}
+@media(max-width:680px){.atelier-grid{grid-template-columns:1fr;gap:40px}.rba-atelier{padding-inline:18px}.rba-atelier header p{font-size:12px}.atelier-grid h2{margin-top:16px}}
+`}</style><details><summary>商品・配送・返品について</summary><p>販売者：Riot Basketball Academy（西尾優人）。掲載画像は仕上がりイメージです。日本国内送料は無料、全額前払いです。注文から3週間を目安に発送します。未使用品の返品は到着後8日以内にご連絡ください。お客様都合の返送料はお客様負担、不良・誤配送はRBA負担で交換または返金します。納期を守れない場合は事前にご連絡し、継続または全額返金のご希望を伺います。</p><p>所在地は購入前のご請求に応じて電子メールで開示します。</p><a href="mailto:riot.training.base@gmail.com">お問い合わせ</a></details></section></main></SiteFrame>;
 }

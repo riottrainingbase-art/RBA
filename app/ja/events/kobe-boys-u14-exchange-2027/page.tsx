@@ -39,13 +39,17 @@ export default function KobeBoysU14InterestPage() {
     </div></div>
     <header className="bg-[#ff6709] px-5 py-14 sm:px-8 sm:py-20"><div className="mx-auto max-w-6xl">
       <div className="flex flex-wrap items-center gap-3"><span className="border-2 border-black px-3 py-1 text-xs font-black tracking-wider">BOYS U14 ONLY</span><span className="border-2 border-black px-3 py-1 text-xs font-black tracking-wider">先行参加意向受付／未決済</span></div>
-      <p className="mt-9 text-sm font-black tracking-[.24em]">JAPAN × GUAM + ASIA / KOBE 2027</p>
-      <h1 className="mt-4 max-w-5xl text-[clamp(2.7rem,8.5vw,7.5rem)] font-black leading-[1.02] tracking-[-.07em]">神戸で、<br/>世界と同じコートへ。</h1>
-      <p className="mt-7 border-t-[6px] border-black pt-5 text-[clamp(1.8rem,5vw,4rem)] font-black tracking-tight">RBA INTERNATIONAL<br/>BOYS U14 EXCHANGE</p>
-      <p className="mt-5 text-2xl font-black sm:text-4xl">2027.01.05–10 <span className="text-base sm:text-lg">／ 神戸・関西</span></p>
-      <p className="mt-5 max-w-3xl text-base font-bold leading-8">1月5日はグアム側の関空到着日。同日午後にHC西尾優人が率いるRBA UNITED JAPAN男子U14の事前練習（神戸エリア・会場未確定）を検討しています。1月6〜7日の男子U14交流を中心に、国内・海外の選手が互いの判断や文化に触れる場を計画しています。1月8〜9日の追加交流も希望を調査中です。</p>
-      <p className="mt-5 max-w-3xl border-l-4 border-black bg-[#fff4e8] p-4 text-sm font-bold leading-7">現在の受付は参加意向の確認です。体育館、競技日程、参加国数、年齢資格、最終料金は未確定です。現在は無料の参加意向登録を受け付けており、参加枠の確約・請求・決済は行いません。</p>
-      <div className="mt-8 flex flex-wrap gap-3"><a href={united} className="inline-flex min-h-14 items-center justify-center bg-black px-6 py-4 text-sm font-black text-white sm:text-base">RBA UNITED選抜プログラム・料金案 →</a><a href={checkout} className="inline-flex min-h-14 items-center justify-center border-2 border-black bg-white px-6 py-4 text-sm font-black text-black sm:text-base">料金・決済手順を確認 →</a><a href={domestic} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center bg-black px-6 py-4 text-sm font-black text-white sm:text-base">日本国内｜男子U14の参加意向を登録 ↗</a><a href={overseas} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center border-2 border-black bg-[#fff4e8] px-6 py-4 text-sm font-black text-black sm:text-base" lang="en">OVERSEAS TEAMS / ENQUIRE ↗</a></div>
+      <h1 className="mt-6 text-4xl font-black sm:text-6xl">神戸・グアム男子U14交流</h1>
+      <p className="mt-4 text-xl font-bold">1月6日（水）・7日（木）に交流試合と合同練習を予定しています。6日だけの参加希望も受け付けています。</p>
+      <dl className="mt-5 space-y-3 border-l-4 border-black bg-white p-5">
+        <div><dt className="font-bold">1月5日（火）</dt><dd>日本側の選抜チームの事前練習を午後に調整中です。</dd></div>
+        <div><dt className="font-bold">会場・時間</dt><dd>神戸・阪神エリアで調整中です。体育館と集合・解散時刻は未定です。</dd></div>
+        <div><dt className="font-bold">一般の個人参加費（税込・予定）</dt><dd>1日8,800円、6・7日の両日15,400円。交通・宿泊・食事と5日の練習は含みません。</dd></div>
+      </dl>
+      <p className="mt-5">現在は無料で参加希望を伺っています。会場・料金・対象年齢の詳細が決まり次第、正式な条件をご案内します。</p>
+      <a className="mt-4 inline-flex min-h-14 items-center bg-black px-6 py-4 font-bold text-white" href={domestic}>国内の参加希望を伝える（無料） ↗</a>
+      <p className="mt-4"><a className="font-bold underline" href="/ja/my-homecourt">無料のRBA IDを作る・ログインする →</a><br/>IDは活動や成長の記録に使う会員アカウントです。神戸への参加希望は上のフォームで受け付けます。</p>
+      <nav aria-label="その他の参加方法" className="mt-5 flex flex-wrap gap-5 text-sm underline"><a href={united}>選抜プログラム</a><a href={checkout}>参加費の詳細</a><a href={overseas} lang="en">Overseas team enquiries</a></nav>
     </div></header>
     <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8"><p className="text-xs font-black tracking-[.25em] text-[#e75d09]">WHY WE MEET</p><h2 className="mt-3 text-3xl font-black leading-tight sm:text-5xl">勝つためだけに、<br/>集まるわけじゃない。</h2><p className="mt-5 max-w-4xl text-base leading-9">普段と異なる守り方。初めて会う仲間。言葉が通じなくても伝わる判断。1対1、スペーシング、相手を見て選ぶプレーを、試合と合同練習で試します。勝敗だけでなく、交流と学びを中心に設計します。</p>
     <div className="mt-9 grid gap-4 md:grid-cols-3">{[["01","国際交流試合","海外・国内男子U14チームが試合の中で互いを知る。"],["02","合同練習","単なる試合消化にせず、違う考え方や技術を持ち寄る。"],["03","文化と指導者交流","選手・指導者がバスケットボールを越えてつながる。"]].map(([n,title,body])=><article key={n} className="border border-black/20 bg-white p-6"><p className="text-2xl font-black text-[#ef650b]">{n}</p><h3 className="mt-4 text-xl font-black">{title}</h3><p className="mt-3 text-sm leading-7">{body}</p></article>)}</div></section>
