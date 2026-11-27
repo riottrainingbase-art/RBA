@@ -166,6 +166,7 @@ export default function InstagramEntryPage() {
           </section>
         )}
 
+        <a className="mx-5 mt-5 block border border-current p-5 font-bold" href={track("/ja/events/shizugawa-united-2027", "shizugawa_united", "20270206")}>RBA UNITED 志津川育成合宿｜小4〜中3・開催計画を見る ↗</a>
         {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
           <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
           <h2 id="shizugawa-feature-title" className="mt-3 text-3xl font-black leading-tight">海と森の志津川で、<br/>次のプレーへ。</h2>
