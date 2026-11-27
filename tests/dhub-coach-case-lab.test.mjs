@@ -4,9 +4,9 @@ import { readFileSync } from "node:fs";
 const read = path => readFileSync(new URL("../"+path, import.meta.url),"utf8");
 const source=read("lib/dhub-coach-cases.ts");
 const cases=JSON.parse(source.split("export const dhubCoachCases = ")[1].split(" as const;")[0]);
-test("eight distinct and complete field cases",()=>{
-  assert.equal(cases.length,8);
-  assert.equal(new Set(cases.map(c=>c.id)).size,8);
+test("twelve distinct and complete field cases",()=>{
+  assert.equal(cases.length,12);
+  assert.equal(new Set(cases.map(c=>c.id)).size,12);
   for(const c of cases){
     for(const key of ["title","age","duration","question","setup","observe","adjust","cue","review","player","parent"])assert.ok(c[key]?.trim(),c.id+":"+key);
     assert.equal(c.steps.length,3);
