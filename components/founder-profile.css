@@ -30,3 +30,14 @@
 .founder-contact{background:#10233f}
 .founder-contact:hover{background:#233e62}
 .founder-principles,.founder-principles article+article,.founder-invitation{border-color:#d6cbb9}
+
+/* Two equally prominent contact channels, without horizontal overflow. */
+.founder-contact-options{width:100%;max-width:650px}
+.founder-contact-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.founder-contact-buttons .founder-contact{min-width:0;text-align:center;overflow-wrap:anywhere}
+.founder-contact-instagram{background:#a64022}
+.founder-contact-instagram:hover{background:#873019}
+.founder-contact-hint{font-size:12px;line-height:1.8;color:#52574c;margin:12px 0 0}
+.founder-instagram-fallback{display:inline-flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:12px;line-height:1.8;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px;margin-top:8px}
+.founder-invitation .founder-contact-options{margin-inline:auto}
+@media(max-width:900px){.founder-contact-buttons{grid-template-columns:1fr}}
