@@ -174,7 +174,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.section} id="home-next-step" aria-labelledby="home-next-step-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>RBA / 活動の違い</p><h2 id="home-next-step-title">目的に合わせて、活動を選ぶ。</h2></div>
+              <div><p className={styles.label}>FIRST TIME HERE?</p><h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2><p>目的に合わせて、活動を選ぶ。所属を変える必要はありません。</p></div>
             </div>
             <div className={styles.pathGrid}>
               {[
