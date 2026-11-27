@@ -17,17 +17,36 @@ export function HomecourtPage({locale}:{locale:Locale}) {
   const authReady=process.env.RBA_AUTH_EMAIL_READY==="true";
   const registrationUrl=authReady?`${homecourtFreeRegistrationUrl(locale)}?source=homecourt-landing`:"https://lin.ee/5l1YG8N";
   const prefix=locale==="en"?"":`/${locale}`;
-  const roleLabels=locale==="ja"?homecourtRoles:{
-    players:{...homecourtRoles.players,label:locale==="en"?"For players":locale==="zh-tw"?"給球員":"선수"},
-    families:{...homecourtRoles.families,label:locale==="en"?"For families":locale==="zh-tw"?"給家長":"보호자"},
-    coaches:{...homecourtRoles.coaches,label:locale==="en"?"For coaches":locale==="zh-tw"?"給教練":"코치"},
+  const translatedRoles = {
+    en: {
+      players: {label:"For players",items:["Open clinics and camps","Development resources for practice and games","Reflect on participation and find the next opportunity"]},
+      families: {label:"For families",items:["Application status and next steps","Participation rules, safety and cancellation conditions","Parent updates and support"]},
+      coaches: {label:"For coaches",items:["TEAM TRAINING: practice planning and reflection","RBA VISIT TRAINING: on-site team support","Coach clinics and development articles"]},
+    },
+    "zh-tw": {
+      players: {label:"球員",items:["開放報名的訓練課程與營隊","應用於練習與比賽的培育資源","參加後的反思與下一個挑戰"]},
+      families: {label:"家長",items:["報名進度與下一步手續","參加規則、安全方針與取消條件","家長資訊與支援"]},
+      coaches: {label:"教練",items:["TEAM TRAINING：練習設計與反思","RBA VISIT TRAINING：到隊指導","教練研習與培育文章"]},
+    },
+    ko: {
+      players: {label:"선수",items:["모집 중인 클리닉과 캠프","훈련과 경기에 활용할 육성 자료","참가 후 돌아보기와 다음 도전"]},
+      families: {label:"보호자",items:["신청 현황과 다음 절차","참가 규정, 안전 방침 및 취소 조건","보호자 안내 및 지원"]},
+      coaches: {label:"지도자",items:["TEAM TRAINING: 훈련 설계와 회고","RBA VISIT TRAINING: 팀 방문 지도","지도자 연수와 육성 자료"]},
+    },
   };
+  const roleLabels=locale==="ja"?homecourtRoles:{
+    players:{...homecourtRoles.players,...translatedRoles[locale].players},
+    families:{...homecourtRoles.families,...translatedRoles[locale].families},
+    coaches:{...homecourtRoles.coaches,...translatedRoles[locale].coaches},
+  };
+  const registrationLabel=authReady?c.free:({ja:"登録再開のお知らせを受け取る",en:"Get notified when registration reopens","zh-tw":"接收恢復註冊的通知",ko:"가입 재개 알림 받기"})[locale];
+  const registrationNotice=({ja:"RBA IDの登録・ログインメールは現在調整中です。再開のお知らせは公式LINEでご案内します。",en:"RBA ID registration and login email are being prepared. Receive reopening updates through the official LINE account.","zh-tw":"RBA ID 的註冊與登入郵件目前正在調整。恢復開放時將透過官方 LINE 通知。",ko:"RBA ID 가입과 로그인 이메일을 준비 중입니다. 재개 소식은 공식 LINE을 통해 안내합니다."})[locale];
   return <SiteFrame locale={locale} languagePage="home-court">
     <section className="homecourt-launch-hero section-pad">
       <a className="back-link" href={localePath(locale)}>← RBA</a>
       <p className="section-index inverse">RBA / MY HOME COURT</p>
       <h1>{c.title}</h1><p>{c.lead}</p>
-      <div className="homecourt-launch-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={18}/>{locale==="ja"&&!authReady?"登録再開のお知らせを受け取る":c.free}<ArrowRight size={17}/></a><a className="button button-light" href={`${prefix}/my-homecourt`}><House size={18}/>{c.start}<ArrowRight size={17}/></a></div>{locale==="ja"&&authReady?<p className="registration-note"><strong>RBA IDは無料・月額料金なし。</strong> メールアドレスを入力し、届いたリンクを開いて開始します。保護者・選手・指導者から自分の立場を選べます。有料プランへの申込は不要です。</p>:null}{locale==="ja"&&!authReady?<p className="registration-note">RBA IDの登録・ログインメールは現在調整中です。再開のお知らせは公式LINEでご案内します。</p>:null}
+      <div className="homecourt-launch-actions"><a className="button button-member" href={registrationUrl} target={!authReady?"_blank":undefined} rel={!authReady?"noreferrer":undefined}><Sparkles size={18}/>{registrationLabel}<ArrowRight size={17}/></a><a className="button button-light" href={`${prefix}/my-homecourt`}><House size={18}/>{c.start}<ArrowRight size={17}/></a></div>{locale==="ja"&&authReady?<p className="registration-note"><strong>RBA IDは無料・月額料金なし。</strong> メールアドレスを入力し、届いたリンクを開いて開始します。保護者・選手・指導者から自分の立場を選べます。有料プランへの申込は不要です。</p>:null}{!authReady?<p className="registration-note">{registrationNotice}</p>:null}
       {locale!=="ja"?<div className="homecourt-price"><span>{c.price}</span><strong>¥{HOMECOURT_PRICE_JPY.toLocaleString("ja-JP")}</strong><small>{c.note}</small></div>:null}
     </section>
     {locale==="ja"&&authReady?<section className="homecourt-start section-pad" aria-labelledby="homecourt-clinic-first-step">
