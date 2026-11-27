@@ -10,11 +10,12 @@ export const collectionRelease = {
   evidence: { ownerApprovedTerms: true, ownerConfirmedFulfilment: true, stripeLiveLinksVerified: true },
   products: {
     tee: { name: "WHITE TEE", amount: 6600, link: "https://buy.stripe.com/aFa7sN6ab8vy1Mp9gr7EQ1Q", sizes: ["S","M","L","XL"] },
+    fullset: { name: "FULL SET", amount: 24200, link: "https://buy.stripe.com/cNicN71TV27a62F50b7EQ2d", sizes: ["S","M","L","XL"], hoodie: ["S","M","L","XL","XXL"], pants: ["M","L","XL"] },
     setup: { name: "BLACK SETUP", amount: 19800, link: "https://buy.stripe.com/bJe4gB1TVh241Mp3W77EQ1P", sizes: ["S","M","L","XL","XXL"], pants: ["M","L","XL"] },
   },
 } as const;
 
-const allowed = {tee:"https://buy.stripe.com/aFa7sN6ab8vy1Mp9gr7EQ1Q",setup:"https://buy.stripe.com/bJe4gB1TVh241Mp3W77EQ1P"} as const;
+const allowed = {fullset:"https://buy.stripe.com/cNicN71TV27a62F50b7EQ2d",tee:"https://buy.stripe.com/aFa7sN6ab8vy1Mp9gr7EQ1Q",setup:"https://buy.stripe.com/bJe4gB1TVh241Mp3W77EQ1P"} as const;
 type CollectionProduct = keyof typeof allowed;
 type ReleaseEvidence = Record<keyof typeof collectionRelease.evidence, boolean>;
 export function collectionCheckout(product: CollectionProduct, evidence: ReleaseEvidence = collectionRelease.evidence, link: string = collectionRelease.products[product].link): string | null {

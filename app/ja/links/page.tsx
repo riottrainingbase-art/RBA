@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { collectionCheckout } from "@/lib/store-collection-release";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import styles from "./links.module.css";
 
@@ -51,7 +52,7 @@ const more = [
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
-  {title: "RBA PERFORMANCE TEE｜公式ウェア",href:"/ja/store",id:"store"},
+  {title: "RBA COLLECTION 001｜公式ウェア",href:"/ja/store",id:"store"},
   {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
   {title: "RBA公式サイト",href:"/ja",id:"home"},
 ] as const;
@@ -69,6 +70,7 @@ export default function RbaLinkInBioPage() {
         <p className={styles.lead}>保護者、指導者、活動に参加したい方へ。<br/>まずは目的をひとつお選びください。</p>
         <span className={styles.region}>仙台から、全国・アジアへ。</span>
       </header>
+      {collectionCheckout("fullset")?<a className={styles.featured} href={collectionCheckout("fullset")!} data-growth-id="bio-fullset-buy"><Image unoptimized src="/media/store/collection-001-full-set-announcement.webp" width={1080} height={1080} alt="RBA FULL SET" style={{width:"100%",height:"auto",borderRadius:8}}/><span className={styles.eyebrow}>RBA STORE / NEW</span><strong>3点セット ¥24,200（税込）</strong><span className={styles.description}>国内送料無料・サイズを個別選択</span><span className={styles.action}>今すぐ購入する →</span></a>:null}
       <nav aria-label="RBAの公式案内リンク" className={styles.links}>
         {featured.map(item=><a key={item.id} className={item.style==="primary"?styles.featured:styles.card} href={item.href} data-growth-id={`bio-${item.id}`}>
           <span className={styles.eyebrow}>{item.label}</span>
