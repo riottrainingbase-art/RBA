@@ -28,6 +28,7 @@ function PlatformPage({locale,kind}:{locale:Locale;kind:"united"|"connect"|"orga
     <article className="homecourt-plan-card"><h3>{({ja:"参加後はどうなりますか？",en:"What happens after the programme?","zh-tw":"參加後如何延續？",ko:"참가 후에는 어떻게 이어지나요?"})[locale]}</h3><p>{({ja:"所属先へ戻り、得た経験を日常へ持ち帰ります。参加履歴や振り返りはMY HOME COURTに残し、次の挑戦につなげます。",en:"You return to your home environment and bring the experience back. Keep the participation and reflection in MY HOME COURT for the next step.","zh-tw":"回到原本環境，把新的經驗帶回日常。參加紀錄與反思可留在 MY HOME COURT，連到下一次挑戰。",ko:"기존 환경으로 돌아가 경험을 일상에 가져갑니다. 참가 이력과 회고는 MY HOME COURT에 남겨 다음 도전으로 연결합니다."})[locale]}</p></article>
   </div>
 </section>
+{locale === "ja" && <p className="section-pad"><a className="back-link" href="/ja/events/shizugawa-united-2027">宮城｜RBA UNITED 志津川育成合宿の企画・開催状況を見る →</a></p>}
 <UnitedParticipationGuide locale={locale}/>
 <section className="homecourt-product-preview section-pad">
   <div className="section-head"><div><p className="section-index">OPEN NOW / VERIFIED</p><h2>{({ja:"今、UNITEDにつながる参加機会。",en:"Open opportunities that connect to UNITED now.","zh-tw":"目前可連到 UNITED 的參加機會。",ko:"현재 UNITED로 이어지는 참가 기회."})[locale]}</h2></div><p>{({ja:"現在の公式データで募集が確認できる企画だけを表示しています。",en:"Only programmes currently verified as open are shown.","zh-tw":"只顯示目前官方資料確認為開放報名的企畫。",ko:"현재 공식 데이터에서 모집 중으로 확인된 프로그램만 표시합니다."})[locale]}</p></div>

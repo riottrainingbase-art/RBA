@@ -147,6 +147,7 @@ export async function SimpleJapaneseHome() {
                 <a href="/ja/events/nikaho-clinic-2027" data-growth-id="home-nikaho-elementary-2027">開催概要・協会への問い合わせ案内を見る ↗</a>
               </article>
             </div>
+            <p className={styles.note}><a href="/ja/events/shizugawa-united-2027">RBA UNITED 志津川育成合宿｜2月6〜7日開催希望・企画詳細を見る →</a></p>
             {active.length ? (
               <div className={styles.programmes}>
                 {active.map(p => {
