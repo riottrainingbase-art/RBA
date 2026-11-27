@@ -6,13 +6,13 @@ const now=new Date("2026-11-27T12:00:00+09:00");
 const approved={
   MIYAGI_UNITED_SHIZUGAWA_PAYMENT_ENABLED:"true",
   MIYAGI_UNITED_SHIZUGAWA_AMOUNT_JPY:"16500",
-  MIYAGI_UNITED_SHIZUGAWA_PAYMENT_LINK_ID:"plink_example",
+  MIYAGI_UNITED_SHIZUGAWA_PAID_FORM_URL:"https://form.jotform.com/123456789012345",
 };
 test("no approved price or link means no payment",()=>{
   assert.equal(getMiyagiPayment("shizugawa",now,{}).payable,false);
   assert.equal(getMiyagiPayment("rizehope",now,approved).payable,false);
   assert.equal(getMiyagiPayment("shizugawa",now,{...approved,MIYAGI_UNITED_SHIZUGAWA_AMOUNT_JPY:""}).payable,false);
-  assert.equal(getMiyagiPayment("shizugawa",now,{...approved,MIYAGI_UNITED_SHIZUGAWA_PAYMENT_LINK_ID:""}).payable,false);
+  for(const url of ["", "https://example.com/123456789012345", "https://form.jotform.com/263298832487069", "https://form.jotform.com/263223566035050"]) assert.equal(getMiyagiPayment("shizugawa",now,{...approved,MIYAGI_UNITED_SHIZUGAWA_PAID_FORM_URL:url}).payable,false);
 });
 test("configured programme has an amount only while it is enabled and before the event",()=>{
   assert.equal(getMiyagiPayment("shizugawa",now,approved).amount,16500);

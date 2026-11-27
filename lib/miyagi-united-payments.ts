@@ -8,7 +8,8 @@ export function getMiyagiPayment(programme:string,now=new Date(),env=process.env
   if(!Object.hasOwn(programmes,programme))return null;
   const info=programmes[programme as keyof typeof programmes];
   const amount=Number(env[info.key+"_AMOUNT_JPY"]);
-  const linkId=env[info.key+"_PAYMENT_LINK_ID"];
-  const payable=env[info.key+"_PAYMENT_ENABLED"]==="true"&&Number.isSafeInteger(amount)&&amount>0&&!!linkId&&now<new Date(info.expires);
-  return {title:info.title,slug:info.slug,amount:payable?amount:null,linkId,payable};
+  const formUrl=env[info.key+"_PAID_FORM_URL"]??"";
+  const approvedForm=/^https:\/\/form\.jotform\.com\/\d{15}$/.test(formUrl)&&!/(263298832487069|263243952545057|263223566035050)$/.test(formUrl);
+  const payable=env[info.key+"_PAYMENT_ENABLED"]==="true"&&Number.isSafeInteger(amount)&&amount>0&&approvedForm&&now<new Date(info.expires);
+  return {title:info.title,slug:info.slug,amount:payable?amount:null,formUrl:payable?formUrl:null,payable};
 }
