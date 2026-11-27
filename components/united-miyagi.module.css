@@ -24,3 +24,9 @@
 .actions{display:flex;flex-wrap:wrap;gap:12px}
 .application{display:grid;gap:16px;max-width:560px;margin-top:20px}.application label{display:grid;gap:5px;font-weight:700}.application input:not([type=checkbox]),.application select{width:100%;min-height:46px;padding:10px;border:1px solid #777;background:#fff;color:#111;font-size:16px;border-radius:4px}.application .agree{display:flex;align-items:flex-start;gap:10px;font-weight:500}.application .agree input{margin-top:5px;flex-shrink:0}.application button{border:0;cursor:pointer;font-size:16px}
 @media(max-width:700px){.step{grid-template-columns:1fr}.shizu,.shibata{min-height:190px}.actions{display:grid}.button{max-width:100%;white-space:normal;text-align:center}.hero{background-position:65% center}}
+.page{background:var(--rba-white);color:var(--rba-navy)}
+.hero{background-color:var(--rba-navy)}
+.button,.application button:not(:disabled){background:var(--rba-action);border-color:var(--rba-action);color:var(--rba-action-ink)}
+.button:hover,.application button:not(:disabled):hover{background:var(--rba-action-hover);color:var(--rba-action-ink)}
+.button:focus-visible,.application button:focus-visible{outline:3px solid var(--rba-focus);outline-offset:3px}
+.notice{border-left-color:var(--rba-action)}

@@ -25,3 +25,9 @@
 .page a:focus-visible{outline:3px solid #c88835;outline-offset:3px;}
 @media(max-width:420px){.hero{padding-top:26px}.card,.featured{padding:18px 16px}.page{padding-left:12px;padding-right:12px;}}
 @media(prefers-reduced-motion:reduce){.card:hover,.featured:hover{transform:none;}}
+.page{background:linear-gradient(160deg,var(--rba-navy) 0,#203b60 330px,var(--rba-white) 331px,var(--rba-white) 100%);color:var(--rba-navy)}
+.featured{background:var(--rba-surface);border-color:var(--rba-action)}
+.featured .eyebrow{color:var(--rba-navy)}
+.featured .action{background:var(--rba-action);color:var(--rba-action-ink);padding:12px 14px;border-radius:4px}
+.featured:hover{border-color:var(--rba-action-hover)}
+.page a:focus-visible{outline-color:var(--rba-focus)}

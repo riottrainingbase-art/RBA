@@ -1,0 +1,42 @@
+/* RBA shared identity — use functional tokens, not programme-specific hex values. */
+:root {
+  --rba-navy: #10233f;
+  --rba-black: #090a0b;
+  --rba-white: #f8f8f5;
+  --rba-surface: #ffffff;
+  --rba-silver: #b8bdc0;
+  --rba-line: #d9dadd;
+  --rba-border: #d9dadd;
+  --rba-muted: #536174;
+  --rba-action: #ff6500;
+  --rba-action-hover: #ff8533;
+  --rba-action-ink: #090a0b;
+  --rba-focus: #2454d8;
+}
+
+/* A clear focus indicator on light and dark surfaces. */
+.site-shell :where(a,button,input,select,textarea,summary):focus-visible {
+  outline: 3px solid var(--rba-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--rba-surface);
+}
+
+.atelier-fullset .atelier-fullset-buy {
+  background: var(--rba-action);
+  color: var(--rba-action-ink);
+}
+.atelier-fullset .atelier-fullset-buy:hover {
+  background: var(--rba-action-hover);
+}
+.rba-atelier:where(main,div,section) {
+  background: var(--rba-white);
+  color: var(--rba-navy);
+}
+.rba-atelier .atelier-fullset { background: var(--rba-navy); }
+.rba-atelier .atelier-grid article > a:last-child {
+  background: var(--rba-action);
+  color: var(--rba-action-ink);
+}
+.rba-atelier .atelier-grid article > a:last-child:hover {
+  background: var(--rba-action-hover);
+}
