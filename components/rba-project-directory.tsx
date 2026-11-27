@@ -11,23 +11,34 @@ const projects:Project[] = [
   {name:"HOMECOURT PLUS",path:"home-court",copy:["月額の任意プラン。学び・週次実践・振り返り。","Optional membership for ongoing learning and reflection.","自選月費方案，持續學習、實踐與反思。","선택형 월간 학습·실천·회고 멤버십."]},
   {name:"D-HUB",path:"d-hub",copy:["指導者・選手がそれぞれ継続する実践教育。","Separate learning programmes for coaches and players.","教練與球員各自的持續實踐教育。","지도자와 선수를 위한 지속 실천 교육."]},
   {name:"RBA JOURNAL",path:"journal",copy:["無料記事と育成の考え方。学びの入口。","Free articles and development perspectives.","免費文章及培育觀點。","무료 글과 육성 관점."]},
-  {name:"RBA GLOBAL",path:"international",copy:["海外交流・日本受け入れ・アカデミー間連携。","International exchanges and academy partnerships.","國際交流、日本接待及學院合作。","국제 교류·일본 방문·아카데미 협력."]},
+  {name:"RBA GLOBAL NETWORK",path:"international",copy:["海外交流・日本受け入れ・アカデミー間連携。","International exchanges and academy partnerships.","國際交流、日本接待及學院合作。","국제 교류·일본 방문·아카데미 협력."]},
   {name:"RBA / RTB BUSINESS",path:"/ja/business",local:true,copy:["企業研修・地域イベント・チーム支援の相談。","Corporate training, community events and team support.","企業培訓、社區活動及球隊支援。","기업 연수·지역 행사·팀 지원 상담."]},
   {name:"RBA PARTNERS",path:"partners",copy:["企業協賛・広告と育成支援の案内。","Corporate sponsorship, advertising and development support.","企業贊助、廣告與育成支援。","기업 후원·광고 및 육성 지원."]},
   {name:"RBA STORE",path:"/ja/store",local:true,copy:["公式ウェア・発売情報。販売状況は商品ページで確認。","Official apparel and release updates; check availability.","官方服飾與發售資訊，請確認銷售狀態。","공식 의류 및 출시 정보, 판매 상태 확인."]},
 ];
-const text={
- ja:{title:"RBAの事業一覧",body:"参加する、学ぶ、成長を記録する、次の機会へ。無料RBA IDを中心に、自分に合う活動を選べます。各企画の申込・決済・利用権限は個別の条件に従います。",open:"詳しく見る",jp:"日本語案内",next:"RBA IDでつながる"},
- en:{title:"RBA programmes and services",body:"Join, learn, reflect and find your next court. Start with a free RBA ID; each programme has its own conditions and payment or access requirements.",open:"Explore",jp:"Japanese information",next:"Open MY HOME COURT"},
- "zh-tw":{title:"RBA 活動與服務",body:"參與、學習、記錄與下一次挑戰。從免費RBA ID開始，各活動仍有獨立的報名、付款與使用條件。",open:"了解更多",jp:"日文資訊",next:"開啟 MY HOME COURT"},
- ko:{title:"RBA 프로그램 및 서비스",body:"참여하고 배우고 기록하며 다음 기회를 찾습니다. 무료 RBA ID로 시작하되 각 프로그램의 신청·결제·이용 조건은 별도로 적용됩니다.",open:"자세히 보기",jp:"일본어 안내",next:"MY HOME COURT 열기"}
+const labels = {
+  ja: {title:"RBAの活動とサービス", groups:["参加する","学ぶ・記録する","連携・応援する"], jp:"日本語"},
+  en: {title:"Explore RBA", groups:["Play","Learn & track","Partner & support"], jp:"Japanese"},
+  "zh-tw": {title:"探索 RBA",groups:["參加活動","學習與記錄","合作與支持"],jp:"日文"},
+  ko: {title:"RBA 활동 및 서비스",groups:["참가","학습·기록","협력·후원"],jp:"일본어"},
 } as const;
+const groups = [
+  ["opportunities", "/ja/backbone", "/ja/gream", "united", "international"],
+  ["my-homecourt", "home-court", "d-hub", "journal"],
+  ["/ja/business", "partners", "/ja/store"],
+] as const;
 export function RbaProjectDirectory({locale}:{locale:Locale}){
- const c=text[locale],i=locale==="ja"?0:locale==="en"?1:locale==="zh-tw"?2:3;
- return <section id="rba-project-directory" className="section-pad" style={{background:"#F6F5F1",color:"#111211"}}>
-  <div style={{marginBottom:16}}><p className="section-index" style={{color:"#695332"}}>RBA / PROJECT DIRECTORY</p><h2 style={{fontSize:"clamp(1.5rem,4vw,2.6rem)",fontWeight:600,fontFamily:"Georgia, Yu Mincho, serif",marginTop:8}}>{c.title}</h2></div>
-  <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,240px),1fr))",gap:12}}>
-   {projects.map(p=><article key={p.name} style={{background:"#fbfaf7",border:"1px solid #D6D9DC",borderTop:"1px solid #aa9576",padding:20,display:"flex",flexDirection:"column",gap:6}}><h3 style={{fontSize:"1.1rem",fontWeight:900}}>{p.name}</h3><p style={{lineHeight:1.7,fontSize:14,flex:1}}>{p.copy[i]}</p><a style={{fontWeight:800,color:"#695332",display:"inline-flex",alignItems:"center",gap:6,minHeight:44}} href={p.local?p.path:localePath(locale,p.path as LanguagePage)}>{p.local&&locale!=="ja"?c.jp:c.open}<ArrowRight size={16}/></a></article>)}
-  </div>
- </section>;
+  const c=labels[locale];
+  const i=locale==="ja"?0:locale==="en"?1:locale==="zh-tw"?2:3;
+  return <section id="rba-project-directory" className="section-pad" style={{background:"#F6F5F1",color:"#142437"}}>
+    <h2 style={{fontSize:"clamp(1.6rem,4vw,2.6rem)",fontFamily:"Georgia, Yu Mincho, serif",fontWeight:600,marginBottom:28}}>{c.title}</h2>
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,280px),1fr))",gap:24}}>
+      {groups.map((paths,index)=><div key={c.groups[index]} style={{borderTop:"1px solid #aa9576",paddingTop:16}}>
+        <h3 style={{fontSize:"1.25rem",marginBottom:12,fontWeight:700}}>{c.groups[index]}</h3>
+        {projects.filter(p=>(paths as readonly string[]).includes(p.path)).map(p=><a key={p.name} href={p.local?p.path:localePath(locale,p.path as LanguagePage)} style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,padding:"14px 0",borderBottom:"1px solid #d8d2c7",textDecoration:"none",color:"#142437",minHeight:64}}>
+          <div><strong style={{fontSize:"1rem",fontWeight:700}}>{p.name}</strong>{p.local&&locale!=="ja"&&<small style={{marginInlineStart:8}}>{c.jp}</small>}<p style={{fontSize:13,lineHeight:1.55,margin:"4px 0 0"}}>{p.copy[i]}</p></div><ArrowRight size={16} style={{flexShrink:0,color:"#695332"}} aria-hidden="true"/>
+        </a>)}
+      </div>)}
+    </div>
+  </section>;
 }
