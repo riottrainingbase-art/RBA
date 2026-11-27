@@ -16,3 +16,17 @@ test('shared action and navy text meet WCAG AA contrast for normal text', () => 
 test('root layout provides the palette to public, standalone and member routes', () => {
   assert.match(readFileSync(new URL('../app/layout.tsx',import.meta.url),'utf8'), /import "\.\/rba-brand\.css"/);
 });
+
+test('mobile menu and sponsorship application actions share the accessible action tokens', () => {
+  const nav=readFileSync(new URL('../components/site-navigation.module.css',import.meta.url),'utf8');
+  const support=readFileSync(new URL('../app/ja/support/support.module.css',import.meta.url),'utf8');
+  assert.match(nav,/\.mobile-site-menu \.mobile-menu-primary\)[\s\S]*?background:var\(--rba-action\);color:var\(--rba-action-ink\)/);
+  assert.match(support,/\.primary\{background:var\(--rba-action\);color:var\(--rba-action-ink\)/);
+  assert.doesNotMatch(support,/#e8ff6b/i);
+});
+
+test('completion states retain their independent semantic accent', () => {
+  const global=readFileSync(new URL('../app/globals.css',import.meta.url),'utf8');
+  assert.match(global,/\.member-first3-grid>a\.is-done\{background:#c6d05a/);
+  assert.match(global,/\.homecourt-today-grid article\.is-done\{background:#c6d05a/);
+});

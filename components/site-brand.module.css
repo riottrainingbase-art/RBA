@@ -132,7 +132,7 @@
   background:var(--rba-white);
   color:var(--rba-navy);
 }
-.theme :global(.site-header){background:rgba(246,245,241,.98);border-color:var(--rba-line)}
+.theme :global(.site-header){background:var(--rba-white);border-color:var(--rba-line)}
 .theme :global(.site-header nav a:after),.theme :global(.header-contact:after){background:var(--rba-blue)}
 .theme :global(.site-update-strip){background:var(--rba-white);color:var(--rba-black);border-color:var(--rba-line)}
 .theme :global(.site-update-cta){color:var(--rba-blue)}
