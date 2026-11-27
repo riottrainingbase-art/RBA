@@ -13,7 +13,6 @@ import { NetworkMaps } from "./network-maps";
 import { ArrowRight, House, MessageCircle, MoveDown } from "lucide-react";
 import { Locale, SiteFrame, localePath } from "@/components/site-frame";
 import { GlobalMedia } from "@/components/global-media";
-import { AudienceJourneys } from "@/components/audience-journeys";
 import { CorporateSupportStrip } from "@/components/corporate-support-strip";
 
 const copy={
@@ -122,9 +121,9 @@ export function LocalizedHome({locale}:{locale:Locale}){
     </section>:null}
 
 
-    <FounderProfile locale={locale}/>
+
     {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>所属を変えなくても、違う指導者や仲間から学べます。今いる環境を大切にしながら、外の経験を足していくための活動です。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
-    <AudienceJourneys locale={locale}/>
+
     <TorstenRecordingOffer locale={locale}/>
     <RbaProjectDirectory locale={locale}/>
     <nav className="section-pad" aria-label="RBA programme information" style={{display:"flex",flexWrap:"wrap",gap:20,paddingBlock:20}}><a className="text-link" href={localePath(locale,"camp")}>DEVELOPMENT CAMP <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"clinic-request")}>{c.secondary} <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"payments")}>{({en:"Fees and services",ja:"料金とサービス","zh-tw":"費用及服務",ko:"요금 및 서비스"})[locale]} <ArrowRight size={16}/></a></nav>
@@ -135,6 +134,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
     <section className="asia-desk-home section-pad"><div><p className="section-index inverse">{c.asiaLabel}</p><h2>{c.asiaTitle[0]}<br/>{c.asiaTitle[1]}</h2></div><div><p>{c.asiaCopy}</p><div className="desk-languages"><span>ENGLISH</span><span>日本語</span><span>繁體中文</span><span>한국어</span></div><a className="button button-light" href={localePath(locale,"asia")}>{c.asiaCta}<ArrowRight size={17}/></a></div></section>
 
     <GlobalMedia locale={locale}/>
+    <FounderProfile locale={locale}/>
     <NetworkMaps locale={locale}/>
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
