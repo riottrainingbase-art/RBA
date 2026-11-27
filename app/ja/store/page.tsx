@@ -81,6 +81,14 @@ const questions = [
 export default function StorePage() {
   return <SiteFrame locale="ja"><GrowthClickTracking/>
     <main className={styles.page}>
+      <section className={styles.section} aria-labelledby="collection-title">
+        <h2 id="collection-title">COLLECTION 001｜受注販売受付中</h2>
+        <p>税込・日本国内送料無料。ご注文から3週間を目安に発送します。ご希望の商品の購入画面でサイズと配送先を入力してください。</p>
+        <div className={styles.grid}>
+          <article><h3>WHITE TEE｜6,600円</h3><p>S・M・L・XL</p><a className={styles.button} href="https://buy.stripe.com/aFa7sN6ab8vy1Mp9gr7EQ1Q">白Tのサイズを選んで購入する →</a></article>
+          <article><h3>BLACK SETUP｜19,800円</h3><p>上下セット。パーカーはS〜XXL、パンツはM〜XLから別々に選べます。</p><a className={styles.button} href="https://buy.stripe.com/bJe4gB1TVh241Mp3W77EQ1P">黒セットアップの上下サイズを選んで購入する →</a></article>
+        </div>
+      </section>
       <section className={styles.hero} aria-labelledby="store-title">
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>RIOT BASKETBALL ACADEMY / OFFICIAL COLLECTION</p>
@@ -125,14 +133,7 @@ export default function StorePage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="collection-title">
-        <div className={styles.sectionHeading}><p className={styles.eyebrow}>RBA COLLECTION / DEVELOPMENT</p><h2 id="collection-title">コートの外でも、RBA。</h2><p>日常着と移動用のコレクションも企画しています。製造・納期・販売条件を確認中です。</p></div>
-        <div className={styles.grid}>
-          <article><span className={styles.featureNum}>01 / WHITE TEE</span><h3>WHITE TEE</h3><p>白のヘビーウェイトTシャツを企画中。素材・サイズ・加工はサンプル確認後に決定します。</p><a className={styles.textLink} href="mailto:riot.training.base@gmail.com?subject=RBA%20WHITE%20TEE%20%E7%99%BA%E5%A3%B2%E6%83%85%E5%A0%B1" data-growth-id="store-white-tee-interest">発売情報について問い合わせる ↗</a></article>
-          <article><span className={styles.featureNum}>02 / BLACK SETUP</span><h3>BLACK SETUP</h3><p>移動・遠征・日常用の黒の上下セットを企画中。上下別サイズなどの条件を検討しています。</p><a className={styles.textLink} href="mailto:riot.training.base@gmail.com?subject=RBA%20BLACK%20SETUP%20%E7%99%BA%E5%A3%B2%E6%83%85%E5%A0%B1" data-growth-id="store-black-setup-interest">発売情報について問い合わせる ↗</a></article>
-          <article><span className={styles.featureNum}>03 / LOCAL RECORDS</span><h3>地域のコートから。</h3><p>現場の学びや地域の交流を起点にしたコレクションを企画しています。</p><a className={styles.textLink} href="mailto:riot.training.base@gmail.com?subject=RBA%20LOCAL%20RECORDS" data-growth-id="store-local-records-interest">企画について問い合わせる ↗</a></article>
-        </div><p className={styles.smallPrint}>各企画は販売準備中です。お問い合わせは購入予約・決済にはなりません。</p>
-      </section>
+      
 
       <section className={styles.preparation} aria-labelledby="next-title">
         <div>
