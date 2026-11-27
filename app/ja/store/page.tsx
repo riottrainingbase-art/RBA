@@ -83,7 +83,7 @@ export default function StorePage() {
     <main className={styles.page}>
       <section className={styles.section} aria-labelledby="collection-title">
         <h2 id="collection-title">COLLECTION 001｜受注販売受付中</h2>
-        <p>税込・日本国内送料無料。ご注文から3週間を目安に発送します。ご希望の商品の購入画面でサイズと配送先を入力してください。</p>
+        <p>税込・日本国内送料無料。ご注文から3週間を目安に発送します。購入画面でサイズと配送先を入力し、そのままカードでお支払いいただけます。</p>
         <div className={styles.grid}>
           <article><h3>WHITE TEE｜6,600円</h3><p>S・M・L・XL</p><a className={styles.button} href="https://buy.stripe.com/aFa7sN6ab8vy1Mp9gr7EQ1Q">白Tのサイズを選んで購入する →</a></article>
           <article><h3>BLACK SETUP｜19,800円</h3><p>上下セット。パーカーはS〜XXL、パンツはM〜XLから別々に選べます。</p><a className={styles.button} href="https://buy.stripe.com/bJe4gB1TVh241Mp3W77EQ1P">黒セットアップの上下サイズを選んで購入する →</a></article>
