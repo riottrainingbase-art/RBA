@@ -2,6 +2,7 @@ import Link from "next/link";
 import {ArrowRight, BookOpen, CalendarDays, Check, ClipboardCheck, Clock3, FileText, HeartPulse, History, ShieldCheck, Sparkles, Target, Users} from "lucide-react";
 import {SiteFrame} from "@/components/site-frame";
 import {memberArticles} from "@/lib/member-articles";
+import {GrowthClickTracking} from "@/components/growth-click-tracking";
 
 export function HomecourtPlusPage(){
   const counts={
@@ -12,16 +13,28 @@ export function HomecourtPlusPage(){
   };
   return <SiteFrame locale="ja" languagePage="my-homecourt">
     <main className="hc-plus-page">
+      <GrowthClickTracking/>
       <section className="hc-plus-hero section-pad">
         <p className="section-index inverse">MY HOME COURT / PLUS</p>
         <h1>学んだことを、<br/>その週のバスケで使う。</h1>
         <p>HOMECOURT PLUSは、RBA DEVELOPMENT LIBRARYの教科書・研究整理と、週次・月次の実践ツールを一つにした月額プランです。深く理解するだけで終わらず、今週やることを一つ決め、試し、振り返り、次を決めるところまでつなげます。</p>
         <div className="hc-plus-price"><strong>¥3,300</strong><span>/ 月</span><small>税込・月額</small></div>
         <div className="hc-plus-actions">
-          <Link className="button button-member" href="/ja/my-homecourt/app/plus">HOMECOURT PLUSを始める <ArrowRight size={17}/></Link>
+          <Link className="button button-member" href="/ja/my-homecourt/app/plus" data-growth-id="plus-start">月3,300円で始める <ArrowRight size={17}/></Link>
           <a className="button button-light" href="#difference">無料版との違いを見る <ArrowRight size={17}/></a>
         </div>
         <p className="hc-plus-small">今のチームに所属したまま使えます。決済にはRBA IDでのログインが必要です。</p>
+      </section>
+
+      <section className="hc-plus-method section-pad" aria-labelledby="plus-first-week">
+        <div className="section-head"><div><h2 id="plus-first-week">最初の1週間をイメージする。</h2></div><p>実践例です。自分の役割に合ったテーマを選び、次の練習から始められます。</p></div>
+        <div className="hc-plus-library-metrics">
+          <article><span>選手</span><h3>ボールを受ける前に見る</h3><p>次の2対2・3対3で守備の位置を見て、選んだプレーを一つ記録する。</p></article>
+          <article><span>保護者</span><h3>試合後の会話を変える</h3><p>本人が話したいことを聞き、今週の関わり方を振り返る。</p></article>
+          <article><span>指導者</span><h3>一つの判断を観察する</h3><p>少人数ゲームで観察するテーマを決め、次の練習設計に活かす。</p></article>
+        </div>
+        <p>初回はRBA IDでログイン → PLUSの月額決済 → 会員画面で今週のテーマを保存。決済直後に権限が反映されない場合は再決済せず、<Link href="/ja/contact" data-growth-id="plus-payment-help">RBAへお問い合わせください</Link>。</p>
+        <div className="hc-plus-actions"><Link className="button button-member" href="/ja/my-homecourt/app/plus" data-growth-id="plus-first-week-start">PLUS会員画面へ <ArrowRight size={17}/></Link><Link className="button button-light" href="/ja/my-homecourt" data-growth-id="plus-first-week-free">まず無料で登録する <ArrowRight size={17}/></Link></div>
       </section>
 
       <section className="hc-plus-method section-pad">
