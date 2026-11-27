@@ -28,3 +28,13 @@ test("content has no recording, checkout, data collection or claimed accreditati
   assert.match(component,/自動加算されません/);
   assert.match(component,/氏名や健康情報を外部共有しない/);
 });
+
+test("reference-based framework is shared across locales without a certification claim",()=>{
+  const framework=read("components/rba-coaching-framework.tsx");
+  const page=read("components/localized-core-page.tsx");
+  assert.match(page,/kind==="approach"&&<RbaCoachingFramework locale=\{locale\}\/>/);
+  for(const item of ["選手が主役","個々の発達","ゲームから学ぶ","問いかけと発見","全員の学習機会","身体と健康","尊厳と安全","指導者の成長","5〜7歳","8〜9歳","10〜12歳","U15","U18","公式認定・資格取得コース・提携を示すものではありません"])assert.ok(framework.includes(item),item);
+  for(const marker of ["en:{","\"zh-tw\":{","ko:{","https://about.fiba.basketball/en/wabc-documents","https://about.fiba.basketball/en/services/integrity/safeguarding"])assert.ok(framework.includes(marker),marker);
+  assert.doesNotMatch(framework,/buy\.stripe\.com|<form|<input|use client/);
+  assert.match(read("components/dhub-coach-case-lab.tsx"),/指導者の自己評価/);
+});
