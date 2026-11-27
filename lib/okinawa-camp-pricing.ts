@@ -32,7 +32,7 @@ export function parseCampChoice(input: unknown): CampChoice | null {
 }
 
 export function campQuote(choice: CampChoice, now = new Date()) {
-  const early = now.getTime() <= Date.parse(EARLY_BIRD_END);
+  const early = now.getTime() < Date.parse(EARLY_BIRD_END);
   const state = now.getTime() >= Date.parse(ONLINE_PAYMENT_END) ? "closed" : choice.residence !== "other" ? "local_review" : choice.players === 3 ? "group_review" : "payable";
   const rate = early ? choice.players === 2 ? "early_group" : "early" : choice.players === 2 ? "group" : "standard";
   const [unit, checkoutUrl] = payments[choice.housing ? "housing" : "day"][rate];

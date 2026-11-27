@@ -3,8 +3,8 @@ import { test } from "node:test";
 import { campQuote, parseCampChoice, EARLY_BIRD_END, ONLINE_PAYMENT_END } from "../lib/okinawa-camp-pricing.ts";
 
 const early = new Date("2026-10-24T00:00:00Z");
-const normal = new Date("2026-11-01T00:00:00Z");
-for (const [housing, amounts] of [[true, [450, 360, 405, 324]], [false, [300, 240, 270, 216]]]) {
+const normal = new Date("2026-11-01T00:00:00Z"); // Extended overseas early-bird remains active in November.
+for (const [housing, amounts] of [[true, [360, 360, 324, 324]], [false, [240, 240, 216, 216]]]) {
   for (const [index, players, now] of [[0, 1, normal], [1, 1, early], [2, 2, normal], [3, 2, early]]) {
     test(`${housing ? "housing" : "day"}: ${players} players, ${now === early ? "early" : "normal"}`, () => {
       const q = campQuote({ housing, players, residence: "other" }, now);
@@ -17,10 +17,11 @@ for (const [housing, amounts] of [[true, [450, 360, 405, 324]], [false, [300, 24
     });
   }
 }
-test("Taiwan deadline is enforced at the exact millisecond boundary", () => {
+test("Extended overseas discount remains available until online payment closes", () => {
   const choice = { housing: false, players: 2, residence: "other" };
-  assert.equal(campQuote(choice, new Date(EARLY_BIRD_END)).total, 432);
-  assert.equal(campQuote(choice, new Date(Date.parse(EARLY_BIRD_END) + 1)).total, 540);
+  assert.equal(campQuote(choice, new Date(Date.parse(EARLY_BIRD_END) - 1)).total, 432);
+  assert.equal(campQuote(choice, new Date(EARLY_BIRD_END)).state, "closed");
+  assert.equal(campQuote(choice, new Date(Date.parse(EARLY_BIRD_END) + 1)).checkoutUrl, null);
 });
 test("overseas 3+ groups never receive a price or checkout link", () => {
   for (const choice of [{ housing: true, players: 3, residence: "other" }]) {

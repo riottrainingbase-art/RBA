@@ -120,7 +120,7 @@ export async function SimpleJapaneseHome() {
           <nav id="home-age-categories" className={styles.aboutLinks} aria-label="年代・スクール">
             <a className={styles.textLink} href="/ja/u12">U12 →</a>
             <a className={styles.textLink} href="/ja/u15">U15 →</a>
-            <a className={styles.textLink} href="/ja/sendai-school">仙台スクール →</a>
+            <a className={styles.textLink} href="/ja/sendai-school" data-growth-id="home-hero-school-trial">仙台スクール・体験相談 →</a>
           </nav>
           <SendaiCommunity />
 

@@ -80,7 +80,9 @@ const featured = [
 
 const more = [
   {title: "24時間受付｜学び・月額会員・企業広告",href:"/ja/24h",id:"rba24h"},
-  {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
+  {title: "仙台のU12・U15スクール（会場許可後に体験案内）",href:"/ja/sendai-school",id:"school"},
+  {title: "D-HUB｜継続して学ぶ",href:"/ja/d-hub",id:"dhub"},
+  {title: "地域でクリニックを開催する",href:"/ja/clinic-request",id:"clinic-request"},
   {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
   {title: "RBA公式ウェア｜発売準備中（購入不可）",href:"/ja/store",id:"store"},

@@ -10,12 +10,14 @@ const copy = {
 
 export function TorstenRecordingOffer({ locale }: { locale: Locale }) {
   const c=copy[locale];
+  const help={ja:"視聴期限・残り期間は購入前にご確認ください。再生できない場合はSafariまたはChromeで直接開き、解消しないときは照合フォームからご相談ください。カード番号・パスワードは不要です。",en:"Check the remaining viewing period before paying. If playback fails, open the link directly in Safari or Chrome and use the support form. Never send card details or passwords.","zh-tw":"付款前請確認剩餘觀看期限。如無法播放，請以 Safari 或 Chrome 直接開啟，再使用支援表單。請勿提供信用卡號或密碼。",ko:"결제 전에 남은 시청 기간을 확인하세요. 재생되지 않으면 Safari 또는 Chrome에서 직접 열고 지원 양식을 이용하세요. 카드 번호나 비밀번호는 보내지 마세요."}[locale];
   const checkout = locale === "ja" ? "https://book.stripe.com/bJebJ3dCD6nq9eR9gr7EQ0c" : "https://buy.stripe.com/dRmcN75671364YB9gr7EQ1m";
   return <section className="section-pad" id="torsten-recording-order" style={{background:"#142437",color:"#F6F5F1",marginBlock:"1.5rem"}}>
     <p className="section-index" style={{color:"#e4d2b6"}}>RBA COACH EDUCATION / ON DEMAND</p>
     <h2 style={{fontSize:"clamp(1.5rem,4vw,2.5rem)",fontFamily:"Georgia, Yu Mincho, serif",fontWeight:600,marginBlock:"1rem"}}><Video aria-hidden="true" size={25} style={{display:"inline",marginRight:8}}/>{c.title}</h2>
     <p style={{lineHeight:1.8,maxWidth:780}}>{c.body}</p>
     <p style={{marginBlock:"1rem",fontWeight:700}}>{c.note}</p>
+    <p style={{lineHeight:1.8,maxWidth:780,marginBottom:"1rem"}}>{help}</p>
     <div style={{display:"flex",flexWrap:"wrap",gap:12}}><a className="button button-light" href={checkout}>{c.buy}<ArrowRight size={16}/></a><a className="button button-light" href="https://form.jotform.com/263243557140049">{c.support}<ArrowRight size={16}/></a><a className="button button-light" href={localePath(locale,"d-hub")}><BookOpen size={16}/>{c.learn}</a></div>
   </section>;
 }
