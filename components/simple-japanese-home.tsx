@@ -1,4 +1,5 @@
 import { GrowthClickTracking } from "./growth-click-tracking";
+import { MiyagiUnitedEntry } from "./united-miyagi";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { SendaiCommunity } from "./sendai-community";
 import { SiteFrame, localePath } from "./site-frame";
@@ -128,6 +129,7 @@ export async function SimpleJapaneseHome() {
           </section>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
+            <MiyagiUnitedEntry/>
             <div className={styles.heading}>
               <div><p className={styles.label}>JOIN / 現在の活動</p><h2 id="home-programme-title">クリニック・キャンプの<span className={styles.headingEmphasis}>開催予定</span></h2></div>
               <a className={styles.textLink} href="/ja/opportunities" data-growth-id="home-all-opportunities">開催予定をすべて見る →</a>

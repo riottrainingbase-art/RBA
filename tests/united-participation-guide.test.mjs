@@ -19,7 +19,8 @@ function load(source, mocks={}) {
 }
 const locales=['ja','en','zh-tw','ko'];
 const prefix=locale=>locale==='en'?'':`/${locale}`;
-const {UnitedParticipationGuide,UnitedMemberEntry}=load(guide,{'./site-frame':{localePath:(locale,page)=>`${prefix(locale)}/${page}`}});
+const miyagi=load(read('components/united-miyagi.tsx'),{'./united-miyagi.module.css':new Proxy({}, {get:(_,key)=>String(key)})});
+const {UnitedParticipationGuide,UnitedMemberEntry}=load(guide,{'./site-frame':{localePath:(locale,page)=>`${prefix(locale)}/${page}`},'./united-miyagi':miyagi});
 const routeExists=path=>existsSync(new URL(`../app${path}/page.tsx`,import.meta.url));
 const render=(Component,props)=>renderToStaticMarkup(React.createElement(Component,props));
 test('UNITED guide connects the member home to a public anchor in four locales',()=>{
@@ -51,6 +52,7 @@ test('rendered member and public routes resolve for all four languages; expired 
     assert.ok(entry.includes(`href="${root}/united#united-participation"`));
     assert.ok(before.includes('id="united-participation"'));
     assert.ok(before.includes('href="/ja/events/kobe-boys-u14-exchange-2027"'));
+    assert.equal(before.includes('href="/ja/events/shizugawa-united-2027"'),locale==='ja');
     assert.ok(!after.includes('kobe-boys-u14-exchange-2027'));
     assert.ok(before.includes(`href="${app}/calendar"`));
     assert.ok(before.includes(`href="${app}/report"`));
