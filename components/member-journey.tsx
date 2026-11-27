@@ -50,7 +50,7 @@ export function MemberJourney({locale,initialAudience="player"}:{locale:Locale;i
       <a href={`${prefix}/schedule`}><h3>{c.clinic}</h3><p>{c.clinicBody}</p></a>
       <a href={`${prefix}/${["players","families","d-hub"][index]}`}><h3>{c.learn[index]}</h3><p>{c.learnBody[index]}</p></a>
     </div>
-    <details className={styles.reflection}><summary>{c.review}</summary>
+    <details className={styles.reflection} id="member-reflection"><summary>{c.review}</summary>
       <p id="reflection-privacy">{c.privacy}</p>
       {c.questions.map((question,i)=><label key={question}>{question}<textarea value={notes[i]} maxLength={2000} rows={3} aria-describedby="reflection-privacy" onChange={e=>{setNotes(current=>current.map((note,n)=>n===i?e.target.value:note));setStatus("");}}/></label>)}
       <button type="button" disabled={!notes.some(n=>n.trim())} onClick={download}>{c.download}</button><p role="status">{status}</p>

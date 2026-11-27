@@ -54,6 +54,14 @@ assert.ok(map.includes('src="/network-japan.svg"'),"Japan map must use /network-
 assert.ok(!map.includes('viewBox="0 0 100 105"'),"Legacy hand-drawn schematic Japan SVG must not return");
 assert.ok(map.includes("まだ所属チームが登録されていません。"),"Japanese empty-state copy is required");
 
+// Keep the public platform, the free identity and the optional paid plan distinct in all four languages.
+const landing=fs.readFileSync("components/homecourt-page.tsx","utf8");
+assert.ok(!landing.includes("RBA HOMECOURT"),"Legacy ambiguous HOME COURT brand must not return to public landing copy");
+for(const price of ["HOMECOURT PLUS / month","HOMECOURT PLUS 月額","HOMECOURT PLUS 月費","HOMECOURT PLUS 월간 이용료"]){
+  assert.ok(landing.includes(price),"Missing localized paid plan label: "+price);
+}
+assert.ok(landing.includes("...translatedRoles[locale].players")&&landing.includes("...translatedRoles[locale].families")&&landing.includes("...translatedRoles[locale].coaches"),"Non-Japanese landing must not reuse Japanese audience lists");
+assert.ok(landing.includes("{registrationLabel}")&&landing.includes("{registrationNotice}"),"Registration availability must be reflected in every language");
 const premium=fs.readFileSync("components/homecourt-premium.tsx","utf8");
 assert.ok(premium.includes("無料で使いながら、必要になったらPLUSへ。"),"Canonical HOMECOURT PLUS Japanese headline is missing");
 assert.ok(premium.includes(">PLUS FEATURE<"),"PLUS feature cards must keep label/title visually separate");
@@ -82,6 +90,6 @@ if(failures.length){
 console.log(JSON.stringify({
   status:"passed",
   filesChecked:files.length,
-  rulesChecked:forbidden.length+13,
+  rulesChecked:forbidden.length+20,
   scope:"HOMECOURT Japanese copy, iPhone installability, passwordless return paths, navigation clarity, legacy labels and Japan-map guard."
 },null,2));
