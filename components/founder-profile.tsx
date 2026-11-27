@@ -1,6 +1,6 @@
 import "./founder-profile.css";
 import Image from "next/image";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Camera, MessageCircle } from "lucide-react";
 import { Locale, localePath, SiteFrame } from "./site-frame";
 
 const copy = {
@@ -38,6 +38,31 @@ const copy = {
  }
 } as const;
 
+const instagram = {
+  dm: "https://ig.me/m/riot.basketball.academy",
+  profile: "https://www.instagram.com/riot.basketball.academy/",
+} as const;
+const dmCopy = {
+  ja: {title:"Instagram DMで代表に相談", profile:"RBA公式Instagramを開く", help:"WhatsApp・Instagram DMのどちらからでもお気軽にご相談ください。InstagramではRBA公式アカウント宛に、代表への相談とお伝えください。DMが開かない場合はプロフィールの「メッセージ」から送信できます。", privacy:"お子さまの個人情報・健康情報は最初のDMに記載せず、保護者からご相談ください。"},
+  en: {title:"Message the founder via Instagram", profile:"Open RBA on Instagram", help:"Choose WhatsApp or Instagram DM. For Instagram, message the official RBA account and address your enquiry to the founder. If the DM link does not open, use Message on the profile.", privacy:"Parents or guardians should make enquiries about minors; please do not include children's personal or health information in the first message."},
+  "zh-tw": {title:"透過 Instagram 私訊代表", profile:"開啟 RBA 官方 Instagram", help:"歡迎使用 WhatsApp 或 Instagram 私訊。請在 RBA 官方帳號的私訊中註明希望聯絡代表。若私訊連結無法開啟，請從個人檔案點選「訊息」。", privacy:"未成年球員請由家長或監護人洽詢，首次私訊請勿提供孩子的個人或健康資料。"},
+  ko: {title:"Instagram DM으로 대표에게 문의", profile:"RBA 공식 Instagram 열기", help:"WhatsApp 또는 Instagram DM으로 문의해 주세요. Instagram에서는 RBA 공식 계정에 대표에게 문의한다고 알려 주세요. DM 링크가 열리지 않으면 프로필에서 메시지를 선택하세요.", privacy:"미성년 선수는 보호자가 문의하고 첫 메시지에 아동의 개인정보나 건강정보를 적지 마세요."},
+} as const;
+
+function FounderContactLinks({locale, whatsapp}:{locale:Locale;whatsapp:string}) {
+  const c=copy[locale];
+  const dm=dmCopy[locale];
+  return <div className="founder-contact-options">
+    <div className="founder-contact-buttons">
+      <a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>
+      <a className="founder-contact founder-contact-instagram" href={instagram.dm} target="_blank" rel="noopener noreferrer"><Camera size={18}/>{dm.title}<ArrowUpRight size={17}/></a>
+    </div>
+    <p className="founder-contact-hint">{dm.help}</p>
+    <a className="founder-instagram-fallback" href={instagram.profile} target="_blank" rel="noopener noreferrer">{dm.profile} · @riot.basketball.academy <ArrowUpRight size={14}/></a>
+    <p className="founder-contact-hint">{dm.privacy}</p>
+  </div>;
+}
+
 export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}) {
  const c=copy[locale];
  const whatsapp=`https://wa.me/818032483703?text=${encodeURIComponent(c.message)}`;
@@ -45,10 +70,10 @@ export function FounderProfile({locale,full=false}:{locale:Locale;full?:boolean}
  return <section className={`founder-profile${full?" founder-profile-full":""}`} id="founder" aria-labelledby="founder-name">
   <div className="founder-intro">
    <figure className="founder-portrait"><Image src="/media/founder/masato-nishio-on-court.webp" sizes="(max-width: 760px) 90vw, 42vw" alt={c.alt} width="874" height="860" loading={full?"eager":"lazy"}/><figcaption>{c.caption}</figcaption></figure>
-   <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><h3 className="founder-belief">{c.headline}</h3><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
+   <div className="founder-copy"><p className="founder-eyebrow">RIOT BASKETBALL ACADEMY / {c.label}</p><Heading id="founder-name">{c.name}</Heading><p className="founder-native">{c.native}</p><p className="founder-role">{c.role}</p><h3 className="founder-belief">{c.headline}</h3><p>{c.bio}</p>{full&&<p>{c.belief}</p>}<div className="founder-actions"><FounderContactLinks locale={locale} whatsapp={whatsapp}/>{!full&&<a className="founder-more" href={`${localePath(locale,"about")}#founder`}>{c.more}<ArrowUpRight size={16}/></a>}</div></div>
   </div>
   <div className="founder-principles"><article><p className="founder-eyebrow">01 / MISSION · {c.missionLabel}</p><h3>{c.mission}</h3><p>{c.missionBody}</p></article><article><p className="founder-eyebrow">02 / VISION · {c.visionLabel}</p><h3>{c.vision}</h3><p>{c.visionBody}</p></article></div>
-  {full&&<div className="founder-invitation"><p className="founder-eyebrow">LET’S BEGIN A CONVERSATION</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p><a className="founder-contact" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={18}/>{c.cta}<ArrowUpRight size={17}/></a><small>{c.note}</small><a className="founder-email" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></div>}
+  {full&&<div className="founder-invitation"><p className="founder-eyebrow">LET’S BEGIN A CONVERSATION</p><h2>{c.contactTitle}</h2><p>{c.contactBody}</p><FounderContactLinks locale={locale} whatsapp={whatsapp}/><small>{c.note}</small><a className="founder-email" href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a></div>}
  </section>;
 }
 
