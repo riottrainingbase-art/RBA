@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { TorstenRecordingOffer } from "./torsten-recording-offer";
 import { RbaProjectDirectory } from "./rba-project-directory";
 import { GrowthClickTracking } from "./growth-click-tracking";
@@ -83,7 +84,6 @@ export async function SimpleJapaneseHome() {
               <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
               <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
               <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に、子どもたちの育成と参加機会を広げる活動を行っています。所属チームでの活動を大切にしながら、全国のクリニック、3x3、国内外の交流、指導者の学びを通じて、自分で見て、考え、仲間とプレーする力を育てます。</p>
-              <a className={styles.textLink} href="/ja/about">代表・西尾優人の経歴と指導方針を見る</a>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">参加・開催予定を見る <span aria-hidden="true">↗</span></a>
                 <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">選手・保護者・指導者の入口 <span aria-hidden="true">↗</span></a>
@@ -96,6 +96,15 @@ export async function SimpleJapaneseHome() {
               <span>SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span>
             </div>
           </section>
+
+          <a className={styles.founderFeature} href="/ja/about#founder">
+            <Image src="/media/founder/masato-nishio-on-court.webp" alt="コートに立つRBA代表・西尾優人" width={874} height={860} sizes="(max-width: 600px) 38vw, 250px" />
+            <div>
+              <p>RBA代表・仙台</p>
+              <h2>西尾 優人</h2>
+              <span>経歴と育成への思いを見る →</span>
+            </div>
+          </a>
 
           <nav className={styles.sectionNavigator} aria-label="このページの目次">
             <span className={styles.indexLabel}>INDEX</span>
