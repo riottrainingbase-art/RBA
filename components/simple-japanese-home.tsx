@@ -9,33 +9,6 @@ import { isProgrammeActive, programmes } from "./programme-data";
 import { tr } from "./network-data";
 import styles from "./simple-japanese-home.module.css";
 
-const entryPoints = [
-  {
-    id: "family",
-    number: "01 / PARENTS",
-    title: "選手・保護者",
-    description: "練習、出場機会、チーム選び。成長につながる選択肢を探す。",
-    href: "/ja/families",
-    action: "保護者向けの入口へ",
-  },
-  {
-    id: "coach",
-    number: "02 / COACHES",
-    title: "指導者・チーム",
-    description: "技術を試合へつなぐ。練習設計、講習、育成記事を学ぶ。",
-    href: "/ja/coaches",
-    action: "指導者の学びへ",
-  },
-  {
-    id: "partner",
-    number: "03 / PARTNERS",
-    title: "企業・主催者",
-    description: "社員研修・親子イベントの発注と、広告・協賛の相談を分けてご案内。",
-    href: "/ja/business",
-    action: "法人向けサービスを見る",
-  },
-] as const;
-
 const steps = [
   {
     id: "online",
@@ -106,22 +79,11 @@ export async function SimpleJapaneseHome() {
 
 
 
-          <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
-            <div className={styles.heading}>
-              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">立場から探す</h2></div>
-            </div>
-            <nav className={styles.journeyGrid} aria-label="保護者・指導者・企業の目的別入口">
-              {entryPoints.map(item => (
-                <a className={styles.journeyCard} key={item.id} href={item.href} data-growth-id={"home-audience-" + item.id}>
-                  <span className={styles.journeyNumber}>{item.number}</span>
-                  <strong>{item.title}</strong>
-                  <span className={styles.journeyDescription}>{item.description}</span>
-                  <span className={styles.journeyAction}>{item.action} →</span>
-                </a>
-              ))}
-            </nav>
-            
-          </section>
+          <nav id="rba-for-you" className={styles.aboutLinks} aria-label="立場から探す">
+            <a className={styles.textLink} href="/ja/families">選手・保護者 →</a>
+            <a className={styles.textLink} href="/ja/coaches">指導者・チーム →</a>
+            <a className={styles.textLink} href="/ja/business">企業・主催者 →</a>
+          </nav>
 
           <section className={styles.section} id="home-programmes" aria-labelledby="home-programme-title">
             <div className={styles.heading}>
@@ -155,43 +117,16 @@ export async function SimpleJapaneseHome() {
 
           <TorstenRecordingOffer locale="ja"/>
           <RbaProjectDirectory locale="ja"/>
-          <section className={styles.ageHub} aria-labelledby="home-age-categories" id="home-age-categories">
-            <p className={styles.label}>PROGRAMMES / 年代と活動形態</p>
-            <h2>年齢・活動から探す。</h2>
-            <p className={styles.ageIntro}>スクール・クリニック・U15クラブは別の活動です。対象や参加条件を確認してお選びください。</p>
-            <nav className={styles.ageGrid} aria-label="年代とU15チームの案内">
-              <a href="/ja/u12" className={styles.ageCard} data-growth-id="home-age-u12">
-                <span className={styles.ageEyebrow}>ELEMENTARY</span><strong>U12</strong>
-                <span className={styles.ageDescription}>小学生向け活動</span><span className={styles.ageAction}>U12を見る →</span>
-              </a>
-              <a href="/ja/u15" className={styles.ageCard} data-growth-id="home-age-u15">
-                <span className={styles.ageEyebrow}>JUNIOR HIGH</span><strong>U15</strong>
-                <span className={styles.ageDescription}>中学生年代の育成</span><span className={styles.ageAction}>U15を見る →</span>
-              </a>
-              <a href="/ja/sendai-school" className={styles.ageCard} data-growth-id="home-age-school">
-                <span className={styles.ageEyebrow}>SENDAI</span><strong>スクール</strong>
-                <span className={styles.ageDescription}>仙台の小・中学生向けスクール</span><span className={styles.ageAction}>体験・日程を見る →</span>
-              </a>
-            </nav>
-          </section>
+          <nav id="home-age-categories" className={styles.aboutLinks} aria-label="年代・スクール">
+            <a className={styles.textLink} href="/ja/u12">U12 →</a>
+            <a className={styles.textLink} href="/ja/u15">U15 →</a>
+            <a className={styles.textLink} href="/ja/sendai-school">仙台スクール →</a>
+          </nav>
           <SendaiCommunity />
 
-          <section className={styles.section} aria-labelledby="home-continue-title">
-            <div className={styles.heading}>
-              <div><p className={styles.label}>DISCOVER → CONNECT → CONTINUE</p><h2 id="home-continue-title">オンライン受付・保護者交流・個人支援</h2></div>
-            </div>
-            <div className={styles.pathGrid}>
-              {steps.map((item, index) => {
-                const external = item.href.startsWith("http");
-                return <article className={styles.pathCard} key={item.id}>
-                  <span className={styles.pathLabel}>{String(index + 1).padStart(2, "0")} / {item.label}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.copy}</p>
-                  <a data-growth-id={"home-path-" + item.id} href={item.href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{item.action} →</a>
-                </article>;
-              })}
-            </div>
-          </section>
+          <nav className={styles.aboutLinks} aria-label="オンライン受付・交流・個人支援">
+            {steps.map(item=><a className={styles.textLink} key={item.id} href={item.href} data-growth-id={"home-path-"+item.id}>{item.title} →</a>)}
+          </nav>
 
           <section className={styles.hostCallout} id="home-host" aria-labelledby="home-host-cta-title">
             <div className={styles.hostContent}>
