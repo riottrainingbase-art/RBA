@@ -7,7 +7,7 @@ export function DhubCoachCaseLab() {
       <div className={styles.intro}>
         <p className="section-index">D-HUB / FIELD CASE LAB</p>
         <h2 id="coach-case-lab">次の練習で、何を変える？</h2>
-        <p>現場の困りごとから一つ選び、実践し、観察し、次回の練習を修正する8つのケース。時間は目安です。選手の年齢・経験・人数・体調に合わせて調整してください。</p>
+        <p>現場の困りごとから一つ選び、実践し、観察し、次回の練習を修正する{dhubCoachCases.length}のケース。時間は目安です。選手の年齢・経験・人数・体調に合わせて調整してください。</p>
         <p className={styles.note}>RBA独自の練習設計案です。特定講師の発言・録画・配布資料の転載ではなく、効果や成果を保証するものでもありません。大会規則・安全・本人の意思を優先します。</p>
       </div>
       <div className={styles.grid}>
