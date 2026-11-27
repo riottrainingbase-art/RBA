@@ -30,6 +30,8 @@ export function MiyagiUnitedProgramme() {
         <div className={styles.shizu} role="img" aria-label="過去の志津川合宿の体育館写真"/>
         <div className={styles.content}><p className={styles.kicker}>2/6（土）〜7（日）｜希望日</p><h3>志津川育成合宿</h3>
           <p>小4〜中3の男女・1泊2日。仲間を知り、状況判断やチームでの動きを学び、次の試合への個人課題を決めます。</p>
+          <p><strong>募集定員30名｜早期29,800円・通常33,000円（税込）</strong></p>
+          <p>早期価格は12月6日（日）23:59まで。宿泊・4食・指導・施設利用・運営費込み。交通費・日曜夕食は別途です。</p>
           <p className={styles.notice}>志津川自然の家に研修日程を再提出済み。施設の受入と外部体育館・実技日程は調整中です。</p>
           <a className={styles.button} href={shizugawaApply}>志津川｜申込・決済 →</a>
         </div>
@@ -39,7 +41,9 @@ export function MiyagiUnitedProgramme() {
         <div className={styles.shibata} role="img" aria-label="柴田町・船岡城址公園からの風景（春の地域写真）"/>
         <div className={styles.content}><p className={styles.kicker}>2/27（土）〜28（日）｜開催予定</p><h3>RIZEHOPE JAPAN 2027</h3>
           <p>宮城県柴田町のU12国際交流。東北の小学6年生向けにUNITED個人参加を計画しています。海外の選手との試合で学んだことを実践する機会です。</p>
-          <p className={styles.notice}>対象・編成・人数・参加費・出場可否は正式案内後に確認します。志津川への参加は出場条件ではありません。</p>
+          <p><strong>個人参加定員12名｜早期22,000円・通常24,800円（税込）</strong></p>
+          <p>早期価格は12月6日（日）23:59まで。志津川への参加は出場条件ではありません。</p>
+          <p className={styles.notice}>チーム編成と競技条件は正式案内後に確認します。</p>
           <a className={styles.button} href={rizehopeApply}>RIZEHOPE｜申込・決済 →</a>
           <p className={styles.credit}>地域写真：<a href="https://commons.wikimedia.org/wiki/File:Funaoka_view.jpg">Kumamushi / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>（春の風景・トリミング表示）</p>
         </div>

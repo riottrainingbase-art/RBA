@@ -17,6 +17,8 @@ Use the restricted application table and Stripe Dashboard to reconcile paid rows
 
 ## 2026-11-27 preflight
 
+- RBA approved Shizugawa capacity 30, RIZEHOPE individual capacity 12, and both early-price cutoffs 2026-12-07T00:00:00+09:00 (December 6 inclusive). Configured the production and preview project variables for these values and terms version, with payment enable flags intentionally false pending credential/webhook verification.
+
 - Applied the isolated application migration to RBA HOMECOURT (`ctngdzzorhzpdxswahzl`). Verified RLS enabled, no anonymous SELECT, no member INSERT, no anonymous or member reserve-function EXECUTE, and service-role SELECT/EXECUTE allowed.
 - A transaction-scoped test as service_role reserved one synthetic seat, rejected a duplicate even with remaining capacity, rejected a second applicant when capacity was one, then rolled back. Verified zero application rows after rollback. No real customer data or payments were used.
 - Production project `rba-official-production` is currently serving an unrelated store release. The production env inventory did not contain `STRIPE_SECRET_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, or `MIYAGI_UNITED_WEBHOOK_SECRET`; no secret values were retrieved. Do not enable live payment until the owner configures appropriate server-only credentials, the new webhook is verified, and exact capacities and cutoff dates are approved.
