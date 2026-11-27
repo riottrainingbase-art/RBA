@@ -1,9 +1,10 @@
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
-import { MiyagiUnitedEntry } from "@/components/united-miyagi";
+import { miyagiPath } from "@/components/united-miyagi";
+import { getMiyagiPayment } from "@/lib/miyagi-united-payments";
 import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { OkinawaCampPartnerNotice } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
-import { ArrowUpRight, BookOpen, CalendarDays, GraduationCap, Globe2, House, Users } from "lucide-react";
+import { ArrowUpRight, BookOpen, Users } from "lucide-react";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
@@ -25,53 +26,16 @@ export const metadata: Metadata = {
 };
 
 const track = (path: string, content: string, campaign = "rba_instagram_profile_202610") => {
+  const url = new URL(path, "https://riotbasketballacademy.com");
   const params = new URLSearchParams({
     utm_source: "instagram",
     utm_medium: "bio",
     utm_campaign: campaign,
     utm_content: content,
   });
-  return `${path}?${params.toString()}`;
+  for (const [key, value] of params) url.searchParams.set(key, value);
+  return `${url.pathname}${url.search}${url.hash}`;
 };
-
-const entries = [
-  {
-    number: "01",
-    kicker: "PLAY / 全国で参加する",
-    title: "クリニック・キャンプ",
-    description: "U8〜U18の育成クリニックやキャンプ。開催地・対象年代・料金を見て、参加したい活動を選べます。",
-    action: "開催予定・申込方法を見る",
-    href: track("/ja/schedule", "clinic_schedule"),
-    icon: CalendarDays,
-  },
-  {
-    number: "02",
-    kicker: "CONNECT / 次の挑戦へ",
-    title: "RBA UNITED・国際交流",
-    description: "国内外のチームと学びをつなぐ活動。募集内容や参加条件は各企画の公式案内でご確認ください。",
-    action: "国際交流・遠征の情報を見る",
-    href: track("/ja/united", "international_united"),
-    icon: Globe2,
-  },
-  {
-    number: "03",
-    kicker: "LEARN / 指導を学ぶ",
-    title: "D-HUB COACH LAB",
-    description: "指導者が学びを現場で試し、振り返り、次の練習へつなげる継続学習プログラム。",
-    action: "D-HUBの内容を見る",
-    href: track("/ja/d-hub", "dhub_coach"),
-    icon: GraduationCap,
-  },
-  {
-    number: "04",
-    kicker: "KEEP / 経験を残す",
-    title: "MY HOME COURT",
-    description: "選手・保護者・指導者それぞれが、参加の記録や次の学びをつなぐRBAのホームコート。",
-    action: "無料で始める方法を見る",
-    href: track("/ja/my-homecourt", "my_homecourt"),
-    icon: House,
-  },
-] as const;
 
 // Resolve time in a server utility; avoid sampling a clock in React render code.
 function currentPromotions() {
@@ -81,12 +45,16 @@ function currentPromotions() {
     kobe: now < Date.parse("2026-11-23T16:00:00+09:00"),
     torsten: now < Date.parse("2026-11-25T20:00:00+09:00"),
     okinawa: now < Date.parse("2026-12-24T12:00:00+09:00"),
+    miyagi: now < Date.parse("2027-02-27T00:00:00+09:00"),
+    miyagiCamp: now < Date.parse("2027-02-06T00:00:00+09:00"),
+    miyagiEarly: now < Date.parse("2026-12-07T00:00:00+09:00"),
   };
 }
 
 export default function InstagramEntryPage() {
   // 11/25 (JST)以降は新規販促カードを表示しない。200名達成時は別途早期停止。
-  const { torsten: showTorsten, okinawa: showOkinawa, kobe: showKobe, shizugawa: showShizugawa } = currentPromotions();
+  const { torsten: showTorsten, okinawa: showOkinawa, kobe: showKobe, shizugawa: showShizugawa, miyagi: showMiyagi, miyagiCamp, miyagiEarly } = currentPromotions();
+  const miyagiChoices=[{id:"shizugawa",label:"志津川合宿",date:"2/6–7｜小4〜中3｜30名",early:29800,regular:33000}, {id:"rizehope",label:"RIZEHOPE個人参加",date:"2/27–28｜東北小6｜12名",early:22000,regular:24800}].filter(x=>x.id!=="shizugawa"||miyagiCamp);
 
   return (
     <main className="min-h-screen bg-[#f4f4f1] text-[#151719]">
@@ -110,21 +78,21 @@ export default function InstagramEntryPage() {
 
         <section className="px-5 pb-7 pt-10 sm:px-9 sm:pt-14" aria-labelledby="instagram-title">
           <p className="text-[11px] font-bold tracking-[.2em] text-neutral-600">FROM INSTAGRAM</p>
-          <h1 id="instagram-title" className="mt-4 text-[clamp(38px,7vw,70px)] font-black leading-[1.06] tracking-[-.06em]">
-            次のコートは、<br />ここから。
+          <h1 id="instagram-title" className="mt-3 text-[clamp(30px,6vw,48px)] font-black leading-[1.12] tracking-[-.045em]">
+            RBA公式サイト<br />参加・申込・ショップ
           </h1>
-          <p className="mt-5 max-w-2xl text-[15px] font-medium leading-7 text-neutral-700 sm:text-base">
-            育成の可能性を、もっと広く。<br />
-            全国のクリニック、指導者の学び、国際交流。<br className="hidden sm:block" />
-            目的に合った入口を選んでください。
-          </p>
-          <div className="mt-7 flex flex-wrap gap-2 text-[11px] font-bold text-neutral-600" aria-label="対象">
-            <span className="border border-neutral-300 bg-white px-3 py-2">選手</span>
-            <span className="border border-neutral-300 bg-white px-3 py-2">保護者</span>
-            <span className="border border-neutral-300 bg-white px-3 py-2">指導者</span>
-            <span className="border border-neutral-300 bg-white px-3 py-2">チーム・地域</span>
-          </div>
+          <p className="mt-3 text-sm leading-6 text-neutral-700">Instagramで見た企画を選んで、公式の詳細ページへ。</p>
+          <nav aria-label="よく使う入口" className="mt-5 grid grid-cols-2 gap-2">
+            {[{label:"全国クリニック・申込",path:"/ja/opportunities",id:"schedule"},{label:"RBA UNITED・国際交流",path:"/ja/united",id:"united"},{label:"MY HOME COURT",path:"/ja/my-homecourt",id:"homecourt"},{label:"公式オンラインストア",path:"/ja/store",id:"store"},{label:"指導者向け講習",path:"/ja/d-hub",id:"coach"},{label:"仙台スクール",path:"/ja/sendai-school",id:"sendai"}].map(item=><a key={item.id} href={track(item.path,`quick_${item.id}`)} data-growth-id={`instagram-quick-${item.id}`} className="flex min-h-[50px] items-center justify-between gap-2 border border-neutral-300 bg-white px-3 py-3 text-xs font-black leading-5 hover:border-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">{item.label}<ArrowUpRight size={16} className="shrink-0" aria-hidden="true"/></a>)}
+          </nav>
         </section>
+
+        {showMiyagi&&<section className="mx-5 mb-6 overflow-hidden border-2 border-[#151719] bg-[#ff7900] text-[#151719] sm:mx-9" aria-labelledby="miyagi-instagram-title">
+          <div className="p-5 sm:p-7"><p className="text-xs font-black tracking-widest">RBA UNITED / MIYAGI 2027</p><h2 id="miyagi-instagram-title" className="mt-2 text-[28px] font-black leading-tight">合宿から、国際試合へ。</h2><p className="mt-2 text-sm font-bold">どちらか一方からでも参加できます。会員登録は不要です。</p></div>
+          <div className="grid gap-px bg-black sm:grid-cols-2">
+            {miyagiChoices.map(item=>{const ready=getMiyagiPayment(item.id)?.payable;return <a key={item.id} href={track(miyagiPath+`#${item.id}`,item.id,"miyagi_united_202702")} data-growth-id={`instagram-miyagi-${item.id}`} className="bg-white p-4 text-sm font-black focus-visible:outline-2 focus-visible:outline-offset-[-3px] outline-black"><span className="block text-xs font-bold text-neutral-600">{item.date}</span><span className="mt-1 flex justify-between gap-2">{item.label}<ArrowUpRight size={18} aria-hidden="true"/></span><span className="mt-1 block text-xs">{miyagiEarly?"早期":"通常"}{(miyagiEarly?item.early:item.regular).toLocaleString("ja-JP")}円（税込） · {ready?"受付中":"受付準備中"}</span></a>})}
+          </div><a href={track(miyagiPath,"miyagi_overview","miyagi_united_202702")} data-growth-id="instagram-miyagi-overview" className="flex min-h-12 items-center justify-between bg-[#151719] px-4 py-3 text-sm font-black text-white" style={{color:"#fff"}}>開催内容・受付状況を確認する <ArrowUpRight size={18} aria-hidden="true"/></a>
+        </section>}
 
         <section className="mx-5 mb-6 border-2 border-[#10233f] bg-white px-5 py-6 text-[#10233f] sm:mx-9 sm:px-7" aria-labelledby="instagram-sendai-school-title">
           <p className="text-[11px] font-black tracking-[.12em] text-[#735c48]">SENDAI / TAIHAKU · SCHOOL TRIAL</p>
@@ -167,7 +135,6 @@ export default function InstagramEntryPage() {
           </section>
         )}
 
-        <div className="mx-5 sm:mx-9"><MiyagiUnitedEntry/></div>
         {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
           <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
           <h2 id="shizugawa-feature-title" className="mt-3 text-3xl font-black leading-tight">海と森の志津川で、<br/>次のプレーへ。</h2>
@@ -201,42 +168,7 @@ export default function InstagramEntryPage() {
           </section>
         )}
 
-        <section className="px-5 pb-12 pt-10 sm:px-9" aria-labelledby="find-your-route">
-          <div className="mb-5 flex items-end justify-between gap-3">
-            <div>
-              <p className="text-[11px] font-bold tracking-[.18em] text-neutral-600">CHOOSE YOUR NEXT STEP</p>
-              <h2 id="find-your-route" className="mt-2 text-[26px] font-black tracking-[-.04em] sm:text-3xl">RBAでできること</h2>
-            </div>
-            <p className="text-[11px] font-semibold text-neutral-500">4つの入口</p>
-          </div>
-          <nav aria-label="RBAの活動を選ぶ" className="grid gap-3 sm:grid-cols-2">
-            {entries.map((entry) => {
-              const Icon = entry.icon;
-              return (
-                <a
-                  key={entry.number}
-                  href={entry.href}
-                  data-cta={entry.number} data-growth-id={`instagram-route-${entry.number}`}
-                  className="group flex h-full flex-col border border-neutral-300 bg-white px-5 py-6 transition-colors hover:border-neutral-900 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:px-6"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-black text-neutral-500">{entry.number}</span>
-                    <Icon size={24} strokeWidth={1.8} aria-hidden="true" />
-                  </div>
-                  <p className="mt-6 text-[10px] font-bold tracking-[.12em] text-neutral-500">{entry.kicker}</p>
-                  <h3 className="mt-2 text-[22px] font-black tracking-[-.04em]">{entry.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-7 text-neutral-600">{entry.description}</p>
-                  <span className="mt-6 flex items-center justify-between gap-3 border-t border-neutral-200 pt-4 text-[13px] font-black">
-                    {entry.action}<ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
-                  </span>
-                </a>
-              );
-            })}
-          </nav>
-          <p className="mt-5 text-[12px] leading-6 text-neutral-600">
-            日程、対象年代、参加費、残席、キャンセル条件は、各企画の公式ページで最新情報をご確認ください。
-          </p>
-        </section>
+        <div className="px-5 py-7 sm:px-9"><a href={track("/ja/opportunities","all_opportunities")} data-growth-id="instagram-all-opportunities" className="flex min-h-12 items-center justify-between border border-neutral-300 bg-white px-4 py-3 text-sm font-bold">すべての開催予定・料金を見る <ArrowUpRight size={18} aria-hidden="true"/></a></div>
 
         <section className="mx-5 mb-9 border border-[#313336] bg-[#191b1d] px-5 py-7 text-white sm:mx-9 sm:px-7" aria-labelledby="national-host-heading">
           <p className="text-[11px] font-black tracking-[.16em] text-[#ffa66b]">FOR TEAMS & LOCAL ORGANISERS</p>

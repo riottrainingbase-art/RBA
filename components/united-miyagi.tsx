@@ -26,7 +26,7 @@ export function MiyagiUnitedProgramme() {
     </header>
     <section className={styles.section} aria-labelledby="pathway-title">
       <h2 id="pathway-title">2月の挑戦</h2>
-      <article className={styles.step}>
+      <article id="shizugawa" className={styles.step}>
         <div className={styles.shizu} role="img" aria-label="過去の志津川合宿の体育館写真"/>
         <div className={styles.content}><p className={styles.kicker}>2/6（土）〜7（日）｜希望日</p><h3>志津川育成合宿</h3>
           <p>小4〜中3の男女・1泊2日。仲間を知り、状況判断やチームでの動きを学び、次の試合への個人課題を決めます。</p>
@@ -37,7 +37,7 @@ export function MiyagiUnitedProgramme() {
         </div>
       </article>
       <div className={styles.bridge}><strong>合宿で決めた課題 → 日常練習 → 国際試合</strong><p>MY HOME COURTで練習を振り返り、参加条件とチーム編成を確認して次の企画へ。</p><a href="/ja/my-homecourt">MY HOME COURTを見る →</a></div>
-      <article className={styles.step}>
+      <article id="rizehope" className={styles.step}>
         <div className={styles.shibata} role="img" aria-label="柴田町・船岡城址公園からの風景（春の地域写真）"/>
         <div className={styles.content}><p className={styles.kicker}>2/27（土）〜28（日）｜開催予定</p><h3>RIZEHOPE JAPAN 2027</h3>
           <p>宮城県柴田町のU12国際交流。東北の小学6年生向けにUNITED個人参加を計画しています。海外の選手との試合で学んだことを実践する機会です。</p>
