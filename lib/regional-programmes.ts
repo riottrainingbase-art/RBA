@@ -9,6 +9,7 @@ const programmePrefectures: Record<ProgrammeId, readonly string[]> = {
   "yaima": ["沖縄県"],
   "kawasaki": ["神奈川県"],
   "saga-fukuoka": ["佐賀県", "福岡県"],
+  "saga-winter-20261228": ["佐賀県", "福岡県"],
   "backbone-chiba": ["千葉県"],
   "yamagata": ["山形県"],
   "shizugawa": ["宮城県"],
