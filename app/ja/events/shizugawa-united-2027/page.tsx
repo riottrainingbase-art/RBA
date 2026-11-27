@@ -25,10 +25,10 @@ export default function Page() {
     </section>
     <section id="family" className={styles.overview}><h2>ご家庭へのご案内</h2><dl className={styles.facts}>
       <div><dt>対象予定</dt><dd>小学4年生〜中学3年生の男女。所属を問わず個人で参加できる企画です。</dd></div>
-      <div><dt>宿泊・運営</dt><dd>1泊2日、初日昼・夕と2日目朝・昼の4食を予定。西尾優人とアシスタント1名での引率を計画しています。定員・部屋割り・集合解散は受入条件が決まり次第ご案内します。</dd></div>
+      <div><dt>宿泊・運営</dt><dd>1泊2日、初日昼・夕と2日目朝・昼の4食を予定。西尾優人とアシスタント1名での引率を計画しています。現地集合・現地解散を予定しています。定員、部屋割り、集合解散の時刻は受入条件が決まり次第ご案内します。</dd></div>
       <div><dt>費用・ウェア</dt><dd>参加費、含まれる費用、取消条件は正式募集時に掲載します。専用ウェアは希望購入を検討中です。</dd></div>
-      <div><dt>月末の交流</dt><dd>2月27・28日に柴田町で計画しているRIZEHOPEはU12の別企画です。参加枠・手続きはそれぞれ独立しています。</dd></div>
-      </dl><a className={styles.primary} href="/ja/events/shizugawa-united-2027/payment">申込・お支払いの受付状況を見る →</a>
+      <div><dt>月末の交流</dt><dd>2月27・28日に柴田町で計画しているRIZEHOPEはU12の別企画です。志津川だけの参加も可能な計画です。月末の交流への参加を希望する場合は、別途お申し込みください。</dd></div>
+      </dl><a className={styles.primary} href="/ja/events/shizugawa-united-2027/payment">参加意向を伝える・お支払いの受付状況 →</a>
     </section>
   </div></SiteFrame>;
 }
