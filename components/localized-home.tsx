@@ -10,15 +10,10 @@ import { RegionalSchoolCallout } from "./regional-school-callout";
 import Link from "next/link";
 import { ui } from "./ui-copy";
 import { NetworkMaps } from "./network-maps";
-import { ArrowRight, ArrowUpRight, House, MessageCircle, MoveDown, Users } from "lucide-react";
-import { LanguagePage, Locale, SiteFrame, localePath } from "@/components/site-frame";
-import { GrowthSections } from "@/components/growth-sections";
-import { PaidProgrammes } from "@/components/paid-programmes";
+import { ArrowRight, House, MessageCircle, MoveDown } from "lucide-react";
+import { Locale, SiteFrame, localePath } from "@/components/site-frame";
 import { GlobalMedia } from "@/components/global-media";
-import { CoachEducationLoop } from "./coach-education-loop";
 import { AudienceJourneys } from "@/components/audience-journeys";
-
-import { PlatformQuickFinder } from "@/components/platform-quick-finder";
 import { CorporateSupportStrip } from "@/components/corporate-support-strip";
 
 const copy={
@@ -83,7 +78,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
   return <div className={locale === "ja" ? homeStyles.home : undefined} lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale}>
     <CorporateSupportStrip locale={locale} />
-    <section className="hero-grid"><div className="hero-copy"><p className="eyebrow">RIOT BASKETBALL ACADEMY · JAPAN</p><h1><span>{c.title[0]}</span><span>{c.title[1]}</span></h1><p className="hero-lede">{c.lede}</p><PlatformQuickFinder locale={locale}/>{locale==="ja"&&<a className="hero-clinic-alert" href={localePath(locale,"events/torsten-loibl-online-clinic")}><span>NOW OPEN</span><strong>{c.clinicHero}</strong><ArrowRight size={18}/></a>}<div className="hero-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.primary}<ArrowRight size={17}/></a><a className="button button-member" href={localePath(locale,"my-homecourt")}><House size={17}/>{locale==="ja"?"MY HOME COURTを見る":hc.open}<ArrowRight size={17}/></a></div><div className="hero-proof">{c.proof.map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></div><div className="hero-image" role="img" aria-label={c.image}><div className="image-note">{c.image}</div><MoveDown className="scroll-mark" size={19}/></div></section>
+    <section className="hero-grid"><div className="hero-copy"><p className="eyebrow">RIOT BASKETBALL ACADEMY · JAPAN</p><h1><span>{c.title[0]}</span><span>{c.title[1]}</span></h1><p className="hero-lede">{c.lede}</p>{locale==="ja"&&<a className="hero-clinic-alert" href={localePath(locale,"events/torsten-loibl-online-clinic")}><span>NOW OPEN</span><strong>{c.clinicHero}</strong><ArrowRight size={18}/></a>}<div className="hero-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.primary}<ArrowRight size={17}/></a><a className="button button-member" href={localePath(locale,"my-homecourt")}><House size={17}/>{locale==="ja"?"MY HOME COURTを見る":hc.open}<ArrowRight size={17}/></a></div><div className="hero-proof">{c.proof.map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></div><div className="hero-image" role="img" aria-label={c.image}><div className="image-note">{c.image}</div><MoveDown className="scroll-mark" size={19}/></div></section>
     <SendaiCommunity locale={locale} />
     <OkinawaDecemberCampCallout locale={locale} />
     {locale === "zh-tw" && isTaipeiClinicUpcoming() &&
@@ -110,7 +105,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
     </section>:null}
 
     {locale === "en" && <RizehopeTeamEnquiry />}
-    <PaidProgrammes locale={locale}/>
+
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
@@ -128,27 +123,20 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
 
     <FounderProfile locale={locale}/>
-    <section className="homecourt-home-feature section-pad"><div className="homecourt-home-mark"><span>MY</span><strong>HOME<br/>COURT</strong></div><div className="homecourt-home-copy"><p className="section-index">{hc.label}</p><h2>{hc.title}</h2><p>{hc.body}</p><div className="homecourt-home-roles">{hc.roles.map(role=><span key={role}><Users size={15}/>{role}</span>)}</div><div className="homecourt-home-actions"><a className="button button-dark" href={localePath(locale,"my-homecourt")}><House size={17}/>{hc.open}<ArrowRight size={17}/></a><a className="text-link" href={localePath(locale,"home-court")}>{hc.about}<ArrowRight size={16}/></a></div></div></section>
-
     {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>所属を変えなくても、違う指導者や仲間から学べます。今いる環境を大切にしながら、外の経験を足していくための活動です。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
     <AudienceJourneys locale={locale}/>
     <TorstenRecordingOffer locale={locale}/>
     <RbaProjectDirectory locale={locale}/>
-    <CoachEducationLoop locale={locale}/>
+    <nav className="section-pad" aria-label="RBA programme information" style={{display:"flex",flexWrap:"wrap",gap:20,paddingBlock:20}}><a className="text-link" href={localePath(locale,"camp")}>DEVELOPMENT CAMP <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"clinic-request")}>{c.secondary} <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"services")}>{({en:"Fees and services",ja:"料金とサービス","zh-tw":"費用及服務",ko:"요금 및 서비스"})[locale]} <ArrowRight size={16}/></a></nav>
 
-    {locale!=="ja" ? <section className="locale-routes section-pad"><div className="section-head"><div><p className="section-index">{c.routesLabel}</p><h2>{c.routesTitle}</h2></div><p>{c.routesCopy}</p></div><div className="locale-route-grid">{c.routes.map(([tag,title,page])=><a href={localePath(locale,page as LanguagePage)} key={tag}><span>{tag}</span><h3>{title}</h3><ArrowUpRight size={22}/></a>)}</div></section> : null}
 
     <section className="statement section-pad"><p className="section-index">{c.position}</p><div><h2>{c.positionTitle[0]}<br/>{c.positionTitle[1]}</h2><p>{c.positionCopy}</p><a className="text-link" href={localePath(locale,"approach")}>{c.readApproach}<ArrowRight size={16}/></a></div></section>
 
-    <section className="rba-standards section-pad"><div className="section-head"><div><p className="section-index">{c.workLabel}</p><h2>{c.workTitle}</h2></div></div><div className="standards-grid">{c.work.map(([n,t,b])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{b}</p></article>)}</div></section>
-
     <section className="asia-desk-home section-pad"><div><p className="section-index inverse">{c.asiaLabel}</p><h2>{c.asiaTitle[0]}<br/>{c.asiaTitle[1]}</h2></div><div><p>{c.asiaCopy}</p><div className="desk-languages"><span>ENGLISH</span><span>日本語</span><span>繁體中文</span><span>한국어</span></div><a className="button button-light" href={localePath(locale,"asia")}>{c.asiaCta}<ArrowRight size={17}/></a></div></section>
-
-    <section className="field-footprint section-pad"><div><p className="section-index inverse">{c.recordLabel}</p><h2>{c.recordTitle}</h2><p>{c.recordCopy}</p>{locale==="ja"?<><a className="text-link light-link" href="/ja/regions">全国の活動拠点を見る<ArrowRight size={16}/></a><a className="text-link light-link" href="/ja/saga">RBA佐賀を見る<ArrowRight size={16}/></a></>:null}<a className="text-link light-link" href={localePath(locale,"about")}>{c.about}<ArrowRight size={16}/></a></div><div className="footprint-numbers"><div><strong>{locale==="ja"?"3,000+":"3,000+"}</strong><span>{ui(locale,"players")}</span></div><div><strong>25</strong><span>{({en:"ACTIVITY LOCATIONS",ja:"国内25地域で活動","zh-tw":"日本全國活動地區",ko:"일본 전역 활동 지역"})[locale]}</span></div><div><strong>JP × ASIA</strong><span>{ui(locale,"nextField")}</span></div></div></section>
 
     <GlobalMedia locale={locale}/>
     <NetworkMaps locale={locale}/>
-    <GrowthSections locale={locale}/>
+
     {locale==="ja"?<section className="homecourt-product-preview section-pad">
       <div className="section-head">
         <div><p className="section-index">WORK WITH RBA</p><h2>RBAと一緒に、実際の育成機会をつくる。</h2></div>
