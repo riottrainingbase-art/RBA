@@ -14,3 +14,9 @@ No Jotform dependency. The guardian enters data on the RBA site, and Stripe host
 ## Operations
 
 Use the restricted application table and Stripe Dashboard to reconcile paid rows; do not expose it via a public API. Uncertain creation attempts deliberately retain their reservation until staff reconciles Stripe and the row; never release a capacity slot without confirming that an existing session cannot be paid. Unpaid open sessions expire after one hour; verified expired/failed events release the slot. Refunds are managed in Stripe and must be reconciled by authorised staff with the roster; no automatic refund action is implemented. A separate attendee-confirmation email needs a verified outbound service and consent configuration before enabling automated sending.
+
+## 2026-11-27 preflight
+
+- Applied the isolated application migration to RBA HOMECOURT (`ctngdzzorhzpdxswahzl`). Verified RLS enabled, no anonymous SELECT, no member INSERT, no anonymous or member reserve-function EXECUTE, and service-role SELECT/EXECUTE allowed.
+- A transaction-scoped test as service_role reserved one synthetic seat, rejected a duplicate even with remaining capacity, rejected a second applicant when capacity was one, then rolled back. Verified zero application rows after rollback. No real customer data or payments were used.
+- Production project `rba-official-production` is currently serving an unrelated store release. The production env inventory did not contain `STRIPE_SECRET_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, or `MIYAGI_UNITED_WEBHOOK_SECRET`; no secret values were retrieved. Do not enable live payment until the owner configures appropriate server-only credentials, the new webhook is verified, and exact capacities and cutoff dates are approved.
