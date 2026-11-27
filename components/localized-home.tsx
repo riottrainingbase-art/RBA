@@ -127,7 +127,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
     <AudienceJourneys locale={locale}/>
     <TorstenRecordingOffer locale={locale}/>
     <RbaProjectDirectory locale={locale}/>
-    <nav className="section-pad" aria-label="RBA programme information" style={{display:"flex",flexWrap:"wrap",gap:20,paddingBlock:20}}><a className="text-link" href={localePath(locale,"camp")}>DEVELOPMENT CAMP <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"clinic-request")}>{c.secondary} <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"services")}>{({en:"Fees and services",ja:"料金とサービス","zh-tw":"費用及服務",ko:"요금 및 서비스"})[locale]} <ArrowRight size={16}/></a></nav>
+    <nav className="section-pad" aria-label="RBA programme information" style={{display:"flex",flexWrap:"wrap",gap:20,paddingBlock:20}}><a className="text-link" href={localePath(locale,"camp")}>DEVELOPMENT CAMP <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"clinic-request")}>{c.secondary} <ArrowRight size={16}/></a><a className="text-link" href={localePath(locale,"payments")}>{({en:"Fees and services",ja:"料金とサービス","zh-tw":"費用及服務",ko:"요금 및 서비스"})[locale]} <ArrowRight size={16}/></a></nav>
 
 
     <section className="statement section-pad"><p className="section-index">{c.position}</p><div><h2>{c.positionTitle[0]}<br/>{c.positionTitle[1]}</h2><p>{c.positionCopy}</p><a className="text-link" href={localePath(locale,"approach")}>{c.readApproach}<ArrowRight size={16}/></a></div></section>
