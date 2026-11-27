@@ -2,7 +2,7 @@ type AcademicEvent = { grade: string; kind: string };
 const dayMs = 86400000;
 const dateValue = (s: string) => Date.parse(s + "T00:00:00Z");
 export const validDate = (s: string) => /^\d{4}-\d{2}-\d{2}$/.test(s) && Number.isFinite(dateValue(s)) && new Date(dateValue(s)).toISOString().slice(0,10) === s;
-export function relation(start: string, end: string, eventStart: string, eventEnd: string, preparationDays: number) {
+export function relation(start: string, end: string, eventStart: string, eventEnd: string, preparationDays: number): "overlap" | "prepare" | "none" {
   const a = dateValue(start), b = dateValue(end), c = dateValue(eventStart), d = dateValue(eventEnd);
   if (a <= d && b >= c) return "overlap";
   if (preparationDays > 0 && a < c && b >= c - preparationDays * dayMs) return "prepare";
