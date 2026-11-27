@@ -189,6 +189,12 @@ export async function SimpleJapaneseHome() {
                 <a href={item.href} data-growth-id={"home-programme-guide-" + item.id}>{item.action} →</a>
               </article>)}
             </div>
+            <nav className={styles.nextStepLinks} aria-label="はじめての方向けの案内">
+              <a href="/ja/families" data-growth-id="home-first-family"><span>01</span><strong>選手・保護者の方</strong><span aria-hidden="true">↗</span></a>
+              <a href="/ja/sendai-school" data-growth-id="home-first-school"><span>02</span><strong>スクールを探す方</strong><span aria-hidden="true">↗</span></a>
+              <a href="/ja/coaches" data-growth-id="home-first-coaches"><span>03</span><strong>指導者・チームの方</strong><span aria-hidden="true">↗</span></a>
+              <a href="/ja/clinic-request" data-growth-id="home-first-hosts"><span>04</span><strong>地域の主催者の方</strong><span aria-hidden="true">↗</span></a>
+            </nav>
             <p className={styles.note}>RBAは育成と教育の機会を広げることを目的に活動しています。既存の所属・会員契約を変更する必要はありません。開催や受入れ、参加費の確定は個別の公式案内をご確認ください。</p>
           </section>
 
