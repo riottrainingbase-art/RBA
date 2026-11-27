@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { collectionCheckout } from "@/lib/store-collection-release";
 import { ArrowRight, ArrowUpRight, BookOpen, FileText, History as HistoryIcon, MessageCircle, Users } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPublicJournalPost, getPublicJournalPosts, type PublicJournalPost } from "@/lib/public-content";
@@ -111,6 +113,7 @@ export async function PublicJournalHub({locale}:{locale:Locale}){
         <p>{c.lead}</p>
 
       </section>
+      {locale==="ja"&&collectionCheckout("fullset")?<section className="section-pad" id="collection-001" aria-label="RBA公式アパレルのお知らせ"><div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,280px),1fr))",gap:"24px",alignItems:"center",background:"#071a32",color:"#fff",padding:"24px"}}><Link href="/ja/store#full-set"><Image unoptimized src="/media/store/collection-001-full-set-announcement.webp" alt="RBA COLLECTION 001 FULL SET" width={1080} height={1080} style={{width:"100%",height:"auto",maxWidth:480}}/></Link><div><p>2026.11.27 / RBA STORE</p><h2>RBA COLLECTION 001｜受注販売開始</h2><p>白Tシャツ、黒パーカー、黒パンツ。縦5cmの刺繍ワッペンと従来の襟ネーム。3点セット24,200円（税込）・国内送料無料。個別購入より2,200円お得。3点それぞれのサイズを選べます。注文から3週間を目安に発送。</p><p><small>掲載の商品は仕上がりイメージです。</small></p><a className="button button-light" href={collectionCheckout("fullset")!}>3点セットを今すぐ購入</a> <Link className="button button-light" href="/ja/store">全商品を見る</Link></div></div></section>:null}
       {locale==="ja"?<div className="section-pad"><NoteBridge variant="journal" /></div>:null}
       {locale==="ja"?<JournalPracticeGuides posts={posts}/>:null}
       <JournalExplorer locale={locale} items={explorerItems}/>
