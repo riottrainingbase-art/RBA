@@ -683,3 +683,21 @@
   .page .businessBridge h2 { font-size: clamp(25px,6.7vw,36px); }
   .page .businessBridgeActions a { white-space: normal; }
 }
+
+.founderFeature {
+  display: grid;
+  grid-template-columns: minmax(125px, 250px) 1fr;
+  align-items: center;
+  gap: clamp(16px, 5vw, 60px);
+  margin: 28px 0;
+  background: #142437;
+  color: white;
+  text-decoration: none;
+}
+.founderFeature img { display: block; width: 100%; height: auto; }
+.founderFeature div { padding: 18px 16px 18px 0; }
+.founderFeature p { margin: 0; color: #d9e4ef; font-size: 14px; }
+.founderFeature h2 { color: white; margin: 4px 0 14px; font-size: clamp(24px, 4vw, 48px); }
+.founderFeature span { color: white; text-decoration: underline; text-underline-offset: 4px; }
+.founderFeature:focus-visible { outline: 3px solid #2454d8; outline-offset: 4px; }
+@media (max-width: 600px) { .founderFeature { grid-template-columns: 38% 1fr; } }
