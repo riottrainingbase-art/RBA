@@ -37,12 +37,12 @@ const entryPoints = [
 
 const steps = [
   {
-    id: "read",
-    label: "無料で読む",
-    title: "RBA JOURNAL",
-    copy: "チーム選び、出場機会、練習設計。最初は無料の記事から。",
-    href: "/ja/journal",
-    action: "育成記事を見る",
+    id: "online",
+    label: "いつでも受付",
+    title: "オンライン申込",
+    copy: "教材・会員プランなど、24時間受付の公式サービス。",
+    href: "/ja/24h",
+    action: "受付中のサービスを見る",
   },
   {
     id: "join",
