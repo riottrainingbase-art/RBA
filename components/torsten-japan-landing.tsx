@@ -1,3 +1,4 @@
+import { TorstenRecordingOffer } from "./torsten-recording-offer";
 import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, Clock3, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
 import { GrowthClickTracking } from "./growth-click-tracking";
@@ -13,7 +14,7 @@ const credentials = [
 
 const faqs = [
   ["英語が分からなくても参加できますか？", "はい。英語講義に日本語の逐次通訳が付きます。"],
-  ["これから録画を視聴したい場合は？", "LIVEは終了しました。録画の新規受付可否と残り視聴期間は、お支払い前にRBAへご確認ください。"],
+  ["これから録画を視聴したい場合は？", "LIVEは終了しました。録画購入希望を受け付けています。残り視聴期間と再生方法を確認のうえRBAから支払いをご案内します。"],
   ["LIVEに録画は含まれますか？", "LIVEと録画は別の申込プランです。両方をご希望の場合は事前にRBAへお問い合わせください。"],
   ["支払済みですが録画が見られません。", "再購入せず、購入時のメールアドレスでRBAにお問い合わせください。決済と視聴対象を個別に確認します。"],
 ] as const;
@@ -47,8 +48,8 @@ export function TorstenJapanLanding() {
             <p className={styles.heroProof}>B.PREMIER HC <span>FIBA WABC LEVEL 3</span> <span>2019 WORLD CHAMPION</span></p>
             <p className={styles.subheading}>シュートを「打つ技術」から、<br/>「試合で生み出す力」へ。</p>
             <p className={styles.lead}>育成年代の日本代表からプロまで。シュート技術・練習設計・スペーシング・判断をつなぐ90分。</p>
-            <RegisterLink label="録画の受付状況を確認する" id="torsten-simple-hero" />
-            <p className={styles.micro}>11月25日のLIVEは終了しました。新規録画受付と視聴期限はお問い合わせください。お支払い済みの方は再決済不要です。</p>
+            <RegisterLink label="録画購入を申し込む" id="torsten-simple-hero" />
+            <p className={styles.micro}>11月25日のLIVEは終了しました。録画購入希望を受付中。視聴期限と再生方法をご案内してから決済します。お支払い済みの方は再決済不要です。</p>
           </div>
           <aside className={styles.info} aria-label="開催日時と参加料金">
             <p className={styles.infoLabel}>LIVE終了 / 録画のご案内</p>
@@ -121,7 +122,7 @@ export function TorstenJapanLanding() {
             <div><span>11月25日開催済み</span><h3>LIVE参加</h3><strong>受付終了</strong></div>
             <div><span>開催後・視聴30日間</span><h3>録画視聴</h3><strong>4,400円</strong></div>
           </div>
-          <RegisterLink label="録画受付・視聴期限を問い合わせる" id="torsten-simple-book" />
+          <RegisterLink label="録画購入の申し込み" id="torsten-simple-book" />
           <p className={styles.bookingNote}><CheckCircle2 size={18} aria-hidden="true" />購入済みの方は再決済不要です。RBAが個別に視聴対象を確認します。</p>
           <p className={styles.help}><a href="https://form.jotform.com/263243557140049">決済済み・アクセスできない方の無料照合依頼</a> ／ <a href={clinicHelpUrl("Vol.2 録画の再生・案内について")}>録画の再生・案内について問い合わせる</a>。メール内ブラウザで再生できないときはSafariまたはChromeで直接開いてみてください。解消しない場合は端末、ブラウザ、エラー表示をお知らせください。カード番号やパスワードは不要です。</p>
         </section>
@@ -136,7 +137,8 @@ export function TorstenJapanLanding() {
           <a href="https://www.jotform.com/app/263243514100442" className={styles.footerLink}>RBAのその他の学び・参加窓口 <ArrowRight size={16} aria-hidden="true" /></a>
         </footer>
       </div>
-      <div className={styles.mobileBar}><span><b>LIVE受付終了</b><small>録画受付・視聴期間は要確認</small></span><RegisterLink label="問い合わせ" id="torsten-simple-mobile" className={styles.mobileButton}/></div>
+      <TorstenRecordingOffer locale="ja"/>
+      <div className={styles.mobileBar}><span><b>LIVE受付終了</b><small>録画購入受付中・公開から30日間</small></span><RegisterLink label="購入申込" id="torsten-simple-mobile" className={styles.mobileButton}/></div>
     </div>
   </SiteFrame>;
 }

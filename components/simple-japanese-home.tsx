@@ -1,3 +1,5 @@
+import { TorstenRecordingOffer } from "./torsten-recording-offer";
+import { RbaProjectDirectory } from "./rba-project-directory";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { CorporateSupportStrip } from "./corporate-support-strip";
 import { SendaiCommunity } from "./sendai-community";
@@ -172,22 +174,11 @@ export async function SimpleJapaneseHome() {
             <CorporateSupportStrip locale="ja" />
           </div>
 
+          <TorstenRecordingOffer locale="ja"/>
+          <RbaProjectDirectory locale="ja"/>
           <section className={styles.section} id="home-next-step" aria-labelledby="home-next-step-title">
             <div className={styles.heading}>
               <div><p className={styles.label}>FIRST TIME HERE?</p><h2 id="home-next-step-title">はじめてRBAを知った方へ。</h2><p>目的に合わせて、活動を選ぶ。所属を変える必要はありません。</p></div>
-            </div>
-            <div className={styles.pathGrid}>
-              {[
-                {id:"clinic",title:"クリニック・キャンプ",copy:"技術を試合の判断につなげる実践の場。単発や複数日で参加できる企画を選べます。対象年代・会場・料金・引率条件は各開催案内へ。",href:"/ja/opportunities",action:"開催予定を見る"},
-                {id:"backbone",title:"BACKBONE",copy:"3x3を通じて、距離・ズレ・スペーシング、攻守の判断を学ぶ育成・実践プログラム。通常の5対5スクールとは異なります。",href:"/ja/opportunities",action:"現在の活動を確認"},
-                {id:"gream",title:"GREAM",copy:"地域で継続的に育成に取り組むクラブ活動。入団条件や体験・練習日程は各地域の案内で確認してください。",href:"/ja/gream",action:"地域クラブを確認"},
-                {id:"united",title:"RBA UNITED",copy:"所属先を変えず、企画ごとに期間限定のチームで交流する個人参加型プログラム。無料意向登録と正式参加・決済は別の手続きです。",href:"/ja/united",action:"参加の仕組みを知る"},
-                {id:"homecourt",title:"MY HOME COURT",copy:"無料RBA IDで育成機会を探し、学びと参加の記録をつなぐ入口。有料のHOMECOURT PLUSは内容と料金を確認してから選択できます。",href:"/ja/my-homecourt",action:"無料の入口へ"},
-                {id:"dhub",title:"D-HUB",copy:"指導者・選手が継続して学ぶ教育プログラム。指導者向けのケース教材では、練習設計・観察・振り返りを現場で試します。",href:"/ja/d-hub",action:"教育プログラムを見る"},
-              ].map(item => <article className={styles.pathCard} key={item.id}>
-                <h3>{item.title}</h3><p>{item.copy}</p>
-                <a href={item.href} data-growth-id={"home-programme-guide-" + item.id}>{item.action} →</a>
-              </article>)}
             </div>
             <nav className={styles.nextStepLinks} aria-label="はじめての方向けの案内">
               <a href="/ja/families" data-growth-id="home-first-family"><span>01</span><strong>選手・保護者の方</strong><span aria-hidden="true">↗</span></a>
