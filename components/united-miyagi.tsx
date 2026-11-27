@@ -47,9 +47,10 @@ export function MiyagiUnitedProgramme() {
       <aside className={styles.bridge}><h3>中学生・高校生にも、次の国際交流を。</h3><p>U15・U18向けの別企画を検討しています。日程・会場・対象カテゴリーは決定後にご案内します。</p></aside>
     </section>
     <section id="join" className={styles.section}><h2>保護者の方へ｜参加の流れ</h2>
-      <ol className={styles.flow}><li>参加したい企画を選ぶ（両方でも、単独でも可）</li><li>無料の参加意向登録を送る</li><li>RBAから対象・定員・参加費・宿泊や引率条件の正式案内を受け取る</li><li>内容に同意し、正式申込・決済へ進む</li></ol>
+      <ol className={styles.flow}><li>参加したい企画を選ぶ（両方でも、単独でも可）</li><li>無料の参加意向登録を送る</li><li>下の「登録済みの方・決済へ」から受付状況を確認する</li><li>受付開始後、正式条件に同意して支払いへ進む</li></ol>
       <p>意向登録は参加確定ではありません。会員登録や有料会員への加入は参加意向登録の条件ではありません。すでに意向を送った方は再登録不要です。</p>
       <div className={styles.actions}><a className={styles.button} href={shizugawaInterest}>志津川（小4〜中3）</a><a className={styles.button} href={rizehopeInterest}>RIZEHOPE（小学6年生）</a></div>
+      <a className={styles.button} href={miyagiPath+"/payment"}>登録済みの方・決済へ →</a>
       <p>ご質問は <a href="mailto:riot.training.base@gmail.com">RBAへメール</a>でご相談ください。</p>
     </section>
   </div>;
