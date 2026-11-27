@@ -115,6 +115,23 @@ export default function RbaSendaiPage() {
       </div>
     </section>
 
+    <section id="moniwadai-oide" aria-labelledby="moniwadai-oide-title" style={{background:"#e8edf3",padding:"55px 22px 60px",scrollMarginTop:96}}>
+      <div style={{maxWidth:1100,margin:"auto"}}>
+        <p style={{fontSize:12,fontWeight:800,letterSpacing:2,color:"#526880"}}>MONIWADAI–OIDE / 地域共創プロジェクト</p>
+        <h2 id="moniwadai-oide-title" style={{fontSize:"clamp(28px,4vw,44px)",lineHeight:1.3,margin:"12px 0"}}>地域から世界へ。世界から地域へ。</h2>
+        <p style={{maxWidth:820,fontSize:16,lineHeight:1.9,color:subdued}}>茂庭台・生出を、子どもたちが日常的に学び、国内外の選手・指導者と交流できるバスケットボールの地域拠点にする構想です。既存の地域団体の自主性を尊重し、学校・施設・地域企業との協議を通じて、小規模な実証から取り組みます。</p>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,230px),1fr))",gap:12,margin:"24px 0"}}>
+          {([["茂庭台","日常の育成・地域スポーツ"],["生出","クリニック・地域チーム交流"],["茂庭","地域企業・商業施設との協力"],["秋保","登録旅行会社と検討する合宿・滞在"]] as const).map(([name,role])=><article key={name} style={{background:"#fff",border:"1px solid #d8e0e8",padding:20,borderRadius:7}}><h3 style={{fontSize:21,margin:"0 0 8px"}}>{name}</h3><p style={{color:subdued,lineHeight:1.8,margin:0}}>{role}</p></article>)}
+        </div>
+        <p style={{fontSize:14,lineHeight:1.85,color:subdued}}>現在は構想・協議段階です。行政の公認、施設予約、開催日、提携、資金確保を示すものではありません。参加募集や費用は、必要な利用許可、安全体制、条件が整ってから個別にご案内します。公益活動と収益事業を区分し、旅行業の登録が必要な手配は適格な登録事業者が担当します。</p>
+        <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:20}}>
+          <a href={schoolForm} target="_blank" rel="noopener noreferrer" data-growth-id="moniwadai-oide-family" style={primary}>保護者の育成・体験相談 ↗</a>
+          <a href="/ja/international/partner-with-us" data-growth-id="moniwadai-oide-partner" style={outline}>企業・施設・旅行会社の連携相談 →</a>
+          <a href="/ja/international/japan-experience" data-growth-id="moniwadai-oide-inbound" style={outline}>海外チームの訪日交流 →</a>
+        </div>
+      </div>
+    </section>
+
     <section style={{background:"#fff",padding:"55px 22px 66px",borderTop:"1px solid #d8e0e8"}}>
       <div style={{maxWidth:1100,margin:"auto"}}>
         <h2 style={{fontSize:"clamp(28px,4vw,42px)",margin:"0 0 25px"}}>保護者からよくある質問</h2>

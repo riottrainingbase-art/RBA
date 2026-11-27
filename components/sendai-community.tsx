@@ -19,7 +19,7 @@ export function SendaiCommunity({ locale = "ja", partnersOnly = false }: { local
       <h2>{c.title}</h2>
       {!partnersOnly && <p>{c.body}</p>}
       {partners.length > 0 && <ul className={styles.partners}>{partners.map(p => <li key={p.id}><a href={p.url} target="_blank" rel="sponsored noopener noreferrer">{p.logoPath && <Image src={p.logoPath} alt="" width={110} height={48} />}<span>{p.name}</span></a></li>)}</ul>}
-      <div className={styles.links}><a href="/ja/gream-sendai" data-growth-id="sendai-community-team">{c.team} →</a><a href="/ja/gream-sendai/partners" data-growth-id="sendai-community-partners">{c.sponsor} →</a></div>
+      <div className={styles.links}><a href="/ja/gream-sendai" data-growth-id="sendai-community-team">{c.team} →</a><a href="/ja/gream-sendai/partners" data-growth-id="sendai-community-partners">{c.sponsor} →</a><a href="/ja/sendai#moniwadai-oide" data-growth-id="sendai-community-moniwa-oide">{locale==="ja"?"茂庭台・生出の地域共創構想": "Moniwadai–Oide community project (Japanese)"} →</a></div>
     </div>
   </section>;
 }
