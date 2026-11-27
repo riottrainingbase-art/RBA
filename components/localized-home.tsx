@@ -1,3 +1,5 @@
+import { TorstenRecordingOffer } from "./torsten-recording-offer";
+import { RbaProjectDirectory } from "./rba-project-directory";
 import { RizehopeTeamEnquiry } from "./rizehope-team-enquiry";
 import { isTaipeiClinicUpcoming, taipeiClinicCopy, taipeiClinicPath } from "./taipei-clinic-data";
 import { SendaiCommunity } from "./sendai-community";
@@ -15,7 +17,7 @@ import { PaidProgrammes } from "@/components/paid-programmes";
 import { GlobalMedia } from "@/components/global-media";
 import { CoachEducationLoop } from "./coach-education-loop";
 import { AudienceJourneys } from "@/components/audience-journeys";
-import { torstenRegistrationUrl } from "@/components/programme-data";
+
 import { PlatformQuickFinder } from "@/components/platform-quick-finder";
 import { CorporateSupportStrip } from "@/components/corporate-support-strip";
 
@@ -78,7 +80,7 @@ export function LocalizedHome({locale}:{locale:Locale}){
   const hc=homecourtCopy[locale];
   const message=locale==="ja"?"RBAについて相談したいです。":locale==="zh-tw"?"您好RBA，我想詢問活動或日本交流。":locale==="ko"?"안녕하세요 RBA. 프로그램이나 일본 교류에 대해 문의하고 싶습니다.":"Hello RBA, I would like to discuss a programme or Japan–Asia exchange.";
   const whatsapp="https://wa.me/818032483703?text="+encodeURIComponent(message);
-  const torstenFeature=<section className={`torsten-feature section-pad${locale==="ja"?" torsten-feature-ja":""}`}><div><p className="section-index inverse">{c.clinicLabel}</p><p className="torsten-name">TORSTEN<br/>LOIBL</p></div><div><p className="eyebrow">{ui(locale,"offer")}</p><h2>{c.clinicTitle}</h2><p>{c.clinicCopy}</p><div className="torsten-achievements">{c.clinicAchievements.map(([label,detail])=><div key={label}><strong>{label}</strong><span>{detail}</span></div>)}</div><div className="sponsor-actions"><a className="button button-light" href={localePath(locale,"events/torsten-loibl-online-clinic")}>{c.clinicDetail}<ArrowRight size={17}/></a><a className="text-link light-link" href={locale==="ja"?torstenRegistrationUrl:"/events/torsten-loibl-online-clinic#register"} target="_blank" rel="noreferrer">{c.clinicApply}<ArrowUpRight size={16}/></a></div></div></section>;
+
   return <div className={locale === "ja" ? homeStyles.home : undefined} lang={locale==="zh-tw"?"zh-Hant-TW":locale}><SiteFrame locale={locale}>
     <CorporateSupportStrip locale={locale} />
     <section className="hero-grid"><div className="hero-copy"><p className="eyebrow">RIOT BASKETBALL ACADEMY · JAPAN</p><h1><span>{c.title[0]}</span><span>{c.title[1]}</span></h1><p className="hero-lede">{c.lede}</p><PlatformQuickFinder locale={locale}/>{locale==="ja"&&<a className="hero-clinic-alert" href={localePath(locale,"events/torsten-loibl-online-clinic")}><span>NOW OPEN</span><strong>{c.clinicHero}</strong><ArrowRight size={18}/></a>}<div className="hero-actions"><a className="button button-light" href={localePath(locale,"opportunities")}>{c.primary}<ArrowRight size={17}/></a><a className="button button-member" href={localePath(locale,"my-homecourt")}><House size={17}/>{locale==="ja"?"MY HOME COURTを見る":hc.open}<ArrowRight size={17}/></a></div><div className="hero-proof">{c.proof.map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></div><div className="hero-image" role="img" aria-label={c.image}><div className="image-note">{c.image}</div><MoveDown className="scroll-mark" size={19}/></div></section>
@@ -130,7 +132,8 @@ export function LocalizedHome({locale}:{locale:Locale}){
 
     {locale==="ja"?<section className="statement section-pad"><p className="section-index">BEYOND YOUR TEAM</p><div><h2>今いるチームを大切にしながら、<br/>外の世界にも挑戦していい。</h2><p>所属を変えなくても、違う指導者や仲間から学べます。今いる環境を大切にしながら、外の経験を足していくための活動です。</p><a className="text-link" href="/ja/opportunities">参加できる活動を探す<ArrowRight size={16}/></a></div></section>:null}
     <AudienceJourneys locale={locale}/>
-    {locale!=="ja"&&torstenFeature}
+    <TorstenRecordingOffer locale={locale}/>
+    <RbaProjectDirectory locale={locale}/>
     <CoachEducationLoop locale={locale}/>
 
     {locale!=="ja" ? <section className="locale-routes section-pad"><div className="section-head"><div><p className="section-index">{c.routesLabel}</p><h2>{c.routesTitle}</h2></div><p>{c.routesCopy}</p></div><div className="locale-route-grid">{c.routes.map(([tag,title,page])=><a href={localePath(locale,page as LanguagePage)} key={tag}><span>{tag}</span><h3>{title}</h3><ArrowUpRight size={22}/></a>)}</div></section> : null}
