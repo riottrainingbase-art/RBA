@@ -17,18 +17,17 @@ const projects:Project[] = [
   {name:"RBA STORE",path:"/ja/store",local:true,copy:["公式ウェア・発売情報。販売状況は商品ページで確認。","Official apparel and release updates; check availability.","官方服飾與發售資訊，請確認銷售狀態。","공식 의류 및 출시 정보, 판매 상태 확인."]},
 ];
 const text={
- ja:{title:"RBAのすべての事業を、ひとつの入口から。",body:"参加する、学ぶ、成長を記録する、次の機会へ。無料RBA IDを中心に、自分に合う活動を選べます。各企画の申込・決済・利用権限は個別の条件に従います。",open:"詳しく見る",jp:"日本語案内",next:"RBA IDでつながる"},
- en:{title:"One organisation. Connected opportunities.",body:"Join, learn, reflect and find your next court. Start with a free RBA ID; each programme has its own conditions and payment or access requirements.",open:"Explore",jp:"Japanese information",next:"Open MY HOME COURT"},
- "zh-tw":{title:"一個組織，連結所有培育機會。",body:"參與、學習、記錄與下一次挑戰。從免費RBA ID開始，各活動仍有獨立的報名、付款與使用條件。",open:"了解更多",jp:"日文資訊",next:"開啟 MY HOME COURT"},
- ko:{title:"하나의 조직, 연결되는 성장 기회.",body:"참여하고 배우고 기록하며 다음 기회를 찾습니다. 무료 RBA ID로 시작하되 각 프로그램의 신청·결제·이용 조건은 별도로 적용됩니다.",open:"자세히 보기",jp:"일본어 안내",next:"MY HOME COURT 열기"}
+ ja:{title:"RBAの事業一覧",body:"参加する、学ぶ、成長を記録する、次の機会へ。無料RBA IDを中心に、自分に合う活動を選べます。各企画の申込・決済・利用権限は個別の条件に従います。",open:"詳しく見る",jp:"日本語案内",next:"RBA IDでつながる"},
+ en:{title:"RBA programmes and services",body:"Join, learn, reflect and find your next court. Start with a free RBA ID; each programme has its own conditions and payment or access requirements.",open:"Explore",jp:"Japanese information",next:"Open MY HOME COURT"},
+ "zh-tw":{title:"RBA 活動與服務",body:"參與、學習、記錄與下一次挑戰。從免費RBA ID開始，各活動仍有獨立的報名、付款與使用條件。",open:"了解更多",jp:"日文資訊",next:"開啟 MY HOME COURT"},
+ ko:{title:"RBA 프로그램 및 서비스",body:"참여하고 배우고 기록하며 다음 기회를 찾습니다. 무료 RBA ID로 시작하되 각 프로그램의 신청·결제·이용 조건은 별도로 적용됩니다.",open:"자세히 보기",jp:"일본어 안내",next:"MY HOME COURT 열기"}
 } as const;
 export function RbaProjectDirectory({locale}:{locale:Locale}){
  const c=text[locale],i=locale==="ja"?0:locale==="en"?1:locale==="zh-tw"?2:3;
  return <section id="rba-project-directory" className="section-pad" style={{background:"#F6F5F1",color:"#111211"}}>
-  <div style={{marginBottom:16}}><p className="section-index" style={{color:"#2454D8"}}>RBA / PROJECT DIRECTORY</p><h2 style={{fontSize:"clamp(1.5rem,4vw,2.6rem)",fontWeight:900,marginTop:8}}>{c.title}</h2></div>
-  <p style={{lineHeight:1.8,maxWidth:860,marginBottom:24}}>{c.body}</p>
+  <div style={{marginBottom:16}}><p className="section-index" style={{color:"#695332"}}>RBA / PROJECT DIRECTORY</p><h2 style={{fontSize:"clamp(1.5rem,4vw,2.6rem)",fontWeight:600,fontFamily:"Georgia, Yu Mincho, serif",marginTop:8}}>{c.title}</h2></div>
   <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,240px),1fr))",gap:12}}>
-   {projects.map(p=><article key={p.name} style={{background:"#fff",border:"1px solid #D6D9DC",borderTop:"3px solid #2454D8",padding:14,display:"flex",flexDirection:"column",gap:6}}><h3 style={{fontSize:"1.1rem",fontWeight:900}}>{p.name}</h3><p style={{lineHeight:1.7,fontSize:14,flex:1}}>{p.copy[i]}</p><a style={{fontWeight:800,color:"#2454D8",display:"inline-flex",alignItems:"center",gap:6,minHeight:44}} href={p.local?p.path:localePath(locale,p.path as LanguagePage)}>{p.local&&locale!=="ja"?c.jp:c.open}<ArrowRight size={16}/></a></article>)}
+   {projects.map(p=><article key={p.name} style={{background:"#fbfaf7",border:"1px solid #D6D9DC",borderTop:"1px solid #aa9576",padding:20,display:"flex",flexDirection:"column",gap:6}}><h3 style={{fontSize:"1.1rem",fontWeight:900}}>{p.name}</h3><p style={{lineHeight:1.7,fontSize:14,flex:1}}>{p.copy[i]}</p><a style={{fontWeight:800,color:"#695332",display:"inline-flex",alignItems:"center",gap:6,minHeight:44}} href={p.local?p.path:localePath(locale,p.path as LanguagePage)}>{p.local&&locale!=="ja"?c.jp:c.open}<ArrowRight size={16}/></a></article>)}
   </div>
  </section>;
 }

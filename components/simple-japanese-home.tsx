@@ -81,19 +81,17 @@ export async function SimpleJapaneseHome() {
               <span className={styles.heroIssue}>PLAYER DEVELOPMENT / 2026</span>
             </div>
             <div className={styles.heroBody}>
-              <p className={styles.heroEyebrow}>育成は、今いる場所だけで決まらない。</p>
               <h1 id="rba-home-title"><span>今のチームの外にも、</span><span>育つチャンスを。</span></h1>
-              <p className={styles.intro}>Riot Basketball Academy（RBA）は、仙台を拠点に、子どもたちの育成と参加機会を広げる活動を行っています。所属チームでの活動を大切にしながら、全国のクリニック、3x3、国内外の交流、指導者の学びを通じて、自分で見て、考え、仲間とプレーする力を育てます。</p>
+              <p className={styles.intro}>仙台を拠点に、全国のクリニック、3x3、国内外の交流を通じて、選手が自分で見て、考え、仲間とプレーする力を育てます。</p>
               <nav className={styles.actions} aria-label="RBA公式サイトの主な入口">
                 <a className={styles.primary} data-growth-id="home-primary-events" href="#home-programmes">参加・開催予定を見る <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">選手・保護者・指導者の入口 <span aria-hidden="true">↗</span></a>
-                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">教材・会員・料金を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-project-directory">事業一覧を見る <span aria-hidden="true">↗</span></a>
+                <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/my-homecourt">会員ページに入る <span aria-hidden="true">↗</span></a>
               </nav>
-              <p className={styles.heroQuickLinks}><a href="/ja/my-homecourt" data-growth-id="home-free-id">無料RBA ID・ログイン</a>　/　<a href="/ja/support" data-growth-id="home-support">応援・企業協賛</a>　/　<a href="/ja/book" data-growth-id="home-book-guide">申込・支払いの流れ</a></p>
+
             </div>
             <div className={styles.heroBaseline}>
               <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
-              <span>SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span>
             </div>
           </section>
 
@@ -106,17 +104,11 @@ export async function SimpleJapaneseHome() {
             </div>
           </a>
 
-          <nav className={styles.sectionNavigator} aria-label="このページの目次">
-            <span className={styles.indexLabel}>INDEX</span>
-            <a href="#rba-for-you">01　目的から探す</a>
-            <a href="#home-programmes">02　現在の活動</a>
-            <a href="#rba-project-directory">03　RBAの事業</a>
-            <a href="#home-host">04　地域で開催する</a>
-          </nav>
+
 
           <section className={styles.section} id="rba-for-you" aria-labelledby="rba-for-you-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">あなたに合う、<span className={styles.headingEmphasis}>次の一歩。</span></h2></div>
+              <div><p className={styles.label}>START HERE</p><h2 id="rba-for-you-title">立場から探す</h2></div>
             </div>
             <nav className={styles.journeyGrid} aria-label="保護者・指導者・企業の目的別入口">
               {entryPoints.map(item => (
@@ -186,7 +178,7 @@ export async function SimpleJapaneseHome() {
 
           <section className={styles.section} aria-labelledby="home-continue-title">
             <div className={styles.heading}>
-              <div><p className={styles.label}>DISCOVER → CONNECT → CONTINUE</p><h2 id="home-continue-title">まず無料で知る。必要なら続ける。</h2></div>
+              <div><p className={styles.label}>DISCOVER → CONNECT → CONTINUE</p><h2 id="home-continue-title">オンライン受付・保護者交流・個人支援</h2></div>
             </div>
             <div className={styles.pathGrid}>
               {steps.map((item, index) => {
@@ -215,7 +207,8 @@ export async function SimpleJapaneseHome() {
           </section>
 
           <nav className={styles.aboutLinks} aria-label="その他の公式情報">
-            <a className={styles.textLink} href="/ja/about">RBAについて →</a>
+            <a className={styles.textLink} href="/ja/book">申込・支払いの流れ →</a>
+            <a className={styles.textLink} href="/ja/services">教材・会員料金 →</a>
             <a className={styles.textLink} href="/ja/approach">育成方針 →</a>
             <a className={styles.textLink} href="/ja/regions">活動地域 →</a>
             <a className={styles.textLink} href="/ja/okinawa#local-places">沖縄の活動・地域情報 →</a>

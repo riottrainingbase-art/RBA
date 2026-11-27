@@ -1,8 +1,7 @@
 import { TorstenRecordingOffer } from "./torsten-recording-offer";
-import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, Clock3, Video } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Clock3, Video } from "lucide-react";
 import { SiteFrame } from "./site-frame";
 import { GrowthClickTracking } from "./growth-click-tracking";
-import { clinicHelpUrl } from "@/lib/torsten-clinic";
 import styles from "./torsten-japan-landing.module.css";
 
 const credentials = [
@@ -14,13 +13,12 @@ const credentials = [
 
 const faqs = [
   ["英語が分からなくても参加できますか？", "はい。英語講義に日本語の逐次通訳が付きます。"],
-  ["これから録画を視聴したい場合は？", "LIVEは終了しました。録画購入希望を受け付けています。残り視聴期間と再生方法を確認のうえRBAから支払いをご案内します。"],
-  ["LIVEに録画は含まれますか？", "LIVEと録画は別の申込プランです。両方をご希望の場合は事前にRBAへお問い合わせください。"],
+  ["LIVEに録画は含まれますか？", "ライブ参加と録画視聴は別のプランです。お申し込み済みの方は、購入時の案内メールでプランをご確認ください。"],
   ["支払済みですが録画が見られません。", "再購入せず、購入時のメールアドレスでRBAにお問い合わせください。決済と視聴対象を個別に確認します。"],
 ] as const;
 
 function RegisterLink({ label, id, className }: { label: string; id: string; className?: string }) {
-  return <a data-growth-id={id} className={className || styles.register} href={clinicHelpUrl("Vol.2 録画の新規受付・視聴期間の確認")}>
+  return <a data-growth-id={id} className={className || styles.register} href="#torsten-recording-order">
     {label}<ArrowUpRight size={21} strokeWidth={2.4} aria-hidden="true" />
   </a>;
 }
@@ -49,18 +47,13 @@ export function TorstenJapanLanding() {
             <p className={styles.subheading}>シュートを「打つ技術」から、<br/>「試合で生み出す力」へ。</p>
             <p className={styles.lead}>育成年代の日本代表からプロまで。シュート技術・練習設計・スペーシング・判断をつなぐ90分。</p>
             <RegisterLink label="録画購入を申し込む" id="torsten-simple-hero" />
-            <p className={styles.micro}>11月25日のLIVEは終了しました。録画購入希望を受付中。視聴期限と再生方法をご案内してから決済します。お支払い済みの方は再決済不要です。</p>
+            <p className={styles.micro}>2026年11月25日開催の講習を録画で視聴できます。</p>
           </div>
           <aside className={styles.info} aria-label="開催日時と参加料金">
             <p className={styles.infoLabel}>LIVE終了 / 録画のご案内</p>
             <div className={styles.bigDate}>11.25 <span>WED</span></div>
             <p className={styles.time}><Clock3 size={18} aria-hidden="true" />20:00–21:30（日本時間）</p>
             <p className={styles.time}><Video size={18} aria-hidden="true" />Zoom・英語講義＋日本語逐次通訳</p>
-            <div className={styles.prices}>
-              <div><span>LIVE参加</span><strong>受付終了</strong></div>
-              <div><span>録画30日間</span><strong>¥4,400</strong></div>
-            </div>
-            <p className={styles.infoFoot}>録画の従来料金は税込4,400円。公開から30日間の条件で、新規受付と残り期間は要確認。</p>
           </aside>
         </section>
 
@@ -112,20 +105,7 @@ export function TorstenJapanLanding() {
           </div>
         </section>
 
-        <section className={styles.booking} aria-labelledby="torsten-booking">
-          <div className={styles.bookingHead}>
-            <p className={styles.sectionKicker}>REGISTRATION / お申し込み</p>
-            <h2 id="torsten-booking">録画のご案内と購入後のサポート</h2>
-            <p>LIVE受付は終了しています。録画をご希望の方は、視聴可能期間を確認してからお申し込みください。</p>
-          </div>
-          <div className={styles.choices}>
-            <div><span>11月25日開催済み</span><h3>LIVE参加</h3><strong>受付終了</strong></div>
-            <div><span>開催後・視聴30日間</span><h3>録画視聴</h3><strong>4,400円</strong></div>
-          </div>
-          <RegisterLink label="録画購入の申し込み" id="torsten-simple-book" />
-          <p className={styles.bookingNote}><CheckCircle2 size={18} aria-hidden="true" />購入済みの方は再決済不要です。RBAが個別に視聴対象を確認します。</p>
-          <p className={styles.help}><a href="https://form.jotform.com/263243557140049">決済済み・アクセスできない方の無料照合依頼</a> ／ <a href={clinicHelpUrl("Vol.2 録画の再生・案内について")}>録画の再生・案内について問い合わせる</a>。メール内ブラウザで再生できないときはSafariまたはChromeで直接開いてみてください。解消しない場合は端末、ブラウザ、エラー表示をお知らせください。カード番号やパスワードは不要です。</p>
-        </section>
+        <div id="torsten-booking"><TorstenRecordingOffer locale="ja"/></div>
 
         <section className={styles.faq} aria-labelledby="torsten-faq">
           <h2 id="torsten-faq">よくある質問</h2>
@@ -137,8 +117,8 @@ export function TorstenJapanLanding() {
           <a href="https://www.jotform.com/app/263243514100442" className={styles.footerLink}>RBAのその他の学び・参加窓口 <ArrowRight size={16} aria-hidden="true" /></a>
         </footer>
       </div>
-      <TorstenRecordingOffer locale="ja"/>
-      <div className={styles.mobileBar}><span><b>LIVE受付終了</b><small>録画購入受付中・公開から30日間</small></span><RegisterLink label="購入申込" id="torsten-simple-mobile" className={styles.mobileButton}/></div>
+
+      <div className={styles.mobileBar}><span><b>LIVE受付終了</b><small>録画購入受付中・公開から30日間</small></span><RegisterLink label="購入・視聴案内" id="torsten-simple-mobile" className={styles.mobileButton}/></div>
     </div>
   </SiteFrame>;
 }
