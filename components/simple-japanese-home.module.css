@@ -284,29 +284,17 @@
   position:relative; isolation:isolate; overflow:hidden;
   margin:clamp(12px,2.3vw,30px) 0 0;
   padding:clamp(24px,3vw,42px) clamp(24px,5.5vw,78px);
-  min-height:clamp(540px,64vw,720px);
+  min-height:0;
   display:flex; flex-direction:column; justify-content:space-between;
-  border:1px solid #202220; background:#171817; color:#fff;
+  border:1px solid #142437; background:#142437; color:#fff;
 }
-.page .hero::before{
-  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  background:linear-gradient(108deg,rgba(23,24,23,.15) 18%,rgba(23,24,23,.95) 90%),
-    radial-gradient(circle at 80% 45%,rgba(255,255,255,.075),transparent 40%);
-}
-.page .hero::after{
-  content:""; position:absolute; z-index:-1; width:clamp(420px,64vw,840px);
-  aspect-ratio:1; right:clamp(-440px,-25vw,-130px); top:50%; transform:translateY(-50%);
-  border:1px solid rgba(255,255,255,.16); border-radius:50%;
-  box-shadow:0 0 0 92px rgba(255,255,255,.016),0 0 0 93px rgba(255,255,255,.10),
-    0 0 0 182px rgba(255,255,255,.012),0 0 0 183px rgba(255,255,255,.065);
-  pointer-events:none;
-}
+.page .hero::before,.page .hero::after{content:none}
 .heroTopline,.heroBaseline{display:flex;justify-content:space-between;align-items:center;gap:20px;position:relative;z-index:1}
 .heroTopline{padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.22)}
 .page .hero .label{color:#d0d1cc;margin:0;font-size:10px;letter-spacing:.17em;font-weight:800}
 .page .hero .label span{color:#80847f;padding:0 7px}
 .heroIssue,.heroBaseline{color:#a9ada9;font-size:10px;font-weight:750;letter-spacing:.17em}
-.heroBody{position:relative;z-index:1;max-width:930px;padding:clamp(52px,7vw,106px) 0}
+.heroBody{position:relative;z-index:1;max-width:930px;padding:clamp(32px,5vw,64px) 0}
 .heroEyebrow{color:#d2d6d2;margin:0 0 24px;font-size:clamp(13px,1.45vw,16px);font-weight:700;letter-spacing:.07em}
 .page .hero h1{
   max-width:970px;margin:0; font-weight:900;
@@ -326,9 +314,9 @@
   border:1px solid #fff;transition:background .18s ease,color .18s ease;
 }
 .page .hero .primary{background:#fff;color:#171817}
-.page .hero .secondary{background:transparent;color:#fff}
+.page .hero .secondary{background:#fff;color:#171817}
 .page .hero .primary:hover{background:#e1e3dd;color:#171817}
-.page .hero .secondary:hover{background:#fff;color:#171817}
+.page .hero .secondary:hover{background:#f0e8d9;color:#171817}
 .heroBaseline{padding-top:20px;border-top:1px solid rgba(255,255,255,.22)}
 .sectionNavigator{
   display:flex;gap:0;flex-wrap:wrap;align-items:stretch;
@@ -464,8 +452,8 @@
  .heroTopline{align-items:start;padding-bottom:13px}
  .heroTopline .heroIssue{display:none}
  .page .hero .label{font-size:9px;letter-spacing:.08em}
- .heroBody{padding:clamp(70px,18vw,115px) 0 70px}
- .page .hero h1{font-size:clamp(34px,8.5vw,57px);letter-spacing:-.075em;line-height:1.17}
+ .heroBody{padding:32px 0 28px}
+ .page .hero h1{font-size:clamp(27px,7.8vw,42px);letter-spacing:-.045em;line-height:1.3}
  .heroEyebrow{font-size:12px;margin-bottom:18px}
  .page .hero .intro{font-size:14px;margin-top:24px;line-height:1.8}
  .page .hero .intro br{display:none}
@@ -701,3 +689,28 @@
 .founderFeature span { color: white; text-decoration: underline; text-underline-offset: 4px; }
 .founderFeature:focus-visible { outline: 3px solid #2454d8; outline-offset: 4px; }
 @media (max-width: 600px) { .founderFeature { grid-template-columns: 38% 1fr; } }
+
+/* Explicit contrast for Safari and embedded iOS browsers. */
+.page .hero .actions a.secondary,
+.page .hero .actions a.secondary:visited {
+  background: #fff;
+  border-color: #fff;
+  color: #142437 !important;
+  -webkit-text-fill-color: #142437 !important;
+}
+.page .hero .actions a.secondary > span {
+  color: #142437 !important;
+  -webkit-text-fill-color: #142437 !important;
+}
+.page .hero .actions a.primary > span {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.page .hero h1 { color: #fff; }
+@media (max-width: 700px) {
+  .page .hero .intro { font-size: 16px; line-height: 1.75; margin-top: 16px; }
+  .page .hero .actions { margin-top: 22px; }
+  .page .hero .actions a { font-size: 16px; gap: 12px; }
+  .heroBaseline { padding-top: 12px; }
+  .page .aboutLinks { padding-block: 18px; }
+}
