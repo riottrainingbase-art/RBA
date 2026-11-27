@@ -1,5 +1,9 @@
+function isRizehopeUpcoming(now = new Date()) {
+  return now.getTime() < Date.parse("2027-03-01T00:00:00+09:00");
+}
+
 export function RizehopeTeamEnquiry({ japanese = false }: { japanese?: boolean }) {
-  if (Date.now() >= Date.parse("2027-03-01T00:00:00+09:00")) return null;
+  if (!isRizehopeUpcoming()) return null;
   return (
     <section className="calendar-notice section-pad" aria-label="RIZEHOPE JAPAN 2027">
       <div>

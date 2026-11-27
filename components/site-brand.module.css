@@ -103,6 +103,18 @@
  .theme :global(a),.theme :global(button){transition:none!important}
 }
 
+/* Cross-language governance transparency on every public page, without extra campaign panels. */
+.theme :global(.footer-purpose){
+  max-width:380px;
+  padding:13px 0;
+  line-height:1.9;
+  font-size:12px;
+  color:#d7dcd7;
+  overflow-wrap:anywhere;
+}
+.theme :global(.footer-legal a){overflow-wrap:anywhere}
+@media(max-width:700px){.theme :global(.footer-purpose){max-width:none;font-size:12px}}
+
 /* RBA master identity — approved 2026-11-25. Keep status and partner colours independent. */
 .theme {
   --rba-blue:#2454D8;

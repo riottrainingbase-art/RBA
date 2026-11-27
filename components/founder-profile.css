@@ -31,13 +31,14 @@
 .founder-contact:hover{background:#233e62}
 .founder-principles,.founder-principles article+article,.founder-invitation{border-color:#d6cbb9}
 
-/* Two equally prominent contact channels, without horizontal overflow. */
-.founder-contact-options{width:100%;max-width:650px}
-.founder-contact-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.founder-contact-buttons .founder-contact{min-width:0;text-align:center;overflow-wrap:anywhere}
-.founder-contact-instagram{background:#a64022}
-.founder-contact-instagram:hover{background:#873019}
-.founder-contact-hint{font-size:12px;line-height:1.8;color:#52574c;margin:12px 0 0}
-.founder-instagram-fallback{display:inline-flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:12px;line-height:1.8;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px;margin-top:8px}
-.founder-invitation .founder-contact-options{margin-inline:auto}
-@media(max-width:900px){.founder-contact-buttons{grid-template-columns:1fr}}
+/* Organisation profile: explicit effective vs proposed governance documents. */
+.founder-governance{max-width:1400px;margin:75px auto 0;border-top:1px solid #d6cbb9;padding-top:58px}
+.founder-governance h2{font-family:Georgia,"Times New Roman","Yu Mincho",serif;font-weight:400;font-size:clamp(28px,3.5vw,45px);line-height:1.45;margin:0 0 20px}
+.founder-governance>p:not(.founder-eyebrow){max-width:840px;color:#4b5962;font-size:15px;line-height:1.95}
+.founder-governance-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;max-width:1050px;border-top:1px solid #d6cbb9;border-bottom:1px solid #d6cbb9;margin:30px 0}
+.founder-governance-facts>div{display:grid;grid-template-columns:115px 1fr;gap:16px;align-items:start;padding:18px 0;border-bottom:1px solid #ddd5c9}
+.founder-governance-facts>div:nth-last-child(-n+2){border-bottom:0}
+.founder-governance-facts dt{font-size:12px;color:#78643e;font-weight:700}.founder-governance-facts dd{font-size:13px;margin:0;line-height:1.75}
+.founder-governance-link{display:inline-flex;align-items:center;gap:12px;background:#10233f;color:white;padding:17px 24px;font-size:13px;text-decoration:none}
+.founder-governance-link:hover{background:#233e62}.founder-governance small{display:block;margin-top:14px;color:#666f74;line-height:1.8}
+@media(max-width:760px){.founder-governance{margin-top:45px;padding-top:38px}.founder-governance-facts{grid-template-columns:1fr}.founder-governance-facts>div:nth-last-child(-n+2){border-bottom:1px solid #ddd5c9}.founder-governance-facts>div:last-child{border:0}.founder-governance-facts>div{grid-template-columns:95px 1fr;gap:8px}}

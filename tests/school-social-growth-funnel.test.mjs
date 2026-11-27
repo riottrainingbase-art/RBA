@@ -9,7 +9,7 @@ test("RBA school trial is a top-level choice without replacing corporate sponsor
   assert.match(home,/home-hero-school-trial/);
   assert.match(home,/\/ja\/sendai-school/);
   assert.match(home,/<CorporateSupportStrip locale="ja"\s*\/>/);
-  assert.match(home,/home-age-categories/);
+  assert.match(home,/schoolSpotlight/);
   assert.match(nav,/スクール・体験/);
   assert.match(nav,/\/ja\/gream/);
 });

@@ -32,12 +32,11 @@ test("regional pages do not invent registration or payment conditions",()=>{
 test("navigation, homepage and sitemap all expose clear paths",()=>{
   const nav=read("components/site-frame.tsx");
   const home=read("components/simple-japanese-home.tsx");
-  const directory=read("components/rba-project-directory.tsx");
   const css=read("components/simple-japanese-home.module.css");
   const sitemap=read("app/sitemap.ts");
   for(const route of ["/ja/u12","/ja/u15","/ja/gream"]){
     assert.ok(nav.includes(route),"nav missing "+route);
-    assert.ok(home.includes(route)||directory.includes(route),"home missing "+route);
+    assert.ok(home.includes(route),"home missing "+route);
     assert.ok(sitemap.includes(route),"sitemap missing "+route);
   }
   for(const route of ["/ja/gream-okinawa","/ja/gream-akita"]){

@@ -7,8 +7,8 @@
  * product quantities, eligibility, timing and coupon terms remain pending.
  * There is no agreed cash sponsorship for this period.
  *
- * The brand supplied the official logo on 2026-11-26 and requested a
- * placement screenshot for review. Publication and wording approval are pending.
+ * The brand has not yet supplied an approved official logo asset or confirmed
+ * that the logo and display wording may be published on the RBA homepage.
  * Do not promote this record to the public without the brand's written approval.
  * A private design mockup is maintained separately, not served from /public.
  */
@@ -32,7 +32,7 @@ export const support361Japan: ProductSupportPlacement = {
   link: "https://361sports.jp/",
   relationship: "product_support",
   officialLogoPath: null,
-  officialLogoProvidedByBrand: true,
+  officialLogoProvidedByBrand: false,
   publishedLogoUseApproved: false,
   publicSupportWordingApproved: false,
   projectScopeConfirmed: false,

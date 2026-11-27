@@ -1,0 +1,26 @@
+.page{background:#f8f7f3;color:#141414;line-height:1.7}
+.entry,.hero{background:linear-gradient(90deg,rgba(14,20,25,.94),rgba(14,20,25,.68)),url('/media/shizugawa-2026/court.webp') center/cover;color:white}
+.entry{padding:clamp(24px,5vw,48px);margin:24px auto}
+.hero{padding:clamp(42px,8vw,100px) max(6vw,24px)}
+.hero h1{font-size:clamp(40px,7vw,88px);line-height:1.14;margin:12px 0 20px;font-weight:950;letter-spacing:-.04em}
+.entry h2{font-size:clamp(24px,4vw,42px);line-height:1.2;margin:.3em 0}
+.kicker{font-size:14px;letter-spacing:.08em;font-weight:800}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border-radius:3px;background:#ff7900;color:#121212!important;font-weight:800;text-decoration:none;margin:10px 0;line-height:1.45}
+.button:focus-visible{outline:3px solid #0074c7;outline-offset:3px}
+.status{font-size:14px;color:#fff}
+.section{padding:clamp(28px,5vw,60px) max(6vw,24px);max-width:1180px;margin:auto;scroll-margin-top:24px}
+.section h2{font-size:clamp(26px,4vw,44px);line-height:1.3;margin:0 0 20px}
+.step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#fff;border:1px solid #dedbd5}
+.shizu,.shibata{min-height:260px;background-position:center;background-size:cover}
+.shizu{background-image:url('/media/shizugawa-2026/court.webp')}
+.shibata{background-image:url('/media/united-miyagi/shibata-funaoka.webp')}
+.content{padding:clamp(20px,3vw,36px)}
+.content h3,.bridge h3{font-size:clamp(22px,3vw,32px);line-height:1.35;margin:8px 0}
+.notice{border-left:3px solid #ff7900;padding-left:12px;font-size:14px}
+.credit{font-size:11px;color:#555}
+.bridge{padding:24px;margin:20px 0;background:#e9e8e4}
+.bridge strong{font-size:clamp(19px,2.7vw,26px)}
+.flow{padding-left:24px}.flow li{margin-bottom:12px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.application{display:grid;gap:16px;max-width:560px;margin-top:20px}.application label{display:grid;gap:5px;font-weight:700}.application input:not([type=checkbox]),.application select{width:100%;min-height:46px;padding:10px;border:1px solid #777;background:#fff;color:#111;font-size:16px;border-radius:4px}.application .agree{display:flex;align-items:flex-start;gap:10px;font-weight:500}.application .agree input{margin-top:5px;flex-shrink:0}.application button{border:0;cursor:pointer;font-size:16px}
+@media(max-width:700px){.step{grid-template-columns:1fr}.shizu,.shibata{min-height:190px}.actions{display:grid}.button{max-width:100%;white-space:normal;text-align:center}.hero{background-position:65% center}}

@@ -284,17 +284,29 @@
   position:relative; isolation:isolate; overflow:hidden;
   margin:clamp(12px,2.3vw,30px) 0 0;
   padding:clamp(24px,3vw,42px) clamp(24px,5.5vw,78px);
-  min-height:0;
+  min-height:clamp(540px,64vw,720px);
   display:flex; flex-direction:column; justify-content:space-between;
-  border:1px solid #142437; background:#142437; color:#fff;
+  border:1px solid #202220; background:#171817; color:#fff;
 }
-.page .hero::before,.page .hero::after{content:none}
+.page .hero::before{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(108deg,rgba(23,24,23,.15) 18%,rgba(23,24,23,.95) 90%),
+    radial-gradient(circle at 80% 45%,rgba(255,255,255,.075),transparent 40%);
+}
+.page .hero::after{
+  content:""; position:absolute; z-index:-1; width:clamp(420px,64vw,840px);
+  aspect-ratio:1; right:clamp(-440px,-25vw,-130px); top:50%; transform:translateY(-50%);
+  border:1px solid rgba(255,255,255,.16); border-radius:50%;
+  box-shadow:0 0 0 92px rgba(255,255,255,.016),0 0 0 93px rgba(255,255,255,.10),
+    0 0 0 182px rgba(255,255,255,.012),0 0 0 183px rgba(255,255,255,.065);
+  pointer-events:none;
+}
 .heroTopline,.heroBaseline{display:flex;justify-content:space-between;align-items:center;gap:20px;position:relative;z-index:1}
 .heroTopline{padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.22)}
 .page .hero .label{color:#d0d1cc;margin:0;font-size:10px;letter-spacing:.17em;font-weight:800}
 .page .hero .label span{color:#80847f;padding:0 7px}
 .heroIssue,.heroBaseline{color:#a9ada9;font-size:10px;font-weight:750;letter-spacing:.17em}
-.heroBody{position:relative;z-index:1;max-width:930px;padding:clamp(32px,5vw,64px) 0}
+.heroBody{position:relative;z-index:1;max-width:930px;padding:clamp(52px,7vw,106px) 0}
 .heroEyebrow{color:#d2d6d2;margin:0 0 24px;font-size:clamp(13px,1.45vw,16px);font-weight:700;letter-spacing:.07em}
 .page .hero h1{
   max-width:970px;margin:0; font-weight:900;
@@ -314,9 +326,9 @@
   border:1px solid #fff;transition:background .18s ease,color .18s ease;
 }
 .page .hero .primary{background:#fff;color:#171817}
-.page .hero .secondary{background:#fff;color:#171817}
+.page .hero .secondary{background:transparent;color:#fff}
 .page .hero .primary:hover{background:#e1e3dd;color:#171817}
-.page .hero .secondary:hover{background:#f0e8d9;color:#171817}
+.page .hero .secondary:hover{background:#fff;color:#171817}
 .heroBaseline{padding-top:20px;border-top:1px solid rgba(255,255,255,.22)}
 .sectionNavigator{
   display:flex;gap:0;flex-wrap:wrap;align-items:stretch;
@@ -452,8 +464,8 @@
  .heroTopline{align-items:start;padding-bottom:13px}
  .heroTopline .heroIssue{display:none}
  .page .hero .label{font-size:9px;letter-spacing:.08em}
- .heroBody{padding:32px 0 28px}
- .page .hero h1{font-size:clamp(27px,7.8vw,42px);letter-spacing:-.045em;line-height:1.3}
+ .heroBody{padding:clamp(70px,18vw,115px) 0 70px}
+ .page .hero h1{font-size:clamp(34px,8.5vw,57px);letter-spacing:-.075em;line-height:1.17}
  .heroEyebrow{font-size:12px;margin-bottom:18px}
  .page .hero .intro{font-size:14px;margin-top:24px;line-height:1.8}
  .page .hero .intro br{display:none}
@@ -488,229 +500,8 @@
  .page .journeyCard,.page .programmes article,.page .ageCard,.sectionNavigator a{transition:none}
 }
 
-/* RBA 24H: paid learning and supporter pathways, with explicit member safeguards. */
-.page .openNow{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(230px,.6fr);gap:24px;align-items:center;border:1px solid #cdd8df;border-radius:12px;margin:22px 0 5px;padding:27px 31px;background:#eef3f6}
-.page .openNowLabel{font-weight:850;color:#3b6a7b;font-size:11px;letter-spacing:.13em;margin:0 0 9px}
-.page .openNow h2{font-size:clamp(23px,2.8vw,31px);letter-spacing:-.03em;line-height:1.3;margin:0 0 9px}
-.page .openNow p{font-size:14px;color:#43596d;line-height:1.8;margin:0}
-.page .openNow p.openNowNote{font-size:12px;color:#5f7384;margin-top:11px}
-.page .openNow a{background:#173b54;border-radius:8px;padding:15px 18px;color:#fff;text-decoration:none;font-size:14px;font-weight:800;text-align:center}
-.page .openNow a:hover{background:#235b79}
-@media(max-width:740px){.page .openNow{grid-template-columns:1fr;margin:16px 0 0;padding:23px 20px;gap:18px}.page .openNow a{display:block;width:100%}}
-
 /* Keep the approved identity and readable quick routes on the dark hero. */
 .page .hero .actions .primary{background:#2454D8;border-color:#2454D8;color:#fff!important}
 .page .hero .actions .primary:hover{background:#1944B9;border-color:#1944B9;color:#fff!important}
 .heroQuickLinks{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#D6DAD5;font-size:13px;line-height:1.8;margin:18px 0 0}
 .heroQuickLinks a,.heroQuickLinks a:visited{color:#fff!important;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
-
-
-/* RBA mobile homepage CTA readability guard (iOS Safari / Instagram in-app browser).
-   Explicit foreground and text-fill prevent a white CTA from appearing blank if
-   inherited text styles are overridden by webview styling. */
-.page .hostActions .hostPrimary,
-.page .hostActions .hostPrimary:visited {
-  background-color: #fff;
-  border: 1px solid #fff;
-  color: #171817 !important;
-  -webkit-text-fill-color: #171817 !important;
-  font-weight: 900;
-  text-decoration: none;
-  text-align: left;
-}
-.page .hostActions .hostPrimary > span {
-  color: #171817 !important;
-  -webkit-text-fill-color: #171817 !important;
-  opacity: 1;
-  visibility: visible;
-  mix-blend-mode: normal;
-}
-.page .hostActions .hostPrimary:hover,
-.page .hostActions .hostPrimary:focus-visible {
-  background-color: #eceee9;
-  border-color: #eceee9;
-  color: #171817 !important;
-  -webkit-text-fill-color: #171817 !important;
-}
-.page .hostActions .hostPrimary:focus-visible {
-  outline: 3px solid #b4e600;
-  outline-offset: 4px;
-}
-.page .hostActions .hostSecondary,
-.page .hostActions .hostSecondary:visited {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-}
-.page .hostActions .hostSecondary:hover {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-}
-.page .hero .actions .primary,
-.page .hero .actions .primary:visited,
-.page .programmes article > a {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-}
-.page .hero .actions .secondary,
-.page .hero .actions .secondary:visited {
-  color: #171817 !important;
-  -webkit-text-fill-color: #171817 !important;
-}
-@media (max-width: 700px) {
-  .page .hostCallout {
-    gap: 24px;
-    padding: 30px 22px;
-  }
-  .page .hostCallout h2 {
-    font-size: clamp(30px, 8.25vw, 42px);
-    line-height: 1.28;
-    letter-spacing: -.045em;
-    text-wrap: pretty;
-  }
-  .page .hostDescription {
-    font-size: 15px;
-    line-height: 1.85;
-    overflow-wrap: break-word;
-  }
-  .page .hostActions .hostPrimary {
-    min-height: 58px;
-    padding: 14px 17px;
-    line-height: 1.5;
-    font-size: 15px;
-    white-space: normal;
-  }
-  .page .hostActions .hostPrimary > span:first-child {
-    flex: 1 1 auto;
-  }
-  .page .hostActions .hostSecondary {
-    min-height: 50px;
-    line-height: 1.6;
-    white-space: normal;
-  }
-}
-
-
-/* RBA / RTB paid business services: a single compact conversion route.
-   Sponsorship remains separate below this bridge. */
-.page .businessBridge {
-  scroll-margin-top: 104px;
-  margin: 36px 0 16px;
-  padding: clamp(24px, 3.6vw, 45px);
-  display: grid;
-  grid-template-columns: minmax(0,1.3fr) minmax(250px,.7fr);
-  gap: clamp(18px,4vw,50px);
-  align-items: center;
-  background: #171a17;
-  color: #fff;
-  border-top: 4px solid #b4e500;
-}
-.page .businessBridgeText { min-width: 0; }
-.page .businessBridgeText > p:first-child {
-  margin: 0 0 10px;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .15em;
-  color: #b4e500;
-}
-.page .businessBridge h2 {
-  margin: 0 0 14px;
-  font-size: clamp(25px,3.1vw,43px);
-  line-height: 1.35;
-  letter-spacing: -.045em;
-  font-weight: 900;
-  color: #fff;
-}
-.page .businessBridgeText > p:last-child {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.85;
-  color: #dbe2d8;
-  max-width: 740px;
-}
-.page .businessBridgeActions {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 12px;
-}
-.page .businessBridgeActions a,
-.page .businessBridgeActions a:visited {
-  width: 100%;
-  min-height: 56px;
-  padding: 14px 17px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: #b4e500;
-  border: 1px solid #b4e500;
-  color: #151815 !important;
-  -webkit-text-fill-color: #151815 !important;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 900;
-  text-decoration: none;
-}
-.page .businessBridgeActions a:hover {
-  background: #d4ff3d;
-  border-color: #d4ff3d;
-  color: #151815 !important;
-}
-.page .businessBridgeActions span {
-  font-size: 11px;
-  line-height: 1.75;
-  color: #c5cec1;
-}
-.page .businessBridgeActions a span {
-  color: #151815 !important;
-  -webkit-text-fill-color: #151815 !important;
-  font-size: 18px;
-}
-@media (max-width: 780px) {
-  .page .businessBridge { grid-template-columns: minmax(0,1fr); gap: 25px; margin: 24px 0 12px; padding: 28px 23px; }
-  .page .businessBridge h2 { font-size: clamp(25px,6.7vw,36px); }
-  .page .businessBridgeActions a { white-space: normal; }
-}
-
-.founderFeature {
-  display: grid;
-  grid-template-columns: minmax(125px, 250px) 1fr;
-  align-items: center;
-  gap: clamp(16px, 5vw, 60px);
-  margin: 28px 0;
-  background: #142437;
-  color: white;
-  text-decoration: none;
-}
-.founderFeature img { display: block; width: 100%; height: auto; }
-.founderFeature div { padding: 18px 16px 18px 0; }
-.founderFeature p { margin: 0; color: #d9e4ef; font-size: 14px; }
-.founderFeature h2 { color: white; margin: 4px 0 14px; font-size: clamp(24px, 4vw, 48px); }
-.founderFeature span { color: white; text-decoration: underline; text-underline-offset: 4px; }
-.founderFeature:focus-visible { outline: 3px solid #2454d8; outline-offset: 4px; }
-@media (max-width: 600px) { .founderFeature { grid-template-columns: 38% 1fr; } }
-
-/* Explicit contrast for Safari and embedded iOS browsers. */
-.page .hero .actions a.secondary,
-.page .hero .actions a.secondary:visited {
-  background: #fff;
-  border-color: #fff;
-  color: #142437 !important;
-  -webkit-text-fill-color: #142437 !important;
-}
-.page .hero .actions a.secondary > span {
-  color: #142437 !important;
-  -webkit-text-fill-color: #142437 !important;
-}
-.page .hero .actions a.primary > span {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-}
-.page .hero h1 { color: #fff; }
-@media (max-width: 700px) {
-  .page .hero .intro { font-size: 16px; line-height: 1.75; margin-top: 16px; }
-  .page .hero .actions { margin-top: 22px; }
-  .page .hero .actions a { font-size: 16px; gap: 12px; }
-  .heroBaseline { padding-top: 12px; }
-  .page .aboutLinks { padding-block: 18px; }
-}

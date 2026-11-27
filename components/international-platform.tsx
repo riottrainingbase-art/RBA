@@ -13,14 +13,6 @@ export function InternationalPlatform({locale}:{locale:Locale}){
  const c=copy[locale];const message=encodeURIComponent(locale==="ja"?"RBAの海外連携について相談したいです。団体名、対象年代、希望時期、交流目的をお送りします。":"Hello RBA, I would like to discuss a Japan–Asia basketball programme.");
  return <SiteFrame locale={locale} languagePage="international"><div className="international-platform">
   <section className="international-hero section-pad"><a className="back-link" href={localePath(locale)}>← RBA</a><Globe2/><p className="section-index inverse">RBA INTERNATIONAL / JAPAN × ASIA</p><h1>{c.title}</h1><p>{c.lead}</p><div><a className="button button-light" href="#international-contact">{c.contact}<ArrowRight/></a></div></section>
-  <section className="section-pad" aria-labelledby="kansai-exchange-2027" style={{background:"#f7f5f1",color:"#111211",borderTop:"1px solid #ded9d1"}}>
-    <div style={{maxWidth:1110,margin:"0 auto"}}>
-      <p className="section-index" style={{color:"#A63E13"}}>RBA UNITED / JANUARY 2027 / PLANNING</p>
-      <h2 id="kansai-exchange-2027" style={{fontSize:"clamp(28px,4vw,48px)",lineHeight:1.15,margin:"12px 0"}}>RBA UNITED KANSAI 2027</h2>
-      <p style={{maxWidth:780,lineHeight:1.8}}>{({ja:"2027年1月6〜8日を候補に、日本・グアム・豪州の育成年代の交流を調整中。開催地・参加チーム・費用は未確定。男子U14の無料参加意向と、年代別チーム交流・地域協力の相談を受け付けています。",en:"A proposed youth exchange in Kansai on January 6–8, 2027, involving Japan, Guam and Australia. Venues, teams and fees are not confirmed. Free boys U14 expressions of interest and enquiries from other age groups and partners are welcome.","zh-tw":"規劃於2027年1月6–8日在關西舉行日本、關島與澳洲青少年交流。場地、球隊及費用尚未確認。接受男子U14免費意願登記及其他年齡組、合作夥伴洽詢。",ko:"2027년 1월 6~8일 간사이에서 일본·괌·호주 청소년 교류를 조율 중입니다. 장소·참가팀·비용은 미확정이며 남자 U14 무료 의향 등록과 다른 연령 및 협력 문의를 받습니다."})[locale]}</p>
-      <a className="button button-dark" style={{marginTop:18}} href={locale==="ja"?"/ja/events/kobe-boys-u14-exchange-2027":"/ja/events/kobe-boys-u14-exchange-2027#english"}>{({ja:"企画詳細・無料意向登録",en:"Programme details & free interest registration","zh-tw":"活動詳情與免費意願登記",ko:"프로그램 상세 및 무료 의향 등록"})[locale]}<ArrowRight size={18}/></a>
-    </div>
-  </section>
   <section className="section-pad" style={{background:"#111518",color:"#f9f9f9",borderTop:"1px solid #3f474c"}} aria-labelledby="japan-experience-hub">
     <div style={{maxWidth:1110,margin:"0 auto"}}>
       <p className="section-index inverse">RBA JAPAN EXPERIENCE / NEW</p>

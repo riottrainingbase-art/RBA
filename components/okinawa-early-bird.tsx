@@ -7,7 +7,7 @@ import styles from "./okinawa-early-bird.module.css";
 export function OkinawaEarlyBird({ compact = false, href = "/ja/events/okinawa-international-camp-2026/apply" }: { compact?: boolean; href?: string }) {
   const [active, setActive] = useState<boolean | null>(null);
   useEffect(() => {
-    const update = () => setActive(Date.now() < Date.parse(EARLY_BIRD_END));
+    const update = () => setActive(Date.now() <= Date.parse(EARLY_BIRD_END));
     update();
     const timer = window.setInterval(update, 1000);
     return () => window.clearInterval(timer);

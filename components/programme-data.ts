@@ -8,7 +8,6 @@ export type ProgrammeId =
   | "yaima"
   | "kawasaki"
   | "saga-fukuoka"
-  | "saga-winter-20261228"
   | "yamagata"
   | "shizugawa"
   | "kobe"
@@ -46,17 +45,6 @@ export type Programme = {
 // Single source for every event card, calendar row, map callout and registration CTA.
 // Dates and application URLs were reconciled with RBA's current official link hub.
 export const programmes: readonly Programme[] = [
-  {
-    id:"saga-winter-20261228",startDate:"2026-12-28",endDate:"2026-12-28",
-    date:["28 DEC 2026 · 09:00–19:00 (3 sessions)","2026.12.28（月）9:00〜19:00・3部制","2026.12.28 · 09:00–19:00（三節）","2026.12.28 · 09:00–19:00 (3부)"],
-    datePrimary:["28 DEC","12月28日","12月28日","12월 28일"],dateSecondary:["Monday / 3 sessions","月曜・3部制","星期一・三節","월요일・3부"],
-    title:["RBA Saga & Fukuoka Winter Clinic","佐賀・福岡 WINTER CLINIC","佐賀・福岡冬季籃球訓練","사가·후쿠오카 WINTER CLINIC"],
-    place:["Saga City · venue details shared privately after payment is confirmed","佐賀市内（会場確保済み・入金確認後に個別案内）","佐賀市內・確認收款後個別通知場地資訊","사가 시내・입금 확인 후 장소 개별 안내"],
-    price:["¥4,400–¥12,100 per player, tax included","4,400円〜12,100円（税込・選手1名）","每位選手 ¥4,400–¥12,100（含稅）","선수 1인 ¥4,400–¥12,100 (세금 포함)"],
-    audience:["Grades 1–9 · all genders","小学1年〜中学3年（男女）","小學1年級至國中3年級（男女）","초등 1학년~중학 3학년 (남녀)"],
-    payment:["Guardian application and advance Stripe payment; RBA confirms acceptance. 28 December only. Japanese application.","保護者の方がお申し込み後、Stripeで参加費をお支払いください。RBAで受付を確認します。28日のみ受付中、29日は調整中です。","家長報名後先以 Stripe 付款，由 RBA 確認受理。只限28日（日文報名）。","보호자 신청 후 Stripe 선결제, RBA 접수 확인. 28일만 해당(일본어 신청)."],
-    applicationUrl:"/ja/saga#entry",japaneseInfoPath:"/ja/saga#entry",region:"kyushu",category:"TRAIN",pathway:"clinic",ageGroups:["U8","U10","U12","U15"],
-  },
   {
     id:"miyako",startDate:"2026-10-31",endDate:"2026-10-31",
     date:["31 OCT 2026 · 10:00–17:00","2026.10.31（土）10:00〜17:00","2026.10.31 · 10:00–17:00","2026.10.31 · 10:00–17:00"],
@@ -220,14 +208,14 @@ export const programmes: readonly Programme[] = [
     registrationClosed: true,
     startDate: "2026-11-20",
     endDate: "2026-11-23",
-    date: ["21–23 NOV 2026 · optional evening clinic 20 NOV", "2026.11.21〜23／11.20は別料金の前夜クリニック", "2026.11.21–23／11.20晚間訓練另計", "2026.11.21–23 / 11.20 전야 클리닉 별도"],
+    date: ["21–23 NOV 2026 · joint practice 21–22; morning session 23", "2026.11.21〜23／21・22日は青龍ラーテルズ合同練習、23日は午前枠", "2026.11.21–23／21–22日與當地球隊聯合訓練、23日上午時段", "2026.11.21–23 / 21–22일 지역팀 합동훈련, 23일 오전"],
     datePrimary: ["21–23", "21〜23日", "21至23日", "21~23일"],
     dateSecondary: ["NOV 2026", "2026年11月", "2026年11月", "2026년 11월"],
     title: ["KOBE Development Camp 2026", "KOBE Development Camp 2026", "KOBE培育營2026", "KOBE Development Camp 2026"],
     place: ["Tatsuno, Hyogo", "兵庫・たつの", "兵庫・龍野", "효고・다쓰노"],
     price: ["From ¥6,600 / full camp with stay ¥52,800", "半日 6,600円〜／全日程・宿泊食事付 52,800円", "半日 ¥6,600起／全程含住宿餐食 ¥52,800", "반일 ¥6,600부터 / 전 일정 숙박·식사 포함 ¥52,800"],
     audience:["Grades 5–9", "小学5年〜中学3年", "小學5年級至國中3年級", "초등 5학년~중학 3학년"],
-    payment:["Confirm attendance dates, venue and accommodation conditions with RBA before payment.", "会場・宿泊条件を最終確認中。決済前に参加希望日・プランをご相談ください。", "場地與住宿條件仍在確認，付款前請先洽詢參加日期與方案。", "장소·숙박 조건 확인 중. 결제 전 참가일과 플랜을 상담해 주세요."],
+    payment:["The 21–22 November sessions are joint practice with local Seiryu Rattlers; 23 November is planned 09:00–12:00 at a separate venue. Confirm accommodation, food and transfers before paying.", "11/21・22は青龍ラーテルズとの合同練習。11/23は別会場で9:00〜12:00を予定。宿泊・食事・送迎は個別に調整中です。決済済みの方は再決済不要です。", "21至22日與當地球隊聯合訓練；23日上午時段暫定09:00–12:00，住宿及交通條件需個別確認。", "21~22일 지역팀과 합동훈련, 23일 09:00~12:00 별도 일정 예정. 숙박·식사·교통은 개별 확인이 필요합니다."],
     japaneseInfoPath:"/ja/events/kobe-development-camp-2026",
     applicationUrl: "https://form.jotform.com/262591727805061",
     region:"kansai", category:"TRAVEL", pathway:"development-camp", ageGroups:["U12","U15"],

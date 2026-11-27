@@ -4,11 +4,9 @@ on:
   pull_request:
     branches:
       - main
-      - release/rba-live-baseline-20261127
   push:
     branches:
       - main
-      - preview-rba
   workflow_dispatch:
 
 permissions:
@@ -37,7 +35,7 @@ jobs:
           exit 1
 
   static-checks:
-    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/preview-rba')
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -74,14 +72,32 @@ jobs:
       - name: MY HOME COURT growth privacy and trend regression
         run: node --test tests/homecourt-growth-visualization.test.mjs
 
+      - name: UNITED multilingual participation and membership regression
+        run: node --test tests/united-participation-guide.test.mjs
+
       - name: U12 U15 GREAM navigation and regional hubs
         run: node --test tests/gream-category-hubs.test.mjs
+
+      - name: RBA network partnerships and safety gates
+        run: node --test tests/rba-network-partners.test.mjs
+
+      - name: RBA Performance Tee launch and safe checkout verification
+        run: node --test tests/rba-performance-tee-launch.test.mjs
+
+      - name: RBA Performance Tee profit calculator and seller-only access
+        run: node --test tests/performance-tee-economics.test.mjs
 
       - name: Torsten Japan signup conversion regression audit
         run: node audit/torsten-japan-landing/check.mjs
 
       - name: National clinic hosting and payment gate audit
         run: node audit/national-clinic-funnel/check.mjs
+
+      - name: Chiba 2027 schedule, bilingual registration and venue privacy audit
+        run: node --test tests/chiba-camp-2027-funnel.test.mjs
+
+      - name: Taipei SPARTANS three-language session and safe payment audit
+        run: node --test tests/taipei-dec-2026-spartans.test.mjs
 
       - name: Member onboarding audit
         run: node audit/member-experience/onboarding-check.mjs
@@ -107,8 +123,8 @@ jobs:
       - name: Okinawa camp live funnel and pricing CTA regression
         run: node --test tests/okinawa-camp-conversion.test.mjs
 
-      - name: UNITED multilingual participation and membership regression
-        run: node --test tests/united-participation-guide.test.mjs
+      - name: RBA revenue service destinations and payment safety
+        run: pnpm run audit:revenue-services
 
       - name: RBA sport-programme margin and launch gates
         run: node --experimental-strip-types --test tests/rba-margin-model.test.mjs

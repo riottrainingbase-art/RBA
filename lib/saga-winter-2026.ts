@@ -6,5 +6,3 @@ export const sagaWinterOffers = {
   full: { label: "全3部（9:00〜19:00・休憩あり）", amount: 12100, starts: "2026-12-28T09:00:00+09:00" },
 } as const;
 export const sagaWinterGrades = ["小1","小2","小3","小4","小5","小6","中1","中2","中3"] as const;
-export const sagaEarlybird = { code: "SAGA1000", amount: 1000, endExclusive: "2026-12-21T00:00:00+09:00" } as const;
-export const isSagaEarlybirdOpen = (now = Date.now()) => now < Date.parse(sagaEarlybird.endExclusive);
