@@ -18,6 +18,7 @@ export default async function Page({searchParams}:{searchParams:Promise<{program
      const payment=getMiyagiPayment(programme);
      if(!payment)return null;
      return <article key={programme} className={styles.bridge}><h2>{payment.title}</h2>
+       <p>早期価格（税込）{payment.early.toLocaleString("ja-JP")}円 ／ 通常価格（税込）{payment.regular.toLocaleString("ja-JP")}円（1名）</p>
        {payment.payable? <>
          <p>参加費（税込） <strong>{payment.amount?.toLocaleString("ja-JP")}円</strong>／1名</p>
          <p>参加資格・総費用・取消条件をご確認ください。支払済みの方は再手続き不要です。</p>
