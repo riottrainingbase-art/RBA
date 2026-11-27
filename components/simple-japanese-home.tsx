@@ -94,7 +94,7 @@ export async function SimpleJapaneseHome() {
                 <a className={styles.secondary} data-growth-id="home-primary-role" href="#rba-for-you">選手・保護者・指導者の入口 <span aria-hidden="true">↗</span></a>
                 <a className={styles.secondary} data-growth-id="home-revenue-services" href="/ja/services">教材・会員・料金を見る <span aria-hidden="true">↗</span></a>
               </nav>
-              <p className={styles.heroQuickLinks}><a href="/ja/my-homecourt" data-growth-id="home-free-id">無料RBA ID・ログイン</a>　/　<a href="/ja/support" data-growth-id="home-support">応援・企業協賛</a>　/　<a href="/ja/book" data-growth-id="home-book-guide">申込・支払いの流れ</a></p>
+              <p className={styles.heroQuickLinks}><a href="/ja/my-homecourt" data-growth-id="home-free-id">無料RBA ID・ログイン</a>　/　<a href="/ja/homecourt-plus" data-growth-id="home-plus-plan">PLUS 月3,300円</a>　/　<a href="/ja/support" data-growth-id="home-support">個人応援・企業協賛</a>　/　<a href="/ja/book" data-growth-id="home-book-guide">申込・支払いの流れ</a></p>
             </div>
             <div className={styles.heroBaseline}>
               <span>RBA / DEVELOPMENT BEFORE RESULTS</span>
