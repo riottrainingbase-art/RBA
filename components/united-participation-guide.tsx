@@ -1,5 +1,6 @@
 import { ArrowRight, CalendarDays, CheckCircle2, Users } from "lucide-react";
 import { localePath, type Locale } from "./site-frame";
+import { MiyagiUnitedEntry } from "./united-miyagi";
 
 const copy = {
   ja: {title:"個人参加までの道のり", intro:"今の所属チームを続けながら、企画ごとに参加できます。保護者と一緒に条件を確認しましょう。", steps:["対象年代・日程・会場・総費用を確認","公式窓口で参加意向または正式申込。意向登録だけでは参加確定になりません。","RBAからの正式案内・支払条件を確認。確定前に返金不可の交通・宿泊を予約しない。","参加後はできたこと、次に試すことを記録する。"], upcoming:"参加意向受付中（開催条件調整中）", kobe:"神戸・男子U14 国際交流｜2027年1月", kobeDetail:"個人参加と選抜プログラムは別です。会場、選考、最終費用は正式案内を確認してください。", details:"公式企画詳細を見る", lang:"日本語の企画詳細", prepare:"参加前：カレンダーで準備", reflect:"参加後：経験を記録", report:"PLUS育成レポート", ask:"参加条件をRBAに相談", note:"MY HOME COURTの月会費と、UNITEDの企画参加費は別です。会員登録だけで出場枠は確保されません。", memberTitle:"今のチームのまま、次の挑戦へ", memberBody:"参加意向・正式申込の違い、費用、準備と振り返りを確認できます。", memberCta:"UNITED参加ガイドへ"},
@@ -20,6 +21,7 @@ export function UnitedParticipationGuide({locale, now=new Date()}:{locale:Locale
   const reflectionNote={ja:"",en:"On the member home, use Reflect on today and download your note. It is not automatically saved to your account.","zh-tw":"在會員首頁開啟今天的回顧並下載筆記。筆記不會自動儲存至帳戶。",ko:"회원 홈에서 오늘의 돌아보기를 열고 메모를 다운로드하세요. 계정에 자동 저장되지 않습니다."}[locale];
   return <section id="united-participation" className="homecourt-product-preview section-pad">
     <div className="section-head"><div><p className="section-index">UNITED / HOW TO JOIN</p><h2>{c.title}</h2></div><p>{c.intro}</p></div>
+    {locale==="ja" && <MiyagiUnitedEntry/>}
     {showKobe?<article className="homecourt-plan-card"><span>{c.upcoming}</span><h3>{c.kobe}</h3><p>{c.kobeDetail}</p><a className="button button-dark" href="/ja/events/kobe-boys-u14-exchange-2027" hrefLang="ja">{c.details}<ArrowRight/></a>{locale!=="ja"?<p>{c.lang}</p>:null}</article>:null}
     <div className="homecourt-preview-grid">{c.steps.map((step,index)=><article key={step}><CheckCircle2/><span>0{index+1}</span><p>{step}</p></article>)}</div>
     <p className="registration-note">{c.note}</p>

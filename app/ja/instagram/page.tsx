@@ -1,4 +1,5 @@
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
+import { MiyagiUnitedEntry } from "@/components/united-miyagi";
 import { OkinawaEarlyBird } from "@/components/okinawa-early-bird";
 import { OkinawaCampPartnerNotice } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
@@ -166,6 +167,7 @@ export default function InstagramEntryPage() {
           </section>
         )}
 
+        <div className="mx-5 sm:mx-9"><MiyagiUnitedEntry/></div>
         {showShizugawa && <section className="mx-5 mt-5 border border-[#0b3542] bg-[#e6ece6] p-5 text-[#0b3542] sm:mx-9 sm:p-7" aria-labelledby="shizugawa-feature-title">
           <p className="text-xs font-black tracking-widest">11.7–8 / 宮城・南三陸</p>
           <h2 id="shizugawa-feature-title" className="mt-3 text-3xl font-black leading-tight">海と森の志津川で、<br/>次のプレーへ。</h2>
