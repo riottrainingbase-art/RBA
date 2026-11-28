@@ -17,3 +17,7 @@ test("registration and payment are explicitly closed",()=>{
  }
  const src=read(root+"page.tsx");assert.ok(src.includes("正式募集と決済は開始していません"));assert.ok(src.includes('event.path+"/apply"'));assert.ok(src.includes('event.path+"/payment"'));
 });
+
+test("approved early-bird and regular prices have one source",()=>{
+ const src=read("lib/aichi-clinic-2027.ts");assert.ok(src.includes("early: 6600, regular: 7700"));assert.ok(src.includes("early: 11000, regular: 13200"));assert.ok(src.includes("2027-01-31T23:59:59+09:00"));
+});
