@@ -21,3 +21,5 @@ test("registration and payment are explicitly closed",()=>{
 test("approved early-bird and regular prices have one source",()=>{
  const src=read("lib/aichi-clinic-2027.ts");assert.ok(src.includes("early: 6600, regular: 7700"));assert.ok(src.includes("early: 11000, regular: 13200"));assert.ok(src.includes("2027-01-31T23:59:59+09:00"));
 });
+
+test("checkout is server priced and gated; webhook reconciles only paid sessions",()=>{const p=read("lib/aichi-clinic-payments.ts");for(const k of ["AICHI_CLINIC_PAYMENT_ENABLED","AICHI_CLINIC_VENUE_CONFIRMED","AICHI_CLINIC_CAPACITY","AICHI_CLINIC_WEBHOOK_SECRET"])assert.ok(p.includes(k));const checkout=read("app/api/commerce/aichi-clinic-checkout/route.ts");assert.ok(checkout.includes("unit_amount:p.amount"));assert.ok(checkout.includes("reserve_aichi_clinic"));assert.ok(!checkout.includes("payment_method_types"));const hook=read("app/api/commerce/aichi-clinic-webhook/route.ts");assert.ok(hook.includes("constructEvent"));assert.ok(hook.includes("checkout.session.async_payment_succeeded"));assert.ok(hook.includes('session.payment_status==="paid"'));});
