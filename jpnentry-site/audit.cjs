@@ -92,6 +92,10 @@ if(sitemap.includes("https://www.jpnentry.com/404</loc>"))failures.push("404 URL
 if(!sitemap.includes("https://www.jpnentry.com/partners</loc>"))failures.push("Partnership page missing from sitemap");
 const indexablePages=htmlFiles.filter(f=>!f.endsWith("/404.html")).length;
 if(sitemapUrls!==indexablePages)failures.push("Sitemap contains "+sitemapUrls+" routes vs "+indexablePages+" indexable HTML pages");
+const intel=fs.readFileSync(path.join(root,"intelligence/index.html"),"utf8");
+for(const token of ["263024789882066","263025091048047","33,000","29,800","49,800","Applications are free"])if(!intel.includes(token))failures.push("Intelligence missing "+token);
+if(intel.includes("buy.stripe.com")||fs.existsSync(path.join(root,"order-checkout.cjs")))failures.push("Internal checkout instructions leaked to public site");
+for(const file of ["intelligence.js","rfq-template.csv"])if(!fs.existsSync(path.join(root,file)))failures.push("Missing "+file);
 console.log("JPNentry quality gate — "+htmlFiles.length+" pages, "+sitemapUrls+" sitemap entries, "+broken+" broken local links.");
 if(warnings.length)console.log("Warnings ("+warnings.length+"):",warnings.slice(0,12));
 if(failures.length){console.error("FAILURES ("+failures.length+"):",failures.slice(0,45));process.exitCode=1}
