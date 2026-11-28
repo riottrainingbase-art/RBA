@@ -34,6 +34,30 @@ test("all twelve role-specific weekly prompts are localized, retain valid protec
   assert.equal(weeklyFocus("coach","invalid","en").slug,weeklyFocus("coach","2026-11-23","en").slug);
 });
 
+test("weekly first start uses an explicit save and preserves existing plans",()=>{
+  const ui=root("components/homecourt-weekly-loop.tsx");
+  const hub=root("components/member-app.tsx");
+  for(const field of ["theme","action","evidence"]){
+    assert.ok(ui.includes(`defaultValue={entry?entry.${field}:focus.${field}}`));
+  }
+  assert.match(ui,/!entry\?<button type="submit" disabled=\{busy\}/);
+  assert.match(ui,/entry\?records\.upsert\(payload,\{onConflict:"user_id,week_start,role"\}\):records\.insert\(payload\)/);
+  assert.match(ui,/result\.error\?\.code==="23505"&&!entry/);
+  assert.match(ui,/if\(loadFailed\)return/);
+  assert.match(hub,/hasPaidMembership\?<HomecourtPlusMemberHub/);
+});
+
+test("participant help is linked without making a new payment or exposing recordings",()=>{
+  const before=root("app/ja/after-application/page.tsx");
+  const after=root("app/ja/after-clinic/page.tsx");
+  const hub=root("components/homecourt-plus-member-hub.tsx");
+  assert.match(before,/id="online-checklist"/);
+  assert.match(before,/再決済、カード番号、パスワードの送信は不要/);
+  assert.match(after,/href="\/ja\/after-application#online-checklist"/);
+  assert.match(hub,/href=\{ja\?"\/ja\/after-application#online-checklist":`\$\{prefix\}\/contact`\}/);
+  for(const text of [before,after,hub])assert.doesNotMatch(text,/zoom\.us\/rec\/share\//);
+});
+
 test("12 week chart counts distinct recorded days, not training sessions or future dates",()=>{
   const checkins=[{checked_on:"2026-11-09"},{checked_on:"2026-11-09"},{checked_on:"2026-11-20"}];
   const history=[

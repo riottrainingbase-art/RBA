@@ -44,6 +44,15 @@ export default function Page(){
       </div>
     </section>
 
+    <section className="homecourt-product-preview section-pad" aria-labelledby="online-checklist">
+      <div className="section-head"><div><p className="section-index">ONLINE / ON DEMAND</p><h2 id="online-checklist">オンライン講習に参加する方へ</h2></div><p>講習ごとに、配信日時・視聴期限・資料の配布条件が異なります。申込後の案内を確認しましょう。</p></div>
+      <div className="homecourt-preview-grid">
+        <article><h3>受講前</h3><p>受講形式、開始時刻（日本時間）、入室リンク、講義の言語・通訳、資料の配布予定を確認。質問を一つ用意し、音声を確認できる環境で参加しましょう。</p></article>
+        <article><h3>案内・資料が届かない</h3><p>申込時のメールアドレスと迷惑メールフォルダをご確認ください。見当たらない場合は講習名・申込時のメールアドレス・不足している案内を添えてお問い合わせください。</p></article>
+        <article><h3>録画を再生できない</h3><p>アプリ内ブラウザで開いている場合、SafariやChromeで直接開く方法もお試しください。解消しない場合は、端末・ブラウザ・エラー表示をお知らせください。再決済、カード番号、パスワードの送信は不要です。</p><Link className="text-link" href="/ja/contact">受講・視聴について相談する <ArrowRight size={16}/></Link></article>
+      </div>
+    </section>
+
     <section className="homecourt-product-preview section-pad">
       <div className="section-head"><div><p className="section-index">3 STEPS</p><h2>参加前から、次の成長につなげられます。</h2></div><p>最初からすべて入力する必要はありません。まずはRBA IDを作成し、今回の参加を自分の記録につなげるところから始められます。</p></div>
       <div className="homecourt-preview-grid">

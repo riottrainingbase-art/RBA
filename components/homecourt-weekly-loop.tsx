@@ -66,9 +66,17 @@ const focusCopy={
   ko:{heading:"이번 주 RBA 실천 주제",evidence:"회고할 관찰 기준",guide:"관련 가이드 읽기 (일본어)",apply:"빈 칸에 주제 넣기",hint:"주제는 매주 바뀌며 기존 입력 내용은 유지됩니다.",applied:"빈 칸을 채웠습니다. 내용을 확인하고 저장하세요.",loadError:"이번 주 기록을 불러오지 못했습니다.",retry:"다시 불러오기"},
 } as const;
 
+const startCopy={
+  ja:{save:"このテーマで今週を始める",hint:"テーマ・行動・振り返りの目印を設定済みです。下の欄で変更できます。保存して、実践した後に振り返りましょう。"},
+  en:{save:"Start this week with this focus",hint:"The theme, action and evidence are filled in below. Edit them if you like, save your plan and return after practice."},
+  "zh-tw":{save:"以此主題開始本週",hint:"下方已填入主題、行動及觀察重點，可自行修改。儲存計畫，練習後再回來回顧。"},
+  ko:{save:"이 주제로 이번 주 시작하기",hint:"아래에 주제, 실천 내용, 관찰 기준을 채웠습니다. 수정할 수 있습니다. 저장하고 실천한 뒤 돌아와 기록하세요."},
+} as const;
+
 export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:Locale;role:string}){
   const c=general[locale];
   const fc=focusCopy[locale];
+  const start=startCopy[locale];
   const safeRole=role==="coach"?"coach":role==="parent"?"parent":"player";
   const rc=roleCopy[locale][safeRole];
   const db=useMemo(()=>createClient(),[]);
@@ -111,9 +119,14 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
       completed_at:complete?new Date().toISOString():null,
       updated_at:new Date().toISOString(),
     };
-    const result=await db.from("homecourt_weekly_actions").upsert(payload,{onConflict:"user_id,week_start,role"}).select("*").single();
-    if(result.error){setMessage(c.error);setBusy(false);return;}
-    setEntry(result.data as Weekly);setMessage(c.saved);setBusy(false);await load();
+    try {
+      const records=db.from("homecourt_weekly_actions");
+      const result=await (entry?records.upsert(payload,{onConflict:"user_id,week_start,role"}):records.insert(payload)).select("*").single();
+      if(result.error?.code==="23505"&&!entry){setMessage(c.error);await load();return;}
+      if(result.error){setMessage(c.error);return;}
+      setEntry(result.data as Weekly);setMessage(c.saved);await load();
+    } catch {setMessage(c.error);}
+    finally {setBusy(false);}
   }
 
   async function submit(e:FormEvent<HTMLFormElement>){
@@ -146,7 +159,7 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
         <p>{fc.evidence}：{focus.evidence}</p>
         <div className="member-attendance">
           <Link prefetch={false} href={`/ja/my-homecourt/app/learn/${focus.slug}`}>{fc.guide} <ChevronRight/></Link>
-          <button type="button" disabled={busy||entry?.status==="completed"} onClick={e=>{
+          {!entry?<button type="submit" disabled={busy}>{busy?<LoaderCircle className="spin"/>:<Sparkles/>}{start.save}</button>:<button type="button" disabled={busy||entry.status==="completed"} onClick={e=>{
             const form=e.currentTarget.closest("form");
             if(!form)return;
             let applied=false;
@@ -155,13 +168,13 @@ export function HomecourtWeeklyLoop({userId,locale,role}:{userId:string;locale:L
               if(field instanceof HTMLTextAreaElement&&!field.value.trim()){field.value=focus[name];applied=true;}
             }
             if(applied)setMessage(fc.applied);
-          }}>{fc.apply}</button>
+          }}>{fc.apply}</button>}
         </div>
-        <small>{fc.hint}</small>
+        <small>{entry?fc.hint:start.hint}</small>
       </section>
-      <label>{rc.theme}<textarea name="theme" rows={2} maxLength={500} defaultValue={entry?.theme||""} placeholder={rc.prompt} required/></label>
-      <label>{rc.action}<textarea name="action" rows={3} maxLength={1200} defaultValue={entry?.action||""} required/></label>
-      <label>{rc.evidence}<textarea name="evidence" rows={2} maxLength={1200} defaultValue={entry?.evidence||""}/></label>
+      <label>{rc.theme}<textarea name="theme" rows={2} maxLength={500} defaultValue={entry?entry.theme:focus.theme} placeholder={rc.prompt} required/></label>
+      <label>{rc.action}<textarea name="action" rows={3} maxLength={1200} defaultValue={entry?entry.action:focus.action} required/></label>
+      <label>{rc.evidence}<textarea name="evidence" rows={2} maxLength={1200} defaultValue={entry?entry.evidence:focus.evidence}/></label>
       <label>{c.reflection}<textarea name="reflection" rows={3} maxLength={2000} defaultValue={entry?.reflection||""}/></label>
       <label>{c.next}<textarea name="next_action" rows={2} maxLength={1200} defaultValue={entry?.next_action||""}/></label>
       <div className="member-attendance">
