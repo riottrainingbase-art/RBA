@@ -6,9 +6,9 @@ const read=(f)=>readFileSync(f,"utf8");
 test("RBA school trial is a top-level choice without replacing corporate sponsor strip",()=>{
   const home=read("components/simple-japanese-home.tsx");
   const nav=read("components/site-frame.tsx");
-  assert.match(home,/home-hero-school-trial/);
+  assert.match(home,/id="home-sendai-school"/);
   assert.match(home,/\/ja\/sendai-school/);
-  assert.match(home,/<CorporateSupportStrip locale="ja"\s*\/>/);
+  assert.match(home,/<CorporateSupportStrip locale="ja" directoryOnly\s*\/>/);
   assert.match(home,/schoolSpotlight/);
   assert.match(nav,/スクール・体験/);
   assert.match(nav,/\/ja\/gream/);
@@ -17,7 +17,7 @@ test("RBA school trial is a top-level choice without replacing corporate sponsor
 test("all social hub links resolve to real application routes",()=>{
   const page=read("app/ja/links/page.tsx");
   const css=read("app/ja/links/links.module.css");
-  const destinations=["/ja/sendai-school","/ja/gream","/ja/opportunities","/ja/d-hub","/ja/clinic-request","/ja/partners","/ja"];
+  const destinations=["/ja/sendai-school","/ja/gream","/ja/gream-sendai","/ja/gream-sendai/monthly-trial","/ja/opportunities","/ja/d-hub","/ja/clinic-request","/ja/partners","/ja"];
   for(const dest of destinations){
     assert.match(page,new RegExp(`href:\\s*"${dest}"`),dest);
     assert.ok(existsSync(dest==="/ja"?"app/ja/page.tsx":`app${dest}/page.tsx`),dest);

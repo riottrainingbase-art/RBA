@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { collectionCheckout } from "@/lib/store-collection-release";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
+import { aichiClinic, isAichiClinicUpcoming } from "@/lib/aichi-clinic-2027";
 import styles from "./links.module.css";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "RBA公式リンク集｜保護者・指導者・参加できる活動",
@@ -49,10 +52,12 @@ const featured = [
 ] as const;
 
 const more = [
-  {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
+  {title: "仙台U12・U15スクール｜無料相談・会場許可後に体験案内",href:"/ja/sendai-school",id:"school"},
   {title: "GREAM SENDAI｜仙台U15クラブ・体験",href:"/ja/gream-sendai",id:"gream-sendai"},
   {title: "GREAM仙台｜体験希望受付",href:"/ja/gream-sendai/monthly-trial",id:"gream-trial"},
   {title: "GREAM｜各地域のU15クラブ",href:"/ja/gream",id:"gream"},
+  {title: "D-HUB｜指導者・選手の学び",href:"/ja/d-hub",id:"dhub"},
+  {title: "地域クリニックの開催相談",href:"/ja/clinic-request",id:"clinic-request"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
   {title: "RBA COLLECTION 001｜公式ウェア",href:"/ja/store",id:"store"},
   {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
@@ -82,6 +87,7 @@ export default function RbaLinkInBioPage() {
         </a>)}
       </nav>
       <nav className={styles.more} aria-label="その他の公式窓口">
+        {isAichiClinicUpcoming()?<a href={aichiClinic.path} data-growth-id="bio-aichi-clinic">2027年2月23日｜豊田クリニック・開催詳細<span aria-hidden="true">↗</span></a>:null}
         {more.map(item=><a href={item.href} key={item.id} data-growth-id={`bio-${item.id}`}>{item.title}<span aria-hidden="true">↗</span></a>)}
       </nav>
       <p className={styles.notice}>無料相談の送信と、体験・入会・決済の確定は別です。開催日・参加費・会場・安全上の条件は、各公式ページでご確認ください。未成年者の参加相談は保護者の方からお願いいたします。</p>
