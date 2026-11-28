@@ -23,7 +23,8 @@ export async function MemberLoginEntry({ locale, authError, next, source, initia
   authError?: boolean | "browser" | "expired";
 }) {
   // Returning members should never be asked to sign in again while their session is still valid.
-  const destination=memberAuthDestination(next||null);
+  const prefix = locale === "en" ? "" : `/${locale}`;
+  const destination=memberAuthDestination(next||`${prefix}/my-homecourt/app`);
   let hasSession=false;
   try {
     const supabase=await createClient();
@@ -39,7 +40,6 @@ export async function MemberLoginEntry({ locale, authError, next, source, initia
   }
   const c = copy[locale];
   const paymentOption=destination.startsWith("/api/commerce/checkout/")?destination.split("/").pop()?.split("?")[0]:null;
-  const prefix = locale === "en" ? "" : `/${locale}`;
   return <main className="member-login-shell">
     <a className="member-login-back" href={`${prefix}/my-homecourt`}><ArrowLeft size={17} />{c.back}</a>
     <section className="member-login-card">
