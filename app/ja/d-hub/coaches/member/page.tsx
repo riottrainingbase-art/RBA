@@ -79,7 +79,8 @@ export default async function Page() {
           <ShieldCheck size={42}/>
           <p className="section-index">D-HUB COACH LAB / PAID MEMBER</p>
           <h1>学んで、試して、また戻ってくる。</h1>
-          <p>D-HUB COACH LABは記事を読むだけの有料版ではありません。48回のカリキュラム、毎週の実践課題、指導者同士の対話、振り返りを一つにつなげます。</p>
+          <p>D-HUB COACH LABは記事を読むだけの有料版ではありません。年間48テーマの教材、毎週の実践課題、指導者同士の対話、振り返りを一つにつなげます。</p>
+          <p>月1回のオンラインクリニックへの移行を準備しています。開催日時・担当講師・既存会員の移行時期は確定後にご案内します。</p>
           <div className="dhub-member-status">
             <span>MEMBERSHIP</span>
             <strong>{membership?.status === "grace" ? "GRACE" : "ACTIVE"}</strong>
