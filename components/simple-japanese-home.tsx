@@ -1,3 +1,4 @@
+import { AichiClinicNotice } from "./aichi-clinic-notice";
 import Link from "next/link";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { MiyagiUnitedEntry } from "./united-miyagi";
@@ -48,6 +49,7 @@ export async function SimpleJapaneseHome() {
             ) : <p className={styles.note}>次回の募集は開催予定のページでご案内します。</p>}
 
             <a className={styles.textLink} href="/ja/opportunities">開催予定をすべて見る →</a>
+            <AichiClinicNotice/>
             <MiyagiUnitedEntry/>
             <p><a href="/ja/events/chiba-development-camp-2027">3月27・28日｜千葉県神崎町｜U12・U15育成キャンプ</a></p>
             <p><a href="/ja/events/nikaho-clinic-2027">4月11日｜秋田県にかほ市｜小学生クリニック（会場・参加費調整中）</a></p>

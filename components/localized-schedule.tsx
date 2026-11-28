@@ -1,3 +1,4 @@
+import { AichiClinicNotice } from "./aichi-clinic-notice";
 import { RizehopeTeamEnquiry } from "./rizehope-team-enquiry";
 import { ui } from "./ui-copy";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
@@ -31,6 +32,7 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
       </div>
     </section>:null}
     {(locale === "en" || locale === "ja") && <RizehopeTeamEnquiry japanese={locale === "ja"} />}
+    {locale==="ja"&&<div className="section-pad"><AichiClinicNotice/></div>}
     <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{(locale==="ja"||locale==="en") && <article>
       <time dateTime="2027-03-27"><strong>2027.03.27–28</strong><span>{locale==="ja"?"土・日／2日間":"Sat–Sun / 2 days"}</span></time>
       <div>

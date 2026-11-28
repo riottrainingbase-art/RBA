@@ -1,3 +1,4 @@
+import { AichiClinicNotice } from "@/components/aichi-clinic-notice";
 import { GrowthClickTracking } from "@/components/growth-click-tracking";
 import { miyagiPath } from "@/components/united-miyagi";
 import { getMiyagiPayment } from "@/lib/miyagi-united-payments";
@@ -87,6 +88,7 @@ export default function InstagramEntryPage() {
           </nav>
         </section>
 
+        <section className="mx-5 mb-6 sm:mx-9"><AichiClinicNotice/></section>
         {showMiyagi&&<section className="mx-5 mb-6 overflow-hidden border-2 border-[#151719] bg-[#ff7900] text-[#151719] sm:mx-9" aria-labelledby="miyagi-instagram-title">
           <div className="p-5 sm:p-7"><p className="text-xs font-black tracking-widest">RBA UNITED / MIYAGI 2027</p><h2 id="miyagi-instagram-title" className="mt-2 text-[28px] font-black leading-tight">合宿から、国際試合へ。</h2><p className="mt-2 text-sm font-bold">どちらか一方からでも参加できます。会員登録は不要です。</p></div>
           <div className="grid gap-px bg-black sm:grid-cols-2">
