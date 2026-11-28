@@ -8,9 +8,9 @@ export function MiyagiUnitedEntry({now=new Date()}:{now?:Date}={}) {
   if (now >= new Date("2027-02-27T00:00:00+09:00")) return null;
   return <aside className={styles.entry}>
     <div><p className={styles.kicker}>RBA UNITED / MIYAGI 2027</p>
-      <h2>合宿から、国際交流へ。</h2>
+      <h2>志津川育成合宿・RIZEHOPE JAPAN</h2>
       <p>2月6〜7日 志津川 · 2月27〜28日 柴田町（開催計画）</p>
-      <a className={styles.button} href={miyagiPath}>企画詳細・申込／決済 →</a>
+      <a className={styles.button} href={miyagiPath}>対象学年・費用・受付状況を見る →</a>
     </div>
   </aside>;
 }
