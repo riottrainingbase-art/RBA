@@ -1,6 +1,6 @@
 "use client";
 
-import { OKINAWA_RESIDENT_CHECKOUT_URLS, OKINAWA_DOMESTIC_CHECKOUT_URLS } from "@/lib/okinawa-camp-registration";
+import { domesticCampCheckoutPath } from "@/lib/okinawa-camp-registration";
 
 import { useEffect, useState } from "react";
 import { OKINAWA_CAMP_LOGISTICS_COPY } from "@/lib/okinawa-camp-logistics";
@@ -35,7 +35,6 @@ export function OkinawaCampCheckout() {
   }, [housing, players, residence, retry]);
 
   const domesticPrices = residence === "okinawa" ? OKINAWA_RESIDENT_PRICES : OKINAWA_DOMESTIC_PRICES;
-  const domesticCheckout = residence === "okinawa" ? OKINAWA_RESIDENT_CHECKOUT_URLS : OKINAWA_DOMESTIC_CHECKOUT_URLS;
   const contact = residence === "okinawa" ? CAMP_OKINAWA_CONTACT : residence === "other" ? CAMP_CONTACT : CAMP_JAPAN_CONTACT;
 
   function resetQuote(willLoad: boolean) {
@@ -77,7 +76,7 @@ export function OkinawaCampCheckout() {
       <div aria-live="polite" aria-atomic="true">
         {loading && <p role="status">現在の料金を確認しています…</p>}
         {quote?.state === "payable" && <div className={styles.quote}><p>{housing ? "宿泊・食事付き" : "宿泊なし"} · {players}名 · 現在の受付料金</p><p className={styles.total}>合計 <strong>{quote.total}</strong> 米ドル</p><p>1名あたり {quote.perPlayer}米ドル × {players}名。日本円換算額はカード会社の為替・手数料により異なります。</p>{quote.early && <p>RBAオンライン受付は12月22日9:00（日本時間）までです。</p>}</div>}
-        {quote?.state === "local_review" && residence !== "other" && <div className={styles.notice}><h3>{residence === "okinawa" ? "沖縄県民割引" : "県外からの国内参加"} / 日本円固定料金</h3><p>{housing ? "宿泊2泊3日" : "通い3日間"}：1名 <strong>{(quote.perPlayer ?? domesticPrices[housing ? "housing" : "day"]).toLocaleString("ja-JP")}円（税込）</strong></p><p>{housing ? "宿泊・所定の食事・リネン・保険・宿泊中の見守りを含みます。" : "指導・交流プログラム・保険を含みます。食事・宿泊は含みません。"}交通費・送迎は別途です。海外向け早割・複数名割引との併用はありません。</p><p>選手情報・保護者の連絡先の入力とお支払いを、決済画面でまとめて行えます。事前メールは不要です。1回につき選手1名のお申し込みとなります。</p><p><a href="/ja/legal">特定商取引法に基づく表記</a>　<a href="/ja/privacy">プライバシーポリシー</a>　<a href="/ja/cancellation">返金規定</a></p><a className={styles.primary} href={domesticCheckout[housing ? "housing" : "day"]}>{domesticPrices[housing ? "housing" : "day"].toLocaleString("ja-JP")}円で申込・決済へ →</a><p><a href={residence === "okinawa" ? "/ja/events/okinawa-international-camp-2026#okinawa-resident-discount" : "/ja/events/okinawa-international-camp-2026#okinawa-domestic-prices"}>料金に含む内容・適用条件を見る →</a></p><p className={styles.note}>施設側から開催の了承を得ています（RBA確認）。宿泊利用の正式手続き、体育館の利用時間・追加スタッフは調整中です。お支払いは仮予約です。主催者都合の中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は全額返金します。</p></div>}
+        {quote?.state === "local_review" && residence !== "other" && <div className={styles.notice}><h3>{residence === "okinawa" ? "沖縄県民割引" : "県外からの国内参加"} / 国内向け日本円料金</h3><p>{housing ? "宿泊2泊3日" : "通い3日間"}：1名 <strong>{(quote.perPlayer ?? domesticPrices[housing ? "housing" : "day"]).toLocaleString("ja-JP")}円（税込）</strong></p><p>{housing ? "宿泊・所定の食事・リネン・保険・宿泊中の見守りを含みます。" : "指導・交流プログラム・保険を含みます。食事・宿泊は含みません。"}交通費・送迎は別途です。海外向け早割・複数名割引との併用はありません。</p><p>選手情報・保護者の連絡先の入力とお支払いを、決済画面でまとめて行えます。事前メールは不要です。1回につき選手1名のお申し込みとなります。Stripeで日本円（JPY）と表示総額が一致しない場合は、決済せずお問い合わせください。</p><p><a href="/ja/legal">特定商取引法に基づく表記</a>　<a href="/ja/privacy">プライバシーポリシー</a>　<a href="/ja/cancellation">返金規定</a></p><a className={styles.primary} href={domesticCampCheckoutPath(residence === "okinawa" ? "okinawa" : "japan",housing ? "housing" : "day")}>{domesticPrices[housing ? "housing" : "day"].toLocaleString("ja-JP")}円で申込・決済へ →</a><p><a href={residence === "okinawa" ? "/ja/events/okinawa-international-camp-2026#okinawa-resident-discount" : "/ja/events/okinawa-international-camp-2026#okinawa-domestic-prices"}>料金に含む内容・適用条件を見る →</a></p><p className={styles.note}>施設側から開催の了承を得ています（RBA確認）。宿泊利用の正式手続き、体育館の利用時間・追加スタッフは調整中です。お支払いは仮予約です。主催者都合の中止・会場確保不可、最終確定前の辞退、最終条件に同意できない場合は全額返金します。</p></div>}
 
         {quote?.state === "group_review" && <div className={styles.notice}><h3>3名以上はグループでご相談ください</h3><p>公式フォームは1回2名までです。参加者全員の申込と料金をまとめて確認します。1名用のリンクで人数分をお支払いになる前にお問い合わせください。</p><a className={styles.primary} href={contact}>グループ参加を相談する ↗</a></div>}
         {quote?.state === "closed" && <div className={styles.notice}><h3>オンライン決済の受付は終了しました</h3><p>開催開始後の参加・料金のご相談は、主催者へお問い合わせください。</p><a href={contact}>メールで問い合わせる ↗</a></div>}
