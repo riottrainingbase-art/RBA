@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getAichiPayment } from "@/lib/aichi-clinic-payments";
 import { AichiClinicFees } from "@/components/aichi-clinic-fees";
 import { SiteFrame } from "@/components/site-frame";
-import { aichiClinic as event } from "@/lib/aichi-clinic-2027";
+import { aichiClinic as event, aichiFee } from "@/lib/aichi-clinic-2027";
 export const metadata:Metadata={
  title:"RBA 愛知 1DAY クリニック｜2027年2月23日（火・祝）",
  description:"愛知県豊田市で2027年2月23日9:00〜17:00に開催予定の育成クリニック。会場は後日案内。早期割引・事前決済制。",
@@ -14,6 +14,7 @@ const themes=[["01","見る","味方・相手・空いているスペースを�
 export const dynamic="force-dynamic";
 export default function Page(){
  const payable=getAichiPayment("full")?.payable;
+ const early=aichiFee("full")===event.fees.full.early;
  return <SiteFrame locale="ja"><main className="bg-[#F6F1E7] text-[#121110]">
   <header className="bg-[#121110] text-[#F6F1E7] px-5 py-14 sm:py-20"><div className="mx-auto max-w-5xl">
    <a className="text-sm font-bold underline" href="/ja/schedule">← 開催日程</a>
@@ -22,10 +23,11 @@ export default function Page(){
    <h2 className="mt-5 text-2xl font-black">{event.title}</h2>
    <p className="mt-4 border-y border-[#C9A86A] py-4 text-xl font-black">{event.dateLabel}<br/>{event.time}</p>
    <p className="mt-5 text-sm font-bold">会場使用許可取得済み・会場名は後日案内。早割あり・事前決済制。{payable?"正式受付中です。":"正式募集と決済は開始していません。"}</p>
+   {early&&<p className="mt-5 border border-[#C9A86A] p-4 text-lg font-black">1月31日23:59までのお支払いで最大2,200円お得！</p>}
    <a href="#entry" className="mt-6 inline-block bg-[#A64A12] px-5 py-4 font-black text-white">参加方法・受付状況 →</a>
   </div></header>
   <section className="mx-auto max-w-5xl px-5 py-12"><AichiClinicFees/><h2 className="text-3xl font-black">開催概要</h2>
-   <dl className="mt-6 grid gap-px border border-black/15 bg-black/15 sm:grid-cols-2">{[["開催日",event.dateLabel],["時間",event.time],["会場",event.place],["対象・定員",event.audience+"／"+event.capacity+"名"],["参加費","早割：半日6,600円／終日11,000円（税込）"],["決済","事前決済制"],["運営","Riot Basketball Academy（RBA）"]].map(([label,value])=><div className="bg-white p-5" key={label}><dt className="text-xs font-bold text-neutral-600">{label}</dt><dd className="mt-2 font-black">{value}</dd></div>)}</dl>
+   <dl className="mt-6 grid gap-px border border-black/15 bg-black/15 sm:grid-cols-2">{[["開催日",event.dateLabel],["時間",event.time],["会場",event.place],["対象・定員",event.audience+"／"+event.capacity+"名"],["参加費",`${early?"早割":"通常"}：半日${aichiFee("half").toLocaleString("ja-JP")}円／終日${aichiFee("full").toLocaleString("ja-JP")}円（税込）`],["決済","事前決済制"],["運営","Riot Basketball Academy（RBA）"]].map(([label,value])=><div className="bg-white p-5" key={label}><dt className="text-xs font-bold text-neutral-600">{label}</dt><dd className="mt-2 font-black">{value}</dd></div>)}</dl>
   </section>
   <section className="bg-white px-5 py-12"><div className="mx-auto max-w-5xl"><h2 className="text-3xl font-black">クリニックの育成テーマ（予定）</h2><p className="mt-3 leading-7">所属チームに関わらず、普段の練習や試合につなげられる学びを。対象年代・参加人数に応じて内容を調整します。</p><div className="mt-5 grid gap-3 sm:grid-cols-2">{themes.map(([n,title,body])=><article className="border border-neutral-300 p-5" key={n}><p className="text-xs font-black">{n} / DEVELOPMENT</p><h3 className="mt-2 text-xl font-black">{title}</h3><p className="mt-2 leading-7">{body}</p></article>)}</div></div></section>
   <ClinicDaySchedule blocks={aichiDaySchedule} splitSessions/>
