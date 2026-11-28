@@ -10,7 +10,7 @@ export async function proxy(request:NextRequest){
     url.port="";
     return NextResponse.redirect(url,308);
   }
-  const isMemberApp=/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/app(?:\/|$)/.test(request.nextUrl.pathname);
+  const isMemberApp=/^\/(?:(?:ja|ko|zh-tw)\/)?my-homecourt\/(?:app|login)(?:\/|$)/.test(request.nextUrl.pathname);
   const pathname=request.nextUrl.pathname;
   const language=pathname==="/ja"||pathname.startsWith("/ja/")?"ja":pathname==="/zh-tw"||pathname.startsWith("/zh-tw/")?"zh-Hant-TW":pathname==="/ko"||pathname.startsWith("/ko/")?"ko":"en";
   const requestHeaders=new Headers(request.headers);
