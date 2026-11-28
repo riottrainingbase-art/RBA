@@ -1,3 +1,4 @@
+import { aichiClinic, isAichiClinicUpcoming } from "@/lib/aichi-clinic-2027";
 import { RizehopeTeamEnquiry } from "./rizehope-team-enquiry";
 import { ui } from "./ui-copy";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
@@ -31,7 +32,7 @@ export function LocalizedSchedule({locale}:{locale:Locale}){
       </div>
     </section>:null}
     {(locale === "en" || locale === "ja") && <RizehopeTeamEnquiry japanese={locale === "ja"} />}
-    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{(locale==="ja"||locale==="en") && <article>
+    <section className="event-list section-pad"><div className="section-head"><div><p className="section-index"><CalendarDays size={15}/> {c.list}</p><h2>{c.list}</h2></div><p>{c.desc}</p></div>{locale==="ja"&&isAichiClinicUpcoming()&&<article><time dateTime={aichiClinic.date}><strong>2027.02.23</strong><span>火・祝 / 9:00〜17:00</span></time><div><p className="note-tag">愛知県・開催予定</p><h3>{aichiClinic.title}</h3><p>会場・対象・定員・参加費調整中。受付準備中です。</p></div><div className="event-actions"><a href={aichiClinic.path}>開催概要・受付状況<ArrowUpRight size={17}/></a></div></article>}{(locale==="ja"||locale==="en") && <article>
       <time dateTime="2027-03-27"><strong>2027.03.27–28</strong><span>{locale==="ja"?"土・日／2日間":"Sat–Sun / 2 days"}</span></time>
       <div>
         <p className="note-tag">RBA × HBC Wolves / {locale==="ja"?"千葉県神崎町":"Kanzaki, Chiba, Japan"}</p>
