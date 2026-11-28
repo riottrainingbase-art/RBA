@@ -44,10 +44,10 @@ export default async function Page() {
             <LockKeyhole size={42}/>
             <p className="section-index">D-HUB / MEMBER ACCESS</p>
             <h1>このページは、D-HUBメンバー専用です。</h1>
-            <p>Squareの月額購読が確認できたメンバーは、RBA IDでログインすると利用できます。すでに決済済みなのに入れない場合は、申込時・Square決済時・RBA IDのメールアドレスが異なる可能性があります。</p>
+            <p>Squareの月額購読が確認できたメンバーは、RBA IDでログインすると利用できます。すでに決済済みなのに入れない場合は、申込時・Square決済時・RBA IDのメールアドレスが異なる可能性があります。継続決済中の方は再申込や追加決済をせず、アクセス確認をご利用ください。</p>
             <div className="dhub-member-actions">
-              <a className="button button-dark" href={JOIN_FORM} target="_blank" rel="noreferrer">D-HUBへ参加する <ExternalLink size={16}/></a>
-              <Link className="button button-light" href="/ja/d-hub/access-request?program=coach_lab">Square決済済みの方はこちら <ArrowRight size={16}/></Link>
+              <Link className="button button-dark" href="/ja/d-hub/access-request?program=coach_lab">決済済みの方｜アクセス確認 <ArrowRight size={16}/></Link>
+              <a className="button button-light" href={JOIN_FORM} target="_blank" rel="noreferrer">未入会の方｜新規申込 <ExternalLink size={16}/></a>
             </div>
           </section>
         </main>
