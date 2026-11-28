@@ -26,7 +26,7 @@ const corporateSupport = [
 const words = {
   ja: {
     kicker: "PARTNERS / 協賛・パートナー",
-    headline: "企業スポンサー募集中。育成の未来を、ともに。",
+    headline: "協賛・パートナー",
     history: "2026年 協賛実績",
     partner: "協賛メニューと掲載条件を見る",
     companyPrefix: "協賛実績：",
@@ -88,7 +88,7 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
     <section className={styles.strip} aria-label={t.kicker} data-corporate-support="persistent-home">
       <div className={styles.content}>
         <div className={styles.heading}>
-          <span className={styles.eyebrow}>{t.kicker}</span>
+          {!isJapanese && <span className={styles.eyebrow}>{t.kicker}</span>}
           <strong>{t.headline}</strong>
           <span className={styles.category}>{t.history}</span>
         </div>
@@ -147,30 +147,8 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
           ))}
         </div>
         <div className={styles.actions}>
-          {isJapanese ? (
-            <>
-              <a className={styles.primaryCta} href="/ja/support#apply" data-growth-id="home-corporate-advertising">
-                企業広告 月額11,000円（税込）<span aria-hidden="true"> ↗</span>
-              </a>
-              <a className={styles.secondaryCta} href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" data-growth-id="home-corporate-sponsor-enquiry">
-                企画協賛を無料相談<span aria-hidden="true"> ↗</span>
-              </a>
-            </>
-          ) : (
-            <a className={styles.primaryCta} href={partnerPath}>
-              {t.partner}<span aria-hidden="true"> ↗</span>
-            </a>
-          )}
-          {isJapanese && (
-            <>
-              <a className={styles.details} href="/ja/sponsors">
-                公式スポンサー・協賛一覧を見る<span aria-hidden="true"> →</span>
-              </a>
-              <a className={styles.details} href={partnerPath}>
-                協賛メニュー・掲載条件を見る<span aria-hidden="true"> →</span>
-              </a>
-            </>
-          )}
+          {isJapanese && <a className={styles.details} href="/ja/sponsors">協賛実績一覧</a>}
+          <a className={styles.details} href={partnerPath}>{isJapanese ? "協賛をご検討の企業へ" : t.partner}</a>
         </div>
       </div>
     </section>
