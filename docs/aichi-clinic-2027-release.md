@@ -7,3 +7,6 @@
 - 正式受付は会場使用許可と決済検証待ち。JPY一回払いを申込フォームから連続する導線に設定し、早割・通常料金および切替期限を設定し検証する。対象プラン・税込の総額・受付上限・返金条件を照合。申込と支払の同一メールによる照合、署名済みWebhookで支払完了・遅延成功・失敗を確認してから参加確定。
 - 会場確定、対象、募集定員、価格・区分、共同開催名義、キャンセル規約、安全・保険確認、学校試験日程との衝突をレビューし、フォーム受付とStripeを同時に検証して正式公開する。
 - GitHub preflight / 統合プレビュー / 実際のフォーム・テスト決済・スマホ表示 / 明示承認を経て公開。料金表示のみ更新。本番受付は現時点では開けない。
+
+## 決済実装
+Jotformの決済欄は未連携で、日付による自動切替不可。二重の申込・決済を防ぐため現行JotformはDISABLEDのまま。公式サイトの専用フォーム→Stripe Checkoutを採用。`AICHI_CLINIC_PAYMENT_ENABLED`、`AICHI_CLINIC_VENUE_CONFIRMED`、`AICHI_CLINIC_TERMS_VERSION=aichi-2027-v1`、`AICHI_CLINIC_CAPACITY`、`AICHI_CLINIC_GRADES`、`AICHI_CLINIC_WEBHOOK_SECRET`、既存RBA用Stripe/Supabase設定、専用migration適用、署名済みwebhook検証が必要。未確定は停止。参加費30%は内部収益モデルであり、この決済は主催者への自動分配を行わない。
