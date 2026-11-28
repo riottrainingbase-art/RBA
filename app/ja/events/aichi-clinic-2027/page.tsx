@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AichiClinicFees } from "@/components/aichi-clinic-fees";
 import { SiteFrame } from "@/components/site-frame";
 import { aichiClinic as event } from "@/lib/aichi-clinic-2027";
 export const metadata:Metadata={
@@ -19,10 +20,11 @@ export default function Page(){
    <a href="#entry" className="mt-6 inline-block bg-black px-5 py-4 font-black text-white">参加方法・受付状況 →</a>
   </div></header>
   <section className="mx-auto max-w-5xl px-5 py-12"><h2 className="text-3xl font-black">開催概要</h2>
-   <dl className="mt-6 grid gap-px border border-black/15 bg-black/15 sm:grid-cols-2">{[["開催日",event.dateLabel],["時間",event.time],["会場",event.place],["対象・定員","調整中"],["参加費","早割あり・金額と期限は近日案内"],["決済","事前決済制"],["運営","Riot Basketball Academy（RBA）"]].map(([label,value])=><div className="bg-white p-5" key={label}><dt className="text-xs font-bold text-neutral-600">{label}</dt><dd className="mt-2 font-black">{value}</dd></div>)}</dl>
+   <dl className="mt-6 grid gap-px border border-black/15 bg-black/15 sm:grid-cols-2">{[["開催日",event.dateLabel],["時間",event.time],["会場",event.place],["対象・定員","調整中"],["参加費","早割：半日6,600円／終日11,000円（税込）"],["決済","事前決済制"],["運営","Riot Basketball Academy（RBA）"]].map(([label,value])=><div className="bg-white p-5" key={label}><dt className="text-xs font-bold text-neutral-600">{label}</dt><dd className="mt-2 font-black">{value}</dd></div>)}</dl>
   </section>
+  <section className="mx-auto max-w-5xl px-5 pb-12"><AichiClinicFees/></section>
   <section className="bg-white px-5 py-12"><div className="mx-auto max-w-5xl"><h2 className="text-3xl font-black">クリニックの育成テーマ（予定）</h2><p className="mt-3 leading-7">所属チームに関わらず、普段の練習や試合につなげられる学びを。対象年代・参加人数に応じて内容を調整します。</p><div className="mt-5 grid gap-3 sm:grid-cols-2">{themes.map(([n,title,body])=><article className="border border-neutral-300 p-5" key={n}><p className="text-xs font-black">{n} / DEVELOPMENT</p><h3 className="mt-2 text-xl font-black">{title}</h3><p className="mt-2 leading-7">{body}</p></article>)}</div></div></section>
-  <section className="mx-auto max-w-5xl px-5 py-12" id="entry"><h2 className="text-3xl font-black">参加申込・お支払い</h2><p className="mt-4 font-bold">受付準備中。会場・募集条件・料金が確定した後に、申込フォームからStripe事前決済まで一続きでご案内します。早期割引の価格・期限も併せて公開します。現在は参加枠の予約・課金はありません。</p>
+  <section className="mx-auto max-w-5xl px-5 py-12" id="entry"><h2 className="text-3xl font-black">参加申込・お支払い</h2><p className="mt-4 font-bold">受付準備中。会場の使用許可・募集条件・決済設定の確認後に、申込フォームからStripe事前決済まで一続きでご案内します。早期割引は1月31日23:59までです。現在は参加枠の予約・課金はありません。</p>
    <div className="mt-6 grid gap-3 sm:grid-cols-2"><a className="border border-neutral-300 bg-white p-5 font-bold" href={event.path+"/apply"}>01 申込フォームの受付状況 →</a><a className="border border-neutral-300 bg-white p-5 font-bold" href={event.path+"/payment"}>02 決済の受付状況 →</a></div>
    <p className="mt-5 text-sm"><a className="underline" href="/ja/policies">参加規約・安全方針</a>　<a className="underline" href="/ja/privacy">プライバシーポリシー</a>　<a className="underline" href="/ja/legal">特商法表記</a></p>
   </section>
