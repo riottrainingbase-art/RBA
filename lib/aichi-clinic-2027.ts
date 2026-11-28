@@ -4,6 +4,8 @@ export const aichiClinic = {
   dateLabel: "2027年2月23日（火・祝）",
   time: "9:00〜17:00",
   place: "愛知県豊田市（会場は後日案内）",
+  audience: "U12・U15",
+  capacity: 50,
   paymentPolicy: "事前決済制・早割あり",
   earlyDeadline: "2027-01-31T23:59:59+09:00",
   earlyDeadlineLabel: "2027年1月31日（日）23:59（日本時間）",
