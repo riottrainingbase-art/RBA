@@ -24,10 +24,10 @@ export default async function Page(){
         <LockKeyhole size={42}/>
         <p className="section-index">D-HUB PLAYERS / MEMBER ACCESS</p>
         <h1>This page is for D-HUB PLAYERS members.</h1>
-        <p>Access is available to an RBA ID linked to an active D-HUB PLAYERS ¥3,300 monthly Square subscription. COACH LAB membership is separate.</p>
+        <p>Access is available to an RBA ID verified for D-HUB PLAYERS or eligible GREAM U15 team membership. COACH LAB membership is separate. If you have already paid or your team eligibility is uncertain, request access verification before making another payment.</p>
         <div>
           <Link className="button button-dark" href="/d-hub/players">View D-HUB PLAYERS</Link>
-          <Link className="button button-light" href="/d-hub/access-request?program=players">Already paid? Match your access <ArrowRight size={16}/></Link>
+          <Link className="button button-light" href="/d-hub/access-request?program=players">Already paid or GREAM eligible? Verify access <ArrowRight size={16}/></Link>
         </div>
       </section>
     </main>
@@ -50,8 +50,8 @@ export default async function Page(){
       <section className="dhub-player-hero section-pad">
         <p className="section-index">D-HUB PLAYERS / MEMBER</p>
         <h1>Connect practice, games<br/>and reflection.</h1>
-        <p>See. Decide. Execute. Test it in games. Review what happened. Choose the next step. D-HUB PLAYERS is built to help you run that development cycle yourself.</p>
-        <div className="dhub-player-status"><span>MEMBERSHIP</span><strong>ACTIVE</strong><small>Square ¥3,300 / month / PLAYERS</small></div>
+        <p>See. Decide. Execute. Test it in games. Review what happened. Choose the next step. D-HUB PLAYERS is built to support that development cycle. Submit individual video only via an approved private channel through your guardian; do not share identifying footage publicly.</p>
+        <div className="dhub-player-status"><span>MEMBERSHIP</span><strong>ACCESS VERIFIED</strong><small>PLAYERS access confirmed; billing status is separate.</small></div>
       </section>
 
       <section className="dhub-player-progress section-pad">
