@@ -30,7 +30,7 @@ export default function Page() {
         <h1>鹿児島で、<br/>次の一歩を。</h1>
         <p className={styles.lead}>BASTET CLINIC<br/><strong>2026年11月29日（日）</strong><br/>錦江湾高校体育館（鹿児島市）</p>
         <p>BASTETとRBAが、鹿児島でクリニックを開催します。小学生から高校生まで、男女ともに参加できます。錦江湾高校のコートで、一緒にバスケットボールを楽しみましょう。</p>
-        <a className={styles.primary} href="#entry">参加する時間を選んで申し込む ↓</a>
+        <p><strong>半日3,000円 ／ 終日4,000円（税込・1名）</strong></p>{!afternoonClosed?<a className={styles.primary} href="#entry">参加する時間を選んで申し込む ↓</a>:<p>オンライン受付は終了しました。</p>}
       </div>
     </section>
 
@@ -61,7 +61,7 @@ export default function Page() {
       <form action="/api/clinics/kagoshima-20261129/checkout" method="post" className={styles.entryForm}>
         <fieldset className={styles.consent}><legend>お申し込みの前に</legend>
           <label><input type="checkbox" name="guardian" value="yes" required/> 参加者が小学生・中学生・高校生であることを確認し、保護者として申し込みます。</label>
-          <label><input type="checkbox" name="terms" value="yes" required/> 下記のキャンセル条件と<a href="/ja/policies" target="_blank" rel="noopener noreferrer">RBA参加規約</a>を確認しました。</label>
+          <label><input type="checkbox" name="terms" value="yes" required/> <a href="#kagoshima-cancellation">キャンセル条件</a>と<a href="/ja/policies" target="_blank" rel="noopener noreferrer">RBA参加規約</a>を確認しました。</label>
           <p className={styles.small}>次の画面で、参加者のお名前・ふりがな・学年・性別と、保護者のお名前・メールアドレス・電話番号をご入力ください。お預かりした情報は、RBAが申し込みの受付、お支払いの確認、当日のご連絡に使用します。主催者への共有が必要な場合は、事前に保護者の方に確認します。</p>
         </fieldset>
         <div className={styles.plans}>
@@ -71,9 +71,10 @@ export default function Page() {
         </div>
         <p className={styles.small}>表示金額が参加者1名分のお支払い総額です。午前・午後の両方に参加する場合は、4,000円のコースをお選びください。お支払い方法は次の画面で確認できます。お支払いが完了していない場合、お申し込みは確定していません。</p>
       </form>
-      <div className={styles.checklist}><h3>キャンセル・変更について</h3><ul><li>11月21日まで：参加費の100％を返金</li><li>11月22日〜25日：参加費の50％を返金</li><li>11月26日〜当日：原則返金なし</li></ul><p className={styles.small}>RBAがキャンセルのご連絡を受け取った日（日本時間）を基準に返金額を計算します。決済事業者から返還されない手数料や、すでに発生した返金できない実費を差し引く場合があります。RBAの都合で中止する場合は、参加費を全額返金します。詳細は<a href="/ja/policies">参加規約・キャンセル方針</a>をご確認ください。</p><p>変更・キャンセル、お支払いについてのお問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>。参加者のお名前と、午前・午後・両方のいずれに申し込んだかをお知らせください。お支払いが完了したか分からない場合は、再度お支払いをせずにお問い合わせください。</p></div>
+      <div className={styles.checklist} id="kagoshima-cancellation"><h3>キャンセル・変更について</h3><ul><li>11月21日まで：参加費の100％を返金</li><li>11月22日〜25日：参加費の50％を返金</li><li>11月26日〜当日：原則返金なし</li></ul><p className={styles.small}>RBAがキャンセルのご連絡を受け取った日（日本時間）を基準に返金額を計算します。決済事業者から返還されない手数料や、すでに発生した返金できない実費を差し引く場合があります。RBAの都合で中止する場合は、参加費を全額返金します。詳細は<a href="/ja/policies">参加規約・キャンセル方針</a>をご確認ください。</p><p>変更・キャンセル、お支払いについてのお問い合わせ：<a href="mailto:riot.training.base@gmail.com">riot.training.base@gmail.com</a>。参加者のお名前と、午前・午後・両方のいずれに申し込んだかをお知らせください。お支払いが完了したか分からない場合は、再度お支払いをせずにお問い合わせください。</p></div>
       <details className={styles.checklist}><summary>メール・DMでのお申し込み・ご相談</summary><p>オンラインでのお手続きが難しい場合は、主催者のメールアドレス、またはRBA公式InstagramのDMへご連絡ください。すでにお申し込み済みの場合は、その旨をお伝えください。</p><div className={styles.actions}><a href={applicationEmail("午前／午後／通し（選択してください）")}>主催者へメール ↗</a><a href="https://www.instagram.com/riot.basketball.academy/" target="_blank" rel="noopener noreferrer">RBA公式Instagram ↗</a></div><p className={styles.email}>主催者メール：wakuuzu@gmail.com</p></details>
     </section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかのクリニック・イベントを見る</a></p>
+    {!afternoonClosed && <aside className={styles.checkoutDock} aria-label="参加申込"><span><small>税込・1名</small><strong>3,000円{!morningClosed?"〜":""}</strong></span><a href="#entry" data-growth-id="kagoshima-mobile-entry">料金・申込へ</a></aside>}
   </div></SiteFrame>;
 }

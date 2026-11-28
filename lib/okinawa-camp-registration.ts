@@ -12,3 +12,8 @@ export const OKINAWA_DOMESTIC_CHECKOUT_URLS = {
   day: "https://book.stripe.com/28EeVf5679zCdv71NZ7EQ1n",
   housing: "https://book.stripe.com/5kQ7sNgOPcLO8aN1NZ7EQ1o",
 } as const;
+
+// A first-party redirect enforces the public closing time even from a stale page.
+export function domesticCampCheckoutPath(residence: "okinawa" | "japan", plan: "day" | "housing") {
+  return "/api/camps/okinawa-2026/domestic?" + new URLSearchParams({residence,plan}).toString();
+}
