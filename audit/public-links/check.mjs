@@ -64,6 +64,7 @@ for(const e of edges){
  if(!r.ids.has(fragment))failures.push({type:"anchor",source:e.source,target:e.target+e.hash});
 }
 if(values.external)await runPool([...externalUrls],fetchPage,r=>externalResults.push({url:r.url,status:r.status,title:r.title,final:r.final}),4);
+for(const r of externalResults)if([404,410].includes(r.status))failures.push({type:"external-http",url:r.url,status:r.status});
 const unvisited=[...pending].filter(url=>!visited.has(url));
 const result={base:base.origin,sitemap:seeds.length,checked:visited.size,unvisited,links:edges.length,externalDiscovered:externalUrls.size,externalChecked:externalResults.length,externalResults,excluded:[...excluded],authRequired,failures};
 console.log(JSON.stringify(result,null,2));
