@@ -50,7 +50,9 @@ const featured = [
 
 const more = [
   {title: "仙台のU12・U15スクール",href:"/ja/sendai-school",id:"school"},
-  {title: "GREAM｜U15クラブ",href:"/ja/gream",id:"gream"},
+  {title: "GREAM SENDAI｜仙台U15クラブ・体験",href:"/ja/gream-sendai",id:"gream-sendai"},
+  {title: "GREAM仙台｜体験希望受付",href:"/ja/gream-sendai/monthly-trial",id:"gream-trial"},
+  {title: "GREAM｜各地域のU15クラブ",href:"/ja/gream",id:"gream"},
   {title: "月500円のRBA応援メンバー",href:"/ja/supporters",id:"supporter"},
   {title: "RBA COLLECTION 001｜公式ウェア",href:"/ja/store",id:"store"},
   {title: "企業・地域の協賛と共同開催",href:"/ja/partners",id:"partners"},
