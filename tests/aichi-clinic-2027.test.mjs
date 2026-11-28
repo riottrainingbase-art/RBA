@@ -15,7 +15,7 @@ test("registration and payment are explicitly closed",()=>{
  for(const p of ["apply/page.tsx","payment/page.tsx"]){
  const src=read(root+p);assert.ok(src.includes("受付"));assert.ok(!src.includes("buy.stripe.com"));assert.ok(!src.includes("form.jotform.com"));
  }
- const src=read(root+"page.tsx");assert.ok(src.includes("正式募集と決済は開始していません"));assert.ok(src.includes('event.path+"/apply"'));assert.ok(src.includes('event.path+"/payment"'));
+ const src=read(root+"page.tsx");assert.ok(src.includes("正式募集と決済は開始していません"));assert.ok(src.includes('event.path+"/apply"'));assert.ok(src.includes("最大2,200円お得"));assert.ok(src.includes('aichiFee("full")'));assert.ok(src.includes("/ja/cancellation"));
 });
 
 test("approved early-bird and regular prices have one source",()=>{
