@@ -15,5 +15,5 @@ export function isAichiClinicUpcoming(now=Date.now()){
 }
 
 export function aichiFee(plan:"half"|"full",now=Date.now()){
- return aichiClinic.fees[plan][now<=Date.parse(aichiClinic.earlyDeadline)?"early":"regular"];
+ return aichiClinic.fees[plan][now<Date.parse("2027-02-01T00:00:00+09:00")?"early":"regular"];
 }
