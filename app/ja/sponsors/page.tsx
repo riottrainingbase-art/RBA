@@ -40,6 +40,7 @@ export default async function SponsorDirectory() {
           </div>
         </section>
 
+        <section className={styles.sectionMuted} aria-labelledby="sponsor-menu-heading"><div className={styles.wrap}><span className={styles.kicker}>PARTNERSHIP / OPTIONS</span><h2 id="sponsor-menu-heading">支援方法を選ぶ</h2><div className={styles.grid}><article className={styles.card}><h3>月額企業広告</h3><p><strong>11,000円／月（税込）</strong></p><p>公式サイトへの掲載。掲載条件・入金・許諾・公開承認を確認します。既存の広告契約は変更しません。</p><a href="/ja/support">内容・申込条件へ →</a></article><article className={styles.card}><h3>企画・地域協賛</h3><p>開催地域、期間、対象事業、掲出・成果報告の内容を個別にご提案します。見積・契約前に課金はありません。</p><a href="/ja/partners">協賛の相談へ →</a></article><article className={styles.card}><h3>資金使途・活動報告</h3><p>契約ごとに目的、使途、提供内容を確認し、検証できた実績を報告します。</p><a href="/ja/impact">RBA IMPACTを見る →</a></article></div></div></section>
         <nav className={styles.tabRow} aria-label="企業パートナー掲載区分">
           <a href="#existing-partners">地域連携</a>
           <a href="#current-advertisers">現在の企業広告</a>
