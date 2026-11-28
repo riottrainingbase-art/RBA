@@ -4,9 +4,15 @@ import { createServer } from "node:http";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
 
 const exec=promisify(execFile);
 const checker=fileURLToPath(new URL("../audit/public-links/check.mjs",import.meta.url));
+
+test("opportunity explorer declares its client boundary before imports",()=>{
+  const source=readFileSync(new URL("../components/opportunity-explorer.tsx",import.meta.url),"utf8");
+  assert.match(source,/^\s*["']use client["'];/);
+});
 
 test("public link checker deduplicates links, catches missing anchors, and skips checkout APIs", async()=>{
   let apiCalls=0;

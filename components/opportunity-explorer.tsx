@@ -1,6 +1,6 @@
-import { AichiClinicNotice } from "./aichi-clinic-notice";
 "use client";
 
+import { AichiClinicNotice } from "./aichi-clinic-notice";
 import styles from "./opportunity-entry.module.css";
 import { RegionalSchoolCallout } from "./regional-school-callout";
 import { useEffect, useMemo, useState } from "react";
