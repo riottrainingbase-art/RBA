@@ -1,5 +1,6 @@
-import { aichiClinic } from "@/lib/aichi-clinic-2027";
+import { aichiClinic, isAichiClinicUpcoming } from "@/lib/aichi-clinic-2027";
 export function AichiClinicNotice(){
+ if(!isAichiClinicUpcoming())return null;
  return <article className="border border-neutral-300 bg-white p-5 text-neutral-900">
   <p className="text-xs font-black tracking-widest">2027.02.23 / AICHI</p>
   <h2 className="mt-2 text-xl font-black">{aichiClinic.title}</h2>
