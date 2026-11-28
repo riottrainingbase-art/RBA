@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./opportunity-entry.module.css";
+import { AichiClinicNotice } from "./aichi-clinic-notice";
 import { RegionalSchoolCallout } from "./regional-school-callout";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, Bookmark, CalendarDays, CircleDollarSign, MapPin, Search, SlidersHorizontal, Users } from "lucide-react";
@@ -93,7 +94,7 @@ export function OpportunityExplorer({locale}:{locale:Locale;authReady?:boolean})
       <p style={{lineHeight:1.9,maxWidth:780}}>仙台市太白区・茂庭台小学校。原則金曜日18:00〜19:30（月3回を基本）。U12年代の技術と判断をゲームで育てます。入会金10,000円・月額7,700円。具体的な開催日と体験条件は調整中のため、ご相談を受け付けています。</p>
       <a href="/ja/u12-school" className="button button-dark">開催情報・体験相談を見る <ArrowRight size={16}/></a>
     </section>:null}
-    {locale==="ja"?<div className="section-pad"><RegionalSchoolCallout/></div>:null}
+    {locale==="ja"?<div className="section-pad"><AichiClinicNotice/><RegionalSchoolCallout/></div>:null}
     {locale==="ja"?<section className="registration-flow section-pad"><div><p className="section-index inverse">HOW TO JOIN</p><h2>参加までの流れを、分かりやすく。</h2></div><div><ol><li><span>01</span><div><strong>活動を探す</strong><p>年代・地域・目的から、自分に合う企画を絞り込みます。</p></div></li><li><span>02</span><div><strong>条件と費用を確認</strong><p>対象、会場、参加費、持ち物、宿泊の有無などを確認します。</p></div></li><li><span>03</span><div><strong>公式フォームから申し込む</strong><p>各カードの「詳細・申込へ」から、公式ページ・申込フォームへ進めます。</p></div></li><li><span>04</span><div><strong>決済して受付を完了する</strong><p>各活動の案内に沿ってお支払いください。受付完了の条件と連絡方法は、申込先でご確認ください。</p></div></li></ol><p className="registration-note">普段所属しているチームがあっても、各企画の参加条件を満たせば申し込めます。大会・遠征など一部企画では個別条件がありますので、各申込ページを優先してください。</p></div></section>:null}
 
     {locale==="ja"?<section className="homecourt-product-preview section-pad">

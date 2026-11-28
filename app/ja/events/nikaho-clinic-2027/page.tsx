@@ -1,3 +1,5 @@
+import { ClinicDaySchedule } from "@/components/clinic-day-schedule";
+import { nikahoDaySchedule } from "@/lib/clinic-day-standard";
 import type { Metadata } from "next";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -89,6 +91,7 @@ export default function NikahoElementaryClinicPage() {
             </div>
           </div>
         </section>
+        <ClinicDaySchedule blocks={nikahoDaySchedule}/>
         <section className="bg-[#ff741f] px-5 py-12 sm:py-16" aria-labelledby="nikaho-contact">
           <div className="mx-auto max-w-5xl">
             <p className="text-xs font-black tracking-widest">CONTACT / LOCAL ORGANIZER</p>
