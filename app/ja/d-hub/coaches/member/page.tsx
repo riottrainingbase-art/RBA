@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowRight, BookOpen, CheckCircle2, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
 
@@ -43,9 +43,9 @@ export default async function Page() {
             <LockKeyhole size={42}/>
             <p className="section-index">D-HUB / MEMBER ACCESS</p>
             <h1>このページは、D-HUBメンバー専用です。</h1>
-            <p>Squareの月額購読が確認できたメンバーは、RBA IDでログインすると利用できます。すでに決済済みなのに入れない場合は、申込時・Square決済時・RBA IDのメールアドレスが異なる可能性があります。</p>
+            <p>Squareの月額購読が確認できたメンバーは、RBA IDでログインすると利用できます。すでに決済済みなのに入れない場合や、契約の状態が分からない場合は、再申込・追加決済をせず、先に利用権限の照合をご依頼ください。</p>
             <div className="dhub-member-actions">
-              <a className="button button-dark" href={JOIN_FORM} target="_blank" rel="noreferrer">D-HUBへ参加する <ExternalLink size={16}/></a>
+              <a className="button button-dark" href={JOIN_FORM} target="_blank" rel="noreferrer">新規の方のみ：COACH LAB申込 <ExternalLink size={16}/></a>
               <Link className="button button-light" href="/ja/d-hub/access-request?program=coach_lab">Square決済済みの方はこちら <ArrowRight size={16}/></Link>
             </div>
           </section>
@@ -55,7 +55,7 @@ export default async function Page() {
   }
 
   const [{ data: membershipRows }, { data: lessonRows }, { data: progressRows }] = await Promise.all([
-    supabase.from("dhub_memberships").select("member_name,status,provider,last_payment_at,access_until").eq("program_type","coach_lab").limit(1),
+    supabase.from("dhub_memberships").select("member_name,status,provider,last_payment_at,access_until").eq("program_type","coach_lab").eq("linked_user_id",user.id).limit(1),
     supabase.from("dhub_lessons").select("id,week_no,module_no,module_title,title,guiding_question,purpose").eq("published",true).order("week_no"),
     supabase.from("dhub_lesson_progress").select("lesson_id,status,updated_at").eq("user_id",user.id),
   ]);
@@ -81,8 +81,8 @@ export default async function Page() {
           <p>D-HUB COACH LABは記事を読むだけの有料版ではありません。48回のカリキュラム、毎週の実践課題、指導者同士の対話、振り返りを一つにつなげます。</p>
           <div className="dhub-member-status">
             <span>MEMBERSHIP</span>
-            <strong>{membership?.status === "grace" ? "GRACE" : "ACTIVE"}</strong>
-            <small>Square 月額3,300円</small>
+            <strong>{membership?.status === "grace" ? "GRACE" : "ACCESS VERIFIED"}</strong>
+            <small>利用権限を確認済み（決済状況とは別）</small>
           </div>
         </section>
 
