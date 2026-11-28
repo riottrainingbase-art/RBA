@@ -21,3 +21,13 @@ export const clinicDeliveryStandard={
  short:"短時間のクリニックは選手の休憩を削らず、終了前後の別枠または資料で保護者向け説明を提供。",
  safety:"痛みや体調不良がある場合は無理に実施せず、必要に応じて医療専門職へ相談。診断・治療の代替ではない。",
 } as const;
+
+export const nikahoDaySchedule:readonly ClinicDayBlock[]=[
+ {time:"13:30–13:45",title:"オリエンテーション・ウォームアップ",detail:"年代別に安全確認と準備。",kind:"orientation"},
+ {time:"13:45–14:35",title:"技術と判断",detail:"フットワーク、ボール操作、1対1を実践。",kind:"learn"},
+ {time:"14:35–14:55",title:"長めの休憩・水分補給",detail:"選手は休息を優先。必要に応じ延長。",kind:"break"},
+ {time:"14:40–14:55",title:"保護者向け動きづくり解説（任意・調整中）",detail:"選手の休息中に説明・実演。短時間のため資料での提供に変更する場合あり。",kind:"parent"},
+ {time:"14:55–15:10",title:"再ウォームアップ",detail:"体調を確認して段階的に再開。",kind:"orientation"},
+ {time:"15:10–16:10",title:"少人数ゲーム",detail:"技術を判断・ゲームにつなげる。",kind:"learn"},
+ {time:"16:10–16:30",title:"振り返り・クールダウン",detail:"今日の学びと次回試すことを整理。",kind:"review"},
+];
