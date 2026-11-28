@@ -55,7 +55,7 @@ export default async function Page({searchParams}:{searchParams:Promise<Record<s
           <p className="section-index">PROGRAM</p>
           <h2>{label}</h2>
           <p>RBA ID: {user.email}</p>
-          <p>Enter the email address or invoice number used for this program's Square recurring subscription.</p>
+          <p>Enter the email address or invoice number used for this program&apos;s Square recurring subscription.</p>
         </div>
         <form action={submit} className="dhub-access-form">
           <label>Square payment email<input name="square_email" type="email" defaultValue={pending?.square_email||""}/></label>
