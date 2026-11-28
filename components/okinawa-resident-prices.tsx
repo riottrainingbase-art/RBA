@@ -13,7 +13,7 @@ export function OkinawaResidentPrices({ residence = "okinawa" }: { residence?: "
       <p className={styles.kicker}>{resident ? "OKINAWA RESIDENTS" : "JAPAN / DOMESTIC"} / 2026.12.22–24</p>
       <h2 id={headingId}>{resident ? "沖縄県民割引で申込・決済" : "県外からの国内参加・申込・決済"}</h2>
       <p className={styles.lead}>{resident ? "沖縄に住む子どもたちに、世界の仲間と学ぶ機会を。" : "全国から、沖縄での3日間へ。"}</p>
-      <p>{resident ? "沖縄県内にお住まいの7〜18歳の選手が対象です。県民割引の税込料金です。" : "沖縄県外の日本国内にお住まいの7〜18歳の選手が対象です。表示料金は税込・1名分です。"}下のボタンから、選手情報の入力とお支払いをまとめて行えます。事前のメール申込は不要です。</p>
+      <p>{resident ? "沖縄県内にお住まいの7〜18歳の選手が対象です。県民割引の税込料金です。" : "沖縄県外の日本国内にお住まいの7〜18歳の選手が対象です。表示料金は税込・1名分です。"}{accepting?"下のボタンから、選手情報の入力とお支払いをまとめて行えます。事前のメール申込は不要です。":"オンライン受付は終了しました。"}</p>
       <p className={styles.note}>国内向けの表示金額は日本円（JPY）です。Stripeで通貨・税込総額が一致しない場合は決済せず、お問い合わせください。受付期限：12月22日9:00（日本時間）。</p>
       <div className={styles.grid}>
         <article className={styles.card}><p className={styles.plan}>通いプラン / 3日間</p><p className={styles.price}><strong>{prices.day.toLocaleString("ja-JP")}</strong><span>円</span></p><p className={styles.unit}>税込・1名 / 12月22〜24日</p><ul><li>キャンプの練習・ゲーム・国際交流プログラム</li><li>指導・運営費、参加者向け保険料</li><li>宿泊なし・現地集合／現地解散</li></ul><p className={styles.note}>昼食・夕食・送迎は含みません。施設の食事利用が必要な場合は、手配内容・追加費用を申込確定前にご案内します。</p><p className={styles.note}>仮予約・確定前の辞退は全額返金。 <a href="/ja/events/okinawa-international-camp-2026#cancellation">返金条件</a> / <a href="/okinawa-family-guide-2026.html">保護者ガイド</a></p>{accepting ? <a className={styles.checkout} href={domesticCampCheckoutPath(residence,"day")} data-growth-id={headingId+"-day-checkout"}>通い{prices.day.toLocaleString("ja-JP")}円で申込・決済へ →</a> : <p role="status" className={styles.note}>オンライン受付終了</p>}</article>
