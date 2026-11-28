@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowRight, BookOpen, CheckCircle2, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink, LockKeyhole, MessageCircle, NotebookPen, ShieldCheck } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { createClient } from "@/lib/supabase/server";
 
