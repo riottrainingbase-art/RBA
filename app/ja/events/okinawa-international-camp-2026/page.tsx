@@ -6,7 +6,7 @@ import { OkinawaCampPartner } from "@/components/okinawa-camp-partner";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteFrame } from "@/components/site-frame";
-import { CAMP_JAPAN_CONTACT } from "@/lib/okinawa-camp-pricing";
+import { ONLINE_PAYMENT_END, CAMP_JAPAN_CONTACT } from "@/lib/okinawa-camp-pricing";
 import scheduleStyles from "./schedule.module.css";
 import styles from "../kagoshima-clinic-2026-11-29/page.module.css";
 
@@ -21,13 +21,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://riotbasketballacademy.com/ja/events/okinawa-international-camp-2026" },
 };
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
+  const accepting = Date.now() < Date.parse(ONLINE_PAYMENT_END);
   return <SiteFrame locale="ja"><div className={styles.page}>
-    <OkinawaEarlyBird/>
     <section className={styles.hero}>
-      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><a className={styles.primary} href="#after-school">放課後・1日参加プランを見る ↓</a><p><a href={registration}><strong>3日間の通い・宿泊プランを見る →</strong></a></p><p><a href="#camp-coaches">キャンプコーチを紹介 ↓</a></p></div>
+      <div><a className={styles.back} href="/ja/schedule">← 開催予定</a><p className={styles.label}>OKINAWA / INTERNATIONAL YOUTH BASKETBALL CAMP</p><h1>沖縄で、<br/>世界の仲間と。</h1><p className={styles.lead}><strong>2026年12月22日（火）〜24日（木）</strong><br/>7〜18歳の選手対象・2泊3日</p><p>練習・ゲーム・食事・共同生活を通じて、国や言葉を越えてつながる国際ユースバスケットボールキャンプです。</p><p><strong>国内3日間 27,500円〜（税込・1名、沖縄県民通い）</strong></p>{accepting?<a className={styles.primary} href="#okinawa-resident-discount">国内料金・申込へ ↓</a>:<p>オンライン受付は終了しました。</p>}<p><a href="#after-school">放課後・1日参加の相談はこちら →</a></p></div>
       <aside className={styles.card}><Image src="/rba-logo-original.jpg" alt="Riot Basketball Academy 公式ロゴ" width={102} height={157}/><h2>糸満青少年の家</h2><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.summary}</p><p><strong>{OKINAWA_CAMP_LOGISTICS_COPY.ja.status}</strong><br/>{OKINAWA_CAMP_LOGISTICS.address}</p><p>{OKINAWA_CAMP_LOGISTICS_COPY.ja.departure}</p><a href="https://www.itoman.nikkei.okinawa/" target="_blank" rel="noopener noreferrer">施設の公式サイト ↗</a></aside>
     </section>
+    <OkinawaResidentPrices/><OkinawaResidentPrices residence="japan"/>
+    <OkinawaEarlyBird/>
     <OkinawaCampGrowthPanel placement="event" />
     <section className={styles.section} id="family-guide"><p className={styles.label}>FOR FAMILIES / 日本語・ENGLISH・繁體中文・한국어</p><h2>宿泊・食事・送迎。参加前の疑問を、一つのガイドに。</h2><p>糸満青少年の家から受入れ可能との回答を得ています。兄弟の部屋、保護者の同行、言語のサポート、アレルギー、空港からの移動など、ご家族が参加を考えるときに知りたいことをまとめました。</p><a className={styles.primary} href="/okinawa-family-guide-2026.html">保護者ガイドを読む / Family guide →</a><p><a href="/okinawa-international-guide-2026.html">海外から参加するご家族へ / English・繁體中文・한국어 →</a></p><p className={styles.small}>ご相談だけでも歓迎します。最初は選手の年齢・人数、出発地、宿泊希望、同行保護者の人数をお知らせください。</p></section>
     <section className={styles.section} id="cancellation"><h2>キャンセル・中止・返金について</h2><p>申込直後から一律20％を差し引く規定や、20日前以降は一律返金しない規定は設けていません。主催者都合・不可抗力による開催前の中止は参加費を全額返金します。開始後の一部中止は未提供分を返金します。最終確定前の辞退・最終条件への不同意は全額返金します。最終確定後の参加者都合の取消は共通規定（開催8日前まで100％、7〜4日前50％、3日前〜当日・無断欠席は原則返金なし。宿泊等の返金不能な外部実費の取扱いは同規定）に従います。</p><a className={styles.primary} href="/ja/cancellation">キャンセル・返金規定を読む →</a><p><a href="/ja/legal">特定商取引法に基づく表記</a>　<a href="/ja/privacy">プライバシーポリシー</a></p><p>スタッフ配置と保険の詳細は確認後にご案内します。施設の賠償責任保険と、選手のけがに備える傷害保険は補償内容が異なります。</p></section>
@@ -56,7 +60,6 @@ export default function Page() {
         </article>
       </div>
     </section>
-    <OkinawaResidentPrices/><OkinawaResidentPrices residence="japan"/>
     <section className={styles.section} aria-labelledby="camp-coaches">
       <p className={styles.label}>CAMP COACHES / JAPAN × TAIWAN</p>
       <h2 id="camp-coaches">キャンプコーチの紹介</h2>
@@ -113,5 +116,6 @@ export default function Page() {
     <div className={styles.columns}><article className={styles.card}><h3>参加窓口を選ぶ</h3><p>沖縄県民の方はプランを選ぶと申込・決済へ進めます。県外からの国内参加も、日本円で申込・決済へ進めます。海外参加者は宿泊・人数から海外向け料金を確認し、申込・決済へ進めます。海外フォームは1回2名まで。3名以上は個別相談です。</p><a className={styles.primary} href={registration}>国内・海外のお申し込みへ →</a><p className={styles.small}>申込情報と入金は主催者が照合します。支払い完了は参加の最終確定ではありません。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日の受付時刻と最終日の解散時刻は調整中です。到着便から会場への移動や空港への帰路は、確定した集合・解散案内をご確認のうえご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ参加・送迎を相談する ↗</a><p className={styles.email}>RBA：riot.training.base@gmail.com</p><p><a href={overseasEmail}>海外参加者の窓口：SPARTANS ↗</a></p></article></div></section>
     <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>那覇空港または指定場所からの送迎を希望する方は、事前にご相談ください。会場へ直接お越しいただく方法もあります。12月21日・22日それぞれの到着人数と便の情報を確認し、バス・バンの手配と費用を調整します。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>キャンプコーチは西尾優人とElton Chen。指導責任者および宿泊期間中の現地責任者は、RBA代表の西尾優人です。期間中は団体とともに滞在し、施設との連絡・調整を担います。追加の指導・引率スタッフや宿泊中の見守り体制は調整中で、確定後にご案内します。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">海外参加者向け特設サイト：okinawa.camp ↗</a></p></section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかの開催予定を見る</a></p>
+    {accepting && <aside className={styles.checkoutDock} aria-label="国内参加申込"><span><small>税込・1名</small><strong>27,500円〜</strong></span><a href="#okinawa-resident-discount" data-growth-id="okinawa-mobile-entry">料金・申込へ</a></aside>}
   </div></SiteFrame>;
 }
