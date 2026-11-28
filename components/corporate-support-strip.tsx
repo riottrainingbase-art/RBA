@@ -26,7 +26,7 @@ const corporateSupport = [
 const words = {
   ja: {
     kicker: "PARTNERS / 協賛・パートナー",
-    headline: "協賛・パートナー",
+    headline: "企業スポンサー募集中。育成の未来を、ともに。",
     history: "2026年 協賛実績",
     partner: "協賛メニューと掲載条件を見る",
     companyPrefix: "協賛実績：",
@@ -79,7 +79,7 @@ const words = {
 } as const;
 
 /** A permanent first-screen sponsor record, accurate to the signed contract. */
-export function CorporateSupportStrip({ locale }: { locale: Locale }) {
+export function CorporateSupportStrip({ locale, directoryOnly = false }: { locale: Locale; directoryOnly?: boolean }) {
   const t = words[locale];
   const partnerPath = locale === "en" ? "/partners" : locale === "ja" ? "/ja/partners" : "/" + locale + "/partners";
   const isJapanese = locale === "ja";
@@ -88,8 +88,8 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
     <section className={styles.strip} aria-label={t.kicker} data-corporate-support="persistent-home">
       <div className={styles.content}>
         <div className={styles.heading}>
-          {!isJapanese && <span className={styles.eyebrow}>{t.kicker}</span>}
-          <strong>{t.headline}</strong>
+          {!directoryOnly && <span className={styles.eyebrow}>{t.kicker}</span>}
+          <strong>{directoryOnly ? "協賛・パートナー" : t.headline}</strong>
           <span className={styles.category}>{t.history}</span>
         </div>
         <div className={styles.records}>
@@ -147,8 +147,30 @@ export function CorporateSupportStrip({ locale }: { locale: Locale }) {
           ))}
         </div>
         <div className={styles.actions}>
-          {isJapanese && <a className={styles.details} href="/ja/sponsors">協賛実績一覧</a>}
-          <a className={styles.details} href={partnerPath}>{isJapanese ? "協賛をご検討の企業へ" : t.partner}</a>
+          {directoryOnly ? <><a className={styles.details} href="/ja/sponsors">協賛実績一覧</a><a className={styles.details} href={partnerPath}>協賛をご検討の企業へ</a></> : isJapanese ? (
+            <>
+              <a className={styles.primaryCta} href="/ja/support#apply" data-growth-id="home-corporate-advertising">
+                企業広告 月額11,000円（税込）<span aria-hidden="true"> ↗</span>
+              </a>
+              <a className={styles.secondaryCta} href="https://form.jotform.com/263089038431054" target="_blank" rel="noopener noreferrer" data-growth-id="home-corporate-sponsor-enquiry">
+                企画協賛を無料相談<span aria-hidden="true"> ↗</span>
+              </a>
+            </>
+          ) : (
+            <a className={styles.primaryCta} href={partnerPath}>
+              {t.partner}<span aria-hidden="true"> ↗</span>
+            </a>
+          )}
+          {isJapanese && !directoryOnly && (
+            <>
+              <a className={styles.details} href="/ja/sponsors">
+                公式スポンサー・協賛一覧を見る<span aria-hidden="true"> →</span>
+              </a>
+              <a className={styles.details} href={partnerPath}>
+                協賛メニュー・掲載条件を見る<span aria-hidden="true"> →</span>
+              </a>
+            </>
+          )}
         </div>
       </div>
     </section>

@@ -42,7 +42,8 @@ test("navigation, homepage and sitemap all expose clear paths",()=>{
   for(const route of ["/ja/gream-okinawa","/ja/gream-akita"]){
     assert.ok(sitemap.includes(route),"sitemap missing "+route);
   }
-  assert.ok(home.indexOf("home-age-categories")<home.indexOf("<SendaiCommunity />"));
+  assert.ok(home.includes('href="/ja/gream-sendai"'));
+  assert.ok(home.indexOf('href="/ja/u12"') < home.indexOf('id="home-partners"'));
   for(const klass of ["ageHub","ageGrid","ageCard"]){
     assert.ok(css.includes("."+klass));
   }

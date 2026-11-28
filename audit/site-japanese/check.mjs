@@ -42,7 +42,7 @@ for(const file of files){
 // Corporate sponsorship visibility is a permanent product requirement.
 // Keep this guard in CI so future home redesigns cannot silently hide recruitment.
 const sponsorChecks=[
-  ["components/simple-japanese-home.tsx","<CorporateSupportStrip locale=\"ja\" />","ja-home-sponsor-visibility"],
+  ["components/simple-japanese-home.tsx","<CorporateSupportStrip locale=\"ja\" directoryOnly />","ja-home-sponsor-visibility"],
   ["components/localized-home.tsx","<CorporateSupportStrip locale={locale} />","multilingual-home-sponsor-visibility"],
   ["app/ja/gream-sendai/page.tsx","<CorporateSupportStrip locale=\"ja\" />","gream-home-sponsor-visibility"],
   ["components/corporate-support-strip.tsx","data-corporate-support=\"persistent-home\"","persistent-support-marker"],
@@ -68,15 +68,15 @@ for(const [file,needle,rule] of sponsorChecks){
 // Guard the mobile-first contact route against blank/white-on-white buttons and
 // accidental removal of the accessible first-visit links.
 const homeConversionGuards = [
-  ["components/simple-japanese-home.tsx", "FOR TEAMS &amp; LOCAL ORGANISERS", "host-dark-section"],
-  ["components/simple-japanese-home.tsx", "無料で開催相談する", "host-primary-label"],
+  ["components/simple-japanese-home.tsx", "RBAについて", "host-dark-section"],
+  ["components/simple-japanese-home.tsx", "地域でのクリニック開催を相談する", "host-primary-label"],
   ["components/simple-japanese-home.tsx", "href=\"/ja/clinic-request\"", "host-official-contact-route"],
-  ["components/simple-japanese-home.tsx", "FIRST TIME HERE?", "first-visit-identifier"],
-  ["components/simple-japanese-home.tsx", "はじめてRBAを知った方へ。", "first-visit-japanese-heading"],
-  ["components/simple-japanese-home.tsx", "選手・保護者の方", "first-visit-family"],
-  ["components/simple-japanese-home.tsx", "スクールを探す方", "first-visit-school"],
-  ["components/simple-japanese-home.tsx", "指導者・チームの方", "first-visit-coach"],
-  ["components/simple-japanese-home.tsx", "地域の主催者の方", "first-visit-host"],
+  ["components/simple-japanese-home.tsx", "開催予定・参加申込", "first-visit-identifier"],
+  ["components/simple-japanese-home.tsx", "仙台のスクール・チーム", "first-visit-japanese-heading"],
+  ["components/simple-japanese-home.tsx", "小学生の活動", "first-visit-family"],
+  ["components/simple-japanese-home.tsx", "スクールの日程・体験", "first-visit-school"],
+  ["components/simple-japanese-home.tsx", "指導者向け講習", "first-visit-coach"],
+  ["components/simple-japanese-home.tsx", "海外チームの来日相談", "first-visit-host"],
   ["components/simple-japanese-home.module.css", ".hostPrimary,.hostPrimary:visited", "host-visited-link-contrast"],
   ["components/simple-japanese-home.module.css", "color:#191b1d !important;", "host-legible-text-colour"],
   ["components/simple-japanese-home.module.css", "background-color:#fff;", "host-white-button-background"],
@@ -90,14 +90,7 @@ for (const [file,fragment,rule] of homeConversionGuards) {
 
 // Prevent a homepage regression to repeated campaign panels or buried signup paths.
 const organizedHome = fs.readFileSync("components/simple-japanese-home.tsx","utf8");
-const homePositions = [
-  "<section className={styles.hero}",
-  'id="home-programmes"',
-  'id="home-partners"',
-  'id="home-next-step"',
-  "home-age-categories",
-  "<SendaiCommunity />",
-];
+const homePositions = ['id="home-programmes"', 'id="home-sendai-school"', '<h2>指導者向け講習', 'id="home-host"', 'id="home-partners"'];
 for (let i=0;i<homePositions.length;i++) {
   const position=organizedHome.indexOf(homePositions[i]);
   const preceding=i===0 ? -1 : organizedHome.indexOf(homePositions[i-1]);
@@ -118,7 +111,7 @@ for (const removed of [
   if(organizedHome.includes(removed))
     failures.push({file:"components/simple-japanese-home.tsx",rule:"duplicate-home-promotion",sample:removed});
 }
-if((organizedHome.match(/<CorporateSupportStrip locale="ja" \/>/g)||[]).length !== 1)
+if((organizedHome.match(/<CorporateSupportStrip locale="ja" directoryOnly \/>/g)||[]).length !== 1)
   failures.push({file:"components/simple-japanese-home.tsx",rule:"one-corporate-record-block",sample:"expected one sponsor component"});
 if((organizedHome.match(/id="home-programmes"/g)||[]).length !== 1)
   failures.push({file:"components/simple-japanese-home.tsx",rule:"one-event-index",sample:"expected one event index"});

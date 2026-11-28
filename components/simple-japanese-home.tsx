@@ -60,6 +60,7 @@ export async function SimpleJapaneseHome() {
             <nav className={styles.schoolSpotlightActions} aria-label="仙台の体験・年代別案内">
               <a href="/ja/sendai-school">スクールの日程・体験</a>
               <a href="/ja/gream-sendai">GREAM仙台 U15の活動・参加相談</a>
+              <a href="/ja/gream">各地域のGREAMクラブ</a>
               <a href="/ja/u12">小学生の活動</a>
               <a href="/ja/u15">中学生の活動</a>
             </nav>
@@ -70,6 +71,7 @@ export async function SimpleJapaneseHome() {
             <nav className={styles.aboutLinks} aria-label="講習・教材">
               <a href="/ja/events/torsten-loibl-online-clinic">トーステン・ロイブル氏の講習・録画案内</a>
               <a href="/ja/d-hub/coaches">D-HUB COACH LABの内容・料金</a>
+              <a href="/ja/services" data-growth-id="home-revenue-services">教材・会員サービスの料金</a>
               <a href="/ja/journal">育成記事を読む</a>
             </nav>
           </section>
@@ -85,7 +87,7 @@ export async function SimpleJapaneseHome() {
             </nav>
           </section>
           <div id="home-partners" className={styles.sponsorAnchor}>
-            <CorporateSupportStrip locale="ja" />
+            <CorporateSupportStrip locale="ja" directoryOnly />
           </div>
         </div>
       </SiteFrame>
