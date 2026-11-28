@@ -86,6 +86,7 @@ export default async function Page() {
             <small>Square 月額3,300円</small>
           </div>
           <div className="dhub-member-actions">
+            <a className="button button-dark" href="/ja/d-hub/coaches/member/fieldbook">最初の教材「試合の一本を読み解く」を開く <BookOpen size={16}/></a>
             <Link className="button button-member" href="/ja/d-hub/coaches/member/toolkit">新特典：実践ワークシート4種類を見る <ArrowRight size={16}/></Link>
           </div>
         </section>
