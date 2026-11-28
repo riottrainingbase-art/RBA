@@ -27,11 +27,11 @@ export const rbaPublicInformation: readonly PublicRbaItem[] = [
     href: "/ja/events/kobe-development-camp-2026", linkText: "たつのキャンプの公式案内"
   },
   {
-    id: "torsten-2026", category: "開催・講習", status: "開催予定", when: "11月25日（水）20:00〜21:30／Zoom",
+    id: "torsten-2026", category: "開催・講習", status: "実施済み", when: "11月25日（水）20:00〜21:30／Zoom",
     title: "Torsten Loibl ONLINE CLINIC Vol.2",
     detail: "育成年代のシューター育成とゲームの中での判断を扱うオンライン講習。日本向けはLIVE税込3,300円、30日録画税込4,400円の別プランです。海外向けは公式英語ページの米ドル決済を利用します。",
     note: "日本語逐次通訳付き。国際協会等による認定講習と誤認しないよう、RBAの独立企画として案内しています。",
-    href: "/ja/events/torsten-loibl-online-clinic", linkText: "講習内容・料金・申込"
+    href: "/ja/events/torsten-loibl-online-clinic", linkText: "講習内容・録画のご案内"
   },
   {
     id: "kagoshima-2026", category: "開催・講習", status: "開催予定", when: "11月29日（日）／鹿児島",

@@ -33,7 +33,7 @@ export default async function Page({searchParams}:{searchParams:Promise<{program
            <label>学年<select name="grade" required defaultValue=""><option value="" disabled>選択してください</option>{(programme==="rizehope"?["小6"]:["小4","小5","小6","中1","中2","中3"]).map(x=><option key={x}>{x}</option>)}</select></label>
            <label>都道府県{programme==="rizehope"?<select name="region" required defaultValue=""><option value="" disabled>選択してください</option>{miyagiRegions.map(x=><option key={x}>{x}</option>)}</select>:<input name="region" required maxLength={40}/>}</label>
            <label>所属チーム（任意）<input name="team" maxLength={100}/></label>
-           <p>参加費は1名分・税込です。<a href="/ja/policies">参加規約・キャンセル・返金方針</a>をご確認ください。主催者都合の中止・受入不可の場合は全額返金します。</p>
+           <p>参加費は1名分・税込です。<a href="/ja/policies">参加規約・キャンセル・返金方針</a>をご確認ください。お支払いは仮予約です。主催者都合の中止・受入不可・最終確定前の辞退・最終条件に同意できない場合は全額返金します。</p>
            <label className={styles.agree}><input type="checkbox" name="accepted" value="yes" required/> 私は保護者または法定代理人で、参加条件・安全方針・個人情報の取扱い・取消条件に同意します。</label>
            <button className={styles.button} type="submit">{payment.amount?.toLocaleString("ja-JP")}円で申込・Stripe決済へ →</button>
          </form>
@@ -43,6 +43,6 @@ export default async function Page({searchParams}:{searchParams:Promise<{program
      </article>;
    })}
    {!choices.length&&<a href={miyagiPath+"/payment"}>企画を選び直す</a>}
-   <p><a href="/ja/policies#cancellation">参加規約</a>　<a href="mailto:riot.training.base@gmail.com">RBAへのご相談</a></p>
+   <p><a href="/ja/legal">特商法表記</a>　<a href="/ja/privacy">プライバシーポリシー</a>　<a href="/ja/policies#cancellation">参加規約</a>　<a href="mailto:riot.training.base@gmail.com">RBAへのご相談</a></p>
  </section></div></SiteFrame>;
 }
