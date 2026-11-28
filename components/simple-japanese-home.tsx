@@ -27,6 +27,9 @@ export async function SimpleJapaneseHome() {
               <p>全国のクリニック、キャンプ、国際交流の日程と参加費をご案内します。</p>
             </div>
           </header>
+          <nav className={styles.revenueEntrances} aria-label="RBAの4つの入口">
+            {[{label:"参加する",detail:"クリニック・スクール・国際交流",href:"/ja/opportunities",id:"participate"},{label:"学ぶ",detail:"D-HUB・指導者教育",href:"/ja/d-hub",id:"learn"},{label:"購入する",detail:"RBA公式ウェア",href:"/ja/store",id:"store"},{label:"支援する",detail:"企業協賛・個人応援",href:"/ja/support",id:"support"}].map(x=><a key={x.id} href={x.href} data-growth-id={"home-entrance-"+x.id}><strong>{x.label}</strong><span>{x.detail}</span></a>)}
+          </nav>
           <section className={styles.section} id="home-programmes" aria-label="直近の開催予定">
             {active.length ? (
               <div className={styles.programmes}>
@@ -91,6 +94,7 @@ export async function SimpleJapaneseHome() {
           </section>
           <div id="home-partners" className={styles.sponsorAnchor}>
             <CorporateSupportStrip locale="ja" directoryOnly />
+            <p><a className={styles.textLink} href="/ja/impact" data-growth-id="home-impact">活動資金の使途・報告方針を見る →</a></p>
           </div>
         </div>
       </SiteFrame>
