@@ -103,10 +103,10 @@ export default function Page() {
         <p className={styles.sectionLabel}>INTERNATIONAL FEES / 한국에서 참가할 경우</p>
         <h2>요금과 포함 항목을 먼저 확인하세요.</h2>
         <div className={styles.priceGrid}>
-          <article><span>DAY CAMP / 숙박 없음</span><strong>US$300</strong><p>해외 참가 기본 요금 · 선수 1명. 숙박, 항공편, 이동 및 동반 보호자 비용 별도.</p></article>
-          <article><span>RESIDENTIAL / 선수 2박</span><strong>US$450</strong><p>해외 참가 기본 요금 · 선수 1명. 지정된 숙박 및 식사 포함. 제공 범위와 방 배정은 최종 확인.</p></article>
+          <article><span>DAY CAMP / 숙박 없음</span><strong>US$240</strong><p>현재 해외 참가 요금 · 선수 1명. 숙박, 항공편, 이동 및 동반 보호자 비용 별도.</p></article>
+          <article><span>RESIDENTIAL / 선수 2박</span><strong>US$360</strong><p>현재 해외 참가 요금 · 선수 1명. 지정된 숙박 및 식사 포함. 제공 범위와 방 배정은 최종 확인.</p></article>
         </div>
-        <p className={styles.note}>조기 신청 할인과 2명 이상 신청 할인 안내가 있지만, 행사별 적용 기한과 최종 금액은 개별 확인이 필요합니다. 위 금액은 기본 요금이며, 할인·결제 조건은 별도 안내를 확인해 주세요. 신규 결제 링크를 이 페이지에서 발행하지 않습니다.</p>
+        <p className={styles.note}>2명 신청 시 1인 숙박 USD 324 / 통학 USD 216입니다. RBA 온라인 접수는 12월 22일 09:00 JST까지이며, 최종 조건은 결제 전 확인하세요. 결제는 가예약이며, 확정 전 취소 시 전액 환불됩니다.</p>
       </section>
       <section className={styles.section}>
         <p className={styles.sectionLabel}>BEFORE BOOKING / 출발 전 확인</p>
