@@ -30,7 +30,7 @@ export default function Page() {
     </section>
     <OkinawaCampGrowthPanel placement="event" />
     <section className={styles.section} id="family-guide"><p className={styles.label}>FOR FAMILIES / 日本語・ENGLISH・繁體中文・한국어</p><h2>宿泊・食事・送迎。参加前の疑問を、一つのガイドに。</h2><p>糸満青少年の家から受入れ可能との回答を得ています。兄弟の部屋、保護者の同行、言語のサポート、アレルギー、空港からの移動など、ご家族が参加を考えるときに知りたいことをまとめました。</p><a className={styles.primary} href="/okinawa-family-guide-2026.html">保護者ガイドを読む / Family guide →</a><p><a href="/okinawa-international-guide-2026.html">海外から参加するご家族へ / English・繁體中文・한국어 →</a></p><p className={styles.small}>ご相談だけでも歓迎します。最初は選手の年齢・人数、出発地、宿泊希望、同行保護者の人数をお知らせください。</p></section>
-    <section className={styles.section} id="cancellation"><h2>キャンセル・中止・返金について</h2><p>申込直後から一律20％を差し引く規定や、20日前以降は一律返金しない規定は設けていません。主催者都合・不可抗力による開催前の中止は参加費を全額返金します。開始後の一部中止は未提供分を返金します。参加者都合の取消条件・返金方法は、下記をご確認ください。</p><a className={styles.primary} href="/ja/cancellation">キャンセル・返金規定を読む →</a><p>スタッフ配置と保険の詳細は確認後にご案内します。施設の賠償責任保険と、選手のけがに備える傷害保険は補償内容が異なります。</p></section>
+    <section className={styles.section} id="cancellation"><h2>キャンセル・中止・返金について</h2><p>申込直後から一律20％を差し引く規定や、20日前以降は一律返金しない規定は設けていません。主催者都合・不可抗力による開催前の中止は参加費を全額返金します。開始後の一部中止は未提供分を返金します。最終確定前の辞退・最終条件への不同意は全額返金します。最終確定後の参加者都合の取消は共通規定（開催8日前まで100％、7〜4日前50％、3日前〜当日・無断欠席は原則返金なし。宿泊等の返金不能な外部実費の取扱いは同規定）に従います。</p><a className={styles.primary} href="/ja/cancellation">キャンセル・返金規定を読む →</a><p><a href="/ja/legal">特定商取引法に基づく表記</a>　<a href="/ja/privacy">プライバシーポリシー</a></p><p>スタッフ配置と保険の詳細は確認後にご案内します。施設の賠償責任保険と、選手のけがに備える傷害保険は補償内容が異なります。</p></section>
     <section className={styles.section} id="after-school" aria-labelledby="after-school-heading">
       <p className={styles.label}>LOCAL / AFTER SCHOOL</p>
       <h2 id="after-school-heading">学校が終わってから、1日だけでも。</h2>
@@ -68,7 +68,7 @@ export default function Page() {
           <p><strong>Riot Basketball Academy 代表・ヘッドコーチ</strong></p>
           <p>ドイツのBVケムニッツ99での活動を経験し、現在は日本各地で育成年代の指導や指導者の学びを支えています。これまでに全国で4,000名以上の選手を指導。台湾のSPARTANSとも連携し、選手同士の交流やクリニックに取り組んでいます。</p>
           <p>大切にしているのは、状況を見て、自分で判断し、プレーすること。基本技術をゲームの中で使える力につなげ、年齢や経験に合った課題を通じて、一人ひとりの挑戦を支えます。</p>
-          <p className={styles.small}><a href="https://rbaofficialnm2.wixsite.com/riot-rba/about-9" target="_blank" rel="noopener noreferrer">経歴・育成方針を見る ↗</a></p>
+          <p className={styles.small}><a href="/ja/about" target="_blank" rel="noopener noreferrer">経歴・育成方針を見る ↗</a></p>
         </article>
         <article className={styles.card} aria-labelledby="coach-elton">
           <p className={styles.label}>SPARTANS / TAIWAN</p>
@@ -105,11 +105,11 @@ export default function Page() {
       <aside className={scheduleStyles.prizes}><p className={styles.label}>PARTNER SUPPORT</p><h3>スポンサーの皆さまからの景品も準備中です</h3><p>子どもたちの挑戦を応援してくださるスポンサーの皆さまと、景品の準備を進めています。どんな景品が届くか、誰にどのようにお渡しするかなど、詳しい内容は決まり次第、このページでお知らせします。</p></aside>
     </section>
     <section className={styles.section} id="entry"><p className={styles.label}>PRICING / USD</p><h2>海外参加者向け料金とお申し込み</h2><p>以下は海外からの参加者向け料金です。日本国内の参加者は、上の日本円プランから申込・決済へお進みください。</p><dl className={styles.facts}>
-      <div><dt>宿泊・食事付き</dt><dd>通常 <strong>450米ドル／1名</strong><br/>早割20％：360米ドル<br/>早割＋2名以上の追加10％併用：<strong>324米ドル／1名</strong></dd></div>
-      <div><dt>宿泊なし</dt><dd>通常 <strong>300米ドル／1名</strong><br/>早割20％：240米ドル<br/>早割＋2名以上の追加10％併用：<strong>216米ドル／1名</strong></dd></div>
-      <div><dt>早割期間</dt><dd>早割継続中。新しい終了日は決まり次第ご案内します。適用条件・最終金額は申込画面でご確認ください。</dd></div>
+      <div><dt>宿泊・食事付き</dt><dd><strong>360米ドル／1名</strong><br/>2名同時申込：<strong>324米ドル／1名</strong></dd></div>
+      <div><dt>宿泊なし</dt><dd><strong>240米ドル／1名</strong><br/>2名同時申込：<strong>216米ドル／1名</strong></dd></div>
+      <div><dt>オンライン受付期限</dt><dd>2026年12月22日9:00（日本時間）。適用条件・最終金額は申込画面でご確認ください。</dd></div>
       <div><dt>別途・要確認</dt><dd>航空券は別途手配。空港送迎の時間・条件・費用、宿泊なしプランの食事の扱いは、お支払い前にご確認ください。</dd></div>
-    </dl><p>追加10％は早割後の金額に適用する計算です（450 × 0.8 × 0.9 = 324米ドル）。日本円の定額料金ではありません。</p>
+    </dl><p>海外向け料金は米ドル建てです。日本円の定額料金ではありません。</p>
     <div className={styles.columns}><article className={styles.card}><h3>参加窓口を選ぶ</h3><p>沖縄県民の方はプランを選ぶと申込・決済へ進めます。県外からの国内参加も、日本円で申込・決済へ進めます。海外参加者は宿泊・人数から海外向け料金を確認し、申込・決済へ進めます。海外フォームは1回2名まで。3名以上は個別相談です。</p><a className={styles.primary} href={registration}>国内・海外のお申し込みへ →</a><p className={styles.small}>申込情報と入金は主催者が照合します。支払い完了は参加の最終確定ではありません。</p></article><article className={styles.card}><h3>参加・送迎について相談する</h3><p>初日の受付時刻と最終日の解散時刻は調整中です。到着便から会場への移動や空港への帰路は、確定した集合・解散案内をご確認のうえご相談ください。</p><a className={styles.primary} href={CAMP_JAPAN_CONTACT}>RBAへ参加・送迎を相談する ↗</a><p className={styles.email}>RBA：riot.training.base@gmail.com</p><p><a href={overseasEmail}>海外参加者の窓口：SPARTANS ↗</a></p></article></div></section>
     <section className={styles.section}><h2>参加前に確認しておきたいこと</h2><h3>空港送迎・前泊</h3><p>那覇空港または指定場所からの送迎を希望する方は、事前にご相談ください。会場へ直接お越しいただく方法もあります。12月21日・22日それぞれの到着人数と便の情報を確認し、バス・バンの手配と費用を調整します。送迎付き・追加料金なしとは確定していません。12月21日の前泊は、施設側の承認がある場合を除き別途手配が必要です。</p><h3>スタッフ・宿泊中の見守り</h3><p>キャンプコーチは西尾優人とElton Chen。指導責任者および宿泊期間中の現地責任者は、RBA代表の西尾優人です。期間中は団体とともに滞在し、施設との連絡・調整を担います。追加の指導・引率スタッフや宿泊中の見守り体制は調整中で、確定後にご案内します。低学年・初心者のお子さんの参加、夜間の見守り、体調・食事面の配慮については個別にご確認ください。</p><h3>持ち物と施設ルール</h3><p>体育館用シューズ、運動着、飲み物用ボトル、帽子、タオル、洗面用品、スリッパなど。施設は全館禁煙で、寝室・体育館での飲食や外部からの食品持込みには制限があります。最終的な持ち物・ルールは参加案内をご確認ください。</p><p><a href={official} target="_blank" rel="noopener noreferrer">海外参加者向け特設サイト：okinawa.camp ↗</a></p></section>
     <p className={styles.bottom}><a href="/ja/schedule">← ほかの開催予定を見る</a></p>
