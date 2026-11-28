@@ -28,7 +28,7 @@ for(const file of files){
       const [route,fragment]=link.split("#");
       assert.ok(existsSync("app/"+route.slice(1).split("?")[0]+"/page.tsx"),"missing route "+route);
       if(fragment==="free-sample"){
-        const target=route.startsWith("/ja/")?"ja/"+route.slice(4):"en/"+route.slice(1);
+        const target=route.startsWith("/ja/")?"ja/"+route.slice(4).replaceAll("/","-"):"en/"+route.slice(1).replaceAll("/","-");
         assert.match(read("definitive-content/"+target+".html"),/id="free-sample"/);
       }
     }
