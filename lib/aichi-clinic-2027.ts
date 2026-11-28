@@ -3,7 +3,8 @@ export const aichiClinic = {
   date: "2027-02-23",
   dateLabel: "2027年2月23日（火・祝）",
   time: "9:00〜17:00",
-  place: "愛知県内（会場調整中）",
+  place: "愛知県豊田市（会場は後日案内）",
+  paymentPolicy: "事前決済制・早割あり",
   title: "RBA 愛知 1DAY クリニック",
 } as const;
 export function isAichiClinicUpcoming(now=Date.now()){
