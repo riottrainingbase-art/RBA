@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GrowthClickTracking } from "./growth-click-tracking";
 import { MiyagiUnitedEntry } from "./united-miyagi";
 import { CorporateSupportStrip } from "./corporate-support-strip";
@@ -72,7 +73,7 @@ export async function SimpleJapaneseHome() {
               <a href="/ja/events/torsten-loibl-online-clinic">トーステン・ロイブル氏の講習・録画案内</a>
               <a href="/ja/d-hub/coaches">D-HUB COACH LABの内容・料金</a>
               <a href="/ja/services" data-growth-id="home-revenue-services">教材・会員サービスの料金</a>
-              <a href="/ja/journal">育成記事を読む</a>
+              <Link href="/ja/journal">育成記事を読む</Link>
             </nav>
           </section>
 
