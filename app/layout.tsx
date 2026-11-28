@@ -61,6 +61,7 @@ export default async function RootLayout({
         }) }} />
         <CancellationNotice/>
         {children}
+        <nav aria-label="Legal information" style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:"1.25rem",padding:"1.25rem",fontSize:"0.8rem",borderTop:"1px solid #ddd"}}><a href="/ja/legal">特定商取引法に基づく表記 / Legal notice</a><a href="/ja/privacy">プライバシーポリシー / Privacy</a></nav>
       </body>
     </html>
   );

@@ -105,7 +105,7 @@ export default function GovernancePage() {
           <p className={styles.note}>本ページは団体の活動原則・規約の公開と検討状況の説明です。法的資格や税の優遇を主張するものではありません。個別の施設利用許可、契約、法人化については管理者・専門家の確認を優先します。</p>
           <a className={styles.contact} href="mailto:riot.training.base@gmail.com?subject=RBA%E5%9B%A3%E4%BD%93%E4%BC%9A%E5%89%87%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%85%A7%E4%BC%9A">団体会則について問い合わせる ↗</a>
         </section>
-        <div className={styles.bottomNav}><a href="/ja/about">← 団体紹介へ戻る</a><a href="/ja/policies">参加規約・安全方針を見る →</a></div>
+        <section><h2>運営・情報公開基準</h2><p>最終改定日：2026年11月28日。料金・日程・条件を公開前に照合し、未確定事項を明示します。未成年者の安全、保護者同意、決済・返金の記録、関係者への報告を運営の基本とします。</p><p><a href="/ja/legal">特定商取引法に基づく表記</a>　<a href="/ja/privacy">プライバシーポリシー</a></p></section><div className={styles.bottomNav}><a href="/ja/about">← 団体紹介へ戻る</a><a href="/ja/policies">参加規約・安全方針を見る →</a></div>
       </div>
     </div>
   </SiteFrame>;
