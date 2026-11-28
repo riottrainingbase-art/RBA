@@ -4,7 +4,7 @@ import {readFileSync} from "node:fs";
 const read=p=>readFileSync(new URL("../"+p,import.meta.url),"utf8");
 test("clinic day standard has protected player rest and a separate optional parent session",()=>{
  const s=read("lib/clinic-day-standard.ts");
- assert.ok(s.includes('time:"12:00–13:00"'));assert.ok(s.includes('time:"12:15–12:40"'));assert.ok(s.includes("選手の休憩を妨げない"));assert.ok(s.includes("短時間のクリニックは選手の休憩を削らず"));
+ assert.ok(s.includes('time:"12:00–13:30"'));assert.ok(s.includes('time:"12:15–12:40"'));assert.ok(s.includes("選手の休憩を妨げない"));assert.ok(s.includes("短時間のクリニックは選手の休憩を削らず"));
  assert.ok(s.includes('time:"14:35–14:55"'));assert.ok(s.includes('time:"14:40–14:55"'));
 });
 test("Aichi and Nikaho both render schedules; hosting page communicates standard",()=>{
