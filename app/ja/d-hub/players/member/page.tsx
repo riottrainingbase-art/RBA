@@ -27,10 +27,10 @@ export default async function Page(){
       <LockKeyhole size={42}/>
       <p className="section-index">D-HUB PLAYERS / MEMBER ACCESS</p>
       <h1>PLAYERSメンバー専用ページです。</h1>
-      <p>D-HUB PLAYERS月額会員、またはGream U15の在籍選手として確認できたRBA IDで利用できます。COACH LABの会員権とは別です。</p>
+      <p>D-HUB PLAYERS月額会員、またはGream U15の在籍選手として確認できたRBA IDで利用できます。COACH LABの会員権とは別です。すでに決済済みの方・GREAM在籍確認中の方は、再申込や追加決済をせずにまず照合をご依頼ください。</p>
       <div>
         <Link className="button button-dark" href="/ja/d-hub/players">PLAYERSを見る</Link>
-        <Link className="button button-light" href="/ja/d-hub/access-request?program=players">決済済みの方の照合 <ArrowRight size={16}/></Link>
+        <Link className="button button-light" href="/ja/d-hub/access-request?program=players">決済済み・資格確認中の方の照合 <ArrowRight size={16}/></Link>
         <Link className="button button-light" href="/ja/my-homecourt/app/team">Gream招待コードで参加 <ArrowRight size={16}/></Link>
       </div>
     </section>
@@ -90,7 +90,7 @@ export default async function Page(){
       <p className="section-index">D-HUB PLAYERS / MEMBER</p>
       <h1>練習・試合・振り返りを、<br/>自分でつなぐ。</h1>
       <p>見る。選ぶ。実行する。ゲームで試す。振り返る。次の練習を決める。D-HUB PLAYERSは、その循環を自分で回せる選手になるための場所です。</p>
-      <div className="dhub-player-status"><span>MEMBERSHIP</span><strong>ACTIVE</strong><small>{grade} / {activeGreamTeam?activeGreamTeam.name+" 在籍特典":"D-HUB PLAYERS 月額会員"}</small></div>
+      <div className="dhub-player-status"><span>MEMBERSHIP</span><strong>ACCESS VERIFIED</strong><small>{grade} / {activeGreamTeam?activeGreamTeam.name+" 在籍特典（追加月額なし）":"D-HUB PLAYERS 利用権限確認済み"}</small></div>
     </section>
 
     <section className="dhub-player-home-actions section-pad">
@@ -98,7 +98,7 @@ export default async function Page(){
         <UserRound size={20}/><span>MY PROFILE</span><strong>{profileReady?"プロフィールを見る":"最初に設定する"}</strong><small>学年・所属・目標・今の課題</small>
       </Link>
       <Link href="/ja/d-hub/players/member/diary">
-        <NotebookPen size={20}/><span>MY DIARY</span><strong>{diaryCount||0} ENTRIES</strong><small>練習・試合・身体・次の一つ</small>
+        <NotebookPen size={20}/><span>MY DIARY</span><strong>{diaryCount||0} ENTRIES</strong><small>練習・試合・身体・次の一つ（個人映像は保護者経由の指定非公開経路のみ）</small>
       </Link>
       <Link href="/ja/d-hub/players/articles">
         <BookOpen size={20}/><span>PLAYER LIBRARY</span><strong>{articleCount||0} ARTICLES</strong><small>今の困りごとから読む</small>
