@@ -83,6 +83,7 @@ export async function SimpleJapaneseHome() {
               <a href="/ja/about">代表・西尾優人の経歴と指導方針</a>
               <a href="/ja/clinic-request">地域でのクリニック開催を相談する</a>
               <a href="/ja/international/japan-experience">海外チームの来日相談</a>
+              <a href="/ja/store" data-growth-id="home-performance-tee">RBA公式ウェア</a>
               <a href="/ja/updates">開催状況・運営からのお知らせ</a>
               <a href="/ja/about/governance">運営体制・会則</a>
             </nav>
