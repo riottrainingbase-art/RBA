@@ -9,4 +9,11 @@
 - GitHub preflight / 統合プレビュー / 実際のフォーム・テスト決済・スマホ表示 / 明示承認を経て公開。料金表示のみ更新。本番受付は現時点では開けない。
 
 ## 決済実装
-Jotformの決済欄は未連携で、日付による自動切替不可。二重の申込・決済を防ぐため現行JotformはDISABLEDのまま。公式サイトの専用フォーム→Stripe Checkoutを採用。`AICHI_CLINIC_PAYMENT_ENABLED`、`AICHI_CLINIC_VENUE_CONFIRMED`、`AICHI_CLINIC_TERMS_VERSION=aichi-2027-v1`、`AICHI_CLINIC_CAPACITY`、`AICHI_CLINIC_GRADES`、`AICHI_CLINIC_WEBHOOK_SECRET`、既存RBA用Stripe/Supabase設定、専用migration適用、署名済みwebhook検証が必要。未確定は停止。参加費30%は内部収益モデルであり、この決済は主催者への自動分配を行わない。
+Jotformの決済欄は未連携で、日付による自動切替不可。二重の申込・決済を防ぐため現行JotformはDISABLEDのまま。公式サイトの専用フォーム→Stripe Checkoutを採用。`AICHI_CLINIC_PAYMENT_ENABLED`、`AICHI_CLINIC_VENUE_CONFIRMED`、`AICHI_CLINIC_TERMS_VERSION=aichi-2027-v1`、`AICHI_CLINIC_CAPACITY`、`AICHI_CLINIC_GRADES`、`AICHI_CLINIC_WEBHOOK_SECRET`、既存RBA用Stripe/Supabase設定、専用migration適用、署名済みwebhook検証が必要。未確定は停止。収益配分はRBA 70%／オーガナイザー30%（代表確認済み）。この決済は全額をRBA口座で受領し、主催者への自動送金は行わない。精算対象・手数料の扱いは精算時に個別確認する。
+
+## 2026-11-28 本番照合
+- 正式ドメインのVercelプロジェクト・Supabase専用申込テーブルと予約RPCの存在確認済み（申込0件）。
+- 本番環境の環境変数一覧に専用Webhook署名シークレット・規約バージョン・Stripeサーバーキー・Supabaseサービスロールキーが見当たらない。値の閲覧・再利用は行わず、正規の安全な設定経路での接続が必要。Stripe本番の専用Webhookは未登録。
+- 既存のキャンセル規定に従い、個別取消料が未表示の申込みに取消料を設定しない。規約と返金方針の表示を申込前に確認する。
+- Webhookにてpaidとなった後のRBA参加確定メールは未実装。Stripe領収書と区別し、専用の送信記録・重複送信防止を検証するまで正式募集を開放しない。
+- 集客メールはいずれも決済導線と配信停止・対象年齢・申込済み除外の確認後のみ送信。公式URL: https://riotbasketballacademy.com/ja/events/aichi-clinic-2027/apply（公開・受付動作未確認）。
