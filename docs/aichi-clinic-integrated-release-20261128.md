@@ -1,0 +1,1 @@
+现行 production 949d74a を起点とした PR #596 に、PR #593 の申込・Checkout・Webhook・単一フォームを統合。RBA 70% / organizer 30%（内部試算のみ、自動送金なし）。公開ゲートは閉じたまま。Supabase予約migrationは適用済・RLS確認済。StripeとSupabaseのサーバー認証、専用署名secret、取消条件の確認、実機テスト・統合CIが未完了。旧Jotformは停止維持。配信は受付・決済・参加確定を検証後に限定。秘密情報はリポジトリに記録しない。

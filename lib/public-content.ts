@@ -22,6 +22,17 @@ export type PublicJournalPost={
   coach_application:{title:string;purpose:string;setup?:string[];constraints?:string[];observations?:string[];review_questions?:string[]}[];
 };
 
+// Preserve CMS data and replace only the known unavailable reference in the public read model.
+function withVerifiedJournalReferences(post:PublicJournalPost):PublicJournalPost{
+  if(post.locale!=="ja"||post.slug!=="philippines-jong-uichico-coaching-exchange-20261023")return post;
+  return {...post,source_references:(post.source_references||[]).map(ref=>ref.url==="https://www.pna.gov.ph/articles/1122407"?{
+    title:"PBA: NLEX fortifies coaching staff after adding Jong Uichico",
+    source:"Daily Guardian",
+    url:"https://www.dailyguardian.com.ph/blog/pba-nlex-fortifies-coaching-staff-after-adding-jong-uichico",
+    note:"マナーマでのFIBA予選・代表指導とPBA9度の優勝実績を確認。旧PNA記事の直接リンクは閲覧不能のため差し替え。",
+  }:ref)};
+}
+
 export async function getLatestPublicUpdate(locale:ContentLocale){
   const {data,error}=await db().from("public_content_updates")
     .select("kind,locale,title,summary,href,published_at")
@@ -35,12 +46,12 @@ export async function getPublicJournalPosts(locale:ContentLocale,limit=60){
     .select("locale,slug,category,audience,title,standfirst,reading,aside_title,aside_text,hero_image_url,hero_image_alt,sections,cta_title,cta_body,published_at,updated_at,evidence_level,evidence_summary,rba_interpretation,limitations,source_references,reviewed_at,coach_application")
     .eq("locale",locale).eq("published",true)
     .order("published_at",{ascending:false}).limit(limit);
-  return error?[]:(data||[]) as PublicJournalPost[];
+  return error?[]:((data||[]) as PublicJournalPost[]).map(withVerifiedJournalReferences);
 }
 
 export async function getPublicJournalPost(locale:ContentLocale,slug:string){
   const {data,error}=await db().from("public_journal_posts")
     .select("locale,slug,category,audience,title,standfirst,reading,aside_title,aside_text,hero_image_url,hero_image_alt,sections,cta_title,cta_body,published_at,updated_at,evidence_level,evidence_summary,rba_interpretation,limitations,source_references,reviewed_at,coach_application")
     .eq("locale",locale).eq("slug",slug).eq("published",true).maybeSingle();
-  return error?null:data as PublicJournalPost|null;
+  return error||!data?null:withVerifiedJournalReferences(data as PublicJournalPost);
 }

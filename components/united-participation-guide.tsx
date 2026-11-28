@@ -25,7 +25,7 @@ export function UnitedParticipationGuide({locale, now=new Date()}:{locale:Locale
     {showKobe?<article className="homecourt-plan-card"><span>{c.upcoming}</span><h3>{c.kobe}</h3><p>{c.kobeDetail}</p><a className="button button-dark" href="/ja/events/kobe-boys-u14-exchange-2027" hrefLang="ja">{c.details}<ArrowRight/></a>{locale!=="ja"?<p>{c.lang}</p>:null}</article>:null}
     <div className="homecourt-preview-grid">{c.steps.map((step,index)=><article key={step}><CheckCircle2/><span>0{index+1}</span><p>{step}</p></article>)}</div>
     <p className="registration-note">{c.note}</p>
-    <div className="homecourt-launch-actions"><a className="button button-light" href={localePath(locale,"contact")}>{c.ask}<ArrowRight/></a><a className="button button-dark" href={`${app}/calendar`}><CalendarDays/>{c.prepare}<ArrowRight/></a><a className="button button-dark" href={locale==="ja"?`${app}/start`:`${app}#member-reflection`}>{c.reflect}<ArrowRight/></a><a className="button button-light" href={`${app}/report`}>{c.report}<ArrowRight/></a></div>
+    <div className="homecourt-launch-actions"><a className="button button-light" href={localePath(locale,"contact")}>{c.ask}<ArrowRight/></a><a className="button button-dark" href={`${app}/calendar`}><CalendarDays/>{c.prepare}<ArrowRight/></a><a className="button button-dark" href={locale==="ja"?`${app}/start`:app}>{c.reflect}<ArrowRight/></a><a className="button button-light" href={`${app}/report`}>{c.report}<ArrowRight/></a></div>
     {reflectionNote?<p className="registration-note">{reflectionNote}</p>:null}
   </section>;
 }

@@ -187,6 +187,26 @@ for(const [file,required] of [
   failures.push({file,rule:"status-navigation",sample:required});
  }
 }
+// 2026-11-28: fixed live link audit regressions. Shared components cover all four locales.
+const linkAuditRead=(file)=>fs.readFileSync(file,"utf8");
+const gream=linkAuditRead("app/ja/gream-sendai/page.tsx");
+const linkAuditPayments=linkAuditRead("components/localized-payments.tsx");
+const linkAuditSchedule=linkAuditRead("components/localized-schedule.tsx");
+const unitedGuide=linkAuditRead("components/united-participation-guide.tsx");
+const linkAuditGuards=[
+  ["gream-first-view",gream.indexOf("<GreamBrandHeading")>=0&&gream.indexOf("<GreamBrandHeading")<gream.indexOf("<CorporateSupportStrip"),"app/ja/gream-sendai/page.tsx"],
+  ["gream-trial-before-annual",gream.indexOf('data-growth-id="gream-sendai-hero-trial"')>=0&&gream.indexOf('data-growth-id="gream-sendai-hero-trial"')<gream.indexOf("<GreamAnnualPlan"),"app/ja/gream-sendai/page.tsx"],
+  ["gream-bio-direct",linkAuditRead("app/ja/links/page.tsx").includes('href:"/ja/gream-sendai/monthly-trial"'),"app/ja/links/page.tsx"],
+  ["sendai-payment-anchor",linkAuditPayments.includes('id="sendai-u15"')&&linkAuditPayments.includes('/ja/u15-skill-up#apply')&&linkAuditSchedule.includes('event.id==="sendai-u15"?"/ja/u15-skill-up"'),"components/localized-payments.tsx"],
+  ["completed-okinawa-no-checkout",!linkAuditPayments.includes('/ja/events/okinawa-clinic-2026-11-14#entry')&&linkAuditPayments.includes('2026.11.14 / OKINAWA / COMPLETED'),"components/localized-payments.tsx"],
+  ["payment-event-date-gate",linkAuditPayments.includes('ids.filter(id=>isProgrammeActive(programmeById[id]))'),"components/localized-payments.tsx"],
+  ["member-reflection-login",!unitedGuide.includes('#member-reflection')&&unitedGuide.includes('href={locale==="ja"?`${app}/start`:app}'),"components/united-participation-guide.tsx"],
+  ["aichi-and-trial-sitemap",linkAuditRead("app/sitemap.ts").includes('"/ja/events/aichi-clinic-2027"')&&linkAuditRead("app/sitemap.ts").includes('"/ja/gream-sendai/monthly-trial"'),"app/sitemap.ts"],
+  ["aichi-payment-gate",linkAuditRead("lib/aichi-clinic-payments.ts").includes('AICHI_CLINIC_PAYMENT_ENABLED==="true"'),"lib/aichi-clinic-payments.ts"],
+  ["journal-reference-replacement",linkAuditRead("lib/public-content.ts").includes('withVerifiedJournalReferences')&&linkAuditRead("lib/public-content.ts").includes('dailyguardian.com.ph/blog/pba-nlex-fortifies-coaching-staff-after-adding-jong-uichico'),"lib/public-content.ts"],
+];
+for(const [rule,passed,file] of linkAuditGuards)if(!passed)failures.push({file,rule,sample:"public link regression"});
+
 if(failures.length){
   console.error(JSON.stringify({status:"failed",filesChecked:files.length,failures},null,2));
   process.exit(1);

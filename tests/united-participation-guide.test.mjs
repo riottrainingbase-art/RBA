@@ -56,7 +56,8 @@ test('rendered member and public routes resolve for all four languages; expired 
     assert.ok(!after.includes('kobe-boys-u14-exchange-2027'));
     assert.ok(before.includes(`href="${app}/calendar"`));
     assert.ok(before.includes(`href="${app}/report"`));
-    assert.ok(before.includes(`href="${locale==='ja'?`${app}/start`:`${app}#member-reflection`}"`));
+    assert.ok(before.includes(`href="${locale==='ja'?`${app}/start`:app}"`));
+    assert.doesNotMatch(before,/#member-reflection/);
     assert.ok(routeExists(`${app}/[[...section]]`));
     assert.ok(routeExists(`${root}/contact`));
     assert.ok(routeExists(`${root}/united`));
@@ -73,10 +74,10 @@ test('member entry requires authentication and PLUS checks active entitlement',a
     '@/lib/supabase/server':{createClient:async()=>({auth:{getUser:async()=>({data:{user:null}})}})},
     './member-app':{MemberApp:()=>null},'@/lib/member-articles':{memberArticles:[]},
   });
-  for(const locale of locales)for(const section of ['calendar','report','plus']){
+  for(const locale of locales)for(const section of ['home','calendar','report','plus']){
     await assert.rejects(MemberAppPage({locale,section}),/redirect/);
     const base=prefix(locale);
-    assert.equal(redirects.at(-1),`${base}/my-homecourt/login?next=${encodeURIComponent(`${base}/my-homecourt/app/${section}`)}`);
+    assert.equal(redirects.at(-1),`${base}/my-homecourt/login?next=${encodeURIComponent(`${base}/my-homecourt/app${section==='home'?'':`/${section}`}`)}`);
   }
   const {hasCurrentHomecourtSubscription:entitled}=load(read('lib/homecourt-billing.ts'));
   const now=Date.parse('2026-11-26T00:00:00Z');

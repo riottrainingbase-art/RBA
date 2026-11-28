@@ -73,24 +73,21 @@ const button = { display: "inline-flex", alignItems: "center", justifyContent: "
 export default function GreamSendaiPage() {
   return <SiteFrame locale="ja">
     <main id="main-content" lang="ja" style={{ background: "#fff", color: ink }}>
-      <CorporateSupportStrip locale="ja" />
-      <section style={{ padding: "clamp(62px,8vw,112px) max(20px,6vw) 64px", background: ink, color: "#fff", borderBottom: "6px solid #d6dadd" }}>
+      <section style={{ padding: "clamp(32px,5vw,64px) max(20px,6vw) 40px", background: ink, color: "#fff", borderBottom: "6px solid #d6dadd" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p style={{ margin: "0 0 18px", fontSize: 12, fontWeight: 800, letterSpacing: 3, color: "#c5cacf" }}>RIOT BASKETBALL ACADEMY / SENDAI · TAIHAKU / U15 BOYS CLUB</p>
           <GreamBrandHeading team="GREAM SENDAI" />
           <h2 style={{ fontSize: "clamp(24px,3.6vw,47px)", lineHeight: 1.25, fontWeight: 900, margin: "0 0 20px" }}>仙台・太白区で、<br/>一緒にバスケを楽しもう。</h2>
           <p style={{ maxWidth: 800, lineHeight: 1.9, fontSize: "clamp(16px,1.7vw,19px)", color: "#d5dbdf", margin: "0 0 30px" }}>GREAM仙台は、2026年に生まれたU15男子のバスケットボールクラブです。活動の中心は仙台市太白区。現在は中学2・3年生がいない、まだ新しいチームです。まずは仲間とバスケを楽しむこと。そこから一緒に、できることを増やしていきましょう。</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-            <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-hero-intake" style={{ ...button, background: "#fff", color: ink }}>新規メンバーの参加相談をする ↗</a>
+            <a href="/ja/gream-sendai/monthly-trial" data-growth-id="gream-sendai-hero-trial" style={{ ...button, background: "#fff", color: ink }}>体験練習の詳細・希望登録 →</a>
+            <a href={formUrl} target="_blank" rel="noopener noreferrer" data-growth-id="gream-sendai-club-hero-intake" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>入団・参加相談をする ↗</a>
             <a href="#annual-plan-2027" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>年間計画・遠征費を見る ↓</a>
             <a href="#programme" style={{ ...button, border: "1px solid #727c82", background: "transparent" }}>活動内容を詳しく見る ↓</a>
           </div>
           <p style={{ margin: "22px 0 0", fontSize: 13, color: "#b9c1c5", lineHeight: 1.8 }}>参加相談は無料です。練習会場は確保しており、練習日や集合場所などの詳細は個別にご案内します。相談だけで入団や支払いは発生しません。</p>
         </div>
       </section>
-
-      <GreamAnnualPlan team="sendai" />
-      <ShizugawaCampReport team="sendai" />
 
       <section aria-labelledby="monthly-trial-cta" style={{background:"#f1f3f2",borderBottom:"1px solid #d8dcdd",padding:"38px max(20px,6vw)"}}>
         <div style={{maxWidth:1200,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:"18px 34px",alignItems:"center"}}>
@@ -102,6 +99,8 @@ export default function GreamSendaiPage() {
           <div><a href="/ja/gream-sendai/monthly-trial" data-growth-id="gream-monthly-trial-intake" style={button}>毎月木曜日の体験希望を登録する →</a></div>
         </div>
       </section>
+      <GreamAnnualPlan team="sendai" />
+      <ShizugawaCampReport team="sendai" />
       <section aria-labelledby="u12-pathway-cta" style={{background:"#fff",borderBottom:"1px solid #d8dcdd",padding:"40px max(20px,6vw)"}}>
         <div style={{maxWidth:1200,margin:"auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",alignItems:"center",gap:"20px 40px"}}>
           <div>
@@ -335,6 +334,7 @@ export default function GreamSendaiPage() {
           <a href="/ja/gream-sendai/partners" data-growth-id="sendai-member-page-partners" style={{ color: ink, fontSize: 14, fontWeight: 800, padding: "12px 0", textUnderlineOffset: 4 }}>地域スポンサーのご案内 →</a>
         </div>
       </aside>
+      <CorporateSupportStrip locale="ja" />
     </main>
   </SiteFrame>;
 }
