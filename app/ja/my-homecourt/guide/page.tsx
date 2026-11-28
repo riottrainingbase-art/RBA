@@ -70,7 +70,7 @@ export default function MyHomecourtGuide() {
     <div className={s.helpGrid}>
      <article><h3>メールが届かない</h3><p>アドレス、迷惑メール・プロモーションを確認し、少し時間をおいて新しいリンクを送ってください。</p></article>
      <article><h3>メールのリンクが開けない</h3><p>古いリンクではなく最新のメールを使い、Safari／Chromeでログイン画面からやり直してください。</p></article>
-     <article><h3>初期設定で止まる</h3><p>選んだ立場・止まった項目・エラー文をRBAへ相談してください。ログインリンクやお子さまの詳細な個人情報は送らないでください。</p></article>
+     <article><h3>毎回メールアドレスを求められる</h3><p>ログイン後の会員ホームをSafariで開き、共有メニューから「ホーム画面に追加」を選んでください。ホーム画面から開いた場合も、ログイン済みの状態が維持されていれば再入力は不要です。メールのリンクが別のブラウザーで開く場合や、ブラウザーの保存データを消した場合は再認証が必要になることがあります。共有端末では使用後にログアウトしてください。</p><p><Link href="/ja/my-homecourt/app">会員ホームを開く →</Link></p></article><article><h3>初期設定で止まる</h3><p>選んだ立場・止まった項目・エラー文をRBAへ相談してください。ログインリンクやお子さまの詳細な個人情報は送らないでください。</p></article>
     </div>
     <nav className={s.actions} aria-label="サポート">
      <Link className={s.primary} href="/ja/my-homecourt/login">ログインページへ →</Link>
